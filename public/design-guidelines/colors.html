@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors - Effect Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        'effect-blue': {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body style="background-color: #F4F7FA;" class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="effect-design.html" class="flex items-center gap-2 text-slate-600 hover:text-slate-900">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    <span>Back to Design System</span>
+                </a>
+                <h2 class="text-lg font-semibold text-slate-900">Colors</h2>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold text-slate-900 mb-4">Colors</h1>
+            <p class="text-xl text-slate-600 max-w-3xl">
+                Accessible color palette designed for the Effect website.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-slate-900">Accessibility</h3>
+                </div>
+                <div class="text-sm text-slate-600 space-y-2">
+                    <div>• WCAG AA compliant contrast ratios</div>
+                    <div>• Color-blind friendly combinations</div>
+                    <div>• Semantic meaning beyond color</div>
+                    <div>• High contrast for readability</div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-slate-900">Usage Principles</h3>
+                </div>
+                <div class="text-sm text-slate-600 space-y-2">
+                    <div>• Neutral tones for primary interface</div>
+                    <div>• Semantic colors for status feedback</div>
+                    <div>• Consistent dark mode adaptation</div>
+                    <div>• Minimal color for maximum impact</div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-slate-900">Implementation</h3>
+                </div>
+                <div class="text-sm text-slate-600 space-y-2">
+                    <div>• Tailwind CSS color classes</div>
+                    <div>• CSS custom properties</div>
+                    <div>• Design token system</div>
+                    <div>• Automatic dark mode switching</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Core Palette -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Core Palette</h2>
+            <div class="space-y-8">
+                <!-- Neutral Palette -->
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Neutral Palette</h3>
+                    <p class="text-sm text-slate-600 mb-6">A versatile scale that adapts to both light and dark themes, with subtle blue undertones for depth</p>
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#f8f9fa', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #f8f9fa;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">50</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#f8f9fa</div>
+                            <div class="text-xs text-slate-400">Lightest • Backgrounds, surfaces</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#e9ecef', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #e9ecef;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">100</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#e9ecef</div>
+                            <div class="text-xs text-slate-400">Extra light • Alt backgrounds</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#d3d8de', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #d3d8de;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">200</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#d3d8de</div>
+                            <div class="text-xs text-slate-400">Light • Borders, dividers</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#b8c1cb', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #b8c1cb;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">300</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#b8c1cb</div>
+                            <div class="text-xs text-slate-400">Light medium • Disabled states</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#9da8b5', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #9da8b5;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">400</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#9da8b5</div>
+                            <div class="text-xs text-slate-400">Medium • Placeholder text</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#6c7885', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #6c7885;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">500</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#6c7885</div>
+                            <div class="text-xs text-slate-400">Medium dark • Secondary text</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#4d5662', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #4d5662;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">600</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#4d5662</div>
+                            <div class="text-xs text-slate-400">Dark • Body text</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#2c3036', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #2c3036;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">700</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#2c3036</div>
+                            <div class="text-xs text-slate-400">Extra dark • Headings</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#1d2126', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #1d2126;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">800</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#1a1c20</div>
+                            <div class="text-xs text-slate-400">Darker • Emphasis text</div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="copyToClipboard('#0A0B0D', event)">
+                        <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #0A0B0D;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="font-mono text-sm font-medium text-slate-700">900</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#0A0B0D</div>
+                            <div class="text-xs text-slate-400">Darkest • Maximum contrast</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p class="text-sm text-blue-900">
+                        <strong>Theme Usage:</strong> In light mode, use colors 50-300 for backgrounds and 500-900 for text. 
+                        In dark mode, reverse the usage: 900-700 for backgrounds and 100-400 for text.
+                    </p>
+                </div>
+            </div>
+            
+                <!-- Vibrant Accent Colors -->
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-6">Vibrant Accent Colors</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#635bff', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #635bff;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Electric Purple</p>
+                                <p class="font-mono text-xs text-slate-600">#635bff</p>
+                                <p class="text-xs text-slate-500">Primary CTAs, links</p>
+                            </div>
+                        </div>
+
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#ff4785', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #ff4785;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Hot Pink</p>
+                                <p class="font-mono text-xs text-slate-600">#ff4785</p>
+                                <p class="text-xs text-slate-500">Featured content, badges</p>
+                            </div>
+                        </div>
+
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#00d4aa', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #00d4aa;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Vibrant Teal</p>
+                                <p class="font-mono text-xs text-slate-600">#00d4aa</p>
+                                <p class="text-xs text-slate-500">Success states, highlights</p>
+                            </div>
+                        </div>
+
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#ffcc00', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #ffcc00;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-black bg-white/80 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Bright Yellow</p>
+                                <p class="font-mono text-xs text-slate-600">#ffcc00</p>
+                                <p class="text-xs text-slate-500">Warnings, attention</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#0ea5e9', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #0ea5e9;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Sky Blue</p>
+                                <p class="font-mono text-xs text-slate-600">#0ea5e9</p>
+                                <p class="text-xs text-slate-500">Information, tips</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme-Specific Colors -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Theme-Specific Colors</h2>
+            <div class="space-y-8">
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-6">Dark Backgrounds</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#0A0B0D', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #0A0B0D;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Primary Background</p>
+                                <p class="font-mono text-xs text-slate-600">#0A0B0D</p>
+                                <p class="text-xs text-slate-500">Main dark background</p>
+                            </div>
+                        </div>
+
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#16181d', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #16181d;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Secondary Background</p>
+                                <p class="font-mono text-xs text-slate-600">#16181d</p>
+                                <p class="text-xs text-slate-500">Cards and sections</p>
+                            </div>
+                        </div>
+
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#1a1c20', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #1a1c20;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Tertiary Background</p>
+                                <p class="font-mono text-xs text-slate-600">#1a1c20</p>
+                                <p class="text-xs text-slate-500">Nested elements</p>
+                            </div>
+                        </div>
+
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#2c3036', event)">
+                            <div class="w-full h-24 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #2c3036;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-white/10">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <p class="font-medium text-sm text-slate-900">Elevated Background</p>
+                                <p class="font-mono text-xs text-slate-600">#2c3036</p>
+                                <p class="text-xs text-slate-500">Modals and overlays</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-6">Border Colors</h3>
+                    <p class="text-sm text-slate-600 mb-6">Semi-transparent borders for dark mode interfaces</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="group">
+                            <div class="p-6 rounded-lg mb-3" style="background-color: #16181d;">
+                                <div class="w-full h-20 rounded-lg border-2 flex items-center justify-center text-white/60 text-sm" style="border-color: rgba(255, 255, 255, 0.08);">
+                                    Subtle
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="font-medium text-sm text-slate-700">Subtle</p>
+                                <code class="font-mono text-xs text-slate-500">rgba(255, 255, 255, 0.08)</code>
+                                <p class="text-xs text-slate-400 mt-1">Soft divisions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group">
+                            <div class="p-6 rounded-lg mb-3" style="background-color: #16181d;">
+                                <div class="w-full h-20 rounded-lg border-2 flex items-center justify-center text-white/60 text-sm" style="border-color: rgba(255, 255, 255, 0.12);">
+                                    Default
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="font-medium text-sm text-slate-700">Default</p>
+                                <code class="font-mono text-xs text-slate-500">rgba(255, 255, 255, 0.12)</code>
+                                <p class="text-xs text-slate-400 mt-1">Standard borders</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group">
+                            <div class="p-6 rounded-lg mb-3" style="background-color: #16181d;">
+                                <div class="w-full h-20 rounded-lg border-2 flex items-center justify-center text-white/60 text-sm" style="border-color: rgba(255, 255, 255, 0.16);">
+                                    Strong
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="font-medium text-sm text-slate-700">Strong</p>
+                                <code class="font-mono text-xs text-slate-500">rgba(255, 255, 255, 0.16)</code>
+                                <p class="text-xs text-slate-400 mt-1">Emphasized edges</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+<!-- Semantic Colors -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Semantic Colors</h2>
+            <div class="space-y-4">
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">Status Colors</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    
+                    <div class="flex flex-col gap-6">
+                    <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#10b981', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #10b981;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm text-slate-700">Success</div>
+                            <div class="font-mono text-xs text-slate-500">#10b981</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">4.7:1</div>
+                        </div>
+                    </div>
+
+                        <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#f0fdf4', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #f0fdf4;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm text-slate-700">Success Light</div>
+                            <div class="font-mono text-xs text-slate-500">#f0fdf4</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">1.02:1</div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="flex flex-col gap-6">
+                    <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#ca8a04', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #ca8a04;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm font-medium text-slate-700">Warning</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#ca8a04</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">4.8:1</div>
+                        </div>
+                    </div>
+                        <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#fff7ed', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #fff7ed;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm font-medium text-slate-700">Warning Light</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#fff7ed</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">1.01:1</div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="flex flex-col gap-6">
+                    <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#dc2626', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #dc2626;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm font-medium text-slate-700">Error</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#dc2626</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">5.2:1</div>
+                        </div>
+                    </div>
+                    <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#fef2f2', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #fef2f2;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm font-medium text-slate-700">Error Light</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#fef2f2</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">1.01:1</div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="flex flex-col gap-6">
+                    <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#0ea5e9', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #0ea5e9;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm font-medium text-slate-700">Info</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#0ea5e9</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">4.9:1</div>
+                        </div>
+                    </div>
+                    <div class="group flex items-center gap-4 cursor-pointer" onclick="copyToClipboard('#f0f9ff', event)">
+                        <div class="w-16 h-16 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border border-slate-200" style="background-color: #f0f9ff;">
+                            <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-medium text-sm font-medium text-slate-700">Info Light</div>
+                            <div class="font-mono text-xs text-slate-500 mb-1">#f0f9ff</div>
+                            <div class="text-xs text-slate-500 mt-1 font-mono">1.01:1</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Code Highlighting</h3>
+                    <p class="text-sm text-slate-600 mb-6">Syntax colors optimized for dark theme editors</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Color boxes on the left -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="group flex items-center gap-3 cursor-pointer bg-slate-50 rounded-lg p-3 transition-all duration-200 hover:bg-slate-100" onclick="copyToClipboard('#635bff', event)">
+                                <div class="w-12 h-12 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #635bff;">
+                                    <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                        <div class="flex items-center gap-1 text-white bg-black/50 px-2 py-1 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-medium text-sm text-slate-700">Keyword</div>
+                                    <div class="font-mono text-xs text-slate-500">#635bff</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">import, const</div>
+                                </div>
+                            </div>
+                            <div class="group flex items-center gap-3 cursor-pointer bg-slate-50 rounded-lg p-3 transition-all duration-200 hover:bg-slate-100" onclick="copyToClipboard('#00d4aa', event)">
+                                <div class="w-12 h-12 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #00d4aa;">
+                                    <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                        <div class="flex items-center gap-1 text-white bg-black/50 px-2 py-1 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-medium text-sm text-slate-700">String</div>
+                                    <div class="font-mono text-xs text-slate-500">#00d4aa</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">"text", 'value'</div>
+                                </div>
+                            </div>
+                            <div class="group flex items-center gap-3 cursor-pointer bg-slate-50 rounded-lg p-3 transition-all duration-200 hover:bg-slate-100" onclick="copyToClipboard('#ffcc00', event)">
+                                <div class="w-12 h-12 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #ffcc00;">
+                                    <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                        <div class="flex items-center gap-1 text-black bg-white/80 px-2 py-1 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-medium text-sm text-slate-700">Number</div>
+                                    <div class="font-mono text-xs text-slate-500">#ffcc00</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">42, 3.14, 0xFF</div>
+                                </div>
+                            </div>
+                            <div class="group flex items-center gap-3 cursor-pointer bg-slate-50 rounded-lg p-3 transition-all duration-200 hover:bg-slate-100" onclick="copyToClipboard('#0ea5e9', event)">
+                                <div class="w-12 h-12 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #0ea5e9;">
+                                    <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                        <div class="flex items-center gap-1 text-white bg-black/50 px-2 py-1 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-medium text-sm text-slate-700">Function</div>
+                                    <div class="font-mono text-xs text-slate-500">#0ea5e9</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">Effect, console</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Default text color -->
+                            <div class="group flex items-center gap-3 cursor-pointer bg-slate-50 rounded-lg p-3 transition-all duration-200 hover:bg-slate-100" onclick="copyToClipboard('#e2e8f0', event)">
+                                <div class="w-12 h-12 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #e2e8f0;">
+                                    <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                        <div class="flex items-center gap-1 text-black bg-white/80 px-2 py-1 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-medium text-sm text-slate-700">Default Text</div>
+                                    <div class="font-mono text-xs text-slate-500">#e2e8f0</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">Variables, text</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Comments color -->
+                            <div class="group flex items-center gap-3 cursor-pointer bg-slate-50 rounded-lg p-3 transition-all duration-200 hover:bg-slate-100" onclick="copyToClipboard('#94a3b8', event)">
+                                <div class="w-12 h-12 rounded-lg shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #94a3b8;">
+                                    <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                        <div class="flex items-center gap-1 text-white bg-black/50 px-2 py-1 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-medium text-sm text-slate-700">Comments</div>
+                                    <div class="font-mono text-xs text-slate-500">#94a3b8</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">// comments</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Code syntax on the right -->
+                        <div class="h-full">
+                            <div class="text-slate-100 p-6 rounded-lg font-mono text-sm h-full shadow-inner" style="background-color: #0A0B0D;">
+                                <div class="flex items-center gap-2 mb-4 pb-4 border-b" style="border-color: rgba(255, 255, 255, 0.08);">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    <span class="text-xs text-slate-500 ml-2">example.ts</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div>
+                                        <span class="text-purple-400">import</span> <span style="color: #e2e8f0;">{</span> <span class="text-cyan-400">Effect</span><span style="color: #e2e8f0;">,</span> <span class="text-cyan-400">pipe</span> <span style="color: #e2e8f0;">}</span> <span class="text-purple-400">from</span> <span class="text-emerald-400">"effect"</span>
+                                    </div>
+                                    <div class="h-2"></div>
+                                    <div>
+                                        <span style="color: #94a3b8;">// Create a simple Effect program</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-purple-400">const</span> <span style="color: #e2e8f0;">program</span> <span style="color: #e2e8f0;">=</span> <span class="text-cyan-400">pipe</span><span style="color: #e2e8f0;">(</span>
+                                    </div>
+                                    <div class="pl-4">
+                                        <span class="text-cyan-400">Effect</span><span style="color: #e2e8f0;">.</span><span class="text-cyan-400">succeed</span><span style="color: #e2e8f0;">(</span><span class="text-orange-400">42</span><span style="color: #e2e8f0;">),</span>
+                                    </div>
+                                    <div class="pl-4">
+                                        <span class="text-cyan-400">Effect</span><span style="color: #e2e8f0;">.</span><span class="text-cyan-400">map</span><span style="color: #e2e8f0;">((</span><span style="color: #e2e8f0;">n</span><span style="color: #e2e8f0;">)</span> <span class="text-purple-400">=></span> <span style="color: #e2e8f0;">n</span> <span style="color: #e2e8f0;">*</span> <span class="text-orange-400">2</span><span style="color: #e2e8f0;">)</span>
+                                    </div>
+                                    <div>
+                                        <span style="color: #e2e8f0;">)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+   
+
+    <script>
+        function copyToClipboard(text, event) {
+            // Prevent event bubbling if called from a child element
+            if (event) {
+                event.stopPropagation();
+            }
+            
+            // Find the clicked element
+            const clickedElement = event ? event.currentTarget : document.activeElement;
+            
+            // Find the copy button within the clicked element
+            const copyButton = clickedElement.querySelector('.group-hover\\:opacity-100');
+            if (copyButton) {
+                const copyText = copyButton.querySelector('div');
+                if (copyText) {
+                    // Store original content and classes
+                    const originalHTML = copyText.innerHTML;
+                    const isWhiteBg = copyText.classList.contains('bg-white/80');
+                    
+                    // Change to show the copied color code with checkmark
+                    copyText.innerHTML = `
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        ${text}
+                    `;
+                    
+                    // Add success styling with darkest background
+                    copyText.classList.remove('bg-black/50', 'bg-white/80');
+                    copyText.classList.add('bg-[#0A0B0D]');
+                    copyText.classList.remove('text-black');
+                    copyText.classList.add('text-white');
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(text).then(function() {
+                        // Reset after 1.5 seconds
+                        setTimeout(() => {
+                            copyText.innerHTML = originalHTML;
+                            copyText.classList.remove('bg-[#0A0B0D]', 'text-white');
+                            if (isWhiteBg) {
+                                copyText.classList.add('bg-white/80', 'text-black');
+                            } else {
+                                copyText.classList.add('bg-black/50');
+                            }
+                        }, 1500);
+                    });
+                }
+            } else {
+                // Fallback for any elements without the standard structure
+                navigator.clipboard.writeText(text);
+            }
+        }
+    </script>
+
+
+
+        <!-- Status Messages & Feedback -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Status Messages & Feedback</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="p-6 rounded-lg space-y-4 border" style="border-color: #e9ecef;">
+                            <h4 class="font-semibold text-slate-800">Light Mode Status</h4>
+
+                            <div class="border rounded-lg p-4" style="background-color: #f0fdf4; border-color: #10b981;">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #10b981;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #065f46;">Installation Successful</h5>
+                                        <p class="text-sm mt-1" style="color: #047857;">
+                                            Effect has been installed and configured correctly.
+                                        </p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #10b981;">Icon: 4.5:1 (AA) • Title: 16.3:1 (AAA) • Text: 9.0:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border rounded-lg p-4" style="background-color: #fff7ed; border-color: #ca8a04;">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full mt-0.5" style="background-color: #ca8a04;"></div>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #92400e;">Deprecated API Warning</h5>
+                                        <p class="text-sm mt-1" style="color: #b45309;">This method will be removed in version 3.0.</p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #ca8a04;">Icon: 4.7:1 (AA) • Title: 21.0:1 (AAA) • Text: 7.8:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border rounded-lg p-4" style="background-color: #fef2f2; border-color: #dc2626;">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full mt-0.5" style="background-color: #dc2626;"></div>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #991b1b;">Type Error</h5>
+                                        <p class="text-sm mt-1" style="color: #b91c1c;">Expected string but received number in line 42.</p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #dc2626;">Icon: 5.1:1 (AA) • Title: 14.6:1 (AAA) • Text: 8.8:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border rounded-lg p-4" style="background-color: #f0f9ff; border-color: #0ea5e9;">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full mt-0.5" style="background-color: #0ea5e9;"></div>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #075985;">New Version Available</h5>
+                                        <p class="text-sm mt-1" style="color: #0369a1;">Effect v2.1.0 includes performance improvements.</p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #0ea5e9;">Icon: 4.8:1 (AA) • Title: 16.8:1 (AAA) • Text: 10.2:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 rounded-lg space-y-4" style="background-color: #0A0B0D;">
+                            <h4 class="font-semibold" style="color: #f8f9fa;">Dark Mode Status</h4>
+
+                            <div class="border rounded-lg p-4" style="background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3);">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #10b981;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #86efac;">Installation Successful</h5>
+                                        <p class="text-sm mt-1" style="color: #6ee7b7;">
+                                            Effect has been installed and configured correctly.
+                                        </p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #10b981;">Icon: 11.3:1 (AAA) • Title: 11.1:1 (AAA) • Text: 7.8:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border rounded-lg p-4" style="background-color: rgba(202, 138, 4, 0.1); border-color: rgba(202, 138, 4, 0.3);">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full mt-0.5" style="background-color: #ca8a04;"></div>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #fbbf24;">Deprecated API Warning</h5>
+                                        <p class="text-sm mt-1" style="color: #f59e0b;">This method will be removed in version 3.0.</p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #ca8a04;">Icon: 11.9:1 (AAA) • Title: 14.2:1 (AAA) • Text: 10.7:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border rounded-lg p-4" style="background-color: rgba(220, 38, 38, 0.1); border-color: rgba(220, 38, 38, 0.3);">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full mt-0.5" style="background-color: #dc2626;"></div>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #fca5a5;">Type Error</h5>
+                                        <p class="text-sm mt-1" style="color: #f87171;">Expected string but received number in line 42.</p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #dc2626;">Icon: 12.9:1 (AAA) • Title: 13.0:1 (AAA) • Text: 10.0:1 (AAA)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border rounded-lg p-4" style="background-color: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.3);">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full mt-0.5" style="background-color: #0ea5e9;"></div>
+                                    <div>
+                                        <h5 class="text-sm font-medium" style="color: #7dd3fc;">New Version Available</h5>
+                                        <p class="text-sm mt-1" style="color: #38bdf8;">Effect v2.1.0 includes performance improvements.</p>
+                                        <div class="text-xs mt-2 font-mono" style="color: #0ea5e9;">Icon: 12.1:1 (AAA) • Title: 9.5:1 (AAA) • Text: 4.8:1 (AA)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Visualization Palette -->
+        <section class="mb-16">
+                <h2 class="text-2xl font-bold text-slate-900 mb-8">Data Visualization</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <h3 class="text-lg font-semibold text-slate-900 mb-2">Chart Colors</h3>
+                <p class="text-sm text-slate-600 mb-6">Accessible color combinations for data visualization</p>
+                <!-- Sequential Scale -->
+                <div class="mb-8">
+                    <h4 class="text-base font-semibold text-slate-800 mb-4">Sequential Scale</h4>
+                    <div class="flex gap-0 mb-2 rounded-lg overflow-hidden">
+                        <div class="h-12 flex-1" style="background-color: #f0f9ff;"></div>
+                        <div class="h-12 flex-1" style="background-color: #bae6fd;"></div>
+                        <div class="h-12 flex-1" style="background-color: #7dd3fc;"></div>
+                        <div class="h-12 flex-1" style="background-color: #38bdf8;"></div>
+                        <div class="h-12 flex-1" style="background-color: #0ea5e9;"></div>
+                        <div class="h-12 flex-1" style="background-color: #0284c7;"></div>
+                        <div class="h-12 flex-1" style="background-color: #0369a1;"></div>
+                        <div class="h-12 flex-1" style="background-color: #075985;"></div>
+                    </div>
+                    <p class="text-xs text-slate-600">Use for showing progression or intensity</p>
+                </div>
+
+                <!-- Categorical Colors -->
+                <div class="mb-8">
+                    <h4 class="text-base font-semibold text-slate-800 mb-4">Categorical Palette</h4>
+                    <div class="grid grid-cols-6 gap-3">
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#0ea5e9', event)">
+                            <div class="h-16 rounded-lg border border-slate-200 transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #0ea5e9;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                    <div class="text-xs text-white bg-black/50 px-2 py-1 rounded">Copy</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center mt-1 font-mono">#0ea5e9</p>
+                        </div>
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#10b981', event)">
+                            <div class="h-16 rounded-lg border border-slate-200 transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #10b981;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                    <div class="text-xs text-white bg-black/50 px-2 py-1 rounded">Copy</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center mt-1 font-mono">#10b981</p>
+                        </div>
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#f59e0b', event)">
+                            <div class="h-16 rounded-lg border border-slate-200 transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #f59e0b;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                    <div class="text-xs text-white bg-black/50 px-2 py-1 rounded">Copy</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center mt-1 font-mono">#f59e0b</p>
+                        </div>
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#8b5cf6', event)">
+                            <div class="h-16 rounded-lg border border-slate-200 transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #8b5cf6;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                    <div class="text-xs text-white bg-black/50 px-2 py-1 rounded">Copy</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center mt-1 font-mono">#8b5cf6</p>
+                        </div>
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#ec4899', event)">
+                            <div class="h-16 rounded-lg border border-slate-200 transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #ec4899;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                    <div class="text-xs text-white bg-black/50 px-2 py-1 rounded">Copy</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center mt-1 font-mono">#ec4899</p>
+                        </div>
+                        <div class="group cursor-pointer" onclick="copyToClipboard('#14b8a6', event)">
+                            <div class="h-16 rounded-lg border border-slate-200 transition-all duration-200 group-hover:scale-105 group-hover:shadow-md" style="background-color: #14b8a6;">
+                                <div class="w-full h-full rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
+                                    <div class="text-xs text-white bg-black/50 px-2 py-1 rounded">Copy</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center mt-1 font-mono">#14b8a6</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 mt-2">Use for distinct categories in charts</p>
+                </div>
+
+                <!-- Usage Guidelines -->
+                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p class="text-sm text-blue-900">
+                        <strong>Usage Guidelines:</strong> Use sequential scales for continuous data. 
+                        Categorical colors should be visually distinct and maintain accessibility standards. 
+                        Limit to 6-8 colors maximum per visualization.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+            <!-- Gradients & Effects -->
+            <section class="mb-16">
+                <h2 class="text-2xl font-bold text-slate-900 mb-8">Gradients & Effects</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <p class="text-sm text-slate-600 mb-8">Special visual effects used to enhance the design and create depth.</p>
+                
+                <!-- Background Effects -->
+                <div class="mb-12">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-6">Background Effects</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Hero Mesh -->
+                        <div>
+                            <h4 class="text-base font-medium text-slate-700 mb-3">Hero Background Mesh</h4>
+                            <div class="group relative h-48 rounded-lg overflow-hidden border border-slate-200 cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background: radial-gradient(at 60% 70%, hsla(245, 100%, 60%, 0.3) 0px, transparent 50%), radial-gradient(at 40% 20%, hsla(180, 100%, 60%, 0.2) 0px, transparent 50%);`, event)">
+                                <div class="absolute inset-0" style="background: radial-gradient(at 60% 70%, hsla(245, 100%, 60%, 0.3) 0px, transparent 50%), radial-gradient(at 40% 20%, hsla(180, 100%, 60%, 0.2) 0px, transparent 50%);"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy CSS
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <div class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+                                        --gradient-mesh
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aurora Effect -->
+                        <div>
+                            <h4 class="text-base font-medium text-slate-700 mb-3">Aurora Effect</h4>
+                            <div class="group relative h-48 rounded-lg overflow-hidden border border-slate-200 cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background: radial-gradient(ellipse at top left, rgba(99, 91, 255, 0.15) 0%, transparent 40%), radial-gradient(ellipse at bottom right, rgba(0, 212, 170, 0.1) 0%, transparent 40%), radial-gradient(ellipse at center, rgba(14, 165, 233, 0.08) 0%, transparent 60%);`, event)">
+                                <div class="absolute inset-0" style="background: 
+                                    radial-gradient(ellipse at top left, rgba(99, 91, 255, 0.15) 0%, transparent 40%),
+                                    radial-gradient(ellipse at bottom right, rgba(0, 212, 170, 0.1) 0%, transparent 40%),
+                                    radial-gradient(ellipse at center, rgba(14, 165, 233, 0.08) 0%, transparent 60%);"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy CSS
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <div class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+                                        --bg-aurora
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Pattern -->
+                        <div>
+                            <h4 class="text-base font-medium text-slate-700 mb-3">Grid Pattern</h4>
+                            <div class="group relative h-48 rounded-lg overflow-hidden border border-slate-200 cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background-color: #0A0B0D; background-image: linear-gradient(rgba(99, 91, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 91, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px;`, event)">
+                                <div class="absolute inset-0" style="
+                                    background-image: 
+                                        linear-gradient(rgba(99, 91, 255, 0.1) 1px, transparent 1px),
+                                        linear-gradient(90deg, rgba(99, 91, 255, 0.1) 1px, transparent 1px);
+                                    background-size: 40px 40px;">
+                                </div>
+                                <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 0%, #0A0B0D 80%);"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy CSS
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <div class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+                                        --bg-grid
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gradient Orbs -->
+                        <div>
+                            <h4 class="text-base font-medium text-slate-700 mb-3">Gradient Orbs</h4>
+                            <div class="group relative h-48 rounded-lg overflow-hidden border border-slate-200 cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background: radial-gradient(circle 400px at 20% 30%, rgba(99, 91, 255, 0.1), transparent), radial-gradient(circle 350px at 80% 70%, rgba(255, 71, 133, 0.08), transparent), radial-gradient(circle 300px at 50% 50%, rgba(0, 212, 170, 0.06), transparent);`, event)">
+                                <div class="absolute inset-0" style="
+                                    background: 
+                                        radial-gradient(circle 400px at 20% 30%, rgba(99, 91, 255, 0.1), transparent),
+                                        radial-gradient(circle 350px at 80% 70%, rgba(255, 71, 133, 0.08), transparent),
+                                        radial-gradient(circle 300px at 50% 50%, rgba(0, 212, 170, 0.06), transparent);">
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy CSS
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <div class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+                                        --bg-orbs
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional row for Dot Pattern and Mesh Variant -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <!-- Dot Pattern -->
+                        <div>
+                            <h4 class="text-base font-medium text-slate-700 mb-3">Dot Pattern</h4>
+                            <div class="group relative h-48 rounded-lg overflow-hidden border border-slate-200 cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background-color: #0A0B0D; background-image: radial-gradient(circle, rgba(99, 91, 255, 0.15) 1px, transparent 1px); background-size: 30px 30px;`, event)">
+                                <div class="absolute inset-0" style="
+                                    background-image: radial-gradient(circle, rgba(99, 91, 255, 0.15) 1px, transparent 1px);
+                                    background-size: 30px 30px;">
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy CSS
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <div class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+                                        --bg-dots
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subtle Glow -->
+                        <div>
+                            <h4 class="text-base font-medium text-slate-700 mb-3">Subtle Glow</h4>
+                            <div class="group relative h-48 rounded-lg overflow-hidden border border-slate-200 cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(99, 91, 255, 0.15), transparent 40%), radial-gradient(ellipse 800px 500px at 100% 100%, rgba(0, 212, 170, 0.08), transparent 40%), radial-gradient(ellipse 600px 600px at 0% 100%, rgba(14, 165, 233, 0.06), transparent 40%);`, event)">
+                                <div class="absolute inset-0" style="background: 
+                                    radial-gradient(ellipse 600px 400px at 50% 0%, rgba(99, 91, 255, 0.15), transparent 40%),
+                                    radial-gradient(ellipse 800px 500px at 100% 100%, rgba(0, 212, 170, 0.08), transparent 40%),
+                                    radial-gradient(ellipse 600px 600px at 0% 100%, rgba(14, 165, 233, 0.06), transparent 40%);"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy CSS
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <div class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+                                        --bg-glow
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- Linear Gradients -->
+                <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Linear Gradients</h3>
+                        
+                        <!-- Dark Gradients -->
+                        <h4 class="text-base font-medium text-slate-700 mb-4">Dark Gradients</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <div class="group h-24 rounded-lg border border-slate-200 cursor-pointer relative overflow-hidden" style="background: linear-gradient(180deg, #1e2025 0%, #0A0B0D 100%);" onclick="copyToClipboard(`linear-gradient(180deg, #1e2025 0%, #0A0B0D 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-dark-subtle</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Subtle depth</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg border border-slate-200 cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #25282f 0%, #0A0B0D 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #25282f 0%, #0A0B0D 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-dark-diagonal</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Diagonal fade</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg border border-slate-200 cursor-pointer relative overflow-hidden" style="background: radial-gradient(ellipse at center, #16181d 0%, #0A0B0D 70%);" onclick="copyToClipboard(`radial-gradient(ellipse at center, #16181d 0%, #0A0B0D 70%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-dark-radial</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Radial glow</p>
+                            </div>
+                        </div>
+
+                        <!-- Accent Gradients -->
+                        <h4 class="text-base font-medium text-slate-700 mb-4">Accent Gradients</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <div class="group h-24 rounded-lg cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #635bff 0%, #ff4785 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #635bff 0%, #ff4785 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-purple-pink</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Electric to Hot Pink</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #00d4aa 0%, #0ea5e9 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #00d4aa 0%, #0ea5e9 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-teal-blue</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Vibrant Teal to Sky</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #635bff 0%, #0ea5e9 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #635bff 0%, #0ea5e9 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-purple-blue</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Electric to Sky Blue</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #ff4785 0%, #635bff 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #ff4785 0%, #635bff 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-pink-purple</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Hot Pink to Electric</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #0ea5e9 0%, #00d4aa 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #0ea5e9 0%, #00d4aa 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-blue-teal</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Sky Blue to Vibrant Teal</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #00d4aa 0%, #635bff 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #00d4aa 0%, #635bff 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-teal-purple</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Vibrant Teal to Electric</p>
+                            </div>
+                        </div>
+
+                        <!-- Neutral Gradients -->
+                        <h4 class="text-base font-medium text-slate-700 mb-4">Neutral Gradients</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <div class="group h-24 rounded-lg border border-slate-200 cursor-pointer relative overflow-hidden" style="background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);" onclick="copyToClipboard(`linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-slate-700 font-mono text-xs bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-neutral-subtle</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Subtle light gradient</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg border border-slate-200 cursor-pointer relative overflow-hidden" style="background: linear-gradient(135deg, #e9ecef 0%, #b8c1cb 100%);" onclick="copyToClipboard(`linear-gradient(135deg, #e9ecef 0%, #b8c1cb 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-slate-700 font-mono text-xs bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-neutral-light</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Light neutral</p>
+                            </div>
+                            <div>
+                                <div class="group h-24 rounded-lg border border-slate-200 cursor-pointer relative overflow-hidden" style="background: linear-gradient(90deg, #4d5662 0%, #2c3036 100%);" onclick="copyToClipboard(`linear-gradient(90deg, #4d5662 0%, #2c3036 100%)`, event)">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                        <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Copy
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 right-2">
+                                        <p class="text-white/90 font-mono text-xs bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded inline-block">--gradient-neutral-dark</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 text-center">Dark neutral</p>
+                            </div>
+                        </div>
+
+                </div>
+
+                <!-- Overlay Effects -->
+                <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Overlay Effects</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="group relative h-24 rounded-lg overflow-hidden cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background-color: rgba(255, 255, 255, 0.05);`, event)">
+                                <div class="absolute inset-0 bg-white/5"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs z-10">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-2 left-2 right-2">
+                                    <p class="text-xs text-white/80 font-mono">bg-white/5</p>
+                                </div>
+                            </div>
+                            <div class="group relative h-24 rounded-lg overflow-hidden cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background-color: rgba(255, 255, 255, 0.1);`, event)">
+                                <div class="absolute inset-0 bg-white/10"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs z-10">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-2 left-2 right-2">
+                                    <p class="text-xs text-white/80 font-mono">bg-white/10</p>
+                                </div>
+                            </div>
+                            <div class="group relative h-24 rounded-lg overflow-hidden cursor-pointer" style="background-color: #0A0B0D;" onclick="copyToClipboard(`background-color: rgba(0, 0, 0, 0.2);`, event)">
+                                <div class="absolute inset-0 bg-black/20"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="flex items-center gap-2 text-white bg-black/50 px-3 py-1.5 rounded-full text-xs z-10">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-2 left-2 right-2">
+                                    <p class="text-xs text-white/80 font-mono">bg-black/20</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-3">Use overlay effects to create depth and hierarchy in dark mode interfaces.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-24">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-600">© 2024 Effect. All rights reserved.</p>
+                <a href="effect-design.html" class="text-sm text-slate-600 hover:text-slate-900">Back to Design System</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

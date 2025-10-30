@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacing - Effect Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body style="background-color: #F4F7FA;" class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="effect-design.html" class="flex items-center gap-2 text-slate-600 hover:text-slate-900">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    <span>Back to Design System</span>
+                </a>
+                <h2 class="text-lg font-semibold text-slate-900">Spacing</h2>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold text-slate-900 mb-4">Spacing</h1>
+            <p class="text-xl text-slate-600 max-w-3xl">
+                Consistent spacing tokens and corner radius based on 8px baseline grid
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <!-- Baseline Grid Card -->
+          <div class="bg-white border border-slate-200 rounded-lg">
+            <div class="p-6 border-b border-slate-200">
+              <h3 class="text-lg font-semibold text-slate-900">Baseline Grid</h3>
+            </div>
+            <div class="p-6 space-y-4">
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Baseline Line</div>
+                <div class="font-mono">1px</div>
+                <div class="text-slate-600">Marks text baselines</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Baseline Gutter</div>
+                <div class="font-mono">25.6px</div>
+                <div class="text-slate-600">Line height for body text</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Vertical Rhythm</div>
+                <div class="font-mono">Multiples of 8px</div>
+                <div class="text-slate-600">Section spacing, padding, margins</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Spacing Principles Card -->
+          <div class="bg-white border border-slate-200 rounded-lg">
+            <div class="p-6 border-b border-slate-200">
+              <h3 class="text-lg font-semibold text-slate-900">Spacing Principles</h3>
+            </div>
+            <div class="p-6 space-y-3 text-sm text-slate-600">
+              <div>• Always use multiples of 8px (or 4px for fine adjustments)</div>
+              <div>• Maintain consistent vertical rhythm</div>
+              <div>• Scale spacing with content importance</div>
+              <div>• Consider responsive adaptability</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacing Tokens -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Spacing Tokens</h2>
+            <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Token Name</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Pixels</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">REM</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Usage</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Visual Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-0</td>
+                                <td class="py-4 px-6 font-mono text-sm">0px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">No spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 0px; height: 20px; min-width: 1px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">0px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-1</td>
+                                <td class="py-4 px-6 font-mono text-sm">4px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0.25rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Tight spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 4px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">4px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-2</td>
+                                <td class="py-4 px-6 font-mono text-sm">8px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0.5rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Small spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 8px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">8px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-3</td>
+                                <td class="py-4 px-6 font-mono text-sm">12px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0.75rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Medium spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 12px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">12px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-4</td>
+                                <td class="py-4 px-6 font-mono text-sm">16px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">1rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Default spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 16px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">16px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-5</td>
+                                <td class="py-4 px-6 font-mono text-sm">20px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">1.25rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Large spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 20px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">20px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-6</td>
+                                <td class="py-4 px-6 font-mono text-sm">24px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">1.5rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Extra large spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 24px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">24px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-8</td>
+                                <td class="py-4 px-6 font-mono text-sm">32px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">2rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Section spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 32px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">32px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-10</td>
+                                <td class="py-4 px-6 font-mono text-sm">40px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">2.5rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Large section spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 40px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">40px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-12</td>
+                                <td class="py-4 px-6 font-mono text-sm">48px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">3rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Hero section spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 48px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">48px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">space-16</td>
+                                <td class="py-4 px-6 font-mono text-sm">64px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">4rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Page section spacing</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-500 rounded" style="width: 64px; height: 20px;"></div>
+                                        <span class="ml-3 text-xs text-slate-500 font-mono">64px</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Corner Radius System -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Corner Radius System</h2>
+            <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Token Name</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Pixels</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">REM</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Usage</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Visual Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-none</td>
+                                <td class="py-4 px-6 font-mono text-sm">0px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">No radius</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 0px;"></div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-sm</td>
+                                <td class="py-4 px-6 font-mono text-sm">2px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0.125rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Small elements</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 2px;"></div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-md</td>
+                                <td class="py-4 px-6 font-mono text-sm">4px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0.25rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Default radius</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 4px;"></div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-lg</td>
+                                <td class="py-4 px-6 font-mono text-sm">8px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">0.5rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Cards, containers</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 8px;"></div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-xl</td>
+                                <td class="py-4 px-6 font-mono text-sm">16px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">1rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Modal, large cards</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 16px;"></div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-2xl</td>
+                                <td class="py-4 px-6 font-mono text-sm">24px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">1.5rem</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Special elements</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 24px;"></div>
+                                </td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-mono text-sm text-purple-600">radius-full</td>
+                                <td class="py-4 px-6 font-mono text-sm">9999px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-slate-500">-</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Pills, badges</td>
+                                <td class="py-4 px-6">
+                                    <div class="w-16 h-8 bg-purple-200 border border-purple-300" style="border-radius: 9999px;"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Touch Targets -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Touch Targets</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <p class="text-slate-600 mb-6">Ensure interactive elements have adequate spacing for touch accessibility.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Minimum Sizes</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 bg-blue-500 rounded flex items-center justify-center text-white">44</div>
+                                <p class="text-sm text-slate-600">Minimum touch target (44x44px)</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-green-500 rounded flex items-center justify-center text-white">48</div>
+                                <p class="text-sm text-slate-600">Recommended touch target (48x48px)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Touch Spacing</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-2">
+                                <button class="px-4 py-2 bg-slate-900 text-white text-sm rounded">Button</button>
+                                <button class="px-4 py-2 bg-slate-900 text-white text-sm rounded">Button</button>
+                            </div>
+                            <p class="text-sm text-slate-600">Minimum 8px gap between touch targets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nested Element Spacing Rules -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Nested Element Spacing Rules</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <!-- Container Spacing Rules Card -->
+              <div class="bg-white border border-slate-200 rounded-lg">
+                <div class="p-6 border-b border-slate-200">
+                  <h3 class="text-lg font-semibold text-slate-900">Container Spacing Rules</h3>
+                </div>
+                <div class="p-6 space-y-4">
+                  <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                    <div class="text-sm font-medium text-slate-700 mb-4">Outer Container (padding: 24px)</div>
+                    <div class="bg-white p-4 rounded-md border border-slate-200">
+                      <div class="text-sm font-medium text-slate-700 mb-3">Inner Container (padding: 16px)</div>
+                      <div class="bg-slate-100 p-2 rounded text-xs text-slate-600">Content (padding: 8px)</div>
+                    </div>
+                  </div>
+                  <div class="text-sm text-slate-600">
+                    <strong>Rule:</strong> Reduce padding by 8px for each nesting level
+                  </div>
+                </div>
+              </div>
+
+              <!-- Corner Radius Nesting Card -->
+              <div class="bg-white border border-slate-200 rounded-lg">
+                <div class="p-6 border-b border-slate-200">
+                  <h3 class="text-lg font-semibold text-slate-900">Corner Radius Nesting</h3>
+                </div>
+                <div class="p-6 space-y-4">
+                  <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <div class="text-sm font-medium text-slate-700 mb-4">Outer (radius: 12px)</div>
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                      <div class="text-sm font-medium text-slate-700 mb-3">Inner (radius: 8px)</div>
+                      <div class="bg-slate-100 p-2 rounded text-xs text-slate-600">Content (radius: 4px)</div>
+                    </div>
+                  </div>
+                  <div class="text-sm text-slate-600">
+                    <strong>Rule:</strong> Reduce corner radius by 4px for each nesting level
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- Spacing in Practice -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Spacing in Practice</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <!-- Component Spacing Card -->
+              <div class="bg-white border border-slate-200 rounded-lg">
+                <div class="p-6 border-b border-slate-200">
+                  <h3 class="text-lg font-semibold text-slate-900">Component Spacing</h3>
+                </div>
+                <div class="p-6 space-y-6">
+                  <div class="border border-slate-200 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">Card Title</h3>
+                    <p class="text-slate-600 mb-6">
+                      This card demonstrates proper internal spacing using our spacing tokens.
+                    </p>
+                    <button class="bg-slate-900 text-white px-4 py-2 rounded text-sm">Action Button</button>
+                  </div>
+                  <div class="text-sm text-slate-500 space-y-1">
+                    <div>• Title margin-bottom: spacing-md (24px)</div>
+                    <div>• Paragraph margin-bottom: spacing-lg (32px)</div>
+                    <div>• Card padding: spacing-lg (32px)</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Layout Spacing Card -->
+              <div class="bg-white border border-slate-200 rounded-lg">
+                <div class="p-6 border-b border-slate-200">
+                  <h3 class="text-lg font-semibold text-slate-900">Layout Spacing</h3>
+                </div>
+                <div class="p-6">
+                  <div class="space-y-8">
+                    <div class="bg-slate-100 p-4 rounded">
+                      <div class="text-sm font-medium text-slate-700">Section 1</div>
+                    </div>
+                    <div class="bg-slate-100 p-4 rounded">
+                      <div class="text-sm font-medium text-slate-700">Section 2</div>
+                    </div>
+                    <div class="bg-slate-100 p-4 rounded">
+                      <div class="text-sm font-medium text-slate-700">Section 3</div>
+                    </div>
+                  </div>
+                  <div class="text-sm text-slate-500 mt-4">Sections separated by spacing-xl (64px)</div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- Complex Nesting Example -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Complex Nesting Example</h2>
+
+            <div class="bg-white border border-slate-200 rounded-lg">
+              <div class="p-6 border-b border-slate-200">
+                <h3 class="text-lg font-semibold text-slate-900">Dashboard Card with Multiple Levels</h3>
+              </div>
+              <div class="p-6">
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                  <div class="text-sm font-medium text-slate-700 mb-6">Dashboard Container (p-8, rounded-2xl)</div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200">
+                      <div class="text-sm font-medium text-slate-700 mb-4">Widget Container (p-6, rounded-xl)</div>
+
+                      <div class="space-y-4">
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                          <div class="text-sm font-medium text-slate-700 mb-2">Content Block (p-4, rounded-lg)</div>
+                          <div class="bg-slate-200 p-2 rounded text-xs text-slate-600">
+                            Inner Content (p-2, rounded)
+                          </div>
+                        </div>
+
+                        <div class="flex gap-2">
+                          <button class="bg-slate-900 text-white px-3 py-1.5 rounded-md text-sm">Action</button>
+                          <button class="border border-slate-300 text-slate-700 px-3 py-1.5 rounded-md text-sm">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200">
+                      <div class="text-sm font-medium text-slate-700 mb-4">Another Widget</div>
+                      <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg">
+                        <div class="text-sm text-slate-600">Gradient background with proper nesting</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 text-sm text-slate-600 space-y-1">
+                  <div>
+                    <strong>Spacing progression:</strong> 32px → 24px → 16px → 8px
+                  </div>
+                  <div>
+                    <strong>Corner radius progression:</strong> 16px → 12px → 8px → 4px
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- Spacing & Corner Best Practices -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Spacing & Corner Best Practices</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-semibold text-slate-800 mb-4">Spacing Guidelines</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Use consistent 8px increments for all spacing</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Reduce padding by 8px for each nesting level</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Maintain visual hierarchy through spacing</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Consider touch targets on mobile (min 44px)</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-slate-800 mb-4">Corner Radius Guidelines</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Use 8px (radius-md) as the default for most elements</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Reduce radius by 4px for each nesting level</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Use radius-full for pills and circular elements</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span class="text-slate-600">Maintain consistency within component families</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-24">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-600">© 2024 Effect. All rights reserved.</p>
+                <a href="effect-design.html" class="text-sm text-slate-600 hover:text-slate-900">Back to Design System</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

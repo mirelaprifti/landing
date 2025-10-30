@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility - Effect Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body style="background-color: #F4F7FA;" class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="effect-design.html" class="flex items-center gap-2 text-slate-600 hover:text-slate-900">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    <span>Back to Design System</span>
+                </a>
+                <h2 class="text-lg font-semibold text-slate-900">Accessibility</h2>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold text-slate-900 mb-4">Accessibility</h1>
+            <p class="text-xl text-slate-600 max-w-3xl">
+                WCAG 2.1 AA compliant design patterns and principles
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-slate-900">WCAG 2.1 AA</h3>
+                </div>
+                <div class="text-sm text-slate-600 space-y-2">
+                    <div>• Meet accessibility standards</div>
+                    <div>• Color contrast compliance</div>
+                    <div>• Clear focus indicators</div>
+                    <div>• Proper heading structure</div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-slate-900">Keyboard Support</h3>
+                </div>
+                <div class="text-sm text-slate-600 space-y-2">
+                    <div>• Full keyboard navigation</div>
+                    <div>• Logical tab order</div>
+                    <div>• Keyboard shortcuts</div>
+                    <div>• Focus management</div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-slate-900">Screen Readers</h3>
+                </div>
+                <div class="text-sm text-slate-600 space-y-2">
+                    <div>• Semantic HTML structure</div>
+                    <div>• ARIA labels and roles</div>
+                    <div>• Live region updates</div>
+                    <div>• Alternative text</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Principles -->
+        <div class="bg-white border border-slate-200 rounded-lg p-6 mb-16">
+            <h2 class="text-lg font-semibold text-slate-900 mb-4">WCAG Core Principles</h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center mb-2 mx-auto">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-1">Perceivable</h3>
+                    <p class="text-xs text-slate-600">Users can see or hear content</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center mb-2 mx-auto">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-1">Operable</h3>
+                    <p class="text-xs text-slate-600">Users can interact with UI</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center mb-2 mx-auto">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-1">Understandable</h3>
+                    <p class="text-xs text-slate-600">Users comprehend content</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center mb-2 mx-auto">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-1">Robust</h3>
+                    <p class="text-xs text-slate-600">Works with assistive tech</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Contrast -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Color Contrast</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">WCAG AA Standards</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-slate-900 text-white rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">Normal Text</span>
+                                    <span class="text-sm font-mono">4.5:1</span>
+                                </div>
+                                <p class="text-sm opacity-90">Minimum contrast ratio for body text and UI components</p>
+                            </div>
+                            <div class="p-4 bg-slate-700 text-white rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">Large Text</span>
+                                    <span class="text-sm font-mono">3:1</span>
+                                </div>
+                                <p class="text-sm opacity-90">Minimum for text 18pt+ regular or 14pt+ bold</p>
+                            </div>
+                            <div class="p-4 border-2 border-slate-300 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium text-slate-900">UI Components</span>
+                                    <span class="text-sm font-mono text-slate-700">3:1</span>
+                                </div>
+                                <p class="text-sm text-slate-600">Minimum for active UI components and graphics</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Contrast Examples</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex items-center gap-4 mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                                        <span class="text-sm font-medium text-slate-700">Pass</span>
+                                    </div>
+                                    <span class="text-sm text-slate-600">Meets WCAG AA</span>
+                                </div>
+                                <div class="p-3 bg-slate-900 text-white rounded text-sm">
+                                    White text on dark background - Ratio: 15.3:1
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-4 mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                                        <span class="text-sm font-medium text-slate-700">Pass</span>
+                                    </div>
+                                    <span class="text-sm text-slate-600">Meets WCAG AA</span>
+                                </div>
+                                <div class="p-3 bg-slate-700 text-white rounded text-sm">
+                                    White text on gray background - Ratio: 4.5:1
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-4 mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+                                        <span class="text-sm font-medium text-slate-700">Fail</span>
+                                    </div>
+                                    <span class="text-sm text-slate-600">Below WCAG AA</span>
+                                </div>
+                                <div class="p-3 bg-slate-300 text-slate-500 rounded text-sm">
+                                    Light gray text on gray background - Ratio: 2.1:1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heading Hierarchy -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Heading Hierarchy</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white border border-slate-200 rounded-lg">
+                    <div class="p-6 border-b border-slate-200">
+                        <h3 class="text-lg font-semibold text-slate-900">Document Structure</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-slate-900 rounded flex items-center justify-center text-xs font-bold text-white">H1</div>
+                                <div class="text-sm text-slate-600">Page Title</div>
+                            </div>
+                            <div class="flex items-center gap-3 ml-4">
+                                <div class="w-8 h-8 bg-slate-700 rounded flex items-center justify-center text-xs font-bold text-white">H2</div>
+                                <div class="text-sm text-slate-600">Main Section</div>
+                            </div>
+                            <div class="flex items-center gap-3 ml-8">
+                                <div class="w-8 h-8 bg-slate-500 rounded flex items-center justify-center text-xs font-bold text-white">H3</div>
+                                <div class="text-sm text-slate-600">Subsection</div>
+                            </div>
+                            <div class="flex items-center gap-3 ml-12">
+                                <div class="w-8 h-8 bg-slate-300 rounded flex items-center justify-center text-xs font-bold text-slate-700">H4</div>
+                                <div class="text-sm text-slate-600">Sub-subsection</div>
+                            </div>
+                            <div class="flex items-center gap-3 ml-16">
+                                <div class="w-8 h-8 bg-slate-100 rounded flex items-center justify-center text-xs font-bold text-slate-700">H5</div>
+                                <div class="text-sm text-slate-600">Detail Level</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-lg">
+                    <div class="p-6 border-b border-slate-200">
+                        <h3 class="text-lg font-semibold text-slate-900">Effect Website Example</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-slate-50 p-4 rounded-lg font-mono text-sm space-y-2">
+                            <div class="text-2xl font-bold text-slate-900">Effect TypeScript Library</div>
+                            <div class="text-xs text-slate-500 mb-4">H1 - Main page title</div>
+                            <div class="text-xl font-semibold text-slate-900 mt-6">Getting Started</div>
+                            <div class="text-xs text-slate-500">H2 - Major section</div>
+                            <div class="text-lg font-medium text-slate-800 mt-4 ml-4">Installation</div>
+                            <div class="text-xs text-slate-500 ml-4">H3 - Subsection</div>
+                            <div class="text-base font-medium text-slate-700 mt-3 ml-8">Package Managers</div>
+                            <div class="text-xs text-slate-500 ml-8">H4 - Sub-subsection</div>
+                            <div class="text-xl font-semibold text-slate-900 mt-6">API Reference</div>
+                            <div class="text-xs text-slate-500">H2 - Another major section</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen Reader Support -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Screen Reader Support</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">Semantic HTML</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">&lt;button&gt;</code>
+                            <p class="text-sm text-slate-600 mt-1">Use for interactive actions</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">&lt;nav&gt;</code>
+                            <p class="text-sm text-slate-600 mt-1">Wrap navigation elements</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">&lt;main&gt;</code>
+                            <p class="text-sm text-slate-600 mt-1">Primary content area</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">&lt;section&gt;</code>
+                            <p class="text-sm text-slate-600 mt-1">Group related content</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">ARIA Labels</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">aria-label</code>
+                            <p class="text-sm text-slate-600 mt-1">Provides accessible name for element</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">aria-describedby</code>
+                            <p class="text-sm text-slate-600 mt-1">Links to detailed description</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">aria-live</code>
+                            <p class="text-sm text-slate-600 mt-1">Announces dynamic content changes</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <code class="text-sm font-mono text-slate-700">role</code>
+                            <p class="text-sm text-slate-600 mt-1">Defines element's purpose</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Accessibility -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Form Accessibility</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Accessible Form Example</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-700 mb-1">
+                                    Full Name <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="name" required aria-required="true" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">
+                                    Email Address <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" required aria-required="true" aria-describedby="email-error" class="w-full px-3 py-2 border border-red-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                <p id="email-error" class="mt-1 text-sm text-red-600" role="alert">Please enter a valid email address</p>
+                            </div>
+                            <div>
+                                <fieldset>
+                                    <legend class="text-sm font-medium text-slate-700 mb-2">Notification Preferences</legend>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="mr-2 rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                            <span class="text-sm text-slate-600">Email notifications</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="mr-2 rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                            <span class="text-sm text-slate-600">SMS notifications</span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Form Best Practices</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-900">Always use labels</p>
+                                    <p class="text-sm text-slate-600">Associate labels with form controls using 'for' attribute</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-900">Group related fields</p>
+                                    <p class="text-sm text-slate-600">Use fieldset and legend for radio buttons and checkboxes</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-900">Clear error messages</p>
+                                    <p class="text-sm text-slate-600">Associate errors with fields using aria-describedby</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-900">Required field indicators</p>
+                                    <p class="text-sm text-slate-600">Mark required fields with aria-required="true"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testing Tools -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Testing Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                    <h3 class="font-semibold text-slate-900 mb-3">Browser Extensions</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>• axe DevTools</li>
+                        <li>• WAVE (WebAIM)</li>
+                        <li>• Lighthouse (Chrome)</li>
+                        <li>• Accessibility Insights</li>
+                    </ul>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                    <h3 class="font-semibold text-slate-900 mb-3">Screen Readers</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>• NVDA (Windows)</li>
+                        <li>• JAWS (Windows)</li>
+                        <li>• VoiceOver (macOS/iOS)</li>
+                        <li>• TalkBack (Android)</li>
+                    </ul>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                    <h3 class="font-semibold text-slate-900 mb-3">Automated Testing</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>• Jest-axe</li>
+                        <li>• Pa11y CI</li>
+                        <li>• Cypress-axe</li>
+                        <li>• ESLint JSX-a11y</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Quick Reference Checklist</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-4">Visual Design</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Color contrast meets WCAG AA (4.5:1)</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Focus indicators are visible</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Text is resizable up to 200%</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Images have alt text</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Color is not the only way to convey information</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-4">Interaction</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">All functionality available via keyboard</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Skip links provided</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Touch targets are at least 44px</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Form labels properly associated</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" class="rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                                <span class="text-sm text-slate-600">Error messages announced</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-24">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-600">© 2024 Effect. All rights reserved.</p>
+                <a href="effect-design.html" class="text-sm text-slate-600 hover:text-slate-900">Back to Design System</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

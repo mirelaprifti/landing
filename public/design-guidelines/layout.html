@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout - Effect Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body style="background-color: #F4F7FA;" class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="effect-design.html" class="flex items-center gap-2 text-slate-600 hover:text-slate-900">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    <span>Back to Design System</span>
+                </a>
+                <h2 class="text-lg font-semibold text-slate-900">Layout</h2>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold text-slate-900 mb-4">Layout</h1>
+            <p class="text-xl text-slate-600 max-w-3xl">
+                12-column grid system with responsive breakpoints
+            </p>
+        </div>
+
+        <!-- Layout Principles -->
+        <div class="grid grid-cols-1 gap-12 mb-16">
+          <div class="bg-white border border-slate-200 rounded-lg">
+            <div class="p-6 border-b border-slate-200">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                </svg>
+                <h3 class="text-lg font-semibold text-slate-900">Grid Specifications</h3>
+              </div>
+            </div>
+            <div class=" grid lg:grid-cols-2 gap-x-24 p-6 space-y-4">
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Columns</div>
+                <div class="font-mono">12</div>
+                <div class="text-slate-600">Flexible grid system</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Gutter</div>
+                <div class="font-mono">16-32px</div>
+                <div class="text-slate-600">Responsive spacing</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Margin</div>
+                <div class="font-mono">24-96px</div>
+                <div class="text-slate-600">Depends on breakpoint</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Max Width</div>
+                <div class="font-mono">1280px</div>
+                <div class="text-slate-600">Container constraint</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Text Content Width</div>
+                <div class="font-mono">6-8 columns</div>
+                <div class="text-slate-600">~600-720px for readability</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-sm">
+                <div class="font-medium text-slate-700">Breakpoints</div>
+                <div class="font-mono">640/768/1024/1280px</div>
+                <div class="text-slate-600">Tailwind defaults</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Grid System -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Grid System</h2>
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+                <div class="mb-12">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">12-Column Grid</h3>
+                    <div class="grid grid-cols-12 gap-4 mb-8">
+                        <div class="col-span-12 bg-blue-100 border border-blue-200 rounded p-4 text-center text-sm font-mono text-blue-700">12 columns</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 mb-8">
+                        <div class="col-span-6 bg-purple-100 border border-purple-200 rounded p-4 text-center text-sm font-mono text-purple-700">6 cols</div>
+                        <div class="col-span-6 bg-purple-100 border border-purple-200 rounded p-4 text-center text-sm font-mono text-purple-700">6 cols</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 mb-8">
+                        <div class="col-span-4 bg-green-100 border border-green-200 rounded p-4 text-center text-sm font-mono text-green-700">4 cols</div>
+                        <div class="col-span-4 bg-green-100 border border-green-200 rounded p-4 text-center text-sm font-mono text-green-700">4 cols</div>
+                        <div class="col-span-4 bg-green-100 border border-green-200 rounded p-4 text-center text-sm font-mono text-green-700">4 cols</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 mb-8">
+                        <div class="col-span-3 bg-amber-100 border border-amber-200 rounded p-4 text-center text-sm font-mono text-amber-700">3</div>
+                        <div class="col-span-3 bg-amber-100 border border-amber-200 rounded p-4 text-center text-sm font-mono text-amber-700">3</div>
+                        <div class="col-span-3 bg-amber-100 border border-amber-200 rounded p-4 text-center text-sm font-mono text-amber-700">3</div>
+                        <div class="col-span-3 bg-amber-100 border border-amber-200 rounded p-4 text-center text-sm font-mono text-amber-700">3</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-2 bg-slate-100 border border-slate-200 rounded p-4 text-center text-sm font-mono text-slate-700">2</div>
+                        <div class="col-span-2 bg-slate-100 border border-slate-200 rounded p-4 text-center text-sm font-mono text-slate-700">2</div>
+                        <div class="col-span-2 bg-slate-100 border border-slate-200 rounded p-4 text-center text-sm font-mono text-slate-700">2</div>
+                        <div class="col-span-2 bg-slate-100 border border-slate-200 rounded p-4 text-center text-sm font-mono text-slate-700">2</div>
+                        <div class="col-span-2 bg-slate-100 border border-slate-200 rounded p-4 text-center text-sm font-mono text-slate-700">2</div>
+                        <div class="col-span-2 bg-slate-100 border border-slate-200 rounded p-4 text-center text-sm font-mono text-slate-700">2</div>
+                    </div>
+                </div>
+
+                <!-- Gutters -->
+                <div class="mt-12 pt-12 border-t border-slate-200">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">Gutter System</h3>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-slate-800 mb-3">Standard Gutters</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-slate-200 rounded" style="width: 16px; height: 20px;"></div>
+                                    <span class="font-mono text-sm">16px</span>
+                                    <span class="text-sm text-slate-600">Mobile (default)</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-slate-200 rounded" style="width: 24px; height: 20px;"></div>
+                                    <span class="font-mono text-sm">24px</span>
+                                    <span class="text-sm text-slate-600">Tablet</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-slate-200 rounded" style="width: 32px; height: 20px;"></div>
+                                    <span class="font-mono text-sm">32px</span>
+                                    <span class="text-sm text-slate-600">Desktop</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-800 mb-3">Container Widths</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-4">
+                                    <span class="font-mono text-sm bg-slate-100 px-2 py-1 rounded">640px</span>
+                                    <span class="text-sm text-slate-600">Small (sm)</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="font-mono text-sm bg-slate-100 px-2 py-1 rounded">768px</span>
+                                    <span class="text-sm text-slate-600">Medium (md)</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="font-mono text-sm bg-slate-100 px-2 py-1 rounded">1024px</span>
+                                    <span class="text-sm text-slate-600">Large (lg)</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="font-mono text-sm bg-slate-100 px-2 py-1 rounded">1280px</span>
+                                    <span class="text-sm text-slate-600">Extra Large (xl)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Breakpoints -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Responsive Breakpoints</h2>
+            <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Breakpoint</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Min Width</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">CSS Class</th>
+                                <th class="text-left py-3 px-6 font-medium text-slate-700">Target Devices</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-semibold text-slate-900">Mobile</td>
+                                <td class="py-4 px-6 font-mono text-sm">0px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">none</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Phones (portrait)</td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-semibold text-slate-900">Small</td>
+                                <td class="py-4 px-6 font-mono text-sm">640px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">sm:</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Phones (landscape)</td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-semibold text-slate-900">Medium</td>
+                                <td class="py-4 px-6 font-mono text-sm">768px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">md:</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Tablets (portrait)</td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-semibold text-slate-900">Large</td>
+                                <td class="py-4 px-6 font-mono text-sm">1024px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">lg:</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Tablets (landscape) / Small laptops</td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-semibold text-slate-900">Extra Large</td>
+                                <td class="py-4 px-6 font-mono text-sm">1280px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">xl:</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Desktops</td>
+                            </tr>
+                            <tr class="border-t border-slate-200">
+                                <td class="py-4 px-6 font-semibold text-slate-900">2X Large</td>
+                                <td class="py-4 px-6 font-mono text-sm">1536px</td>
+                                <td class="py-4 px-6 font-mono text-sm text-blue-600">2xl:</td>
+                                <td class="py-4 px-6 text-sm text-slate-600">Large desktops</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-24">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-600">© 2024 Effect. All rights reserved.</p>
+                <a href="effect-design.html" class="text-sm text-slate-600 hover:text-slate-900">Back to Design System</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

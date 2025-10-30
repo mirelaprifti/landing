@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effect - Build production-grade software in TypeScript</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Inter and Roboto Mono fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        chart: {
+                            1: 'hsl(var(--chart-1))',
+                            2: 'hsl(var(--chart-2))',
+                            3: 'hsl(var(--chart-3))',
+                            4: 'hsl(var(--chart-4))',
+                            5: 'hsl(var(--chart-5))'
+                        },
+                        zinc: {
+                            900: '#18181b',
+                            950: '#09090b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    fontSize: {
+                        'xs': ['0.7rem', { lineHeight: '1.5' }],      // 11.2px - base / 1.25^2
+                        'sm': ['0.875rem', { lineHeight: '1.5' }],       // 14px - base / 1.25
+                        'base': ['1rem', { lineHeight: '1.5' }],       // 16px - base
+                        'lg': ['1.25rem', { lineHeight: '1.5' }],      // 20px - base × 1.25
+                        'xl': ['1.563rem', { lineHeight: '1.4' }],     // 25px - base × 1.25^2
+                        '2xl': ['1.953rem', { lineHeight: '1.3' }],    // 31.25px - base × 1.25^3
+                        '3xl': ['2.441rem', { lineHeight: '1.25' }],   // 39.06px - base × 1.25^4
+                        '4xl': ['3.052rem', { lineHeight: '1.2' }],    // 48.83px - base × 1.25^5
+                        '5xl': ['3.815rem', { lineHeight: '1.15' }],   // 61.04px - base × 1.25^6
+                        '6xl': ['4.768rem', { lineHeight: '1.1' }],    // 76.29px - base × 1.25^7
+                    },
+                    borderRadius: {
+                        DEFAULT: '8px',
+                        'sm': '4px',
+                        'md': '6px',
+                        'lg': '8px',
+                        'xl': '12px',
+                        '2xl': '16px',
+                        '3xl': '24px',
+                    },
+                    lineHeight: {
+                        'tighter': '1.15',
+                        'tight': '1.25',
+                        'snug': '1.375',
+                        'normal': '1.5',
+                        'relaxed': '1.625',
+                        'loose': '2',
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Ensure CSS variables are applied */
+        :root {
+            --zinc-700: #3f3f46;
+            --zinc-800: #27272a;
+            --zinc-950: #09090b;
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+        }
+
+        code, pre, .font-mono {
+            font-family: 'Roboto Mono', monospace !important;
+        }
+
+        #hero-install-command {
+            font-family: 'Roboto Mono', monospace !important;
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-switch {
+            position: relative;
+            width: 28.308px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .toggle-track {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            border: 1px solid #86efac;
+            background: transparent;
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            width: 11.077px;
+            height: 11.077px;
+            border-radius: 30px;
+            background: white;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 2.5px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.38);
+        }
+
+        .toggle-switch:not(.active) .toggle-track {
+            border-color: #71717a;
+        }
+
+        .toggle-switch:not(.active) .toggle-thumb {
+            right: auto;
+            left: 2.5px;
+        }
+
+        /* Chart Styles */
+        #complexity-chart {
+            overflow: hidden;
+        }
+
+        .chart-line {
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+
+        .chart-line.animate {
+            animation: drawLine 2s ease-out forwards;
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Enterprise section exact width */
+        @media (min-width: 1024px) {
+            [data-enterprise-section] {
+                width: 650px !important;
+                min-width: 650px !important;
+                max-width: 650px !important;
+            }
+        }
+
+        /* Logo Slider Animations */
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .logo-row-right {
+            animation: scroll-right 60s linear infinite;
+        }
+
+        .logo-row-left {
+            animation: scroll-left 60s linear infinite;
+        }
+
+        .logo-slider-container:hover .logo-row {
+            animation-play-state: paused;
+        }
+
+        /* Use case card responsive layout */
+        @media (max-width: 1023px) {
+            .use-case-cards {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Dashed gradient border for feature cards */
+        .dashed-gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-width: 1px;
+            border-style: solid;
+            border-image: linear-gradient(to bottom, #09090b, #3f3f46) 1;
+            -webkit-mask:
+                repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px) left / 100% 1px no-repeat,
+                repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px) left bottom / 100% 1px no-repeat,
+                repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px) left / 1px 100% no-repeat,
+                repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px) right / 1px 100% no-repeat;
+            mask:
+                repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px) left / 100% 1px no-repeat,
+                repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px) left bottom / 100% 1px no-repeat,
+                repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px) left / 1px 100% no-repeat,
+                repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px) right / 1px 100% no-repeat;
+            pointer-events: none;
+            background: linear-gradient(to bottom, #09090b, #3f3f46);
+        }
+
+        /* Visual Effect Tab Styles */
+        .visual-effect-tab {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        .visual-effect-tab:hover {
+            opacity: 1 !important;
+            color: white !important;
+        }
+
+        .visual-effect-tab.active {
+            background: rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid white;
+            opacity: 1 !important;
+            color: white !important;
+        }
+
+        /* Devtools tab dashed border with 1px dash 1px transparent */
+        .devtools-tab {
+            cursor: pointer;
+        }
+
+        .devtools-tab.border-dashed {
+            border-style: dashed;
+            border-width: 1px;
+        }
+
+        /* Infinite scroll animation for quote cards */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .quotes-scroll-animation {
+            animation: scroll-left 60s linear infinite;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .quotes-scroll-animation:active {
+            cursor: grabbing;
+        }
+
+        .quotes-scroll-animation:hover {
+            animation-play-state: paused;
+        }
+
+        /* FAQ Accordion Animations */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+        }
+
+        .faq-content.expanded {
+            max-height: 800px;
+            opacity: 1;
+            padding-top: 1.25rem;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .faq-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        .faq-trigger {
+            width: 100%;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .faq-trigger:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 2px;
+        }
+
+        .faq-item {
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        .faq-item:hover {
+            border-color: #71717a;
+        }
+
+        .faq-trigger > * {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#09090B] text-white antialiased">
+    <!-- Navigation Wrapper -->
+    <div class="w-full fixed top-0 left-0 right-0 z-50">
+        <!-- Navigation Header -->
+        <div class="w-full px-[32px]" style="background-color: rgba(9, 9, 11, 0.9); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
+            <header class="w-full max-w-[80rem] mx-auto relative">
+                <nav class="flex h-[5rem] items-center">
+                    <!-- Logo -->
+                    <a href="/" class="flex items-center">
+                        <img src="./figma-assets/effect-logo-white.svg" alt="Effect" class="h-[2rem] w-auto" />
+                    </a>
+
+                    <!-- Right Side Navigation -->
+                    <div class="ml-auto flex items-center">
+                        <!-- Desktop Navigation -->
+                        <div class="hidden md:flex items-center gap-5">
+                            <a href="#" class="text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">Docs</a>
+                            <a href="#" class="text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">Play</a>
+                            <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-github-fill text-[1.5rem]"></i>
+                            </a>
+                            <a href="https://discord.gg/effect-ts" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-discord-fill text-[1.5rem]"></i>
+                            </a>
+
+                            <!-- Search Button -->
+                            <button class="flex items-center gap-[8px] px-[16px] py-[8px] text-zinc-400 hover:text-white border border-zinc-800 hover:bg-zinc-800 rounded-[8px] transition-all ml-[8px]">
+                                <i class="ri-search-line text-[1rem]"></i>
+                                <span class="text-[0.875rem] font-normal">⌘K</span>
+                            </button>
+                        </div>
+
+                        <!-- Mobile Menu Button -->
+                        <button class="md:hidden flex h-[40px] w-[40px] items-center justify-center text-zinc-400 hover:text-white transition-all">
+                            <i class="ri-menu-3-line text-[1.5rem]"></i>
+                        </button>
+                    </div>
+                </nav>
+            </header>
+        </div>
+
+        <!-- Decorative dashed borders -->
+        <div class="hidden lg:block absolute bottom-0 left-0" style="width: calc((100vw - 1280px) / 2); min-width: 80px; height: 1px; background: linear-gradient(to right, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+        <div class="hidden lg:block absolute bottom-0 right-0" style="width: calc((100vw - 1280px) / 2); min-width: 80px; height: 1px; background: linear-gradient(to left, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="relative pt-[5rem]">
+        <!-- Hero wrapper -->
+        <div class="mx-auto max-w-[80rem] relative">
+            <!-- Vertical dashed lines -->
+            <div class="hidden lg:block absolute left-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+            <div class="hidden lg:block absolute right-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+            <!-- Hero Section -->
+            <section class="relative pt-20 pb-24 mx-auto">
+            <div class="container mx-auto max-w-[50rem]">
+                <div class="text-center">
+                    <h1 class="text-[2.441rem] sm:text-[3.052rem] md:text-[3.815rem] font-bold leading-tighter mb-8">
+                        Build production-grade software in TypeScript
+                    </h1>
+                    <p class="text-[1.563rem] leading-normal text-zinc-400 mb-10 max-w-3xl mx-auto">
+                        Effect is an open-source ecosystem for building scalable<br class="hidden sm:inline">
+                        and reliable applications. AI, Infra, and beyond.
+                    </p>
+                    
+                    <!-- Package Manager Tabs -->
+                    <div class="max-w-[630px] mx-auto">
+                        <!-- Tabs Container with gradient border -->
+                        <div class="relative p-[1px] rounded-[16px] bg-gradient-to-b from-zinc-700 to-zinc-900">
+                            <div class="bg-[#18181b] rounded-[16px] overflow-hidden">
+                                <!-- Tab Headers -->
+                                <div class="flex border-b border-zinc-950">
+                                    <button onclick="switchHeroTab('npm')" id="hero-npm-tab" class="hero-tab-button flex-1 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-white bg-[#09090b] border-r border-zinc-950 transition-colors">
+                                        <img src="./figma-assets/npm-brands-solid-full.svg" alt="npm" class="h-[20px] w-auto" />
+                                        <span>npm</span>
+                                    </button>
+                                    <button onclick="switchHeroTab('pnpm')" id="hero-pnpm-tab" class="hero-tab-button flex-1 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                        <img src="./figma-assets/pnpm-logo.svg" alt="pnpm" class="h-[20px] w-auto" />
+                                        <span>pnpm</span>
+                                    </button>
+                                    <button onclick="switchHeroTab('yarn')" id="hero-yarn-tab" class="hero-tab-button flex-1 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                        <img src="./figma-assets/yarn-logo.svg" alt="yarn" class="h-[20px] w-auto" />
+                                        <span>yarn</span>
+                                    </button>
+                                    <button onclick="switchHeroTab('bun')" id="hero-bun-tab" class="hero-tab-button flex-1 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                        <img src="./figma-assets/bun-logo-box.svg" alt="bun" class="h-[20px] w-auto" />
+                                        <span>bun</span>
+                                    </button>
+                                    <button onclick="switchHeroTab('deno')" id="hero-deno-tab" class="hero-tab-button flex-1 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] transition-colors">
+                                        <img src="./figma-assets/deno-logo-box.svg" alt="deno" class="h-[20px] w-auto" />
+                                        <span>deno</span>
+                                    </button>
+                                </div>
+
+                                <!-- Tab Content -->
+                                <div class="p-4 bg-[#09090b]">
+                                    <div class="flex items-center gap-2">
+                                        <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between w-full px-4 py-4 border border-zinc-900 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-80 transition-opacity">
+                                            <code class="font-mono text-[1rem]"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
+                                            <span id="copy-feedback" class="absolute right-4 text-[0.875rem] text-white-400 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
+                                            <i id="copy-icon" class="ri-file-copy-line text-[1rem] text-zinc-400"></i>
+                                        </div>
+                                        <a href="#" class="flex items-center justify-center gap-2 w-1/5 px-4 py-4 text-[1rem] leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 rounded-[8px] transition-colors">
+                                            <span>Docs</span>
+                                            <i class="ri-arrow-right-line text-[1rem]"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="flex flex-wrap gap-12 justify-center items-center mt-6 text-[1rem] leading-normal">
+                            <div class="flex items-center gap-2">
+                                <i class="ri-github-fill text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
+                                <span class="text-zinc-500">11k+</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="ri-download-line text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
+                                <span class="text-zinc-500">5M+ <span class="text-zinc-500">/w downloads</span></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="ri-discord-fill text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
+                                <span class="text-zinc-500">5k+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Video Section -->
+        <section class="relative pb-24 mx-auto">
+            <div class="mx-auto max-w-[66.5rem]">
+                <div class="relative rounded-2xl overflow-hidden bg-zinc-800/50 border border-zinc-700/50">
+                    <!-- Placeholder for video -->
+                    <div class="relative aspect-video w-full bg-zinc-900/50 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center">
+                                <svg class="w-8 h-8 text-zinc-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                            <p class="text-zinc-400 text-[0.875rem] font-mono">
+                                Effect Video Placeholder
+                            </p>
+                            <p class="text-zinc-500 text-xs mt-2">
+                                Replace with correct YouTube video ID
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Features Section -->
+        <section class="relative w-full">
+            
+            <!-- Full-width horizontal solid line -->
+            <div class="relative left-0 right-0 h-[1px] bg-zinc-700"></div>
+
+
+            <!-- Content Container (100%) -->
+            <div class="relative">
+                <!-- Top Row: Chart + Missing Standard Library -->
+                <div class="my-24 mx-auto max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-16 mb-24">
+                    <!-- Left: Chart (6 columns) -->
+                    <div class="lg:col-span-6 w-full max-w-[650px]">
+                        <div class="border-2 border-zinc-800 rounded-[12px] p-[16px]">
+                            <!-- Chart SVG -->
+                            <div class="w-full aspect-[618/348] relative" id="complexity-chart">
+                                <svg width="100%" height="100%" viewBox="-2 -2 604 404" preserveAspectRatio="none">
+                                    <!-- Gradient Background (define) -->
+                                    <defs>
+                                        <linearGradient id="chartBgGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#09090B;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#18181B;stop-opacity:0.3" />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Horizontal Grid Lines (4 lines, evenly spaced - full width) -->
+                                    <g>
+                                        <line x1="0" y1="0" x2="600" y2="0" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="0" y1="133.33" x2="600" y2="133.33" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="0" y1="266.67" x2="600" y2="266.67" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="0" y1="400" x2="600" y2="400" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+                                    </g>
+
+                                    <!-- Vertical Grid Lines (5 lines, evenly spaced - full height) -->
+                                    <g>
+                                        <line x1="0" y1="0" x2="0" y2="400" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="150" y1="0" x2="150" y2="400" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="300" y1="0" x2="300" y2="400" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="450" y1="0" x2="450" y2="400" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                        <line x1="600" y1="0" x2="600" y2="400" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+                                    </g>
+
+                                    <!-- Background Gradient Rectangle (covers full area, above grid lines) -->
+                                    <rect x="0" y="0" width="600" height="400" fill="url(#chartBgGradient)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
+
+                                    <!-- Axis labels (no background) -->
+                                    <!-- COMPLEXITY label (left side, rotated) -->
+                                    <text x="14" y="56" fill="white" font-size="12" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" transform="rotate(-90 10 50)" opacity="0.6" letter-spacing="0.6">COMPLEXITY</text>
+
+                                    <!-- FEATURES label (bottom right corner) -->
+                                    <text x="564" y="392" fill="white" font-size="12" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" opacity="0.6" letter-spacing="0.3">FEATURES</text>
+
+                                    <!-- Without Effect line (red, exponential growth - starts at left edge) -->
+                                    <path id="line-without" class="chart-line" d="M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40" stroke="#ef4444" stroke-width="2" fill="none"/>
+
+                                    <!-- With Effect line (green, linear growth - starts at left edge) -->
+                                    <path id="line-with" class="chart-line" d="M 0 300 C 90 297, 180 290, 350 270 C 475 258, 540 248, 600 240" stroke="#22c55e" stroke-width="2" fill="none"/>
+
+                                    <!-- Corner L-shape decorations (14px angles) - rendered last to be on top -->
+                                    <!-- Top-left corner -->
+                                    <line x1="0" y1="0" x2="12.754" y2="0" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                    <line x1="0" y1="0" x2="0" y2="12.754" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+                                    <!-- Top-right corner (extends LEFT and DOWN) -->
+                                    <line x1="600" y1="0" x2="587.246" y2="0" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                    <line x1="600" y1="0" x2="600" y2="12.754" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+                                    <!-- Bottom-left corner (extends RIGHT and UP) -->
+                                    <line x1="0" y1="400" x2="12.754" y2="400" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                                    <line x1="0" y1="400" x2="0" y2="387.246" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+                                    <!-- Bottom-right corner (extends LEFT and UP) -->
+                                    <line x1="600" y1="400" x2="587.246" y2="400" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                                    <line x1="600" y1="400" x2="600" y2="387.246" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                </svg>
+                            </div>
+                            <!-- Legend -->
+                            <div class="mt-[16px] flex items-center gap-4">
+                                <span class="text-[14px] text-[#b5b5be] font-['Roboto_Mono'] uppercase leading-[1]">Complexity at scale:</span>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-1">
+                                        <i class="ri-git-commit-fill inline-flex items-center text-[18px] leading-[1] text-[#ef4444]" style="height: 14px;"></i>
+                                        <span class="text-[14px] text-[#b5b5be] font-['Roboto_Mono'] uppercase leading-[1]">Without Effect</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="ri-git-commit-fill inline-flex items-center text-[18px] leading-[1] text-[#22c55e]" style="height: 14px;"></i>
+                                        <span class="text-[14px] text-[#b5b5be] font-['Roboto_Mono'] uppercase leading-[1]">With Effect</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Missing Standard Library (4 columns) -->
+                    <div class="lg:col-span-4 flex flex-col gap-[32px]">
+                        <h2 class="text-2xl font-bold text-white leading-tight">
+                            The missing standard library for TypeScript
+                        </h2>
+                        <div class="flex flex-col gap-[12px]">
+                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                                <div class="toggle-switch active" data-feature="dependency-injection">
+                                    <div class="toggle-track"></div>
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                                <span class="text-lg text-zinc-200 leading-normal">Dependency injection</span>
+                            </div>
+                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                                <div class="toggle-switch active" data-feature="errors">
+                                    <div class="toggle-track"></div>
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                                <span class="text-lg text-zinc-200 leading-normal">Errors as values</span>
+                            </div>
+                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                                <div class="toggle-switch active" data-feature="retry">
+                                    <div class="toggle-track"></div>
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                                <span class="text-lg text-zinc-200 leading-normal">Retry logic</span>
+                            </div>
+                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                                <div class="toggle-switch active" data-feature="concurrency">
+                                    <div class="toggle-track"></div>
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                                <span class="text-lg text-zinc-200 leading-normal">Structured concurrency</span>
+                            </div>
+                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                                <div class="toggle-switch active" data-feature="observability">
+                                    <div class="toggle-track"></div>
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                                <span class="text-lg text-zinc-200 leading-normal">Observability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashed separator line -->
+                <div class="w-full h-[1px]" style="background: var(--zinc-700); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                <!-- Bottom Row: Problems List + Enterprise Grade -->
+                <div class="mx-auto max-w-[66.5rem] relative flex flex-col lg:flex-row gap-24">
+                    <!-- Left: Problems List -->
+                    <div class="relative my-24 flex-1">
+                        <h3 class="text-xl font-bold text-white mb-8 leading-normal">
+                            For when your codebase hits 10k lines and ...
+                        </h3>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                                    <defs>
+                                        <linearGradient id="alertIconGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#731F1F;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z" fill="url(#alertIconGradient1)"/>
+                                </svg>
+                                <p class="text-base leading-normal">
+                                    <span class="text-zinc-100">Async flows</span>
+                                    <span class="text-zinc-400"> turn into spaghetti</span>
+                                </p>
+                            </div>
+                            <img src="./figma-assets/deco-line-alert.svg" alt="" class="max-w-[320px]" />
+                            <div class="flex items-center gap-3">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                                    <defs>
+                                        <linearGradient id="alertIconGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#731F1F;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z" fill="url(#alertIconGradient2)"/>
+                                </svg>
+                                <p class="text-base leading-normal">
+                                    <span class="text-zinc-100">Errors go uncaught</span>
+                                    <span class="text-zinc-400"> until production</span>
+                                </p>
+                            </div>
+                            <img src="./figma-assets/deco-line-alert.svg" alt="" class="max-w-[320px]" />
+                            <div class="flex items-center gap-3">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                                    <defs>
+                                        <linearGradient id="alertIconGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#731F1F;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z" fill="url(#alertIconGradient3)"/>
+                                </svg>
+                                <p class="text-base leading-normal">
+                                    <span class="text-zinc-100">Global state leaks</span>
+                                    <span class="text-zinc-400"> across modules</span>
+                                </p>
+                            </div>
+                            <img src="./figma-assets/deco-line-alert.svg" alt="" class="max-w-[320px]" />
+                            <div class="flex items-center gap-3">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                                    <defs>
+                                        <linearGradient id="alertIconGradient4" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#731F1F;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z" fill="url(#alertIconGradient4)"/>
+                                </svg>
+                                <p class="text-base leading-normal">
+                                    <span class="text-zinc-100">Tests</span>
+                                    <span class="text-zinc-400"> become painful</span>
+                                </p>
+                            </div>
+                            <img src="./figma-assets/deco-line-alert.svg" alt="" class="max-w-[320px]" />
+                            <div class="flex items-center gap-3">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                                    <defs>
+                                        <linearGradient id="alertIconGradient5" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#731F1F;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z" fill="url(#alertIconGradient5)"/>
+                                </svg>
+                                <p class="text-base leading-normal">
+                                    <span class="text-zinc-100">Poor observability</span>
+                                    <span class="text-zinc-400"> or non-existent</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Enterprise Grade with vertical borders -->
+                    <div class="relative w-full w-[610px] flex items-center justify-center" data-enterprise-section>
+                        <!-- Vertical dashed borders on both sides -->
+                        <div class="hidden lg:block absolute left-0 top-0 w-[1px] h-full" style="background: linear-gradient(to bottom, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+                        <div class="hidden lg:block absolute right-0 top-0 w-[1px] h-full" style="background: linear-gradient(to bottom, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                        <div class="w-full flex flex-col items-center my-24">
+                            <h3 class="text-2xl font-bold text-white text-center mb-10 leading-tight">
+                                Enterprise-grade from day one
+                            </h3>
+                            <!-- Shared SVG gradient definition for all enterprise icons -->
+                            <svg width="0" height="0" style="position: absolute;">
+                                <defs>
+                                    <linearGradient id="enterpriseIconGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#86EFAC;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#4D8963;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="w-full max-w-[520px] bg-gradient-to-b from-zinc-950 to-zinc-900/70 to-zinc-900/0 rounded-t-[8px] px-6 py-8 relative" style="
+                                border: 1px solid rgba(255,255,255,0.5);
+                                border-bottom: none;
+                                -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+                                mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+                            ">
+                                <div class="flex flex-wrap gap-2 justify-center mb-4">
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-checkbox-line text-[16px]" style="color: url(#enterpriseIconGradient); background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Schema validation</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-tools-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Resource management</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-repeat-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Retry policies</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-swap-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>States</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-settings-3-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Config parsing</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-align-center text-[16px] rotate-90" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Streams</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-download-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Sinks</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-database-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Caching</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-flow-chart text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Data types</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-timer-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Cron</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-bar-chart-horizontal-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>OpenTelemetry</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="#" class="mt-[16px] flex flex-row items-center justify-center gap-3 px-5 py-4 bg-black border border-zinc-700 rounded-lg text-white hover:border-zinc-600 transition-colors">
+                                <i class="ri-book-open-line text-base leading-none"></i>
+                                <span class="font-medium text-base leading-none">Read the docs</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section: Designed for real-world complexity -->
+        <section class="relative overflow-hidden py-[120px]">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 pointer-events-none" style="opacity: 1; background-image: url('./figma-assets/BG-Pattern.svg'); background-size: cover; background-position: center bottom; background-repeat: no-repeat; -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,1)); mask-image: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,1));"></div>
+
+            <!-- Main Content Container -->
+            <div class="relative mx-auto w-[1280px]">
+                <!-- Heading -->
+                <h2 class="text-[39px] leading-[48px] font-bold text-white text-center mb-[80px]">
+                    Designed for real-world complexity
+                </h2>
+
+                <!-- 4 Use Case Cards with Decorative Line -->
+                <div class="relative mb-24">
+                    <!-- Decorative Lines (behind cards at text level) -->
+                    <img src="./figma-assets/deco-central-line.svg" alt="" class="absolute left-1/2 -translate-x-1/2 bottom-[40px] w-full max-w-[1280px] h-[1px] pointer-events-none z-0" />
+
+                    <!-- Left dashed line -->
+                    <div class="hidden lg:block absolute bottom-[40px] pointer-events-none z-0" style="right: 100%; width: calc((100vw - 1280px) / 2); min-width: 80px; height: 1px; background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                    <!-- Right dashed line -->
+                    <div class="hidden lg:block absolute bottom-[40px] pointer-events-none z-0" style="left: 100%; width: calc((100vw - 1280px) / 2); min-width: 80px; height: 1px; background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                    <!-- Cards Container -->
+                    <div class="use-case-cards relative flex gap-5 z-10">
+                        <!-- Card 1: Effect for Backend (Zendesk) -->
+                        <div class="flex-1 max-w-[305px] h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
+                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                                <div class="relative w-full h-full">
+                                <img src="./figma-assets/zendesk-logo.svg" alt="Zendesk" class="absolute left-1/2 -translate-x-1/2 top-[73px] h-[32px]" />
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
+                                    <i class="ri-arrow-right-up-line text-white/88 text-[20px]"></i>
+                                    <span class="text-base font-medium text-white/88 tracking-[0.16px]">Effect for Backend</span>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Card 2: Effect for AI Agents (expand.ar) -->
+                        <div class="flex-1 max-w-[305px] h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
+                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                                <div class="relative w-full h-full">
+                                <img src="./figma-assets/expand-ai.svg" alt="expand ai" class="absolute left-1/2 -translate-x-1/2 top-[76px] h-[32px]" />
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
+                                    <i class="ri-arrow-right-up-line text-white/88 text-[20px]"></i>
+                                    <span class="text-base font-medium text-white/88 tracking-[0.16px]">Effect for AI Agents</span>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Card 3: Effect for Infra (Vercel) -->
+                        <div class="flex-1 max-w-[305px] h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
+                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                                <div class="relative w-full h-full">
+                                <img src="./figma-assets/vercel-logotype-dark.svg" alt="Vercel" class="absolute left-1/2 -translate-x-1/2 top-[73px] h-[32px]" />
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
+                                    <i class="ri-arrow-right-up-line text-white/88 text-[20px]"></i>
+                                    <span class="text-base font-medium text-white/88 tracking-[0.16px]">Effect for Infra</span>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Card 4: Effect for Fintech (Spiko) -->
+                        <div class="flex-1 max-w-[305px] h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
+                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                                <div class="relative w-full h-full">
+                                <img src="./figma-assets/spiko-logo.svg" alt="Spiko" class="absolute left-1/2 -translate-x-1/2 top-[73px] h-[32px]" />
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
+                                    <i class="ri-arrow-right-up-line text-white/88 text-[20px]"></i>
+                                    <span class="text-base font-medium text-white/88 tracking-[0.16px]">Effect for Fintech</span>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo Slider Section (Full Width) -->
+            <div class="logo-slider-container relative w-full h-[200px] overflow-hidden">
+                <!-- Row 1: Scroll Left -->
+                <div class="logo-row logo-row-left absolute left-0 flex items-center gap-12 whitespace-nowrap">
+                    <!-- Duplicate for infinite scroll -->
+                    <div class="flex items-center gap-12">
+                        <!-- 14.ai -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-14ai.svg" alt="" class="w-6 h-3" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">14.ai</span>
+                        </div>
+
+                        <!-- OpenRouter -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-openrouter.png" alt="" class="w-4 h-4 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">OpenRouter</span>
+                        </div>
+
+                        <!-- Edge&Node -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-edgenode.svg" alt="" class="w-[13px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Edge&Node</span>
+                        </div>
+
+                        <!-- 0.mail -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-0mail.png" alt="" class="w-4 h-4 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">0.mail</span>
+                        </div>
+
+                        <!-- adidas -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-adidas.svg" alt="" class="w-[22px] h-[14px]" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">adidas</span>
+                        </div>
+
+                        <!-- Glide -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-glide.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Glide</span>
+                        </div>
+
+                        <!-- August Health -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-augusthealth.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">August Health</span>
+                        </div>
+
+                        <!-- Aware -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-aware.svg" alt="" class="w-[17px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Aware</span>
+                        </div>
+
+                        <!-- BTP Consultants -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-btpconsultants.svg" alt="" class="w-4 h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">BTP Consultants</span>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="flex items-center gap-12">
+                        <!-- Repeat the same logos -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-14ai.svg" alt="" class="w-6 h-3" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">14.ai</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-openrouter.png" alt="" class="w-4 h-4 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">OpenRouter</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-edgenode.svg" alt="" class="w-[13px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Edge&Node</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-0mail.png" alt="" class="w-4 h-4 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">0.mail</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-adidas.svg" alt="" class="w-[22px] h-[14px]" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">adidas</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-glide.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Glide</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-augusthealth.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">August Health</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-aware.svg" alt="" class="w-[17px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Aware</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-btpconsultants.svg" alt="" class="w-4 h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">BTP Consultants</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Scroll Right -->
+                <div class="logo-row logo-row-right absolute top-[80px] left-0 flex items-center gap-12 whitespace-nowrap">
+                    <!-- Company logos for row 2 -->
+                    <div class="flex items-center gap-12">
+                        <!-- Ender -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-ender.png" alt="" class="w-[14px] h-5 object-contain" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Ender</span>
+                        </div>
+
+                        <!-- CalcTree -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-calctree.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">CalcTree</span>
+                        </div>
+
+                        <!-- Candle.fi -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-candlefi.png" alt="" class="w-5 h-5 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Candle.fi</span>
+                        </div>
+
+                        <!-- CI Financial -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-cifinancial.png" alt="" class="w-4 h-4 object-contain" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">CI Financial</span>
+                        </div>
+
+                        <!-- Coralogix -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-coralogix.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Coralogix</span>
+                        </div>
+
+                        <!-- dectus -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-dectus.svg" alt="" class="w-[17px] h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">dectus</span>
+                        </div>
+
+                        <!-- dreifach.ai -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-dreifach-part1.svg" alt="" class="w-5 h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">dreifach.ai</span>
+                        </div>
+
+                        <!-- DXOS -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-dxos.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">DXOS</span>
+                        </div>
+
+                        <!-- EMBEDDED INSURANCE -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-embedded-insurance.svg" alt="" class="w-[15px] h-[14px]" />
+                            </div>
+                            <div class="text-xs font-semibold text-[#b5b5be] leading-tight">
+                                <div>EMBEDDED</div>
+                                <div>INSURANCE</div>
+                            </div>
+                        </div>
+
+                        <!-- GEODIS -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-geodis.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">GEODIS</span>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate for seamless loop -->
+                    <div class="flex items-center gap-12">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-ender.png" alt="" class="w-[14px] h-5 object-contain" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Ender</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-calctree.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">CalcTree</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-candlefi.png" alt="" class="w-5 h-5 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Candle.fi</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-cifinancial.png" alt="" class="w-4 h-4 object-contain" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">CI Financial</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-coralogix.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Coralogix</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-dectus.svg" alt="" class="w-[17px] h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">dectus</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-dreifach-part1.svg" alt="" class="w-5 h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">dreifach.ai</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-dxos.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">DXOS</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-embedded-insurance.svg" alt="" class="w-[15px] h-[14px]" />
+                            </div>
+                            <div class="text-xs font-semibold text-[#b5b5be] leading-tight">
+                                <div>EMBEDDED</div>
+                                <div>INSURANCE</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-geodis.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">GEODIS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Scroll Left -->
+                <div class="logo-row logo-row-left absolute top-[160px] left-0 flex items-center gap-12 whitespace-nowrap">
+                    <!-- Company logos for row 3 -->
+                    <div class="flex items-center gap-12">
+                        <!-- LiveStore -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-livestore.svg" alt="" class="w-4 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">LiveStore</span>
+                        </div>
+
+                        <!-- kikin -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-kikin.svg" alt="" class="w-[13px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">kikin</span>
+                        </div>
+
+                        <!-- ens labs -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-enslabs.svg" alt="" class="w-[23px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">ens labs</span>
+                        </div>
+
+                        <!-- freckle -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-freckle.svg" alt="" class="w-[13px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">freckle</span>
+                        </div>
+
+                        <!-- Fortanix -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-fortanix.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Fortanix</span>
+                        </div>
+
+                        <!-- Gale -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-gale.png" alt="" class="w-5 h-5 object-contain" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Gale</span>
+                        </div>
+
+                        <!-- GlobeCommerce -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-globecommerce.png" alt="" class="w-5 h-5 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">GlobeCommerce</span>
+                        </div>
+
+                        <!-- Ping Identity -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-pingidentity.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Ping Identity</span>
+                        </div>
+
+                        <!-- IYK -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-iyk.png" alt="" class="w-[28px] h-[11px] object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">IYK</span>
+                        </div>
+
+                        <!-- inRev -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-inrev.svg" alt="" class="w-[16px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">inRev</span>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate for seamless loop -->
+                    <div class="flex items-center gap-12">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-livestore.svg" alt="" class="w-4 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">LiveStore</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-kikin.svg" alt="" class="w-[13px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">kikin</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-enslabs.svg" alt="" class="w-[23px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">ens labs</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-freckle.svg" alt="" class="w-[13px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">freckle</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-fortanix.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Fortanix</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-gale.png" alt="" class="w-5 h-5 object-contain" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Gale</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-globecommerce.png" alt="" class="w-5 h-5 object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">GlobeCommerce</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-pingidentity.svg" alt="" class="w-5 h-5" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">Ping Identity</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-iyk.png" alt="" class="w-[28px] h-[11px] object-cover" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">IYK</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center">
+                                <img src="./figma-assets/logo-inrev.svg" alt="" class="w-[16px] h-4" />
+                            </div>
+                            <span class="text-base font-semibold text-[#b5b5be]">inRev</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Section: A safe, testable runtime for AI systems -->
+        <section class="relative w-full py-32 overflow-hidden bg-zinc-950">
+            <!-- Main Content Container -->
+            <div class="relative w-full w-max-[66.5rem] mx-auto flex flex-col items-center gap-12">
+                <!-- Heading and Button -->
+                <div class="flex flex-col items-center gap-10 w-full px-4">
+                    <h2 class="text-[39px] leading-[48px] font-bold text-white text-center">
+                        A safe, testable runtime for AI systems
+                    </h2>
+                    <a href="#" class="flex items-center justify-center gap-3 px-6 py-4 bg-black border border-zinc-400 rounded-lg text-white text-base font-semibold tracking-[0.16px] hover:border-zinc-300 transition-colors">
+                        <span class="flex items-center justify-center w-5 h-5">
+                            <i class="ri-terminal-line text-white text-[1.25rem] leading-none"></i>
+                        </span>
+                        <span>@effect/ai package</span>
+                    </a>
+                </div>
+
+                <!-- Features and Case Studies Container -->
+                <div class="relative w-full max-w-[66.5rem] mx-auto px-4">
+                    <!-- Vertical Dashed Lines (323px height, positioned at feature cards level) -->
+                    <div class="hidden lg:block absolute left-0 bottom-0 w-[1px] h-[360px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+                    <div class="hidden lg:block absolute right-0 bottom-0 w-[1px] h-[360px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                    <!-- 4 Feature Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px] max-w-[53rem] mx-auto">
+                        <!-- Feature 1: Fork & cancel -->
+                        <div class="relative p-4 dashed-gradient-border">
+                            <div class="flex flex-col gap-3">
+                                <img src="./figma-assets/ai-icon-fork.svg" alt="" class="w-6 h-6 mt-4" />
+                                <p class="text-base leading-5 text-white/88 mt-6">
+                                    <span class="font-semibold text-white">Fork & cancel</span>
+                                    <span class="font-normal"> tool calls or model chains</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2: Retry & fallback -->
+                        <div class="relative p-4 dashed-gradient-border">
+                            <div class="flex flex-col gap-3">
+                                <img src="./figma-assets/ai-icon-retry.svg" alt="" class="w-6 h-6 mt-4" />
+                                <p class="text-base leading-5 text-white/88 mt-6">
+                                    <span class="font-semibold text-white">Retry & fallback</span>
+                                    <span class="font-normal"> with typed error handling</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: Inject & swap -->
+                        <div class="relative p-4 dashed-gradient-border">
+                            <div class="flex flex-col gap-3">
+                                <img src="./figma-assets/ai-icon-inject.svg" alt="" class="w-6 h-6 mt-4" />
+                                <p class="text-base leading-5 text-white/88 mt-6">
+                                    <span class="font-semibold text-white">Inject & swap</span>
+                                    <span class="font-normal"> models or APIs for testing</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 4: Automatic tracing -->
+                        <div class="relative p-4 dashed-gradient-border">
+                            <div class="flex flex-col gap-3">
+                                <img src="./figma-assets/ai-icon-tracing.svg" alt="" class="w-6 h-6 mt-4" />
+                                <p class="text-base leading-5 text-white/88 mt-6">
+                                    <span class="font-semibold text-white">Automatic tracing</span>
+                                    <span class="font-normal">, no boilerplate</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Horizontal Dashed Line Separator -->
+                    <div class="my-8 w-full max-w-[53rem] mx-auto h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                    <!-- 2 Case Study Cards -->
+                    <div class="flex flex-col lg:flex-row w-full max-w-[53rem] mx-auto gap-[20px] justify-center">
+                        <!-- Case Study 1: MasterClass -->
+                        <a href="#" class="flex-1 w-full lg:max-w-auto border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 transition-colors">
+                            <div class="flex flex-col">
+                                <!-- Top section with gradient and logos -->
+                                <div class="relative h-24 flex items-center justify-center" style="background: linear-gradient(to bottom, rgba(9,9,11,1), rgba(227,38,82,0.06));">
+                                    <div class="flex items-center gap-4">
+                                        <img src="./figma-assets/effect-logo-white.svg" alt="Effect" class="h-7" />
+                                        <div class="w-[1px] h-8 bg-zinc-700"></div>
+                                        <img src="./figma-assets/masterclass.svg" alt="MasterClass" class="h-5" />
+                                    </div>
+                                    <!-- Gradient border at bottom -->
+                                    <div class="absolute bottom-0 left-0 right-0 h-[2px]" style="background: linear-gradient(to right, rgba(9,9,11,0) 0%, rgba(227,38,82,1) 50%, rgba(9,9,11,0) 100%);"></div>
+                                </div>
+                                <!-- Bottom section with text -->
+                                <div class="bg-black py-4 flex items-center justify-center">
+                                    <p class="text-base font-medium text-white text-center">Building a Voice AI Orchestration Layer</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Case Study 2: 14.ai -->
+                        <a href="#" class="flex-1 w-full lg:max-w-auto border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 transition-colors">
+                            <div class="flex flex-col">
+                                <!-- Top section with gradient and logos -->
+                                <div class="relative h-24 flex items-center justify-center" style="background: linear-gradient(to bottom, rgba(9,9,11,1), rgba(161,190,0,0.06));">
+                                    <div class="flex items-center gap-4">
+                                        <img src="./figma-assets/effect-logo-white.svg" alt="Effect" class="h-7" />
+                                        <div class="w-[1px] h-8 bg-zinc-700"></div>
+                                        <img src="./figma-assets/14-ai.svg" alt="14.ai" class="h-7" />
+                                    </div>
+                                    <!-- Gradient border at bottom -->
+                                    <div class="absolute bottom-0 left-0 right-0 h-[2px]" style="background: linear-gradient(to right, rgba(9,9,11,0) 0%, rgba(161,190,0,1) 50%, rgba(9,9,11,0) 100%);"></div>
+                                </div>
+                                <!-- Bottom section with text -->
+                                <div class="bg-black py-4 flex items-center justify-center">
+                                    <p class="text-base font-medium text-white text-center">Scaling AI Agents for Customer Support</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- See Effect in Action Section -->
+        <section class="relative w-full pt-32 overflow-hidden bg-zinc-950">
+            <!-- Top gradient border -->
+            <div class="absolute top-0 left-0 right-0 h-[2px]" style="background: linear-gradient(to right, rgba(9,9,11,0) 0%, rgba(255,255,255,1) 50%, rgba(9,9,11,0) 100%);"></div>
+
+            <div class="container w-full mx-auto">
+                <!-- Heading and Subheading -->
+                <div class="flex flex-col items-center gap-4 w-full mx-auto mb-8">
+                    <h2 class="text-[39px] leading-[48px] font-bold text-white text-center">
+                        See Effect in action
+                    </h2>
+                    <p class="text-base leading-[32px] text-zinc-400 text-center w-full max-w-[438px]">
+                        Run, interrupt, or reset Effects.
+                    </p>
+                </div>
+
+                <!-- Visual Effect Container -->
+                <div class="w-full max-w-[53rem] mx-auto border border-zinc-800 rounded-2xl p-4 flex flex-col gap-4">
+                    <!-- Tab Navigation -->
+                    <div class="w-full flex relative">
+                        <div class="absolute bottom-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+                        <button class="visual-effect-tab active flex-1 flex items-center justify-center py-5 font-mono font-bold text-base text-white relative" data-tab="succeed">
+                            Effect.succeed
+                        </button>
+                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="fail" style="color: #d9d9d9;">
+                            Effect.fail
+                        </button>
+                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="die" style="color: #d9d9d9;">
+                            Effect.die
+                        </button>
+                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="sleep" style="color: #d9d9d9;">
+                            Effect.sleep
+                        </button>
+                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="orElse" style="color: #d9d9d9;">
+                            Effect.orElse
+                        </button>
+                    </div>
+
+                    <!-- Interactive Component -->
+                    <div class="w-full border border-solid rounded-lg overflow-hidden" style="border-color: rgba(64, 64, 64, 0.5);">
+                        <!-- Effect.succeed Component -->
+                        <div id="effect-succeed" class="effect-component">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between px-8 py-5 border-b" style="background-color: rgba(39, 39, 42, 0.7); border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border" style="border-color: #898994;">
+                                        <i class="ri-shining-fill text-xl"></i>
+                                    </div>
+                                    <div class="font-mono font-medium text-lg text-white">Effect.succeed</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual Display Area -->
+                            <div class="flex items-center gap-2.5 px-8 py-8 border-b" style="border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex flex-col items-center gap-2.5">
+                                    <div class="w-14 h-14 rounded-lg border flex items-center justify-center text-white text-2xl" style="border-color: #b5b5be;">
+                                        <i class="ri-shining-fill"></i>
+                                    </div>
+                                    <div class="font-mono text-xs text-zinc-400">value</div>
+                                </div>
+                            </div>
+
+                            <!-- Code Snippet Area -->
+                            <div class="px-8 py-6">
+                                <pre class="font-mono text-base" style="color: #abb2bf; text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">value</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">Effect.</span><span style="color: #61afef;">succeed</span><span style="color: #abb2bf;">(</span><span style="color: #d19a66;">42</span><span style="color: #abb2bf;">)</span></pre>
+                            </div>
+                        </div>
+
+                        <!-- Effect.fail Component -->
+                        <div id="effect-fail" class="effect-component hidden">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between px-8 py-5 border-b" style="background-color: rgba(39, 39, 42, 0.7); border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border" style="border-color: #898994; background: #dc2626;">
+                                        <i class="ri-close-circle-fill text-2xl"></i>
+                                    </div>
+                                    <div class="font-mono text-xl text-white">Effect.fail</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual Display Area -->
+                            <div class="flex items-center gap-2.5 px-8 py-8 border-b" style="border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex flex-col items-center gap-2.5">
+                                    <div class="w-14 h-14 rounded-lg border flex items-center justify-center text-white text-2xl" style="border-color: #b5b5be; background: #dc2626;">
+                                        <i class="ri-close-circle-fill"></i>
+                                    </div>
+                                    <div class="font-mono text-xs text-zinc-400">error</div>
+                                </div>
+                            </div>
+
+                            <!-- Code Snippet Area -->
+                            <div class="px-8 py-6">
+                                <pre class="font-mono text-base" style="color: #abb2bf; text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">error</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">Effect.</span><span style="color: #61afef;">fail</span><span style="color: #abb2bf;">(</span><span style="color: #98c379;">"error"</span><span style="color: #abb2bf;">)</span></pre>
+                            </div>
+                        </div>
+
+                        <!-- Effect.die Component -->
+                        <div id="effect-die" class="effect-component hidden">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between px-8 py-5 border-b" style="background-color: rgba(39, 39, 42, 0.7); border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border" style="border-color: #898994; background: #7c3aed;">
+                                        <i class="ri-skull-2-fill text-2xl"></i>
+                                    </div>
+                                    <div class="font-mono text-xl text-white">Effect.die</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual Display Area -->
+                            <div class="flex items-center gap-2.5 px-8 py-8 border-b" style="border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex flex-col items-center gap-2.5">
+                                    <div class="w-14 h-14 rounded-lg border flex items-center justify-center text-white text-2xl" style="border-color: #b5b5be; background: #7c3aed;">
+                                        <i class="ri-skull-2-fill"></i>
+                                    </div>
+                                    <div class="font-mono text-xs text-zinc-400">defect</div>
+                                </div>
+                            </div>
+
+                            <!-- Code Snippet Area -->
+                            <div class="px-8 py-6">
+                                <pre class="font-mono text-base" style="color: #abb2bf; text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">defect</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">Effect.</span><span style="color: #61afef;">die</span><span style="color: #abb2bf;">(</span><span style="color: #98c379;">"fatal"</span><span style="color: #abb2bf;">)</span></pre>
+                            </div>
+                        </div>
+
+                        <!-- Effect.sleep Component -->
+                        <div id="effect-sleep" class="effect-component hidden">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between px-8 py-5 border-b" style="background-color: rgba(39, 39, 42, 0.7); border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border" style="border-color: #898994; background: #0891b2;">
+                                        <i class="ri-time-fill text-2xl"></i>
+                                    </div>
+                                    <div class="font-mono text-xl text-white">Effect.sleep</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual Display Area -->
+                            <div class="flex items-center gap-2.5 px-8 py-8 border-b" style="border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex flex-col items-center gap-2.5">
+                                    <div class="w-14 h-14 rounded-lg border flex items-center justify-center text-white text-2xl" style="border-color: #b5b5be; background: #0891b2;">
+                                        <i class="ri-time-fill"></i>
+                                    </div>
+                                    <div class="font-mono text-xs text-zinc-400">duration</div>
+                                </div>
+                            </div>
+
+                            <!-- Code Snippet Area -->
+                            <div class="px-8 py-6">
+                                <pre class="font-mono text-base" style="color: #abb2bf; text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">sleep</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">Effect.</span><span style="color: #61afef;">sleep</span><span style="color: #abb2bf;">(</span><span style="color: #98c379;">"1 second"</span><span style="color: #abb2bf;">)</span></pre>
+                            </div>
+                        </div>
+
+                        <!-- Effect.orElse Component -->
+                        <div id="effect-orElse" class="effect-component hidden">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between px-8 py-5 border-b" style="background-color: rgba(39, 39, 42, 0.7); border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border" style="border-color: #898994; background: #f59e0b;">
+                                        <i class="ri-git-branch-fill text-2xl"></i>
+                                    </div>
+                                    <div class="font-mono text-xl text-white">Effect.orElse</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual Display Area -->
+                            <div class="flex items-center gap-2.5 px-8 py-8 border-b" style="border-color: rgba(64, 64, 64, 0.5);">
+                                <div class="flex flex-col items-center gap-2.5">
+                                    <div class="w-14 h-14 rounded-lg border flex items-center justify-center text-white text-2xl" style="border-color: #b5b5be; background: #f59e0b;">
+                                        <i class="ri-git-branch-fill"></i>
+                                    </div>
+                                    <div class="font-mono text-xs text-zinc-400">fallback</div>
+                                </div>
+                            </div>
+
+                            <!-- Code Snippet Area -->
+                            <div class="px-8 py-6">
+                                <pre class="font-mono text-base" style="color: #abb2bf; text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">result</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">primary.</span><span style="color: #61afef;">pipe</span><span style="color: #abb2bf;">(Effect.</span><span style="color: #61afef;">orElse</span><span style="color: #abb2bf;">(fallback))</span></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next-gen DevTools Section -->
+            <section class="relative w-full py-24 px-4 mt-24">
+                <!-- Dashed top border -->
+                <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+                <div class="w-full max-w-[80rem] mx-auto">
+                    <div class="flex gap-0 items-start">
+                        <!-- Left: GIF Container -->
+                        <div class="w-[630px] h-[354px] border border-zinc-700 rounded-lg overflow-hidden flex-shrink-0">
+                            <div class="relative w-full h-full bg-zinc-900 rounded-lg overflow-hidden">
+                                <img id="devtools-gif"
+                                     src="./figma-assets/diagnostics-16_9.gif"
+                                     alt="DevTools Demo"
+                                     class="absolute left-3 top-4 w-[600px] h-[364px] object-cover transition-opacity duration-300" />
+                            </div>
+                        </div>
+
+                        <!-- Right: Content Section -->
+                        <div class="relative flex-1 pl-[128px]">
+                            <!-- Heading -->
+                            <div class="mb-8">
+                                <h3 class="text-[31px] leading-[1.25] font-bold text-white">
+                                    Next-gen DevTools
+                                </h3>
+                            </div>
+
+                            <!-- Tab Buttons -->
+                            <div class="w-[305px] flex flex-col gap-2">
+                                <!-- Tab 1: Diagnostics (Active by default) -->
+                                <div class="relative">
+                                    <button class="devtools-tab active border border-solid border-white flex items-center justify-center px-0 py-4 rounded-full text-base font-mono uppercase text-white transition-colors w-full"
+                                            data-tab="diagnostics"
+                                            data-gif="./figma-assets/diagnostics-16_9.gif">
+                                        diagnostics
+                                    </button>
+                                    <!-- Line for Diagnostics tab - visible by default -->
+                                    <svg class="absolute right-[305px] top-1/2 -translate-y-1/2 w-[128px] h-[1px] pointer-events-none"
+                                         data-line="diagnostics"
+                                         viewBox="0 0 128 1"
+                                         preserveAspectRatio="none">
+                                        <line class="devtools-line" x1="128" y1="0.5" x2="0" y2="0.5" stroke="white" stroke-width="1" />
+                                    </svg>
+                                </div>
+
+                                <!-- Tab 2: Refactors -->
+                                <div class="relative">
+                                    <button class="devtools-tab border border-dashed border-zinc-600 flex items-center justify-center px-0 py-4 rounded-full text-base font-mono uppercase text-zinc-400 transition-colors w-full"
+                                            data-tab="refactors"
+                                            data-gif="./figma-assets/refactors-16_9.gif">
+                                        refactors
+                                    </button>
+                                    <!-- Line for Refactors tab - hidden by default -->
+                                    <svg class="absolute right-[305px] top-1/2 -translate-y-1/2 w-[128px] h-[1px] pointer-events-none"
+                                         data-line="refactors"
+                                         viewBox="0 0 128 1"
+                                         preserveAspectRatio="none">
+                                        <line class="devtools-line" x1="128" y1="0.5" x2="128" y2="0.5" stroke="white" stroke-width="1" />
+                                    </svg>
+                                </div>
+
+                                <!-- Tab 3: Visual DevTools -->
+                                <div class="relative">
+                                    <button class="devtools-tab border border-dashed border-zinc-600 flex items-center justify-center px-0 py-4 rounded-full text-base font-mono uppercase text-zinc-400 transition-colors w-full"
+                                            data-tab="visual-devtools"
+                                            data-gif="./figma-assets/visuals-16_9.gif">
+                                        visual devtools
+                                    </button>
+                                    <!-- Line for Visual DevTools tab - hidden by default -->
+                                    <svg class="absolute right-[305px] top-1/2 -translate-y-1/2 w-[128px] h-[1px] pointer-events-none"
+                                         data-line="visual-devtools"
+                                         viewBox="0 0 128 1"
+                                         preserveAspectRatio="none">
+                                        <line class="devtools-line" x1="128" y1="0.5" x2="128" y2="0.5" stroke="white" stroke-width="1" />
+                                    </svg>
+                                </div>
+
+                                <!-- Tab 4: Editor Extensions -->
+                                <div class="relative">
+                                    <button class="devtools-tab border border-dashed border-zinc-600 flex items-center justify-center px-0 py-4 rounded-full text-base font-mono uppercase text-zinc-400 transition-colors w-full"
+                                            data-tab="editor-extensions"
+                                            data-gif="./figma-assets/extension-16_9.gif">
+                                        editor extensions
+                                    </button>
+                                    <!-- Line for Editor Extensions tab - hidden by default -->
+                                    <svg class="absolute right-[305px] top-1/2 -translate-y-1/2 w-[128px] h-[1px] pointer-events-none"
+                                         data-line="editor-extensions"
+                                         viewBox="0 0 128 1"
+                                         preserveAspectRatio="none">
+                                        <line class="devtools-line" x1="128" y1="0.5" x2="128" y2="0.5" stroke="white" stroke-width="1" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Effect Playground Section -->
+            <div class="relative w-full pt-24 pb-24 border-b border-zinc-700">
+                <!-- Dashed top border -->
+                <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+                <!-- Left Column Wrapper: Centered in 66.5rem container -->
+                <div class="w-full max-w-[66.5rem] mx-auto px-4">
+                    <!-- Left Column: Text Content -->
+                    <div class="flex flex-col gap-8 w-full pb-2 lg:w-[338px]">
+                            <!-- Heading -->
+                            <h3 class="text-[31px] leading-[1.25] font-bold text-white">
+                                Run Effect code in the Effect Playground
+                            </h3>
+
+                            <!-- Features -->
+                            <div class="flex flex-col gap-10">
+                                <!-- Feature Row -->
+                                <div class="flex gap-4">
+                                    <!-- Feature 1 -->
+                                    <div class="flex flex-col gap-4 w-[160px]">
+                                        <div class="w-5 h-5">
+                                            <i class="ri-braces-line text-xl text-white"></i>
+                                        </div>
+                                        <p class="text-base leading-[1.35] text-zinc-300">
+                                            TypeScript LSP & Node.js support
+                                        </p>
+                                    </div>
+
+                                    <!-- Feature 2 -->
+                                    <div class="flex flex-col gap-4 w-[162px]">
+                                        <div class="w-5 h-5">
+                                            <i class="ri-bar-chart-horizontal-line text-xl text-white"></i>
+                                        </div>
+                                        <p class="text-base leading-[1.35] text-zinc-300">
+                                            Real-time application trace viewer built-in
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <a href="#" class="flex items-center justify-center gap-3 px-5 py-4 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors w-fit">
+                                    <span class="flex items-center justify-center w-6 h-6">
+                                        <i class="ri-terminal-line text-white text-lg leading-none"></i>
+                                    </span>
+                                    <span class="text-base font-medium text-white">Effect Playground</span>
+                                </a>
+                            </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Code Editor Preview - Pinned to Right Edge -->
+                <div class="hidden lg:block absolute bottom-0 left-[50%] w-[50vw] bg-zinc-950 rounded-tl-lg border-t border-l border-zinc-700 pl-2 pt-2">
+                        <div class="bg-zinc-900 rounded-tl-lg overflow-hidden relative h-[380px]">
+                        <!-- Code Preview Image/Content -->
+                        <div class="relative inset-0 p-4 h-full">
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 pointer-events-none rounded-tl-lg z-10" style="background: linear-gradient(to bottom right, rgba(255,255,255,0) 20%, rgba(9,9,11,1) 75%);"></div>
+                            <pre class="font-mono text-sm text-zinc-400 leading-relaxed"><span style="color: #c678dd;">import</span> <span style="color: #abb2bf;">{ NodeRuntime }</span> <span style="color: #c678dd;">from</span> <span style="color: #98c379;">"@effect/platform-node"</span>
+<span style="color: #c678dd;">import</span> <span style="color: #abb2bf;">{ Effect, Context }</span> <span style="color: #c678dd;">from</span> <span style="color: #98c379;">"effect"</span>
+<span style="color: #c678dd;">import</span> <span style="color: #abb2bf;">{ DevToolsLive }</span> <span style="color: #c678dd;">from</span> <span style="color: #98c379;">"./DevTools"</span>
+
+<span style="color: #c678dd;">class</span> <span style="color: #61afef;">MyDependency</span> <span style="color: #c678dd;">extends</span> <span style="color: #61afef;">Context</span><span style="color: #abb2bf;">.</span><span style="color: #61afef;">Tag</span><span style="color: #abb2bf;">(</span><span style="color: #98c379;">"MyDependency"</span><span style="color: #abb2bf;">)</span> <span style="color: #abb2bf;">{}</span>
+
+<span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">provide</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">(</span><span style="color: #e06c75;">n</span><span style="color: #abb2bf;">:</span> <span style="color: #61afef;">number</span><span style="color: #abb2bf;">)</span> <span style="color: #61afef;">=></span> <span style="color: #abb2bf;">Effect.</span><span style="color: #61afef;">provideService</span><span style="color: #abb2bf;">(MyDependency, n)</span>
+
+<span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">getAndLog</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">MyDependency.</span><span style="color: #61afef;">pipe</span><span style="color: #abb2bf;">(Effect.</span><span style="color: #61afef;">andThen</span><span style="color: #abb2bf;">((</span><span style="color: #e06c75;">n</span><span style="color: #abb2bf;">)</span> <span style="color: #61afef;">=></span> <span style="color: #abb2bf;">Console.</span><span style="color: #61afef;">log</span><span style="color: #abb2bf;">(n)))</span>
+
+<span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">program</span> <span style="color: #61afef;">=</span> <span style="color: #abb2bf;">Effect.</span><span style="color: #61afef;">gen</span><span style="color: #abb2bf;">(</span><span style="color: #c678dd;">function*</span><span style="color: #abb2bf;">() {</span>
+  <span style="color: #c678dd;">yield*</span> <span style="color: #abb2bf;">getAndLog.</span><span style="color: #61afef;">pipe</span><span style="color: #abb2bf;">(</span><span style="color: #61afef;">provide</span><span style="color: #abb2bf;">(</span><span style="color: #d19a66;">4</span><span style="color: #abb2bf;">),</span> <span style="color: #61afef;">provide</span><span style="color: #abb2bf;">(</span><span style="color: #d19a66;">3</span><span style="color: #abb2bf;">))</span>
+<span style="color: #abb2bf;">}).</span><span style="color: #61afef;">pipe</span><span style="color: #abb2bf;">(Effect.</span><span style="color: #61afef;">withSpan</span><span style="color: #abb2bf;">(</span><span style="color: #98c379;">"program"</span><span style="color: #abb2bf;">,</span>
+  <span style="color: #abb2bf;">{ attributes: { source:</span> <span style="color: #98c379;">"Playground"</span> <span style="color: #abb2bf;">}</span>
+<span style="color: #abb2bf;">}))</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section class="relative w-full py-32">
+            <!-- Heading -->
+            <div class="flex flex-col items-center gap-20 w-full mx-auto px-4">
+                <h2 class="text-[39px] leading-[1.25] font-bold text-white text-center">
+                    What developers are saying...
+                </h2>
+
+                <!-- Quotes Container -->
+                <div class="relative w-full overflow-hidden">
+                    <div class="flex gap-5 quotes-scroll-animation">
+                    <!-- Quote Card 1 - Cor -->
+                    <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-[#d9d9d9]">Perhaps the most ergonomic and safe method of Dependency Injection I've ever seen.</p>
+                        <div class="flex items-center gap-5 w-full">
+                            <span class="text-base font-mono text-white uppercase">Cor</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/union-build.svg" alt="Union Build" class="h-4" />
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 2 - Dillon Mulroy -->
+                    <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">It makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">Dillon Mulroy</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/vercel-logotype-dark.svg" alt="Vercel" class="h-4" />
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 3 - Matt Pocock -->
+                    <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">I feel like I'm writing some of the best code in my career using Effect.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">Matt Pocock</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/Pocock.svg" alt="TypeScript Wizard" class="h-8" />
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 4 - Zach Warunek -->
+                    <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">Effect tracing is simply magical. Was able to fully integrate with our existing microservice observably stack fairly easily.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">Zach Warunek</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <i class="ri-twitter-x-line text-lg text-white"></i>
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 5 - David Golightly -->
+                    <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">The spaghetti code really turns into something that's just very linear and clean, and it really promotes excellent software architecture.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">David Golightly</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/masterclass-nom.svg" alt="Masterclass" class="h-2.5" />
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 6 - Ethan Niser -->
+                    <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">Effect puts you on the path to writing more performant async code by default.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">Ethan Niser</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/vercel-logotype-dark.svg" alt="Vercel" class="h-4" />
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 7 - Samuel Briole -->
+                    <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">The real-world impact is tangible: few production bugs, simple testing, and clear code organization.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">Samuel Briole</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/spiko-logo.svg" alt="Spiko" class="h-4" />
+                        </div>
+                    </div>
+
+                    <!-- Quote Card 8 - Matthew Phillips -->
+                    <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
+                        <p class="text-[20px] leading-[1.35] text-white font-medium">I think it's one of the most important libraries being developed today.</p>
+                        <div class="flex items-center gap-4 w-full">
+                            <span class="text-base font-mono text-white uppercase">Matthew Phillips</span>
+                            <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
+                            <img src="./figma-assets/Astro.svg" alt="Astro" class="h-4" />
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom solid border -->
+            <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-zinc-700"></div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="relative w-full py-32 px-4">
+            <div class="w-full max-w-[80rem] mx-auto">
+                <!-- Heading -->
+                <h2 class="text-[39px] leading-[1.25] font-bold text-white text-center mb-16">
+                    Questions we get asked a lot...
+                </h2>
+
+                <!-- FAQ Grid -->
+                <div class="flex flex-col lg:flex-row lg:flex-wrap gap-3 items-start">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item bg-zinc-950 border border-zinc-600 rounded-lg p-5 w-full lg:w-[calc(50%-0.375rem)] flex flex-col">
+                        <button class="faq-trigger flex items-center justify-between cursor-pointer bg-transparent border-none text-left"
+                                aria-expanded="false"
+                                aria-controls="faq-1"
+                                id="faq-1-trigger">
+                            <span class="text-lg font-medium text-white tracking-[0.16px] pr-4">
+                                Why is the syntax different from typical TypeScript?
+                            </span>
+                            <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
+                        </button>
+                        <div id="faq-1" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-1-trigger">
+                            <p>Effect's syntax may feel unfamiliar at first: yield*, Effect.gen, TaggedError… But that's because it's doing something TypeScript can't do on its own.</p>
+                            <p class="mt-4">That "weirdness" unlocks:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Typed, composable errors.</li>
+                                <li>Dependency injection with no globals.</li>
+                                <li>Interruptible workflows.</li>
+                                <li>Business logic you can reason about, reuse, and test in isolation.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 (was Item 3) -->
+                    <div class="faq-item bg-zinc-950 border border-zinc-600 rounded-lg p-5 w-full lg:w-[calc(50%-0.375rem)] flex flex-col">
+                        <button class="faq-trigger flex items-center justify-between cursor-pointer bg-transparent border-none text-left"
+                                aria-expanded="false"
+                                aria-controls="faq-2"
+                                id="faq-2-trigger">
+                            <span class="text-lg font-medium text-white tracking-[0.16px] pr-4">
+                                Is it possible to adopt Effect in an existing codebase?
+                            </span>
+                            <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
+                        </button>
+                        <div id="faq-2" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-2-trigger">
+                            <p>Yes! You can start small, wrapping existing async code or APIs in Effect and expanding from there:</p>
+                            <pre class="bg-zinc-900 rounded-lg p-4 mt-3 mb-3 overflow-x-auto"><code class="text-sm text-zinc-300 font-mono"><span style="color: #7c7c7c;">// Enter the Effect world</span>
+Effect.tryPromise(() => nonEffectAPI())
+
+<span style="color: #7c7c7c;">// Exit back to normal promises</span>
+Effect.runPromise(myProgram)</code></pre>
+                            <p>From there, you can progressively refactor leaf modules into Effects, moving upward through your codebase. Many teams start by converting a few async functions or services, then gradually introduce layers (for dependency management) and runtime management to handle the rest of the app.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 (was Item 2) -->
+                    <div class="faq-item bg-zinc-950 border border-zinc-600 rounded-lg p-5 w-full lg:w-[calc(50%-0.375rem)] flex flex-col">
+                        <button class="faq-trigger flex items-center justify-between cursor-pointer bg-transparent border-none text-left"
+                                aria-expanded="false"
+                                aria-controls="faq-3"
+                                id="faq-3-trigger">
+                            <span class="text-lg font-medium text-white tracking-[0.16px] pr-4">
+                                How long does it take to learn?
+                            </span>
+                            <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
+                        </button>
+                        <div id="faq-3" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-3-trigger">
+                            <p>You can be productive in a few days. Start by replacing await with yield*, everything else follows naturally.
+</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 (was Item 6) -->
+                    <div class="faq-item bg-zinc-950 border border-zinc-600 rounded-lg p-5 w-full lg:w-[calc(50%-0.375rem)] flex flex-col">
+                        <button class="faq-trigger flex items-center justify-between cursor-pointer bg-transparent border-none text-left"
+                                aria-expanded="false"
+                                aria-controls="faq-4"
+                                id="faq-4-trigger">
+                            <span class="text-lg font-medium text-white tracking-[0.16px] pr-4">
+                                How do I convince my team to start using Effect?
+                            </span>
+                            <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
+                        </button>
+                        <div id="faq-4" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-4-trigger">
+                            <p>Start small. Pick one problem everyone hates:</p>
+                            <ul class="list-disc ml-5 mt-2 mb-4 space-y-1">
+                                <li>Dependency injection…</li>
+                                <li>Error management…</li>
+                                <li>Concurrency…</li>
+                            </ul>
+                            <p>The code quality speaks for itself.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 (was Item 4) -->
+                    <div class="faq-item bg-zinc-950 border border-zinc-600 rounded-lg p-5 w-full lg:w-[calc(50%-0.375rem)] flex flex-col">
+                        <button class="faq-trigger flex items-center justify-between cursor-pointer bg-transparent border-none text-left"
+                                aria-expanded="false"
+                                aria-controls="faq-5"
+                                id="faq-5-trigger">
+                            <span class="text-lg font-medium text-white tracking-[0.16px] pr-4">
+                                What about performance overhead?
+                            </span>
+                            <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
+                        </button>
+                        <div id="faq-5" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-5-trigger">
+                            <p>Effect adds minimal overhead and prevents the <em>real</em> performance killers:</p>
+                            <ul class="list-disc ml-5 mt-2 mb-4 space-y-1">
+                                <li>Memory leaks</li>
+                                <li>Orphaned async ops</li>
+                                <li>Resource exhaustion</li>
+                                <li>Inconsistent error handling</li>
+                            </ul>
+                            <p>The runtime overhead is minimal, and the structured approach leads to more efficient code organization and execution.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 6 (was Item 5) -->
+                    <div class="faq-item bg-zinc-950 border border-zinc-600 rounded-lg p-5 w-full lg:w-[calc(50%-0.375rem)] flex flex-col">
+                        <button class="faq-trigger flex items-center justify-between cursor-pointer bg-transparent border-none text-left"
+                                aria-expanded="false"
+                                aria-controls="faq-6"
+                                id="faq-6-trigger">
+                            <span class="text-lg font-medium text-white tracking-[0.16px] pr-4">
+                                How does Effect compare to other libraries?
+                            </span>
+                            <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
+                        </button>
+                        <div id="faq-6" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-6-trigger">
+                            <p>Effect covers a broader scope than most libraries in the TypeScript ecosystem — combining async control, dependency management, error handling, and observability in one cohesive runtime.</p>
+                            <p class="mt-4">See how it compares to:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><a href="https://effect.website/docs/additional-resources/myths/#effect-is-the-same-as-rxjs-and-shares-its-problems" class="text-white hover:text-zinc-300 underline transition-colors" target="_blank" rel="noopener noreferrer">RxJS</a></li>
+                                <li><a href="https://effect.website/docs/additional-resources/effect-vs-fp-ts/" class="text-white hover:text-zinc-300 underline transition-colors" target="_blank" rel="noopener noreferrer">fp-ts</a></li>
+                                <li><a href="https://effect.website/docs/additional-resources/effect-vs-neverthrow/" class="text-white hover:text-zinc-300 underline transition-colors" target="_blank" rel="noopener noreferrer">Neverthrow</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="relative w-full px-8">
+            <!-- Top gradient border -->
+            <div class="absolute top-0 left-0 right-0 h-[2px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);"></div>
+
+            <div class="w-full max-w-[80rem] mx-auto">
+                <!-- Content Wrapper -->
+                <div class="relative flex flex-col items-center gap-16 w-full py-32 mx-auto">
+                    <!-- Left dashed border -->
+                    <div class="absolute left-0 top-[2px] bottom-0 w-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                    <!-- Right dashed border -->
+                    <div class="absolute right-0 top-[2px] bottom-0 w-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                    <!-- Heading and Description Container -->
+                    <div class="flex flex-col items-center gap-8">
+                        <!-- Heading -->
+                        <h2 class="text-[39px] leading-[1.25] font-bold text-white text-center">
+                            Build with Effect? Let's Connect.
+                        </h2>
+
+                        <!-- Description -->
+                        <div class="flex flex-col items-center gap-4">
+                            <p class="text-[20px] leading-[1.35] text-zinc-300 text-center">
+                                We'd love to hear how you're using Effect!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Buttons Section -->
+                    <div class="flex flex-col items-center gap-8 w-full">
+                        <!-- Top dashed border -->
+                        <div class="h-[1px] w-full" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+
+                        <!-- Buttons Container -->
+                        <div class="flex flex-col md:flex-row gap-5 items-center justify-center w-full">
+                            <!-- Button 1: What are you building? -->
+                            <a href="#" class="flex items-center gap-2 px-5 py-4 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors">
+                                <span class="flex items-center justify-center w-6 h-6">
+                                    <i class="ri-arrow-right-up-line text-white text-lg leading-none"></i>
+                                </span>
+                                <span class="text-base font-medium text-white whitespace-nowrap">What are you building?</span>
+                            </a>
+
+                            <!-- Button 2: Join our community -->
+                            <a href="#" class="flex items-center gap-2 px-5 py-4 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors">
+                                <span class="flex items-center justify-center w-6 h-6">
+                                    <i class="ri-discord-fill text-white text-lg leading-none"></i>
+                                </span>
+                                <span class="text-base font-medium text-white whitespace-nowrap">Join our community</span>
+                            </a>
+                        </div>
+
+                        <!-- Bottom dashed border -->
+                        <div class="h-[1px] w-full" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative w-full px-4 pt-32 pb-16">
+        <!-- Top solid border -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700"></div>
+
+        <div class="w-full max-w-[80rem] mx-auto">
+            <!-- Footer Links Block -->
+            <div class="flex flex-col">
+                <!-- Four Column Links Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24 mb-20">
+                    <!-- Column 1: Resources -->
+                    <div class="flex flex-col gap-3">
+                        <!-- Column Header -->
+                        <div class="flex items-center gap-2">
+                            <i class="ri-book-open-line text-white text-base"></i>
+                            <h3 class="text-base font-semibold text-white">Resources</h3>
+                        </div>
+                        <!-- Links -->
+                        <div class="flex flex-col">
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Documentation</a>
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">API Reference</a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>GitHub</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Workshops</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Visual Effect</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: DevTools -->
+                    <div class="flex flex-col gap-3">
+                        <!-- Column Header -->
+                        <div class="flex items-center gap-2">
+                            <i class="ri-flashlight-line text-white text-base"></i>
+                            <h3 class="text-base font-semibold text-white">DevTools</h3>
+                        </div>
+                        <!-- Links -->
+                        <div class="flex flex-col">
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Playground</a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Effect LSP</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Effect MCP</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Effect CLI</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>VS Code Extension</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Community -->
+                    <div class="flex flex-col gap-3">
+                        <!-- Column Header -->
+                        <div class="flex items-center gap-2">
+                            <i class="ri-user-community-line text-white text-base"></i>
+                            <h3 class="text-base font-semibold text-white">Community</h3>
+                        </div>
+                        <!-- Links -->
+                        <div class="flex flex-col">
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Days</a>
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Merch</a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Discord</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Podcast</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Meetups</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 4: Other -->
+                    <div class="flex flex-col gap-3">
+                        <!-- Column Header -->
+                        <div class="flex items-center gap-2">
+                            <i class="ri-mist-line text-white text-base"></i>
+                            <h3 class="text-base font-semibold text-white">Other</h3>
+                        </div>
+                        <!-- Links -->
+                        <div class="flex flex-col gap-2">
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Myths about Effect</a>
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Press kit</a>
+                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Effectful</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <!-- Special CTA Box -->
+                            <a href="#" class="flex items-center justify-between p-3 mt-2 border border-zinc-600 rounded-lg text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-[1.6]">
+                                <span class="flex-1">Using Effect? Let us know!</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Section: Social & Branding -->
+                <div class="flex flex-col gap-4 mb-6">
+                    <!-- Top Border -->
+                    <div class="h-px bg-zinc-800"></div>
+
+                    <!-- Social Icons and Branding Row -->
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <img src="./figma-assets/effect-logo-white.svg" alt="Effect" class="h-7" />
+
+                        <!-- Social Icons (centered on mobile, middle on desktop) -->
+                        <div class="flex items-center gap-5">
+                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-twitter-x-fill text-xl"></i>
+                            </a>
+                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-youtube-fill text-xl"></i>
+                            </a>
+                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-discord-fill text-xl"></i>
+                            </a>
+                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-bluesky-fill text-xl"></i>
+                            </a>
+                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-linkedin-fill text-xl"></i>
+                            </a>
+                        </div>
+
+                        <p class="text-sm text-zinc-400">MIT Licensed</p>
+                    </div>
+
+                    <!-- Bottom Border -->
+                    <div class="h-px bg-zinc-800"></div>
+                </div>
+
+                <!-- Bottom Copyright Section -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-sm text-zinc-400">© 2025 Effectful Technologies Inc. All rights reserved.</p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="text-sm text-zinc-400 hover:text-white transition-colors">Contact</a>
+                        <a href="#" class="text-sm text-zinc-400 hover:text-white transition-colors">Terms</a>
+                        <a href="#" class="text-sm text-zinc-400 hover:text-white transition-colors">Privacy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <div class="fixed right-0 top-0 h-full w-full max-w-[280px] bg-zinc-900 shadow-xl">
+            <div class="flex items-center justify-between p-[24px] border-b border-zinc-800">
+                <span class="text-[1rem] font-semibold text-white">Menu</span>
+                <button onclick="toggleMobileMenu()" class="flex h-[32px] w-[32px] items-center justify-center rounded-[8px] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="p-[24px]">
+                <a href="#" class="block py-[16px] text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">Docs</a>
+                <a href="#" class="block py-[16px] text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">Play</a>
+                <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="flex items-center gap-[8px] py-[16px] text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">
+                    <i class="ri-github-fill text-[1.25rem]"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://discord.gg/effect-ts" target="_blank" rel="noopener noreferrer" class="flex items-center gap-[8px] py-[16px] text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">
+                    <i class="ri-discord-fill text-[1.25rem]"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="https://twitter.com/EffectTS_" target="_blank" rel="noopener noreferrer" class="flex items-center gap-[8px] py-[16px] text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">
+                    <i class="ri-twitter-x-fill text-[1.25rem]"></i>
+                    <span>Twitter</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('button.md\\:hidden');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Hero Tab switching functionality
+        const heroCommands = {
+            npm: 'npm install effect',
+            pnpm: 'pnpm add effect',
+            yarn: 'yarn add effect',
+            bun: 'bun add effect',
+            deno: 'deno init --npm effect-app@latest'
+        };
+
+        function switchHeroTab(packageManager) {
+            // Update command text with color styling
+            const command = heroCommands[packageManager];
+            const parts = command.split(' ');
+            const packageName = parts[0];
+            const restOfCommand = parts.slice(1).join(' ');
+
+            const codeElement = document.querySelector('#hero-install-command code');
+            codeElement.innerHTML =
+                `<span class="text-[#60A5FA]">${packageName}</span> <span class="text-[#FDBA74]">${restOfCommand}</span>`;
+
+            // Update tab styles - use inline styles for precise color control
+            document.querySelectorAll('.hero-tab-button').forEach(button => {
+                button.classList.remove('text-white');
+                button.classList.add('text-zinc-400');
+                button.style.backgroundColor = '#18181b'; // zinc-900 for passive tabs
+            });
+
+            const activeTab = document.getElementById(`hero-${packageManager}-tab`);
+            activeTab.classList.remove('text-zinc-400');
+            activeTab.classList.add('text-white');
+            activeTab.style.backgroundColor = '#09090b'; // zinc-950 for active tab
+        }
+
+        // Copy Hero command functionality
+        function copyHeroCommand() {
+            const command = document.querySelector('#hero-install-command code').textContent;
+            const feedback = document.getElementById('copy-feedback');
+            const icon = document.getElementById('copy-icon');
+
+            navigator.clipboard.writeText(command).then(() => {
+                // Hide icon and show feedback
+                icon.style.opacity = '0';
+                feedback.style.opacity = '1';
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    icon.style.opacity = '1';
+                    feedback.style.opacity = '0';
+                }, 2000);
+            });
+        }
+
+        // Chart animation on scroll
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const lineWithout = document.getElementById('line-without');
+                    const lineWith = document.getElementById('line-with');
+
+                    if (lineWithout && lineWith) {
+                        lineWithout.classList.add('animate');
+                        lineWith.classList.add('animate');
+                    }
+
+                    chartObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const chart = document.getElementById('complexity-chart');
+        if (chart) {
+            chartObserver.observe(chart);
+        }
+
+        // Toggle switches functionality - make entire row clickable
+        const toggleRows = document.querySelectorAll('.toggle-row');
+        let activeFeatures = 5; // Start with all features active
+        let isAnimating = false; // Track animation state
+        let currentAnimations = { with: null, without: null }; // Store current animation elements
+
+        toggleRows.forEach(row => {
+            row.addEventListener('click', function() {
+                // Find the toggle switch inside this row
+                const toggle = this.querySelector('.toggle-switch');
+
+                // Cancel ongoing animation if exists
+                if (isAnimating && currentAnimations.with && currentAnimations.without) {
+                    const lineWith = document.getElementById('line-with');
+                    const lineWithout = document.getElementById('line-without');
+
+                    // Get current path state before canceling
+                    const currentWithPath = getCurrentPath(lineWith);
+                    const currentWithoutPath = getCurrentPath(lineWithout);
+
+                    // Immediately remove animation elements (don't use endElementAt)
+                    currentAnimations.with?.remove();
+                    currentAnimations.without?.remove();
+
+                    // Update path d attributes to current state for smooth transition
+                    lineWith.setAttribute('d', currentWithPath);
+                    lineWithout.setAttribute('d', currentWithoutPath);
+
+                    isAnimating = false;
+                    currentAnimations.with = null;
+                    currentAnimations.without = null;
+                }
+
+                toggle.classList.toggle('active');
+
+                // Count active features
+                activeFeatures = document.querySelectorAll('.toggle-switch.active').length;
+
+                // Update chart lines based on active features
+                updateChartLines(activeFeatures);
+            });
+        });
+
+        // Helper function to get current path (static or being animated)
+        function getCurrentPath(pathElement) {
+            // Always return the current d attribute value
+            // This will be the most up-to-date path, whether static or being animated
+            return pathElement.getAttribute('d');
+        }
+
+        function updateChartLines(activeCount) {
+            const lineWith = document.getElementById('line-with');
+            const lineWithout = document.getElementById('line-without');
+
+            if (!lineWith || !lineWithout) return;
+
+            // Get current paths before updating
+            const currentWithPath = lineWith.getAttribute('d');
+            const currentWithoutPath = lineWithout.getAttribute('d');
+
+            // Lines get SHORTER (horizontally) when features are turned off
+            // Red line: starts LOWER, grows EXPONENTIALLY, crosses green line
+            // Green line: starts HIGHER, grows LINEARLY
+
+            // Update the "with Effect" line (green) - linear growth, starts at left edge
+            // All paths use identical structure: M x y C x1 y1, x2 y2, x3 y3 C x4 y4, x5 y5, x6 y6
+            // Designed to cross red line at x=180 (30% of chart width)
+            const withPaths = [
+                'M 0 300 C 12 299.5, 25 299, 37 298.5 C 43 298.2, 46 298.1, 50 298', // 0 features - very short, proper curve
+                'M 0 300 C 38 299, 75 298, 112 296.5 C 131 295.8, 140 295.4, 150 294', // 1 feature - smooth curve
+                'M 0 300 C 63 298.5, 125 297, 188 294 C 219 291.5, 234 289.8, 250 288', // 2 features - smooth curve
+                'M 0 300 C 88 298, 175 295, 262 287 C 306 280.5, 328 277.3, 350 274', // 3 features - smooth curve
+                'M 0 300 C 113 297.5, 225 293, 338 280 C 394 270.5, 422 265.3, 450 260', // 4 features - smooth curve
+                'M 0 300 C 90 297, 180 290, 350 270 C 475 258, 540 248, 600 240'  // 5 features - crosses at x=180 y=290
+            ];
+
+            // Update the "without Effect" line (red) - exponential growth, starts at left edge LOWER
+            // All paths use identical structure with smooth, curved exponential shapes
+            // Starts at y=330 (30px below green at y=300), crosses at x=180 (30% of chart width)
+            const withoutPaths = [
+                'M 0 330 C 17 329.7, 33 329.3, 43 328.8 C 46 328.5, 48 328.3, 50 328', // 0 features - proper curve, not degenerate
+                'M 0 330 C 60 328, 90 324, 120 318 C 135 314.5, 142 311.3, 150 308', // 1 feature - smooth exponential start
+                'M 0 330 C 90 327, 140 315, 180 290 C 215 273, 232 265.5, 250 258', // 2 features - smooth curve, crosses at x=180
+                'M 0 330 C 120 326, 180 308, 250 255 C 300 228, 325 214, 350 200', // 3 features - smooth exponential
+                'M 0 330 C 150 327, 220 310, 320 230 C 385 175, 417 152.5, 450 130',  // 4 features - dramatic smooth curve
+                'M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40'   // 5 features - full smooth exponential, crosses at x=180
+            ];
+
+            // Use SMIL animation for smooth path morphing
+            // Optimized duration and easing for maximum smoothness
+            const animationDuration = '600ms'; // Smooth animation for manual interactions
+
+            const animateWith = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+            animateWith.setAttribute('attributeName', 'd');
+            animateWith.setAttribute('from', currentWithPath);
+            animateWith.setAttribute('to', withPaths[activeCount]);
+            animateWith.setAttribute('dur', animationDuration);
+            animateWith.setAttribute('fill', 'freeze');
+            animateWith.setAttribute('calcMode', 'spline');
+            animateWith.setAttribute('keySplines', '0.25 0.1 0.25 1'); // Smooth ease curve
+            animateWith.setAttribute('keyTimes', '0; 1');
+            animateWith.setAttribute('additive', 'replace');
+            animateWith.setAttribute('accumulate', 'none');
+
+            const animateWithout = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+            animateWithout.setAttribute('attributeName', 'd');
+            animateWithout.setAttribute('from', currentWithoutPath);
+            animateWithout.setAttribute('to', withoutPaths[activeCount]);
+            animateWithout.setAttribute('dur', animationDuration);
+            animateWithout.setAttribute('fill', 'freeze');
+            animateWithout.setAttribute('calcMode', 'spline');
+            animateWithout.setAttribute('keySplines', '0.25 0.1 0.25 1'); // Smooth ease curve
+            animateWithout.setAttribute('keyTimes', '0; 1');
+            animateWithout.setAttribute('additive', 'replace');
+            animateWithout.setAttribute('accumulate', 'none');
+
+            // Clear previous animations
+            lineWith.querySelectorAll('animate').forEach(a => a.remove());
+            lineWithout.querySelectorAll('animate').forEach(a => a.remove());
+
+            // Store references to current animations
+            currentAnimations.with = animateWith;
+            currentAnimations.without = animateWithout;
+
+            // Set animation state
+            isAnimating = true;
+
+            // Listen for animation end events
+            let animationsCompleted = 0;
+            const onAnimationEnd = () => {
+                animationsCompleted++;
+
+                // When both animations complete
+                if (animationsCompleted === 2) {
+                    // Update the actual d attribute
+                    lineWith.setAttribute('d', withPaths[activeCount]);
+                    lineWithout.setAttribute('d', withoutPaths[activeCount]);
+
+                    // Clean up animation elements
+                    animateWith.remove();
+                    animateWithout.remove();
+
+                    // Reset state
+                    isAnimating = false;
+                    currentAnimations.with = null;
+                    currentAnimations.without = null;
+                }
+            };
+
+            animateWith.addEventListener('endEvent', onAnimationEnd);
+            animateWithout.addEventListener('endEvent', onAnimationEnd);
+
+            // Append both animations first
+            lineWith.appendChild(animateWith);
+            lineWithout.appendChild(animateWithout);
+
+            // Begin both animations immediately - no requestAnimationFrame delay
+            animateWith.beginElement();
+            animateWithout.beginElement();
+        }
+
+        // Visual Effect Tab Switching
+        const visualEffectTabs = document.querySelectorAll('.visual-effect-tab');
+        const effectComponents = document.querySelectorAll('.effect-component');
+
+        visualEffectTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+
+                // Remove active class from all tabs
+                visualEffectTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.style.color = '#d9d9d9';
+                    t.style.opacity = '0.75';
+                });
+
+                // Add active class to clicked tab
+                this.classList.add('active');
+                this.style.color = 'white';
+                this.style.opacity = '1';
+
+                // Hide all effect components
+                effectComponents.forEach(component => {
+                    component.classList.add('hidden');
+                });
+
+                // Show the selected effect component
+                const selectedComponent = document.getElementById(`effect-${tabName}`);
+                if (selectedComponent) {
+                    selectedComponent.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Quotes slider infinite loop functionality with RAF
+        const quotesContainer = document.querySelector('.quotes-scroll-animation');
+        if (quotesContainer) {
+            // Clone all cards for seamless bidirectional infinite loop
+            const cards = Array.from(quotesContainer.children);
+
+            // Clone and prepend (for dragging right)
+            cards.forEach(card => {
+                const cloneBefore = card.cloneNode(true);
+                quotesContainer.insertBefore(cloneBefore, quotesContainer.firstChild);
+            });
+
+            // Clone and append (for dragging left)
+            cards.forEach(card => {
+                const cloneAfter = card.cloneNode(true);
+                quotesContainer.appendChild(cloneAfter);
+            });
+
+            // Disable CSS animation, use RAF instead
+            quotesContainer.style.animation = 'none';
+
+            // Animation state
+            const originalSetWidth = quotesContainer.scrollWidth / 3; // Now we have 3 sets
+            let currentPosition = -originalSetWidth; // Start at middle set (original cards)
+            let animationId = null;
+            let isAnimating = true;
+            let isHovering = false;
+            let isDragging = false;
+            let startX = 0;
+            let dragStartPosition = 0;
+
+            const speed = 0.5; // pixels per frame (adjust for speed)
+
+            // RAF animation loop
+            function animate() {
+                if (isAnimating && !isHovering && !isDragging) {
+                    currentPosition -= speed;
+
+                    // Reset position for infinite loop in both directions
+                    if (currentPosition <= -originalSetWidth * 2) {
+                        // Scrolled too far left, reset to middle
+                        currentPosition = -originalSetWidth;
+                    } else if (currentPosition >= 0) {
+                        // Scrolled too far right, reset to middle
+                        currentPosition = -originalSetWidth;
+                    }
+
+                    quotesContainer.style.transform = `translateX(${currentPosition}px)`;
+                }
+
+                animationId = requestAnimationFrame(animate);
+            }
+
+            // Start animation
+            animate();
+
+            // Hover to pause
+            quotesContainer.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+
+            quotesContainer.addEventListener('mouseleave', () => {
+                isHovering = false;
+                if (isDragging) {
+                    isDragging = false;
+                    quotesContainer.style.cursor = 'grab';
+                }
+            });
+
+            // Drag functionality
+            quotesContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                quotesContainer.style.cursor = 'grabbing';
+                startX = e.pageX;
+                dragStartPosition = currentPosition;
+            });
+
+            quotesContainer.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+
+                const x = e.pageX;
+                const walk = (x - startX) * 1.5;
+                currentPosition = dragStartPosition + walk;
+
+                quotesContainer.style.transform = `translateX(${currentPosition}px)`;
+            });
+
+            quotesContainer.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    quotesContainer.style.cursor = 'grab';
+                    // Animation will continue from currentPosition in next RAF frame
+                }
+            });
+        }
+
+        // FAQ Accordion functionality
+        const faqTriggers = document.querySelectorAll('.faq-trigger');
+
+        faqTriggers.forEach(trigger => {
+            // Click event
+            trigger.addEventListener('click', function(e) {
+                toggleFAQ(e.currentTarget);
+            });
+
+            // Keyboard event (Enter and Space)
+            trigger.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFAQ(e.currentTarget);
+                }
+            });
+        });
+
+        function toggleFAQ(trigger) {
+            const contentId = trigger.getAttribute('aria-controls');
+            console.log('Clicked trigger ID:', trigger.id);
+            console.log('Target content ID:', contentId);
+
+            const content = document.getElementById(contentId);
+            console.log('Found content element:', content);
+
+            const icon = trigger.querySelector('.faq-icon');
+            const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+            if (isExpanded) {
+                // Collapse
+                trigger.setAttribute('aria-expanded', 'false');
+                content.classList.remove('expanded');
+                icon.classList.remove('expanded');
+            } else {
+                // Expand
+                trigger.setAttribute('aria-expanded', 'true');
+                content.classList.add('expanded');
+                icon.classList.add('expanded');
+            }
+        }
+
+        // Next-gen DevTools Tab Switching
+        const devtoolsTabs = document.querySelectorAll('.devtools-tab');
+        const devtoolsGif = document.getElementById('devtools-gif');
+
+        function animateTabLine(tabName) {
+            // Hide all lines instantly (collapse to 0 width)
+            document.querySelectorAll('[data-line]').forEach(lineSvg => {
+                const line = lineSvg.querySelector('.devtools-line');
+                line.setAttribute('x2', '128');
+            });
+
+            // Animate the current tab's line (grow from 0 to 128px)
+            const currentLineSvg = document.querySelector(`[data-line="${tabName}"]`);
+            const currentLine = currentLineSvg.querySelector('.devtools-line');
+
+            // Ensure line starts collapsed
+            currentLine.setAttribute('x2', '128');
+
+            // Animate from 128 to 0 using direct manipulation with setInterval
+            let progress = 128;
+            const duration = 300; // ms
+            const fps = 60;
+            const step = 128 / (duration / (1000 / fps));
+
+            const interval = setInterval(() => {
+                progress -= step;
+                if (progress <= 0) {
+                    progress = 0;
+                    clearInterval(interval);
+                }
+                currentLine.setAttribute('x2', progress);
+            }, 1000 / fps);
+        }
+
+        devtoolsTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                const gifSrc = this.getAttribute('data-gif');
+
+                // Remove active state from all tabs and set to dashed borders
+                devtoolsTabs.forEach(t => {
+                    t.classList.remove('active', 'border-solid', 'border-white', 'text-white');
+                    t.classList.add('border-dashed', 'border-zinc-600', 'text-zinc-400');
+                });
+
+                // Add active state to clicked tab with solid white border
+                this.classList.remove('text-zinc-400', 'border-dashed', 'border-zinc-600');
+                this.classList.add('active', 'border-solid', 'border-white', 'text-white');
+
+                // Change gif with fade effect
+                devtoolsGif.style.opacity = '0';
+                setTimeout(() => {
+                    devtoolsGif.src = gifSrc;
+                    devtoolsGif.style.opacity = '1';
+                }, 150);
+
+                // Animate the line
+                animateTabLine(tabName);
+            });
+        });
+    </script>
+</body>
+</html>
