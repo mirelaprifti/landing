@@ -26,6 +26,7 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",
@@ -34,6 +35,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.2.3",
+    "playwright": "^1.56.1",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
