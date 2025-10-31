@@ -1,1 +1,1 @@
-# landing
+# Effect Website - Landing Page
