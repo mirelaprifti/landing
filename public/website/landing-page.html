@@ -370,7 +370,7 @@
         <!-- Navigation Header -->
         <div class="w-full">
             <header class="w-full max-w-[80rem] mx-auto relative">
-                <nav class="flex h-[5rem] items-center">
+                <nav class="flex h-20 items-center">
                     <!-- Logo -->
                     <a href="/" class="flex items-center">
                         <img src="../assets/logos/effect-logo-white.svg" alt="Effect" class="h-[2rem] w-auto" />
@@ -390,7 +390,7 @@
                             </a>
 
                             <!-- Search Button -->
-                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-800 hover:bg-zinc-800 rounded-[8px] transition-all ml-2">
+                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-[8px] transition-all ml-2">
                                 <i class="ri-search-line text-[1rem]"></i>
                                 <span class="text-[0.875rem] font-normal">⌘K</span>
                             </button>
@@ -415,7 +415,7 @@
         <div class="hidden lg:block absolute top-[5rem] right-0" style="width: calc(max((100vw - 80rem) / 2, 80px)); height: 1px; background: linear-gradient(to left, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
         <!-- Hero wrapper -->
-        <div class="w-full max-w-[80rem] mx-auto relative px-4 md:px-8 pb-12 md:pb-24">
+        <div class="w-full max-w-[80rem] mx-auto relative px-4 md:px-8 pb-16 md:pb-24">
             <!-- Vertical dashed lines -->
             <div class="hidden lg:block absolute left-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
             <div class="hidden lg:block absolute right-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
@@ -439,23 +439,23 @@
                             <div class="bg-[#18181b] rounded-[16px] overflow-hidden">
                                 <!-- Tab Headers -->
                                 <div class="flex overflow-x-auto border-b border-zinc-950 scrollbar-hide">
-                                    <button onclick="switchHeroTab('npm')" id="hero-npm-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-white bg-[#09090b] border-r border-zinc-950 transition-colors">
+                                    <button onclick="switchHeroTab('npm')" id="hero-npm-tab" class="hero-tab-button flex-shrink-0 sm:flex-1 flex items-center justify-center gap-[8px] w-[126px] sm:w-auto py-[16px] text-base leading-normal font-medium text-white bg-[#09090b] border-r border-zinc-950 transition-colors">
                                         <img src="../assets/logos/npm-brands-solid-full.svg" alt="npm" class="h-5 w-auto" />
                                         <span>npm</span>
                                     </button>
-                                    <button onclick="switchHeroTab('pnpm')" id="hero-pnpm-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                    <button onclick="switchHeroTab('pnpm')" id="hero-pnpm-tab" class="hero-tab-button flex-shrink-0 sm:flex-1 flex items-center justify-center gap-[8px] w-[126px] sm:w-auto py-[16px] text-base leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
                                         <img src="../assets/logos/pnpm-logo.svg" alt="pnpm" class="h-5 w-auto" />
                                         <span>pnpm</span>
                                     </button>
-                                    <button onclick="switchHeroTab('yarn')" id="hero-yarn-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                    <button onclick="switchHeroTab('yarn')" id="hero-yarn-tab" class="hero-tab-button flex-shrink-0 sm:flex-1 flex items-center justify-center gap-[8px] w-[126px] sm:w-auto py-[16px] text-base leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
                                         <img src="../assets/logos/yarn-logo.svg" alt="yarn" class="h-5 w-auto" />
                                         <span>yarn</span>
                                     </button>
-                                    <button onclick="switchHeroTab('bun')" id="hero-bun-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                    <button onclick="switchHeroTab('bun')" id="hero-bun-tab" class="hero-tab-button flex-shrink-0 sm:flex-1 flex items-center justify-center gap-[8px] w-[126px] sm:w-auto py-[16px] text-base leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
                                         <img src="../assets/logos/bun-logo-box.svg" alt="bun" class="h-5 w-auto" />
                                         <span>bun</span>
                                     </button>
-                                    <button onclick="switchHeroTab('deno')" id="hero-deno-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] transition-colors">
+                                    <button onclick="switchHeroTab('deno')" id="hero-deno-tab" class="hero-tab-button flex-shrink-0 sm:flex-1 flex items-center justify-center gap-[8px] w-[126px] sm:w-auto py-[16px] text-base leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] transition-colors">
                                         <img src="../assets/logos/deno-logo-box.svg" alt="deno" class="h-5 w-auto" />
                                         <span>deno</span>
                                     </button>
@@ -464,12 +464,12 @@
                                 <!-- Tab Content -->
                                 <div class="p-4 bg-zinc-950">
                                     <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
-                                        <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between sm:col-span-4 px-4 py-4 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
+                                        <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between sm:col-span-4 px-5 py-5 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
                                             <code class="font-mono text-base"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
                                             <span id="copy-feedback" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
                                             <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400"></i>
                                         </div>
-                                        <a href="#" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-[8px] transition-colors whitespace-nowrap">
+                                        <a href="#" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-lg md:text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-[8px] transition-colors whitespace-nowrap">
                                             <span>Docs</span>
                                             <i class="ri-arrow-right-line text-base"></i>
                                         </a>
@@ -531,9 +531,9 @@
 
 
             <!-- Content Container (100%) -->
-            <div class="relative pt-12 md:pt-24 pb-0">
+            <div class="relative pt-16 md:pt-24 pb-0">
                 <!-- Top Row: Chart + Missing Standard Library -->
-                <div class="lg:mx-auto w-full lg:max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-12 md:gap-16 mb-12 md:mb-24 px-4 md:px-8">
+                <div class="lg:mx-auto w-full lg:max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-12 md:gap-16 mb-16 md:mb-24 px-4 md:px-8">
                     <!-- Left: Chart (6 columns) -->
                     <div class="w-full md:col-span-6">
                         <div class="lg:w-full max-w-[650px] border-2 border-zinc-800 rounded-[12px] p-[16px]">
@@ -600,7 +600,7 @@
                                 </svg>
                             </div>
                             <!-- Legend -->
-                            <div class="mt-4 flex flex-wrap items-center gap-4">
+                            <div class="mt-4 flex flex-wrap items-center gap-3 md:gap-4">
                                 <span class="text-sm text-zinc-400 font-['Roboto_Mono'] uppercase leading-[1] w-full sm:w-auto">Complexity at scale:</span>
                                 <div class="flex items-center gap-4">
                                     <div class="flex items-center gap-2">
@@ -667,7 +667,7 @@
                 <!-- Bottom Row: Problems List + Enterprise Grade -->
                 <div class="mx-auto max-w-[66.5rem] relative flex flex-col md:flex-row gap-0 md:gap-12 lg:gap-12 px-4 md:px-8">
                     <!-- Left: Problems List -->
-                    <div class="relative my-12 md:my-24 flex-1">
+                    <div class="relative my-16 md:my-24 flex-1">
                         <h3 class="text-xl font-bold text-white mb-8 leading-normal">
                             For when your codebase hits 10k lines and ...
                         </h3>
@@ -1364,7 +1364,7 @@
         </section>
 
         <!-- AI Section: A safe, testable runtime for AI systems -->
-        <section class="relative w-full py-16 md:py-32 overflow-hidden px-4 md:px-8">
+        <section class="relative w-full py-20 md:py-32 overflow-hidden px-4 md:px-8">
             <!-- Main Content Container -->
             <div class="relative w-full w-max-[66.5rem] mx-auto flex flex-col items-center gap-12">
                 <!-- Heading and Button -->
@@ -1483,7 +1483,7 @@
         </section>
 
         <!-- See Effect in Action Section -->
-        <section class="relative w-full pt-16 md:pt-32 overflow-hidden">
+        <section class="relative w-full pt-20 md:pt-32 overflow-hidden">
             <!-- Top gradient border -->
             <div class="absolute top-0 left-0 right-0 h-[2px]" style="background: linear-gradient(to right, rgba(9,9,11,0) 0%, rgba(255,255,255,1) 50%, rgba(9,9,11,0) 100%);"></div>
 
@@ -1666,7 +1666,7 @@
             </div>
 
             <!-- Next-gen DevTools Section -->
-            <section class="relative w-full py-16 md:py-24 mt-16 md:mt-24 px-4 md:px-8">
+            <section class="relative w-full py-20 md:py-24 mt-16 md:mt-24 px-4 md:px-8">
                 <!-- Dashed top border -->
                 <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
                 <div class="w-full max-w-[80rem] mx-auto">
@@ -1762,7 +1762,7 @@
             </section>
 
             <!-- Effect Playground Section -->
-            <div class="relative w-full pt-16 md:pt-24 pb-0 md:pb-24 sm:border-b border-zinc-700">
+            <div class="relative w-full pt-20 md:pt-24 pb-0 md:pb-24 sm:border-b border-zinc-700">
                 <!-- Dashed top border -->
                 <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
                 <!-- Left Column Wrapper: Centered in 66.5rem container -->
@@ -1839,7 +1839,7 @@
         </section>
 
         <!-- Quotes Section -->
-        <section class="relative w-full py-16 md:py-32">
+        <section class="relative w-full py-20 md:py-32">
             <!-- Heading -->
             <div class="flex flex-col items-center gap-12 md:gap-16 w-full mx-auto">
                 <h2 class="text-3xl leading-tight font-bold text-white text-center px-4 md:px-8">
@@ -1937,7 +1937,7 @@
         </section>
 
         <!-- FAQ Section -->
-        <section class="relative w-full py-16 md:py-32 px-4 md:px-8">
+        <section class="relative w-full py-20 md:py-32 px-4 md:px-8">
             <div class="w-full max-w-[80rem] mx-auto">
                 <!-- Heading -->
                 <h2 class="text-3xl leading-tight font-bold text-white text-center mb-12 md:mb-16">
@@ -2328,6 +2328,13 @@ Effect.runPromise(myProgram)</code></pre>
                     <i class="ri-twitter-x-fill text-lg"></i>
                     <span>X(Twitter)</span>
                 </a>
+
+                <!-- Search Button -->
+                <button class="flex items-center gap-2 mt-4 w-full px-4 py-3 text-zinc-300 hover:text-white border border-zinc-700 hover:border-zinc-600 rounded-[8px] transition-all">
+                    <i class="ri-search-line text-lg"></i>
+                    <span class="text-base font-normal">Search</span>
+                    <span class="ml-auto text-sm font-normal text-zinc-500">⌘K</span>
+                </button>
             </nav>
         </div>
     </div>
