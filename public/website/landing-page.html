@@ -415,13 +415,13 @@
         <div class="hidden lg:block absolute top-[5rem] right-0" style="width: calc(max((100vw - 80rem) / 2, 80px)); height: 1px; background: linear-gradient(to left, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
         <!-- Hero wrapper -->
-        <div class="w-full max-w-[80rem] mx-auto relative px-4 md:px-8 pb-16 md:pb-24">
+        <div class="w-full max-w-[80rem] mx-auto relative px-4 md:px-8 pb-12 md:pb-24">
             <!-- Vertical dashed lines -->
             <div class="hidden lg:block absolute left-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
             <div class="hidden lg:block absolute right-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
             <!-- Hero Section -->
-            <section class="w-full relative pt-20 pb-16 md:pb-24 mx-auto">
+            <section class="w-full relative pt-12 md:pt-20 pb-12 md:pb-24 mx-auto">
             <div class="container mx-auto max-w-[44rem]">
                 <div class="text-left sm:text-center">
                     <h1 class="text-3xl md:text-5xl font-bold leading-tighter mb-8">
@@ -531,12 +531,12 @@
 
 
             <!-- Content Container (100%) -->
-            <div class="relative pt-16 md:pt-24 pb-0">
+            <div class="relative pt-12 md:pt-24 pb-0">
                 <!-- Top Row: Chart + Missing Standard Library -->
-                <div class="mx-auto max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-12 md:gap-16 mb-16 md:mb-24 px-4 md:px-8">
+                <div class="lg:mx-auto w-full lg:max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-12 md:gap-16 mb-12 md:mb-24 px-4 md:px-8">
                     <!-- Left: Chart (6 columns) -->
-                    <div class="lg:col-span-6 w-full max-w-[650px]">
-                        <div class="border-2 border-zinc-800 rounded-[12px] p-[16px]">
+                    <div class="w-full md:col-span-6">
+                        <div class="lg:w-full max-w-[650px] border-2 border-zinc-800 rounded-[12px] p-[16px]">
                             <!-- Chart SVG -->
                             <div class="w-full aspect-[618/348] relative" id="complexity-chart">
                                 <svg width="100%" height="100%" viewBox="-2 -2 604 404" preserveAspectRatio="none">
@@ -621,36 +621,36 @@
                         <h2 class="text-2xl font-bold text-white leading-tight">
                             The missing standard library for TypeScript
                         </h2>
-                        <div class="flex flex-col gap-[12px]">
-                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                        <div class="flex flex-col gap-3">
+                            <div class="toggle-row flex items-center gap-3 cursor-pointer">
                                 <div class="toggle-switch active" data-feature="dependency-injection">
                                     <div class="toggle-track"></div>
                                     <div class="toggle-thumb"></div>
                                 </div>
                                 <span class="text-lg text-zinc-200 leading-normal">Dependency injection</span>
                             </div>
-                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                            <div class="toggle-row flex items-center gap-3 cursor-pointer">
                                 <div class="toggle-switch active" data-feature="errors">
                                     <div class="toggle-track"></div>
                                     <div class="toggle-thumb"></div>
                                 </div>
                                 <span class="text-lg text-zinc-200 leading-normal">Errors as values</span>
                             </div>
-                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                            <div class="toggle-row flex items-center gap-3 cursor-pointer">
                                 <div class="toggle-switch active" data-feature="retry">
                                     <div class="toggle-track"></div>
                                     <div class="toggle-thumb"></div>
                                 </div>
                                 <span class="text-lg text-zinc-200 leading-normal">Retry logic</span>
                             </div>
-                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                            <div class="toggle-row flex items-center gap-3 cursor-pointer">
                                 <div class="toggle-switch active" data-feature="concurrency">
                                     <div class="toggle-track"></div>
                                     <div class="toggle-thumb"></div>
                                 </div>
                                 <span class="text-lg text-zinc-200 leading-normal">Structured concurrency</span>
                             </div>
-                            <div class="toggle-row flex items-center gap-[12px] cursor-pointer">
+                            <div class="toggle-row flex items-center gap-3 cursor-pointer">
                                 <div class="toggle-switch active" data-feature="observability">
                                     <div class="toggle-track"></div>
                                     <div class="toggle-thumb"></div>
@@ -665,13 +665,13 @@
                 <div class="w-full h-[1px]" style="background: var(--zinc-700); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
                 <!-- Bottom Row: Problems List + Enterprise Grade -->
-                <div class="mx-auto max-w-[66.5rem] relative flex flex-col md:flex-row gap-0 md:gap-20 lg:gap-16 px-4 md:px-8">
+                <div class="mx-auto max-w-[66.5rem] relative flex flex-col md:flex-row gap-0 md:gap-12 lg:gap-12 px-4 md:px-8">
                     <!-- Left: Problems List -->
-                    <div class="relative my-16 md:my-24 flex-1">
+                    <div class="relative my-12 md:my-24 flex-1">
                         <h3 class="text-xl font-bold text-white mb-8 leading-normal">
                             For when your codebase hits 10k lines and ...
                         </h3>
-                        <div class="flex flex-col gap-3">
+                        <div class="flex flex-col items-left gap-3">
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -687,7 +687,7 @@
                                     <span class="text-zinc-400"> turn into spaghetti</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -703,7 +703,7 @@
                                     <span class="text-zinc-400"> until production</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -719,7 +719,7 @@
                                     <span class="text-zinc-400"> across modules</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -735,7 +735,7 @@
                                     <span class="text-zinc-400"> become painful</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -755,13 +755,13 @@
                     </div>
 
                     <!-- Right: Enterprise Grade with vertical borders -->
-                    <div class="relative w-full w-[38rem] flex items-center justify-center" data-enterprise-section>
+                    <div class="relative w-full md:max-w-[56%] flex items-center justify-center" data-enterprise-section>
                         <!-- Vertical dashed borders on both sides -->
                         <div class="hidden lg:block absolute left-0 top-0 w-[1px] h-full" style="background: linear-gradient(to bottom, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
                         <div class="hidden lg:block absolute right-0 top-0 w-[1px] h-full" style="background: linear-gradient(to bottom, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
                         <div class="w-full flex flex-col items-left md:items-center mt-8 md:mt-24 mb-24">
-                            <h3 class="text-2xl font-bold text-white text-left md:text-center mb-10 leading-tight">
+                            <h3 class="text-xl font-bold text-white text-left md:text-center leading-normal mb-8">
                                 Enterprise-grade from day one
                             </h3>
                             <!-- Shared SVG gradient definition for all enterprise icons -->
@@ -780,48 +780,48 @@
                                 mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
                             ">
                                 <div class="flex flex-wrap gap-2 justify-center mb-4">
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-checkbox-line text-[16px]" style="color: url(#enterpriseIconGradient); background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-checkbox-line text-base" style="color: url(#enterpriseIconGradient); background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Schema validation</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-tools-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-tools-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Resource management</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-repeat-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-repeat-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Retry policies</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-swap-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-swap-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>States</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-settings-3-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-settings-3-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Config parsing</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-align-center text-[16px] rotate-90" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-align-center text-base rotate-90" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Streams</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-download-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-download-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Sinks</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-database-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-database-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Caching</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-flow-chart text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-flow-chart text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Data types</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-timer-2-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-timer-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Cron</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-[13px] font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-bar-chart-horizontal-line text-[16px]" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                        <i class="ri-bar-chart-horizontal-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>OpenTelemetry</span>
                                     </a>
                                 </div>
@@ -844,7 +844,7 @@
             <!-- Main Content Container -->
             <div class="relative mx-auto w-full max-w-[1280px]">
                 <!-- Heading -->
-                <h2 class="text-[39px] leading-[48px] font-bold text-white text-center mb-[80px]">
+                <h2 class="text-3xl leading-tight font-bold text-white text-center mb-12 md:mb-20">
                     Designed for real-world complexity
                 </h2>
 
@@ -860,7 +860,7 @@
                     <div class="hidden lg:block absolute bottom-[40px] pointer-events-none z-0" style="left: 100%; width: calc((100vw - 1280px) / 2); min-width: 80px; height: 1px; background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
                     <!-- Cards Container -->
-                    <div class="use-case-cards relative w-full grid grid-cols-2 lg:grid-cols-4 gap-4 z-10">
+                    <div class="use-case-cards relative w-full grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-4 z-10">
                         <!-- Card 1: Effect for Backend (Zendesk) -->
                         <div class="w-full h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
                             <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
@@ -1364,12 +1364,12 @@
         </section>
 
         <!-- AI Section: A safe, testable runtime for AI systems -->
-        <section class="relative w-full py-32 overflow-hidden px-4 md:px-8">
+        <section class="relative w-full py-16 md:py-32 overflow-hidden px-4 md:px-8">
             <!-- Main Content Container -->
             <div class="relative w-full w-max-[66.5rem] mx-auto flex flex-col items-center gap-12">
                 <!-- Heading and Button -->
                 <div class="flex flex-col items-center gap-10 w-full px-4">
-                    <h2 class="text-[39px] leading-[48px] font-bold text-white text-center">
+                    <h2 class="text-3xl leading-tight font-bold text-white text-center">
                         A safe, testable runtime for AI systems
                     </h2>
                     <a href="#" class="flex items-center justify-center gap-3 px-6 py-4 bg-black border border-zinc-400 rounded-lg text-white text-base font-semibold tracking-[0.16px] hover:border-zinc-300 transition-colors">
@@ -1483,17 +1483,17 @@
         </section>
 
         <!-- See Effect in Action Section -->
-        <section class="relative w-full pt-32 overflow-hidden">
+        <section class="relative w-full pt-16 md:pt-32 overflow-hidden">
             <!-- Top gradient border -->
             <div class="absolute top-0 left-0 right-0 h-[2px]" style="background: linear-gradient(to right, rgba(9,9,11,0) 0%, rgba(255,255,255,1) 50%, rgba(9,9,11,0) 100%);"></div>
 
             <div class="container w-full mx-auto px-4 md:px-8">
                 <!-- Heading and Subheading -->
                 <div class="flex flex-col items-center gap-4 w-full mx-auto mb-8">
-                    <h2 class="text-[39px] leading-[48px] font-bold text-white text-center">
+                    <h2 class="text-3xl leading-tight font-bold text-white text-center">
                         See Effect in action
                     </h2>
-                    <p class="text-base leading-[32px] text-zinc-400 text-center w-full max-w-[438px]">
+                    <p class="text-base leading-8 text-zinc-400 text-center w-full max-w-[438px]">
                         Run, interrupt, or reset Effects.
                     </p>
                 </div>
@@ -1501,21 +1501,21 @@
                 <!-- Visual Effect Container -->
                 <div class="w-full max-w-[53rem] mx-auto border border-zinc-800 rounded-2xl p-4 flex flex-col gap-4">
                     <!-- Tab Navigation -->
-                    <div class="w-full flex relative">
+                    <div class="w-full flex overflow-x-auto scrollbar-hide relative">
                         <div class="absolute bottom-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
-                        <button class="visual-effect-tab active flex-1 flex items-center justify-center py-5 font-mono font-bold text-base text-white relative" data-tab="succeed">
+                        <button class="visual-effect-tab active flex-shrink-0 flex items-center justify-center py-5 px-4 font-mono font-bold text-base text-white relative whitespace-nowrap" data-tab="succeed">
                             Effect.succeed
                         </button>
-                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="fail" style="color: #d9d9d9;">
+                        <button class="visual-effect-tab flex-shrink-0 flex items-center justify-center py-5 px-4 font-mono font-m text-base opacity-75 relative whitespace-nowrap" data-tab="fail" style="color: #d9d9d9;">
                             Effect.fail
                         </button>
-                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="die" style="color: #d9d9d9;">
+                        <button class="visual-effect-tab flex-shrink-0 flex items-center justify-center py-5 px-4 font-mono font-m text-base opacity-75 relative whitespace-nowrap" data-tab="die" style="color: #d9d9d9;">
                             Effect.die
                         </button>
-                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="sleep" style="color: #d9d9d9;">
+                        <button class="visual-effect-tab flex-shrink-0 flex items-center justify-center py-5 px-4 font-mono font-m text-base opacity-75 relative whitespace-nowrap" data-tab="sleep" style="color: #d9d9d9;">
                             Effect.sleep
                         </button>
-                        <button class="visual-effect-tab flex-1 flex items-center justify-center py-5 font-mono font-m text-base opacity-75 relative" data-tab="orElse" style="color: #d9d9d9;">
+                        <button class="visual-effect-tab flex-shrink-0 flex items-center justify-center py-5 px-4 font-mono font-m text-base opacity-75 relative whitespace-nowrap" data-tab="orElse" style="color: #d9d9d9;">
                             Effect.orElse
                         </button>
                     </div>
@@ -1666,7 +1666,7 @@
             </div>
 
             <!-- Next-gen DevTools Section -->
-            <section class="relative w-full py-24 mt-24 px-4 md:px-8">
+            <section class="relative w-full py-16 md:py-24 mt-16 md:mt-24 px-4 md:px-8">
                 <!-- Dashed top border -->
                 <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
                 <div class="w-full max-w-[80rem] mx-auto">
@@ -1762,7 +1762,7 @@
             </section>
 
             <!-- Effect Playground Section -->
-            <div class="relative w-full pt-24 pb-0 md:pb-24 sm:border-b border-zinc-700">
+            <div class="relative w-full pt-16 md:pt-24 pb-0 md:pb-24 sm:border-b border-zinc-700">
                 <!-- Dashed top border -->
                 <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
                 <!-- Left Column Wrapper: Centered in 66.5rem container -->
@@ -1839,10 +1839,10 @@
         </section>
 
         <!-- Quotes Section -->
-        <section class="relative w-full py-32">
+        <section class="relative w-full py-16 md:py-32">
             <!-- Heading -->
-            <div class="flex flex-col items-center gap-20 w-full mx-auto">
-                <h2 class="text-[39px] leading-[1.25] font-bold text-white text-center px-4 md:px-8">
+            <div class="flex flex-col items-center gap-12 md:gap-16 w-full mx-auto">
+                <h2 class="text-3xl leading-tight font-bold text-white text-center px-4 md:px-8">
                     What developers are saying...
                 </h2>
 
@@ -1851,7 +1851,7 @@
                     <div class="flex gap-5 quotes-scroll-animation">
                     <!-- Quote Card 1 - Cor -->
                     <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-[#d9d9d9]">Perhaps the most ergonomic and safe method of Dependency Injection I've ever seen.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">Perhaps the most ergonomic and safe method of Dependency Injection I've ever seen.</p>
                         <div class="flex items-center gap-5 w-full">
                             <span class="text-base font-mono text-white uppercase">Cor</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1861,7 +1861,7 @@
 
                     <!-- Quote Card 2 - Dillon Mulroy -->
                     <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">It makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">It makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">Dillon Mulroy</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1871,7 +1871,7 @@
 
                     <!-- Quote Card 3 - Matt Pocock -->
                     <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">I feel like I'm writing some of the best code in my career using Effect.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">I feel like I'm writing some of the best code in my career using Effect.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">Matt Pocock</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1881,7 +1881,7 @@
 
                     <!-- Quote Card 4 - Zach Warunek -->
                     <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">Effect tracing is simply magical. Was able to fully integrate with our existing microservice observably stack fairly easily.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">Effect tracing is simply magical. Was able to fully integrate with our existing microservice observably stack fairly easily.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">Zach Warunek</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1891,7 +1891,7 @@
 
                     <!-- Quote Card 5 - David Golightly -->
                     <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">The spaghetti code really turns into something that's just very linear and clean, and it really promotes excellent software architecture.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">The spaghetti code really turns into something that's just very linear and clean, and it really promotes excellent software architecture.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">David Golightly</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1901,7 +1901,7 @@
 
                     <!-- Quote Card 6 - Ethan Niser -->
                     <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">Effect puts you on the path to writing more performant async code by default.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">Effect puts you on the path to writing more performant async code by default.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">Ethan Niser</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1911,7 +1911,7 @@
 
                     <!-- Quote Card 7 - Samuel Briole -->
                     <div class="border border-zinc-700 rounded-2xl p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">The real-world impact is tangible: few production bugs, simple testing, and clear code organization.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100">The real-world impact is tangible: few production bugs, simple testing, and clear code organization.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">Samuel Briole</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1921,7 +1921,7 @@
 
                     <!-- Quote Card 8 - Matthew Phillips -->
                     <div class="rounded-2xl bg-zinc-900 p-8 flex-shrink-0 w-[341px] h-[280px] flex flex-col justify-between">
-                        <p class="text-[20px] leading-[1.35] text-white font-medium">I think it's one of the most important libraries being developed today.</p>
+                        <p class="text-[20px] leading-snug text-zinc-100 font-medium">I think it's one of the most important libraries being developed today.</p>
                         <div class="flex items-center gap-4 w-full">
                             <span class="text-base font-mono text-white uppercase">Matthew Phillips</span>
                             <div class="flex-grow h-[1px]" style="background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);"></div>
@@ -1937,10 +1937,10 @@
         </section>
 
         <!-- FAQ Section -->
-        <section class="relative w-full py-32 px-4 md:px-8">
+        <section class="relative w-full py-16 md:py-32 px-4 md:px-8">
             <div class="w-full max-w-[80rem] mx-auto">
                 <!-- Heading -->
-                <h2 class="text-[39px] leading-[1.25] font-bold text-white text-center mb-16">
+                <h2 class="text-3xl leading-tight font-bold text-white text-center mb-12 md:mb-16">
                     Questions we get asked a lot...
                 </h2>
 
@@ -2085,7 +2085,7 @@ Effect.runPromise(myProgram)</code></pre>
 
             <div class="w-full max-w-[80rem] mx-auto">
                 <!-- Content Wrapper -->
-                <div class="relative w-full flex flex-col items-center gap-12 lg:gap-16 w-full py-32 mx-auto">
+                <div class="relative w-full flex flex-col items-center gap-12 lg:gap-16 w-full py-20 md:py-32 mx-auto">
                     <!-- Left dashed border -->
                     <div class="absolute left-0 top-[2px] bottom-0 w-[1px]" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
@@ -2141,7 +2141,7 @@ Effect.runPromise(myProgram)</code></pre>
     </main>
 
     <!-- Footer -->
-    <footer class="relative w-full pt-32 pb-16 px-4 md:px-8">
+    <footer class="relative w-full pt-20 md:pt-32 px-4 md:px-8">
         <!-- Top solid border -->
         <div class="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700"></div>
 
@@ -2154,8 +2154,8 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-book-open-line text-white text-base"></i>
-                            <h3 class="text-base font-semibold text-white">Resources</h3>
+                            <i class="ri-book-open-line text-white text-lg md:text-base"></i>
+                            <h3 class="text-lg md:text-base font-semibold text-white">Resources</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
@@ -2180,12 +2180,12 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-flashlight-line text-white text-base"></i>
-                            <h3 class="text-base font-semibold text-white">DevTools</h3>
+                            <i class="ri-flashlight-line text-white text-lg md:text-base"></i>
+                            <h3 class="text-lg md:text-base font-semibold text-white">DevTools</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
-                            <a href="#" class="py-2 border-b border-zinc-800 text-lg text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Playground</a>
+                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Playground</a>
                             <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>Effect LSP</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
@@ -2209,8 +2209,8 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-user-community-line text-white text-base"></i>
-                            <h3 class="text-base font-semibold text-white">Community</h3>
+                            <i class="ri-user-community-line text-white text-lg md:text-base"></i>
+                            <h3 class="text-lg md:text-base font-semibold text-white">Community</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
@@ -2235,8 +2235,8 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-mist-line text-white text-base"></i>
-                            <h3 class="text-base font-semibold text-white">Other</h3>
+                            <i class="ri-mist-line text-white text-lg md:text-base"></i>
+                            <h3 class="text-lg md:text-base font-semibold text-white">Other</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col gap-2">
@@ -2247,7 +2247,7 @@ Effect.runPromise(myProgram)</code></pre>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
                             <!-- Special CTA Box -->
-                            <a href="#" class="flex items-center justify-between p-3 mt-2 border border-zinc-600 rounded-lg text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-[1.6]">
+                            <a href="#" class="flex items-center justify-between p-3 mt-2 border border-zinc-600 rounded-lg text-base md:text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-[1.6]">
                                 <span class="flex-1">Using Effect? Let us know!</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
@@ -2291,7 +2291,7 @@ Effect.runPromise(myProgram)</code></pre>
                 </div>
 
                 <!-- Bottom Copyright Section -->
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 mt-16 md:mt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 py-16 md:py-8">
                     <p class="text-sm text-zinc-400">© 2025 Effectful Technologies Inc. All rights reserved.</p>
                     <div class="flex items-center gap-4">
                         <a href="#" class="text-sm text-zinc-400 hover:text-white transition-colors">Contact</a>
