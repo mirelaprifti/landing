@@ -415,13 +415,13 @@
         <div class="hidden lg:block absolute top-[5rem] right-0" style="width: calc(max((100vw - 80rem) / 2, 80px)); height: 1px; background: linear-gradient(to left, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
         <!-- Hero wrapper -->
-        <div class="w-full max-w-[80rem] mx-auto relative px-4 md:px-8">
+        <div class="w-full max-w-[80rem] mx-auto relative px-4 md:px-8 pb-16 md:pb-24">
             <!-- Vertical dashed lines -->
             <div class="hidden lg:block absolute left-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
             <div class="hidden lg:block absolute right-0 top-0 w-[1px]" style="height: 100%; background: linear-gradient(to bottom, var(--zinc-950) 0%, var(--zinc-700) 50%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
             <!-- Hero Section -->
-            <section class="w-full relative pt-20 pb-24 mx-auto">
+            <section class="w-full relative pt-20 pb-16 md:pb-24 mx-auto">
             <div class="container mx-auto max-w-[44rem]">
                 <div class="text-left sm:text-center">
                     <h1 class="text-3xl md:text-5xl font-bold leading-tighter mb-8">
@@ -433,7 +433,7 @@
                     </p>
                     
                     <!-- Package Manager Tabs -->
-                    <div class="max-w-[630px] mx-auto">
+                    <div class="max-w-[40rem] mx-auto">
                         <!-- Tabs Container with gradient border -->
                         <div class="relative p-[1px] rounded-[16px] bg-gradient-to-b from-zinc-700 to-zinc-900">
                             <div class="bg-[#18181b] rounded-[16px] overflow-hidden">
@@ -463,13 +463,13 @@
 
                                 <!-- Tab Content -->
                                 <div class="p-4 bg-zinc-950">
-                                    <div class="flex flex-col sm:flex-row items-center gap-2">
-                                        <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between w-full px-4 py-4 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
+                                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+                                        <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between sm:col-span-4 px-4 py-4 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
                                             <code class="font-mono text-base"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
                                             <span id="copy-feedback" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
                                             <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400"></i>
                                         </div>
-                                        <a href="#" class="flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-4 text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-[8px] transition-colors whitespace-nowrap">
+                                        <a href="#" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-[8px] transition-colors whitespace-nowrap">
                                             <span>Docs</span>
                                             <i class="ri-arrow-right-line text-base"></i>
                                         </a>
@@ -479,7 +479,7 @@
                         </div>
                         
                         <!-- Stats -->
-                        <div class="flex flex-wrap gap-8 md:gap-12 justify-center items-center mt-6 text-[1rem] leading-normal">
+                        <div class="flex flex-wrap gap-8 md:gap-12 justify-center items-center mt-6 text-base leading-normal">
                             <div class="flex items-center gap-2">
                                 <i class="ri-github-fill text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
                                 <span class="text-zinc-500">11k+</span>
@@ -499,7 +499,7 @@
         </section>
         
         <!-- Video Section -->
-        <section class="relative pb-24 mx-auto">
+        <section class="relative mx-auto">
             <div class="mx-auto max-w-[66.5rem]">
                 <div class="relative rounded-2xl overflow-hidden bg-zinc-800/50 border border-zinc-700/50">
                     <!-- Placeholder for video -->
@@ -531,9 +531,9 @@
 
 
             <!-- Content Container (100%) -->
-            <div class="relative">
+            <div class="relative pt-16 md:pt-24 pb-0">
                 <!-- Top Row: Chart + Missing Standard Library -->
-                <div class="my-24 mx-auto max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-16 mb-24 px-4 md:px-8">
+                <div class="mx-auto max-w-[66.5rem] relative grid grid-cols-1 lg:grid-cols-10 gap-12 md:gap-16 mb-16 md:mb-24 px-4 md:px-8">
                     <!-- Left: Chart (6 columns) -->
                     <div class="lg:col-span-6 w-full max-w-[650px]">
                         <div class="border-2 border-zinc-800 rounded-[12px] p-[16px]">
@@ -600,16 +600,16 @@
                                 </svg>
                             </div>
                             <!-- Legend -->
-                            <div class="mt-[16px] flex items-center gap-4">
-                                <span class="text-[14px] text-[#b5b5be] font-['Roboto_Mono'] uppercase leading-[1]">Complexity at scale:</span>
+                            <div class="mt-4 flex flex-wrap items-center gap-4">
+                                <span class="text-sm text-zinc-400 font-['Roboto_Mono'] uppercase leading-[1] w-full sm:w-auto">Complexity at scale:</span>
                                 <div class="flex items-center gap-4">
-                                    <div class="flex items-center gap-1">
+                                    <div class="flex items-center gap-2">
                                         <i class="ri-git-commit-fill inline-flex items-center text-[18px] leading-[1] text-[#ef4444]" style="height: 14px;"></i>
-                                        <span class="text-[14px] text-[#b5b5be] font-['Roboto_Mono'] uppercase leading-[1]">Without Effect</span>
+                                        <span class="text-sm text-zinc-400 font-['Roboto_Mono'] uppercase leading-[1]">Without Effect</span>
                                     </div>
-                                    <div class="flex items-center gap-1">
+                                    <div class="flex items-center gap-2">
                                         <i class="ri-git-commit-fill inline-flex items-center text-[18px] leading-[1] text-[#22c55e]" style="height: 14px;"></i>
-                                        <span class="text-[14px] text-[#b5b5be] font-['Roboto_Mono'] uppercase leading-[1]">With Effect</span>
+                                        <span class="text-sm text-zinc-400 font-['Roboto_Mono'] uppercase leading-[1]">With Effect</span>
                                     </div>
                                 </div>
                             </div>
@@ -665,9 +665,9 @@
                 <div class="w-full h-[1px]" style="background: var(--zinc-700); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
                 <!-- Bottom Row: Problems List + Enterprise Grade -->
-                <div class="mx-auto max-w-[66.5rem] relative flex flex-col md:flex-row gap-20 lg:gap-16 px-4 md:px-8">
+                <div class="mx-auto max-w-[66.5rem] relative flex flex-col md:flex-row gap-0 md:gap-20 lg:gap-16 px-4 md:px-8">
                     <!-- Left: Problems List -->
-                    <div class="relative my-24 flex-1">
+                    <div class="relative my-16 md:my-24 flex-1">
                         <h3 class="text-xl font-bold text-white mb-8 leading-normal">
                             For when your codebase hits 10k lines and ...
                         </h3>
@@ -760,8 +760,8 @@
                         <div class="hidden lg:block absolute left-0 top-0 w-[1px] h-full" style="background: linear-gradient(to bottom, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
                         <div class="hidden lg:block absolute right-0 top-0 w-[1px] h-full" style="background: linear-gradient(to bottom, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
-                        <div class="w-full flex flex-col items-center my-24">
-                            <h3 class="text-2xl font-bold text-white text-center mb-10 leading-tight">
+                        <div class="w-full flex flex-col items-left md:items-center mt-8 md:mt-24 mb-24">
+                            <h3 class="text-2xl font-bold text-white text-left md:text-center mb-10 leading-tight">
                                 Enterprise-grade from day one
                             </h3>
                             <!-- Shared SVG gradient definition for all enterprise icons -->
@@ -826,7 +826,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <a href="#" class="mt-[16px] flex flex-row items-center justify-center gap-3 px-5 py-4 bg-black border border-zinc-700 rounded-lg text-white hover:border-zinc-600 transition-colors">
+                            <a href="#" class="mt-8 md:mt-4 flex flex-row items-center justify-center gap-3 px-5 py-4 bg-black border border-zinc-700 rounded-lg text-white hover:border-zinc-600 transition-colors w-fit max-[479px]:w-full">
                                 <i class="ri-book-open-line text-base leading-none"></i>
                                 <span class="font-medium text-lg leading-none">Read the docs</span>
                             </a>
@@ -837,7 +837,7 @@
         </section>
 
         <!-- Testimonials Section: Designed for real-world complexity -->
-        <section class="relative overflow-hidden py-24 lg:py-28 px-4 md:px-8">
+        <section class="relative overflow-hidden py-16 md:py-24 lg:py-28 px-4 md:px-8">
             <!-- Background Pattern -->
             <div class="absolute inset-0 pointer-events-none" style="opacity: 1; background-image: url('../assets/BG-Pattern.svg'); background-size: cover; background-position: center bottom; background-repeat: no-repeat; -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,1)); mask-image: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,1));"></div>
 
@@ -2306,26 +2306,26 @@ Effect.runPromise(myProgram)</code></pre>
     <!-- Mobile Menu (Hidden by default) -->
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden">
         <div class="fixed inset-0 bg-zinc-800/10" onclick="toggleMobileMenu()"></div>
-        <div class="fixed right-0 top-0 h-full w-full max-w-[50%] bg-zinc-900 shadow-xl">
-            <div class="flex items-center justify-between p-6 border-b border-zinc-700">
-                <span class="text-[1rem] font-semibold text-white">Menu</span>
+        <div class="fixed right-0 top-0 h-full w-full max-w-[64%] bg-zinc-900 shadow-xl">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-700">
+                <span class="text-base font-semibold text-white">Menu</span>
                 <button onclick="toggleMobileMenu()" class="flex h-10 w-10 items-center justify-center rounded-[8px] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
                     <i class="ri-close-line text-xl"></i>
                 </button>
             </div>
             <nav class="p-6">
-                <a href="#" class="block py-4 text-[1rem] font-normal text-zinc-300 hover:text-white transition-colors">Docs</a>
-                <a href="#" class="block py-4 text-[1rem] font-normal text-zinc-300 hover:text-white transition-colors">Playground</a>
-                <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-[1rem] font-normal text-zinc-300 hover:text-white transition-colors">
-                    <i class="ri-github-fill text-[1.25rem]"></i>
+                <a href="#" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Docs</a>
+                <a href="#" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Playground</a>
+                <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">
+                    <i class="ri-github-fill text-lg"></i>
                     <span>GitHub</span>
                 </a>
-                <a href="https://discord.gg/effect-ts" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-[1rem] font-normal text-zinc-300 hover:text-white transition-colors">
-                    <i class="ri-discord-fill text-[1.25rem]"></i>
+                <a href="https://discord.gg/effect-ts" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">
+                    <i class="ri-discord-fill text-lg"></i>
                     <span>Discord</span>
                 </a>
-                <a href="https://twitter.com/EffectTS_" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-[1rem] font-normal text-zinc-300 hover:text-white transition-colors">
-                    <i class="ri-twitter-x-fill text-[1.25rem]"></i>
+                <a href="https://twitter.com/EffectTS_" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">
+                    <i class="ri-twitter-x-fill text-lg"></i>
                     <span>X(Twitter)</span>
                 </a>
             </nav>
