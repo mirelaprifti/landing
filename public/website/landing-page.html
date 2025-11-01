@@ -720,11 +720,11 @@
                 <!-- Bottom Row: Problems List + Enterprise Grade -->
                 <div class="mx-auto max-w-[66.5rem] relative flex flex-col md:flex-row gap-0 md:gap-12 lg:gap-12 px-4 md:px-8">
                     <!-- Left: Problems List -->
-                    <div class="relative my-16 md:my-24 flex-1">
+                    <div class="relative my-16 md:my-24 flex-1 w-full">
                         <h3 class="text-xl font-bold text-white mb-8 leading-normal">
                             For when your codebase hits 10k lines and ...
                         </h3>
-                        <div class="flex flex-col items-left gap-3">
+                        <div class="flex flex-col items-start gap-3 w-full">
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -2202,13 +2202,13 @@ Effect.runPromise(myProgram)</code></pre>
             <!-- Footer Links Block -->
             <div class="flex flex-col">
                 <!-- Four Column Links Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-24 mb-16 md:mb-32">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 lg:gap-24 mb-16 md:mb-32">
                     <!-- Column 1: Resources -->
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-book-open-line text-white text-lg md:text-base"></i>
-                            <h3 class="text-lg md:text-base font-semibold text-white">Resources</h3>
+                            <i class="ri-book-open-line text-white text-base md:text-base"></i>
+                            <h3 class="text-base font-semibold text-white">Resources</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
@@ -2233,8 +2233,8 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-flashlight-line text-white text-lg md:text-base"></i>
-                            <h3 class="text-lg md:text-base font-semibold text-white">DevTools</h3>
+                            <i class="ri-flashlight-line text-white text-base md:text-base"></i>
+                            <h3 class="text-base font-semibold text-white">DevTools</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
@@ -2262,8 +2262,8 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-user-community-line text-white text-lg md:text-base"></i>
-                            <h3 class="text-lg md:text-base font-semibold text-white">Community</h3>
+                            <i class="ri-user-community-line text-white text-base"></i>
+                            <h3 class="text-base font-semibold text-white">Community</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
@@ -2288,8 +2288,8 @@ Effect.runPromise(myProgram)</code></pre>
                     <div class="flex flex-col gap-3">
                         <!-- Column Header -->
                         <div class="flex items-center gap-2">
-                            <i class="ri-mist-line text-white text-lg md:text-base"></i>
-                            <h3 class="text-lg md:text-base font-semibold text-white">Other</h3>
+                            <i class="ri-mist-line text-white text-base"></i>
+                            <h3 class="text-base font-semibold text-white">Other</h3>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col gap-2">
@@ -2300,7 +2300,7 @@ Effect.runPromise(myProgram)</code></pre>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
                             <!-- Special CTA Box -->
-                            <a href="#" class="flex items-center justify-between p-3 mt-2 border border-zinc-600 rounded-lg text-base md:text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-[1.6]">
+                            <a href="#" class="flex items-center justify-between p-3 mt-2 border border-zinc-600 rounded-lg text-base md:text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-normal">
                                 <span class="flex-1">Using Effect? Let us know!</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
@@ -2801,6 +2801,39 @@ Effect.runPromise(myProgram)</code></pre>
                     isDragging = false;
                     quotesContainer.style.cursor = 'grab';
                     // Animation will continue from currentPosition in next RAF frame
+                }
+            });
+
+            // Touch support for tablets and mobile
+            quotesContainer.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                isHovering = true; // Pause animation during touch
+                startX = e.touches[0].pageX;
+                dragStartPosition = currentPosition;
+            });
+
+            quotesContainer.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+
+                const x = e.touches[0].pageX;
+                const walk = (x - startX) * 1.5;
+                currentPosition = dragStartPosition + walk;
+
+                quotesContainer.style.transform = `translateX(${currentPosition}px)`;
+            });
+
+            quotesContainer.addEventListener('touchend', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    isHovering = false; // Resume animation
+                    // Animation will continue from currentPosition in next RAF frame
+                }
+            });
+
+            quotesContainer.addEventListener('touchcancel', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    isHovering = false;
                 }
             });
         }
