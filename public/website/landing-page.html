@@ -362,6 +362,59 @@
         .scrollbar-hide::-webkit-scrollbar {
             display: none;  /* Chrome, Safari and Opera */
         }
+
+        /* Mobile menu slide animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        .mobile-menu-panel-enter {
+            animation: slideInRight 0.3s ease-out forwards;
+        }
+
+        .mobile-menu-panel-exit {
+            animation: slideOutRight 0.3s ease-in forwards;
+        }
+
+        .mobile-menu-backdrop-enter {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .mobile-menu-backdrop-exit {
+            animation: fadeOut 0.3s ease-in forwards;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-zinc-950 text-white antialiased">
@@ -687,7 +740,7 @@
                                     <span class="text-zinc-400"> turn into spaghetti</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -703,7 +756,7 @@
                                     <span class="text-zinc-400"> until production</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -719,7 +772,7 @@
                                     <span class="text-zinc-400"> across modules</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -735,7 +788,7 @@
                                     <span class="text-zinc-400"> become painful</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -1957,7 +2010,7 @@
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-1" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-1-trigger">
+                        <div id="faq-1" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-1-trigger">
                             <p>Effect's syntax may feel unfamiliar at first: yield*, Effect.gen, TaggedError… But that's because it's doing something TypeScript can't do on its own.</p>
                             <p class="mt-4">That "weirdness" unlocks:</p>
                             <ul class="list-disc ml-5 mt-2 space-y-1">
@@ -1980,7 +2033,7 @@
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-2" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-2-trigger">
+                        <div id="faq-2" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-2-trigger">
                             <p>Yes! You can start small, wrapping existing async code or APIs in Effect and expanding from there:</p>
                             <pre class="bg-zinc-900 rounded-lg p-4 mt-3 mb-3 overflow-x-auto"><code class="text-sm text-zinc-300 font-mono"><span style="color: #7c7c7c;">// Enter the Effect world</span>
 Effect.tryPromise(() => nonEffectAPI())
@@ -2002,7 +2055,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-3" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-3-trigger">
+                        <div id="faq-3" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-3-trigger">
                             <p>You can be productive in a few days. Start by replacing await with yield*, everything else follows naturally.
 </p>
                         </div>
@@ -2019,7 +2072,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-4" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-4-trigger">
+                        <div id="faq-4" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-4-trigger">
                             <p>Start small. Pick one problem everyone hates:</p>
                             <ul class="list-disc ml-5 mt-2 mb-4 space-y-1">
                                 <li>Dependency injection…</li>
@@ -2041,7 +2094,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-5" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-5-trigger">
+                        <div id="faq-5" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-5-trigger">
                             <p>Effect adds minimal overhead and prevents the <em>real</em> performance killers:</p>
                             <ul class="list-disc ml-5 mt-2 mb-4 space-y-1">
                                 <li>Memory leaks</li>
@@ -2305,8 +2358,8 @@ Effect.runPromise(myProgram)</code></pre>
 
     <!-- Mobile Menu (Hidden by default) -->
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden">
-        <div class="fixed inset-0 bg-zinc-800/10" onclick="toggleMobileMenu()"></div>
-        <div class="fixed right-0 top-0 h-full w-full max-w-[64%] bg-zinc-900 shadow-xl">
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-zinc-800/10" onclick="toggleMobileMenu()"></div>
+        <div id="mobile-menu-panel" class="fixed right-0 top-0 h-full w-full max-w-[64%] bg-zinc-900 shadow-xl" style="transform: translateX(100%);">
             <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-700">
                 <span class="text-base font-semibold text-white">Menu</span>
                 <button onclick="toggleMobileMenu()" class="flex h-10 w-10 items-center justify-center rounded-[8px] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
@@ -2341,11 +2394,46 @@ Effect.runPromise(myProgram)</code></pre>
     
     <!-- Scripts -->
     <script>
+        let isMenuAnimating = false;
+
         function toggleMobileMenu() {
+            if (isMenuAnimating) return;
+
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+            const panel = document.getElementById('mobile-menu-panel');
+            const isHidden = menu.classList.contains('hidden');
+
+            if (isHidden) {
+                // Opening menu
+                menu.classList.remove('hidden');
+                backdrop.classList.add('mobile-menu-backdrop-enter');
+                panel.classList.add('mobile-menu-panel-enter');
+
+                isMenuAnimating = true;
+                setTimeout(() => {
+                    backdrop.classList.remove('mobile-menu-backdrop-enter');
+                    panel.classList.remove('mobile-menu-panel-enter');
+                    panel.style.transform = 'translateX(0)';
+                    isMenuAnimating = false;
+                }, 300);
+            } else {
+                // Closing menu
+                panel.style.transform = '';
+                backdrop.classList.add('mobile-menu-backdrop-exit');
+                panel.classList.add('mobile-menu-panel-exit');
+
+                isMenuAnimating = true;
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                    backdrop.classList.remove('mobile-menu-backdrop-exit');
+                    panel.classList.remove('mobile-menu-panel-exit');
+                    panel.style.transform = 'translateX(100%)';
+                    isMenuAnimating = false;
+                }, 300);
+            }
         }
-        
+
         // Mobile menu toggle
         const mobileMenuButton = document.querySelector('button.md\\:hidden');
         if (mobileMenuButton) {
