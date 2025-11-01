@@ -424,7 +424,7 @@
             <section class="w-full relative pt-20 pb-24 mx-auto">
             <div class="container mx-auto max-w-[44rem]">
                 <div class="text-left sm:text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tighter mb-8">
+                    <h1 class="text-3xl md:text-5xl font-bold leading-tighter mb-8">
                         Build production-grade software in TypeScript
                     </h1>
                     <p class="text-lg md:text-xl leading:tight md:leading-normal text-zinc-400 mb-10 max-w-3xl mx-auto">
@@ -439,24 +439,24 @@
                             <div class="bg-[#18181b] rounded-[16px] overflow-hidden">
                                 <!-- Tab Headers -->
                                 <div class="flex overflow-x-auto border-b border-zinc-950 scrollbar-hide">
-                                    <button onclick="switchHeroTab('npm')" id="hero-npm-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-white bg-[#09090b] border-r border-zinc-950 transition-colors">
-                                        <img src="../assets/logos/npm-brands-solid-full.svg" alt="npm" class="h-[20px] w-auto" />
+                                    <button onclick="switchHeroTab('npm')" id="hero-npm-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-white bg-[#09090b] border-r border-zinc-950 transition-colors">
+                                        <img src="../assets/logos/npm-brands-solid-full.svg" alt="npm" class="h-5 w-auto" />
                                         <span>npm</span>
                                     </button>
-                                    <button onclick="switchHeroTab('pnpm')" id="hero-pnpm-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
-                                        <img src="../assets/logos/pnpm-logo.svg" alt="pnpm" class="h-[20px] w-auto" />
+                                    <button onclick="switchHeroTab('pnpm')" id="hero-pnpm-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                        <img src="../assets/logos/pnpm-logo.svg" alt="pnpm" class="h-5 w-auto" />
                                         <span>pnpm</span>
                                     </button>
-                                    <button onclick="switchHeroTab('yarn')" id="hero-yarn-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
-                                        <img src="../assets/logos/yarn-logo.svg" alt="yarn" class="h-[20px] w-auto" />
+                                    <button onclick="switchHeroTab('yarn')" id="hero-yarn-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                        <img src="../assets/logos/yarn-logo.svg" alt="yarn" class="h-5 w-auto" />
                                         <span>yarn</span>
                                     </button>
-                                    <button onclick="switchHeroTab('bun')" id="hero-bun-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
-                                        <img src="../assets/logos/bun-logo-box.svg" alt="bun" class="h-[20px] w-auto" />
+                                    <button onclick="switchHeroTab('bun')" id="hero-bun-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] border-r border-zinc-950 transition-colors">
+                                        <img src="../assets/logos/bun-logo-box.svg" alt="bun" class="h-5 w-auto" />
                                         <span>bun</span>
                                     </button>
-                                    <button onclick="switchHeroTab('deno')" id="hero-deno-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] px-[24px] py-[16px] text-[0.875rem] leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] transition-colors">
-                                        <img src="../assets/logos/deno-logo-box.svg" alt="deno" class="h-[20px] w-auto" />
+                                    <button onclick="switchHeroTab('deno')" id="hero-deno-tab" class="hero-tab-button flex-shrink-0 flex items-center justify-center gap-[8px] w-[126px] py-[16px] text-sm leading-normal font-medium text-zinc-400 hover:text-white bg-[#18181b] transition-colors">
+                                        <img src="../assets/logos/deno-logo-box.svg" alt="deno" class="h-5 w-auto" />
                                         <span>deno</span>
                                     </button>
                                 </div>
@@ -465,9 +465,9 @@
                                 <div class="p-4 bg-zinc-950">
                                     <div class="flex flex-col sm:flex-row items-center gap-2">
                                         <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between w-full px-4 py-4 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
-                                            <code class="font-mono text-[1rem]"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
-                                            <span id="copy-feedback" class="absolute right-4 text-[0.875rem] text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
-                                            <i id="copy-icon" class="ri-file-copy-line text-[1rem] text-zinc-400"></i>
+                                            <code class="font-mono text-base"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
+                                            <span id="copy-feedback" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
+                                            <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400"></i>
                                         </div>
                                         <a href="#" class="flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-4 text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-[8px] transition-colors whitespace-nowrap">
                                             <span>Docs</span>
