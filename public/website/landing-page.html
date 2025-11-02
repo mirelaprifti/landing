@@ -421,39 +421,22 @@
             animation: fadeOut 0.3s ease-in forwards;
         }
 
-        /* Skip Navigation Link */
-        .skip-link {
-            position: absolute;
-            left: -9999px;
-            z-index: 999;
-            padding: 1rem 1.5rem;
-            background-color: #60A5FA;
-            color: #000;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 0 0 0.5rem 0;
-        }
-
-        .skip-link:focus {
-            left: 0;
-            top: 0;
-        }
 
         /* Global Focus Indicators */
         *:focus-visible {
-            outline: 2px solid #60A5FA;
+            outline: 2px solid #ffffff;
             outline-offset: 2px;
         }
 
         button:focus-visible, a:focus-visible {
-            outline: 2px solid #60A5FA;
+            outline: 2px solid #ffffff;
             outline-offset: 2px;
         }
     </style>
 </head>
 <body class="min-h-screen bg-zinc-950 text-white antialiased">
     <!-- Skip Navigation Link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="absolute -left-[9999px] z-[999] px-6 py-4 bg-zinc-800 text-whiteno-underline font-semibold rounded-br-lg focus:left-0 focus:top-0">Skip to main content</a>
 
     <!-- Navigation Wrapper -->
     <div class="w-full fixed top-0 left-0 right-0 z-50 px-4 md:px-8" style="background-color: rgba(9, 9, 11, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
@@ -488,7 +471,7 @@
                         </div>
 
                         <!-- Mobile Menu Button -->
-                        <button aria-label="Open navigation menu" class="md:hidden flex h-10 w-10 items-center justify-center text-zinc-400 hover:text-white transition-all">
+                        <button aria-label="Open navigation menu" class="md:hidden flex h-10 w-10 items-center justify-center text-zinc-300 hover:text-white transition-all">
                             <i class="ri-menu-3-line text-[2rem]" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -668,10 +651,10 @@
                                     <!-- FEATURES label (bottom right corner) -->
                                     <text x="564" y="394" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" opacity="0.6" letter-spacing="0.3">FEATURES</text>
 
-                                    <!-- Without Effect line (red, exponential growth - starts at left edge) -->
-                                    <path id="line-without" class="chart-line" d="M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40" stroke="#ef4444" stroke-width="2" fill="none"/>
+                                    <!-- Without Effect line (red, DASHED, exponential growth - starts at left edge) -->
+                                    <path id="line-without" class="chart-line" d="M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,4" fill="none"/>
 
-                                    <!-- With Effect line (green, linear growth - starts at left edge) -->
+                                    <!-- With Effect line (green, SOLID, linear growth - starts at left edge) -->
                                     <path id="line-with" class="chart-line" d="M 0 300 C 90 297, 180 290, 350 270 C 475 258, 540 248, 600 240" stroke="#22c55e" stroke-width="2" fill="none"/>
 
                                     <!-- Corner L-shape decorations (14px angles) - rendered last to be on top -->
