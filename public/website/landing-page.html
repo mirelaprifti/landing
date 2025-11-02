@@ -420,9 +420,41 @@
         .mobile-menu-backdrop-exit {
             animation: fadeOut 0.3s ease-in forwards;
         }
+
+        /* Skip Navigation Link */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            z-index: 999;
+            padding: 1rem 1.5rem;
+            background-color: #60A5FA;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 0 0 0.5rem 0;
+        }
+
+        .skip-link:focus {
+            left: 0;
+            top: 0;
+        }
+
+        /* Global Focus Indicators */
+        *:focus-visible {
+            outline: 2px solid #60A5FA;
+            outline-offset: 2px;
+        }
+
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid #60A5FA;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-zinc-950 text-white antialiased">
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation Wrapper -->
     <div class="w-full fixed top-0 left-0 right-0 z-50 px-4 md:px-8" style="background-color: rgba(9, 9, 11, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
         <!-- Navigation Header -->
@@ -449,15 +481,15 @@
                             </a>
 
                             <!-- Search Button -->
-                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-all">
-                                <i class="ri-search-line text-[1rem]"></i>
-                                <span class="text-[0.875rem] font-normal">⌘K</span>
+                            <button aria-label="Open search (Command K)" class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-all">
+                                <i class="ri-search-line text-base" aria-hidden="true"></i>
+                                <span class="text-[0.875rem] font-normal" aria-hidden="true">⌘K</span>
                             </button>
                         </div>
 
                         <!-- Mobile Menu Button -->
-                        <button class="md:hidden flex h-10 w-10 items-center justify-center text-zinc-400 hover:text-white transition-all">
-                            <i class="ri-menu-3-line text-[2rem]"></i>
+                        <button aria-label="Open navigation menu" class="md:hidden flex h-10 w-10 items-center justify-center text-zinc-400 hover:text-white transition-all">
+                            <i class="ri-menu-3-line text-[2rem]" aria-hidden="true"></i>
                         </button>
                     </div>
                 </nav>
@@ -467,7 +499,7 @@
         </div>
     
     <!-- Main Content -->
-    <main class="relative w-full pt-20">
+    <main id="main-content" class="relative w-full pt-20">
 
         <!-- Decorative dashed borders -->
         <div class="hidden lg:block absolute top-[5rem] left-0" style="width: calc(max((100vw - 80rem) / 2, 80px)); height: 1px; background: linear-gradient(to right, var(--zinc-700) 0%, var(--zinc-950) 100%); -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
@@ -525,8 +557,8 @@
                                     <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
                                         <button type="button" id="hero-install-command" onclick="copyHeroCommand()" aria-label="Copy install command: npm install effect" class="relative flex items-center justify-between sm:col-span-4 px-5 py-5 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
                                             <code class="font-mono text-base"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
-                                            <span id="copy-feedback" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
-                                            <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400"></i>
+                                            <span id="copy-feedback" role="status" aria-live="polite" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
+                                            <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400" aria-hidden="true"></i>
                                         </button>
                                         <a href="https://effect.website/docs/" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-lg md:text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-colors whitespace-nowrap">
                                             <span>Docs</span>
@@ -598,7 +630,9 @@
                         <div class="lg:w-full max-w-[650px] border-2 border-zinc-800 rounded-[12px] p-[16px]">
                             <!-- Chart SVG -->
                             <div class="w-full aspect-[618/348] relative" id="complexity-chart">
-                                <svg width="100%" height="100%" viewBox="-2 -2 604 404" preserveAspectRatio="none">
+                                <svg role="img" aria-labelledby="chart-title chart-desc" width="100%" height="100%" viewBox="-2 -2 604 404" preserveAspectRatio="none">
+                                    <title id="chart-title">Complexity at Scale Comparison Chart</title>
+                                    <desc id="chart-desc">A line chart comparing code complexity growth over time. The red line labeled "Without Effect" shows exponential growth reaching high complexity. The green line labeled "With Effect" shows linear growth staying at low complexity, demonstrating Effect's ability to manage complexity at scale.</desc>
                                     <!-- Gradient Background (define) -->
                                     <defs>
                                         <linearGradient id="chartBgGradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -746,7 +780,7 @@
                                     <span class="text-zinc-400"> turn into spaghetti</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" role="presentation" aria-hidden="true" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -762,7 +796,7 @@
                                     <span class="text-zinc-400"> until production</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" role="presentation" aria-hidden="true" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -778,7 +812,7 @@
                                     <span class="text-zinc-400"> across modules</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" role="presentation" aria-hidden="true" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -794,7 +828,7 @@
                                     <span class="text-zinc-400"> become painful</span>
                                 </p>
                             </div>
-                            <img src="../assets/deco-line-alert.svg" alt="" class="w-full min-[480px]:max-w-[18.5rem]" />
+                            <img src="../assets/deco-line-alert.svg" alt="" role="presentation" aria-hidden="true" class="w-full min-[480px]:max-w-[18.5rem]" />
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
                                     <defs>
@@ -2022,7 +2056,7 @@
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-1" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-1-trigger">
+                        <div id="faq-1" role="region" role="region" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-1-trigger">
                             <p>Effect's syntax may feel unfamiliar at first: yield*, Effect.gen, TaggedError… But that's because it's doing something TypeScript can't do on its own.</p>
                             <p class="mt-4">That "weirdness" unlocks:</p>
                             <ul class="list-disc ml-5 mt-2 space-y-1">
@@ -2045,7 +2079,7 @@
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-2" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-2-trigger">
+                        <div id="faq-2" role="region" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-2-trigger">
                             <p>Yes! You can start small, wrapping existing async code or APIs in Effect and expanding from there:</p>
                             <pre class="bg-zinc-900 rounded-lg p-4 mt-3 mb-3 overflow-x-auto"><code class="text-sm text-zinc-300 font-mono"><span style="color: #7c7c7c;">// Enter the Effect world</span>
 Effect.tryPromise(() => nonEffectAPI())
@@ -2067,7 +2101,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-3" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-3-trigger">
+                        <div id="faq-3" role="region" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-3-trigger">
                             <p>You can be productive in a few days. Start by replacing await with yield*, everything else follows naturally.
 </p>
                         </div>
@@ -2084,7 +2118,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-4" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-4-trigger">
+                        <div id="faq-4" role="region" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-4-trigger">
                             <p>Start small. Pick one problem everyone hates:</p>
                             <ul class="list-disc ml-5 mt-2 mb-4 space-y-1">
                                 <li>Dependency injection…</li>
@@ -2106,7 +2140,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-5" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-5-trigger">
+                        <div id="faq-5" role="region" class="faq-content text-base text-zinc-300 leading-relaxed" aria-labelledby="faq-5-trigger">
                             <p>Effect adds minimal overhead and prevents the <em>real</em> performance killers:</p>
                             <ul class="list-disc ml-5 mt-2 mb-4 space-y-1">
                                 <li>Memory leaks</li>
@@ -2129,7 +2163,7 @@ Effect.runPromise(myProgram)</code></pre>
                             </span>
                             <i class="ri-arrow-right-s-line faq-icon text-white text-[32px] flex-shrink-0"></i>
                         </button>
-                        <div id="faq-6" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-6-trigger">
+                        <div id="faq-6" role="region" class="faq-content text-base text-zinc-300 leading-[1.5]" aria-labelledby="faq-6-trigger">
                             <p>Effect covers a broader scope than most libraries in the TypeScript ecosystem — combining async control, dependency management, error handling, and observability in one cohesive runtime.</p>
                             <p class="mt-4">See how it compares to:</p>
                             <ul class="list-disc ml-5 mt-2 space-y-1">
@@ -2377,8 +2411,8 @@ Effect.runPromise(myProgram)</code></pre>
         <div id="mobile-menu-panel" class="fixed right-0 top-0 h-full w-full max-w-[64%] bg-zinc-900 shadow-xl" style="transform: translateX(100%);">
             <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-700">
                 <span class="text-base font-semibold text-white">Menu</span>
-                <button onclick="toggleMobileMenu()" class="flex h-10 w-10 items-center justify-center rounded-[8px] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
-                    <i class="ri-close-line text-xl"></i>
+                <button onclick="toggleMobileMenu()" aria-label="Close navigation menu" class="flex h-10 w-10 items-center justify-center rounded-[8px] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
+                    <i class="ri-close-line text-xl" aria-hidden="true"></i>
                 </button>
             </div>
             <nav class="p-6">
@@ -2399,10 +2433,10 @@ Effect.runPromise(myProgram)</code></pre>
                 </a>
 
                 <!-- Search Button -->
-                <button class="flex items-center gap-2 mt-4 w-full px-4 py-3 text-zinc-300 hover:text-white border border-zinc-700 hover:border-zinc-600 rounded-[8px] transition-all">
-                    <i class="ri-search-line text-lg"></i>
+                <button aria-label="Open search (Command K)" class="flex items-center gap-2 mt-4 w-full px-4 py-3 text-zinc-300 hover:text-white border border-zinc-700 hover:border-zinc-600 rounded-[8px] transition-all">
+                    <i class="ri-search-line text-lg" aria-hidden="true"></i>
                     <span class="text-base font-normal">Search</span>
-                    <span class="ml-auto text-sm font-normal text-zinc-500">⌘K</span>
+                    <span class="ml-auto text-sm font-normal text-zinc-500" aria-hidden="true">⌘K</span>
                 </button>
             </nav>
         </div>
@@ -2455,6 +2489,16 @@ Effect.runPromise(myProgram)</code></pre>
         if (mobileMenuButton) {
             mobileMenuButton.addEventListener('click', toggleMobileMenu);
         }
+
+        // Close mobile menu with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobile-menu');
+                if (menu && !menu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
 
         // Hero Tab switching functionality
         const heroCommands = {
@@ -2861,6 +2905,23 @@ Effect.runPromise(myProgram)</code></pre>
                 if (isDragging) {
                     isDragging = false;
                     isHovering = false;
+                }
+            });
+
+            // Keyboard navigation support
+            quotesContainer.setAttribute('tabindex', '0');
+            quotesContainer.setAttribute('role', 'region');
+            quotesContainer.setAttribute('aria-label', 'Testimonials carousel - use arrow keys to navigate');
+
+            quotesContainer.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    currentPosition += 200; // Move right (show previous)
+                    quotesContainer.style.transform = `translateX(${currentPosition}px)`;
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    currentPosition -= 200; // Move left (show next)
+                    quotesContainer.style.transform = `translateX(${currentPosition}px)`;
                 }
             });
         }
