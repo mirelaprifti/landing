@@ -437,18 +437,19 @@
                     <!-- Right Side Navigation -->
                     <div class="ml-auto flex items-center">
                         <!-- Desktop Navigation -->
-                        <div class="hidden md:flex items-center gap-5">
-                            <a href="#" class="text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">Docs</a>
-                            <a href="#" class="text-[1rem] font-normal text-zinc-400 hover:text-white transition-colors">Play</a>
+                        <div class="hidden md:flex items-center gap-4">
+                            <a href="https://effect.website/docs/" class="text-base font-normal text-zinc-400 hover:text-white transition-colors">Docs</a>
+                            <a href="https://effect.website/play/" class="text-base font-normal text-zinc-400 hover:text-white transition-colors">Play</a>
+                            <a href="https://effect.website/podcast/" class="text-base font-normal text-zinc-400 hover:text-white transition-colors">Podcast</a>
                             <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors">
-                                <i class="ri-github-fill text-[1.5rem]"></i>
+                                <i class="ri-github-fill text-xl"></i>
                             </a>
                             <a href="https://discord.gg/effect-ts" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors">
-                                <i class="ri-discord-fill text-[1.5rem]"></i>
+                                <i class="ri-discord-fill text-xl"></i>
                             </a>
 
                             <!-- Search Button -->
-                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-all ml-2">
+                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-all">
                                 <i class="ri-search-line text-[1rem]"></i>
                                 <span class="text-[0.875rem] font-normal">⌘K</span>
                             </button>
@@ -527,7 +528,7 @@
                                             <span id="copy-feedback" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
                                             <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400"></i>
                                         </button>
-                                        <a href="#" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-lg md:text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-colors whitespace-nowrap">
+                                        <a href="https://effect.website/docs/" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-lg md:text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-colors whitespace-nowrap">
                                             <span>Docs</span>
                                             <i class="ri-arrow-right-line text-base"></i>
                                         </a>
@@ -838,55 +839,59 @@
                                 mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
                             ">
                                 <div class="flex flex-wrap gap-2 justify-center mb-4">
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/schema/introduction/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-checkbox-line text-base" style="color: url(#enterpriseIconGradient); background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Schema validation</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/resource-management/introduction/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-tools-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Resource management</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/observability/logging/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
+                                        <i class="ri-bar-chart-horizontal-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Observability</span>
+                                    </a>
+                                    <a href="https://effect.website/docs/error-management/retrying/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-repeat-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Retry policies</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/state-management/ref/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-swap-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>States</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-settings-3-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Config parsing</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/stream/introduction/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-align-center text-base rotate-90" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Streams</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/sink/introduction/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-download-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Sinks</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/caching/caching-effects/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-database-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Caching</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/data-types/bigdecimal/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-flow-chart text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Data types</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
+                                    <a href="https://effect.website/docs/scheduling/cron/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
                                         <i class="ri-timer-2-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
                                         <span>Cron</span>
                                     </a>
-                                    <a href="#" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-600 transition-colors">
-                                        <i class="ri-bar-chart-horizontal-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-                                        <span>OpenTelemetry</span>
+                                    <a href="https://effect.website/docs/concurrency/basic-concurrency/" class="flex items-center justify-center gap-[6px] px-4 py-2 bg-gradient-to-b from-zinc-900 to-zinc-900/0 border border-zinc-700 rounded-full text-white text-sm font-mono uppercase tracking-[0.02em] hover:border-zinc-500 transition-colors">
+                                        <i class="ri-loop-right-line text-base" style="background: linear-gradient(to bottom, #86EFAC, #4D8963); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+                                        <span>Concurrency</span>
                                     </a>
                                 </div>
                             </div>
-                            <a href="#" class="mt-8 md:mt-4 flex flex-row items-center justify-center gap-3 px-5 py-5 bg-black border border-zinc-700 rounded-lg text-white hover:border-zinc-600 transition-colors w-fit max-[479px]:w-full">
-                                <i class="ri-book-open-line text-base leading-none"></i>
-                                <span class="font-medium text-lg leading-none">Read the docs</span>
+                            <a href="https://effect.website/docs/" class="mt-8 md:mt-0 flex flex-row items-center justify-center gap-3 px-5 py-5 bg-black border border-zinc-700 rounded-lg text-white hover:border-zinc-600 transition-colors w-fit max-[479px]:w-full">
+                                <i class="ri-book-open-line text-lg leading-none"></i>
+                                <span class="font-medium text-lg leading-none">Learn Effect</span>
                             </a>
                         </div>
                     </div>
@@ -921,7 +926,7 @@
                     <div class="use-case-cards relative w-full grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-4 z-10">
                         <!-- Card 1: Effect for Backend (Zendesk) -->
                         <div class="w-full h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
-                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                            <a href="https://youtu.be/rNAqPHBQFEQ" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
                                 <div class="relative w-full h-full">
                                 <img src="../assets/logos/zendesk-logo.svg" alt="Zendesk" class="absolute left-1/2 -translate-x-1/2 top-[73px] h-[32px]" />
                                 <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
@@ -947,7 +952,7 @@
 
                         <!-- Card 3: Effect for Infra (Vercel) -->
                         <div class="w-full h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
-                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                            <a href="https://youtu.be/VZpr91dU03c" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
                                 <div class="relative w-full h-full">
                                 <img src="../assets/logos/vercel-logotype-dark.svg" alt="Vercel" class="absolute left-1/2 -translate-x-1/2 top-[73px] h-[32px]" />
                                 <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
@@ -960,7 +965,7 @@
 
                         <!-- Card 4: Effect for Fintech (Spiko) -->
                         <div class="w-full h-[229px] rounded-lg p-[1px] group transition-all hover:-translate-y-1" style="background: linear-gradient(to bottom, #09090b, #3f3f46);">
-                            <a href="#" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
+                            <a href="https://youtu.be/lFOHVZnJLew" class="block w-full h-full rounded-lg overflow-hidden relative" style="background: linear-gradient(to bottom, #19171b, #000);">
                                 <div class="relative w-full h-full">
                                 <img src="../assets/logos/spiko-logo.svg" alt="Spiko" class="absolute left-1/2 -translate-x-1/2 top-[73px] h-[32px]" />
                                 <div class="absolute left-1/2 -translate-x-1/2 bottom-[28px] flex flex-row items-center justify-center gap-1 whitespace-nowrap">
@@ -1430,7 +1435,7 @@
                     <h2 class="text-3xl leading-tight font-bold text-white text-center">
                         A safe, testable runtime for AI systems
                     </h2>
-                    <a href="#" class="flex items-center justify-center gap-3 px-5 py-5 bg-black border border-zinc-400 rounded-lg text-white text-base font-semibold tracking-[0.16px] hover:border-zinc-300 transition-colors">
+                    <a href="https://effect-ts.github.io/effect/docs/ai/ai" class="flex items-center justify-center gap-3 px-5 py-5 bg-black border border-zinc-400 rounded-lg text-white text-base font-semibold tracking-[0.16px] hover:border-zinc-300 transition-colors">
                         <span class="flex items-center justify-center w-5 h-5">
                             <i class="ri-terminal-line text-white text-lg leading-none"></i>
                         </span>
@@ -1497,7 +1502,7 @@
                     <!-- 2 Case Study Cards -->
                     <div class="flex flex-col sm:flex-row w-full max-w-[53rem] mx-auto gap-5 justify-center">
                         <!-- Case Study 1: MasterClass -->
-                        <a href="#" class="flex-1 w-full lg:max-w-auto border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 transition-colors">
+                        <a href="https://youtu.be/x2bUuOZ-htU" class="flex-1 w-full lg:max-w-auto border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 transition-colors">
                             <div class="flex flex-col">
                                 <!-- Top section with gradient and logos -->
                                 <div class="relative h-24 flex items-center justify-center" style="background: linear-gradient(to bottom, rgba(9,9,11,1), rgba(227,38,82,0.06));">
@@ -1517,7 +1522,7 @@
                         </a>
 
                         <!-- Case Study 2: 14.ai -->
-                        <a href="#" class="flex-1 w-full lg:max-w-auto border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 transition-colors">
+                        <a href="https://youtu.be/8lz9-0y58Jc" class="flex-1 w-full lg:max-w-auto border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 transition-colors">
                             <div class="flex flex-col">
                                 <!-- Top section with gradient and logos -->
                                 <div class="relative h-24 flex items-center justify-center" style="background: linear-gradient(to bottom, rgba(9,9,11,1), rgba(161,190,0,0.06));">
@@ -1859,8 +1864,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Button -->
-                                <a href="#" class="flex items-center justify-center gap-3 px-5 py-5 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors w-fit">
+                                <!-- Link -->
+                                <a href="https://effect.website/play/" class="flex items-center justify-center gap-3 px-5 py-5 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors w-fit">
                                     <span class="flex items-center justify-center w-6 h-6">
                                         <i class="ri-terminal-line text-white text-lg leading-none"></i>
                                     </span>
@@ -2167,23 +2172,23 @@ Effect.runPromise(myProgram)</code></pre>
                         </div>
                     </div>
 
-                    <!-- Buttons Section -->
+                    <!-- Links Section -->
                     <div class="flex flex-col items-center gap-8 w-full">
                         <!-- Top dashed border -->
                         <div class="h-[1px] w-full" style="background: #3f3f46; -webkit-mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px); mask: repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px);"></div>
 
-                        <!-- Buttons Container -->
+                        <!-- CTA Links Container -->
                         <div class="flex flex-col md:flex-row gap-5 items-stretch md:items-center justify-center w-full px-8">
-                            <!-- Button 1: What are you building? -->
-                            <a href="#" class="flex items-center justify-center gap-2 px-5 py-5 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors min-[480px]:w-auto">
+                            <!-- Link 1: What are you building? -->
+                            <a href="https://forms.gle/BHtNKorGC4ERA5o38" class="flex items-center justify-center gap-2 px-5 py-5 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors min-[480px]:w-auto">
                                 <span class="flex items-center justify-center w-6 h-6">
                                     <i class="ri-arrow-right-up-line text-white text-lg leading-none"></i>
                                 </span>
                                 <span class="text-lg font-medium text-white whitespace-nowrap">What are you building?</span>
                             </a>
 
-                            <!-- Button 2: Join our community -->
-                            <a href="#" class="flex items-center justify-center gap-2 px-5 py-4 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors min-[480px]:w-auto">
+                            <!-- Link 2: Join our community -->
+                            <a href="https://discord.gg/effect-ts" class="flex items-center justify-center gap-2 px-5 py-5 bg-black border border-zinc-600 rounded-lg hover:border-zinc-400 transition-colors min-[480px]:w-auto">
                                 <span class="flex items-center justify-center w-6 h-6">
                                     <i class="ri-discord-fill text-white text-lg leading-none"></i>
                                 </span>
@@ -2219,18 +2224,18 @@ Effect.runPromise(myProgram)</code></pre>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Documentation</a>
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">API Reference</a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
-                                <span>GitHub</span>
+                            <a href="https://effect.website/docs/" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Documentation</a>
+                            <a href="https://effect.website/docs/additional-resources/api-reference/" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">API Reference</a>
+                            <a href="https://effect-ts.github.io/effect/docs/ai/ai" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>@effect/ai</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
-                                <span>Workshops</span>
+                            <a href="https://effect-ts.github.io/effect/docs/cluster" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>@effect/cluster (alpha)</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
-                                <span>Visual Effect</span>
+                            <a href="https://github.com/Effect-TS/effect/blob/main/packages/workflow/README.md" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>@effect/workflow</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
                         </div>
@@ -2245,20 +2250,20 @@ Effect.runPromise(myProgram)</code></pre>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Playground</a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                            <a href="https://effect.website/play/" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Playground</a>
+                            <a href="https://github.com/Effect-TS/language-service" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>Effect LSP</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                            <a href="https://github.com/tim-smart/effect-mcp" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>Effect MCP</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                            <a href="https://github.com/Effect-TS/effect/blob/main/packages/cli/README.md" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>Effect CLI</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                            <a href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>VS Code Extension</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
@@ -2274,17 +2279,14 @@ Effect.runPromise(myProgram)</code></pre>
                         </div>
                         <!-- Links -->
                         <div class="flex flex-col">
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Days</a>
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Merch</a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                            <a href="https://effect.website/events/effect-days" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Days</a>
+                            <a href="https://effect.website/merch" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Effect Merch</a>
+                            <a href="https://effect.website/podcast/" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Podcast</a>
+                            <a href="https://discord.gg/effect-ts" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>Discord</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
-                                <span>Podcast</span>
-                                <i class="ri-arrow-right-up-line text-base"></i>
-                            </a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                            <a href="https://luma.com/effect-community?k=c" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
                                 <span>Meetups</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
@@ -2299,16 +2301,19 @@ Effect.runPromise(myProgram)</code></pre>
                             <h3 class="text-base font-semibold text-white">Other</h3>
                         </div>
                         <!-- Links -->
-                        <div class="flex flex-col gap-0 md:gap-2">
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Myths about Effect</a>
-                            <a href="#" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Press kit</a>
-                            <a href="#" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
-                                <span>Effectful</span>
+                        <div class="flex flex-col">
+                            <a href="https://effect.website/blog" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Blog</a>
+                            <a href="https://effect.website/docs/additional-resources/myths/" class="py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">Myths about Effect</a>
+                            <a href="https://effect.kitlangton.com/" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Visual Effect</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
-                            <!-- Special CTA Box -->
-                            <a href="#" class="flex items-center justify-between p-3 mt-2.5 border border-zinc-600 rounded-lg text-base md:text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-normal">
-                                <span class="flex-1">Using Effect? Let us know!</span>
+                            <a href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Workshops</span>
+                                <i class="ri-arrow-right-up-line text-base"></i>
+                            </a>
+                            <a href="https://effectful.co/" class="flex items-center justify-between py-2 border-b border-zinc-800 text-base text-zinc-400 hover:text-white transition-colors leading-[1.6]">
+                                <span>Effectful</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
                         </div>
@@ -2326,19 +2331,22 @@ Effect.runPromise(myProgram)</code></pre>
 
                         <!-- Social Icons (centered on mobile, middle on desktop) -->
                         <div class="flex items-center gap-6 md:gap-5">
-                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                            <a href="https://x.com/EffectTS_" class="text-zinc-400 hover:text-white transition-colors">
                                 <i class="ri-twitter-x-fill text-3xl md:text-xl"></i>
                             </a>
-                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                            <a href="https://www.youtube.com/@EffectTS" class="text-zinc-400 hover:text-white transition-colors">
                                 <i class="ri-youtube-fill text-3xl md:text-xl"></i>
                             </a>
-                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                             <a href="https://github.com/Effect-TS" class="text-zinc-400 hover:text-white transition-colors">
+                                <i class="ri-github-fill text-3xl md:text-xl"></i>
+                            </a>
+                            <a href="https://discord.gg/effect-ts" class="text-zinc-400 hover:text-white transition-colors">
                                 <i class="ri-discord-fill text-3xl md:text-xl"></i>
                             </a>
-                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                            <a href="https://bsky.app/profile/effect-ts.bsky.social" class="text-zinc-400 hover:text-white transition-colors">
                                 <i class="ri-bluesky-fill text-3xl md:text-xl"></i>
                             </a>
-                            <a href="#" class="text-zinc-400 hover:text-white transition-colors">
+                            <a href="https://www.linkedin.com/company/effect-ts" class="text-zinc-400 hover:text-white transition-colors">
                                 <i class="ri-linkedin-fill text-3xl md:text-xl"></i>
                             </a>
                         </div>
@@ -2354,7 +2362,7 @@ Effect.runPromise(myProgram)</code></pre>
                 <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 pt-16 md:pt-8 pb-16 md:pb-24">
                     <p class="text-base md:text-sm text-zinc-400">© 2025 Effectful Technologies Inc. All rights reserved.</p>
                     <div class="flex items-center gap-4">
-                        <a href="#" class="text-base md:text-sm text-zinc-400 hover:text-white transition-colors">Contact</a>
+                        <a href="mailto:contact@effectful.co" class="text-base md:text-sm text-zinc-400 hover:text-white transition-colors">Email us</a>
                         <a href="#" class="text-base md:text-sm text-zinc-400 hover:text-white transition-colors">Terms</a>
                         <a href="#" class="text-base md:text-sm text-zinc-400 hover:text-white transition-colors">Privacy</a>
                     </div>
@@ -2374,8 +2382,9 @@ Effect.runPromise(myProgram)</code></pre>
                 </button>
             </div>
             <nav class="p-6">
-                <a href="#" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Docs</a>
-                <a href="#" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Playground</a>
+                <a href="https://effect.website/docs/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Docs</a>
+                <a href="https://effect.website/play/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Playground</a>
+                <a href="https://effect.website/podcast/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Podcast</a>
                 <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">
                     <i class="ri-github-fill text-lg"></i>
                     <span>GitHub</span>
