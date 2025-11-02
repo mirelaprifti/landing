@@ -126,6 +126,11 @@
             font-family: 'Roboto Mono', monospace !important;
         }
 
+        #hero-install-command:focus-visible {
+            outline: 2px solid #60A5FA;
+            outline-offset: 2px;
+        }
+
         /* Toggle Switch Styles */
         .toggle-switch {
             position: relative;
@@ -443,7 +448,7 @@
                             </a>
 
                             <!-- Search Button -->
-                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-[8px] transition-all ml-2">
+                            <button class="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-all ml-2">
                                 <i class="ri-search-line text-[1rem]"></i>
                                 <span class="text-[0.875rem] font-normal">⌘K</span>
                             </button>
@@ -517,12 +522,12 @@
                                 <!-- Tab Content -->
                                 <div class="p-4 bg-zinc-950">
                                     <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
-                                        <div id="hero-install-command" onclick="copyHeroCommand()" class="relative flex items-center justify-between sm:col-span-4 px-5 py-5 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
+                                        <button type="button" id="hero-install-command" onclick="copyHeroCommand()" aria-label="Copy install command: npm install effect" class="relative flex items-center justify-between sm:col-span-4 px-5 py-5 border border-zinc-900 hover:border-zinc-800 rounded-[8px] bg-gradient-to-l from-zinc-900 to-zinc-950 cursor-pointer hover:opacity-90 transition-opacity">
                                             <code class="font-mono text-base"><span class="text-[#60A5FA]">npm</span> <span class="text-[#FDBA74]">install effect</span></code>
                                             <span id="copy-feedback" class="absolute right-4 text-base text-white-300 font-medium opacity-0 transition-opacity duration-100">Copied!</span>
                                             <i id="copy-icon" class="ri-file-copy-line text-base text-zinc-400"></i>
-                                        </div>
-                                        <a href="#" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-lg md:text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-[8px] transition-colors whitespace-nowrap">
+                                        </button>
+                                        <a href="#" class="flex items-center justify-center gap-2 sm:col-span-1 px-4 py-4 text-lg md:text-base leading-normal font-medium text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-[8px] transition-colors whitespace-nowrap">
                                             <span>Docs</span>
                                             <i class="ri-arrow-right-line text-base"></i>
                                         </a>
@@ -534,16 +539,16 @@
                         <!-- Stats -->
                         <div class="flex flex-wrap gap-8 md:gap-12 justify-center items-center mt-6 text-base leading-normal">
                             <div class="flex items-center gap-2">
-                                <i class="ri-github-fill text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
-                                <span class="text-zinc-500">11k+</span>
+                                <i class="ri-github-fill text-xl text-zinc-400 flex items-center justify-center" style="height: 1.5rem;"></i>
+                                <span class="text-zinc-400">11k+</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <i class="ri-download-line text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
-                                <span class="text-zinc-500">5M+ <span class="text-zinc-500">/w downloads</span></span>
+                                <i class="ri-download-line text-xl text-zinc-400 flex items-center justify-center" style="height: 1.5rem;"></i>
+                                <span class="text-zinc-400">5M+ <span class="text-zinc-400">/w downloads</span></span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <i class="ri-discord-fill text-[1.5rem] text-zinc-500 flex items-center justify-center" style="height: 1.5rem;"></i>
-                                <span class="text-zinc-500">5k+</span>
+                                <i class="ri-discord-fill text-xl text-zinc-400 flex items-center justify-center" style="height: 1.5rem;"></i>
+                                <span class="text-zinc-400">5k+</span>
                             </div>
                         </div>
                     </div>
@@ -2491,6 +2496,17 @@ Effect.runPromise(myProgram)</code></pre>
                     icon.style.opacity = '1';
                     feedback.style.opacity = '0';
                 }, 2000);
+            });
+        }
+
+        // Add keyboard accessibility for install command copy
+        const installCommandElement = document.getElementById('hero-install-command');
+        if (installCommandElement) {
+            installCommandElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    copyHeroCommand();
+                }
             });
         }
 
