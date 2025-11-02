@@ -623,10 +623,10 @@
 
                                     <!-- Axis labels (no background) -->
                                     <!-- COMPLEXITY label (left side, rotated) -->
-                                    <text x="14" y="56" fill="white" font-size="12" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" transform="rotate(-90 10 50)" opacity="0.6" letter-spacing="0.6">COMPLEXITY</text>
+                                    <text x="13" y="54" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" transform="rotate(-90 10 50)" opacity="0.6" letter-spacing="0.6">COMPLEXITY</text>
 
                                     <!-- FEATURES label (bottom right corner) -->
-                                    <text x="564" y="392" fill="white" font-size="12" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" opacity="0.6" letter-spacing="0.3">FEATURES</text>
+                                    <text x="564" y="394" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" opacity="0.6" letter-spacing="0.3">FEATURES</text>
 
                                     <!-- Without Effect line (red, exponential growth - starts at left edge) -->
                                     <path id="line-without" class="chart-line" d="M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40" stroke="#ef4444" stroke-width="2" fill="none"/>
@@ -1731,6 +1731,8 @@
                                      src="../assets/gifs/diagnostics-16_9.gif"
                                      alt="DevTools Demo"
                                      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300" />
+                                <!-- Gradient overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-[#737381] to-[#18181B] opacity-15 pointer-events-none"></div>
                             </div>
                         </div>
 
@@ -2300,7 +2302,7 @@ Effect.runPromise(myProgram)</code></pre>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
                             <!-- Special CTA Box -->
-                            <a href="#" class="flex items-center justify-between p-3 mt-2 border border-zinc-600 rounded-lg text-base md:text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-normal">
+                            <a href="#" class="flex items-center justify-between p-3 mt-2.5 border border-zinc-600 rounded-lg text-base md:text-sm text-zinc-400 hover:text-white hover:border-white transition-colors leading-normal">
                                 <span class="flex-1">Using Effect? Let us know!</span>
                                 <i class="ri-arrow-right-up-line text-base"></i>
                             </a>
@@ -2344,7 +2346,7 @@ Effect.runPromise(myProgram)</code></pre>
                 </div>
 
                 <!-- Bottom Copyright Section -->
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 py-16 md:py-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 pt-16 md:pt-8 pb-16 md:pb-24">
                     <p class="text-base md:text-sm text-zinc-400">© 2025 Effectful Technologies Inc. All rights reserved.</p>
                     <div class="flex items-center gap-4">
                         <a href="#" class="text-base md:text-sm text-zinc-400 hover:text-white transition-colors">Contact</a>
