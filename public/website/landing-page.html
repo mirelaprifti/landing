@@ -442,7 +442,7 @@
     <div class="w-full fixed top-0 left-0 right-0 z-50 px-4 md:px-8" style="background-color: rgba(9, 9, 11, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
         <!-- Navigation Header -->
         <div class="w-full">
-            <header class="w-full max-w-[80rem] mx-auto relative">
+            <header class="w-full max-w-[96rem] mx-auto relative">
                 <nav class="flex h-20 items-center">
                     <!-- Logo -->
                     <a href="/" class="flex items-center">
@@ -453,9 +453,10 @@
                     <div class="ml-auto flex items-center">
                         <!-- Desktop Navigation -->
                         <div class="hidden md:flex items-center gap-4">
-                            <a href="https://effect.website/docs/" class="text-base font-normal text-zinc-400 hover:text-white transition-colors">Docs</a>
-                            <a href="https://effect.website/play/" class="text-base font-normal text-zinc-400 hover:text-white transition-colors">Play</a>
-                            <a href="https://effect.website/podcast/" class="text-base font-normal text-zinc-400 hover:text-white transition-colors">Podcast</a>
+                            <a href="https://effect.website/docs/" class="text-base font-medium text-zinc-400 hover:text-white transition-colors">Docs</a>
+                            <a href="https://effect.website/blog/" class="text-base font-medium text-zinc-400 hover:text-white transition-colors">Blog</a>
+                            <a href="https://effect.website/podcast/" class="text-base font-medium text-zinc-400 hover:text-white transition-colors">Podcast</a>
+                            <a href="https://effect.website/play/" class="text-base font-medium text-zinc-400 hover:text-white transition-colors">Play</a>
                             <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" aria-label="Visit Effect on GitHub" class="text-zinc-400 hover:text-white transition-colors">
                                 <i class="ri-github-fill text-xl" aria-hidden="true"></i>
                             </a>
@@ -464,9 +465,12 @@
                             </a>
 
                             <!-- Search Button -->
-                            <button aria-label="Open search (Command K)" class="flex items-center gap-2 px-3 py-1.5 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-950 hover:bg-zinc-800 rounded-[8px] transition-all">
-                                <i class="ri-search-line text-base" aria-hidden="true"></i>
-                                <span class="text-[0.875rem] font-normal" aria-hidden="true">⌘K</span>
+                            <button aria-label="Open search (Command K)" class="flex items-center gap-2 px-2.5 py-1.5 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-950 hover:bg-zinc-800 rounded-[8px] transition-all">
+                                <span class="flex items-center gap-1">
+                                    <i class="ri-search-line text-base" aria-hidden="true"></i>
+                                    <span class="text-[0.875rem] font-normal">Search</span>
+                                </span>
+                                <span class="text-[0.7rem] font-normal" aria-hidden="true">⌘K</span>
                             </button>
                         </div>
 
@@ -615,7 +619,7 @@
                             <div class="w-full aspect-[618/348] relative" id="complexity-chart">
                                 <svg role="img" aria-labelledby="chart-title chart-desc" width="100%" height="100%" viewBox="-2 -2 604 404" preserveAspectRatio="none">
                                     <title id="chart-title">Complexity at Scale Comparison Chart</title>
-                                    <desc id="chart-desc">A line chart comparing code complexity growth over time. The red line labeled "Without Effect" shows exponential growth reaching high complexity. The green line labeled "With Effect" shows linear growth staying at low complexity, demonstrating Effect's ability to manage complexity at scale.</desc>
+                                    <desc id="chart-desc">A line chart comparing code complexity growth as the features increase over time. The red line labeled "Without Effect" shows exponential growth reaching high complexity. The green line labeled "With Effect" shows linear growth staying at low complexity, demonstrating Effect's ability to manage complexity at scale.</desc>
                                     <!-- Gradient Background (define) -->
                                     <defs>
                                         <linearGradient id="chartBgGradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -646,10 +650,10 @@
 
                                     <!-- Axis labels (no background) -->
                                     <!-- COMPLEXITY label (left side, rotated) -->
-                                    <text x="13" y="54" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" transform="rotate(-90 10 50)" opacity="0.6" letter-spacing="0.6">COMPLEXITY</text>
+                                    <text x="12" y="54" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" transform="rotate(-90 10 50)" opacity="0.6" letter-spacing="0.6">COMPLEXITY</text>
 
                                     <!-- FEATURES label (bottom right corner) -->
-                                    <text x="564" y="394" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" opacity="0.6" letter-spacing="0.3">FEATURES</text>
+                                    <text x="564" y="392" fill="white" font-size="13" font-family="'Roboto Mono'" font-weight="500" text-anchor="middle" opacity="0.6" letter-spacing="0.3">FEATURES</text>
 
                                     <!-- Without Effect line (red, DASHED, exponential growth - starts at left edge) -->
                                     <path id="line-without" class="chart-line" d="M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,4" fill="none"/>
@@ -2391,17 +2395,19 @@ Effect.runPromise(myProgram)</code></pre>
     <!-- Mobile Menu (Hidden by default) -->
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden">
         <div id="mobile-menu-backdrop" class="fixed inset-0 bg-zinc-800/10" onclick="toggleMobileMenu()"></div>
-        <div id="mobile-menu-panel" class="fixed right-0 top-0 h-full w-full max-w-[64%] bg-zinc-900 shadow-xl" style="transform: translateX(100%);">
-            <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-700">
+        <div id="mobile-menu-panel" class="fixed right-0 top-0 h-full w-full max-w-[64%] bg-zinc-900 shadow-xl flex flex-col" style="transform: translateX(100%);">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-700 flex-shrink-0">
                 <span class="text-base font-semibold text-white">Menu</span>
                 <button onclick="toggleMobileMenu()" aria-label="Close navigation menu" class="flex h-10 w-10 items-center justify-center rounded-[8px] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
                     <i class="ri-close-line text-xl" aria-hidden="true"></i>
                 </button>
             </div>
-            <nav class="p-6">
+            <nav class="p-6 overflow-y-auto flex-1">
                 <a href="https://effect.website/docs/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Docs</a>
-                <a href="https://effect.website/play/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Playground</a>
+                <a href="https://effect.website/blog/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Blog</a>
                 <a href="https://effect.website/podcast/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Podcast</a>
+                <a href="https://effect.website/play/" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Play</a>
+                <a href="https://effect.kitlangton.com/" target="_blank" rel="noopener noreferrer" class="block py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">Visual Effect</a>
                 <a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 hover:text-white transition-colors">
                     <i class="ri-github-fill text-lg" aria-hidden="true"></i>
                     <span>GitHub</span>
