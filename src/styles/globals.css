@@ -1,0 +1,346 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+	/* Font Sizes */
+	--text-xs: 0.7rem;
+	--text-xs--line-height: 1.5;
+	--text-sm: 0.875rem;
+	--text-sm--line-height: 1.5;
+	--text-base: 1rem;
+	--text-base--line-height: 1.5;
+	--text-lg: 1.25rem;
+	--text-lg--line-height: 1.375;
+	--text-xl: 1.563rem;
+	--text-xl--line-height: 1.375;
+	--text-2xl: 1.953rem;
+	--text-2xl--line-height: 1.375;
+	--text-3xl: 2.441rem;
+	--text-3xl--line-height: 1.25;
+	--text-4xl: 3.052rem;
+	--text-4xl--line-height: 1.25;
+	--text-5xl: 3.815rem;
+	--text-5xl--line-height: 1.15;
+	--text-6xl: 4.768rem;
+	--text-6xl--line-height: 1.15;
+
+	/* Line Heights */
+	--leading-tighter: 1.15;
+	--leading-tight: 1.25;
+	--leading-snug: 1.375;
+	--leading-normal: 1.5;
+	--leading-relaxed: 1.625;
+	--leading-loose: 2;
+
+	/* Font Families */
+	--font-sans: Inter, sans-serif;
+	--font-mono: "Roboto Mono", monospace;
+
+	/* Border Radius */
+	--radius: 8px;
+	--radius-sm: 4px;
+	--radius-md: 6px;
+	--radius-lg: 8px;
+	--radius-xl: 12px;
+	--radius-2xl: 16px;
+	--radius-3xl: 24px;
+
+	/* Colors - Zinc */
+	--color-zinc-900: #18181b;
+	--color-zinc-950: #09090b;
+}
+
+:root {
+	--zinc-700: #3f3f46;
+	--zinc-800: #27272a;
+	--zinc-950: #09090b;
+}
+
+body {
+	font-family: Inter, sans-serif;
+}
+
+code,
+pre,
+.font-mono {
+	font-family: "Roboto Mono", monospace !important;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+	position: relative;
+	width: 28.308px;
+	height: 16px;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.toggle-track {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 100px;
+	border: 1px solid #86efac;
+	background: transparent;
+}
+
+.toggle-thumb {
+	position: absolute;
+	width: 11.077px;
+	height: 11.077px;
+	border-radius: 30px;
+	background: white;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 2.5px;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.38);
+}
+
+.toggle-switch:not(.active) .toggle-track {
+	border-color: #71717a;
+}
+
+.toggle-switch:not(.active) .toggle-thumb {
+	right: auto;
+	left: 2.5px;
+}
+
+/* Chart Styles */
+#complexity-chart {
+	overflow: hidden;
+}
+
+.chart-line {
+	stroke-width: 2;
+	fill: none;
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+}
+
+.chart-line.animate {
+	animation: drawLine 2s ease-out forwards;
+}
+
+@keyframes drawLine {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+/* Scrollbar hide */
+.scrollbar-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+	display: none; /* Chrome, Safari and Opera */
+}
+
+/* Mobile menu animations */
+@keyframes slideInRight {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideOutRight {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.mobile-menu-panel-enter {
+	animation: slideInRight 0.3s ease-out forwards;
+}
+
+.mobile-menu-panel-exit {
+	animation: slideOutRight 0.3s ease-in forwards;
+}
+
+.mobile-menu-backdrop-enter {
+	animation: fadeIn 0.3s ease-out forwards;
+}
+
+.mobile-menu-backdrop-exit {
+	animation: fadeOut 0.3s ease-in forwards;
+}
+
+/* Logo Slider Animations */
+@keyframes scroll-right {
+	0% {
+		transform: translateX(-50%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes scroll-left {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.logo-row-right {
+	animation: scroll-right 60s linear infinite;
+}
+
+.logo-row-left {
+	animation: scroll-left 60s linear infinite;
+}
+
+.logo-slider-container:hover .logo-row {
+	animation-play-state: paused;
+}
+
+/* Quotes scroll animation */
+.quotes-scroll-animation {
+	animation: scroll-left 30s linear infinite;
+	cursor: grab;
+	user-select: none;
+}
+
+.quotes-scroll-animation:active {
+	cursor: grabbing;
+}
+
+.quotes-scroll-animation:hover {
+	animation-play-state: paused;
+}
+
+/* Global Focus Indicators */
+*:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 2px;
+}
+
+/* Visual Effect Tab Styles */
+.visual-effect-tab {
+	transition: all 0.3s ease;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+}
+
+.visual-effect-tab:hover {
+	opacity: 1 !important;
+	color: white !important;
+}
+
+.visual-effect-tab.active {
+	background: rgba(255, 255, 255, 0.06);
+	border-bottom: 1px solid white;
+	opacity: 1 !important;
+	color: white !important;
+}
+
+/* Dashed gradient border for feature cards */
+.dashed-gradient-border::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-image: linear-gradient(to bottom, #09090b, #3f3f46) 1;
+	-webkit-mask:
+		repeating-linear-gradient(
+			to right,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		left / 100% 1px no-repeat,
+		repeating-linear-gradient(
+			to right,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		left bottom / 100% 1px no-repeat,
+		repeating-linear-gradient(
+			to bottom,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		left / 1px 100% no-repeat,
+		repeating-linear-gradient(
+			to bottom,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		right / 1px 100% no-repeat;
+	mask:
+		repeating-linear-gradient(
+			to right,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		left / 100% 1px no-repeat,
+		repeating-linear-gradient(
+			to right,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		left bottom / 100% 1px no-repeat,
+		repeating-linear-gradient(
+			to bottom,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		left / 1px 100% no-repeat,
+		repeating-linear-gradient(
+			to bottom,
+			black 0px,
+			black 2px,
+			transparent 2px,
+			transparent 4px
+		)
+		right / 1px 100% no-repeat;
+	pointer-events: none;
+	background: linear-gradient(to bottom, #09090b, #3f3f46);
+}
