@@ -1105,7 +1105,7 @@
                     <path
                       id="line-without"
                       class="chart-line"
-                      d="M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40"
+                      d="M 0 330 C 150 329, 250 325, 350 300 C 450 200, 520 100, 580 15 C 590 8, 595 4, 600 2"
                       stroke="#ef4444"
                       stroke-width="2"
                       stroke-dasharray="8,4"
@@ -5356,9 +5356,9 @@ Effect.runPromise(myProgram)</code></pre>
           "M 0 330 C 17 329.7, 33 329.3, 43 328.8 C 46 328.5, 48 328.3, 50 328", // 0 features - proper curve, not degenerate
           "M 0 330 C 60 328, 90 324, 120 318 C 135 314.5, 142 311.3, 150 308", // 1 feature - smooth exponential start
           "M 0 330 C 90 327, 140 315, 180 290 C 215 273, 232 265.5, 250 258", // 2 features - smooth curve, crosses at x=180
-          "M 0 330 C 120 326, 180 308, 250 255 C 300 228, 325 214, 350 200", // 3 features - smooth exponential
-          "M 0 330 C 150 327, 220 310, 320 230 C 385 175, 417 152.5, 450 130", // 4 features - dramatic smooth curve
-          "M 0 330 C 120 325, 180 290, 300 220 C 450 120, 540 65, 600 40" // 5 features - full smooth exponential, crosses at x=180
+          "M 0 330 C 140 329, 200 320, 280 290 C 340 250, 380 220, 400 180", // 3 features - more exponential
+          "M 0 330 C 180 328, 280 310, 400 240 C 480 180, 520 140, 550 100", // 4 features - steeper exponential
+          "M 0 330 C 150 329, 250 325, 350 300 C 450 200, 520 100, 580 15 C 590 8, 595 4, 600 2" // 5 features - dramatic exponential curve
         ]
 
         // Use SMIL animation for smooth path morphing
