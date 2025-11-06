@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/Button";
+
 export function AISection() {
 	const features = [
 		{
@@ -54,17 +56,11 @@ export function AISection() {
 					<h2 className="text-center text-3xl font-bold leading-tight text-white">
 						A safe, testable runtime for AI systems
 					</h2>
-					<a
+					<Button
 						href="https://effect-ts.github.io/effect/docs/ai/ai"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="flex items-center justify-center gap-3 rounded-lg border border-zinc-400 bg-black px-5 py-5 text-base font-semibold tracking-[0.16px] text-white transition-colors hover:border-zinc-300"
-					>
-						<span className="flex h-5 w-5 items-center justify-center">
-							<i className="ri-terminal-line text-lg leading-none text-white" />
-						</span>
-						<span>@effect/ai package</span>
-					</a>
+						icon="ri-terminal-line"
+						text="@effect/ai package"
+					/>
 				</div>
 
 				{/* Features and Case Studies Container */}

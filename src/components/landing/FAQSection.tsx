@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function FAQSection() {
-	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
 
 	const faqs = [
 		{
@@ -22,39 +22,6 @@ export function FAQSection() {
 							Business logic you can reason about, reuse, and test in isolation.
 						</li>
 					</ul>
-				</>
-			),
-		},
-		{
-			question: "Is it possible to adopt Effect in an existing codebase?",
-			answer: (
-				<>
-					<p>
-						Yes! You can start small, wrapping existing async code or APIs in
-						Effect and expanding from there:
-					</p>
-					<pre className="mb-3 mt-3 overflow-x-auto rounded-lg bg-zinc-900 p-4">
-						<code className="text-sm text-zinc-300 font-mono">
-							<span style={{ color: "#7c7c7c" }}>
-								{"// Enter the Effect world"}
-							</span>
-							{"\n"}
-							{"Effect.tryPromise(() => nonEffectAPI())"}
-							{"\n\n"}
-							<span style={{ color: "#7c7c7c" }}>
-								{"// Exit back to normal promises"}
-							</span>
-							{"\n"}
-							{"Effect.runPromise(myProgram)"}
-						</code>
-					</pre>
-					<p>
-						From there, you can progressively refactor leaf modules into
-						Effects, moving upward through your codebase. Many teams start by
-						converting a few async functions or services, then gradually
-						introduce layers (for dependency management) and runtime management
-						to handle the rest of the app.
-					</p>
 				</>
 			),
 		},
@@ -147,44 +114,100 @@ export function FAQSection() {
 				</>
 			),
 		},
+		{
+			question: "Is it possible to adopt Effect in an existing codebase?",
+			answer: (
+				<>
+					<p>
+						Yes! You can start small, wrapping existing async code or APIs in
+						Effect and expanding from there:
+					</p>
+					<pre className="mb-3 mt-3 overflow-x-auto rounded-lg bg-zinc-900 p-4">
+						<code className="text-sm text-zinc-300 font-mono">
+							<span style={{ color: "#7c7c7c" }}>
+								{"// Enter the Effect world"}
+							</span>
+							{"\n"}
+							{"Effect.tryPromise(() => nonEffectAPI())"}
+							{"\n\n"}
+							<span style={{ color: "#7c7c7c" }}>
+								{"// Exit back to normal promises"}
+							</span>
+							{"\n"}
+							{"Effect.runPromise(myProgram)"}
+						</code>
+					</pre>
+					<p>
+						From there, you can progressively refactor leaf modules into
+						Effects, moving upward through your codebase. Many teams start by
+						converting a few async functions or services, then gradually
+						introduce layers (for dependency management) and runtime management
+						to handle the rest of the app.
+					</p>
+				</>
+			),
+		},
 	];
 
 	return (
 		<section className="relative w-full px-4 py-20 md:px-8 md:py-32">
 			<div className="mx-auto w-full max-w-[80rem]">
-				<h2 className="mb-12 text-center text-3xl font-bold leading-tight text-white md:mb-16">
-					Questions we get asked a lot...
-				</h2>
+				<div className="flex flex-col gap-8 lg:flex-row lg:gap-32">
+					{/* Left column - Heading */}
+					<div className="lg:w-1/3">
+						<h2 className="text-3xl font-bold leading-tight text-white">
+							Questions we get asked a lot...
+						</h2>
+					</div>
 
-				<div className="flex flex-col items-start gap-3 lg:flex-row lg:flex-wrap">
-					{faqs.map((faq, index) => (
-						<div
-							// biome-ignore lint/suspicious/noArrayIndexKey: It's okay. Just chill, Biome.
-							key={index}
-							className="flex w-full flex-col rounded-lg border border-zinc-600 bg-zinc-950 p-6 lg:w-[calc(50%-0.375rem)]"
-						>
-							<button
-								type="button"
-								onClick={() => setOpenIndex(openIndex === index ? null : index)}
-								className="flex w-full cursor-pointer items-center justify-between border-none bg-transparent text-left"
-								aria-expanded={openIndex === index}
-							>
-								<span className="pr-4 text-lg font-medium tracking-[0.16px] text-white">
-									{faq.question}
-								</span>
-								<i
-									className={`ri-arrow-right-s-line flex-shrink-0 text-[32px] text-white transition-transform ${
-										openIndex === index ? "rotate-90" : ""
+					{/* Right column - FAQs */}
+					<div className="flex flex-col gap-6 lg:w-2/3">
+						{faqs.map((faq, index) => {
+							const isOpen = openIndices.has(index);
+							return (
+								<div
+									// biome-ignore lint/suspicious/noArrayIndexKey: It's okay. Just chill, Biome.
+									key={index}
+									className="flex w-full flex-col border-b border-zinc-600 bg-zinc-950 pb-6"
+								>
+								<button
+									type="button"
+									onClick={() => {
+										setOpenIndices((prev) => {
+											const next = new Set(prev);
+											if (next.has(index)) {
+												next.delete(index);
+											} else {
+												next.add(index);
+											}
+											return next;
+										});
+									}}
+									className="flex w-full cursor-pointer items-center justify-between border-none bg-transparent text-left"
+									aria-expanded={isOpen}
+								>
+									<span className={`pr-4 text-lg font-medium transition-colors ${isOpen ? "text-white" : "text-zinc-300"}`}>
+										{faq.question}
+									</span>
+									<i
+										className={`ri-arrow-right-s-line flex-shrink-0 text-[32px] leading-none transition-all ${
+											isOpen ? "rotate-90 text-white" : "text-zinc-300"
+										}`}
+									/>
+								</button>
+								<div
+									className={`overflow-hidden transition-all duration-300 ease-in-out ${
+										isOpen ? "mt-5 max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
 									}`}
-								/>
-							</button>
-							{openIndex === index && (
-								<div className="mt-5 text-base leading-relaxed text-zinc-300">
-									{faq.answer}
+								>
+									<div className="text-base leading-relaxed text-zinc-300">
+										{faq.answer}
+									</div>
 								</div>
-							)}
-						</div>
-					))}
+							</div>
+						);
+					})}
+					</div>
 				</div>
 			</div>
 		</section>

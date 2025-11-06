@@ -155,6 +155,9 @@ export function QuotesSection() {
 
 	return (
 		<section className="relative w-full py-20 md:py-32">
+			{/* Top solid border */}
+			<div className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700" />
+
 			<div className="mx-auto flex w-full flex-col items-center gap-12 md:gap-16">
 				<h2 className="px-4 text-center text-3xl font-bold leading-tight text-white md:px-8">
 					What developers are saying...
