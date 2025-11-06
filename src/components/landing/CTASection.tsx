@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/Button";
+
 export function CTASection() {
 	return (
 		<section className="relative w-full px-4 md:px-8">
@@ -66,34 +68,18 @@ export function CTASection() {
 						{/* CTA Links Container */}
 						<div className="flex w-full flex-col items-stretch justify-center gap-5 px-8 md:flex-row md:items-center">
 							{/* Link 1: What are you building? */}
-							<a
+							<Button
 								href="https://forms.gle/BHtNKorGC4ERA5o38"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex items-center justify-center gap-2 rounded-lg border border-zinc-600 bg-black px-5 py-5 transition-colors hover:border-zinc-400 min-[480px]:w-auto"
-							>
-								<span className="flex h-6 w-6 items-center justify-center">
-									<i className="ri-arrow-right-up-line text-lg leading-none text-white" />
-								</span>
-								<span className="whitespace-nowrap text-lg font-medium text-white">
-									What are you building?
-								</span>
-							</a>
+								icon="ri-arrow-right-up-line"
+								text="What are you building?"
+							/>
 
 							{/* Link 2: Join our community */}
-							<a
+							<Button
 								href="https://discord.gg/effect-ts"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex items-center justify-center gap-2 rounded-lg border border-zinc-600 bg-black px-5 py-5 transition-colors hover:border-zinc-400 min-[480px]:w-auto"
-							>
-								<span className="flex h-6 w-6 items-center justify-center">
-									<i className="ri-discord-fill text-lg leading-none text-white" />
-								</span>
-								<span className="whitespace-nowrap text-lg font-medium text-white">
-									Join our community
-								</span>
-							</a>
+								icon="ri-discord-fill"
+								text="Join our community"
+							/>
 						</div>
 
 						{/* Bottom dashed border */}

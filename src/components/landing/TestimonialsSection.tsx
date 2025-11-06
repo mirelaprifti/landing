@@ -47,7 +47,7 @@ export function TestimonialsSection() {
 			{/* Main Content Container */}
 			<div className="relative mx-auto w-full max-w-[1280px]">
 				{/* Heading */}
-				<h2 className="mb-12 text-center text-3xl font-bold leading-tight text-white md:mb-20">
+				<h2 className="mb-12 text-center text-3xl font-bold leading-tight text-white md:mb-16">
 					Designed for real-world complexity
 				</h2>
 

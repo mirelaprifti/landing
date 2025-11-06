@@ -133,11 +133,11 @@ function generateExponentialPath(features: number): string {
     const xEnd = Math.max(1, rawXEnd); // avoid degenerate segments
 
     // End Y values for exponential growth (lower Y = higher complexity)
-    const endYValues = [328, 308, 258, 180, 100, 2];
+    const endYValues = [328, 308, 258, 180, 100, 50];
     const yEnd = endYValues[features] ?? endYValues[5];
 
     // Exponential factor - higher k = more exponential
-    const kValues = [0.5, 1.0, 1.8, 2.5, 3.5, 5.0];
+    const kValues = [0.5, 1.0, 1.8, 2.5, 3.5, 4.5];
     const k = kValues[features] ?? kValues[5];
 
     // Choose mid at ~58% for a pleasant shape (matches original feel)
@@ -366,13 +366,12 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 
 				{/* Lines group - clipped by reveal width that advances per feature */}
 				<g clipPath="url(#revealClip)">
-					{/* Without Effect line (red, dashed) */}
+					{/* Without Effect line (red, solid) */}
 					<motion.path
 						id="line-without"
 						d={targetWithoutPath}
 						stroke="#ef4444"
 						strokeWidth="2"
-						strokeDasharray="8,4"
 						fill="none"
 						strokeLinecap="round"
 						strokeLinejoin="round"

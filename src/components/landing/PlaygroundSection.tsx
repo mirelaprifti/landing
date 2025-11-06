@@ -1,6 +1,42 @@
+import { useState, useRef } from "react";
+
 export function PlaygroundSection() {
+	const [hasStarted, setHasStarted] = useState(false);
+	const [showPlayButton, setShowPlayButton] = useState(true);
+	const videoRef = useRef<HTMLVideoElement>(null);
+
+	const handlePlayClick = () => {
+		if (videoRef.current) {
+			videoRef.current.play();
+			setHasStarted(true);
+			setShowPlayButton(false);
+		}
+	};
+
+	const handleVideoClick = () => {
+		if (videoRef.current) {
+			if (videoRef.current.paused) {
+				videoRef.current.play();
+			} else {
+				videoRef.current.pause();
+			}
+		}
+	};
+
+	const handleVideoPlay = () => {
+		setHasStarted(true);
+		setShowPlayButton(false);
+	};
+
+	const handleVideoEnded = () => {
+		setShowPlayButton(true);
+		if (videoRef.current) {
+			videoRef.current.load(); // Reload video to show poster again
+		}
+	};
+
 	return (
-		<div className="relative w-full border-zinc-700 px-4 pb-0 pt-20 sm:border-b md:px-8 md:pb-24 md:pt-24">
+		<div className="relative w-full px-4 pb-16 pt-20 md:px-8 md:pb-24 md:pt-24">
 			{/* Dashed top border */}
 			<div
 				className="absolute left-0 right-0 top-0 h-[1px]"
@@ -11,178 +47,97 @@ export function PlaygroundSection() {
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 				}}
 			/>
-			{/* Left Column Wrapper: Centered in 66.5rem container */}
-			<div className="mx-auto w-full max-w-[66.5rem]">
-				{/* Left Column: Text Content */}
-				<div className="flex w-full flex-col gap-8 pb-2 md:w-[338px]">
-					<h3 className="text-[31px] font-bold leading-[1.25] text-white">
-						Run Effect code in the Effect Playground
-					</h3>
+			{/* Two Column Layout Container */}
+			<div className="mx-auto w-full max-w-[80rem]">
+				<div className="flex flex-col gap-8 md:flex-row md:gap-24">
+					{/* Left Column: Video */}
+					<div className="flex w-full items-center md:max-w-[48rem]">
+						<div className="relative w-full overflow-hidden rounded-lg border border-zinc-700" style={{ paddingBottom: "56.25%" }}>
+							<video
+								ref={videoRef}
+								className="absolute inset-0 h-full w-full cursor-pointer"
+								src="/videos/effect-playground.mp4"
+								poster="/assets/images/effect-playground-banner.png"
+								controls={hasStarted}
+								preload="metadata"
+								aria-label="Effect Playground demonstration video showing TypeScript development environment with real-time trace viewer"
+								onClick={handleVideoClick}
+								onPlay={handleVideoPlay}
+								onEnded={handleVideoEnded}
+							>
+								<track kind="captions" />
+								Your browser does not support the video tag.
+							</video>
 
-					<div className="flex flex-col gap-10">
-						<div className="flex gap-4">
-							<div className="flex flex-1 flex-col gap-4">
+							{/* Custom centered play button overlay */}
+							<button
+								type="button"
+								onClick={handlePlayClick}
+								className={`absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:bg-black/80 ${
+									showPlayButton ? "scale-100 opacity-100" : "pointer-events-none scale-0 opacity-0"
+								}`}
+								aria-label="Play video"
+							>
+								<i className="ri-play-fill text-5xl text-white" />
+							</button>
+						</div>
+					</div>
+
+					{/* Right Column: Text Content */}
+					<div className="flex w-full flex-col gap-8 md:w-1/3">
+						<h3 className="text-2xl font-bold leading-[1.25] text-white">
+							Run Effect code in the Effect Playground
+						</h3>
+
+						<div className="flex flex-col gap-4">
+							<div className="flex flex-row gap-2">
 								<div className="h-5 w-5">
-									<i className="ri-braces-line text-xl text-white" />
+									<i className="ri-braces-line text-base text-white" />
 								</div>
 								<p className="text-base leading-[1.35] text-zinc-300">
 									TypeScript LSP & Node.js support
 								</p>
 							</div>
 
-							<div className="flex flex-1 flex-col gap-4">
+							<div className="flex flex-row gap-2">
 								<div className="h-5 w-5">
-									<i className="ri-bar-chart-horizontal-line text-xl text-white" />
+									<i className="ri-bar-chart-horizontal-line text-base text-white" />
 								</div>
 								<p className="text-base leading-[1.35] text-zinc-300">
-									Real-time application trace viewer built-in
+									Real-time trace viewer built-in
 								</p>
 							</div>
-						</div>
 
-						<div className="flex gap-4">
-							<div className="flex flex-1 flex-col gap-4">
+							<div className="flex flex-row gap-2">
 								<div className="h-5 w-5">
-									<i className="ri-share-line text-xl text-white" />
+									<i className="ri-share-line text-base text-white" />
 								</div>
 								<p className="text-base leading-[1.35] text-zinc-300">
 									Share & collaborate on Effect programs
 								</p>
 							</div>
 
-							<div className="flex flex-1 flex-col gap-4">
+							<div className="flex flex-row gap-2">
 								<div className="h-5 w-5">
-									<i className="ri-book-open-line text-xl text-white" />
+									<i className="ri-book-open-line text-bas text-white" />
 								</div>
 								<p className="text-base leading-[1.35] text-zinc-300">
 									Built-in examples & templates
 								</p>
 							</div>
 						</div>
-					</div>
 
-					<a
-						href="https://effect.website/play/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="mt-4 flex w-fit items-center justify-center gap-3 rounded-lg border border-zinc-600 bg-black px-5 py-5 text-base font-medium text-white transition-colors hover:border-zinc-400"
-					>
-						<span className="flex h-6 w-6 items-center justify-center">
-							<i className="ri-terminal-line text-lg leading-none text-white" />
-						</span>
-						<span>Effect Playground</span>
-					</a>
-				</div>
-			</div>
-
-			{/* Right Column: Code Editor Preview - Pinned to Right Edge */}
-			<div className="mt-8 w-full border-zinc-700 bg-zinc-950 p-2 sm:rounded-tl-lg sm:border-l sm:border-t md:absolute md:bottom-0 md:left-[50%] md:mt-0 md:w-[50vw] md:pl-2 md:pt-2 lg:block">
-				<div className="relative h-[380px] overflow-hidden rounded-tl-lg bg-zinc-900">
-					{/* Code Preview Image/Content */}
-					<div className="relative inset-0 h-full p-4">
-						{/* Gradient Overlay */}
-						<div
-							className="pointer-events-none absolute inset-0 z-10 rounded-tl-lg"
-							style={{
-								background:
-									"linear-gradient(to bottom right, rgba(255, 255, 255, 0) 20%, rgba(9, 9, 11, 1) 75%)",
-							}}
-						/>
-						<pre className="font-mono text-sm leading-relaxed text-zinc-400">
-							<span style={{ color: "#c678dd" }}>import</span>{" "}
-							<span style={{ color: "#abb2bf" }}>{"{ NodeRuntime }"}</span>{" "}
-							<span style={{ color: "#c678dd" }}>from</span>{" "}
-							<span style={{ color: "#98c379" }}>"@effect/platform-node"</span>
-							{"\n"}
-							<span style={{ color: "#c678dd" }}>import</span>{" "}
-							<span style={{ color: "#abb2bf" }}>{"{ Effect, Context }"}</span>{" "}
-							<span style={{ color: "#c678dd" }}>from</span>{" "}
-							<span style={{ color: "#98c379" }}>"effect"</span>
-							{"\n"}
-							<span style={{ color: "#c678dd" }}>import</span>{" "}
-							<span style={{ color: "#abb2bf" }}>{"{ DevToolsLive }"}</span>{" "}
-							<span style={{ color: "#c678dd" }}>from</span>{" "}
-							<span style={{ color: "#98c379" }}>"./DevTools"</span>
-							{"\n\n"}
-							<span style={{ color: "#c678dd" }}>class</span>{" "}
-							<span style={{ color: "#61afef" }}>MyDependency</span>{" "}
-							<span style={{ color: "#c678dd" }}>extends</span>{" "}
-							<span style={{ color: "#61afef" }}>Context</span>
-							<span style={{ color: "#abb2bf" }}>.</span>
-							<span style={{ color: "#61afef" }}>Tag</span>
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#98c379" }}>"MyDependency"</span>
-							<span style={{ color: "#abb2bf" }}>)</span>{" "}
-							<span style={{ color: "#abb2bf" }}>{"{}"}</span>
-							{"\n\n"}
-							<span style={{ color: "#c678dd" }}>const</span>{" "}
-							<span style={{ color: "#abb2bf" }}>provide</span>{" "}
-							<span style={{ color: "#61afef" }}>=</span>{" "}
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#e06c75" }}>n</span>
-							<span style={{ color: "#abb2bf" }}>: </span>
-							<span style={{ color: "#61afef" }}>number</span>
-							<span style={{ color: "#abb2bf" }}>)</span>{" "}
-							<span style={{ color: "#61afef" }}>=&gt;</span>{" "}
-							<span style={{ color: "#abb2bf" }}>Effect.</span>
-							<span style={{ color: "#61afef" }}>provideService</span>
-							<span style={{ color: "#abb2bf" }}>(MyDependency, n)</span>
-							{"\n\n"}
-							<span style={{ color: "#c678dd" }}>const</span>{" "}
-							<span style={{ color: "#abb2bf" }}>getAndLog</span>{" "}
-							<span style={{ color: "#61afef" }}>=</span>{" "}
-							<span style={{ color: "#abb2bf" }}>MyDependency.</span>
-							<span style={{ color: "#61afef" }}>pipe</span>
-							<span style={{ color: "#abb2bf" }}>(Effect.</span>
-							<span style={{ color: "#61afef" }}>andThen</span>
-							<span style={{ color: "#abb2bf" }}>((</span>
-							<span style={{ color: "#e06c75" }}>n</span>
-							<span style={{ color: "#abb2bf" }}>)</span>{" "}
-							<span style={{ color: "#61afef" }}>=&gt;</span>{" "}
-							<span style={{ color: "#abb2bf" }}>Console.</span>
-							<span style={{ color: "#61afef" }}>log</span>
-							<span style={{ color: "#abb2bf" }}>(n)))</span>
-							{"\n\n"}
-							<span style={{ color: "#c678dd" }}>const</span>{" "}
-							<span style={{ color: "#abb2bf" }}>program</span>{" "}
-							<span style={{ color: "#61afef" }}>=</span>{" "}
-							<span style={{ color: "#abb2bf" }}>Effect.</span>
-							<span style={{ color: "#61afef" }}>gen</span>
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#c678dd" }}>function*</span>
-							<span style={{ color: "#abb2bf" }}>() {"{"}</span>
-							{"\n  "}
-							<span style={{ color: "#c678dd" }}>yield*</span>{" "}
-							<span style={{ color: "#abb2bf" }}>getAndLog.</span>
-							<span style={{ color: "#61afef" }}>pipe</span>
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#61afef" }}>provide</span>
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#d19a66" }}>4</span>
-							<span style={{ color: "#abb2bf" }}>), </span>
-							<span style={{ color: "#61afef" }}>provide</span>
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#d19a66" }}>3</span>
-							<span style={{ color: "#abb2bf" }}>))</span>
-							{"\n"}
-							<span style={{ color: "#abb2bf" }}>{"}"})</span>
-							<span style={{ color: "#abb2bf" }}>.</span>
-							<span style={{ color: "#61afef" }}>pipe</span>
-							<span style={{ color: "#abb2bf" }}>(Effect.</span>
-							<span style={{ color: "#61afef" }}>withSpan</span>
-							<span style={{ color: "#abb2bf" }}>(</span>
-							<span style={{ color: "#98c379" }}>"program"</span>
-							<span style={{ color: "#abb2bf" }}>,</span>
-							{"\n  "}
-							<span style={{ color: "#abb2bf" }}>
-								{"{ attributes: { source: "}
+						<a
+							href="https://effect.website/play/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex w-fit items-center justify-center gap-3 rounded-lg border border-zinc-600 bg-black px-5 py-5 text-lg font-medium text-white transition-colors hover:border-zinc-400"
+						>
+							<span className="flex h-6 w-6 items-center justify-center">
+								<i className="ri-terminal-line text-lg leading-none text-white" />
 							</span>
-							<span style={{ color: "#98c379" }}>"Playground"</span>{" "}
-							<span style={{ color: "#abb2bf" }}>{"}"}</span>
-							{"\n"}
-							<span style={{ color: "#abb2bf" }}>{")"}</span>
-							<span style={{ color: "#abb2bf" }}>{")"}</span>
-						</pre>
+							<span>Effect Playground</span>
+						</a>
 					</div>
 				</div>
 			</div>
