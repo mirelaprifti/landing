@@ -36,7 +36,7 @@ export function VisualEffectShowcaseSection() {
 	);
 
 	return (
-		<section className="relative w-full overflow-hidden pt-20 md:pt-32">
+		<section className="relative w-full overflow-hidden pt-20 md:pt-32 pb:20 md:pb-24">
 			{/* Top gradient border */}
 			<div
 				className="absolute left-0 right-0 top-0 h-[2px]"
@@ -52,15 +52,28 @@ export function VisualEffectShowcaseSection() {
 					<h2 className="text-center text-3xl font-bold leading-tight text-white">
 						See Effect in action
 					</h2>
-					<p className="w-full max-w-[438px] text-center text-base leading-8 text-zinc-400">
-						Run, interrupt, or reset Effects.
-					</p>
+
+				</div>
+
+				{/* Button to Effect Kit */}
+				<div className="mx-auto mb-8 flex w-full max-w-[53rem] justify-center">
+					<a
+						href="https://effect.kitlangton.com/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="flex w-fit items-center justify-center gap-2 rounded-lg border border-zinc-600 bg-black px-5 py-5 text-lg font-medium text-white transition-colors hover:border-zinc-400"
+					>
+						<span className="flex h-6 w-6 items-center justify-center">
+							<i className="ri-shining-2-line text-lg leading-none text-white" />
+						</span>
+						<span>Visualize Effect</span>
+					</a>
 				</div>
 
 				{/* Visual Effect Container */}
 				<div className="mx-auto flex w-full max-w-[53rem] flex-col gap-4 rounded-2xl border border-zinc-800 p-4">
 					{/* Tab Navigation */}
-					<div className="scrollbar-hide relative flex w-full overflow-x-auto">
+					<div className="scrollbar-hide relative w-full overflow-x-auto">
 						<div
 							className="absolute bottom-0 left-0 right-0 h-[1px]"
 							style={{
@@ -70,28 +83,31 @@ export function VisualEffectShowcaseSection() {
 								mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 							}}
 						></div>
-						{EXAMPLE_TABS.map((tab) => {
-							const isActive = activeTab === tab.id;
-							return (
-								<button
-									key={tab.id}
-									type="button"
-									onClick={() => setActiveTab(tab.id)}
-									className={`visual-effect-tab relative flex flex-shrink-0 items-center justify-center whitespace-nowrap px-4 py-5 font-mono text-base transition-all ${
-										isActive
-											? "active font-bold text-white"
-											: "font-medium text-[#d9d9d9] opacity-75"
-									}`}
-								>
-									{tab.label}
-								</button>
-							);
-						})}
+						<div className="flex w-full min-w-max">
+							{EXAMPLE_TABS.map((tab) => {
+								const isActive = activeTab === tab.id;
+								return (
+									<button
+										key={tab.id}
+										type="button"
+										onClick={() => setActiveTab(tab.id)}
+										className={`visual-effect-tab relative flex flex-1 items-center justify-center whitespace-nowrap px-4 py-5 font-mono text-base transition-all ${
+											isActive
+												? "active font-bold text-white"
+												: "font-medium text-zinc-200 opacity-75"
+										}`}
+										style={{ minWidth: "150px" }}
+									>
+										{tab.label}
+									</button>
+								);
+							})}
+						</div>
 					</div>
 
 					{/* Interactive Component */}
 					{activeMetadata && ActiveComponent && (
-						<div className="w-full overflow-hidden rounded-lg border border-solid border-zinc-800/50 bg-zinc-900/70">
+						<div className="w-full overflow-hidden rounded-2xl  border-solid border-zinc-800/50 bg-zinc-900/70">
 							<ActiveComponent
 								metadata={activeMetadata}
 								exampleId={activeMetadata.id}

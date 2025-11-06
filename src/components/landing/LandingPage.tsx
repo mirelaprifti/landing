@@ -57,8 +57,8 @@ export function LandingPage() {
 			<TestimonialsSection />
 			<AISection />
 			<VisualEffectShowcaseSection />
-			<DevToolsSection />
 			<PlaygroundSection />
+			<DevToolsSection />
 			<QuotesSection />
 			<FAQSection />
 			<CTASection />
