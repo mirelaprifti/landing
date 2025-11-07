@@ -118,15 +118,15 @@ export function FeaturesSection() {
 				></div>
 
 				{/* Enterprise Grade */}
-				<div className="relative mx-auto flex max-w-[66.5rem] flex-col gap-10 px-4 md:px-8">
-					{/* Left: Content */}
+				<div className="relative mx-auto flex max-w-[80rem] flex-col gap-10 px-4 md:px-8">
+					{/* Top: Content */}
 					<div className="relative my-16 w-full md:my-0 flex flex-col items-center text-center">
 						<h3 className="mb-4 text-3xl font-bold leading-normal text-white">
 							Enterprise-grade from day one!
 						</h3>
 					</div>
 
-					{/* Right: Enterprise Grade Box */}
+					{/* Bottom: Enterprise Grade Box */}
 					<div
 						className="relative flex w-full items-center justify-center"
 						data-enterprise-section
@@ -159,7 +159,7 @@ export function FeaturesSection() {
 								</defs>
 							</svg>
 							<div
-								className="animated-gradient-border relative w-full rounded-xl px-4 py-5 lg:px-12 lg:pt-12 lg:pb-16 overflow-hidden"
+								className="animated-gradient-border relative w-full rounded-xl px-2 py-5 lg:px-12 lg:pt-12 lg:pb-16 overflow-hidden"
 							>
 								<div className="mb-0 flex flex-wrap justify-center gap-2">
 									{[
@@ -261,7 +261,7 @@ export function FeaturesSection() {
 											{...(item.href.startsWith("http")
 												? { target: "_blank", rel: "noopener noreferrer" }
 												: {})}
-											className="flex items-center justify-center gap-[6px] rounded-lg border border-zinc-600 bg-zinc-950 px-4 py-3 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
+											className="flex items-center justify-center gap-[0.5rem] rounded-lg border border-zinc-600 bg-zinc-950 px-6 py-5 font-mono text-[1.15rem] uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
 										>
 											<span className="leading-none">{item.text}</span>
 											<i
