@@ -1,25 +1,27 @@
+import { getAssetPath } from "../../utils/assetPath";
+
 export function TestimonialsSection() {
 	const useCases = [
 		{
-			logo: "/assets/logos/zendesk-logo.svg",
+			logo: getAssetPath("/assets/logos/zendesk-logo.svg"),
 			title: "Effect for Backend",
 			href: "https://youtu.be/rNAqPHBQFEQ",
 			alt: "Zendesk",
 		},
 		{
-			logo: "/assets/logos/expand-ai.svg",
+			logo: getAssetPath("/assets/logos/expand-ai.svg"),
 			title: "Effect for AI Agents",
 			href: "#",
 			alt: "expand ai",
 		},
 		{
-			logo: "/assets/logos/vercel-logotype-dark.svg",
+			logo: getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
 			title: "Effect for Infra",
 			href: "https://youtu.be/VZpr91dU03c",
 			alt: "Vercel",
 		},
 		{
-			logo: "/assets/logos/spiko-logo.svg",
+			logo: getAssetPath("/assets/logos/spiko-logo.svg"),
 			title: "Effect for Fintech",
 			href: "https://youtu.be/lFOHVZnJLew",
 			alt: "Spiko",
@@ -33,7 +35,7 @@ export function TestimonialsSection() {
 				className="pointer-events-none absolute inset-0"
 				style={{
 					opacity: 1,
-					backgroundImage: "url('/assets/BG-Pattern.svg')",
+					backgroundImage: `url('${getAssetPath("/assets/BG-Pattern.svg")}')`,
 					backgroundSize: "cover",
 					backgroundPosition: "center bottom",
 					backgroundRepeat: "no-repeat",
@@ -55,7 +57,7 @@ export function TestimonialsSection() {
 				<div className="relative mb-24 w-full">
 					{/* Decorative Lines (behind cards at text level) */}
 					<img
-						src="/assets/deco-central-line.svg"
+						src={getAssetPath("/assets/deco-central-line.svg")}
 						alt=""
 						className="pointer-events-none absolute bottom-[40px] left-1/2 z-0 hidden h-[1px] w-full max-w-[1280px] -translate-x-1/2 lg:block"
 					/>
@@ -139,47 +141,47 @@ export function TestimonialsSection() {
 						{[
 							{
 								name: "14.ai",
-								logo: "/assets/logos/logo-14ai.svg",
+								logo: getAssetPath("/assets/logos/logo-14ai.svg"),
 								logoClass: "h-3 w-6",
 							},
 							{
 								name: "OpenRouter",
-								logo: "/assets/logos/logo-openrouter.png",
+								logo: getAssetPath("/assets/logos/logo-openrouter.png"),
 								logoClass: "h-4 w-4 object-cover",
 							},
 							{
 								name: "Edge&Node",
-								logo: "/assets/logos/logo-edgenode.svg",
+								logo: getAssetPath("/assets/logos/logo-edgenode.svg"),
 								logoClass: "h-4 w-[13px]",
 							},
 							{
 								name: "0.mail",
-								logo: "/assets/logos/logo-0mail.png",
+								logo: getAssetPath("/assets/logos/logo-0mail.png"),
 								logoClass: "h-4 w-4 object-cover",
 							},
 							{
 								name: "adidas",
-								logo: "/assets/logos/logo-adidas.svg",
+								logo: getAssetPath("/assets/logos/logo-adidas.svg"),
 								logoClass: "h-[14px] w-[22px]",
 							},
 							{
 								name: "Glide",
-								logo: "/assets/logos/logo-glide.svg",
+								logo: getAssetPath("/assets/logos/logo-glide.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "August Health",
-								logo: "/assets/logos/logo-augusthealth.svg",
+								logo: getAssetPath("/assets/logos/logo-augusthealth.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "Aware",
-								logo: "/assets/logos/logo-aware.svg",
+								logo: getAssetPath("/assets/logos/logo-aware.svg"),
 								logoClass: "h-4 w-[17px]",
 							},
 							{
 								name: "BTP Consultants",
-								logo: "/assets/logos/logo-btpconsultants.svg",
+								logo: getAssetPath("/assets/logos/logo-btpconsultants.svg"),
 								logoClass: "h-4 w-4",
 							},
 						].map((company, index) => (
@@ -205,47 +207,47 @@ export function TestimonialsSection() {
 						{[
 							{
 								name: "14.ai",
-								logo: "/assets/logos/logo-14ai.svg",
+								logo: getAssetPath("/assets/logos/logo-14ai.svg"),
 								logoClass: "h-3 w-6",
 							},
 							{
 								name: "OpenRouter",
-								logo: "/assets/logos/logo-openrouter.png",
+								logo: getAssetPath("/assets/logos/logo-openrouter.png"),
 								logoClass: "h-4 w-4 object-cover",
 							},
 							{
 								name: "Edge&Node",
-								logo: "/assets/logos/logo-edgenode.svg",
+								logo: getAssetPath("/assets/logos/logo-edgenode.svg"),
 								logoClass: "h-4 w-[13px]",
 							},
 							{
 								name: "0.mail",
-								logo: "/assets/logos/logo-0mail.png",
+								logo: getAssetPath("/assets/logos/logo-0mail.png"),
 								logoClass: "h-4 w-4 object-cover",
 							},
 							{
 								name: "adidas",
-								logo: "/assets/logos/logo-adidas.svg",
+								logo: getAssetPath("/assets/logos/logo-adidas.svg"),
 								logoClass: "h-[14px] w-[22px]",
 							},
 							{
 								name: "Glide",
-								logo: "/assets/logos/logo-glide.svg",
+								logo: getAssetPath("/assets/logos/logo-glide.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "August Health",
-								logo: "/assets/logos/logo-augusthealth.svg",
+								logo: getAssetPath("/assets/logos/logo-augusthealth.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "Aware",
-								logo: "/assets/logos/logo-aware.svg",
+								logo: getAssetPath("/assets/logos/logo-aware.svg"),
 								logoClass: "h-4 w-[17px]",
 							},
 							{
 								name: "BTP Consultants",
-								logo: "/assets/logos/logo-btpconsultants.svg",
+								logo: getAssetPath("/assets/logos/logo-btpconsultants.svg"),
 								logoClass: "h-4 w-4",
 							},
 						].map((company, index) => (
@@ -274,53 +276,53 @@ export function TestimonialsSection() {
 						{[
 							{
 								name: "Ender",
-								logo: "/assets/logos/logo-ender.png",
+								logo: getAssetPath("/assets/logos/logo-ender.png"),
 								logoClass: "h-5 w-[14px] object-contain",
 							},
 							{
 								name: "CalcTree",
-								logo: "/assets/logos/logo-calctree.svg",
+								logo: getAssetPath("/assets/logos/logo-calctree.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "Candle.fi",
-								logo: "/assets/logos/logo-candlefi.png",
+								logo: getAssetPath("/assets/logos/logo-candlefi.png"),
 								logoClass: "h-5 w-5 object-cover",
 							},
 							{
 								name: "CI Financial",
-								logo: "/assets/logos/logo-cifinancial.png",
+								logo: getAssetPath("/assets/logos/logo-cifinancial.png"),
 								logoClass: "h-4 w-4 object-contain",
 							},
 							{
 								name: "Coralogix",
-								logo: "/assets/logos/logo-coralogix.svg",
+								logo: getAssetPath("/assets/logos/logo-coralogix.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "dectus",
-								logo: "/assets/logos/logo-dectus.svg",
+								logo: getAssetPath("/assets/logos/logo-dectus.svg"),
 								logoClass: "h-5 w-[17px]",
 							},
 							{
 								name: "dreifach.ai",
-								logo: "/assets/logos/logo-dreifach-part1.svg",
+								logo: getAssetPath("/assets/logos/logo-dreifach-part1.svg"),
 								logoClass: "h-4 w-5",
 							},
 							{
 								name: "DXOS",
-								logo: "/assets/logos/logo-dxos.svg",
+								logo: getAssetPath("/assets/logos/logo-dxos.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "EMBEDDED INSURANCE",
-								logo: "/assets/logos/logo-embedded-insurance.svg",
+								logo: getAssetPath("/assets/logos/logo-embedded-insurance.svg"),
 								logoClass: "h-[14px] w-[15px]",
 								isTwoLine: true,
 							},
 							{
 								name: "GEODIS",
-								logo: "/assets/logos/logo-geodis.svg",
+								logo: getAssetPath("/assets/logos/logo-geodis.svg"),
 								logoClass: "h-5 w-5",
 							},
 						].map((company, index) => (
@@ -352,53 +354,53 @@ export function TestimonialsSection() {
 						{[
 							{
 								name: "Ender",
-								logo: "/assets/logos/logo-ender.png",
+								logo: getAssetPath("/assets/logos/logo-ender.png"),
 								logoClass: "h-5 w-[14px] object-contain",
 							},
 							{
 								name: "CalcTree",
-								logo: "/assets/logos/logo-calctree.svg",
+								logo: getAssetPath("/assets/logos/logo-calctree.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "Candle.fi",
-								logo: "/assets/logos/logo-candlefi.png",
+								logo: getAssetPath("/assets/logos/logo-candlefi.png"),
 								logoClass: "h-5 w-5 object-cover",
 							},
 							{
 								name: "CI Financial",
-								logo: "/assets/logos/logo-cifinancial.png",
+								logo: getAssetPath("/assets/logos/logo-cifinancial.png"),
 								logoClass: "h-4 w-4 object-contain",
 							},
 							{
 								name: "Coralogix",
-								logo: "/assets/logos/logo-coralogix.svg",
+								logo: getAssetPath("/assets/logos/logo-coralogix.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "dectus",
-								logo: "/assets/logos/logo-dectus.svg",
+								logo: getAssetPath("/assets/logos/logo-dectus.svg"),
 								logoClass: "h-5 w-[17px]",
 							},
 							{
 								name: "dreifach.ai",
-								logo: "/assets/logos/logo-dreifach-part1.svg",
+								logo: getAssetPath("/assets/logos/logo-dreifach-part1.svg"),
 								logoClass: "h-4 w-5",
 							},
 							{
 								name: "DXOS",
-								logo: "/assets/logos/logo-dxos.svg",
+								logo: getAssetPath("/assets/logos/logo-dxos.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "EMBEDDED INSURANCE",
-								logo: "/assets/logos/logo-embedded-insurance.svg",
+								logo: getAssetPath("/assets/logos/logo-embedded-insurance.svg"),
 								logoClass: "h-[14px] w-[15px]",
 								isTwoLine: true,
 							},
 							{
 								name: "GEODIS",
-								logo: "/assets/logos/logo-geodis.svg",
+								logo: getAssetPath("/assets/logos/logo-geodis.svg"),
 								logoClass: "h-5 w-5",
 							},
 						].map((company, index) => (
@@ -434,52 +436,52 @@ export function TestimonialsSection() {
 						{[
 							{
 								name: "LiveStore",
-								logo: "/assets/logos/logo-livestore.svg",
+								logo: getAssetPath("/assets/logos/logo-livestore.svg"),
 								logoClass: "h-5 w-4",
 							},
 							{
 								name: "kikin",
-								logo: "/assets/logos/logo-kikin.svg",
+								logo: getAssetPath("/assets/logos/logo-kikin.svg"),
 								logoClass: "h-4 w-[13px]",
 							},
 							{
 								name: "ens labs",
-								logo: "/assets/logos/logo-enslabs.svg",
+								logo: getAssetPath("/assets/logos/logo-enslabs.svg"),
 								logoClass: "h-4 w-[23px]",
 							},
 							{
 								name: "freckle",
-								logo: "/assets/logos/logo-freckle.svg",
+								logo: getAssetPath("/assets/logos/logo-freckle.svg"),
 								logoClass: "h-4 w-[13px]",
 							},
 							{
 								name: "Fortanix",
-								logo: "/assets/logos/logo-fortanix.svg",
+								logo: getAssetPath("/assets/logos/logo-fortanix.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "Gale",
-								logo: "/assets/logos/logo-gale.png",
+								logo: getAssetPath("/assets/logos/logo-gale.png"),
 								logoClass: "h-5 w-5 object-contain",
 							},
 							{
 								name: "GlobeCommerce",
-								logo: "/assets/logos/logo-globecommerce.png",
+								logo: getAssetPath("/assets/logos/logo-globecommerce.png"),
 								logoClass: "h-5 w-5 object-cover",
 							},
 							{
 								name: "Ping Identity",
-								logo: "/assets/logos/logo-pingidentity.svg",
+								logo: getAssetPath("/assets/logos/logo-pingidentity.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "IYK",
-								logo: "/assets/logos/logo-iyk.png",
+								logo: getAssetPath("/assets/logos/logo-iyk.png"),
 								logoClass: "h-[11px] w-[28px] object-cover",
 							},
 							{
 								name: "inRev",
-								logo: "/assets/logos/logo-inrev.svg",
+								logo: getAssetPath("/assets/logos/logo-inrev.svg"),
 								logoClass: "h-4 w-[16px]",
 							},
 						].map((company, index) => (
@@ -504,52 +506,52 @@ export function TestimonialsSection() {
 						{[
 							{
 								name: "LiveStore",
-								logo: "/assets/logos/logo-livestore.svg",
+								logo: getAssetPath("/assets/logos/logo-livestore.svg"),
 								logoClass: "h-5 w-4",
 							},
 							{
 								name: "kikin",
-								logo: "/assets/logos/logo-kikin.svg",
+								logo: getAssetPath("/assets/logos/logo-kikin.svg"),
 								logoClass: "h-4 w-[13px]",
 							},
 							{
 								name: "ens labs",
-								logo: "/assets/logos/logo-enslabs.svg",
+								logo: getAssetPath("/assets/logos/logo-enslabs.svg"),
 								logoClass: "h-4 w-[23px]",
 							},
 							{
 								name: "freckle",
-								logo: "/assets/logos/logo-freckle.svg",
+								logo: getAssetPath("/assets/logos/logo-freckle.svg"),
 								logoClass: "h-4 w-[13px]",
 							},
 							{
 								name: "Fortanix",
-								logo: "/assets/logos/logo-fortanix.svg",
+								logo: getAssetPath("/assets/logos/logo-fortanix.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "Gale",
-								logo: "/assets/logos/logo-gale.png",
+								logo: getAssetPath("/assets/logos/logo-gale.png"),
 								logoClass: "h-5 w-5 object-contain",
 							},
 							{
 								name: "GlobeCommerce",
-								logo: "/assets/logos/logo-globecommerce.png",
+								logo: getAssetPath("/assets/logos/logo-globecommerce.png"),
 								logoClass: "h-5 w-5 object-cover",
 							},
 							{
 								name: "Ping Identity",
-								logo: "/assets/logos/logo-pingidentity.svg",
+								logo: getAssetPath("/assets/logos/logo-pingidentity.svg"),
 								logoClass: "h-5 w-5",
 							},
 							{
 								name: "IYK",
-								logo: "/assets/logos/logo-iyk.png",
+								logo: getAssetPath("/assets/logos/logo-iyk.png"),
 								logoClass: "h-[11px] w-[28px] object-cover",
 							},
 							{
 								name: "inRev",
-								logo: "/assets/logos/logo-inrev.svg",
+								logo: getAssetPath("/assets/logos/logo-inrev.svg"),
 								logoClass: "h-4 w-[16px]",
 							},
 						].map((company, index) => (

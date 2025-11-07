@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { getAssetPath } from "../../utils/assetPath";
 
 export function PlaygroundSection() {
 	const [hasStarted, setHasStarted] = useState(false);
@@ -56,8 +57,8 @@ export function PlaygroundSection() {
 							<video
 								ref={videoRef}
 								className="absolute inset-0 h-full w-full cursor-pointer"
-								src="/videos/effect-playground.mp4"
-								poster="/assets/images/effect-playground-banner.png"
+								src={getAssetPath("/videos/effect-playground.mp4")}
+								poster={getAssetPath("/assets/images/effect-playground-banner.png")}
 								controls={hasStarted}
 								preload="metadata"
 								aria-label="Effect Playground demonstration video showing TypeScript development environment with real-time trace viewer"
