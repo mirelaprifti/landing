@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getAssetPath } from "../../utils/assetPath";
 
 const HERO_COMMANDS: Record<string, string> = {
 	npm: "npm install effect",
@@ -88,7 +89,7 @@ export function HeroSection() {
 													}`}
 												>
 													<img
-														src={`/assets/logos/${pm === "npm" ? "npm-brands-solid-full" : pm === "pnpm" ? "pnpm-logo" : pm === "yarn" ? "yarn-logo" : pm === "bun" ? "bun-logo-box" : "deno-logo-box"}.svg`}
+														src={getAssetPath(`/assets/logos/${pm === "npm" ? "npm-brands-solid-full" : pm === "pnpm" ? "pnpm-logo" : pm === "yarn" ? "yarn-logo" : pm === "bun" ? "bun-logo-box" : "deno-logo-box"}.svg`)}
 														alt={pm}
 														className="h-5 w-auto"
 													/>

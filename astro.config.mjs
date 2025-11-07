@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
 	site: "https://mirelaprifti.github.io",
-	base: process.env.NODE_ENV === "production" ? "/landing" : "/",
+	base: import.meta.env.PROD ? "/landing" : "/",
 	output: "static",
 	integrations: [
 		react({

@@ -1,3 +1,5 @@
+import { getAssetPath } from "../../utils/assetPath";
+
 export function Footer() {
 	return (
 		<footer className="relative w-full px-4 pt-20 md:px-8 md:pt-32">
@@ -242,7 +244,7 @@ export function Footer() {
 						{/* Social Icons and Branding Row */}
 						<div className="flex flex-col items-center justify-between gap-12 md:flex-row">
 							<img
-								src="/assets/logos/effect-logo-white.svg"
+								src={getAssetPath("/assets/logos/effect-logo-white.svg")}
 								alt="Effect"
 								className="h-10 md:h-8"
 							/>

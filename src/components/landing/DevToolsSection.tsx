@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { getAssetPath } from "../../utils/assetPath";
 
 export function DevToolsSection() {
 	const [activeTab, setActiveTab] = useState("diagnostics");
@@ -8,25 +9,25 @@ export function DevToolsSection() {
 		{
 			id: "diagnostics",
 			label: "diagnostics",
-			video: "/videos/diagnostics.mp4",
+			video: getAssetPath("/videos/diagnostics.mp4"),
 			description: "Catch floating Effects, layers, anti-patterns, and misconfigurations as you code.",
 		},
 		{
 			id: "refactors",
 			label: "refactors",
-			video: "/videos/refactors.mp4",
+			video: getAssetPath("/videos/refactors.mp4"),
 			description: "Convert async code to Effect, generate tagged errors, compose complex layers automatically.",
 		},
 		{
 			id: "visual-devtools",
 			label: "visual devtools",
-			video: "/videos/visuals.mp4",
+			video: getAssetPath("/videos/visuals.mp4"),
 			description: "Inspect fiber contexts, visualize span stacks, monitor metrics in real-time. All built-in.",
 		},
 		{
 			id: "editor-extensions",
 			label: "editor extensions",
-			video: "/videos/extension.mp4",
+			video: getAssetPath("/videos/extension.mp4"),
 			description: "Explore layer composition graphs and watch telemetry spans live as they happen.",
 		},
 	];
