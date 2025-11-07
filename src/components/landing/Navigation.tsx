@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { getAssetPath } from "../../utils/assetPath";
 
 export function Navigation() {
 	useEffect(() => {
@@ -79,7 +80,7 @@ export function Navigation() {
 						<nav className="flex h-20 items-center">
 							<a href="/" className="flex items-center">
 								<img
-									src="/assets/logos/effect-logo-white.svg"
+									src={getAssetPath("/assets/logos/effect-logo-white.svg")}
 									alt="Effect"
 									className="h-[2rem] w-auto"
 								/>
