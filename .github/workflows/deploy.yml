@@ -30,7 +30,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build with Astro
-        run: NODE_ENV=production bun run build
+        run: bun run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
