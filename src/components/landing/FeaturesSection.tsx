@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ComplexityChart } from "./ComplexityChart";
+import { getAssetPath } from "../../utils/assetPath";
 
 const FEATURES = [
 	{ id: "dependency-injection", label: "Dependency injection" },
@@ -92,7 +93,7 @@ export function FeaturesSection() {
 									</div>
 									{index < PROBLEMS.length - 1 && (
 										<img
-											src="/assets/deco-line-alert.svg"
+											src={getAssetPath("/assets/deco-line-alert.svg")}
 											alt=""
 											role="presentation"
 											aria-hidden="true"

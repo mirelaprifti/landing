@@ -1,24 +1,25 @@
 import { Button } from "@/components/ui/Button";
+import { getAssetPath } from "../../utils/assetPath";
 
 export function AISection() {
 	const features = [
 		{
-			icon: "/assets/icons/ai-icon-fork.svg",
+			icon: getAssetPath("/assets/icons/ai-icon-fork.svg"),
 			title: "Fork & cancel",
 			description: "tool calls or model chains",
 		},
 		{
-			icon: "/assets/icons/ai-icon-retry.svg",
+			icon: getAssetPath("/assets/icons/ai-icon-retry.svg"),
 			title: "Retry & fallback",
 			description: "with typed error handling",
 		},
 		{
-			icon: "/assets/icons/ai-icon-inject.svg",
+			icon: getAssetPath("/assets/icons/ai-icon-inject.svg"),
 			title: "Inject & swap",
 			description: "models or APIs for testing",
 		},
 		{
-			icon: "/assets/icons/ai-icon-tracing.svg",
+			icon: getAssetPath("/assets/icons/ai-icon-tracing.svg"),
 			title: "Automatic tracing,",
 			description: "no boilerplate",
 		},
@@ -27,7 +28,7 @@ export function AISection() {
 	const caseStudies = [
 		{
 			href: "https://youtu.be/x2bUuOZ-htU",
-			logo: "/assets/logos/masterclass.svg",
+			logo: getAssetPath("/assets/logos/masterclass.svg"),
 			logoAlt: "MasterClass",
 			logoHeight: "h-5",
 			title: "Building a Voice AI Orchestration Layer",
@@ -37,7 +38,7 @@ export function AISection() {
 		},
 		{
 			href: "https://youtu.be/8lz9-0y58Jc",
-			logo: "/assets/logos/14-ai.svg",
+			logo: getAssetPath("/assets/logos/14-ai.svg"),
 			logoAlt: "14.ai",
 			logoHeight: "h-7",
 			title: "Building Guardrails for LLMs at Scale",
@@ -133,7 +134,7 @@ export function AISection() {
 									>
 										<div className="flex items-center gap-4">
 											<img
-												src="/assets/logos/effect-logo-white.svg"
+												src={getAssetPath("/assets/logos/effect-logo-white.svg")}
 												alt="Effect"
 												className="h-7"
 											/>
