@@ -99,7 +99,7 @@ export function DevToolsSection() {
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 				}}
 			/>
-			<div className="mx-auto w-full max-w-[80rem]">
+			<div className="mx-auto w-full max-w-[66.5rem]">
 				{/* Heading */}
 				<div className="mb-6 flex items-center justify-between">
 					<h3 className="text-2xl font-bold leading-tight text-white">
@@ -109,9 +109,9 @@ export function DevToolsSection() {
 				</div>
 
 				{/* Divider line */}
-				<div className="mb-8 h-[1px] w-full bg-zinc-800" />
+				<div className="mb-4 h-[1px] w-full bg-zinc-800" />
 
-				<div className="flex flex-col-reverse items-start gap-8 lg:flex-row lg:gap-8 lg:items-stretch">
+				<div className="flex flex-col items-start gap-8 lg:flex-row lg:gap-4 lg:items-stretch">
 					{/* Left: Tab Buttons */}
 					<div className="relative flex items-stretch lg:w-1/3">
 						{/* Tab Buttons */}

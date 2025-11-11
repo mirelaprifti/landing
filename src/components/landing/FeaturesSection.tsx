@@ -41,7 +41,7 @@ export function FeaturesSection() {
 			<div className="relative left-0 right-0 h-[1px] bg-zinc-700"></div>
 
 			{/* Content Container */}
-			<div className="relative pb-16 pt-16 md:pt-24">
+			<div className="relative pb-16 pt-16 md:pt-20">
 				{/* [hidden] Top Row: Chart + Missing Standard Library */}
 				<div className="relative mb-16 grid w-full grid-cols-1 gap-12 px-4 md:mb-24 md:gap-16 md:px-8 lg:mx-auto lg:max-w-[66.5rem] lg:grid-cols-10 hidden">
 					{/* Left: Chart */}
@@ -106,7 +106,7 @@ export function FeaturesSection() {
 					</div>
 				</div>
 
-				{/* Dashed separator line */}
+				{/* Hidden - Dashed separator line */}
 				<div
 					className="h-[1px] w-full hidden"
 					style={{
@@ -118,50 +118,24 @@ export function FeaturesSection() {
 				></div>
 
 				{/* Enterprise Grade */}
-				<div className="relative mx-auto flex max-w-[66.5rem] flex-col gap-10 px-4 md:px-8">
-					{/* Left: Content */}
-					<div className="relative my-16 w-full md:my-0 flex flex-col items-center text-center">
-						<h3 className="mb-4 text-3xl font-bold leading-normal text-white">
+				<div className="relative mx-auto flex max-w-[66.5rem] flex-col gap-12 md:gap-12 px-4 md:px-8">
+					{/* Top: Content */}
+					<div className="relative w-full md:my-0 flex flex-col items-center text-center">
+						<h3 className="text-3xl font-bold leading-normal text-white">
 							Enterprise-grade from day one!
 						</h3>
 					</div>
 
-					{/* Right: Enterprise Grade Box */}
+					{/* Bottom: Enterprise Grade Box */}
 					<div
 						className="relative flex w-full items-center justify-center"
 						data-enterprise-section
 					>
-						<div className="items-left mb-0 mt-8 flex w-full flex-col md:mt-0 md:items-center">
-							{/* Shared SVG gradient definition for all enterprise icons */}
-							<svg
-								width="0"
-								height="0"
-								style={{ position: "absolute" }}
-								role="presentation"
-							>
-								<defs>
-									<linearGradient
-										id="enterpriseIconGradient"
-										x1="0%"
-										y1="0%"
-										x2="0%"
-										y2="100%"
-									>
-										<stop
-											offset="0%"
-											style={{ stopColor: "#86efac", stopOpacity: 1 }}
-										/>
-										<stop
-											offset="100%"
-											style={{ stopColor: "#4d8963", stopOpacity: 1 }}
-										/>
-									</linearGradient>
-								</defs>
-							</svg>
+						<div className="items-left flex w-full flex-col md:items-center">
 							<div
-								className="animated-gradient-border relative w-full rounded-xl px-4 py-5 lg:px-12 lg:pt-12 lg:pb-16 overflow-hidden"
+								className="relative w-full rounded-lg border border-zinc-700 px-3 py-4 lg:px-6 lg:py-6 overflow-hidden"
 							>
-								<div className="mb-0 flex flex-wrap justify-center gap-2">
+								<div className="mb-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
 									{[
 										{
 											href: "https://effect.website/docs/context-management/services/",
@@ -250,7 +224,7 @@ export function FeaturesSection() {
 										},
 										{
 											href: "#",
-											icon: "ri-arrow-right-up-line",
+											icon: "ri-arrow-right-line",
 											text: "Config parsing",
 										},
 									].map((item, index) => (
@@ -261,9 +235,9 @@ export function FeaturesSection() {
 											{...(item.href.startsWith("http")
 												? { target: "_blank", rel: "noopener noreferrer" }
 												: {})}
-											className="flex items-center justify-center gap-[6px] rounded-lg border border-zinc-600 bg-zinc-950 px-4 py-3 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
+											className="flex w-full items-center justify-between gap-[6px] rounded-lg border border-zinc-600 bg-zinc-950 px-4 py-3 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
 										>
-											<span className="leading-none">{item.text}</span>
+											<span className="leading-tight">{item.text}</span>
 											<i
 												className={`${item.icon} text-base text-white`}
 											></i>

@@ -66,7 +66,7 @@ export function CTASection() {
 						/>
 
 						{/* CTA Links Container */}
-						<div className="flex w-full flex-col items-stretch justify-center gap-5 px-8 md:flex-row md:items-center">
+						<div className="flex w-full flex-col justify-center gap-5 px-8 items-center md:flex-row">
 							{/* Link 1: What are you building? */}
 							<Button
 								href="https://forms.gle/BHtNKorGC4ERA5o38"
