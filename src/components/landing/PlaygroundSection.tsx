@@ -49,10 +49,10 @@ export function PlaygroundSection() {
 				}}
 			/>
 			{/* Two Column Layout Container */}
-			<div className="mx-auto w-full max-w-[80rem]">
-				<div className="flex flex-col gap-8 md:flex-row md:gap-24">
+			<div className="mx-auto w-full max-w-[66.5rem]">
+				<div className="flex flex-col gap-8 lg:flex-row md:gap-20 lg:gap-8">
 					{/* Left Column: Video */}
-					<div className="flex w-full items-center md:max-w-[48rem]">
+					<div className="flex w-full items-center md:max-w-[40rem]">
 						<div className="relative w-full overflow-hidden rounded-lg border border-zinc-700" style={{ paddingBottom: "56.25%" }}>
 							<video
 								ref={videoRef}
@@ -85,7 +85,7 @@ export function PlaygroundSection() {
 					</div>
 
 					{/* Right Column: Text Content */}
-					<div className="flex w-full flex-col gap-8 md:w-1/3">
+					<div className="flex w-full flex-col gap-8 lg:w-1/3">
 						<h3 className="text-2xl font-bold leading-[1.25] text-white">
 							Run Effect code in the Effect Playground
 						</h3>

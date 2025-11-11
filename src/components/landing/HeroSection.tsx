@@ -68,8 +68,8 @@ export function HeroSection() {
 						{/* Package Manager Tabs */}
 						<div className="mx-auto max-w-[40rem]">
 							{/* Tabs Container with gradient border */}
-							<div className="relative rounded-[16px] bg-gradient-to-b from-zinc-700 to-zinc-900 p-[1px]">
-								<div className="overflow-hidden rounded-[16px] bg-[#18181b]">
+							<div className="relative rounded-[12px] bg-gradient-to-b from-zinc-700 to-zinc-900 p-[1px]">
+								<div className="overflow-hidden rounded-[12px] bg-[#18181b]">
 									{/* Tab Headers */}
 									<div className="scrollbar-hide flex overflow-x-auto border-b border-zinc-950">
 										{(["npm", "pnpm", "yarn", "bun", "deno"] as const).map(

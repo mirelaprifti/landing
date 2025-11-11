@@ -36,7 +36,7 @@ export function VisualEffectShowcaseSection() {
 	);
 
 	return (
-		<section className="relative w-full overflow-hidden pt-20 md:pt-32 pb:20 md:pb-24">
+		<section className="relative w-full overflow-hidden pt-20 md:pt-32 pb-20 md:pb-24">
 			{/* Top gradient border */}
 			<div
 				className="absolute left-0 right-0 top-0 h-[2px]"
@@ -94,9 +94,9 @@ export function VisualEffectShowcaseSection() {
 										className={`visual-effect-tab relative flex flex-1 items-center justify-center whitespace-nowrap px-4 py-5 font-mono text-base transition-all ${
 											isActive
 												? "active font-bold text-white"
-												: "font-medium text-zinc-200 opacity-75"
+												: "font-medium text-zinc-300"
 										}`}
-										style={{ minWidth: "150px" }}
+										style={{ minWidth: "20%" }}
 									>
 										{tab.label}
 									</button>
@@ -107,7 +107,7 @@ export function VisualEffectShowcaseSection() {
 
 					{/* Interactive Component */}
 					{activeMetadata && ActiveComponent && (
-						<div className="w-full overflow-hidden rounded-2xl  border-solid border-zinc-800/50 bg-zinc-900/70">
+						<div className="w-full overflow-hidden rounded-2xl  border-solid border-zinc-950 bg-zinc-900">
 							<ActiveComponent
 								metadata={activeMetadata}
 								exampleId={activeMetadata.id}
