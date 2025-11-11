@@ -92,7 +92,7 @@ export function Navigation() {
 										href="https://effect.website/docs/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-base font-medium text-zinc-400 transition-colors hover:text-white"
+										className="text-base text-zinc-400 transition-colors hover:text-white"
 									>
 										Docs
 									</a>
@@ -100,7 +100,7 @@ export function Navigation() {
 										href="https://effect.website/blog/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-base font-medium text-zinc-400 transition-colors hover:text-white"
+										className="text-base text-zinc-400 transition-colors hover:text-white"
 									>
 										Blog
 									</a>
@@ -108,7 +108,7 @@ export function Navigation() {
 										href="https://effect.website/podcast/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-base font-medium text-zinc-400 transition-colors hover:text-white"
+										className="text-base text-zinc-400 transition-colors hover:text-white"
 									>
 										Podcast
 									</a>
@@ -116,7 +116,7 @@ export function Navigation() {
 										href="https://effect.website/play/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-base font-medium text-zinc-400 transition-colors hover:text-white"
+										className="text-base text-zinc-400 transition-colors hover:text-white"
 									>
 										Play
 									</a>

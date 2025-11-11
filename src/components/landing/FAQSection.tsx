@@ -152,7 +152,7 @@ export function FAQSection() {
 	return (
 		<section className="relative w-full px-4 py-20 md:px-8 md:py-32">
 			<div className="mx-auto w-full max-w-[80rem]">
-				<div className="flex flex-col gap-8 lg:flex-row lg:gap-32">
+				<div className="flex flex-col gap-16 lg:flex-row lg:gap-32">
 					{/* Left column - Heading */}
 					<div className="lg:w-1/3">
 						<h2 className="text-3xl font-bold leading-tight text-white">
