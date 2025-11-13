@@ -30,7 +30,7 @@ export function LandingPage() {
 				<div
 					className="absolute left-0 top-[5rem] hidden lg:block"
 					style={{
-						width: "calc(max((100vw - 80rem) / 2, 80px))",
+						width: "calc(max((100vw - 80rem) / 2, 40px))",
 						height: "1px",
 						background: "linear-gradient(to right, #3f3f46 0%, #09090b 100%)",
 						WebkitMask:
@@ -41,7 +41,7 @@ export function LandingPage() {
 				<div
 					className="absolute right-0 top-[5rem] hidden lg:block"
 					style={{
-						width: "calc(max((100vw - 80rem) / 2, 80px))",
+						width: "calc(max((100vw - 80rem) / 2, 40px))",
 						height: "1px",
 						background: "linear-gradient(to left, #3f3f46 0%, #09090b 100%)",
 						WebkitMask:

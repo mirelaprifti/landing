@@ -262,7 +262,6 @@ a:focus-visible {
 
 .visual-effect-tab.active {
 	background: rgba(255, 255, 255, 0.06);
-	border-bottom: 1px solid white;
 	opacity: 1 !important;
 	color: white !important;
 }
