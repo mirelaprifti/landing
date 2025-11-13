@@ -9,16 +9,16 @@ export function TestimonialsSection() {
 			alt: "Zendesk",
 		},
 		{
-			logo: getAssetPath("/assets/logos/expand-ai.svg"),
-			title: "Effect for AI Agents",
-			href: "#",
-			alt: "expand ai",
-		},
-		{
 			logo: getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
 			title: "Effect for Infra",
 			href: "https://youtu.be/VZpr91dU03c",
 			alt: "Vercel",
+		},
+		{
+			logo: getAssetPath("/assets/logos/expand-ai.svg"),
+			title: "Effect for AI Agents",
+			href: "#",
+			alt: "Expand Internal Tooling",
 		},
 		{
 			logo: getAssetPath("/assets/logos/spiko-logo.svg"),
@@ -26,10 +26,22 @@ export function TestimonialsSection() {
 			href: "https://youtu.be/lFOHVZnJLew",
 			alt: "Spiko",
 		},
+		{
+			logo: getAssetPath("/assets/logos/open-router.svg"),
+			title: "Effect for AI",
+			href: "#",
+			alt: "OpenRouter",
+		},
+		{
+			logo: getAssetPath("/assets/logos/warp-logo-white.svg"),
+			title: "Effect for DevTools",
+			href: "#",
+			alt: "Warp",
+		},
 	];
 
 	return (
-		<section className="relative overflow-hidden px-4 py-16 md:px-8 md:py-24 lg:py-28">
+		<section className="relative overflow-hidden py-16 md:py-20 lg:pt-24 lg:pb-20">
 			{/* Background Pattern */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -40,37 +52,41 @@ export function TestimonialsSection() {
 					backgroundPosition: "center bottom",
 					backgroundRepeat: "no-repeat",
 					WebkitMaskImage:
-						"linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1))",
+						"linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1))",
 					maskImage:
-						"linear-gradient(to bottom, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 1))",
+						"linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1))",
 				}}
 			/>
 
 			{/* Main Content Container */}
-			<div className="relative mx-auto w-full max-w-[1280px]">
+			<div className="relative mx-auto w-full">
 				{/* Heading */}
 				<h2 className="mb-12 text-center text-3xl font-bold leading-tight text-white md:mb-16">
 					Designed for real-world complexity
 				</h2>
 
 				{/* 4 Use Case Cards with Decorative Line */}
-				<div className="relative mb-24 w-full">
+				<div className="relative mb-20 w-full mx-auto max-w-[66.5rem]">
 					{/* Decorative Lines (behind cards at text level) */}
-					<img
-						src={getAssetPath("/assets/deco-central-line.svg")}
-						alt=""
-						className="pointer-events-none absolute bottom-[40px] left-1/2 z-0 hidden h-[1px] w-full max-w-[1280px] -translate-x-1/2 lg:block"
+					<div
+						className="pointer-events-none absolute bottom-[48px] left-0 z-0 hidden h-[1px] w-full lg:block"
+						style={{
+							background: "#27272a",
+							WebkitMask:
+								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+						}}
 					/>
 
 					{/* Left dashed line */}
 					<div
-						className="pointer-events-none absolute bottom-[40px] z-0 hidden lg:block"
+						className="pointer-events-none absolute z-0 hidden bottom-[48px]"
 						style={{
 							right: "100%",
-							width: "calc((100vw - 1280px) / 2)",
+							width: "calc((100vw - 66.5rem) / 2)",
 							minWidth: "80px",
 							height: "1px",
-							background: "#3f3f46",
+							background: "#27272a",
 							WebkitMask:
 								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
@@ -79,13 +95,43 @@ export function TestimonialsSection() {
 
 					{/* Right dashed line */}
 					<div
-						className="pointer-events-none absolute bottom-[40px] z-0 hidden lg:block"
+						className="pointer-events-none absolute z-0 hidden bottom-[48px]"
 						style={{
 							left: "100%",
-							width: "calc((100vw - 1280px) / 2)",
+							width: "calc((100vw - 66.5rem) / 2)",
 							minWidth: "80px",
 							height: "1px",
-							background: "#3f3f46",
+							background: "#27272a",
+							WebkitMask:
+								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
+
+					{/* Left dashed line - Top */}
+					<div
+						className="pointer-events-none absolute z-0 hidden top-[160px]"
+						style={{
+							right: "100%",
+							width: "calc((100vw - 66.5rem) / 2)",
+							minWidth: "80px",
+							height: "1px",
+							background: "#27272a",
+							WebkitMask:
+								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
+
+					{/* Right dashed line - Top */}
+					<div
+						className="pointer-events-none absolute z-0 hidden top-[160px]"
+						style={{
+							left: "100%",
+							width: "calc((100vw - 66.5rem) / 2)",
+							minWidth: "80px",
+							height: "1px",
+							background: "#27272a",
 							WebkitMask:
 								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
@@ -93,41 +139,70 @@ export function TestimonialsSection() {
 					/>
 
 					{/* Cards Container */}
-					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-4">
-						{useCases.map((useCase, index) => (
-							<div
+					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-0 min-[480px]:grid-cols-2 lg:grid-cols-3">
+						{useCases.map((useCase, index) => {
+							const isLastInRow = (index + 1) % 3 === 0 || index === useCases.length - 1;
+							const isLastRow = index >= useCases.length - 3;
+
+							return (
+							<a
 								key={index}
-								className="group h-[229px] w-full rounded-lg p-[1px] transition-all hover:-translate-y-1"
+								href={useCase.href}
+								{...(useCase.href.startsWith("http")
+									? { target: "_blank", rel: "noopener noreferrer" }
+									: {})}
+								className={`group relative block h-[208px] w-full overflow-hidden border-t border-l border-zinc-800 transition-all ${
+									isLastInRow ? "border-r" : ""
+								} ${isLastRow ? "border-b" : ""}`}
 								style={{
-									background: "linear-gradient(to bottom, #09090b, #3f3f46)",
+									borderRadius: "0px",
+									background: "linear-gradient(to bottom, rgba(24, 24, 27, 0.3), #09090b)",
+									backdropFilter: "blur(5px)",
+									WebkitBackdropFilter: "blur(5px)",
+								}}
+								onMouseEnter={(e) => {
+									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(39, 39, 42, 0.6), #18181b)";
+								}}
+								onMouseLeave={(e) => {
+									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(24, 24, 27, 0.3), #09090b)";
 								}}
 							>
-								<a
-									href={useCase.href}
-									{...(useCase.href.startsWith("http")
-										? { target: "_blank", rel: "noopener noreferrer" }
-										: {})}
-									className="relative block h-full w-full overflow-hidden rounded-lg"
-									style={{
-										background: "linear-gradient(to bottom, #19171b, #000)",
-									}}
-								>
 									<div className="relative h-full w-full">
 										<img
 											src={useCase.logo}
 											alt={useCase.alt}
-											className="absolute left-1/2 top-[73px] h-[32px] -translate-x-1/2"
+											className={`absolute left-1/2 -translate-x-1/2 ${
+												useCase.alt === "Warp"
+													? "h-[28px] top-[67px]"
+													: useCase.alt === "OpenRouter"
+													? "h-[32px] top-[64px]"
+													: useCase.alt === "Expand Internal Tooling"
+													? "h-[32px] top-[65px]"
+													: "h-[32px] top-[62px]"
+											}`}
 										/>
-										<div className="absolute bottom-[28px] left-1/2 flex -translate-x-1/2 flex-row items-center justify-center gap-1 whitespace-nowrap">
-											<i className="ri-arrow-right-up-line text-[20px] text-white/88" />
-											<span className="text-lg font-medium tracking-[0.16px] text-white/88 md:text-base">
+										<div className="absolute bottom-0 left-0 right-0 flex flex-col px-2 py-3">
+											{/* Dashed border above text */}
+											<div
+												className="absolute top-0 left-0 right-0 h-[1px]"
+												style={{
+													background: "#27272a",
+													WebkitMask:
+														"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+													mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+												}}
+											/>
+										<div className="flex flex-row items-center justify-center gap-1 whitespace-nowrap">
+											<span className="text-base font-medium tracking-[0.16px] text-white/88 md:text-base">
 												{useCase.title}
 											</span>
+											<i className="ri-arrow-right-up-line text-base text-white/88" />
 										</div>
 									</div>
-								</a>
-							</div>
-						))}
+									</div>
+							</a>
+							);
+						})}
 					</div>
 				</div>
 			</div>

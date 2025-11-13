@@ -37,22 +37,34 @@ export function PlaygroundSection() {
 	};
 
 	return (
-		<div className="relative w-full px-4 pb-16 pt-20 md:px-8 md:pb-24 md:pt-24">
-			{/* Dashed top border */}
+		<div className="relative w-full mx-auto px-4 pb-16 pt-20 md:px-8 md:pb-24 md:pt-24">
+			{/* Solid bottom border */}
 			<div
-				className="absolute left-0 right-0 top-0 h-[1px]"
+				className="absolute left-0 right-0 bottom-0 h-[1px]"
 				style={{
-					background: "#3f3f46",
-					WebkitMask:
-						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+					background: "#27272a",
 				}}
 			/>
 			{/* Two Column Layout Container */}
 			<div className="mx-auto w-full max-w-[66.5rem]">
-				<div className="flex flex-col gap-8 lg:flex-row md:gap-20 lg:gap-8">
+				{/* Heading with Link */}
+				<div className="mb-8 flex w-full items-center justify-between pb-8" style={{ borderBottom: "1px solid #27272a" }}>
+					<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
+						Run Effect code in the Playground
+					</h2>
+					<a
+						href="https://effect.website/play/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
+					>
+						<span>Play</span>
+						<i className="ri-arrow-right-line text-base"></i>
+					</a>
+				</div>
+				<div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
 					{/* Left Column: Video */}
-					<div className="flex w-full items-center md:max-w-[40rem]">
+					<div className="flex w-full items-center lg:w-1/2">
 						<div className="relative w-full overflow-hidden rounded-lg border border-zinc-700" style={{ paddingBottom: "56.25%" }}>
 							<video
 								ref={videoRef}
@@ -85,60 +97,24 @@ export function PlaygroundSection() {
 					</div>
 
 					{/* Right Column: Text Content */}
-					<div className="flex w-full flex-col gap-8 lg:w-1/3">
-						<h3 className="text-2xl font-bold leading-[1.25] text-white">
-							Run Effect code in the Effect Playground
-						</h3>
+					<div className="flex w-full flex-col items-center justify-center gap-8 lg:w-1/2">
+						<div className="grid grid-cols-2 gap-6">
+							<p className="text-base leading-[1.35] text-zinc-300">
+								TypeScript LSP & Node.js support
+							</p>
 
-						<div className="flex flex-col gap-4">
-							<div className="flex flex-row gap-2">
-								<div className="h-5 w-5">
-									<i className="ri-braces-line text-base text-white" />
-								</div>
-								<p className="text-base leading-[1.35] text-zinc-300">
-									TypeScript LSP & Node.js support
-								</p>
-							</div>
+							<p className="text-base leading-[1.35] text-zinc-300">
+								Real-time trace viewer built-in
+							</p>
 
-							<div className="flex flex-row gap-2">
-								<div className="h-5 w-5">
-									<i className="ri-bar-chart-horizontal-line text-base text-white" />
-								</div>
-								<p className="text-base leading-[1.35] text-zinc-300">
-									Real-time trace viewer built-in
-								</p>
-							</div>
+							<p className="text-base leading-[1.35] text-zinc-300">
+								Share & collaborate on Effect programs
+							</p>
 
-							<div className="flex flex-row gap-2">
-								<div className="h-5 w-5">
-									<i className="ri-share-line text-base text-white" />
-								</div>
-								<p className="text-base leading-[1.35] text-zinc-300">
-									Share & collaborate on Effect programs
-								</p>
-							</div>
-
-							<div className="flex flex-row gap-2">
-								<div className="h-5 w-5">
-									<i className="ri-book-open-line text-bas text-white" />
-								</div>
-								<p className="text-base leading-[1.35] text-zinc-300">
-									Built-in examples & templates
-								</p>
-							</div>
+							<p className="text-base leading-[1.35] text-zinc-300">
+								Built-in examples & templates
+							</p>
 						</div>
-
-						<a
-							href="https://effect.website/play/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex w-fit items-center justify-center gap-3 rounded-lg border border-zinc-600 bg-black px-5 py-5 text-lg font-medium text-white transition-colors hover:border-zinc-400"
-						>
-							<span className="flex h-6 w-6 items-center justify-center">
-								<i className="ri-terminal-line text-lg leading-none text-white" />
-							</span>
-							<span>Effect Playground</span>
-						</a>
 					</div>
 				</div>
 			</div>

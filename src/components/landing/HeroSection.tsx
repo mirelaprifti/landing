@@ -31,7 +31,7 @@ export function HeroSection() {
 		<div className="relative mx-auto w-full max-w-7xl px-4 pb-16 md:px-8 md:pb-24">
 			{/* Vertical dashed lines */}
 			<div
-				className="absolute left-0 top-0 hidden w-px lg:block"
+				className="absolute left-0 top-0 hidden w-px lg:block mx-6"
 				style={{
 					height: "100%",
 					background:
@@ -42,7 +42,7 @@ export function HeroSection() {
 				}}
 			></div>
 			<div
-				className="absolute right-0 top-0 hidden w-px lg:block"
+				className="absolute right-0 top-0 hidden w-px lg:block mx-6"
 				style={{
 					height: "100%",
 					background:
@@ -54,7 +54,7 @@ export function HeroSection() {
 			></div>
 
 			{/* Hero Section */}
-			<section className="relative mx-auto w-full pb-12 pt-12 md:pb-24 md:pt-20">
+			<section className="relative mx-auto w-full py-12 md:py-20">
 				<div className="container mx-auto max-w-176">
 					<div className="text-left sm:text-center">
 						<h1 className="leading-tighter mb-8 text-3xl font-bold md:text-5xl">
@@ -68,7 +68,7 @@ export function HeroSection() {
 						{/* Package Manager Tabs */}
 						<div className="mx-auto max-w-[40rem]">
 							{/* Tabs Container with gradient border */}
-							<div className="relative rounded-[12px] bg-gradient-to-b from-zinc-700 to-zinc-900 p-[1px]">
+							<div className="relative rounded-[12px] bg-gradient-to-b from-zinc-700 to-zinc-800 p-[1px]">
 								<div className="overflow-hidden rounded-[12px] bg-[#18181b]">
 									{/* Tab Headers */}
 									<div className="scrollbar-hide flex overflow-x-auto border-b border-zinc-950">
@@ -112,7 +112,7 @@ export function HeroSection() {
 													}
 												}}
 												aria-label={`Copy install command: ${currentCommand}`}
-												className="relative flex cursor-pointer items-center justify-between rounded-[8px] border border-zinc-800 bg-gradient-to-l from-zinc-900 to-zinc-950 px-5 py-5 transition-opacity hover:border-zinc-600 hover:opacity-90 sm:col-span-4"
+												className="relative flex cursor-pointer items-center justify-between rounded-[8px] border border-zinc-700 bg-gradient-to-l from-zinc-900 to-zinc-950 px-5 py-5 transition-opacity hover:border-zinc-600 hover:opacity-90 sm:col-span-4"
 											>
 												<code className="font-mono text-base">
 													<span className="text-[#60A5FA]">{packageName}</span>

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/Button";
 import { getAssetPath } from "../../utils/assetPath";
 
 export function AISection() {
@@ -52,34 +51,38 @@ export function AISection() {
 		<section className="relative w-full overflow-hidden px-4 py-20 md:px-8 md:py-32">
 			{/* Main Content Container */}
 			<div className="w-max-[66.5rem] relative mx-auto flex w-full flex-col items-center gap-12">
-				{/* Heading and Button */}
-				<div className="flex w-full flex-col items-center gap-10 px-4">
-					<h2 className="text-center text-3xl font-bold leading-tight text-white">
-						A safe, testable runtime for AI systems
-					</h2>
-					<Button
-						href="https://effect-ts.github.io/effect/docs/ai/ai"
-						icon="ri-terminal-line"
-						text="@effect/ai package"
-					/>
-				</div>
-
 				{/* Features and Case Studies Container */}
-				<div className="relative mx-auto w-full max-w-[66.5rem]">
+				<div className="relative mx-auto w-full max-w-[66.5rem] px-0">
+					{/* Heading and Button */}
+					<div className="mb-10 flex w-full items-center justify-between">
+						<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
+							A safe, testable runtime for AI systems
+						</h2>
+						<a
+							href="https://effect-ts.github.io/effect/docs/ai/ai"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
+						>
+							<span>@effect/ai package</span>
+							<i className="ri-arrow-right-line text-base"></i>
+						</a>
+					</div>
+
 					{/* Vertical Dashed Lines */}
 					<div
-						className="absolute bottom-0 left-0 hidden h-[360px] w-[1px] lg:block"
+						className="absolute bottom-0 left-0 hidden h-full w-[1px] lg:block"
 						style={{
-							background: "#3f3f46",
+							background: "#09090b",
 							WebkitMask:
 								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
 							mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
 						}}
 					/>
 					<div
-						className="absolute bottom-0 right-0 hidden h-[360px] w-[1px] lg:block"
+						className="absolute bottom-0 right-0 hidden h-full w-[1px] lg:block"
 						style={{
-							background: "#3f3f46",
+							background: "#09090b",
 							WebkitMask:
 								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
 							mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
@@ -87,7 +90,7 @@ export function AISection() {
 					/>
 
 					{/* 4 Feature Cards */}
-					<div className="mx-auto grid max-w-[53rem] grid-cols-2 gap-[20px] lg:grid-cols-4">
+					<div className="mx-auto grid w-full grid-cols-2 gap-4 lg:grid-cols-4">
 						{features.map((feature, index) => (
 							<div key={index} className="dashed-gradient-border relative p-4">
 								<div className="flex flex-col gap-3">
@@ -103,19 +106,16 @@ export function AISection() {
 						))}
 					</div>
 
-					{/* Horizontal Dashed Line Separator */}
+					{/* Horizontal Solid Line Separator */}
 					<div
-						className="mx-auto my-8 h-[1px] w-full max-w-[53rem]"
+						className="mx-auto my-6 h-[1px] w-full"
 						style={{
-							background: "#3f3f46",
-							WebkitMask:
-								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+							background: "#27272a",
 						}}
 					/>
 
 					{/* 2 Case Study Cards */}
-					<div className="mx-auto flex w-full max-w-[53rem] flex-col justify-center gap-5 sm:flex-row">
+					<div className="mx-auto flex w-full flex-col justify-center gap-5 sm:flex-row">
 						{caseStudies.map((study, index) => (
 							<a
 								key={index}
@@ -127,7 +127,7 @@ export function AISection() {
 								<div className="flex flex-col">
 									{/* Top section with gradient and logos */}
 									<div
-										className="relative flex h-24 items-center justify-center"
+										className="relative flex h-28 items-center justify-center"
 										style={{
 											background: `linear-gradient(to bottom, rgba(9, 9, 11, 1), ${study.gradientColor})`,
 										}}

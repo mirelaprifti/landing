@@ -18,6 +18,45 @@ const PROBLEMS = [
 	{ text: "Poor observability", subtext: " or non-existent" },
 ];
 
+const ENTERPRISE_FEATURES = [
+	// Row 1
+	[
+		{ label: "Dependency injection", href: "https://effect.website/docs/context-management/services/" },
+		{ label: "Errors as values", href: "https://effect.website/docs/error-management/two-error-types/" },
+		{ label: "Structured concurrency", href: "https://effect.website/docs/concurrency/basic-concurrency/" },
+	],
+	// Row 2
+	[
+		{ label: "Retry policies", href: "https://effect.website/docs/error-management/retrying/" },
+		{ label: "Observability", href: "https://effect.website/docs/observability/logging/" },
+		{ label: "Schema validation", href: "https://effect.website/docs/schema/introduction/" },
+	],
+	// Row 3
+	[
+		{ label: "Resource management", href: "https://effect.website/docs/resource-management/introduction/" },
+		{ label: "Runtime", href: "https://effect.website/docs/runtime/" },
+		{ label: "Scheduling", href: "https://effect.website/docs/scheduling/introduction/" },
+	],
+	// Row 4
+	[
+		{ label: "Services", href: "https://effect.website/docs/context-management/services/" },
+		{ label: "Layers", href: "https://effect.website/docs/context-management/layers/" },
+		{ label: "States", href: "https://effect.website/docs/state-management/ref/" },
+	],
+	// Row 5
+	[
+		{ label: "Streams", href: "https://effect.website/docs/stream/introduction/" },
+		{ label: "Sinks", href: "https://effect.website/docs/sink/introduction/" },
+		{ label: "Caching", href: "https://effect.website/docs/caching/caching-effects/" },
+	],
+	// Row 6
+	[
+		{ label: "Data types", href: "https://effect.website/docs/data-types/bigdecimal/" },
+		{ label: "TestClock", href: "https://effect.website/docs/testing/test-clock/" },
+		{ label: "Config parsing", href: "#" },
+	],
+];
+
 export function FeaturesSection() {
 	const [activeFeatures, setActiveFeatures] = useState(31); // 31 = 0b11111 (all 5 features active)
 
@@ -146,225 +185,33 @@ export function FeaturesSection() {
 								style={{
 									borderStyle: "dashed",
 									borderWidth: "1px",
-									borderColor: "#3f3f46",
+									borderColor: "#27272a",
 									tableLayout: "fixed",
 								}}
 							>
 								<tbody>
-									<tr>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/context-management/services/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Dependency injection</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/error-management/two-error-types/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Errors as values</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/concurrency/basic-concurrency/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Structured concurrency</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/error-management/retrying/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Retry policies</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/observability/logging/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Observability</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/schema/introduction/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Schema validation</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/resource-management/introduction/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Resource management</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/runtime/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Runtime</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/scheduling/introduction/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Scheduling</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/context-management/services/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Services</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/context-management/layers/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Layers</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/state-management/ref/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">States</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/stream/introduction/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Streams</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/sink/introduction/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Sinks</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/caching/caching-effects/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Caching</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/data-types/bigdecimal/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Data types</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="https://effect.website/docs/testing/test-clock/"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">TestClock</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-										<td style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-											<a
-												href="#"
-												className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-											>
-												<span className="leading-tight">Config parsing</span>
-												<i className="ri-arrow-right-line text-base text-white"></i>
-											</a>
-										</td>
-									</tr>
-							</tbody>
-						</table>
+									{ENTERPRISE_FEATURES.map((row, rowIndex) => (
+										<tr key={rowIndex}>
+											{row.map((cell, cellIndex) => (
+												<td key={cellIndex} style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
+													<a
+														href={cell.href}
+														{...(cell.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+														className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
+													>
+														<span className="leading-tight">{cell.label}</span>
+														<i className="ri-arrow-right-line text-lg text-white"></i>
+													</a>
+												</td>
+											))}
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-		</section>
+	</section>
 	);
 }
