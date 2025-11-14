@@ -48,9 +48,9 @@ export function PlaygroundSection() {
 			{/* Two Column Layout Container */}
 			<div className="mx-auto w-full max-w-[66.5rem]">
 				{/* Heading with Link */}
-				<div className="mb-8 flex w-full items-center justify-between pb-8" style={{ borderBottom: "1px solid #27272a" }}>
+				<div className="mb-6 flex w-full items-center justify-between pb-6" style={{ borderBottom: "1px solid #27272a" }}>
 					<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
-						Run Effect code in the Playground
+						Effect Playground
 					</h2>
 					<a
 						href="https://effect.website/play/"

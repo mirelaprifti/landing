@@ -57,7 +57,7 @@ function TaskContentInner({ state }: { state: EffectState }) {
 						visualDuration: 0.3,
 					}}
 				>
-					<TaskIcon type={state.type} size={64} />
+					<TaskIcon type={state.type} size={56} />
 				</motion.div>
 			);
 
@@ -96,7 +96,7 @@ function TaskContentInner({ state }: { state: EffectState }) {
 					exit={{ scale: 0, filter: "blur(10px)" }}
 					transition={{ type: "spring", bounce: 0.3, visualDuration: 0.3 }}
 				>
-					<TaskIcon type="default" size={64} />
+					<TaskIcon type="default" size={56} />
 				</motion.div>
 			);
 	}
@@ -110,7 +110,7 @@ export function EffectContent({ motionValues, state }: EffectContentProps) {
 		if (state.type === "completed" && contentRef.current) {
 			const actualWidth = contentRef.current.scrollWidth;
 
-			if (actualWidth > 64 - 16) {
+			if (actualWidth > 56 - 16) {
 				motionValues.nodeWidth.set(actualWidth + 24);
 			}
 		}

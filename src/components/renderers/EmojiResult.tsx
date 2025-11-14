@@ -5,7 +5,7 @@ export class EmojiResult implements RenderableResult {
 
 	render() {
 		return (
-			<span key="emoji" className="text-4xl">
+			<span key="emoji" className="text-2xl">
 				{this.emoji}
 			</span>
 		);

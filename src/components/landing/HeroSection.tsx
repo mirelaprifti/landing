@@ -55,14 +55,14 @@ export function HeroSection() {
 
 			{/* Hero Section */}
 			<section className="relative mx-auto w-full py-12 md:py-20">
-				<div className="container mx-auto max-w-176">
+				<div className="container mx-auto max-w-[680px]">
 					<div className="text-left sm:text-center">
 						<h1 className="leading-tighter mb-8 text-3xl font-bold md:text-5xl">
-							Build production-grade software in TypeScript
+							React-level structure to backend TypeScript
 						</h1>
 						<p className="leading:tight mx-auto mb-10 max-w-3xl text-lg text-zinc-400 md:text-xl md:leading-normal">
-							Effect is an open-source ecosystem for building scalable and
-							reliable applications. AI, Infra, and beyond.
+							Effect is a type-safe language and runtime for building reliable, concurrent, and
+							observable systems. 
 						</p>
 
 						{/* Package Manager Tabs */}

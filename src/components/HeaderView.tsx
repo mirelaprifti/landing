@@ -164,7 +164,7 @@ function HeaderViewComponent({
 						exit={{ scale: 0, rotate: 180, filter: "blur(10px)" }}
 						transition={{ type: "spring", stiffness: 300, damping: 20 }}
 					>
-						<PlayIcon size={24} weight="fill" />
+						<PlayIcon size={20} weight="fill" />
 					</motion.div>
 				);
 			}
@@ -226,7 +226,7 @@ function HeaderViewComponent({
 			animate={{
 				borderColor: "rgba(255, 255, 255, 0)",
 			}}
-			className="flex  items-center gap-4 cursor-pointer rounded-lg p-3 -m-3 px-4 -mx-4"
+			className="flex items-start gap-3 cursor-pointer rounded-lg p-3 -m-3 px-4 -mx-4"
 		>
 			<motion.div
 				animate={{
@@ -312,8 +312,8 @@ function HeaderViewComponent({
 				)}
 			</motion.div>
 
-			<div className="flex-1 flex flex-col">
-				<h2 className="text-xl font-semibold text-white flex items-baseline gap-2">
+			<div className="flex-1 flex flex-col gap-1">
+				<h2 className="text-base font-mono font-semibold text-white flex items-baseline gap-2">
 					<span>{name}</span>
 					{/* <span className="text-neutral-500"> */}
 					{/* <CaretDoubleRightIcon size={16} weight="bold" /> */}
@@ -323,7 +323,7 @@ function HeaderViewComponent({
 					)}
 				</h2>
 				{description && (
-					<p className="text-sm text-neutral-400">{description}</p>
+					<p className="text-sm text-neutral-400 leading-4">{description}</p>
 				)}
 			</div>
 		</motion.div>

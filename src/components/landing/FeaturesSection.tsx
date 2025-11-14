@@ -80,7 +80,7 @@ export function FeaturesSection() {
 			<div className="relative left-0 right-0 h-[1px] bg-zinc-700"></div>
 
 			{/* Content Container */}
-			<div className="relative pb-16 pt-16 md:pt-20">
+			<div className="relative pb-16 pt-16 md:pt-24">
 				{/* [hidden] Top Row: Chart + Missing Standard Library */}
 				<div className="relative mb-16 grid w-full grid-cols-1 gap-12 px-4 md:mb-24 md:gap-16 md:px-8 lg:mx-auto lg:max-w-[66.5rem] lg:grid-cols-10 hidden">
 					{/* Left: Chart */}
@@ -151,8 +151,8 @@ export function FeaturesSection() {
 					style={{
 						background: "#3f3f46",
 						WebkitMask:
-							"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+							"repeating-linear-gradient(to right, black 0px, black 1px, transparent 1px, transparent 1px)",
+						mask: "repeating-linear-gradient(to right, black 0px, black 1px, transparent 1px, transparent 1px)",
 					}}
 				></div>
 
@@ -165,50 +165,54 @@ export function FeaturesSection() {
 					>
 						<div className="flex w-full flex-col items-start md:items-center">
 							{/* Heading with Learn Effect link */}
-							<div className="mb-8 flex w-full items-center justify-between">
+							<div className="mb-6 flex w-full items-start justify-between">
 								<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
-									Enterprise-grade from day one!
+									Primitives for production
 								</h2>
 								<a
 									href="https://effect.website/docs/introduction"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
+									className="mt-[6px] flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
 								>
 									<span>Learn Effect</span>
 									<i className="ri-arrow-right-line text-base"></i>
 								</a>
 							</div>
 
-							<table
-								className="relative w-full border-collapse"
-								style={{
-									borderStyle: "dashed",
-									borderWidth: "1px",
-									borderColor: "#27272a",
-									tableLayout: "fixed",
-								}}
-							>
-								<tbody>
-									{ENTERPRISE_FEATURES.map((row, rowIndex) => (
-										<tr key={rowIndex}>
-											{row.map((cell, cellIndex) => (
-												<td key={cellIndex} style={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#3f3f46" }}>
-													<a
-														href={cell.href}
-														{...(cell.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-														className="flex w-full items-center justify-between gap-[6px] bg-zinc-950 px-6 py-5 font-mono text-base uppercase tracking-[0.02em] text-white transition-colors hover:bg-zinc-900/50"
-													>
-														<span className="leading-tight">{cell.label}</span>
-														<i className="ri-arrow-right-line text-lg text-white"></i>
-													</a>
-												</td>
-											))}
-										</tr>
-									))}
-								</tbody>
-							</table>
+							<div className="w-full border border-zinc-800 rounded-xl overflow-hidden p-5">
+								<div
+									className="grid grid-cols-3 gap-x-5"
+									style={{
+										borderTop: "1px solid rgba(63, 63, 70, 0.5)",
+										borderBottom: "1px solid rgba(63, 63, 70, 0.5)",
+										background: "linear-gradient(to bottom, #09090b, #09090b)"
+									}}
+								>
+									{ENTERPRISE_FEATURES.flat().map((cell, index) => {
+										const rowIndex = Math.floor(index / 3);
+										const isLastInColumn = rowIndex === ENTERPRISE_FEATURES.length - 1;
+										return (
+											<div
+												key={index}
+												style={{
+													borderBottom: !isLastInColumn ? "1px solid rgba(63, 63, 70, 0.5)" : "none",
+												}}
+											>
+												<a
+													href={cell.href}
+													{...(cell.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+													className="flex w-full items-center justify-between gap-[6px] px-6 py-6 font-mono text-base tracking-[0.02em] text-zinc-200 transition-colors hover:bg-zinc-800/70"
+												>
+													<span className="leading-tight">{cell.label}</span>
+													<i className="ri-arrow-right-line text-base text-zinc-400/80"></i>
+												</a>
+											</div>
+										);
+									})}
+								</div>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
