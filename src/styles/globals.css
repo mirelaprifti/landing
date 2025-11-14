@@ -351,3 +351,11 @@ a:focus-visible {
 		linear-gradient(to bottom, #71717a, #3f3f46, #09090b) border-box;
 	border: 1px solid transparent;
 }
+
+/* Gradient text for icons */
+.gradient-icon {
+	background: linear-gradient(to bottom, #27272a, #d4d4d8);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

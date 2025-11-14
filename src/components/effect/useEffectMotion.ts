@@ -71,7 +71,7 @@ export function useEffectMotion(): EffectMotionValues {
 	const flashOpacity = useMotionValue(0);
 	const flashColor = useMotionValue<string>(colors.flash);
 	const borderRadius = useSpring(theme.radius.md, springs.default);
-	const nodeHeight = useMotionValue(64);
+	const nodeHeight = useMotionValue(56);
 	const rotation = useMotionValue(0);
 	const shakeX = useMotionValue(0);
 	const shakeY = useMotionValue(0);
@@ -250,7 +250,7 @@ export function useStateAnimations(
 
 	// Height
 	useEffect(() => {
-		animate(motionValues.nodeHeight, isRunning ? 64 * 0.4 : 64, {
+		animate(motionValues.nodeHeight, isRunning ? 56 * 0.4 : 56, {
 			duration: 0.4,
 			bounce: isRunning ? 0.3 : 0.5,
 			type: "spring",
@@ -262,7 +262,7 @@ export function useStateAnimations(
 		const hasResult = state.type === "completed";
 
 		if (!hasResult) {
-			motionValues.nodeWidth.set(64); // if you want this animated, swap to animate(...)
+			motionValues.nodeWidth.set(56); // if you want this animated, swap to animate(...)
 		}
 
 		motionValues.contentOpacity.set(

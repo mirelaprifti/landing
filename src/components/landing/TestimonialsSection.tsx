@@ -4,44 +4,44 @@ export function TestimonialsSection() {
 	const useCases = [
 		{
 			logo: getAssetPath("/assets/logos/zendesk-logo.svg"),
-			title: "Effect for Backend",
+			title: "Backend",
 			href: "https://youtu.be/rNAqPHBQFEQ",
 			alt: "Zendesk",
 		},
 		{
 			logo: getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
-			title: "Effect for Infra",
+			title: "Infrastructure",
 			href: "https://youtu.be/VZpr91dU03c",
 			alt: "Vercel",
 		},
 		{
 			logo: getAssetPath("/assets/logos/expand-ai.svg"),
-			title: "Effect for AI Agents",
+			title: "AI Agents",
 			href: "#",
 			alt: "Expand Internal Tooling",
 		},
 		{
 			logo: getAssetPath("/assets/logos/spiko-logo.svg"),
-			title: "Effect for Fintech",
+			title: "Fintech",
 			href: "https://youtu.be/lFOHVZnJLew",
 			alt: "Spiko",
 		},
 		{
 			logo: getAssetPath("/assets/logos/open-router.svg"),
-			title: "Effect for AI",
+			title: "Internal Tooling",
 			href: "#",
 			alt: "OpenRouter",
 		},
 		{
 			logo: getAssetPath("/assets/logos/warp-logo-white.svg"),
-			title: "Effect for DevTools",
+			title: "HR Systems",
 			href: "#",
 			alt: "Warp",
 		},
 	];
 
 	return (
-		<section className="relative overflow-hidden py-16 md:py-20 lg:pt-24 lg:pb-20">
+		<section className="relative overflow-hidden py-16 lg:pt-24 lg:pb-24">
 			{/* Background Pattern */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -52,94 +52,24 @@ export function TestimonialsSection() {
 					backgroundPosition: "center bottom",
 					backgroundRepeat: "no-repeat",
 					WebkitMaskImage:
-						"linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1))",
+						"linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1))",
 					maskImage:
-						"linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1))",
+						"linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))",
 				}}
 			/>
 
 			{/* Main Content Container */}
 			<div className="relative mx-auto w-full">
 				{/* Heading */}
-				<h2 className="mb-12 text-center text-3xl font-bold leading-tight text-white md:mb-16">
-					Designed for real-world complexity
+				<h2 className="mb-12 mt-3 text-center text-3xl font-bold leading-tight text-white md:mb-16">
+					Real-world production systems
 				</h2>
 
 				{/* 4 Use Case Cards with Decorative Line */}
-				<div className="relative mb-20 w-full mx-auto max-w-[66.5rem]">
-					{/* Decorative Lines (behind cards at text level) */}
-					<div
-						className="pointer-events-none absolute bottom-[48px] left-0 z-0 hidden h-[1px] w-full lg:block"
-						style={{
-							background: "#27272a",
-							WebkitMask:
-								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
-					{/* Left dashed line */}
-					<div
-						className="pointer-events-none absolute z-0 hidden bottom-[48px]"
-						style={{
-							right: "100%",
-							width: "calc((100vw - 66.5rem) / 2)",
-							minWidth: "80px",
-							height: "1px",
-							background: "#27272a",
-							WebkitMask:
-								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
-					{/* Right dashed line */}
-					<div
-						className="pointer-events-none absolute z-0 hidden bottom-[48px]"
-						style={{
-							left: "100%",
-							width: "calc((100vw - 66.5rem) / 2)",
-							minWidth: "80px",
-							height: "1px",
-							background: "#27272a",
-							WebkitMask:
-								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
-					{/* Left dashed line - Top */}
-					<div
-						className="pointer-events-none absolute z-0 hidden top-[160px]"
-						style={{
-							right: "100%",
-							width: "calc((100vw - 66.5rem) / 2)",
-							minWidth: "80px",
-							height: "1px",
-							background: "#27272a",
-							WebkitMask:
-								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
-					{/* Right dashed line - Top */}
-					<div
-						className="pointer-events-none absolute z-0 hidden top-[160px]"
-						style={{
-							left: "100%",
-							width: "calc((100vw - 66.5rem) / 2)",
-							minWidth: "80px",
-							height: "1px",
-							background: "#27272a",
-							WebkitMask:
-								"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
+				<div className="relative mb-24 w-full mx-auto max-w-[66.5rem]">
+					
 					{/* Cards Container */}
-					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-0 min-[480px]:grid-cols-2 lg:grid-cols-3">
+					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-0 min-[480px]:grid-cols-2 lg:grid-cols-3 rounded-lg overflow-hidden border border-zinc-800">
 						{useCases.map((useCase, index) => {
 							const isLastInRow = (index + 1) % 3 === 0 || index === useCases.length - 1;
 							const isLastRow = index >= useCases.length - 3;
@@ -151,9 +81,9 @@ export function TestimonialsSection() {
 								{...(useCase.href.startsWith("http")
 									? { target: "_blank", rel: "noopener noreferrer" }
 									: {})}
-								className={`group relative block h-[208px] w-full overflow-hidden border-t border-l border-zinc-800 transition-all ${
-									isLastInRow ? "border-r" : ""
-								} ${isLastRow ? "border-b" : ""}`}
+								className={`group relative block h-[208px] w-full overflow-hidden border-zinc-800 transition-all ${
+									!isLastInRow ? "border-r" : ""
+								} ${!isLastRow ? "border-b" : ""}`}
 								style={{
 									borderRadius: "0px",
 									background: "linear-gradient(to bottom, rgba(24, 24, 27, 0.3), #09090b)",
@@ -161,7 +91,7 @@ export function TestimonialsSection() {
 									WebkitBackdropFilter: "blur(5px)",
 								}}
 								onMouseEnter={(e) => {
-									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(39, 39, 42, 0.6), #18181b)";
+									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(39, 39, 42, 0.3), #18181b)";
 								}}
 								onMouseLeave={(e) => {
 									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(24, 24, 27, 0.3), #09090b)";
@@ -181,22 +111,21 @@ export function TestimonialsSection() {
 													: "h-[32px] top-[62px]"
 											}`}
 										/>
-										<div className="absolute bottom-0 left-0 right-0 flex flex-col px-2 py-3">
+										<div className="absolute bg-zinc-950 bottom-0 left-0 right-0 flex flex-col px-2 py-3">
 											{/* Dashed border above text */}
 											<div
-												className="absolute top-0 left-0 right-0 h-[1px]"
+												className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700/50"
 												style={{
-													background: "#27272a",
 													WebkitMask:
 														"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 													mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 												}}
 											/>
 										<div className="flex flex-row items-center justify-center gap-1 whitespace-nowrap">
-											<span className="text-base font-medium tracking-[0.16px] text-white/88 md:text-base">
+											<span className="text-base font-mono text-zinc-200 md:text-base">
 												{useCase.title}
 											</span>
-											<i className="ri-arrow-right-up-line text-base text-white/88" />
+											<i className="ri-arrow-right-up-line text-base text-zinc-300" />
 										</div>
 									</div>
 									</div>

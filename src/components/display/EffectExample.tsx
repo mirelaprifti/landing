@@ -103,13 +103,13 @@ function EffectExampleComponent<A, E>({
 	// Shared UI values
 	const borderColorValue = isDarkMode
 		? "rgba(127, 29, 29, 0.5)"
-		: "rgba(64, 64, 64, 0.5)";
+		: "rgba(39, 39, 42, 1)";
 	const backgroundGradient = isDarkMode
 		? "linear-gradient(to bottom right, black, rgba(127, 29, 29, 0.2))"
 		: "linear-gradient(to bottom right, rgba(23, 23, 23, 0.8), rgba(23, 23, 23, 0.4))";
 	const headerBackground = isDarkMode
 		? "rgba(0, 0, 0, 0.5)"
-		: "rgba(38, 38, 38, 0.5)";
+		: "rgba(39, 39, 42, 0.6)";
 	const standardTransition = { duration: 0.2, ease: "easeInOut" as const };
 
 	const highlightTarget = delayedHoveredEffect
@@ -125,7 +125,7 @@ function EffectExampleComponent<A, E>({
 
 	return (
 		<motion.div
-			className={`w-full flex flex-col border rounded-2xl shadow-2xl relative `}
+			className={`w-full h-full flex flex-col border rounded-lg shadow-2xl relative overflow-hidden`}
 			initial={{
 				boxShadow: isDarkMode
 					? `0 0 40px rgba(220, 38, 38, 0.3)`
@@ -147,7 +147,7 @@ function EffectExampleComponent<A, E>({
 		>
 			{/* Header with interactive controls */}
 			<motion.div
-				className={`p-4 border-b rounded-t-2xl`}
+				className={`p-4 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 					backgroundColor: headerBackground,
@@ -206,7 +206,7 @@ function EffectExampleComponent<A, E>({
 
 			{/* Main visualization */}
 			<motion.div
-				className={`px-4 py-5 border-b`}
+				className={`px-4 py-4 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 				}}
@@ -301,7 +301,7 @@ function EffectExampleComponent<A, E>({
 
 			{/* Code block */}
 			<div
-				className="relative p-4 text-base"
+				className="relative p-4 text-sm"
 				ref={codeContainerRef}
 				style={{ position: "relative" }}
 			>

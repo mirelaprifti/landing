@@ -58,7 +58,7 @@ function EffectNodeComponent<A, E>({
 			<motion.div
 				style={{
 					width: effectMotion.nodeWidth,
-					height: 64,
+					height: 56,
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
