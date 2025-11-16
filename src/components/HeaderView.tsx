@@ -251,7 +251,7 @@ function HeaderViewComponent({
 					scale: { type: "spring", stiffness: 300, damping: 20 },
 					background: { duration: 0.2, ease: "easeInOut" },
 				}}
-				className="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden"
+				className="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border border-zinc-500"
 			>
 				<AnimatePresence mode="popLayout">{getIcon()}</AnimatePresence>
 

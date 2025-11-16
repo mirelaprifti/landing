@@ -189,37 +189,6 @@ pre,
 	animation: fadeOut 0.3s ease-in forwards;
 }
 
-/* Logo Slider Animations */
-@keyframes scroll-right {
-	0% {
-		transform: translateX(-50%);
-	}
-	100% {
-		transform: translateX(0);
-	}
-}
-
-@keyframes scroll-left {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(-50%);
-	}
-}
-
-.logo-row-right {
-	animation: scroll-right 60s linear infinite;
-}
-
-.logo-row-left {
-	animation: scroll-left 60s linear infinite;
-}
-
-.logo-slider-container:hover .logo-row {
-	animation-play-state: paused;
-}
-
 /* Quotes scroll animation */
 .quotes-scroll-animation {
 	animation: scroll-left 30s linear infinite;

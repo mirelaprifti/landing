@@ -78,7 +78,7 @@ export function HeroSection() {
 													type="button"
 													key={pm}
 													onClick={() => setActivePackageManager(pm)}
-													className={`hero-tab-button flex w-[126px] flex-shrink-0 items-center justify-center gap-[8px] py-[16px] text-base font-medium leading-normal transition-colors sm:w-auto sm:flex-1 ${
+													className={`hero-tab-button flex w-[126px] flex-shrink-0 items-center justify-center gap-[8px] py-[16px] text-base font-mono leading-normal transition-colors sm:w-auto sm:flex-1 ${
 														index < array.length - 1
 															? "border-r border-zinc-950"
 															: ""

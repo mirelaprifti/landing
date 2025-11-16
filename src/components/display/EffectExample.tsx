@@ -104,9 +104,7 @@ function EffectExampleComponent<A, E>({
 	const borderColorValue = isDarkMode
 		? "rgba(127, 29, 29, 0.5)"
 		: "rgba(39, 39, 42, 1)";
-	const backgroundGradient = isDarkMode
-		? "linear-gradient(to bottom right, black, rgba(127, 29, 29, 0.2))"
-		: "linear-gradient(to bottom right, rgba(23, 23, 23, 0.8), rgba(23, 23, 23, 0.4))";
+	const backgroundGradient = "#09090b"; // zinc-950
 	const headerBackground = isDarkMode
 		? "rgba(0, 0, 0, 0.5)"
 		: "rgba(39, 39, 42, 0.6)";

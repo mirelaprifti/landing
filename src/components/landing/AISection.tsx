@@ -55,7 +55,7 @@ export function AISection() {
 				<div className="relative mx-auto w-full max-w-[66.5rem] px-0">
 					{/* Heading and Button */}
 					<div className="mb-12 flex w-full items-end justify-between">
-						<h2 className="font-inter text-2xl font-semibold leading-tight text-white max-w-[400px]">
+						<h2 className="font-inter text-2xl font-semibold leading-tight text-white max-w-[600px]">
 							A safe, testable runtime for AI systems
 						</h2>
 						<a
@@ -101,64 +101,6 @@ export function AISection() {
 									</p>
 								</div>
 							</div>
-						))}
-					</div>
-
-					{/* Horizontal Solid Line Separator */}
-					<div
-						className="mx-auto my-8 h-[1px] w-full"
-						style={{
-							background: "#27272a",
-						}}
-					/>
-
-					{/* 2 Case Study Cards */}
-					<div className="mx-auto flex w-full flex-col justify-center gap-4 sm:flex-row">
-						{caseStudies.map((study, index) => (
-							<a
-								key={index}
-								href={study.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="lg:max-w-auto w-full flex-1 overflow-hidden rounded-lg border border-zinc-800 transition-colors hover:bg-zinc-900/50 hover:border-zinc-700/60"
-							>
-								<div className="flex flex-col">
-									{/* Top section with gradient and logos */}
-									<div
-										className="relative flex h-28 items-center justify-center"
-										style={{
-											background: `linear-gradient(to bottom, rgba(9, 9, 11, 0.8), ${study.gradientColor})`,
-										}}
-									>
-										<div className="flex items-center gap-4">
-											<img
-												src={getAssetPath("/assets/logos/effect-logo-white.svg")}
-												alt="Effect"
-												className="h-7"
-											/>
-											<div className="h-8 w-[1px] bg-zinc-700" />
-											<img
-												src={study.logo}
-												alt={study.logoAlt}
-												className={study.logoHeight}
-											/>
-										</div>
-										{/* Gradient border at bottom */}
-										<div
-											className="absolute bottom-0 left-0 right-0 h-[2px]"
-											style={{
-												background: study.borderGradient,
-											}}
-										/>
-									</div>
-									{/* Bottom section with text */}
-									<div className="flex items-center justify-center bg-black py-4">
-										<p className="text-center text-base text-white font-mono">
-											{study.title}
-										</p>
-									</div>
-								</div>
-							</a>
 						))}
 					</div>
 					</div>

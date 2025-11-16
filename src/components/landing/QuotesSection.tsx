@@ -17,11 +17,11 @@ function QuoteCard({
 }) {
 	return (
 		<div
-			className={`flex h-[280px] w-[341px] flex-shrink-0 flex-col justify-between rounded-2xl p-8 ${
+			className={`flex h-[280px] w-[341px] flex-shrink-0 flex-col justify-between rounded-xl p-6 ${
 				bgColor === "zinc-900" ? "bg-zinc-900" : "border border-zinc-700"
 			}`}
 		>
-			<p className="text-[20px] leading-snug text-zinc-100">{text}</p>
+			<p className="text-[20px] leading-snug text-zinc-200">{text}</p>
 			<div className="flex w-full items-center gap-4">
 				<span className="font-mono text-base uppercase text-white">
 					{author}

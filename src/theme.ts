@@ -2,8 +2,8 @@
 export const theme = {
 	colors: {
 		textPrimary: "#ffffff",
-		textSecondary: "#a3a3a3",
-		textMuted: "#525252",
+		textSecondary: "#a1a1aa",
+		textMuted: "#a1a1aa",
 	},
 
 	spacing: {
