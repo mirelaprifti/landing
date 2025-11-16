@@ -20,8 +20,8 @@ const TIMELINE_CONFIG = {
 		gapActive: "bg-neutral-500", // Brighter for active segments
 		cursor: "bg-white",
 		cursorInactive: "bg-neutral-600", // Darker cursor when stopped
-		backgroundLine: "bg-neutral-800", // Very dark gray background line
-		tickMark: "bg-neutral-800", // Subtle tick marks
+		backgroundLine: "bg-zinc-700", // Very dark gray background line
+		tickMark: "bg-zinc-700", // Subtle tick marks
 	},
 
 	// Raw color values for smooth animations
@@ -30,8 +30,8 @@ const TIMELINE_CONFIG = {
 		runningInactive: "var(--color-blue-500)",
 		gapActive: "var(--color-neutral-400)",
 		gapInactive: "var(--color-neutral-600)",
-		backgroundLine: "var(--color-neutral-800)",
-		tickMark: "var(--color-neutral-800)",
+		backgroundLine: "var(--color-zinc-700)",
+		tickMark: "var(--color-zinc-700)",
 		cursorActive: "var(--color-white)",
 		cursorInactive: "var(--color-neutral-500)",
 	},

@@ -38,7 +38,7 @@ export function RefDisplay<A>({ style = {}, visualRef }: RefDisplayProps<A>) {
 				transition={transition}
 			>
 				{/* Ref name */}
-				<span className="text-md font-medium whitespace-nowrap text-neutral-400 p-2 px-4">
+				<span className="text-md font-medium whitespace-nowrap text-zinc-400 p-2 px-4">
 					{visualRef.name}
 				</span>
 

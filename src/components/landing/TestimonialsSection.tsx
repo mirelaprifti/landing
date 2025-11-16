@@ -38,13 +38,25 @@ export function TestimonialsSection() {
 			href: "#",
 			alt: "Warp",
 		},
+		{
+			logo: getAssetPath("/assets/logos/14-ai.svg"),
+			title: "AI Customer Service",
+			href: "#",
+			alt: "14.ai",
+		},
+		{
+			logo: getAssetPath("/assets/logos/masterclass-nom.svg"),
+			title: "Voice AI Orchestration",
+			href: "#",
+			alt: "MasterClass",
+		},
 	];
 
 	return (
-		<section className="relative overflow-hidden py-16 lg:pt-24 lg:pb-24">
+		<section className="relative overflow-hidden py-16 lg:pt-16 lg:pb-24">
 			{/* Background Pattern */}
 			<div
-				className="pointer-events-none absolute inset-0"
+				className="hidden pointer-events-none absolute inset-0"
 				style={{
 					opacity: 1,
 					backgroundImage: `url('${getAssetPath("/assets/BG-Pattern.svg")}')`,
@@ -61,18 +73,18 @@ export function TestimonialsSection() {
 			{/* Main Content Container */}
 			<div className="relative mx-auto w-full">
 				{/* Heading */}
-				<h2 className="mb-12 mt-3 text-center text-3xl font-bold leading-tight text-white md:mb-16">
+				<h2 className="mb-12 mt-3 text-center text-3xl font-bold leading-tight text-white md:mb-14">
 					Real-world production systems
 				</h2>
 
 				{/* 4 Use Case Cards with Decorative Line */}
-				<div className="relative mb-24 w-full mx-auto max-w-[66.5rem]">
-					
+				<div className="relative w-full mx-auto max-w-[66.5rem]">
+
 					{/* Cards Container */}
-					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-0 min-[480px]:grid-cols-2 lg:grid-cols-3 rounded-lg overflow-hidden border border-zinc-800">
+					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-0 min-[480px]:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden border border-zinc-800">
 						{useCases.map((useCase, index) => {
-							const isLastInRow = (index + 1) % 3 === 0 || index === useCases.length - 1;
-							const isLastRow = index >= useCases.length - 3;
+							const isLastInRow = (index + 1) % 4 === 0 || index === useCases.length - 1;
+							const isLastRow = index >= useCases.length - 4;
 
 							return (
 							<a
@@ -81,53 +93,51 @@ export function TestimonialsSection() {
 								{...(useCase.href.startsWith("http")
 									? { target: "_blank", rel: "noopener noreferrer" }
 									: {})}
-								className={`group relative block h-[208px] w-full overflow-hidden border-zinc-800 transition-all ${
+								className={`group relative block w-full overflow-hidden border-zinc-800 transition-all ${
 									!isLastInRow ? "border-r" : ""
 								} ${!isLastRow ? "border-b" : ""}`}
 								style={{
 									borderRadius: "0px",
-									background: "linear-gradient(to bottom, rgba(24, 24, 27, 0.3), #09090b)",
+									background: "#09090b",
 									backdropFilter: "blur(5px)",
 									WebkitBackdropFilter: "blur(5px)",
 								}}
 								onMouseEnter={(e) => {
-									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(39, 39, 42, 0.3), #18181b)";
+									e.currentTarget.style.background = "#18181b";
 								}}
 								onMouseLeave={(e) => {
-									e.currentTarget.style.background = "linear-gradient(to bottom, rgba(24, 24, 27, 0.3), #09090b)";
+									e.currentTarget.style.background = "#09090b";
 								}}
 							>
-									<div className="relative h-full w-full">
+									{/* Logo area */}
+									<div className="relative h-[120px] w-full">
 										<img
 											src={useCase.logo}
 											alt={useCase.alt}
-											className={`absolute left-1/2 -translate-x-1/2 ${
-												useCase.alt === "Warp"
-													? "h-[28px] top-[67px]"
-													: useCase.alt === "OpenRouter"
-													? "h-[32px] top-[64px]"
-													: useCase.alt === "Expand Internal Tooling"
-													? "h-[32px] top-[65px]"
-													: "h-[32px] top-[62px]"
+											className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${
+												useCase.alt === "MasterClass"
+													? "h-[1.15rem]"
+													: "h-[1.6rem]"
 											}`}
 										/>
-										<div className="absolute bg-zinc-950 bottom-0 left-0 right-0 flex flex-col px-2 py-3">
-											{/* Dashed border above text */}
-											<div
-												className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700/50"
-												style={{
-													WebkitMask:
-														"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-													mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-												}}
-											/>
+									</div>
+									{/* Label area */}
+									<div className="bg-zinc-950 flex flex-col px-2 py-3 relative">
+										{/* Dashed border above text */}
+										<div
+											className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700/50"
+											style={{
+												WebkitMask:
+													"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+												mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+											}}
+										/>
 										<div className="flex flex-row items-center justify-center gap-1 whitespace-nowrap">
-											<span className="text-base font-mono text-zinc-200 md:text-base">
+											<span className="text-base font-mono text-zinc-300 md:text-sm">
 												{useCase.title}
 											</span>
 											<i className="ri-arrow-right-up-line text-base text-zinc-300" />
 										</div>
-									</div>
 									</div>
 							</a>
 							);
@@ -136,448 +146,54 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Logo Slider Section (Full Width) */}
-			<div className="logo-slider-container relative h-[200px] w-full overflow-hidden">
-				{/* Row 1: Scroll Left */}
-				<div className="logo-row logo-row-left absolute left-0 flex items-center gap-12 whitespace-nowrap">
-					{/* Duplicate for infinite scroll */}
-					<div className="flex items-center gap-12">
-						{[
-							{
-								name: "14.ai",
-								logo: getAssetPath("/assets/logos/logo-14ai.svg"),
-								logoClass: "h-3 w-6",
-							},
-							{
-								name: "OpenRouter",
-								logo: getAssetPath("/assets/logos/logo-openrouter.png"),
-								logoClass: "h-4 w-4 object-cover",
-							},
-							{
-								name: "Edge&Node",
-								logo: getAssetPath("/assets/logos/logo-edgenode.svg"),
-								logoClass: "h-4 w-[13px]",
-							},
-							{
-								name: "0.mail",
-								logo: getAssetPath("/assets/logos/logo-0mail.png"),
-								logoClass: "h-4 w-4 object-cover",
-							},
-							{
-								name: "adidas",
-								logo: getAssetPath("/assets/logos/logo-adidas.svg"),
-								logoClass: "h-[14px] w-[22px]",
-							},
-							{
-								name: "Glide",
-								logo: getAssetPath("/assets/logos/logo-glide.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "August Health",
-								logo: getAssetPath("/assets/logos/logo-augusthealth.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "Aware",
-								logo: getAssetPath("/assets/logos/logo-aware.svg"),
-								logoClass: "h-4 w-[17px]",
-							},
-							{
-								name: "BTP Consultants",
-								logo: getAssetPath("/assets/logos/logo-btpconsultants.svg"),
-								logoClass: "h-4 w-4",
-							},
-						].map((company, index) => (
-							<div
-								key={`row1-first-${index}`}
-								className="flex items-center gap-2"
-							>
-								<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-									<img
-										src={company.logo}
-										alt=""
-										className={company.logoClass}
-									/>
-								</div>
-								<span className="text-base font-semibold text-[#b5b5be]">
-									{company.name}
-								</span>
-							</div>
-						))}
-					</div>
-					{/* Duplicate set for seamless loop */}
-					<div className="flex items-center gap-12">
-						{[
-							{
-								name: "14.ai",
-								logo: getAssetPath("/assets/logos/logo-14ai.svg"),
-								logoClass: "h-3 w-6",
-							},
-							{
-								name: "OpenRouter",
-								logo: getAssetPath("/assets/logos/logo-openrouter.png"),
-								logoClass: "h-4 w-4 object-cover",
-							},
-							{
-								name: "Edge&Node",
-								logo: getAssetPath("/assets/logos/logo-edgenode.svg"),
-								logoClass: "h-4 w-[13px]",
-							},
-							{
-								name: "0.mail",
-								logo: getAssetPath("/assets/logos/logo-0mail.png"),
-								logoClass: "h-4 w-4 object-cover",
-							},
-							{
-								name: "adidas",
-								logo: getAssetPath("/assets/logos/logo-adidas.svg"),
-								logoClass: "h-[14px] w-[22px]",
-							},
-							{
-								name: "Glide",
-								logo: getAssetPath("/assets/logos/logo-glide.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "August Health",
-								logo: getAssetPath("/assets/logos/logo-augusthealth.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "Aware",
-								logo: getAssetPath("/assets/logos/logo-aware.svg"),
-								logoClass: "h-4 w-[17px]",
-							},
-							{
-								name: "BTP Consultants",
-								logo: getAssetPath("/assets/logos/logo-btpconsultants.svg"),
-								logoClass: "h-4 w-4",
-							},
-						].map((company, index) => (
-							<div
-								key={`row1-second-${index}`}
-								className="flex items-center gap-2"
-							>
-								<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-									<img
-										src={company.logo}
-										alt=""
-										className={company.logoClass}
-									/>
-								</div>
-								<span className="text-base font-semibold text-[#b5b5be]">
-									{company.name}
-								</span>
-							</div>
-						))}
-					</div>
-				</div>
+			{/* Dashed border separator */}
+			<div className="w-full max-w-[66.5rem] mx-auto mt-16 mb-12">
+				<div
+					className="h-[1px] w-full"
+					style={{
+						background: "#27272a",
+						WebkitMask:
+							"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+						mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+					}}
+				/>
+			</div>
 
-				{/* Row 2: Scroll Right */}
-				<div className="logo-row logo-row-right absolute left-0 top-[80px] flex items-center gap-12 whitespace-nowrap">
-					<div className="flex items-center gap-12">
-						{[
-							{
-								name: "Ender",
-								logo: getAssetPath("/assets/logos/logo-ender.png"),
-								logoClass: "h-5 w-[14px] object-contain",
-							},
-							{
-								name: "CalcTree",
-								logo: getAssetPath("/assets/logos/logo-calctree.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "Candle.fi",
-								logo: getAssetPath("/assets/logos/logo-candlefi.png"),
-								logoClass: "h-5 w-5 object-cover",
-							},
-							{
-								name: "CI Financial",
-								logo: getAssetPath("/assets/logos/logo-cifinancial.png"),
-								logoClass: "h-4 w-4 object-contain",
-							},
-							{
-								name: "Coralogix",
-								logo: getAssetPath("/assets/logos/logo-coralogix.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "dectus",
-								logo: getAssetPath("/assets/logos/logo-dectus.svg"),
-								logoClass: "h-5 w-[17px]",
-							},
-							{
-								name: "dreifach.ai",
-								logo: getAssetPath("/assets/logos/logo-dreifach-part1.svg"),
-								logoClass: "h-4 w-5",
-							},
-							{
-								name: "DXOS",
-								logo: getAssetPath("/assets/logos/logo-dxos.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "EMBEDDED INSURANCE",
-								logo: getAssetPath("/assets/logos/logo-embedded-insurance.svg"),
-								logoClass: "h-[14px] w-[15px]",
-								isTwoLine: true,
-							},
-							{
-								name: "GEODIS",
-								logo: getAssetPath("/assets/logos/logo-geodis.svg"),
-								logoClass: "h-5 w-5",
-							},
-						].map((company, index) => (
-							<div
-								key={`row2-first-${index}`}
-								className="flex items-center gap-2"
-							>
-								<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-									<img
-										src={company.logo}
-										alt=""
-										className={company.logoClass}
-									/>
-								</div>
-								{company.isTwoLine ? (
-									<div className="text-xs font-semibold leading-tight text-[#b5b5be]">
-										<div>EMBEDDED</div>
-										<div>INSURANCE</div>
-									</div>
-								) : (
-									<span className="text-base font-semibold text-[#b5b5be]">
-										{company.name}
-									</span>
-								)}
-							</div>
-						))}
-					</div>
-					<div className="flex items-center gap-12">
-						{[
-							{
-								name: "Ender",
-								logo: getAssetPath("/assets/logos/logo-ender.png"),
-								logoClass: "h-5 w-[14px] object-contain",
-							},
-							{
-								name: "CalcTree",
-								logo: getAssetPath("/assets/logos/logo-calctree.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "Candle.fi",
-								logo: getAssetPath("/assets/logos/logo-candlefi.png"),
-								logoClass: "h-5 w-5 object-cover",
-							},
-							{
-								name: "CI Financial",
-								logo: getAssetPath("/assets/logos/logo-cifinancial.png"),
-								logoClass: "h-4 w-4 object-contain",
-							},
-							{
-								name: "Coralogix",
-								logo: getAssetPath("/assets/logos/logo-coralogix.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "dectus",
-								logo: getAssetPath("/assets/logos/logo-dectus.svg"),
-								logoClass: "h-5 w-[17px]",
-							},
-							{
-								name: "dreifach.ai",
-								logo: getAssetPath("/assets/logos/logo-dreifach-part1.svg"),
-								logoClass: "h-4 w-5",
-							},
-							{
-								name: "DXOS",
-								logo: getAssetPath("/assets/logos/logo-dxos.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "EMBEDDED INSURANCE",
-								logo: getAssetPath("/assets/logos/logo-embedded-insurance.svg"),
-								logoClass: "h-[14px] w-[15px]",
-								isTwoLine: true,
-							},
-							{
-								name: "GEODIS",
-								logo: getAssetPath("/assets/logos/logo-geodis.svg"),
-								logoClass: "h-5 w-5",
-							},
-						].map((company, index) => (
-							<div
-								key={`row2-second-${index}`}
-								className="flex items-center gap-2"
-							>
-								<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-									<img
-										src={company.logo}
-										alt=""
-										className={company.logoClass}
-									/>
-								</div>
-								{company.isTwoLine ? (
-									<div className="text-xs font-semibold leading-tight text-[#b5b5be]">
-										<div>EMBEDDED</div>
-										<div>INSURANCE</div>
-									</div>
-								) : (
-									<span className="text-base font-semibold text-[#b5b5be]">
-										{company.name}
-									</span>
-								)}
-							</div>
-						))}
-					</div>
-				</div>
-
-				{/* Row 3: Scroll Left */}
-				<div className="logo-row logo-row-left absolute left-0 top-[160px] flex items-center gap-12 whitespace-nowrap">
-					<div className="flex items-center gap-12">
-						{[
-							{
-								name: "LiveStore",
-								logo: getAssetPath("/assets/logos/logo-livestore.svg"),
-								logoClass: "h-5 w-4",
-							},
-							{
-								name: "kikin",
-								logo: getAssetPath("/assets/logos/logo-kikin.svg"),
-								logoClass: "h-4 w-[13px]",
-							},
-							{
-								name: "ens labs",
-								logo: getAssetPath("/assets/logos/logo-enslabs.svg"),
-								logoClass: "h-4 w-[23px]",
-							},
-							{
-								name: "freckle",
-								logo: getAssetPath("/assets/logos/logo-freckle.svg"),
-								logoClass: "h-4 w-[13px]",
-							},
-							{
-								name: "Fortanix",
-								logo: getAssetPath("/assets/logos/logo-fortanix.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "Gale",
-								logo: getAssetPath("/assets/logos/logo-gale.png"),
-								logoClass: "h-5 w-5 object-contain",
-							},
-							{
-								name: "GlobeCommerce",
-								logo: getAssetPath("/assets/logos/logo-globecommerce.png"),
-								logoClass: "h-5 w-5 object-cover",
-							},
-							{
-								name: "Ping Identity",
-								logo: getAssetPath("/assets/logos/logo-pingidentity.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "IYK",
-								logo: getAssetPath("/assets/logos/logo-iyk.png"),
-								logoClass: "h-[11px] w-[28px] object-cover",
-							},
-							{
-								name: "inRev",
-								logo: getAssetPath("/assets/logos/logo-inrev.svg"),
-								logoClass: "h-4 w-[16px]",
-							},
-						].map((company, index) => (
-							<div
-								key={`row3-first-${index}`}
-								className="flex items-center gap-2"
-							>
-								<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-									<img
-										src={company.logo}
-										alt=""
-										className={company.logoClass}
-									/>
-								</div>
-								<span className="text-base font-semibold text-[#b5b5be]">
-									{company.name}
-								</span>
-							</div>
-						))}
-					</div>
-					<div className="flex items-center gap-12">
-						{[
-							{
-								name: "LiveStore",
-								logo: getAssetPath("/assets/logos/logo-livestore.svg"),
-								logoClass: "h-5 w-4",
-							},
-							{
-								name: "kikin",
-								logo: getAssetPath("/assets/logos/logo-kikin.svg"),
-								logoClass: "h-4 w-[13px]",
-							},
-							{
-								name: "ens labs",
-								logo: getAssetPath("/assets/logos/logo-enslabs.svg"),
-								logoClass: "h-4 w-[23px]",
-							},
-							{
-								name: "freckle",
-								logo: getAssetPath("/assets/logos/logo-freckle.svg"),
-								logoClass: "h-4 w-[13px]",
-							},
-							{
-								name: "Fortanix",
-								logo: getAssetPath("/assets/logos/logo-fortanix.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "Gale",
-								logo: getAssetPath("/assets/logos/logo-gale.png"),
-								logoClass: "h-5 w-5 object-contain",
-							},
-							{
-								name: "GlobeCommerce",
-								logo: getAssetPath("/assets/logos/logo-globecommerce.png"),
-								logoClass: "h-5 w-5 object-cover",
-							},
-							{
-								name: "Ping Identity",
-								logo: getAssetPath("/assets/logos/logo-pingidentity.svg"),
-								logoClass: "h-5 w-5",
-							},
-							{
-								name: "IYK",
-								logo: getAssetPath("/assets/logos/logo-iyk.png"),
-								logoClass: "h-[11px] w-[28px] object-cover",
-							},
-							{
-								name: "inRev",
-								logo: getAssetPath("/assets/logos/logo-inrev.svg"),
-								logoClass: "h-4 w-[16px]",
-							},
-						].map((company, index) => (
-							<div
-								key={`row3-second-${index}`}
-								className="flex items-center gap-2"
-							>
-								<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-									<img
-										src={company.logo}
-										alt=""
-										className={company.logoClass}
-									/>
-								</div>
-								<span className="text-base font-semibold text-[#b5b5be]">
-									{company.name}
-								</span>
-							</div>
-						))}
-					</div>
+			{/* Logo Grid Section */}
+			<div className="w-full max-w-[66.5rem] mx-auto">
+				<div className="grid grid-cols-3 md:grid-cols-6 border border-zinc-950">
+					{[
+						getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
+						getAssetPath("/assets/logos/14-ai.svg"),
+						getAssetPath("/assets/logos/warp-logo-white.svg"),
+						getAssetPath("/assets/logos/spiko-logo.svg"),
+						getAssetPath("/assets/logos/expand-ai.svg"),
+						getAssetPath("/assets/logos/zendesk-logo.svg"),
+						getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
+						getAssetPath("/assets/logos/14-ai.svg"),
+						getAssetPath("/assets/logos/warp-logo-white.svg"),
+						getAssetPath("/assets/logos/spiko-logo.svg"),
+						getAssetPath("/assets/logos/expand-ai.svg"),
+						getAssetPath("/assets/logos/zendesk-logo.svg"),
+						getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
+						getAssetPath("/assets/logos/14-ai.svg"),
+						getAssetPath("/assets/logos/warp-logo-white.svg"),
+						getAssetPath("/assets/logos/spiko-logo.svg"),
+						getAssetPath("/assets/logos/expand-ai.svg"),
+						getAssetPath("/assets/logos/zendesk-logo.svg"),
+					].map((logo, index) => (
+						<div
+							key={index}
+							className="flex items-center justify-center p-6 border-r border-b border-zinc-900 last:border-r-0 [&:nth-child(6n)]:border-r-0 md:[&:nth-child(3n)]:border-r [&:nth-last-child(-n+6)]:border-b-0 md:[&:nth-last-child(-n+3)]:border-b"
+						>
+							<img src={logo} alt="" className="h-[1.35rem] w-auto opacity-70" style={{ filter: 'brightness(0) saturate(100%) invert(84%) sepia(4%) saturate(238%) hue-rotate(185deg) brightness(92%) contrast(87%)' }} />
+						</div>
+					))}
 				</div>
 			</div>
+
+			{/* Solid bottom border */}
+			<div className="absolute bottom-0 left-0 right-0 h-[1px] bg-zinc-800" />
 		</section>
 	);
 }

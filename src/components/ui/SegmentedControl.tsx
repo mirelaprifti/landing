@@ -55,7 +55,7 @@ export function SegmentedControl<T extends string | number>({
 	return (
 		<div
 			ref={containerRef}
-			className={`relative flex items-center bg-neutral-800/50 rounded-lg p-1 border border-neutral-700/30 ${className}`}
+			className={`relative flex items-center bg-zinc-900 rounded-lg p-1 border border-zinc-700 ${className}`}
 		>
 			{options.map((option) => (
 				<button

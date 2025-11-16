@@ -3,9 +3,7 @@ import { HeroSection } from "./HeroSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { AISection } from "./AISection";
-import { VisualEffectShowcaseSection } from "./VisualEffectShowcaseSection";
 import { DevToolsSection } from "./DevToolsSection";
-import { PlaygroundSection } from "./PlaygroundSection";
 import { QuotesSection } from "./QuotesSection";
 import { FAQSection } from "./FAQSection";
 import { CTASection } from "./CTASection";
@@ -56,8 +54,6 @@ export function LandingPage() {
 			<FeaturesSection />
 			<TestimonialsSection />
 			<AISection />
-			<VisualEffectShowcaseSection />
-			<PlaygroundSection />
 			<DevToolsSection />
 			<QuotesSection />
 			<FAQSection />

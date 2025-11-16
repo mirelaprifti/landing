@@ -37,7 +37,7 @@ const ConfigurationPanel = memo(
 								taskSounds.playConfigurationChange().catch(() => {});
 							}}
 							options={["sequential", "numbered", "unbounded"] as const}
-							backgroundClassName="bg-neutral-700/80"
+							backgroundClassName="bg-zinc-950"
 						/>
 					</div>
 				</div>
