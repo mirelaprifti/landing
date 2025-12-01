@@ -68,7 +68,7 @@ export function Navigation() {
 	return (
 		<>
 			<div
-				className="fixed left-0 right-0 top-0 z-50 w-full px-4 md:px-8"
+				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-800 px-4 md:px-8"
 				style={{
 					backgroundColor: "rgba(9, 9, 11, 0.85)",
 					backdropFilter: "blur(5px)",

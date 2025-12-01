@@ -28,41 +28,16 @@ export function HeroSection() {
 	};
 
 	return (
-		<div className="relative mx-auto w-full max-w-7xl px-4 pb-16 md:px-8 md:pb-24">
-			{/* Vertical dashed lines */}
-			<div
-				className="absolute left-0 top-0 hidden w-px lg:block mx-6"
-				style={{
-					height: "100%",
-					background:
-						"linear-gradient(to bottom, #09090b 0%, #3f3f46 50%, #09090b 100%)",
-					WebkitMask:
-						"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-					mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-				}}
-			></div>
-			<div
-				className="absolute right-0 top-0 hidden w-px lg:block mx-6"
-				style={{
-					height: "100%",
-					background:
-						"linear-gradient(to bottom, #09090b 0%, #3f3f46 50%, #09090b 100%)",
-					WebkitMask:
-						"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-					mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-				}}
-			></div>
-
+		<div className="relative mx-auto w-full max-w-7xl px-4 pb-16 md:px-8 md:pb-32">
 			{/* Hero Section */}
 			<section className="relative mx-auto w-full py-12 md:py-20">
-				<div className="container mx-auto max-w-[680px]">
+				<div className="container mx-auto max-w-[800px]">
 					<div className="text-left sm:text-center">
 						<h1 className="leading-tighter mb-8 text-3xl font-bold md:text-5xl">
-							React-level structure to backend TypeScript
+							TypeScript made reliable
 						</h1>
 						<p className="leading:tight mx-auto mb-10 max-w-3xl text-lg text-zinc-400 md:text-xl md:leading-normal">
-							Effect is a type-safe language and runtime for building reliable, concurrent, and
-							observable systems. 
+							Build production-grade systems with Effect.
 						</p>
 
 						{/* Package Manager Tabs */}
