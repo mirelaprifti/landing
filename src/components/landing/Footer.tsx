@@ -333,7 +333,7 @@ export function Footer() {
 					</div>
 
 					{/* Bottom Copyright Section */}
-					<div className="flex flex-col items-center justify-between gap-4 pb-16 pt-16 md:flex-row md:gap-8 md:pb-32 md:pt-8">
+					<div className="flex flex-col items-center justify-between gap-4 pb-16 pt-16 md:flex-row md:gap-8 md:pb-24 md:pt-8">
 						<p className="text-base text-zinc-400 md:text-sm">
 							© {new Date().getFullYear()} Effectful Technologies Inc. All
 							rights reserved.

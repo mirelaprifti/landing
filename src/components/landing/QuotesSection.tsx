@@ -117,7 +117,7 @@ export function QuotesSection() {
 
 		// Calculate the width of one set of quotes (half the total width) - only once
 		singleSetWidthRef.current = container.scrollWidth / 2;
-		const speed = 0.5; // pixels per frame
+		const speed = 0.3; // pixels per frame
 
 		function animate() {
 			if (!isHoveringRef.current) {
@@ -154,16 +154,16 @@ export function QuotesSection() {
 	};
 
 	return (
-		<section className="relative w-full py-20 md:py-32">
+		<section className="relative z-10 w-full bg-zinc-950 py-20 md:py-32">
 			{/* Top solid border */}
 			<div className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700" />
 
-			<div className="mx-auto flex w-full flex-col items-center gap-12 md:gap-16">
+			<div className="mx-auto flex w-full flex-col items-center gap-12 bg-zinc-950 md:gap-16">
 				<h2 className="px-4 text-center text-3xl font-bold leading-tight text-white md:px-8">
 					What developers are saying...
 				</h2>
 
-				<div className="relative w-full overflow-hidden">
+				<div className="relative w-full overflow-hidden bg-zinc-950">
 					<div
 						ref={containerRef}
 						className="flex gap-5 cursor-grab active:cursor-grabbing select-none"

@@ -40,7 +40,7 @@ export function DevToolsSection() {
 	const activeTabData = tabs.find((t) => t.id === activeTab);
 
 	return (
-		<section className="relative w-full px-4 pt-20 pb-20 md:px-8 md:pt-24 md:pb-32">
+		<section className="relative w-full px-4 pt-20 pb-20 md:px-8 md:py-32">
 			{/* Dashed top border */}
 			<div
 				className="absolute left-0 right-0 top-0 h-[1px]"

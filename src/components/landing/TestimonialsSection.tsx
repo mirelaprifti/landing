@@ -53,7 +53,7 @@ export function TestimonialsSection() {
 	];
 
 	return (
-		<section className="relative overflow-hidden py-16 lg:pt-16 lg:pb-24">
+		<section className="relative overflow-hidden py-16 lg:py-32">
 			{/* Background Pattern */}
 			<div
 				className="hidden pointer-events-none absolute inset-0"

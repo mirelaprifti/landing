@@ -41,7 +41,7 @@ export function CTASection() {
 					<div className="flex flex-col items-center gap-8 px-6">
 						{/* Heading */}
 						<h2 className="text-center text-[39px] font-bold leading-[1.25] text-white">
-							Build with Effect? Let's connect!
+							Using Effect in production? Let’s talk.
 						</h2>
 
 						{/* Description */}
@@ -71,13 +71,13 @@ export function CTASection() {
 							<Button
 								href="https://forms.gle/BHtNKorGC4ERA5o38"
 								icon="ri-arrow-right-up-line"
-								text="What are you building?"
+								text="Share your project"
 							/>
 
 							{/* Link 2: Join our community */}
 							<Button
 								href="https://discord.gg/effect-ts"
-								icon="ri-discord-fill"
+								icon="ri-arrow-right-up-line"
 								text="Join our community"
 							/>
 						</div>

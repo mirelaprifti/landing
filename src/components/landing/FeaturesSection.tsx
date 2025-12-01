@@ -63,7 +63,7 @@ export function FeaturesSection() {
 			/>
 
 			{/* Content Container */}
-			<div className="relative pb-16 pt-16 md:pt-24">
+			<div className="relative pb-16 pt-16 md:py-32">
 				{/* Primitives for Production */}
 				<div className="relative mx-auto flex max-w-[66.5rem] flex-col px-4 md:px-0">
 					{/* Heading with Learn Effect link */}
