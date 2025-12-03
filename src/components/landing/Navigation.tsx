@@ -68,7 +68,7 @@ export function Navigation() {
 	return (
 		<>
 			<div
-				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-900 px-4 md:px-8"
+				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-800 px-4 md:px-8"
 				style={{
 					backgroundColor: "rgba(9, 9, 11, 0.85)",
 					backdropFilter: "blur(5px)",
@@ -87,7 +87,7 @@ export function Navigation() {
 							</a>
 
 							{/* Navigation links next to logo */}
-							<div className="ml-8 hidden font-medium items-center gap-8 md:flex">
+							<div className="ml-8 hidden items-center gap-8 md:flex">
 								<a
 									href="https://effect.website/docs/"
 									target="_blank"
@@ -165,11 +165,11 @@ export function Navigation() {
 									<button
 										type="button"
 										aria-label="Open search (Command K)"
-										className="flex items-center gap-2 rounded-[6px] border border-zinc-700 px-2.5 py-1.5 text-zinc-400 transition-all hover:border-zinc-950 hover:bg-zinc-800 hover:text-white"
+										className="flex items-center gap-2 rounded-[6px] border border-zinc-700 px-[12px] py-[8px] text-zinc-400 transition-all hover:border-zinc-950 hover:bg-zinc-800 hover:text-white"
 									>
 										<span className="flex items-center gap-1">
 											<i
-												className="ri-search-line text-base"
+												className="ri-search-line text-base leading-none"
 												aria-hidden="true"
 											></i>
 											<span className="text-[0.875rem] font-normal">
