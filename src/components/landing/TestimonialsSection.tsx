@@ -193,17 +193,14 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Spacer with diagonal lines */}
+			{/* Spacer with crosshatch grid */}
 			<div
 				className="h-[1.5rem] w-full max-w-[73.75rem] mx-auto"
 				style={{
-					backgroundImage: `repeating-linear-gradient(
-						-45deg,
-						transparent,
-						transparent 6px,
-						#27272a 6px,
-						#27272a 7px
-					)`,
+					backgroundImage: `
+						repeating-linear-gradient(0deg, transparent, transparent 16px, #27272a 16px, #27272a 17px),
+						repeating-linear-gradient(90deg, transparent, transparent 16px, #27272a 16px, #27272a 17px)
+					`,
 				}}
 			/>
 
