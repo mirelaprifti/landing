@@ -68,7 +68,7 @@ export function Navigation() {
 	return (
 		<>
 			<div
-				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-800 px-4 md:px-8"
+				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-900 px-4 md:px-8"
 				style={{
 					backgroundColor: "rgba(9, 9, 11, 0.85)",
 					backdropFilter: "blur(5px)",
@@ -76,50 +76,62 @@ export function Navigation() {
 				}}
 			>
 				<div className="w-full">
-					<header className="relative mx-auto w-full max-w-[96rem]">
-						<nav className="flex h-20 items-center">
+					<header className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<nav className="flex h-16 items-center">
 							<a href="/" className="flex items-center">
 								<img
 									src={getAssetPath("/assets/logos/effect-logo-white.svg")}
 									alt="Effect"
-									className="h-[2rem] w-auto"
+									className="h-[1.5rem] w-auto"
 								/>
 							</a>
 
-							<div className="ml-auto flex items-center">
-								<div className="hidden items-center gap-4 md:flex">
-									<a
-										href="https://effect.website/docs/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Docs
-									</a>
-									<a
-										href="https://effect.website/blog/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Blog
-									</a>
-									<a
-										href="https://effect.website/podcast/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Podcast
-									</a>
-									<a
-										href="https://effect.website/play/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Play
-									</a>
+							{/* Navigation links next to logo */}
+							<div className="ml-8 hidden font-medium items-center gap-8 md:flex">
+								<a
+									href="https://effect.website/docs/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-base text-zinc-400 transition-colors hover:text-white"
+								>
+									Docs
+								</a>
+								<a
+									href="https://effect.website/blog/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-base text-zinc-400 transition-colors hover:text-white"
+								>
+									Blog
+								</a>
+								<a
+									href="https://effect.website/podcast/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-base text-zinc-400 transition-colors hover:text-white"
+								>
+									Podcast
+								</a>
+								<a
+									href="https://effect.website/play/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-base text-zinc-400 transition-colors hover:text-white"
+								>
+									Play
+								</a>
+								<a
+									href="https://effect.kitlangton.com/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-base text-zinc-400 transition-colors hover:text-white"
+								>
+									Visual Effect
+								</a>
+							</div>
+
+							{/* Right side items */}
+							<div className="ml-auto hidden items-center gap-4 md:flex">
 									<a
 										href="https://github.com/Effect-TS/effect"
 										target="_blank"
@@ -147,10 +159,13 @@ export function Navigation() {
 										></i>
 									</a>
 
+									{/* Separator */}
+									<div className="h-5 w-px bg-zinc-700" />
+
 									<button
 										type="button"
 										aria-label="Open search (Command K)"
-										className="flex items-center gap-2 rounded-[8px] border border-zinc-700 px-2.5 py-1.5 text-zinc-400 transition-all hover:border-zinc-950 hover:bg-zinc-800 hover:text-white"
+										className="flex items-center gap-2 rounded-[6px] border border-zinc-700 px-2.5 py-1.5 text-zinc-400 transition-all hover:border-zinc-950 hover:bg-zinc-800 hover:text-white"
 									>
 										<span className="flex items-center gap-1">
 											<i
@@ -168,7 +183,6 @@ export function Navigation() {
 											⌘K
 										</span>
 									</button>
-								</div>
 
 								<button
 									type="button"

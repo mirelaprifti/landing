@@ -34,7 +34,7 @@
 
 	/* Font Families */
 	--font-sans: Inter, sans-serif;
-	--font-mono: "Roboto Mono", monospace;
+	--font-mono: "JetBrains Mono", monospace;
 
 	/* Border Radius */
 	--radius: 8px;
@@ -63,7 +63,7 @@ body {
 code,
 pre,
 .font-mono {
-	font-family: "Roboto Mono", monospace !important;
+	font-family: "JetBrains Mono", monospace !important;
 }
 
 /* Toggle Switch Styles */
@@ -327,4 +327,18 @@ a:focus-visible {
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+/* Grid Overlay */
+.grid-overlay {
+	animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

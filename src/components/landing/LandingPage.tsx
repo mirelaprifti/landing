@@ -1,6 +1,5 @@
 import { Navigation } from "./Navigation";
 import { HeroSection } from "./HeroSection";
-import { FeaturesSection } from "./FeaturesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { AISection } from "./AISection";
 import { DevToolsSection } from "./DevToolsSection";
@@ -8,6 +7,7 @@ import { QuotesSection } from "./QuotesSection";
 import { FAQSection } from "./FAQSection";
 import { CTASection } from "./CTASection";
 import { Footer } from "./Footer";
+import { GridOverlay } from "../GridOverlay";
 
 export function LandingPage() {
 	return (
@@ -21,16 +21,17 @@ export function LandingPage() {
 			</a>
 
 			<Navigation />
+			<GridOverlay />
 
 			{/* Vertical border lines container */}
-			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[5] hidden px-8 lg:block">
-				<div className="relative mx-auto h-full w-full max-w-[96rem]">
+			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[60] hidden px-8 lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
 					<div
 						className="absolute left-0 top-0 bottom-0"
 						style={{
 							width: "1px",
-							background: "#27272a",
+							background: "#18181b",
 						}}
 					></div>
 					{/* Right vertical line */}
@@ -38,7 +39,7 @@ export function LandingPage() {
 						className="absolute right-0 top-0 bottom-0"
 						style={{
 							width: "1px",
-							background: "#27272a",
+							background: "#18181b",
 						}}
 					></div>
 				</div>
@@ -49,7 +50,6 @@ export function LandingPage() {
 				<HeroSection />
 			</main>
 
-			<FeaturesSection />
 			<TestimonialsSection />
 			<AISection />
 			<DevToolsSection />
