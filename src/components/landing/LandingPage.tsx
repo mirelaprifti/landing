@@ -1,5 +1,6 @@
 import { Navigation } from "./Navigation";
 import { HeroSection } from "./HeroSection";
+import { FeaturesSection } from "./FeaturesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { AISection } from "./AISection";
 import { DevToolsSection } from "./DevToolsSection";
@@ -31,7 +32,7 @@ export function LandingPage() {
 						className="absolute left-0 top-0 bottom-0"
 						style={{
 							width: "1px",
-							background: "#18181b",
+							background: "#27272a",
 						}}
 					></div>
 					{/* Right vertical line */}
@@ -39,7 +40,7 @@ export function LandingPage() {
 						className="absolute right-0 top-0 bottom-0"
 						style={{
 							width: "1px",
-							background: "#18181b",
+							background: "#27272a",
 						}}
 					></div>
 				</div>
@@ -48,6 +49,7 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-20">
 				<HeroSection />
+				<FeaturesSection />
 			</main>
 
 			<TestimonialsSection />

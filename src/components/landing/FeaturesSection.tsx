@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { motion } from "motion/react";
 import { EffectAllExample } from "@/examples/effect-all";
 import { EffectAllShortCircuitExample } from "@/examples/effect-all-short-circuit";
 import { EffectRaceExample } from "@/examples/effect-race";
+import { EffectRaceAllExample } from "@/examples/effect-raceall";
+import { EffectForEachExample } from "@/examples/effect-foreach";
 import { EffectSucceedExample } from "@/examples/effect-succeed";
 import { EffectDieExample } from "@/examples/effect-die";
+import { EffectFailExample } from "@/examples/effect-fail";
+import { EffectSyncExample } from "@/examples/effect-sync";
+import { EffectPromiseExample } from "@/examples/effect-promise";
+import { EffectSleepExample } from "@/examples/effect-sleep";
 import { EffectOrElseExample } from "@/examples/effect-orelse";
+import { EffectTimeoutExample } from "@/examples/effect-timeout";
+import { EffectRetryExample as EffectEventuallyExample } from "@/examples/effect-eventually";
+import { EffectPartitionLickTestExample } from "@/examples/effect-partition";
+import { EffectValidateExample } from "@/examples/effect-validate";
 import { EffectRetryRecursExample } from "@/examples/effect-retry-recurs";
+import { EffectRetryExponentialExample } from "@/examples/effect-retry-exponential";
 import { EffectRepeatSpacedExample } from "@/examples/effect-repeat-spaced";
+import { EffectRepeatWhileOutputExample } from "@/examples/effect-repeat-while-output";
 import { getExampleMeta } from "@/lib/examples-manifest";
 import type { ExampleComponentProps } from "@/lib/example-types";
 
@@ -20,34 +33,139 @@ const EXAMPLE_COMPONENTS: Record<
 	"effect-all": EffectAllExample,
 	"effect-all-short-circuit": EffectAllShortCircuitExample,
 	"effect-race": EffectRaceExample,
+	"effect-raceall": EffectRaceAllExample,
+	"effect-foreach": EffectForEachExample,
 	"effect-succeed": EffectSucceedExample,
 	"effect-die": EffectDieExample,
+	"effect-fail": EffectFailExample,
+	"effect-sync": EffectSyncExample,
+	"effect-promise": EffectPromiseExample,
+	"effect-sleep": EffectSleepExample,
 	"effect-orelse": EffectOrElseExample,
+	"effect-timeout": EffectTimeoutExample,
+	"effect-eventually": EffectEventuallyExample,
+	"effect-partition": EffectPartitionLickTestExample,
+	"effect-validate": EffectValidateExample,
 	"effect-retry-recurs": EffectRetryRecursExample,
+	"effect-retry-exponential": EffectRetryExponentialExample,
 	"effect-repeat-spaced": EffectRepeatSpacedExample,
+	"effect-repeat-while-output": EffectRepeatWhileOutputExample,
 };
 
-const TAB_CONFIG: Record<TabId, { label: string; examples: string[] }> = {
+interface SubTab {
+	id: string;
+	label: [string, string];
+}
+
+interface TabConfig {
+	label: string;
+	examples?: string[];
+	subTabs?: SubTab[];
+}
+
+const TAB_CONFIG: Record<TabId, TabConfig> = {
 	schedule: {
 		label: "Schedule",
-		examples: ["effect-retry-recurs", "effect-repeat-spaced"],
-	},
-	"error-handling": {
-		label: "Error Handling",
-		examples: ["effect-all-short-circuit", "effect-orelse"],
+		subTabs: [
+			{ id: "effect-repeat-spaced", label: ["Effect.repeat", "spaced"] },
+			{ id: "effect-repeat-while-output", label: ["Effect.repeat", "whileOutput"] },
+			{ id: "effect-retry-recurs", label: ["Effect.retry", "recurs"] },
+			{ id: "effect-retry-exponential", label: ["Effect.retry", "exponential"] },
+		],
 	},
 	concurrency: {
 		label: "Concurrency",
-		examples: ["effect-all", "effect-race"],
+		subTabs: [
+			{ id: "effect-all", label: ["Effect.all", ""] },
+			{ id: "effect-race", label: ["Effect.race", ""] },
+			{ id: "effect-raceall", label: ["Effect.raceAll", ""] },
+			{ id: "effect-foreach", label: ["Effect.forEach", ""] },
+		],
+	},
+	"error-handling": {
+		label: "Error Handling",
+		subTabs: [
+			{ id: "effect-all-short-circuit", label: ["Effect.all", "short-circuit"] },
+			{ id: "effect-orelse", label: ["Effect.orElse", ""] },
+			{ id: "effect-timeout", label: ["Effect.timeout", ""] },
+			{ id: "effect-eventually", label: ["Effect.eventually", ""] },
+			{ id: "effect-partition", label: ["Effect.partition", ""] },
+			{ id: "effect-validate", label: ["Effect.validate", ""] },
+		],
 	},
 	constructors: {
 		label: "Constructors",
-		examples: ["effect-succeed", "effect-die"],
+		subTabs: [
+			{ id: "effect-succeed", label: ["Effect.succeed", ""] },
+			{ id: "effect-die", label: ["Effect.die", ""] },
+			{ id: "effect-fail", label: ["Effect.fail", ""] },
+			{ id: "effect-sync", label: ["Effect.sync", ""] },
+			{ id: "effect-promise", label: ["Effect.promise", ""] },
+			{ id: "effect-sleep", label: ["Effect.sleep", ""] },
+		],
 	},
 };
 
+const TAB_IDS = Object.keys(TAB_CONFIG) as TabId[];
+
 export function FeaturesSection() {
 	const [activeTab, setActiveTab] = useState<TabId>("schedule");
+	const [activeSubTabPerTab, setActiveSubTabPerTab] = useState<Record<TabId, string>>({
+		schedule: "effect-repeat-spaced",
+		concurrency: "effect-all",
+		"error-handling": "effect-all-short-circuit",
+		constructors: "effect-succeed",
+	});
+	const subTabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+	const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 });
+	const [shouldAnimateIndicator, setShouldAnimateIndicator] = useState(true);
+	const prevActiveTab = useRef(activeTab);
+
+	const handleSubTabChange = (subTabId: string) => {
+		setActiveSubTabPerTab(prev => ({
+			...prev,
+			[activeTab]: subTabId,
+		}));
+	};
+
+	const activeTabIndex = useMemo(
+		() => TAB_IDS.indexOf(activeTab),
+		[activeTab]
+	);
+
+	const currentTabConfig = TAB_CONFIG[activeTab];
+
+	// Get the current active sub-tab for this tab
+	const currentActiveSubTab = useMemo(() => {
+		return activeSubTabPerTab[activeTab];
+	}, [activeSubTabPerTab, activeTab]);
+
+	// Update indicator position when active sub-tab changes
+	useEffect(() => {
+		// Disable animation when main tab changes
+		if (prevActiveTab.current !== activeTab) {
+			setShouldAnimateIndicator(false);
+			prevActiveTab.current = activeTab;
+		}
+
+		const activeButton = subTabRefs.current.get(currentActiveSubTab);
+		if (activeButton) {
+			const container = activeButton.parentElement;
+			if (container) {
+				const containerRect = container.getBoundingClientRect();
+				const buttonRect = activeButton.getBoundingClientRect();
+				setIndicatorStyle({
+					top: buttonRect.top - containerRect.top,
+					height: buttonRect.height,
+				});
+			}
+		}
+
+		// Re-enable animation after position is set
+		requestAnimationFrame(() => {
+			setShouldAnimateIndicator(true);
+		});
+	}, [currentActiveSubTab, activeTab]);
 
 	return (
 		<section className="relative w-full">
@@ -55,7 +173,7 @@ export function FeaturesSection() {
 			<div
 				className="absolute left-0 right-0 top-0 h-[1px]"
 				style={{
-					background: "#3f3f46",
+					background: "#27272a",
 					WebkitMask:
 						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
@@ -63,70 +181,136 @@ export function FeaturesSection() {
 			/>
 
 			{/* Content Container */}
-			<div className="relative pb-16 pt-16 md:py-32">
-				{/* Primitives for Production */}
-				<div className="relative mx-auto flex max-w-[66.5rem] flex-col px-4 md:px-0">
-					{/* Heading with Learn Effect link */}
-						<div className="mb-6 flex w-full items-start justify-between">
-							<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
-								Primitives for production
-							</h2>
-							<a
-								href="https://effect.kitlangton.com/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="mt-[6px] flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
-							>
-								<span>Visual Effects</span>
-								<i className="ri-arrow-right-up-line text-base"></i>
-							</a>
-						</div>
-
+			<div className="relative max-w-[73.75rem] mx-auto pb-16 md:pb-0">
 						{/* Tab Navigation and Content - wrapped together */}
-						<div className="mb-6 relative rounded-[12px] bg-gradient-to-b from-zinc-700 to-zinc-800 p-[1px]">
-							<div className="overflow-hidden rounded-[12px] bg-zinc-950">
+						<div className="relative p-[1px]">
+							<div className="overflow-hidden bg-zinc-950">
 								{/* Tab Headers */}
-								<div className="flex">
-									{(Object.keys(TAB_CONFIG) as TabId[]).map((tabId, index, array) => (
-										<button
-											key={tabId}
-											onClick={() => setActiveTab(tabId)}
-											className={`flex-1 py-[16px] px-6 font-mono text-base uppercase transition-colors ${
-												index < array.length - 1 ? "border-r border-zinc-950" : ""
-											} ${
-												activeTab === tabId
-													? "bg-zinc-950 text-white"
-													: `bg-[#18181b] text-zinc-400 hover:text-white ${index < array.length - 1 ? "border-b border-zinc-950" : ""}`
-											}`}
-										>
-											{TAB_CONFIG[tabId].label}
-										</button>
+								<div className="relative flex border-b border-zinc-800">
+									{TAB_IDS.map((tabId, index, array) => (
+										<div key={tabId} className="flex flex-1">
+											<button
+												onClick={() => setActiveTab(tabId)}
+												className={`flex-1 cursor-pointer py-8 px-6 font-mono text-base uppercase transition-colors ${
+													activeTab === tabId
+														? "bg-zinc-950 text-white font-medium"
+														: "bg-zinc-950 text-zinc-400 hover:text-white"
+												}`}
+											>
+												{TAB_CONFIG[tabId].label}
+											</button>
+											{index < array.length - 1 && (
+												<div
+													className="w-[1px] self-stretch"
+													style={{
+														background: "#27272a",
+														WebkitMask:
+															"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+														mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+													}}
+												/>
+											)}
+										</div>
 									))}
+									{/* Sliding indicator */}
+									<motion.div
+										className="absolute bottom-0 h-[1px] bg-zinc-300"
+										initial={false}
+										animate={{
+											left: `${(activeTabIndex / TAB_IDS.length) * 100}%`,
+											width: `${100 / TAB_IDS.length}%`,
+										}}
+										transition={{
+											type: "spring",
+											stiffness: 300,
+											damping: 25,
+											mass: 0.8,
+										}}
+									/>
 								</div>
 
 								{/* Tab Content */}
-								<div className="w-full p-6">
-									<div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
-										{TAB_CONFIG[activeTab].examples.map((exampleId, index) => {
-											const metadata = getExampleMeta(exampleId);
-											const Component = EXAMPLE_COMPONENTS[exampleId];
-											return (
-												<div key={exampleId} className="w-full text-sm h-full">
-													{metadata && Component && (
-														<Component
-															metadata={metadata}
-															exampleId={exampleId}
-															index={index}
-														/>
-													)}
-												</div>
-											);
-										})}
-									</div>
+								<div className="w-full py-4 pl-4">
+									{currentTabConfig.subTabs ? (
+										/* Sub-tabs layout: 3/4 content + 1/4 nav (nav on right) */
+										<div className="flex flex-col md:flex-row gap-0">
+											{/* Example component - 3/4 width */}
+											<div className="md:w-3/4">
+												{(() => {
+													const metadata = getExampleMeta(currentActiveSubTab);
+													const Component = EXAMPLE_COMPONENTS[currentActiveSubTab];
+													return metadata && Component ? (
+														<div className="w-full text-sm h-full">
+															<Component
+																metadata={metadata}
+																exampleId={currentActiveSubTab}
+																index={0}
+															/>
+														</div>
+													) : null;
+												})()}
+											</div>
+											{/* Sub-tab navigation - 1/4 width (on right) */}
+											<div className="md:w-1/4 flex md:flex-col gap-8 relative md:mr-0 md:ml-2 pt-5">
+												{currentTabConfig.subTabs.map((subTab) => (
+													<button
+														key={subTab.id}
+														ref={(el) => {
+															if (el) subTabRefs.current.set(subTab.id, el);
+														}}
+														onClick={() => handleSubTabChange(subTab.id)}
+														className={`flex flex-col items-end px-4 text-right transition-colors cursor-pointer ${
+															currentActiveSubTab === subTab.id
+																? "text-white"
+																: "text-zinc-400 hover:text-white"
+														}`}
+													>
+														<span className="font-mono text-base">{subTab.label[0]}</span>
+														{subTab.label[1] && (
+															<span className="font-mono text-sm text-zinc-400/70">{subTab.label[1]}</span>
+														)}
+													</button>
+												))}
+												{/* Sliding indicator */}
+												<motion.div
+													className="absolute right-0 w-[1px] bg-zinc-100"
+													initial={false}
+													animate={{
+														top: indicatorStyle.top,
+														height: indicatorStyle.height,
+													}}
+													transition={shouldAnimateIndicator ? {
+														type: "spring",
+														stiffness: 300,
+														damping: 25,
+														mass: 0.8,
+													} : { duration: 0 }}
+												/>
+											</div>
+										</div>
+									) : (
+										/* Grid layout for other tabs */
+										<div className="grid grid-cols-1 md:grid-cols-2 gap-0 auto-rows-fr">
+											{currentTabConfig.examples?.map((exampleId, index) => {
+												const metadata = getExampleMeta(exampleId);
+												const Component = EXAMPLE_COMPONENTS[exampleId];
+												return (
+													<div key={exampleId} className="w-full text-sm h-full">
+														{metadata && Component && (
+															<Component
+																metadata={metadata}
+																exampleId={exampleId}
+																index={index}
+															/>
+														)}
+													</div>
+												);
+											})}
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
-				</div>
 			</div>
 
 			{/* Solid bottom border */}
