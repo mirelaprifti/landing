@@ -191,7 +191,7 @@ export function FeaturesSection() {
 										<div key={tabId} className="flex flex-1">
 											<button
 												onClick={() => setActiveTab(tabId)}
-												className={`flex-1 cursor-pointer py-8 px-6 font-mono text-base uppercase transition-colors ${
+												className={`flex-1 cursor-pointer py-5 px-6 font-mono text-base uppercase transition-colors ${
 													activeTab === tabId
 														? "bg-zinc-950 text-white font-medium"
 														: "bg-zinc-950 text-zinc-400 hover:text-white"

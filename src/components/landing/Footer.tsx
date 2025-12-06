@@ -6,11 +6,11 @@ export function Footer() {
 			{/* Top solid border */}
 			<div className="absolute left-0 right-0 top-0 h-px bg-zinc-700" />
 
-			<div className="mx-auto w-full max-w-[80rem]">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Footer Links Block */}
 				<div className="flex flex-col">
 					{/* Four Column Links Section */}
-					<div className="mb-16 grid grid-cols-2 gap-8 md:mb-24 md:gap-16 lg:grid-cols-4 lg:gap-24">
+					<div className="mb-16 grid grid-cols-2 gap-4 md:mb-24 md:gap-12 lg:grid-cols-4 lg:gap-12">
 						{/* Column 1: Resources */}
 						<div className="flex flex-col gap-3">
 							{/* Column Header */}

@@ -169,7 +169,12 @@ export function TestimonialsSection() {
 										/>
 									</div>
 									{/* Label area */}
-									<div className="flex flex-col px-2 py-3 relative">
+									<div
+										className="flex flex-col px-2 py-3 relative"
+										style={{
+											background: "linear-gradient(to bottom, rgba(39, 39, 42, 0.3), transparent)",
+										}}
+									>
 										{/* Dashed border above text */}
 										<div
 											className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700/50"
@@ -193,26 +198,26 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Spacer with crosshatch grid */}
-			<div
-				className="h-[1.5rem] w-full max-w-[73.75rem] mx-auto"
-				style={{
-					backgroundImage: `
-						repeating-linear-gradient(0deg, transparent, transparent 16px, #27272a 16px, #27272a 17px),
-						repeating-linear-gradient(90deg, transparent, transparent 16px, #27272a 16px, #27272a 17px)
-					`,
-				}}
-			/>
+			{/* Spacer with dashed line */}
+			<div className="h-[1.25rem] w-full max-w-[73.75rem] mx-auto flex items-center">
+				<div
+					className="h-[1px] w-full"
+					style={{
+						background: "#27272a",
+						WebkitMask:
+							"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+						mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+					}}
+				/>
+			</div>
 
 			{/* Logo Grid Section */}
-			<div className="w-full max-w-[73.75rem] mx-auto border-t-[1px] border-zinc-800">
-				<div className="grid grid-cols-4 border border-zinc-950">
+			<div className="w-full max-w-[73.75rem] mx-auto border-t-[1px] border-zinc-800 bg-zinc-900/30">
+				<div className="grid grid-cols-4">
 					{visibleLogos.map((logo, index) => (
 						<div
 							key={index}
-							className={`flex items-center justify-center p-6 border-zinc-800 ${
-								(index + 1) % 4 !== 0 ? "border-r" : ""
-							} ${index < 8 ? "border-b" : ""}`}
+							className="flex items-center justify-center p-6"
 						>
 							<AnimatePresence mode="wait">
 								<motion.img

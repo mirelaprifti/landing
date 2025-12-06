@@ -42,9 +42,9 @@ export function HeroSection() {
 				/>
 
 				<div className="container mx-auto max-w-[73.75rem] px-4">
-					<div className="text-left max-w-[64rem]">
+					<div className="text-left max-w-[52rem]">
 						<h1 className="leading-tighter mb-6 text-xl font-semibold md:text-5xl">
-							The TypeScript framework for reliable and scalable systems
+							The TypeScript framework for reliability and scale
 						</h1>
 						<p className="leading:tight mb-10 max-w-[37.5rem] text-lg text-zinc-400 md:text-lg md:leading-normal">
 							Predictable, debuggable, and built to scale code. Effect is trusted by engineers building AI, infrastructure, and beyond.
@@ -62,7 +62,7 @@ export function HeroSection() {
 													type="button"
 													key={pm}
 													onClick={() => setActivePackageManager(pm)}
-													className={`hero-tab-button flex w-[126px] flex-shrink-0 items-center justify-center gap-2 py-4 text-base font-mono leading-normal transition-colors cursor-pointer sm:w-auto sm:flex-1 ${
+													className={`hero-tab-button flex w-[126px] flex-shrink-0 items-center justify-center gap-2 py-3 text-base font-mono leading-normal transition-colors cursor-pointer sm:w-auto sm:flex-1 ${
 														activePackageManager === pm
 															? "bg-zinc-950 text-white"
 															: "bg-zinc-900/70 text-zinc-300/75 hover:text-white"
@@ -72,7 +72,7 @@ export function HeroSection() {
 													<img
 														src={getAssetPath(`/assets/logos/${pm === "npm" ? "npm-brands-solid-full" : pm === "pnpm" ? "pnpm-logo" : pm === "yarn" ? "yarn-logo" : pm === "bun" ? "bun-logo-box" : "deno-logo-box"}.svg`)}
 														alt={pm}
-														className={pm === "pnpm" ? "h-5 w-auto" : "h-6 w-auto"}
+														className={pm === "pnpm" ? "h-4 w-auto" : "h-5 w-auto"}
 													/>
 													<span>{pm}</span>
 												</button>

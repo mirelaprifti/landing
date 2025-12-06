@@ -12,7 +12,7 @@ export function CTASection() {
 				}}
 			/>
 
-			<div className="mx-auto w-full max-w-[80rem]">
+			<div className="mx-auto w-full max-w-[73.75rem]">
 				{/* Content Wrapper */}
 				<div className="relative mx-auto flex w-full flex-col items-center gap-12 py-20 md:py-32 lg:gap-16">
 					{/* Left dashed border */}
