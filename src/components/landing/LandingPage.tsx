@@ -4,11 +4,15 @@ import { FeaturesSection } from "./FeaturesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { AISection } from "./AISection";
 import { DevToolsSection } from "./DevToolsSection";
-import { QuotesSection } from "./QuotesSection";
+import { QuotesGridSection } from "./QuotesSection";
 import { FAQSection } from "./FAQSection";
 import { CTASection } from "./CTASection";
 import { Footer } from "./Footer";
 import { GridOverlay } from "../GridOverlay";
+
+function SectionDivider() {
+	return <div className="h-px w-full bg-zinc-800" />;
+}
 
 export function LandingPage() {
 	return (
@@ -28,35 +32,29 @@ export function LandingPage() {
 			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[60] hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
-					<div
-						className="absolute left-0 top-0 bottom-0"
-						style={{
-							width: "1px",
-							background: "#27272a",
-						}}
-					></div>
+					<div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-800" />
 					{/* Right vertical line */}
-					<div
-						className="absolute right-0 top-0 bottom-0"
-						style={{
-							width: "1px",
-							background: "#27272a",
-						}}
-					></div>
+					<div className="absolute right-0 top-0 bottom-0 w-px bg-zinc-800" />
 				</div>
 			</div>
 
 			{/* Main Content */}
-			<main id="main-content" className="relative w-full pt-20">
+			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
 				<FeaturesSection />
 			</main>
 
+			<SectionDivider />
 			<TestimonialsSection />
+			<SectionDivider />
 			<AISection />
+			<SectionDivider />
 			<DevToolsSection />
-			<QuotesSection />
+			<SectionDivider />
+			<QuotesGridSection />
+			<SectionDivider />
 			<FAQSection />
+			<SectionDivider />
 			<CTASection />
 			<Footer />
 		</div>
