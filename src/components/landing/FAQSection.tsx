@@ -122,15 +122,15 @@ export function FAQSection() {
 						Yes! You can start small, wrapping existing async code or APIs in
 						Effect and expanding from there:
 					</p>
-					<pre className="mb-3 mt-3 overflow-x-auto rounded-lg bg-zinc-900 p-4">
+					<pre className="mb-3 mt-3 overflow-x-auto bg-zinc-900/50 p-4 border border-zinc-800">
 						<code className="text-sm text-zinc-300 font-mono">
-							<span style={{ color: "#7c7c7c" }}>
+							<span className="text-zinc-500">
 								{"// Enter the Effect world"}
 							</span>
 							{"\n"}
 							{"Effect.tryPromise(() => nonEffectAPI())"}
 							{"\n\n"}
-							<span style={{ color: "#7c7c7c" }}>
+							<span className="text-zinc-500">
 								{"// Exit back to normal promises"}
 							</span>
 							{"\n"}
@@ -139,74 +139,113 @@ export function FAQSection() {
 					</pre>
 					<p>
 						From there, you can progressively refactor leaf modules into
-						Effects, moving upward through your codebase. Many teams start by
-						converting a few async functions or services, then gradually
-						introduce layers (for dependency management) and runtime management
-						to handle the rest of the app.
+						Effects, moving upward through your codebase.
 					</p>
 				</>
 			),
 		},
 	];
 
+	const toggleQuestion = (index: number) => {
+		setOpenIndices((prev) => {
+			const next = new Set(prev);
+			if (next.has(index)) {
+				next.delete(index);
+			} else {
+				next.add(index);
+			}
+			return next;
+		});
+	};
+
 	return (
-		<section className="relative w-full px-4 py-20 md:px-8 md:py-26">
+		<section className="relative w-full py-16 md:py-20">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="flex flex-col gap-16 lg:flex-row lg:gap-32">
-					{/* Left column - Heading */}
-					<div className="lg:w-1/3">
-						<h2 className="text-3xl font-bold leading-tight text-white">
-							Questions we get asked a lot...
-						</h2>
+				{/* Two-column layout */}
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+					{/* Left column - Header and CTA (5 columns) */}
+					<div className="lg:col-span-5">
+						<div className="lg:sticky lg:top-24">
+							<p className="mb-2 font-mono text-sm uppercase tracking-wider text-zinc-500">
+								FAQ
+							</p>
+							<h2 className="text-2xl font-semibold text-white md:text-3xl">
+								Questions we get asked a lot
+							</h2>
+
+							<p className="mt-5 text-[15px] max-w-[280px] text-zinc-500 leading-relaxed">
+								Can't find what you're looking for? Our community is always happy to help.
+							</p>
+
+							{/* Discord CTA */}
+							<a
+								href="https://discord.gg/effect-ts"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group mt-6 inline-flex items-center gap-2.5 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+							>
+								<i className="ri-discord-fill text-base" />
+								<span>Ask on Discord</span>
+								<i className="ri-arrow-right-up-line text-xs text-zinc-500 transition-all group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+							</a>
+						</div>
 					</div>
 
-					{/* Right column - FAQs */}
-					<div className="flex flex-col gap-6 lg:w-2/3">
-						{faqs.map((faq, index) => {
-							const isOpen = openIndices.has(index);
-							return (
-								<div
-									// biome-ignore lint/suspicious/noArrayIndexKey: It's okay. Just chill, Biome.
-									key={index}
-									className="flex w-full flex-col border-b border-zinc-600 bg-zinc-950 pb-6"
-								>
-								<button
-									type="button"
-									onClick={() => {
-										setOpenIndices((prev) => {
-											const next = new Set(prev);
-											if (next.has(index)) {
-												next.delete(index);
-											} else {
-												next.add(index);
-											}
-											return next;
-										});
-									}}
-									className="flex w-full cursor-pointer items-center justify-between border-none bg-transparent text-left"
-									aria-expanded={isOpen}
-								>
-									<span className={`pr-4 text-lg font-medium transition-colors ${isOpen ? "text-white" : "text-zinc-300"}`}>
-										{faq.question}
-									</span>
-									<i
-										className={`ri-arrow-right-s-line flex-shrink-0 text-[32px] leading-none transition-all ${
-											isOpen ? "rotate-90 text-white" : "text-zinc-300"
+					{/* Right column - FAQ items (7 columns) */}
+					<div className="lg:col-span-7">
+						<div className="space-y-3">
+							{faqs.map((faq, index) => {
+								const isOpen = openIndices.has(index);
+								return (
+									<div
+										key={index}
+										className={`border transition-colors duration-200 ${
+											isOpen
+												? "border-zinc-700 bg-zinc-900/40"
+												: "border-zinc-800/70 hover:border-zinc-700/80 hover:bg-zinc-900/20"
 										}`}
-									/>
-								</button>
-								<div
-									className={`overflow-hidden transition-all duration-300 ease-in-out ${
-										isOpen ? "mt-5 max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-									}`}
-								>
-									<div className="text-base leading-relaxed text-zinc-300">
-										{faq.answer}
+									>
+										<button
+											type="button"
+											onClick={() => toggleQuestion(index)}
+											className="group flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left"
+											aria-expanded={isOpen}
+										>
+											{/* Question text */}
+											<span className={`text-base font-medium leading-snug transition-colors ${
+												isOpen ? "text-white" : "text-zinc-300 group-hover:text-white"
+											}`}>
+												{faq.question}
+											</span>
+
+											{/* Toggle icon */}
+											<div className={`flex h-6 w-6 shrink-0 items-center justify-center rounded transition-all duration-200 ${
+												isOpen
+													? "bg-white text-zinc-900"
+													: "bg-zinc-800/80 text-zinc-500 group-hover:bg-zinc-700"
+											}`}>
+												<i className={`ri-add-line text-sm transition-transform duration-200 ${
+													isOpen ? "rotate-45" : ""
+												}`} />
+											</div>
+										</button>
+
+										{/* Answer */}
+										<div
+											className={`grid transition-all duration-300 ease-out ${
+												isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+											}`}
+										>
+											<div className="overflow-hidden">
+												<div className="px-5 pb-5 text-[15px] leading-relaxed text-zinc-400">
+													{faq.answer}
+												</div>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						);
-					})}
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			</div>

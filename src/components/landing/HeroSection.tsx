@@ -1,160 +1,204 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 
-const HERO_COMMANDS: Record<string, string> = {
+const INSTALL_COMMANDS: Record<string, string> = {
 	npm: "npm install effect",
 	pnpm: "pnpm add effect",
 	yarn: "yarn add effect",
 	bun: "bun add effect",
-	deno: "deno init --npm effect-app@latest",
+	deno: "deno add npm:effect",
 };
 
-export function HeroSection() {
-	const [activePackageManager, setActivePackageManager] = useState("npm");
-	const [copyFeedback, setCopyFeedback] = useState(false);
-	const [isHovered, setIsHovered] = useState(false);
+const PM_LOGOS: Record<string, string> = {
+	npm: getAssetPath("/assets/logos/npm-brands-solid-full.svg"),
+	pnpm: getAssetPath("/assets/logos/pnpm-logo.svg"),
+	yarn: getAssetPath("/assets/logos/yarn-logo.svg"),
+	bun: getAssetPath("/assets/logos/bun-logo-box.svg"),
+	deno: getAssetPath("/assets/logos/deno-logo-box.svg"),
+};
 
-	const currentCommand =
-		HERO_COMMANDS[activePackageManager] || HERO_COMMANDS.npm;
-	const [packageName, ...restParts] = currentCommand.split(" ");
-	const restOfCommand = restParts.join(" ");
+const PM_OPTIONS = ["npm", "pnpm", "yarn", "bun", "deno"] as const;
+
+export function HeroSection() {
+	const [activePM, setActivePM] = useState<string>("npm");
+	const [copyFeedback, setCopyFeedback] = useState(false);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const dropdownRef = useRef<HTMLDivElement>(null);
+
+	const currentCommand = INSTALL_COMMANDS[activePM];
+
+	// Close dropdown when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+				setDropdownOpen(false);
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, []);
 
 	const copyCommand = () => {
 		navigator.clipboard.writeText(currentCommand).then(() => {
 			setCopyFeedback(true);
-			setTimeout(() => {
-				setCopyFeedback(false);
-			}, 2000);
+			setTimeout(() => setCopyFeedback(false), 1500);
 		});
 	};
 
 	return (
-		<div className="relative mx-auto w-full pt-16 pb-16 md:pt-26 md:pb-24">
-			{/* Hero Section */}
-			<section className="relative mx-auto w-full px-4 md:px-8">
-				{/* Subtle diagonal gradient background on right side */}
-				<div
-					className="absolute right-0 top-0 w-[600px] h-[600px] pointer-events-none"
-					style={{
-						background: "linear-gradient(135deg, transparent 0%, rgba(39, 39, 42, 0.3) 50%, transparent 100%)",
-						filter: "blur(80px)",
-					}}
-				/>
+		<section className="relative w-full overflow-hidden">
+			{/* Layer 1: Subtle dot grid pattern */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px)",
+					backgroundSize: "24px 24px",
+				}}
+			/>
 
-				<div className="container mx-auto max-w-[73.75rem] px-4">
-					<div className="text-left max-w-[52rem]">
-						<h1 className="leading-tighter mb-6 text-xl font-semibold md:text-5xl">
-							The TypeScript framework for reliability and scale
-						</h1>
-						<p className="leading:tight mb-10 max-w-[37.5rem] text-lg text-zinc-400 md:text-lg md:leading-normal">
-							Predictable, debuggable, and built to scale code. Effect is trusted by engineers building AI, infrastructure, and beyond.
-						</p>
+			{/* Layer 2: Primary indigo gradient glow - top right */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					background: "radial-gradient(ellipse 80% 60% at 75% -20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%)",
+				}}
+			/>
 
-						{/* Package Manager Tabs */}
-						<div className="max-w-[35.25rem]">
-							{/* Tabs Container */}
-							<div className="relative rounded-[8px] border border-zinc-800 bg-zinc-950 overflow-hidden shadow-[0_4px_20px_4px_rgba(39,39,42,0.3),0_4px_8px_0_rgba(0,0,0,0.5)]">
-								{/* Tab Headers */}
-								<div className="scrollbar-hide flex overflow-hidden gap-[1px]">
-										{(["npm", "bun", "pnpm", "yarn", "deno"] as const).map(
-											(pm) => (
-												<button
-													type="button"
-													key={pm}
-													onClick={() => setActivePackageManager(pm)}
-													className={`hero-tab-button flex w-[126px] flex-shrink-0 items-center justify-center gap-2 py-3 text-base font-mono leading-normal transition-colors cursor-pointer sm:w-auto sm:flex-1 ${
-														activePackageManager === pm
-															? "bg-zinc-950 text-white"
-															: "bg-zinc-900/70 text-zinc-300/75 hover:text-white"
-													}`}
-													aria-label={pm}
-												>
-													<img
-														src={getAssetPath(`/assets/logos/${pm === "npm" ? "npm-brands-solid-full" : pm === "pnpm" ? "pnpm-logo" : pm === "yarn" ? "yarn-logo" : pm === "bun" ? "bun-logo-box" : "deno-logo-box"}.svg`)}
-														alt={pm}
-														className={pm === "pnpm" ? "h-4 w-auto" : "h-5 w-auto"}
-													/>
-													<span>{pm}</span>
-												</button>
-											),
-										)}
-									</div>
+			{/* Layer 3: Ambient white light from top center */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 70%)",
+				}}
+			/>
 
-									{/* Tab Content */}
-									<div className="bg-zinc-950">
-															<button
-												type="button"
-												onClick={copyCommand}
-												onKeyDown={(e) => {
-													if (e.key === "Enter" || e.key === " ") {
-														e.preventDefault();
-														copyCommand();
-													}
-												}}
-												onMouseEnter={() => setIsHovered(true)}
-												onMouseLeave={() => setIsHovered(false)}
-												aria-label={`Copy install command: ${currentCommand}`}
-												className="w-full relative flex cursor-pointer px-5.5 py-5 items-center justify-between rounded-[0px] transition-opacity"
-											>
-												<code className="font-mono text-base text-zinc-200">
-													<span style={{ color: "#5795E2" }}>{packageName}</span> <span style={{ color: "#E5A86A" }}>{restOfCommand}</span>
-												</code>
-												{copyFeedback ? (
-													<output
-														aria-live="polite"
-														className="text-base font-medium text-zinc-100 transition-opacity duration-100"
-													>
-														Copied!
-													</output>
-												) : isHovered ? (
-													<span className="text-base font-normal text-zinc-400 transition-opacity duration-100">
-														Copy!
-													</span>
-												) : (
-													<i
-														className="ri-file-copy-line text-base text-zinc-400"
-														aria-hidden="true"
-													></i>
-												)}
-											</button>
-									</div>
-							</div>
+			{/* Layer 4: Large geometric arc accent - visible on md+ */}
+			<div className="pointer-events-none absolute -right-48 top-1/2 hidden h-[500px] w-[500px] -translate-y-1/2 rounded-full border border-white/3 md:block" />
+			<div className="pointer-events-none absolute -left-64 top-1/3 hidden h-[400px] w-[400px] -translate-y-1/2 rounded-full border border-white/2 md:block" />
 
-							{/* Stats */}
-							<div className="mt-6 ml-[1rem] mr-[1.25rem] flex flex-wrap items-center justify-between font-mono text-base leading-normal opacity-80">
-								<div className="flex items-center gap-2">
-									<i
-										className="ri-github-fill flex h-[1.5rem] items-center justify-center text-lg text-zinc-400/75"
-										aria-hidden="true"
-									></i>
-									<span className="text-zinc-400">
-										<span className="sr-only">GitHub: </span>12k+ stars
-									</span>
+			{/* Layer 5: Noise texture overlay */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+					opacity: 0.015,
+				}}
+			/>
+
+			{/* Bottom border */}
+			<div className="absolute bottom-0 left-0 right-0 h-px bg-zinc-800" />
+
+			<div className="relative mx-auto w-full max-w-3xl px-4 pt-16 pb-12 md:pt-24 md:pb-14">
+				{/* Headline */}
+				<h1 className="text-center text-4xl font-semibold tracking-tight text-white md:text-5xl">
+					Effect is TypeScript for building reliable systems
+				</h1>
+
+				{/* Subheadline */}
+				<p className="mt-4 text-center max-w-[36rem] mx-auto text-lg text-zinc-400">
+					Resilient, observable, and safely concurrent by design.
+				</p>
+
+				{/* CTA buttons */}
+				<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+					<a
+						href="https://effect.website/docs/getting-started/introduction"
+						className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+					>
+						Get Started
+						<i className="ri-arrow-right-line text-sm" />
+					</a>
+					<div className="inline-flex items-center rounded-lg border border-zinc-700 bg-zinc-900/50">
+						<div className="relative" ref={dropdownRef}>
+							<button
+								type="button"
+								onClick={() => setDropdownOpen(!dropdownOpen)}
+								className="inline-flex items-center gap-1 px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-800/50 rounded-l-lg"
+								aria-label="Select package manager"
+							>
+								<img src={PM_LOGOS[activePM]} alt={activePM} className="h-5 w-5" />
+								<i className={`ri-arrow-down-s-line text-sm text-zinc-500 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+							</button>
+							{dropdownOpen && (
+								<div className="absolute left-0 top-full mt-1 z-20 min-w-[120px] rounded-lg border border-zinc-700 bg-zinc-900 py-1 shadow-xl">
+									{PM_OPTIONS.map((pm) => (
+										<button
+											key={pm}
+											type="button"
+											onClick={() => {
+												setActivePM(pm);
+												setDropdownOpen(false);
+											}}
+											className={`w-full flex items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors hover:bg-zinc-800 ${
+												activePM === pm ? "text-white" : "text-zinc-400"
+											}`}
+										>
+											<img src={PM_LOGOS[pm]} alt={pm} className="h-5 w-5" />
+											<span>{pm}</span>
+										</button>
+									))}
 								</div>
-								<div className="flex items-center gap-2">
-									<i
-										className="ri-download-line flex h-[1.5rem] items-center justify-center text-lg text-zinc-400"
-										aria-hidden="true"
-									></i>
-									<span className="text-zinc-400">
-										<span className="sr-only">npm downloads: </span>6M+
-										downloads/w
-									</span>
-								</div>
-								<div className="flex items-center gap-2">
-									<i
-										className="ri-discord-fill flex h-[1.5rem] items-center justify-center text-lg text-zinc-400"
-										aria-hidden="true"
-									></i>
-									<span className="text-zinc-400">
-										<span className="sr-only">Discord: </span>5k+ members
-									</span>
-								</div>
-							</div>
+							)}
 						</div>
+						<div className="h-6 w-px bg-zinc-700" />
+						<button
+							type="button"
+							onClick={copyCommand}
+							className="inline-flex items-center gap-2 px-3 py-2.5 text-sm font-mono text-zinc-300 transition-colors hover:bg-zinc-800/50 rounded-r-lg"
+							aria-label="Copy install command"
+						>
+							<span>{currentCommand}</span>
+							{copyFeedback ? (
+								<i className="ri-check-line text-sm text-green-400" />
+							) : (
+								<i className="ri-file-copy-line text-sm text-zinc-500" />
+							)}
+						</button>
 					</div>
 				</div>
-			</section>
-		</div>
+
+				{/* Stats */}
+				<div className="mt-12 flex items-center justify-center">
+					<div className="grid grid-cols-3 divide-x divide-zinc-800">
+						<a
+							href="https://github.com/Effect-TS/effect"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group flex items-center gap-3 px-6 transition-colors"
+						>
+							<i className="ri-github-fill text-xl text-zinc-600 group-hover:text-zinc-400" />
+							<div className="flex flex-col">
+								<span className="text-sm font-medium text-white leading-none">12k+</span>
+								<span className="text-[11px] text-zinc-500 mt-0.5">stars</span>
+							</div>
+						</a>
+						<a
+							href="https://www.npmjs.com/package/effect"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group flex items-center gap-3 px-6 transition-colors"
+						>
+							<i className="ri-download-2-line text-xl text-zinc-600 group-hover:text-zinc-400" />
+							<div className="flex flex-col">
+								<span className="text-sm font-medium text-white leading-none">6M+</span>
+								<span className="text-[11px] text-zinc-500 mt-0.5">downloads</span>
+							</div>
+						</a>
+						<a
+							href="https://discord.gg/effect-ts"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group flex items-center gap-3 px-6 transition-colors"
+						>
+							<i className="ri-discord-fill text-xl text-zinc-600 group-hover:text-zinc-400" />
+							<div className="flex flex-col">
+								<span className="text-sm font-medium text-white leading-none">6k+</span>
+								<span className="text-[11px] text-zinc-500 mt-0.5">community</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
 	);
 }

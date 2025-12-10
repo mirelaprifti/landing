@@ -1,97 +1,122 @@
-import { Button } from "@/components/ui/Button";
-
 export function CTASection() {
 	return (
-		<section className="relative w-full px-4 md:px-8">
-			{/* Top gradient border */}
-			<div
-				className="absolute left-0 right-0 top-0 h-[2px]"
-				style={{
-					background:
-						"linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%)",
-				}}
-			/>
+		<section className="relative w-full bg-zinc-950 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				{/* Two-column grid matching the page's visual language */}
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+					{/* Left column - Main CTA (7 columns) */}
+					<div className="lg:col-span-7 relative overflow-hidden border border-zinc-800 bg-zinc-900/30 p-8 md:p-10">
+						{/* Subtle inner gradient */}
+						<div
+							className="pointer-events-none absolute inset-0"
+							style={{
+								background: "linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%)",
+							}}
+						/>
 
-			<div className="mx-auto w-full max-w-[73.75rem]">
-				{/* Content Wrapper */}
-				<div className="relative mx-auto flex w-full flex-col items-center gap-12 py-20 md:py-32 lg:gap-16">
-					{/* Left dashed border */}
-					<div
-						className="absolute bottom-0 left-0 top-[2px] w-[1px]"
-						style={{
-							background: "#3f3f46",
-							WebkitMask:
-								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
-					{/* Right dashed border */}
-					<div
-						className="absolute bottom-0 right-0 top-[2px] w-[1px]"
-						style={{
-							background: "#3f3f46",
-							WebkitMask:
-								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-							mask: "repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-
-					{/* Heading and Description Container */}
-					<div className="flex flex-col items-center gap-8 px-6">
-						{/* Heading */}
-						<h2 className="text-center text-[39px] font-bold leading-[1.25] text-white">
-							Using Effect in production? Let’s talk.
-						</h2>
-
-						{/* Description */}
-						<div className="flex flex-col items-center gap-4">
-							<p className="text-center text-[20px] leading-[1.35] text-zinc-300">
-								We'd love to hear how you're using Effect.
+						<div className="relative">
+							<p className="mb-4 font-mono text-sm uppercase tracking-wider text-zinc-500">
+								Get Started
 							</p>
+							<h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">
+								Start building with Effect
+							</h2>
+							<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-400">
+								Explore the docs, join the community, or dive straight into code.
+							</p>
+
+							{/* Dashed separator */}
+							<div
+								className="my-8 h-px"
+								style={{
+									background: "#3f3f46",
+									WebkitMask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+									mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+								}}
+							/>
+
+							<div className="flex flex-wrap gap-3">
+								<a
+									href="https://effect.website/docs/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-[0.9375rem] font-medium text-zinc-900 transition-all duration-200 hover:bg-zinc-100 hover:shadow-lg hover:shadow-white/10"
+								>
+									Read the docs
+									<i className="ri-arrow-right-line text-base transition-transform duration-200 group-hover:translate-x-1" />
+								</a>
+								<a
+									href="https://effect.website/play/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-[0.9375rem] font-medium text-white transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
+								>
+									<i className="ri-terminal-line text-base transition-transform duration-200 group-hover:scale-110" />
+									Playground
+								</a>
+							</div>
 						</div>
 					</div>
 
-					{/* Links Section */}
-					<div className="flex w-full flex-col items-center gap-8">
-						{/* Top dashed border */}
-						<div
-							className="h-[1px] w-full"
-							style={{
-								background: "#3f3f46",
-								WebkitMask:
-									"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-								mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							}}
-						/>
+					{/* Right column - Community links (5 columns) */}
+					<div className="lg:col-span-5 flex flex-col gap-3">
 
-						{/* CTA Links Container */}
-						<div className="flex w-full flex-col justify-center gap-5 px-8 items-center md:flex-row">
-							{/* Link 1: What are you building? */}
-							<Button
-								href="https://forms.gle/BHtNKorGC4ERA5o38"
-								icon="ri-arrow-right-up-line"
-								text="Share your project"
-							/>
+						{/* Discord card */}
+						<a
+							href="https://discord.gg/effect-ts"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
+						>
+							<div className="flex items-center gap-4">
+								<div className="flex h-10 w-10 items-center justify-center rounded bg-[#5865F2]/20 text-[#5865F2] transition-colors group-hover:bg-[#5865F2]/30">
+									<i className="ri-discord-fill text-xl" />
+								</div>
+								<div>
+									<p className="font-medium text-white">Discord</p>
+									<p className="text-sm text-zinc-500">Join the community</p>
+								</div>
+							</div>
+							<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+						</a>
 
-							{/* Link 2: Join our community */}
-							<Button
-								href="https://discord.gg/effect-ts"
-								icon="ri-arrow-right-up-line"
-								text="Join our community"
-							/>
-						</div>
+{/* GitHub card */}
+						<a
+							href="https://github.com/Effect-TS/effect"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
+						>
+							<div className="flex items-center gap-4">
+								<div className="flex h-10 w-10 items-center justify-center rounded bg-white/10 text-white transition-colors group-hover:bg-white/20">
+									<i className="ri-github-fill text-xl" />
+								</div>
+								<div>
+									<p className="font-medium text-white">GitHub</p>
+									<p className="text-sm text-zinc-500">Star the repo</p>
+								</div>
+							</div>
+							<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+						</a>
 
-						{/* Bottom dashed border */}
-						<div
-							className="h-[1px] w-full"
-							style={{
-								background: "#3f3f46",
-								WebkitMask:
-									"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-								mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-							}}
-						/>
+						{/* Twitter/X card */}
+						<a
+							href="https://twitter.com/EffectTS_"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
+						>
+							<div className="flex items-center gap-4">
+								<div className="flex h-10 w-10 items-center justify-center rounded bg-white/10 text-white transition-colors group-hover:bg-white/20">
+									<i className="ri-twitter-x-line text-xl" />
+								</div>
+								<div>
+									<p className="font-medium text-white">Twitter</p>
+									<p className="text-sm text-zinc-500">Follow for updates</p>
+								</div>
+							</div>
+							<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+						</a>
 					</div>
 				</div>
 			</div>
