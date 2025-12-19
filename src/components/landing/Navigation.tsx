@@ -92,7 +92,7 @@ export function Navigation() {
 									href="https://effect.website/docs/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
 								>
 									Docs
 								</a>
@@ -100,7 +100,7 @@ export function Navigation() {
 									href="https://effect.website/blog/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
 								>
 									Blog
 								</a>
@@ -108,7 +108,7 @@ export function Navigation() {
 									href="https://effect.website/play/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
 								>
 									Playground
 								</a>
@@ -124,37 +124,39 @@ export function Navigation() {
 							</button>
 
 							{/* Right side items (desktop) */}
-							<div className="ml-auto hidden items-center gap-3 md:flex">
-								<a
-									href="https://github.com/Effect-TS/effect"
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label="Visit Effect on GitHub"
-									className="p-1.5 text-zinc-500 transition-colors hover:text-white"
-								>
-									<i className="ri-github-fill text-lg" aria-hidden="true" />
-								</a>
-								<a
-									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label="Join Effect Discord server"
-									className="p-1.5 text-zinc-500 transition-colors hover:text-white"
-								>
-									<i className="ri-discord-fill text-lg" aria-hidden="true" />
-								</a>
-
-								<div className="h-4 w-px bg-zinc-800" />
-
+							<div className="ml-auto hidden items-center gap-4 md:flex">
 								<button
 									type="button"
 									aria-label="Open search (Command K)"
-									className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
+									className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white hover:bg-zinc-900"
 								>
 									<i className="ri-search-line text-sm" aria-hidden="true" />
 									<span>Search</span>
-									<kbd className="text-[10px] text-zinc-500">⌘K</kbd>
+									<kbd className="text-[12px] text-zinc-400">⌘K</kbd>
 								</button>
+
+								<div className="h-4.5 w-px bg-zinc-600" />
+
+								<div className="flex items-center gap-3">
+									<a
+										href="https://github.com/Effect-TS/effect"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="Visit Effect on GitHub"
+										className=" text-zinc-500 transition-colors hover:text-white"
+									>
+										<i className="ri-github-fill text-xl" aria-hidden="true" />
+									</a>
+									<a
+										href="https://discord.gg/effect-ts"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="Join Effect Discord server"
+										className=" text-zinc-500 transition-colors hover:text-white"
+									>
+										<i className="ri-discord-fill text-xl" aria-hidden="true" />
+									</a>
+								</div>
 							</div>
 						</nav>
 					</header>
@@ -221,7 +223,7 @@ export function Navigation() {
 						</div>
 
 						{/* Divider */}
-						<div className="my-4 h-px bg-zinc-800" />
+						<div className="my-4 h-px bg-zinc-600" />
 
 						{/* Secondary links */}
 						<div className="space-y-1">
@@ -229,7 +231,7 @@ export function Navigation() {
 								href="https://github.com/Effect-TS/effect"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
+								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
 								<i className="ri-github-fill text-lg" aria-hidden="true"></i>
 								<span>GitHub</span>
@@ -238,7 +240,7 @@ export function Navigation() {
 								href="https://discord.gg/effect-ts"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
+								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
 								<i className="ri-discord-fill text-lg" aria-hidden="true"></i>
 								<span>Discord</span>
@@ -247,7 +249,7 @@ export function Navigation() {
 								href="https://twitter.com/EffectTS_"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
+								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
 								<i className="ri-twitter-x-fill text-lg" aria-hidden="true"></i>
 								<span>X / Twitter</span>
@@ -258,11 +260,11 @@ export function Navigation() {
 						<button
 							type="button"
 							aria-label="Open search (Command K)"
-							className="mt-6 flex w-full items-center gap-3 rounded-lg border border-zinc-700 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
+							className="mt-6 flex w-full items-center gap-3 rounded-lg border border-zinc-500 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
 						>
 							<i className="ri-search-line text-lg" aria-hidden="true"></i>
-							<span className="text-[15px]">Search</span>
-							<kbd className="ml-auto text-xs text-zinc-500">⌘K</kbd>
+							<span className="text-sm">Search</span>
+							<kbd className="ml-auto text-xs text-zinc-300">⌘K</kbd>
 						</button>
 					</nav>
 				</div>

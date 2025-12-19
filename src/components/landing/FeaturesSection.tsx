@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "motion/react";
 import { EffectAllExample } from "@/examples/effect-all";
 import { EffectAllShortCircuitExample } from "@/examples/effect-all-short-circuit";
@@ -116,10 +116,6 @@ export function FeaturesSection() {
 		"error-handling": "effect-all-short-circuit",
 		constructors: "effect-succeed",
 	});
-	const subTabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
-	const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 });
-	const [shouldAnimateIndicator, setShouldAnimateIndicator] = useState(true);
-	const prevActiveTab = useRef(activeTab);
 
 	const handleSubTabChange = (subTabId: string) => {
 		setActiveSubTabPerTab(prev => ({
@@ -140,59 +136,22 @@ export function FeaturesSection() {
 		return activeSubTabPerTab[activeTab];
 	}, [activeSubTabPerTab, activeTab]);
 
-	// Update indicator position when active sub-tab changes
-	useEffect(() => {
-		// Disable animation when main tab changes
-		if (prevActiveTab.current !== activeTab) {
-			setShouldAnimateIndicator(false);
-			prevActiveTab.current = activeTab;
-		}
-
-		const activeButton = subTabRefs.current.get(currentActiveSubTab);
-		if (activeButton) {
-			const container = activeButton.parentElement;
-			if (container) {
-				const containerRect = container.getBoundingClientRect();
-				const buttonRect = activeButton.getBoundingClientRect();
-				setIndicatorStyle({
-					top: buttonRect.top - containerRect.top,
-					height: buttonRect.height,
-				});
-			}
-		}
-
-		// Re-enable animation after position is set
-		requestAnimationFrame(() => {
-			setShouldAnimateIndicator(true);
-		});
-	}, [currentActiveSubTab, activeTab]);
-
 	return (
 		<section className="relative w-full">
-			{/* Section heading */}
-			<div className="pt-12 pb-8 text-center">
-				<h2 className="text-2xl font-semibold text-white md:text-3xl">
-					See Effect in action
-				</h2>
-				<p className="mt-3 text-zinc-400">
-					Interactive examples of core patterns
-				</p>
-			</div>
-
 			{/* Content Container */}
-			<div className="relative max-w-295 mx-auto px-4 pb-16 md:pb-8">
+			<div className="relative max-w-295 mx-auto">
 				{/* Tab Navigation and Content */}
-				<div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20">
+				<div className="relative overflow-hidden border-x border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
-					<div className="relative flex border-b border-zinc-800">
+					<div className="relative flex">
 						{TAB_IDS.map((tabId) => (
 							<button
 								key={tabId}
 								onClick={() => setActiveTab(tabId)}
 								className={`flex-1 cursor-pointer py-5 px-6 font-mono text-base uppercase transition-colors ${
 									activeTab === tabId
-										? "bg-zinc-950 text-white font-medium"
-										: "bg-zinc-950 text-zinc-300 leading-relaxed hover:text-white"
+										? "text-white font-medium"
+										: "text-zinc-300 leading-relaxed hover:text-white"
 								}`}
 							>
 								{TAB_CONFIG[tabId].label}
@@ -216,17 +175,32 @@ export function FeaturesSection() {
 					</div>
 
 					{/* Tab Content */}
-					<div className="w-full py-4 px-4">
+					<div className="w-full">
 						{currentTabConfig.subTabs ? (
-							/* Sub-tabs layout: 3/4 content + 1/4 nav (nav on right) */
-							<div className="flex flex-col md:flex-row gap-0">
-								{/* Example component - 3/4 width */}
-								<div className="md:w-3/4">
+							<div className="flex flex-col">
+								{/* Horizontal sub-tab navigation */}
+								<div className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800/50 bg-zinc-950">
+									{currentTabConfig.subTabs.map((subTab) => (
+										<button
+											key={subTab.id}
+											onClick={() => handleSubTabChange(subTab.id)}
+											className={`px-3 py-1.5 rounded-md font-mono text-sm transition-colors cursor-pointer ${
+												currentActiveSubTab === subTab.id
+													? "bg-zinc-800 text-white"
+													: "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+											}`}
+										>
+											{subTab.label[0]}{subTab.label[1] && <span className="text-zinc-500 ml-1">({subTab.label[1]})</span>}
+										</button>
+									))}
+								</div>
+								{/* Example component - full width */}
+								<div className="p-4">
 									{(() => {
 										const metadata = getExampleMeta(currentActiveSubTab);
 										const Component = EXAMPLE_COMPONENTS[currentActiveSubTab];
 										return metadata && Component ? (
-											<div className="w-full text-sm h-full">
+											<div className="w-full text-sm">
 												<Component
 													metadata={metadata}
 													exampleId={currentActiveSubTab}
@@ -236,47 +210,10 @@ export function FeaturesSection() {
 										) : null;
 									})()}
 								</div>
-								{/* Sub-tab navigation - 1/4 width (on right) */}
-								<div className="md:w-1/4 flex md:flex-col gap-4 relative md:mr-0 md:ml-2 pt-5">
-									{currentTabConfig.subTabs.map((subTab) => (
-										<button
-											key={subTab.id}
-											ref={(el) => {
-												if (el) subTabRefs.current.set(subTab.id, el);
-											}}
-											onClick={() => handleSubTabChange(subTab.id)}
-											className={`flex flex-col items-end px-4 text-right transition-colors cursor-pointer ${
-												currentActiveSubTab === subTab.id
-													? "text-white"
-													: "text-zinc-400 hover:text-white"
-											}`}
-										>
-											<span className="font-mono text-base">{subTab.label[0]}</span>
-											{subTab.label[1] && (
-												<span className="font-mono text-sm text-zinc-400/70">{subTab.label[1]}</span>
-											)}
-										</button>
-									))}
-									{/* Sliding indicator */}
-									<motion.div
-										className="absolute right-0 w-px bg-zinc-100"
-										initial={false}
-										animate={{
-											top: indicatorStyle.top,
-											height: indicatorStyle.height,
-										}}
-										transition={shouldAnimateIndicator ? {
-											type: "spring",
-											stiffness: 300,
-											damping: 25,
-											mass: 0.8,
-										} : { duration: 0 }}
-									/>
-								</div>
 							</div>
 						) : (
 							/* Grid layout for other tabs */
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-0 auto-rows-fr">
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-0 auto-rows-fr p-4">
 								{currentTabConfig.examples?.map((exampleId, index) => {
 									const metadata = getExampleMeta(exampleId);
 									const Component = EXAMPLE_COMPONENTS[exampleId];
@@ -297,9 +234,6 @@ export function FeaturesSection() {
 					</div>
 				</div>
 			</div>
-
-			{/* Solid bottom border */}
-			<div className="absolute bottom-0 left-0 right-0 h-px bg-zinc-800/50" />
 		</section>
 	);
 }
