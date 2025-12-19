@@ -3,6 +3,7 @@ import { HeroSection } from "./HeroSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { AISection } from "./AISection";
+import { AIBuildingSection } from "./AIBuildingSection";
 import { DevToolsSection } from "./DevToolsSection";
 import { QuotesGridSection } from "./QuotesSection";
 import { FAQSection } from "./FAQSection";
@@ -29,12 +30,25 @@ export function LandingPage() {
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
-			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[60] hidden px-8 lg:block">
+			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
 					<div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-800" />
 					{/* Right vertical line */}
 					<div className="absolute right-0 top-0 bottom-0 w-px bg-zinc-800" />
+				</div>
+			</div>
+
+			{/* Center vertical line - dashed, behind content */}
+			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-0 hidden px-8 lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div
+						className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
+						style={{
+							width: '1px',
+							backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42 / 0.75) 0px, rgb(39 39 42 / 0.75) 4px, transparent 4px, transparent 6px)'
+						}}
+					/>
 				</div>
 			</div>
 
@@ -46,6 +60,8 @@ export function LandingPage() {
 
 			<SectionDivider />
 			<TestimonialsSection />
+			<SectionDivider />
+			<AIBuildingSection />
 			<SectionDivider />
 			<AISection />
 			<SectionDivider />

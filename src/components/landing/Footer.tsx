@@ -12,7 +12,7 @@ export function Footer() {
 					{/* Four Column Links Section */}
 					<div className="mb-16 grid grid-cols-2 gap-8 md:mb-20 md:gap-0 lg:grid-cols-4">
 						{/* Column 1: Resources */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-zinc-800 md:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">
 								Resources
@@ -66,7 +66,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 2: DevTools */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-zinc-800 md:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">DevTools</h3>
 							{/* Links */}
@@ -119,7 +119,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 3: Community */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-transparent md:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">
 								Community
@@ -172,7 +172,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 4: Other */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-zinc-800 md:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">Other</h3>
 							{/* Links */}
@@ -234,7 +234,7 @@ export function Footer() {
 							<img
 								src={getAssetPath("/assets/logos/effect-logo-white.svg")}
 								alt="Effect"
-								className="h-8"
+								className="h-7"
 							/>
 
 							{/* Social Icons (centered on mobile, middle on desktop) */}

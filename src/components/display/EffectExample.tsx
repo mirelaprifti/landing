@@ -107,7 +107,7 @@ function EffectExampleComponent<A, E>({
 	const backgroundGradient = "#09090b"; // zinc-950
 	const headerBackground = isDarkMode
 		? "rgba(0, 0, 0, 0.5)"
-		: "rgba(39, 39, 42, 0.6)";
+		: "rgba(39, 39, 42, 0.9)";
 	const standardTransition = { duration: 0.2, ease: "easeInOut" as const };
 
 	const highlightTarget = delayedHoveredEffect

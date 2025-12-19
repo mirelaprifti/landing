@@ -37,7 +37,7 @@ export function DevToolsSection() {
 	const activeTool = tools[activeTab];
 
 	return (
-		<section className="relative w-full py-16 md:py-20">
+		<section className="relative w-full py-16 md:pt-32 md:pb-4">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header */}
 				<div className="mb-8">

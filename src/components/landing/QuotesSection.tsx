@@ -51,8 +51,8 @@ export function QuotesGridSection() {
 		text: "Effect makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.",
 		author: "Dillon Mulroy",
 		role: "Software Engineer",
-		company: "Vercel",
-		logo: "/assets/logos/vercel-logotype-dark.svg",
+		company: "Cloudflare",
+		logo: "/assets/logos/Cloudflare_logo_wht 2.svg",
 	};
 
 	const quotes = [
@@ -101,7 +101,7 @@ export function QuotesGridSection() {
 	];
 
 	return (
-		<section className="relative w-full bg-zinc-950 py-16 md:py-20">
+		<section className="relative w-full py-16 md:pt-32 md:pb-4">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Section header */}
 				<div className="mb-10">
@@ -115,9 +115,9 @@ export function QuotesGridSection() {
 
 				{/* Bento grid layout */}
 				<div className="grid grid-cols-12 gap-3">
-					{/* Featured quote - spans 7 columns */}
-					<div className="col-span-12 lg:col-span-7 row-span-2">
-						<div className="relative h-full overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-10 md:p-12">
+					{/* Featured quote - spans 6 columns (half), 2 rows tall */}
+					<div className="col-span-12 lg:col-span-6 lg:row-span-2">
+						<div className="relative h-full overflow-hidden border border-zinc-700 bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 md:p-10">
 							{/* Subtle gradient accent */}
 							<div
 								className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-20"
@@ -128,7 +128,7 @@ export function QuotesGridSection() {
 
 							<div className="relative flex h-full flex-col justify-between">
 								<div>
-									<blockquote className="text-2xl font-medium leading-relaxed text-white md:text-2xl">
+									<blockquote className="text-xl font-medium leading-snug text-white md:text-2xl">
 										"{featuredQuote.text}"
 									</blockquote>
 								</div>
@@ -146,18 +146,18 @@ export function QuotesGridSection() {
 									<img
 										src={featuredQuote.logo}
 										alt={featuredQuote.company}
-										className="ml-auto h-5 opacity-60"
+										className="ml-auto h-5 opacity-100"
 									/>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					{/* Secondary quotes - 5 columns, 2 rows */}
+					{/* Secondary quotes - 6 columns, 2 rows */}
 					{quotes.slice(0, 2).map((quote, index) => (
-						<div key={index} className="col-span-12 sm:col-span-6 lg:col-span-5">
-							<div className="flex h-full flex-col justify-between border border-zinc-800 bg-zinc-900/50 p-6">
-								<blockquote className="text-base text-zinc-300">
+						<div key={index} className="col-span-12 sm:col-span-6 lg:col-span-6">
+							<div className="flex h-full flex-col justify-between border border-zinc-700 bg-zinc-900/50 p-6">
+								<blockquote className="text-lg text-zinc-300">
 									"{quote.text}"
 								</blockquote>
 								<div className="mt-6 flex items-center justify-between">
@@ -182,7 +182,7 @@ export function QuotesGridSection() {
 					{/* Bottom row - 4 smaller quotes */}
 					{quotes.slice(2, 6).map((quote, index) => (
 						<div key={index + 2} className="col-span-12 sm:col-span-6 lg:col-span-3">
-							<div className="flex h-full flex-col justify-between border border-zinc-800 bg-zinc-900/30 p-5">
+							<div className="flex h-full flex-col justify-between border border-zinc-700 bg-zinc-900/30 p-5">
 								<blockquote className="text-sm leading-relaxed text-zinc-400">
 									"{quote.text}"
 								</blockquote>

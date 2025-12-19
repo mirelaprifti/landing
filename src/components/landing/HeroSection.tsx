@@ -88,27 +88,27 @@ export function HeroSection() {
 			{/* Bottom border */}
 			<div className="absolute bottom-0 left-0 right-0 h-px bg-zinc-800" />
 
-			<div className="relative mx-auto w-full max-w-3xl px-4 pt-16 pb-12 md:pt-24 md:pb-14">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-12 md:pt-28 md:pb-16">
 				{/* Headline */}
-				<h1 className="text-center text-4xl font-semibold tracking-tight text-white md:text-5xl">
+				<h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white md:text-[4.25rem] md:leading-[1.1]">
 					Effect is TypeScript for building reliable systems
 				</h1>
 
 				{/* Subheadline */}
-				<p className="mt-4 text-center max-w-[36rem] mx-auto text-lg text-zinc-400">
+				<p className="mt-6 text-xl text-zinc-400">
 					Resilient, observable, and safely concurrent by design.
 				</p>
 
 				{/* CTA buttons */}
-				<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+				<div className="mt-8 flex flex-col sm:flex-row items-start gap-3">
 					<a
 						href="https://effect.website/docs/getting-started/introduction"
-						className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+						className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
 					>
-						Get Started
-						<i className="ri-arrow-right-line text-sm" />
+						See Effect in action
+						<i className="ri-arrow-down-line text-sm" />
 					</a>
-					<div className="inline-flex items-center rounded-lg border border-zinc-700 bg-zinc-900/50">
+					<div className="inline-flex items-center rounded-md border border-zinc-700 bg-zinc-900/50">
 						<div className="relative" ref={dropdownRef}>
 							<button
 								type="button"
@@ -121,7 +121,7 @@ export function HeroSection() {
 							</button>
 							{dropdownOpen && (
 								<div className="absolute left-0 top-full mt-1 z-20 min-w-[120px] rounded-lg border border-zinc-700 bg-zinc-900 py-1 shadow-xl">
-									{PM_OPTIONS.map((pm) => (
+									{PM_OPTIONS.filter((pm) => pm !== activePM).map((pm) => (
 										<button
 											key={pm}
 											type="button"
@@ -158,45 +158,39 @@ export function HeroSection() {
 				</div>
 
 				{/* Stats */}
-				<div className="mt-12 flex items-center justify-center">
-					<div className="grid grid-cols-3 divide-x divide-zinc-800">
-						<a
-							href="https://github.com/Effect-TS/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-3 px-6 transition-colors"
-						>
-							<i className="ri-github-fill text-xl text-zinc-600 group-hover:text-zinc-400" />
-							<div className="flex flex-col">
-								<span className="text-sm font-medium text-white leading-none">12k+</span>
-								<span className="text-[11px] text-zinc-500 mt-0.5">stars</span>
-							</div>
-						</a>
-						<a
-							href="https://www.npmjs.com/package/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-3 px-6 transition-colors"
-						>
-							<i className="ri-download-2-line text-xl text-zinc-600 group-hover:text-zinc-400" />
-							<div className="flex flex-col">
-								<span className="text-sm font-medium text-white leading-none">6M+</span>
-								<span className="text-[11px] text-zinc-500 mt-0.5">downloads</span>
-							</div>
-						</a>
-						<a
-							href="https://discord.gg/effect-ts"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-3 px-6 transition-colors"
-						>
-							<i className="ri-discord-fill text-xl text-zinc-600 group-hover:text-zinc-400" />
-							<div className="flex flex-col">
-								<span className="text-sm font-medium text-white leading-none">6k+</span>
-								<span className="text-[11px] text-zinc-500 mt-0.5">community</span>
-							</div>
-						</a>
-					</div>
+				<div className="mt-8 flex items-center gap-6">
+					<a
+						href="https://github.com/Effect-TS/effect"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group flex items-center gap-2 transition-colors"
+					>
+						<i className="ri-github-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
+						<span className="text-sm font-medium text-white">12k+</span>
+						<span className="text-sm text-zinc-400 -ml-1">stars</span>
+					</a>
+					<div className="h-4 w-px bg-zinc-800" />
+					<a
+						href="https://www.npmjs.com/package/effect"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group flex items-center gap-2 transition-colors"
+					>
+						<img src={getAssetPath("/assets/logos/npm-brands-solid-full.svg")} alt="npm" className="h-6 w-6 opacity-60 group-hover:opacity-80 transition-opacity" />
+						<span className="text-sm font-medium text-white">6M+</span>
+						<span className="text-sm text-zinc-400 -ml-1">downloads</span>
+					</a>
+					<div className="h-4 w-px bg-zinc-800" />
+					<a
+						href="https://discord.gg/effect-ts"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group flex items-center gap-2 transition-colors"
+					>
+						<i className="ri-discord-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
+						<span className="text-sm font-medium text-white">6k+</span>
+						<span className="text-sm text-zinc-400 -ml-1">community</span>
+					</a>
 				</div>
 			</div>
 		</section>

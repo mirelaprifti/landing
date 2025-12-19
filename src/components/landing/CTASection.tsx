@@ -1,11 +1,14 @@
 export function CTASection() {
 	return (
-		<section className="relative w-full bg-zinc-950 py-16 md:py-20">
-			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+		<section className="relative w-full overflow-hidden py-16 md:py-28">
+			{/* Subtle gradient background - same as AI Section */}
+			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
+
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Two-column grid matching the page's visual language */}
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
-					{/* Left column - Main CTA (7 columns) */}
-					<div className="lg:col-span-7 relative overflow-hidden border border-zinc-800 bg-zinc-900/30 p-8 md:p-10">
+					{/* Left column - Main CTA (6 columns) */}
+					<div className="lg:col-span-6 relative overflow-hidden border border-zinc-700 bg-zinc-900/30 p-8 md:p-10">
 						{/* Subtle inner gradient */}
 						<div
 							className="pointer-events-none absolute inset-0"
@@ -42,8 +45,8 @@ export function CTASection() {
 									rel="noopener noreferrer"
 									className="group inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-[0.9375rem] font-medium text-zinc-900 transition-all duration-200 hover:bg-zinc-100 hover:shadow-lg hover:shadow-white/10"
 								>
-									Read the docs
 									<i className="ri-arrow-right-line text-base transition-transform duration-200 group-hover:translate-x-1" />
+									Read the docs
 								</a>
 								<a
 									href="https://effect.website/play/"
@@ -58,15 +61,15 @@ export function CTASection() {
 						</div>
 					</div>
 
-					{/* Right column - Community links (5 columns) */}
-					<div className="lg:col-span-5 flex flex-col gap-3">
+					{/* Right column - Community links (6 columns) */}
+					<div className="lg:col-span-6 flex flex-col gap-3">
 
 						{/* Discord card */}
 						<a
 							href="https://discord.gg/effect-ts"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
+							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-700 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
 						>
 							<div className="flex items-center gap-4">
 								<div className="flex h-10 w-10 items-center justify-center rounded bg-[#5865F2]/20 text-[#5865F2] transition-colors group-hover:bg-[#5865F2]/30">
@@ -85,7 +88,7 @@ export function CTASection() {
 							href="https://github.com/Effect-TS/effect"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
+							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-700 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
 						>
 							<div className="flex items-center gap-4">
 								<div className="flex h-10 w-10 items-center justify-center rounded bg-white/10 text-white transition-colors group-hover:bg-white/20">
@@ -104,7 +107,7 @@ export function CTASection() {
 							href="https://twitter.com/EffectTS_"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
+							className="group relative flex flex-1 items-center justify-between overflow-hidden border border-zinc-700 bg-zinc-900/30 p-6 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
 						>
 							<div className="flex items-center gap-4">
 								<div className="flex h-10 w-10 items-center justify-center rounded bg-white/10 text-white transition-colors group-hover:bg-white/20">
