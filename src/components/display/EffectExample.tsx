@@ -103,11 +103,11 @@ function EffectExampleComponent<A, E>({
 	// Shared UI values
 	const borderColorValue = isDarkMode
 		? "rgba(127, 29, 29, 0.5)"
-		: "rgba(39, 39, 42, 1)";
+		: "#27272a"; // zinc-800
 	const backgroundGradient = "#09090b"; // zinc-950
 	const headerBackground = isDarkMode
 		? "rgba(0, 0, 0, 0.5)"
-		: "rgba(39, 39, 42, 0.6)";
+		: "rgba(39, 39, 42, 0.9)";
 	const standardTransition = { duration: 0.2, ease: "easeInOut" as const };
 
 	const highlightTarget = delayedHoveredEffect
@@ -145,7 +145,7 @@ function EffectExampleComponent<A, E>({
 		>
 			{/* Header with interactive controls */}
 			<motion.div
-				className={`p-4 border-b`}
+				className={`p-6 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 					backgroundColor: headerBackground,
@@ -204,7 +204,7 @@ function EffectExampleComponent<A, E>({
 
 			{/* Main visualization */}
 			<motion.div
-				className={`px-4 py-4 border-b`}
+				className={`px-4 py-8 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 				}}

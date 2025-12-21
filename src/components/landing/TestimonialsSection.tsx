@@ -1,199 +1,206 @@
+import { useState, useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 
+const LOGO_POOL = [
+	getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
+	getAssetPath("/assets/logos/14-ai.svg"),
+	getAssetPath("/assets/logos/warp-logo-white.svg"),
+	getAssetPath("/assets/logos/spiko-logo.svg"),
+	getAssetPath("/assets/logos/expand-ai.svg"),
+	getAssetPath("/assets/logos/zendesk-logo.svg"),
+	getAssetPath("/assets/logos/open-router.svg"),
+	getAssetPath("/assets/logos/masterclass-nom.svg"),
+	getAssetPath("/assets/logos/union-build.svg"),
+	getAssetPath("/assets/logos/coralogix-logo.svg"),
+	getAssetPath("/assets/logos/opengov-2025-white.svg"),
+	getAssetPath("/assets/logos/vitalizecare.svg"),
+	getAssetPath("/assets/logos/CalcTree-logo.svg"),
+	getAssetPath("/assets/logos/Fortanix-logo-white-version.svg"),
+	getAssetPath("/assets/logos/Geodis-Logo.svg"),
+	getAssetPath("/assets/logos/ainavio.svg"),
+	getAssetPath("/assets/logos/dreifach-logo.svg"),
+	getAssetPath("/assets/logos/embedded-insurance-logo.svg"),
+	getAssetPath("/assets/logos/freckle-logo.svg"),
+];
+
+const useCases = [
+	{
+		logo: getAssetPath("/assets/logos/masterclass-nom.svg"),
+		title: "Voice AI Orchestration",
+		href: "https://youtu.be/Cj2pVPqdOVs",
+		alt: "MasterClass",
+		thumbnail: getAssetPath("/assets/images/david-golightly – banner_compressed.webp"),
+	},
+	{
+		logo: getAssetPath("/assets/logos/warp-logo-white.svg"),
+		title: "HR Systems",
+		href: "https://youtu.be/2cN1R9zIxp4",
+		alt: "Warp",
+		thumbnail: getAssetPath("/assets/images/adam-rankin-banner_compressed.webp"),
+	},
+	{
+		logo: getAssetPath("/assets/logos/open-router.svg"),
+		title: "Internal Tooling",
+		href: "https://youtu.be/x6-AVCwBIWc",
+		alt: "OpenRouter",
+		thumbnail: getAssetPath("/assets/images/louis-vichy– banner_compressed.webp"),
+	},
+	{
+		logo: getAssetPath("/assets/logos/14-ai.svg"),
+		title: "AI Customer Service",
+		href: "https://youtu.be/gGFPhFrGCng",
+		alt: "14.ai",
+		thumbnail: getAssetPath("/assets/images/michael-fester – banner_compressed (1).webp"),
+	},
+];
+
+const VISIBLE_LOGOS_COUNT = 6;
+const CYCLE_INTERVAL = 3000; // 3 seconds
+
 export function TestimonialsSection() {
-	const useCases = [
-		{
-			logo: getAssetPath("/assets/logos/zendesk-logo.svg"),
-			title: "Backend",
-			href: "https://youtu.be/rNAqPHBQFEQ",
-			alt: "Zendesk",
-		},
-		{
-			logo: getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
-			title: "Infrastructure",
-			href: "https://youtu.be/VZpr91dU03c",
-			alt: "Vercel",
-		},
-		{
-			logo: getAssetPath("/assets/logos/expand-ai.svg"),
-			title: "AI Agents",
-			href: "#",
-			alt: "Expand Internal Tooling",
-		},
-		{
-			logo: getAssetPath("/assets/logos/spiko-logo.svg"),
-			title: "Fintech",
-			href: "https://youtu.be/lFOHVZnJLew",
-			alt: "Spiko",
-		},
-		{
-			logo: getAssetPath("/assets/logos/open-router.svg"),
-			title: "Internal Tooling",
-			href: "#",
-			alt: "OpenRouter",
-		},
-		{
-			logo: getAssetPath("/assets/logos/warp-logo-white.svg"),
-			title: "HR Systems",
-			href: "#",
-			alt: "Warp",
-		},
-		{
-			logo: getAssetPath("/assets/logos/14-ai.svg"),
-			title: "AI Customer Service",
-			href: "#",
-			alt: "14.ai",
-		},
-		{
-			logo: getAssetPath("/assets/logos/masterclass-nom.svg"),
-			title: "Voice AI Orchestration",
-			href: "#",
-			alt: "MasterClass",
-		},
-	];
+	const [visibleIndices, setVisibleIndices] = useState<number[]>(() =>
+		Array.from({ length: VISIBLE_LOGOS_COUNT }, (_, i) => i)
+	);
+	const [fadingIndex, setFadingIndex] = useState<number | null>(null);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			// Pick a random visible slot to replace
+			const slotToReplace = Math.floor(Math.random() * VISIBLE_LOGOS_COUNT);
+
+			// Find a logo that's not currently visible
+			const availableLogos = LOGO_POOL
+				.map((_, i) => i)
+				.filter(i => !visibleIndices.includes(i));
+
+			if (availableLogos.length === 0) return;
+
+			const newLogoIndex = availableLogos[Math.floor(Math.random() * availableLogos.length)];
+
+			// Start fade out
+			setFadingIndex(slotToReplace);
+
+			// After fade out, swap the logo and fade back in
+			setTimeout(() => {
+				setVisibleIndices(prev => {
+					const newIndices = [...prev];
+					newIndices[slotToReplace] = newLogoIndex;
+					return newIndices;
+				});
+				setFadingIndex(null);
+			}, 500);
+		}, CYCLE_INTERVAL);
+
+		return () => clearInterval(interval);
+	}, [visibleIndices]);
 
 	return (
-		<section className="relative overflow-hidden py-16 lg:py-32">
-			{/* Background Pattern */}
-			<div
-				className="hidden pointer-events-none absolute inset-0"
-				style={{
-					opacity: 1,
-					backgroundImage: `url('${getAssetPath("/assets/BG-Pattern.svg")}')`,
-					backgroundSize: "cover",
-					backgroundPosition: "center bottom",
-					backgroundRepeat: "no-repeat",
-					WebkitMaskImage:
-						"linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1))",
-					maskImage:
-						"linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))",
-				}}
-			/>
-
-			{/* Main Content Container */}
-			<div className="relative mx-auto w-full">
-				{/* Heading */}
-				<h2 className="mb-12 mt-3 text-center text-3xl font-bold leading-tight text-white md:mb-14">
+		<section className="relative py-16 md:pt-32 md:pb-8">
+			{/* Header - with padding */}
+			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
+				<p className="mb-3 font-mono text-sm uppercase tracking-wider text-zinc-400">
+					Trusted in Production
+				</p>
+				<h2 className="text-2xl font-semibold text-white md:text-4xl">
 					Real-world production systems
 				</h2>
-
-				{/* 4 Use Case Cards with Decorative Line */}
-				<div className="relative w-full mx-auto max-w-[66.5rem]">
-
-					{/* Cards Container */}
-					<div className="use-case-cards relative z-10 grid w-full grid-cols-1 gap-0 min-[480px]:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden border border-zinc-800">
-						{useCases.map((useCase, index) => {
-							const isLastInRow = (index + 1) % 4 === 0 || index === useCases.length - 1;
-							const isLastRow = index >= useCases.length - 4;
-
-							return (
-							<a
-								key={index}
-								href={useCase.href}
-								{...(useCase.href.startsWith("http")
-									? { target: "_blank", rel: "noopener noreferrer" }
-									: {})}
-								className={`group relative block w-full overflow-hidden border-zinc-800 transition-all ${
-									!isLastInRow ? "border-r" : ""
-								} ${!isLastRow ? "border-b" : ""}`}
-								style={{
-									borderRadius: "0px",
-									background: "#09090b",
-									backdropFilter: "blur(5px)",
-									WebkitBackdropFilter: "blur(5px)",
-								}}
-								onMouseEnter={(e) => {
-									e.currentTarget.style.background = "#18181b";
-								}}
-								onMouseLeave={(e) => {
-									e.currentTarget.style.background = "#09090b";
-								}}
-							>
-									{/* Logo area */}
-									<div className="relative h-[120px] w-full">
-										<img
-											src={useCase.logo}
-											alt={useCase.alt}
-											className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${
-												useCase.alt === "MasterClass"
-													? "h-[1.15rem]"
-													: "h-[1.6rem]"
-											}`}
-										/>
-									</div>
-									{/* Label area */}
-									<div className="bg-zinc-950 flex flex-col px-2 py-3 relative">
-										{/* Dashed border above text */}
-										<div
-											className="absolute top-0 left-0 right-0 h-[1px] bg-zinc-700/50"
-											style={{
-												WebkitMask:
-													"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-												mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-											}}
-										/>
-										<div className="flex flex-row items-center justify-center gap-1 whitespace-nowrap">
-											<span className="text-base font-mono text-zinc-300 md:text-sm">
-												{useCase.title}
-											</span>
-											<i className="ri-arrow-right-up-line text-base text-zinc-300" />
-										</div>
-									</div>
-							</a>
-							);
-						})}
-					</div>
+				{/* Resource links */}
+				<div className="mt-4 flex items-center gap-4">
+					<a
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+					>
+						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
+						Effect Days 2024
+					</a>
+					<span className="text-zinc-700">|</span>
+					<a
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+					>
+						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
+						Effect Days 2025
+					</a>
+					<span className="text-zinc-700">|</span>
+					<a
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+					>
+						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
+						Cause & Effect Podcast
+					</a>
 				</div>
 			</div>
 
-			{/* Dashed border separator */}
-			<div className="w-full max-w-[66.5rem] mx-auto mt-16 mb-12">
-				<div
-					className="h-[1px] w-full"
-					style={{
-						background: "#27272a",
-						WebkitMask:
-							"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-						mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-					}}
-				/>
-			</div>
-
-			{/* Logo Grid Section */}
-			<div className="w-full max-w-[66.5rem] mx-auto">
-				<div className="grid grid-cols-3 md:grid-cols-6 border border-zinc-950">
-					{[
-						getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
-						getAssetPath("/assets/logos/14-ai.svg"),
-						getAssetPath("/assets/logos/warp-logo-white.svg"),
-						getAssetPath("/assets/logos/spiko-logo.svg"),
-						getAssetPath("/assets/logos/expand-ai.svg"),
-						getAssetPath("/assets/logos/zendesk-logo.svg"),
-						getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
-						getAssetPath("/assets/logos/14-ai.svg"),
-						getAssetPath("/assets/logos/warp-logo-white.svg"),
-						getAssetPath("/assets/logos/spiko-logo.svg"),
-						getAssetPath("/assets/logos/expand-ai.svg"),
-						getAssetPath("/assets/logos/zendesk-logo.svg"),
-						getAssetPath("/assets/logos/vercel-logotype-dark.svg"),
-						getAssetPath("/assets/logos/14-ai.svg"),
-						getAssetPath("/assets/logos/warp-logo-white.svg"),
-						getAssetPath("/assets/logos/spiko-logo.svg"),
-						getAssetPath("/assets/logos/expand-ai.svg"),
-						getAssetPath("/assets/logos/zendesk-logo.svg"),
-					].map((logo, index) => (
-						<div
+			{/* Use Case Cards - Video thumbnails grid */}
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+					{useCases.map((useCase, index) => (
+						<a
 							key={index}
-							className="flex items-center justify-center p-6 border-r border-b border-zinc-900 last:border-r-0 [&:nth-child(6n)]:border-r-0 md:[&:nth-child(3n)]:border-r [&:nth-last-child(-n+6)]:border-b-0 md:[&:nth-last-child(-n+3)]:border-b"
+							href={useCase.href}
+							{...(useCase.href.startsWith("http")
+								? { target: "_blank", rel: "noopener noreferrer" }
+								: {})}
+							className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900"
 						>
-							<img src={logo} alt="" className="h-[1.35rem] w-auto opacity-70" style={{ filter: 'brightness(0) saturate(100%) invert(84%) sepia(4%) saturate(238%) hue-rotate(185deg) brightness(92%) contrast(87%)' }} />
-						</div>
+							{/* Video thumbnail area */}
+							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
+								<img
+									src={useCase.thumbnail}
+									alt={`${useCase.alt} case study`}
+									className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+								/>
+							</div>
+							{/* Label area */}
+							<div className="flex items-center justify-between px-3 py-2">
+								<span className="text-sm font-mono font-medium text-zinc-200">
+									{useCase.title}
+								</span>
+								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-400" />
+							</div>
+						</a>
 					))}
 				</div>
 			</div>
 
-			{/* Solid bottom border */}
-			<div className="absolute bottom-0 left-0 right-0 h-[1px] bg-zinc-800" />
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+
+				{/* Logo Strip - Secondary, connected to cards */}
+				<div className="relative mt-6">
+					{/* Connector line from cards */}
+					<div className="absolute left-1/2 -top-6 h-6 w-px -translate-x-[0.5px] bg-gradient-to-b from-zinc-800 to-zinc-800/0" />
+
+					{/* Label */}
+					<p className="mb-4 text-center text-xs uppercase tracking-widest text-zinc-400/75">
+						And many more
+					</p>
+
+					{/* Logo slots */}
+					<div className="flex items-center justify-center gap-12">
+						{visibleIndices.map((logoIndex, slotIndex) => (
+							<div
+								key={`slot-${slotIndex}`}
+								className="flex h-8 w-24 items-center justify-center"
+							>
+								<img
+									src={LOGO_POOL[logoIndex]}
+									alt=""
+									className={`h-4 max-w-full w-auto object-contain transition-opacity duration-500 brightness-0 invert ${
+										fadingIndex === slotIndex ? "opacity-0" : "opacity-60"
+									}`}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
 		</section>
 	);
 }

@@ -35,6 +35,8 @@ function HeaderViewComponent({
 	const [isPressed, setIsPressed] = useState(false);
 	const [showCheckmark, setShowCheckmark] = useState(false);
 	const [hasPlayedHoverSound, setHasPlayedHoverSound] = useState(false);
+	const [hasEverRun, setHasEverRun] = useState(false);
+	const [showPlayHint, setShowPlayHint] = useState(false);
 	const isOptionPressed = useOptionKey();
 	useVisualEffectSubscription(task);
 	const { state } = task;
@@ -44,7 +46,27 @@ function HeaderViewComponent({
 	const isFailed = state.type === "failed";
 	const isInterrupted = state.type === "interrupted";
 	const isDeath = state.type === "death";
+	const isIdle = state.type === "idle";
 	const canReset = isCompleted || isFailed || isInterrupted || isDeath;
+
+	// Track if animation has ever been run
+	useEffect(() => {
+		if (isRunning && !hasEverRun) {
+			setHasEverRun(true);
+		}
+	}, [isRunning, hasEverRun]);
+
+	// Cycle between star and play icon when idle and never run
+	useEffect(() => {
+		if (isIdle && !hasEverRun && !isHovered) {
+			const interval = setInterval(() => {
+				setShowPlayHint((prev) => !prev);
+			}, 2000); // 2 second interval
+			return () => clearInterval(interval);
+		} else {
+			setShowPlayHint(false);
+		}
+	}, [isIdle, hasEverRun, isHovered]);
 
 	const runWithDependencies = useCallback(async () => {
 		await task.run();
@@ -170,16 +192,34 @@ function HeaderViewComponent({
 			}
 		}
 
+		// Show play icon hint when cycling (idle, never run, not hovered)
+		if (showPlayHint) {
+			return (
+				<motion.div
+					key="play-hint"
+					initial={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
+					animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
+					exit={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
+					transition={{
+						duration: 0.6,
+						ease: "easeInOut",
+					}}
+				>
+					<PlayIcon size={20} weight="fill" />
+				</motion.div>
+			);
+		}
+
 		return (
 			<motion.div
 				key="star"
-				initial={{ scale: 0, filter: "blur(10px)" }}
+				initial={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
 				animate={
 					isRunning
-						? { rotate: 360, scale: 1, filter: "blur(0px)" }
-						: { rotate: 0, scale: 1, filter: "blur(0px)" }
+						? { rotate: 360, scale: 1, opacity: 1, filter: "blur(0px)" }
+						: { rotate: 0, scale: 1, opacity: 1, filter: "blur(0px)" }
 				}
-				exit={{ scale: 0, filter: "blur(10px)" }}
+				exit={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
 				transition={
 					isRunning
 						? {
@@ -188,13 +228,13 @@ function HeaderViewComponent({
 									repeat: Infinity,
 									ease: "circInOut",
 								},
-								scale: { type: "spring", stiffness: 300, damping: 20 },
-								filter: { type: "spring", stiffness: 300, damping: 20 },
+								scale: { duration: 0.6, ease: "easeInOut" },
+								opacity: { duration: 0.6, ease: "easeInOut" },
+								filter: { duration: 0.6, ease: "easeInOut" },
 							}
 						: {
-								type: "spring",
-								stiffness: 300,
-								damping: 20,
+								duration: 0.6,
+								ease: "easeInOut",
 							}
 				}
 			>

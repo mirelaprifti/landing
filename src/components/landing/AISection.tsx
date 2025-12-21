@@ -1,111 +1,133 @@
-import { getAssetPath } from "../../utils/assetPath";
-
 export function AISection() {
-	const features = [
-		{
-			icon: "ri-git-fork-line",
-			title: "Fork & cancel",
-			description: "tool calls or model chains",
-		},
-		{
-			icon: "ri-repeat-2-line",
-			title: "Retry & fallback",
-			description: "with typed error handling",
-		},
-		{
-			icon: "ri-arrow-left-right-line",
-			title: "Inject & swap",
-			description: "models or APIs for testing",
-		},
-		{
-			icon: "ri-node-tree",
-			title: "Automatic tracing,",
-			description: "no boilerplate",
-		},
-	];
+  return (
+    <section className="relative w-full overflow-hidden py-16 md:pt-32 md:pb-8">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
-	const caseStudies = [
-		{
-			href: "https://youtu.be/x2bUuOZ-htU",
-			logo: getAssetPath("/assets/logos/masterclass.svg"),
-			logoAlt: "MasterClass",
-			logoHeight: "h-5",
-			title: "Voice AI Orchestration Layer",
-			gradientColor: "rgba(227, 38, 82, 0.06)",
-			borderGradient:
-				"linear-gradient(to right, rgba(9, 9, 11, 0) 0%, rgba(227, 38, 82, 0.6) 50%, rgba(9, 9, 11, 0) 100%)",
-		},
-		{
-			href: "https://youtu.be/8lz9-0y58Jc",
-			logo: getAssetPath("/assets/logos/14-ai.svg"),
-			logoAlt: "14.ai",
-			logoHeight: "h-7",
-			title: "Guardrails for LLMs at Scale",
-			gradientColor: "rgba(161, 190, 0, 0.06)",
-			borderGradient:
-				"linear-gradient(to right, rgba(9, 9, 11, 0) 0%, rgba(161, 190, 0, 0.6) 50%, rgba(9, 9, 11, 0) 100%)",
-		},
-	];
+      <div className="relative mx-auto w-full max-w-295">
+        {/* Header row - Eyebrow + Title + Description */}
+        <div className="mb-28 px-4">
+          <p className="mb-4 font-mono text-base font-semibold tracking-wider text-zinc-400 uppercase">
+            LLMs 🤍 Effect
+          </p>
+          <h2 className="max-w-2xl text-2xl leading-tight font-semibold text-white md:text-4xl">
+            Ship AI-generated code you can trust in production
+          </h2>
+        </div>
 
-	return (
-		<section className="relative w-full overflow-hidden px-4 py-20 md:px-8 md:py-32">
-			{/* Main Content Container */}
-			<div className="w-max-[66.5rem] relative mx-auto flex w-full flex-col items-center gap-12">
-				{/* Features and Case Studies Container */}
-				<div className="relative mx-auto w-full max-w-[66.5rem] px-0">
-					{/* Heading and Button */}
-					<div className="mb-12 flex w-full items-end justify-between">
-						<h2 className="font-inter text-2xl font-semibold leading-tight text-white max-w-[600px]">
-							A safe, testable runtime for AI systems
-						</h2>
-						<a
-							href="https://effect-ts.github.io/effect/docs/ai/ai"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
-						>
-							<span>@effect/ai package</span>
-							<i className="ri-arrow-right-line text-base"></i>
-						</a>
-					</div>
+        {/* Two-column layout: Features left, Proof right */}
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-0">
+          {/* Left column - Features (the "why") */}
+          <div className="px-4">
+            <h3 className="text-2xl font-semibold text-white mb-3">
+              Write better code with AI
+            </h3>
+            <p className="mb-6 max-w-xl text-lg leading-snug text-zinc-400">
+              Effect excels at orchestration, parallel execution, state management, and fault recovery — using natural abstractions that feel intuitive to both AI and humans.
+            </p>
+            <div className="max-w-[32rem] space-y-3">
+              <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
+                <span className="font-mono text-sm text-zinc-500">01</span>
+                <span>
+                  <span className="font-medium text-white">
+                    Predictable structure:
+                  </span>{" "}
+                  every operation follows a declarative pattern, no guesswork
+                  for LLMs.
+                </span>
+              </p>
+              <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
+                <span className="font-mono text-sm text-zinc-500">02</span>
+                <span>
+                  <span className="font-medium text-white">
+                    Typed feedback loop:
+                  </span>{" "}
+                  detailed error traces show what failed, enabling precise
+                  self-repair.
+                </span>
+              </p>
+              <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
+                <span className="font-mono text-sm text-zinc-500">03</span>
+                <span>
+                  <span className="font-medium text-white">
+                    Built-in reliability:
+                  </span>{" "}
+                  error handling, supervision, and recovery, production-ready
+                  by default.
+                </span>
+              </p>
+              <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
+                <span className="font-mono text-sm text-zinc-500">04</span>
+                <span>
+                  <span className="font-medium text-white">
+                    Rich toolbox:
+                  </span>{" "}
+                  schema validation to workflows in a language LLMs easily
+                  understand.
+                </span>
+              </p>
+            </div>
+          </div>
 
-					{/* Container for Feature Cards, Separator, and Case Studies */}
-					<div className="relative px-12">
-						{/* Vertical Solid Lines */}
-						<div
-							className="absolute bottom-0 left-0 hidden h-full w-[1px] bg-zinc-800 lg:block"
-						/>
-						<div
-							className="absolute bottom-0 right-0 hidden h-full w-[1px] bg-zinc-800 lg:block"
-						/>
+          {/* Right column - Tweet + Video (the "proof") */}
+          <div className="space-y-3">
+            {/* Tweet card */}
+            <a
+              href="https://x.com/davis7/status/1988847914538672262"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block rounded-lg border border-zinc-800/80 bg-zinc-900/40 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/60"
+            >
+              {/* Author row */}
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/assets/images/bendavis.jpg"
+                    alt="Ben Davis"
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="text-sm font-medium text-white">
+                      Ben Davis
+                    </div>
+                    <div className="text-xs text-zinc-500">@davis7</div>
+                  </div>
+                </div>
+                <i className="ri-twitter-x-line text-zinc-500" />
+              </div>
+              {/* Quote */}
+              <p className="text-sm leading-relaxed text-zinc-300">
+                <span className="text-zinc-400">@MichaelArnaldi</span>{" "}
+                suggested cloning the effect repo as a git subtree, giving it
+                to Claude, then using that as docs. It sounds absurd, but it's
+                actually kind amazing...
+              </p>
+              <span className="mt-3 inline-flex items-center gap-1 text-xs text-zinc-500">
+                Full post <i className="ri-arrow-right-up-line" />
+              </span>
+            </a>
 
-						{/* 4 Feature Cards */}
-					<div className="mx-auto grid w-full grid-cols-2 gap-4 lg:grid-cols-4">
-						{features.map((feature, index) => (
-							<div key={index} className="dashed-gradient-border relative p-4">
-								<div className="flex flex-col gap-3">
-									<i
-										className={`${feature.icon} mt-4 text-xl`}
-										style={{
-											background: "linear-gradient(to bottom, #18181b, #ffffff)",
-											WebkitBackgroundClip: "text",
-											backgroundClip: "text",
-											WebkitTextFillColor: "transparent",
-										}}
-									></i>
-									<p className="mt-6 text-base leading-5 text-zinc-300">
-										<span className="font-semibold text-white">
-											{feature.title}
-										</span>
-										<span className="font-normal"> {feature.description}</span>
-									</p>
-								</div>
-							</div>
-						))}
-					</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+            {/* Video container */}
+            <div className="overflow-hidden rounded-lg border border-zinc-800/80 bg-zinc-900 shadow-lg shadow-black/10">
+              <video
+                className="aspect-video w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                aria-label="Demo video showing Effect being used with AI coding assistants"
+              >
+                <source
+                  src="/assets/icons/bendavis-video.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }

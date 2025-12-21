@@ -190,6 +190,32 @@ export const examplesManifest: Array<ExampleMeta> = [
 		description: "Acquire resources with guaranteed cleanup",
 		section: "scope",
 	},
+
+	// Services (Dependency Injection)
+	{
+		id: "effect-service",
+		name: "Effect.Service",
+		description: "Define type-safe services with dependency injection",
+		section: "services",
+	},
+	{
+		id: "layer-effect",
+		name: "Layer.effect",
+		description: "Construct services with effectful initialization",
+		section: "services",
+	},
+	{
+		id: "layer-provide",
+		name: "Layer.provide",
+		description: "Chain layers where outputs satisfy requirements",
+		section: "services",
+	},
+	{
+		id: "layer-merge",
+		name: "Layer.merge",
+		description: "Combine independent services into one layer",
+		section: "services",
+	},
 ];
 
 // Helper function to get metadata by ID

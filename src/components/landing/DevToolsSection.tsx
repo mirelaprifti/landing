@@ -1,140 +1,129 @@
 import { useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 
+const tools = [
+	{
+		id: "diagnostics",
+		label: "Diagnostics",
+		description: "Real-time type errors and suggestions",
+		video: getAssetPath("/videos/diagnostics.mp4"),
+	},
+	{
+		id: "refactors",
+		label: "Refactors",
+		description: "Automated code transformations",
+		video: getAssetPath("/videos/refactors.mp4"),
+	},
+	{
+		id: "debugger",
+		label: "Debugger",
+		description: "Visual fiber inspection",
+		video: getAssetPath("/videos/visuals.mp4"),
+	},
+	{
+		id: "playground",
+		label: "Playground",
+		description: "Try Effect in the browser",
+		video: getAssetPath("/videos/effect-playground.mp4"),
+	},
+];
+
 export function DevToolsSection() {
-	const [activeTab, setActiveTab] = useState("playground");
-
-	const tabs = [
-		{
-			id: "playground",
-			label: "playground",
-			video: getAssetPath("/videos/effect-playground.mp4"),
-			description: "Experiment with Effect in an interactive environment with live feedback and examples.",
-		},
-		{
-			id: "diagnostics",
-			label: "diagnostics",
-			video: getAssetPath("/videos/diagnostics.mp4"),
-			description: "Catch floating Effects, layers, anti-patterns, and misconfigurations as you code.",
-		},
-		{
-			id: "refactors",
-			label: "refactors",
-			video: getAssetPath("/videos/refactors.mp4"),
-			description: "Convert async code to Effect, generate tagged errors, compose complex layers automatically.",
-		},
-		{
-			id: "visual-devtools",
-			label: "visual devtools",
-			video: getAssetPath("/videos/visuals.mp4"),
-			description: "Inspect fiber contexts, visualize span stacks, monitor metrics in real-time. All built-in.",
-		},
-		{
-			id: "editor-extensions",
-			label: "editor extensions",
-			video: getAssetPath("/videos/extension.mp4"),
-			description: "Explore layer composition graphs and watch telemetry spans live as they happen.",
-		},
-	];
-
-	const activeTabData = tabs.find((t) => t.id === activeTab);
+	const [activeTab, setActiveTab] = useState(0);
+	const activeTool = tools[activeTab];
 
 	return (
-		<section className="relative w-full px-4 pt-20 pb-20 md:px-8 md:py-32">
-			{/* Dashed top border */}
-			<div
-				className="absolute left-0 right-0 top-0 h-[1px]"
-				style={{
-					background: "#3f3f46",
-					WebkitMask:
-						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
-				}}
-			/>
-			<div className="mx-auto w-full max-w-[66.5rem]">
-				{/* Heading */}
-				<div className="mb-6 flex items-start justify-between">
-					<h3 className="text-2xl font-bold leading-tight text-white">
-						Next-gen DevTools
-					</h3>
-					<a
-						href="https://effect.website/docs/getting-started/devtools/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="mt-[6px] flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
-					>
-						DevTools
-						<i className="ri-arrow-right-up-line text-base" />
-					</a>
+		<section className="relative w-full py-16 md:pt-32 md:pb-8">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				{/* Header row - split layout */}
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 mb-16">
+					<div>
+						<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-500">
+							Developer Experience
+						</p>
+						<h2 className="text-2xl font-semibold text-white md:text-4xl">
+							IDE-native tooling
+						</h2>
+					</div>
+					<div className="lg:pt-8 pl-4">
+						<p className="text-lg text-zinc-400 leading-relaxed max-w-lg">
+							The Effect Language Service brings real-time diagnostics and intelligent refactoring to your editor.
+						</p>
+
+						{/* Links */}
+						<div className="mt-6 flex flex-wrap gap-3">
+							<a
+								href="https://effect.website/docs/getting-started/devtools/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+							>
+								<span>Read the docs</span>
+								<i className="ri-arrow-right-line text-xs transition-transform group-hover:translate-x-0.5" />
+							</a>
+							<a
+								href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+							>
+								<i className="ri-vscode-line text-sm" />
+								<span>VS Code</span>
+							</a>
+							<a
+								href="https://effect.website/play/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+							>
+								<i className="ri-play-circle-line text-sm" />
+								<span>Playground</span>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				{/* Gradient border container */}
-				<div className="relative rounded-[12px] bg-gradient-to-b from-zinc-700 to-zinc-800 p-[1px]">
-					<div className="overflow-hidden rounded-[12px] bg-zinc-950">
-						{/* Horizontal tabs */}
-						<div className="flex flex-wrap">
-							{tabs.map((tab, index) => {
-								const isActive = activeTab === tab.id;
-								const isNotLast = index < tabs.length - 1;
-								return (
-									<button
-										key={tab.id}
-										type="button"
-										onClick={() => setActiveTab(tab.id)}
-										className={`flex-1 min-w-[120px] py-[16px] px-6 font-mono text-base uppercase transition-colors ${
-											isNotLast ? "border-r border-zinc-950" : ""
-										} ${
-											isActive
-												? "bg-zinc-950 text-white"
-												: "bg-[#18181b] text-zinc-400 hover:text-white"
-										}`}
-									>
-										{tab.label}
-									</button>
-								);
-							})}
+				{/* Video with vertical tabs on right */}
+				<div className="flex gap-4">
+					{/* Video container */}
+					<div className="flex-1 border border-zinc-700 bg-zinc-900/30">
+						<div className="relative aspect-video">
+							<video
+								key={activeTool.video}
+								src={activeTool.video}
+								className="absolute inset-0 h-full w-full object-cover"
+								autoPlay
+								loop
+								muted
+								playsInline
+								aria-label={`Effect ${activeTool.label} demonstration`}
+							>
+								<track kind="captions" />
+							</video>
 						</div>
+					</div>
 
-						{/* Content area */}
-						<div className="w-full p-6">
-							<div className="flex flex-col lg:flex-row">
-								{/* Description - Left side */}
-								<div className="lg:w-2/5 flex items-start pr-6">
-									<p
-										className="text-base leading-snug text-zinc-400"
-										key={activeTab}
-										style={{
-											animation: "fadeIn 300ms ease-in-out",
-										}}
-									>
-										{activeTabData?.description}
-									</p>
-								</div>
-
-								{/* Video - Right side */}
-								<div className="lg:w-3/5">
-									<div className="relative w-full overflow-hidden rounded-lg border border-zinc-700" style={{ paddingBottom: "56.25%" }}>
-										<div className="absolute inset-0 h-full w-full overflow-hidden rounded-lg bg-zinc-900">
-											<video
-												key={activeTabData?.video}
-												src={activeTabData?.video}
-												className="absolute inset-0 h-full w-full object-cover"
-												controls
-												loop
-												muted
-												playsInline
-												aria-label={`Effect ${activeTab} demonstration video`}
-											>
-												<track kind="captions" />
-												Your browser does not support the video tag.
-											</video>
-											{/* Gradient overlay */}
-											<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#737381] to-[#18181B] opacity-15" />
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+					{/* Vertical tabs on right */}
+					<div className="flex flex-col gap-3">
+						{tools.map((tool, index) => (
+							<button
+								key={tool.id}
+								type="button"
+								onClick={() => setActiveTab(index)}
+								className={`relative px-4 py-3 text-left transition-colors cursor-pointer border ${
+									activeTab === index
+										? "border-zinc-700 bg-zinc-900/50"
+										: "border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/40"
+								}`}
+							>
+								<span className={`text-sm font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}>
+									{tool.label}
+								</span>
+								<p className="mt-1 text-sm text-zinc-500">
+									{tool.description}
+								</p>
+							</button>
+						))}
 					</div>
 				</div>
 			</div>

@@ -68,7 +68,7 @@ export function Navigation() {
 	return (
 		<>
 			<div
-				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-800 px-4 md:px-8"
+				className="fixed left-0 right-0 top-0 z-50 w-full border-b border-zinc-800 /50px-4 md:px-8"
 				style={{
 					backgroundColor: "rgba(9, 9, 11, 0.85)",
 					backdropFilter: "blur(5px)",
@@ -76,110 +76,87 @@ export function Navigation() {
 				}}
 			>
 				<div className="w-full">
-					<header className="relative mx-auto w-full max-w-[96rem]">
-						<nav className="flex h-20 items-center">
+					<header className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<nav className="flex h-16 items-center">
 							<a href="/" className="flex items-center">
 								<img
 									src={getAssetPath("/assets/logos/effect-logo-white.svg")}
 									alt="Effect"
-									className="h-[2rem] w-auto"
+									className="h-[1.5rem] w-auto"
 								/>
 							</a>
 
-							<div className="ml-auto flex items-center">
-								<div className="hidden items-center gap-4 md:flex">
-									<a
-										href="https://effect.website/docs/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Docs
-									</a>
-									<a
-										href="https://effect.website/blog/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Blog
-									</a>
-									<a
-										href="https://effect.website/podcast/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Podcast
-									</a>
-									<a
-										href="https://effect.website/play/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-base text-zinc-400 transition-colors hover:text-white"
-									>
-										Play
-									</a>
+							{/* Navigation links next to logo */}
+							<div className="ml-8 hidden items-center gap-6 md:flex">
+								<a
+									href="https://effect.website/docs/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+								>
+									Docs
+								</a>
+								<a
+									href="https://effect.website/blog/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+								>
+									Blog
+								</a>
+								<a
+									href="https://effect.website/play/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+								>
+									Playground
+								</a>
+							</div>
+
+							{/* Mobile menu button */}
+							<button
+								type="button"
+								className="ml-auto flex h-10 w-10 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white md:hidden"
+								aria-label="Open navigation menu"
+							>
+								<i className="ri-menu-line text-xl" aria-hidden="true" />
+							</button>
+
+							{/* Right side items (desktop) */}
+							<div className="ml-auto hidden items-center gap-4 md:flex">
+								<button
+									type="button"
+									aria-label="Open search (Command K)"
+									className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white hover:bg-zinc-900"
+								>
+									<i className="ri-search-line text-sm" aria-hidden="true" />
+									<span>Search</span>
+									<kbd className="text-[12px] text-zinc-400">⌘K</kbd>
+								</button>
+
+								<div className="h-4.5 w-px bg-zinc-600" />
+
+								<div className="flex items-center gap-3">
 									<a
 										href="https://github.com/Effect-TS/effect"
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Visit Effect on GitHub"
-										className="text-zinc-400 transition-colors hover:text-white"
+										className=" text-zinc-500 transition-colors hover:text-white"
 									>
-										<span className="sr-only">Visit Effect on GitHub</span>
-										<i
-											className="ri-github-fill text-xl"
-											aria-hidden="true"
-										></i>
+										<i className="ri-github-fill text-xl" aria-hidden="true" />
 									</a>
 									<a
 										href="https://discord.gg/effect-ts"
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Join Effect Discord server"
-										className="text-zinc-400 transition-colors hover:text-white"
+										className=" text-zinc-500 transition-colors hover:text-white"
 									>
-										<span className="sr-only">Join Effect Discord server</span>
-										<i
-											className="ri-discord-fill text-xl"
-											aria-hidden="true"
-										></i>
+										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</a>
-
-									<button
-										type="button"
-										aria-label="Open search (Command K)"
-										className="flex items-center gap-2 rounded-[8px] border border-zinc-700 px-2.5 py-1.5 text-zinc-400 transition-all hover:border-zinc-950 hover:bg-zinc-800 hover:text-white"
-									>
-										<span className="flex items-center gap-1">
-											<i
-												className="ri-search-line text-base"
-												aria-hidden="true"
-											></i>
-											<span className="text-[0.875rem] font-normal">
-												Search
-											</span>
-										</span>
-										<span
-											className="text-[0.7rem] font-normal"
-											aria-hidden="true"
-										>
-											⌘K
-										</span>
-									</button>
 								</div>
-
-								<button
-									type="button"
-									aria-label="Open navigation menu"
-									className="flex h-10 w-10 items-center justify-center text-zinc-300 transition-all hover:text-white md:hidden"
-								>
-									<i
-										className="ri-menu-3-line text-[2rem]"
-										aria-hidden="true"
-									></i>
-								</button>
 							</div>
 						</nav>
 					</header>
@@ -202,8 +179,8 @@ export function Navigation() {
 					className="fixed right-0 top-0 flex h-full w-full max-w-[64%] flex-col bg-zinc-900 shadow-xl"
 					style={{ transform: "translateX(100%)" }}
 				>
-					<div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-700 px-6 py-5">
-						<span className="text-base font-semibold text-white">Menu</span>
+					<div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-800 px-4 py-3">
+						<span className="text-sm font-medium text-white">Menu</span>
 						<button
 							type="button"
 							onClick={() => {
@@ -211,93 +188,83 @@ export function Navigation() {
 								if (menu) menu.classList.add("hidden");
 							}}
 							aria-label="Close navigation menu"
-							className="flex h-10 w-10 items-center justify-center rounded-[8px] text-zinc-400 transition-all hover:bg-zinc-800 hover:text-white"
+							className="flex h-9 w-9 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
 						>
 							<i className="ri-close-line text-xl" aria-hidden="true"></i>
 						</button>
 					</div>
-					<nav className="flex-1 overflow-y-auto p-6">
-						<a
-							href="https://effect.website/docs/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="block py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							Docs
-						</a>
-						<a
-							href="https://effect.website/blog/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="block py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							Blog
-						</a>
-						<a
-							href="https://effect.website/podcast/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="block py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							Podcast
-						</a>
-						<a
-							href="https://effect.website/play/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="block py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							Play
-						</a>
-						<a
-							href="https://effect.kitlangton.com/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="block py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							Visual Effect
-						</a>
-						<a
-							href="https://github.com/Effect-TS/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							<i className="ri-github-fill text-lg" aria-hidden="true"></i>
-							<span>GitHub</span>
-						</a>
-						<a
-							href="https://discord.gg/effect-ts"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							<i className="ri-discord-fill text-lg" aria-hidden="true"></i>
-							<span>Discord</span>
-						</a>
-						<a
-							href="https://twitter.com/EffectTS_"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-2 py-4 text-base font-normal text-zinc-300 transition-colors hover:text-white"
-						>
-							<i className="ri-twitter-x-fill text-lg" aria-hidden="true"></i>
-							<span>X(Twitter)</span>
-						</a>
+					<nav className="flex-1 overflow-y-auto px-6 py-4">
+						{/* Primary navigation */}
+						<div className="space-y-1">
+							<a
+								href="https://effect.website/docs/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+							>
+								Docs
+							</a>
+							<a
+								href="https://effect.website/blog/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+							>
+								Blog
+							</a>
+							<a
+								href="https://effect.website/play/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+							>
+								Playground
+							</a>
+						</div>
 
+						{/* Divider */}
+						<div className="my-4 h-px bg-zinc-600" />
+
+						{/* Secondary links */}
+						<div className="space-y-1">
+							<a
+								href="https://github.com/Effect-TS/effect"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+							>
+								<i className="ri-github-fill text-lg" aria-hidden="true"></i>
+								<span>GitHub</span>
+							</a>
+							<a
+								href="https://discord.gg/effect-ts"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+							>
+								<i className="ri-discord-fill text-lg" aria-hidden="true"></i>
+								<span>Discord</span>
+							</a>
+							<a
+								href="https://twitter.com/EffectTS_"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+							>
+								<i className="ri-twitter-x-fill text-lg" aria-hidden="true"></i>
+								<span>X / Twitter</span>
+							</a>
+						</div>
+
+						{/* Search button */}
 						<button
 							type="button"
 							aria-label="Open search (Command K)"
-							className="mt-4 flex w-full items-center gap-2 rounded-[8px] border border-zinc-700 px-4 py-3 text-zinc-300 transition-all hover:border-zinc-600 hover:text-white"
+							className="mt-6 flex w-full items-center gap-3 rounded-lg border border-zinc-500 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
 						>
 							<i className="ri-search-line text-lg" aria-hidden="true"></i>
-							<span className="text-base font-normal">Search</span>
-							<span
-								className="ml-auto text-sm font-normal text-zinc-500"
-								aria-hidden="true"
-							>
-								⌘K
-							</span>
+							<span className="text-sm">Search</span>
+							<kbd className="ml-auto text-xs text-zinc-300">⌘K</kbd>
 						</button>
 					</nav>
 				</div>
