@@ -1,6 +1,6 @@
 export function AISection() {
   return (
-    <section className="relative w-full overflow-hidden py-20 md:pt-32 md:pb-24">
+    <section className="relative w-full overflow-hidden py-16 md:pt-32 md:pb-8">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
@@ -27,9 +27,7 @@ export function AISection() {
             </p>
             <div className="max-w-[32rem] space-y-3">
               <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-800">
-                  <i className="ri-check-line text-sm text-zinc-300" />
-                </span>
+                <span className="font-mono text-sm text-zinc-500">01</span>
                 <span>
                   <span className="font-medium text-white">
                     Predictable structure:
@@ -39,9 +37,7 @@ export function AISection() {
                 </span>
               </p>
               <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-800">
-                  <i className="ri-check-line text-sm text-zinc-300" />
-                </span>
+                <span className="font-mono text-sm text-zinc-500">02</span>
                 <span>
                   <span className="font-medium text-white">
                     Typed feedback loop:
@@ -51,9 +47,7 @@ export function AISection() {
                 </span>
               </p>
               <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-800">
-                  <i className="ri-check-line text-sm text-zinc-300" />
-                </span>
+                <span className="font-mono text-sm text-zinc-500">03</span>
                 <span>
                   <span className="font-medium text-white">
                     Built-in reliability:
@@ -63,9 +57,7 @@ export function AISection() {
                 </span>
               </p>
               <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-800">
-                  <i className="ri-check-line text-sm text-zinc-300" />
-                </span>
+                <span className="font-mono text-sm text-zinc-500">04</span>
                 <span>
                   <span className="font-medium text-white">
                     Rich toolbox:
@@ -78,7 +70,7 @@ export function AISection() {
           </div>
 
           {/* Right column - Tweet + Video (the "proof") */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Tweet card */}
             <a
               href="https://x.com/davis7/status/1988847914538672262"
@@ -90,7 +82,7 @@ export function AISection() {
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <img
-                    src="/assets/bendavis.jpg"
+                    src="/assets/images/bendavis.jpg"
                     alt="Ben Davis"
                     className="h-10 w-10 rounded-full object-cover"
                   />

@@ -9,7 +9,8 @@ export interface ExampleMeta {
 		| "error handling"
 		| "schedule"
 		| "ref"
-		| "scope";
+		| "scope"
+		| "services";
 	order?: number;
 }
 

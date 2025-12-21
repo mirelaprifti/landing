@@ -72,11 +72,11 @@ export function AIBuildingSection() {
 						<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-500">
 							Effect for AI
 						</p>
-						<h2 className="text-2xl font-semibold text-white md:text-3xl leading-tight">
+						<h2 className="text-2xl font-semibold text-white md:text-4xl leading-tight">
 							Build AI and Agentic Systems
 						</h2>
 						<p className="mt-4 text-lg text-zinc-400 ">
-							Reliable orchestration , parallel execution, state management, and fault recovery — with type safety and semantic observability baked in.
+							Reliable orchestration, parallel execution, state management, and fault recovery — with type safety and semantic observability baked in.
 						</p>
 
 						{/* Links */}
@@ -153,7 +153,7 @@ export function AIBuildingSection() {
 						<div
 							key={index}
 							className={`flex flex-col pl-4 pr-8 py-0 ${
-								index !== FEATURES.length - 1 ? `lg:border-r lg:border-dashed ${index === 1 ? "lg:border-transparent" : "lg:border-zinc-800"}` : ""
+								index !== FEATURES.length - 1 ? `lg:border-r lg:border-dashed ${index === 1 ? "lg:border-transparent" : "lg:border-zinc-700/75"}` : ""
 							} ${index === 0 ? "lg:pl-0" : ""} ${index === FEATURES.length - 1 ? "lg:pr-0" : ""}`}
 						>
 							<i className={`${feature.icon} text-lg text-zinc-500 mb-2`} />

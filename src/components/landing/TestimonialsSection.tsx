@@ -10,6 +10,17 @@ const LOGO_POOL = [
 	getAssetPath("/assets/logos/zendesk-logo.svg"),
 	getAssetPath("/assets/logos/open-router.svg"),
 	getAssetPath("/assets/logos/masterclass-nom.svg"),
+	getAssetPath("/assets/logos/union-build.svg"),
+	getAssetPath("/assets/logos/coralogix-logo.svg"),
+	getAssetPath("/assets/logos/opengov-2025-white.svg"),
+	getAssetPath("/assets/logos/vitalizecare.svg"),
+	getAssetPath("/assets/logos/CalcTree-logo.svg"),
+	getAssetPath("/assets/logos/Fortanix-logo-white-version.svg"),
+	getAssetPath("/assets/logos/Geodis-Logo.svg"),
+	getAssetPath("/assets/logos/ainavio.svg"),
+	getAssetPath("/assets/logos/dreifach-logo.svg"),
+	getAssetPath("/assets/logos/embedded-insurance-logo.svg"),
+	getAssetPath("/assets/logos/freckle-logo.svg"),
 ];
 
 const useCases = [
@@ -18,32 +29,32 @@ const useCases = [
 		title: "Voice AI Orchestration",
 		href: "https://youtu.be/Cj2pVPqdOVs",
 		alt: "MasterClass",
-		videoId: "Cj2pVPqdOVs",
+		thumbnail: getAssetPath("/assets/images/david-golightly – banner_compressed.webp"),
 	},
 	{
 		logo: getAssetPath("/assets/logos/warp-logo-white.svg"),
 		title: "HR Systems",
 		href: "https://youtu.be/2cN1R9zIxp4",
 		alt: "Warp",
-		videoId: "2cN1R9zIxp4",
+		thumbnail: getAssetPath("/assets/images/adam-rankin-banner_compressed.webp"),
 	},
 	{
 		logo: getAssetPath("/assets/logos/open-router.svg"),
 		title: "Internal Tooling",
 		href: "https://youtu.be/x6-AVCwBIWc",
 		alt: "OpenRouter",
-		videoId: "x6-AVCwBIWc",
+		thumbnail: getAssetPath("/assets/images/louis-vichy– banner_compressed.webp"),
 	},
 	{
 		logo: getAssetPath("/assets/logos/14-ai.svg"),
 		title: "AI Customer Service",
 		href: "https://youtu.be/gGFPhFrGCng",
 		alt: "14.ai",
-		videoId: "gGFPhFrGCng",
+		thumbnail: getAssetPath("/assets/images/michael-fester – banner_compressed (1).webp"),
 	},
 ];
 
-const VISIBLE_LOGOS_COUNT = 7;
+const VISIBLE_LOGOS_COUNT = 6;
 const CYCLE_INTERVAL = 3000; // 3 seconds
 
 export function TestimonialsSection() {
@@ -84,13 +95,13 @@ export function TestimonialsSection() {
 	}, [visibleIndices]);
 
 	return (
-		<section className="relative py-16 md:pt-32 md:pb-12">
+		<section className="relative py-16 md:pt-32 md:pb-8">
 			{/* Header - with padding */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
 				<p className="mb-3 font-mono text-sm uppercase tracking-wider text-zinc-400">
 					Trusted in Production
 				</p>
-				<h2 className="text-2xl font-semibold text-white md:text-3xl">
+				<h2 className="text-2xl font-semibold text-white md:text-4xl">
 					Real-world production systems
 				</h2>
 				{/* Resource links */}
@@ -142,17 +153,17 @@ export function TestimonialsSection() {
 							{/* Video thumbnail area */}
 							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
 								<img
-									src={`https://i.ytimg.com/vi/${useCase.videoId}/hqdefault.jpg`}
+									src={useCase.thumbnail}
 									alt={`${useCase.alt} case study`}
 									className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 								/>
 							</div>
 							{/* Label area */}
 							<div className="flex items-center justify-between px-3 py-2">
-								<span className="text-sm font-medium text-white">
+								<span className="text-sm font-mono font-medium text-zinc-200">
 									{useCase.title}
 								</span>
-								<i className="ri-arrow-right-up-line text-zinc-600 transition-colors group-hover:text-zinc-400" />
+								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-400" />
 							</div>
 						</a>
 					))}
@@ -181,7 +192,7 @@ export function TestimonialsSection() {
 								<img
 									src={LOGO_POOL[logoIndex]}
 									alt=""
-									className={`h-4 max-w-full w-auto object-contain transition-opacity duration-500 ${
+									className={`h-4 max-w-full w-auto object-contain transition-opacity duration-500 brightness-0 invert ${
 										fadingIndex === slotIndex ? "opacity-0" : "opacity-60"
 									}`}
 								/>

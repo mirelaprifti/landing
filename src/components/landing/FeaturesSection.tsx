@@ -20,11 +20,19 @@ import { EffectRetryRecursExample } from "@/examples/effect-retry-recurs";
 import { EffectRetryExponentialExample } from "@/examples/effect-retry-exponential";
 import { EffectRepeatSpacedExample } from "@/examples/effect-repeat-spaced";
 import { EffectRepeatWhileOutputExample } from "@/examples/effect-repeat-while-output";
+import { EffectServiceExample } from "@/examples/effect-service";
+import { LayerEffectExample } from "@/examples/layer-effect";
+import { LayerProvideExample } from "@/examples/layer-provide";
+import { LayerMergeExample } from "@/examples/layer-merge";
+import { EffectRefExample } from "@/examples/ref-make";
+import { EffectRefConcurrentExample } from "@/examples/ref-update-and-get";
+import { EffectFinalizerExample } from "@/examples/effect-add-finalizer";
+import { EffectAcquireReleaseExample } from "@/examples/effect-acquire-release";
 import { getExampleMeta } from "@/lib/examples-manifest";
 import type { ExampleComponentProps } from "@/lib/example-types";
 
 
-type TabId = "concurrency" | "constructors" | "error-handling" | "schedule";
+type TabId = "concurrency" | "constructors" | "error-handling" | "schedule" | "services" | "ref-scope";
 
 const EXAMPLE_COMPONENTS: Record<
 	string,
@@ -50,6 +58,14 @@ const EXAMPLE_COMPONENTS: Record<
 	"effect-retry-exponential": EffectRetryExponentialExample,
 	"effect-repeat-spaced": EffectRepeatSpacedExample,
 	"effect-repeat-while-output": EffectRepeatWhileOutputExample,
+	"effect-service": EffectServiceExample,
+	"layer-effect": LayerEffectExample,
+	"layer-provide": LayerProvideExample,
+	"layer-merge": LayerMergeExample,
+	"ref-make": EffectRefExample,
+	"ref-update-and-get": EffectRefConcurrentExample,
+	"effect-add-finalizer": EffectFinalizerExample,
+	"effect-acquire-release": EffectAcquireReleaseExample,
 };
 
 interface SubTab {
@@ -104,6 +120,24 @@ const TAB_CONFIG: Record<TabId, TabConfig> = {
 			{ id: "effect-sleep", label: ["Effect.sleep", ""] },
 		],
 	},
+	services: {
+		label: "Services",
+		subTabs: [
+			{ id: "effect-service", label: ["Effect.Service", ""] },
+			{ id: "layer-effect", label: ["Layer.effect", ""] },
+			{ id: "layer-provide", label: ["Layer.provide", ""] },
+			{ id: "layer-merge", label: ["Layer.merge", ""] },
+		],
+	},
+	"ref-scope": {
+		label: "Ref & Scope",
+		subTabs: [
+			{ id: "ref-make", label: ["Ref.make", ""] },
+			{ id: "ref-update-and-get", label: ["Ref.updateAndGet", ""] },
+			{ id: "effect-add-finalizer", label: ["Effect.addFinalizer", ""] },
+			{ id: "effect-acquire-release", label: ["Effect.acquireRelease", ""] },
+		],
+	},
 };
 
 const TAB_IDS = Object.keys(TAB_CONFIG) as TabId[];
@@ -115,6 +149,8 @@ export function FeaturesSection() {
 		concurrency: "effect-all",
 		"error-handling": "effect-all-short-circuit",
 		constructors: "effect-succeed",
+		services: "effect-service",
+		"ref-scope": "ref-make",
 	});
 
 	const handleSubTabChange = (subTabId: string) => {
