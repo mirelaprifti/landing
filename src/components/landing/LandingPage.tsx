@@ -46,7 +46,7 @@ export function LandingPage() {
 						className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
 						style={{
 							width: '1px',
-							backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42 / 0.75) 0px, rgb(39 39 42 / 0.75) 4px, transparent 4px, transparent 6px)'
+							backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42 ) 0px, rgb(39 39 42 ) 4px, transparent 4px, transparent 6px)'
 						}}
 					/>
 				</div>
@@ -63,9 +63,9 @@ export function LandingPage() {
 			<SectionDivider />
 			<AIBuildingSection />
 			<SectionDivider />
-			<AISection />
-			<SectionDivider />
 			<DevToolsSection />
+			<SectionDivider />
+			<AISection />
 			<SectionDivider />
 			<QuotesGridSection />
 			<SectionDivider />

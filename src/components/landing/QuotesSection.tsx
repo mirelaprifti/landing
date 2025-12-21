@@ -37,9 +37,9 @@ function QuoteCard({
 					}}
 				/>
 				{logo ? (
-					<img src={logo} alt={company} className={`${logoSize} opacity-50 transition-opacity duration-300 group-hover:opacity-70`} />
+					<img src={logo} alt={company} className={logoSize} />
 				) : (
-					<i className="ri-twitter-x-line text-lg text-zinc-500 transition-colors duration-300 group-hover:text-zinc-400" />
+					<i className="ri-twitter-x-line text-lg text-zinc-300" />
 				)}
 			</div>
 		</div>
@@ -51,8 +51,8 @@ export function QuotesGridSection() {
 		text: "Effect makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.",
 		author: "Dillon Mulroy",
 		role: "Software Engineer",
-		company: "Cloudflare",
-		logo: "/assets/logos/Cloudflare_logo_wht 2.svg",
+		company: "Vercel",
+		logo: "/assets/logos/vercel-logotype-dark.svg",
 	};
 
 	const quotes = [
@@ -65,9 +65,8 @@ export function QuotesGridSection() {
 		{
 			text: "I feel like I'm writing some of the best code in my career using Effect.",
 			author: "Matt Pocock",
-			role: "TypeScript Wizard",
-			logo: "/assets/logos/Pocock.svg",
-			logoSize: "h-6",
+			role: "TypeScript Educator",
+			logo: undefined,
 		},
 		{
 			text: "The real-world impact is tangible: few production bugs, simple testing, and clear code organization.",
@@ -81,7 +80,7 @@ export function QuotesGridSection() {
 			author: "Matthew Phillips",
 			role: "Core Team",
 			company: "Astro",
-			logo: "/assets/logos/Astro.svg",
+			logo: undefined,
 		},
 		{
 			text: "The spaghetti code really turns into something that's just very linear and clean.",
@@ -105,10 +104,10 @@ export function QuotesGridSection() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Section header */}
 				<div className="mb-10">
-					<p className="mb-2 font-mono text-sm uppercase tracking-wider text-zinc-500">
+					<p className="mb-2 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
 						Testimonials
 					</p>
-					<h2 className="text-2xl font-semibold text-white md:text-3xl">
+					<h2 className="text-2xl font-semibold text-white md:text-4xl">
 						Loved by engineers everywhere
 					</h2>
 				</div>
@@ -170,9 +169,9 @@ export function QuotesGridSection() {
 										</div>
 									</div>
 									{quote.logo ? (
-										<img src={quote.logo} alt="" className={`${quote.logoSize || "h-4"} opacity-50`} />
+										<img src={quote.logo} alt="" className={quote.logoSize || "h-4"} />
 									) : (
-										<i className="ri-twitter-x-line text-zinc-500" />
+										<i className="ri-twitter-x-line text-zinc-300" />
 									)}
 								</div>
 							</div>
@@ -196,9 +195,9 @@ export function QuotesGridSection() {
 										</div>
 									</div>
 									{quote.logo ? (
-										<img src={quote.logo} alt="" className={`${quote.logoSize || "h-3"} opacity-50`} />
+										<img src={quote.logo} alt="" className={quote.logoSize || "h-3"} />
 									) : (
-										<i className="ri-twitter-x-line text-sm text-zinc-600" />
+										<i className="ri-twitter-x-line text-sm text-zinc-300" />
 									)}
 								</div>
 							</div>
@@ -227,9 +226,8 @@ export function QuotesSection() {
 		{
 			text: "I feel like I'm writing some of the best code in my career using Effect.",
 			author: "Matt Pocock",
-			company: "TypeScript Wizard",
-			logo: "/assets/logos/Pocock.svg",
-			logoSize: "h-8",
+			company: "TypeScript Educator",
+			logo: undefined,
 		},
 		{
 			text: "Effect tracing is simply magical. Was able to fully integrate with our existing microservice observably stack fairly easily.",
@@ -260,7 +258,7 @@ export function QuotesSection() {
 			text: "I think it's one of the most important libraries being developed today.",
 			author: "Matthew Phillips",
 			company: "Astro",
-			logo: "/assets/logos/Astro.svg",
+			logo: undefined,
 		},
 	];
 
@@ -297,7 +295,7 @@ export function QuotesSection() {
 	const handleMouseUp = () => setIsDragging(false);
 
 	return (
-		<section className="relative z-[70] w-full bg-zinc-950 py-20 md:py-24">
+		<section className="relative z-[70] w-full overflow-hidden bg-zinc-950 py-20 md:py-24">
 			{/* Top dashed border */}
 			<div
 				className="absolute top-0 left-0 right-0 h-[1px]"

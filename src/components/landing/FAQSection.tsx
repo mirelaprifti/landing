@@ -71,6 +71,35 @@ export function FAQSection() {
       )
     },
     {
+      question: "How does Effect handle dependency injection?",
+      answer: (
+        <>
+          <p>
+            Effect provides first-class dependency injection through Services and Layers.
+            Unlike traditional DI frameworks, Effect's approach is:
+          </p>
+          <ul className="mt-2 mb-4 ml-5 list-disc space-y-1">
+            <li>Fully type-safe — dependencies are tracked in the type signature</li>
+            <li>No runtime reflection or decorators required</li>
+            <li>Composable — build complex dependency graphs from simple pieces</li>
+            <li>Testable — easily swap implementations for testing</li>
+          </ul>
+          <p>
+            See the{" "}
+            <a
+              href="https://effect.website/docs/requirements-management/layers/"
+              className="text-white underline transition-colors hover:text-zinc-300"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Layers documentation
+            </a>
+            {" "}to learn more.
+          </p>
+        </>
+      )
+    },
+    {
       question: "How does Effect compare to other libraries?",
       answer: (
         <>
@@ -171,7 +200,7 @@ export function FAQSection() {
               <p className="mb-2 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
                 FAQ
               </p>
-              <h2 className="text-2xl font-semibold text-white md:text-3xl">
+              <h2 className="text-2xl font-semibold text-white md:text-4xl">
                 Questions we get asked a lot
               </h2>
 
