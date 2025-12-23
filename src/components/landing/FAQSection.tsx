@@ -204,7 +204,7 @@ export function FAQSection() {
                 Questions we get asked a lot
               </h2>
 
-              <p className="mt-5 text-lg leading-relaxed text-zinc-400">
+              <p className="mt-5 text-lg leading-relaxed text-zinc-400 max-w-[28rem]">
                 Can't find what you're looking for? Our community is always
                 happy to help.
               </p>
@@ -218,7 +218,6 @@ export function FAQSection() {
               >
                 <i className="ri-discord-fill text-base" />
                 <span>Ask on Discord</span>
-                <i className="ri-arrow-right-up-line text-xs text-zinc-500 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-zinc-300" />
               </a>
             </div>
           </div>

@@ -145,7 +145,7 @@ function EffectExampleComponent<A, E>({
 		>
 			{/* Header with interactive controls */}
 			<motion.div
-				className={`p-6 border-b`}
+				className={`p-4 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 					backgroundColor: headerBackground,

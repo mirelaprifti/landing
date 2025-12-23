@@ -141,8 +141,8 @@ export const colors = {
 
 	// Glow effects
 	glow: {
-		death: "rgba(220, 38, 38, 0.8)",
-		running: "rgba(100, 200, 255, 0.2)",
+		death: "rgba(220, 38, 38, 0.8)", // red-600
+		running: "rgba(59, 130, 246, 0.2)", // blue-500
 	},
 };
 

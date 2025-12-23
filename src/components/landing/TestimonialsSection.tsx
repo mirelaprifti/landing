@@ -54,7 +54,7 @@ const useCases = [
 	},
 ];
 
-const VISIBLE_LOGOS_COUNT = 6;
+const VISIBLE_LOGOS_COUNT = 8;
 const CYCLE_INTERVAL = 3000; // 3 seconds
 
 export function TestimonialsSection() {
@@ -105,12 +105,22 @@ export function TestimonialsSection() {
 					Real-world production systems
 				</h2>
 				{/* Resource links */}
-				<div className="mt-4 flex items-center gap-4">
+				<div className="mt-6 flex items-center gap-4">
+					<a
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group inline-flex items-center gap-1.5 text-base text-zinc-400 hover:text-white transition-colors"
+					>
+						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
+						Cause & Effect Podcast
+					</a>
+					<span className="text-zinc-700">|</span>
 					<a
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+						className="group inline-flex items-center gap-1.5 text-base text-zinc-400 hover:text-white transition-colors"
 					>
 						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
 						Effect Days 2024
@@ -120,20 +130,10 @@ export function TestimonialsSection() {
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+						className="group inline-flex items-center gap-1.5 text-base text-zinc-400 hover:text-white transition-colors"
 					>
 						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
 						Effect Days 2025
-					</a>
-					<span className="text-zinc-700">|</span>
-					<a
-						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="group inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
-					>
-						<i className="ri-youtube-line text-zinc-600 group-hover:text-red-500 transition-colors" />
-						Cause & Effect Podcast
 					</a>
 				</div>
 			</div>
@@ -160,7 +160,7 @@ export function TestimonialsSection() {
 							</div>
 							{/* Label area */}
 							<div className="flex items-center justify-between px-3 py-2">
-								<span className="text-sm font-mono font-medium text-zinc-200">
+								<span className="text-sm font-mono font-medium text-zinc-300">
 									{useCase.title}
 								</span>
 								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-400" />
@@ -173,9 +173,9 @@ export function TestimonialsSection() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 
 				{/* Logo Strip - Secondary, connected to cards */}
-				<div className="relative mt-6">
+				<div className="relative mt-8">
 					{/* Connector line from cards */}
-					<div className="absolute left-1/2 -top-6 h-6 w-px -translate-x-[0.5px] bg-gradient-to-b from-zinc-800 to-zinc-800/0" />
+					<div className="absolute left-1/2 -top-8 h-8 w-px -translate-x-[0.5px] bg-gradient-to-b from-zinc-800 to-zinc-800/0" />
 
 					{/* Label */}
 					<p className="mb-4 text-center text-xs uppercase tracking-widest text-zinc-400/75">

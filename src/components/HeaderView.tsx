@@ -3,7 +3,6 @@ import {
 	CheckIcon,
 	LinkIcon,
 	PlayIcon,
-	StarFourIcon,
 	StopIcon,
 } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "motion/react";
@@ -35,8 +34,6 @@ function HeaderViewComponent({
 	const [isPressed, setIsPressed] = useState(false);
 	const [showCheckmark, setShowCheckmark] = useState(false);
 	const [hasPlayedHoverSound, setHasPlayedHoverSound] = useState(false);
-	const [hasEverRun, setHasEverRun] = useState(false);
-	const [showPlayHint, setShowPlayHint] = useState(false);
 	const isOptionPressed = useOptionKey();
 	useVisualEffectSubscription(task);
 	const { state } = task;
@@ -48,25 +45,6 @@ function HeaderViewComponent({
 	const isDeath = state.type === "death";
 	const isIdle = state.type === "idle";
 	const canReset = isCompleted || isFailed || isInterrupted || isDeath;
-
-	// Track if animation has ever been run
-	useEffect(() => {
-		if (isRunning && !hasEverRun) {
-			setHasEverRun(true);
-		}
-	}, [isRunning, hasEverRun]);
-
-	// Cycle between star and play icon when idle and never run
-	useEffect(() => {
-		if (isIdle && !hasEverRun && !isHovered) {
-			const interval = setInterval(() => {
-				setShowPlayHint((prev) => !prev);
-			}, 2000); // 2 second interval
-			return () => clearInterval(interval);
-		} else {
-			setShowPlayHint(false);
-		}
-	}, [isIdle, hasEverRun, isHovered]);
 
 	const runWithDependencies = useCallback(async () => {
 		await task.run();
@@ -192,53 +170,19 @@ function HeaderViewComponent({
 			}
 		}
 
-		// Show play icon hint when cycling (idle, never run, not hovered)
-		if (showPlayHint) {
-			return (
-				<motion.div
-					key="play-hint"
-					initial={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
-					animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-					exit={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
-					transition={{
-						duration: 0.6,
-						ease: "easeInOut",
-					}}
-				>
-					<PlayIcon size={20} weight="fill" />
-				</motion.div>
-			);
-		}
-
+		// Default: show play icon when idle
 		return (
 			<motion.div
-				key="star"
+				key="play-default"
 				initial={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
-				animate={
-					isRunning
-						? { rotate: 360, scale: 1, opacity: 1, filter: "blur(0px)" }
-						: { rotate: 0, scale: 1, opacity: 1, filter: "blur(0px)" }
-				}
+				animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
 				exit={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
-				transition={
-					isRunning
-						? {
-								rotate: {
-									duration: 1,
-									repeat: Infinity,
-									ease: "circInOut",
-								},
-								scale: { duration: 0.6, ease: "easeInOut" },
-								opacity: { duration: 0.6, ease: "easeInOut" },
-								filter: { duration: 0.6, ease: "easeInOut" },
-							}
-						: {
-								duration: 0.6,
-								ease: "easeInOut",
-							}
-				}
+				transition={{
+					duration: 0.3,
+					ease: "easeOut",
+				}}
 			>
-				<StarFourIcon size={24} weight="fill" />
+				<PlayIcon size={20} weight="fill" />
 			</motion.div>
 		);
 	};
@@ -261,12 +205,15 @@ function HeaderViewComponent({
 			onMouseUp={() => setIsPressed(false)}
 			onClick={handleAction}
 			initial={{
-				borderColor: "rgba(255, 255, 255, 1)",
+				backgroundColor: "rgba(255, 255, 255, 0)",
 			}}
 			animate={{
-				borderColor: "rgba(255, 255, 255, 0)",
+				backgroundColor: isHovered ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0)",
 			}}
-			className="flex items-start gap-3 cursor-pointer rounded-lg p-3 -m-3 px-4 -mx-4"
+			transition={{
+				backgroundColor: { duration: 0.15, ease: "easeOut" },
+			}}
+			className="flex items-start gap-3 cursor-pointer rounded-lg p-2 -m-2"
 		>
 			<motion.div
 				animate={{
@@ -285,7 +232,7 @@ function HeaderViewComponent({
 											? TASK_COLORS.error
 											: isDeath
 												? TASK_COLORS.death
-												: TASK_COLORS.idle,
+												: "#16a34a", // green-600 for idle
 				}}
 				transition={{
 					scale: { type: "spring", stiffness: 300, damping: 20 },
@@ -353,15 +300,30 @@ function HeaderViewComponent({
 			</motion.div>
 
 			<div className="flex-1 flex flex-col gap-1">
-				<h2 className="text-base font-mono font-semibold text-white flex items-baseline gap-2">
-					<span>{name}</span>
-					{/* <span className="text-neutral-500"> */}
-					{/* <CaretDoubleRightIcon size={16} weight="bold" /> */}
-					{/* </span> */}
-					{variant && (
-						<span className="font-medium text-neutral-500">{variant}</span>
+				<div className="flex items-start justify-between">
+					<h2 className="text-base font-mono font-semibold text-white flex items-baseline gap-2">
+						<span>{name}</span>
+						{variant && (
+							<span className="font-medium text-neutral-500">{variant}</span>
+						)}
+					</h2>
+					{/* Static label on the right */}
+					{isIdle && (
+						<span className="text-xs font-mono text-zinc-500 -mt-1">
+							Click to run an Effect
+						</span>
 					)}
-				</h2>
+					{canReset && (
+						<span className="text-xs font-mono text-zinc-500 -mt-1">
+							Click to reset
+						</span>
+					)}
+					{isRunning && (
+						<span className="text-xs font-mono text-zinc-500 -mt-1">
+							Click to stop
+						</span>
+					)}
+				</div>
 				{description && (
 					<p className="text-sm text-neutral-400 leading-4">{description}</p>
 				)}

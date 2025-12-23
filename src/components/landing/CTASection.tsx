@@ -1,9 +1,6 @@
 export function CTASection() {
 	return (
 		<section className="relative w-full overflow-hidden py-16 md:py-28">
-			{/* Subtle gradient background - same as AI Section */}
-			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
-
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Two-column grid matching the page's visual language */}
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-3">

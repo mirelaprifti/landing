@@ -6,13 +6,22 @@ export function AISection() {
 
       <div className="relative mx-auto w-full max-w-295">
         {/* Header row - Eyebrow + Title + Description */}
-        <div className="mb-28 px-4">
+        <div className="mb-20 px-4">
           <p className="mb-4 font-mono text-base font-semibold tracking-wider text-zinc-400 uppercase">
             LLMs 🤍 Effect
           </p>
           <h2 className="max-w-2xl text-2xl leading-tight font-semibold text-white md:text-4xl">
             Ship AI-generated code you can trust in production
           </h2>
+          <a
+            href="https://www.effect.solutions/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-zinc-500 hover:bg-zinc-800"
+          >
+            Effect Solutions
+            <i className="ri-arrow-right-up-line" />
+          </a>
         </div>
 
         {/* Two-column layout: Features left, Proof right */}

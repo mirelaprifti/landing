@@ -1,11 +1,51 @@
 import type { MotionStyle } from "motion/react";
 import { AnimatePresence, motion } from "motion/react";
-import type { Language, RenderProps, Token } from "prism-react-renderer";
-import { Highlight, themes } from "prism-react-renderer";
+import type { Language, PrismTheme, RenderProps, Token } from "prism-react-renderer";
+import { Highlight } from "prism-react-renderer";
 import type React from "react";
 import { useEffect, useMemo, useRef } from "react";
 
-const { oneDark } = themes;
+// Custom theme matching the site's color system (violet-400, emerald-400, zinc colors)
+const effectTheme: PrismTheme = {
+	plain: {
+		color: "#d4d4d8", // zinc-300
+		backgroundColor: "transparent",
+	},
+	styles: [
+		{
+			types: ["keyword", "builtin", "tag", "operator"],
+			style: { color: "#a78bfa" }, // violet-400
+		},
+		{
+			types: ["string", "attr-value", "template-string"],
+			style: { color: "#34d399" }, // emerald-400
+		},
+		{
+			types: ["comment", "prolog", "doctype", "cdata"],
+			style: { color: "#71717a", fontStyle: "italic" }, // zinc-500
+		},
+		{
+			types: ["function", "class-name"],
+			style: { color: "#f4f4f5" }, // zinc-100
+		},
+		{
+			types: ["number", "boolean"],
+			style: { color: "#fbbf24" }, // amber-400
+		},
+		{
+			types: ["punctuation"],
+			style: { color: "#a1a1aa" }, // zinc-400
+		},
+		{
+			types: ["property", "constant", "variable"],
+			style: { color: "#d4d4d8" }, // zinc-300
+		},
+		{
+			types: ["attr-name"],
+			style: { color: "#a78bfa" }, // violet-400
+		},
+	],
+};
 
 interface CodeBlockProps {
 	code: string;
@@ -97,7 +137,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 			}}
 			style={{ overflow: "hidden" }}
 		>
-			<Highlight theme={oneDark} code={code.trim()} language={language}>
+			<Highlight theme={effectTheme} code={code.trim()} language={language}>
 				{(highlightProps: RenderProps) => {
 					const {
 						className,
