@@ -55,8 +55,8 @@ export function HeroSection() {
 						linear-gradient(to right, rgba(24, 24, 27, 0.55) 1px, transparent 1px),
 						linear-gradient(to bottom, rgba(24, 24, 27, 0.55) 1px, transparent 1px)
 					`,
-					backgroundSize: "118px 88px",
-					backgroundPosition: "calc(50% + 58.5px) 0",
+					backgroundSize: "196.6px 104px",
+					backgroundPosition: "calc(50% + 97px) 0",
 				}}
 			/>
 
@@ -64,7 +64,7 @@ export function HeroSection() {
 			<div
 				className="pointer-events-none absolute inset-0"
 				style={{
-					background: "linear-gradient(to bottom, transparent 60%, #09090b 100%)",
+					background: "linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 				}}
 			/>
 
@@ -92,15 +92,13 @@ export function HeroSection() {
 					50% { opacity: 0.6; }
 				}
 			`}</style>
+			
 
-			{/* Bottom border */}
-			<div className="absolute bottom-0 left-0 right-0 h-px bg-zinc-800" />
-
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-12 md:pt-17 md:pb-16">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-12 md:pt-[96px] md:pb-16">
 				{/* Content */}
 				<div className="max-w-4xl">
 					{/* Import statement */}
-					<p className="mb-3 font-mono text-sm md:text-base">
+					<p className="mb-4 font-mono text-sm md:text-base">
 						<span className="text-violet-400">import</span>
 						<span className="text-zinc-300">{" { "}</span>
 						<span className="text-white">Effect</span>
@@ -109,17 +107,17 @@ export function HeroSection() {
 						<span className="text-emerald-400">{" \"effect\""}</span>
 					</p>
 					{/* Headline */}
-					<h1 className="text-4xl font-semibold text-white md:text-[4.5rem] md:leading-tight">
+					<h1 className="text-4xl font-semibold text-white md:text-[4.5rem] leading-tight">
 						Effect is TypeScript for building reliable systems
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mt-5 text-xl text-zinc-400">
+					<p className="mt-6 text-xl text-zinc-400">
 						Resilient, observable, and safely concurrent by design.
 					</p>
 
 					{/* CTA buttons */}
-					<div className="mt-8 flex flex-col sm:flex-row items-start gap-3">
+					<div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
 						<a
 							href="#features"
 							className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3.5 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
