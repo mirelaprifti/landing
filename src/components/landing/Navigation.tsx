@@ -124,18 +124,18 @@ export function Navigation() {
 							</button>
 
 							{/* Right side items (desktop) */}
-							<div className="ml-auto hidden items-center gap-4 md:flex">
+							<div className="ml-auto hidden items-center gap-4.5 md:flex">
 								<button
 									type="button"
 									aria-label="Open search (Command K)"
-									className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white hover:bg-zinc-900"
+									className="flex items-center gap-2 rounded-lg border border-zinc-600 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white hover:bg-zinc-900"
 								>
-									<i className="ri-search-line text-sm" aria-hidden="true" />
+									<i className="ri-search-line text-sm font-medium" aria-hidden="true" />
 									<span>Search</span>
 									<kbd className="text-[12px] text-zinc-400">⌘K</kbd>
 								</button>
 
-								<div className="h-4.5 w-px bg-zinc-600" />
+								<div className="h-4.5 w-px bg-zinc-700" />
 
 								<div className="flex items-center gap-3">
 									<a
@@ -143,7 +143,7 @@ export function Navigation() {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Visit Effect on GitHub"
-										className=" text-zinc-500 transition-colors hover:text-white"
+										className=" text-zinc-400 transition-colors hover:text-white"
 									>
 										<i className="ri-github-fill text-xl" aria-hidden="true" />
 									</a>
@@ -152,7 +152,7 @@ export function Navigation() {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Join Effect Discord server"
-										className=" text-zinc-500 transition-colors hover:text-white"
+										className=" text-zinc-400 transition-colors hover:text-white"
 									>
 										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</a>
@@ -223,7 +223,7 @@ export function Navigation() {
 						</div>
 
 						{/* Divider */}
-						<div className="my-4 h-px bg-zinc-600" />
+						<div className="my-4 h-px bg-zinc-400" />
 
 						{/* Secondary links */}
 						<div className="space-y-1">

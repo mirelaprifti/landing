@@ -173,21 +173,21 @@ export function FeaturesSection() {
 	}, [activeSubTabPerTab, activeTab]);
 
 	return (
-		<section className="relative w-full">
+		<section id="features" className="relative w-full">
 			{/* Content Container */}
 			<div className="relative max-w-295 mx-auto">
 				{/* Tab Navigation and Content */}
-				<div className="relative overflow-hidden border-x border-zinc-800 shadow-2xl shadow-black/20">
+				<div className="relative overflow-hidden border-x border-zinc-700 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
-					<div className="relative flex">
+					<div className="relative flex bg-zinc-950/90">
 						{TAB_IDS.map((tabId) => (
 							<button
 								key={tabId}
 								onClick={() => setActiveTab(tabId)}
-								className={`flex-1 cursor-pointer py-5 px-6 font-mono text-base uppercase transition-colors ${
+								className={`flex-1 cursor-pointer py-5 px-6 font-mono text-base uppercase tracking-wide transition-colors ${
 									activeTab === tabId
 										? "text-white font-medium"
-										: "text-zinc-300 leading-relaxed hover:text-white"
+										: "text-zinc-400 leading-relaxed hover:text-white"
 								}`}
 							>
 								{TAB_CONFIG[tabId].label}
@@ -215,14 +215,14 @@ export function FeaturesSection() {
 						{currentTabConfig.subTabs ? (
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
-								<div className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800/50 bg-zinc-950">
+								<div className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800 bg-zinc-950">
 									{currentTabConfig.subTabs.map((subTab) => (
 										<button
 											key={subTab.id}
 											onClick={() => handleSubTabChange(subTab.id)}
 											className={`px-3 py-1.5 rounded-md font-mono text-sm transition-colors cursor-pointer ${
 												currentActiveSubTab === subTab.id
-													? "bg-zinc-800 text-white"
+													? "bg-zinc-900 text-white"
 													: "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
 											}`}
 										>
