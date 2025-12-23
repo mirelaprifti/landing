@@ -3,6 +3,9 @@ import { getAssetPath } from "../../utils/assetPath";
 export function Footer() {
 	return (
 		<footer className="relative w-full pt-16 md:px-8 md:pt-20">
+			{/* Subtle gradient background */}
+			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
+
 			{/* Top solid border */}
 			<div className="absolute left-0 right-0 top-0 h-px bg-zinc-800" />
 

@@ -86,7 +86,7 @@ export function DevToolsSection() {
 				{/* Video with vertical tabs on right */}
 				<div className="flex gap-4">
 					{/* Video container */}
-					<div className="flex-1 border border-zinc-700 bg-zinc-900/30">
+					<div className="flex-1 rounded-md border border-zinc-700 bg-zinc-900/30 overflow-hidden">
 						<div className="relative aspect-video">
 							<video
 								key={activeTool.video}
@@ -96,10 +96,14 @@ export function DevToolsSection() {
 								loop
 								muted
 								playsInline
+								controls
 								aria-label={`Effect ${activeTool.label} demonstration`}
 							>
 								<track kind="captions" />
+								Your browser does not support the video tag.
 							</video>
+							{/* Overlay */}
+							<div className="pointer-events-none absolute inset-0 bg-[#18181B]/40" />
 						</div>
 					</div>
 
@@ -110,13 +114,13 @@ export function DevToolsSection() {
 								key={tool.id}
 								type="button"
 								onClick={() => setActiveTab(index)}
-								className={`relative px-4 py-3 text-left transition-colors cursor-pointer border ${
+								className={`relative px-3 py-2 text-left transition-colors cursor-pointer rounded-md border ${
 									activeTab === index
-										? "border-zinc-700 bg-zinc-900/50"
+										? "border-zinc-500 bg-zinc-900/50"
 										: "border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/40"
 								}`}
 							>
-								<span className={`text-sm font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}>
+								<span className={`text-sm font-mono uppercase tracking-wide font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}>
 									{tool.label}
 								</span>
 								<p className="mt-1 text-sm text-zinc-500">
