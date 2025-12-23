@@ -7,7 +7,6 @@ const LOGO_POOL = [
 	getAssetPath("/assets/logos/warp-logo-white.svg"),
 	getAssetPath("/assets/logos/spiko-logo.svg"),
 	getAssetPath("/assets/logos/expand-ai.svg"),
-	getAssetPath("/assets/logos/zendesk-logo.svg"),
 	getAssetPath("/assets/logos/open-router.svg"),
 	getAssetPath("/assets/logos/masterclass-nom.svg"),
 	getAssetPath("/assets/logos/union-build.svg"),
