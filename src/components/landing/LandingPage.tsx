@@ -50,7 +50,7 @@ export function LandingPage() {
 						className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
 						style={{
 							width: '1px',
-							backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgba(39, 39, 42, 0.1) 4px, transparent 4px, transparent 6px)'
+							backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
 						}}
 					/>
 				</div>

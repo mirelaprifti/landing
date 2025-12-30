@@ -15,7 +15,7 @@ export function CTASection() {
 						/>
 
 						<div className="relative">
-							<p className="mb-4 font-mono text-sm uppercase tracking-wider text-zinc-500">
+							<p className="mb-4 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
 								Get Started
 							</p>
 							<h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">
@@ -40,18 +40,18 @@ export function CTASection() {
 									href="https://effect.website/docs/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-[0.9375rem] font-medium text-zinc-900 transition-all duration-200 hover:bg-zinc-100 hover:shadow-lg hover:shadow-white/10"
+									className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100"
 								>
-									<i className="ri-arrow-right-line text-base transition-transform duration-200 group-hover:translate-x-1" />
 									Read the docs
+									<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
 								</a>
 								<a
 									href="https://effect.website/play/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-[0.9375rem] font-medium text-white transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
+									className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 								>
-									<i className="ri-terminal-line text-base transition-transform duration-200 group-hover:scale-110" />
+									<i className="ri-terminal-line text-base" />
 									Playground
 								</a>
 							</div>
@@ -74,10 +74,10 @@ export function CTASection() {
 								</div>
 								<div>
 									<p className="font-medium text-white">Discord</p>
-									<p className="text-sm text-zinc-500">Join the community</p>
+									<p className="text-sm text-zinc-400">Join the community</p>
 								</div>
 							</div>
-							<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+							<i className="ri-arrow-right-up-line text-lg text-zinc-500 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
 						</a>
 
 {/* GitHub card */}
@@ -93,10 +93,10 @@ export function CTASection() {
 								</div>
 								<div>
 									<p className="font-medium text-white">GitHub</p>
-									<p className="text-sm text-zinc-500">Star the repo</p>
+									<p className="text-sm text-zinc-400">Star the repo</p>
 								</div>
 							</div>
-							<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+							<i className="ri-arrow-right-up-line text-lg text-zinc-500 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
 						</a>
 
 						{/* Twitter/X card */}
@@ -112,10 +112,10 @@ export function CTASection() {
 								</div>
 								<div>
 									<p className="font-medium text-white">Twitter</p>
-									<p className="text-sm text-zinc-500">Follow for updates</p>
+									<p className="text-sm text-zinc-400">Follow for updates</p>
 								</div>
 							</div>
-							<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+							<i className="ri-arrow-right-up-line text-lg text-zinc-500 transition-all duration-200 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
 						</a>
 					</div>
 				</div>
