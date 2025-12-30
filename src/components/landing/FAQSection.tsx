@@ -200,11 +200,11 @@ export function FAQSection() {
               <p className="mb-2 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
                 FAQ
               </p>
-              <h2 className="text-2xl font-semibold text-white md:text-4xl">
+              <h2 className="text-2xl font-semibold text-white md:text-3xl">
                 Questions we get asked a lot
               </h2>
 
-              <p className="mt-5 text-lg leading-relaxed text-zinc-400 max-w-[28rem]">
+              <p className="mt-5 text-lg leading-relaxed text-zinc-400 max-w-lg">
                 Can't find what you're looking for? Our community is always
                 happy to help.
               </p>
@@ -214,7 +214,7 @@ export function FAQSection() {
                 href="https://discord.gg/effect-ts"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group mt-6 inline-flex items-center gap-2.5 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+                className="group mt-6 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
               >
                 <i className="ri-discord-fill text-base" />
                 <span>Ask on Discord</span>

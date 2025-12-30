@@ -112,6 +112,14 @@ export function Navigation() {
 								>
 									Playground
 								</a>
+								<a
+									href="https://www.effect.solutions/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+								>
+									LLM Guide
+								</a>
 							</div>
 
 							{/* Mobile menu button */}
@@ -125,18 +133,6 @@ export function Navigation() {
 
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
-								<button
-									type="button"
-									aria-label="Open search (Command K)"
-									className="flex items-center gap-2 rounded-lg border border-zinc-600 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white hover:bg-zinc-900"
-								>
-									<i className="ri-search-line text-sm font-medium" aria-hidden="true" />
-									<span>Search</span>
-									<kbd className="text-[12px] text-zinc-400">⌘K</kbd>
-								</button>
-
-								<div className="h-4.5 w-px bg-zinc-700" />
-
 								<div className="flex items-center gap-3">
 									<a
 										href="https://github.com/Effect-TS/effect"
@@ -157,6 +153,17 @@ export function Navigation() {
 										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</a>
 								</div>
+
+								<div className="h-4.5 w-px bg-zinc-700" />
+
+								<button
+									type="button"
+									aria-label="Open search (Command K)"
+									className="flex items-center gap-2 rounded-lg border border-zinc-600 px-2 py-1 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-white hover:bg-zinc-900"
+								>
+									<i className="ri-search-line text-base font-medium" aria-hidden="true" />
+									<kbd className="text-[12px] text-zinc-400/80">⌘K</kbd>
+								</button>
 							</div>
 						</nav>
 					</header>

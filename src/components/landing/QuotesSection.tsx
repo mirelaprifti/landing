@@ -107,7 +107,7 @@ export function QuotesGridSection() {
 					<p className="mb-2 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
 						Testimonials
 					</p>
-					<h2 className="text-2xl font-semibold text-white md:text-4xl">
+					<h2 className="text-2xl font-semibold text-white md:text-3xl">
 						What developers are saying...
 					</h2>
 				</div>

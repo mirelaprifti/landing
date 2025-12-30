@@ -73,10 +73,10 @@ export function AIBuildingSection() {
         <div className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-0">
           {/* Left column - Content */}
           <div className="flex flex-col px-4 pr-12 lg:pr-12 lg:pl-4">
-            <p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
+            <p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
               Effect for AI
             </p>
-            <h2 className="text-2xl leading-tight font-semibold text-white md:text-4xl">
+            <h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
               Build AI and Agentic Systems
             </h2>
             <p className="mt-4 text-lg text-zinc-400">
@@ -91,16 +91,16 @@ export function AIBuildingSection() {
                 href="https://effect.website/docs/ai/introduction"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-base text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
               >
-                <i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
                 <span>Read the docs</span>
+                <i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
               </a>
               <a
                 href="https://github.com/Effect-TS/effect/tree/main/packages/ai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-base text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
               >
                 <i className="ri-github-fill text-base" />
                 <span>GitHub</span>
