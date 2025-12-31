@@ -22,10 +22,10 @@ export function TransitionSection() {
 
 			<div className="relative mx-auto w-full max-w-295 px-4">
 				<div className="text-center max-w-[48rem] mx-auto">
-					<p className="font-mono uppercase text-lg text-zinc-300">
+					<p className="font-mono uppercase text-lg text-zinc-200">
 						Effect gives TypeScript the missing pieces
 					</p>
-					<p className="font-mono uppercase text-lg text-zinc-300 mt-1">
+					<p className="font-mono uppercase text-lg text-zinc-200 mt-1">
 						safe concurrency · typed errors · built-in observability
 					</p>
 				</div>

@@ -32,7 +32,7 @@ export function AISection() {
               Write better code with AI
             </h3>
             <p className="mb-6 max-w-xl text-lg leading-snug text-zinc-400">
-              Effect excels at orchestration, parallel execution, state management, and fault recovery — using natural abstractions that feel intuitive to both AI and humans.
+              Effect excels at orchestration, parallel execution, state management, and fault recovery, using natural abstractions that feel intuitive to both AI and humans.
             </p>
             <div className="max-w-[32rem] space-y-3">
               <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">

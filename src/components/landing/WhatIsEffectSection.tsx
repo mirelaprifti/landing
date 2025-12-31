@@ -1,17 +1,4 @@
-import { useState } from "react";
-
-const TYPE_SIGNATURE = "Effect<Success, Error, Requirements>";
-
 export function WhatIsEffectSection() {
-	const [copied, setCopied] = useState(false);
-
-	const copyToClipboard = () => {
-		navigator.clipboard.writeText(TYPE_SIGNATURE).then(() => {
-			setCopied(true);
-			setTimeout(() => setCopied(false), 1500);
-		});
-	};
-
 	return (
 		<section className="relative w-full overflow-hidden py-16 md:pt-24 md:pb-24">
 			{/* Subtle background gradient */}
@@ -73,8 +60,8 @@ export function WhatIsEffectSection() {
 								}}
 							/>
 
-							{/* Type signature - selectable text with copy button */}
-							<div className="group relative w-full rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-4 pr-12 font-mono text-base text-left transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
+							{/* Type signature */}
+							<div className="group relative w-full rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-4 font-mono text-base text-center transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
 								<span className="text-white select-all">Effect</span>
 								<span className="text-zinc-500">&lt;</span>
 								<span className="text-zinc-300">Success</span>
@@ -83,18 +70,6 @@ export function WhatIsEffectSection() {
 								<span className="text-zinc-500">, </span>
 								<span className="text-zinc-300">Requirements</span>
 								<span className="text-zinc-500">&gt;</span>
-								<button
-									type="button"
-									onClick={copyToClipboard}
-									className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400 transition-colors cursor-pointer"
-									aria-label="Copy type signature"
-								>
-									{copied ? (
-										<i className="ri-check-line text-emerald-400" />
-									) : (
-										<i className="ri-file-copy-line" />
-									)}
-								</button>
 							</div>
 
 							{/* Arrows pointing down */}

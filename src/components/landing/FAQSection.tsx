@@ -230,7 +230,7 @@ export function FAQSection() {
                 return (
                   <div
                     key={index}
-                    className={`border transition-colors duration-200 ${
+                    className={`rounded-md border transition-colors duration-200 ${
                       isOpen
                         ? "border-zinc-700 bg-zinc-900/40"
                         : "border-zinc-700 hover:border-zinc-600 hover:bg-zinc-900/50"
