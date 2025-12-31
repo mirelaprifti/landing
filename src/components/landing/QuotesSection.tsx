@@ -15,16 +15,13 @@ function QuoteCard({
 }) {
 	return (
 		<div
-			className="group flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col justify-between p-8 border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/50"
+			className="group flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col justify-between rounded-md p-8 border border-zinc-700 bg-zinc-900/30 transition-all duration-300 hover:border-zinc-500 hover:bg-zinc-900/50"
 		>
 			<p className="text-lg leading-relaxed text-zinc-300 transition-colors duration-300 group-hover:text-zinc-200">
 				"{text}"
 			</p>
 			<div className="flex w-full items-center gap-4">
 				<div className="flex items-center gap-3">
-					<div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 text-sm font-medium text-white">
-						{author.split(' ').map(n => n[0]).join('')}
-					</div>
 					<span className="font-medium text-white">
 						{author}
 					</span>
@@ -51,8 +48,8 @@ export function QuotesGridSection() {
 		text: "Effect makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.",
 		author: "Dillon Mulroy",
 		role: "Software Engineer",
-		company: "Vercel",
-		logo: "/assets/logos/vercel-logotype-dark.svg",
+		company: "Cloudflare",
+		logo: "/assets/Cloudflare_logo_wht 2.svg",
 	};
 
 	const quotes = [
@@ -66,7 +63,8 @@ export function QuotesGridSection() {
 			text: "I feel like I'm writing some of the best code in my career using Effect.",
 			author: "Matt Pocock",
 			role: "TypeScript Educator",
-			logo: undefined,
+			company: "Total TypeScript",
+			logo: "/assets/logos/total-typescript-logo.png",
 		},
 		{
 			text: "The real-world impact is tangible: few production bugs, simple testing, and clear code organization.",
@@ -80,7 +78,7 @@ export function QuotesGridSection() {
 			author: "Matthew Phillips",
 			role: "Core Team",
 			company: "Astro",
-			logo: undefined,
+			logo: "/assets/Astro.svg",
 		},
 		{
 			text: "The spaghetti code really turns into something that's just very linear and clean.",
@@ -107,7 +105,7 @@ export function QuotesGridSection() {
 					<p className="mb-2 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
 						Testimonials
 					</p>
-					<h2 className="text-2xl font-semibold text-white md:text-4xl">
+					<h2 className="text-2xl font-semibold text-white md:text-3xl">
 						What developers are saying...
 					</h2>
 				</div>
@@ -116,7 +114,7 @@ export function QuotesGridSection() {
 				<div className="grid grid-cols-12 gap-3">
 					{/* Featured quote - spans 6 columns (half), 2 rows tall */}
 					<div className="col-span-12 lg:col-span-6 lg:row-span-2">
-						<div className="relative h-full overflow-hidden border border-zinc-700 bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 md:p-10">
+						<div className="relative h-full overflow-hidden border border-zinc-700 bg-gradient-to-br from-zinc-900 to-zinc-950 p-8">
 							{/* Subtle gradient accent */}
 							<div
 								className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-20"
@@ -127,20 +125,14 @@ export function QuotesGridSection() {
 
 							<div className="relative flex h-full flex-col justify-between">
 								<div>
-									<blockquote className="text-xl font-medium leading-snug text-white md:text-2xl">
+									<blockquote className="text-xl font-medium leading-snug text-white md:text-[1.8rem]">
 										"{featuredQuote.text}"
 									</blockquote>
 								</div>
 
 								<div className="mt-10 flex items-center gap-4">
-									<div className="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800 font-semibold text-white">
-										{featuredQuote.author.split(' ').map(n => n[0]).join('')}
-									</div>
 									<div>
 										<p className="font-medium text-white">{featuredQuote.author}</p>
-										<p className="text-sm text-zinc-400">
-											{featuredQuote.company}
-										</p>
 									</div>
 									<img
 										src={featuredQuote.logo}
@@ -161,12 +153,7 @@ export function QuotesGridSection() {
 								</blockquote>
 								<div className="mt-6 flex items-center justify-between">
 									<div className="flex items-center gap-3">
-										<div className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-sm font-medium text-white">
-											{quote.author.split(' ').map(n => n[0]).join('')}
-										</div>
-										<div>
-											<p className="text-sm font-medium text-white">{quote.author}</p>
-										</div>
+										<p className="text-sm font-medium text-white">{quote.author}</p>
 									</div>
 									{quote.logo ? (
 										<img src={quote.logo} alt="" className={quote.logoSize || "h-4"} />
@@ -187,12 +174,7 @@ export function QuotesGridSection() {
 								</blockquote>
 								<div className="mt-5 flex items-center justify-between">
 									<div className="flex items-center gap-2">
-										<div className="flex h-7 w-7 items-center justify-center rounded-full bg-zinc-800 text-xs font-medium text-white">
-											{quote.author.split(' ').map(n => n[0]).join('')}
-										</div>
-										<div>
-											<p className="text-xs font-medium text-zinc-300">{quote.author}</p>
-										</div>
+										<p className="text-sm font-medium text-zinc-300">{quote.author}</p>
 									</div>
 									{quote.logo ? (
 										<img src={quote.logo} alt="" className={quote.logoSize || "h-3"} />
@@ -220,14 +202,14 @@ export function QuotesSection() {
 		{
 			text: "It makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.",
 			author: "Dillon Mulroy",
-			company: "Vercel",
-			logo: "/assets/logos/vercel-logotype-dark.svg",
+			company: "Cloudflare",
+			logo: "/assets/Cloudflare_logo_wht 2.svg",
 		},
 		{
 			text: "I feel like I'm writing some of the best code in my career using Effect.",
 			author: "Matt Pocock",
-			company: "TypeScript Educator",
-			logo: undefined,
+			company: "Total TypeScript",
+			logo: "/assets/logos/total-typescript-logo.png",
 		},
 		{
 			text: "Effect tracing is simply magical. Was able to fully integrate with our existing microservice observably stack fairly easily.",
@@ -258,7 +240,7 @@ export function QuotesSection() {
 			text: "I think it's one of the most important libraries being developed today.",
 			author: "Matthew Phillips",
 			company: "Astro",
-			logo: undefined,
+			logo: "/assets/Astro.svg",
 		},
 	];
 
@@ -321,7 +303,7 @@ export function QuotesSection() {
 						<button
 							type="button"
 							onClick={() => scroll('left')}
-							className="group w-10 h-10 flex items-center justify-center border border-zinc-800 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-800 cursor-pointer"
+							className="group w-10 h-10 flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 cursor-pointer"
 							aria-label="Scroll left"
 						>
 							<i className="ri-arrow-left-line text-base text-zinc-500 transition-colors group-hover:text-white" />
@@ -329,7 +311,7 @@ export function QuotesSection() {
 						<button
 							type="button"
 							onClick={() => scroll('right')}
-							className="group w-10 h-10 flex items-center justify-center border border-zinc-800 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-800 cursor-pointer"
+							className="group w-10 h-10 flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 cursor-pointer"
 							aria-label="Scroll right"
 						>
 							<i className="ri-arrow-right-line text-base text-zinc-500 transition-colors group-hover:text-white" />

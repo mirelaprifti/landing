@@ -1,190 +1,144 @@
-import { useState } from "react";
-
-const TRADITIONAL_CODE = `// Traditional: runs immediately, errors are invisible
-const user = await fetch('/api/user')
-  .then(r => r.json())
-  .catch(e => console.error(e)) // e is unknown
-
-// What if it fails? What dependencies does it need?
-// How do you test this? How do you trace it?`;
-
-const EFFECT_CODE = `// Effect: composable, typed errors, observable
-const getUser = Effect.tryPromise({
-  try: () => fetch('/api/user').then(r => r.json()),
-  catch: () => new ApiError({ endpoint: '/api/user' })
-})
-
-// Compose with retry, timeout, tracing
-const program = getUser.pipe(
-  Effect.retry(Schedule.exponential('100 millis')),
-  Effect.timeout('5 seconds'),
-  Effect.withSpan('get-user')
-)
-
-// Run when YOU decide
-await Effect.runPromise(program)`;
-
 export function WhatIsEffectSection() {
-	const [activeTab, setActiveTab] = useState<"traditional" | "effect">("effect");
-
 	return (
 		<section className="relative w-full overflow-hidden py-16 md:pt-24 md:pb-24">
+			{/* Subtle background gradient */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					background: "radial-gradient(ellipse 80% 50% at 70% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 60%)",
+				}}
+			/>
+
 			<div className="relative mx-auto w-full max-w-295 px-4">
-				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-0">
-					{/* Left column - Content */}
-					<div className="flex flex-col pr-20">
-						<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
-							The mental model
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+					{/* Left column - Copy */}
+					<div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							The solution
 						</p>
-						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
-							An Effect is a blueprint, not an action
+						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-lg">
+							Track successes, errors, dependencies in one type
 						</h2>
-						<p className="mt-4 text-lg text-zinc-400">
-							When you write <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-300">fetch('/api/user')</code>, it runs immediately. When you write <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-300">Effect.tryPromise(...)</code>, nothing happens yet.
-						</p>
-						<p className="mt-4 text-lg font-medium text-zinc-300">
-							An Effect is a <span className="text-zinc-200">description</span> of what <em>should</em> happen, a recipe you can compose, retry, time out, or run in parallel. It only executes when you decide.
-						</p>
-						<p className="mt-4 text-lg text-zinc-400">
-							This simple shift unlocks everything without changing how you think about your code.
+						<p className="mt-4 text-lg text-zinc-400 max-w-lg">
+							The type signature tells you everything. The compiler catches what you miss. No more runtime surprises.
 						</p>
 
-						{/* Key benefits */}
-						<div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2">
-							<div className="flex items-center gap-2">
-								<i className="ri-checkbox-circle-line text-zinc-600" />
-								<span className="text-sm text-zinc-300">Typed errors</span>
-							</div>
-							<div className="flex items-center gap-2">
-								<i className="ri-checkbox-circle-line text-zinc-600" />
-								<span className="text-sm text-zinc-300">Composable operations</span>
-							</div>
-							<div className="flex items-center gap-2">
-								<i className="ri-checkbox-circle-line text-zinc-600" />
-								<span className="text-sm text-zinc-300">Built-in observability</span>
-							</div>
-							<div className="flex items-center gap-2">
-								<i className="ri-checkbox-circle-line text-zinc-600" />
-								<span className="text-sm text-zinc-300">Safe concurrency</span>
-							</div>
-						</div>
+						<ul className="mt-5 space-y-2 text-sm text-zinc-400">
+							<li className="flex items-center gap-2">
+								<i className="ri-check-line text-emerald-500" />
+								<span>No more <code className="text-zinc-300">catch (e: unknown)</code> — errors are typed</span>
+							</li>
+							<li className="flex items-center gap-2">
+								<i className="ri-check-line text-emerald-500" />
+								<span>Dependencies are explicit — no hidden state leaks</span>
+							</li>
+							<li className="flex items-center gap-2">
+								<i className="ri-check-line text-emerald-500" />
+								<span>Async is structured — no more promise chains you can't follow</span>
+							</li>
+						</ul>
+
+						<a
+							href="https://effect.website/docs/getting-started/why-effect/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-300 transition-colors hover:text-white"
+						>
+							Why Effect
+							<i className="ri-arrow-right-line text-sm" />
+						</a>
 					</div>
 
-					{/* Right column - Code comparison */}
-					<div className="relative lg:-mr-4">
-						<div className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
-							{/* Tabs */}
-							<div className="flex border-b border-zinc-800">
-								<button
-									type="button"
-									onClick={() => setActiveTab("traditional")}
-									className={`flex-1 px-4 py-3 font-mono text-sm transition-colors ${
-										activeTab === "traditional"
-											? "bg-zinc-800/50 text-white"
-											: "text-zinc-400 hover:text-zinc-200"
-									}`}
-								>
-									Traditional
-								</button>
-								<button
-									type="button"
-									onClick={() => setActiveTab("effect")}
-									className={`flex-1 px-4 py-3 font-mono text-sm transition-colors ${
-										activeTab === "effect"
-											? "bg-zinc-800/50 text-white"
-											: "text-zinc-400 hover:text-zinc-200"
-									}`}
-								>
-									With Effect
-								</button>
+					{/* Right column - Type signature */}
+					<div className="flex items-center justify-center">
+						<div className="relative w-full max-w-md">
+							{/* Subtle glow behind */}
+							<div
+								className="pointer-events-none absolute -inset-4 rounded-2xl opacity-30 blur-xl"
+								style={{
+									background: "radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%)",
+								}}
+							/>
+
+							{/* Type signature */}
+							<div className="group relative w-full rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-4 font-mono text-base text-center transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
+								<span className="text-white select-all">Effect</span>
+								<span className="text-zinc-500">&lt;</span>
+								<span className="text-zinc-300">Success</span>
+								<span className="text-zinc-500">, </span>
+								<span className="text-zinc-300">Error</span>
+								<span className="text-zinc-500">, </span>
+								<span className="text-zinc-300">Requirements</span>
+								<span className="text-zinc-500">&gt;</span>
 							</div>
 
-							{/* Code content */}
-							<div className="overflow-x-auto p-5">
-								<pre className="font-mono text-[13px] leading-relaxed">
-									<code className="text-zinc-300">
-										{(activeTab === "traditional" ? TRADITIONAL_CODE : EFFECT_CODE)
-											.split("\n")
-											.map((line: string, i: number) => (
-												<div key={i} className="flex">
-													<span className="w-6 pr-3 text-right text-zinc-600 select-none">
-														{i + 1}
-													</span>
-													<span>{highlightLine(line)}</span>
-												</div>
-											))}
-									</code>
-								</pre>
+							{/* Arrows pointing down */}
+							<svg className="w-full h-8 mt-2" viewBox="0 0 400 32" fill="none" preserveAspectRatio="xMidYMid meet">
+								<path d="M100 0 L100 16 L67 16 L67 32" stroke="rgb(113 113 122)" strokeWidth="1" strokeOpacity="0.5" fill="none" />
+								<path d="M200 0 L200 32" stroke="rgb(113 113 122)" strokeWidth="1" strokeOpacity="0.5" fill="none" />
+								<path d="M300 0 L300 16 L333 16 L333 32" stroke="rgb(113 113 122)" strokeWidth="1" strokeOpacity="0.5" fill="none" />
+							</svg>
+
+							{/* Three columns */}
+							<div className="grid grid-cols-3 gap-4 text-sm">
+								<div className="text-center">
+									<p className="text-zinc-300 font-medium">Success</p>
+									<p className="text-zinc-500 text-xs mt-1">What it returns</p>
+								</div>
+								<div className="text-center">
+									<p className="text-zinc-300 font-medium">Error</p>
+									<p className="text-zinc-500 text-xs mt-1">What can fail</p>
+								</div>
+								<div className="text-center">
+									<p className="text-zinc-300 font-medium">Requirements</p>
+									<p className="text-zinc-500 text-xs mt-1">Dependencies needed</p>
+								</div>
+							</div>
+
+							{/* Effect.gen explanation */}
+							<div className="mt-8 rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 p-4 font-mono text-sm">
+								<div>
+									<span className="text-zinc-500">() </span>
+									<span className="text-zinc-500">{"=>"} </span>
+									<span className="text-white">Effect</span>
+									<span className="text-zinc-500">.</span>
+									<span className="text-zinc-300">gen</span>
+									<span className="text-zinc-500">(</span>
+									<span className="text-violet-400">function*</span>
+									<span className="text-zinc-500">() {"{"}</span>
+								</div>
+								<div className="pl-4 mt-1">
+									<span className="text-violet-400">const </span>
+									<span className="text-zinc-300">example</span>
+									<span className="text-zinc-500"> = </span>
+									<span className="text-violet-400">yield* </span>
+									<span className="text-zinc-300">someOtherEffect</span>
+								</div>
+								<div className="mt-1">
+									<span className="text-zinc-500">{"})"}</span>
+								</div>
+								<div className="mt-3 pt-3 border-t border-zinc-800 text-zinc-500 text-xs leading-relaxed">
+									<p>→ <span className="text-violet-400">yield*</span> gives you the <span className="text-zinc-300">Success</span> value</p>
+									<p>→ <span className="text-zinc-300">Errors</span> and <span className="text-zinc-300">dependencies</span> are tracked in the parent Effect</p>
+								</div>
+							</div>
+
+							{/* Attribution - centered */}
+							<div className="mt-3 text-center">
+								<a
+									href="https://effect.website/docs/getting-started/why-effect/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-white"
+								>
+									Why Effect was designed this way
+									<i className="ri-arrow-right-up-line text-sm" />
+								</a>
 							</div>
 						</div>
-
-						{/* Callout */}
-						{activeTab === "effect" && (
-							<div className="mt-4 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
-								<p className="text-sm text-emerald-300">
-									<i className="ri-lightbulb-line mr-2" />
-									<code className="rounded bg-emerald-500/10 px-1 font-mono text-xs">ApiError</code> is part of the type signature. You can't forget to handle it.
-								</p>
-							</div>
-						)}
 					</div>
 				</div>
 			</div>
 		</section>
 	);
-}
-
-// Simple syntax highlighting
-function highlightLine(line: string): React.ReactNode {
-	// Comments
-	if (line.trim().startsWith("//")) {
-		return <span className="text-zinc-500 italic">{line}</span>;
-	}
-
-	// Keywords
-	const keywords = ["const", "await", "import", "from", "new", "return"];
-	let result = line;
-	const parts: React.ReactNode[] = [];
-
-	// Split by strings first
-	const stringPattern = /(["'`][^"'`]*["'`])/g;
-	const segments = line.split(stringPattern);
-
-	segments.forEach((segment, i) => {
-		if (segment.startsWith('"') || segment.startsWith("'") || segment.startsWith("`")) {
-			parts.push(
-				<span key={i} className="text-emerald-400">
-					{segment}
-				</span>
-			);
-		} else {
-			// Check for keywords in non-string segments
-			let remaining = segment;
-			const keywordParts: React.ReactNode[] = [];
-			let keyIndex = 0;
-
-			keywords.forEach((kw) => {
-				const regex = new RegExp(`\\b(${kw})\\b`, "g");
-				remaining = remaining.replace(regex, `<<<KW_${kw}>>>`);
-			});
-
-			const kwSegments = remaining.split(/(<<<KW_[^>]+>>>)/g);
-			kwSegments.forEach((seg, j) => {
-				const kwMatch = seg.match(/<<<KW_([^>]+)>>>/);
-				if (kwMatch) {
-					keywordParts.push(
-						<span key={`${i}-${j}`} className="text-violet-400">
-							{kwMatch[1]}
-						</span>
-					);
-				} else {
-					keywordParts.push(<span key={`${i}-${j}`}>{seg}</span>);
-				}
-			});
-
-			parts.push(<span key={i}>{keywordParts}</span>);
-		}
-	});
-
-	return <>{parts}</>;
 }

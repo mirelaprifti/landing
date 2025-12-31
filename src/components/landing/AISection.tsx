@@ -4,23 +4,23 @@ export function AISection() {
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
-      <div className="relative mx-auto w-full max-w-295">
+      <div className="relative mx-auto w-full max-w-[73.75rem]">
         {/* Header row - Eyebrow + Title + Description */}
-        <div className="mb-20 px-4">
+        <div className="mb-20 px-4 max-w-xl">
           <p className="mb-4 font-mono text-base font-semibold tracking-wider text-zinc-400 uppercase">
             LLMs 🤍 Effect
           </p>
-          <h2 className="max-w-2xl text-2xl leading-tight font-semibold text-white md:text-4xl">
+          <h2 className="max-w-2xl text-2xl leading-tight font-semibold text-white md:text-3xl">
             Ship AI-generated code you can trust in production
           </h2>
           <a
             href="https://www.effect.solutions/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-zinc-500 hover:bg-zinc-800"
+            className="mt-6 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
           >
-            Effect Solutions
-            <i className="ri-arrow-right-up-line" />
+            Quick start LLM guide
+            <i className="ri-arrow-right-up-line text-base" />
           </a>
         </div>
 
@@ -28,11 +28,11 @@ export function AISection() {
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-0">
           {/* Left column - Features (the "why") */}
           <div className="px-4">
-            <h3 className="text-2xl font-semibold text-white mb-3">
+            <h3 className="text-xl font-semibold text-white mb-3">
               Write better code with AI
             </h3>
             <p className="mb-6 max-w-xl text-lg leading-snug text-zinc-400">
-              Effect excels at orchestration, parallel execution, state management, and fault recovery — using natural abstractions that feel intuitive to both AI and humans.
+              Effect excels at orchestration, parallel execution, state management, and fault recovery, using natural abstractions that feel intuitive to both AI and humans.
             </p>
             <div className="max-w-[32rem] space-y-3">
               <p className="flex items-start gap-3 text-base leading-relaxed text-zinc-400">

@@ -52,10 +52,10 @@ export function HeroSection() {
 				className="pointer-events-none absolute inset-0"
 				style={{
 					backgroundImage: `
-						linear-gradient(to right, rgba(24, 24, 27, 0.55) 1px, transparent 1px),
-						linear-gradient(to bottom, rgba(24, 24, 27, 0.55) 1px, transparent 1px)
+						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 					`,
-					backgroundSize: "196.6px 104px",
+					backgroundSize: "196.6px 99px",
 					backgroundPosition: "calc(50% + 97px) 0",
 				}}
 			/>
@@ -107,7 +107,7 @@ export function HeroSection() {
 						<span className="text-emerald-400">{" \"effect\""}</span>
 					</p>
 					{/* Headline */}
-					<h1 className="text-4xl font-semibold text-white md:text-[4.5rem] leading-tight">
+					<h1 className="text-4xl font-semibold text-white md:text-[4rem] leading-tight">
 						Effect is TypeScript for building reliable systems
 					</h1>
 
@@ -119,13 +119,15 @@ export function HeroSection() {
 					{/* CTA buttons */}
 					<div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
 						<a
-							href="#features"
-							className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3.5 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+							href="https://effect.website/docs/getting-started/quickstart"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100"
 						>
-							Effect Solutions
+							Get started
 							<i className="ri-arrow-right-up-line text-base" />
 						</a>
-						<div className="inline-flex items-center rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50">
+						<div className="inline-flex h-11.5 items-center rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50">
 							<div className="relative" ref={dropdownRef}>
 								<button
 									type="button"

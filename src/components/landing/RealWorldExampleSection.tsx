@@ -65,24 +65,24 @@ export function RealWorldExampleSection() {
 		<section className="relative w-full overflow-hidden py-16 md:pt-32 md:pb-8">
 			<div className="relative mx-auto w-full max-w-295 px-4">
 				{/* Header */}
-				<div className="mb-12 max-w-2xl">
-					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
+				<div className="mb-12 max-w-[40rem]">
+					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						Real-world code
 					</p>
-					<h2 className="text-2xl leading-tight font-semibold text-white md:text-4xl">
-						Not toy examples
+					<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
+						Process payments with retries, timeouts, and full observability
 					</h2>
 					<p className="mt-4 text-lg text-zinc-400">
-						Process a payment with retries, timeouts, and full observability. Every step is typed. Every failure is visible. 25 lines of code.
+						Every step is typed. Every failure is visible.
 					</p>
 				</div>
 
 				<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 					{/* Code block - takes 2 columns */}
 					<div className="lg:col-span-2">
-						<div className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
+						<div className="overflow-hidden rounded-md border border-zinc-700 bg-zinc-900">
 							{/* Code header */}
-							<div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
+							<div className="flex items-center justify-between border-b border-zinc-700 px-4 py-3">
 								<span className="font-mono text-xs text-zinc-500">
 									process-order.ts
 								</span>
@@ -132,7 +132,7 @@ export function RealWorldExampleSection() {
 
 					{/* Annotations - takes 1 column */}
 					<div className="flex flex-col gap-3">
-						<p className="text-sm font-medium text-zinc-400 mb-2">
+						<p className="text-sm font-mono text-zinc-400 mb-2">
 							Hover to explore
 						</p>
 						{ANNOTATIONS.map((annotation, index) => (
@@ -155,7 +155,7 @@ export function RealWorldExampleSection() {
 								<h4 className="text-sm font-semibold text-zinc-200">
 									{annotation.title}
 								</h4>
-								<p className="mt-1 text-xs text-zinc-400">
+								<p className="mt-1 text-sm text-zinc-400">
 									{annotation.description}
 								</p>
 							</button>

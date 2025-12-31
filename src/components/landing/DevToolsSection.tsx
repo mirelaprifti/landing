@@ -38,10 +38,10 @@ export function DevToolsSection() {
 				{/* Header row - split layout */}
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 mb-16">
 					<div>
-						<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-500">
+						<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-400">
 							Developer Experience
 						</p>
-						<h2 className="text-2xl font-semibold text-white md:text-4xl">
+						<h2 className="text-2xl font-semibold text-white md:text-3xl">
 							IDE-native tooling
 						</h2>
 					</div>
@@ -56,27 +56,27 @@ export function DevToolsSection() {
 								href="https://effect.website/docs/getting-started/devtools/"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
 								<span>Read the docs</span>
-								<i className="ri-arrow-right-line text-xs transition-transform group-hover:translate-x-0.5" />
+								<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
 							</a>
 							<a
 								href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
-								<i className="ri-vscode-line text-sm" />
+								<i className="ri-vscode-line text-base" />
 								<span>VS Code</span>
 							</a>
 							<a
 								href="https://effect.website/play/"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
-								<i className="ri-play-circle-line text-sm" />
+								<i className="ri-play-circle-line text-base" />
 								<span>Playground</span>
 							</a>
 						</div>
