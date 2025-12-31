@@ -142,7 +142,7 @@ export function TestimonialsSection() {
 							{...(useCase.href.startsWith("http")
 								? { target: "_blank", rel: "noopener noreferrer" }
 								: {})}
-							className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900"
+							className="group relative flex flex-col overflow-hidden rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-900"
 						>
 							{/* Video thumbnail area */}
 							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900">

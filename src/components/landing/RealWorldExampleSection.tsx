@@ -80,9 +80,9 @@ export function RealWorldExampleSection() {
 				<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 					{/* Code block - takes 2 columns */}
 					<div className="lg:col-span-2">
-						<div className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
+						<div className="overflow-hidden rounded-md border border-zinc-700 bg-zinc-900">
 							{/* Code header */}
-							<div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
+							<div className="flex items-center justify-between border-b border-zinc-700 px-4 py-3">
 								<span className="font-mono text-xs text-zinc-500">
 									process-order.ts
 								</span>

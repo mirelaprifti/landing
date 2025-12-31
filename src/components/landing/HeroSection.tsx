@@ -107,7 +107,7 @@ export function HeroSection() {
 						<span className="text-emerald-400">{" \"effect\""}</span>
 					</p>
 					{/* Headline */}
-					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tight">
+					<h1 className="text-4xl font-semibold text-white md:text-[4rem] leading-tight">
 						Effect is TypeScript for building reliable systems
 					</h1>
 

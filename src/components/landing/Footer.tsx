@@ -228,20 +228,22 @@ export function Footer() {
 					</div>
 
 					{/* Middle Section: Social & Branding */}
-					<div className="flex flex-col gap-10 md:gap-8 px-4">
+					<div className="flex flex-col gap-10 md:gap-8">
 						{/* Top Border */}
-						<div className="h-px bg-zinc-800" />
+						<div className="mx-4 h-px bg-zinc-800" />
 
 						{/* Social Icons and Branding Row */}
-						<div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-							<img
-								src={getAssetPath("/assets/logos/effect-logo-white.svg")}
-								alt="Effect"
-								className="h-7"
-							/>
+						<div className="flex flex-col items-center gap-8 md:grid md:grid-cols-3 md:items-center">
+							<div className="md:pl-4">
+								<img
+									src={getAssetPath("/assets/logos/effect-logo-white.svg")}
+									alt="Effect"
+									className="h-7"
+								/>
+							</div>
 
 							{/* Social Icons (centered on mobile, middle on desktop) */}
-							<div className="flex items-center gap-6 md:gap-5">
+							<div className="flex items-center justify-center gap-6 md:gap-5">
 								<a
 									href="https://x.com/EffectTS_"
 									aria-label="Follow Effect on X (Twitter)"
@@ -249,10 +251,12 @@ export function Footer() {
 									rel="noopener noreferrer"
 									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className="ri-twitter-x-fill text-2xl md:text-xl"
-										aria-hidden="true"
-									/>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-twitter-x-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
 								</a>
 								<a
 									href="https://www.youtube.com/@EffectTS"
@@ -261,10 +265,12 @@ export function Footer() {
 									rel="noopener noreferrer"
 									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className="ri-youtube-fill text-2xl md:text-xl"
-										aria-hidden="true"
-									/>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-youtube-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
 								</a>
 								<a
 									href="https://github.com/Effect-TS"
@@ -273,10 +279,12 @@ export function Footer() {
 									rel="noopener noreferrer"
 									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className="ri-github-fill text-2xl md:text-xl"
-										aria-hidden="true"
-									/>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-github-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
 								</a>
 								<a
 									href="https://discord.gg/effect-ts"
@@ -285,10 +293,12 @@ export function Footer() {
 									rel="noopener noreferrer"
 									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className="ri-discord-fill text-2xl md:text-xl"
-										aria-hidden="true"
-									/>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-discord-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
 								</a>
 								<a
 									href="https://bsky.app/profile/effect-ts.bsky.social"
@@ -297,10 +307,12 @@ export function Footer() {
 									rel="noopener noreferrer"
 									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className="ri-bluesky-fill text-2xl md:text-xl"
-										aria-hidden="true"
-									/>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-bluesky-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
 								</a>
 								<a
 									href="https://www.linkedin.com/company/effect-ts"
@@ -309,18 +321,22 @@ export function Footer() {
 									rel="noopener noreferrer"
 									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className="ri-linkedin-fill text-2xl md:text-xl"
-										aria-hidden="true"
-									/>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-linkedin-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
 								</a>
 							</div>
 
-							<p className="text-sm text-zinc-400">MIT Licensed</p>
+							<div className="md:pr-4 md:text-right">
+								<p className="text-sm text-zinc-400">MIT Licensed</p>
+							</div>
 						</div>
 
 						{/* Bottom Border */}
-						<div className="h-px bg-zinc-800" />
+						<div className="mx-4 h-px bg-zinc-800" />
 					</div>
 
 					{/* Bottom Copyright Section */}
