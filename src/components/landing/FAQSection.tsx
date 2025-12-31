@@ -197,7 +197,7 @@ export function FAQSection() {
           {/* Left column - Header and CTA (50%) */}
           <div className="w-full lg:w-1/2 px-4">
             <div>
-              <p className="mb-2 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
+              <p className="mb-2 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
                 FAQ
               </p>
               <h2 className="text-2xl font-semibold text-white md:text-3xl">
