@@ -20,10 +20,6 @@ import { EffectRetryRecursExample } from "@/examples/effect-retry-recurs";
 import { EffectRetryExponentialExample } from "@/examples/effect-retry-exponential";
 import { EffectRepeatSpacedExample } from "@/examples/effect-repeat-spaced";
 import { EffectRepeatWhileOutputExample } from "@/examples/effect-repeat-while-output";
-import { EffectServiceExample } from "@/examples/effect-service";
-import { LayerEffectExample } from "@/examples/layer-effect";
-import { LayerProvideExample } from "@/examples/layer-provide";
-import { LayerMergeExample } from "@/examples/layer-merge";
 import { EffectRefExample } from "@/examples/ref-make";
 import { EffectRefConcurrentExample } from "@/examples/ref-update-and-get";
 import { EffectFinalizerExample } from "@/examples/effect-add-finalizer";
@@ -32,7 +28,7 @@ import { getExampleMeta } from "@/lib/examples-manifest";
 import type { ExampleComponentProps } from "@/lib/example-types";
 
 
-type TabId = "concurrency" | "constructors" | "error-handling" | "schedule" | "services" | "ref-scope";
+type TabId = "concurrency" | "constructors" | "error-handling" | "schedule" | "ref-scope";
 
 const EXAMPLE_COMPONENTS: Record<
 	string,
@@ -58,10 +54,6 @@ const EXAMPLE_COMPONENTS: Record<
 	"effect-retry-exponential": EffectRetryExponentialExample,
 	"effect-repeat-spaced": EffectRepeatSpacedExample,
 	"effect-repeat-while-output": EffectRepeatWhileOutputExample,
-	"effect-service": EffectServiceExample,
-	"layer-effect": LayerEffectExample,
-	"layer-provide": LayerProvideExample,
-	"layer-merge": LayerMergeExample,
 	"ref-make": EffectRefExample,
 	"ref-update-and-get": EffectRefConcurrentExample,
 	"effect-add-finalizer": EffectFinalizerExample,
@@ -120,15 +112,6 @@ const TAB_CONFIG: Record<TabId, TabConfig> = {
 			{ id: "effect-sleep", label: ["Effect.sleep", ""] },
 		],
 	},
-	services: {
-		label: "Services",
-		subTabs: [
-			{ id: "effect-service", label: ["Effect.Service", ""] },
-			{ id: "layer-effect", label: ["Layer.effect", ""] },
-			{ id: "layer-provide", label: ["Layer.provide", ""] },
-			{ id: "layer-merge", label: ["Layer.merge", ""] },
-		],
-	},
 	"ref-scope": {
 		label: "Ref & Scope",
 		subTabs: [
@@ -149,7 +132,6 @@ export function FeaturesSection() {
 		concurrency: "effect-all",
 		"error-handling": "effect-all-short-circuit",
 		constructors: "effect-succeed",
-		services: "effect-service",
 		"ref-scope": "ref-make",
 	});
 
@@ -173,11 +155,21 @@ export function FeaturesSection() {
 	}, [activeSubTabPerTab, activeTab]);
 
 	return (
-		<section id="features" className="relative w-full">
+		<section id="features" className="relative w-full py-24 md:pt-40 md:pb-20">
+			{/* Header */}
+			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
+				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
+					Interactive Examples
+				</p>
+				<h2 className="text-2xl font-semibold text-white md:text-3xl">
+					See Effect in action
+				</h2>
+			</div>
+
 			{/* Content Container */}
 			<div className="relative max-w-295 mx-auto">
 				{/* Tab Navigation and Content */}
-				<div className="relative overflow-hidden border-x border-zinc-700 shadow-2xl shadow-black/20">
+				<div className="relative overflow-hidden border-x border-t border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
 					<div className="relative flex bg-zinc-950/90">
 						{TAB_IDS.map((tabId) => (
