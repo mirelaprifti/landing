@@ -25,8 +25,8 @@ export function TransitionSection() {
 					<p className="font-mono uppercase text-lg text-zinc-200">
 						Effect gives TypeScript the missing pieces
 					</p>
-					<p className="font-mono uppercase text-lg text-zinc-200 mt-1">
-						safe concurrency · typed errors · built-in observability
+					<p className="font-mono uppercase text-base text-zinc-300 mt-2">
+						structured concurrency · typed errors · observability · Dependency Injection
 					</p>
 				</div>
 

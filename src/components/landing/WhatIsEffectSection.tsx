@@ -1,6 +1,6 @@
 export function WhatIsEffectSection() {
 	return (
-		<section className="relative w-full overflow-hidden py-16 md:pt-24 md:pb-24">
+		<section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-40">
 			{/* Subtle background gradient */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -14,7 +14,7 @@ export function WhatIsEffectSection() {
 					{/* Left column - Copy */}
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							The solution
+							The Mental Model
 						</p>
 						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-lg">
 							Track successes, errors, dependencies in one type

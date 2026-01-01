@@ -1,21 +1,23 @@
-import { useState } from "react"
+import { getAssetPath } from "../../utils/assetPath"
 
-const CODE_EXAMPLE = `import { LanguageModel } from "@effect/ai"
-import { AnthropicLanguageModel } from "@effect/ai-anthropic"
-import { Effect } from "effect"
-
-const program = Effect.gen(function*() {
-  // Use default provider
-  const joke1 = yield* LanguageModel.generateText({
-    prompt: "Tell me a joke"
-  })
-  // Switch to Claude for this call
-  const joke2 = yield* LanguageModel.generateText({
-    prompt: "Tell me a joke"
-  }).pipe(Effect.provide(AnthropicLanguageModel.model("claude-sonnet")))
-
-  return { joke1, joke2 }
-})`
+const AI_CASE_STUDIES = [
+  {
+    effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
+    partnerLogo: getAssetPath("/assets/logos/masterclass-nom.svg"),
+    partnerLogoClass: "h-4",
+    title: "Building a Voice AI Orchestration Layer",
+    href: "https://youtu.be/Cj2pVPqdOVs",
+    accentColor: "bg-red-500"
+  },
+  {
+    effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
+    partnerLogo: getAssetPath("/assets/logos/14-ai.svg"),
+    partnerLogoClass: "h-5",
+    title: "Scaling AI for Customer Support",
+    href: "https://youtu.be/gGFPhFrGCng",
+    accentColor: "bg-lime-500"
+  }
+]
 
 const FEATURES = [
   {
@@ -55,31 +57,21 @@ const FEATURES = [
 ]
 
 export function AIBuildingSection() {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(CODE_EXAMPLE)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
   return (
-    <section className="relative w-full overflow-hidden py-20 md:pt-32 md:pb-8">
+    <section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-20">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
       <div className="relative mx-auto w-full max-w-295">
-        {/* Header row with heading, paragraph, links, and code snippet */}
-        <div className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-0">
-          {/* Left column - Content */}
-          <div className="flex flex-col px-4 pr-12 lg:pr-12 lg:pl-4">
-            <p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
+        {/* Header row with heading, paragraph, and links */}
+        <div className="mb-20 px-4">
+            <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
               Effect for AI
             </p>
             <h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
               Build AI and Agentic Systems
             </h2>
-            <p className="mt-4 text-lg text-zinc-400">
+            <p className="mt-4 text-lg text-zinc-400 max-w-2xl">
               Reliable orchestration, parallel execution, state management,
               and fault recovery — with type safety and semantic observability
               baked in.
@@ -106,61 +98,6 @@ export function AIBuildingSection() {
                 <span>GitHub</span>
               </a>
             </div>
-          </div>
-
-          {/* Right column - Code block */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-lg border border-zinc-800/90 bg-zinc-900 backdrop-blur-sm">
-              {/* Code header */}
-              <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
-                <span className="font-mono text-xs text-zinc-500">
-                  multi-provider.ts
-                </span>
-                <a
-                  href="https://effect.website/docs/ai/introduction"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-white"
-                >
-                  <span>Get started</span>
-                  <i className="ri-arrow-right-up-line" />
-                </a>
-              </div>
-
-              {/* Code content */}
-              <div className="relative overflow-x-auto p-5">
-                {/* Copy button inside code area */}
-                <button
-                  type="button"
-                  onClick={handleCopy}
-                  className="absolute top-3 right-3 cursor-pointer text-zinc-500 transition-colors hover:text-white"
-                  aria-label="Copy code"
-                >
-                  <i
-                    className={
-                      copied
-                        ? "ri-check-line text-green-400"
-                        : "ri-file-copy-line"
-                    }
-                  />
-                </button>
-                <pre className="font-mono text-[13px] leading-relaxed">
-                  <code className="text-zinc-300">
-                    {CODE_EXAMPLE.split("\n").map(
-                      (line: string, i: number) => (
-                        <div key={i} className="flex">
-                          <span className="w-8 pr-4 text-right text-zinc-600 select-none">
-                            {i + 1}
-                          </span>
-                          <span>{highlightLine(line)}</span>
-                        </div>
-                      )
-                    )}
-                  </code>
-                </pre>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Features grid - 4 columns with dividers */}
@@ -184,83 +121,64 @@ export function AIBuildingSection() {
             </div>
           ))}
         </div>
+
+        {/* AI Case Studies */}
+        <div className="mt-16 grid grid-cols-1 gap-4 px-4 md:grid-cols-2">
+          {AI_CASE_STUDIES.map((study, index) => (
+            <a
+              key={index}
+              href={study.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900"
+            >
+              {/* Gradient background from top */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background: `linear-gradient(to bottom, ${study.accentColor === 'bg-red-500' ? 'rgba(239, 68, 68, 0.08)' : 'rgba(132, 204, 22, 0.08)'} 0%, transparent 60%)`
+                }}
+              />
+              {/* Top accent line */}
+              <div className={`absolute top-0 left-0 right-0 h-0.5 ${study.accentColor}`} />
+
+              {/* Content */}
+              <div className="flex flex-col px-6 pt-6 pb-5 gap-4">
+                {/* Logos row */}
+                <div className="flex items-center gap-4">
+                  <img
+                    src={study.effectLogo}
+                    alt="Effect"
+                    className="h-6"
+                  />
+                  <span className="text-zinc-600">|</span>
+                  <img
+                    src={study.partnerLogo}
+                    alt=""
+                    className={study.partnerLogoClass}
+                  />
+                </div>
+
+                {/* Dashed divider */}
+                <div
+                  className="h-px w-full"
+                  style={{
+                    backgroundImage: 'repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+                  }}
+                />
+
+                {/* Title */}
+                <div className="flex items-center justify-between">
+                  <h4 className="text-base font-medium text-zinc-300 group-hover:text-white transition-colors">
+                    {study.title}
+                  </h4>
+                  <i className="ri-arrow-right-up-line text-zinc-500 group-hover:text-zinc-400 transition-colors" />
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   )
-}
-
-// Simple syntax highlighting
-function highlightLine(line: string): React.ReactNode {
-  // Comments
-  if (line.trim().startsWith("//")) {
-    return <span className="text-zinc-500">{line}</span>
-  }
-
-  // Check for import statements
-  if (line.includes("import") || line.includes("from")) {
-    const parts: React.ReactNode[] = []
-    const segments = line.split(/(import|from|["'][^"']+["'])/g)
-    segments.forEach((segment, i) => {
-      if (segment === "import" || segment === "from") {
-        parts.push(
-          <span key={i} className="text-violet-400">
-            {segment}
-          </span>
-        )
-      } else if (segment.startsWith('"') || segment.startsWith("'")) {
-        parts.push(
-          <span key={i} className="text-emerald-400">
-            {segment}
-          </span>
-        )
-      } else {
-        parts.push(<span key={i}>{segment}</span>)
-      }
-    })
-    return <>{parts}</>
-  }
-
-  // Check for const declarations
-  if (line.includes("const ")) {
-    const parts: React.ReactNode[] = []
-    const segments = line.split(/(const|["'][^"']+["'])/g)
-    segments.forEach((segment, i) => {
-      if (segment === "const") {
-        parts.push(
-          <span key={i} className="text-violet-400">
-            {segment}
-          </span>
-        )
-      } else if (segment.startsWith('"') || segment.startsWith("'")) {
-        parts.push(
-          <span key={i} className="text-emerald-400">
-            {segment}
-          </span>
-        )
-      } else {
-        parts.push(<span key={i}>{segment}</span>)
-      }
-    })
-    return <>{parts}</>
-  }
-
-  // Highlight strings in other lines
-  const stringParts = line.split(/(["'][^"']*["'])/g)
-  if (stringParts.length > 1) {
-    return (
-      <>
-        {stringParts.map((part, i) =>
-          part.startsWith('"') || part.startsWith("'") ? (
-            <span key={i} className="text-emerald-400">
-              {part}
-            </span>
-          ) : (
-            <span key={i}>{part}</span>
-          )
-        )}
-      </>
-    )
-  }
-
-  return line
 }

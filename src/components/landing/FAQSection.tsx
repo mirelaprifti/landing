@@ -190,14 +190,14 @@ export function FAQSection() {
   }
 
   return (
-    <section className="relative w-full py-16 md:pt-32 md:pb-4">
+    <section className="relative w-full py-24 md:pt-40 md:pb-16">
       <div className="mx-auto w-full max-w-[73.75rem]">
         {/* Two-column layout */}
         <div className="flex flex-col lg:flex-row">
           {/* Left column - Header and CTA (50%) */}
           <div className="w-full lg:w-1/2 px-4">
             <div>
-              <p className="mb-2 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
+              <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
                 FAQ
               </p>
               <h2 className="text-2xl font-semibold text-white md:text-3xl">

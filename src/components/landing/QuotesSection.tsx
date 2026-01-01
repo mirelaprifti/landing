@@ -44,46 +44,42 @@ function QuoteCard({
 }
 
 export function QuotesGridSection() {
-	const featuredQuote = {
-		text: "Effect makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.",
-		author: "Dillon Mulroy",
-		role: "Software Engineer",
-		company: "Cloudflare",
-		logo: "/assets/Cloudflare_logo_wht 2.svg",
-	};
+	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	const quotes = [
 		{
+			text: "Effect makes doing the hard, tedious, and error-prone tasks that require discipline, easy, natural, first-class.",
+			author: "Dillon Mulroy",
+			company: "Cloudflare",
+			logo: "/assets/Cloudflare_logo_wht 2.svg",
+		},
+		{
 			text: "Effect tracing is simply magical. Was able to fully integrate with our existing microservice observability stack fairly easily.",
 			author: "Zach Warunek",
-			role: "Engineer",
+			company: "Twitter",
 			logo: undefined,
 		},
 		{
 			text: "I feel like I'm writing some of the best code in my career using Effect.",
 			author: "Matt Pocock",
-			role: "TypeScript Educator",
 			company: "Total TypeScript",
 			logo: "/assets/logos/total-typescript-logo.png",
 		},
 		{
 			text: "The real-world impact is tangible: few production bugs, simple testing, and clear code organization.",
 			author: "Samuel Briole",
-			role: "CTO",
 			company: "Spiko",
 			logo: "/assets/logos/spiko-logo.svg",
 		},
 		{
 			text: "I think it's one of the most important libraries being developed today.",
 			author: "Matthew Phillips",
-			role: "Core Team",
 			company: "Astro",
 			logo: "/assets/Astro.svg",
 		},
 		{
 			text: "The spaghetti code really turns into something that's just very linear and clean.",
 			author: "David Golightly",
-			role: "Staff Engineer",
 			company: "Masterclass",
 			logo: "/assets/logos/masterclass-nom.svg",
 			logoSize: "h-2.5",
@@ -91,101 +87,127 @@ export function QuotesGridSection() {
 		{
 			text: "Perhaps the most ergonomic and safe method of Dependency Injection I've ever seen.",
 			author: "Cor",
-			role: "Founder",
 			company: "Union Build",
 			logo: "/assets/logos/union-build.svg",
 		},
+		{
+			text: "Effect puts you on the path to writing more performant async code by default.",
+			author: "Ethan Niser",
+			company: "Vercel",
+			logo: "/assets/logos/vercel-logotype-dark.svg",
+		},
 	];
 
+	const cardWidth = 320;
+	const gap = 16;
+
+	const scroll = (direction: "left" | "right") => {
+		if (!scrollContainerRef.current) return;
+
+		const container = scrollContainerRef.current;
+		const scrollAmount = cardWidth + gap;
+		const maxScroll = container.scrollWidth - container.clientWidth;
+
+		if (direction === "right") {
+			// If at or near the end, loop back to start
+			if (container.scrollLeft >= maxScroll - 10) {
+				container.scrollTo({ left: 0, behavior: "smooth" });
+			} else {
+				container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+			}
+		} else {
+			container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+		}
+	};
+
 	return (
-		<section className="relative w-full py-16 md:pt-32 md:pb-4">
+		<section className="relative z-[70] w-full py-24 md:pt-40 md:pb-16">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				{/* Section header */}
-				<div className="mb-10">
-					<p className="mb-2 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
-						Testimonials
-					</p>
-					<h2 className="text-2xl font-semibold text-white md:text-3xl">
-						What developers are saying...
-					</h2>
-				</div>
-
-				{/* Bento grid layout */}
-				<div className="grid grid-cols-12 gap-3">
-					{/* Featured quote - spans 6 columns (half), 2 rows tall */}
-					<div className="col-span-12 lg:col-span-6 lg:row-span-2">
-						<div className="relative h-full overflow-hidden border border-zinc-700 bg-gradient-to-br from-zinc-900 to-zinc-950 p-8">
-							{/* Subtle gradient accent */}
-							<div
-								className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-20"
-								style={{
-									background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)"
-								}}
-							/>
-
-							<div className="relative flex h-full flex-col justify-between">
-								<div>
-									<blockquote className="text-xl font-medium leading-snug text-white md:text-[1.8rem]">
-										"{featuredQuote.text}"
-									</blockquote>
-								</div>
-
-								<div className="mt-10 flex items-center gap-4">
-									<div>
-										<p className="font-medium text-white">{featuredQuote.author}</p>
-									</div>
-									<img
-										src={featuredQuote.logo}
-										alt={featuredQuote.company}
-										className="ml-auto h-5 opacity-100"
-									/>
-								</div>
-							</div>
-						</div>
+				{/* Header row with title and navigation arrows */}
+				<div className="mb-10 flex items-end justify-between">
+					<div>
+						<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
+							Testimonials
+						</p>
+						<h2 className="text-2xl font-semibold text-white md:text-3xl">
+							What developers are saying...
+						</h2>
 					</div>
+					{/* Navigation arrows */}
+					<div className="flex gap-2">
+						<button
+							type="button"
+							onClick={() => scroll("left")}
+							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							aria-label="Scroll left"
+						>
+							<i className="ri-arrow-left-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+						</button>
+						<button
+							type="button"
+							onClick={() => scroll("right")}
+							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							aria-label="Scroll right"
+						>
+							<i className="ri-arrow-right-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+						</button>
+					</div>
+				</div>
+			</div>
 
-					{/* Secondary quotes - 6 columns, 2 rows */}
-					{quotes.slice(0, 2).map((quote, index) => (
-						<div key={index} className="col-span-12 sm:col-span-6 lg:col-span-6">
-							<div className="flex h-full flex-col justify-between border border-zinc-700 bg-zinc-900/50 p-6">
-								<blockquote className="text-lg text-zinc-300">
-									"{quote.text}"
-								</blockquote>
-								<div className="mt-6 flex items-center justify-between">
-									<div className="flex items-center gap-3">
-										<p className="text-sm font-medium text-white">{quote.author}</p>
-									</div>
-									{quote.logo ? (
-										<img src={quote.logo} alt="" className={quote.logoSize || "h-4"} />
-									) : (
-										<i className="ri-twitter-x-line text-zinc-300" />
-									)}
-								</div>
-							</div>
-						</div>
-					))}
-
-					{/* Bottom row - 4 smaller quotes */}
-					{quotes.slice(2, 6).map((quote, index) => (
-						<div key={index + 2} className="col-span-12 sm:col-span-6 lg:col-span-3">
-							<div className="flex h-full flex-col justify-between border border-zinc-700 bg-zinc-900/30 p-5">
-								<blockquote className="text-sm leading-relaxed text-zinc-400">
-									"{quote.text}"
-								</blockquote>
-								<div className="mt-5 flex items-center justify-between">
-									<div className="flex items-center gap-2">
-										<p className="text-sm font-medium text-zinc-300">{quote.author}</p>
-									</div>
-									{quote.logo ? (
-										<img src={quote.logo} alt="" className={quote.logoSize || "h-3"} />
-									) : (
-										<i className="ri-twitter-x-line text-sm text-zinc-300" />
-									)}
-								</div>
+			{/* Slider container - full width with fade edges */}
+			<div className="relative">
+				<div
+					ref={scrollContainerRef}
+					className="flex gap-4 overflow-x-auto scrollbar-hide px-4"
+					style={{
+						scrollbarWidth: "none",
+						msOverflowStyle: "none",
+						WebkitOverflowScrolling: "touch",
+						paddingLeft: "max(1rem, calc((100vw - 73.75rem) / 2 + 1rem))",
+						paddingRight: "max(1rem, calc((100vw - 73.75rem) / 2 + 1rem))",
+					}}
+				>
+					{quotes.map((quote, index) => (
+						<div
+							key={index}
+							className="group flex h-56 w-80 shrink-0 flex-col justify-between rounded-md border border-zinc-800 bg-zinc-950 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900"
+						>
+							<p className="line-clamp-4 text-base leading-relaxed text-zinc-300">
+								"{quote.text}"
+							</p>
+							<div className="flex items-center justify-between">
+								<span className="text-sm font-medium text-white">
+									{quote.author}
+								</span>
+								{quote.logo ? (
+									<img
+										src={quote.logo}
+										alt={quote.company}
+										className={quote.logoSize || "h-4"}
+									/>
+								) : (
+									<i className="ri-twitter-x-line text-lg text-zinc-400" />
+								)}
 							</div>
 						</div>
 					))}
 				</div>
+
+				{/* Left fade gradient */}
+				<div
+					className="pointer-events-none absolute left-0 top-0 bottom-0 w-16"
+					style={{
+						background: "linear-gradient(to right, rgb(9 9 11), transparent)",
+					}}
+				/>
+				{/* Right fade gradient */}
+				<div
+					className="pointer-events-none absolute right-0 top-0 bottom-0 w-16"
+					style={{
+						background: "linear-gradient(to left, rgb(9 9 11), transparent)",
+					}}
+				/>
 			</div>
 		</section>
 	);
