@@ -1,23 +1,18 @@
-import { Navigation } from "./Navigation";
-import { HeroSection } from "./HeroSection";
-import { ProblemSection } from "./ProblemSection";
-import { FeaturesSection } from "./FeaturesSection";
-import { AIBuildingSection } from "./AIBuildingSection";
-import { AISection } from "./AISection";
-import { TestimonialsSection } from "./TestimonialsSection";
-import { EverythingYouNeedSection } from "./EverythingYouNeedSection";
-import { WhatIsEffectSection } from "./WhatIsEffectSection";
-import { QuotesGridSection } from "./QuotesSection";
-import { FAQSection } from "./FAQSection";
-import { CTASection } from "./CTASection";
-import { Footer } from "./Footer";
+import { Navigation } from "../landing/Navigation";
+import { Footer } from "../landing/Footer";
 import { GridOverlay } from "../GridOverlay";
+import { LP2Hero } from "./LP2Hero";
+import { PainPointsSection } from "./PainPointsSection";
+import { LP2Features } from "./LP2Features";
+import { LP2AI } from "./LP2AI";
+import { LP2CTA } from "./LP2CTA";
+import { QuotesGridSection } from "../landing/QuotesSection";
 
 function SectionDivider() {
 	return <div className="h-px w-full bg-zinc-800" />;
 }
 
-export function LandingPage() {
+export function LandingPageV2() {
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
 			{/* Skip Navigation Link */}
@@ -56,27 +51,17 @@ export function LandingPage() {
 
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
-				<HeroSection />
+				<LP2Hero />
 				<SectionDivider />
-				<ProblemSection />
+				<PainPointsSection />
 				<SectionDivider />
-				<TestimonialsSection />
+				<LP2Features />
 				<SectionDivider />
-				<EverythingYouNeedSection />
-				<SectionDivider />
-				<WhatIsEffectSection />
-				<SectionDivider />
-				<FeaturesSection />
-				<SectionDivider />
-				<AIBuildingSection />
-				<SectionDivider />
-				<AISection />
+				<LP2AI />
 				<SectionDivider />
 				<QuotesGridSection />
 				<SectionDivider />
-				<FAQSection />
-				<SectionDivider />
-				<CTASection />
+				<LP2CTA />
 			</main>
 
 			<Footer />

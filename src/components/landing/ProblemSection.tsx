@@ -1,11 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 
-const PAIN_POINTS = [
-	{ title: "Async spaghetti", description: "Promise chains you can't follow" },
-	{ title: "Uncaught errors", description: "catch (e: unknown) everywhere" },
-	{ title: "State leaks", description: "Hidden dependencies between modules" },
-	{ title: "Painful tests", description: "Setup code longer than the test" },
-	{ title: "No observability", description: "Logging added after bugs" },
+const FEATURES = [
+	{
+		problem: "Your try-catch blocks are everywhere. You still don't know what can fail.",
+		title: "Typed Errors",
+		description: "Errors in the type system. The compiler tells you what can fail.",
+	},
+	{
+		problem: "Another decorator. Another magic string. Another runtime error.",
+		title: "Built-in DI",
+		description: "Services as types, provided at the edge. No decorators, no magic.",
+	},
+	{
+		problem: "That Promise.all? It's a time bomb. One failure, everything crashes.",
+		title: "Structured Concurrency",
+		description: "Fibers with cleanup, cancellation, and resource management.",
+	},
+	{
+		problem: "Mocking libraries, test containers, setup files. Just to test one function.",
+		title: "Testable by Design",
+		description: "Swap implementations at test time. No mocking libraries.",
+	},
+	{
+		problem: "No observability. Production's on fire. You have no idea why. Sound familiar?",
+		title: "Built-in Tracing",
+		description: "OpenTelemetry out of the box. Full context, zero setup.",
+	},
+	{
+		problem: "Validation code duplicated across every layer. Three times.",
+		title: "Unified Schema",
+		description: "One schema for validation, encoding, and documentation.",
+	},
 ];
 
 function ComplexityChart() {
@@ -30,28 +55,11 @@ function ComplexityChart() {
 		return () => observer.disconnect();
 	}, []);
 
-	// Approximate path lengths for stroke-dasharray
 	const redLineLength = 500;
 	const greenLineLength = 450;
 
 	return (
-		<div ref={chartRef} className="relative w-full px-4">
-			{/* Title + Legend row */}
-			<div className="flex items-center justify-between mb-5">
-				<span className="font-mono text-xs font-medium text-zinc-400 uppercase tracking-wider">Complexity at scale</span>
-				<div className="flex items-center gap-4">
-					<div className="flex items-center gap-1.5">
-						<div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-						<span className="font-mono text-xs text-zinc-400/75">Without Effect</span>
-					</div>
-					<div className="flex items-center gap-1.5">
-						<div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-						<span className="font-mono text-xs text-zinc-400/75">With Effect</span>
-					</div>
-				</div>
-			</div>
-
-			{/* Chart */}
+		<div ref={chartRef} className="relative w-full">
 			<div className="relative h-36 md:h-44">
 				<svg viewBox="0 0 400 140" className="w-full h-full" preserveAspectRatio="none">
 					<defs>
@@ -65,12 +73,10 @@ function ComplexityChart() {
 						</linearGradient>
 					</defs>
 
-					{/* Horizontal grid lines - very subtle */}
 					{[35, 70, 105].map((y) => (
 						<line key={y} x1="0" y1={y} x2="400" y2={y} stroke="rgb(39 39 42)" strokeWidth="1" strokeOpacity="0.4" />
 					))}
 
-					{/* Area fills - fade in after lines draw */}
 					<path
 						d="M0,130 C60,128 140,115 220,70 C300,25 360,8 400,5 L400,140 L0,140 Z"
 						fill="url(#redAreaGradient)"
@@ -90,7 +96,6 @@ function ComplexityChart() {
 						}}
 					/>
 
-					{/* Lines with draw-on animation */}
 					<path
 						d="M0,130 C60,128 140,115 220,70 C300,25 360,8 400,5"
 						fill="none"
@@ -118,10 +123,21 @@ function ComplexityChart() {
 				</svg>
 			</div>
 
-			{/* Axis labels */}
 			<div className="flex justify-between mt-3">
 				<span className="font-mono text-[10px] text-zinc-400/75 uppercase tracking-wide">Start</span>
 				<span className="font-mono text-[10px] text-zinc-400/75 uppercase tracking-wide">Scale</span>
+			</div>
+
+			<div className="flex items-center justify-center gap-6 mt-5">
+				<span className="font-mono text-xs font-medium text-zinc-400 uppercase tracking-wider">Complexity at scale</span>
+				<div className="flex items-center gap-1.5">
+					<div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+					<span className="font-mono text-xs text-zinc-400">Without Effect</span>
+				</div>
+				<div className="flex items-center gap-1.5">
+					<div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+					<span className="font-mono text-xs text-zinc-400">With Effect</span>
+				</div>
 			</div>
 		</div>
 	);
@@ -129,8 +145,7 @@ function ComplexityChart() {
 
 export function ProblemSection() {
 	return (
-		<section className="relative w-full py-16 md:py-24">
-			{/* Fade effect at top */}
+		<section className="relative w-full py-24 md:py-40">
 			<div
 				className="pointer-events-none absolute inset-x-0 top-0 h-32"
 				style={{
@@ -139,38 +154,43 @@ export function ProblemSection() {
 			/>
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0">
-					{/* Left column */}
+				{/* Top row - Header + Chart */}
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 mb-16">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							The problem
+							Common Problems Effect Solves
 						</p>
 						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-md">
-							TypeScript is great, until it isn't
+							Production problems. Built-in solutions.
 						</h2>
-						<p className="mt-4 text-base text-zinc-400">
-							Patterns that work at 1K lines become liabilities at scale.
-						</p>
-
-						{/* Pills */}
-						<div className="mt-8 flex flex-wrap gap-2.5">
-							{PAIN_POINTS.map((point, index) => (
-								<span
-									key={index}
-									className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3.5 py-1.5 text-sm"
-								>
-									<span className="text-white">{point.title}</span>
-									<span className="text-zinc-500">·</span>
-									<span className="text-zinc-400">{point.description}</span>
-								</span>
-							))}
-						</div>
 					</div>
 
-					{/* Right column - Chart */}
-					<div className="flex flex-col justify-end lg:pt-8 lg:-mr-4">
+					<div className="flex flex-col justify-center">
 						<ComplexityChart />
 					</div>
+				</div>
+
+				{/* Feature cards */}
+				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+					{FEATURES.map((feature, index) => (
+						<div key={index} className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-950 p-5">
+							<p className="font-mono text-sm font-medium text-zinc-400">
+								{feature.problem}
+							</p>
+							<div
+								className="h-px w-full my-6"
+								style={{
+									backgroundImage: 'repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+								}}
+							/>
+							<h3 className="text-base font-semibold text-white">
+								{feature.title}
+							</h3>
+							<p className="mt-2 text-sm leading-relaxed text-zinc-100">
+								{feature.description}
+							</p>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>

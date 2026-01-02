@@ -20,12 +20,6 @@ const tools = [
 		description: "Visual fiber inspection",
 		video: getAssetPath("/videos/visuals.mp4"),
 	},
-	{
-		id: "playground",
-		label: "Playground",
-		description: "Try Effect in the browser",
-		video: getAssetPath("/videos/effect-playground.mp4"),
-	},
 ];
 
 export function DevToolsSection() {
@@ -33,7 +27,7 @@ export function DevToolsSection() {
 	const activeTool = tools[activeTab];
 
 	return (
-		<section className="relative w-full py-16 md:pt-32 md:pb-8">
+		<section className="relative w-full py-24 md:pt-40 md:pb-20">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header row - split layout */}
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 mb-16">
@@ -68,7 +62,7 @@ export function DevToolsSection() {
 								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
 								<i className="ri-vscode-line text-base" />
-								<span>VS Code</span>
+								<span>VSCode Extension</span>
 							</a>
 							<a
 								href="https://effect.website/play/"
