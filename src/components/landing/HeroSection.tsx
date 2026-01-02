@@ -54,7 +54,7 @@ export function HeroSection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-[96px] md:pb-[96px]">
 				{/* Content */}
-				<div className="max-w-3xl">
+				<div className="max-w-3xl mx-auto text-center">
 					{/* Import statement */}
 					<p className="mb-4 font-mono text-sm md:text-base">
 						<span className="text-violet-400">import</span>
@@ -70,12 +70,12 @@ export function HeroSection() {
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mt-6 text-xl text-zinc-400 max-w-xl">
-						Effect is an open-source ecosystem for building scalable and reliable applications. 
+					<p className="mt-6 text-xl text-zinc-400 max-w-xl mx-auto">
+						Effect is an open-source ecosystem for building scalable and reliable applications.
 					</p>
 
 					{/* CTA buttons */}
-					<div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
+					<div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
 						<a
 							href="https://effect.website/docs/getting-started/quickstart"
 							target="_blank"
@@ -89,7 +89,7 @@ export function HeroSection() {
 					</div>
 
 					{/* Stats */}
-					<div className="mt-8 flex items-center gap-6">
+					<div className="mt-8 flex items-center justify-center gap-6">
 						<a
 							href="https://github.com/Effect-TS/effect"
 							target="_blank"

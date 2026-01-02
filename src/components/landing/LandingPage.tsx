@@ -5,7 +5,6 @@ import { FeaturesSection } from "./FeaturesSection";
 import { AIBuildingSection } from "./AIBuildingSection";
 import { AISection } from "./AISection";
 import { TestimonialsSection } from "./TestimonialsSection";
-import { EverythingYouNeedSection } from "./EverythingYouNeedSection";
 import { WhatIsEffectSection } from "./WhatIsEffectSection";
 import { QuotesGridSection } from "./QuotesSection";
 import { FAQSection } from "./FAQSection";
@@ -61,8 +60,6 @@ export function LandingPage() {
 				<ProblemSection />
 				<SectionDivider />
 				<TestimonialsSection />
-				<SectionDivider />
-				<EverythingYouNeedSection />
 				<SectionDivider />
 				<WhatIsEffectSection />
 				<SectionDivider />

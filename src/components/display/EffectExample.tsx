@@ -123,7 +123,7 @@ function EffectExampleComponent<A, E>({
 
 	return (
 		<motion.div
-			className={`w-full h-full flex flex-col border rounded-lg shadow-2xl relative overflow-hidden`}
+			className={`w-full h-full flex flex-col border rounded-lg shadow-2xl relative`}
 			initial={{
 				boxShadow: isDarkMode
 					? `0 0 40px rgba(220, 38, 38, 0.3)`

@@ -1,6 +1,6 @@
 export function WhatIsEffectSection() {
 	return (
-		<section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-40">
+		<section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
 			{/* Subtle background gradient */}
 			<div
 				className="pointer-events-none absolute inset-0"
