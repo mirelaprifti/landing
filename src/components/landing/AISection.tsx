@@ -1,6 +1,6 @@
 export function AISection() {
   return (
-    <section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-20">
+    <section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
@@ -34,7 +34,7 @@ export function AISection() {
             href="https://x.com/davis7/status/1988847914538672262"
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg border border-zinc-800/80 bg-zinc-900/40 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/60"
+            className="block rounded-lg border border-zinc-700/70 bg-zinc-900 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/60"
           >
             {/* Author row */}
             <div className="mb-4 flex items-center justify-between">

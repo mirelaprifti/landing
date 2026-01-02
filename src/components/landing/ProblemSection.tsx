@@ -3,33 +3,75 @@ import { useEffect, useRef, useState } from "react";
 const FEATURES = [
 	{
 		problem: "Your try-catch blocks are everywhere. You still don't know what can fail.",
+		icon: "ri-error-warning-line",
 		title: "Typed Errors",
 		description: "Errors in the type system. The compiler tells you what can fail.",
+		items: [
+			"Typed errors in the function signature",
+			"Short-circuit and collect errors",
+			"Automatic retry with backoff",
+			"Timeout and interruption"
+		]
 	},
 	{
 		problem: "Another decorator. Another magic string. Another runtime error.",
-		title: "Built-in DI",
+		icon: "ri-plug-line",
+		title: "Dependency Injection",
 		description: "Services as types, provided at the edge. No decorators, no magic.",
+		items: [
+			"Type-safe service definitions",
+			"Automatic dependency resolution",
+			"Easy mocking for tests",
+			"No decorators or reflection"
+		]
 	},
 	{
 		problem: "That Promise.all? It's a time bomb. One failure, everything crashes.",
+		icon: "ri-git-branch-line",
 		title: "Structured Concurrency",
 		description: "Fibers with cleanup, cancellation, and resource management.",
+		items: [
+			"Structured concurrency with fibers",
+			"Parallel execution with limits",
+			"Race conditions handled correctly",
+			"Automatic resource cleanup"
+		]
 	},
 	{
-		problem: "Mocking libraries, test containers, setup files. Just to test one function.",
-		title: "Testable by Design",
-		description: "Swap implementations at test time. No mocking libraries.",
+		problem: "Network failed? Try again later. But when? How many times?",
+		icon: "ri-time-line",
+		title: "Scheduling",
+		description: "Declarative retry, repeat, and timeout policies.",
+		items: [
+			"Cron-like schedules",
+			"Exponential backoff",
+			"Jittered retries",
+			"Repeat with conditions"
+		]
 	},
 	{
 		problem: "No observability. Production's on fire. You have no idea why. Sound familiar?",
+		icon: "ri-radar-line",
 		title: "Built-in Tracing",
 		description: "OpenTelemetry out of the box. Full context, zero setup.",
+		items: [
+			"Built-in OpenTelemetry tracing",
+			"Structured logging",
+			"Metrics collection",
+			"Span context propagation"
+		]
 	},
 	{
 		problem: "Validation code duplicated across every layer. Three times.",
+		icon: "ri-file-code-line",
 		title: "Unified Schema",
 		description: "One schema for validation, encoding, and documentation.",
+		items: [
+			"Runtime validation from types",
+			"Automatic JSON serialization",
+			"API contract generation",
+			"Form validation support"
+		]
 	},
 ];
 
@@ -145,7 +187,7 @@ function ComplexityChart() {
 
 export function ProblemSection() {
 	return (
-		<section className="relative w-full py-24 md:py-40">
+		<section className="relative w-full py-24 md:pt-40 md:pb-24">
 			<div
 				className="pointer-events-none absolute inset-x-0 top-0 h-32"
 				style={{
@@ -183,12 +225,18 @@ export function ProblemSection() {
 									backgroundImage: 'repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
 								}}
 							/>
-							<h3 className="text-base font-semibold text-white">
+							<h3 className="text-lg font-semibold text-white">
 								{feature.title}
 							</h3>
-							<p className="mt-2 text-sm leading-relaxed text-zinc-100">
-								{feature.description}
-							</p>
+							{/* Checkmark items */}
+							<div className="mt-4 flex flex-col gap-2">
+								{feature.items.map((item, itemIndex) => (
+									<div key={itemIndex} className="flex items-start gap-2">
+										<i className="ri-check-line text-emerald-500 text-sm shrink-0 mt-0.5" />
+										<span className="text-sm text-zinc-400">{item}</span>
+									</div>
+								))}
+							</div>
 						</div>
 					))}
 				</div>

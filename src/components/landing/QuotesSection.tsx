@@ -121,7 +121,7 @@ export function QuotesGridSection() {
 	};
 
 	return (
-		<section className="relative z-[70] w-full py-24 md:pt-40 md:pb-16">
+		<section className="relative z-[70] w-full py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header row with title and navigation arrows */}
 				<div className="mb-10 flex items-end justify-between">

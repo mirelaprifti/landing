@@ -155,9 +155,9 @@ export function FeaturesSection() {
 	}, [activeSubTabPerTab, activeTab]);
 
 	return (
-		<section id="features" className="relative w-full py-24 md:pt-40 md:pb-20">
+		<section id="features" className="relative w-full py-24 md:pt-40 md:pb-24">
 			{/* Header */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10 text-center">
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
 					Interactive Examples
 				</p>
@@ -169,7 +169,7 @@ export function FeaturesSection() {
 			{/* Content Container */}
 			<div className="relative max-w-295 mx-auto">
 				{/* Tab Navigation and Content */}
-				<div className="relative overflow-hidden border-x border-t border-zinc-800 shadow-2xl shadow-black/20">
+				<div className="relative border-x border-t border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
 					<div className="relative flex bg-zinc-950/90">
 						{TAB_IDS.map((tabId) => (

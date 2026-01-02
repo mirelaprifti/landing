@@ -21,7 +21,7 @@ const ConfigurationPanel = memo(
 		outcome: Outcome;
 		setOutcome: (o: Outcome) => void;
 	}) => (
-		<div className="overflow-hidden relative from-neutral-800/40 to-neutral-800/20 bg-gradient-to-t ">
+		<div className="relative from-neutral-800/40 to-neutral-800/20 bg-gradient-to-t ">
 			<div className="p-4 flex items-center justify-between">
 				<div className="flex items-center gap-6">
 					<div className="flex items-center gap-3">
