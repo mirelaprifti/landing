@@ -50,15 +50,15 @@ export function InstallCommand({ dropdownDirection = "down" }: InstallCommandPro
 	};
 
 	return (
-		<div className="inline-flex h-11.5 items-center rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50">
-			<div className="relative" ref={dropdownRef}>
+		<div className="inline-flex h-[3rem] items-center rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50">
+			<div className="relative overflow-visible h-full" ref={dropdownRef}>
 				<button
 					type="button"
 					onClick={() => setDropdownOpen(!dropdownOpen)}
-					className="inline-flex items-center gap-2 pl-5 pr-4 py-3 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-800/50 rounded-l-lg"
+					className="h-full inline-flex items-center justify-center gap-2 pl-5 pr-4 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-800/50 rounded-l-md"
 					aria-label="Select package manager"
 				>
-					<img src={PM_LOGOS[activePM]} alt={activePM} className={activePM === "npm" ? "h-6 w-6" : "h-5 w-5"} />
+					<img src={PM_LOGOS[activePM]} alt={activePM} className={activePM === "npm" ? "h-7 w-7" : "h-5 w-5"} />
 					<i className={`ri-arrow-down-s-line text-lg text-zinc-500 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
 				</button>
 				{dropdownOpen && (
@@ -90,7 +90,7 @@ export function InstallCommand({ dropdownDirection = "down" }: InstallCommandPro
 			<button
 				type="button"
 				onClick={copyCommand}
-				className="inline-flex items-center gap-3 px-5 py-3 text-base font-mono text-zinc-300 transition-colors hover:bg-zinc-800/50 rounded-r-lg"
+				className="inline-flex items-center gap-3 px-5 py-3 text-base font-mono text-zinc-300 transition-colors hover:bg-zinc-800/50 rounded-r-md"
 				aria-label="Copy install command"
 			>
 				<span>{currentCommand}</span>

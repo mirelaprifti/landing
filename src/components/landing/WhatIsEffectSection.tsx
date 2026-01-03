@@ -42,10 +42,10 @@ export function WhatIsEffectSection() {
 							href="https://effect.website/docs/getting-started/why-effect/"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-300 transition-colors hover:text-white"
+							className="group mt-8 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 						>
-							Why Effect
-							<i className="ri-arrow-right-line text-sm" />
+							<span>Why Effect</span>
+							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
 						</a>
 					</div>
 

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 const FEATURES = [
 	{
 		problem: "Your try-catch blocks are everywhere. You still don't know what can fail.",
-		icon: "ri-error-warning-line",
+		icon: "ri-shield-check-line",
 		title: "Typed Errors",
 		description: "Errors in the type system. The compiler tells you what can fail.",
 		items: [
@@ -15,7 +15,7 @@ const FEATURES = [
 	},
 	{
 		problem: "Another decorator. Another magic string. Another runtime error.",
-		icon: "ri-plug-line",
+		icon: "ri-node-tree",
 		title: "Dependency Injection",
 		description: "Services as types, provided at the edge. No decorators, no magic.",
 		items: [
@@ -51,7 +51,7 @@ const FEATURES = [
 	},
 	{
 		problem: "No observability. Production's on fire. You have no idea why. Sound familiar?",
-		icon: "ri-radar-line",
+		icon: "ri-line-chart-line",
 		title: "Built-in Tracing",
 		description: "OpenTelemetry out of the box. Full context, zero setup.",
 		items: [
@@ -63,7 +63,7 @@ const FEATURES = [
 	},
 	{
 		problem: "Validation code duplicated across every layer. Three times.",
-		icon: "ri-file-code-line",
+		icon: "ri-file-check-line",
 		title: "Unified Schema",
 		description: "One schema for validation, encoding, and documentation.",
 		items: [
@@ -216,23 +216,26 @@ export function ProblemSection() {
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{FEATURES.map((feature, index) => (
 						<div key={index} className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-950 p-5">
-							<p className="font-mono text-sm font-medium text-zinc-400">
+							<div className="w-8 h-8 rounded-md bg-zinc-800/70 flex items-center justify-center mb-4">
+								<i className={`${feature.icon} text-zinc-400 text-lg`} />
+							</div>
+							<p className="text-sm font-medium text-zinc-400">
 								{feature.problem}
 							</p>
 							<div
 								className="h-px w-full my-6"
 								style={{
-									backgroundImage: 'repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+									backgroundImage: 'repeating-linear-gradient(to right, rgb(63 63 70) 0px, rgb(63 63 70) 2px, transparent 2px, transparent 4px)'
 								}}
 							/>
-							<h3 className="text-lg font-semibold text-white">
+							<h3 className="text-base font-mono uppercase font-medium text-white">
 								{feature.title}
 							</h3>
 							{/* Checkmark items */}
-							<div className="mt-4 flex flex-col gap-2">
+							<div className="mt-3 flex flex-col gap-1.5">
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-2">
-										<i className="ri-check-line text-emerald-500 text-sm shrink-0 mt-0.5" />
+										<i className="ri-check-line text-emerald-500 text-sm shrink-0" />
 										<span className="text-sm text-zinc-400">{item}</span>
 									</div>
 								))}

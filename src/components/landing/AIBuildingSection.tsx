@@ -12,7 +12,7 @@ const AI_CASE_STUDIES = [
   {
     effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
     partnerLogo: getAssetPath("/assets/logos/14-ai.svg"),
-    partnerLogoClass: "h-5",
+    partnerLogoClass: "h-6",
     title: "Scaling AI for Customer Support",
     href: "https://youtu.be/gGFPhFrGCng",
     accentColor: "bg-lime-500"
@@ -140,7 +140,7 @@ export function AIBuildingSection() {
                 }}
               />
               {/* Top accent line */}
-              <div className={`absolute top-0 left-0 right-0 h-0.5 ${study.accentColor}`} />
+              <div className={`absolute top-0 left-0 right-0 h-0.25 ${study.accentColor}`} />
 
               {/* Content */}
               <div className="flex flex-col px-6 pt-6 pb-5 gap-4">

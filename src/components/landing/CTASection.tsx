@@ -2,7 +2,7 @@ import { InstallCommand } from "./InstallCommand";
 
 export function CTASection() {
 	return (
-		<section className="relative w-full overflow-hidden py-24 md:py-32">
+		<section className="relative w-full overflow-hidden py-24 md:py-[114px]">
 			{/* Grid background */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -26,11 +26,14 @@ export function CTASection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="max-w-3xl mx-auto text-center">
+					<p className="mb-3 font-mono text-base font-semibold uppercase tracking-wider text-zinc-400">
+						Get Started Now
+					</p>
 					<h2 className="text-3xl font-semibold leading-tight text-white md:text-4xl">
 						Stop installing a new package for every problem
 					</h2>
 					<p className="mt-6 text-lg text-zinc-400">
-						Start building with Effect and get production-ready features out of the box.
+						Get production-ready features out of the box with Effect.
 					</p>
 
 					{/* CTA Buttons */}

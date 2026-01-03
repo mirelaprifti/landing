@@ -2,7 +2,7 @@ import { getAssetPath } from "../../utils/assetPath";
 
 export function Footer() {
 	return (
-		<footer className="relative w-full pt-16 md:px-8 md:pt-20">
+		<footer className="relative w-full px-4 pt-16 md:px-8 md:pt-20">
 			{/* Subtle gradient background */}
 			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
@@ -13,9 +13,9 @@ export function Footer() {
 				{/* Footer Links Block */}
 				<div className="flex flex-col">
 					{/* Four Column Links Section */}
-					<div className="mb-16 grid grid-cols-2 gap-8 md:mb-20 md:gap-0 lg:grid-cols-4">
+					<div className="mb-12 grid grid-cols-2 gap-x-6 gap-y-8 md:mb-20 md:gap-x-0 lg:grid-cols-4">
 						{/* Column 1: Resources */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 lg:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">
 								Resources
@@ -69,7 +69,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 2: DevTools */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-800 lg:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">DevTools</h3>
 							{/* Links */}
@@ -122,7 +122,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 3: Community */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-transparent md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-transparent lg:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">
 								Community
@@ -175,7 +175,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 4: Other */}
-						<div className="flex flex-1 flex-col gap-4 md:border-l md:border-dashed md:border-zinc-800 md:pl-4">
+						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-800 lg:pl-4">
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">Other</h3>
 							{/* Links */}

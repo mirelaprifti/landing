@@ -157,7 +157,7 @@ export function FeaturesSection() {
 	return (
 		<section id="features" className="relative w-full py-24 md:pt-40 md:pb-24">
 			{/* Header */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10 text-center">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
 					Interactive Examples
 				</p>
@@ -171,12 +171,12 @@ export function FeaturesSection() {
 				{/* Tab Navigation and Content */}
 				<div className="relative border-x border-t border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
-					<div className="relative flex bg-zinc-950/90">
+					<div className="relative flex overflow-x-auto scrollbar-hide bg-zinc-950/90" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
 						{TAB_IDS.map((tabId) => (
 							<button
 								key={tabId}
 								onClick={() => setActiveTab(tabId)}
-								className={`flex-1 cursor-pointer py-5 px-6 font-mono text-base uppercase tracking-wide transition-colors ${
+								className={`flex-1 shrink-0 cursor-pointer py-5 px-4 md:px-6 font-mono text-sm md:text-base uppercase tracking-wide transition-colors whitespace-nowrap ${
 									activeTab === tabId
 										? "text-white font-medium"
 										: "text-zinc-400 leading-relaxed hover:text-white"
@@ -207,12 +207,12 @@ export function FeaturesSection() {
 						{currentTabConfig.subTabs ? (
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
-								<div className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800 bg-zinc-950">
+								<div className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800 bg-zinc-950 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
 									{currentTabConfig.subTabs.map((subTab) => (
 										<button
 											key={subTab.id}
 											onClick={() => handleSubTabChange(subTab.id)}
-											className={`px-3 py-1.5 rounded-md font-mono text-sm transition-colors cursor-pointer ${
+											className={`shrink-0 px-3 py-1.5 rounded-md font-mono text-sm transition-colors cursor-pointer whitespace-nowrap ${
 												currentActiveSubTab === subTab.id
 													? "bg-zinc-900 text-white"
 													: "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
