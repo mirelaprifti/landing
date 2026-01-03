@@ -58,7 +58,7 @@ const FEATURES = [
 
 export function AIBuildingSection() {
   return (
-    <section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-20">
+    <section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 

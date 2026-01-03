@@ -33,7 +33,7 @@ const useCases = [
 
 export function TestimonialsSection() {
 	return (
-		<section className="relative py-24 md:pt-40 md:pb-20">
+		<section className="relative py-24 md:pt-40 md:pb-24">
 			{/* Header - with padding */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
@@ -84,7 +84,7 @@ export function TestimonialsSection() {
 							{...(useCase.href.startsWith("http")
 								? { target: "_blank", rel: "noopener noreferrer" }
 								: {})}
-							className="group relative flex flex-col overflow-hidden rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-900"
+							className="group relative flex flex-col overflow-hidden rounded-md border border-zinc-700 transition-all hover:border-zinc-500 hover:bg-zinc-900"
 						>
 							{/* Video thumbnail area */}
 							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
