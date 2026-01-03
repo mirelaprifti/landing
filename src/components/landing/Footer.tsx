@@ -4,7 +4,7 @@ export function Footer() {
 	return (
 		<footer className="relative w-full px-4 pt-16 md:px-8 md:pt-20">
 			{/* Subtle gradient background */}
-			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
+			<div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
 			{/* Top solid border */}
 			<div className="absolute left-0 right-0 top-0 h-px bg-zinc-800" />
@@ -21,51 +21,61 @@ export function Footer() {
 								Resources
 							</h3>
 							{/* Links */}
-							<div className="flex flex-col">
-								<a
-									href="https://effect.website/docs/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Documentation
-								</a>
-								<a
-									href="https://effect.website/docs/additional-resources/api-reference/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									API Reference
-								</a>
-								<a
-									href="https://effect-ts.github.io/effect/docs/ai/ai"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>@effect/ai</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://effect-ts.github.io/effect/docs/cluster"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>@effect/cluster (alpha)</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://github.com/Effect-TS/effect/blob/main/packages/workflow/README.md"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>@effect/workflow</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-							</div>
+							<ul className="flex flex-col items-start gap-2">
+								<li>
+									<a
+										href="https://effect.website/docs/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Documentation
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect.website/docs/additional-resources/api-reference/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										API Reference
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect-ts.github.io/effect/docs/ai/ai"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										@effect/ai
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect-ts.github.io/effect/docs/cluster"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										@effect/cluster (alpha)
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://github.com/Effect-TS/effect/blob/main/packages/workflow/README.md"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										@effect/workflow
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+							</ul>
 						</div>
 
 						{/* Column 2: DevTools */}
@@ -73,52 +83,62 @@ export function Footer() {
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">DevTools</h3>
 							{/* Links */}
-							<div className="flex flex-col">
-								<a
-									href="https://effect.website/play/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Effect Playground
-								</a>
-								<a
-									href="https://github.com/Effect-TS/language-service"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Effect LSP</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://github.com/tim-smart/effect-mcp"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Effect MCP</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://github.com/Effect-TS/effect/blob/main/packages/cli/README.md"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Effect CLI</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>VS Code Extension</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-							</div>
+							<ul className="flex flex-col items-start gap-2">
+								<li>
+									<a
+										href="https://effect.website/play/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effect Playground
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://github.com/Effect-TS/language-service"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effect LSP
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://github.com/tim-smart/effect-mcp"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effect MCP
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://github.com/Effect-TS/effect/blob/main/packages/cli/README.md"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effect CLI
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										VS Code Extension
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+							</ul>
 						</div>
 
 						{/* Column 3: Community */}
@@ -128,50 +148,60 @@ export function Footer() {
 								Community
 							</h3>
 							{/* Links */}
-							<div className="flex flex-col">
-								<a
-									href="https://effect.website/events/effect-days"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Effect Days
-								</a>
-								<a
-									href="https://effect.website/merch"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Effect Merch
-								</a>
-								<a
-									href="https://effect.website/podcast/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Podcast
-								</a>
-								<a
-									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Discord</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://luma.com/effect-community?k=c"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Meetups</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-							</div>
+							<ul className="flex flex-col items-start gap-2">
+								<li>
+									<a
+										href="https://effect.website/events/effect-days"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effect Days
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect.website/merch"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effect Merch
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect.website/podcast/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Podcast
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://discord.gg/effect-ts"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Discord
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://luma.com/effect-community?k=c"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Meetups
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+							</ul>
 						</div>
 
 						{/* Column 4: Other */}
@@ -179,51 +209,61 @@ export function Footer() {
 							{/* Column Header */}
 							<h3 className="text-sm font-semibold text-white">Other</h3>
 							{/* Links */}
-							<div className="flex flex-col">
-								<a
-									href="https://effect.website/blog"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Blog
-								</a>
-								<a
-									href="https://effect.website/docs/additional-resources/myths/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									Myths about Effect
-								</a>
-								<a
-									href="https://effect.kitlangton.com/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Visual Effect</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Workshops</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-								<a
-									href="https://effectful.co/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 py-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white"
-								>
-									<span>Effectful</span>
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
-							</div>
+							<ul className="flex flex-col items-start gap-2">
+								<li>
+									<a
+										href="https://effect.website/blog"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Blog
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect.website/docs/additional-resources/myths/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Myths about Effect
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effect.kitlangton.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Visual Effect
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Workshops
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://effectful.co/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
+									>
+										Effectful
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 
@@ -348,19 +388,19 @@ export function Footer() {
 						<div className="flex items-center gap-4">
 							<a
 								href="mailto:contact@effectful.co"
-								className="text-sm text-zinc-400 transition-colors hover:text-white"
+								className="text-sm text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
 							>
 								Email us
 							</a>
 							<a
 								href="#"
-								className="text-sm text-zinc-400 transition-colors hover:text-white"
+								className="text-sm text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
 							>
 								Terms
 							</a>
 							<a
 								href="#"
-								className="text-sm text-zinc-400 transition-colors hover:text-white"
+								className="text-sm text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
 							>
 								Privacy
 							</a>

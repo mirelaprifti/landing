@@ -16,7 +16,7 @@ export function AISection() {
               Write Effect code with AI
             </h2>
             <p className="mt-4 text-lg leading-snug text-zinc-400 max-w-lg">
-              Effect excels at orchestration, parallel execution, state management, and fault recovery.
+              Effect's declarative patterns and strong type system make it easier for LLMs to generate correct, production-ready code.
             </p>
             <a
               href="https://www.effect.solutions/"

@@ -92,7 +92,7 @@ export function Navigation() {
 									href="https://effect.website/docs/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white border-b border-transparent hover:border-current"
 								>
 									Docs
 								</a>
@@ -100,7 +100,7 @@ export function Navigation() {
 									href="https://effect.website/blog/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white border-b border-transparent hover:border-current"
 								>
 									Blog
 								</a>
@@ -108,7 +108,7 @@ export function Navigation() {
 									href="https://effect.website/play/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white border-b border-transparent hover:border-current"
 								>
 									Playground
 								</a>
@@ -116,9 +116,17 @@ export function Navigation() {
 									href="https://www.effect.solutions/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white"
+									className="text-sm text-zinc-400 font-medium transition-colors hover:text-white border-b border-transparent hover:border-current"
 								>
 									LLM Guide
+								</a>
+								<a
+									href="https://www.effect.institute/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="rounded-md bg-white px-4 py-1.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+								>
+									Learn
 								</a>
 							</div>
 
