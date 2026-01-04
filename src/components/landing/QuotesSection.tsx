@@ -15,9 +15,9 @@ function QuoteCard({
 }) {
 	return (
 		<div
-			className="group flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md p-8 border border-zinc-700 bg-zinc-900/30 transition-all duration-300 hover:border-zinc-500 hover:bg-zinc-900/50"
+			className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md p-8 border border-zinc-700 bg-zinc-900/30"
 		>
-			<p className="text-lg leading-relaxed text-zinc-300 transition-colors duration-300 group-hover:text-zinc-200">
+			<p className="text-lg leading-relaxed text-zinc-300">
 				"{text}"
 			</p>
 			<div className="mt-auto flex w-full items-center gap-4">
@@ -171,7 +171,7 @@ export function QuotesGridSection() {
 					{quotes.map((quote, index) => (
 						<div
 							key={index}
-							className="group flex h-56 w-80 shrink-0 flex-col rounded-md border border-zinc-700 bg-zinc-950 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900"
+							className="flex h-56 w-80 shrink-0 flex-col rounded-md border border-zinc-700 bg-zinc-950 p-6"
 						>
 							<p className="line-clamp-4 text-base leading-relaxed text-zinc-400">
 								"{quote.text}"
