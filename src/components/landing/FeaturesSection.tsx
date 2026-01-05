@@ -169,7 +169,7 @@ export function FeaturesSection() {
 			{/* Content Container */}
 			<div className="relative max-w-295 mx-auto">
 				{/* Tab Navigation and Content */}
-				<div className="relative border-x border-t border-zinc-800 shadow-2xl shadow-black/20">
+				<div className="relative border-r border-t border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
 					<div className="relative flex overflow-x-auto scrollbar-hide bg-zinc-950/90" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
 						{TAB_IDS.map((tabId) => (
