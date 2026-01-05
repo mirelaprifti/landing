@@ -9,8 +9,7 @@ export function FAQSection() {
       answer: (
         <>
           <p>
-            Effect's syntax may feel unfamiliar at first: yield*, Effect.gen,
-            TaggedError… But that's because it's doing something TypeScript
+            Effect's syntax may feel unfamiliar at first: <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">yield*</code>, <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">Effect.gen</code>, <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">TaggedError</code>… But that's because it's doing something TypeScript
             can't do on its own.
           </p>
           <p className="mt-4">That "weirdness" unlocks:</p>

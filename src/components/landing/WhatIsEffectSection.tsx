@@ -26,11 +26,11 @@ export function WhatIsEffectSection() {
 						<ul className="mt-5 space-y-2 text-sm text-zinc-400">
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>No more <code className="text-zinc-300">catch (e: unknown)</code> — errors are typed</span>
+								<span>No more <code className="text-zinc-300">catch (e: unknown)</code> — errors are fully typed</span>
 							</li>
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>Dependencies are explicit — no hidden state leaks</span>
+								<span>Dependencies are explicit — nothing is hidden</span>
 							</li>
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />

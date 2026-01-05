@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const FEATURES = [
 	{
-		problem: "Your try-catch blocks are everywhere. You still don't know what can fail.",
+		problem: "You have try-catch blocks everywhere but you still don't know how things can fail.",
 		icon: "ri-shield-check-line",
 		title: "Typed Errors",
 		description: "Errors in the type system. The compiler tells you what can fail.",
@@ -62,7 +62,7 @@ const FEATURES = [
 		]
 	},
 	{
-		problem: "Validation code duplicated across every layer. Three times.",
+		problem: "Validation logic is duplicated across every layer of your application.",
 		icon: "ri-file-check-line",
 		title: "Unified Schema",
 		description: "One schema for validation, encoding, and documentation.",

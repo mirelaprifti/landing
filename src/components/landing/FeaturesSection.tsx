@@ -75,7 +75,7 @@ const TAB_CONFIG: Record<TabId, TabConfig> = {
 	schedule: {
 		label: "Schedule",
 		subTabs: [
-			{ id: "effect-retry-recurs", label: ["Effect.retry", "recurs"] },
+			{ id: "effect-retry-recurs", label: ["Effect.retry", "times"] },
 			{ id: "effect-retry-exponential", label: ["Effect.retry", "exponential"] },
 			{ id: "effect-repeat-spaced", label: ["Effect.repeat", "spaced"] },
 			{ id: "effect-repeat-while-output", label: ["Effect.repeat", "whileOutput"] },

@@ -1,3 +1,5 @@
+import { getAssetPath } from "../../utils/assetPath";
+
 export function AISection() {
   return (
     <section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
@@ -40,7 +42,7 @@ export function AISection() {
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <img
-                  src="/assets/images/bendavis.jpg"
+                  src={getAssetPath("/assets/images/bendavis.jpg")}
                   alt="Ben Davis"
                   className="h-10 w-10 rounded-full object-cover"
                 />
@@ -103,10 +105,9 @@ export function AISection() {
               <span className="font-mono text-sm text-zinc-500">04</span>
               <p className="text-base leading-relaxed text-zinc-400">
                 <span className="font-medium text-white">
-                  Rich toolbox:
+                  from schema validation to workflows:
                 </span>{" "}
-                schema validation to workflows in a language LLMs easily
-                understand.
+                build everything in a language LLMs can easily understand.
               </p>
             </div>
           </div>

@@ -153,7 +153,7 @@ export const examplesManifest: Array<ExampleMeta> = [
 		name: "Effect.retry",
 		description: "Retry an effect a fixed number of times",
 		section: "schedule",
-		variant: "recurs",
+		variant: "times",
 	},
 	{
 		id: "effect-retry-exponential",
