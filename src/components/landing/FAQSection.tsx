@@ -29,8 +29,8 @@ export function FAQSection() {
       question: "How long does it take to learn?",
       answer: (
         <p>
-          You can be productive in a few days. Start by replacing await with
-          yield*, everything else follows naturally.
+          You can be productive in a few days. Start by replacing <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">await</code> with{" "}
+          <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">yield*</code>, everything else follows naturally.
         </p>
       )
     },
@@ -44,7 +44,7 @@ export function FAQSection() {
             <li>Error management…</li>
             <li>Concurrency…</li>
           </ul>
-          <p>The code quality speaks for itself.</p>
+          <p>Let the quality of the code speak for itself.</p>
         </>
       )
     },
@@ -53,8 +53,7 @@ export function FAQSection() {
       answer: (
         <>
           <p>
-            Effect adds minimal overhead and prevents the <em>real</em>{" "}
-            performance killers:
+            Effect prevents the <em>real</em>{" "} performance killers:
           </p>
           <ul className="mt-2 mb-4 ml-5 list-disc space-y-1">
             <li>Memory leaks</li>

@@ -105,9 +105,9 @@ export function AISection() {
               <span className="font-mono text-sm text-zinc-500">04</span>
               <p className="text-base leading-relaxed text-zinc-400">
                 <span className="font-medium text-white">
-                  from schema validation to workflows:
+                  Rich toolbox:
                 </span>{" "}
-                build everything in a language LLMs can easily understand.
+                schema validation to workflows in a language LLMs easily understand.
               </p>
             </div>
           </div>
