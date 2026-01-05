@@ -2,13 +2,6 @@ import { getAssetPath } from "../../utils/assetPath";
 
 const useCases = [
 	{
-		logo: getAssetPath("/assets/logos/masterclass-nom.svg"),
-		title: "Voice AI Orchestration",
-		href: "https://youtu.be/Cj2pVPqdOVs",
-		alt: "MasterClass",
-		thumbnail: getAssetPath("/assets/images/david-golightly – banner_compressed.webp"),
-	},
-	{
 		logo: getAssetPath("/assets/logos/warp-logo-white.svg"),
 		title: "HR Systems",
 		href: "https://youtu.be/2cN1R9zIxp4",
@@ -20,14 +13,21 @@ const useCases = [
 		title: "Internal Tooling",
 		href: "https://youtu.be/x6-AVCwBIWc",
 		alt: "OpenRouter",
-		thumbnail: getAssetPath("/assets/images/louis-vichy– banner_compressed.webp"),
+		thumbnail: getAssetPath("/assets/images/louis-vichy-banner_compressed.webp"),
 	},
 	{
-		logo: getAssetPath("/assets/logos/14-ai.svg"),
-		title: "AI Customer Service",
-		href: "https://youtu.be/gGFPhFrGCng",
-		alt: "14.ai",
-		thumbnail: getAssetPath("/assets/images/michael-fester – banner_compressed (1).webp"),
+		logo: getAssetPath("/assets/logos/zendesk-logo.svg"),
+		title: "Enerprise Customer Support",
+		href: "https://www.youtube.com/watch?v=rNAqPHBQFEQ",
+		alt: "Attila Vecerek",
+		thumbnail: getAssetPath("/assets/images/attila-vecerek-banner_compressed.webp"),
+	},
+	{
+		logo: getAssetPath("/assets/logos/spiko-logo.svg"),
+		title: "Fintech Infra",
+		href: "https://www.youtube.com/watch?v=lFOHVZnJLew",
+		alt: "Samuel Briole",
+		thumbnail: getAssetPath("/assets/images/samuel-briole-banner_compressed.webp"),
 	},
 ];
 
@@ -37,7 +37,7 @@ export function TestimonialsSection() {
 			{/* Header - with padding */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-					Who uses Effect?
+					Who uses Effect
 				</p>
 				<h2 className="text-2xl font-semibold text-white md:text-3xl">
 					Real-world production systems
