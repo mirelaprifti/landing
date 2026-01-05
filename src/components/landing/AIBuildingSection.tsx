@@ -5,7 +5,7 @@ const AI_CASE_STUDIES = [
     effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
     partnerLogo: getAssetPath("/assets/logos/masterclass-nom.svg"),
     partnerLogoClass: "h-4",
-    title: "Building a Voice AI Orchestration Layer",
+    title: "Voice AI Orchestration Layer",
     href: "https://youtu.be/Cj2pVPqdOVs",
     accentColor: "bg-red-500"
   },
@@ -13,7 +13,7 @@ const AI_CASE_STUDIES = [
     effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
     partnerLogo: getAssetPath("/assets/logos/14-ai.svg"),
     partnerLogoClass: "h-6",
-    title: "Scaling AI for Customer Support",
+    title: "AI for Customer Support",
     href: "https://youtu.be/gGFPhFrGCng",
     accentColor: "bg-lime-500"
   }
@@ -142,20 +142,10 @@ export function AIBuildingSection() {
 
               {/* Content */}
               <div className="flex flex-col px-6 pt-6 pb-5 gap-4">
-                {/* Logos row */}
-                <div className="flex items-center gap-4">
-                  <img
-                    src={study.effectLogo}
-                    alt="Effect"
-                    className="h-6"
-                  />
-                  <span className="text-zinc-600">|</span>
-                  <img
-                    src={study.partnerLogo}
-                    alt=""
-                    className={study.partnerLogoClass}
-                  />
-                </div>
+                {/* Title */}
+                <h4 className="text-sm font-mono uppercase font-medium text-zinc-300 group-hover:text-white transition-colors">
+                  {study.title}
+                </h4>
 
                 {/* Dashed divider */}
                 <div
@@ -165,11 +155,21 @@ export function AIBuildingSection() {
                   }}
                 />
 
-                {/* Title */}
+                {/* Logos row with arrow */}
                 <div className="flex items-center justify-between">
-                  <h4 className="text-base font-medium text-zinc-300 group-hover:text-white transition-colors">
-                    {study.title}
-                  </h4>
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={study.effectLogo}
+                      alt="Effect"
+                      className="h-6"
+                    />
+                    <span className="text-zinc-600">|</span>
+                    <img
+                      src={study.partnerLogo}
+                      alt=""
+                      className={study.partnerLogoClass}
+                    />
+                  </div>
                   <i className="ri-arrow-right-up-line text-zinc-500 group-hover:text-zinc-400 transition-colors" />
                 </div>
               </div>
