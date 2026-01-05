@@ -195,9 +195,9 @@ export function QuotesGridSection() {
 					))}
 				</div>
 
-				{/* Left fade gradient */}
+				{/* Left fade gradient - hidden on mobile */}
 				<div
-					className="pointer-events-none absolute left-0 top-0 bottom-0 w-16"
+					className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 hidden md:block"
 					style={{
 						background: "linear-gradient(to right, rgb(9 9 11), transparent)",
 					}}
@@ -371,9 +371,9 @@ export function QuotesSection() {
 						{/* Right spacer */}
 						<div className="shrink-0 w-8" />
 					</div>
-					{/* Left fade gradient */}
+					{/* Left fade gradient - hidden on mobile */}
 					<div
-						className="pointer-events-none absolute left-0 top-0 bottom-0 w-24"
+						className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 hidden md:block"
 						style={{
 							background: 'linear-gradient(to left, transparent, #09090b)'
 						}}

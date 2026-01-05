@@ -188,7 +188,7 @@ export function Navigation() {
         </div>
       </div>
 
-      <div id="mobile-menu" className="fixed inset-0 z-50 hidden">
+      <div id="mobile-menu" className="fixed inset-0 z-[200] hidden">
         <button
           type="button"
           id="mobile-menu-backdrop"
@@ -204,7 +204,7 @@ export function Navigation() {
           className="fixed top-0 right-0 flex h-full w-full max-w-[64%] flex-col bg-zinc-900 shadow-xl"
           style={{ transform: "translateX(100%)" }}
         >
-          <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-800 px-4 py-3">
+          <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-800 pl-8 pr-4 py-3.5">
             <span className="text-sm font-medium text-white">Menu</span>
             <button
               type="button"
@@ -259,7 +259,7 @@ export function Navigation() {
                 rel="noopener noreferrer"
                 className="block rounded-lg px-3 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-zinc-800"
               >
-                Learn
+                Learn Effect
               </a>
             </div>
 

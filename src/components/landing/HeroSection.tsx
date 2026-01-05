@@ -75,7 +75,7 @@ export function HeroSection() {
 					</p>
 
 					{/* CTA buttons */}
-					<div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+					<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
 						<a
 							href="https://effect.website/docs/getting-started/quickstart"
 							target="_blank"

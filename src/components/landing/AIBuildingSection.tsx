@@ -99,7 +99,7 @@ export function AIBuildingSection() {
         </div>
 
         {/* Features grid - 4 columns with dividers */}
-        <div className="grid grid-cols-1 px-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 px-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
           {FEATURES.map((feature, index) => (
             <div
               key={index}
@@ -138,12 +138,12 @@ export function AIBuildingSection() {
                 }}
               />
               {/* Top accent line */}
-              <div className={`absolute top-0 left-0 right-0 h-0.25 ${study.accentColor}`} />
+              <div className={`absolute top-0 left-0 right-0 h-0.5 ${study.accentColor}`} />
 
               {/* Content */}
-              <div className="flex flex-col px-6 pt-6 pb-5 gap-4">
+              <div className="flex flex-col px-8 pt-8 pb-7 gap-4">
                 {/* Title */}
-                <h4 className="text-sm font-mono uppercase font-medium text-zinc-300 group-hover:text-white transition-colors">
+                <h4 className="text-sm font-mono uppercase font-medium text-zinc-400 group-hover:text-white transition-colors">
                   {study.title}
                 </h4>
 
@@ -170,7 +170,7 @@ export function AIBuildingSection() {
                       className={study.partnerLogoClass}
                     />
                   </div>
-                  <i className="ri-arrow-right-up-line text-zinc-500 group-hover:text-zinc-400 transition-colors" />
+                  <i className="ri-arrow-right-up-line text-zinc-400 group-hover:text-zinc-400 transition-colors" />
                 </div>
               </div>
             </a>
