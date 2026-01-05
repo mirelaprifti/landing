@@ -215,7 +215,7 @@ export function ProblemSection() {
 				{/* Feature cards */}
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{FEATURES.map((feature, index) => (
-						<div key={index} className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-950 p-5">
+						<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
 							<div className="w-8 h-8 rounded-md bg-zinc-800/70 flex items-center justify-center mb-4">
 								<i className={`${feature.icon} text-zinc-400 text-lg`} />
 							</div>

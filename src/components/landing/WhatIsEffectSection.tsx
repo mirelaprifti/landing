@@ -61,7 +61,7 @@ export function WhatIsEffectSection() {
 							/>
 
 							{/* Type signature */}
-							<div className="group relative w-full rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-4 font-mono text-base text-center transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
+							<div className="group relative w-full border border-zinc-700 bg-zinc-900/50 px-6 py-4 font-mono text-base text-center transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
 								<span className="text-white select-all">Effect</span>
 								<span className="text-zinc-500">&lt;</span>
 								<span className="text-zinc-300">Success</span>
@@ -96,7 +96,7 @@ export function WhatIsEffectSection() {
 							</div>
 
 							{/* Effect.gen explanation */}
-							<div className="mt-8 rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 p-4 font-mono text-sm">
+							<div className="mt-8 ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 p-6 font-mono text-sm">
 								<div>
 									<span className="text-zinc-500">() </span>
 									<span className="text-zinc-500">{"=>"} </span>
@@ -119,17 +119,17 @@ export function WhatIsEffectSection() {
 								</div>
 								<div className="mt-3 pt-3 border-t border-zinc-800 text-zinc-500 text-xs leading-relaxed">
 									<p>→ <span className="text-violet-400">yield*</span> gives you the <span className="text-zinc-300">Success</span> value</p>
-									<p>→ <span className="text-zinc-300">Errors</span> and <span className="text-zinc-300">dependencies</span> are tracked in the parent Effect</p>
+									<p>→ <span className="text-zinc-300">Errors</span> & <span className="text-zinc-300">dependencies</span> are tracked in the parent Effect</p>
 								</div>
 							</div>
 
 							{/* Attribution - centered */}
-							<div className="mt-3 text-center">
+							<div className="mt-2 text-center">
 								<a
 									href="https://effect.website/docs/getting-started/why-effect/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-white"
+									className="inline-flex items-center gap-1.5 text-xs text-zinc-400 transition-colors hover:text-white"
 								>
 									Why Effect was designed this way
 									<i className="ri-arrow-right-up-line text-sm" />

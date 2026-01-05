@@ -172,7 +172,7 @@ export function QuotesGridSection() {
 					{quotes.map((quote, index) => (
 						<div
 							key={index}
-							className="flex h-56 w-80 shrink-0 flex-col rounded-md border border-zinc-700 bg-zinc-950 p-6"
+							className="flex h-56 w-80 shrink-0 flex-col border border-zinc-700 bg-zinc-950 p-6"
 						>
 							<p className="line-clamp-4 text-base leading-relaxed text-zinc-400">
 								"{quote.text}"
