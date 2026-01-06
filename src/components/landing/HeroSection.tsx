@@ -56,7 +56,7 @@ export function HeroSection() {
 				{/* Content */}
 				<div className="max-w-3xl mx-auto text-center">
 					{/* Import statement */}
-					<p className="mb-4 font-mono text-sm md:text-base">
+					<p className="mb-[15px] font-mono text-sm md:text-base">
 						<span className="text-violet-400">import</span>
 						<span className="text-zinc-300">{" { "}</span>
 						<span className="text-white">Effect</span>
@@ -107,8 +107,8 @@ export function HeroSection() {
 							rel="noopener noreferrer"
 							className="group flex items-center gap-2 transition-colors"
 						>
-							<img src={getAssetPath("/assets/npm-brands-solid-full.svg")} alt="npm" className="h-6 w-6 opacity-60 group-hover:opacity-80 transition-opacity" />
-							<span className="text-sm font-medium text-white">6M+</span>
+							<img src={getAssetPath("/assets/npm-brands-solid-full.svg")} alt="npm" className="h-7 w-8 opacity-60 group-hover:opacity-80 transition-opacity" />
+							<span className="text-sm font-medium text-white">6M+/w</span>
 							<span className="text-sm text-zinc-400 -ml-1">downloads</span>
 						</a>
 						<div className="h-4 w-px bg-zinc-800" />

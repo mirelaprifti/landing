@@ -200,10 +200,10 @@ export function ProblemSection() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 mb-16">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							Common Problems Effect Solves
+							What Effect Solves
 						</p>
 						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-md">
-							Production problems. Built-in solutions.
+							Built-in solutions for the hard problems
 						</h2>
 					</div>
 

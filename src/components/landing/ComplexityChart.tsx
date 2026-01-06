@@ -25,13 +25,6 @@ function exponentialCurve(t: number, y0: number, yEnd: number, k: number): numbe
 	return y0 + (yEnd - y0) * (Math.exp(k * t) - 1) / (expK - 1);
 }
 
-/**
- * Linear function: y = y0 + (yEnd - y0) * t
- */
-function linearCurve(t: number, y0: number, yEnd: number): number {
-	return y0 + (yEnd - y0) * t;
-}
-
 function clamp(value: number, min: number, max: number): number {
     return Math.max(min, Math.min(max, value));
 }
@@ -133,11 +126,12 @@ function generateExponentialPath(features: number): string {
     const xEnd = Math.max(1, rawXEnd); // avoid degenerate segments
 
     // End Y values for exponential growth (lower Y = higher complexity)
-    const endYValues = [328, 308, 258, 180, 100, 50];
+    // Values closer to 0 = higher on the chart = more complexity
+    const endYValues = [328, 310, 260, 160, 60, 10];
     const yEnd = endYValues[features] ?? endYValues[5];
 
-    // Exponential factor - higher k = more exponential
-    const kValues = [0.5, 1.0, 1.8, 2.5, 3.5, 4.5];
+    // Exponential factor - higher k = steeper acceleration at the end
+    const kValues = [1.0, 1.5, 2.2, 3.0, 4.0, 5.0];
     const k = kValues[features] ?? kValues[5];
 
     // Choose mid at ~58% for a pleasant shape (matches original feel)
@@ -155,9 +149,17 @@ function generateExponentialPath(features: number): string {
 
     const m0 = slopeAt(0);
     const m1 = slopeAt(tMid);
-    const m2 = slopeAt(1);
+    // Amplify the end slope significantly to ensure the curve keeps accelerating upward visually
+    const m2 = slopeAt(1) * 3;
 
     return buildTwoSegmentBezier(x0, y0, m0, x1, y1, m1, x2, y2, m2);
+}
+
+/**
+ * Linear function: y = y0 + (yEnd - y0) * t
+ */
+function linearCurve(t: number, y0: number, yEnd: number): number {
+    return y0 + (yEnd - y0) * t;
 }
 
 /**

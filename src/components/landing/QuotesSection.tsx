@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 
 function QuoteCard({
@@ -46,6 +46,13 @@ function QuoteCard({
 
 export function QuotesGridSection() {
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
+	const sectionRef = useRef<HTMLElement>(null);
+	const [isInView, setIsInView] = useState(false);
+	const [isPaused, setIsPaused] = useState(false);
+	const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+	const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const isUserScrollingRef = useRef(false);
+	const lastScrollLeftRef = useRef(0);
 
 	const quotes = [
 		{
@@ -102,27 +109,197 @@ export function QuotesGridSection() {
 	const cardWidth = 320;
 	const gap = 16;
 
-	const scroll = (direction: "left" | "right") => {
-		if (!scrollContainerRef.current) return;
+	// Duplicate quotes for infinite scroll effect
+	const infiniteQuotes = [...quotes, ...quotes, ...quotes];
+	// Width of one set of cards (8 cards * (320px + 16px gap))
+	const singleSetWidth = quotes.length * (cardWidth + gap);
 
-		const container = scrollContainerRef.current;
-		const scrollAmount = cardWidth + gap;
-		const maxScroll = container.scrollWidth - container.clientWidth;
+	// Helper to start auto-scroll
+	const startAutoScroll = () => {
+		if (autoScrollIntervalRef.current) return;
+		autoScrollIntervalRef.current = setInterval(() => {
+			if (!scrollContainerRef.current || isUserScrollingRef.current) return;
 
-		if (direction === "right") {
-			// If at or near the end, loop back to start
-			if (container.scrollLeft >= maxScroll - 10) {
-				container.scrollTo({ left: 0, behavior: "smooth" });
+			const container = scrollContainerRef.current;
+			const currentScroll = container.scrollLeft;
+
+			// Check if we need to reset position for seamless loop
+			// When we've scrolled past 2 sets worth, jump back by 1 set
+			if (currentScroll >= singleSetWidth * 2 - 100) {
+				container.scrollLeft = currentScroll - singleSetWidth;
+				lastScrollLeftRef.current = container.scrollLeft;
 			} else {
-				container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+				container.scrollLeft += 1;
+				lastScrollLeftRef.current = container.scrollLeft;
 			}
-		} else {
-			container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+		}, 50);
+	};
+
+	// Initialize scroll position to middle set (after first render)
+	useEffect(() => {
+		// Small delay to ensure the container is rendered with proper dimensions
+		const timer = setTimeout(() => {
+			if (scrollContainerRef.current) {
+				scrollContainerRef.current.scrollLeft = singleSetWidth;
+				lastScrollLeftRef.current = singleSetWidth;
+			}
+		}, 100);
+		return () => clearTimeout(timer);
+	}, []);
+
+	// Helper to stop auto-scroll
+	const stopAutoScroll = () => {
+		if (autoScrollIntervalRef.current) {
+			clearInterval(autoScrollIntervalRef.current);
+			autoScrollIntervalRef.current = null;
 		}
 	};
 
+	// Helper to pause and resume after delay
+	const pauseAndResume = () => {
+		setIsPaused(true);
+		stopAutoScroll();
+
+		if (resumeTimeoutRef.current) {
+			clearTimeout(resumeTimeoutRef.current);
+		}
+
+		resumeTimeoutRef.current = setTimeout(() => {
+			if (isInView) {
+				setIsPaused(false);
+				startAutoScroll();
+			}
+		}, 2000); // Resume after 2 seconds of no interaction
+	};
+
+	// Auto-scroll when section comes into view
+	useEffect(() => {
+		const section = sectionRef.current;
+		if (!section) return;
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setIsInView(entry.isIntersecting);
+				if (entry.isIntersecting && !isPaused) {
+					startAutoScroll();
+				} else {
+					stopAutoScroll();
+				}
+			},
+			{ threshold: 0.3 }
+		);
+
+		observer.observe(section);
+
+		return () => {
+			observer.disconnect();
+			stopAutoScroll();
+			if (resumeTimeoutRef.current) {
+				clearTimeout(resumeTimeoutRef.current);
+			}
+		};
+	}, [isPaused]);
+
+	// Detect user scrolling (mouse wheel or touch drag)
+	const handleScroll = () => {
+		if (!scrollContainerRef.current) return;
+
+		// Check if scroll was caused by user (significant difference from expected position)
+		const currentScroll = scrollContainerRef.current.scrollLeft;
+		const expectedScroll = lastScrollLeftRef.current;
+		const diff = Math.abs(currentScroll - expectedScroll);
+
+		// If scroll changed more than auto-scroll would cause, user is scrolling
+		if (diff > 5 && !isUserScrollingRef.current) {
+			isUserScrollingRef.current = true;
+			pauseAndResume();
+		}
+
+		lastScrollLeftRef.current = currentScroll;
+	};
+
+	// Handle touch start - pause auto-scroll
+	const handleTouchStart = () => {
+		isUserScrollingRef.current = true;
+		pauseAndResume();
+	};
+
+	// Handle touch end
+	const handleTouchEnd = () => {
+		isUserScrollingRef.current = false;
+	};
+
+	// Pause auto-scroll on hover
+	const handleMouseEnter = () => {
+		pauseAndResume();
+	};
+
+	const handleMouseLeave = () => {
+		isUserScrollingRef.current = false;
+		isDraggingRef.current = false;
+	};
+
+	// Mouse drag scrolling
+	const isDraggingRef = useRef(false);
+	const dragStartXRef = useRef(0);
+	const dragScrollLeftRef = useRef(0);
+
+	const handleMouseDown = (e: React.MouseEvent) => {
+		if (!scrollContainerRef.current) return;
+		isDraggingRef.current = true;
+		dragStartXRef.current = e.pageX - scrollContainerRef.current.offsetLeft;
+		dragScrollLeftRef.current = scrollContainerRef.current.scrollLeft;
+		isUserScrollingRef.current = true;
+		pauseAndResume();
+	};
+
+	const handleMouseMove = (e: React.MouseEvent) => {
+		if (!isDraggingRef.current || !scrollContainerRef.current) return;
+		e.preventDefault();
+		const x = e.pageX - scrollContainerRef.current.offsetLeft;
+		const walk = (x - dragStartXRef.current) * 1.5;
+		scrollContainerRef.current.scrollLeft = dragScrollLeftRef.current - walk;
+		lastScrollLeftRef.current = scrollContainerRef.current.scrollLeft;
+	};
+
+	const handleMouseUp = () => {
+		isDraggingRef.current = false;
+		isUserScrollingRef.current = false;
+	};
+
+	const scroll = (direction: "left" | "right") => {
+		if (!scrollContainerRef.current) return;
+		pauseAndResume();
+
+		const container = scrollContainerRef.current;
+		const scrollAmount = cardWidth + gap;
+
+		if (direction === "right") {
+			container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+		} else {
+			container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+		}
+
+		// After smooth scroll completes, check if we need to reset position
+		setTimeout(() => {
+			if (!scrollContainerRef.current) return;
+			const current = scrollContainerRef.current.scrollLeft;
+
+			// If scrolled too far right, jump back by one set
+			if (current >= singleSetWidth * 2 - 100) {
+				scrollContainerRef.current.scrollLeft = current - singleSetWidth;
+				lastScrollLeftRef.current = scrollContainerRef.current.scrollLeft;
+			}
+			// If scrolled too far left, jump forward by one set
+			else if (current < singleSetWidth * 0.3) {
+				scrollContainerRef.current.scrollLeft = current + singleSetWidth;
+				lastScrollLeftRef.current = scrollContainerRef.current.scrollLeft;
+			}
+		}, 400);
+	};
+
 	return (
-		<section className="relative z-[70] w-full py-24 md:pt-40 md:pb-24">
+		<section ref={sectionRef} className="relative z-[70] w-full py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header row with title and navigation arrows */}
 				<div className="mb-10 flex items-end justify-between">
@@ -139,7 +316,7 @@ export function QuotesGridSection() {
 						<button
 							type="button"
 							onClick={() => scroll("left")}
-							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
 							<i className="ri-arrow-left-line text-base text-zinc-400 transition-colors group-hover:text-white" />
@@ -147,7 +324,7 @@ export function QuotesGridSection() {
 						<button
 							type="button"
 							onClick={() => scroll("right")}
-							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
 							<i className="ri-arrow-right-line text-base text-zinc-400 transition-colors group-hover:text-white" />
@@ -160,7 +337,15 @@ export function QuotesGridSection() {
 			<div className="relative">
 				<div
 					ref={scrollContainerRef}
-					className="flex gap-4 overflow-x-auto scrollbar-hide px-4"
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					onMouseDown={handleMouseDown}
+					onMouseMove={handleMouseMove}
+					onMouseUp={handleMouseUp}
+					onScroll={handleScroll}
+					onTouchStart={handleTouchStart}
+					onTouchEnd={handleTouchEnd}
+					className="flex gap-4 overflow-x-auto scrollbar-hide px-4 cursor-grab active:cursor-grabbing select-none"
 					style={{
 						scrollbarWidth: "none",
 						msOverflowStyle: "none",
@@ -169,7 +354,7 @@ export function QuotesGridSection() {
 						paddingRight: "max(1rem, calc((100vw - 73.75rem) / 2 + 1rem))",
 					}}
 				>
-					{quotes.map((quote, index) => (
+					{infiniteQuotes.map((quote, index) => (
 						<div
 							key={index}
 							className="flex h-56 w-80 shrink-0 flex-col border border-zinc-700 bg-zinc-950 p-6"

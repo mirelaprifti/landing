@@ -227,12 +227,12 @@ export function FAQSection() {
                         className={`flex h-6 w-6 shrink-0 items-center justify-center transition-all duration-200 ${
                           isOpen
                             ? "bg-white text-zinc-900"
-                            : "bg-zinc-800/80 text-zinc-500 group-hover:bg-zinc-700"
+                            : "bg-zinc-800/80 text-zinc-400 group-hover:bg-zinc-700"
                         }`}
                       >
                         <i
-                          className={`ri-add-line text-sm transition-transform duration-200 ${
-                            isOpen ? "rotate-45" : ""
+                          className={`ri-arrow-down-s-line text-base transition-transform duration-200 ${
+                            isOpen ? "rotate-180" : ""
                           }`}
                         />
                       </div>
