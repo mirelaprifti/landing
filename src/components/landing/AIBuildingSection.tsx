@@ -130,13 +130,6 @@ export function AIBuildingSection() {
               rel="noopener noreferrer"
               className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900"
             >
-              {/* Gradient background from top */}
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background: `linear-gradient(to bottom, ${study.accentColor === 'bg-red-500' ? 'rgba(239, 68, 68, 0.08)' : 'rgba(132, 204, 22, 0.08)'} 0%, transparent 60%)`
-                }}
-              />
               {/* Top accent line */}
               <div className={`absolute top-0 left-0 right-0 h-0.5 ${study.accentColor}`} />
 

@@ -83,12 +83,12 @@ export function Navigation() {
                 <img
                   src={getAssetPath("/assets/logos/effect-logo-white.svg")}
                   alt="Effect"
-                  className="h-[1.5rem] w-auto"
+                  className="h-[1.75rem] w-auto"
                 />
               </a>
 
               {/* Navigation links next to logo */}
-              <div className="ml-8 hidden items-center gap-6 md:flex">
+              <div className="ml-8 hidden items-center gap-8 md:flex">
                 <a
                   href="https://effect.website/docs/"
                   target="_blank"

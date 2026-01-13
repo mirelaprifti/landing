@@ -24,7 +24,7 @@ export function InstallCommand() {
 	};
 
 	return (
-		<div className="rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 overflow-hidden">
+		<div className="rounded-md ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 overflow-hidden p-1">
 			{/* Tabs */}
 			<div className="flex border-b border-zinc-800">
 				{PM_OPTIONS.map((pm) => (
@@ -32,7 +32,7 @@ export function InstallCommand() {
 						key={pm}
 						type="button"
 						onClick={() => setActivePM(pm)}
-						className={`px-6 py-2.5 text-sm font-medium transition-colors relative ${
+						className={`px-6 py-2.5 text-sm font-medium transition-colors relative cursor-pointer ${
 							activePM === pm
 								? "text-white"
 								: "text-zinc-500 hover:text-zinc-300"
@@ -50,7 +50,7 @@ export function InstallCommand() {
 			<button
 				type="button"
 				onClick={copyCommand}
-				className="w-full flex items-center justify-between gap-4 px-4 py-4 font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
+				className="w-full flex items-center justify-between gap-4 px-4 py-4 mt-1 font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
 				aria-label="Copy install command"
 			>
 				<span>{currentCommand}</span>
