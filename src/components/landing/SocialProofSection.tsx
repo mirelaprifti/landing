@@ -115,7 +115,7 @@ export function SocialProofSection() {
 				<p className="mb-3 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
 					Trusted in Production
 				</p>
-				<h2 className="text-2xl font-semibold text-white md:text-3xl">
+				<h2 className="text-2xl font-bold text-white md:text-3xl">
 					Real-world production systems
 				</h2>
 				{/* Resource links */}

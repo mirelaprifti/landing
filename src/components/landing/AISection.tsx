@@ -14,7 +14,7 @@ export function AISection() {
             <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
               LLMs 🤍 Effect
             </p>
-            <h2 className="max-w-2xl text-2xl leading-tight font-semibold text-white md:text-3xl">
+            <h2 className="max-w-2xl text-2xl leading-tight font-bold text-white md:text-3xl">
               Write Effect code with AI
             </h2>
             <p className="mt-4 text-lg leading-snug text-zinc-400 max-w-lg">
@@ -107,7 +107,7 @@ export function AISection() {
                 <span className="font-medium text-white">
                   Rich toolbox:
                 </span>{" "}
-                schema validation to workflows in a language LLMs easily understand.
+                from schema validation to workflows, build in a language LLMs understand.
               </p>
             </div>
           </div>

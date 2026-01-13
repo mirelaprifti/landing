@@ -13,7 +13,7 @@ export function HeroSection() {
 						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
 						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 					`,
-					backgroundSize: "196.6px 99px",
+					backgroundSize: "196.6px 200px",
 					backgroundPosition: "calc(50% + 97px) 0",
 				}}
 			/>
@@ -54,9 +54,9 @@ export function HeroSection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-[96px] md:pb-[96px]">
 				{/* Content */}
-				<div className="max-w-3xl mx-auto text-center">
+				<div className="max-w-5xl text-left">
 					{/* Import statement */}
-					<p className="mb-[15px] font-mono text-sm md:text-base">
+					<p className="mb-[12px] font-mono text-sm md:text-[1.1rem]">
 						<span className="text-violet-400">import</span>
 						<span className="text-zinc-300">{" { "}</span>
 						<span className="text-white">Effect</span>
@@ -65,31 +65,22 @@ export function HeroSection() {
 						<span className="text-emerald-400">{" \"effect\""}</span>
 					</p>
 					{/* Headline */}
-					<h1 className="text-4xl font-semibold text-white md:text-[4rem] leading-tight">
-						The missing standard library for TypeScript
+					<h1 className="text-4xl font-bold text-white md:text-[4.15rem] leading-tight">
+						The missing standard library for TypeScript applications
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mt-6 text-xl text-zinc-400 max-w-xl mx-auto">
-						Effect is an open-source ecosystem for building scalable and reliable applications.
+					<p className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed">
+						Effect is the open-source ecosystem for building software that is scalable, reliable, and maintainable from the start.
 					</p>
 
-					{/* CTA buttons */}
-					<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-						<a
-							href="https://effect.website/docs/getting-started/quickstart"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100"
-						>
-							Get started
-							<i className="ri-arrow-right-up-line text-base" />
-						</a>
+					{/* Install command */}
+					<div className="mt-8 max-w-[34.75rem]">
 						<InstallCommand />
 					</div>
 
 					{/* Stats */}
-					<div className="mt-8 flex items-center justify-center gap-6">
+					<div className="mt-6 ml-2 flex items-center gap-8">
 						<a
 							href="https://github.com/Effect-TS/effect"
 							target="_blank"
@@ -124,6 +115,7 @@ export function HeroSection() {
 						</a>
 					</div>
 				</div>
+
 			</div>
 		</section>
 	);

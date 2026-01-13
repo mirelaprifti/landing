@@ -202,7 +202,7 @@ export function ProblemSection() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							What Effect Solves
 						</p>
-						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-md">
+						<h2 className="text-2xl leading-tight font-bold text-white md:text-3xl max-w-md">
 							Built-in solutions for the hard problems
 						</h2>
 					</div>

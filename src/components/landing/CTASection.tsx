@@ -29,7 +29,7 @@ export function CTASection() {
 					<p className="mb-3 font-mono text-base font-semibold uppercase tracking-wider text-zinc-400">
 						Get Started Now
 					</p>
-					<h2 className="text-3xl font-semibold leading-tight text-white md:text-4xl">
+					<h2 className="text-3xl font-bold leading-tight text-white md:text-4xl">
 						Stop installing a new package for every problem
 					</h2>
 					<p className="mt-6 text-lg text-zinc-400">

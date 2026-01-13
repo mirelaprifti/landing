@@ -66,7 +66,7 @@ export function AIBuildingSection() {
             <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
               Effect for AI
             </p>
-            <h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
+            <h2 className="text-2xl leading-tight font-bold text-white md:text-3xl">
               Build AI and Agentic Systems
             </h2>
             <p className="mt-4 text-lg text-zinc-400 max-w-2xl">

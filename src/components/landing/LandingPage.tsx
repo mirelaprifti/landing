@@ -19,6 +19,14 @@ function SectionDivider() {
 export function LandingPage() {
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+			{/* Dithered background overlay - subtle texture across entire page */}
+			<div
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
+					backgroundSize: '4px 4px',
+				}}
+			/>
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"

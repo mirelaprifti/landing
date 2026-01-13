@@ -70,7 +70,7 @@ export function EverythingYouNeedSection() {
 					<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
 						Everything You Need
 					</p>
-					<h2 className="max-w-xl text-2xl font-semibold leading-tight text-white md:text-3xl">
+					<h2 className="max-w-xl text-2xl font-bold leading-tight text-white md:text-3xl">
 						One library. Complete toolkit.
 					</h2>
 					<p className="mt-5 max-w-[44rem] text-lg leading-relaxed text-zinc-400">
