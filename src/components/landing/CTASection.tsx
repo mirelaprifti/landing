@@ -11,7 +11,7 @@ export function CTASection() {
 						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
 						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 					`,
-          backgroundSize: "196.6px 190px",
+          backgroundSize: "196.6px 188px",
           backgroundPosition: "calc(50% + 97px) 0"
         }}
       />
@@ -27,7 +27,7 @@ export function CTASection() {
 
       <div className="relative mx-auto w-full max-w-[73.75rem] px-4">
         <div className="flex flex-col items-center text-center">
-          <p className="mb-3 font-mono text-base font-semibold tracking-wider text-zinc-400 uppercase">
+          <p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
             Get Started Now
           </p>
           <h2 className="max-w-xl text-3xl leading-tight font-bold text-white">

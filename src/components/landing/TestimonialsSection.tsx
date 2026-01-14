@@ -24,7 +24,7 @@ const useCases = [
 	},
 	{
 		logo: getAssetPath("/assets/logos/spiko-logo.svg"),
-		title: "Fintech Infra",
+		title: "Fintech Infrastructure",
 		href: "https://www.youtube.com/watch?v=lFOHVZnJLew",
 		alt: "Samuel Briole",
 		thumbnail: getAssetPath("/assets/images/samuel-briole-banner_compressed.webp"),
@@ -84,22 +84,25 @@ export function TestimonialsSection() {
 							{...(useCase.href.startsWith("http")
 								? { target: "_blank", rel: "noopener noreferrer" }
 								: {})}
-							className="group relative flex flex-col overflow-hidden rounded-md border border-zinc-700 transition-all hover:border-zinc-500 hover:bg-zinc-900"
+							className="group relative flex flex-col overflow-hidden transition-all hover:border-zinc-500"
 						>
 							{/* Video thumbnail area */}
-							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
+							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900 border border-zinc-800 rounded-md">
 								<img
 									src={useCase.thumbnail}
 									alt={`${useCase.alt} case study`}
-									className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+									className="h-full w-full object-cover"
 								/>
+								<div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
+									<i className="ri-play-circle-fill text-4xl text-white transition-colors" />
+								</div>
 							</div>
 							{/* Label area */}
-							<div className="flex items-center justify-between px-3 py-2">
-								<span className="text-sm font-medium text-zinc-400">
+							<div className="flex items-center justify-between px-0 py-2">
+								<span className="text-sm font-mono uppercase text-zinc-400 group-hover:text-zinc-200">
 									{useCase.title}
 								</span>
-								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-400" />
+								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-200" />
 							</div>
 						</a>
 					))}
