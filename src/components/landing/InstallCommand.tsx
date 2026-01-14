@@ -10,6 +10,14 @@ const INSTALL_COMMANDS: Record<string, string> = {
 
 const PM_OPTIONS = ["npm", "pnpm", "yarn", "bun", "deno"] as const;
 
+const PM_ICONS: Record<string, string> = {
+	npm: "/assets/npm.svg",
+	pnpm: "/assets/pnpm-logo.svg",
+	yarn: "/assets/yarn-logo.svg",
+	bun: "/assets/bun-logo-box.svg",
+	deno: "/assets/deno-logo-box.svg",
+};
+
 export function InstallCommand() {
 	const [activePM, setActivePM] = useState<string>("npm");
 	const [copyFeedback, setCopyFeedback] = useState(false);
@@ -32,12 +40,13 @@ export function InstallCommand() {
 						key={pm}
 						type="button"
 						onClick={() => setActivePM(pm)}
-						className={`px-6 py-2.5 text-sm font-medium transition-colors relative cursor-pointer ${
+						className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-sm font-medium transition-colors relative cursor-pointer ${
 							activePM === pm
 								? "text-white"
 								: "text-zinc-500 hover:text-zinc-300"
 						}`}
 					>
+						<img src={PM_ICONS[pm]} alt={pm} className="w-4 h-4" />
 						{pm}
 						{activePM === pm && (
 							<div className="absolute bottom-0 left-0 right-0 h-px bg-white" />
@@ -50,7 +59,7 @@ export function InstallCommand() {
 			<button
 				type="button"
 				onClick={copyCommand}
-				className="w-full flex items-center justify-between gap-4 px-4 py-4 mt-1 font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
+				className="w-full flex items-center justify-between gap-4 px-5 py-4 mt-1 font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
 				aria-label="Copy install command"
 			>
 				<span>{currentCommand}</span>

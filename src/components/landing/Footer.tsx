@@ -232,13 +232,10 @@ export function Footer() {
 								</li>
 								<li>
 									<a
-										href="https://effect.kitlangton.com/"
-										target="_blank"
-										rel="noopener noreferrer"
+										href="/brand-assets"
 										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
 									>
-										Visual Effect
-										<i className="ri-arrow-right-up-line text-sm" />
+										Brand Assets
 									</a>
 								</li>
 								<li>

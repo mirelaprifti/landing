@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const FEATURES = [
 	{
-		problem: "You have try-catch blocks everywhere but you still don't know how things can fail.",
+		problem: "Try-catch blocks everywhere but you still don't know how things can fail.",
 		icon: "ri-shield-check-line",
 		title: "Typed Errors",
 		description: "Errors in the type system. The compiler tells you what can fail.",
@@ -216,20 +216,22 @@ export function ProblemSection() {
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{FEATURES.map((feature, index) => (
 						<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
-							<div className="w-8 h-8 rounded-md bg-zinc-800/70 flex items-center justify-center mb-4">
-								<i className={`${feature.icon} text-zinc-400 text-lg`} />
+							<div className="flex items-start gap-3 mb-0">
+								<div className="w-8 h-8 mt-1 rounded-md bg-zinc-800/70 flex items-center justify-center shrink-0">
+									<i className={`${feature.icon} text-zinc-300 text-lg`} />
+								</div>
+								<p className="text-sm font-medium text-zinc-400">
+									{feature.problem}
+								</p>
 							</div>
-							<p className="text-sm font-medium text-zinc-400">
-								{feature.problem}
-							</p>
 							<div
-								className="h-px w-full my-6"
+								className="h-px w-full my-8"
 								style={{
 									backgroundImage: 'repeating-linear-gradient(to right, rgb(63 63 70) 0px, rgb(63 63 70) 2px, transparent 2px, transparent 4px)'
 								}}
 							/>
 							<h3 className="text-base font-mono uppercase font-medium text-white">
-								{feature.title}
+								<span className="text-zinc-500 mr-2">//</span>{feature.title}
 							</h3>
 							{/* Checkmark items */}
 							<div className="mt-3 flex flex-col gap-1.5">

@@ -13,7 +13,7 @@ export function HeroSection() {
 						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
 						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 					`,
-					backgroundSize: "196.6px 200px",
+					backgroundSize: "196.6px 198px",
 					backgroundPosition: "calc(50% + 97px) 0",
 				}}
 			/>
@@ -54,7 +54,7 @@ export function HeroSection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-[96px] md:pb-[96px]">
 				{/* Content */}
-				<div className="max-w-5xl text-left">
+				<div className="max-w-4xl text-left">
 					{/* Import statement */}
 					<p className="mb-[12px] font-mono text-sm md:text-[1.1rem]">
 						<span className="text-violet-400">import</span>
@@ -65,7 +65,7 @@ export function HeroSection() {
 						<span className="text-emerald-400">{" \"effect\""}</span>
 					</p>
 					{/* Headline */}
-					<h1 className="text-4xl font-bold text-white md:text-[4.15rem] leading-tight">
+					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tight">
 						The missing standard library for TypeScript applications
 					</h1>
 

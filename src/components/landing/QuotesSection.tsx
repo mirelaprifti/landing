@@ -237,6 +237,15 @@ export function QuotesGridSection() {
 	const handleMouseLeave = () => {
 		isUserScrollingRef.current = false;
 		isDraggingRef.current = false;
+		// Clear any pending resume timeout and resume immediately
+		if (resumeTimeoutRef.current) {
+			clearTimeout(resumeTimeoutRef.current);
+			resumeTimeoutRef.current = null;
+		}
+		if (isInView) {
+			setIsPaused(false);
+			startAutoScroll();
+		}
 	};
 
 	// Mouse drag scrolling
@@ -363,7 +372,7 @@ export function QuotesGridSection() {
 								"{quote.text}"
 							</p>
 							<div className="mt-auto flex items-center justify-between">
-								<span className="text-sm font-medium text-zinc-200">
+								<span className="text-sm font-mono font-medium text-zinc-200">
 									{quote.author}
 								</span>
 								{quote.logo ? (
