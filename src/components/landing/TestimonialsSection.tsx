@@ -99,7 +99,7 @@ export function TestimonialsSection() {
 							</div>
 							{/* Label area */}
 							<div className="flex items-center justify-between px-0 py-2">
-								<span className="text-sm font-mono uppercase text-zinc-400 group-hover:text-zinc-200">
+								<span className="text-[13px] font-mono uppercase text-zinc-400 group-hover:text-zinc-200">
 									{useCase.title}
 								</span>
 								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-200" />

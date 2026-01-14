@@ -1,5 +1,6 @@
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
+import { CTASection } from "./CTASection";
 import { getAssetPath } from "../../utils/assetPath";
 
 const COMBINATION_MARK = {
@@ -443,7 +444,7 @@ export function PressKitPage() {
         </section>
 
         {/* Logo Pairing Section */}
-        <section className="pb-24">
+        <section className="pb-24 border-b border-zinc-800">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
             <div className="border-t border-zinc-800 py-12">
               <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-8">
@@ -482,6 +483,8 @@ export function PressKitPage() {
             </div>
           </div>
         </section>
+
+        <CTASection />
       </main>
 
       <Footer />

@@ -17,7 +17,7 @@ export function Footer() {
 						{/* Column 1: Resources */}
 						<div className="flex flex-1 flex-col gap-4 lg:pl-4">
 							{/* Column Header */}
-							<h3 className="text-sm font-mono uppercase font-semibold text-zinc-200">
+							<h3 className="text-sm font-mono uppercase text-zinc-100">
 								Resources
 							</h3>
 							{/* Links */}
@@ -81,7 +81,7 @@ export function Footer() {
 						{/* Column 2: DevTools */}
 						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-800 lg:pl-4">
 							{/* Column Header */}
-							<h3 className="text-sm font-mono uppercase font-semibold text-zinc-200">DevTools</h3>
+							<h3 className="text-sm font-mono uppercase text-zinc-100">DevTools</h3>
 							{/* Links */}
 							<ul className="flex flex-col items-start gap-2">
 								<li>
@@ -144,7 +144,7 @@ export function Footer() {
 						{/* Column 3: Community */}
 						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-transparent lg:pl-4">
 							{/* Column Header */}
-							<h3 className="text-sm font-mono uppercase font-semibold text-zinc-200">
+							<h3 className="text-sm font-mono uppercase text-zinc-100">
 								Community
 							</h3>
 							{/* Links */}
@@ -207,7 +207,7 @@ export function Footer() {
 						{/* Column 4: Other */}
 						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-800 lg:pl-4">
 							{/* Column Header */}
-							<h3 className="text-sm font-mono uppercase font-semibold text-zinc-200">Other</h3>
+							<h3 className="text-sm font-mono uppercase text-zinc-100">Other</h3>
 							{/* Links */}
 							<ul className="flex flex-col items-start gap-2">
 								<li>

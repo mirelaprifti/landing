@@ -9,8 +9,7 @@ const FEATURES = [
 		items: [
 			"Typed errors in the function signature",
 			"Short-circuit and collect errors",
-			"Automatic retry with backoff",
-			"Timeout and interruption"
+			"Automatic retry with backoff"
 		]
 	},
 	{
@@ -21,8 +20,7 @@ const FEATURES = [
 		items: [
 			"Type-safe service definitions",
 			"Automatic dependency resolution",
-			"Easy mocking for tests",
-			"No decorators or reflection"
+			"Easy mocking for tests"
 		]
 	},
 	{
@@ -33,7 +31,6 @@ const FEATURES = [
 		items: [
 			"Structured concurrency with fibers",
 			"Parallel execution with limits",
-			"Race conditions handled correctly",
 			"Automatic resource cleanup"
 		]
 	},
@@ -45,8 +42,7 @@ const FEATURES = [
 		items: [
 			"Cron-like schedules",
 			"Exponential backoff",
-			"Jittered retries",
-			"Repeat with conditions"
+			"Jittered retries"
 		]
 	},
 	{
@@ -57,8 +53,7 @@ const FEATURES = [
 		items: [
 			"Built-in OpenTelemetry tracing",
 			"Structured logging",
-			"Metrics collection",
-			"Span context propagation"
+			"Metrics collection"
 		]
 	},
 	{
@@ -69,8 +64,7 @@ const FEATURES = [
 		items: [
 			"Runtime validation from types",
 			"Automatic JSON serialization",
-			"API contract generation",
-			"Form validation support"
+			"API contract generation"
 		]
 	},
 ];
