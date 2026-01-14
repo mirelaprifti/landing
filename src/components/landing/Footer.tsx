@@ -232,7 +232,7 @@ export function Footer() {
 								</li>
 								<li>
 									<a
-										href="/brand-assets"
+										href={getAssetPath("/brand-assets")}
 										className="inline-flex items-center gap-2 text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
 									>
 										Brand Assets
