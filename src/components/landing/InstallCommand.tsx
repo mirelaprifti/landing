@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getAssetPath } from "../../utils/assetPath";
 
 const INSTALL_COMMANDS: Record<string, string> = {
 	npm: "npm install effect",
@@ -11,11 +12,11 @@ const INSTALL_COMMANDS: Record<string, string> = {
 const PM_OPTIONS = ["npm", "pnpm", "yarn", "bun", "deno"] as const;
 
 const PM_ICONS: Record<string, string> = {
-	npm: "/assets/npm.svg",
-	pnpm: "/assets/pnpm-logo.svg",
-	yarn: "/assets/yarn-logo.svg",
-	bun: "/assets/bun-logo-box.svg",
-	deno: "/assets/deno-logo-box.svg",
+	npm: getAssetPath("/assets/npm.svg"),
+	pnpm: getAssetPath("/assets/pnpm-logo.svg"),
+	yarn: getAssetPath("/assets/yarn-logo.svg"),
+	bun: getAssetPath("/assets/bun-logo-box.svg"),
+	deno: getAssetPath("/assets/deno-logo-box.svg"),
 };
 
 export function InstallCommand() {
