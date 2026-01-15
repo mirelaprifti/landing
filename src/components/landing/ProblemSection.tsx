@@ -46,7 +46,7 @@ const FEATURES = [
 		]
 	},
 	{
-		problem: "No observability. Production's on fire. You have no idea why. Sound familiar?",
+		problem: "No observability. Production's on fire. You have no idea why.",
 		icon: "ri-line-chart-line",
 		title: "Built-in Tracing",
 		description: "OpenTelemetry out of the box. Full context, zero setup.",
@@ -210,22 +210,20 @@ export function ProblemSection() {
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{FEATURES.map((feature, index) => (
 						<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
-							<div className="flex items-start gap-3 mb-0">
-								<div className="w-8 h-8 mt-1 rounded-md bg-zinc-800/70 flex items-center justify-center shrink-0">
-									<i className={`${feature.icon} text-zinc-300 text-lg`} />
-								</div>
-								<p className="text-sm font-medium text-zinc-400">
-									{feature.problem}
-								</p>
-							</div>
+							<p className="text-sm font-medium text-zinc-300">
+								{feature.problem}
+							</p>
 							<div
 								className="h-px w-full my-8"
 								style={{
 									backgroundImage: 'repeating-linear-gradient(to right, rgb(63 63 70) 0px, rgb(63 63 70) 2px, transparent 2px, transparent 4px)'
 								}}
 							/>
-							<h3 className="text-base font-mono uppercase font-medium text-white">
-								<span className="text-zinc-500 mr-2">//</span>{feature.title}
+							<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
+								<div className="w-6 h-6 rounded bg-zinc-800/70 flex items-center justify-center shrink-0">
+									<i className={`${feature.icon} text-zinc-300 text-sm`} />
+								</div>
+								{feature.title}
 							</h3>
 							{/* Checkmark items */}
 							<div className="mt-3 flex flex-col gap-1.5">

@@ -12,11 +12,11 @@ const INSTALL_COMMANDS: Record<string, string> = {
 const PM_OPTIONS = ["npm", "pnpm", "yarn", "bun", "deno"] as const;
 
 const PM_ICONS: Record<string, string> = {
-	npm: getAssetPath("/assets/npm.svg"),
-	pnpm: getAssetPath("/assets/pnpm-logo.svg"),
-	yarn: getAssetPath("/assets/yarn-logo.svg"),
-	bun: getAssetPath("/assets/bun-logo-box.svg"),
-	deno: getAssetPath("/assets/deno-logo-box.svg"),
+	npm: getAssetPath("/assets/icons-svgs/npm.svg"),
+	pnpm: getAssetPath("/assets/icons-svgs/pnpm-logo.svg"),
+	yarn: getAssetPath("/assets/icons-svgs/yarn-logo.svg"),
+	bun: getAssetPath("/assets/icons-svgs/bun-logo-box.svg"),
+	deno: getAssetPath("/assets/icons-svgs/deno-logo-box.svg"),
 };
 
 export function InstallCommand() {

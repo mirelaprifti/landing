@@ -81,7 +81,7 @@ export function Navigation() {
             <nav className="flex h-16 items-center">
               <a href="/" className="flex items-center">
                 <img
-                  src={getAssetPath("/assets/logos/effect-logo-white.svg")}
+                  src={getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg")}
                   alt="Effect"
                   className="h-[1.75rem] w-auto"
                 />

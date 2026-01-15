@@ -273,7 +273,7 @@ export function Footer() {
 						<div className="flex flex-col items-center gap-8 md:grid md:grid-cols-3 md:items-center">
 							<div className="md:pl-4">
 								<img
-									src={getAssetPath("/assets/logos/effect-logo-white.svg")}
+									src={getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg")}
 									alt="Effect"
 									className="h-7"
 								/>

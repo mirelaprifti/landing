@@ -2,16 +2,16 @@ import { getAssetPath } from "../../utils/assetPath"
 
 const AI_CASE_STUDIES = [
   {
-    effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
-    partnerLogo: getAssetPath("/assets/logos/masterclass-nom.svg"),
+    effectLogo: getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg"),
+    partnerLogo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
     partnerLogoClass: "h-4",
     title: "Voice AI Orchestration Layer",
     href: "https://youtu.be/Cj2pVPqdOVs",
     accentColor: "bg-red-500"
   },
   {
-    effectLogo: getAssetPath("/assets/logos/effect-logo-white.svg"),
-    partnerLogo: getAssetPath("/assets/logos/14-ai.svg"),
+    effectLogo: getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg"),
+    partnerLogo: getAssetPath("/assets/test-logos/14-ai.svg"),
     partnerLogoClass: "h-6",
     title: "AI for Customer Support",
     href: "https://youtu.be/gGFPhFrGCng",
