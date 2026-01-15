@@ -104,7 +104,7 @@ export function PressKitPage() {
           />
 
           <div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-            <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+            <p className="mb-3 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
               Guidelines
             </p>
             <h1 className="text-3xl font-bold text-white md:text-4xl">
@@ -123,7 +123,7 @@ export function PressKitPage() {
               <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
                 {/* Combination Mark */}
                 <div>
-                  <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-4">
+                  <h2 className="text-sm font-mono uppercase font-semibold tracking-wide text-zinc-400 mb-4">
                     {COMBINATION_MARK.name}
                   </h2>
 
@@ -157,7 +157,7 @@ export function PressKitPage() {
 
                 {/* Logo Symbol */}
                 <div>
-                  <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-4">
+                  <h2 className="text-sm font-mono uppercase font-semibold tracking-wide text-zinc-400 mb-4">
                     {LOGO_SYMBOL.name}
                   </h2>
 
@@ -197,7 +197,7 @@ export function PressKitPage() {
         <section className="py-12">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
             <div className="border-t border-zinc-800 pt-10">
-              <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-8">
+              <h2 className="text-sm font-mono uppercase font-semibold tracking-wide text-zinc-400 mb-8">
                 Ground rules
               </h2>
 
@@ -205,7 +205,7 @@ export function PressKitPage() {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
                 {/* Use white on dark */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800 h-40">
+                  <div className="flex items-center justify-center rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <img
                       src={getAssetPath(`/assets/${LOGO_SYMBOL.files.svg.white}`)}
                       alt="White logo on dark"
@@ -262,7 +262,7 @@ export function PressKitPage() {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {/* Don't change colors */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center gap-10 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                  <div className="flex items-center justify-center gap-10 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <div className="relative">
                       <img
                         src={getAssetPath(`/assets/${LOGO_SYMBOL.files.svg.white}`)}
@@ -286,7 +286,7 @@ export function PressKitPage() {
 
                 {/* Don't stretch */}
                 <div className="flex flex-col gap-3 mb-4">
-                  <div className="flex items-center justify-center gap-12 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                  <div className="flex items-center justify-center gap-12 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <div className="relative">
                       <img
                         src={getAssetPath(`/assets/${LOGO_SYMBOL.files.svg.white}`)}
@@ -319,7 +319,7 @@ export function PressKitPage() {
 
                 {/* Don't add shadows */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center gap-10 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                  <div className="flex items-center justify-center gap-10 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <div className="relative">
                       <img
                         src={getAssetPath(`/assets/${LOGO_SYMBOL.files.svg.white}`)}
@@ -343,7 +343,7 @@ export function PressKitPage() {
 
                 {/* Don't rotate */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center gap-10 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                  <div className="flex items-center justify-center gap-10 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <div className="relative">
                       <img
                         src={getAssetPath(`/assets/${LOGO_SYMBOL.files.svg.white}`)}
@@ -376,11 +376,11 @@ export function PressKitPage() {
               <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
                 {/* Clear Space */}
                 <div>
-                  <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-8">
+                  <h2 className="text-sm font-mono uppercase font-semibold tracking-wide text-zinc-400 mb-8">
                     Clear space
                   </h2>
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                    <div className="flex items-center justify-center rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                       {/* Outer container with padding visualization - 50% of logo height */}
                       <div
                         className="relative p-5"
@@ -389,14 +389,14 @@ export function PressKitPage() {
                             45deg,
                             transparent,
                             transparent 3px,
-                            rgba(113, 113, 122, 0.25) 3px,
-                            rgba(113, 113, 122, 0.25) 3.5px
+                            rgba(113, 113, 122, 0.15) 3px,
+                            rgba(113, 113, 122, 0.15) 3.5px
                           )`,
                           backgroundColor: 'rgba(113, 113, 122, 0.15)',
                         }}
                       >
                         {/* Logo container */}
-                        <div className="bg-zinc-900">
+                        <div className="bg-zinc-900/30">
                           <img
                             src={getAssetPath(`/assets/${COMBINATION_MARK.files.svg.white}`)}
                             alt="Logo with clear space"
@@ -411,11 +411,11 @@ export function PressKitPage() {
 
                 {/* Minimum Size */}
                 <div>
-                  <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-8">
+                  <h2 className="text-sm font-mono uppercase font-semibold tracking-wide text-zinc-400 mb-8">
                     Minimum size
                   </h2>
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-center gap-12 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                    <div className="flex items-center justify-center gap-12 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                       {/* Combination mark minimum */}
                       <div className="flex flex-col items-center gap-2">
                         <img
@@ -447,14 +447,14 @@ export function PressKitPage() {
         <section className="pb-24 border-b border-zinc-800">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
             <div className="border-t border-zinc-800 py-12">
-              <h2 className="text-sm font-mono uppercase font-semibold text-zinc-400 mb-8">
+              <h2 className="text-sm font-mono uppercase font-semibold tracking-wide text-zinc-400 mb-8">
                 Logo pairing
               </h2>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {/* Effect logo with partner logo */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center gap-4 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                  <div className="flex items-center justify-center gap-4 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <img
                       src={getAssetPath(`/assets/${LOGO_SYMBOL.files.svg.white}`)}
                       alt="Effect logomark"
@@ -468,7 +468,7 @@ export function PressKitPage() {
 
                 {/* Effect combination mark with partner */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center gap-4 rounded-lg bg-zinc-900 border border-zinc-700 h-40">
+                  <div className="flex items-center justify-center gap-4 rounded-lg bg-zinc-900/30 border border-zinc-800 h-40">
                     <img
                       src={getAssetPath(`/assets/${COMBINATION_MARK.files.svg.white}`)}
                       alt="Effect combination mark"
