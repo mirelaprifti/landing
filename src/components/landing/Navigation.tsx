@@ -1,7 +1,11 @@
 import { useEffect } from "react"
 import { getAssetPath } from "../../utils/assetPath"
 
-export function Navigation() {
+interface NavigationProps {
+  transparent?: boolean
+}
+
+export function Navigation({ transparent = false }: NavigationProps) {
   useEffect(() => {
     let isMenuAnimating = false
 
@@ -69,12 +73,7 @@ export function Navigation() {
   return (
     <>
       <div
-        className="/50px-4 fixed top-0 right-0 left-0 z-100 w-full border-b border-zinc-800 md:px-8"
-        style={{
-          backgroundColor: "rgba(9, 9, 11, 0.85)",
-          backdropFilter: "blur(5px)",
-          WebkitBackdropFilter: "blur(5px)"
-        }}
+        className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? '' : 'border-b border-zinc-700 bg-zinc-950/85'}`}
       >
         <div className="w-full">
           <header className="relative mx-auto w-full max-w-[73.75rem] px-4">
@@ -93,7 +92,7 @@ export function Navigation() {
                   href="https://effect.website/docs/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-transparent text-sm font-medium text-zinc-400 transition-colors hover:border-current hover:text-white"
+                  className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? 'text-white hover:text-white/80' : 'text-zinc-400 hover:text-white'}`}
                 >
                   Docs
                 </a>
@@ -101,7 +100,7 @@ export function Navigation() {
                   href="https://effect.website/blog/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-transparent text-sm font-medium text-zinc-400 transition-colors hover:border-current hover:text-white"
+                  className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? 'text-white hover:text-white/80' : 'text-zinc-400 hover:text-white'}`}
                 >
                   Blog
                 </a>
@@ -109,7 +108,7 @@ export function Navigation() {
                   href="https://effect.website/play/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-transparent text-sm font-medium text-zinc-400 transition-colors hover:border-current hover:text-white"
+                  className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? 'text-white hover:text-white/80' : 'text-zinc-400 hover:text-white'}`}
                 >
                   Playground
                 </a>
@@ -117,7 +116,7 @@ export function Navigation() {
                   href="https://www.effect.solutions/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-transparent text-sm font-medium text-zinc-400 transition-colors hover:border-current hover:text-white"
+                  className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? 'text-white hover:text-white/80' : 'text-zinc-400 hover:text-white'}`}
                 >
                   LLM Guide
                 </a>
@@ -148,7 +147,7 @@ export function Navigation() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Visit Effect on GitHub"
-                    className="text-zinc-400 transition-colors hover:text-white"
+                    className={`transition-colors ${transparent ? 'text-white hover:text-white/80' : 'text-zinc-400 hover:text-white'}`}
                   >
                     <i
                       className="ri-github-fill text-xl"
@@ -160,7 +159,7 @@ export function Navigation() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Join Effect Discord server"
-                    className="text-zinc-400 transition-colors hover:text-white"
+                    className={`transition-colors ${transparent ? 'text-white hover:text-white/80' : 'text-zinc-400 hover:text-white'}`}
                   >
                     <i
                       className="ri-discord-fill text-xl"
@@ -169,18 +168,18 @@ export function Navigation() {
                   </a>
                 </div>
 
-                <div className="h-4.5 w-px bg-zinc-700" />
+                <div className={`h-4.5 w-px ${transparent ? 'bg-white/50' : 'bg-zinc-700'}`} />
 
                 <button
                   type="button"
                   aria-label="Open search (Command K)"
-                  className="flex items-center gap-2 rounded-md border border-zinc-600 px-2 py-1 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:bg-zinc-900 hover:text-white"
+                  className={`flex items-center gap-2 rounded-md border px-2 py-1 text-sm transition-colors ${transparent ? 'border-white/50 text-white hover:border-white hover:bg-zinc-800' : 'border-zinc-600 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900 hover:text-white'}`}
                 >
                   <i
                     className="ri-search-line text-base font-medium"
                     aria-hidden="true"
                   />
-                  <kbd className="text-[12px] text-zinc-400/80">⌘K</kbd>
+                  <kbd className={`text-[12px] ${transparent ? 'text-white/80' : 'text-zinc-400/80'}`}>⌘K</kbd>
                 </button>
               </div>
             </nav>

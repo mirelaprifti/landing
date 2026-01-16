@@ -42,7 +42,7 @@ export function LandingPage() {
 			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
-					<div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-800/50" />
+					<div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-800" />
 					{/* Right vertical line */}
 					<div className="absolute right-0 top-0 bottom-0 w-px bg-zinc-800" />
 				</div>
