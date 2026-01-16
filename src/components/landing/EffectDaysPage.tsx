@@ -312,7 +312,7 @@ export function EffectDaysPage() {
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
             <div className="border-t border-zinc-800 pt-12">
               <h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-400 uppercase">
-                Tickets
+                // Effect Days Tickets
               </h2>
 
               <div className="overflow-x-auto">
@@ -323,20 +323,22 @@ export function EffectDaysPage() {
                         <span className="text-sm font-mono uppercase tracking-wide text-zinc-500">Pass type</span>
                       </th>
                       <th className="pb-4 px-4 text-center">
-                        <div className="text-xs text-zinc-400 font-medium">May 6</div>
-                        <div className="text-[10px] text-zinc-600 font-normal mt-0.5">Workshop</div>
+                        <div className="text-sm text-zinc-300 font-medium">May 6</div>
+                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Workshop Day
+                          
+                        </div>
                       </th>
                       <th className="pb-4 px-4 text-center">
-                        <div className="text-xs text-zinc-400 font-medium">May 7</div>
-                        <div className="text-[10px] text-zinc-600 font-normal mt-0.5">Conference</div>
+                        <div className="text-sm text-zinc-300 font-medium">May 7</div>
+                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Conference</div>
                       </th>
                       <th className="pb-4 px-4 text-center">
-                        <div className="text-xs text-zinc-400 font-medium">May 8</div>
-                        <div className="text-[10px] text-zinc-600 font-normal mt-0.5">Community</div>
+                        <div className="text-sm text-zinc-300 font-medium">May 8</div>
+                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Community</div>
                       </th>
                       <th className="pb-4 px-4 text-center">
-                        <div className="text-xs text-zinc-400 font-medium">Extras</div>
-                        <div className="text-[10px] text-zinc-600 font-normal mt-0.5">Food & swag</div>
+                        <div className="text-sm text-zinc-300 font-medium">Extras</div>
+                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Food & swag</div>
                       </th>
                       <th className="pb-4 pl-8 text-right">
                         <span className="text-sm font-mono uppercase tracking-wide text-zinc-500">Price</span>
@@ -348,16 +350,9 @@ export function EffectDaysPage() {
                     {/* Workshop & Conference Row */}
                     <tr className="border-t border-zinc-800">
                       <td className="py-5 pr-8">
-                        <div className="flex items-center gap-3">
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-base font-medium text-white">Workshop & Conference</span>
-                              <span className="bg-violet-500/20 text-violet-400 text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded">
-                                Best value
-                              </span>
-                            </div>
-                            <p className="text-sm text-zinc-500 mt-0.5">Full 3-day experience</p>
-                          </div>
+                        <div>
+                          <span className="text-base font-medium text-white">Workshop & Conference</span>
+                          <p className="text-sm text-zinc-500 mt-0.5">Full 3-day experience</p>
                         </div>
                       </td>
                       <td className="py-5 px-4 text-center">
