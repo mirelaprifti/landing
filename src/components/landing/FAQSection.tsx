@@ -167,7 +167,7 @@ export function FAQSection() {
           <div className="w-full lg:w-1/2 px-4">
             <div>
               <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-                FAQ
+                // FAQ
               </p>
               <h2 className="text-2xl font-bold text-white md:text-3xl">
                 Questions we get asked a lot

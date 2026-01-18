@@ -22,7 +22,7 @@ export default defineConfig({
 		],
 	},
 	redirects: {
-		"/events": "https://effect.website/events/effect-days",
+		"/effect-days": "/events/effect-days",
 	},
 	vite: {
 		plugins: [tailwindcss()],

@@ -510,7 +510,7 @@ export function QuotesSection() {
 				<div className="max-w-[73.75rem] mx-auto w-full px-4 flex flex-row items-center justify-between">
 					<div>
 						<p className="mb-2 font-mono text-sm uppercase tracking-wider text-zinc-500">
-							Testimonials
+							// Testimonials
 						</p>
 						<h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">
 							What developers are saying

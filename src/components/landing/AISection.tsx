@@ -12,7 +12,7 @@ export function AISection() {
           {/* Left column - Heading section */}
           <div>
             <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-              LLMs ♥️ Effect
+              // LLMs ♥️ Effect
             </p>
             <h2 className="max-w-2xl text-2xl leading-tight font-bold text-white md:text-3xl">
               Write Effect code with AI

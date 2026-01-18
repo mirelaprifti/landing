@@ -64,7 +64,7 @@ export function AIBuildingSection() {
         {/* Header row with heading, paragraph, and links */}
         <div className="mb-20 px-4">
             <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-              Effect for AI
+              // Effect for AI
             </p>
             <h2 className="text-2xl leading-tight font-bold text-white md:text-3xl">
               Build AI and Agentic Systems

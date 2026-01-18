@@ -77,7 +77,7 @@ export function EffectDaysPage() {
       <main className="relative z-10 w-full pt-16">
         {/* Background image with gradient overlay */}
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-[40rem] -z-10 overflow-hidden"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[39.4rem] -z-10 overflow-hidden"
           style={{
             backgroundImage: `linear-gradient(to bottom, rgba(9, 9, 11, 0.1) 0%, rgba(9, 9, 11, 0.2) 50%, #09090b 100%), url(${getAssetPath("/assets/images/malaga-bg-1.png")})`,
             backgroundSize: "100% 40rem",
@@ -88,7 +88,7 @@ export function EffectDaysPage() {
         />
 
         {/* Hero Section */}
-        <section className="relative w-full pt-20 pb-16 md:pt-22 md:pb-28">
+        <section className="relative w-full pt-20 pb-16 md:pt-24 md:pb-32">
           <div className="relative mx-auto w-full max-w-[73.75rem] px-4">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12">
               {/* Left side - Main content */}
@@ -99,7 +99,7 @@ export function EffectDaysPage() {
                 <h1 className="text-4xl font-bold text-white md:text-6xl lg:text-7xl">
                   Effect Days 2026
                 </h1>
-                <p className="mt-4 text-base text-white font-mono font-semibold uppercase tracking-wide">
+                <p className="mt-6 text-xl text-white font-medium">
                   Workshop Day · Conference Day · Community Day
                 </p>
 
@@ -107,7 +107,7 @@ export function EffectDaysPage() {
                 <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
                   <a
                     href="#tickets"
-                    className="group inline-flex items-center gap-2 rounded-md bg-white py-3 pr-6 pl-5 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-200"
+                    className="group inline-flex items-center gap-2 rounded-md bg-white py-3 pr-6 pl-5 text-base font-medium text-zinc-900 transition-all border border-transparent hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
                   >
                     <i className="ri-coupon-line text-lg" />
                     Get your ticket
@@ -116,7 +116,7 @@ export function EffectDaysPage() {
                     href="https://discord.gg/effect-ts"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md border border-zinc-200 bg-zinc-800/30 backdrop-blur-sm py-3 pr-6 pl-5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-800/50"
+                    className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-zinc-400/5 backdrop-blur-[3px] py-3 pr-6 pl-5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-700/10"
                   >
                     <i className="ri-discord-fill text-lg" />
                     Join the community
@@ -131,7 +131,7 @@ export function EffectDaysPage() {
                   <defs>
                     <clipPath id="ticket-clip-path" clipPathUnits="userSpaceOnUse">
                       {/* Ticket shape with semicircular cutouts on both sides */}
-                      <path d="M 0,0 H 280 V 48 A 12,12 0 0 0 280,72 V 120 H 0 V 72 A 12,12 0 0 0 0,48 Z" />
+                      <path d="M 0,0 H 280 V 51.5 A 8.5,8.5 0 0 0 280,68.5 V 120 H 0 V 68.5 A 8.5,8.5 0 0 0 0,51.5 Z" />
                     </clipPath>
                   </defs>
                 </svg>
@@ -149,26 +149,26 @@ export function EffectDaysPage() {
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 280 120" fill="none">
                     {/* Border - top, bottom, and sides (without perforations) */}
                     <path
-                      d="M 0.5,48 V 0.5 H 279.5 V 48"
+                      d="M 0.5,51.5 V 0.5 H 279.5 V 51.5"
                       fill="none"
                       stroke="rgb(161, 161, 170)"
                       strokeWidth="1"
                     />
                     <path
-                      d="M 279.5,72 V 119.5 H 0.5 V 72"
+                      d="M 279.5,68.5 V 119.5 H 0.5 V 68.5"
                       fill="none"
                       stroke="rgb(161, 161, 170)"
                       strokeWidth="1"
                     />
                     {/* Solid perforation arcs - curving outward (into the cutout) */}
                     <path
-                      d="M 279.5,48 A 11.5,11.5 0 0 0 279.5,72"
+                      d="M 279.5,51.5 A 8,8 0 0 0 279.5,68.5"
                       fill="none"
                       stroke="rgb(161, 161, 170)"
                       strokeWidth="1"
                     />
                     <path
-                      d="M 0.5,72 A 11.5,11.5 0 0 0 0.5,48"
+                      d="M 0.5,68.5 A 8,8 0 0 0 0.5,51.5"
                       fill="none"
                       stroke="rgb(161, 161, 170)"
                       strokeWidth="1"
@@ -179,7 +179,7 @@ export function EffectDaysPage() {
                       y1="60"
                       x2="260"
                       y2="60"
-                      stroke="rgb(161, 161, 170)"
+                      stroke="rgb(113, 113, 122)"
                       strokeWidth="1"
                       strokeDasharray="2 2"
                     />
@@ -188,14 +188,14 @@ export function EffectDaysPage() {
                   {/* Content overlay */}
                   <div className="absolute inset-0 flex flex-col">
                     {/* Top section - Date */}
-                    <div className="flex-1 flex items-center px-5">
+                    <div className="flex-1 flex items-center px-6">
                       <div className="flex items-center gap-2.5">
                         <i className="ri-calendar-line text-[1.1rem] text-zinc-200" />
                         <p className="text-[1.1rem] font-mono uppercase font-medium text-white">May 6–8, 2026</p>
                       </div>
                     </div>
                     {/* Bottom section - Location */}
-                    <div className="flex-1 flex items-center px-5">
+                    <div className="flex-1 flex items-center px-6">
                       <div className="flex items-center gap-2.5">
                         <i className="ri-map-pin-2-line text-[1.1rem] text-zinc-200" />
                         <p className="text-[1.1rem] font-mono uppercase font-medium text-white">Málaga, Spain</p>
@@ -209,9 +209,9 @@ export function EffectDaysPage() {
         </section>
 
         {/* Stats Section */}
-        <section className="pb-20">
+        <section className="pb-24">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
-            <div className="border-t border-zinc-700 pt-20">
+            <div className="border-t border-zinc-700 pt-24">
               <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                 {STATS.map((stat, index) => (
                   <div key={index} className="flex flex-col items-center text-center">
@@ -229,12 +229,435 @@ export function EffectDaysPage() {
           </div>
         </section>
 
-        {/* Past Editions Section */}
-        <section id="past-editions" className="pb-12">
+        {/* Speakers Section */}
+        <section className="pb-32">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
             <div className="border-t border-zinc-800 pt-12">
-              <h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-400 uppercase">
-                // Relive Effect Days
+              {/* Header with button */}
+              <div className="flex items-center justify-between mb-10">
+                <div className="flex items-baseline gap-3">
+                  <h2 className="font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+                    <span className="text-violet-400">//</span> Speakers
+                  </h2>
+                  <span className="text-sm text-zinc-400">+ more coming soon</span>
+                </div>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeOd9On6nWXgysWDk49Ti3zYX11TS6ZkuoC-4Qofs8ieVmP4A/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 pl-4.5 pr-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-800"
+                >
+                  <i className="ri-mic-line text-lg" />
+                  Apply to speak
+                </a>
+              </div>
+
+              {/* Speaker Grid */}
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {/* Dillon Mulroy */}
+                <a
+                  href="https://x.com/dillon_mulroy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative aspect-square overflow-hidden rounded-lg"
+                >
+                  <img
+                    src={getAssetPath("/assets/images/dillon-1.png")}
+                    alt="Dillon Mulroy"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <span className="block text-sm font-medium text-white">Dillon Mulroy</span>
+                    <span className="text-xs text-zinc-400">Cloudflare</span>
+                  </div>
+                </a>
+
+                {/* Kit Langton */}
+                <a
+                  href="https://x.com/kitlangton"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative aspect-square overflow-hidden rounded-lg"
+                >
+                  <img
+                    src={getAssetPath("/assets/images/kitlangton.jpg")}
+                    alt="Kit Langton"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <span className="block text-sm font-medium text-white">Kit Langton</span>
+                    <span className="text-xs text-zinc-400">Ziverge</span>
+                  </div>
+                </a>
+
+                {/* Tim Smart */}
+                <a
+                  href="https://x.com/tim_smart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative aspect-square overflow-hidden rounded-lg"
+                >
+                  <img
+                    src={getAssetPath("/assets/images/timsmart.jpg")}
+                    alt="Tim Smart"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <span className="block text-sm font-medium text-white">Tim Smart</span>
+                    <span className="text-xs text-zinc-400">Effectful</span>
+                  </div>
+                </a>
+
+                {/* Maxwell Brown */}
+                <a
+                  href="https://x.com/imax153"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative aspect-square overflow-hidden rounded-lg"
+                >
+                  <img
+                    src={getAssetPath("/assets/images/max.png")}
+                    alt="Maxwell Brown"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <span className="block text-sm font-medium text-white">Maxwell Brown</span>
+                    <span className="text-xs text-zinc-400">Effectful</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tickets Section */}
+        <section id="tickets" className="pb-16 scroll-mt-16">
+          <div className="mx-auto w-full max-w-[73.75rem] px-4">
+            <div className="border-t border-zinc-800 pt-12">
+              <h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+                <span className="text-violet-400">//</span> Effect Days Tickets
+              </h2>
+
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {/* Full Pass Card */}
+                <div className="relative flex flex-col border border-zinc-600 bg-zinc-900/50 overflow-hidden">
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="mb-6">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3 className="text-xl font-semibold text-white">Full Pass</h3>
+                        <p className="text-sm text-zinc-400">The complete Effect Days experience</p>
+                      </div>
+                      <div
+                        className="mt-4 h-px w-full"
+                        style={{
+                          backgroundImage: 'repeating-linear-gradient(to right, rgb(82 82 91) 0px, rgb(82 82 91) 2px, transparent 2px, transparent 4px)'
+                        }}
+                      />
+                    </div>
+
+                    {/* Days included */}
+                    <div className="mb-6 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                          <i className="ri-tools-line text-emerald-400" />
+                        </div>
+                        <p className="text-sm font-medium text-white">May 6 · Workshop Day</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                          <i className="ri-mic-line text-emerald-400" />
+                        </div>
+                        <p className="text-sm font-medium text-white">May 7 · Conference Day</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                          <i className="ri-group-line text-emerald-400" />
+                        </div>
+                        <p className="text-sm font-medium text-white">May 8 · Community Day</p>
+                      </div>
+                    </div>
+
+                    {/* CTAs */}
+                    <div className="space-y-3">
+                      <a
+                        href="#"
+                        className="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                      >
+                        <div className="flex items-center gap-2">
+                          <i className="ri-user-line text-zinc-600" />
+                          <span className="text-base font-medium text-zinc-950">Individual</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold text-zinc-900">$449</span>
+                          <i className="ri-arrow-right-up-line text-sm text-zinc-600" />
+                        </div>
+                      </a>
+                      <a
+                        href="#"
+                        className="flex w-full items-center justify-between rounded-md border border-zinc-600 px-4 py-3 transition-all hover:border-zinc-400 hover:bg-zinc-800/80"
+                      >
+                        <div className="flex items-center gap-2">
+                          <i className="ri-building-line text-zinc-300" />
+                          <span className="text-base font-medium text-white">Business</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold text-white">$549</span>
+                          <i className="ri-arrow-right-up-line text-sm text-zinc-400" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Conference Pass Card */}
+                <div className="relative flex flex-col border border-zinc-800 bg-zinc-900/30 overflow-hidden">
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="mb-6">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3 className="text-xl font-semibold text-white">2-day Pass</h3>
+                        <p className="text-sm text-zinc-400">Conference & Community Day access</p>
+                      </div>
+                      <div
+                        className="mt-4 h-px w-full"
+                        style={{
+                          backgroundImage: 'repeating-linear-gradient(to right, rgb(82 82 91) 0px, rgb(82 82 91) 2px, transparent 2px, transparent 4px)'
+                        }}
+                      />
+                    </div>
+
+                    {/* Days included */}
+                    <div className="mb-6 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-800 border border-zinc-700">
+                          <i className="ri-close-line text-zinc-600" />
+                        </div>
+                        <p className="text-sm font-medium text-zinc-500">May 6 · Workshop Day</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                          <i className="ri-mic-line text-emerald-400" />
+                        </div>
+                        <p className="text-sm font-medium text-white">May 7 · Conference Day</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                          <i className="ri-group-line text-emerald-400" />
+                        </div>
+                        <p className="text-sm font-medium text-white">May 8 · Community Day</p>
+                      </div>
+                    </div>
+
+                    {/* CTAs */}
+                    <div className="space-y-3">
+                      <a
+                        href="#"
+                        className="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                      >
+                        <div className="flex items-center gap-2">
+                          <i className="ri-user-line text-zinc-600" />
+                          <span className="text-base font-medium text-zinc-950">Individual</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold text-zinc-900">$314</span>
+                          <i className="ri-arrow-right-up-line text-sm text-zinc-600" />
+                        </div>
+                      </a>
+                      <a
+                        href="#"
+                        className="flex w-full items-center justify-between rounded-md border border-zinc-600 px-4 py-3 transition-all hover:border-zinc-400 hover:bg-zinc-800/80"
+                      >
+                        <div className="flex items-center gap-2">
+                          <i className="ri-building-line text-zinc-300" />
+                          <span className="text-base font-medium text-white">Business</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold text-white">$399</span>
+                          <i className="ri-arrow-right-up-line text-sm text-zinc-400" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-col md:flex-row md:justify-between gap-4 text-sm text-zinc-400">
+                <p>
+                  Buying 4+ business tickets?{" "}
+                  <a href="mailto:contact@effectful.co" className="text-white underline underline-offset-2 hover:text-zinc-300">
+                    Contact us for group discounts.
+                  </a>
+                </p>
+                <p className="md:text-right shrink-0 flex items-center gap-2">
+                  <i className="ri-hand-heart-line text-white" />
+                  <span>
+                    <a
+                      href="mailto:contact@effectful.co?subject=Effect Days 2026 - Sponsorship Inquiry"
+                      className="text-white underline underline-offset-2 hover:text-zinc-300"
+                    >
+                      Sponsor Effect Days
+                    </a>{" "}
+                    and get tickets included.
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Málaga Section */}
+        <section className="py-16">
+          <div className="mx-auto w-full max-w-[73.75rem] px-4">
+            <div className="border-t border-zinc-800 pt-12">
+              {/* Header */}
+              <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                <div>
+                  <p className="mb-4 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+                    <span className="text-violet-400">//</span> Why Málaga
+                  </p>
+                  <h3 className="text-2xl font-semibold text-white md:text-3xl">
+                    3 days on the Costa del Sol
+                  </h3>
+                  <p className="mt-4 max-w-lg text-base text-zinc-400 leading-relaxed">
+                    Home to a growing startup ecosystem, world-class museums, and stunning architecture, Málaga is the perfect setting for Effect Days.
+                  </p>
+                </div>
+                <a
+                  href="/events/effect-days/malaga"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-zinc-300 shrink-0"
+                >
+                  Discover Málaga
+                  <i className="ri-arrow-right-line text-xs" />
+                </a>
+              </div>
+
+              {/* Two featured images */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="aspect-video overflow-hidden rounded-lg">
+                  <img
+                    src={getAssetPath("/assets/images/david-ramirez-x-qfJn2F8KE-unsplash.jpg")}
+                    alt="Málaga sunset"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-video overflow-hidden rounded-lg">
+                  <img
+                    src={getAssetPath("/assets/images/malaga-7.webp")}
+                    alt="Málaga panoramic view"
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: "center 20%" }}
+                  />
+                </div>
+              </div>
+
+              {/* Four smaller images below */}
+              <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="aspect-4/3 overflow-hidden rounded-lg">
+                  <img
+                    src={getAssetPath("/assets/images/maria-lopez-jorge-WTu0MyP8Vcw-unsplash.jpg")}
+                    alt="Málaga harbor"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-4/3 overflow-hidden rounded-lg">
+                  <img
+                    src={getAssetPath("/assets/images/yuliya-matuzava-0-cPhoediX8-unsplash.jpg")}
+                    alt="Málaga cityscape"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-4/3 overflow-hidden rounded-lg">
+                  <img
+                    src={getAssetPath("/assets/images/marek-zernik-RZ0m2Enxsc8-unsplash.jpg")}
+                    alt="Málaga architecture"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-4/3 overflow-hidden rounded-lg">
+                  <img
+                    src={getAssetPath("/assets/images/roberto-arias-E9llbh8kIqM-unsplash.jpg")}
+                    alt="Málaga beach"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16">
+          <div className="mx-auto w-full max-w-[73.75rem] px-4">
+            <div className="border-t border-zinc-800 pt-12">
+              <h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+                <span className="text-violet-400">//</span> Frequently Asked Questions
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+                <div className="border-b border-zinc-800/50 py-5">
+                  <h3 className="text-[15px] font-semibold text-white">1. What is Effect Days?</h3>
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                    Effect Days is a non-profit event dedicated to{" "}
+                    <a href="https://effect.website" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400">Effect</a>
+                    , an open-source software library for building production-grade applications in TypeScript.
+                  </p>
+                </div>
+
+                <div className="border-b border-zinc-800/50 py-5">
+                  <h3 className="text-[15px] font-semibold text-white">2. What is the schedule of the conference?</h3>
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                    The conference schedule will be shared as we get closer to the event.
+                  </p>
+                </div>
+
+                <div className="border-b border-zinc-800/50 py-5">
+                  <h3 className="text-[15px] font-semibold text-white">3. Will the Effect Days conference be recorded?</h3>
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                    The conference talks will be recorded and published on the{" "}
+                    <a href="https://www.youtube.com/@effect-ts" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400">Effect YouTube channel</a>
+                    {" "}a few weeks later.
+                  </p>
+                </div>
+
+                <div className="border-b border-zinc-800/50 py-5">
+                  <h3 className="text-[15px] font-semibold text-white">4. What is the Community Day?</h3>
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                    The Community Day on May 8th is a full day dedicated to deeper discussions, networking, and community activities.
+                  </p>
+                </div>
+
+                <div className="border-b border-zinc-800/50 py-5">
+                  <h3 className="text-[15px] font-semibold text-white">5. Can I get a refund for my ticket?</h3>
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                    Please refer to our{" "}
+                    <a href="#" className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400">Refund Policy</a>
+                    {" "}for more details.
+                  </p>
+                </div>
+
+                <div className="border-b border-zinc-800/50 py-5">
+                  <h3 className="text-[15px] font-semibold text-white">6. Is there a Code of Conduct?</h3>
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                    Yes. Effect Days is dedicated to providing a harassment-free experience for everyone. Please read our{" "}
+                    <a href="/events/code-of-conduct" className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400">Code of Conduct</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Past Editions Section */}
+        <section id="past-editions" className="py-16">
+          <div className="mx-auto w-full max-w-[73.75rem] px-4">
+            <div className="border-t border-zinc-800 pt-12">
+              <h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+                <span className="text-violet-400">//</span> Relive Effect Days
               </h2>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -252,7 +675,7 @@ export function EffectDaysPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
                       <div className="absolute bottom-4 left-5 right-5">
-                        <span className="inline-block rounded bg-white/10 backdrop-blur-sm px-2.5 py-1 text-xs font-mono uppercase font-medium text-white/90 border border-white/10">
+                        <span className="inline-block bg-white/0 backdrop-blur-sm px-2.5 py-1 text-xs font-mono uppercase font-medium text-white/90 border border-white/10">
                           {edition.badge}
                         </span>
                       </div>
@@ -264,7 +687,7 @@ export function EffectDaysPage() {
                         Effect Days {edition.year}
                       </h3>
 
-                      <div className="mt-2 flex items-center gap-2 text-sm text-zinc-400">
+                      <div className="mt-2 flex items-center gap-3 text-sm text-zinc-400">
                         <span className="flex items-center gap-1">
                           <i className="ri-map-pin-line" />
                           {edition.location}
@@ -307,209 +730,44 @@ export function EffectDaysPage() {
           </div>
         </section>
 
-        {/* Tickets Section */}
-        <section id="tickets" className="py-12">
-          <div className="mx-auto w-full max-w-[73.75rem] px-4">
-            <div className="border-t border-zinc-800 pt-12">
-              <h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-400 uppercase">
-                // Effect Days Tickets
-              </h2>
-
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[600px]">
-                  <thead>
-                    <tr>
-                      <th className="pb-4 pr-8 text-left">
-                        <span className="text-sm font-mono uppercase tracking-wide text-zinc-500">Pass type</span>
-                      </th>
-                      <th className="pb-4 px-4 text-center">
-                        <div className="text-sm text-zinc-300 font-medium">May 6</div>
-                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Workshop Day
-                          
-                        </div>
-                      </th>
-                      <th className="pb-4 px-4 text-center">
-                        <div className="text-sm text-zinc-300 font-medium">May 7</div>
-                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Conference</div>
-                      </th>
-                      <th className="pb-4 px-4 text-center">
-                        <div className="text-sm text-zinc-300 font-medium">May 8</div>
-                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Community</div>
-                      </th>
-                      <th className="pb-4 px-4 text-center">
-                        <div className="text-sm text-zinc-300 font-medium">Extras</div>
-                        <div className="text-xs text-zinc-500 font-normal mt-0.5">Food & swag</div>
-                      </th>
-                      <th className="pb-4 pl-8 text-right">
-                        <span className="text-sm font-mono uppercase tracking-wide text-zinc-500">Price</span>
-                      </th>
-                      <th className="pb-4 pl-6"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Workshop & Conference Row */}
-                    <tr className="border-t border-zinc-800">
-                      <td className="py-5 pr-8">
-                        <div>
-                          <span className="text-base font-medium text-white">Workshop & Conference</span>
-                          <p className="text-sm text-zinc-500 mt-0.5">Full 3-day experience</p>
-                        </div>
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 pl-8 text-right">
-                        <div>
-                          <span className="text-xl font-semibold text-white">$449</span>
-                          <p className="text-xs text-zinc-600 mt-0.5">$549 business</p>
-                        </div>
-                      </td>
-                      <td className="py-5 pl-6">
-                        <a
-                          href="#"
-                          className="inline-flex items-center justify-center gap-1.5 rounded-md bg-white px-4 py-2 text-sm font-medium text-zinc-900 transition-all hover:bg-zinc-200"
-                        >
-                          Buy
-                          <i className="ri-arrow-right-line text-xs" />
-                        </a>
-                      </td>
-                    </tr>
-
-                    {/* Conference Only Row */}
-                    <tr className="border-t border-zinc-800/50">
-                      <td className="py-5 pr-8">
-                        <div>
-                          <span className="text-base font-medium text-white">Conference Only</span>
-                          <p className="text-sm text-zinc-500 mt-0.5">2-day conference access</p>
-                        </div>
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-subtract-line text-zinc-700" />
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 px-4 text-center">
-                        <i className="ri-check-line text-emerald-400" />
-                      </td>
-                      <td className="py-5 pl-8 text-right">
-                        <div>
-                          <span className="text-xl font-semibold text-white">$314</span>
-                          <p className="text-xs text-zinc-600 mt-0.5">$399 business</p>
-                        </div>
-                      </td>
-                      <td className="py-5 pl-6">
-                        <a
-                          href="#"
-                          className="inline-flex items-center justify-center gap-1.5 rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-zinc-800"
-                        >
-                          Buy
-                          <i className="ri-arrow-right-line text-xs" />
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* What to Expect Section */}
-        <section className="py-12">
-          <div className="mx-auto w-full max-w-[73.75rem] px-4">
-            <div className="border-t border-zinc-800 pt-12">
-              <h2 className="mb-10 font-mono text-sm font-semibold tracking-wide text-zinc-400 uppercase">
-                What to Expect
-              </h2>
-
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                <div className="flex flex-col gap-3">
-                  <div className="flex h-32 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/30">
-                    <i className="ri-presentation-line text-4xl text-zinc-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">
-                    Technical Talks
-                  </h3>
-                  <p className="text-base text-zinc-400">
-                    Deep dives into Effect patterns, real-world case studies,
-                    and advanced TypeScript techniques.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <div className="flex h-32 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/30">
-                    <i className="ri-tools-line text-4xl text-zinc-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">
-                    Hands-on Workshops
-                  </h3>
-                  <p className="text-base text-zinc-400">
-                    Full-day workshops led by Effect maintainers and
-                    experienced practitioners.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <div className="flex h-32 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/30">
-                    <i className="ri-team-line text-4xl text-zinc-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">
-                    Community
-                  </h3>
-                  <p className="text-base text-zinc-400">
-                    Connect with fellow Effect developers, core maintainers,
-                    and the broader TypeScript community.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Next Edition CTA Section */}
-        <section className="py-16">
-          <div className="mx-auto w-full max-w-[73.75rem] px-4">
-            <div className="border-t border-b border-zinc-800 py-16">
+        <section className="relative overflow-hidden">
+          {/* Grid background */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+              `,
+              backgroundSize: "196.6px 162px",
+              backgroundPosition: "calc(50% + 97px) 0"
+            }}
+          />
+          {/* Fade out grid at top and bottom */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: "linear-gradient(to bottom, #09090b 0%, transparent 15%, transparent 80%, #09090b 100%)"
+            }}
+          />
+          <div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+            <div className="border-t border-zinc-800 py-28">
               <div className="text-center">
-                <h2 className="text-2xl font-bold text-white md:text-3xl">
+                <h2 className="text-2xl font-bold text-white md:text-4xl">
                   Ready for Effect Days 2026?
                 </h2>
-                <p className="mx-auto mt-4 max-w-xl text-lg text-zinc-400">
-                  Join our Discord community to be the first to know about the
-                  next edition, early bird tickets, and speaker announcements.
+                <p className="mx-auto mt-4 max-w-2xl text-xl text-zinc-400">
+                  Secure your spot for May 6-8, 2026 and enjoy three days in the Mediterranean coast.
                 </p>
 
-                <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                <div className="mt-8">
                   <a
-                    href="https://discord.gg/effect-ts"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-md bg-white py-3 pr-6 pl-4 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-200"
+                    href="#tickets"
+                    className="group inline-flex items-center gap-2 rounded-md bg-white py-4 pr-6 pl-6 text-lg font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
                   >
-                    <i className="ri-discord-fill text-lg" />
-                    Join Discord
-                  </a>
-                  <a
-                    href="https://twitter.com/EffectTS_"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-3 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
-                  >
-                    <i className="ri-twitter-x-fill text-lg" />
-                    Follow for updates
+                    <i className="ri-coupon-line text-lg" />
+                    Get your ticket
                   </a>
                 </div>
               </div>

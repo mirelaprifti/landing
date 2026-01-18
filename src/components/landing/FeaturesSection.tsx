@@ -159,7 +159,7 @@ export function FeaturesSection() {
 			{/* Header */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-					Interactive Examples
+					// Interactive Examples
 				</p>
 				<h2 className="text-2xl font-bold text-white md:text-3xl">
 					See Effect in action

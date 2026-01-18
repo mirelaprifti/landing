@@ -165,14 +165,14 @@ function ComplexityChart() {
 			</div>
 
 			<div className="flex items-center justify-center gap-6 mt-5">
-				<span className="font-mono text-xs font-medium text-zinc-400 uppercase tracking-wider">Complexity at scale</span>
+				<span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">Complexity at scale:</span>
 				<div className="flex items-center gap-1.5">
 					<div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-					<span className="font-mono text-xs text-zinc-400">Without Effect</span>
+					<span className="font-mono text-xs uppercase text-zinc-400">Without Effect</span>
 				</div>
 				<div className="flex items-center gap-1.5">
 					<div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-					<span className="font-mono text-xs text-zinc-400">With Effect</span>
+					<span className="font-mono text-xs uppercase text-zinc-400">With Effect</span>
 				</div>
 			</div>
 		</div>
@@ -194,7 +194,7 @@ export function ProblemSection() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 mb-16">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							What Effect Solves
+							// What Effect Solves
 						</p>
 						<h2 className="text-2xl leading-tight font-bold text-white md:text-3xl max-w-md">
 							Built-in solutions for the hard problems
@@ -210,17 +210,17 @@ export function ProblemSection() {
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{FEATURES.map((feature, index) => (
 						<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
-							<p className="text-sm font-medium text-zinc-300">
+							<p className="text-sm font-medium text-zinc-400">
 								{feature.problem}
 							</p>
 							<div
-								className="h-px w-full my-8"
+								className="h-px w-full mt-5 mb-6"
 								style={{
-									backgroundImage: 'repeating-linear-gradient(to right, rgb(63 63 70) 0px, rgb(63 63 70) 2px, transparent 2px, transparent 4px)'
+									backgroundImage: 'repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
 								}}
 							/>
 							<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
-								<div className="w-6 h-6 rounded bg-zinc-800/70 flex items-center justify-center shrink-0">
+								<div className="w-6 h-6 rounded-sm bg-zinc-800/50 flex items-center justify-center shrink-0">
 									<i className={`${feature.icon} text-zinc-300 text-sm`} />
 								</div>
 								{feature.title}
@@ -228,8 +228,8 @@ export function ProblemSection() {
 							{/* Checkmark items */}
 							<div className="mt-3 flex flex-col gap-1.5">
 								{feature.items.map((item, itemIndex) => (
-									<div key={itemIndex} className="flex items-start gap-2">
-										<i className="ri-check-line text-emerald-500 text-sm shrink-0" />
+									<div key={itemIndex} className="flex items-start gap-3">
+										<i className="ri-check-line text-emerald-500 text-sm shrink-0 pl-1" />
 										<span className="text-sm text-zinc-400">{item}</span>
 									</div>
 								))}

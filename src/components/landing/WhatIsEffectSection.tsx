@@ -14,7 +14,7 @@ export function WhatIsEffectSection() {
 					{/* Left column - Copy */}
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							The Mental Model
+							// The Mental Model
 						</p>
 						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-lg">
 							Track successes, errors, dependencies in one type
@@ -26,15 +26,15 @@ export function WhatIsEffectSection() {
 						<ul className="mt-5 space-y-2 text-sm text-zinc-400">
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>No more <code className="text-zinc-300">catch (e: unknown)</code> — errors are fully typed</span>
+								<span>No more <code className="text-zinc-300">catch (e: unknown)</code> -- errors are fully typed</span>
 							</li>
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>Dependencies are explicit — nothing is hidden</span>
+								<span>Dependencies are explicit -- nothing is hidden</span>
 							</li>
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>Async is structured — no more promise chains you can't follow</span>
+								<span>Async is structured -- no more promise chains you can't follow</span>
 							</li>
 						</ul>
 
@@ -129,7 +129,7 @@ export function WhatIsEffectSection() {
 									href="https://effect.website/docs/getting-started/why-effect/"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 text-xs text-zinc-400 transition-colors hover:text-white"
+									className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-white"
 								>
 									Why Effect was designed this way
 									<i className="ri-arrow-right-up-line text-sm" />
