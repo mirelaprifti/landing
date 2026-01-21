@@ -71,7 +71,7 @@ export function HeroSection() {
 
 					{/* Subheadline */}
 					<p className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed">
-						Effect is the open-source ecosystem for building software that is scalable, reliable, and maintainable from the start.
+						Effect is an open-source ecosystem for building software that is scalable, reliable, and maintainable from the start.
 					</p>
 
 					{/* Install command */}
@@ -82,17 +82,6 @@ export function HeroSection() {
 					{/* Stats */}
 					<div className="mt-6 ml-2 flex items-center gap-8">
 						<a
-							href="https://github.com/Effect-TS/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-2 transition-colors"
-						>
-							<i className="ri-github-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
-							<span className="text-sm font-medium text-white">12k+</span>
-							<span className="text-sm text-zinc-400 -ml-1">stars</span>
-						</a>
-						<div className="h-4 w-px bg-zinc-800" />
-						<a
 							href="https://www.npmjs.com/package/effect"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -101,6 +90,17 @@ export function HeroSection() {
 							<img src={getAssetPath("/assets/icons-svgs/npm-brands-solid-full.svg")} alt="npm" className="h-7 w-8 opacity-60 group-hover:opacity-80 transition-opacity" />
 							<span className="text-sm font-medium text-white">6M+/w</span>
 							<span className="text-sm text-zinc-400 -ml-1">downloads</span>
+						</a>
+						<div className="h-4 w-px bg-zinc-800" />
+						<a
+							href="https://github.com/Effect-TS/effect"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group flex items-center gap-2 transition-colors"
+						>
+							<i className="ri-github-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
+							<span className="text-sm font-medium text-white">12k+</span>
+							<span className="text-sm text-zinc-400 -ml-1">stars</span>
 						</a>
 						<div className="h-4 w-px bg-zinc-800" />
 						<a

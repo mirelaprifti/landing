@@ -253,13 +253,13 @@ export function EffectDaysPage() {
               </div>
 
               {/* Speaker Grid */}
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="grid grid-cols-2 gap-0 sm:grid-cols-4">
                 {/* Dillon Mulroy */}
                 <a
                   href="https://x.com/dillon_mulroy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative aspect-square overflow-hidden rounded-lg"
+                  className="group relative aspect-square overflow-hidden"
                 >
                   <img
                     src={getAssetPath("/assets/images/dillon-1.png")}
@@ -278,7 +278,7 @@ export function EffectDaysPage() {
                   href="https://x.com/kitlangton"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative aspect-square overflow-hidden rounded-lg"
+                  className="group relative aspect-square overflow-hidden"
                 >
                   <img
                     src={getAssetPath("/assets/images/kitlangton.jpg")}
@@ -288,7 +288,7 @@ export function EffectDaysPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3">
                     <span className="block text-sm font-medium text-white">Kit Langton</span>
-                    <span className="text-xs text-zinc-400">Ziverge</span>
+                    <span className="text-xs text-zinc-400">Effectful</span>
                   </div>
                 </a>
 
@@ -297,7 +297,7 @@ export function EffectDaysPage() {
                   href="https://x.com/tim_smart"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative aspect-square overflow-hidden rounded-lg"
+                  className="group relative aspect-square overflow-hidden"
                 >
                   <img
                     src={getAssetPath("/assets/images/timsmart.jpg")}
@@ -316,7 +316,7 @@ export function EffectDaysPage() {
                   href="https://x.com/imax153"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative aspect-square overflow-hidden rounded-lg"
+                  className="group relative aspect-square overflow-hidden"
                 >
                   <img
                     src={getAssetPath("/assets/images/max.png")}
