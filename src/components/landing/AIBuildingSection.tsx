@@ -69,9 +69,9 @@ export function AIBuildingSection() {
             <h2 className="text-2xl leading-tight font-bold text-white md:text-3xl">
               Build AI and Agentic Systems
             </h2>
-            <p className="mt-4 text-lg text-zinc-400 max-w-2xl">
+            <p className="mt-4 text-lg text-zinc-400 max-w-lg">
               Reliable orchestration, parallel execution, state management,
-              and fault recovery — with type safety and semantic observability
+              and fault recovery, all with type safety and semantic observability
               baked in.
             </p>
 
