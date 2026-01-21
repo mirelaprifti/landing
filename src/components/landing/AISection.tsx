@@ -50,10 +50,10 @@ export function AISection() {
                   <div className="text-sm font-medium text-white">
                     Ben Davis
                   </div>
-                  <div className="text-xs text-zinc-500">@davis7</div>
+                  <div className="text-xs text-zinc-400">@davis7</div>
                 </div>
               </div>
-              <i className="ri-twitter-x-line text-zinc-500" />
+              <i className="ri-twitter-x-line text-white" />
             </div>
             {/* Quote */}
             <p className="text-sm leading-relaxed text-zinc-300">
@@ -62,7 +62,7 @@ export function AISection() {
               to Claude, then using that as docs. It sounds absurd, but it's
               actually kind amazing...
             </p>
-            <span className="mt-3 inline-flex items-center gap-1 text-xs text-zinc-500">
+            <span className="mt-3 inline-flex items-center gap-1 text-xs text-zinc-400">
               Full post <i className="ri-arrow-right-up-line" />
             </span>
           </a>
@@ -72,7 +72,7 @@ export function AISection() {
         <div className="px-4">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-sm text-zinc-500">01</span>
+              <span className="font-mono text-sm text-zinc-400">01</span>
               <p className="text-base leading-relaxed text-zinc-400">
                 <span className="font-medium text-white">
                   Predictable structure:
@@ -82,7 +82,7 @@ export function AISection() {
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-sm text-zinc-500">02</span>
+              <span className="font-mono text-sm text-zinc-400">02</span>
               <p className="text-base leading-relaxed text-zinc-400">
                 <span className="font-medium text-white">
                   Typed feedback loop:
@@ -92,7 +92,7 @@ export function AISection() {
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-sm text-zinc-500">03</span>
+              <span className="font-mono text-sm text-zinc-400">03</span>
               <p className="text-base leading-relaxed text-zinc-400">
                 <span className="font-medium text-white">
                   Built-in reliability:
@@ -102,7 +102,7 @@ export function AISection() {
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-sm text-zinc-500">04</span>
+              <span className="font-mono text-sm text-zinc-400">04</span>
               <p className="text-base leading-relaxed text-zinc-400">
                 <span className="font-medium text-white">
                   Rich toolbox:
