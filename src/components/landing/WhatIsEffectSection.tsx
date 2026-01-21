@@ -42,7 +42,7 @@ export function WhatIsEffectSection() {
 							href="https://effect.website/docs/getting-started/why-effect/"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="group mt-8 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							className="group mt-8 inline-flex items-center gap-2 text-base font-medium text-white transition-colors hover:text-zinc-300"
 						>
 							<span>Why Effect</span>
 							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />

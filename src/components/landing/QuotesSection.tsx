@@ -512,7 +512,7 @@ export function QuotesSection() {
 						<p className="mb-2 font-mono text-sm uppercase tracking-wider text-zinc-500">
 							// Testimonials
 						</p>
-						<h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">
+						<h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">
 							What developers are saying
 						</h2>
 					</div>

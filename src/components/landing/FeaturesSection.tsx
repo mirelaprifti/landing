@@ -161,7 +161,7 @@ export function FeaturesSection() {
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
 					// Interactive Examples
 				</p>
-				<h2 className="text-2xl font-bold text-white md:text-3xl">
+				<h2 className="text-2xl font-semibold text-white md:text-3xl">
 					See Effect in action
 				</h2>
 			</div>
