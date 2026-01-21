@@ -210,7 +210,7 @@ export function ProblemSection() {
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{FEATURES.map((feature, index) => (
 						<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
-							<p className="text-sm font-medium text-zinc-400">
+							<p className="text-base font-medium text-zinc-400">
 								{feature.problem}
 							</p>
 							<div

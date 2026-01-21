@@ -67,7 +67,7 @@ export function AIBuildingSection() {
               // Effect for AI
             </p>
             <h2 className="text-2xl leading-tight font-bold text-white md:text-3xl">
-              Build AI and Agentic Systems
+              Build AI & Agentic Systems
             </h2>
             <p className="mt-4 text-lg text-zinc-400 max-w-lg">
               Reliable orchestration, parallel execution, state management,
@@ -109,8 +109,8 @@ export function AIBuildingSection() {
                   : ""
               } ${index === 0 ? "lg:pl-0" : ""} ${index === FEATURES.length - 1 ? "lg:pr-0" : ""}`}
             >
-              <i className={`${feature.icon} mb-2 text-lg text-zinc-500`} />
-              <h3 className="text-base font-semibold text-zinc-300">
+              <i className={`${feature.icon} mb-2 text-lg text-zinc-300`} />
+              <h3 className="text-base font-semibold text-white">
                 {feature.title}
               </h3>
               <p className="mt-1 text-sm leading-relaxed text-zinc-400">
