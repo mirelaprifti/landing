@@ -48,7 +48,7 @@ export function TestimonialsSection() {
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 text-base font-medium text-white transition-colors hover:text-zinc-300"
+						className="inline-flex items-center gap-1 text-base font-medium text-zinc-200 transition-colors hover:text-zinc-300"
 					>
 						Cause & Effect Podcast
 						<i className="ri-arrow-right-up-line text-base" />
@@ -57,7 +57,7 @@ export function TestimonialsSection() {
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 text-base font-medium text-white transition-colors hover:text-zinc-300"
+						className="inline-flex items-center gap-1 text-base font-medium text-zinc-200 transition-colors hover:text-zinc-300"
 					>
 						Effect Days 2024
 						<i className="ri-arrow-right-up-line text-base" />
@@ -66,7 +66,7 @@ export function TestimonialsSection() {
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 text-base font-medium text-white transition-colors hover:text-zinc-300"
+						className="inline-flex items-center gap-1 text-base font-medium text-zinc-200 transition-colors hover:text-zinc-300"
 					>
 						Effect Days 2025
 						<i className="ri-arrow-right-up-line text-base" />
@@ -94,7 +94,7 @@ export function TestimonialsSection() {
 									className="h-full w-full object-cover"
 								/>
 								<div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
-									<i className="ri-play-circle-fill text-4xl text-white transition-colors" />
+									<i className="ri-play-circle-fill text-4xl text-zinc-200 transition-colors" />
 								</div>
 							</div>
 							{/* Label area */}

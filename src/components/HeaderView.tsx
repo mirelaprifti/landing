@@ -304,22 +304,22 @@ function HeaderViewComponent({
 					<h2 className="text-base font-mono font-semibold text-white flex items-baseline gap-2">
 						<span>{name}</span>
 						{variant && (
-							<span className="font-medium text-neutral-500">{variant}</span>
+							<span className="font-medium text-neutral-400">{variant}</span>
 						)}
 					</h2>
 					{/* Static label on the right */}
 					{isIdle && (
-						<span className="text-xs font-mono text-zinc-500 -mt-1">
+						<span className="text-xs font-mono text-zinc-400 -mt-1">
 							Click to run an Effect
 						</span>
 					)}
 					{canReset && (
-						<span className="text-xs font-mono text-zinc-500 -mt-1">
+						<span className="text-xs font-mono text-zinc-400 -mt-1">
 							Click to reset
 						</span>
 					)}
 					{isRunning && (
-						<span className="text-xs font-mono text-zinc-500 -mt-1">
+						<span className="text-xs font-mono text-zinc-400 -mt-1">
 							Click to stop
 						</span>
 					)}

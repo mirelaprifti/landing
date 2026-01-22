@@ -220,8 +220,8 @@ export function ProblemSection() {
 								}}
 							/>
 							<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
-								<div className="w-6 h-6 rounded-sm bg-zinc-800/50 flex items-center justify-center shrink-0">
-									<i className={`${feature.icon} text-zinc-300 text-sm`} />
+								<div className="w-6 h-6 bg-zinc-800 flex items-center justify-center shrink-0">
+									<i className={`${feature.icon} text-zinc-200 text-sm`} />
 								</div>
 								{feature.title}
 							</h3>
