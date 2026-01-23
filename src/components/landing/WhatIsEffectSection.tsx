@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export function WhatIsEffectSection() {
+	const [hoveredType, setHoveredType] = useState<"success" | "error" | "requirements" | null>(null);
+
 	return (
 		<section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
 			{/* Subtle background gradient */}
@@ -64,11 +68,23 @@ export function WhatIsEffectSection() {
 							<div className="group relative w-full border border-zinc-700 bg-zinc-900/50 px-6 py-4 font-mono text-base text-center transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
 								<span className="text-white select-all">Effect</span>
 								<span className="text-zinc-500">&lt;</span>
-								<span className="text-zinc-300">Success</span>
+								<span
+									className={`cursor-pointer transition-opacity text-emerald-400 ${hoveredType && hoveredType !== "success" ? "opacity-50" : "opacity-100"}`}
+									onMouseEnter={() => setHoveredType("success")}
+									onMouseLeave={() => setHoveredType(null)}
+								>Success</span>
 								<span className="text-zinc-500">, </span>
-								<span className="text-zinc-300">Error</span>
+								<span
+									className={`cursor-pointer transition-opacity text-red-400 ${hoveredType && hoveredType !== "error" ? "opacity-50" : "opacity-100"}`}
+									onMouseEnter={() => setHoveredType("error")}
+									onMouseLeave={() => setHoveredType(null)}
+								>Error</span>
 								<span className="text-zinc-500">, </span>
-								<span className="text-zinc-300">Requirements</span>
+								<span
+									className={`cursor-pointer transition-opacity text-violet-400 ${hoveredType && hoveredType !== "requirements" ? "opacity-50" : "opacity-100"}`}
+									onMouseEnter={() => setHoveredType("requirements")}
+									onMouseLeave={() => setHoveredType(null)}
+								>Requirements</span>
 								<span className="text-zinc-500">&gt;</span>
 							</div>
 
@@ -81,17 +97,29 @@ export function WhatIsEffectSection() {
 
 							{/* Three columns */}
 							<div className="grid grid-cols-3 gap-4 text-sm">
-								<div className="text-center">
-									<p className="text-zinc-300 font-medium">Success</p>
-									<p className="text-zinc-500 text-xs mt-1">What it returns</p>
+								<div
+									className={`text-center cursor-pointer transition-opacity ${hoveredType && hoveredType !== "success" ? "opacity-50" : "opacity-100"}`}
+									onMouseEnter={() => setHoveredType("success")}
+									onMouseLeave={() => setHoveredType(null)}
+								>
+									<p className="font-medium text-emerald-400">Success</p>
+									<p className="text-xs mt-1 text-zinc-500">What it returns</p>
 								</div>
-								<div className="text-center">
-									<p className="text-zinc-300 font-medium">Error</p>
-									<p className="text-zinc-500 text-xs mt-1">What can fail</p>
+								<div
+									className={`text-center cursor-pointer transition-opacity ${hoveredType && hoveredType !== "error" ? "opacity-50" : "opacity-100"}`}
+									onMouseEnter={() => setHoveredType("error")}
+									onMouseLeave={() => setHoveredType(null)}
+								>
+									<p className="font-medium text-red-400">Error</p>
+									<p className="text-xs mt-1 text-zinc-500">What can fail</p>
 								</div>
-								<div className="text-center">
-									<p className="text-zinc-300 font-medium">Requirements</p>
-									<p className="text-zinc-500 text-xs mt-1">Dependencies needed</p>
+								<div
+									className={`text-center cursor-pointer transition-opacity ${hoveredType && hoveredType !== "requirements" ? "opacity-50" : "opacity-100"}`}
+									onMouseEnter={() => setHoveredType("requirements")}
+									onMouseLeave={() => setHoveredType(null)}
+								>
+									<p className="font-medium text-violet-400">Requirements</p>
+									<p className="text-xs mt-1 text-zinc-500">Dependencies needed</p>
 								</div>
 							</div>
 

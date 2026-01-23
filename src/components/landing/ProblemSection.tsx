@@ -213,12 +213,12 @@ export function ProblemSection() {
 							<p className="text-base font-medium text-zinc-400">
 								{feature.problem}
 							</p>
-							<div
-								className="h-px w-full mt-5 mb-6"
-								style={{
-									backgroundImage: 'repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
-								}}
-							/>
+							{/* Arrow connector */}
+							<div className="flex items-center gap-2 my-4">
+								<div className="h-px flex-1 bg-zinc-800" />
+								<i className="ri-arrow-down-line text-white text-sm" />
+								<div className="h-px flex-1 bg-zinc-800" />
+							</div>
 							<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
 								<div className="w-6 h-6 bg-zinc-800 flex items-center justify-center shrink-0">
 									<i className={`${feature.icon} text-zinc-200 text-sm`} />

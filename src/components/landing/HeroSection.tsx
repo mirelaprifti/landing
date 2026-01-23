@@ -80,7 +80,7 @@ export function HeroSection() {
 					</div>
 
 					{/* Stats */}
-					<div className="mt-6 ml-2 flex items-center gap-8">
+					<div className="mt-6 ml-2 flex flex-wrap items-center gap-4 sm:gap-8">
 						<a
 							href="https://www.npmjs.com/package/effect"
 							target="_blank"
@@ -91,7 +91,7 @@ export function HeroSection() {
 							<span className="text-sm font-medium text-white">6M+/w</span>
 							<span className="text-sm text-zinc-400 -ml-1">downloads</span>
 						</a>
-						<div className="h-4 w-px bg-zinc-800" />
+						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
 						<a
 							href="https://github.com/Effect-TS/effect"
 							target="_blank"
@@ -102,7 +102,7 @@ export function HeroSection() {
 							<span className="text-sm font-medium text-white">12k+</span>
 							<span className="text-sm text-zinc-400 -ml-1">stars</span>
 						</a>
-						<div className="h-4 w-px bg-zinc-800" />
+						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
 						<a
 							href="https://discord.gg/effect-ts"
 							target="_blank"
@@ -115,7 +115,6 @@ export function HeroSection() {
 						</a>
 					</div>
 				</div>
-
 			</div>
 		</section>
 	);
