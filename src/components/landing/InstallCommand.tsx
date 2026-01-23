@@ -50,7 +50,7 @@ export function InstallCommand() {
 			<button
 				type="button"
 				onClick={copyCommand}
-				className="w-full flex items-center justify-between gap-4 px-5 py-4 mt-1 font-mono text-base text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
+				className="w-full flex items-center justify-between gap-4 px-5 py-3 mt-1 font-mono text-base text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
 				aria-label="Copy install command"
 			>
 				<span>{currentCommand}</span>

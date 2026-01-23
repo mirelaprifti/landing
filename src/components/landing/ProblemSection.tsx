@@ -109,12 +109,12 @@ function ComplexityChart() {
 						</linearGradient>
 					</defs>
 
-					{[35, 70, 105].map((y) => (
+					{[0, 35, 70, 105, 140].map((y) => (
 						<line key={y} x1="0" y1={y} x2="400" y2={y} stroke="rgb(39 39 42)" strokeWidth="1" strokeOpacity="0.4" />
 					))}
 
 					<path
-						d="M0,130 C60,128 140,115 220,70 C300,25 360,8 400,5 L400,140 L0,140 Z"
+						d="M0,118 C150,115 250,100 400,0 L400,140 L0,140 Z"
 						fill="url(#redAreaGradient)"
 						className="transition-opacity duration-700"
 						style={{
@@ -123,7 +123,7 @@ function ComplexityChart() {
 						}}
 					/>
 					<path
-						d="M0,115 C100,112 200,105 300,95 C350,90 380,87 400,85 L400,140 L0,140 Z"
+						d="M0,105 C50,105 90,105 125,105 C200,100 300,92 400,85 L400,140 L0,140 Z"
 						fill="url(#greenAreaGradient)"
 						className="transition-opacity duration-700"
 						style={{
@@ -133,7 +133,7 @@ function ComplexityChart() {
 					/>
 
 					<path
-						d="M0,130 C60,128 140,115 220,70 C300,25 360,8 400,5"
+						d="M0,118 C150,115 250,100 400,0"
 						fill="none"
 						stroke="rgb(239 68 68)"
 						strokeWidth="1.5"
@@ -145,7 +145,7 @@ function ComplexityChart() {
 						}}
 					/>
 					<path
-						d="M0,115 C100,112 200,105 300,95 C350,90 380,87 400,85"
+						d="M0,105 C50,105 90,105 125,105 C200,100 300,92 400,85"
 						fill="none"
 						stroke="rgb(16 185 129)"
 						strokeWidth="1.5"
