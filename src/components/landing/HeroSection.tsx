@@ -93,17 +93,6 @@ export function HeroSection() {
 						</a>
 						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
 						<a
-							href="https://github.com/Effect-TS/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-2 transition-colors"
-						>
-							<i className="ri-github-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
-							<span className="text-sm font-medium text-white">12k+</span>
-							<span className="text-sm text-zinc-400 -ml-1">stars</span>
-						</a>
-						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
-						<a
 							href="https://discord.gg/effect-ts"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -112,6 +101,17 @@ export function HeroSection() {
 							<i className="ri-discord-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
 							<span className="text-sm font-medium text-white">6k+</span>
 							<span className="text-sm text-zinc-400 -ml-1">community</span>
+						</a>
+						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
+						<a
+							href="https://github.com/Effect-TS/effect"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group flex items-center gap-2 transition-colors"
+						>
+							<i className="ri-github-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
+							<span className="text-sm font-medium text-white">13k+</span>
+							<span className="text-sm text-zinc-400 -ml-1">stars</span>
 						</a>
 					</div>
 				</div>

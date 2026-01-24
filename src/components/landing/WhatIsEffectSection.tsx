@@ -102,7 +102,7 @@ export function WhatIsEffectSection() {
 									onMouseEnter={() => setHoveredType("success")}
 									onMouseLeave={() => setHoveredType(null)}
 								>
-									<p className="font-medium text-emerald-400">Success</p>
+									<p className="font-medium text-zinc-200">Success</p>
 									<p className="text-xs mt-1 text-zinc-500">What it returns</p>
 								</div>
 								<div
@@ -110,7 +110,7 @@ export function WhatIsEffectSection() {
 									onMouseEnter={() => setHoveredType("error")}
 									onMouseLeave={() => setHoveredType(null)}
 								>
-									<p className="font-medium text-red-400">Error</p>
+									<p className="font-medium text-zinc-200">Error</p>
 									<p className="text-xs mt-1 text-zinc-500">What can fail</p>
 								</div>
 								<div
@@ -118,7 +118,7 @@ export function WhatIsEffectSection() {
 									onMouseEnter={() => setHoveredType("requirements")}
 									onMouseLeave={() => setHoveredType(null)}
 								>
-									<p className="font-medium text-violet-400">Requirements</p>
+									<p className="font-medium text-zinc-200">Requirements</p>
 									<p className="text-xs mt-1 text-zinc-500">Dependencies needed</p>
 								</div>
 							</div>
