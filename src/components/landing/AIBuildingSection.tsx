@@ -5,17 +5,17 @@ const AI_CASE_STUDIES = [
     effectLogo: getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg"),
     partnerLogo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
     partnerLogoClass: "h-4",
-    title: "Voice AI Orchestration Layer",
+    title: "// Voice AI Orchestration Layer",
     href: "https://youtu.be/Cj2pVPqdOVs",
-    accentColor: "bg-red-500"
+    accentColor: "bg-violet-500"
   },
   {
     effectLogo: getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg"),
     partnerLogo: getAssetPath("/assets/test-logos/14-ai.svg"),
     partnerLogoClass: "h-6",
-    title: "AI for Customer Support",
+    title: "// AI for Customer Support",
     href: "https://youtu.be/gGFPhFrGCng",
-    accentColor: "bg-lime-500"
+    accentColor: "bg-emerald-400"
   }
 ]
 
@@ -150,7 +150,7 @@ export function AIBuildingSection() {
 
                 {/* Logos row with arrow */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-5">
                     <img
                       src={study.effectLogo}
                       alt="Effect"
