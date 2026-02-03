@@ -7,7 +7,11 @@ const AI_CASE_STUDIES = [
     partnerLogoClass: "h-4",
     title: "// Voice AI Orchestration Layer",
     href: "https://youtu.be/Cj2pVPqdOVs",
-    accentColor: "bg-violet-500"
+    accentColor: "bg-violet-500",
+    // Soft radial glow in corner
+    bgStyle: {
+      background: "radial-gradient(ellipse 80% 100% at 100% 100%, rgba(139, 92, 246, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)"
+    }
   },
   {
     effectLogo: getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg"),
@@ -15,7 +19,11 @@ const AI_CASE_STUDIES = [
     partnerLogoClass: "h-6",
     title: "// AI for Customer Support",
     href: "https://youtu.be/gGFPhFrGCng",
-    accentColor: "bg-emerald-400"
+    accentColor: "bg-emerald-400",
+    // Soft radial glow in corner
+    bgStyle: {
+      background: "radial-gradient(ellipse 80% 100% at 100% 100%, rgba(16, 185, 129, 0.35) 0%, rgba(52, 211, 153, 0.2) 40%, transparent 70%)"
+    }
   }
 ]
 
@@ -133,8 +141,14 @@ export function AIBuildingSection() {
               {/* Top accent line */}
               <div className={`absolute top-0 left-0 right-0 h-0.5 ${study.accentColor}`} />
 
+              {/* Decorative gradient background */}
+              <div
+                className="pointer-events-none absolute inset-0 transition-opacity group-hover:opacity-100"
+                style={study.bgStyle}
+              />
+
               {/* Content */}
-              <div className="flex flex-col px-8 pt-8 pb-7 gap-4">
+              <div className="relative flex flex-col px-8 pt-8 pb-7 gap-4">
                 {/* Title */}
                 <h4 className="text-sm font-mono uppercase font-medium text-zinc-400 group-hover:text-white transition-colors">
                   {study.title}

@@ -33,7 +33,7 @@ export function VisualEffectShowcaseSection() {
 				}}
 			></div>
 
-			<div className="container mx-auto w-full px-4 md:px-8">
+			<div className="container mx-auto w-full px-12 md:px-8">
 				{/* Visual Effect Container */}
 				<div className="mx-auto flex w-full max-w-[66.5rem] flex-col relative px-0 py-6">
 					{/* Heading, Description and Link */}
@@ -56,7 +56,7 @@ export function VisualEffectShowcaseSection() {
 					</div>
 
 					{/* Grid Layout for Examples */}
-					<div className="flex flex-col gap-4">
+					<div className="flex flex-col">
 						{/* Row 1: Effect.succeed, Effect.die, Effect.fail */}
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-fr">
 							{row1Examples.map((exampleId, index) => {

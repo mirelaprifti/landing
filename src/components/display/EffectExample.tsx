@@ -145,7 +145,7 @@ function EffectExampleComponent<A, E>({
 		>
 			{/* Header with interactive controls */}
 			<motion.div
-				className={`p-4 border-b`}
+				className={`px-4 py-4 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 					backgroundColor: headerBackground,
@@ -204,7 +204,7 @@ function EffectExampleComponent<A, E>({
 
 			{/* Main visualization */}
 			<motion.div
-				className={`px-4 py-8 border-b`}
+				className={`px-6 py-6 border-b`}
 				initial={{
 					borderColor: borderColorValue,
 				}}
@@ -299,7 +299,7 @@ function EffectExampleComponent<A, E>({
 
 			{/* Code block */}
 			<div
-				className="relative p-4 text-sm"
+				className="relative p-6 text-sm"
 				ref={codeContainerRef}
 				style={{ position: "relative" }}
 			>

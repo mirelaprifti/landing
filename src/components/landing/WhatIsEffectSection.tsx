@@ -126,8 +126,6 @@ export function WhatIsEffectSection() {
 							{/* Effect.gen explanation */}
 							<div className="mt-8 ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 p-6 font-mono text-sm">
 								<div>
-									<span className="text-zinc-500">() </span>
-									<span className="text-zinc-500">{"=>"} </span>
 									<span className="text-white">Effect</span>
 									<span className="text-zinc-500">.</span>
 									<span className="text-zinc-300">gen</span>
