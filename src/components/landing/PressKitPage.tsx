@@ -1,6 +1,7 @@
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { CTASection } from "./CTASection";
+import { GridOverlay } from "../GridOverlay";
 import { getAssetPath } from "../../utils/assetPath";
 
 const COMBINATION_MARK = {
@@ -65,10 +66,41 @@ export function PressKitPage() {
           backgroundSize: '4px 4px',
         }}
       />
+      {/* Skip Navigation Link */}
+      <a
+        href="#main-content"
+        className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:left-0 focus:top-0"
+      >
+        Skip to main content
+      </a>
 
       <Navigation />
+      <GridOverlay />
 
-      <main className="relative z-10 pt-16">
+      {/* Vertical border lines container */}
+      <div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-[60] hidden lg:block">
+        <div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+          {/* Left vertical line */}
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-800" />
+          {/* Right vertical line */}
+          <div className="absolute right-0 top-0 bottom-0 w-px bg-zinc-800" />
+        </div>
+      </div>
+
+      {/* Center vertical line - dashed, behind content */}
+      <div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-0 hidden px-8 lg:block">
+        <div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+          <div
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
+            style={{
+              width: '1px',
+              backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+            }}
+          />
+        </div>
+      </div>
+
+      <main id="main-content" className="relative z-10 pt-16">
         {/* Hero Section */}
         <section className="relative w-full pt-16 pb-12 md:pt-20 md:pb-16">
           {/* Grid background */}

@@ -103,7 +103,7 @@ export function WhatIsEffectSection() {
 									onMouseLeave={() => setHoveredType(null)}
 								>
 									<p className="font-medium text-zinc-200">Success</p>
-									<p className="text-xs mt-1 text-zinc-500">What it returns</p>
+									<p className="text-xs mt-1 text-zinc-400">What it returns</p>
 								</div>
 								<div
 									className={`text-center cursor-pointer transition-opacity ${hoveredType && hoveredType !== "error" ? "opacity-50" : "opacity-100"}`}
@@ -111,7 +111,7 @@ export function WhatIsEffectSection() {
 									onMouseLeave={() => setHoveredType(null)}
 								>
 									<p className="font-medium text-zinc-200">Error</p>
-									<p className="text-xs mt-1 text-zinc-500">What can fail</p>
+									<p className="text-xs mt-1 text-zinc-400">What can fail</p>
 								</div>
 								<div
 									className={`text-center cursor-pointer transition-opacity ${hoveredType && hoveredType !== "requirements" ? "opacity-50" : "opacity-100"}`}
@@ -119,7 +119,7 @@ export function WhatIsEffectSection() {
 									onMouseLeave={() => setHoveredType(null)}
 								>
 									<p className="font-medium text-zinc-200">Requirements</p>
-									<p className="text-xs mt-1 text-zinc-500">Dependencies needed</p>
+									<p className="text-xs mt-1 text-zinc-400">Dependencies needed</p>
 								</div>
 							</div>
 

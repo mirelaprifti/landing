@@ -208,34 +208,34 @@ export function ProblemSection() {
 
 				{/* Feature cards */}
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-					{FEATURES.map((feature, index) => (
-						<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
-							<p className="text-base font-medium text-zinc-400">
-								{feature.problem}
-							</p>
-							{/* Arrow connector */}
-							<div className="flex items-center gap-2 my-4">
-								<div className="h-px flex-1 bg-zinc-800" />
-								<i className="ri-arrow-down-line text-white text-sm" />
-								<div className="h-px flex-1 bg-zinc-800" />
-							</div>
-							<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
-								<div className="w-6 h-6 bg-zinc-800 flex items-center justify-center shrink-0">
-									<i className={`${feature.icon} text-zinc-200 text-sm`} />
+						{FEATURES.map((feature, index) => (
+							<div key={index} className="flex flex-col border border-zinc-800 bg-zinc-950 p-5">
+								<p className="text-base font-medium text-zinc-400">
+									{feature.problem}
+								</p>
+								{/* Arrow connector */}
+								<div className="flex items-center gap-2 my-4">
+									<div className="h-px flex-1 bg-zinc-800" />
+									<i className="ri-arrow-down-line text-white text-sm" />
+									<div className="h-px flex-1 bg-zinc-800" />
 								</div>
-								{feature.title}
-							</h3>
-							{/* Checkmark items */}
-							<div className="mt-3 flex flex-col gap-1.5">
-								{feature.items.map((item, itemIndex) => (
-									<div key={itemIndex} className="flex items-start gap-3">
-										<i className="ri-check-line text-emerald-500 text-sm shrink-0 pl-1" />
-										<span className="text-sm text-zinc-400">{item}</span>
+								<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
+									<div className="w-6 h-6 bg-zinc-800 flex items-center justify-center shrink-0">
+										<i className={`${feature.icon} text-zinc-200 text-sm`} />
 									</div>
-								))}
+									{feature.title}
+								</h3>
+								{/* Checkmark items */}
+								<div className="mt-3 flex flex-col gap-1.5">
+									{feature.items.map((item, itemIndex) => (
+										<div key={itemIndex} className="flex items-start gap-3">
+											<i className="ri-check-line text-emerald-500 text-sm shrink-0 pl-1" />
+											<span className="text-sm text-zinc-400">{item}</span>
+										</div>
+									))}
+								</div>
 							</div>
-						</div>
-					))}
+						))}
 				</div>
 			</div>
 		</section>

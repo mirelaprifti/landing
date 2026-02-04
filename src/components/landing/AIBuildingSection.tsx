@@ -177,7 +177,7 @@ export function AIBuildingSection() {
                       className={study.partnerLogoClass}
                     />
                   </div>
-                  <i className="ri-arrow-right-up-line text-zinc-400 group-hover:text-zinc-400 transition-colors" />
+                  <i className="ri-arrow-right-up-line text-zinc-200 group-hover:text-white transition-colors" />
                 </div>
               </div>
             </a>

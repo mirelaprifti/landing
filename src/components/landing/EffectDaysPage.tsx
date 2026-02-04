@@ -1,5 +1,6 @@
 import { Navigation } from "./Navigation"
 import { Footer } from "./Footer"
+import { GridOverlay } from "../GridOverlay"
 import { getAssetPath } from "../../utils/assetPath"
 
 const PAST_EDITIONS = [
@@ -48,8 +49,16 @@ export function EffectDaysPage() {
           backgroundSize: "4px 4px"
         }}
       />
+      {/* Skip Navigation Link */}
+      <a
+        href="#main-content"
+        className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:left-0 focus:top-0"
+      >
+        Skip to main content
+      </a>
 
       <Navigation transparent />
+      <GridOverlay />
 
       {/* Vertical border lines container */}
       <div className="pointer-events-none fixed left-0 right-0 top-0 bottom-0 z-[101] hidden lg:block">
@@ -74,7 +83,7 @@ export function EffectDaysPage() {
         </div>
       </div>
 
-      <main className="relative z-10 w-full pt-16">
+      <main id="main-content" className="relative z-10 w-full pt-16">
         {/* Background image with gradient overlay */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-[39.4rem] -z-10 overflow-hidden"

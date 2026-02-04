@@ -161,9 +161,7 @@ export function Footer() {
 								</li>
 								<li>
 									<a
-										href="https://effect.website/merch"
-										target="_blank"
-										rel="noopener noreferrer"
+										href={getAssetPath("/merch")}
 										className="text-sm leading-relaxed text-zinc-400 transition-colors hover:text-white border-b border-transparent hover:border-current"
 									>
 										Effect Merch

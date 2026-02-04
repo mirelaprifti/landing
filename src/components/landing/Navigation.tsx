@@ -73,7 +73,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
   return (
     <>
       <div
-        className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? '' : 'border-b border-zinc-700 bg-zinc-950/85'}`}
+        className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? '' : 'border-b border-zinc-800 bg-zinc-950/85'}`}
       >
         <div className="w-full">
           <header className="relative mx-auto w-full max-w-[73.75rem] px-4">
