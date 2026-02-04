@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { EpisodePage } from "@/components/landing/EpisodePage";
+import { EPISODES } from "../../../data/episodes";
+import { parseSRT } from "../../../utils/srtParser";
+import fs from "node:fs";
+import path from "node:path";
+
+export function getStaticPaths() {
+  return EPISODES.map((episode) => ({
+    params: { episode: `episode-${episode.number}` },
+    props: { episode }
+  }));
+}
+
+const { episode } = Astro.props;
+
+if (!episode) {
+  return Astro.redirect("/podcast");
+}
+
+// Load transcript if available
+let transcriptEntries: { startTime: string; text: string }[] = [];
+try {
+  const transcriptPath = path.join(
+    process.cwd(),
+    "src/data/transcripts",
+    `episode-${episode.number}.srt`
+  );
+  const srtContent = fs.readFileSync(transcriptPath, "utf-8");
+  const entries = parseSRT(srtContent);
+  transcriptEntries = entries.map(entry => ({
+    startTime: entry.startTime,
+    text: entry.text
+  }));
+} catch {
+  // Transcript not available
+}
+---
+
+<BaseLayout
+  title={`${episode.title} - Cause & Effect Podcast`}
+  description={episode.description}
+>
+  <EpisodePage episode={episode} transcript={transcriptEntries} client:load />
+</BaseLayout>

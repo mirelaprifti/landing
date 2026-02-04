@@ -102,104 +102,28 @@ const EPISODES: Episode[] = [
   }
 ]
 
-// Company logos as simple text or SVG icons
-const companyLogos: Record<string, React.ReactNode> = {
-  Warp: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <svg
-        viewBox="0 0 24 24"
-        className="h-4 w-4"
-        fill="currentColor"
-      >
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-      </svg>
-      <span className="text-sm font-medium">warp</span>
-    </div>
-  ),
-  OpenRouter: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-      </svg>
-      <span className="text-sm font-medium">OpenRouter</span>
-    </div>
-  ),
-  Spiko: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <span className="text-sm font-medium">⚡ spiko</span>
-    </div>
-  ),
-  Vercel: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-        <path d="M12 2L2 19.5h20L12 2z" />
-      </svg>
-      <span className="text-sm font-medium">Vercel</span>
-    </div>
-  ),
-  MasterClass: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <span className="text-sm font-medium">M MasterClass</span>
-    </div>
-  ),
-  Markprompt: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <span className="text-sm font-medium">M!</span>
-    </div>
-  ),
-  Zendesk: (
-    <div className="flex items-center gap-1.5 text-white/90">
-      <span className="text-sm font-medium">zendesk</span>
-    </div>
-  )
-}
-
 function EpisodeCard({ episode }: { episode: Episode }) {
   return (
     <a
-      href={`https://www.youtube.com/watch?v=${episode.youtubeId}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex flex-col gap-6 border-b border-zinc-800 py-8 transition-colors hover:bg-zinc-900/30 md:flex-row md:gap-8"
+      href={`/podcast/episodes/episode-${episode.number}`}
+      className="group flex flex-col gap-8 p-4 my-4 transition-colors hover:bg-zinc-900/90 md:flex-row md:gap-8"
     >
-      {/* Thumbnail with overlay */}
-      <div className="relative aspect-video w-full flex-shrink-0 overflow-hidden md:aspect-[4/5] md:w-56">
+      {/* Thumbnail */}
+      <div className="relative aspect-video w-full flex-shrink-0 overflow-hidden md:w-[40%]">
         <img
           src={episode.thumbnailUrl}
           alt={episode.guest}
           className="h-full w-full object-cover"
         />
-        {/* Dark overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
-
-        {/* Cause & Effect branding */}
-        <div className="absolute top-3 left-3 flex flex-col gap-0.5">
-          <span className="text-[10px] font-medium tracking-wider text-white/70">
-            Cause & Effect
-          </span>
-          <span className="text-[10px] text-white/50">#{episode.number.toString().padStart(2, "0")}</span>
-        </div>
-
-        {/* Play icon on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-            <i className="ri-play-fill text-3xl text-white" />
-          </div>
-        </div>
-
-        {/* Guest info at bottom */}
-        <div className="absolute bottom-3 left-3 right-3">
-          <h3 className="text-lg font-semibold leading-tight text-white">
-            {episode.guest}
-          </h3>
-          <div className="mt-1">{companyLogos[episode.company]}</div>
-        </div>
       </div>
 
       {/* Episode content */}
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col justify-center pr-8">
+        <p className="mb-1 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
+          // Episode #{episode.number.toString().padStart(2, "0")}
+        </p>
         <h4 className="text-lg font-semibold text-white group-hover:text-zinc-200 md:text-xl">
-          #{episode.number}: {episode.title}
+          {episode.title}
         </h4>
         <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-400 md:text-base">
           {episode.description}
@@ -208,8 +132,6 @@ function EpisodeCard({ episode }: { episode: Episode }) {
           <span>{episode.date}</span>
           <span>·</span>
           <span>{episode.duration}</span>
-          <span>·</span>
-          <span>Episode #{episode.number}</span>
         </div>
       </div>
     </a>
@@ -231,7 +153,7 @@ export function PodcastPage() {
       {/* Skip Navigation Link */}
       <a
         href="#main-content"
-        className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:left-0 focus:top-0"
+        className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
       >
         Skip to main content
       </a>
@@ -240,18 +162,18 @@ export function PodcastPage() {
       <GridOverlay />
 
       {/* Vertical border lines container */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[60] hidden lg:block">
+      <div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
         <div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-          <div className="absolute bottom-0 left-0 top-0 w-px bg-zinc-800" />
-          <div className="absolute bottom-0 right-0 top-0 w-px bg-zinc-800" />
+          <div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+          <div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
         </div>
       </div>
 
       {/* Center vertical line - dashed */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-0 hidden px-8 lg:block">
+      <div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
         <div className="relative mx-auto h-full w-full max-w-[73.75rem]">
           <div
-            className="absolute bottom-0 left-1/2 top-0 -translate-x-1/2"
+            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
             style={{
               width: "1px",
               backgroundImage:
@@ -264,65 +186,115 @@ export function PodcastPage() {
       {/* Main Content */}
       <main id="main-content" className="relative w-full pt-16">
         {/* Hero Section */}
-        <section className="relative w-full bg-zinc-950 pb-12 pt-16 md:pb-16 md:pt-24">
-          <div className="mx-auto max-w-[73.75rem] px-4">
+        <section className="relative w-full bg-zinc-950 pt-16 pb-12 md:pt-24 md:pb-16">
+          {/* Grid background */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+              `,
+              backgroundSize: "196.6px 186px",
+              backgroundPosition: "calc(50% + 97px) 0"
+            }}
+          />
+
+          {/* Fade out grid at top and bottom */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)"
+            }}
+          />
+
+          <div className="relative mx-auto max-w-[73.75rem] px-4">
             <div className="max-w-2xl">
+              <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+                // The Podcast
+              </p>
               <h1 className="text-4xl font-bold text-white md:text-5xl">
                 Cause & Effect
               </h1>
-              <p className="mt-4 text-lg leading-relaxed text-zinc-400 md:text-xl">
+              <p className="mt-4 text-lg leading-relaxed text-zinc-400">
                 A podcast exploring how engineers are using Effect to build
                 reliable, production-grade software in TypeScript
               </p>
 
               {/* Platform links */}
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a
-                  href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-                >
-                  <i className="ri-youtube-fill text-2xl text-red-500" />
-                  <span className="text-sm">
-                    <span className="text-[10px] text-zinc-500">Watch on</span>
-                    <br />
-                    <span className="font-medium">YouTube</span>
-                  </span>
-                </a>
-
+              <div className="mt-8 flex flex-wrap items-center gap-6">
+                {/* Apple Podcasts */}
                 <a
                   href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
+                  aria-label="Listen on Apple Podcasts"
                 >
-                  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-b from-purple-500 to-purple-700">
-                    <i className="ri-mic-fill text-sm text-white" />
-                  </div>
-                  <span className="text-sm">
-                    <span className="text-[10px] text-zinc-500">Listen on</span>
-                    <br />
-                    <span className="font-medium">Podcasts</span>
-                  </span>
+                  <svg className="h-5 w-5" viewBox="0 0 300 300">
+                    <defs>
+                      <linearGradient id="apple-podcast-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="#833AB4" />
+                        <stop offset="100%" stopColor="#E040FB" />
+                      </linearGradient>
+                    </defs>
+                    <rect fill="url(#apple-podcast-gradient)" width="300" height="300" rx="65" />
+                    <g fill="#fff">
+                      <path d="M150 62c-48.6 0-88 39.4-88 88 0 30.4 15.5 57.2 39 73v-17.4c-14.6-13.3-23.8-32.4-23.8-53.6 0-40.2 32.6-72.8 72.8-72.8s72.8 32.6 72.8 72.8c0 21.2-9.2 40.3-23.8 53.6V223c23.5-15.8 39-42.6 39-73 0-48.6-39.4-88-88-88z"/>
+                      <path d="M150 95c-30.4 0-55 24.6-55 55 0 19.2 9.8 36.1 24.7 46v-18.5c-7.4-7.3-12-17.4-12-28.5 0-22.1 17.9-40 40-40s40 17.9 40 40c0 11.1-4.6 21.2-12 28.5V196c14.9-9.9 24.7-26.8 24.7-46 0-30.4-24.6-55-55-55z"/>
+                      <circle cx="150" cy="150" r="21"/>
+                      <path d="M150 180c-11 0-20 4-24 12-3 6-3 14-2 26l6 42c1 7 5 12 12 14 3 1 5 1 8 1s5 0 8-1c7-2 11-7 12-14l6-42c1-12 1-20-2-26-4-8-13-12-24-12z"/>
+                    </g>
+                  </svg>
+                  <span className="text-sm font-medium">Apple Podcasts</span>
                 </a>
 
+                {/* Spotify */}
                 <a
                   href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
+                  aria-label="Listen on Spotify"
                 >
-                  <i className="ri-spotify-fill text-2xl text-green-500" />
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="#1DB954">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                  </svg>
                   <span className="text-sm font-medium">Spotify</span>
                 </a>
 
+                {/* YouTube */}
+                <a
+                  href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
+                  aria-label="Watch on YouTube"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24">
+                    <path
+                      fill="#FF0000"
+                      d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                    />
+                  </svg>
+                  <span className="text-sm font-medium">YouTube</span>
+                </a>
+
+                {/* RSS Feed */}
                 <a
                   href="/podcast/rss.xml"
-                  className="flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white"
+                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
+                  aria-label="RSS Feed"
                 >
-                  <i className="ri-rss-fill" />
-                  <span>RSS Feed</span>
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="#fff">
+                    <path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93v-2.83z" />
+                  </svg>
+                  <span className="text-sm font-medium">RSS</span>
                 </a>
               </div>
             </div>
@@ -330,11 +302,16 @@ export function PodcastPage() {
         </section>
 
         {/* Episodes Section */}
-        <section className="w-full bg-zinc-950 pb-24">
+        <section className="w-full gap-16 border-t border-zinc-800 bg-zinc-950 pb-24">
           <div className="mx-auto max-w-[73.75rem] px-4">
             <div className="flex flex-col">
-              {EPISODES.map((episode) => (
-                <EpisodeCard key={episode.number} episode={episode} />
+              {EPISODES.map((episode, index) => (
+                <div key={episode.number}>
+                  <EpisodeCard episode={episode} />
+                  {index < EPISODES.length - 1 && (
+                    <div className="h-px w-full bg-zinc-800" />
+                  )}
+                </div>
               ))}
             </div>
           </div>
