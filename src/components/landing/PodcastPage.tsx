@@ -106,29 +106,37 @@ function EpisodeCard({ episode }: { episode: Episode }) {
   return (
     <a
       href={`/podcast/episodes/episode-${episode.number}`}
-      className="group flex flex-col gap-8 p-4 my-4 transition-colors hover:bg-zinc-900/90 md:flex-row md:gap-8"
+      className="group my-4 flex flex-col gap-8 p-4 transition-colors hover:bg-zinc-900/50 md:flex-row md:gap-8"
     >
       {/* Thumbnail */}
       <div className="relative aspect-video w-full flex-shrink-0 overflow-hidden md:w-[40%]">
         <img
           src={episode.thumbnailUrl}
           alt={episode.guest}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
         />
+        {/* Play indicator on hover */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
+          <div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
+            <svg className="ml-1 h-5 w-5 text-zinc-900" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       {/* Episode content */}
       <div className="flex flex-1 flex-col justify-center pr-8">
-        <p className="mb-1 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
+        <p className="mb-1 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase transition-colors duration-300 group-hover:text-zinc-300">
           // Episode #{episode.number.toString().padStart(2, "0")}
         </p>
-        <h4 className="text-lg font-semibold text-white group-hover:text-zinc-200 md:text-xl">
+        <h4 className="text-lg font-semibold text-white md:text-xl">
           {episode.title}
         </h4>
         <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-400 md:text-base">
           {episode.description}
         </p>
-        <div className="mt-4 flex items-center gap-2 text-sm text-zinc-500">
+        <div className="mt-4 flex items-center gap-2 text-sm text-zinc-500 transition-colors duration-300 group-hover:text-zinc-400">
           <span>{episode.date}</span>
           <span>·</span>
           <span>{episode.duration}</span>
@@ -186,7 +194,7 @@ export function PodcastPage() {
       {/* Main Content */}
       <main id="main-content" className="relative w-full pt-16">
         {/* Hero Section */}
-        <section className="relative w-full bg-zinc-950 pt-16 pb-12 md:pt-24 md:pb-16">
+        <section className="relative w-full overflow-hidden bg-zinc-950 pt-16 pb-12 md:pt-24 md:pb-24">
           {/* Grid background */}
           <div
             className="pointer-events-none absolute inset-0"
@@ -195,7 +203,7 @@ export function PodcastPage() {
                 linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
               `,
-              backgroundSize: "196.6px 186px",
+              backgroundSize: "196.6px 201px",
               backgroundPosition: "calc(50% + 97px) 0"
             }}
           />
@@ -210,92 +218,246 @@ export function PodcastPage() {
           />
 
           <div className="relative mx-auto max-w-[73.75rem] px-4">
-            <div className="max-w-2xl">
-              <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-                // The Podcast
-              </p>
-              <h1 className="text-4xl font-bold text-white md:text-5xl">
-                Cause & Effect
-              </h1>
-              <p className="mt-4 text-lg leading-relaxed text-zinc-400">
-                A podcast exploring how engineers are using Effect to build
-                reliable, production-grade software in TypeScript
-              </p>
+            <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-12">
+              {/* Text content */}
+              <div className="max-w-xl">
+                <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+                  // The Podcast
+                </p>
+                <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-6xl">
+                  Cause & Effect
+                </h1>
+                <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
+                  Exploring how engineers are using Effect to build
+                  production-grade software in TypeScript.
+                </p>
 
+                {/* Mobile platform links */}
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 lg:hidden">
+                  <a
+                    href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                    aria-label="Listen on Apple Podcasts"
+                  >
+                    <svg
+                      className="h-5 w-5 shrink-0"
+                      viewBox="0 0 300 300"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <linearGradient
+                          id="podcastGradientMobile"
+                          x1="150"
+                          y1="0"
+                          x2="150"
+                          y2="300"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stopColor="#833AB4" />
+                          <stop offset="1" stopColor="#E040FB" />
+                        </linearGradient>
+                      </defs>
+                      <rect
+                        width="300"
+                        height="300"
+                        rx="67.5"
+                        fill="url(#podcastGradientMobile)"
+                      />
+                      <path
+                        d="M150 65c-46.9 0-85 38.1-85 85 0 29.5 15.1 55.5 38 70.7v-1.2c0-5.7.7-11.2 2-16.5-14.2-12.5-23.2-30.8-23.2-51.2 0-37.6 30.6-68.2 68.2-68.2s68.2 30.6 68.2 68.2c0 20.4-9 38.7-23.2 51.2 1.3 5.3 2 10.8 2 16.5v1.2c22.9-15.2 38-41.2 38-70.7 0-46.9-38.1-85-85-85z"
+                        fill="#fff"
+                      />
+                      <path
+                        d="M150 95c-30.4 0-55 24.6-55 55 0 18.5 9.1 34.8 23.1 44.8.5-4.8 1.5-9.4 3-13.8-9.3-8.2-15.1-20.2-15.1-33.5 0-24.3 19.7-44 44-44s44 19.7 44 44c0 13.3-5.9 25.3-15.1 33.5 1.5 4.4 2.5 9 3 13.8 14-10 23.1-26.3 23.1-44.8 0-30.4-24.6-55-55-55z"
+                        fill="#fff"
+                      />
+                      <path
+                        d="M150 125c-13.8 0-25 11.2-25 25 0 8.5 4.2 15.9 10.7 20.4-.3 2.5-.5 5-.5 7.6v37c0 11 8.9 20 20 20h-10.4c-11 0-20-8.9-20-20v-37c0-16.6 13.4-30 30-30s30 13.4 30 30v37c0 11-8.9 20-20 20H150c11 0 20-8.9 20-20v-37c0-2.6-.2-5.1-.5-7.6 6.5-4.5 10.7-11.9 10.7-20.4 0-13.8-11.2-25-25-25h-5.2z"
+                        fill="#fff"
+                      />
+                    </svg>
+                    <span className="text-sm text-white group-hover:underline">Apple Podcasts</span>
+                  </a>
+                  <a
+                    href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                    aria-label="Listen on Spotify"
+                  >
+                    <svg
+                      className="h-5 w-5 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="#1DB954"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                    </svg>
+                    <span className="text-sm text-white group-hover:underline">Spotify</span>
+                  </a>
+                  <a
+                    href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                    aria-label="Watch on YouTube"
+                  >
+                    <svg
+                      className="h-5 w-5 shrink-0"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="#FF0000"
+                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+                      />
+                      <path
+                        fill="#fff"
+                        d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                      />
+                    </svg>
+                    <span className="text-sm text-white group-hover:underline">YouTube</span>
+                  </a>
+                  <a
+                    href="/podcast/rss.xml"
+                    className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                    aria-label="RSS Feed"
+                  >
+                    <svg
+                      className="h-5 w-5 shrink-0 text-white"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93v-2.83z" />
+                    </svg>
+                    <span className="text-sm text-white group-hover:underline">RSS</span>
+                  </a>
+                </div>
+              </div>
               {/* Platform links */}
-              <div className="mt-8 flex flex-wrap items-center gap-6">
-                {/* Apple Podcasts */}
-                <a
-                  href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
-                  aria-label="Listen on Apple Podcasts"
-                >
-                  <svg className="h-5 w-5" viewBox="0 0 300 300">
-                    <defs>
-                      <linearGradient id="apple-podcast-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stopColor="#833AB4" />
-                        <stop offset="100%" stopColor="#E040FB" />
-                      </linearGradient>
-                    </defs>
-                    <rect fill="url(#apple-podcast-gradient)" width="300" height="300" rx="65" />
-                    <g fill="#fff">
-                      <path d="M150 62c-48.6 0-88 39.4-88 88 0 30.4 15.5 57.2 39 73v-17.4c-14.6-13.3-23.8-32.4-23.8-53.6 0-40.2 32.6-72.8 72.8-72.8s72.8 32.6 72.8 72.8c0 21.2-9.2 40.3-23.8 53.6V223c23.5-15.8 39-42.6 39-73 0-48.6-39.4-88-88-88z"/>
-                      <path d="M150 95c-30.4 0-55 24.6-55 55 0 19.2 9.8 36.1 24.7 46v-18.5c-7.4-7.3-12-17.4-12-28.5 0-22.1 17.9-40 40-40s40 17.9 40 40c0 11.1-4.6 21.2-12 28.5V196c14.9-9.9 24.7-26.8 24.7-46 0-30.4-24.6-55-55-55z"/>
-                      <circle cx="150" cy="150" r="21"/>
-                      <path d="M150 180c-11 0-20 4-24 12-3 6-3 14-2 26l6 42c1 7 5 12 12 14 3 1 5 1 8 1s5 0 8-1c7-2 11-7 12-14l6-42c1-12 1-20-2-26-4-8-13-12-24-12z"/>
-                    </g>
-                  </svg>
-                  <span className="text-sm font-medium">Apple Podcasts</span>
-                </a>
+              <div className="hidden lg:block">
+                <div className="relative px-6 py-5">
+                  {/* Corner brackets */}
+                  <span className="absolute left-0 top-0 h-3 w-3 border-l border-t border-zinc-700" />
+                  <span className="absolute right-0 top-0 h-3 w-3 border-r border-t border-zinc-700" />
+                  <span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-700" />
+                  <span className="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-zinc-700" />
 
-                {/* Spotify */}
-                <a
-                  href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
-                  aria-label="Listen on Spotify"
-                >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="#1DB954">
-                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
-                  </svg>
-                  <span className="text-sm font-medium">Spotify</span>
-                </a>
+                  <p className="mb-4 font-mono text-xs uppercase tracking-wider text-zinc-400">
+                    // Available on
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    <a
+                      href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                      aria-label="Listen on Apple Podcasts"
+                    >
+                      <svg
+                        className="h-5 w-5 shrink-0"
+                        viewBox="0 0 300 300"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <defs>
+                          <linearGradient
+                            id="podcastGradient"
+                            x1="150"
+                            y1="0"
+                            x2="150"
+                            y2="300"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#833AB4" />
+                            <stop offset="1" stopColor="#E040FB" />
+                          </linearGradient>
+                        </defs>
+                        <rect
+                          width="300"
+                          height="300"
+                          rx="67.5"
+                          fill="url(#podcastGradient)"
+                        />
+                        <path
+                          d="M150 65c-46.9 0-85 38.1-85 85 0 29.5 15.1 55.5 38 70.7v-1.2c0-5.7.7-11.2 2-16.5-14.2-12.5-23.2-30.8-23.2-51.2 0-37.6 30.6-68.2 68.2-68.2s68.2 30.6 68.2 68.2c0 20.4-9 38.7-23.2 51.2 1.3 5.3 2 10.8 2 16.5v1.2c22.9-15.2 38-41.2 38-70.7 0-46.9-38.1-85-85-85z"
+                          fill="#fff"
+                        />
+                        <path
+                          d="M150 95c-30.4 0-55 24.6-55 55 0 18.5 9.1 34.8 23.1 44.8.5-4.8 1.5-9.4 3-13.8-9.3-8.2-15.1-20.2-15.1-33.5 0-24.3 19.7-44 44-44s44 19.7 44 44c0 13.3-5.9 25.3-15.1 33.5 1.5 4.4 2.5 9 3 13.8 14-10 23.1-26.3 23.1-44.8 0-30.4-24.6-55-55-55z"
+                          fill="#fff"
+                        />
+                        <path
+                          d="M150 125c-13.8 0-25 11.2-25 25 0 8.5 4.2 15.9 10.7 20.4-.3 2.5-.5 5-.5 7.6v37c0 11 8.9 20 20 20h-10.4c-11 0-20-8.9-20-20v-37c0-16.6 13.4-30 30-30s30 13.4 30 30v37c0 11-8.9 20-20 20H150c11 0 20-8.9 20-20v-37c0-2.6-.2-5.1-.5-7.6 6.5-4.5 10.7-11.9 10.7-20.4 0-13.8-11.2-25-25-25h-5.2z"
+                          fill="#fff"
+                        />
+                      </svg>
+                      <span className="text-sm text-white group-hover:underline">Apple Podcasts</span>
+                    </a>
 
-                {/* YouTube */}
-                <a
-                  href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
-                  aria-label="Watch on YouTube"
-                >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24">
-                    <path
-                      fill="#FF0000"
-                      d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
-                    />
-                    <path
-                      fill="#fff"
-                      d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                    />
-                  </svg>
-                  <span className="text-sm font-medium">YouTube</span>
-                </a>
+                    <a
+                      href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                      aria-label="Listen on Spotify"
+                    >
+                      <svg
+                        className="h-5 w-5 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="#1DB954"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                      </svg>
+                      <span className="text-sm text-white group-hover:underline">Spotify</span>
+                    </a>
 
-                {/* RSS Feed */}
-                <a
-                  href="/podcast/rss.xml"
-                  className="flex items-center gap-2 text-white transition-opacity hover:opacity-70"
-                  aria-label="RSS Feed"
-                >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="#fff">
-                    <path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93v-2.83z" />
-                  </svg>
-                  <span className="text-sm font-medium">RSS</span>
-                </a>
+                    <a
+                      href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                      aria-label="Watch on YouTube"
+                    >
+                      <svg
+                        className="h-5 w-5 shrink-0"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill="#FF0000"
+                          d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+                        />
+                        <path
+                          fill="#fff"
+                          d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                        />
+                      </svg>
+                      <span className="text-sm text-white group-hover:underline">YouTube</span>
+                    </a>
+
+                    <a
+                      href="/podcast/rss.xml"
+                      className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+                      aria-label="RSS Feed"
+                    >
+                      <svg
+                        className="h-5 w-5 shrink-0 text-white"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93v-2.83z" />
+                      </svg>
+                      <span className="text-sm text-white group-hover:underline">RSS</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

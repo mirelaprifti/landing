@@ -87,7 +87,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
               </a>
 
               {/* Navigation links next to logo */}
-              <div className="ml-8 hidden items-center gap-8 md:flex">
+              <div className="ml-8 hidden items-center gap-6 md:flex">
                 <a
                   href="https://effect.website/docs/"
                   target="_blank"

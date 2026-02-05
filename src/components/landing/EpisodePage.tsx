@@ -76,7 +76,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
             </a>
 
             <p className="mb-2 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-              // Episode #{episode.number}
+              // EPISODE #{episode.number.toString().padStart(2, "0")}
             </p>
             <h1 className="text-3xl font-bold text-white">
               {episode.title}
@@ -185,10 +185,45 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
                           >
-                            <div className="flex h-5 w-5 items-center justify-center rounded bg-linear-to-b from-purple-500 to-purple-700">
-                              <i className="ri-mic-fill text-xs text-white" />
-                            </div>
-                            <span>Apple Podcasts</span>
+                            <svg
+                              className="h-5 w-5 shrink-0"
+                              viewBox="0 0 300 300"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <defs>
+                                <linearGradient
+                                  id="podcastGradientExpanded"
+                                  x1="150"
+                                  y1="0"
+                                  x2="150"
+                                  y2="300"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#833AB4" />
+                                  <stop offset="1" stopColor="#E040FB" />
+                                </linearGradient>
+                              </defs>
+                              <rect
+                                width="300"
+                                height="300"
+                                rx="67.5"
+                                fill="url(#podcastGradientExpanded)"
+                              />
+                              <path
+                                d="M150 65c-46.9 0-85 38.1-85 85 0 29.5 15.1 55.5 38 70.7v-1.2c0-5.7.7-11.2 2-16.5-14.2-12.5-23.2-30.8-23.2-51.2 0-37.6 30.6-68.2 68.2-68.2s68.2 30.6 68.2 68.2c0 20.4-9 38.7-23.2 51.2 1.3 5.3 2 10.8 2 16.5v1.2c22.9-15.2 38-41.2 38-70.7 0-46.9-38.1-85-85-85z"
+                                fill="#fff"
+                              />
+                              <path
+                                d="M150 95c-30.4 0-55 24.6-55 55 0 18.5 9.1 34.8 23.1 44.8.5-4.8 1.5-9.4 3-13.8-9.3-8.2-15.1-20.2-15.1-33.5 0-24.3 19.7-44 44-44s44 19.7 44 44c0 13.3-5.9 25.3-15.1 33.5 1.5 4.4 2.5 9 3 13.8 14-10 23.1-26.3 23.1-44.8 0-30.4-24.6-55-55-55z"
+                                fill="#fff"
+                              />
+                              <path
+                                d="M150 125c-13.8 0-25 11.2-25 25 0 8.5 4.2 15.9 10.7 20.4-.3 2.5-.5 5-.5 7.6v37c0 11 8.9 20 20 20h-10.4c-11 0-20-8.9-20-20v-37c0-16.6 13.4-30 30-30s30 13.4 30 30v37c0 11-8.9 20-20 20H150c11 0 20-8.9 20-20v-37c0-2.6-.2-5.1-.5-7.6 6.5-4.5 10.7-11.9 10.7-20.4 0-13.8-11.2-25-25-25h-5.2z"
+                                fill="#fff"
+                              />
+                            </svg>
+                            <span className="text-white hover:underline">Apple Podcasts</span>
                           </a>
                           <a
                             href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
@@ -197,7 +232,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                             className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
                           >
                             <i className="ri-spotify-fill text-lg text-green-500" />
-                            <span>Spotify</span>
+                            <span className="text-white hover:underline">Spotify</span>
                           </a>
                         </div>
                       </div>
@@ -321,10 +356,45 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
                         >
-                          <div className="flex h-5 w-5 items-center justify-center rounded bg-linear-to-b from-purple-500 to-purple-700">
-                            <i className="ri-mic-fill text-xs text-white" />
-                          </div>
-                          <span>Apple Podcasts</span>
+                          <svg
+                            className="h-5 w-5 shrink-0"
+                            viewBox="0 0 300 300"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <defs>
+                              <linearGradient
+                                id="podcastGradientCollapsed"
+                                x1="150"
+                                y1="0"
+                                x2="150"
+                                y2="300"
+                                gradientUnits="userSpaceOnUse"
+                              >
+                                <stop stopColor="#833AB4" />
+                                <stop offset="1" stopColor="#E040FB" />
+                              </linearGradient>
+                            </defs>
+                            <rect
+                              width="300"
+                              height="300"
+                              rx="67.5"
+                              fill="url(#podcastGradientCollapsed)"
+                            />
+                            <path
+                              d="M150 65c-46.9 0-85 38.1-85 85 0 29.5 15.1 55.5 38 70.7v-1.2c0-5.7.7-11.2 2-16.5-14.2-12.5-23.2-30.8-23.2-51.2 0-37.6 30.6-68.2 68.2-68.2s68.2 30.6 68.2 68.2c0 20.4-9 38.7-23.2 51.2 1.3 5.3 2 10.8 2 16.5v1.2c22.9-15.2 38-41.2 38-70.7 0-46.9-38.1-85-85-85z"
+                              fill="#fff"
+                            />
+                            <path
+                              d="M150 95c-30.4 0-55 24.6-55 55 0 18.5 9.1 34.8 23.1 44.8.5-4.8 1.5-9.4 3-13.8-9.3-8.2-15.1-20.2-15.1-33.5 0-24.3 19.7-44 44-44s44 19.7 44 44c0 13.3-5.9 25.3-15.1 33.5 1.5 4.4 2.5 9 3 13.8 14-10 23.1-26.3 23.1-44.8 0-30.4-24.6-55-55-55z"
+                              fill="#fff"
+                            />
+                            <path
+                              d="M150 125c-13.8 0-25 11.2-25 25 0 8.5 4.2 15.9 10.7 20.4-.3 2.5-.5 5-.5 7.6v37c0 11 8.9 20 20 20h-10.4c-11 0-20-8.9-20-20v-37c0-16.6 13.4-30 30-30s30 13.4 30 30v37c0 11-8.9 20-20 20H150c11 0 20-8.9 20-20v-37c0-2.6-.2-5.1-.5-7.6 6.5-4.5 10.7-11.9 10.7-20.4 0-13.8-11.2-25-25-25h-5.2z"
+                              fill="#fff"
+                            />
+                          </svg>
+                          <span className="text-white hover:underline">Apple Podcasts</span>
                         </a>
                         <a
                           href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
@@ -333,7 +403,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                           className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
                         >
                           <i className="ri-spotify-fill text-lg text-green-500" />
-                          <span>Spotify</span>
+                          <span className="text-white hover:underline">Spotify</span>
                         </a>
                       </div>
                     </div>
