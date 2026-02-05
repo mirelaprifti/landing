@@ -268,11 +268,13 @@ export function Footer() {
 						{/* Social Icons and Branding Row */}
 						<div className="flex flex-col items-center gap-8 md:grid md:grid-cols-3 md:items-center">
 							<div className="md:pl-4">
-								<img
-									src={getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg")}
-									alt="Effect"
-									className="h-7"
-								/>
+								<a href={getAssetPath("/")} aria-label="Go to Effect homepage">
+									<img
+										src={getAssetPath("/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg")}
+										alt="Effect"
+										className="h-7 opacity-100"
+									/>
+								</a>
 							</div>
 
 							{/* Social Icons (centered on mobile, middle on desktop) */}

@@ -34,7 +34,7 @@ export function CTASection() {
       <div className="relative mx-auto w-full max-w-[73.75rem] px-4">
         <div className="flex flex-col items-center text-center">
           <p className="mb-3 font-mono text-base font-semibold tracking-wider text-zinc-400 uppercase">
-            Get Started Now
+            // Get Started Now
           </p>
           <h2 className="max-w-3xl text-4xl leading-tight font-bold text-white">
             Stop installing a new package for every problem

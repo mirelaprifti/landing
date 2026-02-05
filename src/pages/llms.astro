@@ -1,0 +1,243 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Effect for LLMs - Effect">
+  <div class="relative min-h-screen bg-zinc-950 text-white">
+    <main class="relative z-10 mx-auto max-w-4xl px-4 py-24">
+      <!-- Header -->
+      <div class="mb-16">
+        <p class="mb-3 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
+          // For AI Agents
+        </p>
+        <h1 class="text-4xl font-bold text-white md:text-5xl">Effect</h1>
+        <p class="mt-4 text-xl text-zinc-400">
+          The missing standard library for TypeScript applications
+        </p>
+        <p class="mt-4 text-base text-zinc-500">
+          Effect is an open-source ecosystem for building software that is scalable, reliable, and maintainable from the start.
+        </p>
+        <div class="mt-6">
+          <a
+            href="/llms.txt"
+            class="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-800"
+          >
+            <i class="ri-file-text-line"></i>
+            View raw llms.txt
+          </a>
+        </div>
+      </div>
+
+      <!-- Installation -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Installation</h2>
+        <pre class="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 font-mono text-sm text-zinc-300"><code>npm install effect</code></pre>
+      </section>
+
+      <!-- Core Concept -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Core Concept</h2>
+        <p class="mb-4 text-zinc-400">
+          The Effect type represents a computation:
+        </p>
+        <pre class="mb-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 font-mono text-sm text-zinc-300"><code>Effect&lt;Success, Error, Requirements&gt;</code></pre>
+        <ul class="space-y-2 text-zinc-400">
+          <li class="flex gap-2">
+            <span class="text-white font-medium">Success:</span>
+            What it returns when it succeeds
+          </li>
+          <li class="flex gap-2">
+            <span class="text-white font-medium">Error:</span>
+            What errors can occur (fully typed, no <code class="rounded bg-zinc-800 px-1 text-xs">catch (e: unknown)</code>)
+          </li>
+          <li class="flex gap-2">
+            <span class="text-white font-medium">Requirements:</span>
+            Dependencies needed to run (type-safe dependency injection)
+          </li>
+        </ul>
+      </section>
+
+      <!-- Key Features -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Key Features</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 class="mb-2 font-medium text-white">Typed Errors</h3>
+            <p class="text-sm text-zinc-400">Errors are part of the type system. No more try-catch ambiguity or unknown error types.</p>
+          </div>
+          <div class="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 class="mb-2 font-medium text-white">Dependency Injection</h3>
+            <p class="text-sm text-zinc-400">Type-safe service definitions without decorators or magic.</p>
+          </div>
+          <div class="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 class="mb-2 font-medium text-white">Structured Concurrency</h3>
+            <p class="text-sm text-zinc-400">Fibers with automatic cleanup, cancellation, and resource management.</p>
+          </div>
+          <div class="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 class="mb-2 font-medium text-white">Scheduling</h3>
+            <p class="text-sm text-zinc-400">Declarative retry, repeat, and timeout policies.</p>
+          </div>
+          <div class="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 class="mb-2 font-medium text-white">Built-in Tracing</h3>
+            <p class="text-sm text-zinc-400">OpenTelemetry integration out of the box.</p>
+          </div>
+          <div class="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 class="mb-2 font-medium text-white">Unified Schema</h3>
+            <p class="text-sm text-zinc-400">One schema for validation, encoding, serialization, and documentation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Example -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Quick Example</h2>
+        <pre class="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 font-mono text-sm text-zinc-300 overflow-x-auto"><code><span class="text-zinc-500">import</span> {"{"} Effect {"}"} <span class="text-zinc-500">from</span> <span class="text-green-400">"effect"</span>
+
+<span class="text-zinc-500">const</span> program = Effect.gen(<span class="text-zinc-500">function*</span> () {"{"}
+  <span class="text-zinc-500">const</span> user = <span class="text-zinc-500">yield*</span> fetchUser(id)
+  <span class="text-zinc-500">const</span> posts = <span class="text-zinc-500">yield*</span> fetchPosts(user.id)
+  <span class="text-zinc-500">return</span> {"{"} user, posts {"}"}
+{"}"})
+
+<span class="text-zinc-500">// Run with error handling</span>
+Effect.runPromise(program)
+  .then(console.log)
+  .catch(console.error)</code></pre>
+      </section>
+
+      <!-- Ecosystem -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Ecosystem Packages</h2>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <code class="rounded bg-zinc-800 px-2 py-1 text-sm text-white">@effect/schema</code>
+            <span class="text-zinc-400">Runtime validation, encoding, and serialization</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <code class="rounded bg-zinc-800 px-2 py-1 text-sm text-white">@effect/platform</code>
+            <span class="text-zinc-400">Cross-platform APIs for HTTP, filesystem, CLI</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <code class="rounded bg-zinc-800 px-2 py-1 text-sm text-white">@effect/ai</code>
+            <span class="text-zinc-400">AI agent infrastructure with streaming and tool use</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <code class="rounded bg-zinc-800 px-2 py-1 text-sm text-white">@effect/cluster</code>
+            <span class="text-zinc-400">Distributed systems primitives (alpha)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <code class="rounded bg-zinc-800 px-2 py-1 text-sm text-white">@effect/workflow</code>
+            <span class="text-zinc-400">Durable workflow execution</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <code class="rounded bg-zinc-800 px-2 py-1 text-sm text-white">@effect/sql</code>
+            <span class="text-zinc-400">Type-safe SQL with connection pooling</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Use Cases -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Production Use Cases</h2>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3">
+            <span class="font-medium text-white">Warp</span>
+            <span class="text-zinc-500">-</span>
+            <span class="text-zinc-400">Payment & payroll systems</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3">
+            <span class="font-medium text-white">OpenRouter</span>
+            <span class="text-zinc-500">-</span>
+            <span class="text-zinc-400">AI routing, trillions of tokens weekly</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3">
+            <span class="font-medium text-white">Zendesk</span>
+            <span class="text-zinc-500">-</span>
+            <span class="text-zinc-400">Enterprise customer support</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3">
+            <span class="font-medium text-white">Spiko</span>
+            <span class="text-zinc-500">-</span>
+            <span class="text-zinc-400">FinTech infrastructure</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3">
+            <span class="font-medium text-white">MasterClass</span>
+            <span class="text-zinc-500">-</span>
+            <span class="text-zinc-400">Voice AI orchestration</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3">
+            <span class="font-medium text-white">14.ai</span>
+            <span class="text-zinc-500">-</span>
+            <span class="text-zinc-400">AI customer support</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why LLMs -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Why Effect Works Well with LLMs</h2>
+        <ul class="space-y-2 text-zinc-400">
+          <li class="flex gap-2">
+            <span class="text-green-400">+</span>
+            <span><span class="text-white">Predictable Structure</span> - Declarative patterns make code generation more reliable</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-green-400">+</span>
+            <span><span class="text-white">Typed Feedback Loop</span> - Detailed error traces help LLMs self-repair incorrect code</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-green-400">+</span>
+            <span><span class="text-white">Built-in Reliability</span> - Error handling, supervision, and recovery are first-class</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-green-400">+</span>
+            <span><span class="text-white">Rich Toolbox</span> - Schemas, workflows, and composable patterns reduce boilerplate</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Resources -->
+      <section class="mb-12">
+        <h2 class="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">// Resources</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <h3 class="mb-3 font-medium text-white">Documentation</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://effect.website/docs/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Main Docs</a></li>
+              <li><a href="https://effect.website/docs/additional-resources/api-reference/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">API Reference</a></li>
+              <li><a href="https://effect.website/docs/getting-started/introduction/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Getting Started</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mb-3 font-medium text-white">Interactive</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://effect.website/play/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Playground</a></li>
+              <li><a href="https://effect.solutions/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">LLM Quick Start Guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mb-3 font-medium text-white">Community</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://github.com/Effect-TS/effect" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">GitHub</a></li>
+              <li><a href="https://discord.gg/effect-ts" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Discord</a></li>
+              <li><a href="https://x.com/EffectTS_" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Twitter/X</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mb-3 font-medium text-white">Learning</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://effect.institute/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Effect Institute</a></li>
+              <li><a href="https://effect.website/blog/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 underline hover:text-white">Blog</a></li>
+              <li><a href="/podcast" class="text-zinc-400 underline hover:text-white">Podcast</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="border-t border-zinc-800 pt-8 text-center text-sm text-zinc-500">
+        MIT Licensed - Open source and free to use
+      </div>
+    </main>
+  </div>
+</BaseLayout>

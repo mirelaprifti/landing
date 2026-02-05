@@ -314,7 +314,7 @@ export function QuotesGridSection() {
 				<div className="mb-10 flex items-end justify-between">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-							Testimonials
+							// Community
 						</p>
 						<h2 className="text-2xl font-bold text-white md:text-3xl">
 							What developers are saying...
