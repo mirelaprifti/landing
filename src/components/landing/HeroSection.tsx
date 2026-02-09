@@ -88,7 +88,7 @@ export function HeroSection() {
 							className="group flex items-center gap-2 transition-colors"
 						>
 							<img src={getAssetPath("/assets/icons-svgs/npm-brands-solid-full.svg")} alt="npm" className="h-7 w-8 opacity-60 group-hover:opacity-80 transition-opacity" />
-							<span className="text-sm font-medium text-white">6M+/w</span>
+							<span className="text-sm font-medium text-white">7M+/w</span>
 							<span className="text-sm text-zinc-400 -ml-1">downloads</span>
 						</a>
 						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
