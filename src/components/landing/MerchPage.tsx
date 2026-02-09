@@ -390,7 +390,7 @@ export function MerchPage() {
       {/* Main Content */}
       <main id="main-content" className="relative w-full pt-16">
         {/* Hero Section */}
-        <section className="relative w-full bg-zinc-950 pt-24 pb-24">
+        <section className="relative w-full bg-zinc-950 pt-16 pb-16">
           <div className="mx-auto max-w-[73.75rem] px-4">
             <div className="grid grid-cols-1 items-center lg:grid-cols-2">
               {/* Left: Text content */}
@@ -472,7 +472,7 @@ export function MerchPage() {
         </section>
 
         {/* Products Section */}
-        <section id="products" className="w-full bg-zinc-100 pt-24 pb-32">
+        <section id="products" className="w-full bg-zinc-100 pt-20 pb-32">
           <div className="mx-auto max-w-[73.75rem] px-4">
             <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
               {PRODUCTS.map((product) => (
@@ -501,7 +501,7 @@ export function MerchPage() {
         {/* Effect in the Wild Section */}
         <section className="relative w-full bg-zinc-950 py-4">
           <div className="mx-auto max-w-[73.75rem] px-4">
-            <div className="grid grid-cols-1 items-center gap-10 md:gap-12 md:grid-cols-2">
+            <div className="grid grid-cols-1 items-center gap-10 md:gap-8 md:grid-cols-2">
               {/* Image */}
               <div className="relative">
                 <div className="relative h-[300px] md:h-[480px] lg:h-[640px] overflow-hidden">
@@ -515,14 +515,17 @@ export function MerchPage() {
 
               {/* Content */}
               <div className="flex flex-col items-start pb-12 md:pb-0">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-semibold text-zinc-200">
-                  Effect in the wild!
+                <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+                  // Effect in the wild
+                </p>
+                <h2 className="text-3xl md:text-4xl leading-tight font-semibold text-zinc-200">
+                  Got your Effect merch?
                 </h2>
                 <p className="max-w-lg text-lg text-zinc-400 mt-4 mb-6">
-                  Got your Effect merch? Share a photo with the community and
+                  Share a photo with the community and
                   tag Effect on social media!
                 </p>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-4">
                   <a
                     href="https://x.com/EffectTS_"
                     target="_blank"
@@ -530,7 +533,7 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="X (Twitter)"
                   >
-                    <i className="ri-twitter-x-fill text-2xl" />
+                    <i className="ri-twitter-x-fill text-xl" />
                   </a>
                   <a
                     href="https://bsky.app/profile/effect-ts.bsky.social"
@@ -539,7 +542,7 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="Bluesky"
                   >
-                    <i className="ri-bluesky-fill text-2xl" />
+                    <i className="ri-bluesky-fill text-xl" />
                   </a>
                   <a
                     href="https://discord.gg/effect-ts"
@@ -548,16 +551,16 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="Discord"
                   >
-                    <i className="ri-discord-fill text-2xl" />
+                    <i className="ri-discord-fill text-xl" />
                   </a>
                   <a
-                    href="https://www.youtube.com/@EffectTS"
+                    href="https://www.linkedin.com/company/effectful-technologies"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-zinc-400 transition-colors hover:text-white"
-                    aria-label="YouTube"
+                    aria-label="LinkedIn"
                   >
-                    <i className="ri-youtube-fill text-2xl" />
+                    <i className="ri-linkedin-box-fill text-xl" />
                   </a>
                 </div>
               </div>

@@ -19,7 +19,7 @@ const useCases = [
 		logo: getAssetPath("/assets/test-logos/zendesk-logo.svg"),
 		title: "Enerprise Customer Support",
 		href: "https://www.youtube.com/watch?v=rNAqPHBQFEQ",
-		alt: "Attila Vecerek",
+		alt: "Attila Večerek",
 		thumbnail: getAssetPath("/assets/images/attila-vecerek-banner_compressed.webp"),
 	},
 	{

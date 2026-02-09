@@ -251,11 +251,11 @@ Github: https://github.com/davidgoli`,
   },
   {
     number: 1,
-    title: "Adopting Effect at Zendesk with Attila Vecrek",
-    guest: "Attila Vecrek",
+    title: "Adopting Effect at Zendesk with Attila Večerek",
+    guest: "Attila Večerek",
     company: "Zendesk",
     description:
-      "In this inaugural episode, Johannes Schickling speaks with Attila Vecrek, Tech Lead and Staff Engineer at Zendesk, about their journey adopting Effect incrementally within a large-scale, diverse codebase environment.",
+      "In this inaugural episode, Johannes Schickling speaks with Attila Večerek, Tech Lead and Staff Engineer at Zendesk, about their journey adopting Effect incrementally within a large-scale, diverse codebase environment.",
     fullDescription: `In this episode, Attila Večerek, Tech Lead & Staff Engineer, joins our host Johannes Schickling to discuss how Zendesk incrementally adopted Effect in a polyglot environment with a large codebase.
 
 Learn more and follow Attila Večerek:

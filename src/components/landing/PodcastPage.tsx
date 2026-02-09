@@ -90,11 +90,11 @@ const EPISODES: Episode[] = [
   },
   {
     number: 1,
-    title: "Adopting Effect at Zendesk with Attila Vecrek",
-    guest: "Attila Vecrek",
+    title: "Adopting Effect at Zendesk with Attila Večerek",
+    guest: "Attila Večerek",
     company: "Zendesk",
     description:
-      "In this inaugural episode, Johannes Schickling speaks with Attila Vecrek, Tech Lead and Staff Engineer at Zendesk, about their journey adopting Effect incrementally within a large-scale, diverse codebase environment.",
+      "In this inaugural episode, Johannes Schickling speaks with Attila Večerek, Tech Lead and Staff Engineer at Zendesk, about their journey adopting Effect incrementally within a large-scale, diverse codebase environment.",
     date: "Nov 26, 2024",
     duration: "80:31",
     youtubeId: "rNAqPHBQFEQ",

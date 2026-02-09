@@ -240,21 +240,28 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
                     {/* Transcript */}
                     {transcript && transcript.length > 0 && (
-                      <div className="mt-6">
+                      <div className="relative mt-6">
                         <h3 className="mb-4 text-lg font-semibold text-white">
                           Transcript
                         </h3>
-                        <div className="space-y-2">
-                          {transcript.map((entry, i) => (
-                            <div key={i} className="flex gap-4">
-                              <span className="w-12 shrink-0 font-mono text-sm text-zinc-500">
-                                {formatTimestamp(entry.startTime)}
-                              </span>
-                              <p className="flex-1 text-sm leading-relaxed text-zinc-300">
-                                {entry.text}
-                              </p>
-                            </div>
-                          ))}
+                        <div className="relative">
+                          <div className="max-h-[500px] space-y-2 overflow-y-auto pr-4 scrollbar-thin">
+                            {transcript.map((entry, i) => (
+                              <div key={i} className="flex gap-4">
+                                <span className="w-12 shrink-0 font-mono text-sm text-zinc-500">
+                                  {formatTimestamp(entry.startTime)}
+                                </span>
+                                <p className="flex-1 text-sm leading-relaxed text-zinc-300">
+                                  {entry.text}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                          {/* Bottom fade to indicate more content */}
+                          <div
+                            className="pointer-events-none absolute bottom-0 left-0 right-0 h-16"
+                            style={{ background: "linear-gradient(to bottom, transparent, #09090b)" }}
+                          />
                         </div>
                       </div>
                     )}
@@ -411,21 +418,28 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
                   {/* Transcript */}
                   {transcript && transcript.length > 0 && (
-                    <div className="mt-6">
+                    <div className="relative mt-6">
                       <h3 className="mb-4 text-lg font-semibold text-white">
                         Transcript
                       </h3>
-                      <div className="max-h-[500px] space-y-2 overflow-y-auto pr-4">
-                        {transcript.map((entry, i) => (
-                          <div key={i} className="flex gap-4">
-                            <span className="w-12 shrink-0 font-mono text-sm text-zinc-500">
-                              {formatTimestamp(entry.startTime)}
-                            </span>
-                            <p className="flex-1 text-sm leading-relaxed text-zinc-300">
-                              {entry.text}
-                            </p>
-                          </div>
-                        ))}
+                      <div className="relative">
+                        <div className="max-h-[500px] space-y-2 overflow-y-auto pr-4 scrollbar-thin">
+                          {transcript.map((entry, i) => (
+                            <div key={i} className="flex gap-4">
+                              <span className="w-12 shrink-0 font-mono text-sm text-zinc-500">
+                                {formatTimestamp(entry.startTime)}
+                              </span>
+                              <p className="flex-1 text-sm leading-relaxed text-zinc-300">
+                                {entry.text}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                        {/* Bottom fade to indicate more content */}
+                        <div
+                          className="pointer-events-none absolute bottom-0 left-0 right-0 h-16"
+                          style={{ background: "linear-gradient(to bottom, transparent, #09090b)" }}
+                        />
                       </div>
                     </div>
                   )}

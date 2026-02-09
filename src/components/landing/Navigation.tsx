@@ -136,12 +136,12 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 className="ml-auto flex h-10 w-10 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white md:hidden"
                 aria-label="Open navigation menu"
               >
-                <i className="ri-menu-line text-xl" aria-hidden="true" />
+                <i className="ri-menu-2-line text-xl" aria-hidden="true" />
               </button>
 
               {/* Right side items (desktop) */}
               <div className="ml-auto hidden items-center gap-4.5 md:flex">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <a
                     href="https://github.com/Effect-TS/effect"
                     target="_blank"
@@ -232,7 +232,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 href="https://effect.website/blog/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
               >
                 Blog
               </a>
@@ -240,7 +240,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 href="https://effect.website/play/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
               >
                 Playground
               </a>
@@ -248,7 +248,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 href="https://www.effect.solutions/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
               >
                 LLM Guide
               </a>
@@ -256,7 +256,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 href="https://www.effect.institute/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-lg px-3 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-zinc-800"
+                className="block rounded-md px-3 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-zinc-800"
               >
                 Learn Effect
               </a>
@@ -280,7 +280,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 href="https://discord.gg/effect-ts"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
               >
                 <i className="ri-discord-fill text-lg" aria-hidden="true"></i>
                 <span>Discord</span>
@@ -289,7 +289,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
                 href="https://twitter.com/EffectTS_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
               >
                 <i
                   className="ri-twitter-x-fill text-lg"
@@ -303,7 +303,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
             <button
               type="button"
               aria-label="Open search (Command K)"
-              className="mt-6 flex w-full items-center gap-3 rounded-lg border border-zinc-500 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
+              className="mt-6 flex w-full items-center gap-3 rounded-md border border-zinc-500 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
             >
               <i className="ri-search-line text-lg" aria-hidden="true"></i>
               <span className="text-sm">Search</span>
