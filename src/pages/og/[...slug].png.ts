@@ -1,5 +1,5 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { generateOgImage } from "../../og/og-image";
+import { generateOgImage, generateHomepageOgImage } from "../../og/og-image";
 import { EPISODES } from "../../data/episodes";
 
 interface OgPageDefinition {
@@ -72,14 +72,16 @@ export const getStaticPaths: GetStaticPaths = () => {
   }));
 };
 
-export const GET: APIRoute = async ({ props }) => {
+export const GET: APIRoute = async ({ params, props }) => {
   const { title, description, subtitle } = props as {
     title: string;
     description?: string;
     subtitle?: string;
   };
 
-  const png = await generateOgImage({ title, description, subtitle });
+  const png = params.slug === "index"
+    ? await generateHomepageOgImage()
+    : await generateOgImage({ title, description, subtitle });
 
   return new Response(png, {
     headers: {

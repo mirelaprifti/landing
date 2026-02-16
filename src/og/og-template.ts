@@ -23,6 +23,186 @@ export interface OgTemplateProps {
 const dashSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='1' height='4'><rect x='0' y='0' width='1' height='2' fill='rgba(63,63,70,0.5)'/></svg>`;
 const dashDataUri = `data:image/svg+xml;base64,${Buffer.from(dashSvg).toString("base64")}`;
 
+function createBackground() {
+  return [
+    // Subtle ambient glow
+    {
+      type: "div",
+      props: {
+        style: {
+          position: "absolute" as const,
+          top: "0",
+          left: "0",
+          right: "0",
+          bottom: "0",
+          display: "flex",
+          background:
+            "radial-gradient(ellipse 900px 500px at 50% 45%, rgba(63, 63, 70, 0.4) 0%, transparent 100%)",
+        },
+      },
+    },
+    // Left vertical line
+    {
+      type: "div",
+      props: {
+        style: {
+          position: "absolute" as const,
+          left: "60px",
+          top: "0",
+          bottom: "0",
+          width: "1px",
+          display: "flex",
+          backgroundColor: "#27272a",
+        },
+      },
+    },
+    // Right vertical line
+    {
+      type: "div",
+      props: {
+        style: {
+          position: "absolute" as const,
+          right: "60px",
+          top: "0",
+          bottom: "0",
+          width: "1px",
+          display: "flex",
+          backgroundColor: "#27272a",
+        },
+      },
+    },
+    // Center dashed vertical line
+    {
+      type: "div",
+      props: {
+        style: {
+          position: "absolute" as const,
+          left: "600px",
+          top: "0",
+          bottom: "0",
+          width: "1px",
+          display: "flex",
+          backgroundImage: `url(${dashDataUri})`,
+          backgroundSize: "1px 4px",
+        },
+      },
+    },
+  ];
+}
+
+export function createHomepageOgTemplate() {
+  // Logo is centered: 315 - 44 = 271 top, 315 + 44 = 359 bottom
+  // Leave a clean gap in the dashed center line where the logo sits
+  const gapTop = 255; // ~16px above logo top
+  const gapBottom = 375; // ~16px below logo bottom
+
+  return {
+    type: "div",
+    props: {
+      style: {
+        width: "1200px",
+        height: "630px",
+        display: "flex",
+        alignItems: "center" as const,
+        justifyContent: "center" as const,
+        backgroundColor: "#09090b",
+        fontFamily: "Inter",
+        position: "relative" as const,
+        overflow: "hidden" as const,
+      },
+      children: [
+        // Subtle ambient glow
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              top: "0",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              display: "flex",
+              background:
+                "radial-gradient(ellipse 900px 500px at 50% 45%, rgba(63, 63, 70, 0.4) 0%, transparent 100%)",
+            },
+          },
+        },
+        // Left vertical line
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              left: "60px",
+              top: "0",
+              bottom: "0",
+              width: "1px",
+              display: "flex",
+              backgroundColor: "#27272a",
+            },
+          },
+        },
+        // Right vertical line
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              right: "60px",
+              top: "0",
+              bottom: "0",
+              width: "1px",
+              display: "flex",
+              backgroundColor: "#27272a",
+            },
+          },
+        },
+        // Center dashed line — top segment (above logo)
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              left: "600px",
+              top: "0",
+              height: `${gapTop}px`,
+              width: "1px",
+              display: "flex",
+              backgroundImage: `url(${dashDataUri})`,
+              backgroundSize: "1px 4px",
+            },
+          },
+        },
+        // Center dashed line — bottom segment (below logo)
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              left: "600px",
+              top: `${gapBottom}px`,
+              bottom: "0",
+              width: "1px",
+              display: "flex",
+              backgroundImage: `url(${dashDataUri})`,
+              backgroundSize: "1px 4px",
+            },
+          },
+        },
+        // Centered logo
+        {
+          type: "img",
+          props: {
+            src: logoDataUri,
+            width: 320,
+            height: 88,
+          },
+        },
+      ],
+    },
+  };
+}
+
 export function createOgTemplate({ title, description, subtitle }: OgTemplateProps) {
   const truncatedDescription = description ? truncateText(description, 160) : undefined;
 
@@ -96,99 +276,7 @@ export function createOgTemplate({ title, description, subtitle }: OgTemplatePro
         overflow: "hidden" as const,
       },
       children: [
-        // Left solid vertical line
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute" as const,
-              left: "60px",
-              top: "0",
-              bottom: "0",
-              width: "1px",
-              display: "flex",
-              backgroundColor: "#27272a",
-            },
-          },
-        },
-        // Right solid vertical line
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute" as const,
-              right: "60px",
-              top: "0",
-              bottom: "0",
-              width: "1px",
-              display: "flex",
-              backgroundColor: "#27272a",
-            },
-          },
-        },
-        // Center dashed vertical line
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute" as const,
-              left: "600px",
-              top: "0",
-              bottom: "0",
-              width: "1px",
-              display: "flex",
-              backgroundImage: `url(${dashDataUri})`,
-              backgroundSize: "1px 4px",
-            },
-          },
-        },
-        // Top/bottom edge fade
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute" as const,
-              top: "0",
-              left: "0",
-              right: "0",
-              height: "80px",
-              display: "flex",
-              background:
-                "linear-gradient(to bottom, #09090b 0%, transparent 100%)",
-            },
-          },
-        },
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute" as const,
-              bottom: "0",
-              left: "0",
-              right: "0",
-              height: "80px",
-              display: "flex",
-              background:
-                "linear-gradient(to top, #09090b 0%, transparent 100%)",
-            },
-          },
-        },
-        // Right-side gradient glow
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute" as const,
-              top: "0",
-              right: "-100px",
-              bottom: "0",
-              width: "600px",
-              display: "flex",
-              background:
-                "radial-gradient(ellipse at 70% 50%, rgba(63, 63, 70, 0.3) 0%, transparent 70%)",
-            },
-          },
-        },
+        ...createBackground(),
         // Main content column
         {
           type: "div",
