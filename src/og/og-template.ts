@@ -105,7 +105,7 @@ export function createHomepageOgTemplate() {
         display: "flex",
         alignItems: "center" as const,
         justifyContent: "center" as const,
-        backgroundColor: "#09090b",
+        backgroundColor: "#000000",
         fontFamily: "Inter",
         position: "relative" as const,
         overflow: "hidden" as const,
@@ -133,7 +133,7 @@ export function createHomepageOgTemplate() {
           props: {
             style: {
               position: "absolute" as const,
-              left: "60px",
+              left: "48px",
               top: "0",
               bottom: "0",
               width: "1px",
@@ -148,7 +148,7 @@ export function createHomepageOgTemplate() {
           props: {
             style: {
               position: "absolute" as const,
-              right: "60px",
+              right: "48px",
               top: "0",
               bottom: "0",
               width: "1px",
@@ -189,13 +189,43 @@ export function createHomepageOgTemplate() {
             },
           },
         },
+        // Top fade — dashed line fades out at top edge
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              left: "585px",
+              top: "0",
+              width: "30px",
+              height: "80px",
+              display: "flex",
+              background: "linear-gradient(to bottom, #000000, transparent)",
+            },
+          },
+        },
+        // Bottom fade — dashed line fades out at bottom edge
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute" as const,
+              left: "585px",
+              bottom: "0",
+              width: "30px",
+              height: "80px",
+              display: "flex",
+              background: "linear-gradient(to top, #000000, transparent)",
+            },
+          },
+        },
         // Centered logo
         {
           type: "img",
           props: {
             src: logoDataUri,
-            width: 320,
-            height: 88,
+            width: 360,
+            height: 99,
           },
         },
       ],
@@ -269,7 +299,7 @@ export function createOgTemplate({ title, description, subtitle }: OgTemplatePro
         height: "630px",
         display: "flex",
         flexDirection: "column" as const,
-        backgroundColor: "#09090b",
+        backgroundColor: "#000000",
         fontFamily: "Inter",
         padding: "80px 72px 60px 72px",
         position: "relative" as const,
