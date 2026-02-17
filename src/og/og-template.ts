@@ -20,7 +20,7 @@ export interface OgTemplateProps {
 }
 
 // Dashed center line as SVG data URI (Satori doesn't support repeating-linear-gradient)
-const dashSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='1' height='4'><rect x='0' y='0' width='1' height='2' fill='rgba(63,63,70,0.5)'/></svg>`;
+const dashSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='1' height='4'><rect x='0' y='0' width='1' height='2' fill='rgba(63,63,70,0.7)'/></svg>`;
 const dashDataUri = `data:image/svg+xml;base64,${Buffer.from(dashSvg).toString("base64")}`;
 
 function createBackground() {
@@ -37,7 +37,7 @@ function createBackground() {
           bottom: "0",
           display: "flex",
           background:
-            "radial-gradient(ellipse 900px 500px at 50% 45%, rgba(63, 63, 70, 0.4) 0%, transparent 100%)",
+            "radial-gradient(ellipse 900px 500px at 50% 45%, rgba(63, 63, 70, 0.55) 0%, transparent 100%)",
         },
       },
     },
@@ -52,7 +52,7 @@ function createBackground() {
           bottom: "0",
           width: "1px",
           display: "flex",
-          backgroundColor: "#27272a",
+          backgroundColor: "#3f3f46",
         },
       },
     },
@@ -67,7 +67,7 @@ function createBackground() {
           bottom: "0",
           width: "1px",
           display: "flex",
-          backgroundColor: "#27272a",
+          backgroundColor: "#3f3f46",
         },
       },
     },
@@ -123,7 +123,7 @@ export function createHomepageOgTemplate() {
               bottom: "0",
               display: "flex",
               background:
-                "radial-gradient(ellipse 900px 500px at 50% 45%, rgba(63, 63, 70, 0.4) 0%, transparent 100%)",
+                "radial-gradient(ellipse 900px 500px at 50% 45%, rgba(63, 63, 70, 0.55) 0%, transparent 100%)",
             },
           },
         },
@@ -138,7 +138,7 @@ export function createHomepageOgTemplate() {
               bottom: "0",
               width: "1px",
               display: "flex",
-              backgroundColor: "#27272a",
+              backgroundColor: "#3f3f46",
             },
           },
         },
@@ -153,7 +153,7 @@ export function createHomepageOgTemplate() {
               bottom: "0",
               width: "1px",
               display: "flex",
-              backgroundColor: "#27272a",
+              backgroundColor: "#3f3f46",
             },
           },
         },
