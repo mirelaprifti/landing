@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getAssetPath } from "@/utils/assetPath";
 
 const INSTALL_COMMANDS: Record<string, string> = {
 	npm: "npm install effect",
@@ -8,10 +9,18 @@ const INSTALL_COMMANDS: Record<string, string> = {
 	deno: "deno add npm:effect",
 };
 
-const PM_OPTIONS = ["npm", "pnpm", "yarn", "bun", "deno"] as const;
+const PM_ICONS: Record<string, string> = {
+	bun: "/assets/icons-svgs/bun-logo-box.svg",
+	npm: "/assets/icons-svgs/npm-brands-solid-full.svg",
+	pnpm: "/assets/icons-svgs/pnpm-logo.svg",
+	yarn: "/assets/icons-svgs/yarn-logo.svg",
+	deno: "/assets/icons-svgs/deno-logo-box.svg",
+};
+
+const PM_OPTIONS = ["bun", "deno", "npm", "yarn", "pnpm"] as const;
 
 export function InstallCommand() {
-	const [activePM, setActivePM] = useState<string>("npm");
+	const [activePM, setActivePM] = useState<string>("bun");
 	const [copyFeedback, setCopyFeedback] = useState(false);
 
 	const currentCommand = INSTALL_COMMANDS[activePM];
@@ -32,13 +41,17 @@ export function InstallCommand() {
 						key={pm}
 						type="button"
 						onClick={() => setActivePM(pm)}
-						className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-sm font-medium transition-colors relative cursor-pointer ${
+						className={`group flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
 							activePM === pm
 								? "text-white"
 								: "text-zinc-500 hover:text-zinc-300"
 						}`}
 					>
-						{pm}
+						<img
+							src={getAssetPath(PM_ICONS[pm])}
+							alt={pm}
+							className={`${pm === "npm" ? "h-7" : "h-5"} w-auto`}
+						/>
 						{activePM === pm && (
 							<div className="absolute bottom-0 left-0 right-0 h-px bg-white" />
 						)}
@@ -50,7 +63,7 @@ export function InstallCommand() {
 			<button
 				type="button"
 				onClick={copyCommand}
-				className="w-full flex items-center justify-between gap-4 px-5 py-3 mt-1 font-mono text-base text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
+				className="w-full flex items-center justify-between gap-4 px-5 py-2 font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 cursor-pointer"
 				aria-label="Copy install command"
 			>
 				<span>{currentCommand}</span>

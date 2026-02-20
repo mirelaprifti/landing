@@ -1,4 +1,3 @@
-import { getAssetPath } from "../../utils/assetPath";
 import { InstallCommand } from "./InstallCommand";
 
 export function HeroSection() {
@@ -52,9 +51,9 @@ export function HeroSection() {
 			`}</style>
 			
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-[96px] md:pb-[96px]">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 md:pt-[80px]">
 				{/* Content */}
-				<div className="max-w-4xl text-left">
+				<div className="max-w-4xl text-left md:mx-auto md:text-center">
 					{/* Import statement */}
 					<p className="mb-[12px] font-mono text-sm md:text-[1.1rem]">
 						<span className="text-violet-400">import</span>
@@ -65,54 +64,28 @@ export function HeroSection() {
 						<span className="text-emerald-400">{" \"effect\""}</span>
 					</p>
 					{/* Headline */}
-					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tight">
+					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tighter">
 						The missing standard library for TypeScript applications
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed">
+					<p className="mt-6 md:mx-auto text-lg text-zinc-400 max-w-3xl leading-snug">
 						Effect is an open-source ecosystem for building software that is scalable, reliable, and maintainable from the start.
 					</p>
 
 					{/* Install command */}
-					<div className="mt-8 max-w-[34.75rem]">
+					<div className="mt-6 md:mx-auto max-w-[34.75rem]">
 						<InstallCommand />
 					</div>
+				</div>
+			</div>
 
-					{/* Stats */}
-					<div className="mt-6 ml-2 flex flex-wrap items-center gap-4 sm:gap-8">
-						<a
-							href="https://www.npmjs.com/package/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-2 transition-colors"
-						>
-							<img src={getAssetPath("/assets/icons-svgs/npm-brands-solid-full.svg")} alt="npm" className="h-7 w-8 opacity-60 group-hover:opacity-80 transition-opacity" />
-							<span className="text-sm font-medium text-white">7M+/w</span>
-							<span className="text-sm text-zinc-400 -ml-1">downloads</span>
-						</a>
-						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
-						<a
-							href="https://discord.gg/effect-ts"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-2 transition-colors"
-						>
-							<i className="ri-discord-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
-							<span className="text-sm font-medium text-white">6k+</span>
-							<span className="text-sm text-zinc-400 -ml-1">community</span>
-						</a>
-						<div className="hidden sm:block h-4 w-px bg-zinc-800" />
-						<a
-							href="https://github.com/Effect-TS/effect"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group flex items-center gap-2 transition-colors"
-						>
-							<i className="ri-github-fill text-xl text-zinc-400 group-hover:text-zinc-200" />
-							<span className="text-sm font-medium text-white">13k+</span>
-							<span className="text-sm text-zinc-400 -ml-1">stars</span>
-						</a>
+			{/* Video - sits on top of the grid, overlapping the hero bottom edge */}
+			<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4 mt-12 pb-20 md:pb-[96px]">
+				<div className="mx-auto max-w-5xl aspect-video rounded-lg border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm flex items-center justify-center">
+					<div className="flex flex-col items-center gap-3 text-zinc-500">
+						<i className="ri-play-circle-line text-5xl" />
+						<span className="text-sm font-medium">Video coming soon</span>
 					</div>
 				</div>
 			</div>
