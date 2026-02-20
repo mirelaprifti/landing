@@ -35,7 +35,7 @@ export function TestimonialsSection() {
 	return (
 		<section className="relative py-24 md:pt-40 md:pb-24">
 			{/* Header - with padding */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-12">
 				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
 					// Who uses Effect
 				</p>

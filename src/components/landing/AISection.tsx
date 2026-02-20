@@ -8,7 +8,7 @@ export function AISection() {
 
       <div className="relative mx-auto w-full max-w-[73.75rem]">
         {/* Header row - Two columns: heading left, tweet right */}
-        <div className="mb-20 grid grid-cols-1 gap-8 px-4 lg:grid-cols-2 lg:items-start">
+        <div className="mb-20 grid grid-cols-1 gap-6 px-4 lg:grid-cols-2 lg:items-start">
           {/* Left column - Heading section */}
           <div>
             <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">

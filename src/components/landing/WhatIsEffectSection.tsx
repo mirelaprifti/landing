@@ -14,7 +14,7 @@ export function WhatIsEffectSection() {
 			/>
 
 			<div className="relative mx-auto w-full max-w-295 px-4">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 					{/* Left column - Copy */}
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">

@@ -311,7 +311,7 @@ export function QuotesGridSection() {
 		<section ref={sectionRef} className="relative z-[70] w-full py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header row with title and navigation arrows */}
-				<div className="mb-10 flex items-end justify-between">
+				<div className="mb-12 flex items-end justify-between">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
 							// Community
