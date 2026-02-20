@@ -70,7 +70,7 @@ export function AIBuildingSection() {
 
       <div className="relative mx-auto w-full max-w-295">
         {/* Header row with heading, paragraph, and links */}
-        <div className="mb-20 px-4">
+        <div className="mb-16 px-4">
             <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
               // Effect for AI
             </p>
