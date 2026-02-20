@@ -313,21 +313,6 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      {/* Product info */}
-      <div className="flex-grow pt-2 pb-2">
-        <h3 className="text-base font-semibold text-zinc-900">
-          {product.name}
-        </h3>
-        <a
-          href={product.infoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 inline-block text-sm text-zinc-700 underline transition-colors hover:text-zinc-900"
-        >
-          Product info
-        </a>
-      </div>
-
       {/* Buy button */}
       <a
         href={product.buyUrl}
@@ -472,7 +457,7 @@ export function MerchPage() {
         </section>
 
         {/* Products Section */}
-        <section id="products" className="w-full bg-zinc-100 pt-20 pb-32">
+        <section id="products" className="w-full bg-zinc-100 pt-28 pb-32">
           <div className="mx-auto max-w-[73.75rem] px-4">
             <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
               {PRODUCTS.map((product) => (
@@ -481,7 +466,7 @@ export function MerchPage() {
             </div>
 
             {/* Printful Notice */}
-            <div className="mt-16 border-t border-zinc-200 pt-8 text-center">
+            <div className="mt-16 border-t border-zinc-200 pt-4 text-center">
               <p className="text-sm text-zinc-700">
                 All orders are processed and fulfilled by{" "}
                 <a
@@ -502,28 +487,16 @@ export function MerchPage() {
         <section className="relative w-full bg-zinc-950 py-4">
           <div className="mx-auto max-w-[73.75rem] px-4">
             <div className="grid grid-cols-1 items-center gap-10 md:gap-8 md:grid-cols-2">
-              {/* Image */}
-              <div className="relative">
-                <div className="relative h-[300px] md:h-[480px] lg:h-[640px] overflow-hidden">
-                  <img
-                    src={getAssetPath("/assets/merch/wild-desert.avif")}
-                    alt="Effect cap in the Sahara desert"
-                    className="h-full w-full object-cover object-bottom brightness-110"
-                  />
-                </div>
-              </div>
-
               {/* Content */}
-              <div className="flex flex-col items-start pb-12 md:pb-0">
+              <div className="flex flex-col items-start pt-16 md:pt-0">
                 <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
                   // Effect in the wild
                 </p>
-                <h2 className="text-3xl md:text-4xl leading-tight font-semibold text-zinc-200">
+                <h2 className="text-[2.75rem] leading-tight font-semibold text-zinc-200">
                   Got your Effect merch?
                 </h2>
                 <p className="max-w-lg text-lg text-zinc-400 mt-4 mb-6">
-                  Share a photo with the community and
-                  tag Effect on social media!
+                  Share it with the community!
                 </p>
                 <div className="flex items-center gap-4">
                   <a
@@ -533,7 +506,7 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="X (Twitter)"
                   >
-                    <i className="ri-twitter-x-fill text-xl" />
+                    <i className="ri-twitter-x-fill text-2xl" />
                   </a>
                   <a
                     href="https://bsky.app/profile/effect-ts.bsky.social"
@@ -542,7 +515,7 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="Bluesky"
                   >
-                    <i className="ri-bluesky-fill text-xl" />
+                    <i className="ri-bluesky-fill text-2xl" />
                   </a>
                   <a
                     href="https://discord.gg/effect-ts"
@@ -551,7 +524,7 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="Discord"
                   >
-                    <i className="ri-discord-fill text-xl" />
+                    <i className="ri-discord-fill text-2xl" />
                   </a>
                   <a
                     href="https://www.linkedin.com/company/effectful-technologies"
@@ -560,8 +533,19 @@ export function MerchPage() {
                     className="text-zinc-400 transition-colors hover:text-white"
                     aria-label="LinkedIn"
                   >
-                    <i className="ri-linkedin-box-fill text-xl" />
+                    <i className="ri-linkedin-box-fill text-2xl" />
                   </a>
+                </div>
+              </div>
+
+              {/* Image */}
+              <div className="relative">
+                <div className="relative h-[300px] md:h-[480px] lg:h-[640px] overflow-hidden">
+                  <img
+                    src={getAssetPath("/assets/merch/wild-desert.avif")}
+                    alt="Effect cap in the Sahara desert"
+                    className="h-full w-full object-cover object-bottom brightness-110"
+                  />
                 </div>
               </div>
             </div>

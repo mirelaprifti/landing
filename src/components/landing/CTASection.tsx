@@ -2,7 +2,7 @@ import { InstallCommand } from "./InstallCommand";
 
 export function CTASection() {
   return (
-    <section className="relative w-full overflow-hidden py-36 md:py-[114px]">
+    <section className="relative w-full overflow-hidden py-36 md:py-24">
       {/* Grid background */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -11,7 +11,7 @@ export function CTASection() {
 						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
 						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 					`,
-          backgroundSize: "196.6px 99px",
+          backgroundSize: "196.6px 180px",
           backgroundPosition: "calc(50% + 97px) 0"
         }}
       />
@@ -43,17 +43,17 @@ export function CTASection() {
           </h2>
 
           {/* Install command */}
-          <div className="mt-9 w-full max-w-[34.75rem]">
+          <div className="mt-8 w-full max-w-[34.75rem]">
             <InstallCommand />
           </div>
 
           {/* CTA Buttons */}
-          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-row items-center justify-center gap-3">
             <a
               href="https://effect.website/docs/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-3 pr-6 pl-4 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+              className="group inline-flex w-44 items-center justify-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-3 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
             >
               <i className="ri-arrow-right-line text-lg transition-transform group-hover:translate-x-0.5" />
               Get started
@@ -62,7 +62,7 @@ export function CTASection() {
               href="https://discord.gg/effect-ts"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-3 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+              className="inline-flex w-44 items-center justify-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-3 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
             >
               <i className="ri-discord-fill text-lg" />
               Join Discord

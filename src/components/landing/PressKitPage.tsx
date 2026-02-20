@@ -22,7 +22,7 @@ const COMBINATION_MARK = {
 const LOGO_SYMBOL = {
   name: "// Logo symbol",
   description:
-    "Used for favicons or social media assets when there is not enough space for the combination mark.",
+    "Used when there is not enough space for the combination mark.",
   files: {
     svg: {
       black: "effect-logo/Logo symbol/SVG/effect-logomark-black.svg",
@@ -246,7 +246,7 @@ export function PressKitPage() {
         </section>
 
         {/* Ground Rules Section */}
-        <section className="py-24">
+        <section className="pt-24">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
             <div className="border-t border-zinc-800 pt-24">
               <h2 className="mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
@@ -254,7 +254,7 @@ export function PressKitPage() {
               </h2>
 
               {/* Do's - 3 column grid */}
-              <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="mb-24 grid grid-cols-1 gap-4 md:grid-cols-3">
                 {/* Use white on dark */}
                 <div className="flex flex-col gap-3">
                   <div className="bg-zinc-9050 flex h-52 items-center justify-center border border-zinc-700/75">
@@ -326,7 +326,7 @@ export function PressKitPage() {
                       className="relative z-10 h-24 w-auto"
                     />
                   </div>
-                  <span className="text-base text-zinc-400">
+                  <span className="text-base text-zinc-400 leading-tight">
                     Use a gradient or image background, as long as the logo is
                     clearly visible and legible.
                   </span>
@@ -334,7 +334,7 @@ export function PressKitPage() {
               </div>
 
               {/* Don'ts - 2x2 grid */}
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-16">
                 {/* Don't change colors */}
                 <div className="flex flex-col gap-3">
                   <div className="flex h-52 items-center justify-center gap-16 border border-zinc-800 bg-zinc-950">
@@ -370,7 +370,7 @@ export function PressKitPage() {
 
                 {/* Don't stretch */}
                 <div className="mb-4 flex flex-col gap-3">
-                  <div className="flex h-52 items-center justify-center gap-20 border border-zinc-800 bg-zinc-900/30">
+                  <div className="flex h-52 px-8 items-center justify-center gap-20 border border-zinc-800 bg-zinc-900/30">
                     <div className="relative">
                       <img
                         src={getAssetPath(
@@ -477,9 +477,9 @@ export function PressKitPage() {
         </section>
 
         {/* Clear Space & Minimum Size Section */}
-        <section className="py-0">
+        <section className="pb-12 border-b border-zinc-800">
           <div className="mx-auto w-full max-w-[73.75rem] px-4">
-            <div className="border-t border-zinc-800 py-24">
+            <div className="py-24">
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 {/* Clear Space */}
                 <div>
@@ -520,8 +520,8 @@ export function PressKitPage() {
                             45deg,
                             transparent,
                             transparent 3px,
-                            rgba(113, 113, 122, 0.15) 3px,
-                            rgba(113, 113, 122, 0.15) 3.5px
+                            rgba(113, 113, 122, 0.15) 4px,
+                            rgba(113, 113, 122, 0.15) 4px
                           )`,
                           backgroundColor: "rgba(113, 113, 122, 0.15)"
                         }}
@@ -538,8 +538,7 @@ export function PressKitPage() {
                       </div>
                     </div>
                     <span className="text-base text-zinc-400">
-                      Maintain clear space of at least 50% of the logo height
-                      on all sides.
+                      Maintain clear space of at least 50% of the logo height on all sides.
                     </span>
                   </div>
                 </div>
@@ -574,68 +573,14 @@ export function PressKitPage() {
                           className="h-6 w-auto"
                         />
                         <span className="mb-[-1] font-mono text-xs text-zinc-400">
-                          80px width
+                          24px height
                         </span>
                       </div>
                     </div>
                     <span className="text-base text-zinc-400">
-                      Do not use the logo smaller than the minimum sizes shown
-                      above to ensure legibility.
+                      To ensure legibility, never scale the logo below the minimum size above.
                     </span>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Logo Pairing Section */}
-        <section className="border-b border-zinc-800 pb-24">
-          <div className="mx-auto w-full max-w-[73.75rem] px-4">
-            <div className="border-t border-zinc-800 py-24">
-              <h2 className="mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
-                // Logo pairing
-              </h2>
-
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {/* Effect logo with partner logo */}
-                <div className="flex flex-col gap-3">
-                  <div className="flex h-52 items-center justify-center gap-6 border border-zinc-800 bg-zinc-900/30">
-                    <img
-                      src={getAssetPath(
-                        `/assets/${LOGO_SYMBOL.files.svg.white}`
-                      )}
-                      alt="Effect logomark"
-                      className="h-8 w-auto"
-                    />
-                    <div className="h-8 w-px bg-zinc-600" />
-                    <span className="text-xl font-medium text-zinc-400">
-                      Partner
-                    </span>
-                  </div>
-                  <span className="text-base text-zinc-400">
-                    Effect logo with partner logo.
-                  </span>
-                </div>
-
-                {/* Effect combination mark with partner */}
-                <div className="flex flex-col gap-3">
-                  <div className="flex h-52 items-center justify-center gap-6 border border-zinc-800 bg-zinc-900/30">
-                    <img
-                      src={getAssetPath(
-                        `/assets/${COMBINATION_MARK.files.svg.white}`
-                      )}
-                      alt="Effect combination mark"
-                      className="h-8 w-auto"
-                    />
-                    <div className="h-8 w-px bg-zinc-600" />
-                    <span className="text-xl font-medium text-zinc-400">
-                      Partner
-                    </span>
-                  </div>
-                  <span className="text-base text-zinc-400">
-                    Effect combination mark-logo with partner.
-                  </span>
                 </div>
               </div>
             </div>

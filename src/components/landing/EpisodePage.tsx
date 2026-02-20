@@ -69,7 +69,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
           <div className="mx-auto max-w-[73.75rem] px-4">
             <a
               href="/podcast"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+              className="mb-12 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
             >
               <i className="ri-arrow-left-line" />
               <span>Back to all episodes</span>
@@ -145,7 +145,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                               key={i}
                               className="flex items-start gap-3 text-sm"
                             >
-                              <span className="font-mono text-zinc-500">
+                              <span className="font-mono text-zinc-400">
                                 {chapter.time}
                               </span>
                               <span className="text-zinc-400">{chapter.title}</span>
@@ -159,7 +159,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                   {/* Sidebar - Guest info and Transcript */}
                   <div>
                     <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                      <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-400">
+                      <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-300">
                         Featured Guest
                       </p>
                       <p className="text-lg font-semibold text-white">
@@ -175,7 +175,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
                       {/* Listen on platforms */}
                       <div className="mt-4 border-t border-zinc-800 pt-4">
-                        <p className="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                        <p className="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-400">
                           Listen on
                         </p>
                         <div className="flex items-center gap-4">
@@ -248,7 +248,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                           <div className="max-h-[500px] space-y-2 overflow-y-auto pr-4 scrollbar-thin">
                             {transcript.map((entry, i) => (
                               <div key={i} className="flex gap-4">
-                                <span className="w-12 shrink-0 font-mono text-sm text-zinc-500">
+                                <span className="w-12 shrink-0 font-mono text-sm text-zinc-400">
                                   {formatTimestamp(entry.startTime)}
                                 </span>
                                 <p className="flex-1 text-sm leading-relaxed text-zinc-300">
@@ -323,10 +323,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                             key={i}
                             className="flex items-start gap-3 text-sm"
                           >
-                            <span className="font-mono text-zinc-500">
+                            <span className="font-mono text-zinc-400">
                               {chapter.time}
                             </span>
-                            <span className="text-zinc-400">{chapter.title}</span>
+                            <span className="text-zinc-200">{chapter.title}</span>
                           </li>
                         ))}
                       </ul>
@@ -337,7 +337,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                 {/* Sidebar - Guest info and Transcript */}
                 <div>
                   <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                    <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                    <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-400">
                       Featured Guest
                     </p>
                     <p className="text-lg font-semibold text-white">
@@ -353,7 +353,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
                     {/* Listen on platforms */}
                     <div className="mt-4 border-t border-zinc-800 pt-4">
-                      <p className="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                      <p className="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-400">
                         Listen on
                       </p>
                       <div className="flex items-center gap-4">
@@ -426,7 +426,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
                         <div className="max-h-[500px] space-y-2 overflow-y-auto pr-4 scrollbar-thin">
                           {transcript.map((entry, i) => (
                             <div key={i} className="flex gap-4">
-                              <span className="w-12 shrink-0 font-mono text-sm text-zinc-500">
+                              <span className="w-12 shrink-0 font-mono text-sm text-zinc-400">
                                 {formatTimestamp(entry.startTime)}
                               </span>
                               <p className="flex-1 text-sm leading-relaxed text-zinc-300">
@@ -450,10 +450,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
         </section>
 
         {/* More episodes CTA */}
-        <section className="w-full border-t border-zinc-800 bg-zinc-950 py-12">
+        <section className="w-full border-t border-zinc-800 bg-zinc-950 py-16">
           <div className="mx-auto max-w-[73.75rem] px-4 text-center">
-            <h3 className="mb-4 text-xl font-semibold text-white">
-              Enjoy this episode?
+            <h3 className="mb-4 text-2xl font-semibold text-white">
+              Enjoyed this episode?
             </h3>
             <p className="mb-6 text-zinc-400">
               Check out more conversations with engineers building with Effect

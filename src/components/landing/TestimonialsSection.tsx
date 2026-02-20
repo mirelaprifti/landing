@@ -93,8 +93,12 @@ export function TestimonialsSection() {
 									alt={`${useCase.alt} case study`}
 									className="h-full w-full object-cover"
 								/>
-								<div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
-									<i className="ri-play-circle-fill text-4xl text-zinc-950 transition-colors" />
+								<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
+									<div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
+										<svg className="ml-1 h-5 w-5 text-zinc-900" viewBox="0 0 24 24" fill="currentColor">
+											<path d="M8 5v14l11-7z" />
+										</svg>
+									</div>
 								</div>
 							</div>
 							{/* Label area */}

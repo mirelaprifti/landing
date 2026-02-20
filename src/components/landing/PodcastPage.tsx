@@ -127,7 +127,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 
       {/* Episode content */}
       <div className="flex flex-1 flex-col justify-center pr-8">
-        <p className="mb-1 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase transition-colors duration-300 group-hover:text-zinc-300">
+        <p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase transition-colors duration-300 group-hover:text-zinc-300">
           // Episode #{episode.number.toString().padStart(2, "0")}
         </p>
         <h4 className="text-lg font-semibold text-white md:text-xl">
@@ -136,7 +136,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
         <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-400 md:text-base">
           {episode.description}
         </p>
-        <div className="mt-4 flex items-center gap-2 text-sm text-zinc-500 transition-colors duration-300 group-hover:text-zinc-400">
+        <div className="mt-4 flex items-center gap-2 text-sm text-zinc-400 transition-colors duration-300 group-hover:text-zinc-400">
           <span>{episode.date}</span>
           <span>·</span>
           <span>{episode.duration}</span>
@@ -222,12 +222,12 @@ export function PodcastPage() {
               {/* Text content */}
               <div className="max-w-xl">
                 <p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-                  // The Podcast
+                  // The Podcast 🎙️
                 </p>
                 <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-6xl">
                   Cause & Effect
                 </h1>
-                <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
+                <p className="mt-4 text-base leading-snug text-zinc-400 sm:text-lg">
                   Exploring how engineers are using Effect to build
                   production-grade software in TypeScript.
                 </p>

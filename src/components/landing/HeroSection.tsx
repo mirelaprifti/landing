@@ -12,7 +12,7 @@ export function HeroSection() {
 						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
 						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 					`,
-					backgroundSize: "196.6px 198px",
+					backgroundSize: "196.6px 194px",
 					backgroundPosition: "calc(50% + 97px) 0",
 				}}
 			/>
@@ -51,7 +51,7 @@ export function HeroSection() {
 			`}</style>
 			
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 md:pt-[80px]">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 md:pt-[96px]">
 				{/* Content */}
 				<div className="max-w-4xl text-left md:mx-auto md:text-center">
 					{/* Import statement */}
