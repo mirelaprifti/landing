@@ -27,8 +27,12 @@ import { EffectAcquireReleaseExample } from "@/examples/effect-acquire-release";
 import { getExampleMeta } from "@/lib/examples-manifest";
 import type { ExampleComponentProps } from "@/lib/example-types";
 
-
-type TabId = "concurrency" | "constructors" | "error-handling" | "schedule" | "ref-scope";
+type TabId =
+	| "concurrency"
+	| "constructors"
+	| "error-handling"
+	| "schedule"
+	| "ref-scope";
 
 const EXAMPLE_COMPONENTS: Record<
 	string,
@@ -76,9 +80,15 @@ const TAB_CONFIG: Record<TabId, TabConfig> = {
 		label: "Schedule",
 		subTabs: [
 			{ id: "effect-retry-recurs", label: ["Effect.retry", "times"] },
-			{ id: "effect-retry-exponential", label: ["Effect.retry", "exponential"] },
+			{
+				id: "effect-retry-exponential",
+				label: ["Effect.retry", "exponential"],
+			},
 			{ id: "effect-repeat-spaced", label: ["Effect.repeat", "spaced"] },
-			{ id: "effect-repeat-while-output", label: ["Effect.repeat", "whileOutput"] },
+			{
+				id: "effect-repeat-while-output",
+				label: ["Effect.repeat", "whileOutput"],
+			},
 		],
 	},
 	concurrency: {
@@ -93,7 +103,10 @@ const TAB_CONFIG: Record<TabId, TabConfig> = {
 	"error-handling": {
 		label: "Error Handling",
 		subTabs: [
-			{ id: "effect-all-short-circuit", label: ["Effect.all", "short-circuit"] },
+			{
+				id: "effect-all-short-circuit",
+				label: ["Effect.all", "short-circuit"],
+			},
 			{ id: "effect-orelse", label: ["Effect.orElse", ""] },
 			{ id: "effect-timeout", label: ["Effect.timeout", ""] },
 			{ id: "effect-eventually", label: ["Effect.eventually", ""] },
@@ -127,7 +140,9 @@ const TAB_IDS = Object.keys(TAB_CONFIG) as TabId[];
 
 export function FeaturesSection() {
 	const [activeTab, setActiveTab] = useState<TabId>("schedule");
-	const [activeSubTabPerTab, setActiveSubTabPerTab] = useState<Record<TabId, string>>({
+	const [activeSubTabPerTab, setActiveSubTabPerTab] = useState<
+		Record<TabId, string>
+	>({
 		schedule: "effect-retry-recurs",
 		concurrency: "effect-all",
 		"error-handling": "effect-all-short-circuit",
@@ -136,16 +151,13 @@ export function FeaturesSection() {
 	});
 
 	const handleSubTabChange = (subTabId: string) => {
-		setActiveSubTabPerTab(prev => ({
+		setActiveSubTabPerTab((prev) => ({
 			...prev,
 			[activeTab]: subTabId,
 		}));
 	};
 
-	const activeTabIndex = useMemo(
-		() => TAB_IDS.indexOf(activeTab),
-		[activeTab]
-	);
+	const activeTabIndex = useMemo(() => TAB_IDS.indexOf(activeTab), [activeTab]);
 
 	const currentTabConfig = TAB_CONFIG[activeTab];
 
@@ -171,7 +183,10 @@ export function FeaturesSection() {
 				{/* Tab Navigation and Content */}
 				<div className="relative border-r border-t border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
-					<div className="relative flex overflow-x-auto scrollbar-hide bg-zinc-950/90" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+					<div
+						className="relative flex overflow-x-auto scrollbar-hide bg-zinc-950/90"
+						style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+					>
 						{TAB_IDS.map((tabId) => (
 							<button
 								key={tabId}
@@ -207,7 +222,10 @@ export function FeaturesSection() {
 						{currentTabConfig.subTabs ? (
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
-								<div className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800 bg-zinc-950 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+								<div
+									className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800 bg-zinc-950 overflow-x-auto scrollbar-hide"
+									style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+								>
 									{currentTabConfig.subTabs.map((subTab) => (
 										<button
 											key={subTab.id}
@@ -218,7 +236,12 @@ export function FeaturesSection() {
 													: "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
 											}`}
 										>
-											{subTab.label[0]}{subTab.label[1] && <span className="text-zinc-500 ml-1">({subTab.label[1]})</span>}
+											{subTab.label[0]}
+											{subTab.label[1] && (
+												<span className="text-zinc-500 ml-1">
+													({subTab.label[1]})
+												</span>
+											)}
 										</button>
 									))}
 								</div>

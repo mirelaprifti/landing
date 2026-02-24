@@ -7,34 +7,34 @@ import fs from "node:fs";
 import path from "node:path";
 
 export function getStaticPaths() {
-  return EPISODES.map((episode) => ({
-    params: { episode: `episode-${episode.number}` },
-    props: { episode }
-  }));
+	return EPISODES.map((episode) => ({
+		params: { episode: `episode-${episode.number}` },
+		props: { episode },
+	}));
 }
 
 const { episode } = Astro.props;
 
 if (!episode) {
-  return Astro.redirect("/podcast");
+	return Astro.redirect("/podcast");
 }
 
 // Load transcript if available
 let transcriptEntries: { startTime: string; text: string }[] = [];
 try {
-  const transcriptPath = path.join(
-    process.cwd(),
-    "src/data/transcripts",
-    `episode-${episode.number}.srt`
-  );
-  const srtContent = fs.readFileSync(transcriptPath, "utf-8");
-  const entries = parseSRT(srtContent);
-  transcriptEntries = entries.map(entry => ({
-    startTime: entry.startTime,
-    text: entry.text
-  }));
+	const transcriptPath = path.join(
+		process.cwd(),
+		"src/data/transcripts",
+		`episode-${episode.number}.srt`,
+	);
+	const srtContent = fs.readFileSync(transcriptPath, "utf-8");
+	const entries = parseSRT(srtContent);
+	transcriptEntries = entries.map((entry) => ({
+		startTime: entry.startTime,
+		text: entry.text,
+	}));
 } catch {
-  // Transcript not available
+	// Transcript not available
 }
 ---
 

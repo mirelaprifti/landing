@@ -61,11 +61,7 @@ export function BundleBar({
 									width: `${segmentPercent}%`,
 								}}
 								initial={{ scaleX: 0, transformOrigin: "left" }}
-								animate={
-									isVisible
-										? { scaleX: 1 }
-										: { scaleX: 0 }
-								}
+								animate={isVisible ? { scaleX: 1 } : { scaleX: 0 }}
 								transition={{
 									...barSpring,
 									delay: staggerDelay + 0.08 * i,

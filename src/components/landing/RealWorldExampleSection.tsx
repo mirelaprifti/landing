@@ -36,25 +36,29 @@ const ANNOTATIONS = [
 		lineStart: 4,
 		lineEnd: 5,
 		title: "Type-safe validation",
-		description: "Validation errors are typed. If it fails, the type tells you exactly what went wrong.",
+		description:
+			"Validation errors are typed. If it fails, the type tells you exactly what went wrong.",
 	},
 	{
 		lineStart: 8,
 		lineEnd: 15,
 		title: "Automatic retries with backoff",
-		description: "3 retries with exponential backoff, plus a 10-second timeout. All declarative, all composable.",
+		description:
+			"3 retries with exponential backoff, plus a 10-second timeout. All declarative, all composable.",
 	},
 	{
 		lineStart: 18,
 		lineEnd: 20,
 		title: "Graceful degradation",
-		description: "If the email fails, log a warning but don't fail the order. Error recovery is explicit.",
+		description:
+			"If the email fails, log a warning but don't fail the order. Error recovery is explicit.",
 	},
 	{
 		lineStart: 26,
 		lineEnd: 30,
 		title: "Built-in observability",
-		description: "Every operation is traced with withSpan. Full visibility in your observability platform.",
+		description:
+			"Every operation is traced with withSpan. Full visibility in your observability platform.",
 	},
 ];
 
@@ -108,7 +112,8 @@ export function RealWorldExampleSection() {
 									<code className="text-zinc-300">
 										{CODE_EXAMPLE.split("\n").map((line: string, i: number) => {
 											const lineNum = i + 1;
-											const isHighlighted = activeAnnotation !== null &&
+											const isHighlighted =
+												activeAnnotation !== null &&
 												lineNum >= ANNOTATIONS[activeAnnotation].lineStart &&
 												lineNum <= ANNOTATIONS[activeAnnotation].lineEnd;
 
@@ -179,14 +184,26 @@ function highlightLine(line: string): React.ReactNode {
 	const segments = line.split(stringPattern);
 
 	segments.forEach((segment, i) => {
-		if (segment.startsWith('"') || segment.startsWith("'") || segment.startsWith("`")) {
+		if (
+			segment.startsWith('"') ||
+			segment.startsWith("'") ||
+			segment.startsWith("`")
+		) {
 			parts.push(
 				<span key={i} className="text-emerald-400">
 					{segment}
-				</span>
+				</span>,
 			);
 		} else {
-			const keywords = ["const", "await", "import", "from", "new", "return", "function"];
+			const keywords = [
+				"const",
+				"await",
+				"import",
+				"from",
+				"new",
+				"return",
+				"function",
+			];
 			let remaining = segment;
 
 			keywords.forEach((kw) => {
@@ -201,7 +218,7 @@ function highlightLine(line: string): React.ReactNode {
 					parts.push(
 						<span key={`${i}-${j}`} className="text-violet-400">
 							{kwMatch[1]}
-						</span>
+						</span>,
 					);
 				} else {
 					parts.push(<span key={`${i}-${j}`}>{seg}</span>);

@@ -6,28 +6,36 @@ const useCases = [
 		title: "HR Systems",
 		href: "https://youtu.be/2cN1R9zIxp4",
 		alt: "Warp",
-		thumbnail: getAssetPath("/assets/images/adam-rankin-banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/adam-rankin-banner_compressed.webp",
+		),
 	},
 	{
 		logo: getAssetPath("/assets/test-logos/open-router.svg"),
 		title: "Internal Tooling",
 		href: "https://youtu.be/x6-AVCwBIWc",
 		alt: "OpenRouter",
-		thumbnail: getAssetPath("/assets/images/louis-vichy-banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/louis-vichy-banner_compressed.webp",
+		),
 	},
 	{
 		logo: getAssetPath("/assets/test-logos/zendesk-logo.svg"),
 		title: "Enerprise Customer Support",
 		href: "https://www.youtube.com/watch?v=rNAqPHBQFEQ",
 		alt: "Attila Večerek",
-		thumbnail: getAssetPath("/assets/images/attila-vecerek-banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/attila-vecerek-banner_compressed.webp",
+		),
 	},
 	{
 		logo: getAssetPath("/assets/quotes-logos/spiko-logo.svg"),
 		title: "Fintech Infrastructure",
 		href: "https://www.youtube.com/watch?v=lFOHVZnJLew",
 		alt: "Samuel Briole",
-		thumbnail: getAssetPath("/assets/images/samuel-briole-banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/samuel-briole-banner_compressed.webp",
+		),
 	},
 ];
 
@@ -95,7 +103,11 @@ export function TestimonialsSection() {
 								/>
 								<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
 									<div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
-										<svg className="ml-1 h-5 w-5 text-zinc-900" viewBox="0 0 24 24" fill="currentColor">
+										<svg
+											className="ml-1 h-5 w-5 text-zinc-900"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+										>
 											<path d="M8 5v14l11-7z" />
 										</svg>
 									</div>
@@ -112,7 +124,6 @@ export function TestimonialsSection() {
 					))}
 				</div>
 			</div>
-
 		</section>
 	);
 }

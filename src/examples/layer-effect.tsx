@@ -15,8 +15,7 @@ class Config extends Effect.Service<Config>()("Config", {
 			timeout: "5000",
 		};
 		return {
-			get: (key: string) =>
-				Effect.succeed(data[key] ?? `Unknown key: ${key}`),
+			get: (key: string) => Effect.succeed(data[key] ?? `Unknown key: ${key}`),
 		};
 	}),
 }) {}

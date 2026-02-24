@@ -1,461 +1,572 @@
-import { Navigation } from "./Navigation"
-import { Footer } from "./Footer"
-import { getAssetPath } from "../../utils/assetPath"
+import { useState } from "react";
+import { getAssetPath } from "../../utils/assetPath";
+import { GridOverlay } from "../GridOverlay";
+import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 const upcomingEvents = [
-  {
-    title: "Effect Days Conference 2026",
-    description: "The third edition of a community-driven, non-profit event celebrating the Effect ecosystem – for Effect and TypeScript developers.",
-    date: "March 17-20, 2026",
-    location: "Malaga, Spain",
-    format: "In-person only",
-    organizer: "Effectful Technologies",
-    href: "/events/effect-days",
-    thumbnail: getAssetPath("/assets/images/malaga-7.webp"),
-  },
-]
-
-const podcastEpisodes = [
-  {
-    title: "Building Production Systems with Effect",
-    guest: "Tim Smart",
-    href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE",
-  },
-]
-
-const liveCodingPlaylists = [
-  {
-    title: "Effect Cluster Series",
-    href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-bxMi0j7WuMBInbhJ2yKd",
-  },
-  {
-    title: "Second revision of HTTP API",
-    href: "https://www.youtube.com/watch?v=2L8kTVuIiVU",
-  },
-  {
-    title: "Learning to Use STM",
-    href: "https://www.youtube.com/watch?v=phrZVEdi_ZA",
-  },
-  {
-    title: "Rebuilding Contentlayer with Effect",
-    href: "https://www.youtube.com/watch?v=T31QHKwsbYM",
-  },
-  {
-    title: "Building an Effect Warehouse App",
-    href: "https://www.youtube.com/watch?v=PGYpeeFzliE",
-  },
-  {
-    title: "Integrating Remix with Effect",
-    href: "https://www.youtube.com/watch?v=X-_0cw7z1TM",
-  },
-]
+	{
+		title: "Effect Office Hours #18 🔥",
+		date: "Weekly on YouTube",
+		location: "Online",
+		flag: "🎥",
+		thumbnail: "https://i.ytimg.com/vi/5NtYKTLoDkQ/maxresdefault.jpg",
+		href: "https://www.youtube.com/live/5NtYKTLoDkQ",
+		description:
+			"Weekly live office hours where the Effect team answers questions, demos features, and discusses best practices with the community.",
+	},
+];
 
 const pastEvents = [
-  {
-    year: "2025",
-    events: [
-      { flag: "🇮🇹", date: "Mar 19-21", title: "Effect Days Livorno", type: "conference", href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP" },
-      { flag: "🇫🇷", date: "Jun", title: "Effect Paris Meetup", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-      { flag: "🇺🇸", date: "May", title: "Effect Meetup SF", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-    ],
-  },
-  {
-    year: "2024",
-    events: [
-      { flag: "🇦🇹", date: "Feb 21", title: "Effect Days Vienna", type: "conference", href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO" },
-      { flag: "🇵🇱", date: "Jan 10", title: "WarsawJS Meetup", type: "meetup", href: "https://www.youtube.com/watch?v=example" },
-      { flag: "🇫🇷", date: "Apr 23", title: "Effect Paris Meetup", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-      { flag: "🇺🇸", date: "May 8", title: "LambdaConf", type: "conference", href: "https://www.lambdaconf.us/" },
-      { flag: "🇫🇷", date: "May 23", title: "Local-First Conf", type: "conference", href: "https://www.localfirstconf.com/" },
-      { flag: "🇬🇧", date: "Jun 26", title: "London Node.js User Group", type: "meetup", href: "https://www.meetup.com/london-node-user-group/" },
-      { flag: "🇫🇷", date: "Jun 25", title: "Effect Paris Meetup", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-      { flag: "🇪🇸", date: "Sep 21", title: "React Alicante Conference", type: "conference", href: "https://reactalicante.es/" },
-      { flag: "🇺🇸", date: "Oct 21", title: "Effect Meetup SF", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-      { flag: "🇦🇹", date: "Nov 26", title: "React Meetup Vienna", type: "meetup", href: "https://www.meetup.com/reactvienna/" },
-      { flag: "🇫🇷", date: "Nov 5", title: "Effect Paris Meetup", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-      { flag: "🇺🇸", date: "Nov 2", title: "Effect Meetup SF", type: "meetup", href: "https://luma.com/effect-community?k=c" },
-      { flag: "🇫🇷", date: "Dec 12", title: "Paris TypeScript Meetup", type: "meetup", href: "https://www.meetup.com/paris-typescript/" },
-    ],
-  },
-]
+	{
+		year: "2025",
+		events: [
+			{
+				flag: "🇮🇹",
+				date: "Mar 19-21",
+				title: "Effect Days Livorno",
+				type: "conference",
+				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP",
+			},
+			{
+				flag: "🇫🇷",
+				date: "Jun",
+				title: "Effect Paris Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇺🇸",
+				date: "May",
+				title: "Effect Meetup SF",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+		],
+	},
+	{
+		year: "2024",
+		events: [
+			{
+				flag: "🇦🇹",
+				date: "Feb 21",
+				title: "Effect Days Vienna",
+				type: "conference",
+				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO",
+			},
+			{
+				flag: "🇵🇱",
+				date: "Jan 10",
+				title: "WarsawJS Meetup",
+				type: "meetup",
+				href: "https://www.youtube.com/watch?v=example",
+			},
+			{
+				flag: "🇫🇷",
+				date: "Apr 23",
+				title: "Effect Paris Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇺🇸",
+				date: "May 8",
+				title: "LambdaConf",
+				type: "conference",
+				href: "https://www.lambdaconf.us/",
+			},
+			{
+				flag: "🇫🇷",
+				date: "May 23",
+				title: "Local-First Conf",
+				type: "conference",
+				href: "https://www.localfirstconf.com/",
+			},
+			{
+				flag: "🇬🇧",
+				date: "Jun 26",
+				title: "London Node.js User Group",
+				type: "meetup",
+				href: "https://www.meetup.com/london-node-user-group/",
+			},
+			{
+				flag: "🇫🇷",
+				date: "Jun 25",
+				title: "Effect Paris Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇪🇸",
+				date: "Sep 21",
+				title: "React Alicante Conference",
+				type: "conference",
+				href: "https://reactalicante.es/",
+			},
+			{
+				flag: "🇺🇸",
+				date: "Oct 21",
+				title: "Effect Meetup SF",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇦🇹",
+				date: "Nov 26",
+				title: "React Meetup Vienna",
+				type: "meetup",
+				href: "https://www.meetup.com/reactvienna/",
+			},
+			{
+				flag: "🇫🇷",
+				date: "Nov 5",
+				title: "Effect Paris Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇺🇸",
+				date: "Nov 2",
+				title: "Effect Meetup SF",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇫🇷",
+				date: "Dec 12",
+				title: "Paris TypeScript Meetup",
+				type: "meetup",
+				href: "https://www.meetup.com/paris-typescript/",
+			},
+		],
+	},
+];
 
-const communityBenefits = [
-  "Share your events with the community and let us help promote it across our social media channels!",
-  "Grow your network and connect with Effect developers around the world.",
-  "Collaborate & contribute by sharing ideas with like-minded people in the community.",
-  "Get direct support from the Effect team with talk materials and more!",
-  "Be part of a growing ecosystem shaping the future of Effect!",
-]
+const hostPerks = [
+	{
+		icon: "ri-t-shirt-2-line",
+		title: "Swag packs",
+		description:
+			"Stickers, t-shirts, and other Effect merchandise shipped to your venue for attendees.",
+	},
+	{
+		icon: "ri-megaphone-line",
+		title: "Promotional support",
+		description:
+			"We'll promote your event across our social channels, Discord, and newsletter.",
+	},
+	{
+		icon: "ri-palette-line",
+		title: "Banners and assets",
+		description:
+			"Ready-to-use event graphics, speaker banners, and Effect branding materials.",
+		href: "https://www.figma.com/community/file/effect-event-assets",
+		linkLabel: "Figma kit",
+	},
+	{
+		icon: "ri-slideshow-3-line",
+		title: "Talk materials",
+		description:
+			"Slide decks, demo repos, and starter templates to help speakers prepare.",
+	},
+	{
+		icon: "ri-git-repository-line",
+		title: "Meetup repo template",
+		description:
+			"A GitHub template with talk submissions as issues, a code of conduct, and organizer checklists.",
+		href: "https://github.com/effect-ts-community/meetup-template",
+		linkLabel: "View on GitHub",
+	},
+	{
+		icon: "ri-team-line",
+		title: "Direct line to the team",
+		description:
+			"Dedicated support from the Effect team to help with planning, content, and speaker sourcing.",
+	},
+];
 
 function TypeBadge({ type }: { type: string }) {
-  const styles: Record<string, string> = {
-    conference: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-    meetup: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    podcast: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    webinar: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  }
-  return (
-    <span className={`rounded-full border px-2 py-0.5 text-xs ${styles[type] || styles.meetup}`}>
-      {type}
-    </span>
-  )
+	const styles: Record<string, string> = {
+		conference: "bg-violet-500/10 text-violet-400 border-violet-500/20",
+		meetup: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+		online: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+		podcast: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+		webinar: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+	};
+	return (
+		<span
+			className={`rounded-full border px-2 py-0.5 text-xs ${styles[type] || styles.meetup}`}
+		>
+			{type}
+		</span>
+	);
+}
+
+function EventsTabSection() {
+	const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
+
+	return (
+		<section id="events" className="pb-24 md:pb-24">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				{/* Tabs */}
+				<div className="mb-8 flex gap-2">
+					<button
+						type="button"
+						onClick={() => setActiveTab("upcoming")}
+						className={`rounded-full px-6 py-2.5 text-base font-medium transition-colors ${
+							activeTab === "upcoming"
+								? "bg-zinc-800 font-semibold text-white"
+								: "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200"
+						}`}
+					>
+						Upcoming
+					</button>
+					<button
+						type="button"
+						onClick={() => setActiveTab("past")}
+						className={`rounded-full px-6 py-2.5 text-base font-medium transition-colors ${
+							activeTab === "past"
+								? "bg-zinc-800 font-semibold text-white"
+								: "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200"
+						}`}
+					>
+						Past
+					</button>
+				</div>
+
+				{/* Tab Content */}
+				{activeTab === "upcoming" && (
+					<div className="space-y-4">
+						{upcomingEvents.map((event) => (
+							<a
+								key={event.title}
+								href={event.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900 md:flex-row"
+							>
+								{event.thumbnail && (
+									<div className="relative aspect-video w-full shrink-0 overflow-hidden md:aspect-auto md:w-72">
+										<img
+											src={
+												event.thumbnail.startsWith("http")
+													? event.thumbnail
+													: getAssetPath(event.thumbnail)
+											}
+											alt={event.title}
+											className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+										/>
+									</div>
+								)}
+								{!event.thumbnail && (
+									<div className="flex w-full shrink-0 items-center justify-center bg-zinc-800/50 py-10 md:w-72 md:py-0">
+										<i className="ri-live-line text-4xl text-zinc-600" />
+									</div>
+								)}
+								<div className="flex flex-1 flex-col justify-center p-5">
+									<div className="mb-1.5 flex items-center gap-2">
+										<span className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
+											{event.date}
+										</span>
+										<TypeBadge type={event.location.toLowerCase()} />
+									</div>
+									<h3 className="mb-1 text-base font-semibold text-white group-hover:text-zinc-100">
+										{event.title}
+									</h3>
+									<p className="text-sm leading-relaxed text-zinc-400">
+										{event.description}
+									</p>
+								</div>
+							</a>
+						))}
+					</div>
+				)}
+
+				{activeTab === "past" && (
+					<div className="space-y-6">
+						{pastEvents.map((yearGroup) => (
+							<div
+								key={yearGroup.year}
+								className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50"
+							>
+								<div className="border-b border-zinc-800 px-5 py-3">
+									<span className="font-mono text-sm font-medium tracking-wider text-zinc-200 uppercase">
+										{yearGroup.year}
+									</span>
+								</div>
+								<div className="divide-y divide-zinc-800/50">
+									{yearGroup.events.map((event, i) => (
+										<a
+											key={`${event.title}-${i}`}
+											href={event.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="group flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-zinc-800/30"
+										>
+											<span className="text-base">{event.flag}</span>
+											<span className="w-24 shrink-0 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+												{event.date}
+											</span>
+											<span className="flex-1 text-sm text-white transition-colors group-hover:text-white">
+												{event.title}
+											</span>
+											<TypeBadge type={event.type} />
+											<i className="ri-arrow-right-up-line text-zinc-700 transition-colors group-hover:text-zinc-400" />
+										</a>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				)}
+			</div>
+		</section>
+	);
 }
 
 export function EventsPage() {
-  return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      <Navigation />
+	return (
+		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+			{/* Dithered background overlay - subtle texture across entire page */}
+			<div
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
+					backgroundSize: "4px 4px",
+				}}
+			/>
+			{/* Skip Navigation Link */}
+			<a
+				href="#main-content"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
+			>
+				Skip to main content
+			</a>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-            Community
-          </p>
-          <h1 className="text-4xl font-bold text-white md:text-5xl">
-            Get connected to the Effect community
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-zinc-400">
-            Enhance your skills with community-driven resources and connect with the Effect community, both in-person and online.
-          </p>
+			<Navigation />
+			<GridOverlay />
 
-          {/* Quick links */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            {[
-              { label: "Upcoming events", href: "#upcoming" },
-              { label: "Podcast", href: "#podcast" },
-              { label: "Live coding", href: "#live-coding" },
-              { label: "Host a meetup", href: "#host" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+			{/* Vertical border lines container */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					{/* Left vertical line */}
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+					{/* Right vertical line */}
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+				</div>
+			</div>
 
-      {/* Upcoming Events Section */}
-      <section id="upcoming" className="py-16">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <div className="mb-10">
-            <p className="mb-2 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-              What's next
-            </p>
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">
-              Upcoming Events
-            </h2>
-          </div>
+			{/* Center vertical line - dashed, behind content */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+						style={{
+							width: "1px",
+							backgroundImage:
+								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
+				</div>
+			</div>
 
-          {upcomingEvents.map((event) => (
-            <a
-              key={event.title}
-              href={event.href}
-              className="group flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900 md:flex-row"
-            >
-              {/* Thumbnail */}
-              <div className="relative aspect-video w-full overflow-hidden bg-zinc-900 md:aspect-auto md:w-1/2">
-                <img
-                  src={event.thumbnail}
-                  alt={event.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3 rounded-full bg-emerald-500 px-3 py-1 text-xs font-medium text-white">
-                  Upcoming
-                </div>
-              </div>
+			{/* Main Content */}
+			<main id="main-content" className="relative w-full">
+				{/* Hero Section */}
+				<section className="relative pt-32 pb-8 md:pt-40 md:pb-12">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Events
+						</p>
+						<h1 className="max-w-2xl text-4xl font-bold text-white md:text-5xl">
+							Effect is everywhere
+						</h1>
+						<p className="mt-4 max-w-2xl text-lg text-zinc-400">
+							Meetups, conferences, and community events where developers build,
+							learn, and share what they're doing with Effect.
+						</p>
+					</div>
+				</section>
 
-              {/* Content */}
-              <div className="flex flex-1 flex-col justify-center p-6 md:p-8">
-                <h3 className="mb-3 text-2xl font-semibold text-white">
-                  {event.title}
-                </h3>
-                <p className="mb-6 text-base text-zinc-400">
-                  {event.description}
-                </p>
+				{/* Events Tabbed Section */}
+				<EventsTabSection />
 
-                <div className="space-y-2 text-sm text-zinc-400">
-                  <div className="flex items-center gap-2">
-                    <i className="ri-calendar-line text-zinc-500" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i className="ri-map-pin-line text-zinc-500" />
-                    <span>{event.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i className="ri-user-line text-zinc-500" />
-                    <span>{event.format}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i className="ri-building-line text-zinc-500" />
-                    <span>{event.organizer}</span>
-                  </div>
-                </div>
+				{/* Divider */}
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="h-px w-full bg-zinc-800" />
+				</div>
 
-                <div className="mt-6">
-                  <span className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors group-hover:bg-zinc-200">
-                    Get your ticket
-                    <i className="ri-arrow-right-line transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+				{/* Host Your Own Meetup Section */}
+				<section id="host" className="py-24 md:pt-40 md:pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="mb-10">
+							<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								// Host a Meetup
+							</p>
+							<h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
+								Bring Effect to your city
+							</h2>
+							<p className="max-w-2xl text-base text-zinc-400">
+								We want Effect meetups everywhere. If you're willing to
+								organize, we'll make sure you're not doing it alone.
+							</p>
+							<div className="mt-6 flex flex-wrap gap-3">
+								<a
+									href="https://discord.gg/effect-ts"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+								>
+									<i className="ri-discord-fill" />
+									Join #events-hub
+								</a>
+								<a
+									href="#"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-6 py-3 text-base font-medium text-white transition-colors hover:border-zinc-500 hover:bg-zinc-800"
+								>
+									<i className="ri-file-list-3-line" />
+									Fill out the form
+								</a>
+							</div>
+						</div>
 
-      {/* Podcast Section */}
-      <section id="podcast" className="py-16">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
-            <div className="flex-1">
-              <p className="mb-2 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-                Podcast
-              </p>
-              <h2 className="mb-4 text-2xl font-semibold text-white md:text-3xl">
-                Cause & Effect Podcast
-              </h2>
-              <p className="mb-4 text-base text-zinc-400">
-                A podcast where we explore how software engineers are using Effect to build reliable, production-grade software with TypeScript.
-              </p>
-              <p className="mb-6 text-sm text-zinc-500">
-                Hosted by <span className="text-zinc-300">Johannes Schickling</span> — DX professional from Germany, previously founded Prisma, and host of localfirst.fm podcast.
-              </p>
+						{/* Meetup photos */}
+						<div className="mb-10 grid h-32 grid-cols-5 gap-2 md:h-40">
+							<div className="overflow-hidden rounded-lg">
+								<img
+									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec78710618b4a23644e_paris-nov-6%201.avif"
+									alt="Effect Paris Meetup"
+									className="h-full w-full object-cover"
+									loading="lazy"
+								/>
+							</div>
+							<div className="overflow-hidden rounded-lg">
+								<img
+									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec787acf92381d7f6d5_image%2012.avif"
+									alt="Effect Days event"
+									className="h-full w-full object-cover"
+									loading="lazy"
+								/>
+							</div>
+							<div className="overflow-hidden rounded-lg">
+								<img
+									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec71d9a01ce66f0005c_PXL_20241022_032527962.MP%201.avif"
+									alt="Effect SF Meetup"
+									className="h-full w-full object-cover"
+									loading="lazy"
+								/>
+							</div>
+							<div className="overflow-hidden rounded-lg">
+								<img
+									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/6766cb1aa6a05d76a30e92ad_award-sandro%201.avif"
+									alt="Effect Days award ceremony"
+									className="h-full w-full object-cover"
+									loading="lazy"
+								/>
+							</div>
+							<div className="overflow-hidden rounded-lg">
+								<img
+									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec7f327ac143862b510_image%209.avif"
+									alt="Effect meetup gathering"
+									className="h-full w-full object-cover"
+									loading="lazy"
+								/>
+							</div>
+						</div>
 
-              {/* Platform links */}
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white"
-                >
-                  <i className="ri-youtube-line" />
-                  YouTube
-                </a>
-                <a
-                  href="https://podcasts.apple.com/podcast/cause-effect/id1738706923"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white"
-                >
-                  <i className="ri-apple-line" />
-                  Apple Podcasts
-                </a>
-                <a
-                  href="https://open.spotify.com/show/20PGbpCqpsTuL6FNakJW4U"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white"
-                >
-                  <i className="ri-spotify-line" />
-                  Spotify
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+						<div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+							{hostPerks.map((perk) => (
+								<div key={perk.title} className="flex items-start gap-4">
+									<div
+										className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+										style={{
+											background:
+												"linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
+										}}
+									>
+										<i
+											className={`${perk.icon} text-base`}
+											style={{
+												background: "linear-gradient(135deg, #34d399, #8b5cf6)",
+												WebkitBackgroundClip: "text",
+												WebkitTextFillColor: "transparent",
+											}}
+										/>
+									</div>
+									<div>
+										<h3 className="text-sm font-medium text-white">
+											{perk.title}
+										</h3>
+										<p className="mt-1 text-sm leading-relaxed text-zinc-500">
+											{perk.description}
+										</p>
+										{perk.href && (
+											<a
+												href={perk.href}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="mt-2 inline-flex items-center gap-1 text-sm text-zinc-300 transition-colors hover:text-white"
+											>
+												{perk.linkLabel}
+												<i className="ri-arrow-right-up-line text-xs" />
+											</a>
+										)}
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
 
-      {/* Live Coding Sessions */}
-      <section id="live-coding" className="py-16">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <div className="mb-10">
-            <p className="mb-2 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-              Learn
-            </p>
-            <h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
-              Learn Effect with live coding sessions
-            </h2>
-            <p className="max-w-2xl text-base text-zinc-400">
-              Level up your skills with live coding sessions from the Effect team and community.
-            </p>
-          </div>
+				{/* Divider */}
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="h-px w-full bg-zinc-800" />
+				</div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {liveCodingPlaylists.map((playlist) => (
-              <a
-                key={playlist.title}
-                href={playlist.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-5 transition-all hover:border-zinc-700 hover:bg-zinc-900"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400 transition-colors group-hover:bg-zinc-700 group-hover:text-white">
-                  <i className="ri-play-circle-line text-lg" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium text-white">{playlist.title}</h3>
-                </div>
-                <i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-white" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+				{/* Community CTA */}
+				<section className="py-24 md:pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 md:p-12">
+							{/* Background gradient */}
+							<div
+								className="pointer-events-none absolute inset-0 opacity-50"
+								style={{
+									background:
+										"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 60%)",
+								}}
+							/>
 
-      {/* Host Your Own Event Section */}
-      <section id="host" className="py-16">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <div className="mb-10">
-            <p className="mb-2 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-              Get Involved
-            </p>
-            <h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
-              Looking to host your own event?
-            </h2>
-            <p className="max-w-2xl text-base text-zinc-400">
-              Want to bring the Effect community together in your city or online? Here's a set of resources to help you get started.
-            </p>
-          </div>
+							<div className="relative">
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Community
+								</p>
+								<h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
+									Can't find an event near you?
+								</h2>
+								<p className="mb-8 max-w-2xl text-base text-zinc-400">
+									The Effect community is active every day on Discord. Ask
+									questions, share what you're building, or find other
+									organizers in your area.
+								</p>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* Meetup Repository Template */}
-            <a
-              href="https://github.com/effect-ts-community/meetup-template"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900"
-            >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400 transition-colors group-hover:bg-zinc-700 group-hover:text-white">
-                <i className="ri-github-line text-xl" />
-              </div>
-              <h3 className="mb-2 text-lg font-medium text-white">
-                Meetup Repository Template
-              </h3>
-              <p className="mb-4 text-sm text-zinc-400">
-                Includes talk submissions as issues and other resources to help you organize.
-              </p>
-              <div className="mt-auto flex flex-wrap gap-2">
-                <span className="rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-zinc-400">
-                  Submit talks as issues
-                </span>
-                <span className="rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-zinc-400">
-                  Code of conduct
-                </span>
-              </div>
-            </a>
+								<a
+									href="https://discord.gg/effect-ts"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+								>
+									<i className="ri-discord-fill" />
+									Join Discord
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
 
-            {/* Event Promotional Assets */}
-            <a
-              href="https://www.figma.com/community/file/effect-event-assets"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900"
-            >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400 transition-colors group-hover:bg-zinc-700 group-hover:text-white">
-                <i className="ri-palette-line text-xl" />
-              </div>
-              <h3 className="mb-2 text-lg font-medium text-white">
-                Event Promotional Assets
-              </h3>
-              <p className="mb-4 text-sm text-zinc-400">
-                Streamline your event planning and promotion with Effect branding material.
-              </p>
-              <div className="mt-auto flex flex-wrap gap-2">
-                <span className="rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-zinc-400">
-                  Event &amp; speaker banners
-                </span>
-                <span className="rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-zinc-400">
-                  Effect logo guidelines
-                </span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Join Community CTA */}
-      <section className="py-16">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <div className="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 md:p-12">
-            {/* Background gradient */}
-            <div
-              className="pointer-events-none absolute inset-0 opacity-50"
-              style={{
-                background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 60%)",
-              }}
-            />
-
-            <div className="relative">
-              <h2 className="mb-6 text-2xl font-semibold text-white md:text-3xl">
-                Join the Effect community
-              </h2>
-
-              <ul className="mb-8 space-y-3">
-                {communityBenefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start gap-3 text-base text-zinc-400">
-                    <i className="ri-check-line mt-0.5 shrink-0 text-emerald-400" />
-                    <span>{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="https://discord.gg/effect-ts"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
-              >
-                <i className="ri-discord-fill" />
-                Join the community
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Past Events Timeline */}
-      <section className="py-16">
-        <div className="mx-auto w-full max-w-[73.75rem] px-4">
-          <div className="mb-10">
-            <p className="mb-2 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
-              Archive
-            </p>
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">
-              Past Events & Meetups
-            </h2>
-          </div>
-
-          <div className="space-y-12">
-            {pastEvents.map((yearGroup) => (
-              <div key={yearGroup.year}>
-                <h3 className="mb-4 font-mono text-lg font-semibold text-zinc-300">
-                  {yearGroup.year}
-                </h3>
-                <div className="space-y-1">
-                  {yearGroup.events.map((event, i) => (
-                    <a
-                      key={`${event.title}-${i}`}
-                      href={event.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-4 rounded-md px-4 py-3 transition-colors hover:bg-zinc-900"
-                    >
-                      <span className="text-lg">{event.flag}</span>
-                      <span className="w-20 shrink-0 font-mono text-sm text-zinc-500">
-                        {event.date}
-                      </span>
-                      <span className="flex-1 text-sm text-zinc-300 group-hover:text-white">
-                        {event.title}
-                      </span>
-                      <TypeBadge type={event.type} />
-                      <i className="ri-arrow-right-up-line text-zinc-600 transition-colors group-hover:text-zinc-400" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
-  )
+			<Footer />
+		</div>
+	);
 }

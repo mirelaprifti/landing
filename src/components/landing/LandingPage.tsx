@@ -24,7 +24,7 @@ export function LandingPage() {
 				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
-					backgroundSize: '4px 4px',
+					backgroundSize: "4px 4px",
 				}}
 			/>
 			{/* Skip Navigation Link */}
@@ -54,8 +54,9 @@ export function LandingPage() {
 					<div
 						className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
 						style={{
-							width: '1px',
-							backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+							width: "1px",
+							backgroundImage:
+								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
 						}}
 					/>
 				</div>

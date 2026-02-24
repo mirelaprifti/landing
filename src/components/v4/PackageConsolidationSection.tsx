@@ -82,7 +82,15 @@ export function PackageConsolidationSection() {
 										animate={
 											showV3
 												? showV4
-													? { opacity: 0.3, x: 0, height: 0, paddingTop: 0, paddingBottom: 0, marginBottom: 0, overflow: "hidden" }
+													? {
+															opacity: 0.3,
+															x: 0,
+															height: 0,
+															paddingTop: 0,
+															paddingBottom: 0,
+															marginBottom: 0,
+															overflow: "hidden",
+														}
 													: { opacity: 1, x: 0 }
 												: { opacity: 0, x: -12 }
 										}

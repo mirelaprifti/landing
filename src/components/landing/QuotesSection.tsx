@@ -15,17 +15,11 @@ function QuoteCard({
 	logoSize?: string;
 }) {
 	return (
-		<div
-			className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md p-8 border border-zinc-700 bg-zinc-900/30"
-		>
-			<p className="text-lg leading-relaxed text-zinc-300">
-				"{text}"
-			</p>
+		<div className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md p-8 border border-zinc-700 bg-zinc-900/30">
+			<p className="text-lg leading-relaxed text-zinc-300">"{text}"</p>
 			<div className="mt-auto flex w-full items-center gap-4">
 				<div className="flex items-center gap-3">
-					<span className="font-medium text-white">
-						{author}
-					</span>
+					<span className="font-medium text-white">{author}</span>
 				</div>
 				<div
 					className="h-[1px] flex-grow"
@@ -186,7 +180,7 @@ export function QuotesGridSection() {
 					stopAutoScroll();
 				}
 			},
-			{ threshold: 0.3 }
+			{ threshold: 0.3 },
 		);
 
 		observer.observe(section);
@@ -308,7 +302,10 @@ export function QuotesGridSection() {
 	};
 
 	return (
-		<section ref={sectionRef} className="relative z-[70] w-full py-24 md:pt-40 md:pb-24">
+		<section
+			ref={sectionRef}
+			className="relative z-[70] w-full py-24 md:pt-40 md:pb-24"
+		>
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header row with title and navigation arrows */}
 				<div className="mb-12 flex items-end justify-between">
@@ -466,12 +463,12 @@ export function QuotesSection() {
 	const [startX, setStartX] = useState(0);
 	const [scrollLeft, setScrollLeft] = useState(0);
 
-	const scroll = (direction: 'left' | 'right') => {
+	const scroll = (direction: "left" | "right") => {
 		if (scrollContainerRef.current) {
 			const scrollAmount = 360; // Card width + gap
 			scrollContainerRef.current.scrollBy({
-				left: direction === 'left' ? -scrollAmount : scrollAmount,
-				behavior: 'smooth'
+				left: direction === "left" ? -scrollAmount : scrollAmount,
+				behavior: "smooth",
 			});
 		}
 	};
@@ -500,7 +497,8 @@ export function QuotesSection() {
 				className="absolute top-0 left-0 right-0 h-[1px]"
 				style={{
 					background: "#3f3f46",
-					WebkitMask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+					WebkitMask:
+						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 				}}
 			/>
@@ -519,7 +517,7 @@ export function QuotesSection() {
 					<div className="flex gap-2">
 						<button
 							type="button"
-							onClick={() => scroll('left')}
+							onClick={() => scroll("left")}
 							className="group w-10 h-10 flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 cursor-pointer"
 							aria-label="Scroll left"
 						>
@@ -527,7 +525,7 @@ export function QuotesSection() {
 						</button>
 						<button
 							type="button"
-							onClick={() => scroll('right')}
+							onClick={() => scroll("right")}
 							className="group w-10 h-10 flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 cursor-pointer"
 							aria-label="Scroll right"
 						>
@@ -542,7 +540,7 @@ export function QuotesSection() {
 						ref={scrollContainerRef}
 						className="ml-[-2.25rem] flex gap-4 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing select-none"
 						style={{
-							WebkitOverflowScrolling: 'touch'
+							WebkitOverflowScrolling: "touch",
 						}}
 						onMouseDown={handleMouseDown}
 						onMouseMove={handleMouseMove}
@@ -569,14 +567,14 @@ export function QuotesSection() {
 					<div
 						className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 hidden md:block"
 						style={{
-							background: 'linear-gradient(to left, transparent, #09090b)'
+							background: "linear-gradient(to left, transparent, #09090b)",
 						}}
 					/>
 					{/* Right fade gradient */}
 					<div
 						className="pointer-events-none absolute right-0 top-0 bottom-0 w-24"
 						style={{
-							background: 'linear-gradient(to right, transparent, #09090b)'
+							background: "linear-gradient(to right, transparent, #09090b)",
 						}}
 					/>
 				</div>
@@ -587,7 +585,8 @@ export function QuotesSection() {
 				className="absolute bottom-0 left-0 right-0 h-[1px]"
 				style={{
 					background: "#3f3f46",
-					WebkitMask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
+					WebkitMask:
+						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 				}}
 			/>

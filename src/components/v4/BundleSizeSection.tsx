@@ -84,9 +84,7 @@ export function BundleSizeSection() {
 					<span className="font-mono text-4xl font-bold text-emerald-400 md:text-5xl">
 						~71%
 					</span>
-					<span className="text-base text-zinc-400">
-						smaller bundle
-					</span>
+					<span className="text-base text-zinc-400">smaller bundle</span>
 				</motion.div>
 			</div>
 		</section>

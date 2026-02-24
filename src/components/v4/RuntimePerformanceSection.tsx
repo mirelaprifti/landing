@@ -33,9 +33,7 @@ function BlockRow({
 					style={{ backgroundColor: color }}
 					initial={{ opacity: 0, scale: 0 }}
 					animate={
-						isVisible
-							? { opacity: 1, scale: 1 }
-							: { opacity: 0, scale: 0 }
+						isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
 					}
 					transition={{
 						type: "spring",
@@ -111,8 +109,8 @@ export function RuntimePerformanceSection() {
 						animate={isInView ? "visible" : "hidden"}
 						custom={0.2}
 					>
-						The fiber runtime has been rebuilt — faster, lighter, and
-						simpler. Every Effect application benefits.
+						The fiber runtime has been rebuilt — faster, lighter, and simpler.
+						Every Effect application benefits.
 					</motion.p>
 				</div>
 
@@ -129,9 +127,7 @@ export function RuntimePerformanceSection() {
 								transition={{ duration: 0.3, delay: rowDelay }}
 							>
 								<div className="flex items-baseline justify-between">
-									<span className="text-sm text-zinc-300">
-										{metric.label}
-									</span>
+									<span className="text-sm text-zinc-300">{metric.label}</span>
 									<motion.span
 										className="font-mono text-xs font-medium text-emerald-400"
 										initial={{ opacity: 0 }}

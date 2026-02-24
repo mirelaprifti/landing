@@ -17,7 +17,10 @@ export function AnimatedCounter({
 	className = "",
 }: AnimatedCounterProps) {
 	const spring = useSpring(0, { stiffness: 100, damping: 20, mass: 1 });
-	const display = useTransform(spring, (v) => `${prefix}${Math.round(v)}${suffix}`);
+	const display = useTransform(
+		spring,
+		(v) => `${prefix}${Math.round(v)}${suffix}`,
+	);
 	const hasStarted = useRef(false);
 
 	useEffect(() => {

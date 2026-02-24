@@ -1,4 +1,4 @@
-import type { APIRoute } from "astro"
+import type { APIRoute } from "astro";
 
 const content = `# Effect
 
@@ -140,12 +140,12 @@ Effect is used in production for:
 ## License
 
 MIT Licensed - Open source and free to use.
-`
+`;
 
 export const GET: APIRoute = () => {
-  return new Response(content, {
-    headers: {
-      "Content-Type": "text/plain; charset=utf-8"
-    }
-  })
-}
+	return new Response(content, {
+		headers: {
+			"Content-Type": "text/plain; charset=utf-8",
+		},
+	});
+};

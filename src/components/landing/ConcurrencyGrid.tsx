@@ -22,7 +22,7 @@ export function ConcurrencyGrid() {
 
 	// Helper to check if a dot is on a pathway
 	const isOnPathway = (row: number, col: number) => {
-		return pathways.some(path => {
+		return pathways.some((path) => {
 			const [startRow, startCol] = path.start;
 			const [endRow, endCol] = path.end;
 
@@ -45,7 +45,10 @@ export function ConcurrencyGrid() {
 	};
 
 	return (
-		<div className="pointer-events-none absolute inset-0 hidden lg:block" style={{ opacity: 0.35 }}>
+		<div
+			className="pointer-events-none absolute inset-0 hidden lg:block"
+			style={{ opacity: 0.35 }}
+		>
 			<svg
 				className="h-full w-full"
 				viewBox={`0 0 ${cols * spacing} ${rows * spacing}`}
@@ -65,7 +68,7 @@ export function ConcurrencyGrid() {
 								opacity={isHighlighted ? 0.8 : 0.5}
 							/>
 						);
-					})
+					}),
 				)}
 
 				{/* Pathway lines */}

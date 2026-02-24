@@ -1,6 +1,11 @@
 import type { MotionStyle } from "motion/react";
 import { AnimatePresence, motion } from "motion/react";
-import type { Language, PrismTheme, RenderProps, Token } from "prism-react-renderer";
+import type {
+	Language,
+	PrismTheme,
+	RenderProps,
+	Token,
+} from "prism-react-renderer";
 import { Highlight } from "prism-react-renderer";
 import type React from "react";
 import { useEffect, useMemo, useRef } from "react";

@@ -53,7 +53,9 @@ export function TradeoffsSection() {
 						Effect isn't for every project
 					</h2>
 					<p className="mt-4 text-lg text-zinc-400">
-						Effect has a learning curve. The syntax feels different at first. But developers who push through consistently report: "I can't go back."
+						Effect has a learning curve. The syntax feels different at first.
+						But developers who push through consistently report: "I can't go
+						back."
 					</p>
 				</div>
 
@@ -67,7 +69,9 @@ export function TradeoffsSection() {
 						<ul className="space-y-3">
 							{GOOD_FIT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<i className={`${item.icon} mt-0.5 text-emerald-400 shrink-0`} />
+									<i
+										className={`${item.icon} mt-0.5 text-emerald-400 shrink-0`}
+									/>
 									<span className="text-sm text-zinc-300">{item.text}</span>
 								</li>
 							))}
@@ -94,7 +98,8 @@ export function TradeoffsSection() {
 				{/* Quote */}
 				<div className="mt-12 text-center">
 					<blockquote className="text-xl text-zinc-300 italic">
-						"The learning curve is real. But once it clicks, you wonder how you ever wrote TypeScript without it."
+						"The learning curve is real. But once it clicks, you wonder how you
+						ever wrote TypeScript without it."
 					</blockquote>
 					<p className="mt-3 text-sm text-zinc-500">
 						— Common sentiment from Effect developers

@@ -5,9 +5,9 @@ const FEATURES = [
 			"Typed errors in the function signature",
 			"Short-circuit and collect errors",
 			"Automatic retry with backoff",
-			"Timeout and interruption"
+			"Timeout and interruption",
 		],
-		icon: "ri-shield-check-line"
+		icon: "ri-shield-check-line",
 	},
 	{
 		category: "Concurrency",
@@ -15,9 +15,9 @@ const FEATURES = [
 			"Structured concurrency with fibers",
 			"Parallel execution with limits",
 			"Race conditions handled correctly",
-			"Automatic resource cleanup"
+			"Automatic resource cleanup",
 		],
-		icon: "ri-git-branch-line"
+		icon: "ri-git-branch-line",
 	},
 	{
 		category: "Dependency Injection",
@@ -25,9 +25,9 @@ const FEATURES = [
 			"Type-safe service definitions",
 			"Automatic dependency resolution",
 			"Easy mocking for tests",
-			"No decorators or reflection"
+			"No decorators or reflection",
 		],
-		icon: "ri-plug-line"
+		icon: "ri-plug-line",
 	},
 	{
 		category: "Observability",
@@ -35,9 +35,9 @@ const FEATURES = [
 			"Built-in OpenTelemetry tracing",
 			"Structured logging",
 			"Metrics collection",
-			"Span context propagation"
+			"Span context propagation",
 		],
-		icon: "ri-line-chart-line"
+		icon: "ri-line-chart-line",
 	},
 	{
 		category: "Schema & Validation",
@@ -45,9 +45,9 @@ const FEATURES = [
 			"Runtime validation from types",
 			"Automatic JSON serialization",
 			"API contract generation",
-			"Form validation support"
+			"Form validation support",
 		],
-		icon: "ri-file-check-line"
+		icon: "ri-file-check-line",
 	},
 	{
 		category: "Scheduling",
@@ -55,10 +55,10 @@ const FEATURES = [
 			"Cron-like schedules",
 			"Exponential backoff",
 			"Jittered retries",
-			"Repeat with conditions"
+			"Repeat with conditions",
 		],
-		icon: "ri-time-line"
-	}
+		icon: "ri-time-line",
+	},
 ];
 
 export function EverythingYouNeedSection() {
@@ -74,8 +74,9 @@ export function EverythingYouNeedSection() {
 						One library. Complete toolkit.
 					</h2>
 					<p className="mt-5 max-w-[44rem] text-lg leading-relaxed text-zinc-400">
-						Stop installing a new package for every problem. Effect includes everything
-						you need to build production-grade TypeScript applications.
+						Stop installing a new package for every problem. Effect includes
+						everything you need to build production-grade TypeScript
+						applications.
 					</p>
 				</div>
 
@@ -84,10 +85,7 @@ export function EverythingYouNeedSection() {
 					{/* Header row - category names */}
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-zinc-900/50 border-b border-zinc-800">
 						{FEATURES.map((feature, index) => (
-							<div
-								key={index}
-								className="relative px-5 py-4"
-							>
+							<div key={index} className="relative px-5 py-4">
 								<span className="text-sm font-medium text-white">
 									{feature.category}
 								</span>
@@ -95,7 +93,8 @@ export function EverythingYouNeedSection() {
 									<div
 										className="absolute right-0 top-0 bottom-0 w-px"
 										style={{
-											backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+											backgroundImage:
+												"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
 										}}
 									/>
 								)}
@@ -120,7 +119,8 @@ export function EverythingYouNeedSection() {
 									<div
 										className="absolute right-0 top-0 bottom-0 w-px"
 										style={{
-											backgroundImage: 'repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)'
+											backgroundImage:
+												"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
 										}}
 									/>
 								)}

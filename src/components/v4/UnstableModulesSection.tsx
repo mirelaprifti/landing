@@ -55,7 +55,8 @@ export function UnstableModulesSection() {
 
 		// Simulate a few modules graduating after the initial reveal
 		const t2 = setTimeout(
-			() => setGraduated(new Set(["HttpApi", "HttpApiBuilder", "HttpApiClient"])),
+			() =>
+				setGraduated(new Set(["HttpApi", "HttpApiBuilder", "HttpApiClient"])),
 			3500,
 		);
 
@@ -193,9 +194,7 @@ export function UnstableModulesSection() {
 										strokeLinejoin="round"
 										initial={{ pathLength: 0 }}
 										animate={
-											graduated.size > 0
-												? { pathLength: 1 }
-												: { pathLength: 0 }
+											graduated.size > 0 ? { pathLength: 1 } : { pathLength: 0 }
 										}
 										transition={{
 											duration: 0.6,
@@ -206,11 +205,7 @@ export function UnstableModulesSection() {
 								<motion.span
 									className="font-mono text-xs text-zinc-400"
 									initial={{ opacity: 0 }}
-									animate={
-										graduated.size > 0
-											? { opacity: 1 }
-											: { opacity: 0 }
-									}
+									animate={graduated.size > 0 ? { opacity: 1 } : { opacity: 0 }}
 									transition={{ delay: 0.3 }}
 								>
 									graduate
@@ -228,16 +223,22 @@ export function UnstableModulesSection() {
 							</div>
 							<div className="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
 								<div className="mb-3 flex flex-wrap gap-2">
-									{["Effect", "Stream", "Schema", "Layer", "Fiber", "Queue", "Ref"].map(
-										(mod) => (
-											<div
-												key={mod}
-												className="rounded-md border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1.5 font-mono text-xs text-emerald-400"
-											>
-												{mod}
-											</div>
-										),
-									)}
+									{[
+										"Effect",
+										"Stream",
+										"Schema",
+										"Layer",
+										"Fiber",
+										"Queue",
+										"Ref",
+									].map((mod) => (
+										<div
+											key={mod}
+											className="rounded-md border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1.5 font-mono text-xs text-emerald-400"
+										>
+											{mod}
+										</div>
+									))}
 								</div>
 
 								{/* Graduated modules appear here */}
@@ -270,9 +271,7 @@ export function UnstableModulesSection() {
 													}}
 												>
 													{name}
-													<span className="ml-1 text-emerald-500/50">
-														✓
-													</span>
+													<span className="ml-1 text-emerald-500/50">✓</span>
 												</motion.div>
 											))}
 										</motion.div>

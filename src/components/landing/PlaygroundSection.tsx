@@ -48,7 +48,10 @@ export function PlaygroundSection() {
 			{/* Two Column Layout Container */}
 			<div className="mx-auto w-full max-w-[66.5rem]">
 				{/* Heading with Link */}
-				<div className="mb-6 flex w-full items-center justify-between pb-6" style={{ borderBottom: "1px solid #27272a" }}>
+				<div
+					className="mb-6 flex w-full items-center justify-between pb-6"
+					style={{ borderBottom: "1px solid #27272a" }}
+				>
 					<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
 						Effect Playground
 					</h2>
@@ -65,12 +68,17 @@ export function PlaygroundSection() {
 				<div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
 					{/* Left Column: Video */}
 					<div className="flex w-full items-center lg:w-1/2">
-						<div className="relative w-full overflow-hidden rounded-lg border border-zinc-700" style={{ paddingBottom: "56.25%" }}>
+						<div
+							className="relative w-full overflow-hidden rounded-lg border border-zinc-700"
+							style={{ paddingBottom: "56.25%" }}
+						>
 							<video
 								ref={videoRef}
 								className="absolute inset-0 h-full w-full cursor-pointer"
 								src={getAssetPath("/videos/effect-playground.mp4")}
-								poster={getAssetPath("/assets/images/effect-playground-banner.png")}
+								poster={getAssetPath(
+									"/assets/images/effect-playground-banner.png",
+								)}
 								controls={hasStarted}
 								preload="metadata"
 								aria-label="Effect Playground demonstration video showing TypeScript development environment with real-time trace viewer"
@@ -87,7 +95,9 @@ export function PlaygroundSection() {
 								type="button"
 								onClick={handlePlayClick}
 								className={`absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:bg-black/80 ${
-									showPlayButton ? "scale-100 opacity-100" : "pointer-events-none scale-0 opacity-0"
+									showPlayButton
+										? "scale-100 opacity-100"
+										: "pointer-events-none scale-0 opacity-0"
 								}`}
 								aria-label="Play video"
 							>

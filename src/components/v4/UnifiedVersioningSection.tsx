@@ -73,9 +73,8 @@ export function UnifiedVersioningSection() {
 						animate={isInView ? "visible" : "hidden"}
 						custom={0.2}
 					>
-						All Effect ecosystem packages share a single version number
-						and are released together. No guessing, no cross-referencing
-						changelogs.
+						All Effect ecosystem packages share a single version number and are
+						released together. No guessing, no cross-referencing changelogs.
 					</motion.p>
 				</div>
 

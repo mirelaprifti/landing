@@ -208,7 +208,9 @@ function HeaderViewComponent({
 				backgroundColor: "rgba(255, 255, 255, 0)",
 			}}
 			animate={{
-				backgroundColor: isHovered ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0)",
+				backgroundColor: isHovered
+					? "rgba(255, 255, 255, 0.05)"
+					: "rgba(255, 255, 255, 0)",
 			}}
 			transition={{
 				backgroundColor: { duration: 0.15, ease: "easeOut" },

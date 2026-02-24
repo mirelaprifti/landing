@@ -46,7 +46,11 @@ export function V4BundleSizePage() {
 				</div>
 			</div>
 
-			<main id="main-content" className="relative w-full pt-16" style={{ overflowAnchor: "none" }}>
+			<main
+				id="main-content"
+				className="relative w-full pt-16"
+				style={{ overflowAnchor: "none" }}
+			>
 				<RuntimePerformanceSection />
 				<SectionDivider />
 				<BundleSizeSection />

@@ -1,7 +1,6 @@
 import { InstallCommand } from "./InstallCommand";
 
 export function HeroSection() {
-
 	return (
 		<section className="relative w-full">
 			{/* Stripe-like grid background - full width, centered */}
@@ -21,7 +20,8 @@ export function HeroSection() {
 			<div
 				className="pointer-events-none absolute inset-0"
 				style={{
-					background: "linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+					background:
+						"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 				}}
 			/>
 
@@ -49,7 +49,6 @@ export function HeroSection() {
 					50% { opacity: 0.6; }
 				}
 			`}</style>
-			
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 md:pt-[96px]">
 				{/* Content */}
@@ -61,7 +60,7 @@ export function HeroSection() {
 						<span className="text-white">Effect</span>
 						<span className="text-zinc-300">{" } "}</span>
 						<span className="text-violet-400">from</span>
-						<span className="text-emerald-400">{" \"effect\""}</span>
+						<span className="text-emerald-400">{' "effect"'}</span>
 					</p>
 					{/* Headline */}
 					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tighter">
@@ -70,7 +69,8 @@ export function HeroSection() {
 
 					{/* Subheadline */}
 					<p className="mt-6 md:mx-auto text-lg text-zinc-400 max-w-3xl leading-snug">
-						Effect is an open-source ecosystem for building software that is scalable, reliable, and maintainable from the start.
+						Effect is an open-source ecosystem for building software that is
+						scalable, reliable, and maintainable from the start.
 					</p>
 
 					{/* Install command */}

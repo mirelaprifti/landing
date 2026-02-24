@@ -7,28 +7,36 @@ const useCases = [
 		title: "Voice AI Orchestration",
 		href: "https://youtu.be/Cj2pVPqdOVs",
 		alt: "MasterClass",
-		thumbnail: getAssetPath("/assets/images/david-golightly – banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/david-golightly – banner_compressed.webp",
+		),
 	},
 	{
 		logo: getAssetPath("/assets/test-logos/warp-logo-white.svg"),
 		title: "HR Systems",
 		href: "https://youtu.be/2cN1R9zIxp4",
 		alt: "Warp",
-		thumbnail: getAssetPath("/assets/images/adam-rankin-banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/adam-rankin-banner_compressed.webp",
+		),
 	},
 	{
 		logo: getAssetPath("/assets/test-logos/open-router.svg"),
 		title: "Internal Tooling",
 		href: "https://youtu.be/x6-AVCwBIWc",
 		alt: "OpenRouter",
-		thumbnail: getAssetPath("/assets/images/louis-vichy– banner_compressed.webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/louis-vichy– banner_compressed.webp",
+		),
 	},
 	{
 		logo: getAssetPath("/assets/test-logos/14-ai.svg"),
 		title: "AI Customer Service",
 		href: "https://youtu.be/gGFPhFrGCng",
 		alt: "14.ai",
-		thumbnail: getAssetPath("/assets/images/michael-fester – banner_compressed (1).webp"),
+		thumbnail: getAssetPath(
+			"/assets/images/michael-fester – banner_compressed (1).webp",
+		),
 	},
 ];
 

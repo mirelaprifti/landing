@@ -91,7 +91,9 @@ export function WhatYouGetSection() {
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 						{FEATURES.map((feature, index) => (
 							<div key={index} className="flex items-start gap-3">
-								<i className={`${feature.icon} text-emerald-500 text-lg mt-0.5`} />
+								<i
+									className={`${feature.icon} text-emerald-500 text-lg mt-0.5`}
+								/>
 								<div>
 									<p className="font-medium text-white">{feature.title}</p>
 									<p className="text-sm text-zinc-400">{feature.description}</p>
@@ -111,7 +113,9 @@ export function WhatYouGetSection() {
 							<span className="text-xs text-zinc-500 ml-2">example.ts</span>
 						</div>
 						<pre className="p-4 overflow-x-auto text-sm">
-							<code className="text-zinc-300 font-mono whitespace-pre">{CODE_EXAMPLE}</code>
+							<code className="text-zinc-300 font-mono whitespace-pre">
+								{CODE_EXAMPLE}
+							</code>
 						</pre>
 					</div>
 				</div>

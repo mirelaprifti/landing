@@ -18,43 +18,48 @@ const WITHOUT_START_Y = 330;
  * Exponential function: y = y0 + (yEnd - y0) * (e^(k*t) - 1) / (e^k - 1)
  * where t ranges from 0 to 1 (normalized x position)
  */
-function exponentialCurve(t: number, y0: number, yEnd: number, k: number): number {
+function exponentialCurve(
+	t: number,
+	y0: number,
+	yEnd: number,
+	k: number,
+): number {
 	if (t <= 0) return y0;
 	if (t >= 1) return yEnd;
 	const expK = Math.exp(k);
-	return y0 + (yEnd - y0) * (Math.exp(k * t) - 1) / (expK - 1);
+	return y0 + ((yEnd - y0) * (Math.exp(k * t) - 1)) / (expK - 1);
 }
 
 function clamp(value: number, min: number, max: number): number {
-    return Math.max(min, Math.min(max, value));
+	return Math.max(min, Math.min(max, value));
 }
 
 /** Build a two-segment cubic bezier path using Hermite (slope-based) control points */
 function buildTwoSegmentBezier(
-    x0: number,
-    y0: number,
-    m0: number,
-    x1: number,
-    y1: number,
-    m1: number,
-    x2: number,
-    y2: number,
-    m2: number
+	x0: number,
+	y0: number,
+	m0: number,
+	x1: number,
+	y1: number,
+	m1: number,
+	x2: number,
+	y2: number,
+	m2: number,
 ): string {
-    const h0 = Math.max(1e-3, x1 - x0);
-    const h1 = Math.max(1e-3, x2 - x1);
+	const h0 = Math.max(1e-3, x1 - x0);
+	const h1 = Math.max(1e-3, x2 - x1);
 
-    const cp1x = x0 + h0 / 3;
-    const cp1y = y0 + m0 * (h0 / 3);
-    const cp2x = x1 - h0 / 3;
-    const cp2y = y1 - m1 * (h0 / 3);
+	const cp1x = x0 + h0 / 3;
+	const cp1y = y0 + m0 * (h0 / 3);
+	const cp2x = x1 - h0 / 3;
+	const cp2y = y1 - m1 * (h0 / 3);
 
-    const cp3x = x1 + h1 / 3;
-    const cp3y = y1 + m1 * (h1 / 3);
-    const cp4x = x2 - h1 / 3;
-    const cp4y = y2 - m2 * (h1 / 3);
+	const cp3x = x1 + h1 / 3;
+	const cp3y = y1 + m1 * (h1 / 3);
+	const cp4x = x2 - h1 / 3;
+	const cp4y = y2 - m2 * (h1 / 3);
 
-    return `M ${x0} ${y0} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x1} ${y1} C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, ${x2} ${y2}`;
+	return `M ${x0} ${y0} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x1} ${y1} C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, ${x2} ${y2}`;
 }
 
 /**
@@ -63,7 +68,7 @@ function buildTwoSegmentBezier(
  */
 function generateBezierPath(
 	points: Array<{ x: number; y: number }>,
-	segments: number = 2
+	segments: number = 2,
 ): string {
 	if (points.length < 2) return "";
 	if (points.length === 2) {
@@ -79,14 +84,18 @@ function generateBezierPath(
 	for (let i = 0; i < points.length; i++) {
 		if (i === 0) {
 			// First point: use forward difference
-			tangents[i] = (points[i + 1].y - points[i].y) / (points[i + 1].x - points[i].x);
+			tangents[i] =
+				(points[i + 1].y - points[i].y) / (points[i + 1].x - points[i].x);
 		} else if (i === points.length - 1) {
 			// Last point: use backward difference
-			tangents[i] = (points[i].y - points[i - 1].y) / (points[i].x - points[i - 1].x);
+			tangents[i] =
+				(points[i].y - points[i - 1].y) / (points[i].x - points[i - 1].x);
 		} else {
 			// Middle points: use average of forward and backward differences
-			const forward = (points[i + 1].y - points[i].y) / (points[i + 1].x - points[i].x);
-			const backward = (points[i].y - points[i - 1].y) / (points[i].x - points[i - 1].x);
+			const forward =
+				(points[i + 1].y - points[i].y) / (points[i + 1].x - points[i].x);
+			const backward =
+				(points[i].y - points[i - 1].y) / (points[i].x - points[i - 1].x);
 			tangents[i] = (forward + backward) / 2;
 		}
 	}
@@ -104,9 +113,9 @@ function generateBezierPath(
 		// Calculate control points ensuring smooth transition
 		// Control points are positioned at 1/3 and 2/3 along x-axis
 		const cp1x = p0.x + dx / 3;
-		const cp1y = p0.y + m0 * dx / 3;
+		const cp1y = p0.y + (m0 * dx) / 3;
 		const cp2x = p1.x - dx / 3;
-		const cp2y = p1.y - m1 * dx / 3;
+		const cp2y = p1.y - (m1 * dx) / 3;
 
 		if (i === 0) {
 			path.push(`M ${p0.x} ${p0.y}`);
@@ -121,74 +130,75 @@ function generateBezierPath(
  * Generate exponential curve path for "without effect" line
  */
 function generateExponentialPath(features: number): string {
-    const maxFeatures = 5;
-    const rawXEnd = CHART_WIDTH * (features / maxFeatures);
-    const xEnd = Math.max(1, rawXEnd); // avoid degenerate segments
+	const maxFeatures = 5;
+	const rawXEnd = CHART_WIDTH * (features / maxFeatures);
+	const xEnd = Math.max(1, rawXEnd); // avoid degenerate segments
 
-    // End Y values for exponential growth (lower Y = higher complexity)
-    // Values closer to 0 = higher on the chart = more complexity
-    const endYValues = [328, 310, 260, 160, 60, 10];
-    const yEnd = endYValues[features] ?? endYValues[5];
+	// End Y values for exponential growth (lower Y = higher complexity)
+	// Values closer to 0 = higher on the chart = more complexity
+	const endYValues = [328, 310, 260, 160, 60, 10];
+	const yEnd = endYValues[features] ?? endYValues[5];
 
-    // Exponential factor - higher k = steeper acceleration at the end
-    const kValues = [1.0, 1.5, 2.2, 3.0, 4.0, 5.0];
-    const k = kValues[features] ?? kValues[5];
+	// Exponential factor - higher k = steeper acceleration at the end
+	const kValues = [1.0, 1.5, 2.2, 3.0, 4.0, 5.0];
+	const k = kValues[features] ?? kValues[5];
 
-    // Choose mid at ~58% for a pleasant shape (matches original feel)
-    const tMid = 0.58;
-    const x0 = 0;
-    const x1 = xEnd * tMid;
-    const x2 = xEnd;
+	// Choose mid at ~58% for a pleasant shape (matches original feel)
+	const tMid = 0.58;
+	const x0 = 0;
+	const x1 = xEnd * tMid;
+	const x2 = xEnd;
 
-    const y0 = WITHOUT_START_Y;
-    const y1 = exponentialCurve(tMid, y0, yEnd, k);
-    const y2 = yEnd;
+	const y0 = WITHOUT_START_Y;
+	const y1 = exponentialCurve(tMid, y0, yEnd, k);
+	const y2 = yEnd;
 
-    const expK = Math.exp(k);
-    const slopeAt = (t: number) => ((yEnd - y0) * k * Math.exp(k * t)) / ((expK - 1) * xEnd);
+	const expK = Math.exp(k);
+	const slopeAt = (t: number) =>
+		((yEnd - y0) * k * Math.exp(k * t)) / ((expK - 1) * xEnd);
 
-    const m0 = slopeAt(0);
-    const m1 = slopeAt(tMid);
-    // Amplify the end slope significantly to ensure the curve keeps accelerating upward visually
-    const m2 = slopeAt(1) * 3;
+	const m0 = slopeAt(0);
+	const m1 = slopeAt(tMid);
+	// Amplify the end slope significantly to ensure the curve keeps accelerating upward visually
+	const m2 = slopeAt(1) * 3;
 
-    return buildTwoSegmentBezier(x0, y0, m0, x1, y1, m1, x2, y2, m2);
+	return buildTwoSegmentBezier(x0, y0, m0, x1, y1, m1, x2, y2, m2);
 }
 
 /**
  * Linear function: y = y0 + (yEnd - y0) * t
  */
 function linearCurve(t: number, y0: number, yEnd: number): number {
-    return y0 + (yEnd - y0) * t;
+	return y0 + (yEnd - y0) * t;
 }
 
 /**
  * Generate linear curve path for "with effect" line
  */
 function generateLinearPath(features: number): string {
-    const maxFeatures = 5;
-    const rawXEnd = CHART_WIDTH * (features / maxFeatures);
-    const xEnd = Math.max(1, rawXEnd);
+	const maxFeatures = 5;
+	const rawXEnd = CHART_WIDTH * (features / maxFeatures);
+	const xEnd = Math.max(1, rawXEnd);
 
-    // End Y values for linear growth (slight increase in complexity)
-    const endYValues = [298, 294, 288, 274, 260, 240];
-    const yEnd = endYValues[features] ?? endYValues[5];
+	// End Y values for linear growth (slight increase in complexity)
+	const endYValues = [298, 294, 288, 274, 260, 240];
+	const yEnd = endYValues[features] ?? endYValues[5];
 
-    const tMid = 0.58;
-    const x0 = 0;
-    const x1 = xEnd * tMid;
-    const x2 = xEnd;
+	const tMid = 0.58;
+	const x0 = 0;
+	const x1 = xEnd * tMid;
+	const x2 = xEnd;
 
-    const y0 = WITH_START_Y;
-    const y1 = linearCurve(tMid, y0, yEnd);
-    const y2 = yEnd;
+	const y0 = WITH_START_Y;
+	const y1 = linearCurve(tMid, y0, yEnd);
+	const y2 = yEnd;
 
-    const m = (yEnd - y0) / xEnd; // constant slope
-    const m0 = m;
-    const m1 = m;
-    const m2 = m;
+	const m = (yEnd - y0) / xEnd; // constant slope
+	const m0 = m;
+	const m1 = m;
+	const m2 = m;
 
-    return buildTwoSegmentBezier(x0, y0, m0, x1, y1, m1, x2, y2, m2);
+	return buildTwoSegmentBezier(x0, y0, m0, x1, y1, m1, x2, y2, m2);
 }
 
 export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
@@ -276,7 +286,11 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 							y1={y}
 							x2="600"
 							y2={y}
-							stroke={i === 3 ? "rgba(255, 255, 255, 0.3)" : "rgba(255, 255, 255, 0.1)"}
+							stroke={
+								i === 3
+									? "rgba(255, 255, 255, 0.3)"
+									: "rgba(255, 255, 255, 0.1)"
+							}
 							strokeWidth="1"
 							initial={{ pathLength: 0, opacity: 0 }}
 							animate={{

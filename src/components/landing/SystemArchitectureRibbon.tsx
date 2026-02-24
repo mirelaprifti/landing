@@ -11,7 +11,10 @@ export function SystemArchitectureRibbon() {
 	const nodeRadius = 4;
 
 	return (
-		<div className="pointer-events-none absolute left-0 right-0 top-12 hidden lg:block" style={{ opacity: 0.4 }}>
+		<div
+			className="pointer-events-none absolute left-0 right-0 top-12 hidden lg:block"
+			style={{ opacity: 0.4 }}
+		>
 			<div className="mx-auto max-w-[800px]">
 				<svg
 					className="h-auto w-full"
@@ -29,7 +32,7 @@ export function SystemArchitectureRibbon() {
 					/>
 
 					{/* Fork connections for Parallel Tasks */}
-					{nodes.find(n => n.hasFork) && (
+					{nodes.find((n) => n.hasFork) && (
 						<g>
 							{/* Fork upward */}
 							<line

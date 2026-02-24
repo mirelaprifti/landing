@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 export function WhatIsEffectSection() {
-	const [hoveredType, setHoveredType] = useState<"success" | "error" | "requirements" | null>(null);
+	const [hoveredType, setHoveredType] = useState<
+		"success" | "error" | "requirements" | null
+	>(null);
 
 	return (
 		<section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
@@ -9,7 +11,8 @@ export function WhatIsEffectSection() {
 			<div
 				className="pointer-events-none absolute inset-0"
 				style={{
-					background: "radial-gradient(ellipse 80% 50% at 70% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 60%)",
+					background:
+						"radial-gradient(ellipse 80% 50% at 70% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 60%)",
 				}}
 			/>
 
@@ -24,13 +27,18 @@ export function WhatIsEffectSection() {
 							Track successes, errors, dependencies in one type
 						</h2>
 						<p className="mt-4 text-lg text-zinc-400 max-w-lg">
-							The type signature tells you everything. The compiler catches what you miss. No more runtime surprises.
+							The type signature tells you everything. The compiler catches what
+							you miss. No more runtime surprises.
 						</p>
 
 						<ul className="mt-5 space-y-2 text-sm text-zinc-400">
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>No more <code className="text-zinc-300">catch (e: unknown)</code> -- errors are fully typed</span>
+								<span>
+									No more{" "}
+									<code className="text-zinc-300">catch (e: unknown)</code> --
+									errors are fully typed
+								</span>
 							</li>
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
@@ -38,7 +46,9 @@ export function WhatIsEffectSection() {
 							</li>
 							<li className="flex items-center gap-2">
 								<i className="ri-check-line text-emerald-500" />
-								<span>Async is structured -- no more promise chains you can't follow</span>
+								<span>
+									Async is structured -- no more promise chains you can't follow
+								</span>
 							</li>
 						</ul>
 
@@ -60,7 +70,8 @@ export function WhatIsEffectSection() {
 							<div
 								className="pointer-events-none absolute -inset-4 rounded-2xl opacity-30 blur-xl"
 								style={{
-									background: "radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%)",
+									background:
+										"radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%)",
 								}}
 							/>
 
@@ -72,27 +83,56 @@ export function WhatIsEffectSection() {
 									className={`cursor-pointer transition-opacity text-emerald-400 ${hoveredType && hoveredType !== "success" ? "opacity-50" : "opacity-100"}`}
 									onMouseEnter={() => setHoveredType("success")}
 									onMouseLeave={() => setHoveredType(null)}
-								>Success</span>
+								>
+									Success
+								</span>
 								<span className="text-zinc-500">, </span>
 								<span
 									className={`cursor-pointer transition-opacity text-red-400 ${hoveredType && hoveredType !== "error" ? "opacity-50" : "opacity-100"}`}
 									onMouseEnter={() => setHoveredType("error")}
 									onMouseLeave={() => setHoveredType(null)}
-								>Error</span>
+								>
+									Error
+								</span>
 								<span className="text-zinc-500">, </span>
 								<span
 									className={`cursor-pointer transition-opacity text-violet-400 ${hoveredType && hoveredType !== "requirements" ? "opacity-50" : "opacity-100"}`}
 									onMouseEnter={() => setHoveredType("requirements")}
 									onMouseLeave={() => setHoveredType(null)}
-								>Requirements</span>
+								>
+									Requirements
+								</span>
 								<span className="text-zinc-500">&gt;</span>
 							</div>
 
 							{/* Arrows pointing down */}
-							<svg className="w-full h-8 mt-2" viewBox="0 0 400 32" fill="none" preserveAspectRatio="xMidYMid meet">
-								<path d="M100 0 L100 16 L67 16 L67 32" stroke="rgb(113 113 122)" strokeWidth="1" strokeOpacity="0.5" fill="none" />
-								<path d="M200 0 L200 32" stroke="rgb(113 113 122)" strokeWidth="1" strokeOpacity="0.5" fill="none" />
-								<path d="M300 0 L300 16 L333 16 L333 32" stroke="rgb(113 113 122)" strokeWidth="1" strokeOpacity="0.5" fill="none" />
+							<svg
+								className="w-full h-8 mt-2"
+								viewBox="0 0 400 32"
+								fill="none"
+								preserveAspectRatio="xMidYMid meet"
+							>
+								<path
+									d="M100 0 L100 16 L67 16 L67 32"
+									stroke="rgb(113 113 122)"
+									strokeWidth="1"
+									strokeOpacity="0.5"
+									fill="none"
+								/>
+								<path
+									d="M200 0 L200 32"
+									stroke="rgb(113 113 122)"
+									strokeWidth="1"
+									strokeOpacity="0.5"
+									fill="none"
+								/>
+								<path
+									d="M300 0 L300 16 L333 16 L333 32"
+									stroke="rgb(113 113 122)"
+									strokeWidth="1"
+									strokeOpacity="0.5"
+									fill="none"
+								/>
 							</svg>
 
 							{/* Three columns */}
@@ -119,7 +159,9 @@ export function WhatIsEffectSection() {
 									onMouseLeave={() => setHoveredType(null)}
 								>
 									<p className="font-medium text-zinc-200">Requirements</p>
-									<p className="text-xs mt-1 text-zinc-400">Dependencies needed</p>
+									<p className="text-xs mt-1 text-zinc-400">
+										Dependencies needed
+									</p>
 								</div>
 							</div>
 
@@ -144,8 +186,15 @@ export function WhatIsEffectSection() {
 									<span className="text-zinc-500">{"})"}</span>
 								</div>
 								<div className="mt-3 pt-3 border-t border-zinc-800 text-zinc-500 text-xs leading-relaxed">
-									<p>→ <span className="text-violet-400">yield*</span> gives you the <span className="text-zinc-300">Success</span> value</p>
-									<p>→ <span className="text-zinc-300">Errors</span> & <span className="text-zinc-300">dependencies</span> are tracked in the parent Effect</p>
+									<p>
+										→ <span className="text-violet-400">yield*</span> gives you
+										the <span className="text-zinc-300">Success</span> value
+									</p>
+									<p>
+										→ <span className="text-zinc-300">Errors</span> &{" "}
+										<span className="text-zinc-300">dependencies</span> are
+										tracked in the parent Effect
+									</p>
 								</div>
 							</div>
 

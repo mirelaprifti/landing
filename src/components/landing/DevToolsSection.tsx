@@ -41,7 +41,8 @@ export function DevToolsSection() {
 					</div>
 					<div className="lg:pt-8 pl-4">
 						<p className="text-lg text-zinc-400 leading-relaxed max-w-lg">
-							The Effect Language Service brings real-time diagnostics and intelligent refactoring to your editor.
+							The Effect Language Service brings real-time diagnostics and
+							intelligent refactoring to your editor.
 						</p>
 
 						{/* Links */}
@@ -114,12 +115,12 @@ export function DevToolsSection() {
 										: "border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/40"
 								}`}
 							>
-								<span className={`text-sm font-mono uppercase tracking-wide font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}>
+								<span
+									className={`text-sm font-mono uppercase tracking-wide font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}
+								>
 									{tool.label}
 								</span>
-								<p className="mt-1 text-sm text-zinc-500">
-									{tool.description}
-								</p>
+								<p className="mt-1 text-sm text-zinc-500">{tool.description}</p>
 							</button>
 						))}
 					</div>
