@@ -7,7 +7,7 @@ import { Navigation } from "./Navigation";
 const upcomingEvents = [
 	{
 		title: "Effect Office Hours #18 🔥",
-		date: "Weekly on YouTube",
+		date: "// Weekly on YouTube",
 		location: "Online",
 		flag: "🎥",
 		thumbnail: "https://i.ytimg.com/vi/5NtYKTLoDkQ/maxresdefault.jpg",
@@ -170,18 +170,18 @@ const hostPerks = [
 			"Slide decks, demo repos, and starter templates to help speakers prepare.",
 	},
 	{
+		icon: "ri-team-line",
+		title: "Direct line to the team",
+		description:
+			"Dedicated support from the Effect team to help with planning, content, and speaker sourcing.",
+	},
+	{
 		icon: "ri-git-repository-line",
 		title: "Meetup repo template",
 		description:
 			"A GitHub template with talk submissions as issues, a code of conduct, and organizer checklists.",
 		href: "https://github.com/effect-ts-community/meetup-template",
 		linkLabel: "View on GitHub",
-	},
-	{
-		icon: "ri-team-line",
-		title: "Direct line to the team",
-		description:
-			"Dedicated support from the Effect team to help with planning, content, and speaker sourcing.",
 	},
 ];
 
@@ -195,9 +195,9 @@ function TypeBadge({ type }: { type: string }) {
 	};
 	return (
 		<span
-			className={`rounded-full border px-2 py-0.5 text-xs ${styles[type] || styles.meetup}`}
+			className={`rounded-full border px-2 py-0.5 text-xs  ${styles[type] || styles.meetup}`}
 		>
-			{type}
+			{type.charAt(0).toUpperCase() + type.slice(1)}
 		</span>
 	);
 }
@@ -243,10 +243,10 @@ function EventsTabSection() {
 								href={event.href}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="group flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900 md:flex-row"
+								className="group flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900 md:flex-row md:gap-8"
 							>
 								{event.thumbnail && (
-									<div className="relative aspect-video w-full shrink-0 overflow-hidden md:aspect-auto md:w-72">
+									<div className="relative aspect-video w-full overflow-hidden md:aspect-auto md:w-1/2">
 										<img
 											src={
 												event.thumbnail.startsWith("http")
@@ -259,21 +259,21 @@ function EventsTabSection() {
 									</div>
 								)}
 								{!event.thumbnail && (
-									<div className="flex w-full shrink-0 items-center justify-center bg-zinc-800/50 py-10 md:w-72 md:py-0">
+									<div className="flex w-full items-center justify-center bg-zinc-800/50 py-10 md:w-1/2 md:py-0">
 										<i className="ri-live-line text-4xl text-zinc-600" />
 									</div>
 								)}
 								<div className="flex flex-1 flex-col justify-center p-5">
 									<div className="mb-1.5 flex items-center gap-2">
-										<span className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
+										<span className="font-mono text-sm tracking-wider text-zinc-400 uppercase">
 											{event.date}
 										</span>
 										<TypeBadge type={event.location.toLowerCase()} />
 									</div>
-									<h3 className="mb-1 text-base font-semibold text-white group-hover:text-zinc-100">
+									<h3 className="mt-0.5 mb-2 text-xl font-semibold text-white group-hover:text-zinc-100">
 										{event.title}
 									</h3>
-									<p className="text-sm leading-relaxed text-zinc-400">
+									<p className="max-w-[28rem] text-base text-zinc-400">
 										{event.description}
 									</p>
 								</div>
@@ -303,15 +303,15 @@ function EventsTabSection() {
 											rel="noopener noreferrer"
 											className="group flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-zinc-800/30"
 										>
-											<span className="text-base">{event.flag}</span>
-											<span className="w-24 shrink-0 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+											<span className="text-lg">{event.flag}</span>
+											<span className="w-24 shrink-0 font-mono text-sm tracking-wider text-zinc-400 uppercase">
 												{event.date}
 											</span>
-											<span className="flex-1 text-sm text-white transition-colors group-hover:text-white">
+											<span className="flex-1 text-base text-white transition-colors group-hover:text-white">
 												{event.title}
 											</span>
 											<TypeBadge type={event.type} />
-											<i className="ri-arrow-right-up-line text-zinc-700 transition-colors group-hover:text-zinc-400" />
+											<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-300" />
 										</a>
 									))}
 								</div>
@@ -391,6 +391,52 @@ export function EventsPage() {
 				{/* Events Tabbed Section */}
 				<EventsTabSection />
 
+				{/* Meetup photos - visual break between events and host section */}
+				<div className="mx-auto w-full max-w-[73.75rem] px-4 py-16 md:py-24">
+					<div className="grid h-40 grid-cols-5 gap-2 md:h-56">
+						<div className="overflow-hidden rounded-lg">
+							<img
+								src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec78710618b4a23644e_paris-nov-6%201.avif"
+								alt="Effect Paris Meetup"
+								className="h-full w-full object-cover"
+								loading="lazy"
+							/>
+						</div>
+						<div className="overflow-hidden rounded-lg">
+							<img
+								src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec787acf92381d7f6d5_image%2012.avif"
+								alt="Effect Days event"
+								className="h-full w-full object-cover"
+								loading="lazy"
+							/>
+						</div>
+						<div className="overflow-hidden rounded-lg">
+							<img
+								src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec71d9a01ce66f0005c_PXL_20241022_032527962.MP%201.avif"
+								alt="Effect SF Meetup"
+								className="h-full w-full object-cover"
+								loading="lazy"
+							/>
+						</div>
+						<div className="overflow-hidden rounded-lg">
+							<img
+								src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/6766cb1aa6a05d76a30e92ad_award-sandro%201.avif"
+								alt="Effect Days award ceremony"
+								className="h-full w-full object-cover"
+								loading="lazy"
+							/>
+						</div>
+						<div className="overflow-hidden rounded-lg">
+							<img
+								src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec7f327ac143862b510_image%209.avif"
+								alt="Effect meetup gathering"
+								className="h-full w-full object-cover"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
 				{/* Divider */}
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="h-px w-full bg-zinc-800" />
@@ -399,7 +445,7 @@ export function EventsPage() {
 				{/* Host Your Own Meetup Section */}
 				<section id="host" className="py-24 md:pt-40 md:pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="mb-10">
+						<div className="mb-20">
 							<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Host a Meetup
 							</p>
@@ -432,62 +478,18 @@ export function EventsPage() {
 							</div>
 						</div>
 
-						{/* Meetup photos */}
-						<div className="mb-10 grid h-32 grid-cols-5 gap-2 md:h-40">
-							<div className="overflow-hidden rounded-lg">
-								<img
-									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec78710618b4a23644e_paris-nov-6%201.avif"
-									alt="Effect Paris Meetup"
-									className="h-full w-full object-cover"
-									loading="lazy"
-								/>
-							</div>
-							<div className="overflow-hidden rounded-lg">
-								<img
-									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec787acf92381d7f6d5_image%2012.avif"
-									alt="Effect Days event"
-									className="h-full w-full object-cover"
-									loading="lazy"
-								/>
-							</div>
-							<div className="overflow-hidden rounded-lg">
-								<img
-									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec71d9a01ce66f0005c_PXL_20241022_032527962.MP%201.avif"
-									alt="Effect SF Meetup"
-									className="h-full w-full object-cover"
-									loading="lazy"
-								/>
-							</div>
-							<div className="overflow-hidden rounded-lg">
-								<img
-									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/6766cb1aa6a05d76a30e92ad_award-sandro%201.avif"
-									alt="Effect Days award ceremony"
-									className="h-full w-full object-cover"
-									loading="lazy"
-								/>
-							</div>
-							<div className="overflow-hidden rounded-lg">
-								<img
-									src="https://cdn.prod.website-files.com/65001a5c49ae13d89bb13849/67541ec7f327ac143862b510_image%209.avif"
-									alt="Effect meetup gathering"
-									className="h-full w-full object-cover"
-									loading="lazy"
-								/>
-							</div>
-						</div>
-
-						<div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+						<div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
 							{hostPerks.map((perk) => (
-								<div key={perk.title} className="flex items-start gap-4">
+								<div key={perk.title} className="flex flex-col">
 									<div
-										className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+										className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg"
 										style={{
 											background:
 												"linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
 										}}
 									>
 										<i
-											className={`${perk.icon} text-base`}
+											className={`${perk.icon} text-lg`}
 											style={{
 												background: "linear-gradient(135deg, #34d399, #8b5cf6)",
 												WebkitBackgroundClip: "text",
@@ -495,25 +497,25 @@ export function EventsPage() {
 											}}
 										/>
 									</div>
-									<div>
-										<h3 className="text-sm font-medium text-white">
-											{perk.title}
-										</h3>
-										<p className="mt-1 text-sm leading-relaxed text-zinc-500">
-											{perk.description}
-										</p>
-										{perk.href && (
-											<a
-												href={perk.href}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="mt-2 inline-flex items-center gap-1 text-sm text-zinc-300 transition-colors hover:text-white"
-											>
+									<h3 className="text-base font-semibold text-white">
+										{perk.title}
+									</h3>
+									<p className="mt-1 text-sm leading-relaxed text-zinc-400">
+										{perk.description}
+									</p>
+									{perk.href && (
+										<a
+											href={perk.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="group/link mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-white transition-colors"
+										>
+											<span className="underline decoration-zinc-600 underline-offset-4 transition-colors group-hover/link:decoration-white">
 												{perk.linkLabel}
-												<i className="ri-arrow-right-up-line text-xs" />
-											</a>
-										)}
-									</div>
+											</span>
+											<i className="ri-arrow-right-up-line text-xs" />
+										</a>
+									)}
 								</div>
 							))}
 						</div>

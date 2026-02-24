@@ -325,7 +325,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
 									{/* Chapters */}
 									{episode.chapters && episode.chapters.length > 0 && (
-										<div className="mt-6">
+										<div className="mt-8 mb-12">
 											<h3 className="mb-3 text-lg font-semibold text-white">
 												Chapters
 											</h3>

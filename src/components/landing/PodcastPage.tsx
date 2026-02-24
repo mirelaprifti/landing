@@ -196,7 +196,7 @@ export function PodcastPage() {
                 linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
               `,
-							backgroundSize: "196.6px 201px",
+							backgroundSize: "196.6px 186px",
 							backgroundPosition: "calc(50% + 97px) 0",
 						}}
 					/>
