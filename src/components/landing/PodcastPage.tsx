@@ -107,7 +107,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 	return (
 		<a
 			href={getAssetPath(`/podcast/episodes/episode-${episode.number}`)}
-			className="group my-4 flex flex-col gap-8 p-4 transition-colors hover:bg-zinc-900/50 md:flex-row md:gap-8"
+			className="group my-4 flex flex-col gap-8 p-4 transition-colors hover:bg-zinc-900/60 md:flex-row md:gap-8"
 		>
 			{/* Thumbnail */}
 			<div className="relative aspect-video w-full flex-shrink-0 overflow-hidden md:w-[40%]">
@@ -116,18 +116,6 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 					alt={episode.guest}
 					className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 				/>
-				{/* Play indicator on hover */}
-				<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
-					<div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
-						<svg
-							className="ml-1 h-5 w-5 text-zinc-900"
-							viewBox="0 0 24 24"
-							fill="currentColor"
-						>
-							<path d="M8 5v14l11-7z" />
-						</svg>
-					</div>
-				</div>
 			</div>
 
 			{/* Episode content */}
@@ -229,7 +217,7 @@ export function PodcastPage() {
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// The Podcast 🎙️
 								</p>
-								<h1 className="text-3xl font-bold text-white sm:text-4xl md:text-6xl">
+								<h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
 									Cause & Effect
 								</h1>
 								<p className="mt-4 text-base leading-snug text-zinc-400 sm:text-lg">
