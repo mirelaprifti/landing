@@ -354,7 +354,7 @@ function HeroPhotoStrip() {
 						key={`photo-${i}`}
 						className="h-36 w-52 shrink-0 md:h-48 md:w-64"
 					>
-						<PhotoCard src={photo.src} alt={photo.alt} />
+						<PhotoCard src={getAssetPath(photo.src)} alt={photo.alt} />
 					</div>
 				))}
 			</div>
@@ -598,8 +598,8 @@ export function EventsPage() {
 							<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Effect Days
 							</p>
-							<h2 className="mb-3 max-w-3xl text-2xl font-semibold text-white md:text-4xl">
-								The conference for TypeScript and Effect developers
+							<h2 className="mb-3 max-w-2xl text-2xl font-semibold text-white md:text-3xl">
+								A conference for TypeScript and Effect engineers worldwide
 							</h2>
 							<p className="max-w-2xl text-lg text-zinc-400">
 								Two editions, 34 talks, real production stories, and a community

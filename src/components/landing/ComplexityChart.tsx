@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import { motion } from "motion/react";
 
 interface ComplexityChartProps {
 	activeFeatures: number;
@@ -202,16 +200,6 @@ function generateLinearPath(features: number): string {
 }
 
 export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
-	const chartRef = useRef<HTMLDivElement>(null);
-	const isInView = useInView(chartRef, { once: true, amount: 0.3 });
-	const [hasAnimated, setHasAnimated] = useState(false);
-
-	useEffect(() => {
-		if (isInView && !hasAnimated) {
-			setHasAnimated(true);
-		}
-	}, [isInView, hasAnimated]);
-
 	const targetWithPath = generateLinearPath(activeFeatures);
 	const targetWithoutPath = generateExponentialPath(activeFeatures);
 
@@ -219,13 +207,8 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 	const revealWidth = Math.max(0, Math.min(600, (activeFeatures / 5) * 600));
 
 	return (
-		<div
-			ref={chartRef}
-			className="relative aspect-[618/348] w-full"
-			id="complexity-chart"
-			style={{ willChange: hasAnimated ? "auto" : "transform" }}
-		>
-			<motion.svg
+		<div className="relative aspect-[618/348] w-full" id="complexity-chart">
+			<svg
 				role="img"
 				aria-labelledby="chart-title chart-desc"
 				width="100%"
@@ -236,9 +219,6 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 					transform: "translateZ(0)",
 					backfaceVisibility: "hidden",
 				}}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: hasAnimated ? 1 : 0 }}
-				transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
 			>
 				<title id="chart-title">Complexity at Scale Comparison Chart</title>
 				<desc id="chart-desc">
@@ -280,7 +260,7 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 				{/* Horizontal Grid Lines */}
 				<g>
 					{[0, 133.33, 266.67, 400].map((y, i) => (
-						<motion.line
+						<line
 							key={`h-${y}`}
 							x1="0"
 							y1={y}
@@ -292,16 +272,6 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 									: "rgba(255, 255, 255, 0.1)"
 							}
 							strokeWidth="1"
-							initial={{ pathLength: 0, opacity: 0 }}
-							animate={{
-								pathLength: hasAnimated ? 1 : 0,
-								opacity: hasAnimated ? 1 : 0,
-							}}
-							transition={{
-								duration: 1,
-								delay: i * 0.05,
-								ease: [0.25, 0.1, 0.25, 1],
-							}}
 						/>
 					))}
 				</g>
@@ -309,7 +279,7 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 				{/* Vertical Grid Lines */}
 				<g>
 					{[0, 150, 300, 450, 600].map((x, i) => (
-						<motion.line
+						<line
 							key={`v-${x}`}
 							x1={x}
 							y1="0"
@@ -317,22 +287,12 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 							y2="400"
 							stroke="rgba(255, 255, 255, 0.1)"
 							strokeWidth="1"
-							initial={{ pathLength: 0, opacity: 0 }}
-							animate={{
-								pathLength: hasAnimated ? 1 : 0,
-								opacity: hasAnimated ? 1 : 0,
-							}}
-							transition={{
-								duration: 1,
-								delay: 0.2 + i * 0.05,
-								ease: [0.25, 0.1, 0.25, 1],
-							}}
 						/>
 					))}
 				</g>
 
 				{/* Background Gradient Rectangle */}
-				<motion.rect
+				<rect
 					x="0"
 					y="0"
 					width="600"
@@ -340,13 +300,10 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 					fill="url(#chartBgGradient)"
 					stroke="rgba(255, 255, 255, 0.1)"
 					strokeWidth="1"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
 				/>
 
 				{/* Axis labels */}
-				<motion.text
+				<text
 					x="12"
 					y="54"
 					fill="white"
@@ -357,13 +314,10 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 					transform="rotate(-90 10 50)"
 					opacity="0.6"
 					letterSpacing="0.6"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: hasAnimated ? 0.6 : 0 }}
-					transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
 				>
 					COMPLEXITY
-				</motion.text>
-				<motion.text
+				</text>
+				<text
 					x="564"
 					y="392"
 					fill="white"
@@ -373,12 +327,9 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 					textAnchor="middle"
 					opacity="0.6"
 					letterSpacing="0.3"
-					initial={{ opacity: 0, x: -10 }}
-					animate={{ opacity: hasAnimated ? 0.6 : 0, x: hasAnimated ? 0 : -10 }}
-					transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
 				>
 					FEATURES
-				</motion.text>
+				</text>
 
 				{/* Lines group - clipped by reveal width that advances per feature */}
 				<g clipPath="url(#revealClip)">
@@ -412,95 +363,71 @@ export function ComplexityChart({ activeFeatures }: ComplexityChartProps) {
 				</g>
 
 				{/* Corner decorations */}
-				<motion.line
+				<line
 					x1="0"
 					y1="0"
 					x2="12.754"
 					y2="0"
 					stroke="rgba(255,255,255,0.3)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.5 }}
 				/>
-				<motion.line
+				<line
 					x1="0"
 					y1="0"
 					x2="0"
 					y2="12.754"
 					stroke="rgba(255,255,255,0.3)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.5 }}
 				/>
-				<motion.line
+				<line
 					x1="600"
 					y1="0"
 					x2="587.246"
 					y2="0"
 					stroke="rgba(255,255,255,0.3)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.55 }}
 				/>
-				<motion.line
+				<line
 					x1="600"
 					y1="0"
 					x2="600"
 					y2="12.754"
 					stroke="rgba(255,255,255,0.3)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.55 }}
 				/>
-				<motion.line
+				<line
 					x1="0"
 					y1="400"
 					x2="12.754"
 					y2="400"
 					stroke="rgba(255,255,255,0.4)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.6 }}
 				/>
-				<motion.line
+				<line
 					x1="0"
 					y1="400"
 					x2="0"
 					y2="387.246"
 					stroke="rgba(255,255,255,0.3)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.6 }}
 				/>
-				<motion.line
+				<line
 					x1="600"
 					y1="400"
 					x2="587.246"
 					y2="400"
 					stroke="rgba(255,255,255,0.4)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.65 }}
 				/>
-				<motion.line
+				<line
 					x1="600"
 					y1="400"
 					x2="600"
 					y2="387.246"
 					stroke="rgba(255,255,255,0.3)"
 					strokeWidth="1"
-					initial={{ pathLength: 0 }}
-					animate={{ pathLength: hasAnimated ? 1 : 0 }}
-					transition={{ duration: 0.4, delay: 0.65 }}
 				/>
-			</motion.svg>
+			</svg>
 		</div>
 	);
 }

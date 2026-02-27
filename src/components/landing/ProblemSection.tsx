@@ -92,15 +92,15 @@ function ComplexityChart() {
 		return () => observer.disconnect();
 	}, []);
 
-	const redLineLength = 500;
-	const greenLineLength = 450;
+	const redDashArray = 500;
+	const greenDashArray = 450;
 
 	return (
 		<div ref={chartRef} className="relative w-full">
 			<div className="relative h-36 md:h-44">
 				<svg
 					viewBox="0 0 400 140"
-					className="w-full h-full"
+					className="h-full w-full"
 					preserveAspectRatio="none"
 				>
 					<defs>
@@ -143,6 +143,7 @@ function ComplexityChart() {
 						/>
 					))}
 
+					{/* Area fills */}
 					<path
 						d="M0,118 C150,115 250,100 400,0 L400,140 L0,140 Z"
 						fill="url(#redAreaGradient)"
@@ -162,6 +163,7 @@ function ComplexityChart() {
 						}}
 					/>
 
+					{/* Lines */}
 					<path
 						d="M0,118 C150,115 250,100 400,0"
 						fill="none"
@@ -169,8 +171,8 @@ function ComplexityChart() {
 						strokeWidth="1.5"
 						strokeLinecap="round"
 						style={{
-							strokeDasharray: redLineLength,
-							strokeDashoffset: isVisible ? 0 : redLineLength,
+							strokeDasharray: redDashArray,
+							strokeDashoffset: isVisible ? 0 : redDashArray,
 							transition: "stroke-dashoffset 1.5s ease-out",
 						}}
 					/>
@@ -181,36 +183,36 @@ function ComplexityChart() {
 						strokeWidth="1.5"
 						strokeLinecap="round"
 						style={{
-							strokeDasharray: greenLineLength,
-							strokeDashoffset: isVisible ? 0 : greenLineLength,
+							strokeDasharray: greenDashArray,
+							strokeDashoffset: isVisible ? 0 : greenDashArray,
 							transition: "stroke-dashoffset 1.8s ease-out 0.2s",
 						}}
 					/>
 				</svg>
 			</div>
 
-			<div className="flex justify-between mt-3">
-				<span className="font-mono text-[10px] text-zinc-400/75 uppercase tracking-wide">
+			<div className="mt-3 flex justify-between">
+				<span className="font-mono text-[10px] tracking-wide text-zinc-400/75 uppercase">
 					Start
 				</span>
-				<span className="font-mono text-[10px] text-zinc-400/75 uppercase tracking-wide">
+				<span className="font-mono text-[10px] tracking-wide text-zinc-400/75 uppercase">
 					Scale
 				</span>
 			</div>
 
-			<div className="flex items-center justify-center gap-6 mt-5">
-				<span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
+			<div className="mt-5 flex items-center justify-center gap-6">
+				<span className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
 					Complexity at scale:
 				</span>
 				<div className="flex items-center gap-1.5">
-					<div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-					<span className="font-mono text-xs uppercase text-zinc-400">
+					<div className="h-1.5 w-1.5 rounded-full bg-red-500" />
+					<span className="font-mono text-xs text-zinc-400 uppercase">
 						Without Effect
 					</span>
 				</div>
 				<div className="flex items-center gap-1.5">
-					<div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-					<span className="font-mono text-xs uppercase text-zinc-400">
+					<div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+					<span className="font-mono text-xs text-zinc-400 uppercase">
 						With Effect
 					</span>
 				</div>
@@ -232,12 +234,12 @@ export function ProblemSection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Top row - Header + Chart */}
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 mb-16">
+				<div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-8">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// What Effect Solves
 						</p>
-						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-md">
+						<h2 className="max-w-md text-2xl leading-tight font-semibold text-white md:text-3xl">
 							Built-in solutions for the hard problems
 						</h2>
 					</div>
@@ -254,18 +256,16 @@ export function ProblemSection() {
 							key={index}
 							className="flex flex-col border border-zinc-800 bg-zinc-950 p-5"
 						>
-							<p className="text-base font-medium text-zinc-400">
-								{feature.problem}
-							</p>
+							<p className="text-base text-zinc-400">{feature.problem}</p>
 							{/* Arrow connector */}
-							<div className="flex items-center gap-2 my-4">
+							<div className="my-4 flex items-center gap-2">
 								<div className="h-px flex-1 bg-zinc-800" />
-								<i className="ri-arrow-down-line text-white text-sm" />
+								<i className="ri-arrow-down-line text-sm text-white" />
 								<div className="h-px flex-1 bg-zinc-800" />
 							</div>
-							<h3 className="flex items-center gap-2 text-base font-mono uppercase font-medium text-white">
-								<div className="w-6 h-6 bg-zinc-800 flex items-center justify-center shrink-0">
-									<i className={`${feature.icon} text-zinc-200 text-sm`} />
+							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-white uppercase">
+								<div className="flex h-6 w-6 shrink-0 items-center justify-center bg-zinc-800">
+									<i className={`${feature.icon} text-sm text-zinc-200`} />
 								</div>
 								{feature.title}
 							</h3>
@@ -273,7 +273,7 @@ export function ProblemSection() {
 							<div className="mt-3 flex flex-col gap-1.5">
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-3">
-										<i className="ri-check-line text-emerald-500 text-sm shrink-0 pl-1" />
+										<i className="ri-check-line shrink-0 pl-1 text-sm text-emerald-500" />
 										<span className="text-sm text-zinc-400">{item}</span>
 									</div>
 								))}

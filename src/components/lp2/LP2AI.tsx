@@ -1,3 +1,5 @@
+import { getAssetPath } from "../../utils/assetPath";
+
 const AI_BENEFITS = [
 	{
 		title: "Predictable structure",
@@ -31,10 +33,10 @@ export function LP2AI() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header */}
 				<div className="mb-16 max-w-2xl">
-					<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-400">
+					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						LLMs 🤍 Effect
 					</p>
-					<h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">
+					<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
 						Write better code with AI
 					</h2>
 					<p className="mt-4 text-lg text-zinc-500">
@@ -56,7 +58,7 @@ export function LP2AI() {
 										{benefit.title}
 									</h3>
 								</div>
-								<p className="text-sm leading-relaxed text-zinc-400 pl-7">
+								<p className="pl-7 text-sm leading-relaxed text-zinc-400">
 									{benefit.description}
 								</p>
 							</div>
@@ -75,7 +77,7 @@ export function LP2AI() {
 							<div className="mb-4 flex items-center justify-between">
 								<div className="flex items-center gap-3">
 									<img
-										src="/assets/images/bendavis.jpg"
+										src={getAssetPath("/assets/images/bendavis.jpg")}
 										alt="Ben Davis"
 										className="h-10 w-10 rounded-full object-cover"
 									/>

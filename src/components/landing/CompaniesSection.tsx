@@ -1,3 +1,5 @@
+import { getAssetPath } from "../../utils/assetPath";
+
 interface Company {
 	name: string;
 	logo: string;
@@ -164,10 +166,14 @@ function CompanyItem({ company }: { company: Company }) {
 	return (
 		<div className="flex items-center gap-2">
 			<div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900">
-				<img src={company.logo} alt="" className={company.logoClass} />
+				<img
+					src={getAssetPath(company.logo)}
+					alt=""
+					className={company.logoClass}
+				/>
 			</div>
 			{company.isTwoLine ? (
-				<div className="text-xs font-semibold leading-tight text-[#b5b5be]">
+				<div className="text-xs leading-tight font-semibold text-[#b5b5be]">
 					<div>EMBEDDED</div>
 					<div>INSURANCE</div>
 				</div>
@@ -221,7 +227,7 @@ export function CompaniesSection() {
 				className="pointer-events-none absolute inset-0"
 				style={{
 					opacity: 1,
-					backgroundImage: "url('/assets/BG-Pattern.svg')",
+					backgroundImage: `url('${getAssetPath("/assets/BG-Pattern.svg")}')`,
 					backgroundSize: "cover",
 					backgroundPosition: "center bottom",
 					backgroundRepeat: "no-repeat",
