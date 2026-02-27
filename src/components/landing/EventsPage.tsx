@@ -104,6 +104,13 @@ const pastEvents = [
 				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-8m3AT2Cf_oGUL-wX77KUJ",
 			},
 			{
+				flag: "🇩🇪",
+				date: "Sep",
+				title: "Effect Hamburg Meetup #1",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
 				flag: "🇫🇷",
 				date: "Jun",
 				title: "Effect Paris Meetup",
