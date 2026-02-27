@@ -236,6 +236,18 @@ const pastEvents = [
 			},
 		],
 	},
+	{
+		year: "2023",
+		events: [
+			{
+				flag: "🇺🇸",
+				date: "Nov",
+				title: "Effect SF Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+		],
+	},
 ];
 
 const hostPerks = [
