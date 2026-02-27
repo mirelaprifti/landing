@@ -89,7 +89,7 @@ const pastEvents = [
 				date: "Jan",
 				title: "Effect Berlin Meetup #2",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://luma.com/xdpn0t7a",
 			},
 		],
 	},
@@ -101,14 +101,14 @@ const pastEvents = [
 				date: "Dec",
 				title: "Effect Vienna Meetup",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://luma.com/rc84shks",
 			},
 			{
 				flag: "🌐",
 				date: "Dec",
 				title: "SvelteKit and Effect with Dillon Mulroy",
 				type: "online",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://www.youtube.com/watch?v=8ByXE6dPkD4&t=19s",
 			},
 			{
 				flag: "🌐",
@@ -136,14 +136,14 @@ const pastEvents = [
 				date: "Nov",
 				title: "Effect Berlin Meetup #1",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://luma.com/z0pfxfvy",
 			},
 			{
 				flag: "🇩🇪",
 				date: "Nov",
 				title: "Effect Hamburg Meetup #2",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://luma.com/nsvz6eqe",
 			},
 			{
 				flag: "🇺🇸",
@@ -192,7 +192,7 @@ const pastEvents = [
 				date: "Oct",
 				title: "Effect SF Meetup",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "",
 			},
 			{
 				flag: "🇮🇹",
@@ -263,7 +263,7 @@ const pastEvents = [
 				date: "Sep",
 				title: "Effect Hamburg Meetup #1",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://luma.com/44razg6s",
 			},
 			{
 				flag: "🌐",
@@ -281,13 +281,6 @@ const pastEvents = [
 			},
 			{
 				flag: "🇫🇷",
-				date: "Jun",
-				title: "Effect Paris Meetup",
-				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
-			},
-			{
-				flag: "🇫🇷",
 				date: "May",
 				title: "Effect Paris Meetup #5",
 				type: "meetup",
@@ -298,14 +291,14 @@ const pastEvents = [
 				date: "May",
 				title: "Effect Meetup SF",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "",
 			},
 			{
 				flag: "🇬🇧",
 				date: "Apr",
 				title: "Effect talk at CityJS London",
 				type: "conference",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://www.youtube.com/watch?v=apklpPEgZgw&list=PLYDCh9vbt8_KlKLaZLWlGaYuyGke1rBBT&index=4&t=27s",
 			},
 			{
 				flag: "🇮🇹",
@@ -329,9 +322,9 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Dec",
-				title: "Intro to Effect at FrontEndQueens",
+				title: "Intro to Effect at FrontEndQueens by Laure Retru-Chavastel",
 				type: "online",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://www.youtube.com/watch?v=bfQaG1fL-F0&t=18s",
 			},
 			{
 				flag: "🇫🇷",
@@ -339,13 +332,6 @@ const pastEvents = [
 				title: "Effect Paris Meetup #3",
 				type: "meetup",
 				href: "https://www.meetup.com/effect-paris/events/304021172/?eventOrigin=group_past_events",
-			},
-			{
-				flag: "🇺🇸",
-				date: "Nov 2",
-				title: "Effect Meetup SF",
-				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
 			},
 			{
 				flag: "🇦🇹",
@@ -359,7 +345,7 @@ const pastEvents = [
 				date: "Oct 21",
 				title: "Effect Meetup SF",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-8m3AT2Cf_oGUL-wX77KUJ",
 			},
 			{
 				flag: "🇫🇷",
