@@ -227,13 +227,6 @@ const pastEvents = [
 				type: "conference",
 				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO",
 			},
-			{
-				flag: "🇵🇱",
-				date: "Jan 10",
-				title: "WarsawJS Meetup",
-				type: "meetup",
-				href: "https://www.youtube.com/watch?v=example",
-			},
 		],
 	},
 ];
@@ -583,25 +576,42 @@ function EventsTabSection() {
 									</span>
 								</div>
 								<div className="divide-y divide-zinc-800/50">
-									{yearGroup.events.map((event, i) => (
-										<a
-											key={`${event.title}-${i}`}
-											href={event.href}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="group flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-zinc-800/30"
-										>
-											<span className="text-lg">{event.flag}</span>
-											<span className="w-24 shrink-0 font-mono text-sm tracking-wider text-zinc-400 uppercase">
-												{event.date}
-											</span>
-											<span className="flex-1 text-base text-white transition-colors group-hover:text-white">
-												{event.title}
-											</span>
-											<TypeBadge type={event.type} />
-											<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-300" />
-										</a>
-									))}
+									{yearGroup.events.map((event, i) => {
+										const content = (
+											<>
+												<span className="text-lg">{event.flag}</span>
+												<span className="w-24 shrink-0 font-mono text-sm tracking-wider text-zinc-400 uppercase">
+													{event.date}
+												</span>
+												<span className="flex-1 text-base text-white transition-colors group-hover:text-white">
+													{event.title}
+												</span>
+												<TypeBadge type={event.type} />
+												{event.href && (
+													<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-300" />
+												)}
+											</>
+										);
+
+										return event.href ? (
+											<a
+												key={`${event.title}-${i}`}
+												href={event.href}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="group flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-zinc-800/30"
+											>
+												{content}
+											</a>
+										) : (
+											<div
+												key={`${event.title}-${i}`}
+												className="group flex items-center gap-4 px-5 py-3.5"
+											>
+												{content}
+											</div>
+										);
+									})}
 								</div>
 							</div>
 						))}
