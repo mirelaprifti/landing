@@ -48,6 +48,13 @@ const pastEvents = [
 				href: "https://luma.com/effect-community?k=c",
 			},
 			{
+				flag: "🌐",
+				date: "Dec",
+				title: "SvelteKit and Effect with Dillon Mulroy",
+				type: "online",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
 				flag: "🇺🇸",
 				date: "Nov",
 				title: "Effect-TS: ZIO through the lens of TypeScript",
@@ -123,6 +130,14 @@ const pastEvents = [
 				title: "Effect talk at React Alicante",
 				type: "conference",
 				href: "https://reactalicante.es/",
+			},
+			{
+				flag: "🌐",
+				date: "Oct",
+				title:
+					"Effect: the Good Parts, `use workflow`, and Vercel Domains — Dillon Mulroy",
+				type: "online",
+				href: "https://luma.com/effect-community?k=c",
 			},
 			{
 				flag: "🇺🇸",
