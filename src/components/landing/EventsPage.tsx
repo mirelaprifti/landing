@@ -112,9 +112,30 @@ const pastEvents = [
 			},
 			{
 				flag: "🇩🇪",
+				date: "Oct",
+				title: "Effect talk at Munich TypeScript",
+				type: "conference",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇺🇸",
+				date: "Sep",
+				title: "Effect talk at SquiggleConf 2025",
+				type: "conference",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇩🇪",
 				date: "Sep",
 				title: "Effect Hamburg Meetup #1",
 				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇪🇬",
+				date: "Jul",
+				title: "Effect talk at EgyptJS",
+				type: "conference",
 				href: "https://luma.com/effect-community?k=c",
 			},
 			{
@@ -136,6 +157,13 @@ const pastEvents = [
 				date: "May",
 				title: "Effect Meetup SF",
 				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇬🇧",
+				date: "Apr",
+				title: "Effect talk at CityJS London",
+				type: "conference",
 				href: "https://luma.com/effect-community?k=c",
 			},
 			{
