@@ -19,8 +19,90 @@ const upcomingEvents = [
 
 const pastEvents = [
 	{
+		year: "2026",
+		events: [
+			{
+				flag: "🇫🇷",
+				date: "Feb",
+				title: "Effect Paris Meetup #6",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇩🇪",
+				date: "Jan",
+				title: "Effect Berlin Meetup #2",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+		],
+	},
+	{
 		year: "2025",
 		events: [
+			{
+				flag: "🇦🇹",
+				date: "Dec",
+				title: "Effect Vienna Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇺🇸",
+				date: "Nov",
+				title: "Effect-TS: ZIO through the lens of TypeScript",
+				type: "meetup",
+				href: "https://www.meetup.com/dallas-scala-enthusiasts/events/311520686/?utm_medium=referral&utm_campaign=announce_event&utm_source=twitter&utm_version=v2",
+			},
+			{
+				flag: "🇮🇹",
+				date: "Nov",
+				title: "Effect: crafting 🍕 made simple",
+				type: "meetup",
+				href: "https://www.meetup.com/pug-sondrio/events/311976213/?eventOrigin=group_featured_event",
+			},
+			{
+				flag: "🇩🇪",
+				date: "Nov",
+				title: "Effect Berlin Meetup #1",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇩🇪",
+				date: "Nov",
+				title: "Effect Hamburg Meetup #2",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇺🇸",
+				date: "Nov",
+				title: "Effect NYC Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇫🇷",
+				date: "Oct",
+				title: "Introduction à Effect.TS par la pratique",
+				type: "meetup",
+				href: "https://www.eventbrite.fr/e/atondev-introduction-a-effectts-par-la-pratique-tickets-1685513629639",
+			},
+			{
+				flag: "🇺🇸",
+				date: "Oct",
+				title: "Effect SF Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇮🇹",
+				date: "Oct",
+				title: "Effect Milan Meetup",
+				type: "meetup",
+				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-8m3AT2Cf_oGUL-wX77KUJ",
+			},
 			{
 				flag: "🇫🇷",
 				date: "Jun",
