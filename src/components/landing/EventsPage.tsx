@@ -83,6 +83,13 @@ const pastEvents = [
 				href: "https://luma.com/effect-community?k=c",
 			},
 			{
+				flag: "🌐",
+				date: "Nov",
+				title: "Building AI applications with Effect + Netlify",
+				type: "online",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
 				flag: "🇫🇷",
 				date: "Oct",
 				title: "Introduction à Effect.TS par la pratique",
@@ -239,6 +246,13 @@ const pastEvents = [
 	{
 		year: "2023",
 		events: [
+			{
+				flag: "🇫🇷",
+				date: "Dec",
+				title: "Effect Paris Meetup",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
 			{
 				flag: "🇺🇸",
 				date: "Nov",
