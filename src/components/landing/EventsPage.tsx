@@ -118,6 +118,13 @@ const pastEvents = [
 				href: "https://luma.com/effect-community?k=c",
 			},
 			{
+				flag: "🇪🇸",
+				date: "Oct",
+				title: "Effect talk at React Alicante",
+				type: "conference",
+				href: "https://reactalicante.es/",
+			},
+			{
 				flag: "🇺🇸",
 				date: "Sep",
 				title: "Effect talk at SquiggleConf 2025",
@@ -193,6 +200,13 @@ const pastEvents = [
 				href: "https://www.meetup.com/paris-typescript/",
 			},
 			{
+				flag: "🌐",
+				date: "Dec",
+				title: "Intro to Effect at FrontEndQueens",
+				type: "online",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
 				flag: "🇫🇷",
 				date: "Nov 5",
 				title: "Effect Paris Meetup",
@@ -223,7 +237,7 @@ const pastEvents = [
 			{
 				flag: "🇪🇸",
 				date: "Sep 21",
-				title: "React Alicante Conference",
+				title: "Effect talk at React Alicante",
 				type: "conference",
 				href: "https://reactalicante.es/",
 			},
@@ -239,6 +253,20 @@ const pastEvents = [
 				date: "Jun 25",
 				title: "Effect Paris Meetup",
 				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇬🇧",
+				date: "Jun",
+				title: "Effect Loves Node.js",
+				type: "meetup",
+				href: "https://luma.com/effect-community?k=c",
+			},
+			{
+				flag: "🇯🇵",
+				date: "Jun",
+				title: "Effect talk at Hono Conference Tokyo",
+				type: "conference",
 				href: "https://luma.com/effect-community?k=c",
 			},
 			{
@@ -268,6 +296,13 @@ const pastEvents = [
 				title: "Effect Days Vienna",
 				type: "conference",
 				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO",
+			},
+			{
+				flag: "🇵🇱",
+				date: "Jan",
+				title: "Effect talk at WarsawJS Meetup",
+				type: "conference",
+				href: "https://luma.com/effect-community?k=c",
 			},
 		],
 	},
