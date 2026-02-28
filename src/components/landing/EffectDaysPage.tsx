@@ -1,7 +1,7 @@
-import { Navigation } from "./Navigation";
-import { Footer } from "./Footer";
-import { GridOverlay } from "../GridOverlay";
 import { getAssetPath } from "../../utils/assetPath";
+import { GridOverlay } from "../GridOverlay";
+import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 const PAST_EDITIONS = [
 	{
@@ -64,7 +64,7 @@ export function EffectDaysPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:left-0 focus:top-0"
+				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -73,20 +73,20 @@ export function EffectDaysPage() {
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
-			<div className="pointer-events-none fixed left-0 right-0 top-0 bottom-0 z-[101] hidden lg:block">
+			<div className="pointer-events-none fixed top-0 right-0 bottom-0 left-0 z-[101] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
-					<div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-600/50" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-600/50" />
 					{/* Right vertical line */}
-					<div className="absolute right-0 top-0 bottom-0 w-px bg-zinc-600/50" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-600/50" />
 				</div>
 			</div>
 
 			{/* Center vertical line - dashed, behind content */}
-			<div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-0 hidden px-8 lg:block">
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div
-						className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
 						style={{
 							width: "1px",
 							backgroundImage:
@@ -99,7 +99,7 @@ export function EffectDaysPage() {
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Background image with gradient overlay */}
 				<div
-					className="pointer-events-none absolute inset-x-0 top-0 h-[39.4rem] -z-10 overflow-hidden"
+					className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[39.4rem] overflow-hidden"
 					style={{
 						backgroundImage: `linear-gradient(to bottom, rgba(9, 9, 11, 0.1) 0%, rgba(9, 9, 11, 0.2) 50%, #09090b 100%), url(${getAssetPath("/assets/images/malaga-bg-1.png")})`,
 						backgroundSize: "100% 40rem",
@@ -123,7 +123,7 @@ export function EffectDaysPage() {
 								<h1 className="text-4xl font-bold text-white md:text-6xl lg:text-7xl">
 									Effect Days 2026
 								</h1>
-								<p className="mt-6 text-xl text-white font-medium">
+								<p className="mt-6 text-xl font-medium text-white">
 									Workshop Day · Conference Day · Community Day
 								</p>
 
@@ -131,7 +131,7 @@ export function EffectDaysPage() {
 								<div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
 									<a
 										href="#tickets"
-										className="group inline-flex items-center gap-2 rounded-md bg-white py-3 pr-6 pl-5 text-base font-medium text-zinc-900 transition-all border border-transparent hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+										className="group inline-flex items-center gap-2 rounded-md border border-transparent bg-white py-3 pr-6 pl-5 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
 									>
 										<i className="ri-coupon-line text-lg" />
 										Get your ticket
@@ -140,7 +140,7 @@ export function EffectDaysPage() {
 										href="https://discord.gg/effect-ts"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-zinc-400/5 backdrop-blur-[3px] py-3 pr-6 pl-5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-700/10"
+										className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-zinc-400/5 py-3 pr-6 pl-5 text-base font-medium text-white backdrop-blur-[3px] transition-all hover:border-zinc-400 hover:bg-zinc-700/10"
 									>
 										<i className="ri-discord-fill text-lg" />
 										Join the community
@@ -149,9 +149,9 @@ export function EffectDaysPage() {
 							</div>
 
 							{/* Right side - Event info (ticket stub style) */}
-							<div className="mt-10 lg:mt-0 shrink-0 hidden lg:block">
+							<div className="mt-10 hidden shrink-0 lg:mt-0 lg:block">
 								{/* Hidden SVG for clip-path definition - must be rendered first */}
-								<svg className="absolute w-0 h-0" aria-hidden="true">
+								<svg className="absolute h-0 w-0" aria-hidden="true">
 									<defs>
 										<clipPath
 											id="ticket-clip-path"
@@ -163,7 +163,7 @@ export function EffectDaysPage() {
 									</defs>
 								</svg>
 
-								<div className="relative w-[280px] h-[120px]">
+								<div className="relative h-[120px] w-[280px]">
 									{/* Backdrop blur layer with clip-path */}
 									<div
 										className="absolute inset-0 bg-zinc-700/10 backdrop-blur-[5px]"
@@ -174,7 +174,7 @@ export function EffectDaysPage() {
 
 									{/* SVG for border */}
 									<svg
-										className="absolute inset-0 w-full h-full"
+										className="absolute inset-0 h-full w-full"
 										viewBox="0 0 280 120"
 										fill="none"
 									>
@@ -219,19 +219,19 @@ export function EffectDaysPage() {
 									{/* Content overlay */}
 									<div className="absolute inset-0 flex flex-col">
 										{/* Top section - Date */}
-										<div className="flex-1 flex items-center px-6">
+										<div className="flex flex-1 items-center px-6">
 											<div className="flex items-center gap-2.5">
 												<i className="ri-calendar-line text-[1.1rem] text-zinc-200" />
-												<p className="text-[1.1rem] font-mono uppercase font-medium text-white">
+												<p className="font-mono text-[1.1rem] font-medium text-white uppercase">
 													May 6–8, 2026
 												</p>
 											</div>
 										</div>
 										{/* Bottom section - Location */}
-										<div className="flex-1 flex items-center px-6">
+										<div className="flex flex-1 items-center px-6">
 											<div className="flex items-center gap-2.5">
 												<i className="ri-map-pin-2-line text-[1.1rem] text-zinc-200" />
-												<p className="text-[1.1rem] font-mono uppercase font-medium text-white">
+												<p className="font-mono text-[1.1rem] font-medium text-white uppercase">
 													Málaga, Spain
 												</p>
 											</div>
@@ -276,9 +276,9 @@ export function EffectDaysPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							{/* Header with button */}
-							<div className="flex items-center justify-between mb-10">
+							<div className="mb-10 flex items-center justify-between">
 								<div className="flex items-baseline gap-3">
-									<h2 className="font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+									<h2 className="leading-tighter font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
 										<span className="text-violet-400">//</span> Speakers
 									</h2>
 									<span className="text-sm text-zinc-400">
@@ -289,7 +289,7 @@ export function EffectDaysPage() {
 									href="https://docs.google.com/forms/d/e/1FAIpQLSeOd9On6nWXgysWDk49Ti3zYX11TS6ZkuoC-4Qofs8ieVmP4A/viewform"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 pl-4.5 pr-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-800"
+									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-2.5 pr-5 pl-4.5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-800"
 								>
 									<i className="ri-mic-line text-lg" />
 									Apply to speak
@@ -311,7 +311,7 @@ export function EffectDaysPage() {
 										className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-									<div className="absolute bottom-3 left-3 right-3">
+									<div className="absolute right-3 bottom-3 left-3">
 										<span className="block text-sm font-medium text-white">
 											Dillon Mulroy
 										</span>
@@ -332,7 +332,7 @@ export function EffectDaysPage() {
 										className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-									<div className="absolute bottom-3 left-3 right-3">
+									<div className="absolute right-3 bottom-3 left-3">
 										<span className="block text-sm font-medium text-white">
 											Kit Langton
 										</span>
@@ -353,7 +353,7 @@ export function EffectDaysPage() {
 										className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-									<div className="absolute bottom-3 left-3 right-3">
+									<div className="absolute right-3 bottom-3 left-3">
 										<span className="block text-sm font-medium text-white">
 											Tim Smart
 										</span>
@@ -374,7 +374,7 @@ export function EffectDaysPage() {
 										className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-									<div className="absolute bottom-3 left-3 right-3">
+									<div className="absolute right-3 bottom-3 left-3">
 										<span className="block text-sm font-medium text-white">
 											Maxwell Brown
 										</span>
@@ -387,16 +387,16 @@ export function EffectDaysPage() {
 				</section>
 
 				{/* Tickets Section */}
-				<section id="tickets" className="pb-16 scroll-mt-16">
+				<section id="tickets" className="scroll-mt-16 pb-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+							<h2 className="leading-tighter mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
 								<span className="text-violet-400">//</span> Effect Days Tickets
 							</h2>
 
 							<div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
 								{/* Full Pass Card */}
-								<div className="relative flex flex-col border border-zinc-600 bg-zinc-900/50 overflow-hidden">
+								<div className="relative flex flex-col overflow-hidden border border-zinc-600 bg-zinc-900/50">
 									<div className="p-6">
 										{/* Header */}
 										<div className="mb-6">
@@ -420,7 +420,7 @@ export function EffectDaysPage() {
 										{/* Days included */}
 										<div className="mb-6 space-y-3">
 											<div className="flex items-center gap-3">
-												<div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
 													<i className="ri-tools-line text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
@@ -428,7 +428,7 @@ export function EffectDaysPage() {
 												</p>
 											</div>
 											<div className="flex items-center gap-3">
-												<div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
 													<i className="ri-mic-line text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
@@ -436,7 +436,7 @@ export function EffectDaysPage() {
 												</p>
 											</div>
 											<div className="flex items-center gap-3">
-												<div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
 													<i className="ri-group-line text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
@@ -486,7 +486,7 @@ export function EffectDaysPage() {
 								</div>
 
 								{/* Conference Pass Card */}
-								<div className="relative flex flex-col border border-zinc-800 bg-zinc-900/30 overflow-hidden">
+								<div className="relative flex flex-col overflow-hidden border border-zinc-800 bg-zinc-900/30">
 									<div className="p-6">
 										{/* Header */}
 										<div className="mb-6">
@@ -510,7 +510,7 @@ export function EffectDaysPage() {
 										{/* Days included */}
 										<div className="mb-6 space-y-3">
 											<div className="flex items-center gap-3">
-												<div className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-800 border border-zinc-700">
+												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800">
 													<i className="ri-close-line text-zinc-600" />
 												</div>
 												<p className="text-sm font-medium text-zinc-500">
@@ -518,7 +518,7 @@ export function EffectDaysPage() {
 												</p>
 											</div>
 											<div className="flex items-center gap-3">
-												<div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
 													<i className="ri-mic-line text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
@@ -526,7 +526,7 @@ export function EffectDaysPage() {
 												</p>
 											</div>
 											<div className="flex items-center gap-3">
-												<div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
 													<i className="ri-group-line text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
@@ -576,7 +576,7 @@ export function EffectDaysPage() {
 								</div>
 							</div>
 
-							<div className="mt-8 flex flex-col md:flex-row md:justify-between gap-4 text-sm text-zinc-400">
+							<div className="mt-8 flex flex-col gap-4 text-sm text-zinc-400 md:flex-row md:justify-between">
 								<p>
 									Buying 4+ business tickets?{" "}
 									<a
@@ -586,7 +586,7 @@ export function EffectDaysPage() {
 										Contact us for group discounts.
 									</a>
 								</p>
-								<p className="md:text-right shrink-0 flex items-center gap-2">
+								<p className="flex shrink-0 items-center gap-2 md:text-right">
 									<i className="ri-hand-heart-line text-white" />
 									<span>
 										<a
@@ -608,7 +608,7 @@ export function EffectDaysPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							{/* Header */}
-							<div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+							<div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 								<div>
 									<p className="mb-4 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
 										<span className="text-violet-400">//</span> Why Málaga
@@ -616,7 +616,7 @@ export function EffectDaysPage() {
 									<h3 className="text-2xl font-semibold text-white md:text-3xl">
 										3 days on the Costa del Sol
 									</h3>
-									<p className="mt-4 max-w-lg text-base text-zinc-400 leading-relaxed">
+									<p className="mt-4 max-w-lg text-base leading-relaxed text-zinc-400">
 										Home to a growing startup ecosystem, world-class museums,
 										and stunning architecture, Málaga is the perfect setting for
 										Effect Days.
@@ -624,7 +624,7 @@ export function EffectDaysPage() {
 								</div>
 								<a
 									href="/events/effect-days/malaga"
-									className="inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-zinc-300 shrink-0"
+									className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-zinc-300"
 								>
 									Discover Málaga
 									<i className="ri-arrow-right-line text-xs" />
@@ -632,7 +632,7 @@ export function EffectDaysPage() {
 							</div>
 
 							{/* Two featured images */}
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+							<div className="grid grid-cols-1 gap-3 md:grid-cols-2">
 								<div className="aspect-video overflow-hidden rounded-lg">
 									<img
 										src={getAssetPath(
@@ -653,7 +653,7 @@ export function EffectDaysPage() {
 							</div>
 
 							{/* Four smaller images below */}
-							<div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+							<div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-4">
 								<div className="aspect-4/3 overflow-hidden rounded-lg">
 									<img
 										src={getAssetPath(
@@ -699,17 +699,17 @@ export function EffectDaysPage() {
 				<section className="py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+							<h2 className="leading-tighter mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
 								<span className="text-violet-400">//</span> Frequently Asked
 								Questions
 							</h2>
 
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+							<div className="grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
 								<div className="border-b border-zinc-800/50 py-5">
 									<h3 className="text-[15px] font-semibold text-white">
 										1. What is Effect Days?
 									</h3>
-									<p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Effect Days is a non-profit event dedicated to{" "}
 										<a
 											href="https://effect.website"
@@ -728,7 +728,7 @@ export function EffectDaysPage() {
 									<h3 className="text-[15px] font-semibold text-white">
 										2. What is the schedule of the conference?
 									</h3>
-									<p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The conference schedule will be shared as we get closer to
 										the event.
 									</p>
@@ -738,7 +738,7 @@ export function EffectDaysPage() {
 									<h3 className="text-[15px] font-semibold text-white">
 										3. Will the Effect Days conference be recorded?
 									</h3>
-									<p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The conference talks will be recorded and published on the{" "}
 										<a
 											href="https://www.youtube.com/@effect-ts"
@@ -756,7 +756,7 @@ export function EffectDaysPage() {
 									<h3 className="text-[15px] font-semibold text-white">
 										4. What is the Community Day?
 									</h3>
-									<p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The Community Day on May 8th is a full day dedicated to
 										deeper discussions, networking, and community activities.
 									</p>
@@ -766,7 +766,7 @@ export function EffectDaysPage() {
 									<h3 className="text-[15px] font-semibold text-white">
 										5. Can I get a refund for my ticket?
 									</h3>
-									<p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Please refer to our{" "}
 										<a
 											href="#"
@@ -782,7 +782,7 @@ export function EffectDaysPage() {
 									<h3 className="text-[15px] font-semibold text-white">
 										6. Is there a Code of Conduct?
 									</h3>
-									<p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Yes. Effect Days is dedicated to providing a harassment-free
 										experience for everyone. Please read our{" "}
 										<a
@@ -803,7 +803,7 @@ export function EffectDaysPage() {
 				<section id="past-editions" className="py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<h2 className="mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
+							<h2 className="leading-tighter mb-10 font-mono text-base font-semibold tracking-wide text-zinc-200 uppercase">
 								<span className="text-violet-400">//</span> Relive Effect Days
 							</h2>
 
@@ -811,7 +811,7 @@ export function EffectDaysPage() {
 								{PAST_EDITIONS.map((edition) => (
 									<div
 										key={edition.year}
-										className="flex flex-col border border-zinc-800 bg-zinc-900/20 overflow-hidden"
+										className="flex flex-col overflow-hidden border border-zinc-800 bg-zinc-900/20"
 									>
 										{/* Image with overlay */}
 										<div className="relative aspect-[16/9] overflow-hidden">
@@ -821,15 +821,15 @@ export function EffectDaysPage() {
 												className="h-full w-full object-cover"
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-											<div className="absolute bottom-4 left-5 right-5">
-												<span className="inline-block bg-white/0 backdrop-blur-sm px-2.5 py-1 text-xs font-mono uppercase font-medium text-white/90 border border-white/10">
+											<div className="absolute right-5 bottom-4 left-5">
+												<span className="inline-block border border-white/10 bg-white/0 px-2.5 py-1 font-mono text-xs font-medium text-white/90 uppercase backdrop-blur-sm">
 													{edition.badge}
 												</span>
 											</div>
 										</div>
 
 										{/* Content */}
-										<div className="flex flex-col flex-1 p-5">
+										<div className="flex flex-1 flex-col p-5">
 											<h3 className="text-xl font-semibold text-white">
 												Effect Days {edition.year}
 											</h3>
@@ -843,7 +843,7 @@ export function EffectDaysPage() {
 												<span>{edition.dates}</span>
 											</div>
 
-											<p className="mt-4 text-[15px] text-zinc-400 leading-relaxed">
+											<p className="mt-4 text-[15px] leading-relaxed text-zinc-400">
 												{edition.description}
 											</p>
 
@@ -902,7 +902,7 @@ export function EffectDaysPage() {
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 py-28">
 							<div className="text-center">
-								<h2 className="text-2xl font-bold text-white md:text-4xl">
+								<h2 className="leading-tighter text-2xl font-bold text-white md:text-4xl">
 									Ready for Effect Days 2026?
 								</h2>
 								<p className="mx-auto mt-4 max-w-2xl text-xl text-zinc-400">

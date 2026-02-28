@@ -73,7 +73,7 @@ export function RealWorldExampleSection() {
 					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						Real-world code
 					</p>
-					<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
+					<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 						Process payments with retries, timeouts, and full observability
 					</h2>
 					<p className="mt-4 text-lg text-zinc-400">
@@ -137,7 +137,7 @@ export function RealWorldExampleSection() {
 
 					{/* Annotations - takes 1 column */}
 					<div className="flex flex-col gap-3">
-						<p className="text-sm font-mono text-zinc-400 mb-2">
+						<p className="mb-2 font-mono text-sm text-zinc-400">
 							Hover to explore
 						</p>
 						{ANNOTATIONS.map((annotation, index) => (
@@ -146,13 +146,13 @@ export function RealWorldExampleSection() {
 								type="button"
 								onMouseEnter={() => setActiveAnnotation(index)}
 								onMouseLeave={() => setActiveAnnotation(null)}
-								className={`text-left rounded-lg border p-4 transition-all ${
+								className={`rounded-lg border p-4 text-left transition-all ${
 									activeAnnotation === index
 										? "border-violet-500/50 bg-violet-500/10"
 										: "border-zinc-800 bg-zinc-900/50 hover:border-zinc-700"
 								}`}
 							>
-								<div className="flex items-center gap-2 mb-1">
+								<div className="mb-1 flex items-center gap-2">
 									<span className="font-mono text-xs text-zinc-500">
 										L{annotation.lineStart}-{annotation.lineEnd}
 									</span>

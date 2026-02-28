@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 
 function QuoteCard({
@@ -15,7 +15,7 @@ function QuoteCard({
 	logoSize?: string;
 }) {
 	return (
-		<div className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md p-8 border border-zinc-700 bg-zinc-900/30">
+		<div className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md border border-zinc-700 bg-zinc-900/30 p-8">
 			<p className="text-lg leading-relaxed text-zinc-300">"{text}"</p>
 			<div className="mt-auto flex w-full items-center gap-4">
 				<div className="flex items-center gap-3">
@@ -31,7 +31,7 @@ function QuoteCard({
 				{logo ? (
 					<img src={logo} alt={company} className={logoSize} />
 				) : (
-					<i className="ri-twitter-x-line text-lg text-zinc-300 flex items-center" />
+					<i className="ri-twitter-x-line flex items-center text-lg text-zinc-300" />
 				)}
 			</div>
 		</div>
@@ -310,10 +310,10 @@ export function QuotesGridSection() {
 				{/* Header row with title and navigation arrows */}
 				<div className="mb-12 flex items-end justify-between">
 					<div>
-						<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Community
 						</p>
-						<h2 className="text-2xl font-bold text-white md:text-3xl">
+						<h2 className="leading-tighter text-2xl font-bold text-white md:text-3xl">
 							What developers are saying...
 						</h2>
 					</div>
@@ -351,7 +351,7 @@ export function QuotesGridSection() {
 					onScroll={handleScroll}
 					onTouchStart={handleTouchStart}
 					onTouchEnd={handleTouchEnd}
-					className="flex gap-4 overflow-x-auto scrollbar-hide px-4 cursor-grab active:cursor-grabbing select-none"
+					className="scrollbar-hide flex cursor-grab gap-4 overflow-x-auto px-4 select-none active:cursor-grabbing"
 					style={{
 						scrollbarWidth: "none",
 						msOverflowStyle: "none",
@@ -369,7 +369,7 @@ export function QuotesGridSection() {
 								"{quote.text}"
 							</p>
 							<div className="mt-auto flex items-center justify-between">
-								<span className="text-sm font-mono font-medium text-zinc-200">
+								<span className="font-mono text-sm font-medium text-zinc-200">
 									{quote.author}
 								</span>
 								{quote.logo ? (
@@ -379,7 +379,7 @@ export function QuotesGridSection() {
 										className={quote.logoSize || "h-4"}
 									/>
 								) : (
-									<i className="ri-twitter-x-line text-lg text-zinc-400 flex items-center" />
+									<i className="ri-twitter-x-line flex items-center text-lg text-zinc-400" />
 								)}
 							</div>
 						</div>
@@ -388,14 +388,14 @@ export function QuotesGridSection() {
 
 				{/* Left fade gradient - hidden on mobile */}
 				<div
-					className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 hidden md:block"
+					className="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-16 md:block"
 					style={{
 						background: "linear-gradient(to right, rgb(9 9 11), transparent)",
 					}}
 				/>
 				{/* Right fade gradient */}
 				<div
-					className="pointer-events-none absolute right-0 top-0 bottom-0 w-16"
+					className="pointer-events-none absolute top-0 right-0 bottom-0 w-16"
 					style={{
 						background: "linear-gradient(to left, rgb(9 9 11), transparent)",
 					}}
@@ -494,7 +494,7 @@ export function QuotesSection() {
 		<section className="relative z-[70] w-full overflow-hidden bg-zinc-950 py-20 md:py-24">
 			{/* Top dashed border */}
 			<div
-				className="absolute top-0 left-0 right-0 h-[1px]"
+				className="absolute top-0 right-0 left-0 h-[1px]"
 				style={{
 					background: "#3f3f46",
 					WebkitMask:
@@ -505,12 +505,12 @@ export function QuotesSection() {
 
 			<div className="mx-auto flex w-full flex-col gap-8 bg-zinc-950 md:gap-12">
 				{/* Header row with title and arrow controls */}
-				<div className="max-w-[73.75rem] mx-auto w-full px-4 flex flex-row items-center justify-between">
+				<div className="mx-auto flex w-full max-w-[73.75rem] flex-row items-center justify-between px-4">
 					<div>
-						<p className="mb-2 font-mono text-sm uppercase tracking-wider text-zinc-500">
+						<p className="mb-2 font-mono text-sm tracking-wider text-zinc-500 uppercase">
 							// Testimonials
 						</p>
-						<h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							What developers are saying
 						</h2>
 					</div>
@@ -518,7 +518,7 @@ export function QuotesSection() {
 						<button
 							type="button"
 							onClick={() => scroll("left")}
-							className="group w-10 h-10 flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 cursor-pointer"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
 							<i className="ri-arrow-left-line text-base text-zinc-500 transition-colors group-hover:text-white" />
@@ -526,7 +526,7 @@ export function QuotesSection() {
 						<button
 							type="button"
 							onClick={() => scroll("right")}
-							className="group w-10 h-10 flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 cursor-pointer"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
 							<i className="ri-arrow-right-line text-base text-zinc-500 transition-colors group-hover:text-white" />
@@ -538,7 +538,7 @@ export function QuotesSection() {
 				<div className="relative">
 					<div
 						ref={scrollContainerRef}
-						className="ml-[-2.25rem] flex gap-4 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing select-none"
+						className="scrollbar-hide ml-[-2.25rem] flex cursor-grab gap-4 overflow-x-auto select-none active:cursor-grabbing"
 						style={{
 							WebkitOverflowScrolling: "touch",
 						}}
@@ -561,18 +561,18 @@ export function QuotesSection() {
 							</div>
 						))}
 						{/* Right spacer */}
-						<div className="shrink-0 w-8" />
+						<div className="w-8 shrink-0" />
 					</div>
 					{/* Left fade gradient - hidden on mobile */}
 					<div
-						className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 hidden md:block"
+						className="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-24 md:block"
 						style={{
 							background: "linear-gradient(to left, transparent, #09090b)",
 						}}
 					/>
 					{/* Right fade gradient */}
 					<div
-						className="pointer-events-none absolute right-0 top-0 bottom-0 w-24"
+						className="pointer-events-none absolute top-0 right-0 bottom-0 w-24"
 						style={{
 							background: "linear-gradient(to right, transparent, #09090b)",
 						}}
@@ -582,7 +582,7 @@ export function QuotesSection() {
 
 			{/* Bottom dashed border */}
 			<div
-				className="absolute bottom-0 left-0 right-0 h-[1px]"
+				className="absolute right-0 bottom-0 left-0 h-[1px]"
 				style={{
 					background: "#3f3f46",
 					WebkitMask:

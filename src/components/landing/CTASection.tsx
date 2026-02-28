@@ -45,7 +45,7 @@ export function CTASection() {
 						<span className="text-violet-400">from</span>{" "}
 						<span className="text-emerald-400">"effect"</span>
 					</p>
-					<h2 className="max-w-3xl text-4xl leading-tight font-bold text-white">
+					<h2 className="leading-tighter max-w-3xl text-4xl font-bold text-white">
 						Stop installing a new package for every problem
 					</h2>
 

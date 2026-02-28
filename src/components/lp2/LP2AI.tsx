@@ -36,7 +36,7 @@ export function LP2AI() {
 					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						LLMs 🤍 Effect
 					</p>
-					<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
+					<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 						Write better code with AI
 					</h2>
 					<p className="mt-4 text-lg text-zinc-500">

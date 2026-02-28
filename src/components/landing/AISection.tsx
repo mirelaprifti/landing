@@ -14,10 +14,10 @@ export function AISection() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// LLMs ❤️ Effect
 						</p>
-						<h2 className="max-w-2xl text-2xl leading-tight font-semibold text-white md:text-3xl">
+						<h2 className="leading-tighter max-w-2xl text-2xl font-semibold text-white md:text-3xl">
 							Write Effect code with AI
 						</h2>
-						<p className="mt-4 text-lg leading-snug text-zinc-400 max-w-lg">
+						<p className="mt-4 max-w-lg text-lg leading-snug text-zinc-400">
 							Effect's declarative patterns and strong type system make it
 							easier for LLMs to generate correct, production-ready code.
 						</p>

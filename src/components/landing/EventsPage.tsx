@@ -162,7 +162,8 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Nov 12",
-				title: "Building AI applications with Effect + Netlify w/ Maxwell Brown",
+				title:
+					"Building AI applications with Effect + Netlify w/ Maxwell Brown",
 				type: "online",
 				href: "https://www.youtube.com/watch?v=8KmFwsj9gbI&t=3s",
 			},
@@ -417,308 +418,61 @@ const pastEvents = [
 			},
 		],
 	},
-			{
-				flag: "🌐",
-				date: "Feb 25",
-				title: "Office Hours #18",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=5NtYKTLoDkQ&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=2",
-			},
-			{
-				flag: "🌐",
-				date: "Feb 18",
-				title: "Office Hours #17",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=P04R7lUR4Cc&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=3",
-			},
-			{
-				flag: "🌐",
-				date: "Feb 11",
-				title: "Office Hours #16",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=2RxCvwCN_LM&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=4",
-			},
-			{
-				flag: "🌐",
-				date: "Feb 4",
-				title: "Office Hours #15",
-				type: "online",
-				href: "https://youtu.be/OJQvsGwEIuA",
-			},
-			{
-				flag: "🌐",
-				date: "Jan 28",
-				title: "Office Hours #14",
-				type: "online",
-				href: "https://youtu.be/06htYotj_Pc",
-			},
-			{
-				flag: "🌐",
-				date: "Jan 21",
-				title: "Office Hours #13",
-				type: "online",
-				href: "https://youtu.be/uJvN-2OCU-E",
-			},
-			{
-				flag: "🌐",
-				date: "Jan 14",
-				title: "Office Hours #12",
-				type: "online",
-				href: "https://youtu.be/cVExYNB-dxc",
-			},
-			{
-				flag: "🌐",
-				date: "Jan 7",
-				title: "Office Hours #11",
-				type: "online",
-				href: "https://youtu.be/12fKbAE3T2A",
-			},
-			{
-				flag: "🇩🇪",
-				date: "Jan 29",
-				title: "Effect Berlin Meetup #2",
-				type: "meetup",
-				href: "https://luma.com/xdpn0t7a",
-			},
-		],
-	},
 	{
-		year: "2025",
+		year: "2022",
 		events: [
+			{
 				flag: "🇦🇹",
-				date: "Dec 18",
-				title: "Effect Vienna Meetup",
-				type: "meetup",
-				href: "https://luma.com/rc84shks",,
-				flag: "🌐",
-				date: "Dec 4",
-				title: "SvelteKit and Effect with Dillon Mulroy",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=8ByXE6dPkD4&t=19s",,
-				flag: "🌐",
-				date: "Dec 17",
-				title: "Office Hours #10",
-				type: "online",
-				href: "https://youtu.be/kJpotgntcUU",,
-				flag: "🇺🇸",
-				date: "Nov 14",
-				title: "Effect-TS: ZIO through the lens of TypeScript",
-				type: "meetup",
-				href: "https://www.meetup.com/dallas-scala-enthusiasts/events/311520686/?utm_medium=referral&utm_campaign=announce_event&utm_source=twitter&utm_version=v2",,
-				flag: "🇮🇹",
-				date: "Nov 25",
-				title: "Effect: crafting 🍕 made simple",
-				type: "meetup",
-				href: "https://www.meetup.com/pug-sondrio/events/311976213/?eventOrigin=group_featured_event",,
-				flag: "🇩🇪",
-				date: "Nov 26",
-				title: "Effect Berlin Meetup #1",
-				type: "meetup",
-				href: "https://luma.com/z0pfxfvy",,
-				flag: "🇩🇪",
-				date: "Nov 28",
-				title: "Effect Hamburg Meetup #2",
-				type: "meetup",
-				href: "https://luma.com/nsvz6eqe",,
-				flag: "🇺🇸",
-				date: "Nov 19",
-				title: "Effect NYC Meetup",
-				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",,
-				flag: "🌐",
-				date: "Nov 12",
-				title: "Building AI applications with Effect + Netlify w/ Maxwell Brown",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=8KmFwsj9gbI&t=3s",,
-				flag: "🌐",
-				date: "Nov 19",
-				title: "Office Hours #9",
-				type: "online",
-				href: "https://youtu.be/LYrWA9_qas4",,
-				flag: "🌐",
-				date: "Nov 12",
-				title: "Office Hours #8",
-				type: "online",
-				href: "https://youtu.be/qU5z5VqIdxg",,
-				flag: "🌐",
-				date: "Nov 5",
-				title: "Office Hours #7",
-				type: "online",
-				href: "https://youtu.be/rXqkuu4D7fQ",,
-				flag: "🇫🇷",
-				date: "Oct 23",
-				title: "Introduction à Effect.TS par la pratique",
-				type: "meetup",
-				href: "https://www.eventbrite.fr/e/atondev-introduction-a-effectts-par-la-pratique-tickets-1685513629639",,
-				flag: "🇺🇸",
-				date: "Oct 31",
-				title: "Effect SF Meetup",
-				type: "meetup",
-				href: "",,
-				flag: "🇮🇹",
-				date: "Oct 16",
-				title: "Effect Milan Meetup",
-				type: "meetup",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-8m3AT2Cf_oGUL-wX77KUJ",,
-				flag: "🇩🇪",
-				date: "Oct 20",
-				title: "Effect talk at Munich TypeScript",
-				type: "conference",
-				href: "https://luma.com/effect-community?k=c",,
-				flag: "🌐",
-				date: "Oct 23",
-				title:
-					"Effect: the Good Parts, `use workflow`, and Vercel Domains — Dillon Mulroy",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=VR_MQH3opc8&t=182s",,
-				flag: "🌐",
-				date: "Oct 29",
-				title: "Office Hours #6",
-				type: "online",
-				href: "https://youtu.be/7SLVmatKRU0",,
-				flag: "🌐",
-				date: "Oct 22",
-				title: "Office Hours #5",
-				type: "online",
-				href: "https://youtu.be/P_DdDIByzTM",,
-				flag: "🌐",
-				date: "Oct 15",
-				title: "Office Hours #4",
-				type: "online",
-				href: "https://youtu.be/ev5hNgGZz6o",,
-				flag: "🌐",
-				date: "Oct 8",
-				title: "Office Hours #3",
-				type: "online",
-				href: "https://youtu.be/7iEx6s3Pr6Q",,
-				flag: "🌐",
-				date: "Oct 1",
-				title: "Office Hours #2",
-				type: "online",
-				href: "https://youtu.be/2wZxgnBn3TY",,
-				flag: "🇺🇸",
-				date: "Sep 19",
-				title: "Effect talk at SquiggleConf 2025",
-				type: "conference",
-				href: "https://luma.com/effect-community?k=c",,
-				flag: "🇩🇪",
-				date: "Sep 5",
-				title: "Effect Hamburg Meetup #1",
-				type: "meetup",
-				href: "https://luma.com/44razg6s",,
-				flag: "🌐",
-				date: "Sep 24",
-				title: "Office Hours #1",
-				type: "online",
-				href: "https://youtu.be/4picSqwsA-U",,
-				flag: "🇪🇬",
-				date: "Jul 23",
-				title: "Effect talk at EgyptJS",
-				type: "conference",
-				href: "",,
-				flag: "🇫🇷",
-				date: "May 20",
-				title: "Effect Paris Meetup #5",
-				type: "meetup",
-				href: "https://www.meetup.com/effect-paris/events/307558421/?eventOrigin=group_past_events",,
-				flag: "🇺🇸",
-				date: "May",
-				title: "Effect Meetup SF",
-				type: "meetup",
-				href: "",,
-				flag: "🇬🇧",
-				date: "Apr",
-				title: "Effect talk at CityJS London",
-				type: "conference",
-				href: "https://www.youtube.com/watch?v=apklpPEgZgw&list=PLYDCh9vbt8_KlKLaZLWlGaYuyGke1rBBT&index=4&t=27s",,
-				flag: "🇮🇹",
-				date: "Mar 19-21",
-				title: "Effect Days Livorno",
-				type: "conference",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP",,
-				flag: "🇫🇷",
-				date: "Jan",
-				title: "Effect Paris Meetup #4",
-				type: "meetup",
-				href: "https://www.meetup.com/effect-paris/events/305180933/?eventOrigin=group_past_events",,
-		],
-	},
-	{
-		year: "2024",
-		events: [
-				flag: "🌐",
-				date: "Dec",
-				title: "Intro to Effect at FrontEndQueens by Laure Retru-Chavastel",
-				type: "online",
-				href: "https://www.youtube.com/watch?v=bfQaG1fL-F0&t=18s",,
-				flag: "🇫🇷",
-				date: "Nov 5",
-				title: "Effect Paris Meetup #3",
-				type: "meetup",
-				href: "https://www.meetup.com/effect-paris/events/304021172/?eventOrigin=group_past_events",,
-				flag: "🇦🇹",
-				date: "Nov 26",
-				title: "React Meetup Vienna",
-				type: "meetup",
-				href: "https://www.meetup.com/reactvienna/",,
-				flag: "🇺🇸",
-				date: "Oct 21",
-				title: "Effect Meetup SF",
-				type: "meetup",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-8m3AT2Cf_oGUL-wX77KUJ",,
-				flag: "🇫🇷",
-				date: "Jun 25",
-				title: "Effect Paris Meetup #2",
-				type: "meetup",
-				href: "",,
-				flag: "🇬🇧",
 				date: "Jun",
-				title: "Effect Loves Node.js",
-				type: "meetup",
-				href: "https://www.youtube.com/watch?v=wql4Ci4WLLE&t=1s",,
-				flag: "🇯🇵",
-				date: "Jun",
-				title: "Effect talk at Hono Conference Tokyo",
+				title: "Intro to Effect at WorkerConf 2022 by Michael Arnaldi",
 				type: "conference",
-				href: "",,
-				flag: "🇺🇸",
-				date: "May 8",
-				title: "Effect talk at LambdaConf By Michael Arnaldi",
-				type: "conference",
-				href: "https://www.youtube.com/watch?v=BHuY6w9ed5o&t=8s",,
-				flag: "🇫🇷",
-				date: "Apr 23",
-				title: "Effect Paris Meetup #1",
-				type: "meetup",
-				href: "https://www.meetup.com/effect-paris/",,
-				flag: "🇦🇹",
-				date: "Feb 21",
-				title: "Effect Days Vienna",
-				type: "conference",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO",,
-				flag: "🇵🇱",
-				date: "Jan",
-				title: "Effect talk at WarsawJS Meetup",
-				type: "conference",
-				href: "",,
-		],
-	},
-	{
-		year: "2023",
-		events: [
-				flag: "🇫🇷",
-				date: "Dec",
-				title: "Effect talk at Paris TypeScript Meetup by Antoine Coulon",
-				type: "meetup",
-				href: "",,
-				flag: "🇺🇸",
-				date: "Nov",
-				title: "Effect SF Meetup",
-				type: "meetup",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-8m3AT2Cf_oGUL-wX77KUJ",,
+				href: "",
+			},
 		],
 	},
 ];
+
+// Parse event date strings like "Feb 25", "Mar 19-21", "May", "Jan" into a
+// numeric value for chronological sorting. Higher values = later in the year.
+function parseDateToSortKey(date: string): number {
+	const months: Record<string, number> = {
+		jan: 1,
+		feb: 2,
+		mar: 3,
+		apr: 4,
+		may: 5,
+		jun: 6,
+		jul: 7,
+		aug: 8,
+		sep: 9,
+		oct: 10,
+		nov: 11,
+		dec: 12,
+	};
+
+	const lower = date.toLowerCase().trim();
+	for (const [name, month] of Object.entries(months)) {
+		if (lower.startsWith(name)) {
+			// Extract the first day number if present (e.g. "19" from "Mar 19-21")
+			const dayMatch = lower.slice(3).match(/\d+/);
+			const day = dayMatch ? Number.parseInt(dayMatch[0], 10) : 0;
+			return month * 100 + day;
+		}
+	}
+	return 0;
+}
+
+// Sort year groups newest-first and events within each group in reverse
+// chronological order (newest first), so the list always renders correctly
+// regardless of the order events are added to the arrays.
+const sortedPastEvents = pastEvents
+	.map((group) => ({
+		...group,
+		events: [...group.events].sort(
+			(a, b) => parseDateToSortKey(b.date) - parseDateToSortKey(a.date),
+		),
+	}))
+	.sort((a, b) => Number(b.year) - Number(a.year));
 
 const hostPerks = [
 	{
@@ -979,29 +733,31 @@ function EventsTabSection() {
 		<section id="events" className="pb-24 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Tabs */}
-				<div className="mb-8 flex gap-2">
-					<button
-						type="button"
-						onClick={() => setActiveTab("upcoming")}
-						className={`rounded-full px-6 py-2.5 text-base font-medium transition-colors ${
-							activeTab === "upcoming"
-								? "bg-zinc-800 font-semibold text-white"
-								: "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200"
-						}`}
-					>
-						Upcoming
-					</button>
-					<button
-						type="button"
-						onClick={() => setActiveTab("past")}
-						className={`rounded-full px-6 py-2.5 text-base font-medium transition-colors ${
-							activeTab === "past"
-								? "bg-zinc-800 font-semibold text-white"
-								: "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200"
-						}`}
-					>
-						Past
-					</button>
+				<div className="mb-8 flex justify-center">
+					<div className="inline-flex gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 p-1">
+						<button
+							type="button"
+							onClick={() => setActiveTab("upcoming")}
+							className={`relative w-28 rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
+								activeTab === "upcoming"
+									? "bg-zinc-800 font-bold text-white shadow-sm shadow-black/20"
+									: "text-zinc-400 hover:text-zinc-300"
+							}`}
+						>
+							Upcoming
+						</button>
+						<button
+							type="button"
+							onClick={() => setActiveTab("past")}
+							className={`relative w-28 rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
+								activeTab === "past"
+									? "bg-zinc-800 font-bold text-white shadow-sm shadow-black/20"
+									: "text-zinc-400 hover:text-zinc-300"
+							}`}
+						>
+							Past
+						</button>
+					</div>
 				</div>
 
 				{/* Tab Content */}
@@ -1054,7 +810,7 @@ function EventsTabSection() {
 
 				{activeTab === "past" && (
 					<div className="space-y-6">
-						{pastEvents.map((yearGroup) => (
+						{sortedPastEvents.map((yearGroup) => (
 							<div
 								key={yearGroup.year}
 								className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50"
@@ -1076,9 +832,11 @@ function EventsTabSection() {
 													{event.title}
 												</span>
 												<TypeBadge type={event.type} />
-												{event.href && (
-													<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-300" />
-												)}
+												<span className="ml-auto w-5 shrink-0 text-center">
+													{event.href && (
+														<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-colors group-hover:text-zinc-300" />
+													)}
+												</span>
 											</>
 										);
 
@@ -1193,7 +951,7 @@ export function EventsPage() {
 							<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Effect Days
 							</p>
-							<h2 className="mb-3 max-w-2xl text-2xl font-semibold text-white md:text-3xl">
+							<h2 className="leading-tighter mb-3 max-w-2xl text-2xl font-semibold text-white md:text-3xl">
 								A conference for TypeScript and Effect engineers worldwide
 							</h2>
 							<p className="max-w-2xl text-lg text-zinc-400">
@@ -1312,7 +1070,7 @@ export function EventsPage() {
 							<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Host a Meetup
 							</p>
-							<h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
+							<h2 className="leading-tighter mb-3 text-2xl font-semibold text-white md:text-3xl">
 								Bring Effect to your city
 							</h2>
 							<p className="max-w-2xl text-lg text-zinc-400">
@@ -1406,7 +1164,7 @@ export function EventsPage() {
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Effect Community
 								</p>
-								<h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
+								<h2 className="leading-tighter mb-3 text-2xl font-semibold text-white md:text-3xl">
 									Can't find an event near you?
 								</h2>
 								<p className="mb-8 max-w-2xl text-base text-zinc-400">

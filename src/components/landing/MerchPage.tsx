@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
-import { Navigation } from "./Navigation";
-import { Footer } from "./Footer";
 import { GridOverlay } from "../GridOverlay";
+import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 interface Product {
 	id: string;
@@ -480,16 +480,16 @@ export function MerchPage() {
 				{/* Effect in the Wild Section */}
 				<section className="relative w-full bg-zinc-950 py-4">
 					<div className="mx-auto max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 items-center gap-10 md:gap-8 md:grid-cols-2">
+						<div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-8">
 							{/* Content */}
 							<div className="flex flex-col items-start pt-16 md:pt-0">
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Effect in the wild
 								</p>
-								<h2 className="text-[2.75rem] leading-tight font-semibold text-zinc-200">
+								<h2 className="leading-tighter text-[2.75rem] font-semibold text-zinc-200">
 									Got your Effect merch?
 								</h2>
-								<p className="max-w-lg text-lg text-zinc-400 mt-4 mb-6">
+								<p className="mt-4 mb-6 max-w-lg text-lg text-zinc-400">
 									Share it with the community!
 								</p>
 								<div className="flex items-center gap-4">
@@ -534,7 +534,7 @@ export function MerchPage() {
 
 							{/* Image */}
 							<div className="relative">
-								<div className="relative h-[300px] md:h-[480px] lg:h-[640px] overflow-hidden">
+								<div className="relative h-[300px] overflow-hidden md:h-[480px] lg:h-[640px]">
 									<img
 										src={getAssetPath("/assets/merch/wild-desert.avif")}
 										alt="Effect cap in the Sahara desert"

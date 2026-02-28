@@ -30,17 +30,17 @@ export function DevToolsSection() {
 		<section className="relative w-full py-24 md:pt-40 md:pb-20">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header row - split layout */}
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 mb-16">
+				<div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-0">
 					<div>
-						<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-400">
+						<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 							Developer Experience
 						</p>
-						<h2 className="text-2xl font-bold text-white md:text-3xl">
+						<h2 className="leading-tighter text-2xl font-bold text-white md:text-3xl">
 							IDE-native tooling
 						</h2>
 					</div>
-					<div className="lg:pt-8 pl-4">
-						<p className="text-lg text-zinc-400 leading-relaxed max-w-lg">
+					<div className="pl-4 lg:pt-8">
+						<p className="max-w-lg text-lg leading-relaxed text-zinc-400">
 							The Effect Language Service brings real-time diagnostics and
 							intelligent refactoring to your editor.
 						</p>
@@ -81,7 +81,7 @@ export function DevToolsSection() {
 				{/* Video with vertical tabs on right */}
 				<div className="flex gap-4">
 					{/* Video container */}
-					<div className="flex-1 rounded-md border border-zinc-700 bg-zinc-900/30 overflow-hidden">
+					<div className="flex-1 overflow-hidden rounded-md border border-zinc-700 bg-zinc-900/30">
 						<div className="relative aspect-video">
 							<video
 								key={activeTool.video}
@@ -109,14 +109,14 @@ export function DevToolsSection() {
 								key={tool.id}
 								type="button"
 								onClick={() => setActiveTab(index)}
-								className={`relative px-3 py-2 text-left transition-colors cursor-pointer rounded-md border ${
+								className={`relative cursor-pointer rounded-md border px-3 py-2 text-left transition-colors ${
 									activeTab === index
 										? "border-zinc-500 bg-zinc-900/50"
 										: "border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/40"
 								}`}
 							>
 								<span
-									className={`text-sm font-mono uppercase tracking-wide font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}
+									className={`font-mono text-sm font-medium tracking-wide uppercase ${activeTab === index ? "text-white" : "text-zinc-400"}`}
 								>
 									{tool.label}
 								</span>

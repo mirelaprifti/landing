@@ -4,7 +4,7 @@ export function LP2CTA() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="mx-auto max-w-2xl text-center">
 					{/* Headline */}
-					<h2 className="text-3xl font-bold leading-tight text-white md:text-4xl">
+					<h2 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
 						Ready to build production-grade TypeScript?
 					</h2>
 

@@ -43,11 +43,11 @@ export function TestimonialsSection() {
 	return (
 		<section className="relative py-24 md:pt-40 md:pb-24">
 			{/* Header - with padding */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-12">
-				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
+			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// Who uses Effect
 				</p>
-				<h2 className="text-2xl font-semibold text-white md:text-3xl">
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 					Real-world production systems
 				</h2>
 				{/* Resource links */}
@@ -95,7 +95,7 @@ export function TestimonialsSection() {
 							className="group relative flex flex-col overflow-hidden transition-all hover:border-zinc-500"
 						>
 							{/* Video thumbnail area */}
-							<div className="relative aspect-video w-full overflow-hidden bg-zinc-900 border border-zinc-800 rounded-md">
+							<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
 								<img
 									src={useCase.thumbnail}
 									alt={`${useCase.alt} case study`}
@@ -115,7 +115,7 @@ export function TestimonialsSection() {
 							</div>
 							{/* Label area */}
 							<div className="flex items-center justify-between px-0 py-2">
-								<span className="text-[13px] font-mono uppercase text-zinc-400 group-hover:text-zinc-200">
+								<span className="font-mono text-[13px] text-zinc-400 uppercase group-hover:text-zinc-200">
 									{useCase.title}
 								</span>
 								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-200" />

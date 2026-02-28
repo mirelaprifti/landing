@@ -1,8 +1,8 @@
-import { Navigation } from "./Navigation";
-import { Footer } from "./Footer";
-import { CTASection } from "./CTASection";
-import { GridOverlay } from "../GridOverlay";
 import { getAssetPath } from "../../utils/assetPath";
+import { GridOverlay } from "../GridOverlay";
+import { CTASection } from "./CTASection";
+import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 const COMBINATION_MARK = {
 	name: "// Combination mark",
@@ -162,7 +162,7 @@ export function PressKitPage() {
 							<div className="grid grid-cols-1 gap-12 md:grid-cols-2">
 								{/* Combination Mark */}
 								<div>
-									<h2 className="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">
 										{COMBINATION_MARK.name}
 									</h2>
 
@@ -202,7 +202,7 @@ export function PressKitPage() {
 
 								{/* Logo Symbol */}
 								<div>
-									<h2 className="mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">
 										{LOGO_SYMBOL.name}
 									</h2>
 
@@ -248,7 +248,7 @@ export function PressKitPage() {
 				<section className="pt-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-24">
-							<h2 className="mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+							<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
 								// Ground rules
 							</h2>
 
@@ -325,7 +325,7 @@ export function PressKitPage() {
 											className="relative z-10 h-24 w-auto"
 										/>
 									</div>
-									<span className="text-base text-zinc-400 leading-tight">
+									<span className="text-base leading-tight text-zinc-400">
 										Use a gradient or image background, as long as the logo is
 										clearly visible and legible.
 									</span>
@@ -369,7 +369,7 @@ export function PressKitPage() {
 
 								{/* Don't stretch */}
 								<div className="mb-4 flex flex-col gap-3">
-									<div className="flex h-52 px-8 items-center justify-center gap-20 border border-zinc-800 bg-zinc-900/30">
+									<div className="flex h-52 items-center justify-center gap-20 border border-zinc-800 bg-zinc-900/30 px-8">
 										<div className="relative">
 											<img
 												src={getAssetPath(
@@ -476,13 +476,13 @@ export function PressKitPage() {
 				</section>
 
 				{/* Clear Space & Minimum Size Section */}
-				<section className="pb-12 border-b border-zinc-800">
+				<section className="border-b border-zinc-800 pb-12">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="py-24">
 							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 								{/* Clear Space */}
 								<div>
-									<h2 className="mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
 										// Clear space
 									</h2>
 									<div className="flex flex-col gap-3">
@@ -545,7 +545,7 @@ export function PressKitPage() {
 
 								{/* Minimum Size */}
 								<div>
-									<h2 className="mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
 										// Minimum size
 									</h2>
 									<div className="flex flex-col gap-3">

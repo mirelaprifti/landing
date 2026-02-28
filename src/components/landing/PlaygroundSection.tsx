@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 
 export function PlaygroundSection() {
@@ -37,10 +37,10 @@ export function PlaygroundSection() {
 	};
 
 	return (
-		<div className="relative w-full mx-auto px-4 pb-16 pt-20 md:px-8 md:pb-24 md:pt-24">
+		<div className="relative mx-auto w-full px-4 pt-20 pb-16 md:px-8 md:pt-24 md:pb-24">
 			{/* Solid bottom border */}
 			<div
-				className="absolute left-0 right-0 bottom-0 h-[1px]"
+				className="absolute right-0 bottom-0 left-0 h-[1px]"
 				style={{
 					background: "#27272a",
 				}}
@@ -52,14 +52,14 @@ export function PlaygroundSection() {
 					className="mb-6 flex w-full items-center justify-between pb-6"
 					style={{ borderBottom: "1px solid #27272a" }}
 				>
-					<h2 className="font-inter text-2xl font-semibold leading-tight text-white">
+					<h2 className="font-inter leading-tighter text-2xl font-semibold text-white">
 						Effect Playground
 					</h2>
 					<a
 						href="https://effect.website/play/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="flex items-center gap-2 border border-zinc-600 rounded-lg px-4 py-2 font-inter font-medium text-base text-white transition-colors hover:bg-zinc-900/50 hover:border-zinc-300"
+						className="font-inter flex items-center gap-2 rounded-lg border border-zinc-600 px-4 py-2 text-base font-medium text-white transition-colors hover:border-zinc-300 hover:bg-zinc-900/50"
 					>
 						<span>Play</span>
 						<i className="ri-arrow-right-line text-base"></i>
@@ -94,7 +94,7 @@ export function PlaygroundSection() {
 							<button
 								type="button"
 								onClick={handlePlayClick}
-								className={`absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:bg-black/80 ${
+								className={`absolute top-1/2 left-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:bg-black/80 ${
 									showPlayButton
 										? "scale-100 opacity-100"
 										: "pointer-events-none scale-0 opacity-0"

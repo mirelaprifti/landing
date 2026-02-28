@@ -23,7 +23,7 @@ export function WhatIsEffectSection() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// The Mental Model
 						</p>
-						<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl max-w-lg">
+						<h2 className="text-2xl leading-tighter font-semibold text-white md:text-3xl max-w-lg">
 							Track successes, errors, dependencies in one type
 						</h2>
 						<p className="mt-4 text-lg text-zinc-400 max-w-lg">

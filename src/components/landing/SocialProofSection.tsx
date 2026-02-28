@@ -119,11 +119,11 @@ export function SocialProofSection() {
 	return (
 		<section className="relative py-24 md:pt-40 md:pb-20">
 			{/* Header */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-10">
-				<p className="mb-3 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
+			<div className="mx-auto mb-10 w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 					// Trusted in Production
 				</p>
-				<h2 className="text-2xl font-bold text-white md:text-3xl">
+				<h2 className="leading-tighter text-2xl font-bold text-white md:text-3xl">
 					Real-world production systems
 				</h2>
 				{/* Resource links */}
@@ -159,7 +159,7 @@ export function SocialProofSection() {
 			</div>
 
 			{/* Use Case Cards - Video thumbnails grid */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-16">
+			<div className="mx-auto mb-16 w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 					{useCases.map((useCase, index) => (
 						<a
@@ -194,10 +194,10 @@ export function SocialProofSection() {
 				{/* Header row with title and navigation arrows */}
 				<div className="mb-10 flex items-end justify-between">
 					<div>
-						<p className="mb-2 font-mono font-semibold text-sm uppercase tracking-wider text-zinc-400">
+						<p className="mb-2 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 							Testimonials
 						</p>
-						<h2 className="text-2xl font-semibold text-white md:text-3xl">
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							What developers are saying...
 						</h2>
 					</div>
@@ -227,7 +227,7 @@ export function SocialProofSection() {
 			<div className="relative">
 				<div
 					ref={scrollContainerRef}
-					className="flex gap-4 overflow-x-auto scrollbar-hide px-4"
+					className="scrollbar-hide flex gap-4 overflow-x-auto px-4"
 					style={{
 						scrollbarWidth: "none",
 						msOverflowStyle: "none",
@@ -264,14 +264,14 @@ export function SocialProofSection() {
 
 				{/* Left fade gradient */}
 				<div
-					className="pointer-events-none absolute left-0 top-0 bottom-0 w-16"
+					className="pointer-events-none absolute top-0 bottom-0 left-0 w-16"
 					style={{
 						background: "linear-gradient(to right, rgb(9 9 11), transparent)",
 					}}
 				/>
 				{/* Right fade gradient */}
 				<div
-					className="pointer-events-none absolute right-0 top-0 bottom-0 w-16"
+					className="pointer-events-none absolute top-0 right-0 bottom-0 w-16"
 					style={{
 						background: "linear-gradient(to left, rgb(9 9 11), transparent)",
 					}}

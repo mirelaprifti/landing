@@ -74,25 +74,25 @@ export function WhatYouGetSection() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header */}
 				<div className="mb-12">
-					<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-400">
+					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						What You Get
 					</p>
-					<h2 className="text-2xl font-semibold text-white md:text-3xl max-w-lg">
+					<h2 className="leading-tighter max-w-lg text-2xl font-semibold text-white md:text-3xl">
 						Everything you need for production
 					</h2>
-					<p className="mt-4 text-lg text-zinc-400 max-w-2xl">
+					<p className="mt-4 max-w-2xl text-lg text-zinc-400">
 						One library. No glue code. No framework lock-in.
 					</p>
 				</div>
 
 				{/* Two column layout */}
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
 					{/* Left: Feature checklist */}
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 						{FEATURES.map((feature, index) => (
 							<div key={index} className="flex items-start gap-3">
 								<i
-									className={`${feature.icon} text-emerald-500 text-lg mt-0.5`}
+									className={`${feature.icon} mt-0.5 text-lg text-emerald-500`}
 								/>
 								<div>
 									<p className="font-medium text-white">{feature.title}</p>
@@ -103,17 +103,17 @@ export function WhatYouGetSection() {
 					</div>
 
 					{/* Right: Code example */}
-					<div className="rounded-lg border border-zinc-800 bg-zinc-900/50 overflow-hidden">
-						<div className="flex items-center gap-2 px-4 py-2 border-b border-zinc-800 bg-zinc-900/80">
+					<div className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50">
+						<div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900/80 px-4 py-2">
 							<div className="flex gap-1.5">
-								<div className="w-3 h-3 rounded-full bg-zinc-700" />
-								<div className="w-3 h-3 rounded-full bg-zinc-700" />
-								<div className="w-3 h-3 rounded-full bg-zinc-700" />
+								<div className="h-3 w-3 rounded-full bg-zinc-700" />
+								<div className="h-3 w-3 rounded-full bg-zinc-700" />
+								<div className="h-3 w-3 rounded-full bg-zinc-700" />
 							</div>
-							<span className="text-xs text-zinc-500 ml-2">example.ts</span>
+							<span className="ml-2 text-xs text-zinc-500">example.ts</span>
 						</div>
-						<pre className="p-4 overflow-x-auto text-sm">
-							<code className="text-zinc-300 font-mono whitespace-pre">
+						<pre className="overflow-x-auto p-4 text-sm">
+							<code className="font-mono whitespace-pre text-zinc-300">
 								{CODE_EXAMPLE}
 							</code>
 						</pre>

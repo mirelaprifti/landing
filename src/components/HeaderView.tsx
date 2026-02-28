@@ -215,7 +215,7 @@ function HeaderViewComponent({
 			transition={{
 				backgroundColor: { duration: 0.15, ease: "easeOut" },
 			}}
-			className="flex items-start gap-3 cursor-pointer rounded-lg p-2 -m-2"
+			className="-m-2 flex cursor-pointer items-start gap-3 rounded-lg p-2"
 		>
 			<motion.div
 				animate={{
@@ -240,7 +240,7 @@ function HeaderViewComponent({
 					scale: { type: "spring", stiffness: 300, damping: 20 },
 					background: { duration: 0.2, ease: "easeInOut" },
 				}}
-				className="w-10 h-10 rounded-md flex items-center justify-center text-white relative overflow-hidden border border-zinc-500"
+				className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-md border border-zinc-500 text-white"
 			>
 				<AnimatePresence mode="popLayout">{getIcon()}</AnimatePresence>
 
@@ -301,9 +301,9 @@ function HeaderViewComponent({
 				)}
 			</motion.div>
 
-			<div className="flex-1 flex flex-col gap-1">
+			<div className="flex flex-1 flex-col gap-1">
 				<div className="flex items-start justify-between">
-					<h2 className="text-base font-mono font-semibold text-white flex items-baseline gap-2">
+					<h2 className="leading-tighter flex items-baseline gap-2 font-mono text-base font-semibold text-white">
 						<span>{name}</span>
 						{variant && (
 							<span className="font-medium text-neutral-400">{variant}</span>
@@ -311,23 +311,23 @@ function HeaderViewComponent({
 					</h2>
 					{/* Static label on the right */}
 					{isIdle && (
-						<span className="text-xs font-mono text-zinc-400 -mt-1">
+						<span className="-mt-1 font-mono text-xs text-zinc-400">
 							Click to run an Effect
 						</span>
 					)}
 					{canReset && (
-						<span className="text-xs font-mono text-zinc-400 -mt-1">
+						<span className="-mt-1 font-mono text-xs text-zinc-400">
 							Click to reset
 						</span>
 					)}
 					{isRunning && (
-						<span className="text-xs font-mono text-zinc-400 -mt-1">
+						<span className="-mt-1 font-mono text-xs text-zinc-400">
 							Click to stop
 						</span>
 					)}
 				</div>
 				{description && (
-					<p className="text-sm text-neutral-400 leading-4">{description}</p>
+					<p className="text-sm leading-4 text-neutral-400">{description}</p>
 				)}
 			</div>
 		</motion.div>

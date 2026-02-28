@@ -1,31 +1,31 @@
-import { useState, useMemo } from "react";
 import { motion } from "motion/react";
+import { useMemo, useState } from "react";
+import { EffectAcquireReleaseExample } from "@/examples/effect-acquire-release";
+import { EffectFinalizerExample } from "@/examples/effect-add-finalizer";
 import { EffectAllExample } from "@/examples/effect-all";
 import { EffectAllShortCircuitExample } from "@/examples/effect-all-short-circuit";
+import { EffectDieExample } from "@/examples/effect-die";
+import { EffectRetryExample as EffectEventuallyExample } from "@/examples/effect-eventually";
+import { EffectFailExample } from "@/examples/effect-fail";
+import { EffectForEachExample } from "@/examples/effect-foreach";
+import { EffectOrElseExample } from "@/examples/effect-orelse";
+import { EffectPartitionLickTestExample } from "@/examples/effect-partition";
+import { EffectPromiseExample } from "@/examples/effect-promise";
 import { EffectRaceExample } from "@/examples/effect-race";
 import { EffectRaceAllExample } from "@/examples/effect-raceall";
-import { EffectForEachExample } from "@/examples/effect-foreach";
-import { EffectSucceedExample } from "@/examples/effect-succeed";
-import { EffectDieExample } from "@/examples/effect-die";
-import { EffectFailExample } from "@/examples/effect-fail";
-import { EffectSyncExample } from "@/examples/effect-sync";
-import { EffectPromiseExample } from "@/examples/effect-promise";
-import { EffectSleepExample } from "@/examples/effect-sleep";
-import { EffectOrElseExample } from "@/examples/effect-orelse";
-import { EffectTimeoutExample } from "@/examples/effect-timeout";
-import { EffectRetryExample as EffectEventuallyExample } from "@/examples/effect-eventually";
-import { EffectPartitionLickTestExample } from "@/examples/effect-partition";
-import { EffectValidateExample } from "@/examples/effect-validate";
-import { EffectRetryRecursExample } from "@/examples/effect-retry-recurs";
-import { EffectRetryExponentialExample } from "@/examples/effect-retry-exponential";
 import { EffectRepeatSpacedExample } from "@/examples/effect-repeat-spaced";
 import { EffectRepeatWhileOutputExample } from "@/examples/effect-repeat-while-output";
+import { EffectRetryExponentialExample } from "@/examples/effect-retry-exponential";
+import { EffectRetryRecursExample } from "@/examples/effect-retry-recurs";
+import { EffectSleepExample } from "@/examples/effect-sleep";
+import { EffectSucceedExample } from "@/examples/effect-succeed";
+import { EffectSyncExample } from "@/examples/effect-sync";
+import { EffectTimeoutExample } from "@/examples/effect-timeout";
+import { EffectValidateExample } from "@/examples/effect-validate";
 import { EffectRefExample } from "@/examples/ref-make";
 import { EffectRefConcurrentExample } from "@/examples/ref-update-and-get";
-import { EffectFinalizerExample } from "@/examples/effect-add-finalizer";
-import { EffectAcquireReleaseExample } from "@/examples/effect-acquire-release";
-import { getExampleMeta } from "@/lib/examples-manifest";
 import type { ExampleComponentProps } from "@/lib/example-types";
+import { getExampleMeta } from "@/lib/examples-manifest";
 
 type TabId =
 	| "concurrency"
@@ -169,32 +169,32 @@ export function FeaturesSection() {
 	return (
 		<section id="features" className="relative w-full py-24 md:pt-40 md:pb-24">
 			{/* Header */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4 mb-12">
-				<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
+			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// Interactive Examples
 				</p>
-				<h2 className="text-2xl font-semibold text-white md:text-3xl">
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 					See Effect in action
 				</h2>
 			</div>
 
 			{/* Content Container */}
-			<div className="relative max-w-295 mx-auto">
+			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
-				<div className="relative border-r border-t border-zinc-800 shadow-2xl shadow-black/20">
+				<div className="relative border-t border-r border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
 					<div
-						className="relative flex overflow-x-auto scrollbar-hide bg-zinc-950/90"
+						className="scrollbar-hide relative flex overflow-x-auto bg-zinc-950/90"
 						style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 					>
 						{TAB_IDS.map((tabId) => (
 							<button
 								key={tabId}
 								onClick={() => setActiveTab(tabId)}
-								className={`flex-1 shrink-0 cursor-pointer py-5 px-4 md:px-6 font-mono text-sm md:text-base uppercase tracking-wide transition-colors whitespace-nowrap ${
+								className={`flex-1 shrink-0 cursor-pointer px-4 py-5 font-mono text-sm tracking-wide whitespace-nowrap uppercase transition-colors md:px-6 md:text-base ${
 									activeTab === tabId
-										? "text-white font-medium"
-										: "text-zinc-400 leading-relaxed hover:text-white"
+										? "font-medium text-white"
+										: "leading-relaxed text-zinc-400 hover:text-white"
 								}`}
 							>
 								{TAB_CONFIG[tabId].label}
@@ -223,22 +223,22 @@ export function FeaturesSection() {
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
 								<div
-									className="flex items-center gap-1 px-4 py-3 border-y border-zinc-800 bg-zinc-950 overflow-x-auto scrollbar-hide"
+									className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-y border-zinc-800 bg-zinc-950 px-4 py-3"
 									style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 								>
 									{currentTabConfig.subTabs.map((subTab) => (
 										<button
 											key={subTab.id}
 											onClick={() => handleSubTabChange(subTab.id)}
-											className={`shrink-0 px-3 py-1.5 rounded-md font-mono text-sm transition-colors cursor-pointer whitespace-nowrap ${
+											className={`shrink-0 cursor-pointer rounded-md px-3 py-1.5 font-mono text-sm whitespace-nowrap transition-colors ${
 												currentActiveSubTab === subTab.id
 													? "bg-zinc-900 text-white"
-													: "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+													: "text-zinc-400 hover:bg-zinc-800/50 hover:text-white"
 											}`}
 										>
 											{subTab.label[0]}
 											{subTab.label[1] && (
-												<span className="text-zinc-500 ml-1">
+												<span className="ml-1 text-zinc-500">
 													({subTab.label[1]})
 												</span>
 											)}
@@ -264,12 +264,12 @@ export function FeaturesSection() {
 							</div>
 						) : (
 							/* Grid layout for other tabs */
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-0 auto-rows-fr p-4">
+							<div className="grid auto-rows-fr grid-cols-1 gap-0 p-4 md:grid-cols-2">
 								{currentTabConfig.examples?.map((exampleId, index) => {
 									const metadata = getExampleMeta(exampleId);
 									const Component = EXAMPLE_COMPONENTS[exampleId];
 									return (
-										<div key={exampleId} className="w-full text-sm h-full">
+										<div key={exampleId} className="h-full w-full text-sm">
 											{metadata && Component && (
 												<Component
 													metadata={metadata}

@@ -78,10 +78,10 @@ export function AIBuildingSection() {
 					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 						// Effect for AI
 					</p>
-					<h2 className="text-2xl leading-tight font-semibold text-white md:text-3xl">
+					<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 						Build AI & Agentic Systems
 					</h2>
-					<p className="mt-4 text-lg text-zinc-400 max-w-2xl">
+					<p className="mt-4 max-w-2xl text-lg text-zinc-400">
 						Reliable orchestration, parallel execution, state management, and
 						fault recovery, all with type safety and semantic observability
 						baked in.
@@ -144,7 +144,7 @@ export function AIBuildingSection() {
 						>
 							{/* Top accent line */}
 							<div
-								className={`absolute top-0 left-0 right-0 h-0.5 ${study.accentColor}`}
+								className={`absolute top-0 right-0 left-0 h-0.5 ${study.accentColor}`}
 							/>
 
 							{/* Decorative gradient background */}
@@ -154,9 +154,9 @@ export function AIBuildingSection() {
 							/>
 
 							{/* Content */}
-							<div className="relative flex flex-col px-8 pt-8 pb-7 gap-4">
+							<div className="relative flex flex-col gap-4 px-8 pt-8 pb-7">
 								{/* Title */}
-								<h4 className="text-sm font-mono uppercase font-medium text-zinc-400 group-hover:text-white transition-colors">
+								<h4 className="font-mono text-sm font-medium text-zinc-400 uppercase transition-colors group-hover:text-white">
 									{study.title}
 								</h4>
 
@@ -180,7 +180,7 @@ export function AIBuildingSection() {
 											className={study.partnerLogoClass}
 										/>
 									</div>
-									<i className="ri-arrow-right-up-line text-zinc-200 group-hover:text-white transition-colors" />
+									<i className="ri-arrow-right-up-line text-zinc-200 transition-colors group-hover:text-white" />
 								</div>
 							</div>
 						</a>

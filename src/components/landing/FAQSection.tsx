@@ -181,16 +181,16 @@ export function FAQSection() {
 				{/* Two-column layout */}
 				<div className="flex flex-col lg:flex-row">
 					{/* Left column - Header and CTA (50%) */}
-					<div className="w-full lg:w-1/2 px-4">
+					<div className="w-full px-4 lg:w-1/2">
 						<div>
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// FAQ
 							</p>
-							<h2 className="text-2xl font-semibold text-white md:text-3xl">
+							<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 								Questions we get asked a lot
 							</h2>
 
-							<p className="mt-5 text-lg leading-relaxed text-zinc-400 max-w-lg">
+							<p className="mt-5 max-w-lg text-lg leading-relaxed text-zinc-400">
 								Can't find what you're looking for? Our community is always
 								happy to help.
 							</p>
@@ -210,7 +210,7 @@ export function FAQSection() {
 
 					{/* Right column - FAQ items (50%) */}
 					<div className="w-full lg:w-1/2">
-						<div className="space-y-3 pt-27 pl-3 pr-4">
+						<div className="space-y-3 pt-27 pr-4 pl-3">
 							{faqs.map((faq, index) => {
 								const isOpen = openIndices.has(index);
 								return (

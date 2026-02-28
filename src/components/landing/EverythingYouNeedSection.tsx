@@ -67,10 +67,10 @@ export function EverythingYouNeedSection() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header */}
 				<div className="mb-12">
-					<p className="mb-3 font-mono text-sm font-medium uppercase tracking-wider text-zinc-400">
+					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 						Everything You Need
 					</p>
-					<h2 className="max-w-xl text-2xl font-bold leading-tight text-white md:text-3xl">
+					<h2 className="leading-tighter max-w-xl text-2xl font-bold text-white md:text-3xl">
 						One library. Complete toolkit.
 					</h2>
 					<p className="mt-5 max-w-[44rem] text-lg leading-relaxed text-zinc-400">
@@ -81,9 +81,9 @@ export function EverythingYouNeedSection() {
 				</div>
 
 				{/* Vertical grid table layout */}
-				<div className="border border-zinc-800 rounded-lg overflow-hidden">
+				<div className="overflow-hidden rounded-lg border border-zinc-800">
 					{/* Header row - category names */}
-					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-zinc-900/50 border-b border-zinc-800">
+					<div className="grid grid-cols-2 border-b border-zinc-800 bg-zinc-900/50 md:grid-cols-3 lg:grid-cols-6">
 						{FEATURES.map((feature, index) => (
 							<div key={index} className="relative px-5 py-4">
 								<span className="text-sm font-medium text-white">
@@ -91,7 +91,7 @@ export function EverythingYouNeedSection() {
 								</span>
 								{index < FEATURES.length - 1 && (
 									<div
-										className="absolute right-0 top-0 bottom-0 w-px"
+										className="absolute top-0 right-0 bottom-0 w-px"
 										style={{
 											backgroundImage:
 												"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
@@ -107,17 +107,17 @@ export function EverythingYouNeedSection() {
 						{FEATURES.map((feature, colIndex) => (
 							<div
 								key={colIndex}
-								className="relative flex flex-col gap-3 pl-3.5 pr-4 py-4"
+								className="relative flex flex-col gap-3 py-4 pr-4 pl-3.5"
 							>
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-2">
-										<i className="ri-check-line text-emerald-500 text-sm shrink-0" />
+										<i className="ri-check-line shrink-0 text-sm text-emerald-500" />
 										<span className="text-sm text-zinc-400">{item}</span>
 									</div>
 								))}
 								{colIndex < FEATURES.length - 1 && (
 									<div
-										className="absolute right-0 top-0 bottom-0 w-px"
+										className="absolute top-0 right-0 bottom-0 w-px"
 										style={{
 											backgroundImage:
 												"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",

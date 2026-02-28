@@ -1,5 +1,5 @@
-import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 export function CodeOfConductPage() {
 	return (
@@ -42,7 +42,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 1 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								1. Respect for all attendees
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -56,7 +56,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 2 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								2. Inclusive and welcoming environment
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -69,7 +69,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 3 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								3. Collaboration and learning
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -82,7 +82,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 4 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								4. Privacy and consent
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -94,7 +94,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 5 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								5. Compliance with venue rules
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -106,7 +106,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 6 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								6. Professionalism
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -119,7 +119,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 7 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								7. Reporting violations
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -143,7 +143,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 8 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								8. Consequences
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -155,7 +155,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 9 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								9. Supportive community
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
@@ -167,7 +167,7 @@ export function CodeOfConductPage() {
 
 						{/* Section 10 */}
 						<div className="space-y-3">
-							<h2 className="text-xl font-semibold text-white">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
 								10. Code of conduct changes
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">

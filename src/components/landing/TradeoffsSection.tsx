@@ -49,7 +49,7 @@ export function TradeoffsSection() {
 					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
 						Honest take
 					</p>
-					<h2 className="text-2xl leading-tight font-semibold text-white md:text-4xl">
+					<h2 className="leading-tighter text-2xl font-semibold text-white md:text-4xl">
 						Effect isn't for every project
 					</h2>
 					<p className="mt-4 text-lg text-zinc-400">
@@ -62,7 +62,7 @@ export function TradeoffsSection() {
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 					{/* Good fit */}
 					<div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-6">
-						<h3 className="text-lg font-semibold text-emerald-300 mb-4 flex items-center gap-2">
+						<h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-emerald-300">
 							<i className="ri-thumb-up-line" />
 							Consider Effect when
 						</h3>
@@ -70,7 +70,7 @@ export function TradeoffsSection() {
 							{GOOD_FIT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
 									<i
-										className={`${item.icon} mt-0.5 text-emerald-400 shrink-0`}
+										className={`${item.icon} mt-0.5 shrink-0 text-emerald-400`}
 									/>
 									<span className="text-sm text-zinc-300">{item.text}</span>
 								</li>
@@ -80,14 +80,14 @@ export function TradeoffsSection() {
 
 					{/* Maybe not */}
 					<div className="rounded-lg border border-zinc-700/50 bg-zinc-900/30 p-6">
-						<h3 className="text-lg font-semibold text-zinc-300 mb-4 flex items-center gap-2">
+						<h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-zinc-300">
 							<i className="ri-thumb-down-line" />
 							Maybe skip Effect if
 						</h3>
 						<ul className="space-y-3">
 							{MAYBE_NOT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<i className={`${item.icon} mt-0.5 text-zinc-500 shrink-0`} />
+									<i className={`${item.icon} mt-0.5 shrink-0 text-zinc-500`} />
 									<span className="text-sm text-zinc-400">{item.text}</span>
 								</li>
 							))}

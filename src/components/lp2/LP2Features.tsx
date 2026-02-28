@@ -67,10 +67,10 @@ export function LP2Features() {
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Header */}
 				<div className="mb-16">
-					<p className="mb-3 font-mono text-sm font-semibold uppercase tracking-wider text-zinc-400">
+					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						Everything You Need
 					</p>
-					<h2 className="max-w-2xl text-2xl font-semibold leading-tight text-white md:text-3xl">
+					<h2 className="leading-tighter max-w-2xl text-2xl font-semibold text-white md:text-3xl">
 						One library. Complete toolkit.
 					</h2>
 					<p className="mt-4 max-w-xl text-lg text-zinc-500">
