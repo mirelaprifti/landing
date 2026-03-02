@@ -210,9 +210,7 @@ export function Footer() {
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<a
-										href="https://effect.website/blog"
-										target="_blank"
-										rel="noopener noreferrer"
+										href={getAssetPath("/blog")}
 										className="border-b border-transparent text-sm leading-relaxed text-zinc-400 transition-colors hover:border-current hover:text-white"
 									>
 										Blog

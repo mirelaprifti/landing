@@ -98,9 +98,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
 									Docs
 								</a>
 								<a
-									href="https://effect.website/blog/"
-									target="_blank"
-									rel="noopener noreferrer"
+									href={getAssetPath("/blog")}
 									className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
 								>
 									Blog
@@ -204,7 +202,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
 					className="fixed top-0 right-0 flex h-full w-full max-w-[64%] flex-col bg-zinc-900 shadow-xl"
 					style={{ transform: "translateX(100%)" }}
 				>
-					<div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-800 pl-8 pr-4 py-3.5">
+					<div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-800 py-3.5 pr-4 pl-8">
 						<span className="text-sm font-medium text-white">Menu</span>
 						<button
 							type="button"
@@ -230,9 +228,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
 								Docs
 							</a>
 							<a
-								href="https://effect.website/blog/"
-								target="_blank"
-								rel="noopener noreferrer"
+								href={getAssetPath("/blog")}
 								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
 								Blog

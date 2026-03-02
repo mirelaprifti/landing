@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { BlogPostPage } from "@/components/landing/BlogPostPage";
+import { BLOG_POSTS } from "../../data/blog";
+
+export function getStaticPaths() {
+	return BLOG_POSTS.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+
+if (!post) {
+	return Astro.redirect("/blog");
+}
+---
+
+<BaseLayout
+  title={`${post.title} - Effect Blog`}
+  description={post.excerpt}
+>
+  <BlogPostPage slug={post.slug} client:load />
+</BaseLayout>
