@@ -1,4 +1,5 @@
 import { getAssetPath } from "../../utils/assetPath";
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 export function Footer() {
 	return (
@@ -382,25 +383,28 @@ export function Footer() {
 							© {new Date().getFullYear()} Effectful Technologies Inc. All
 							rights reserved.
 						</p>
-						<div className="flex items-center gap-4">
-							<a
-								href="mailto:contact@effectful.co"
-								className="border-b border-transparent text-sm text-zinc-400 transition-colors hover:border-current hover:text-white"
-							>
-								Email us
-							</a>
-							<a
-								href="#"
-								className="border-b border-transparent text-sm text-zinc-400 transition-colors hover:border-current hover:text-white"
-							>
-								Terms
-							</a>
-							<a
-								href="#"
-								className="border-b border-transparent text-sm text-zinc-400 transition-colors hover:border-current hover:text-white"
-							>
-								Privacy
-							</a>
+						<div className="flex items-center gap-5">
+							<ThemeToggle />
+							<div className="flex items-center gap-4">
+								<a
+									href="mailto:contact@effectful.co"
+									className="border-b border-transparent text-sm text-zinc-400 transition-colors hover:border-current hover:text-white"
+								>
+									Email us
+								</a>
+								<a
+									href="#"
+									className="border-b border-transparent text-sm text-zinc-400 transition-colors hover:border-current hover:text-white"
+								>
+									Terms
+								</a>
+								<a
+									href="#"
+									className="border-b border-transparent text-sm text-zinc-400 transition-colors hover:border-current hover:text-white"
+								>
+									Privacy
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
