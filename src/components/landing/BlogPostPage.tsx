@@ -1,6 +1,8 @@
 import { BLOG_POSTS, type BlogPost } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import { TweetEmbed } from "../ui/TweetEmbed";
+import { YouTubeEmbed } from "../ui/YouTubeEmbed";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -274,6 +276,12 @@ Effect.runPromise(program)`}</code>
 								</pre>
 
 								<h2 id="one-version">One version. One ecosystem.</h2>
+
+								<YouTubeEmbed
+									videoId="cJGEeDI5-PU"
+									title="Effect v4 Beta Overview"
+								/>
+
 								<p>
 									All Effect ecosystem packages now share a single version
 									number and are released together. No more debugging version
@@ -336,6 +344,8 @@ Effect.runPromise(program)`}</code>
 									</a>{" "}
 									to share your experience.
 								</p>
+
+								<TweetEmbed tweetId="1891920874025656497" />
 							</div>
 
 							{/* Post navigation */}
