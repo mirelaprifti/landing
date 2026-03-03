@@ -54,6 +54,18 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
     />
     <title>{title}</title>
 
+    <!-- Theme: prevent flash of wrong theme -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else if (stored === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -73,7 +85,7 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
   </head>
-  <body class="min-h-screen bg-zinc-950 text-white antialiased">
+  <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
     <slot />
   </body>
 </html>
