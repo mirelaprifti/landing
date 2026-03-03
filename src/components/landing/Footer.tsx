@@ -145,7 +145,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 3: Community */}
-						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-transparent lg:pl-4">
+						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-200 lg:pl-4 dark:lg:border-zinc-800">
 							{/* Column Header */}
 							<h3 className="font-mono text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								Community
