@@ -5,10 +5,10 @@ export function Footer() {
 	return (
 		<footer className="relative w-full px-4 pt-16 md:px-8 md:pt-20">
 			{/* Subtle gradient background */}
-			<div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
+			<div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50 dark:block" />
 
 			{/* Top solid border */}
-			<div className="absolute top-0 right-0 left-0 h-px bg-zinc-800" />
+			<div className="absolute top-0 right-0 left-0 h-px bg-zinc-200 dark:bg-zinc-800" />
 
 			<div className="mx-auto w-full max-w-[73.75rem]">
 				{/* Footer Links Block */}
