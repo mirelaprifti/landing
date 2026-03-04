@@ -4,7 +4,7 @@ import { BlogPostPage } from "@/components/landing/BlogPostPage";
 import { BLOG_POSTS } from "../../data/blog";
 
 export function getStaticPaths() {
-	return BLOG_POSTS.map((post) => ({
+	return BLOG_POSTS.filter((post) => post.hasLocalContent).map((post) => ({
 		params: { slug: post.slug },
 		props: { post },
 	}));

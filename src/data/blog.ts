@@ -15,6 +15,46 @@ export interface BlogPost {
 	authors: BlogAuthor[];
 	featured?: boolean;
 	coverImage?: string;
+	/** If true, this post has local content and should be rendered on this site */
+	hasLocalContent?: boolean;
+}
+
+const MONTH_MAP: Record<string, string> = {
+	Jan: "01",
+	Feb: "02",
+	Mar: "03",
+	Apr: "04",
+	May: "05",
+	Jun: "06",
+	Jul: "07",
+	Aug: "08",
+	Sep: "09",
+	Oct: "10",
+	Nov: "11",
+	Dec: "12",
+};
+
+/**
+ * Returns the URL for a blog post.
+ * - Posts with `hasLocalContent` link to the local route.
+ * - "This Week In Effect" posts link to effect.website with date-based paths.
+ * - All other posts link to effect.website using the slug directly.
+ */
+export function getPostUrl(post: BlogPost): string {
+	if (post.hasLocalContent) {
+		return `/blog/${post.slug}`;
+	}
+
+	if (post.tags.includes("This Week In Effect")) {
+		// Parse date like "Feb 27, 2026" into "/blog/this-week-in-effect/2026/02/27/"
+		const parts = post.date.replace(",", "").split(" ");
+		const month = MONTH_MAP[parts[0]] ?? "01";
+		const day = parts[1].padStart(2, "0");
+		const year = parts[2];
+		return `https://effect.website/blog/this-week-in-effect/${year}/${month}/${day}/`;
+	}
+
+	return `https://effect.website/blog/${post.slug}/`;
 }
 
 export const AUTHORS: Record<string, BlogAuthor> = {
@@ -82,6 +122,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Releases", "Effect"],
 		authors: [AUTHORS.maxwell],
 		featured: true,
+		hasLocalContent: true,
 	},
 	{
 		slug: "this-week-in-effect-107",

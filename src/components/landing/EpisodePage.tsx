@@ -95,8 +95,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										src={`https://www.youtube.com/embed/${episode.youtubeId}`}
 										title={episode.title}
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										referrerPolicy="no-referrer-when-downgrade"
 										allowFullScreen
-										className="absolute inset-0 h-full w-full"
+										loading="lazy"
+										className="absolute inset-0 h-full w-full border-0"
 									/>
 								</div>
 
@@ -288,8 +290,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											src={`https://www.youtube.com/embed/${episode.youtubeId}`}
 											title={episode.title}
 											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+											referrerPolicy="no-referrer-when-downgrade"
 											allowFullScreen
-											className="absolute inset-0 h-full w-full"
+											loading="lazy"
+											className="absolute inset-0 h-full w-full border-0"
 										/>
 									</div>
 

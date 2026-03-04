@@ -1,8 +1,6 @@
-import { BLOG_POSTS, type BlogPost } from "../../data/blog";
+import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
-import { TweetEmbed } from "../ui/TweetEmbed";
-import { YouTubeEmbed } from "../ui/YouTubeEmbed";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -66,11 +64,19 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 
 	if (!prevPost && !nextPost) return null;
 
+	const prevUrl = prevPost ? getPostUrl(prevPost) : null;
+	const nextUrl = nextPost ? getPostUrl(nextPost) : null;
+	const prevIsExternal = prevUrl?.startsWith("http") ?? false;
+	const nextIsExternal = nextUrl?.startsWith("http") ?? false;
+
 	return (
 		<div className="mt-16 grid grid-cols-1 gap-4 border-t border-zinc-200 pt-10 sm:grid-cols-2 dark:border-zinc-800">
-			{prevPost ? (
+			{prevPost && prevUrl ? (
 				<a
-					href={getAssetPath(`/blog/${prevPost.slug}`)}
+					href={prevIsExternal ? prevUrl : getAssetPath(prevUrl)}
+					{...(prevIsExternal
+						? { target: "_blank", rel: "noopener noreferrer" }
+						: {})}
 					className="group flex flex-col rounded-lg border border-zinc-200 bg-zinc-50/50 px-6 py-5 transition-all duration-200 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:border-zinc-700 dark:hover:bg-zinc-900/60"
 				>
 					<span className="flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-400">
@@ -84,9 +90,12 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 			) : (
 				<div />
 			)}
-			{nextPost ? (
+			{nextPost && nextUrl ? (
 				<a
-					href={getAssetPath(`/blog/${nextPost.slug}`)}
+					href={nextIsExternal ? nextUrl : getAssetPath(nextUrl)}
+					{...(nextIsExternal
+						? { target: "_blank", rel: "noopener noreferrer" }
+						: {})}
 					className="group flex flex-col items-end rounded-lg border border-zinc-200 bg-zinc-50/50 px-6 py-5 text-right transition-all duration-200 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:border-zinc-700 dark:hover:bg-zinc-900/60"
 				>
 					<span className="flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-400">
@@ -275,12 +284,26 @@ const program = Effect.gen(function* () {
 Effect.runPromise(program)`}</code>
 								</pre>
 
-								<h2 id="one-version">One version. One ecosystem.</h2>
+								<div className="not-prose my-8">
+									<div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+										<video
+											autoPlay
+											controls
+											loop
+											muted
+											playsInline
+											width="100%"
+										>
+											<source
+												src="https://effect.website/video/bundle-size-viz.mp4"
+												type="video/mp4"
+											/>
+											Your browser does not support the video tag.
+										</video>
+									</div>
+								</div>
 
-								<YouTubeEmbed
-									videoId="cJGEeDI5-PU"
-									title="Effect v4 Beta Overview"
-								/>
+								<h2 id="one-version">One version. One ecosystem.</h2>
 
 								<p>
 									All Effect ecosystem packages now share a single version
@@ -294,6 +317,25 @@ Effect.runPromise(program)`}</code>
 									<code>@effect/rpc</code>, and <code>@effect/cluster</code> now
 									lives directly inside <code>effect</code>.
 								</p>
+
+								<div className="not-prose my-8">
+									<div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+										<video
+											autoPlay
+											controls
+											loop
+											muted
+											playsInline
+											width="100%"
+										>
+											<source
+												src="https://effect.website/video/core-package.mp4"
+												type="video/mp4"
+											/>
+											Your browser does not support the video tag.
+										</video>
+									</div>
+								</div>
 
 								<h2 id="unstable-modules">Unstable modules</h2>
 								<p>
@@ -344,8 +386,6 @@ Effect.runPromise(program)`}</code>
 									</a>{" "}
 									to share your experience.
 								</p>
-
-								<TweetEmbed tweetId="1891920874025656497" />
 							</div>
 
 							{/* Post navigation */}

@@ -1,114 +1,536 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	AUTHORS,
 	BLOG_POSTS,
 	BLOG_TAGS,
 	type BlogPost,
 	type BlogTag,
+	getPostUrl,
 } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
-const POSTS_PER_PAGE = 15;
+const POSTS_PER_PAGE = 12;
 
+// Fallback for broken avatar images — renders initials-style neutral circle
+function handleAvatarError(e: React.SyntheticEvent<HTMLImageElement>) {
+	const img = e.currentTarget;
+	img.style.display = "none";
+	const fallback = document.createElement("div");
+	fallback.className = img.className;
+	fallback.style.cssText =
+		"display:flex;align-items:center;justify-content:center;background:#27272a;color:#a1a1aa;font-size:0.6em;font-weight:600;";
+	fallback.textContent = (img.alt || "?").charAt(0).toUpperCase();
+	img.parentElement?.insertBefore(fallback, img);
+}
+
+// Tag color mapping -- distinct hues per category for visual scanning
+const TAG_COLORS: Record<string, string> = {
+	Releases: "#22c55e", // green
+	Effect: "#818cf8", // indigo
+	"This Week In Effect": "#8b5cf6", // violet
+	"Cause & Effect": "#f472b6", // pink
+	"Effect Schema": "#06b6d4", // cyan
+	"Effect Playground": "#a78bfa", // violet
+	"Effect Website": "#fb923c", // orange
+	TypeScript: "#3b82f6", // blue
+	Miscellaneous: "#94a3b8", // slate
+};
+
+function getTagColor(tag: string): string {
+	return TAG_COLORS[tag] ?? "#71717a"; // zinc-500 fallback
+}
+
+// ── Featured Post ─────────────────────────────────────────────────
 function FeaturedPost({ post }: { post: BlogPost }) {
+	const url = getPostUrl(post);
+	const isExternal = url.startsWith("http");
 	return (
 		<a
-			href={getAssetPath(`/blog/${post.slug}`)}
-			className="group relative block overflow-hidden rounded-xl border border-zinc-200 bg-gradient-to-br from-zinc-50 via-white to-zinc-100 transition-all duration-300 hover:border-zinc-300 hover:shadow-xl hover:shadow-zinc-200/50 dark:border-zinc-800 dark:bg-gradient-to-br dark:from-zinc-900/80 dark:via-zinc-900/50 dark:to-zinc-950 dark:hover:border-zinc-700 dark:hover:shadow-zinc-900/50"
+			href={isExternal ? url : getAssetPath(url)}
+			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+			className="group relative block overflow-hidden rounded-2xl bg-zinc-900/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-emerald-500/[0.08]"
 		>
-			<div className="relative p-7 md:p-10">
-				<div className="mb-4 flex flex-wrap items-center gap-2">
-					{post.tags.map((tag) => (
-						<span
-							key={tag}
-							className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-600 ring-1 ring-emerald-500/20 ring-inset dark:text-emerald-400"
-						>
-							{tag}
+			{/* Mesh gradient background */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					background: `
+						radial-gradient(ellipse 60% 50% at 0% 0%, rgba(52, 211, 153, 0.10) 0%, transparent 50%),
+						radial-gradient(ellipse 50% 60% at 100% 100%, rgba(129, 140, 248, 0.06) 0%, transparent 50%),
+						radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 40%)
+					`,
+				}}
+			/>
+
+			{/* Hover glow intensification */}
+			<div
+				className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+				style={{
+					background:
+						"radial-gradient(ellipse 60% 50% at 0% 0%, rgba(52, 211, 153, 0.14) 0%, transparent 50%)",
+				}}
+			/>
+
+			{/* Top accent line */}
+			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+
+			<div className="relative grid grid-cols-1 gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-16 md:p-12">
+				<div className="min-w-0">
+					{/* Label + tags */}
+					<div className="mb-6 flex flex-wrap items-center gap-3">
+						<span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-400 uppercase ring-1 ring-emerald-500/20 ring-inset">
+							<span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+							Featured
 						</span>
-					))}
-				</div>
+						{post.tags.map((tag) => (
+							<span
+								key={tag}
+								className="inline-flex items-center rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-300"
+							>
+								{tag}
+							</span>
+						))}
+					</div>
 
-				<h2 className="text-2xl leading-tight font-semibold text-zinc-900 md:text-3xl dark:text-white">
-					{post.title}
-				</h2>
+					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+						{post.title}
+					</h2>
 
-				<p className="mt-4 line-clamp-2 text-base text-zinc-600 md:text-lg dark:text-zinc-400">
-					{post.excerpt}
-				</p>
+					<p className="mt-4 line-clamp-3 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg md:leading-relaxed">
+						{post.excerpt}
+					</p>
 
-				<div className="mt-6 flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-					<time>{post.date}</time>
-					<span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-					<div className="flex items-center gap-2">
-						<div className="flex items-center -space-x-2">
-							{post.authors.map((author) => (
+					{/* Authors + meta */}
+					<div className="mt-8 flex flex-wrap items-center gap-4">
+						{post.authors.map((author) => (
+							<div
+								key={author.name}
+								className="flex items-center gap-2"
+							>
 								<img
-									key={author.name}
 									src={getAssetPath(author.avatar)}
 									alt={author.name}
-									className="h-7 w-7 rounded-full border-2 border-white object-cover dark:border-zinc-900"
+									onError={handleAvatarError}
+									className="h-8 w-8 rounded-full border-2 border-zinc-800 object-cover"
 								/>
-							))}
+								<div className="flex flex-col">
+									<span className="text-sm font-medium text-zinc-200">
+										{author.name}
+									</span>
+								</div>
+							</div>
+						))}
+						<div className="flex items-center gap-3 text-sm text-zinc-400">
+							<span className="h-4 w-px bg-zinc-800" />
+							<time>{post.date}</time>
+							<span className="h-4 w-px bg-zinc-800" />
+							<span>{post.readingTime}</span>
 						</div>
-						{post.authors.length === 1 && (
-							<span className="text-zinc-600 dark:text-zinc-400">
-								{post.authors[0].name}
-							</span>
-						)}
 					</div>
-					<span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-					<span>{post.readingTime}</span>
+				</div>
+
+				{/* Right side: CTA arrow */}
+				<div className="hidden md:flex md:flex-col md:items-center md:gap-3">
+					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
+						<i
+							className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-lg`}
+						/>
+					</div>
 				</div>
 			</div>
 		</a>
 	);
 }
 
-function PostCard({ post }: { post: BlogPost }) {
+// ── TWIE Horizontal Scroll ────────────────────────────────────────
+function TWIECard({ post }: { post: BlogPost }) {
+	const url = getPostUrl(post);
+	// Extract issue number from title (e.g. "This Week in Effect - 2026-02-27" or "#107")
+	const issueMatch = post.title.match(/#(\d+)/);
+	const issueNumber = issueMatch ? `#${issueMatch[1]}` : null;
 	return (
 		<a
-			href={getAssetPath(`/blog/${post.slug}`)}
-			className="group relative block rounded-lg border border-transparent px-5 py-5 transition-all duration-200 hover:border-zinc-200 hover:bg-zinc-50 dark:hover:border-zinc-800 dark:hover:bg-zinc-900/40"
+			href={url}
+			target="_blank"
+			rel="noopener noreferrer"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-xl bg-zinc-900/70 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/90 hover:shadow-xl hover:shadow-violet-500/5"
 		>
+			{/* Top accent line */}
+			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
+
 			<div>
-				<div className="min-w-0">
-					{/* Tag label */}
-					<span className="inline-flex rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800/80 dark:text-zinc-400">
-						{post.tags[0] ?? "Post"}
+				<div className="flex items-center justify-between">
+					<span className="inline-flex items-center gap-1.5 rounded-full bg-violet-500/10 px-2.5 py-0.5 text-xs font-medium tracking-wide text-violet-400 uppercase">
+						<span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+						TWIE
 					</span>
+					{issueNumber && (
+						<span className="font-mono text-sm font-semibold text-zinc-300">
+							{issueNumber}
+						</span>
+					)}
+				</div>
 
-					{/* Title */}
-					<h3 className="mt-1.5 text-lg leading-snug font-semibold text-zinc-900 transition-colors group-hover:text-black md:text-xl dark:text-zinc-100 dark:group-hover:text-white">
-						{post.title}
-					</h3>
+				<p className="mt-3 line-clamp-2 text-sm leading-relaxed text-zinc-400">
+					{post.excerpt}
+				</p>
+			</div>
 
-					{/* Excerpt */}
-					<p className="mt-1.5 line-clamp-1 text-sm text-zinc-600 dark:text-zinc-400">
-						{post.excerpt}
-					</p>
+			<div className="mt-4 flex items-center justify-between">
+				<time className="font-mono text-xs text-zinc-400 tabular-nums">
+					{post.date}
+				</time>
+				<div className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors group-hover:text-violet-400">
+					<i className="ri-arrow-right-up-line text-sm" />
+				</div>
+			</div>
+		</a>
+	);
+}
 
-					{/* Meta row: date, authors, reading time */}
-					<div className="mt-3 flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-						<time>{post.date}</time>
-						<span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-						<div className="flex items-center gap-2">
-							<div className="flex items-center -space-x-1.5">
-								{post.authors.slice(0, 3).map((author) => (
-									<img
-										key={author.name}
-										src={getAssetPath(author.avatar)}
-										alt={author.name}
-										className="h-5 w-5 rounded-full border border-white object-cover dark:border-zinc-900"
+function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const [canScrollLeft, setCanScrollLeft] = useState(false);
+	const [canScrollRight, setCanScrollRight] = useState(false);
+
+	const updateScrollState = useCallback(() => {
+		const el = scrollRef.current;
+		if (!el) return;
+		setCanScrollLeft(el.scrollLeft > 0);
+		setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+	}, []);
+
+	useEffect(() => {
+		updateScrollState();
+	}, [updateScrollState, posts.length]);
+
+	const scroll = useCallback((direction: "left" | "right") => {
+		const el = scrollRef.current;
+		if (!el) return;
+		const amount = 300;
+		el.scrollBy({
+			left: direction === "left" ? -amount : amount,
+			behavior: "smooth",
+		});
+	}, []);
+
+	if (posts.length === 0) return null;
+
+	return (
+		<div className="py-12">
+			{/* Section header */}
+			<div className="mb-6 flex items-center justify-between">
+				<div className="flex items-center gap-3">
+					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
+						<i className="ri-newspaper-line text-base text-violet-400" />
+					</div>
+					<div>
+						<h2 className="text-base font-semibold text-white">
+							This Week in Effect
+						</h2>
+						<p className="text-xs text-zinc-400">Weekly community digest</p>
+					</div>
+				</div>
+
+				<div className="flex items-center gap-3">
+					<button
+						type="button"
+						onClick={onViewAll}
+						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
+					>
+						View all <span aria-hidden="true">→</span>
+					</button>
+
+					{/* Scroll arrows */}
+					<div className="flex items-center gap-2">
+						<button
+							type="button"
+							onClick={() => scroll("left")}
+							disabled={!canScrollLeft}
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+						>
+							<i className="ri-arrow-left-s-line text-sm" />
+						</button>
+						<button
+							type="button"
+							onClick={() => scroll("right")}
+							disabled={!canScrollRight}
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+						>
+							<i className="ri-arrow-right-s-line text-sm" />
+						</button>
+					</div>
+				</div>
+			</div>
+
+			{/* Scrollable track */}
+			<div className="relative">
+				<div
+					ref={scrollRef}
+					onScroll={updateScrollState}
+					className="scrollbar-hide flex gap-3 overflow-x-auto pb-2"
+					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+				>
+					{posts.map((post) => (
+						<TWIECard key={post.slug} post={post} />
+					))}
+				</div>
+
+				{/* Right fade affordance */}
+				{canScrollRight && (
+					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
+				)}
+
+				{/* Left fade affordance */}
+				{canScrollLeft && (
+					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent" />
+				)}
+			</div>
+		</div>
+	);
+}
+
+// ── Releases Horizontal Scroll ───────────────────────────────────
+function ReleaseCard({ post }: { post: BlogPost }) {
+	const url = getPostUrl(post);
+	const isExternal = url.startsWith("http");
+	// Try to extract a version from the title (e.g. "Effect 3.12" or "v4 Beta")
+	const versionMatch = post.title.match(/(\d+\.\d+(?:\.\d+)?|v\d+[^\s]*)/i);
+	const version = versionMatch ? versionMatch[1] : null;
+	return (
+		<a
+			href={isExternal ? url : getAssetPath(url)}
+			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-xl bg-zinc-900/70 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/90 hover:shadow-xl hover:shadow-emerald-500/5"
+		>
+			{/* Top accent line */}
+			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+
+			<div>
+				<div className="flex items-center justify-between">
+					<span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium tracking-wide text-emerald-400 uppercase">
+						<span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+						Release
+					</span>
+					{version && (
+						<span className="font-mono text-sm font-semibold text-zinc-300">
+							{version}
+						</span>
+					)}
+				</div>
+
+				<h3 className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-zinc-100 transition-colors group-hover:text-white">
+					{post.title}
+				</h3>
+			</div>
+
+			<div className="mt-4 flex items-center justify-between">
+				<time className="font-mono text-xs text-zinc-400 tabular-nums">
+					{post.date}
+				</time>
+				<div className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors group-hover:text-emerald-400">
+					<i
+						className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-sm`}
+					/>
+				</div>
+			</div>
+		</a>
+	);
+}
+
+function ReleasesSection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const [canScrollLeft, setCanScrollLeft] = useState(false);
+	const [canScrollRight, setCanScrollRight] = useState(false);
+
+	const updateScrollState = useCallback(() => {
+		const el = scrollRef.current;
+		if (!el) return;
+		setCanScrollLeft(el.scrollLeft > 0);
+		setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+	}, []);
+
+	useEffect(() => {
+		updateScrollState();
+	}, [updateScrollState, posts.length]);
+
+	const scroll = useCallback((direction: "left" | "right") => {
+		const el = scrollRef.current;
+		if (!el) return;
+		const amount = 300;
+		el.scrollBy({
+			left: direction === "left" ? -amount : amount,
+			behavior: "smooth",
+		});
+	}, []);
+
+	if (posts.length === 0) return null;
+
+	return (
+		<div className="py-12">
+			{/* Section header */}
+			<div className="mb-6 flex items-center justify-between">
+				<div className="flex items-center gap-3">
+					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
+						<i className="ri-price-tag-3-line text-base text-emerald-400" />
+					</div>
+					<div>
+						<h2 className="text-base font-semibold text-white">Releases</h2>
+						<p className="text-xs text-zinc-400">
+							Latest versions and updates
+						</p>
+					</div>
+				</div>
+
+				<div className="flex items-center gap-3">
+					<button
+						type="button"
+						onClick={onViewAll}
+						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
+					>
+						View all <span aria-hidden="true">→</span>
+					</button>
+
+					{/* Scroll arrows */}
+					<div className="flex items-center gap-2">
+						<button
+							type="button"
+							onClick={() => scroll("left")}
+							disabled={!canScrollLeft}
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+						>
+							<i className="ri-arrow-left-s-line text-sm" />
+						</button>
+						<button
+							type="button"
+							onClick={() => scroll("right")}
+							disabled={!canScrollRight}
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+						>
+							<i className="ri-arrow-right-s-line text-sm" />
+						</button>
+					</div>
+				</div>
+			</div>
+
+			{/* Scrollable track */}
+			<div className="relative">
+				<div
+					ref={scrollRef}
+					onScroll={updateScrollState}
+					className="scrollbar-hide flex gap-3 overflow-x-auto pb-2"
+					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+				>
+					{posts.map((post) => (
+						<ReleaseCard key={post.slug} post={post} />
+					))}
+				</div>
+
+				{/* Right fade affordance */}
+				{canScrollRight && (
+					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
+				)}
+
+				{/* Left fade affordance */}
+				{canScrollLeft && (
+					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent" />
+				)}
+			</div>
+		</div>
+	);
+}
+
+// ── Post Card (grid card style) ──────────────────────────────────
+function PostCard({ post }: { post: BlogPost }) {
+	const url = getPostUrl(post);
+	const isExternal = url.startsWith("http");
+	const accentColor = getTagColor(post.tags[0] ?? "");
+	return (
+		<a
+			href={isExternal ? url : getAssetPath(url)}
+			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+			className="group relative flex flex-col overflow-hidden rounded-xl bg-zinc-900/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/90 hover:shadow-xl hover:shadow-black/25"
+		>
+			{/* Top accent */}
+			<div
+				className="h-px w-full"
+				style={{
+					background: `linear-gradient(to right, transparent, ${accentColor}40, transparent)`,
+				}}
+			/>
+
+			<div className="flex flex-1 flex-col p-6">
+				{/* Tags + date row */}
+				<div className="flex items-center justify-between gap-2">
+					<div className="flex flex-wrap items-center gap-1.5">
+						{post.tags.slice(0, 2).map((tag) => {
+							const color = getTagColor(tag);
+							return (
+								<span
+									key={tag}
+									className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium tracking-wide uppercase"
+									style={{
+										backgroundColor: `${color}15`,
+										color: color,
+									}}
+								>
+									<span
+										className="h-1.5 w-1.5 rounded-full"
+										style={{ backgroundColor: color }}
 									/>
-								))}
-							</div>
-							{post.authors.length === 1 && <span>{post.authors[0].name}</span>}
+									{tag}
+								</span>
+							);
+						})}
+						{post.tags.length > 2 && (
+							<span className="inline-flex items-center rounded-full bg-zinc-800/60 px-2 py-0.5 text-xs font-medium text-zinc-400">
+								+{post.tags.length - 2}
+							</span>
+						)}
+					</div>
+					<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
+						{post.date}
+					</time>
+				</div>
+
+				{/* Title */}
+				<h3 className="mt-3 text-sm font-semibold leading-snug text-zinc-100 transition-colors group-hover:text-white">
+					{post.title}
+				</h3>
+
+				{/* Excerpt */}
+				<p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-zinc-400">
+					{post.excerpt}
+				</p>
+
+				{/* Meta row */}
+				<div className="mt-4 flex items-center justify-between border-t border-zinc-800/40 pt-4">
+					<div className="flex items-center gap-2 text-xs text-zinc-400">
+						<div className="flex items-center -space-x-1.5">
+							{post.authors.slice(0, 3).map((author) => (
+								<img
+									key={author.name}
+									src={getAssetPath(author.avatar)}
+									alt={author.name}
+									onError={handleAvatarError}
+									className="h-5 w-5 rounded-full border-2 border-zinc-900 object-cover"
+								/>
+							))}
 						</div>
-						<span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+						{post.authors.length === 1 && (
+							<span className="text-zinc-400">{post.authors[0].name}</span>
+						)}
+					</div>
+					<div className="flex items-center gap-2 text-xs text-zinc-400">
 						<span>{post.readingTime}</span>
+						<div className="flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 opacity-0 transition-all group-hover:text-white group-hover:opacity-100">
+							<i
+								className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-xs`}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -131,13 +553,13 @@ function SidebarSection({
 			<button
 				type="button"
 				onClick={() => setOpen(!open)}
-				className="flex w-full items-center justify-between py-2.5 text-left"
+				className="flex w-full items-center justify-between py-3 text-left"
 			>
-				<span className="text-xs font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+				<span className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
 					{title}
 				</span>
 				<i
-					className={`ri-arrow-down-s-line text-base text-zinc-400 transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
+					className={`ri-arrow-down-s-line text-sm text-zinc-400 transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
 				/>
 			</button>
 			<div
@@ -148,7 +570,7 @@ function SidebarSection({
 				}}
 			>
 				<div className="overflow-hidden">
-					<div className="pb-5">{children}</div>
+					<div className="pb-4">{children}</div>
 				</div>
 			</div>
 		</div>
@@ -170,8 +592,76 @@ export function BlogPage() {
 		});
 	}, []);
 
+	// Separate TWIE posts from everything else
+	const twiePosts = useMemo(
+		() => BLOG_POSTS.filter((p) => p.tags.includes("This Week In Effect")),
+		[],
+	);
+
+	// Separate Releases posts
+	const releasesPosts = useMemo(
+		() => BLOG_POSTS.filter((p) => p.tags.includes("Releases")),
+		[],
+	);
+
+	// Posts that are neither TWIE nor Releases (main grid)
+	const nonTwiePosts = useMemo(
+		() =>
+			BLOG_POSTS.filter(
+				(p) =>
+					!p.tags.includes("This Week In Effect") &&
+					!p.tags.includes("Releases"),
+			),
+		[],
+	);
+
+	// Filter tags list — keep all categories in sidebar
+	const sidebarTags = useMemo(() => BLOG_TAGS, []);
+
 	const filteredPosts = useMemo(() => {
-		let posts = BLOG_POSTS;
+		// When the user explicitly selects TWIE tag, show those in the grid
+		if (activeTag === "This Week In Effect") {
+			let posts = twiePosts;
+			if (activeAuthor) {
+				posts = posts.filter((p) =>
+					p.authors.some((a) => a.name === activeAuthor),
+				);
+			}
+			if (searchQuery.trim()) {
+				const q = searchQuery.toLowerCase();
+				posts = posts.filter(
+					(p) =>
+						p.title.toLowerCase().includes(q) ||
+						p.excerpt.toLowerCase().includes(q) ||
+						p.tags.some((t) => t.toLowerCase().includes(q)) ||
+						p.authors.some((a) => a.name.toLowerCase().includes(q)),
+				);
+			}
+			return posts;
+		}
+
+		// When the user explicitly selects Releases tag, show those in the grid
+		if (activeTag === "Releases") {
+			let posts = releasesPosts;
+			if (activeAuthor) {
+				posts = posts.filter((p) =>
+					p.authors.some((a) => a.name === activeAuthor),
+				);
+			}
+			if (searchQuery.trim()) {
+				const q = searchQuery.toLowerCase();
+				posts = posts.filter(
+					(p) =>
+						p.title.toLowerCase().includes(q) ||
+						p.excerpt.toLowerCase().includes(q) ||
+						p.tags.some((t) => t.toLowerCase().includes(q)) ||
+						p.authors.some((a) => a.name.toLowerCase().includes(q)),
+				);
+			}
+			return posts;
+		}
+
+		let posts = nonTwiePosts;
 
 		if (activeTag !== "All") {
 			posts = posts.filter((p) => p.tags.includes(activeTag));
@@ -195,12 +685,18 @@ export function BlogPage() {
 		}
 
 		return posts;
-	}, [activeTag, activeAuthor, searchQuery]);
+	}, [activeTag, activeAuthor, searchQuery, twiePosts, releasesPosts, nonTwiePosts]);
 
 	const hasActiveFilters =
 		activeTag !== "All" || activeAuthor !== null || searchQuery.trim() !== "";
 
-	// Separate featured post from the rest
+	// Show TWIE horizontal rail only when no filters are active (or at least not filtering to a non-TWIE tag)
+	const showTWIERail = !hasActiveFilters || activeTag === "All";
+
+	// Show Releases horizontal rail only when no filters are active
+	const showReleasesRail = !hasActiveFilters || activeTag === "All";
+
+	// Separate featured post from the rest (search all posts — featured may be a Release)
 	const featuredPost = useMemo(() => {
 		return BLOG_POSTS.find((p) => p.featured) ?? null;
 	}, []);
@@ -227,18 +723,22 @@ export function BlogPage() {
 		[displayPosts, safePage],
 	);
 
-	// Compute tag counts
+	// Compute tag counts (for sidebar, use all posts for accurate counts)
 	const tagCounts = useMemo(() => {
 		const counts: Record<string, number> = {};
 		for (const tag of BLOG_TAGS) {
 			if (tag === "All") {
-				counts[tag] = BLOG_POSTS.length;
+				counts[tag] = nonTwiePosts.length;
+			} else if (tag === "This Week In Effect") {
+				counts[tag] = twiePosts.length;
+			} else if (tag === "Releases") {
+				counts[tag] = releasesPosts.length;
 			} else {
 				counts[tag] = BLOG_POSTS.filter((p) => p.tags.includes(tag)).length;
 			}
 		}
 		return counts;
-	}, []);
+	}, [nonTwiePosts, twiePosts, releasesPosts]);
 
 	// Compute author counts
 	const authorEntries = useMemo(() => {
@@ -273,10 +773,10 @@ export function BlogPage() {
 	);
 
 	return (
-		<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
+		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
 			<a
 				href="#main-content"
-				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-100 px-6 py-4 font-semibold text-zinc-900 no-underline focus:top-0 focus:left-0 dark:bg-zinc-800 dark:text-white"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -284,57 +784,135 @@ export function BlogPage() {
 			<Navigation />
 			<GridOverlay />
 
-			{/* Vertical border lines container */}
+			{/* Dithered background overlay - subtle texture across entire page */}
+			<div
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
+					backgroundSize: "4px 4px",
+				}}
+			/>
+
+			{/* Vertical border lines */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					{/* Left vertical line */}
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
-					{/* Right vertical line */}
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
 				</div>
 			</div>
 
-			<main id="main-content" className="relative w-full pt-16">
-				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					{/* Page header */}
-					<div className="pt-8 pb-8">
-						<h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-							Blog
-						</h1>
-						<p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-							Product announcements, engineering deep-dives, and community
-							highlights.
-						</p>
-					</div>
+			{/* ── Header zone ────────────────────────────── */}
+			<div className="relative overflow-hidden">
+				{/* Grid background */}
+				<div
+					className="pointer-events-none absolute inset-0"
+					style={{
+						backgroundImage: `
+							linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+							linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+						`,
+						backgroundSize: "196.6px 194px",
+						backgroundPosition: "calc(50% + 97px) 0",
+					}}
+				/>
 
+				{/* Fade grid at edges */}
+				<div
+					className="pointer-events-none absolute inset-0"
+					style={{
+						background:
+							"linear-gradient(to bottom, #09090b 0%, transparent 30%, transparent 50%, #09090b 100%)",
+					}}
+				/>
+
+				{/* Ambient glow */}
+				<div
+					className="pointer-events-none absolute inset-x-0 top-0 h-[500px]"
+					style={{
+						background: `
+							radial-gradient(ellipse 50% 80% at 50% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+							radial-gradient(ellipse 30% 50% at 70% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
+						`,
+					}}
+				/>
+
+				{/* Noise texture */}
+				<div
+					className="pointer-events-none absolute inset-x-0 top-0 h-[500px] opacity-[0.12] mix-blend-overlay"
+					style={{
+						backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+						backgroundRepeat: "repeat",
+					}}
+				/>
+
+				<main id="main-content" className="relative w-full pt-16">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						{/* Page header */}
+						<div className="pt-16 pb-16 md:pt-24 md:pb-24">
+							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								// Blog
+							</p>
+							<h1
+								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white md:text-4xl"
+							>
+								Stay up to date with the latest{" "}
+								<br className="hidden md:block" />
+								from the Effect ecosystem
+							</h1>
+						</div>
+					</div>
+				</main>
+			</div>
+
+			{/* Section divider */}
+			<div className="h-px w-full bg-zinc-800" />
+
+			{/* ── Content zone ───────────────────────────── */}
+			<div className="relative">
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					{/* Featured post */}
 					{featuredPost && !hasActiveFilters && (
-						<div className="mb-12">
+						<div className="pt-12 pb-4">
 							<FeaturedPost post={featuredPost} />
 						</div>
+					)}
+
+					{/* TWIE horizontal scroll rail */}
+					{showTWIERail && <TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />}
+
+					{/* Releases horizontal scroll rail */}
+					{showReleasesRail && (
+						<ReleasesSection
+							posts={
+								featuredPost && !hasActiveFilters
+									? releasesPosts.filter((p) => p.slug !== featuredPost.slug)
+									: releasesPosts
+							}
+							onViewAll={() => handleTagChange("Releases")}
+						/>
 					)}
 
 					{/* Two-column layout: content + sidebar */}
 					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_260px]">
 						{/* Main content */}
-						<div className="min-w-0 pb-20 lg:border-r lg:border-zinc-200/60 lg:pr-10 dark:lg:border-zinc-800/60">
+						<div className="min-w-0 pb-24 lg:border-r lg:border-zinc-800/60 lg:pr-12">
 							{/* Search bar */}
-							<div ref={postListRef} className="relative mb-8">
-								<i className="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-base text-zinc-400" />
+							<div ref={postListRef} className="relative mt-12 mb-8">
+								<i className="ri-search-line absolute top-1/2 left-3.5 -translate-y-1/2 text-sm text-zinc-400" />
 								<input
 									type="text"
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
 									placeholder="Search posts..."
-									className="w-full rounded-lg border border-zinc-200 bg-zinc-50 py-3 pr-4 pl-11 text-base text-zinc-900 placeholder-zinc-400 transition-all duration-200 outline-none focus:border-zinc-400 focus:bg-white focus:ring-1 focus:ring-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-white dark:focus:border-zinc-600 dark:focus:bg-zinc-900/70 dark:focus:ring-zinc-700"
+									className="w-full rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-4 pl-10 text-sm text-white placeholder-zinc-400 transition-all duration-200 outline-none focus:border-zinc-700 focus:bg-zinc-900/80 focus:ring-1 focus:ring-zinc-700"
 								/>
 								{searchQuery && (
 									<button
 										type="button"
 										onClick={() => setSearchQuery("")}
-										className="absolute top-1/2 right-3 -translate-y-1/2 rounded-md p-1 text-zinc-400 transition-colors hover:text-zinc-700 dark:hover:text-zinc-200"
+										className="absolute top-1/2 right-3 -translate-y-1/2 rounded p-0.5 text-zinc-400 transition-colors hover:text-zinc-200"
 									>
-										<i className="ri-close-line text-lg" />
+										<i className="ri-close-line text-base" />
 									</button>
 								)}
 							</div>
@@ -344,7 +922,7 @@ export function BlogPage() {
 								<select
 									value={activeTag}
 									onChange={(e) => handleTagChange(e.target.value as BlogTag)}
-									className="w-full appearance-none rounded-lg border border-zinc-200 bg-zinc-50 py-3 pr-10 pl-4 text-base text-zinc-900 transition-all duration-200 outline-none focus:border-zinc-400 focus:ring-1 focus:ring-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-white dark:focus:border-zinc-600 dark:focus:ring-zinc-700"
+									className="w-full appearance-none rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-10 pl-4 text-sm text-white transition-all duration-200 outline-none focus:border-zinc-700 focus:ring-1 focus:ring-zinc-700"
 								>
 									{BLOG_TAGS.map((tag) => (
 										<option key={tag} value={tag}>
@@ -352,20 +930,20 @@ export function BlogPage() {
 										</option>
 									))}
 								</select>
-								<i className="ri-arrow-down-s-line pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-lg text-zinc-400" />
+								<i className="ri-arrow-down-s-line pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-base text-zinc-400" />
 							</div>
 
 							{/* Active filter indicator */}
 							{hasActiveFilters && (
-								<div className="mb-6 flex items-center gap-3 rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-3 dark:border-zinc-800 dark:bg-zinc-900/40">
-									<span className="text-sm text-zinc-600 dark:text-zinc-400">
+								<div className="mb-8 flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-2.5">
+									<span className="text-sm text-zinc-400">
 										{filteredPosts.length} result
 										{filteredPosts.length !== 1 ? "s" : ""}
 									</span>
 									<button
 										type="button"
 										onClick={clearFilters}
-										className="ml-auto flex items-center gap-1.5 rounded-md bg-zinc-100 px-3 py-1.5 text-sm text-zinc-700 transition-colors hover:bg-zinc-200 hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-white"
+										className="ml-auto flex items-center gap-1 rounded-md px-2.5 py-1 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
 									>
 										<i className="ri-close-line text-sm" />
 										Clear
@@ -373,10 +951,13 @@ export function BlogPage() {
 								</div>
 							)}
 
-							{/* Post list */}
+							{/* Post grid */}
 							{paginatedPosts.length > 0 ? (
 								<>
-									<div className="divide-y divide-zinc-100 dark:divide-zinc-800/40">
+									<div
+										key={`${activeTag}-${activeAuthor}-${searchQuery}-${safePage}`}
+										className="blog-grid-enter grid grid-cols-1 gap-4 md:grid-cols-2"
+									>
 										{paginatedPosts.map((post) => (
 											<PostCard key={post.slug} post={post} />
 										))}
@@ -384,108 +965,165 @@ export function BlogPage() {
 
 									{/* Pagination */}
 									{totalPages > 1 && (
-										<div className="mt-10 flex items-center justify-center gap-1">
-											<button
-												type="button"
-												disabled={safePage <= 1}
-												onClick={() => goToPage((p) => p - 1)}
-												className="rounded-md px-3 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-white"
-											>
-												<i className="ri-arrow-left-s-line text-base" />
-											</button>
+										<>
+											<div className="mt-12 h-px bg-zinc-800" />
+											<div className="mt-8 flex items-center justify-center gap-1">
+												<button
+													type="button"
+													disabled={safePage <= 1}
+													onClick={() => goToPage((p) => p - 1)}
+													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+												>
+													<i className="ri-arrow-left-s-line text-sm" />
+												</button>
 
-											{(() => {
-												const pages: (number | "ellipsis")[] = [];
-												if (totalPages <= 7) {
-													for (let i = 1; i <= totalPages; i++) pages.push(i);
-												} else {
-													pages.push(1);
-													if (safePage > 3) pages.push("ellipsis");
-													const start = Math.max(2, safePage - 1);
-													const end = Math.min(totalPages - 1, safePage + 1);
-													for (let i = start; i <= end; i++) pages.push(i);
-													if (safePage < totalPages - 2) pages.push("ellipsis");
-													pages.push(totalPages);
-												}
-												return pages.map((page, idx) =>
-													page === "ellipsis" ? (
-														<span
-															key={`ellipsis-${idx}`}
-															className="px-2 text-sm text-zinc-400 dark:text-zinc-600"
-														>
-															...
-														</span>
-													) : (
-														<button
-															key={page}
-															type="button"
-															onClick={() => goToPage(page)}
-															className={`min-w-[2.25rem] rounded-md px-2 py-2 text-sm font-medium transition-colors ${
-																page === safePage
-																	? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																	: "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-white"
-															}`}
-														>
-															{page}
-														</button>
-													),
-												);
-											})()}
+												{(() => {
+													const pages: (number | "ellipsis")[] = [];
+													if (totalPages <= 7) {
+														for (let i = 1; i <= totalPages; i++) pages.push(i);
+													} else {
+														pages.push(1);
+														if (safePage > 3) pages.push("ellipsis");
+														const start = Math.max(2, safePage - 1);
+														const end = Math.min(totalPages - 1, safePage + 1);
+														for (let i = start; i <= end; i++) pages.push(i);
+														if (safePage < totalPages - 2)
+															pages.push("ellipsis");
+														pages.push(totalPages);
+													}
+													return pages.map((page, idx) =>
+														page === "ellipsis" ? (
+															<span
+																key={`ellipsis-${idx}`}
+																className="px-1.5 text-xs text-zinc-400"
+															>
+																...
+															</span>
+														) : (
+															<button
+																key={page}
+																type="button"
+																onClick={() => goToPage(page)}
+																className={`min-w-[2rem] rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors ${
+																	page === safePage
+																		? "bg-zinc-800 text-white ring-1 ring-zinc-700"
+																		: "text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200"
+																}`}
+															>
+																{page}
+															</button>
+														),
+													);
+												})()}
 
-											<button
-												type="button"
-												disabled={safePage >= totalPages}
-												onClick={() => goToPage((p) => p + 1)}
-												className="rounded-md px-3 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-white"
-											>
-												<i className="ri-arrow-right-s-line text-base" />
-											</button>
-										</div>
+												<button
+													type="button"
+													disabled={safePage >= totalPages}
+													onClick={() => goToPage((p) => p + 1)}
+													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+												>
+													<i className="ri-arrow-right-s-line text-sm" />
+												</button>
+											</div>
+										</>
 									)}
 								</>
 							) : (
 								<div className="flex flex-col items-center justify-center py-24">
-									<div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900">
-										<i className="ri-search-line text-2xl text-zinc-400" />
+									<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-900/60">
+										<i className="ri-file-search-line text-2xl text-zinc-400" />
 									</div>
-									<p className="mt-5 text-base text-zinc-600 dark:text-zinc-400">
-										No posts match your search.
+									<p className="mt-6 text-base font-medium text-zinc-300">
+										No posts found
 									</p>
+									<p className="mt-2 max-w-sm text-center text-sm leading-relaxed text-zinc-400">
+										{searchQuery.trim()
+											? `Nothing matched "${searchQuery}". Try a different term or browse by category.`
+											: "No posts match the current filters."}
+									</p>
+
+									{/* Suggested tags */}
+									<div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+										{(["Releases", "Effect", "TypeScript"] as const).map(
+											(tag) => (
+												<button
+													key={tag}
+													type="button"
+													onClick={() => {
+														handleTagChange(tag as BlogTag);
+														setSearchQuery("");
+													}}
+													className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/60 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+												>
+													<span
+														className="h-1.5 w-1.5 rounded-full"
+														style={{
+															backgroundColor: getTagColor(tag),
+														}}
+													/>
+													{tag}
+												</button>
+											),
+										)}
+									</div>
+
 									<button
 										type="button"
 										onClick={clearFilters}
-										className="mt-4 rounded-md bg-zinc-100 px-4 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-200 hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-white"
+										className="mt-6 rounded-lg px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-900/60 hover:text-white"
 									>
-										Clear filters
+										Clear all filters
 									</button>
 								</div>
 							)}
 						</div>
 
 						{/* Sidebar */}
-						<aside className="hidden pt-1 pl-10 lg:block">
+						<aside className="hidden pt-12 pl-12 lg:block">
 							<div className="sticky top-[5.5rem]">
 								{/* Tags */}
 								<SidebarSection title="Categories">
-									<ul className="space-y-1">
-										{BLOG_TAGS.map((tag) => (
-											<li key={tag}>
-												<button
-													type="button"
-													onClick={() => handleTagChange(tag)}
-													className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
-														activeTag === tag
-															? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-white"
-															: "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white"
-													}`}
-												>
-													<span>{tag}</span>
-													<span className="text-xs text-zinc-400">
-														{tagCounts[tag]}
-													</span>
-												</button>
-											</li>
-										))}
+									<ul className="space-y-0.5">
+										{sidebarTags.map((tag) => {
+											const isActive = activeTag === tag;
+											const color =
+												tag === "All" ? "#71717a" : getTagColor(tag);
+											return (
+												<li key={tag}>
+													<button
+														type="button"
+														onClick={() => handleTagChange(tag)}
+														className={`relative flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
+															isActive
+																? "bg-zinc-800/80 font-medium text-white"
+																: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
+														}`}
+													>
+														{/* Active left bar */}
+														{isActive && (
+															<div
+																className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full"
+																style={{ backgroundColor: color }}
+															/>
+														)}
+														{/* Color dot */}
+														{tag !== "All" && (
+															<span
+																className="h-2 w-2 shrink-0 rounded-full"
+																style={{
+																	backgroundColor: color,
+																	opacity: isActive ? 1 : 0.4,
+																}}
+															/>
+														)}
+														<span className="flex-1">{tag}</span>
+														<span className="text-xs text-zinc-400 tabular-nums">
+															{tagCounts[tag]}
+														</span>
+													</button>
+												</li>
+											);
+										})}
 									</ul>
 								</SidebarSection>
 
@@ -496,26 +1134,34 @@ export function BlogPage() {
 											const author = Object.values(AUTHORS).find(
 												(a) => a.name === name,
 											);
+											const isActive = activeAuthor === name;
 											return (
 												<li key={name}>
 													<button
 														type="button"
 														onClick={() => handleAuthorChange(name)}
-														className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
-															activeAuthor === name
-																? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																: "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white"
+														className={`group/author relative flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left transition-all duration-150 ${
+															isActive
+																? "bg-zinc-800/80 text-white"
+																: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
 														}`}
 													>
+														{/* Active left bar */}
+														{isActive && (
+															<div className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full bg-white" />
+														)}
 														{author && (
 															<img
 																src={getAssetPath(author.avatar)}
 																alt={name}
-																className="h-5 w-5 rounded-full object-cover"
+																onError={handleAvatarError}
+																className={`h-6 w-6 rounded-full object-cover ring-1 ring-inset ${isActive ? "ring-zinc-700" : "ring-zinc-800"}`}
 															/>
 														)}
-														<span className="min-w-0 truncate">{name}</span>
-														<span className="ml-auto shrink-0 text-xs text-zinc-400">
+														<span className="min-w-0 flex-1 truncate text-sm font-medium">
+															{name}
+														</span>
+														<span className="shrink-0 text-xs text-zinc-400 tabular-nums">
 															{count}
 														</span>
 													</button>
@@ -526,12 +1172,12 @@ export function BlogPage() {
 								</SidebarSection>
 
 								{/* RSS */}
-								<div className="mt-3 border-t border-zinc-200/60 pt-5 dark:border-zinc-800/60">
+								<div className="mt-4 border-t border-zinc-800/60 pt-4">
 									<a
 										href="https://effect.website/blog/rss.xml"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white"
 									>
 										<i className="ri-rss-line text-base" />
 										RSS Feed
@@ -541,7 +1187,7 @@ export function BlogPage() {
 						</aside>
 					</div>
 				</div>
-			</main>
+			</div>
 
 			<Footer />
 		</div>
