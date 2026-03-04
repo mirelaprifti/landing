@@ -122,6 +122,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Releases", "Effect"],
 		authors: [AUTHORS.maxwell],
 		featured: true,
+		coverImage: "/assets/images/featured-post.png",
 		hasLocalContent: true,
 	},
 	{

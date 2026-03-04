@@ -57,6 +57,10 @@
 	--zinc-950: #09090b;
 }
 
+:root {
+	--nav-height: 5.5rem;
+}
+
 body {
 	font-family: Inter, sans-serif;
 }

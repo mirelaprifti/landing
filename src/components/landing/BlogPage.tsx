@@ -14,16 +14,39 @@ import { Navigation } from "./Navigation";
 
 const POSTS_PER_PAGE = 12;
 
-// Fallback for broken avatar images — renders initials-style neutral circle
-function handleAvatarError(e: React.SyntheticEvent<HTMLImageElement>) {
-	const img = e.currentTarget;
-	img.style.display = "none";
-	const fallback = document.createElement("div");
-	fallback.className = img.className;
-	fallback.style.cssText =
-		"display:flex;align-items:center;justify-content:center;background:#27272a;color:#a1a1aa;font-size:0.6em;font-weight:600;";
-	fallback.textContent = (img.alt || "?").charAt(0).toUpperCase();
-	img.parentElement?.insertBefore(fallback, img);
+// React-idiomatic avatar with fallback to initials on load error
+function AvatarWithFallback({
+	src,
+	alt,
+	className,
+}: { src: string; alt: string; className: string }) {
+	const [failed, setFailed] = useState(false);
+	if (failed) {
+		return (
+			<div
+				className={className}
+				style={{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					background: "#27272a",
+					color: "#a1a1aa",
+					fontSize: "0.6em",
+					fontWeight: 600,
+				}}
+			>
+				{(alt || "?").charAt(0).toUpperCase()}
+			</div>
+		);
+	}
+	return (
+		<img
+			src={src}
+			alt={alt}
+			onError={() => setFailed(true)}
+			className={className}
+		/>
+	);
 }
 
 // Tag color mapping -- distinct hues per category for visual scanning
@@ -77,7 +100,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 			{/* Top accent line */}
 			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
-			<div className="relative grid grid-cols-1 gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-16 md:p-12">
+			<div className="relative grid grid-cols-1 gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-12 md:p-12">
 				<div className="min-w-0">
 					{/* Label + tags */}
 					<div className="mb-6 flex flex-wrap items-center gap-3">
@@ -95,7 +118,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						))}
 					</div>
 
-					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl">
 						{post.title}
 					</h2>
 
@@ -110,10 +133,9 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 								key={author.name}
 								className="flex items-center gap-2"
 							>
-								<img
+								<AvatarWithFallback
 									src={getAssetPath(author.avatar)}
 									alt={author.name}
-									onError={handleAvatarError}
 									className="h-8 w-8 rounded-full border-2 border-zinc-800 object-cover"
 								/>
 								<div className="flex flex-col">
@@ -132,16 +154,172 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 					</div>
 				</div>
 
-				{/* Right side: CTA arrow */}
+				{/* Right side: cover image or CTA arrow */}
 				<div className="hidden md:flex md:flex-col md:items-center md:gap-3">
-					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
-						<i
-							className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-lg`}
+					{post.coverImage ? (
+						<div className="relative aspect-video w-[320px] overflow-hidden rounded-xl border border-zinc-800/50 lg:w-[400px]">
+							<img
+								src={getAssetPath(post.coverImage)}
+								alt={post.title}
+								className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+							/>
+							{/* Bottom fade to blend with card */}
+							<div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-zinc-900/60 to-transparent" />
+						</div>
+					) : (
+						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
+							<i
+								className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-lg`}
+							/>
+						</div>
+					)}
+				</div>
+
+				{/* Mobile: cover image below text */}
+				{post.coverImage && (
+					<div className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800/50 md:hidden">
+						<img
+							src={getAssetPath(post.coverImage)}
+							alt={post.title}
+							className="absolute inset-0 h-full w-full object-cover"
 						/>
+					</div>
+				)}
+			</div>
+		</a>
+	);
+}
+
+// ── Shared Horizontal Scroll Rail ─────────────────────────────────
+function HorizontalScrollRail({
+	icon,
+	iconBg,
+	title,
+	subtitle,
+	accentColor,
+	ariaLabel,
+	onViewAll,
+	children,
+	itemCount,
+}: {
+	icon: string;
+	iconBg: string;
+	title: string;
+	subtitle: string;
+	accentColor: string;
+	ariaLabel: string;
+	onViewAll: () => void;
+	children: React.ReactNode;
+	itemCount: number;
+}) {
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const [canScrollLeft, setCanScrollLeft] = useState(false);
+	const [canScrollRight, setCanScrollRight] = useState(false);
+
+	const updateScrollState = useCallback(() => {
+		const el = scrollRef.current;
+		if (!el) return;
+		setCanScrollLeft(el.scrollLeft > 0);
+		setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+	}, []);
+
+	useEffect(() => {
+		// Re-check scroll bounds when the number of items changes
+		void itemCount;
+		updateScrollState();
+	}, [updateScrollState, itemCount]);
+
+	const scroll = useCallback((direction: "left" | "right") => {
+		const el = scrollRef.current;
+		if (!el) return;
+		const amount = 300;
+		el.scrollBy({
+			left: direction === "left" ? -amount : amount,
+			behavior: "smooth",
+		});
+	}, []);
+
+	if (itemCount === 0) return null;
+
+	return (
+		<section aria-label={ariaLabel} className="py-12">
+			{/* Section header */}
+			<div className="mb-6 flex items-center justify-between">
+				<div className="flex items-center gap-3">
+					<div className={`flex h-8 w-8 items-center justify-center rounded-lg ${iconBg}`}>
+						<i className={`${icon} text-base ${accentColor}`} />
+					</div>
+					<div>
+						<h2 className="text-base font-semibold text-white">
+							{title}
+						</h2>
+						<p className="text-xs text-zinc-400">{subtitle}</p>
+					</div>
+				</div>
+
+				<div className="flex items-center gap-3">
+					<button
+						type="button"
+						onClick={onViewAll}
+						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
+					>
+						View all <span aria-hidden="true">→</span>
+					</button>
+
+					{/* Scroll arrows */}
+					<div className="hidden items-center gap-2 sm:flex">
+						<button
+							type="button"
+							onClick={() => scroll("left")}
+							disabled={!canScrollLeft}
+							aria-label="Scroll left"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+						>
+							<i className="ri-arrow-left-s-line text-sm" />
+						</button>
+						<button
+							type="button"
+							onClick={() => scroll("right")}
+							disabled={!canScrollRight}
+							aria-label="Scroll right"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+						>
+							<i className="ri-arrow-right-s-line text-sm" />
+						</button>
 					</div>
 				</div>
 			</div>
-		</a>
+
+			{/* Scrollable track */}
+			<div className="relative">
+				<div
+					ref={scrollRef}
+					onScroll={updateScrollState}
+					className="scrollbar-hide flex gap-3 overflow-x-auto py-1 pb-2"
+					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+				>
+					{children}
+				</div>
+
+				{/* Right fade affordance */}
+				{canScrollRight && (
+					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
+				)}
+
+				{/* Left fade affordance */}
+				{canScrollLeft && (
+					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent" />
+				)}
+
+				{/* Mobile swipe hint */}
+				{canScrollRight && (
+					<div className="pointer-events-none absolute right-2 bottom-4 flex items-center gap-1 text-xs text-zinc-500 sm:hidden">
+						<span>Swipe</span>
+						<i className="ri-arrow-right-line text-xs" />
+					</div>
+				)}
+			</div>
+		</section>
 	);
 }
 
@@ -192,104 +370,21 @@ function TWIECard({ post }: { post: BlogPost }) {
 }
 
 function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
-	const scrollRef = useRef<HTMLDivElement>(null);
-	const [canScrollLeft, setCanScrollLeft] = useState(false);
-	const [canScrollRight, setCanScrollRight] = useState(false);
-
-	const updateScrollState = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-		setCanScrollLeft(el.scrollLeft > 0);
-		setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
-	}, []);
-
-	useEffect(() => {
-		updateScrollState();
-	}, [updateScrollState, posts.length]);
-
-	const scroll = useCallback((direction: "left" | "right") => {
-		const el = scrollRef.current;
-		if (!el) return;
-		const amount = 300;
-		el.scrollBy({
-			left: direction === "left" ? -amount : amount,
-			behavior: "smooth",
-		});
-	}, []);
-
-	if (posts.length === 0) return null;
-
 	return (
-		<div className="py-12">
-			{/* Section header */}
-			<div className="mb-6 flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
-						<i className="ri-newspaper-line text-base text-violet-400" />
-					</div>
-					<div>
-						<h2 className="text-base font-semibold text-white">
-							This Week in Effect
-						</h2>
-						<p className="text-xs text-zinc-400">Weekly community digest</p>
-					</div>
-				</div>
-
-				<div className="flex items-center gap-3">
-					<button
-						type="button"
-						onClick={onViewAll}
-						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
-					>
-						View all <span aria-hidden="true">→</span>
-					</button>
-
-					{/* Scroll arrows */}
-					<div className="flex items-center gap-2">
-						<button
-							type="button"
-							onClick={() => scroll("left")}
-							disabled={!canScrollLeft}
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-						>
-							<i className="ri-arrow-left-s-line text-sm" />
-						</button>
-						<button
-							type="button"
-							onClick={() => scroll("right")}
-							disabled={!canScrollRight}
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-						>
-							<i className="ri-arrow-right-s-line text-sm" />
-						</button>
-					</div>
-				</div>
-			</div>
-
-			{/* Scrollable track */}
-			<div className="relative">
-				<div
-					ref={scrollRef}
-					onScroll={updateScrollState}
-					className="scrollbar-hide flex gap-3 overflow-x-auto pb-2"
-					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-				>
-					{posts.map((post) => (
-						<TWIECard key={post.slug} post={post} />
-					))}
-				</div>
-
-				{/* Right fade affordance */}
-				{canScrollRight && (
-					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
-				)}
-
-				{/* Left fade affordance */}
-				{canScrollLeft && (
-					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent" />
-				)}
-			</div>
-		</div>
+		<HorizontalScrollRail
+			icon="ri-newspaper-line"
+			iconBg="bg-violet-500/10"
+			title="This Week in Effect"
+			subtitle="Weekly community digest"
+			accentColor="text-violet-400"
+			ariaLabel="This Week in Effect posts"
+			onViewAll={onViewAll}
+			itemCount={posts.length}
+		>
+			{posts.map((post) => (
+				<TWIECard key={post.slug} post={post} />
+			))}
+		</HorizontalScrollRail>
 	);
 }
 
@@ -342,104 +437,21 @@ function ReleaseCard({ post }: { post: BlogPost }) {
 }
 
 function ReleasesSection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
-	const scrollRef = useRef<HTMLDivElement>(null);
-	const [canScrollLeft, setCanScrollLeft] = useState(false);
-	const [canScrollRight, setCanScrollRight] = useState(false);
-
-	const updateScrollState = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-		setCanScrollLeft(el.scrollLeft > 0);
-		setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
-	}, []);
-
-	useEffect(() => {
-		updateScrollState();
-	}, [updateScrollState, posts.length]);
-
-	const scroll = useCallback((direction: "left" | "right") => {
-		const el = scrollRef.current;
-		if (!el) return;
-		const amount = 300;
-		el.scrollBy({
-			left: direction === "left" ? -amount : amount,
-			behavior: "smooth",
-		});
-	}, []);
-
-	if (posts.length === 0) return null;
-
 	return (
-		<div className="py-12">
-			{/* Section header */}
-			<div className="mb-6 flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
-						<i className="ri-price-tag-3-line text-base text-emerald-400" />
-					</div>
-					<div>
-						<h2 className="text-base font-semibold text-white">Releases</h2>
-						<p className="text-xs text-zinc-400">
-							Latest versions and updates
-						</p>
-					</div>
-				</div>
-
-				<div className="flex items-center gap-3">
-					<button
-						type="button"
-						onClick={onViewAll}
-						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
-					>
-						View all <span aria-hidden="true">→</span>
-					</button>
-
-					{/* Scroll arrows */}
-					<div className="flex items-center gap-2">
-						<button
-							type="button"
-							onClick={() => scroll("left")}
-							disabled={!canScrollLeft}
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-						>
-							<i className="ri-arrow-left-s-line text-sm" />
-						</button>
-						<button
-							type="button"
-							onClick={() => scroll("right")}
-							disabled={!canScrollRight}
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-						>
-							<i className="ri-arrow-right-s-line text-sm" />
-						</button>
-					</div>
-				</div>
-			</div>
-
-			{/* Scrollable track */}
-			<div className="relative">
-				<div
-					ref={scrollRef}
-					onScroll={updateScrollState}
-					className="scrollbar-hide flex gap-3 overflow-x-auto pb-2"
-					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-				>
-					{posts.map((post) => (
-						<ReleaseCard key={post.slug} post={post} />
-					))}
-				</div>
-
-				{/* Right fade affordance */}
-				{canScrollRight && (
-					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
-				)}
-
-				{/* Left fade affordance */}
-				{canScrollLeft && (
-					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent" />
-				)}
-			</div>
-		</div>
+		<HorizontalScrollRail
+			icon="ri-price-tag-3-line"
+			iconBg="bg-emerald-500/10"
+			title="Releases"
+			subtitle="Latest versions and updates"
+			accentColor="text-emerald-400"
+			ariaLabel="Release posts"
+			onViewAll={onViewAll}
+			itemCount={posts.length}
+		>
+			{posts.map((post) => (
+				<ReleaseCard key={post.slug} post={post} />
+			))}
+		</HorizontalScrollRail>
 	);
 }
 
@@ -463,9 +475,8 @@ function PostCard({ post }: { post: BlogPost }) {
 			/>
 
 			<div className="flex flex-1 flex-col p-6">
-				{/* Tags + date row */}
-				<div className="flex items-center justify-between gap-2">
-					<div className="flex flex-wrap items-center gap-1.5">
+				{/* Tags row */}
+				<div className="flex flex-wrap items-center gap-1.5">
 						{post.tags.slice(0, 2).map((tag) => {
 							const color = getTagColor(tag);
 							return (
@@ -491,10 +502,6 @@ function PostCard({ post }: { post: BlogPost }) {
 							</span>
 						)}
 					</div>
-					<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
-						{post.date}
-					</time>
-				</div>
 
 				{/* Title */}
 				<h3 className="mt-3 text-sm font-semibold leading-snug text-zinc-100 transition-colors group-hover:text-white">
@@ -511,11 +518,10 @@ function PostCard({ post }: { post: BlogPost }) {
 					<div className="flex items-center gap-2 text-xs text-zinc-400">
 						<div className="flex items-center -space-x-1.5">
 							{post.authors.slice(0, 3).map((author) => (
-								<img
+								<AvatarWithFallback
 									key={author.name}
 									src={getAssetPath(author.avatar)}
 									alt={author.name}
-									onError={handleAvatarError}
 									className="h-5 w-5 rounded-full border-2 border-zinc-900 object-cover"
 								/>
 							))}
@@ -525,7 +531,7 @@ function PostCard({ post }: { post: BlogPost }) {
 						)}
 					</div>
 					<div className="flex items-center gap-2 text-xs text-zinc-400">
-						<span>{post.readingTime}</span>
+						<time className="font-mono tabular-nums">{post.date}</time>
 						<div className="flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 opacity-0 transition-all group-hover:text-white group-hover:opacity-100">
 							<i
 								className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-xs`}
@@ -906,12 +912,14 @@ export function BlogPage() {
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
 									placeholder="Search posts..."
+									aria-label="Search blog posts"
 									className="w-full rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-4 pl-10 text-sm text-white placeholder-zinc-400 transition-all duration-200 outline-none focus:border-zinc-700 focus:bg-zinc-900/80 focus:ring-1 focus:ring-zinc-700"
 								/>
 								{searchQuery && (
 									<button
 										type="button"
 										onClick={() => setSearchQuery("")}
+										aria-label="Clear search"
 										className="absolute top-1/2 right-3 -translate-y-1/2 rounded p-0.5 text-zinc-400 transition-colors hover:text-zinc-200"
 									>
 										<i className="ri-close-line text-base" />
@@ -924,6 +932,7 @@ export function BlogPage() {
 								<select
 									value={activeTag}
 									onChange={(e) => handleTagChange(e.target.value as BlogTag)}
+									aria-label="Filter by category"
 									className="w-full appearance-none rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-10 pl-4 text-sm text-white transition-all duration-200 outline-none focus:border-zinc-700 focus:ring-1 focus:ring-zinc-700"
 								>
 									{BLOG_TAGS.map((tag) => (
@@ -969,11 +978,12 @@ export function BlogPage() {
 									{totalPages > 1 && (
 										<>
 											<div className="mt-12 h-px bg-zinc-800" />
-											<div className="mt-8 flex items-center justify-center gap-1">
+											<nav aria-label="Blog pagination" className="mt-8 flex items-center justify-center gap-1">
 												<button
 													type="button"
 													disabled={safePage <= 1}
 													onClick={() => goToPage((p) => p - 1)}
+													aria-label="Previous page"
 													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
 													<i className="ri-arrow-left-s-line text-sm" />
@@ -1022,11 +1032,12 @@ export function BlogPage() {
 													type="button"
 													disabled={safePage >= totalPages}
 													onClick={() => goToPage((p) => p + 1)}
+													aria-label="Next page"
 													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
 													<i className="ri-arrow-right-s-line text-sm" />
 												</button>
-											</div>
+											</nav>
 										</>
 									)}
 								</>
@@ -1082,7 +1093,7 @@ export function BlogPage() {
 
 						{/* Sidebar */}
 						<aside className="hidden pt-12 pl-12 lg:block">
-							<div className="sticky top-[5.5rem]">
+							<div className="sticky" style={{ top: "var(--nav-height)" }}>
 								{/* Tags */}
 								<SidebarSection title="Categories">
 									<ul className="space-y-0.5">
@@ -1153,10 +1164,9 @@ export function BlogPage() {
 															<div className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full bg-white" />
 														)}
 														{author && (
-															<img
+															<AvatarWithFallback
 																src={getAssetPath(author.avatar)}
 																alt={name}
-																onError={handleAvatarError}
 																className={`h-6 w-6 rounded-full object-cover ring-1 ring-inset ${isActive ? "ring-zinc-700" : "ring-zinc-800"}`}
 															/>
 														)}
