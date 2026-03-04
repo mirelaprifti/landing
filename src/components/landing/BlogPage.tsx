@@ -111,7 +111,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.tags.map((tag) => (
 							<span
 								key={tag}
-								className="inline-flex items-center rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-300"
+								className="inline-flex items-center rounded-full bg-zinc-800/60 px-3 py-1 text-sm font-medium text-zinc-300"
 							>
 								{tag}
 							</span>
@@ -251,7 +251,7 @@ function HorizontalScrollRail({
 						<h2 className="text-base font-semibold text-white">
 							{title}
 						</h2>
-						<p className="text-xs text-zinc-400">{subtitle}</p>
+						<p className="text-sm text-zinc-400">{subtitle}</p>
 					</div>
 				</div>
 
@@ -356,7 +356,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 			</div>
 
 			<div className="mt-4 flex items-center justify-between">
-				<time className="font-mono text-xs text-zinc-400 tabular-nums">
+				<time className="font-mono text-sm text-zinc-400 tabular-nums">
 					{post.date}
 				</time>
 				<div className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors group-hover:text-violet-400">
@@ -421,7 +421,7 @@ function ReleaseCard({ post }: { post: BlogPost }) {
 			</div>
 
 			<div className="mt-4 flex items-center justify-between">
-				<time className="font-mono text-xs text-zinc-400 tabular-nums">
+				<time className="font-mono text-sm text-zinc-400 tabular-nums">
 					{post.date}
 				</time>
 				<div className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors group-hover:text-emerald-400">
@@ -495,7 +495,7 @@ function PostCard({ post }: { post: BlogPost }) {
 							);
 						})}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center rounded-full bg-zinc-800/60 px-2 py-0.5 text-xs font-medium text-zinc-400">
+							<span className="inline-flex items-center rounded-full bg-zinc-800/60 px-2 py-0.5 text-sm font-medium text-zinc-400">
 								+{post.tags.length - 2}
 							</span>
 						)}
@@ -513,7 +513,7 @@ function PostCard({ post }: { post: BlogPost }) {
 
 				{/* Meta row */}
 				<div className="mt-4 flex items-center justify-between border-t border-zinc-800/40 pt-4">
-					<div className="flex items-center gap-2 text-xs text-zinc-400">
+					<div className="flex items-center gap-2 text-sm text-zinc-400">
 						<div className="flex items-center -space-x-1.5">
 							{post.authors.slice(0, 3).map((author) => (
 								<AvatarWithFallback
@@ -528,7 +528,7 @@ function PostCard({ post }: { post: BlogPost }) {
 							<span className="text-zinc-400">{post.authors[0].name}</span>
 						)}
 					</div>
-					<div className="flex items-center gap-2 text-xs text-zinc-400">
+					<div className="flex items-center gap-2 text-sm text-zinc-400">
 						<time className="font-mono tabular-nums">{post.date}</time>
 						<div className="flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 opacity-0 transition-all group-hover:text-white group-hover:opacity-100">
 							<i
@@ -1005,7 +1005,7 @@ export function BlogPage() {
 														page === "ellipsis" ? (
 															<span
 																key={`ellipsis-${idx}`}
-																className="px-1.5 text-xs text-zinc-400"
+																className="px-1.5 text-sm text-zinc-400"
 															>
 																...
 															</span>
@@ -1064,7 +1064,7 @@ export function BlogPage() {
 														handleTagChange(tag as BlogTag);
 														setSearchQuery("");
 													}}
-													className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/60 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+													className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/60 px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
 												>
 													<span
 														className="h-1.5 w-1.5 rounded-full"
@@ -1128,7 +1128,7 @@ export function BlogPage() {
 															/>
 														)}
 														<span className="flex-1">{tag}</span>
-														<span className="text-xs text-zinc-400 tabular-nums">
+														<span className="text-sm text-zinc-400 tabular-nums">
 															{tagCounts[tag]}
 														</span>
 													</button>
@@ -1171,7 +1171,7 @@ export function BlogPage() {
 														<span className="min-w-0 flex-1 truncate text-sm font-medium">
 															{name}
 														</span>
-														<span className="shrink-0 text-xs text-zinc-400 tabular-nums">
+														<span className="shrink-0 text-sm text-zinc-400 tabular-nums">
 															{count}
 														</span>
 													</button>
