@@ -148,8 +148,6 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						<div className="flex items-center gap-3 text-sm text-zinc-400">
 							<span className="h-4 w-px bg-zinc-800" />
 							<time>{post.date}</time>
-							<span className="h-4 w-px bg-zinc-800" />
-							<span>{post.readingTime}</span>
 						</div>
 					</div>
 				</div>
@@ -263,7 +261,7 @@ function HorizontalScrollRail({
 						onClick={onViewAll}
 						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
 					>
-						View all <span aria-hidden="true">→</span>
+						View all
 					</button>
 
 					{/* Scroll arrows */}
