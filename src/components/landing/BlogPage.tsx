@@ -583,6 +583,7 @@ export function BlogPage() {
 	const [activeAuthor, setActiveAuthor] = useState<string | null>(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const postListRef = useRef<HTMLDivElement>(null);
+	const contentZoneRef = useRef<HTMLDivElement>(null);
 
 	const goToPage = useCallback((page: number | ((prev: number) => number)) => {
 		setCurrentPage(page);
@@ -762,7 +763,7 @@ export function BlogPage() {
 		setActiveTag(tag);
 		setActiveAuthor(null);
 		setCurrentPage(1);
-		window.scrollTo({ top: 0, behavior: "smooth" });
+		contentZoneRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 	}, []);
 
 	const handleAuthorChange = useCallback(
@@ -869,7 +870,7 @@ export function BlogPage() {
 			<div className="h-px w-full bg-zinc-800" />
 
 			{/* ── Content zone ───────────────────────────── */}
-			<div className="relative">
+			<div ref={contentZoneRef} className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					{/* Featured post */}
 					{featuredPost && !hasActiveFilters && (
