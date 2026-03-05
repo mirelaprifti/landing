@@ -943,24 +943,6 @@ export function BlogPage() {
 								<i className="ri-arrow-down-s-line pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-base text-zinc-400" />
 							</div>
 
-							{/* Active filter indicator */}
-							{hasActiveFilters && (
-								<div className="mb-8 flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-2.5">
-									<span className="text-sm text-zinc-400">
-										{filteredPosts.length} result
-										{filteredPosts.length !== 1 ? "s" : ""}
-									</span>
-									<button
-										type="button"
-										onClick={clearFilters}
-										className="ml-auto flex items-center gap-1 rounded-md px-2.5 py-1 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
-									>
-										<i className="ri-close-line text-sm" />
-										Clear
-									</button>
-								</div>
-							)}
-
 							{/* Post grid */}
 							{paginatedPosts.length > 0 ? (
 								<>
