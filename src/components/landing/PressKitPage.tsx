@@ -1,6 +1,5 @@
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
-import { CTASection } from "./CTASection";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -588,8 +587,7 @@ export function PressKitPage() {
 					</div>
 				</section>
 
-				<CTASection />
-			</main>
+				</main>
 
 			<Footer />
 		</div>
