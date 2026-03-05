@@ -165,7 +165,7 @@ export function Footer() {
 										href={getAssetPath("/events")}
 										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Effect events
+										Events & meetups
 									</a>
 								</li>
 								<li>

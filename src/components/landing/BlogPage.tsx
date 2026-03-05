@@ -53,17 +53,17 @@ function AvatarWithFallback({
 const TAG_COLORS: Record<string, string> = {
 	Releases: "#22c55e", // green
 	Effect: "#818cf8", // indigo
-	"This Week In Effect": "#8b5cf6", // violet
+	"This Week In Effect": "#a78bfa", // violet-400 (WCAG AA)
 	"Cause & Effect": "#f472b6", // pink
 	"Effect Schema": "#06b6d4", // cyan
-	"Effect Playground": "#a78bfa", // violet
+	"Effect Playground": "#c4b5fd", // violet-300 (differentiate from TWIE)
 	"Effect Website": "#fb923c", // orange
 	TypeScript: "#3b82f6", // blue
 	Miscellaneous: "#94a3b8", // slate
 };
 
 function getTagColor(tag: string): string {
-	return TAG_COLORS[tag] ?? "#71717a"; // zinc-500 fallback
+	return TAG_COLORS[tag] ?? "#a1a1aa"; // zinc-400 fallback (WCAG AA)
 }
 
 // ── Featured Post ─────────────────────────────────────────────────
@@ -271,7 +271,7 @@ function HorizontalScrollRail({
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
 							aria-label="Scroll left"
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-40"
 						>
 							<i className="ri-arrow-left-s-line text-sm" />
 						</button>
@@ -280,7 +280,7 @@ function HorizontalScrollRail({
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
 							aria-label="Scroll right"
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-40"
 						>
 							<i className="ri-arrow-right-s-line text-sm" />
 						</button>
@@ -311,7 +311,7 @@ function HorizontalScrollRail({
 
 				{/* Mobile swipe hint */}
 				{canScrollRight && (
-					<div className="pointer-events-none absolute right-2 bottom-4 flex items-center gap-1 text-xs text-zinc-500 sm:hidden">
+					<div className="pointer-events-none absolute right-2 bottom-4 flex items-center gap-1 text-xs text-zinc-400 sm:hidden">
 						<span>Swipe</span>
 						<i className="ri-arrow-right-line text-xs" />
 					</div>
@@ -666,7 +666,9 @@ export function BlogPage() {
 			return posts;
 		}
 
-		let posts = nonTwiePosts;
+		// For "All" — show posts that are NOT in TWIE or Releases (they have their own rails)
+		// For a specific sub-tag — search ALL posts so dual-tagged posts (e.g. ["Releases", "Effect Schema"]) appear
+		let posts = activeTag === "All" ? nonTwiePosts : BLOG_POSTS;
 
 		if (activeTag !== "All") {
 			posts = posts.filter((p) => p.tags.includes(activeTag));
@@ -695,11 +697,11 @@ export function BlogPage() {
 	const hasActiveFilters =
 		activeTag !== "All" || activeAuthor !== null || searchQuery.trim() !== "";
 
-	// Show TWIE horizontal rail only when no filters are active (or at least not filtering to a non-TWIE tag)
-	const showTWIERail = !hasActiveFilters || activeTag === "All";
+	// Show TWIE rail unless user is already viewing TWIE posts in the main grid
+	const showTWIERail = activeTag !== "This Week In Effect";
 
-	// Show Releases horizontal rail only when no filters are active
-	const showReleasesRail = !hasActiveFilters || activeTag === "All";
+	// Show Releases rail unless user is already viewing Releases in the main grid
+	const showReleasesRail = activeTag !== "Releases";
 
 	// Separate featured post from the rest (search all posts — featured may be a Release)
 	const featuredPost = useMemo(() => {
@@ -707,11 +709,11 @@ export function BlogPage() {
 	}, []);
 
 	const displayPosts = useMemo(() => {
-		if (featuredPost && !hasActiveFilters) {
+		if (featuredPost) {
 			return filteredPosts.filter((p) => p.slug !== featuredPost.slug);
 		}
 		return filteredPosts;
-	}, [filteredPosts, featuredPost, hasActiveFilters]);
+	}, [filteredPosts, featuredPost]);
 
 	// Pagination
 	const totalPages = Math.max(
@@ -767,7 +769,6 @@ export function BlogPage() {
 		setActiveTag(tag);
 		setActiveAuthor(null);
 		setCurrentPage(1);
-		contentZoneRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 	}, []);
 
 	const handleAuthorChange = useCallback(
@@ -876,8 +877,8 @@ export function BlogPage() {
 			{/* ── Content zone ───────────────────────────── */}
 			<div ref={contentZoneRef} className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					{/* Featured post */}
-					{featuredPost && !hasActiveFilters && (
+					{/* Featured post — always visible regardless of filters */}
+					{featuredPost && (
 						<div className="pt-12 pb-4">
 							<FeaturedPost post={featuredPost} />
 						</div>
@@ -890,7 +891,7 @@ export function BlogPage() {
 					{showReleasesRail && (
 						<ReleasesSection
 							posts={
-								featuredPost && !hasActiveFilters
+								featuredPost
 									? releasesPosts.filter((p) => p.slug !== featuredPost.slug)
 									: releasesPosts
 							}
@@ -982,7 +983,7 @@ export function BlogPage() {
 													disabled={safePage <= 1}
 													onClick={() => goToPage((p) => p - 1)}
 													aria-label="Previous page"
-													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-40"
 												>
 													<i className="ri-arrow-left-s-line text-sm" />
 												</button>
@@ -1031,7 +1032,7 @@ export function BlogPage() {
 													disabled={safePage >= totalPages}
 													onClick={() => goToPage((p) => p + 1)}
 													aria-label="Next page"
-													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-40"
 												>
 													<i className="ri-arrow-right-s-line text-sm" />
 												</button>
