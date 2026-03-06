@@ -49,7 +49,7 @@ function ResourceCard({
 					{item.tags.slice(0, 3).map((tag) => (
 						<span
 							key={tag}
-							className={`rounded-md border px-2 py-0.5 text-xs text-zinc-400 ${color.border}`}
+							className={`rounded-md border border-zinc-700 px-2 py-0.5 text-xs ${color.text}`}
 						>
 							{tag}
 						</span>
