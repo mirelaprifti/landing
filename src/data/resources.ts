@@ -107,6 +107,19 @@ export interface CommunityItem {
 export const COMMUNITY_ITEMS: CommunityItem[] = [
 	// ── Featured ──────────────────────────────────────────────────
 	{
+		title: "Effect: the unreadable library that captured my heart",
+		description:
+			"A personal journey into Effect — from skepticism to understanding why its approach to TypeScript is worth the learning curve.",
+		url: "https://www.youtube.com/watch?v=S2GChOwivwQ&t=52s",
+		category: "Video",
+		author: "Matt Pocock",
+		authorUrl: "https://www.youtube.com/@mattpocockuk",
+		tags: ["Overview", "Beginner"],
+		dateAdded: "2024-08-10",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/S2GChOwivwQ/hqdefault.jpg",
+	},
+	{
 		title: "The Simple Secret Behind Effect's Power",
 		description:
 			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
@@ -131,19 +144,6 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		dateAdded: "2024-11-15",
 		featured: true,
 		thumbnail: "https://i.ytimg.com/vi/YHmioxgxQY8/hqdefault.jpg",
-	},
-	{
-		title: "Effect: the unreadable library that captured my heart",
-		description:
-			"A personal journey into Effect — from skepticism to understanding why its approach to TypeScript is worth the learning curve.",
-		url: "https://www.youtube.com/watch?v=S2GChOwivwQ&t=52s",
-		category: "Video",
-		author: "Matt Pocock",
-		authorUrl: "https://www.youtube.com/@mattpocockuk",
-		tags: ["Overview", "Beginner"],
-		dateAdded: "2024-08-10",
-		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/S2GChOwivwQ/hqdefault.jpg",
 	},
 	{
 		title: "Theo should use Effect",

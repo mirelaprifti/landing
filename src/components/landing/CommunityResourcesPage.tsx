@@ -57,7 +57,7 @@ function ResourceCard({
 
 			{/* Footer */}
 			<div className="relative mt-auto pt-8">
-				<span className="text-xs text-zinc-500">{item.author}</span>
+				<span className="font-mono text-xs uppercase text-zinc-500">{item.author}</span>
 			</div>
 		</a>
 	);
@@ -120,7 +120,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 
 				{/* Footer */}
 				<div className="relative mt-auto pt-5">
-					<span className="text-xs text-zinc-400">{item.author}</span>
+					<span className="font-mono text-xs uppercase text-zinc-400">{item.author}</span>
 				</div>
 			</div>
 		</a>
