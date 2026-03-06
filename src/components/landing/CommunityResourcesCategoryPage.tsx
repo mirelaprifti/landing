@@ -37,6 +37,20 @@ function ResourceCard({
 				}}
 			/>
 
+			{/* Tags */}
+			{item.tags && item.tags.length > 0 && (
+				<div className="relative mb-3 flex flex-wrap gap-1.5">
+					{item.tags.slice(0, 3).map((tag) => (
+						<span
+							key={tag}
+							className={`rounded-md border px-2 py-0.5 text-xs text-zinc-400 ${color.border}`}
+						>
+							{tag}
+						</span>
+					))}
+				</div>
+			)}
+
 			{/* Title */}
 			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
@@ -50,20 +64,6 @@ function ResourceCard({
 			<p className="relative mt-3 text-sm leading-relaxed text-zinc-400">
 				{item.description}
 			</p>
-
-			{/* Tags */}
-			{item.tags && item.tags.length > 0 && (
-				<div className="relative mt-3 flex flex-wrap gap-1.5">
-					{item.tags.slice(0, 3).map((tag) => (
-						<span
-							key={tag}
-							className={`rounded-md px-2 py-0.5 text-xs ${color.bg} ${color.text}`}
-						>
-							{tag}
-						</span>
-					))}
-				</div>
-			)}
 
 			{/* Footer */}
 			<div className="relative mt-auto pt-8">

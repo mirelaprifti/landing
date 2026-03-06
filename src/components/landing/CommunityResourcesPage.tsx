@@ -22,8 +22,10 @@ const ITEMS_PER_SECTION = 8; // 4 columns × 2 rows
 
 function ResourceCard({
 	item,
+	color,
 }: {
 	item: CommunityItem;
+	color: (typeof CATEGORY_COLORS)[Category];
 }) {
 	return (
 		<a
@@ -40,6 +42,20 @@ function ResourceCard({
 						"radial-gradient(ellipse 60% 50% at 0% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 50%)",
 				}}
 			/>
+
+			{/* Tags */}
+			{item.tags && item.tags.length > 0 && (
+				<div className="relative mb-3 flex flex-wrap gap-1.5">
+					{item.tags.slice(0, 3).map((tag) => (
+						<span
+							key={tag}
+							className={`rounded-md border px-2 py-0.5 text-xs text-zinc-400 ${color.border}`}
+						>
+							{tag}
+						</span>
+					))}
+				</div>
+			)}
 
 			{/* Title */}
 			<h3 className="relative text-base font-semibold text-white leading-snug">
@@ -173,7 +189,7 @@ function CategorySection({ category }: { category: Category }) {
 			{/* 4-column grid, 2 rows max */}
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{items.map((item) => (
-					<ResourceCard key={item.url} item={item} />
+					<ResourceCard key={item.url} item={item} color={color} />
 				))}
 			</div>
 		</section>
@@ -242,6 +258,7 @@ function SearchResults({
 					<ResourceCard
 						key={item.url}
 						item={item}
+						color={CATEGORY_COLORS[item.category]}
 					/>
 				))}
 			</div>
@@ -461,7 +478,7 @@ export function CommunityResourcesPage() {
 						aria-label="Share your project"
 						className="border-t border-zinc-800 py-12 md:py-16"
 					>
-						<div className="mx-auto max-w-lgRe text-center">
+						<div className="mx-auto max-w-lg text-center">
 							<div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
 								<img
 									src={getAssetPath(
