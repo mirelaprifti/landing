@@ -57,7 +57,7 @@ function ResourceCard({
 
 			{/* Footer */}
 			<div className="relative mt-auto pt-8">
-				<span className="font-mono text-sm uppercase text-zinc-400">{item.author}</span>
+				<span className="font-mono text-xs uppercase text-zinc-400">{item.author}</span>
 			</div>
 		</a>
 	);
@@ -75,7 +75,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 		>
 			{/* Thumbnail */}
 			{item.thumbnail && (
-				<div className="relative aspect-[16/10] w-full overflow-hidden">
+				<div className="relative aspect-[2/1] w-full overflow-hidden">
 					<img
 						src={item.thumbnail}
 						alt=""
@@ -113,7 +113,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 
 				{/* Author */}
 				<div className="relative mt-auto pt-4">
-					<span className="font-mono text-sm uppercase tracking-wide text-zinc-400">{item.author}</span>
+					<span className="font-mono text-xs uppercase tracking-wide text-zinc-400">{item.author}</span>
 				</div>
 			</div>
 		</a>
