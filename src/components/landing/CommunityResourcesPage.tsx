@@ -79,7 +79,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 hover:shadow-xl hover:shadow-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 sm:p-6 md:p-8"
+			className="group relative flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 hover:shadow-xl hover:shadow-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
 		>
 			{/* Hover glow */}
 			<div
@@ -90,42 +90,62 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 				}}
 			/>
 
-			{/* Category badge */}
-			<span className="relative mb-3 w-fit rounded-md bg-zinc-800/80 px-2 py-0.5 text-xs font-medium text-zinc-400">
-				{item.category}
-			</span>
-
-			{/* Title */}
-			<h3 className="relative text-base font-semibold text-white sm:text-lg md:text-xl">
-				{item.title}
-				<i
-					className="ri-arrow-right-up-line ml-1.5 text-sm text-zinc-400 transition-colors group-hover:text-zinc-200"
-					aria-hidden="true"
-				/>
-			</h3>
-
-			{/* Description */}
-			<p className="relative mt-2 text-sm leading-relaxed text-zinc-400">
-				{item.description}
-			</p>
-
-			{/* Footer */}
-			<div className="relative mt-auto flex flex-wrap items-center gap-2 pt-5">
-				<span className="text-xs text-zinc-400">{item.author}</span>
-				<span className="text-zinc-600">&middot;</span>
-				<span className="text-xs text-zinc-400">{domain}</span>
-				{item.tags && item.tags.length > 0 && (
-					<div className="ml-auto flex items-center gap-1.5">
-						{item.tags.slice(0, 3).map((tag) => (
-							<span
-								key={tag}
-								className="rounded-md bg-zinc-800/80 px-2 py-0.5 text-xs text-zinc-400"
-							>
-								{tag}
-							</span>
-						))}
+			{/* Thumbnail */}
+			{item.thumbnail && (
+				<div className="relative aspect-video w-full overflow-hidden">
+					<img
+						src={item.thumbnail}
+						alt=""
+						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+						loading="lazy"
+					/>
+					{/* Play icon overlay */}
+					<div className="absolute inset-0 flex items-center justify-center">
+						<div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white/90 backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">
+							<i className="ri-play-fill text-xl" aria-hidden="true" />
+						</div>
 					</div>
-				)}
+				</div>
+			)}
+
+			<div className="flex flex-1 flex-col p-5 sm:p-6 md:p-8">
+				{/* Category badge */}
+				<span className="relative mb-3 w-fit rounded-md bg-zinc-800/80 px-2 py-0.5 text-xs font-medium text-zinc-400">
+					{item.category}
+				</span>
+
+				{/* Title */}
+				<h3 className="relative text-base font-semibold text-white sm:text-lg md:text-xl">
+					{item.title}
+					<i
+						className="ri-arrow-right-up-line ml-1.5 text-sm text-zinc-400 transition-colors group-hover:text-zinc-200"
+						aria-hidden="true"
+					/>
+				</h3>
+
+				{/* Description */}
+				<p className="relative mt-2 text-sm leading-relaxed text-zinc-400">
+					{item.description}
+				</p>
+
+				{/* Footer */}
+				<div className="relative mt-auto flex flex-wrap items-center gap-2 pt-5">
+					<span className="text-xs text-zinc-400">{item.author}</span>
+					<span className="text-zinc-600">&middot;</span>
+					<span className="text-xs text-zinc-400">{domain}</span>
+					{item.tags && item.tags.length > 0 && (
+						<div className="ml-auto flex items-center gap-1.5">
+							{item.tags.slice(0, 3).map((tag) => (
+								<span
+									key={tag}
+									className="rounded-md bg-zinc-800/80 px-2 py-0.5 text-xs text-zinc-400"
+								>
+									{tag}
+								</span>
+							))}
+						</div>
+					)}
+				</div>
 			</div>
 		</a>
 	);

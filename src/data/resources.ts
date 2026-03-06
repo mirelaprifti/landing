@@ -29,6 +29,8 @@ export interface CommunityItem {
 	dateAdded: string;
 	/** Whether to feature this item at the top */
 	featured?: boolean;
+	/** Thumbnail image URL (e.g. YouTube thumbnail) */
+	thumbnail?: string;
 }
 
 // ── Data ─────────────────────────────────────────────────────────
@@ -36,40 +38,43 @@ export interface CommunityItem {
 export const COMMUNITY_ITEMS: CommunityItem[] = [
 	// ── Featured ──────────────────────────────────────────────────
 	{
-		title: "Effect Beginner Workshop",
+		title: "The Simple Secret Behind Effect's Power",
 		description:
-			"A hands-on workshop covering Effect fundamentals — from basic pipelines to error handling, services, and layers.",
-		url: "https://www.youtube.com/watch?v=Lz2J1NBnHK4",
+			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
+		url: "https://www.youtube.com/watch?v=F5aWLtEdNjE&t=10s",
 		category: "Video",
-		author: "Ethan Niser",
-		authorUrl: "https://twitter.com/ethanniser",
-		tags: ["Beginner", "Workshop"],
+		author: "Kit Langton",
+		authorUrl: "https://www.youtube.com/@kitlangton",
+		tags: ["Beginner", "Concepts"],
 		dateAdded: "2024-06-15",
 		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/F5aWLtEdNjE/hqdefault.jpg",
 	},
 	{
-		title: "effect-http",
+		title: "Effect: the unreadable library that captured my heart",
 		description:
-			"High-level, declarative HTTP server and client library for Effect with OpenAPI support and automatic validation.",
-		url: "https://github.com/sukovanej/effect-http",
-		category: "Tools",
-		author: "Milan Suk",
-		authorUrl: "https://github.com/sukovanej",
-		tags: ["HTTP", "OpenAPI"],
-		dateAdded: "2024-03-20",
+			"A personal journey into Effect — from skepticism to understanding why its approach to TypeScript is worth the learning curve.",
+		url: "https://www.youtube.com/watch?v=S2GChOwivwQ&t=52s",
+		category: "Video",
+		author: "Matt Pocock",
+		authorUrl: "https://www.youtube.com/@mattpocockuk",
+		tags: ["Overview", "Beginner"],
+		dateAdded: "2024-08-10",
 		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/S2GChOwivwQ/hqdefault.jpg",
 	},
 	{
-		title: "Effectful",
+		title: "Claude Code from Scratch with Effect",
 		description:
-			"The company behind Effect — offering commercial support, consulting, and enterprise solutions for teams adopting Effect.",
-		url: "https://effectful.co/",
-		category: "Other",
-		author: "Effectful Technologies",
-		authorUrl: "https://github.com/Effect-TS",
-		tags: ["Enterprise"],
-		dateAdded: "2024-01-01",
+			"Building a project from scratch using Claude Code and Effect — showcasing AI-assisted development with Effect's type-safe APIs.",
+		url: "https://www.youtube.com/watch?v=aueu9lm2ubo",
+		category: "Video",
+		author: "Kit Langton",
+		authorUrl: "https://www.youtube.com/@kitlangton",
+		tags: ["AI", "Live Coding"],
+		dateAdded: "2025-06-01",
 		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/aueu9lm2ubo/hqdefault.jpg",
 	},
 
 	// ── Tools & Libraries ────────────────────────────────────────
