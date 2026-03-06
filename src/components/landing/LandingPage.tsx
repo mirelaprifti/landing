@@ -85,7 +85,7 @@ export function LandingPage() {
 				<CTASection />
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

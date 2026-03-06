@@ -547,7 +547,7 @@ export function MerchPage() {
 				</section>
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

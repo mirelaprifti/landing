@@ -65,7 +65,7 @@ export function LandingPageV2() {
 				<LP2CTA />
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

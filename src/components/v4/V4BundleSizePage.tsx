@@ -62,7 +62,7 @@ export function V4BundleSizePage() {
 				<UnstableModulesSection />
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

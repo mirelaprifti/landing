@@ -925,7 +925,7 @@ export function EffectDaysPage() {
 				</section>
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

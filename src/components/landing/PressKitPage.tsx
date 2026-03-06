@@ -589,7 +589,7 @@ export function PressKitPage() {
 
 				</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

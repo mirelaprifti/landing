@@ -104,7 +104,7 @@ export const BLOG_TAGS = [
 	"Effect Schema",
 	"Effect Website",
 	"Miscellaneous",
-	"Releases",
+	"Release",
 	"This Week In Effect",
 	"TypeScript",
 ] as const;
@@ -119,7 +119,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"After years of experimentation, community feedback, and iteration, Effect v4 is officially in beta. Rewritten runtime, leaner bundles, unified versioning, and a consolidated core package.",
 		date: "Feb 18, 2026",
 		readingTime: "8 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.maxwell],
 		featured: true,
 		coverImage: "/assets/images/featured-post.png",
@@ -1196,7 +1196,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring @effect/cluster improvements, HashRing module, Effect.fn improvements, and more!",
 		date: "Nov 4, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1206,7 +1206,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring the Graph module, Context.ReadonlyTag, and more!",
 		date: "Sep 30, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1216,7 +1216,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring Layer.mock, Effect.ensureErrorType, and more!",
 		date: "Jul 22, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1226,7 +1226,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring the new ExecutionPlan module, Effect.Service & LayerMap improvements, and more!",
 		date: "May 28, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1236,7 +1236,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring Stream.toAsyncIterable, Effect.catchTag & Effect.filterOr* improvements and more!",
 		date: "May 12, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1246,7 +1246,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring LayerMap module, @effect/rpc refactor, and more.",
 		date: "Mar 20, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1256,7 +1256,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring Standard Schema support, Effect.fn improvements & more!",
 		date: "Feb 14, 2025",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1266,7 +1266,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring Effect.fn & Cron improvements, Schema additions, and more!",
 		date: "Dec 23, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1276,7 +1276,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"New Effect release featuring Effect.fn, Micro improvements, and more!",
 		date: "Dec 2, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim, AUTHORS.giulio],
 	},
 	{
@@ -1286,7 +1286,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"Release post highlighting features and functionality of the newly rebuilt Effect Website.",
 		date: "Oct 29, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect Website"],
+		tags: ["Release", "Effect Website"],
 		authors: [AUTHORS.maxwell],
 	},
 	{
@@ -1295,7 +1295,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Oct 22, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1304,7 +1304,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Oct 7, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1313,7 +1313,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Sep 16, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1323,7 +1323,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"Release post highlighting features and functionality of the new create-effect-app command-line tool.",
 		date: "Sep 13, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases"],
+		tags: ["Release"],
 		authors: [AUTHORS.maxwell],
 	},
 	{
@@ -1332,7 +1332,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Aug 30, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1341,7 +1341,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Jul 30, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1351,7 +1351,7 @@ export const BLOG_POSTS: BlogPost[] = [
 			"Release post highlighting features and functionality of the Effect Website Playground.",
 		date: "Jul 29, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect Playground"],
+		tags: ["Release", "Effect Playground"],
 		authors: [AUTHORS.maxwell],
 	},
 	{
@@ -1360,7 +1360,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "Jul 23, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect Schema"],
+		tags: ["Release", "Effect Schema"],
 		authors: [AUTHORS.giulio],
 	},
 	{
@@ -1369,7 +1369,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Jul 10, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1378,7 +1378,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Jun 20, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1387,7 +1387,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "Jun 17, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect Schema"],
+		tags: ["Release", "Effect Schema"],
 		authors: [AUTHORS.giulio],
 	},
 	{
@@ -1396,7 +1396,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Jun 6, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1405,7 +1405,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "May 20, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1414,7 +1414,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "May 10, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect Schema"],
+		tags: ["Release", "Effect Schema"],
 		authors: [AUTHORS.giulio],
 	},
 	{
@@ -1423,7 +1423,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and changes.",
 		date: "Apr 30, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
 	},
 	{
@@ -1432,7 +1432,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "Apr 16, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.michael],
 	},
 	{
@@ -1441,7 +1441,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "Mar 16, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect Schema"],
+		tags: ["Release", "Effect Schema"],
 		authors: [AUTHORS.giulio, AUTHORS.michael],
 	},
 	{
@@ -1450,7 +1450,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "Feb 21, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.michael],
 	},
 	{
@@ -1459,7 +1459,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		excerpt: "Release post highlighting new additions and breaking changes.",
 		date: "Feb 10, 2024",
 		readingTime: "5 min read",
-		tags: ["Releases", "Effect"],
+		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim, AUTHORS.michael],
 	},
 	{

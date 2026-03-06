@@ -1188,7 +1188,7 @@ export function EventsPage() {
 				</section>
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

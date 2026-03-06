@@ -494,7 +494,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				</section>
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

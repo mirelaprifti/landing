@@ -489,7 +489,7 @@ export function PodcastPage() {
 				</section>
 			</main>
 
-			<Footer />
+			<Footer hideCommunityBorder />
 		</div>
 	);
 }

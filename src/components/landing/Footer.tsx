@@ -1,7 +1,7 @@
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggle } from "../ui/ThemeToggle";
 
-export function Footer() {
+export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: boolean } = {}) {
 	return (
 		<footer className="relative w-full px-4 pt-16 md:px-8 md:pt-20">
 			{/* Subtle gradient background */}
@@ -145,7 +145,7 @@ export function Footer() {
 						</div>
 
 						{/* Column 3: Community */}
-						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-200 lg:pl-4 dark:lg:border-zinc-800">
+						<div className={`flex flex-1 flex-col gap-4 lg:pl-4${hideCommunityBorder ? "" : " lg:border-l lg:border-dashed lg:border-zinc-200 dark:lg:border-zinc-800"}`}>
 							{/* Column Header */}
 							<h3 className="font-mono text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								Community
@@ -178,23 +178,20 @@ export function Footer() {
 								</li>
 								<li>
 									<a
+										href={getAssetPath("/community-resources")}
+										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Community resources
+									</a>
+								</li>
+								<li>
+									<a
 										href="https://discord.gg/effect-ts"
 										target="_blank"
 										rel="noopener noreferrer"
 										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Discord
-										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://luma.com/effect-community?k=c"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Meetups
 										<i className="ri-arrow-right-up-line text-sm" />
 									</a>
 								</li>

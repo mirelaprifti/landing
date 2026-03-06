@@ -51,7 +51,7 @@ function AvatarWithFallback({
 
 // Tag color mapping -- distinct hues per category for visual scanning
 const TAG_COLORS: Record<string, string> = {
-	Releases: "#22c55e", // green
+	Release: "#22c55e", // green
 	Effect: "#818cf8", // indigo
 	"This Week In Effect": "#a78bfa", // violet-400 (WCAG AA)
 	"Cause & Effect": "#f472b6", // pink
@@ -108,10 +108,10 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 							<span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
 							Featured
 						</span>
-						{post.tags.map((tag) => (
-							<span
-								key={tag}
-								className="inline-flex items-center rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-300"
+					{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
+						<span
+							key={tag}
+							className="inline-flex items-center rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-300"
 							>
 								{tag}
 							</span>
@@ -386,7 +386,7 @@ function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () =>
 	);
 }
 
-// ── Releases Horizontal Scroll ───────────────────────────────────
+// ── Release Horizontal Scroll ───────────────────────────────────
 function ReleaseCard({ post }: { post: BlogPost }) {
 	const url = getPostUrl(post);
 	const isExternal = url.startsWith("http");
@@ -434,12 +434,12 @@ function ReleaseCard({ post }: { post: BlogPost }) {
 	);
 }
 
-function ReleasesSection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
+function ReleaseSection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
 	return (
 		<HorizontalScrollRail
 			icon="ri-price-tag-3-line"
 			iconBg="bg-emerald-500/10"
-			title="Releases"
+			title="Release"
 			subtitle="Latest versions and updates"
 			accentColor="text-emerald-400"
 			ariaLabel="Release posts"
@@ -475,7 +475,7 @@ function PostCard({ post }: { post: BlogPost }) {
 			<div className="flex flex-1 flex-col p-6">
 				{/* Tags row */}
 				<div className="flex flex-wrap items-center gap-1.5">
-						{post.tags.slice(0, 2).map((tag) => {
+						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => {
 							const color = getTagColor(tag);
 							return (
 								<span
@@ -588,6 +588,7 @@ export function BlogPage() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const postListRef = useRef<HTMLDivElement>(null);
 	const contentZoneRef = useRef<HTMLDivElement>(null);
+	const sidebarSectionRef = useRef<HTMLDivElement>(null);
 
 	const goToPage = useCallback((page: number | ((prev: number) => number)) => {
 		setCurrentPage(page);
@@ -603,19 +604,19 @@ export function BlogPage() {
 		[],
 	);
 
-	// Separate Releases posts
+	// Separate Release posts
 	const releasesPosts = useMemo(
-		() => BLOG_POSTS.filter((p) => p.tags.includes("Releases")),
+		() => BLOG_POSTS.filter((p) => p.tags.includes("Release")),
 		[],
 	);
 
-	// Posts that are neither TWIE nor Releases (main grid)
+	// Posts that are neither TWIE nor Release (main grid)
 	const nonTwiePosts = useMemo(
 		() =>
 			BLOG_POSTS.filter(
 				(p) =>
 					!p.tags.includes("This Week In Effect") &&
-					!p.tags.includes("Releases"),
+					!p.tags.includes("Release"),
 			),
 		[],
 	);
@@ -645,8 +646,8 @@ export function BlogPage() {
 			return posts;
 		}
 
-		// When the user explicitly selects Releases tag, show those in the grid
-		if (activeTag === "Releases") {
+		// When the user explicitly selects Release tag, show those in the grid
+		if (activeTag === "Release") {
 			let posts = releasesPosts;
 			if (activeAuthor) {
 				posts = posts.filter((p) =>
@@ -666,8 +667,8 @@ export function BlogPage() {
 			return posts;
 		}
 
-		// For "All" — show posts that are NOT in TWIE or Releases (they have their own rails)
-		// For a specific sub-tag — search ALL posts so dual-tagged posts (e.g. ["Releases", "Effect Schema"]) appear
+		// For "All" — show posts that are NOT in TWIE or Release (they have their own rails)
+		// For a specific sub-tag — search ALL posts so dual-tagged posts (e.g. ["Release", "Effect Schema"]) appear
 		let posts = activeTag === "All" ? nonTwiePosts : BLOG_POSTS;
 
 		if (activeTag !== "All") {
@@ -700,8 +701,8 @@ export function BlogPage() {
 	// Show TWIE rail unless user is already viewing TWIE posts in the main grid
 	const showTWIERail = activeTag !== "This Week In Effect";
 
-	// Show Releases rail unless user is already viewing Releases in the main grid
-	const showReleasesRail = activeTag !== "Releases";
+	// Show Release rail unless user is already viewing Release in the main grid
+	const showReleaseRail = activeTag !== "Release";
 
 	// Separate featured post from the rest (search all posts — featured may be a Release)
 	const featuredPost = useMemo(() => {
@@ -738,7 +739,7 @@ export function BlogPage() {
 				counts[tag] = nonTwiePosts.length;
 			} else if (tag === "This Week In Effect") {
 				counts[tag] = twiePosts.length;
-			} else if (tag === "Releases") {
+			} else if (tag === "Release") {
 				counts[tag] = releasesPosts.length;
 			} else {
 				counts[tag] = BLOG_POSTS.filter((p) => p.tags.includes(tag)).length;
@@ -769,6 +770,10 @@ export function BlogPage() {
 		setActiveTag(tag);
 		setActiveAuthor(null);
 		setCurrentPage(1);
+		sidebarSectionRef.current?.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
 	}, []);
 
 	const handleAuthorChange = useCallback(
@@ -887,20 +892,20 @@ export function BlogPage() {
 					{/* TWIE horizontal scroll rail */}
 					{showTWIERail && <TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />}
 
-					{/* Releases horizontal scroll rail */}
-					{showReleasesRail && (
-						<ReleasesSection
+					{/* Release horizontal scroll rail */}
+					{showReleaseRail && (
+						<ReleaseSection
 							posts={
 								featuredPost
 									? releasesPosts.filter((p) => p.slug !== featuredPost.slug)
 									: releasesPosts
 							}
-							onViewAll={() => handleTagChange("Releases")}
+							onViewAll={() => handleTagChange("Release")}
 						/>
 					)}
 
 					{/* Two-column layout: content + sidebar */}
-					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_260px]">
+					<div ref={sidebarSectionRef} className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_260px]">
 						{/* Main content */}
 						<div className="min-w-0 pb-24 lg:border-r lg:border-zinc-800/60 lg:pr-12">
 							{/* Search bar */}
@@ -1038,7 +1043,7 @@ export function BlogPage() {
 
 									{/* Suggested tags */}
 									<div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-										{(["Releases", "Effect", "TypeScript"] as const).map(
+										{(["Release", "Effect", "TypeScript"] as const).map(
 											(tag) => (
 												<button
 													key={tag}

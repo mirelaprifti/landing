@@ -203,7 +203,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 								{/* Tags */}
 								<div className="mb-5 flex flex-wrap gap-2">
-									{post.tags.map((tag) => (
+									{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
 										<span
 											key={tag}
 											className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
