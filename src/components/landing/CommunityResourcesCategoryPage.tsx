@@ -38,7 +38,7 @@ function ResourceCard({
 			/>
 
 			{/* Title */}
-			<h3 className="relative text-sm font-semibold text-white leading-snug">
+			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
 				<i
 					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-500 transition-colors group-hover:text-zinc-300"
@@ -66,7 +66,7 @@ function ResourceCard({
 			)}
 
 			{/* Footer */}
-			<div className="relative mt-auto pt-5">
+			<div className="relative mt-auto pt-8">
 				<span className="text-xs text-zinc-500">{item.author}</span>
 			</div>
 		</a>

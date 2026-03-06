@@ -145,6 +145,45 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		featured: true,
 		thumbnail: "https://i.ytimg.com/vi/aueu9lm2ubo/hqdefault.jpg",
 	},
+	{
+		title: "Theo should use Effect",
+		description:
+			"A compelling case for why Effect belongs in every TypeScript developer's toolkit — addressing common objections and showing real benefits.",
+		url: "https://www.youtube.com/watch?v=kYAjBvt03xw",
+		category: "Video",
+		author: "Ethan Niser",
+		authorUrl: "https://www.youtube.com/@ethanniser",
+		tags: ["Overview", "Advocacy"],
+		dateAdded: "2024-12-01",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/kYAjBvt03xw/hqdefault.jpg",
+	},
+	{
+		title: "Dependency Injection Has Never Been This Easy in TypeScript",
+		description:
+			"How Effect's Layer system makes dependency injection intuitive and type-safe — no decorators or reflection needed.",
+		url: "https://www.youtube.com/watch?v=YHmioxgxQY8",
+		category: "Video",
+		author: "Lucas Barake",
+		authorUrl: "https://www.youtube.com/@lucas-barake",
+		tags: ["Dependency Injection", "Layers"],
+		dateAdded: "2024-11-15",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/YHmioxgxQY8/hqdefault.jpg",
+	},
+	{
+		title: "Maybe I Was Wrong About Effect...",
+		description:
+			"A developer revisits Effect after initial skepticism — exploring whether the library's benefits truly outweigh the learning curve.",
+		url: "https://www.youtube.com/watch?v=MHpf_XMz_aM",
+		category: "Video",
+		author: "Ben Davis",
+		authorUrl: "https://www.youtube.com/@bmdavis419",
+		tags: ["Review", "Beginner"],
+		dateAdded: "2024-10-20",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/MHpf_XMz_aM/hqdefault.jpg",
+	},
 
 	// ── Tools & Libraries ────────────────────────────────────────
 	{
