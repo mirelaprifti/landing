@@ -96,8 +96,8 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 				</div>
 			</div>
 
-			{/* Title & author overlay */}
-			<div className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 px-4 pb-4">
+			{/* Title overlay */}
+			<div className="absolute inset-x-0 bottom-0 px-4 pb-4">
 				<h3 className="text-[15px] font-semibold leading-snug text-white drop-shadow-sm">
 					{item.title}
 					<i
@@ -105,7 +105,6 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 						aria-hidden="true"
 					/>
 				</h3>
-				<span className="font-mono text-xs uppercase tracking-wide text-zinc-300/80">{item.author}</span>
 			</div>
 		</a>
 	);
@@ -121,7 +120,7 @@ function CategorySection({ category }: { category: Category }) {
 
 	const items = useMemo(() => {
 		return COMMUNITY_ITEMS.filter(
-			(item) => item.category === category && !item.featured,
+			(item) => item.category === category,
 		)
 			.sort(
 				(a, b) =>
@@ -134,7 +133,7 @@ function CategorySection({ category }: { category: Category }) {
 	const totalCount = useMemo(
 		() =>
 			COMMUNITY_ITEMS.filter(
-				(item) => item.category === category && !item.featured,
+				(item) => item.category === category,
 			).length,
 		[category],
 	);
@@ -261,12 +260,12 @@ export function CommunityResourcesPage() {
 		[],
 	);
 
-	// Categories that have at least one non-featured item
+	// Categories that have at least one item
 	const activeCategories = useMemo(
 		() =>
 			CATEGORIES.filter((cat) =>
 				COMMUNITY_ITEMS.some(
-					(item) => item.category === cat && !item.featured,
+					(item) => item.category === cat,
 				),
 			),
 		[],
