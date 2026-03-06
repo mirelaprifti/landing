@@ -75,7 +75,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 		>
 			{/* Thumbnail */}
 			{item.thumbnail && (
-				<div className="relative aspect-[2/1] w-full overflow-hidden">
+				<div className="relative aspect-video w-full overflow-hidden">
 					<img
 						src={item.thumbnail}
 						alt=""
@@ -105,11 +105,6 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 						aria-hidden="true"
 					/>
 				</h3>
-
-				{/* Description */}
-				<p className="relative mt-2 line-clamp-2 text-[13px] leading-relaxed text-zinc-400">
-					{item.description}
-				</p>
 
 				{/* Author */}
 				<div className="relative mt-auto pt-4">
