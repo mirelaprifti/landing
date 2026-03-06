@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { CommunityResourcesCategoryPage } from "@/components/landing/CommunityResourcesCategoryPage";
+import { CATEGORIES, CATEGORY_SLUGS, SLUG_TO_CATEGORY } from "../../data/resources";
+
+export function getStaticPaths() {
+	return CATEGORIES.map((cat) => ({
+		params: { category: CATEGORY_SLUGS[cat] },
+		props: { category: cat },
+	}));
+}
+
+const { category } = Astro.props;
+
+if (!category) {
+	return Astro.redirect("/community-resources");
+}
+
+const slug = CATEGORY_SLUGS[category];
+const title = slug.charAt(0).toUpperCase() + slug.slice(1);
+---
+
+<BaseLayout
+  title={`${title} - Community Resources - Effect`}
+  description={`Browse ${title.toLowerCase()} built by the Effect community.`}
+>
+  <CommunityResourcesCategoryPage category={category} client:load />
+</BaseLayout>

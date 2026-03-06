@@ -10,6 +10,66 @@ export const CATEGORIES: Category[] = [
 	"Video",
 ];
 
+/** URL-friendly slug for each category */
+export const CATEGORY_SLUGS: Record<Category, string> = {
+	Article: "articles",
+	Learning: "learning",
+	Other: "other",
+	Tools: "tools",
+	Video: "videos",
+};
+
+/** Reverse lookup: slug → category */
+export const SLUG_TO_CATEGORY: Record<string, Category> = Object.fromEntries(
+	Object.entries(CATEGORY_SLUGS).map(([cat, slug]) => [slug, cat as Category]),
+) as Record<string, Category>;
+
+/** Category accent colors (used for section headers, badges) */
+export const CATEGORY_COLORS: Record<
+	Category,
+	{ text: string; bg: string; border: string; dot: string }
+> = {
+	Article: {
+		text: "text-blue-400",
+		bg: "bg-blue-500/10",
+		border: "border-blue-500/20",
+		dot: "bg-blue-400",
+	},
+	Learning: {
+		text: "text-emerald-400",
+		bg: "bg-emerald-500/10",
+		border: "border-emerald-500/20",
+		dot: "bg-emerald-400",
+	},
+	Other: {
+		text: "text-zinc-400",
+		bg: "bg-zinc-500/10",
+		border: "border-zinc-500/20",
+		dot: "bg-zinc-400",
+	},
+	Tools: {
+		text: "text-amber-400",
+		bg: "bg-amber-500/10",
+		border: "border-amber-500/20",
+		dot: "bg-amber-400",
+	},
+	Video: {
+		text: "text-rose-400",
+		bg: "bg-rose-500/10",
+		border: "border-rose-500/20",
+		dot: "bg-rose-400",
+	},
+};
+
+/** Remixicon icon name for each category */
+export const CATEGORY_ICONS: Record<Category, string> = {
+	Article: "ri-article-line",
+	Learning: "ri-graduation-cap-line",
+	Other: "ri-shapes-line",
+	Tools: "ri-tools-line",
+	Video: "ri-play-circle-line",
+};
+
 export interface CommunityItem {
 	/** Display title */
 	title: string;
