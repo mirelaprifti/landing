@@ -362,7 +362,7 @@ export function CommunityResourcesPage() {
 
 				<div className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="pt-16 pb-12 md:pt-24 md:pb-16">
+						<div className="pt-12 pb-12 md:pt-20 md:pb-16">
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								{"// Community"}
 							</p>

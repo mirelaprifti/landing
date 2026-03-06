@@ -146,19 +146,6 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		thumbnail: "https://i.ytimg.com/vi/YHmioxgxQY8/hqdefault.jpg",
 	},
 	{
-		title: "The Simple Secret Behind Effect's Power",
-		description:
-			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
-		url: "https://www.youtube.com/watch?v=F5aWLtEdNjE&t=10s",
-		category: "Video",
-		author: "Kit Langton",
-		authorUrl: "https://www.youtube.com/@kitlangton",
-		tags: ["Beginner", "Concepts"],
-		dateAdded: "2024-06-15",
-		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/F5aWLtEdNjE/hqdefault.jpg",
-	},
-	{
 		title: "Theo should use Effect",
 		description:
 			"A compelling case for why Effect belongs in every TypeScript developer's toolkit — addressing common objections and showing real benefits.",
@@ -170,6 +157,19 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		dateAdded: "2024-12-01",
 		featured: true,
 		thumbnail: "https://i.ytimg.com/vi/kYAjBvt03xw/hqdefault.jpg",
+	},
+	{
+		title: "The Simple Secret Behind Effect's Power",
+		description:
+			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
+		url: "https://www.youtube.com/watch?v=F5aWLtEdNjE&t=10s",
+		category: "Video",
+		author: "Kit Langton",
+		authorUrl: "https://www.youtube.com/@kitlangton",
+		tags: ["Beginner", "Concepts"],
+		dateAdded: "2024-06-15",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/F5aWLtEdNjE/hqdefault.jpg",
 	},
 	{
 		title: "Effect: the Good Parts, `use workflow`, and Vercel Domains",
