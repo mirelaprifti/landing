@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { CommunityResourcesCategoryPage } from "@/components/landing/CommunityResourcesCategoryPage";
-import { CATEGORIES, CATEGORY_SLUGS, SLUG_TO_CATEGORY } from "../../data/resources";
+import { CATEGORIES, CATEGORY_DISPLAY_NAMES, CATEGORY_SLUGS } from "../../data/resources";
 
 export function getStaticPaths() {
 	return CATEGORIES.map((cat) => ({
@@ -16,13 +16,12 @@ if (!category) {
 	return Astro.redirect("/community-resources");
 }
 
-const slug = CATEGORY_SLUGS[category];
-const title = slug.charAt(0).toUpperCase() + slug.slice(1);
+const displayName = CATEGORY_DISPLAY_NAMES[category];
 ---
 
 <BaseLayout
-  title={`${title} - Community Resources - Effect`}
-  description={`Browse ${title.toLowerCase()} built by the Effect community.`}
+  title={`${displayName} - Community Resources - Effect`}
+  description={`Browse ${displayName.toLowerCase()} built by the Effect community.`}
 >
   <CommunityResourcesCategoryPage category={category} client:load />
 </BaseLayout>

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import {
 	CATEGORIES,
 	CATEGORY_COLORS,
+	CATEGORY_DISPLAY_NAMES,
 	CATEGORY_ICONS,
 	CATEGORY_SLUGS,
 	COMMUNITY_ITEMS,
@@ -25,20 +26,12 @@ function ResourceCard({
 	item: CommunityItem;
 	color: (typeof CATEGORY_COLORS)[Category];
 }) {
-	const domain = useMemo(() => {
-		try {
-			return new URL(item.url).hostname.replace("www.", "");
-		} catch {
-			return "";
-		}
-	}, [item.url]);
-
 	return (
 		<a
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`group relative flex flex-col rounded-xl border bg-zinc-900/30 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${color.border}`}
+			className={`group relative flex flex-col rounded-xl border bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${color.border}`}
 		>
 			{/* Hover glow */}
 			<div
@@ -59,15 +52,13 @@ function ResourceCard({
 			</h3>
 
 			{/* Description */}
-			<p className="relative mt-2 line-clamp-2 text-xs leading-relaxed text-zinc-400">
+			<p className="relative mt-3 text-sm leading-relaxed text-zinc-400">
 				{item.description}
 			</p>
 
 			{/* Footer */}
-			<div className="relative mt-auto flex items-center gap-1.5 pt-4">
+			<div className="relative mt-auto pt-5">
 				<span className="text-xs text-zinc-500">{item.author}</span>
-				<span className="text-zinc-700">&middot;</span>
-				<span className="text-xs text-zinc-500">{domain}</span>
 			</div>
 		</a>
 	);
@@ -76,14 +67,6 @@ function ResourceCard({
 // ── Featured Item Card ───────────────────────────────────────────
 
 function FeaturedItemCard({ item }: { item: CommunityItem }) {
-	const domain = useMemo(() => {
-		try {
-			return new URL(item.url).hostname.replace("www.", "");
-		} catch {
-			return "";
-		}
-	}, [item.url]);
-
 	return (
 		<a
 			href={item.url}
@@ -142,10 +125,8 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 				</p>
 
 				{/* Footer */}
-				<div className="relative mt-auto flex items-center gap-2 pt-5">
+				<div className="relative mt-auto pt-5">
 					<span className="text-xs text-zinc-400">{item.author}</span>
-					<span className="text-zinc-600">&middot;</span>
-					<span className="text-xs text-zinc-400">{domain}</span>
 				</div>
 			</div>
 		</a>
@@ -158,6 +139,7 @@ function CategorySection({ category }: { category: Category }) {
 	const color = CATEGORY_COLORS[category];
 	const icon = CATEGORY_ICONS[category];
 	const slug = CATEGORY_SLUGS[category];
+	const displayName = CATEGORY_DISPLAY_NAMES[category];
 
 	const items = useMemo(() => {
 		return COMMUNITY_ITEMS.filter(
@@ -182,7 +164,7 @@ function CategorySection({ category }: { category: Category }) {
 	if (items.length === 0) return null;
 
 	return (
-		<section aria-label={`${category} resources`} className="py-10 md:py-14">
+		<section aria-label={`${displayName} resources`} className="py-10 md:py-14">
 			{/* Section header */}
 			<div className="mb-8 flex items-center justify-between">
 				<div className="flex items-center gap-3">
@@ -195,13 +177,13 @@ function CategorySection({ category }: { category: Category }) {
 						/>
 					</div>
 					<h2 className="text-lg font-semibold text-white">
-						{category}
+						{displayName}
 					</h2>
 					<span className="text-sm text-zinc-500">{totalCount}</span>
 				</div>
 				<a
 					href={`/community-resources/${slug}`}
-					className={`group/link flex items-center gap-1 text-sm font-medium transition-colors ${color.text} hover:text-white`}
+					className="group/link flex items-center gap-1 text-sm font-medium text-zinc-400 transition-colors hover:text-white"
 				>
 					View all
 					<i
@@ -500,50 +482,35 @@ export function CommunityResourcesPage() {
 
 					{/* ── Submit CTA ──────────────────────── */}
 					<section
-						aria-label="Submit a resource"
+						aria-label="Share your project"
 						className="border-t border-zinc-800 py-12 md:py-16"
 					>
 						<div className="mx-auto max-w-md text-center">
 							<div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
 								<i
-									className="ri-add-line text-lg text-zinc-400"
+									className="ri-discord-fill text-lg text-zinc-400"
 									aria-hidden="true"
 								/>
 							</div>
 							<h2 className="text-base font-medium text-zinc-200">
-								Submit a resource
+								Share your project
 							</h2>
 							<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-								Built something with Effect? Share it with the
-								community. Open a PR to add your project or
-								reach out on Discord.
+								Built something with Effect? Join the Discord
+								and share it with the community.
 							</p>
-							<div className="mt-5 flex items-center justify-center gap-3">
-								<a
-									href="https://github.com/Effect-TS/effect"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-4 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
-								>
-									<i
-										className="ri-github-fill text-base"
-										aria-hidden="true"
-									/>
-									GitHub
-								</a>
-								<a
-									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-4 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
-								>
-									<i
-										className="ri-discord-fill text-base"
-										aria-hidden="true"
-									/>
-									Discord
-								</a>
-							</div>
+							<a
+								href="https://discord.gg/effect-ts"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="mt-5 inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-4 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+							>
+								<i
+									className="ri-discord-fill text-base"
+									aria-hidden="true"
+								/>
+								Join Discord
+							</a>
 						</div>
 					</section>
 				</div>

@@ -70,6 +70,15 @@ export const CATEGORY_ICONS: Record<Category, string> = {
 	Video: "ri-play-circle-line",
 };
 
+/** Human-readable display names for each category */
+export const CATEGORY_DISPLAY_NAMES: Record<Category, string> = {
+	Article: "Articles",
+	Learning: "Learning Effect",
+	Other: "Other",
+	Tools: "Tools",
+	Video: "Videos",
+};
+
 export interface CommunityItem {
 	/** Display title */
 	title: string;

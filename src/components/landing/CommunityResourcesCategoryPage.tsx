@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import {
 	CATEGORY_COLORS,
+	CATEGORY_DISPLAY_NAMES,
 	CATEGORY_ICONS,
 	CATEGORY_SLUGS,
 	COMMUNITY_ITEMS,
@@ -20,20 +21,12 @@ function ResourceCard({
 	item: CommunityItem;
 	color: (typeof CATEGORY_COLORS)[Category];
 }) {
-	const domain = useMemo(() => {
-		try {
-			return new URL(item.url).hostname.replace("www.", "");
-		} catch {
-			return "";
-		}
-	}, [item.url]);
-
 	return (
 		<a
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`group relative flex flex-col rounded-xl border bg-zinc-900/30 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${color.border}`}
+			className={`group relative flex flex-col rounded-xl border bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${color.border}`}
 		>
 			{/* Hover glow */}
 			<div
@@ -54,7 +47,7 @@ function ResourceCard({
 			</h3>
 
 			{/* Description */}
-			<p className="relative mt-2 line-clamp-2 text-xs leading-relaxed text-zinc-400">
+			<p className="relative mt-3 text-sm leading-relaxed text-zinc-400">
 				{item.description}
 			</p>
 
@@ -73,10 +66,8 @@ function ResourceCard({
 			)}
 
 			{/* Footer */}
-			<div className="relative mt-auto flex items-center gap-1.5 pt-4">
+			<div className="relative mt-auto pt-5">
 				<span className="text-xs text-zinc-500">{item.author}</span>
-				<span className="text-zinc-700">&middot;</span>
-				<span className="text-xs text-zinc-500">{domain}</span>
 			</div>
 		</a>
 	);
@@ -91,6 +82,7 @@ export function CommunityResourcesCategoryPage({
 }) {
 	const color = CATEGORY_COLORS[category];
 	const icon = CATEGORY_ICONS[category];
+	const displayName = CATEGORY_DISPLAY_NAMES[category];
 
 	const items = useMemo(() => {
 		return COMMUNITY_ITEMS.filter((item) => item.category === category)
@@ -207,7 +199,7 @@ export function CommunityResourcesCategoryPage({
 									aria-hidden="true"
 								/>
 								<span className={color.text}>
-									{category}
+									{displayName}
 								</span>
 							</nav>
 
@@ -222,10 +214,7 @@ export function CommunityResourcesCategoryPage({
 								</div>
 								<div>
 									<h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-										{CATEGORY_SLUGS[category]
-											.charAt(0)
-											.toUpperCase() +
-											CATEGORY_SLUGS[category].slice(1)}
+										{displayName}
 									</h1>
 									<p className="mt-1 text-sm text-zinc-400">
 										{items.length} resource
