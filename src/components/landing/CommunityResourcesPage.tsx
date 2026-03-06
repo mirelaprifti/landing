@@ -408,7 +408,7 @@ export function CommunityResourcesPage() {
 
 					{/* ── Search ──────────────────────────── */}
 					<div className="pt-8 pb-2">
-						<div className="relative w-full sm:max-w-md">
+						<div className="relative w-full md:w-1/2 md:pr-4">
 							<i
 								className="ri-search-line pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-base text-zinc-400"
 								aria-hidden="true"
