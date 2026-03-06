@@ -9,6 +9,7 @@ import {
 	type Category,
 	type CommunityItem,
 } from "../../data/resources";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -486,16 +487,19 @@ export function CommunityResourcesPage() {
 						className="border-t border-zinc-800 py-12 md:py-16"
 					>
 						<div className="mx-auto max-w-md text-center">
-							<div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
-								<i
-									className="ri-discord-fill text-lg text-zinc-400"
-									aria-hidden="true"
+							<div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
+								<img
+									src={getAssetPath(
+										"/assets/effect-logo/Logo symbol/SVG/effect-logomark-white.svg",
+									)}
+									alt="Effect"
+									className="h-5 w-5"
 								/>
 							</div>
-							<h2 className="text-base font-medium text-zinc-200">
+							<h2 className="text-xl font-semibold text-white">
 								Share your project
 							</h2>
-							<p className="mt-2 text-sm leading-relaxed text-zinc-400">
+							<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 								Built something with Effect? Join the Discord
 								and share it with the community.
 							</p>
