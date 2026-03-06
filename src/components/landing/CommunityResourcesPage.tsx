@@ -75,7 +75,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 		>
 			{/* Thumbnail */}
 			{item.thumbnail && (
-				<div className="relative aspect-video w-full overflow-hidden">
+				<div className="relative aspect-[16/10] w-full overflow-hidden">
 					<img
 						src={item.thumbnail}
 						alt=""
@@ -96,7 +96,7 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 				</div>
 			)}
 
-			<div className="flex flex-1 flex-col px-5 pt-5 pb-6">
+			<div className="flex flex-1 flex-col px-4 pt-4 pb-5">
 				{/* Title */}
 				<h3 className="relative text-[15px] font-semibold leading-snug text-white">
 					{item.title}
@@ -107,12 +107,12 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 				</h3>
 
 				{/* Description */}
-				<p className="relative mt-2.5 text-[13px] leading-relaxed text-zinc-400">
+				<p className="relative mt-2 line-clamp-2 text-[13px] leading-relaxed text-zinc-400">
 					{item.description}
 				</p>
 
 				{/* Author */}
-				<div className="relative mt-auto pt-5">
+				<div className="relative mt-auto pt-4">
 					<span className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">{item.author}</span>
 				</div>
 			</div>
@@ -153,7 +153,7 @@ function CategorySection({ category }: { category: Category }) {
 	return (
 		<section aria-label={`${displayName} resources`} className="py-10 md:py-14">
 			{/* Section header */}
-			<div className="mb-8 flex items-center justify-between">
+			<div className="mb-8 flex items-center justify-between px-4 lg:px-0">
 				<div className="flex items-center gap-3">
 					<div
 						className={`flex h-8 w-8 items-center justify-center rounded-lg ${color.bg}`}
@@ -181,7 +181,7 @@ function CategorySection({ category }: { category: Category }) {
 			</div>
 
 			{/* 4-column grid, 2 rows max */}
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+			<div className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4 lg:px-0">
 				{items.map((item) => (
 					<ResourceCard key={item.url} item={item} />
 				))}
@@ -216,7 +216,7 @@ function SearchResults({
 
 	if (results.length === 0) {
 		return (
-			<div className="flex flex-col items-center justify-center py-16 md:py-24">
+			<div className="flex flex-col items-center justify-center px-4 py-16 md:py-24 lg:px-0">
 				<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-900/60">
 					<i
 						className="ri-search-line text-2xl text-zinc-400"
@@ -243,11 +243,11 @@ function SearchResults({
 
 	return (
 		<div className="py-8">
-			<p className="mb-6 text-sm text-zinc-400">
+			<p className="mb-6 px-4 text-sm text-zinc-400 lg:px-0">
 				{results.length} result{results.length === 1 ? "" : "s"}{" "}
 				matching &ldquo;{query}&rdquo;
 			</p>
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+			<div className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4 lg:px-0">
 				{results.map((item) => (
 					<ResourceCard
 						key={item.url}
@@ -393,14 +393,14 @@ export function CommunityResourcesPage() {
 
 			{/* ── Content ─────────────────────────────────── */}
 			<main id="main-content" className="relative">
-				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<div className="mx-auto w-full max-w-[73.75rem]">
 					{/* Featured items — always visible */}
 					{featuredItems.length > 0 && (
 						<section
 							aria-label="Featured resources"
 							className="pt-12 pb-4"
 						>
-							<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+							<div className="grid grid-cols-1 gap-3 px-4 sm:grid-cols-2 lg:grid-cols-3 lg:px-0">
 								{featuredItems.map((item) => (
 									<FeaturedItemCard
 										key={item.url}
@@ -417,7 +417,7 @@ export function CommunityResourcesPage() {
 					)}
 
 					{/* ── Search ──────────────────────────── */}
-					<div className="pt-8 pb-2">
+					<div className="px-4 pt-8 pb-2">
 						<div className="relative w-full sm:max-w-md">
 							<i
 								className="ri-search-line pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-base text-zinc-400"
@@ -469,7 +469,7 @@ export function CommunityResourcesPage() {
 					{/* ── Submit CTA ──────────────────────── */}
 					<section
 						aria-label="Share your project"
-						className="border-t border-zinc-800 py-12 md:py-16"
+						className="border-t border-zinc-800 px-4 py-12 md:py-16"
 					>
 						<div className="mx-auto max-w-lgRe text-center">
 							<div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
