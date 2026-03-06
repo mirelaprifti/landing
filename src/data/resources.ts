@@ -120,6 +120,19 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		thumbnail: "https://i.ytimg.com/vi/F5aWLtEdNjE/hqdefault.jpg",
 	},
 	{
+		title: "Dependency Injection Has Never Been This Easy in TypeScript",
+		description:
+			"How Effect's Layer system makes dependency injection intuitive and type-safe — no decorators or reflection needed.",
+		url: "https://www.youtube.com/watch?v=YHmioxgxQY8",
+		category: "Video",
+		author: "Lucas Barake",
+		authorUrl: "https://www.youtube.com/@lucas-barake",
+		tags: ["Dependency Injection", "Layers"],
+		dateAdded: "2024-11-15",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/YHmioxgxQY8/hqdefault.jpg",
+	},
+	{
 		title: "Effect: the unreadable library that captured my heart",
 		description:
 			"A personal journey into Effect — from skepticism to understanding why its approach to TypeScript is worth the learning curve.",
@@ -131,19 +144,6 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		dateAdded: "2024-08-10",
 		featured: true,
 		thumbnail: "https://i.ytimg.com/vi/S2GChOwivwQ/hqdefault.jpg",
-	},
-	{
-		title: "Claude Code from Scratch with Effect",
-		description:
-			"Building a project from scratch using Claude Code and Effect — showcasing AI-assisted development with Effect's type-safe APIs.",
-		url: "https://www.youtube.com/watch?v=aueu9lm2ubo",
-		category: "Video",
-		author: "Kit Langton",
-		authorUrl: "https://www.youtube.com/@kitlangton",
-		tags: ["AI", "Live Coding"],
-		dateAdded: "2025-06-01",
-		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/aueu9lm2ubo/hqdefault.jpg",
 	},
 	{
 		title: "Theo should use Effect",
@@ -159,17 +159,17 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		thumbnail: "https://i.ytimg.com/vi/kYAjBvt03xw/hqdefault.jpg",
 	},
 	{
-		title: "Dependency Injection Has Never Been This Easy in TypeScript",
+		title: "Claude Code from Scratch with Effect",
 		description:
-			"How Effect's Layer system makes dependency injection intuitive and type-safe — no decorators or reflection needed.",
-		url: "https://www.youtube.com/watch?v=YHmioxgxQY8",
+			"Building a project from scratch using Claude Code and Effect — showcasing AI-assisted development with Effect's type-safe APIs.",
+		url: "https://www.youtube.com/watch?v=aueu9lm2ubo",
 		category: "Video",
-		author: "Lucas Barake",
-		authorUrl: "https://www.youtube.com/@lucas-barake",
-		tags: ["Dependency Injection", "Layers"],
-		dateAdded: "2024-11-15",
+		author: "Kit Langton",
+		authorUrl: "https://www.youtube.com/@kitlangton",
+		tags: ["AI", "Live Coding"],
+		dateAdded: "2025-06-01",
 		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/YHmioxgxQY8/hqdefault.jpg",
+		thumbnail: "https://i.ytimg.com/vi/aueu9lm2ubo/hqdefault.jpg",
 	},
 	{
 		title: "Maybe I Was Wrong About Effect...",

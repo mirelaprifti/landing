@@ -22,17 +22,15 @@ const ITEMS_PER_SECTION = 8; // 4 columns × 2 rows
 
 function ResourceCard({
 	item,
-	color,
 }: {
 	item: CommunityItem;
-	color: (typeof CATEGORY_COLORS)[Category];
 }) {
 	return (
 		<a
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`group relative flex flex-col rounded-xl border bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${color.border}`}
+			className="group relative flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
 		>
 			{/* Hover glow */}
 			<div
@@ -106,11 +104,6 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 			)}
 
 			<div className="flex flex-1 flex-col p-5 sm:p-6 md:p-8">
-				{/* Category badge */}
-				<span className="relative mb-3 w-fit rounded-md bg-zinc-800/80 px-2 py-0.5 text-xs font-medium text-zinc-400">
-					{item.category}
-				</span>
-
 				{/* Title */}
 				<h3 className="relative text-base font-semibold text-white sm:text-lg md:text-xl">
 					{item.title}
@@ -197,7 +190,7 @@ function CategorySection({ category }: { category: Category }) {
 			{/* 4-column grid, 2 rows max */}
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{items.map((item) => (
-					<ResourceCard key={item.url} item={item} color={color} />
+					<ResourceCard key={item.url} item={item} />
 				))}
 			</div>
 		</section>
@@ -266,7 +259,6 @@ function SearchResults({
 					<ResourceCard
 						key={item.url}
 						item={item}
-						color={CATEGORY_COLORS[item.category]}
 					/>
 				))}
 			</div>
@@ -486,7 +478,7 @@ export function CommunityResourcesPage() {
 						aria-label="Share your project"
 						className="border-t border-zinc-800 py-12 md:py-16"
 					>
-						<div className="mx-auto max-w-md text-center">
+						<div className="mx-auto max-w-lgRe text-center">
 							<div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
 								<img
 									src={getAssetPath(
@@ -496,10 +488,10 @@ export function CommunityResourcesPage() {
 									className="h-5 w-5"
 								/>
 							</div>
-							<h2 className="text-xl font-semibold text-white">
-								Share your project
+							<h2 className="text-3xl font-semibold text-white">
+								Share your Effect project
 							</h2>
-							<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+							<p className="mt-3 text-lg leading-relaxed text-zinc-400">
 								Built something with Effect? Join the Discord
 								and share it with the community.
 							</p>

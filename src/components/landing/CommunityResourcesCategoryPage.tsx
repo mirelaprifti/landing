@@ -26,7 +26,7 @@ function ResourceCard({
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`group relative flex flex-col rounded-xl border bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${color.border}`}
+			className="group relative flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
 		>
 			{/* Hover glow */}
 			<div
