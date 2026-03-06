@@ -71,45 +71,41 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800/60 bg-zinc-900/20 transition-all duration-300 hover:border-zinc-700/80 hover:bg-zinc-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+			className="group relative aspect-video overflow-hidden rounded-lg border border-zinc-800/60 transition-all duration-300 hover:border-zinc-700/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
 		>
 			{/* Thumbnail */}
 			{item.thumbnail && (
-				<div className="relative aspect-video w-full overflow-hidden">
-					<img
-						src={item.thumbnail}
-						alt=""
-						className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-						loading="lazy"
-					/>
-					{/* Gradient overlay for depth */}
-					<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent" />
-					{/* Play icon overlay */}
-					<div className="absolute inset-0 flex items-center justify-center">
-						<div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 group-hover:bg-white/15 group-hover:ring-white/30">
-							<i
-								className="ri-play-fill text-lg"
-								aria-hidden="true"
-							/>
-						</div>
-					</div>
-				</div>
+				<img
+					src={item.thumbnail}
+					alt=""
+					className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+					loading="lazy"
+				/>
 			)}
 
-			<div className="flex flex-1 flex-col px-4 pt-4 pb-5">
-				{/* Title */}
-				<h3 className="relative text-[15px] font-semibold leading-snug text-white">
+			{/* Bottom gradient overlay */}
+			<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
+
+			{/* Play icon */}
+			<div className="absolute inset-0 flex items-center justify-center">
+				<div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 group-hover:bg-white/15 group-hover:ring-white/30">
+					<i
+						className="ri-play-fill text-lg"
+						aria-hidden="true"
+					/>
+				</div>
+			</div>
+
+			{/* Title & author overlay */}
+			<div className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 px-4 pb-4">
+				<h3 className="text-[15px] font-semibold leading-snug text-white drop-shadow-sm">
 					{item.title}
 					<i
-						className="ri-arrow-right-up-line ml-1 text-xs text-zinc-500 transition-colors duration-300 group-hover:text-zinc-300"
+						className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200"
 						aria-hidden="true"
 					/>
 				</h3>
-
-				{/* Author */}
-				<div className="relative mt-auto pt-4">
-					<span className="font-mono text-xs uppercase tracking-wide text-zinc-400">{item.author}</span>
-				</div>
+				<span className="font-mono text-xs uppercase tracking-wide text-zinc-300/80">{item.author}</span>
 			</div>
 		</a>
 	);
