@@ -71,31 +71,24 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 hover:shadow-xl hover:shadow-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+			className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800/60 bg-zinc-900/20 transition-all duration-300 hover:border-zinc-700/80 hover:bg-zinc-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
 		>
-			{/* Hover glow */}
-			<div
-				className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-				style={{
-					background:
-						"radial-gradient(ellipse 60% 50% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 50%)",
-				}}
-			/>
-
 			{/* Thumbnail */}
 			{item.thumbnail && (
 				<div className="relative aspect-video w-full overflow-hidden">
 					<img
 						src={item.thumbnail}
 						alt=""
-						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+						className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
 						loading="lazy"
 					/>
+					{/* Gradient overlay for depth */}
+					<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent" />
 					{/* Play icon overlay */}
 					<div className="absolute inset-0 flex items-center justify-center">
-						<div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white/90 backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">
+						<div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 group-hover:bg-white/15 group-hover:ring-white/30">
 							<i
-								className="ri-play-fill text-xl"
+								className="ri-play-fill text-lg"
 								aria-hidden="true"
 							/>
 						</div>
@@ -103,24 +96,24 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 				</div>
 			)}
 
-			<div className="flex flex-1 flex-col p-5 sm:p-6 md:p-8">
+			<div className="flex flex-1 flex-col px-5 pt-5 pb-6">
 				{/* Title */}
-				<h3 className="relative text-base font-semibold text-white sm:text-lg md:text-xl">
+				<h3 className="relative text-[15px] font-semibold leading-snug text-white">
 					{item.title}
 					<i
-						className="ri-arrow-right-up-line ml-1.5 text-sm text-zinc-400 transition-colors group-hover:text-zinc-200"
+						className="ri-arrow-right-up-line ml-1 text-xs text-zinc-500 transition-colors duration-300 group-hover:text-zinc-300"
 						aria-hidden="true"
 					/>
 				</h3>
 
 				{/* Description */}
-				<p className="relative mt-2 text-sm leading-relaxed text-zinc-400">
+				<p className="relative mt-2.5 text-[13px] leading-relaxed text-zinc-400">
 					{item.description}
 				</p>
 
-				{/* Footer */}
+				{/* Author */}
 				<div className="relative mt-auto pt-5">
-					<span className="font-mono text-xs uppercase text-zinc-400">{item.author}</span>
+					<span className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">{item.author}</span>
 				</div>
 			</div>
 		</a>
@@ -407,7 +400,7 @@ export function CommunityResourcesPage() {
 							aria-label="Featured resources"
 							className="pt-12 pb-4"
 						>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+							<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 								{featuredItems.map((item) => (
 									<FeaturedItemCard
 										key={item.url}
