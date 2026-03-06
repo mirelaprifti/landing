@@ -110,17 +110,6 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 								</li>
 								<li>
 									<a
-										href="https://github.com/tim-smart/effect-mcp"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Effect MCP
-										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
-								</li>
-								<li>
-									<a
 										href="https://github.com/Effect-TS/effect/blob/main/packages/cli/README.md"
 										target="_blank"
 										rel="noopener noreferrer"
@@ -141,6 +130,17 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 										<i className="ri-arrow-right-up-line text-sm" />
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://www.effect.solutions/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Effect Solutions
+										<i className="ri-arrow-right-up-line text-sm" />
+									</a>
+								</li>
 							</ul>
 						</div>
 
@@ -157,7 +157,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 										href={getAssetPath("/podcast")}
 										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Podcast
+										Podcast 🎙️
 									</a>
 								</li>
 								<li>
@@ -221,7 +221,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 										rel="noopener noreferrer"
 										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Myths about Effect
+										Myths about Effect 💀
 									</a>
 								</li>
 								<li>

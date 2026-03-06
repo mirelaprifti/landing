@@ -167,7 +167,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 					) : (
 						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
 							<i
-								className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-lg`}
+								className="ri-arrow-right-line text-lg"
 							/>
 						</div>
 					)}
@@ -465,7 +465,7 @@ function PostCard({ post }: { post: BlogPost }) {
 						<time className="font-mono tabular-nums">{post.date}</time>
 						<div className="flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 opacity-0 transition-all group-hover:text-white group-hover:opacity-100">
 							<i
-								className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-xs`}
+								className="ri-arrow-right-line text-xs"
 							/>
 						</div>
 					</div>
