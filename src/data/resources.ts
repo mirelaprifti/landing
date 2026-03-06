@@ -184,6 +184,32 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		featured: true,
 		thumbnail: "https://i.ytimg.com/vi/MHpf_XMz_aM/hqdefault.jpg",
 	},
+	{
+		title: "This library changed my life, it had such a big Effect on me",
+		description:
+			"A deep dive into how Effect transformed a developer's approach to TypeScript — from error handling to dependency management.",
+		url: "https://www.youtube.com/watch?v=NR_gJipShK8",
+		category: "Video",
+		author: "TJ DeVries",
+		authorUrl: "https://www.youtube.com/@teikidev",
+		tags: ["Overview", "Live Coding"],
+		dateAdded: "2025-01-15",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/NR_gJipShK8/hqdefault.jpg",
+	},
+	{
+		title: "Effect: the Good Parts, `use workflow`, and Vercel Domains",
+		description:
+			"Dillon Mulroy discusses the most compelling parts of Effect, workflow patterns, and how it fits into the Vercel ecosystem.",
+		url: "https://www.youtube.com/watch?v=VR_MQH3opc8",
+		category: "Video",
+		author: "Dillon Mulroy",
+		authorUrl: "https://www.youtube.com/@swyxTV",
+		tags: ["Interview", "Workflows"],
+		dateAdded: "2025-02-01",
+		featured: true,
+		thumbnail: "https://i.ytimg.com/vi/VR_MQH3opc8/hqdefault.jpg",
+	},
 
 	// ── Tools & Libraries ────────────────────────────────────────
 	{
