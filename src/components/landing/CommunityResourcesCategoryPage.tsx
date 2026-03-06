@@ -67,7 +67,7 @@ function ResourceCard({
 
 			{/* Footer */}
 			<div className="relative mt-auto pt-8">
-				<span className="font-mono text-xs uppercase text-zinc-500">{item.author}</span>
+				<span className="font-mono text-sm uppercase text-zinc-400">{item.author}</span>
 			</div>
 		</a>
 	);
