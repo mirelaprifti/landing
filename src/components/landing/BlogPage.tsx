@@ -386,73 +386,6 @@ function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () =>
 	);
 }
 
-// ── Release Horizontal Scroll ───────────────────────────────────
-function ReleaseCard({ post }: { post: BlogPost }) {
-	const url = getPostUrl(post);
-	const isExternal = url.startsWith("http");
-	// Try to extract a version from the title (e.g. "Effect 3.12" or "v4 Beta")
-	const versionMatch = post.title.match(/(\d+\.\d+(?:\.\d+)?|v\d+[^\s]*)/i);
-	const version = versionMatch ? versionMatch[1] : null;
-	return (
-		<a
-			href={isExternal ? url : getAssetPath(url)}
-			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-xl bg-zinc-900/70 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/90 hover:shadow-xl hover:shadow-emerald-500/5"
-		>
-			{/* Top accent line */}
-			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
-
-			<div>
-				<div className="flex items-center justify-between">
-					<span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium tracking-wide text-emerald-400 uppercase">
-						<span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-						Release
-					</span>
-					{version && (
-						<span className="font-mono text-sm font-semibold text-zinc-300">
-							{version}
-						</span>
-					)}
-				</div>
-
-				<h3 className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-zinc-100 transition-colors group-hover:text-white">
-					{post.title}
-				</h3>
-			</div>
-
-			<div className="mt-4 flex items-center justify-between">
-				<time className="font-mono text-xs text-zinc-400 tabular-nums">
-					{post.date}
-				</time>
-				<div className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors group-hover:text-emerald-400">
-					<i
-						className={`${isExternal ? "ri-arrow-right-up-line" : "ri-arrow-right-line"} text-sm`}
-					/>
-				</div>
-			</div>
-		</a>
-	);
-}
-
-function ReleaseSection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
-	return (
-		<HorizontalScrollRail
-			icon="ri-price-tag-3-line"
-			iconBg="bg-emerald-500/10"
-			title="Release"
-			subtitle="Latest versions and updates"
-			accentColor="text-emerald-400"
-			ariaLabel="Release posts"
-			onViewAll={onViewAll}
-			itemCount={posts.length}
-		>
-			{posts.map((post) => (
-				<ReleaseCard key={post.slug} post={post} />
-			))}
-		</HorizontalScrollRail>
-	);
-}
-
 // ── Post Card (grid card style) ──────────────────────────────────
 function PostCard({ post }: { post: BlogPost }) {
 	const url = getPostUrl(post);
@@ -588,7 +521,6 @@ export function BlogPage() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const postListRef = useRef<HTMLDivElement>(null);
 	const contentZoneRef = useRef<HTMLDivElement>(null);
-	const sidebarSectionRef = useRef<HTMLDivElement>(null);
 
 	const goToPage = useCallback((page: number | ((prev: number) => number)) => {
 		setCurrentPage(page);
@@ -604,19 +536,11 @@ export function BlogPage() {
 		[],
 	);
 
-	// Separate Release posts
-	const releasesPosts = useMemo(
-		() => BLOG_POSTS.filter((p) => p.tags.includes("Release")),
-		[],
-	);
-
-	// Posts that are neither TWIE nor Release (main grid)
+	// Posts that are not TWIE (main grid — includes Release posts)
 	const nonTwiePosts = useMemo(
 		() =>
 			BLOG_POSTS.filter(
-				(p) =>
-					!p.tags.includes("This Week In Effect") &&
-					!p.tags.includes("Release"),
+				(p) => !p.tags.includes("This Week In Effect"),
 			),
 		[],
 	);
@@ -646,29 +570,8 @@ export function BlogPage() {
 			return posts;
 		}
 
-		// When the user explicitly selects Release tag, show those in the grid
-		if (activeTag === "Release") {
-			let posts = releasesPosts;
-			if (activeAuthor) {
-				posts = posts.filter((p) =>
-					p.authors.some((a) => a.name === activeAuthor),
-				);
-			}
-			if (searchQuery.trim()) {
-				const q = searchQuery.toLowerCase();
-				posts = posts.filter(
-					(p) =>
-						p.title.toLowerCase().includes(q) ||
-						p.excerpt.toLowerCase().includes(q) ||
-						p.tags.some((t) => t.toLowerCase().includes(q)) ||
-						p.authors.some((a) => a.name.toLowerCase().includes(q)),
-				);
-			}
-			return posts;
-		}
-
-		// For "All" — show posts that are NOT in TWIE or Release (they have their own rails)
-		// For a specific sub-tag — search ALL posts so dual-tagged posts (e.g. ["Release", "Effect Schema"]) appear
+		// For "All" — show posts that are NOT in TWIE (they have their own rail)
+		// For a specific tag — search ALL posts so dual-tagged posts appear
 		let posts = activeTag === "All" ? nonTwiePosts : BLOG_POSTS;
 
 		if (activeTag !== "All") {
@@ -693,16 +596,13 @@ export function BlogPage() {
 		}
 
 		return posts;
-	}, [activeTag, activeAuthor, searchQuery, twiePosts, releasesPosts, nonTwiePosts]);
+	}, [activeTag, activeAuthor, searchQuery, twiePosts, nonTwiePosts]);
 
 	const hasActiveFilters =
 		activeTag !== "All" || activeAuthor !== null || searchQuery.trim() !== "";
 
 	// Show TWIE rail unless user is already viewing TWIE posts in the main grid
 	const showTWIERail = activeTag !== "This Week In Effect";
-
-	// Show Release rail unless user is already viewing Release in the main grid
-	const showReleaseRail = activeTag !== "Release";
 
 	// Separate featured post from the rest (search all posts — featured may be a Release)
 	const featuredPost = useMemo(() => {
@@ -739,14 +639,12 @@ export function BlogPage() {
 				counts[tag] = nonTwiePosts.length;
 			} else if (tag === "This Week In Effect") {
 				counts[tag] = twiePosts.length;
-			} else if (tag === "Release") {
-				counts[tag] = releasesPosts.length;
 			} else {
 				counts[tag] = BLOG_POSTS.filter((p) => p.tags.includes(tag)).length;
 			}
 		}
 		return counts;
-	}, [nonTwiePosts, twiePosts, releasesPosts]);
+	}, [nonTwiePosts, twiePosts]);
 
 	// Compute author counts
 	const authorEntries = useMemo(() => {
@@ -770,10 +668,11 @@ export function BlogPage() {
 		setActiveTag(tag);
 		setActiveAuthor(null);
 		setCurrentPage(1);
-		sidebarSectionRef.current?.scrollIntoView({
-			behavior: "smooth",
-			block: "start",
-		});
+		if (postListRef.current) {
+			const navbarHeight = 64; // h-16
+			const top = postListRef.current.getBoundingClientRect().top + window.scrollY - navbarHeight;
+			window.scrollTo({ top, behavior: "smooth" });
+		}
 	}, []);
 
 	const handleAuthorChange = useCallback(
@@ -892,20 +791,8 @@ export function BlogPage() {
 					{/* TWIE horizontal scroll rail */}
 					{showTWIERail && <TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />}
 
-					{/* Release horizontal scroll rail */}
-					{showReleaseRail && (
-						<ReleaseSection
-							posts={
-								featuredPost
-									? releasesPosts.filter((p) => p.slug !== featuredPost.slug)
-									: releasesPosts
-							}
-							onViewAll={() => handleTagChange("Release")}
-						/>
-					)}
-
 					{/* Two-column layout: content + sidebar */}
-					<div ref={sidebarSectionRef} className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_260px]">
+					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_260px]">
 						{/* Main content */}
 						<div className="min-w-0 pb-24 lg:border-r lg:border-zinc-800/60 lg:pr-12">
 							{/* Search bar */}

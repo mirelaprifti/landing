@@ -97,14 +97,14 @@ export function Navigation({ transparent = false }: NavigationProps) {
 								>
 									Docs
 								</a>
-								<a
-									href={getAssetPath("/blog")}
-									className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
-								>
-									Blog
-								</a>
-								<a
-									href="https://effect.website/play/"
+							<a
+								href={getAssetPath("/blog")}
+								className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
+							>
+								Blog
+							</a>
+							<a
+								href="https://effect.website/play/"
 									target="_blank"
 									rel="noopener noreferrer"
 									className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
