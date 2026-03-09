@@ -27,19 +27,40 @@ function ResourceCard({
 	item: CommunityItem;
 	color: (typeof CATEGORY_COLORS)[Category];
 }) {
+	const rgb = color.rgb;
+
 	return (
 		<a
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+			className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 transition-all duration-300 ease-out hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+			onMouseEnter={(e) => {
+				const el = e.currentTarget;
+				el.style.borderColor = "rgba(82, 82, 91, 0.9)";
+				el.style.boxShadow = `0 16px 32px -8px rgba(${rgb}, 0.1), 0 0 0 1px rgba(${rgb}, 0.06)`;
+			}}
+			onMouseLeave={(e) => {
+				const el = e.currentTarget;
+				el.style.borderColor = "";
+				el.style.boxShadow = "";
+			}}
 		>
-			{/* Hover glow */}
+			{/* Left accent stripe */}
 			<div
-				className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+				className="pointer-events-none absolute top-3 bottom-3 left-0 w-px rounded-r-full transition-all duration-300 group-hover:top-2 group-hover:bottom-2"
+				style={{ backgroundColor: `rgba(${rgb}, 0.5)` }}
+			/>
+			<div
+				className="pointer-events-none absolute top-3 bottom-3 left-0 w-px rounded-r-full opacity-0 blur-[3px] transition-all duration-300 group-hover:opacity-100 group-hover:top-2 group-hover:bottom-2"
+				style={{ backgroundColor: `rgba(${rgb}, 0.6)` }}
+			/>
+
+			{/* Bottom edge glow on hover */}
+			<div
+				className="pointer-events-none absolute inset-x-0 bottom-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 				style={{
-					background:
-						"radial-gradient(ellipse 60% 50% at 0% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 50%)",
+					background: `linear-gradient(90deg, transparent, rgba(${rgb}, 0.4), transparent)`,
 				}}
 			/>
 
@@ -49,7 +70,11 @@ function ResourceCard({
 					{item.tags.slice(0, 3).map((tag) => (
 						<span
 							key={tag}
-							className={`rounded-md border border-zinc-700 px-2 py-0.5 text-xs ${color.text}`}
+							className="rounded-full px-2 py-0.5 text-xs text-zinc-300"
+							style={{
+								border: `1px solid rgba(${rgb}, 0.15)`,
+								backgroundColor: `rgba(${rgb}, 0.06)`,
+							}}
 						>
 							{tag}
 						</span>
@@ -61,7 +86,7 @@ function ResourceCard({
 			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
 				<i
-					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-500 transition-colors group-hover:text-zinc-300"
+					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-500 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
 					aria-hidden="true"
 				/>
 			</h3>
@@ -81,13 +106,13 @@ function ResourceCard({
 
 // ── Featured Item Card ───────────────────────────────────────────
 
-function FeaturedItemCard({ item }: { item: CommunityItem }) {
+function FeaturedItemCard({ item, large }: { item: CommunityItem; large?: boolean }) {
 	return (
 		<a
 			href={item.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative aspect-video overflow-hidden rounded-lg border border-zinc-800/60 transition-all duration-300 hover:border-zinc-700/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+			className={`group relative overflow-hidden rounded-lg border border-zinc-800/60 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${large ? "aspect-auto h-full min-h-[280px] lg:min-h-0" : "aspect-video"}`}
 		>
 			{/* Thumbnail */}
 			{item.thumbnail && (
@@ -102,19 +127,9 @@ function FeaturedItemCard({ item }: { item: CommunityItem }) {
 			{/* Bottom gradient overlay */}
 			<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
 
-			{/* Play icon */}
-			<div className="absolute inset-0 flex items-center justify-center">
-				<div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 group-hover:bg-white/15 group-hover:ring-white/30">
-					<i
-						className="ri-play-fill text-lg"
-						aria-hidden="true"
-					/>
-				</div>
-			</div>
-
 			{/* Title overlay */}
-			<div className="absolute inset-x-0 bottom-0 px-4 pb-4">
-				<h3 className="text-[15px] font-semibold leading-snug text-white drop-shadow-sm">
+			<div className={`absolute inset-x-0 bottom-0 px-4 pb-4 ${large ? "px-6 pb-6" : ""}`}>
+				<h3 className={`font-semibold leading-snug text-white drop-shadow-sm ${large ? "text-lg" : "text-[15px]"}`}>
 					{item.title}
 					<i
 						className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200"
@@ -381,9 +396,9 @@ export function CommunityResourcesPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="pt-12 pb-12 md:pt-20 md:pb-16">
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-								{"// Community"}
+								{"// Projects Showcase"}
 							</p>
-							<h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+							<h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl">
 								Community Resources
 							</h1>
 							<p className="mt-4 max-w-3xl text-base text-zinc-400 sm:text-lg">
@@ -401,22 +416,48 @@ export function CommunityResourcesPage() {
 			{/* ── Content ─────────────────────────────────── */}
 			<main id="main-content" className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					{/* Featured items — always visible */}
-					{featuredItems.length > 0 && (
-						<section
-							aria-label="Featured resources"
-							className="pt-12 pb-4"
-						>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-								{featuredItems.map((item) => (
+				{/* Featured items — always visible */}
+				{featuredItems.length > 0 && (
+					<section
+						aria-label="Featured resources"
+						className="pt-12 pb-4"
+					>
+						{/* Hero row: large feature + 2×2 grid */}
+						<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+							{/* Primary featured video — half width */}
+							{featuredItems[0] && (
+								<FeaturedItemCard
+									item={featuredItems[0]}
+									large
+								/>
+							)}
+
+							{/* 2×2 grid of next 4 videos */}
+							{featuredItems.length > 1 && (
+								<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+									{featuredItems.slice(1, 5).map((item) => (
+										<FeaturedItemCard
+											key={item.url}
+											item={item}
+										/>
+									))}
+								</div>
+							)}
+						</div>
+
+						{/* Remaining featured items below */}
+						{featuredItems.length > 5 && (
+							<div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+								{featuredItems.slice(5).map((item) => (
 									<FeaturedItemCard
 										key={item.url}
 										item={item}
 									/>
 								))}
 							</div>
-						</section>
-					)}
+						)}
+					</section>
+				)}
 
 					{/* Divider below featured */}
 					{featuredItems.length > 0 && (
@@ -479,19 +520,19 @@ export function CommunityResourcesPage() {
 						className="border-t border-zinc-800 py-12 md:py-16"
 					>
 						<div className="mx-auto max-w-lg text-center">
-							<div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60">
+							<div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-800/60">
 								<img
 									src={getAssetPath(
 										"/assets/effect-logo/Logo symbol/SVG/effect-logomark-white.svg",
 									)}
 									alt="Effect"
-									className="h-5 w-5"
+									className="h-6 w-6"
 								/>
 							</div>
-							<h2 className="text-3xl font-semibold text-white">
+							<h2 className="text-3xl font-bold text-white">
 								Share your Effect project
 							</h2>
-							<p className="mt-3 text-lg leading-relaxed text-zinc-400">
+							<p className="mt-3 mb-2 text-lg text-zinc-400">
 								Built something with Effect? Join the Discord
 								and share it with the community.
 							</p>

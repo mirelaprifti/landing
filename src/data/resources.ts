@@ -27,37 +27,42 @@ export const SLUG_TO_CATEGORY: Record<string, Category> = Object.fromEntries(
 /** Category accent colors (used for section headers, badges) */
 export const CATEGORY_COLORS: Record<
 	Category,
-	{ text: string; bg: string; border: string; dot: string }
+	{ text: string; bg: string; border: string; dot: string; rgb: string }
 > = {
 	Article: {
 		text: "text-blue-400",
 		bg: "bg-blue-500/10",
 		border: "border-blue-500/20",
 		dot: "bg-blue-400",
+		rgb: "96, 165, 250",
 	},
 	Learning: {
 		text: "text-emerald-400",
 		bg: "bg-emerald-500/10",
 		border: "border-emerald-500/20",
 		dot: "bg-emerald-400",
+		rgb: "52, 211, 153",
 	},
 	Other: {
 		text: "text-zinc-400",
 		bg: "bg-zinc-500/10",
 		border: "border-zinc-500/20",
 		dot: "bg-zinc-400",
+		rgb: "161, 161, 170",
 	},
 	Tools: {
 		text: "text-amber-400",
 		bg: "bg-amber-500/10",
 		border: "border-amber-500/20",
 		dot: "bg-amber-400",
+		rgb: "251, 191, 36",
 	},
 	Video: {
-		text: "text-rose-400",
-		bg: "bg-rose-500/10",
-		border: "border-rose-500/20",
-		dot: "bg-rose-400",
+		text: "text-violet-400",
+		bg: "bg-violet-500/10",
+		border: "border-violet-500/20",
+		dot: "bg-violet-400",
+		rgb: "167, 139, 250",
 	},
 };
 
@@ -146,45 +151,6 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		thumbnail: "https://i.ytimg.com/vi/YHmioxgxQY8/hqdefault.jpg",
 	},
 	{
-		title: "Theo should use Effect",
-		description:
-			"A compelling case for why Effect belongs in every TypeScript developer's toolkit — addressing common objections and showing real benefits.",
-		url: "https://www.youtube.com/watch?v=kYAjBvt03xw",
-		category: "Video",
-		author: "Ethan Niser",
-		authorUrl: "https://www.youtube.com/@ethanniser",
-		tags: ["Overview", "Advocacy"],
-		dateAdded: "2024-12-01",
-		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/kYAjBvt03xw/hqdefault.jpg",
-	},
-	{
-		title: "The Simple Secret Behind Effect's Power",
-		description:
-			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
-		url: "https://www.youtube.com/watch?v=F5aWLtEdNjE&t=10s",
-		category: "Video",
-		author: "Kit Langton",
-		authorUrl: "https://www.youtube.com/@kitlangton",
-		tags: ["Beginner", "Concepts"],
-		dateAdded: "2024-06-15",
-		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/F5aWLtEdNjE/hqdefault.jpg",
-	},
-	{
-		title: "Effect: the Good Parts, `use workflow`, and Vercel Domains",
-		description:
-			"Dillon Mulroy discusses the most compelling parts of Effect, workflow patterns, and how it fits into the Vercel ecosystem.",
-		url: "https://www.youtube.com/watch?v=VR_MQH3opc8",
-		category: "Video",
-		author: "Dillon Mulroy",
-		authorUrl: "https://www.youtube.com/@swyxTV",
-		tags: ["Interview", "Workflows"],
-		dateAdded: "2025-02-01",
-		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/VR_MQH3opc8/hqdefault.jpg",
-	},
-	{
 		title: "This library changed my life, it had such a big Effect on me",
 		description:
 			"A deep dive into how Effect transformed a developer's approach to TypeScript — from error handling to dependency management.",
@@ -198,17 +164,17 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 		thumbnail: "https://i.ytimg.com/vi/NR_gJipShK8/hqdefault.jpg",
 	},
 	{
-		title: "Claude Code from Scratch with Effect",
+		title: "The Simple Secret Behind Effect's Power",
 		description:
-			"Building a project from scratch using Claude Code and Effect — showcasing AI-assisted development with Effect's type-safe APIs.",
-		url: "https://www.youtube.com/watch?v=aueu9lm2ubo",
+			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
+		url: "https://www.youtube.com/watch?v=F5aWLtEdNjE&t=10s",
 		category: "Video",
 		author: "Kit Langton",
 		authorUrl: "https://www.youtube.com/@kitlangton",
-		tags: ["AI", "Live Coding"],
-		dateAdded: "2025-06-01",
+		tags: ["Beginner", "Concepts"],
+		dateAdded: "2024-06-15",
 		featured: true,
-		thumbnail: "https://i.ytimg.com/vi/aueu9lm2ubo/hqdefault.jpg",
+		thumbnail: "https://i.ytimg.com/vi/F5aWLtEdNjE/hqdefault.jpg",
 	},
 
 	// ── Tools & Libraries ────────────────────────────────────────
