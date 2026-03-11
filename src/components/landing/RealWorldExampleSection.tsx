@@ -87,10 +87,10 @@ export function RealWorldExampleSection() {
 						<div className="overflow-hidden rounded-md border border-zinc-700 bg-zinc-900">
 							{/* Code header */}
 							<div className="flex items-center justify-between border-b border-zinc-700 px-4 py-3">
-								<span className="font-mono text-xs text-zinc-500">
+								<span className="font-mono text-xs text-zinc-400">
 									process-order.ts
 								</span>
-								<div className="flex items-center gap-2 text-xs text-zinc-500">
+								<div className="flex items-center gap-2 text-xs text-zinc-400">
 									<span className="flex items-center gap-1">
 										<i className="ri-checkbox-circle-line text-emerald-400" />
 										Typed errors
@@ -153,7 +153,7 @@ export function RealWorldExampleSection() {
 								}`}
 							>
 								<div className="mb-1 flex items-center gap-2">
-									<span className="font-mono text-xs text-zinc-500">
+									<span className="font-mono text-xs text-zinc-400">
 										L{annotation.lineStart}-{annotation.lineEnd}
 									</span>
 								</div>
@@ -176,7 +176,7 @@ export function RealWorldExampleSection() {
 function highlightLine(line: string): React.ReactNode {
 	// Comments
 	if (line.trim().startsWith("//")) {
-		return <span className="text-zinc-500 italic">{line}</span>;
+		return <span className="text-zinc-400 italic">{line}</span>;
 	}
 
 	const parts: React.ReactNode[] = [];

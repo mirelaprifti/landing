@@ -1,4 +1,5 @@
 import { getAssetPath } from "../../utils/assetPath";
+import { Button, Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -129,22 +130,24 @@ export function EffectDaysPage() {
 
 								{/* CTA Buttons */}
 								<div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
-									<a
+									<Button
 										href="#tickets"
-										className="group inline-flex items-center gap-2 rounded-md border border-transparent bg-white py-3 pr-6 pl-5 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+										variant="primary"
+										size="lg"
+										className="group"
 									>
 										<i className="ri-coupon-line text-lg" />
 										Get your ticket
-									</a>
-									<a
+									</Button>
+									<Button
 										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-zinc-400/5 py-3 pr-6 pl-5 text-base font-medium text-white backdrop-blur-[3px] transition-all hover:border-zinc-400 hover:bg-zinc-700/10"
+										variant="secondary"
+										size="lg"
+										className="border-zinc-300 bg-zinc-400/5 backdrop-blur-[3px] hover:border-zinc-400 hover:bg-zinc-700/10"
 									>
 										<i className="ri-discord-fill text-lg" />
 										Join the community
-									</a>
+									</Button>
 								</div>
 							</div>
 
@@ -285,15 +288,14 @@ export function EffectDaysPage() {
 										+ more coming soon
 									</span>
 								</div>
-								<a
+								<Button
 									href="https://docs.google.com/forms/d/e/1FAIpQLSeOd9On6nWXgysWDk49Ti3zYX11TS6ZkuoC-4Qofs8ieVmP4A/viewform"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-2.5 pr-5 pl-4.5 text-base font-medium text-white transition-all hover:border-zinc-400 hover:bg-zinc-800"
+									variant="secondary"
+									className="text-base"
 								>
 									<i className="ri-mic-line text-lg" />
 									Apply to speak
-								</a>
+								</Button>
 							</div>
 
 							{/* Speaker Grid */}
@@ -447,9 +449,10 @@ export function EffectDaysPage() {
 
 										{/* CTAs */}
 										<div className="space-y-3">
-											<a
+											<Button
 												href="#"
-												className="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+												variant="primary"
+												className="flex w-full items-center justify-between"
 											>
 												<div className="flex items-center gap-2">
 													<i className="ri-user-line text-zinc-600" />
@@ -463,10 +466,11 @@ export function EffectDaysPage() {
 													</span>
 													<i className="ri-arrow-right-up-line text-sm text-zinc-600" />
 												</div>
-											</a>
-											<a
+											</Button>
+											<Button
 												href="#"
-												className="flex w-full items-center justify-between rounded-md border border-zinc-600 px-4 py-3 transition-all hover:border-zinc-400 hover:bg-zinc-800/80"
+												variant="secondary"
+												className="flex w-full items-center justify-between border-zinc-600 hover:bg-zinc-800/80"
 											>
 												<div className="flex items-center gap-2">
 													<i className="ri-building-line text-zinc-300" />
@@ -480,7 +484,7 @@ export function EffectDaysPage() {
 													</span>
 													<i className="ri-arrow-right-up-line text-sm text-zinc-400" />
 												</div>
-											</a>
+											</Button>
 										</div>
 									</div>
 								</div>
@@ -513,7 +517,7 @@ export function EffectDaysPage() {
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800">
 													<i className="ri-close-line text-zinc-600" />
 												</div>
-												<p className="text-sm font-medium text-zinc-500">
+												<p className="text-sm font-medium text-zinc-400">
 													May 6 · Workshop Day
 												</p>
 											</div>
@@ -537,9 +541,10 @@ export function EffectDaysPage() {
 
 										{/* CTAs */}
 										<div className="space-y-3">
-											<a
+											<Button
 												href="#"
-												className="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+												variant="primary"
+												className="flex w-full items-center justify-between"
 											>
 												<div className="flex items-center gap-2">
 													<i className="ri-user-line text-zinc-600" />
@@ -553,10 +558,11 @@ export function EffectDaysPage() {
 													</span>
 													<i className="ri-arrow-right-up-line text-sm text-zinc-600" />
 												</div>
-											</a>
-											<a
+											</Button>
+											<Button
 												href="#"
-												className="flex w-full items-center justify-between rounded-md border border-zinc-600 px-4 py-3 transition-all hover:border-zinc-400 hover:bg-zinc-800/80"
+												variant="secondary"
+												className="flex w-full items-center justify-between border-zinc-600 hover:bg-zinc-800/80"
 											>
 												<div className="flex items-center gap-2">
 													<i className="ri-building-line text-zinc-300" />
@@ -570,7 +576,7 @@ export function EffectDaysPage() {
 													</span>
 													<i className="ri-arrow-right-up-line text-sm text-zinc-400" />
 												</div>
-											</a>
+											</Button>
 										</div>
 									</div>
 								</div>
@@ -579,22 +585,24 @@ export function EffectDaysPage() {
 							<div className="mt-8 flex flex-col gap-4 text-sm text-zinc-400 md:flex-row md:justify-between">
 								<p>
 									Buying 4+ business tickets?{" "}
-									<a
+									<Link
 										href="mailto:contact@effectful.co"
-										className="text-white underline underline-offset-2 hover:text-zinc-300"
+										variant="inline"
+										className="underline-offset-2"
 									>
 										Contact us for group discounts.
-									</a>
+									</Link>
 								</p>
 								<p className="flex shrink-0 items-center gap-2 md:text-right">
 									<i className="ri-hand-heart-line text-white" />
 									<span>
-										<a
+										<Link
 											href="mailto:contact@effectful.co?subject=Effect Days 2026 - Sponsorship Inquiry"
-											className="text-white underline underline-offset-2 hover:text-zinc-300"
+											variant="inline"
+											className="underline-offset-2"
 										>
 											Sponsor Effect Days
-										</a>{" "}
+										</Link>{" "}
 										and get tickets included.
 									</span>
 								</p>
@@ -622,13 +630,14 @@ export function EffectDaysPage() {
 										Effect Days.
 									</p>
 								</div>
-								<a
+								<Link
 									href="/events/effect-days/malaga"
-									className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-zinc-300"
+									variant="subtle"
+									className="inline-flex shrink-0 items-center gap-2 font-medium"
 								>
 									Discover Málaga
 									<i className="ri-arrow-right-line text-xs" />
-								</a>
+								</Link>
 							</div>
 
 							{/* Two featured images */}
@@ -711,14 +720,13 @@ export function EffectDaysPage() {
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Effect Days is a non-profit event dedicated to{" "}
-										<a
+										<Link
 											href="https://effect.website"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
 										>
 											Effect
-										</a>
+										</Link>
 										, an open-source software library for building
 										production-grade applications in TypeScript.
 									</p>
@@ -740,14 +748,13 @@ export function EffectDaysPage() {
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The conference talks will be recorded and published on the{" "}
-										<a
+										<Link
 											href="https://www.youtube.com/@effect-ts"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
 										>
 											Effect YouTube channel
-										</a>{" "}
+										</Link>{" "}
 										a few weeks later.
 									</p>
 								</div>
@@ -768,12 +775,13 @@ export function EffectDaysPage() {
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Please refer to our{" "}
-										<a
+										<Link
 											href="#"
-											className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
 										>
 											Refund Policy
-										</a>{" "}
+										</Link>{" "}
 										for more details.
 									</p>
 								</div>
@@ -785,12 +793,13 @@ export function EffectDaysPage() {
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Yes. Effect Days is dedicated to providing a harassment-free
 										experience for everyone. Please read our{" "}
-										<a
+										<Link
 											href="/events/code-of-conduct"
-											className="text-white underline decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
 										>
 											Code of Conduct
-										</a>
+										</Link>
 										.
 									</p>
 								</div>
@@ -858,16 +867,15 @@ export function EffectDaysPage() {
 														{edition.workshops} workshops
 													</span>
 												</div>
-												<a
+												<Link
 													href={edition.playlistUrl}
-													target="_blank"
-													rel="noopener noreferrer"
-													className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-white transition-colors hover:text-zinc-300"
+													variant="subtle"
+													className="ml-auto inline-flex items-center gap-1.5 font-medium"
 												>
 													<i className="ri-youtube-fill text-base" />
 													Full playlist
 													<i className="ri-arrow-right-up-line text-xs" />
-												</a>
+												</Link>
 											</div>
 										</div>
 									</div>
@@ -911,13 +919,15 @@ export function EffectDaysPage() {
 								</p>
 
 								<div className="mt-8">
-									<a
+									<Button
 										href="#tickets"
-										className="group inline-flex items-center gap-2 rounded-md bg-white py-4 pr-6 pl-6 text-lg font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+										variant="primary"
+										size="xl"
+										className="group"
 									>
 										<i className="ri-coupon-line text-lg" />
 										Get your ticket
-									</a>
+									</Button>
 								</div>
 							</div>
 						</div>

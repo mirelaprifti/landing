@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { Button, Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -308,14 +309,13 @@ function ProductCard({ product }: { product: Product }) {
 			</div>
 
 			{/* Buy button */}
-			<a
+			<Button
 				href={product.buyUrl}
-				target="_blank"
-				rel="noopener noreferrer"
+				variant="secondary"
 				className="mt-2 block w-full bg-zinc-900 py-4 text-center text-base font-medium text-white transition-colors hover:bg-zinc-800"
 			>
 				Buy from {product.price}
-			</a>
+			</Button>
 		</div>
 	);
 }
@@ -399,13 +399,15 @@ export function MerchPage() {
 									community.
 								</p>
 								<div>
-									<a
+									<Button
 										href="#products"
-										className="group inline-flex items-center gap-2 rounded-md bg-white py-3 pr-6 pl-5 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+										variant="primary"
+										size="lg"
+										className="group"
 									>
 										View all items
 										<i className="ri-corner-right-down-line" />
-									</a>
+									</Button>
 								</div>
 							</div>
 
@@ -463,14 +465,13 @@ export function MerchPage() {
 						<div className="mt-16 border-t border-zinc-200 pt-4 text-center">
 							<p className="text-sm text-zinc-700">
 								All orders are processed and fulfilled by{" "}
-								<a
+								<Link
 									href="https://www.printful.com"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-700 underline transition-colors hover:text-zinc-900"
+									variant="inline"
+									className="text-zinc-700 hover:text-zinc-900"
 								>
 									Printful
-								</a>
+								</Link>
 								. Payments and profits go directly to Printful.
 							</p>
 						</div>
@@ -493,42 +494,34 @@ export function MerchPage() {
 									Share it with the community!
 								</p>
 								<div className="flex items-center gap-4">
-									<a
+									<Link
 										href="https://x.com/EffectTS_"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
 										aria-label="X (Twitter)"
 									>
 										<i className="ri-twitter-x-fill text-2xl" />
-									</a>
-									<a
+									</Link>
+									<Link
 										href="https://bsky.app/profile/effect-ts.bsky.social"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
 										aria-label="Bluesky"
 									>
 										<i className="ri-bluesky-fill text-2xl" />
-									</a>
-									<a
+									</Link>
+									<Link
 										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
 										aria-label="Discord"
 									>
 										<i className="ri-discord-fill text-2xl" />
-									</a>
-									<a
+									</Link>
+									<Link
 										href="https://www.linkedin.com/company/effectful-technologies"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
 										aria-label="LinkedIn"
 									>
 										<i className="ri-linkedin-box-fill text-2xl" />
-									</a>
+									</Link>
 								</div>
 							</div>
 

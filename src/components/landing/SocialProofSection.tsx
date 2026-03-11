@@ -182,7 +182,7 @@ export function SocialProofSection() {
 								<span className="text-sm font-medium text-zinc-400">
 									{useCase.title}
 								</span>
-								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-400" />
+								<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-400" />
 							</div>
 						</a>
 					))}

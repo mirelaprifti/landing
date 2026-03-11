@@ -44,7 +44,7 @@ export function InstallCommand() {
 						className={`group flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
 							activePM === pm
 								? "text-white"
-								: "text-zinc-500 hover:text-zinc-300"
+								: "text-zinc-400 hover:text-zinc-300"
 						}`}
 					>
 						<img
@@ -70,7 +70,7 @@ export function InstallCommand() {
 				{copyFeedback ? (
 					<i className="ri-check-line text-base text-green-400" />
 				) : (
-					<i className="ri-file-copy-line text-base text-zinc-500" />
+					<i className="ri-file-copy-line text-base text-zinc-400" />
 				)}
 			</button>
 		</div>

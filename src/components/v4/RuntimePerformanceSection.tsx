@@ -140,7 +140,7 @@ export function RuntimePerformanceSection() {
 
 								{/* v3 */}
 								<div className="flex items-center gap-3">
-									<span className="w-6 shrink-0 font-mono text-xs text-zinc-500">
+									<span className="w-6 shrink-0 font-mono text-xs text-zinc-400">
 										v3
 									</span>
 									<BlockRow

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { Button, Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -1079,24 +1080,24 @@ export function EventsPage() {
 								form.
 							</p>
 							<div className="mt-6 flex flex-wrap gap-3">
-								<a
+								<Button
 									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+									variant="primary"
+									size="lg"
+									className="inline-flex items-center gap-2"
 								>
 									<i className="ri-discord-fill" />
 									Join #events-hub
-								</a>
-								<a
+								</Button>
+								<Button
 									href="#"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-6 py-3 text-base font-medium text-white transition-colors hover:border-zinc-500 hover:bg-zinc-800"
+									variant="secondary"
+									size="lg"
+									className="inline-flex items-center gap-2"
 								>
 									<i className="ri-file-list-3-line" />
 									Fill out the form
-								</a>
+								</Button>
 							</div>
 						</div>
 
@@ -1127,17 +1128,16 @@ export function EventsPage() {
 											{perk.description}
 										</p>
 										{perk.href && (
-											<a
+											<Link
 												href={perk.href}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="group/link mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-white transition-colors"
+												variant="inline"
+												className="group/link mt-2 inline-flex items-center gap-1.5 text-sm font-medium"
 											>
 												<span className="underline decoration-zinc-600 underline-offset-4 transition-colors group-hover/link:decoration-white">
 													{perk.linkLabel}
 												</span>
 												<i className="ri-arrow-right-up-line text-xs" />
-											</a>
+											</Link>
 										)}
 									</div>
 								</div>
@@ -1173,15 +1173,15 @@ export function EventsPage() {
 									asking questions, and helping each other ship.
 								</p>
 
-								<a
+								<Button
 									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
+									variant="primary"
+									size="lg"
+									className="inline-flex items-center gap-2"
 								>
 									<i className="ri-discord-fill" />
 									Join Discord
-								</a>
+								</Button>
 							</div>
 						</div>
 					</div>

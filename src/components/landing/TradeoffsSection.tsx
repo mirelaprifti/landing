@@ -46,7 +46,7 @@ export function TradeoffsSection() {
 			<div className="relative mx-auto w-full max-w-295 px-4">
 				{/* Header */}
 				<div className="mb-12 max-w-2xl">
-					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-500 uppercase">
+					<p className="mb-3 font-mono text-sm font-semibold tracking-wider text-zinc-400 uppercase">
 						Honest take
 					</p>
 					<h2 className="leading-tighter text-2xl font-semibold text-white md:text-4xl">
@@ -87,7 +87,7 @@ export function TradeoffsSection() {
 						<ul className="space-y-3">
 							{MAYBE_NOT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<i className={`${item.icon} mt-0.5 shrink-0 text-zinc-500`} />
+									<i className={`${item.icon} mt-0.5 shrink-0 text-zinc-400`} />
 									<span className="text-sm text-zinc-400">{item.text}</span>
 								</li>
 							))}
@@ -101,7 +101,7 @@ export function TradeoffsSection() {
 						"The learning curve is real. But once it clicks, you wonder how you
 						ever wrote TypeScript without it."
 					</blockquote>
-					<p className="mt-3 text-sm text-zinc-500">
+					<p className="mt-3 text-sm text-zinc-400">
 						— Common sentiment from Effect developers
 					</p>
 				</div>

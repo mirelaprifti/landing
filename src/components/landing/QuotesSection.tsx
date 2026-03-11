@@ -507,7 +507,7 @@ export function QuotesSection() {
 				{/* Header row with title and arrow controls */}
 				<div className="mx-auto flex w-full max-w-[73.75rem] flex-row items-center justify-between px-4">
 					<div>
-						<p className="mb-2 font-mono text-sm tracking-wider text-zinc-500 uppercase">
+						<p className="mb-2 font-mono text-sm tracking-wider text-zinc-400 uppercase">
 							// Testimonials
 						</p>
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
@@ -521,7 +521,7 @@ export function QuotesSection() {
 							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<i className="ri-arrow-left-line text-base text-zinc-500 transition-colors group-hover:text-white" />
+							<i className="ri-arrow-left-line text-base text-zinc-400 transition-colors group-hover:text-white" />
 						</button>
 						<button
 							type="button"
@@ -529,7 +529,7 @@ export function QuotesSection() {
 							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<i className="ri-arrow-right-line text-base text-zinc-500 transition-colors group-hover:text-white" />
+							<i className="ri-arrow-right-line text-base text-zinc-400 transition-colors group-hover:text-white" />
 						</button>
 					</div>
 				</div>

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { InstallCommand } from "./InstallCommand";
 
 export function CTASection() {
@@ -56,24 +57,24 @@ export function CTASection() {
 
 					{/* CTA Buttons */}
 					<div className="mt-6 flex flex-row items-center justify-center gap-3">
-						<a
+						<Button
 							href="https://effect.website/docs/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group inline-flex w-44 items-center justify-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-3 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							variant="secondary"
+							size="lg"
+							className="group w-44"
 						>
 							<i className="ri-arrow-right-line text-lg transition-transform group-hover:translate-x-0.5" />
 							Get started
-						</a>
-						<a
+						</Button>
+						<Button
 							href="https://discord.gg/effect-ts"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex w-44 items-center justify-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 py-3 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							variant="secondary"
+							size="lg"
+							className="w-44"
 						>
 							<i className="ri-discord-fill text-lg" />
 							Join Discord
-						</a>
+						</Button>
 					</div>
 				</div>
 			</div>

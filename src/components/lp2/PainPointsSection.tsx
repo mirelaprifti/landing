@@ -76,7 +76,7 @@ export function PainPointsSection() {
 							<h3 className="mb-2 text-base font-semibold text-red-400/80">
 								{item.problem}
 							</h3>
-							<p className="mb-4 text-sm leading-relaxed text-zinc-500">
+							<p className="mb-4 text-sm leading-relaxed text-zinc-400">
 								{item.description}
 							</p>
 

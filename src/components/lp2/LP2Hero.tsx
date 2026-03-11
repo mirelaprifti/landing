@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui";
+
 export function LP2Hero() {
 	return (
 		<section className="relative w-full py-20 md:py-32">
@@ -19,45 +21,44 @@ export function LP2Hero() {
 				</p>
 
 				{/* Value proposition */}
-				<p className="mt-4 max-w-2xl text-lg text-zinc-500">
+				<p className="mt-4 max-w-2xl text-lg text-zinc-400">
 					Effect gives you typed errors, built-in dependency injection,
 					structured concurrency, and observability — all in one library.
 				</p>
 
 				{/* CTA Buttons */}
 				<div className="mt-10 flex flex-wrap gap-4">
-					<a
+					<Button
 						href="https://effect.website/docs/getting-started/introduction"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-semibold text-zinc-900 transition-all hover:bg-zinc-200"
+						variant="primary"
+						size="lg"
+						className="inline-flex items-center gap-2"
 					>
 						Get Started
 						<i className="ri-arrow-right-line text-lg" />
-					</a>
-					<a
+					</Button>
+					<Button
 						href="https://effect.website/docs"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-6 py-3 text-base font-semibold text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+						variant="secondary"
+						size="lg"
 					>
 						Read the Docs
-					</a>
+					</Button>
 				</div>
 
 				{/* Quick stats */}
 				<div className="mt-16 flex flex-wrap gap-12">
 					<div>
 						<p className="text-3xl font-bold text-white">50k+</p>
-						<p className="text-sm text-zinc-500">Weekly Downloads</p>
+						<p className="text-sm text-zinc-400">Weekly Downloads</p>
 					</div>
 					<div>
 						<p className="text-3xl font-bold text-white">8k+</p>
-						<p className="text-sm text-zinc-500">GitHub Stars</p>
+						<p className="text-sm text-zinc-400">GitHub Stars</p>
 					</div>
 					<div>
 						<p className="text-3xl font-bold text-white">5k+</p>
-						<p className="text-sm text-zinc-500">Discord Members</p>
+						<p className="text-sm text-zinc-400">Discord Members</p>
 					</div>
 				</div>
 			</div>

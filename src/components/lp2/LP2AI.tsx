@@ -39,7 +39,7 @@ export function LP2AI() {
 					<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 						Write better code with AI
 					</h2>
-					<p className="mt-4 text-lg text-zinc-500">
+					<p className="mt-4 text-lg text-zinc-400">
 						Effect's declarative patterns and rich type information make it
 						ideal for AI-assisted development. LLMs understand Effect code
 						better and produce more reliable results.
@@ -53,7 +53,7 @@ export function LP2AI() {
 						{AI_BENEFITS.map((benefit, index) => (
 							<div key={index} className="space-y-2">
 								<div className="flex items-center gap-2">
-									<i className={`${benefit.icon} text-lg text-zinc-500`} />
+									<i className={`${benefit.icon} text-lg text-zinc-400`} />
 									<h3 className="text-base font-semibold text-white">
 										{benefit.title}
 									</h3>
@@ -85,21 +85,21 @@ export function LP2AI() {
 										<div className="text-sm font-medium text-white">
 											Ben Davis
 										</div>
-										<div className="text-xs text-zinc-500">@davis7</div>
+										<div className="text-xs text-zinc-400">@davis7</div>
 									</div>
 								</div>
-								<i className="ri-twitter-x-line text-zinc-500" />
+								<i className="ri-twitter-x-line text-zinc-400" />
 							</div>
 
 							{/* Quote */}
 							<p className="text-sm leading-relaxed text-zinc-300">
-								<span className="text-zinc-500">@MichaelArnaldi</span> suggested
+								<span className="text-zinc-400">@MichaelArnaldi</span> suggested
 								cloning the effect repo as a git subtree, giving it to Claude,
 								then using that as docs. It sounds absurd, but it's actually
 								kind amazing...
 							</p>
 
-							<span className="mt-4 inline-flex items-center gap-1 text-xs text-zinc-500 group-hover:text-zinc-400">
+							<span className="mt-4 inline-flex items-center gap-1 text-xs text-zinc-400 group-hover:text-zinc-400">
 								Read the full thread <i className="ri-arrow-right-up-line" />
 							</span>
 						</a>

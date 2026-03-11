@@ -1,5 +1,6 @@
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggle } from "../ui/ThemeToggle";
+import { Link } from "@/components/ui";
 
 export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: boolean } = {}) {
 	return (
@@ -24,57 +25,52 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 							{/* Links */}
 							<ul className="flex flex-col items-start gap-2">
 								<li>
-									<a
+									<Link
 										href="https://effect.website/docs/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Documentation
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://effect.website/docs/additional-resources/api-reference/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										API reference
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://effect-ts.github.io/effect/docs/ai/ai"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										@effect/ai
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://effect-ts.github.io/effect/docs/cluster"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										@effect/cluster (alpha)
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://github.com/Effect-TS/effect/blob/main/packages/workflow/README.md"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										@effect/workflow
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -88,58 +84,53 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 							{/* Links */}
 							<ul className="flex flex-col items-start gap-2">
 								<li>
-									<a
+									<Link
 										href="https://effect.website/play/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect Playground
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://github.com/Effect-TS/language-service"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect LSP
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://github.com/Effect-TS/effect/blob/main/packages/cli/README.md"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect CLI
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										VS Code Extension
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://www.effect.solutions/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect Solutions
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -153,47 +144,50 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 							{/* Links */}
 							<ul className="flex flex-col items-start gap-2">
 								<li>
-									<a
+									<Link
 										href={getAssetPath("/podcast")}
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Podcast 🎙️
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href={getAssetPath("/events")}
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Events & meetups
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href={getAssetPath("/merch")}
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect merch
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href={getAssetPath("/community-resources")}
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Community resources
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Discord
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -207,52 +201,51 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 							{/* Links */}
 							<ul className="flex flex-col items-start gap-2">
 								<li>
-									<a
+									<Link
 										href={getAssetPath("/blog")}
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Blog
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://effect.website/docs/additional-resources/myths/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Myths about Effect 💀
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href={getAssetPath("/brand-assets")}
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Logo guidelines
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Workshops
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										href="https://effectful.co/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 border-b border-transparent text-sm leading-relaxed text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effectful
 										<i className="ri-arrow-right-up-line text-sm" />
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -286,12 +279,11 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 
 							{/* Social Icons (centered on mobile, middle on desktop) */}
 							<div className="flex items-center justify-center gap-6 md:gap-5">
-								<a
+								<Link
 									href="https://x.com/EffectTS_"
+									variant="icon"
 									aria-label="Follow Effect on X (Twitter)"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
@@ -299,13 +291,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 											aria-hidden="true"
 										/>
 									</div>
-								</a>
-								<a
+								</Link>
+								<Link
 									href="https://www.youtube.com/@EffectTS"
+									variant="icon"
 									aria-label="Subscribe to Effect on YouTube"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
@@ -313,13 +304,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 											aria-hidden="true"
 										/>
 									</div>
-								</a>
-								<a
+								</Link>
+								<Link
 									href="https://github.com/Effect-TS"
+									variant="icon"
 									aria-label="Visit Effect on GitHub"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
@@ -327,13 +317,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 											aria-hidden="true"
 										/>
 									</div>
-								</a>
-								<a
+								</Link>
+								<Link
 									href="https://discord.gg/effect-ts"
+									variant="icon"
 									aria-label="Join Effect Discord server"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
@@ -341,13 +330,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 											aria-hidden="true"
 										/>
 									</div>
-								</a>
-								<a
+								</Link>
+								<Link
 									href="https://bsky.app/profile/effect-ts.bsky.social"
+									variant="icon"
 									aria-label="Follow Effect on Bluesky"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
@@ -355,13 +343,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 											aria-hidden="true"
 										/>
 									</div>
-								</a>
-								<a
+								</Link>
+								<Link
 									href="https://www.linkedin.com/company/effect-ts"
+									variant="icon"
 									aria-label="Follow Effect on LinkedIn"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
@@ -369,7 +356,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 											aria-hidden="true"
 										/>
 									</div>
-								</a>
+								</Link>
 							</div>
 
 							<div className="md:pr-4 md:text-right">
@@ -392,12 +379,13 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 						<div className="flex items-center gap-5">
 							<ThemeToggle />
 							<div className="flex items-center gap-4">
-								<a
+								<Link
 									href="mailto:contact@effectful.co"
-									className="border-b border-transparent text-sm text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									variant="footer"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									Email us
-								</a>
+								</Link>
 								<a
 									href="#"
 									className="border-b border-transparent text-sm text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"

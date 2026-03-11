@@ -1,3 +1,4 @@
+import { Button, Link } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 
 const AI_CASE_STUDIES = [
@@ -49,14 +50,13 @@ const FEATURES = [
 		description: (
 			<>
 				Reliable communication between nodes with{" "}
-				<a
+				<Link
 					href="https://effect.website/docs/cluster/introduction"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="text-zinc-300 underline underline-offset-2 transition-colors hover:text-white"
+					variant="inline"
+					className="text-zinc-300 hover:text-white"
 				>
 					Effect Cluster
-				</a>
+				</Link>
 				.
 			</>
 		),
@@ -89,24 +89,23 @@ export function AIBuildingSection() {
 
 					{/* Links */}
 					<div className="mt-8 flex gap-3">
-						<a
+						<Button
 							href="https://effect.website/docs/ai/introduction"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							variant="secondary"
+							size="md"
+							className="group"
 						>
 							<span>Read the docs</span>
 							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-						</a>
-						<a
+						</Button>
+						<Button
 							href="https://github.com/Effect-TS/effect/tree/main/packages/ai"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							variant="secondary"
+							size="md"
 						>
 							<i className="ri-github-fill text-base" />
 							<span>GitHub</span>
-						</a>
+						</Button>
 					</div>
 				</div>
 

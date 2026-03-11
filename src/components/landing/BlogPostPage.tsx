@@ -1,5 +1,6 @@
 import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
+import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -181,13 +182,14 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							{/* Back link + breadcrumb */}
 							<div className="pt-10 pb-10 md:pt-14 md:pb-12">
 								<nav className="mb-8 flex items-center gap-2 text-sm">
-									<a
+									<Link
 										href={getAssetPath("/blog")}
-										className="flex items-center gap-1 text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										variant="subtle"
+										className="group inline-flex items-center gap-1"
 									>
 										<i className="ri-arrow-left-s-line text-base" />
 										Blog
-									</a>
+									</Link>
 									<span className="text-zinc-300 dark:text-zinc-700">/</span>
 									{post.tags[0] && (
 										<>
@@ -227,12 +229,11 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
 									{/* Authors */}
 									{post.authors.map((author) => (
-										<a
+										<Link
 											key={author.name}
 											href={author.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="flex items-center gap-2 transition-colors hover:text-zinc-900 dark:hover:text-zinc-200"
+											variant="inline"
+											className="flex items-center gap-2 font-medium no-underline hover:underline"
 										>
 											<img
 												src={getAssetPath(author.avatar)}
@@ -240,7 +241,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 												className="h-6 w-6 rounded-full object-cover"
 											/>
 											<span>{author.name}</span>
-										</a>
+										</Link>
 									))}
 									<span className="text-zinc-300 dark:text-zinc-700">
 										&middot;

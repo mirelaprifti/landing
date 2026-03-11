@@ -9,6 +9,7 @@ import {
 	type CommunityItem,
 } from "../../data/resources";
 import { GridOverlay } from "../GridOverlay";
+import { Button, Link } from "../ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -62,7 +63,7 @@ function ResourceCard({
 			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
 				<i
-					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-500 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
 					aria-hidden="true"
 				/>
 			</h3>
@@ -201,16 +202,17 @@ export function CommunityResourcesCategoryPage({
 
 					{/* ── Back link ────────────────────────── */}
 					<div className="border-t border-zinc-800 py-8">
-						<a
+						<Link
 							href="/community-resources"
-							className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 transition-colors hover:text-white"
+							variant="subtle"
+							className="group inline-flex items-center gap-2 font-medium"
 						>
 							<i
 								className="ri-arrow-left-line text-sm"
 								aria-hidden="true"
 							/>
 							Back to Community Resources
-						</a>
+						</Link>
 					</div>
 
 					{/* ── Submit CTA ──────────────────────── */}
@@ -220,7 +222,7 @@ export function CommunityResourcesCategoryPage({
 					>
 						<div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
 							<div>
-								<p className="font-mono text-xs uppercase tracking-wider text-zinc-500">
+								<p className="font-mono text-xs uppercase tracking-wider text-zinc-400">
 									{"// Share your project"}
 								</p>
 								<h2 className="mt-2 text-lg font-semibold text-white">
@@ -231,30 +233,26 @@ export function CommunityResourcesCategoryPage({
 								</p>
 							</div>
 							<div className="flex items-center gap-3">
-								<a
+								<Button
 									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+									variant="secondary"
 								>
 									<i
 										className="ri-discord-fill text-base"
 										aria-hidden="true"
 									/>
 									Discord
-								</a>
-								<a
+								</Button>
+								<Button
 									href="#"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+									variant="secondary"
 								>
 									<i
 										className="ri-file-list-line text-base"
 										aria-hidden="true"
 									/>
 									Submit Form
-								</a>
+								</Button>
 							</div>
 						</div>
 					</section>

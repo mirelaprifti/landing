@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { Button, Link } from "@/components/ui";
 
 interface NavigationProps {
 	transparent?: boolean;
@@ -89,44 +90,42 @@ export function Navigation({ transparent = false }: NavigationProps) {
 
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
-								<a
-									href="https://effect.website/docs/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
-								>
-									Docs
-								</a>
-							<a
+							<Link
+								href="https://effect.website/docs/"
+								variant="nav"
+								className={transparent ? "text-white hover:text-white/80" : ""}
+							>
+								Docs
+							</Link>
+							<Link
 								href={getAssetPath("/blog")}
-								className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
+								variant="nav"
+								className={transparent ? "text-white hover:text-white/80" : ""}
 							>
 								Blog
-							</a>
-							<a
+							</Link>
+							<Link
 								href="https://effect.website/play/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
-								>
-									Playground
-								</a>
-								<a
-									href="https://www.effect.solutions/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className={`border-b border-transparent text-sm font-medium transition-colors hover:border-current ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
-								>
-									LLM Guide
-								</a>
-								<a
-									href="https://www.effect.institute/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="rounded-md bg-white px-4 py-1.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200"
-								>
-									Learn
-								</a>
+								variant="nav"
+								className={transparent ? "text-white hover:text-white/80" : ""}
+							>
+								Playground
+							</Link>
+							<Link
+								href="https://www.effect.solutions/"
+								variant="nav"
+								className={transparent ? "text-white hover:text-white/80" : ""}
+							>
+								LLM Guide
+							</Link>
+							<Button
+								href="https://www.effect.institute/"
+								variant="primary"
+								size="sm"
+								className="rounded-md py-1.5"
+							>
+								Learn
+							</Button>
 							</div>
 
 							{/* Mobile menu button */}
@@ -141,24 +140,22 @@ export function Navigation({ transparent = false }: NavigationProps) {
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
 								<div className="flex items-center gap-4">
-									<a
-										href="https://github.com/Effect-TS/effect"
-										target="_blank"
-										rel="noopener noreferrer"
-										aria-label="Visit Effect on GitHub"
-										className={`transition-colors ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
-									>
-										<i className="ri-github-fill text-xl" aria-hidden="true" />
-									</a>
-									<a
-										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-										aria-label="Join Effect Discord server"
-										className={`transition-colors ${transparent ? "text-white hover:text-white/80" : "text-zinc-400 hover:text-white"}`}
-									>
-										<i className="ri-discord-fill text-xl" aria-hidden="true" />
-									</a>
+								<Link
+									href="https://github.com/Effect-TS/effect"
+									variant="icon"
+									aria-label="Visit Effect on GitHub"
+									className={transparent ? "text-white hover:text-white/80" : ""}
+								>
+									<i className="ri-github-fill text-xl" aria-hidden="true" />
+								</Link>
+								<Link
+									href="https://discord.gg/effect-ts"
+									variant="icon"
+									aria-label="Join Effect Discord server"
+									className={transparent ? "text-white hover:text-white/80" : ""}
+								>
+									<i className="ri-discord-fill text-xl" aria-hidden="true" />
+								</Link>
 								</div>
 
 								<div

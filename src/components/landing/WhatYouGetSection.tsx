@@ -110,7 +110,7 @@ export function WhatYouGetSection() {
 								<div className="h-3 w-3 rounded-full bg-zinc-700" />
 								<div className="h-3 w-3 rounded-full bg-zinc-700" />
 							</div>
-							<span className="ml-2 text-xs text-zinc-500">example.ts</span>
+							<span className="ml-2 text-xs text-zinc-400">example.ts</span>
 						</div>
 						<pre className="overflow-x-auto p-4 text-sm">
 							<code className="font-mono whitespace-pre text-zinc-300">

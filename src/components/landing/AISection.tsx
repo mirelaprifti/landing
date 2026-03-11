@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 
 export function AISection() {
@@ -21,15 +22,14 @@ export function AISection() {
 							Effect's declarative patterns and strong type system make it
 							easier for LLMs to generate correct, production-ready code.
 						</p>
-						<a
-							href="https://www.effect.solutions/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="mt-6 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
-						>
-							Quick start LLM guide
-							<i className="ri-arrow-right-up-line text-base" />
-						</a>
+					<Button
+						href="https://www.effect.solutions/"
+						variant="secondary"
+						className="mt-6 inline-flex items-center gap-2"
+					>
+						Quick start LLM guide
+						<i className="ri-arrow-right-up-line text-base" />
+					</Button>
 					</div>
 
 					{/* Right column - Tweet card */}

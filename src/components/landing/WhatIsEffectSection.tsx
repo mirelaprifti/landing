@@ -1,3 +1,4 @@
+import { Link } from "@/components/ui";
 import { useState } from "react";
 
 export function WhatIsEffectSection() {
@@ -52,15 +53,14 @@ export function WhatIsEffectSection() {
 							</li>
 						</ul>
 
-						<a
+						<Link
 							href="https://effect.website/docs/getting-started/why-effect/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group mt-8 inline-flex items-center gap-2 text-base font-medium text-white transition-colors hover:text-zinc-300"
+							variant="inline"
+							className="group mt-8 inline-flex items-center gap-2 text-base font-medium"
 						>
 							<span>Why Effect</span>
 							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-						</a>
+						</Link>
 					</div>
 
 					{/* Right column - Type signature */}
@@ -78,7 +78,7 @@ export function WhatIsEffectSection() {
 							{/* Type signature */}
 							<div className="group relative w-full border border-zinc-700 bg-zinc-900/50 px-6 py-4 font-mono text-base text-center transition-all hover:border-zinc-500 hover:bg-zinc-800/50">
 								<span className="text-white select-all">Effect</span>
-								<span className="text-zinc-500">&lt;</span>
+								<span className="text-zinc-400">&lt;</span>
 								<span
 									className={`cursor-pointer transition-opacity text-emerald-400 ${hoveredType && hoveredType !== "success" ? "opacity-50" : "opacity-100"}`}
 									onMouseEnter={() => setHoveredType("success")}
@@ -86,7 +86,7 @@ export function WhatIsEffectSection() {
 								>
 									Success
 								</span>
-								<span className="text-zinc-500">, </span>
+								<span className="text-zinc-400">, </span>
 								<span
 									className={`cursor-pointer transition-opacity text-red-400 ${hoveredType && hoveredType !== "error" ? "opacity-50" : "opacity-100"}`}
 									onMouseEnter={() => setHoveredType("error")}
@@ -94,7 +94,7 @@ export function WhatIsEffectSection() {
 								>
 									Error
 								</span>
-								<span className="text-zinc-500">, </span>
+								<span className="text-zinc-400">, </span>
 								<span
 									className={`cursor-pointer transition-opacity text-violet-400 ${hoveredType && hoveredType !== "requirements" ? "opacity-50" : "opacity-100"}`}
 									onMouseEnter={() => setHoveredType("requirements")}
@@ -102,7 +102,7 @@ export function WhatIsEffectSection() {
 								>
 									Requirements
 								</span>
-								<span className="text-zinc-500">&gt;</span>
+								<span className="text-zinc-400">&gt;</span>
 							</div>
 
 							{/* Arrows pointing down */}
@@ -169,23 +169,23 @@ export function WhatIsEffectSection() {
 							<div className="mt-8 ring-1 ring-inset ring-zinc-700 bg-zinc-900/50 p-6 font-mono text-sm">
 								<div>
 									<span className="text-white">Effect</span>
-									<span className="text-zinc-500">.</span>
+									<span className="text-zinc-400">.</span>
 									<span className="text-zinc-300">gen</span>
-									<span className="text-zinc-500">(</span>
+									<span className="text-zinc-400">(</span>
 									<span className="text-violet-400">function*</span>
-									<span className="text-zinc-500">() {"{"}</span>
+									<span className="text-zinc-400">() {"{"}</span>
 								</div>
 								<div className="pl-4 mt-1">
 									<span className="text-violet-400">const </span>
 									<span className="text-zinc-300">example</span>
-									<span className="text-zinc-500"> = </span>
+									<span className="text-zinc-400"> = </span>
 									<span className="text-violet-400">yield* </span>
 									<span className="text-zinc-300">someOtherEffect</span>
 								</div>
 								<div className="mt-1">
-									<span className="text-zinc-500">{"})"}</span>
+									<span className="text-zinc-400">{"})"}</span>
 								</div>
-								<div className="mt-3 pt-3 border-t border-zinc-800 text-zinc-500 text-xs leading-relaxed">
+								<div className="mt-3 pt-3 border-t border-zinc-800 text-zinc-400 text-xs leading-relaxed">
 									<p>
 										→ <span className="text-violet-400">yield*</span> gives you
 										the <span className="text-zinc-300">Success</span> value
@@ -200,15 +200,14 @@ export function WhatIsEffectSection() {
 
 							{/* Attribution - centered */}
 							<div className="mt-2 text-center">
-								<a
-									href="https://effect.website/docs/getting-started/why-effect/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-white"
-								>
-									Why Effect was designed this way
-									<i className="ri-arrow-right-up-line text-sm" />
-								</a>
+							<Link
+								href="https://effect.website/docs/getting-started/why-effect/"
+								variant="subtle"
+								className="inline-flex items-center gap-1.5"
+							>
+								Why Effect was designed this way
+								<i className="ri-arrow-right-up-line text-sm" />
+							</Link>
 							</div>
 						</div>
 					</div>

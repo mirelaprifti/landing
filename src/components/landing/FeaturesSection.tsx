@@ -238,7 +238,7 @@ export function FeaturesSection() {
 										>
 											{subTab.label[0]}
 											{subTab.label[1] && (
-												<span className="ml-1 text-zinc-500">
+												<span className="ml-1 text-zinc-400">
 													({subTab.label[1]})
 												</span>
 											)}

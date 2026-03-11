@@ -1,5 +1,6 @@
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import { Link } from "../ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -227,13 +228,12 @@ export function PodcastPage() {
 
 								{/* Mobile platform links */}
 								<div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 lg:hidden">
-									<a
-										href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
-										aria-label="Listen on Apple Podcasts"
-									>
+								<Link
+									href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
+									variant="icon"
+									className="group flex items-center gap-3"
+									aria-label="Listen on Apple Podcasts"
+								>
 										<svg
 											className="h-5 w-5 shrink-0"
 											viewBox="0 0 300 300"
@@ -275,12 +275,11 @@ export function PodcastPage() {
 										<span className="text-sm text-white group-hover:underline">
 											Apple Podcasts
 										</span>
-									</a>
-									<a
+									</Link>
+									<Link
 										href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
+										className="group flex items-center gap-3"
 										aria-label="Listen on Spotify"
 									>
 										<svg
@@ -294,12 +293,11 @@ export function PodcastPage() {
 										<span className="text-sm text-white group-hover:underline">
 											Spotify
 										</span>
-									</a>
-									<a
+									</Link>
+									<Link
 										href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
+										className="group flex items-center gap-3"
 										aria-label="Watch on YouTube"
 									>
 										<svg
@@ -319,10 +317,11 @@ export function PodcastPage() {
 										<span className="text-sm text-white group-hover:underline">
 											YouTube
 										</span>
-									</a>
-									<a
+									</Link>
+									<Link
 										href={getAssetPath("/podcast/rss.xml")}
-										className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+										variant="icon"
+										className="group flex items-center gap-3"
 										aria-label="RSS Feed"
 									>
 										<svg
@@ -336,7 +335,7 @@ export function PodcastPage() {
 										<span className="text-sm text-white group-hover:underline">
 											RSS
 										</span>
-									</a>
+									</Link>
 								</div>
 							</div>
 							{/* Platform links */}
@@ -352,11 +351,10 @@ export function PodcastPage() {
 										// Available on
 									</p>
 									<div className="flex flex-col gap-3">
-										<a
+										<Link
 											href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+											variant="icon"
+											className="group flex items-center gap-3"
 											aria-label="Listen on Apple Podcasts"
 										>
 											<svg
@@ -400,13 +398,12 @@ export function PodcastPage() {
 											<span className="text-sm text-white group-hover:underline">
 												Apple Podcasts
 											</span>
-										</a>
+										</Link>
 
-										<a
+										<Link
 											href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+											variant="icon"
+											className="group flex items-center gap-3"
 											aria-label="Listen on Spotify"
 										>
 											<svg
@@ -420,13 +417,12 @@ export function PodcastPage() {
 											<span className="text-sm text-white group-hover:underline">
 												Spotify
 											</span>
-										</a>
+										</Link>
 
-										<a
+										<Link
 											href="https://youtube.com/playlist?list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+											variant="icon"
+											className="group flex items-center gap-3"
 											aria-label="Watch on YouTube"
 										>
 											<svg
@@ -446,11 +442,12 @@ export function PodcastPage() {
 											<span className="text-sm text-white group-hover:underline">
 												YouTube
 											</span>
-										</a>
+										</Link>
 
-										<a
+										<Link
 											href={getAssetPath("/podcast/rss.xml")}
-											className="group flex items-center gap-3 text-zinc-400 transition-colors hover:text-white"
+											variant="icon"
+											className="group flex items-center gap-3"
 											aria-label="RSS Feed"
 										>
 											<svg
@@ -464,7 +461,7 @@ export function PodcastPage() {
 											<span className="text-sm text-white group-hover:underline">
 												RSS
 											</span>
-										</a>
+										</Link>
 									</div>
 								</div>
 							</div>

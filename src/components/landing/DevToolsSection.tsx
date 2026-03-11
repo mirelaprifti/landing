@@ -120,7 +120,7 @@ export function DevToolsSection() {
 								>
 									{tool.label}
 								</span>
-								<p className="mt-1 text-sm text-zinc-500">{tool.description}</p>
+								<p className="mt-1 text-sm text-zinc-400">{tool.description}</p>
 							</button>
 						))}
 					</div>

@@ -73,7 +73,7 @@ export function LP2Features() {
 					<h2 className="leading-tighter max-w-2xl text-2xl font-semibold text-white md:text-3xl">
 						One library. Complete toolkit.
 					</h2>
-					<p className="mt-4 max-w-xl text-lg text-zinc-500">
+					<p className="mt-4 max-w-xl text-lg text-zinc-400">
 						Stop installing a new package for every problem. Effect includes
 						everything you need to build production-grade TypeScript
 						applications.

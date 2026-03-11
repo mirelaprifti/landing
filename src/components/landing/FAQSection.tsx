@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Link } from "@/components/ui";
 
 export function FAQSection() {
 	const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
@@ -98,34 +99,28 @@ export function FAQSection() {
 					<p className="mt-4">See how it compares to:</p>
 					<ul className="mt-2 ml-5 list-disc space-y-1">
 						<li>
-							<a
+							<Link
 								href="https://effect.website/docs/additional-resources/myths/#effect-is-the-same-as-rxjs-and-shares-its-problems"
-								className="text-white underline transition-colors hover:text-zinc-300"
-								target="_blank"
-								rel="noopener noreferrer"
+								variant="inline"
 							>
 								RxJS
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
+							<Link
 								href="https://effect.website/docs/additional-resources/effect-vs-fp-ts/"
-								className="text-white underline transition-colors hover:text-zinc-300"
-								target="_blank"
-								rel="noopener noreferrer"
+								variant="inline"
 							>
 								fp-ts
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
+							<Link
 								href="https://effect.website/docs/additional-resources/effect-vs-neverthrow/"
-								className="text-white underline transition-colors hover:text-zinc-300"
-								target="_blank"
-								rel="noopener noreferrer"
+								variant="inline"
 							>
 								Neverthrow
-							</a>
+							</Link>
 						</li>
 					</ul>
 				</>
@@ -141,13 +136,13 @@ export function FAQSection() {
 					</p>
 					<pre className="mt-3 mb-3 overflow-x-auto border border-zinc-800 bg-zinc-900/50 p-4">
 						<code className="font-mono text-sm text-zinc-300">
-							<span className="text-zinc-500">
+							<span className="text-zinc-400">
 								{"// Enter the Effect world"}
 							</span>
 							{"\n"}
 							{"Effect.tryPromise(() => nonEffectAPI())"}
 							{"\n\n"}
-							<span className="text-zinc-500">
+							<span className="text-zinc-400">
 								{"// Exit back to normal promises"}
 							</span>
 							{"\n"}
@@ -196,15 +191,15 @@ export function FAQSection() {
 							</p>
 
 							{/* Discord CTA */}
-							<a
+							<Button
 								href="https://discord.gg/effect-ts"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group mt-6 inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+								variant="secondary"
+								size="md"
+								className="mt-6"
 							>
 								<i className="ri-discord-fill text-base" />
 								<span>Ask on Discord</span>
-							</a>
+							</Button>
 						</div>
 					</div>
 

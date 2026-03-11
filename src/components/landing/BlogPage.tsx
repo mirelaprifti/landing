@@ -8,6 +8,7 @@ import {
 	getPostUrl,
 } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
+import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -1058,15 +1059,14 @@ export function BlogPage() {
 
 								{/* RSS */}
 								<div className="mt-4 border-t border-zinc-800/60 pt-4">
-									<a
+									<Link
 										href="https://effect.website/blog/rss.xml"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white"
+										variant="subtle"
+										className="flex items-center gap-2 rounded-md px-3 py-2"
 									>
 										<i className="ri-rss-line text-base" />
 										RSS Feed
-									</a>
+									</Link>
 								</div>
 							</div>
 						</aside>

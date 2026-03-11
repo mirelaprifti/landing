@@ -1,3 +1,4 @@
+import { Link } from "@/components/ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -9,13 +10,14 @@ export function CodeOfConductPage() {
 			{/* Hero Section */}
 			<section className="relative pt-32 pb-16 md:pt-40 md:pb-20">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<a
+					<Link
 						href="/events/effect-days"
-						className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+						variant="subtle"
+						className="mb-6 inline-flex items-center gap-2"
 					>
 						<i className="ri-arrow-left-line" />
 						Back to Effect Days
-					</a>
+					</Link>
 					<h1 className="text-4xl font-bold text-white md:text-5xl">
 						Code of Conduct
 					</h1>
@@ -131,12 +133,12 @@ export function CodeOfConductPage() {
 							<p className="text-base leading-relaxed text-zinc-400">
 								You can report issues by contacting any staff member
 								(identifiable by their staff badges) or by emailing{" "}
-								<a
+								<Link
 									href="mailto:contact@effectful.co"
-									className="text-white underline transition-colors hover:text-zinc-300"
+									variant="inline"
 								>
 									contact@effectful.co
-								</a>
+								</Link>
 								.
 							</p>
 						</div>
@@ -189,26 +191,24 @@ export function CodeOfConductPage() {
 
 						{/* Attribution */}
 						<div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-6">
-							<p className="text-sm text-zinc-500">
+							<p className="text-sm text-zinc-400">
 								<span className="font-medium text-zinc-400">Attribution:</span>{" "}
 								This Code of Conduct is inspired by{" "}
-								<a
+								<Link
 									href="https://config.figma.com/coc"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-300 underline transition-colors hover:text-white"
+									variant="inline"
+									className="text-zinc-300 hover:text-white"
 								>
 									Config by Figma
-								</a>{" "}
+								</Link>{" "}
 								and{" "}
-								<a
+								<Link
 									href="https://www.reason-conf.com/code-of-conduct"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-zinc-300 underline transition-colors hover:text-white"
+									variant="inline"
+									className="text-zinc-300 hover:text-white"
 								>
 									ReasonConf by Nikolaus Graf
-								</a>
+								</Link>
 								.
 							</p>
 						</div>

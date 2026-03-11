@@ -118,7 +118,7 @@ export function TestimonialsSection() {
 								<span className="font-mono text-[13px] text-zinc-400 uppercase group-hover:text-zinc-200">
 									{useCase.title}
 								</span>
-								<i className="ri-arrow-right-up-line text-zinc-500 transition-colors group-hover:text-zinc-200" />
+								<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
 							</div>
 						</a>
 					))}
