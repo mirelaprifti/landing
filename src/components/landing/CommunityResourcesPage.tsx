@@ -460,7 +460,9 @@ export function CommunityResourcesPage() {
 									Built something with Effect?
 								</h2>
 								<p className="mt-1 text-sm text-zinc-400">
-									Share your project with the community.
+									Share it in the{" "}
+									<span className="font-medium text-zinc-300">🟢-projects-showcase</span>{" "}
+									channel on Discord.
 								</p>
 							</div>
 							<div className="flex items-center gap-3">
