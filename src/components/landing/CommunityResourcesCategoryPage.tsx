@@ -51,7 +51,7 @@ function ResourceCard({
 					{item.tags.slice(0, 3).map((tag) => (
 						<span
 							key={tag}
-							className="text-xs font-medium uppercase leading-relaxed text-zinc-400"
+							className="font-mono text-xs font-medium uppercase leading-relaxed text-zinc-400"
 						>
 							{tag}
 						</span>
@@ -75,7 +75,7 @@ function ResourceCard({
 
 			{/* Footer */}
 			<div className="relative mt-auto pt-8">
-				<span className="font-mono text-xs text-zinc-400">{item.author}</span>
+				<span className="text-xs text-zinc-400">{item.author}</span>
 			</div>
 		</a>
 	);
@@ -139,56 +139,51 @@ export function CommunityResourcesCategoryPage({
 			<div className="relative">
 				<div className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="pt-12 pb-12 md:pt-20 md:pb-16">
-							{/* Breadcrumb */}
-							<nav
-								aria-label="Breadcrumb"
-								className="mb-6 flex items-center gap-2 font-mono text-sm uppercase tracking-wider"
+						<div className="pt-12 pb-8 md:pt-20 md:pb-10">
+						{/* Breadcrumb */}
+						<nav
+							aria-label="Breadcrumb"
+							className="flex items-center gap-2 font-mono text-sm uppercase tracking-wider"
+						>
+							<span className="text-zinc-600">{"// "}</span>
+							<a
+								href="/community-resources"
+								className="text-zinc-400 transition-colors hover:text-white"
 							>
-								<span className="text-zinc-600">{"// "}</span>
-								<a
-									href="/community-resources"
-									className="text-zinc-400 transition-colors hover:text-white"
+								Community Resources
+							</a>
+							<i
+								className="ri-arrow-right-s-line text-zinc-600"
+								aria-hidden="true"
+							/>
+							<div className="flex items-center gap-2">
+								<div
+									className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
 								>
-									Community Resources
-								</a>
-								<i
-									className="ri-arrow-right-s-line text-zinc-600"
-									aria-hidden="true"
-								/>
-								<div className="flex items-center gap-2">
-									<div
-										className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
-									>
-										<i
-											className={`${icon} text-xs ${color.text}`}
-											aria-hidden="true"
-										/>
-									</div>
-									<span className="text-zinc-200">
-										{displayName}
-									</span>
+									<i
+										className={`${icon} text-xs ${color.text}`}
+										aria-hidden="true"
+									/>
 								</div>
-							</nav>
-
-							<div>
-								<p className="text-sm text-zinc-400">
-									{items.length} resource
-									{items.length === 1 ? "" : "s"}
-								</p>
+								<span className="text-zinc-200">
+									{displayName}
+								</span>
 							</div>
+							<span className="text-zinc-600">·</span>
+							<span className="text-zinc-400 normal-case tracking-normal">
+								{items.length} resource
+								{items.length === 1 ? "" : "s"}
+							</span>
+						</nav>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			{/* Divider */}
-			<div className="h-px w-full bg-zinc-800" />
-
 			{/* ── Content ─────────────────────────────────── */}
 			<main id="main-content" className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<div className="py-12 md:py-16">
+					<div className="pb-12 md:pb-16">
 						<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 							{items.map((item) => (
 								<ResourceCard

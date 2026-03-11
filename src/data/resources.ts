@@ -114,7 +114,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect: the unreadable library that captured my heart",
 		description:
-			"A personal journey into Effect — from skepticism to understanding why its approach to TypeScript is worth the learning curve.",
+			"From skepticism to understanding why Effect's approach to TypeScript is worth the learning curve.",
 		url: "https://www.youtube.com/watch?v=S2GChOwivwQ&t=52s",
 		category: "Video",
 		author: "Matt Pocock",
@@ -127,7 +127,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Maybe I Was Wrong About Effect...",
 		description:
-			"A developer revisits Effect after initial skepticism — exploring whether the library's benefits truly outweigh the learning curve.",
+			"Revisiting Effect after initial skepticism — do the benefits outweigh the learning curve?",
 		url: "https://www.youtube.com/watch?v=MHpf_XMz_aM",
 		category: "Video",
 		author: "Ben Davis",
@@ -140,7 +140,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Dependency Injection Has Never Been This Easy in TypeScript",
 		description:
-			"How Effect's Layer system makes dependency injection intuitive and type-safe — no decorators or reflection needed.",
+			"Effect's Layer system makes DI intuitive and type-safe — no decorators needed.",
 		url: "https://www.youtube.com/watch?v=YHmioxgxQY8",
 		category: "Video",
 		author: "Lucas Barake",
@@ -153,7 +153,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "This library changed my life, it had such a big Effect on me",
 		description:
-			"A deep dive into how Effect transformed a developer's approach to TypeScript — from error handling to dependency management.",
+			"How Effect transforms your approach to TypeScript — error handling, dependency management, and more.",
 		url: "https://www.youtube.com/watch?v=NR_gJipShK8",
 		category: "Video",
 		author: "TJ DeVries",
@@ -166,7 +166,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "The Simple Secret Behind Effect's Power",
 		description:
-			"A clear breakdown of the core idea that makes Effect so powerful — and why it changes how you think about TypeScript.",
+			"The core idea behind Effect and why it changes how you think about TypeScript.",
 		url: "https://www.youtube.com/watch?v=F5aWLtEdNjE&t=10s",
 		category: "Video",
 		author: "Kit Langton",
@@ -181,7 +181,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "effect-sql",
 		description:
-			"Type-safe SQL client for Effect with support for PostgreSQL, MySQL, SQLite, and MSSQL.",
+			"Type-safe SQL client for PostgreSQL, MySQL, SQLite, and MSSQL.",
 		url: "https://github.com/Effect-TS/effect/tree/main/packages/sql",
 		category: "Tools",
 		author: "Tim Smart",
@@ -192,7 +192,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "effect-opentelemetry",
 		description:
-			"OpenTelemetry integration for Effect — automatic tracing, metrics, and context propagation.",
+			"Automatic tracing, metrics, and context propagation via OpenTelemetry.",
 		url: "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry",
 		category: "Tools",
 		author: "Tim Smart",
@@ -203,7 +203,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "effect-rpc",
 		description:
-			"Type-safe RPC framework for Effect with automatic serialization, error propagation, and streaming support.",
+			"Type-safe RPC with automatic serialization, error propagation, and streaming.",
 		url: "https://github.com/Effect-TS/effect/tree/main/packages/rpc",
 		category: "Tools",
 		author: "Effect Team",
@@ -214,7 +214,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "effect-cluster",
 		description:
-			"Distributed systems primitives for Effect — virtual actors, sharding, and distributed pub/sub.",
+			"Virtual actors, sharding, and distributed pub/sub primitives.",
 		url: "https://github.com/Effect-TS/effect/tree/main/packages/cluster",
 		category: "Tools",
 		author: "Effect Team",
@@ -225,7 +225,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "sqlfx",
 		description:
-			"Community SQL toolkit for Effect with query builder, migrations, and connection pool management.",
+			"Community SQL toolkit with query builder, migrations, and connection pooling.",
 		url: "https://github.com/tim-smart/sqlfx",
 		category: "Tools",
 		author: "Tim Smart",
@@ -236,7 +236,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect MCP Server",
 		description:
-			"Model Context Protocol server built with Effect — connect LLMs to your Effect services.",
+			"MCP server for connecting LLMs to your Effect services.",
 		url: "https://github.com/tim-smart/effect-mcp",
 		category: "Tools",
 		author: "Tim Smart",
@@ -247,7 +247,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect Playground",
 		description:
-			"Browser-based interactive playground for experimenting with Effect code — instant feedback with full type checking.",
+			"Interactive browser playground with instant feedback and full type checking.",
 		url: "https://effect.website/play/",
 		category: "Tools",
 		author: "Effect Team",
@@ -258,7 +258,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect VS Code Extension",
 		description:
-			"Official VS Code extension with Effect-specific diagnostics, quick fixes, and pipeline visualization.",
+			"Effect-specific diagnostics, quick fixes, and pipeline visualization.",
 		url: "https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode",
 		category: "Tools",
 		author: "Effect Team",
@@ -269,7 +269,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect DevTools",
 		description:
-			"Browser extension for inspecting Effect fiber trees, tracing spans, and debugging concurrent workflows.",
+			"Inspect fiber trees, trace spans, and debug concurrent workflows.",
 		url: "https://github.com/Effect-TS/effect/tree/main/packages/experimental",
 		category: "Tools",
 		author: "Effect Team",
@@ -280,7 +280,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect LSP",
 		description:
-			"Language server for Effect providing rich editor support — go-to-definition, hover info, and refactoring across Effect APIs.",
+			"Rich editor support — go-to-definition, hover info, and refactoring for Effect APIs.",
 		url: "https://github.com/Effect-TS/language-service",
 		category: "Tools",
 		author: "Effect Team",
@@ -293,7 +293,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Why Effect Is Taking Over TypeScript",
 		description:
-			"An overview of why Effect is gaining traction and how it solves real problems in production TypeScript codebases.",
+			"Why Effect is gaining traction and how it solves real production problems.",
 		url: "https://www.youtube.com/watch?v=SloZE4i4Zfk",
 		category: "Video",
 		author: "Theo Browne",
@@ -304,7 +304,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect for React Developers",
 		description:
-			"How to integrate Effect into React applications for data fetching, state management, and error boundaries.",
+			"Integrating Effect into React for data fetching, state management, and error boundaries.",
 		url: "https://www.youtube.com/watch?v=zrNr3JVUc8I",
 		category: "Video",
 		author: "Ethan Niser",
@@ -315,7 +315,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Building a Full-Stack App with Effect",
 		description:
-			"Live-coding a complete application using Effect for both server and client, with RPC and Schema.",
+			"Live-coding a full-stack app with Effect RPC and Schema.",
 		url: "https://www.youtube.com/watch?v=grRHGQSn3hQ",
 		category: "Video",
 		author: "Michael Arnaldi",
@@ -326,7 +326,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Concurrency in Effect",
 		description:
-			"Deep dive into fibers, structured concurrency, and how Effect manages concurrent operations safely.",
+			"Fibers, structured concurrency, and safe concurrent operations.",
 		url: "https://www.youtube.com/watch?v=PW_7bTgJweg",
 		category: "Video",
 		author: "Tim Smart",
@@ -337,7 +337,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Reimagining TypeScript with Effect",
 		description:
-			"Michael Arnaldi's keynote on the vision behind Effect and how it pushes TypeScript to its limits.",
+			"Keynote on the vision behind Effect and pushing TypeScript to its limits.",
 		url: "https://www.youtube.com/watch?v=zrNr3JVUc8I",
 		category: "Video",
 		author: "Michael Arnaldi",
@@ -348,7 +348,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Scaling Effect at Effectful Technologies",
 		description:
-			"How the team behind Effect uses it internally to build production infrastructure and developer tools.",
+			"How the Effect team uses it internally for production infrastructure.",
 		url: "https://www.youtube.com/watch?v=PW_7bTgJweg",
 		category: "Video",
 		author: "Maxwell Brown",
@@ -359,7 +359,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect Days Conference Talks",
 		description:
-			"All recorded talks from Effect Days — covering core concepts, ecosystem libraries, and real-world use cases.",
+			"Recorded talks covering core concepts, ecosystem libraries, and real-world use cases.",
 		url: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B-lRhTEEQ9vXCOsWDAboy_m",
 		category: "Video",
 		author: "Effect Team",
@@ -370,7 +370,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Intro to Effect with TypeScript",
 		description:
-			"Free video course walking through Effect from zero, with exercises and real-world examples.",
+			"Free video course from zero, with exercises and real-world examples.",
 		url: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B9DLv6bR7xfAtCtiCf4Osp5",
 		category: "Video",
 		author: "Sandro Maglione",
@@ -383,7 +383,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect: A Practical Introduction",
 		description:
-			"Comprehensive written guide to Effect covering error handling, dependency injection, concurrency, and real-world patterns.",
+			"Written guide covering error handling, dependency injection, concurrency, and real-world patterns.",
 		url: "https://effect.website/docs/getting-started/introduction/",
 		category: "Learning",
 		author: "Effect Team",
@@ -394,7 +394,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Building REST APIs with Effect",
 		description:
-			"Step-by-step tutorial for building production-grade REST APIs using Effect's HTTP platform and Schema.",
+			"Build production-grade REST APIs with Effect's HTTP platform and Schema.",
 		url: "https://effect.website/docs/guides/http-server/",
 		category: "Learning",
 		author: "Effect Team",
@@ -405,7 +405,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Error Handling in Effect",
 		description:
-			"Learn how Effect's typed error channel gives you exhaustive error handling without try-catch boilerplate.",
+			"Exhaustive error handling via typed error channels — no try-catch boilerplate.",
 		url: "https://effect.website/docs/guides/error-management/two-error-types/",
 		category: "Learning",
 		author: "Effect Team",
@@ -416,7 +416,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Dependency Injection with Layers",
 		description:
-			"How to use Effect's Layer system for compile-time safe dependency injection and modular service composition.",
+			"Compile-time safe dependency injection and modular service composition.",
 		url: "https://effect.website/docs/guides/context-management/layers/",
 		category: "Learning",
 		author: "Effect Team",
@@ -427,7 +427,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect Schema: Validation & Serialization",
 		description:
-			"A deep dive into @effect/schema for runtime validation, encoding/decoding, and type-safe data transformations.",
+			"Runtime validation, encoding/decoding, and type-safe data transformations.",
 		url: "https://effect.website/docs/guides/schema/introduction/",
 		category: "Learning",
 		author: "Effect Team",
@@ -438,7 +438,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect + Next.js Starter",
 		description:
-			"Template combining Effect with Next.js for full-stack TypeScript applications with type-safe API routes.",
+			"Full-stack TypeScript template with Effect and type-safe API routes.",
 		url: "https://github.com/ethanniser/effect-nextjs-template",
 		category: "Learning",
 		author: "Ethan Niser",
@@ -449,7 +449,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect HTTP API Template",
 		description:
-			"Production-ready template for building HTTP APIs with Effect, including auth, database, and OpenAPI docs.",
+			"Production-ready HTTP API template with auth, database, and OpenAPI docs.",
 		url: "https://github.com/Effect-TS/examples",
 		category: "Learning",
 		author: "Effect Team",
@@ -462,7 +462,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Effect vs. fp-ts: A Migration Guide",
 		description:
-			"Practical comparison between fp-ts and Effect, with a step-by-step migration path for existing codebases.",
+			"fp-ts vs Effect comparison with a step-by-step migration path.",
 		url: "https://effect.website/blog/fp-ts-to-effect/",
 		category: "Article",
 		author: "Giulio Canti",
@@ -473,7 +473,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Why We Chose Effect at Scale",
 		description:
-			"An engineering team's experience adopting Effect in production — what worked, what didn't, and what they'd do differently.",
+			"Adopting Effect in production — what worked, what didn't, and lessons learned.",
 		url: "https://dev.to/effect/why-effect-4k7f",
 		category: "Article",
 		author: "Sandro Maglione",
@@ -484,7 +484,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	{
 		title: "Typed Errors Are Underrated",
 		description:
-			"Why modeling errors in the type system matters, and how Effect makes it ergonomic with tagged unions and typed channels.",
+			"Why modeling errors in the type system matters and how Effect makes it ergonomic.",
 		url: "https://ethanniser.dev/blog/effect-typed-errors/",
 		category: "Article",
 		author: "Ethan Niser",

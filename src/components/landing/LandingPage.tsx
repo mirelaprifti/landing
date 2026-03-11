@@ -30,7 +30,7 @@ export function LandingPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:left-0 focus:top-0"
+				className="text-white no-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:left-0 focus:top-0"
 			>
 				Skip to main content
 			</a>

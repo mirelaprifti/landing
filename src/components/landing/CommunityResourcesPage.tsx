@@ -56,7 +56,7 @@ function ResourceCard({
 					{item.tags.slice(0, 3).map((tag) => (
 						<span
 							key={tag}
-							className="text-xs font-medium uppercase leading-relaxed text-zinc-400"
+							className="font-mono text-xs font-medium uppercase leading-relaxed text-zinc-400"
 						>
 							{tag}
 						</span>
@@ -80,7 +80,7 @@ function ResourceCard({
 
 			{/* Footer */}
 			<div className="relative mt-auto pt-8">
-				<span className="font-mono text-xs text-zinc-400">{item.author}</span>
+				<span className="text-xs text-zinc-400">{item.author}</span>
 			</div>
 		</a>
 	);
