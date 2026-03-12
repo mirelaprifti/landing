@@ -47,7 +47,7 @@ function ResourceCard({
 
 			{/* Tags */}
 			{item.tags && item.tags.length > 0 && (
-				<div className="relative mb-3 flex flex-wrap gap-2">
+				<div className="relative mb-4 flex flex-wrap gap-2">
 					{item.tags.slice(0, 3).map((tag) => (
 						<span
 							key={tag}
@@ -220,13 +220,15 @@ export function CommunityResourcesCategoryPage({
 								<p className="font-mono text-xs uppercase tracking-wider text-zinc-400">
 									{"// Share your project"}
 								</p>
-								<h2 className="mt-2 text-lg font-semibold text-white">
+								<h2 className="mt-2 text-xl font-semibold text-white">
 									Built something with Effect?
 								</h2>
 								<p className="mt-1 text-sm text-zinc-400">
-									Share it in the{" "}
-									<span className="font-medium text-zinc-300">🟢-projects-showcase</span>{" "}
-									channel on Discord.
+									Drop it in{" "}
+									<a href="https://discord.com/channels/795981131316985866/1072147395632185354" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-300 underline hover:text-white transition-colors">🟢-projects-showcase</a>{" "}
+									on Discord, or{" "}
+									<a href="https://discord.com/channels/795981131316985866/1134767195239485440" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-300 underline hover:text-white transition-colors">🔵-effect-content</a>{" "}
+									for articles and tutorials.
 								</p>
 							</div>
 							<div className="flex items-center gap-3">
