@@ -5,16 +5,38 @@ import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
-const upcomingEvents = [
+const upcomingEvents: Array<{
+	title: string;
+	date: string;
+	location: string;
+	flag: string;
+	thumbnail: string;
+	centerThumbnail?: string;
+	href: string;
+	description: string;
+}> = [
 	{
-		title: "Effect Office Hours #18 🔥",
-		date: "// Weekly on YouTube",
-		location: "Online",
-		flag: "🎥",
-		thumbnail: "https://i.ytimg.com/vi/5NtYKTLoDkQ/maxresdefault.jpg",
-		href: "https://www.youtube.com/live/5NtYKTLoDkQ",
+		title: "Effect Office Hours 21 🔥",
+		date: "// Mar 18 · Weekly on YouTube",
+		location: "",
+		flag: "🌐",
+		thumbnail: "https://i.ytimg.com/vi/8djMEkHLbEk/maxresdefault.jpg",
+		href: "https://www.youtube.com/live/8djMEkHLbEk",
 		description:
 			"Weekly live office hours where the Effect team answers questions, demos features, and discusses best practices with the community.",
+	},
+	{
+		title: "Effect Berlin Meetup #3",
+		date: "// Mar 26 · Berlin, Germany",
+		location: "",
+		flag: "🇩🇪",
+		thumbnail:
+			"https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=1280,height=720/event-covers/wf/83140ba6-0f01-4b33-ad42-87b1c8f4c73e.png",
+		centerThumbnail:
+			"/assets/images/banner - berlin.png",
+		href: "https://luma.com/z39v9xqn",
+		description:
+			"Join the Effect community in Berlin for the third local meetup.",
 	},
 ];
 
@@ -24,29 +46,45 @@ const pastEvents = [
 		events: [
 			{
 				flag: "🌐",
+				date: "Mar 11",
+				title: "STM in Effect + Community Q&A (Effect Office Hours 20 🔥)",
+				type: "online",
+				href: "https://www.youtube.com/watch?v=4v8A-tVabdg&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=1",
+			},
+			{
+				flag: "🌐",
+				date: "Mar 4",
+				title: "Effect Office Hours 19 🔥",
+				type: "online",
+				href: "https://www.youtube.com/watch?v=BKYFmcij_gk&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=2",
+			},
+			{
+				flag: "🌐",
 				date: "Feb 25",
-				title: "Office Hours #18",
+				title: "Effect v4 Beta Q&A (Office Hours 18 🔥)",
 				type: "online",
 				href: "https://www.youtube.com/watch?v=5NtYKTLoDkQ&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=2",
 			},
 			{
 				flag: "🌐",
 				date: "Feb 18",
-				title: "Office Hours #17",
+				title: "Introducing Effect v4 beta 🚀 (Office Hours 17)",
 				type: "online",
 				href: "https://www.youtube.com/watch?v=P04R7lUR4Cc&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=3",
 			},
 			{
 				flag: "🌐",
 				date: "Feb 11",
-				title: "Office Hours #16",
+				title:
+					"Typed Effects in TypeScript: Laziness, Error Handling, Generator Composition (Office Hours 16)",
 				type: "online",
 				href: "https://www.youtube.com/watch?v=2RxCvwCN_LM&list=PLDf3uQLaK2B_0hEiHT82cv-DotrtD6Bhi&index=4",
 			},
 			{
 				flag: "🌐",
 				date: "Feb 4",
-				title: "Office Hours #15",
+				title:
+					"Implementing Effect from scratch: Laziness, Composition, and Practical TypeScript (Office Hours 15)",
 				type: "online",
 				href: "https://youtu.be/OJQvsGwEIuA",
 			},
@@ -67,28 +105,31 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Jan 28",
-				title: "Office Hours #14",
+				title: "Effect Services & Layers (Office Hours 14)",
 				type: "online",
 				href: "https://youtu.be/06htYotj_Pc",
 			},
 			{
 				flag: "🌐",
 				date: "Jan 21",
-				title: "Office Hours #13",
+				title:
+					"andThen vs flatMap, HTTP Client vs HTTP API, AI workflow and Ralph, etc. (Office Hours 13)",
 				type: "online",
 				href: "https://youtu.be/uJvN-2OCU-E",
 			},
 			{
 				flag: "🌐",
 				date: "Jan 14",
-				title: "Office Hours #12",
+				title:
+					"Library Design, Error Modeling, Schema vs runtime errors, Effect 4.0 APIs (Office Hours 12)",
 				type: "online",
 				href: "https://youtu.be/cVExYNB-dxc",
 			},
 			{
 				flag: "🌐",
 				date: "Jan 7",
-				title: "Office Hours #11",
+				title:
+					"Effect 4.0, Cluster & Workflow, Schema, Effect Institute, LLMs in Effect coding (Office Hours 11)",
 				type: "online",
 				href: "https://youtu.be/12fKbAE3T2A",
 			},
@@ -107,7 +148,8 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Dec 17",
-				title: "Office Hours #10",
+				title:
+					"Library Design, Error Modeling and Propagation, Schema Usage, Service Design (Office Hours 10)",
 				type: "online",
 				href: "https://youtu.be/kJpotgntcUU",
 			},
@@ -144,12 +186,12 @@ const pastEvents = [
 				date: "Nov 19",
 				title: "Effect NYC Meetup",
 				type: "meetup",
-				href: "https://luma.com/effect-community?k=c",
+				href: "",
 			},
 			{
 				flag: "🌐",
 				date: "Nov 19",
-				title: "Office Hours #9",
+				title: "Effect Solutions, Tooling, AI and LLM use (Office Hours 9)",
 				type: "online",
 				href: "https://youtu.be/LYrWA9_qas4",
 			},
@@ -171,14 +213,16 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Nov 12",
-				title: "Office Hours #8",
+				title:
+					"Effect managed runtime, error handling, fiber management, API design patterns (Office Hours 8)",
 				type: "online",
 				href: "https://youtu.be/qU5z5VqIdxg",
 			},
 			{
 				flag: "🌐",
 				date: "Nov 5",
-				title: "Office Hours #7",
+				title:
+					"Scheduling, Context, Layers, Dependency Management, Tooling, Workflows, etc. (Office Hours 7)",
 				type: "online",
 				href: "https://youtu.be/rXqkuu4D7fQ",
 			},
@@ -192,7 +236,8 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Oct 29",
-				title: "Office Hours #6",
+				title:
+					"Effect Context & Layers + Confect Library (Effect + Convex integration) (Office Hours 6)",
 				type: "online",
 				href: "https://youtu.be/7SLVmatKRU0",
 			},
@@ -214,7 +259,8 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Oct 22",
-				title: "Office Hours #5",
+				title:
+					"Layers, Dependency Injection, Accessors, and Scopes in Effect (Office Hours 5)",
 				type: "online",
 				href: "https://youtu.be/P_DdDIByzTM",
 			},
@@ -223,7 +269,7 @@ const pastEvents = [
 				date: "Oct 20",
 				title: "Effect talk at Munich TypeScript",
 				type: "conference",
-				href: "https://luma.com/effect-community?k=c",
+				href: "",
 			},
 			{
 				flag: "🇮🇹",
@@ -235,28 +281,30 @@ const pastEvents = [
 			{
 				flag: "🌐",
 				date: "Oct 15",
-				title: "Office Hours #4",
+				title:
+					"Effect Atom, Effect API, Tracing & Telemetry, File System Abstractions, etc. (Office Hours 4)",
 				type: "online",
 				href: "https://youtu.be/ev5hNgGZz6o",
 			},
 			{
 				flag: "🌐",
 				date: "Oct 8",
-				title: "Office Hours #3",
+				title: "Effect Atom, Ecosystem Tooling, Effect LSP (Office Hours 3)",
 				type: "online",
 				href: "https://youtu.be/7iEx6s3Pr6Q",
 			},
 			{
 				flag: "🌐",
 				date: "Oct 1",
-				title: "Office Hours #2",
+				title:
+					"Managed Runtimes, Layers, Effect Atom, Adopting Effect in Large Codebases (Office Hours 2)",
 				type: "online",
 				href: "https://youtu.be/2wZxgnBn3TY",
 			},
 			{
 				flag: "🌐",
 				date: "Sep 24",
-				title: "Office Hours #1",
+				title: "Dependency Management, Effect Service Layers (Office Hours 1)",
 				type: "online",
 				href: "https://youtu.be/4picSqwsA-U",
 			},
@@ -307,7 +355,7 @@ const pastEvents = [
 				date: "Mar 19-21",
 				title: "Effect Days Livorno",
 				type: "conference",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP",
+				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B9bEBZbwMv04e_zSbRNPKH6",
 			},
 			{
 				flag: "🇫🇷",
@@ -333,7 +381,7 @@ const pastEvents = [
 				date: "Nov 26",
 				title: "React Meetup Vienna",
 				type: "meetup",
-				href: "https://www.meetup.com/reactvienna/",
+				href: "",
 			},
 			{
 				flag: "🇫🇷",
@@ -354,7 +402,7 @@ const pastEvents = [
 				date: "Jun 25",
 				title: "Effect Paris Meetup #2",
 				type: "meetup",
-				href: "",
+				href: "https://www.meetup.com/effect-paris/events/301215225/?eventOrigin=group_events_list",
 			},
 			{
 				flag: "🇬🇧",
@@ -382,14 +430,14 @@ const pastEvents = [
 				date: "Apr 23",
 				title: "Effect Paris Meetup #1",
 				type: "meetup",
-				href: "https://www.meetup.com/effect-paris/",
+				href: "https://www.meetup.com/effect-paris/events/300307442/?eventOrigin=group_events_list",
 			},
 			{
 				flag: "🇦🇹",
 				date: "Feb 21",
 				title: "Effect Days Vienna",
 				type: "conference",
-				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO",
+				href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B9a4tbMgGd9wFeEnMA50z4w",
 			},
 			{
 				flag: "🇵🇱",
@@ -427,7 +475,7 @@ const pastEvents = [
 				date: "Jun",
 				title: "Intro to Effect at WorkerConf 2022 by Michael Arnaldi",
 				type: "conference",
-				href: "",
+				href: "https://www.youtube.com/watch?v=zrNr3JVUc8I",
 			},
 		],
 	},
@@ -764,48 +812,79 @@ function EventsTabSection() {
 				{/* Tab Content */}
 				{activeTab === "upcoming" && (
 					<div className="space-y-4">
-						{upcomingEvents.map((event) => (
-							<a
-								key={event.title}
-								href={event.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900 md:flex-row md:gap-8"
-							>
-								{event.thumbnail && (
-									<div className="relative aspect-video w-full overflow-hidden md:aspect-auto md:w-1/2">
-										<img
-											src={
-												event.thumbnail.startsWith("http")
-													? event.thumbnail
-													: getAssetPath(event.thumbnail)
-											}
-											alt={event.title}
-											className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-										/>
-									</div>
-								)}
-								{!event.thumbnail && (
-									<div className="flex w-full items-center justify-center bg-zinc-800/50 py-10 md:w-1/2 md:py-0">
-										<i className="ri-live-line text-4xl text-zinc-600" />
-									</div>
-								)}
-								<div className="flex flex-1 flex-col justify-center p-5">
-									<div className="mb-1.5 flex items-center gap-2">
-										<span className="font-mono text-sm tracking-wider text-zinc-400 uppercase">
-											{event.date}
-										</span>
-										<TypeBadge type={event.location.toLowerCase()} />
-									</div>
-									<h3 className="mt-0.5 mb-2 text-xl font-semibold text-white group-hover:text-zinc-100">
-										{event.title}
-									</h3>
-									<p className="max-w-[28rem] text-base text-zinc-400">
-										{event.description}
-									</p>
+						{upcomingEvents.length === 0 ? (
+							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 bg-zinc-900/30 px-6 py-16 text-center">
+								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800/60">
+									<i className="ri-calendar-check-line text-xl text-zinc-500" />
 								</div>
-							</a>
-						))}
+								<p className="mb-1 text-base font-medium text-zinc-300">
+									No upcoming events right now
+								</p>
+								<p className="mb-6 max-w-sm text-sm text-zinc-500">
+									Join the Discord to be the first to know when new events are
+									announced.
+								</p>
+								<a
+									href="https://discord.gg/effect-ts"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-800/80 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-800 hover:text-white"
+								>
+									<i className="ri-discord-fill text-base" />
+									Join Discord
+								</a>
+							</div>
+						) : (
+							upcomingEvents.map((event) => (
+								<a
+									key={event.title}
+									href={event.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className={`group flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900 md:flex-row md:gap-8`}
+								>
+									{event.thumbnail && (
+										<div className="relative aspect-video w-full overflow-hidden md:aspect-auto md:w-1/2">
+											{event.centerThumbnail ? (
+												<img
+													src={getAssetPath(event.centerThumbnail)}
+													alt={event.title}
+													className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+												/>
+											) : (
+												<img
+													src={
+														event.thumbnail.startsWith("http")
+															? event.thumbnail
+															: getAssetPath(event.thumbnail)
+													}
+													alt={event.title}
+													className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+												/>
+											)}
+										</div>
+									)}
+									{!event.thumbnail && (
+										<div className="flex w-full items-center justify-center bg-zinc-800/50 py-10 md:w-1/2 md:py-0">
+											<i className="ri-live-line text-4xl text-zinc-600" />
+										</div>
+									)}
+									<div className="flex flex-1 flex-col justify-center p-5">
+										<div className="mb-1.5 flex items-center gap-2">
+											<span className="font-mono text-sm tracking-wider text-zinc-400 uppercase">
+												{event.date}
+											</span>
+										</div>
+										<h3 className="mt-0.5 mb-2 text-xl font-semibold text-white group-hover:text-zinc-100">
+											{event.title}
+										</h3>
+										<p className="max-w-[28rem] text-base text-zinc-400">
+											{event.description}
+										</p>
+									</div>
+								</a>
+							))
+						)}
 					</div>
 				)}
 
@@ -814,9 +893,9 @@ function EventsTabSection() {
 						{sortedPastEvents.map((yearGroup) => (
 							<div
 								key={yearGroup.year}
-								className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50"
+								className="rounded-lg border border-zinc-800 bg-zinc-900/50"
 							>
-								<div className="border-b border-zinc-800 px-5 py-3">
+								<div className="sticky top-0 z-10 rounded-t-lg border-b border-zinc-800 bg-zinc-900 px-5 py-3">
 									<span className="font-mono text-sm font-medium tracking-wider text-zinc-200 uppercase">
 										{yearGroup.year}
 									</span>
@@ -825,7 +904,16 @@ function EventsTabSection() {
 									{yearGroup.events.map((event, i) => {
 										const content = (
 											<>
-												<span className="text-lg">{event.flag}</span>
+												<span className="text-lg">
+													{event.flag === "🌐" &&
+													event.href &&
+													(event.href.includes("youtube.com") ||
+														event.href.includes("youtu.be")) ? (
+														<i className="ri-youtube-fill text-red-500" />
+													) : (
+														event.flag
+													)}
+												</span>
 												<span className="w-24 shrink-0 font-mono text-sm tracking-wider text-zinc-400 uppercase">
 													{event.date}
 												</span>
