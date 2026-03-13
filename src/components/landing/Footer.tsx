@@ -19,7 +19,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 						{/* Column 1: Resources */}
 						<div className="flex flex-1 flex-col gap-4 lg:pl-4">
 							{/* Column Header */}
-							<h3 className="font-mono text-sm text-zinc-900 uppercase dark:text-zinc-100">
+							<h3 className="font-mono font-semibold text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								Resources
 							</h3>
 							{/* Links */}
@@ -78,7 +78,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 						{/* Column 2: DevTools */}
 						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-200 lg:pl-4 dark:lg:border-zinc-800">
 							{/* Column Header */}
-							<h3 className="font-mono text-sm text-zinc-900 uppercase dark:text-zinc-100">
+							<h3 className="font-mono font-semibold text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								DevTools
 							</h3>
 							{/* Links */}
@@ -138,7 +138,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 						{/* Column 3: Community */}
 						<div className={`flex flex-1 flex-col gap-4 lg:pl-4${hideCommunityBorder ? "" : " lg:border-l lg:border-dashed lg:border-zinc-200 dark:lg:border-zinc-800"}`}>
 							{/* Column Header */}
-							<h3 className="font-mono text-sm text-zinc-900 uppercase dark:text-zinc-100">
+							<h3 className="font-mono font-semibold text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								Community
 							</h3>
 							{/* Links */}
@@ -195,7 +195,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 						{/* Column 4: Other */}
 						<div className="flex flex-1 flex-col gap-4 lg:border-l lg:border-dashed lg:border-zinc-200 lg:pl-4 dark:lg:border-zinc-800">
 							{/* Column Header */}
-							<h3 className="font-mono text-sm text-zinc-900 uppercase dark:text-zinc-100">
+							<h3 className="font-mono font-semibold text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								Other
 							</h3>
 							{/* Links */}
@@ -388,13 +388,13 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 								</Link>
 								<a
 									href="#"
-									className="border-b border-transparent text-sm text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								>
-									Terms
-								</a>
-								<a
-									href="#"
-									className="border-b border-transparent text-sm text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								Terms
+							</a>
+							<a
+								href="#"
+								className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									Privacy
 								</a>

@@ -26,7 +26,7 @@ const linkVariants = cva("transition-colors", {
 				"text-white underline underline-offset-2 hover:text-zinc-300",
 			nav: "border-b border-transparent text-sm font-medium text-zinc-400 hover:border-current hover:text-white",
 			footer:
-				"border-b border-transparent text-sm leading-relaxed text-zinc-400 hover:border-current hover:text-white",
+				"border-b border-transparent text-sm font-medium leading-relaxed text-zinc-400 hover:border-current hover:text-white",
 			subtle: "text-sm text-zinc-400 hover:text-white",
 			icon: "text-zinc-400 hover:text-white",
 		},
