@@ -144,7 +144,7 @@ export function NotFoundPage() {
                       not-found.ts
                     </span>
                   </div>
-                  <pre className="min-h-[14rem] px-4 py-4 font-mono text-sm leading-loose sm:px-5 sm:text-base">
+                  <pre className="px-4 py-4 font-mono text-sm leading-loose sm:px-5 sm:text-base">
                     {codeLines.map((line, i) => (
                       <motion.div
                         key={`code-line-${i.toString()}`}

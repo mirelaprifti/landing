@@ -112,8 +112,12 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 					{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
-							className="inline-flex items-center rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-300"
+							className="inline-flex items-center gap-1 rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-400"
 							>
+								<span
+									className="h-1.5 w-1.5 rounded-full"
+									style={{ backgroundColor: getTagColor(tag) }}
+								/>
 								{tag}
 							</span>
 						))}
@@ -123,7 +127,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.title}
 					</h2>
 
-					<p className="mt-4 line-clamp-3 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg md:leading-relaxed">
+					<p className="mt-4 line-clamp-3 max-w-xl text-base text-zinc-400">
 						{post.excerpt}
 					</p>
 
@@ -340,18 +344,18 @@ function TWIECard({ post }: { post: BlogPost }) {
 
 			<div>
 				<div className="flex items-center justify-between">
-					<span className="inline-flex items-center gap-1.5 rounded-full bg-violet-500/10 px-2.5 py-0.5 text-xs font-medium tracking-wide text-violet-400 uppercase">
+					<span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-800/60 px-2.5 py-0.5 text-xs font-medium tracking-wide text-zinc-400 uppercase">
 						<span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
 						TWIE
 					</span>
 					{issueNumber && (
-						<span className="font-mono text-sm font-semibold text-zinc-300">
+						<span className="font-mono text-xs font-semibold text-zinc-300">
 							{issueNumber}
 						</span>
 					)}
 				</div>
 
-				<p className="mt-3 line-clamp-2 text-sm leading-relaxed text-zinc-400">
+				<p className="mt-3 line-clamp-2 text-sm leading-relaxed text-zinc-300">
 					{post.excerpt}
 				</p>
 			</div>
@@ -414,11 +418,7 @@ function PostCard({ post }: { post: BlogPost }) {
 							return (
 								<span
 									key={tag}
-									className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium tracking-wide uppercase"
-									style={{
-										backgroundColor: `${color}15`,
-										color: color,
-									}}
+									className="inline-flex items-center gap-1 rounded-full bg-zinc-800/60 px-2 py-0.5 text-xs font-medium tracking-wide text-zinc-400"
 								>
 									<span
 										className="h-1.5 w-1.5 rounded-full"
@@ -760,18 +760,25 @@ export function BlogPage() {
 				<main id="main-content" className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						{/* Page header */}
-						<div className="pt-16 pb-16 md:pt-24 md:pb-24">
+						<div className="pt-16 pb-8 md:pt-24 md:pb-12">
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Blog
 							</p>
 							<h1
-								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white md:text-4xl"
+								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
 							>
 								Stay up to date with the latest{" "}
 								<br className="hidden md:block" />
 								from the Effect ecosystem
 							</h1>
 						</div>
+
+						{/* Featured post — first thing after heading */}
+						{featuredPost && (
+							<div className="pb-16 md:pb-24">
+								<FeaturedPost post={featuredPost} />
+							</div>
+						)}
 					</div>
 				</main>
 			</div>
@@ -782,12 +789,6 @@ export function BlogPage() {
 			{/* ── Content zone ───────────────────────────── */}
 			<div ref={contentZoneRef} className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					{/* Featured post — always visible regardless of filters */}
-					{featuredPost && (
-						<div className="pt-12 pb-4">
-							<FeaturedPost post={featuredPost} />
-						</div>
-					)}
 
 					{/* TWIE horizontal scroll rail */}
 					{showTWIERail && <TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />}
@@ -999,7 +1000,6 @@ export function BlogPage() {
 																className="h-2 w-2 shrink-0 rounded-full"
 																style={{
 																	backgroundColor: color,
-																	opacity: isActive ? 1 : 0.4,
 																}}
 															/>
 														)}
