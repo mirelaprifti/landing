@@ -103,14 +103,11 @@ export function NotFoundPage() {
             <div className="flex flex-col items-center gap-10">
               {/* Top: text */}
               <div className="w-full max-w-4xl text-center">
-                <p className="mb-3 font-mono text-base font-semibold tracking-wider text-zinc-300 uppercase">
+                <p className="mb-3 font-mono text-lg font-semibold tracking-wider text-zinc-400 uppercase">
                   {"// 404"}
                 </p>
                 <h1 className="text-2xl font-semibold text-white md:text-3xl">
-                  <span className="font-mono">Effect.fail</span>
-                  <span className="text-zinc-400">(</span>
-                  <span className="text-zinc-300">"Page not found"</span>
-                  <span className="text-zinc-400">)</span>
+                  Page not found
                 </h1>
                 <p className="mt-4 text-lg text-zinc-400">
                   This route couldn't be resolved, but we can recover.
@@ -134,7 +131,7 @@ export function NotFoundPage() {
               </div>
 
               {/* Bottom: code snippet */}
-              <div className="w-full max-w-xl">
+              <div className="w-full max-w-2xl">
                 <div className="overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900">
                   <div className="flex items-center gap-1.5 border-b border-zinc-700 px-4 py-2.5">
                     <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "#ff5f57" }} />

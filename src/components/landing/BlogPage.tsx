@@ -127,7 +127,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.title}
 					</h2>
 
-					<p className="mt-4 line-clamp-3 max-w-xl text-base text-zinc-400">
+					<p className="mt-4 line-clamp-3 max-w-xl text-base text-zinc-300">
 						{post.excerpt}
 					</p>
 
@@ -144,13 +144,13 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 									className="h-8 w-8 rounded-full border-2 border-zinc-800 object-cover"
 								/>
 								<div className="flex flex-col">
-									<span className="text-sm font-medium text-zinc-200">
+									<span className="font-mono text-sm font-medium text-zinc-200">
 										{author.name}
 									</span>
 								</div>
 							</div>
 						))}
-						<div className="flex items-center gap-3 text-sm text-zinc-400">
+						<div className="flex items-center gap-3 font-mono text-sm text-zinc-400">
 							<span className="h-4 w-px bg-zinc-800" />
 							<time>{post.date}</time>
 						</div>
