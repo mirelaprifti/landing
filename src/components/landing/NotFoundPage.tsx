@@ -96,7 +96,7 @@ export function NotFoundPage() {
 
       <main
         id="main-content"
-        className="relative z-10 flex min-h-screen items-center pt-20 md:pt-12 pb-8"
+        className="relative z-10 flex min-h-screen items-center pt-24 md:pt-20 pb-8"
       >
         <section className="w-full py-16 md:py-24">
           <div className="mx-auto w-full max-w-[73.75rem] px-4 sm:px-6">
