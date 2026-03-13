@@ -111,6 +111,23 @@ export const BLOG_TAGS = [
 
 export type BlogTag = (typeof BLOG_TAGS)[number];
 
+// Tag color mapping -- distinct hues per category for visual scanning
+export const TAG_COLORS: Record<string, string> = {
+	Release: "#22c55e", // green
+	Effect: "#818cf8", // indigo
+	"This Week In Effect": "#a78bfa", // violet-400 (WCAG AA)
+	"Cause & Effect": "#f472b6", // pink
+	"Effect Schema": "#06b6d4", // cyan
+	"Effect Playground": "#c4b5fd", // violet-300 (differentiate from TWIE)
+	"Effect Website": "#fb923c", // orange
+	TypeScript: "#3b82f6", // blue
+	Miscellaneous: "#94a3b8", // slate
+};
+
+export function getTagColor(tag: string): string {
+	return TAG_COLORS[tag] ?? "#a1a1aa"; // zinc-400 fallback (WCAG AA)
+}
+
 export const BLOG_POSTS: BlogPost[] = [
 	{
 		slug: "effect-v4-beta",

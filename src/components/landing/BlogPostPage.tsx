@@ -1,11 +1,15 @@
-import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
+import { cn } from "@/lib/utils";
+import { BLOG_POSTS, type BlogPost, getPostUrl, getTagColor } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
-function TableOfContents() {
+function TableOfContents({
+	className,
+	showBackLink = true,
+}: { className?: string; showBackLink?: boolean }) {
 	const tocItems = [
 		{
 			id: "faster-runtime",
@@ -22,7 +26,7 @@ function TableOfContents() {
 	];
 
 	return (
-		<nav className="sticky top-[5.5rem]">
+		<nav className={cn("sticky top-[5.5rem]", className)}>
 			<p className="mb-4 text-xs font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 				On this page
 			</p>
@@ -44,15 +48,17 @@ function TableOfContents() {
 			</ul>
 
 			{/* Back to all posts */}
-			<div className="mt-8 border-t border-zinc-200 pt-5 dark:border-zinc-800">
-				<a
-					href={getAssetPath("/blog")}
-					className="flex items-center gap-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-				>
-					<i className="ri-arrow-left-s-line text-base" />
-					All posts
-				</a>
-			</div>
+			{showBackLink && (
+				<div className="mt-8 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+					<a
+						href={getAssetPath("/blog")}
+						className="flex items-center gap-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+					>
+						<i className="ri-arrow-left-s-line text-base" />
+						All posts
+					</a>
+				</div>
+			)}
 		</nav>
 	);
 }
@@ -176,9 +182,9 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 			<main id="main-content" className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_240px]">
+					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
 						{/* Article */}
-						<article className="min-w-0 pb-20 lg:border-r lg:border-zinc-200/60 lg:pr-12 dark:lg:border-zinc-800/60">
+						<article className="min-w-0 pb-20 md:border-r md:border-zinc-200/60 md:pr-12 dark:md:border-zinc-800/60">
 							{/* Back link + breadcrumb */}
 							<div className="pt-10 pb-10 md:pt-14 md:pb-12">
 								<nav className="mb-8 flex items-center gap-2 text-sm">
@@ -188,19 +194,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										className="group inline-flex items-center gap-1"
 									>
 										<i className="ri-arrow-left-s-line text-base" />
-										Blog
+										Go to all posts
 									</Link>
-									<span className="text-zinc-300 dark:text-zinc-700">/</span>
-									{post.tags[0] && (
-										<>
-											<span className="text-zinc-600 dark:text-zinc-400">
-												{post.tags[0]}
-											</span>
-											<span className="text-zinc-300 dark:text-zinc-700">
-												/
-											</span>
-										</>
-									)}
 								</nav>
 
 								{/* Tags */}
@@ -208,8 +203,12 @@ export function BlogPostPage({ slug }: { slug: string }) {
 									{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
 										<span
 											key={tag}
-											className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+											className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
 										>
+											<span
+												className="h-1.5 w-1.5 rounded-full"
+												style={{ backgroundColor: getTagColor(tag) }}
+											/>
 											{tag}
 										</span>
 									))}
@@ -247,15 +246,16 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										&middot;
 									</span>
 									<time>{post.date}</time>
-									<span className="text-zinc-300 dark:text-zinc-700">
-										&middot;
-									</span>
-									<span>{post.readingTime}</span>
 								</div>
 							</div>
 
 							{/* Divider */}
 							<div className="h-px bg-zinc-200 dark:bg-zinc-800" />
+
+							{/* Mobile Table of Contents */}
+							<div className="mt-10 mb-10 block md:hidden">
+								<TableOfContents showBackLink={false} className="static" />
+							</div>
 
 							{/* Article content */}
 							<div className="prose prose-zinc prose-headings:font-bold prose-headings:tracking-tight prose-h2:mt-14 prose-h2:mb-5 prose-h2:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-xl prose-p:text-zinc-700 prose-p:text-base prose-p:leading-relaxed prose-a:text-zinc-900 prose-a:underline prose-a:decoration-zinc-300 prose-a:underline-offset-4 hover:prose-a:decoration-zinc-600 prose-strong:text-zinc-900 prose-code:rounded-md prose-code:bg-zinc-100 prose-code:px-2 prose-code:py-1 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-200 prose-pre:bg-zinc-50 prose-pre:text-sm prose-li:text-zinc-700 prose-hr:border-zinc-200 dark:prose-invert dark:prose-p:text-zinc-300 dark:prose-a:text-white dark:prose-a:decoration-zinc-400 dark:hover:prose-a:decoration-zinc-300 dark:prose-strong:text-white dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200 dark:prose-pre:border-zinc-800 dark:prose-pre:bg-zinc-900/80 dark:prose-li:text-zinc-300 dark:prose-hr:border-zinc-800 mt-10 max-w-none">
@@ -394,7 +394,7 @@ Effect.runPromise(program)`}</code>
 						</article>
 
 						{/* Right sidebar - TOC */}
-						<aside className="hidden py-14 pl-10 lg:block">
+						<aside className="hidden py-14 pl-10 md:block">
 							<TableOfContents />
 						</aside>
 					</div>
