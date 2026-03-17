@@ -73,7 +73,7 @@ export function PressKitPage() {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/brand-assets" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -589,7 +589,7 @@ export function PressKitPage() {
 
 				</main>
 
-			<Footer hideCommunityBorder />
+			<Footer activePath="/brand-assets" hideCommunityBorder />
 		</div>
 	);
 }

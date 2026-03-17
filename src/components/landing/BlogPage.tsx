@@ -475,7 +475,7 @@ function SidebarSection({
 			<button
 				type="button"
 				onClick={() => setOpen(!open)}
-				className="flex w-full items-center justify-between py-3 text-left"
+				className="flex w-full cursor-pointer items-center justify-between py-3 text-left"
 			>
 				<span className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
 					{title}
@@ -677,7 +677,7 @@ export function BlogPage() {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/blog" />
 			<GridOverlay />
 
 			{/* Dithered background overlay - subtle texture across entire page */}
@@ -965,7 +965,7 @@ export function BlogPage() {
 													<button
 														type="button"
 														onClick={() => handleTagChange(tag)}
-														className={`relative flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
+														className={`relative flex cursor-pointer w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
 															isActive
 																? "bg-zinc-800/80 font-medium text-white"
 																: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
@@ -1011,7 +1011,7 @@ export function BlogPage() {
 													<button
 														type="button"
 														onClick={() => handleAuthorChange(name)}
-														className={`group/author relative flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left transition-all duration-150 ${
+														className={`group/author cursor-pointer relative flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left transition-all duration-150 ${
 															isActive
 																? "bg-zinc-800/80 text-white"
 																: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"

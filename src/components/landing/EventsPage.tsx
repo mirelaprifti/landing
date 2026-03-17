@@ -787,7 +787,7 @@ function EventsTabSection() {
 						<button
 							type="button"
 							onClick={() => setActiveTab("upcoming")}
-							className={`relative w-28 rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
+							className={`relative w-28 cursor-pointer rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
 								activeTab === "upcoming"
 									? "bg-zinc-800 font-bold text-white shadow-sm shadow-black/20"
 									: "text-zinc-400 hover:text-zinc-300"
@@ -798,7 +798,7 @@ function EventsTabSection() {
 						<button
 							type="button"
 							onClick={() => setActiveTab("past")}
-							className={`relative w-28 rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
+							className={`relative w-28 cursor-pointer rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
 								activeTab === "past"
 									? "bg-zinc-800 font-bold text-white shadow-sm shadow-black/20"
 									: "text-zinc-400 hover:text-zinc-300"
@@ -977,7 +977,7 @@ export function EventsPage() {
 				Skip to main content
 			</a>
 
-			<Navigation />
+      <Navigation activePath="/events" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -1276,7 +1276,7 @@ export function EventsPage() {
 				</section>
 			</main>
 
-			<Footer hideCommunityBorder />
+      <Footer activePath="/events" hideCommunityBorder />
 		</div>
 	);
 }

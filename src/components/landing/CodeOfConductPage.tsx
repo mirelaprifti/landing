@@ -5,7 +5,7 @@ import { Navigation } from "./Navigation";
 export function CodeOfConductPage() {
 	return (
 		<div className="min-h-screen bg-zinc-950 text-white">
-			<Navigation />
+			<Navigation activePath="/events" />
 
 			{/* Hero Section */}
 			<section className="relative pt-32 pb-16 md:pt-40 md:pb-20">
@@ -216,7 +216,7 @@ export function CodeOfConductPage() {
 				</div>
 			</section>
 
-			<Footer />
+			<Footer activePath="/events" />
 		</div>
 	);
 }

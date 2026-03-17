@@ -7,6 +7,7 @@ import { Navigation } from "./Navigation";
 interface Episode {
 	number: number;
 	title: string;
+	slug: string;
 	guest: string;
 	company: string;
 	companyLogo?: string;
@@ -21,6 +22,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 7,
 		title: "Reliable Payroll Systems in TypeScript with Effect",
+		slug: "reliable-payroll-systems-warp",
 		guest: "Adam Rankin",
 		company: "Warp",
 		description:
@@ -33,6 +35,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 6,
 		title: "Inside OpenRouter's Tech Stack and Use of Effect",
+		slug: "scaling-ai-openrouter",
 		guest: "Louis Vichy",
 		company: "OpenRouter",
 		description:
@@ -45,6 +48,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 5,
 		title: "Event-Driven Systems in FinTech. How Spiko Leverages Effect",
+		slug: "event-driven-systems-spiko",
 		guest: "Samuel Briole",
 		company: "Spiko",
 		description:
@@ -57,6 +61,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 4,
 		title: "From Skeptic to Advocate, Scaling Effect at Vercel",
+		slug: "scaling-effect-vercel",
 		guest: "Dillon Mulroy",
 		company: "Vercel",
 		description:
@@ -69,6 +74,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 3,
 		title: "Scaling Voice AI at MasterClass with Effect & TypeScript",
+		slug: "scaling-voice-ai-masterclass",
 		guest: "David Golightly",
 		company: "MasterClass",
 		description:
@@ -81,6 +87,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 2,
 		title: "Scaling AI for Customer Support at Markprompt with Effect",
+		slug: "scaling-ai-customer-support-markprompt",
 		guest: "Michael Fester",
 		company: "Markprompt",
 		description:
@@ -93,6 +100,7 @@ const EPISODES: Episode[] = [
 	{
 		number: 1,
 		title: "Adopting Effect at Zendesk with Attila Večerek",
+		slug: "adopting-effect-zendesk",
 		guest: "Attila Večerek",
 		company: "Zendesk",
 		description:
@@ -107,7 +115,7 @@ const EPISODES: Episode[] = [
 function EpisodeCard({ episode }: { episode: Episode }) {
 	return (
 		<a
-			href={getAssetPath(`/podcast/episodes/episode-${episode.number}`)}
+			href={getAssetPath(`/podcast/episodes/${episode.slug}`)}
 			className="group my-4 flex flex-col gap-8 p-4 transition-colors hover:bg-zinc-900/60 md:flex-row md:gap-8"
 		>
 			{/* Thumbnail */}
@@ -160,7 +168,7 @@ export function PodcastPage() {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/podcast" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -486,7 +494,7 @@ export function PodcastPage() {
 				</section>
 			</main>
 
-			<Footer hideCommunityBorder />
+			<Footer hideCommunityBorder activePath="/podcast" />
 		</div>
 	);
 }

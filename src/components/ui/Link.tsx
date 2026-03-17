@@ -42,15 +42,24 @@ type LinkProps = {
 	href: string;
 	children: ReactNode;
 	className?: string;
+	active?: boolean;
 } & LinkVariantProps &
 	Omit<ComponentPropsWithoutRef<"a">, "className">;
 
-function Link({ variant, className, href, children, ...props }: LinkProps) {
+function Link({ variant, className, href, children, active, ...props }: LinkProps) {
 	const isExternal = href.startsWith("http");
+	const activeClass = active ? {
+		nav: "border-white text-white",
+		footer: "border-transparent text-white dark:text-white",
+		inline: "",
+		subtle: "text-white",
+		icon: "text-white",
+	}[variant ?? "inline"] : "";
+
 	return (
 		<a
 			href={href}
-			className={cn(linkVariants({ variant }), className)}
+			className={cn(linkVariants({ variant }), className, activeClass)}
 			{...(isExternal
 				? { target: "_blank", rel: "noopener noreferrer" }
 				: {})}

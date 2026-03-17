@@ -339,7 +339,7 @@ export function MerchPage() {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/merch" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -453,7 +453,14 @@ export function MerchPage() {
 				</section>
 
 				{/* Products Section */}
-				<section id="products" className="w-full bg-zinc-100 pt-28 pb-32">
+				<section id="products" className="relative z-[70] w-full bg-zinc-100 pt-28 pb-32">
+					<div className="pointer-events-none absolute inset-0 hidden lg:block">
+						<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+							<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200" />
+							<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200" />
+						</div>
+					</div>
+
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
 							{PRODUCTS.map((product) => (
@@ -495,20 +502,6 @@ export function MerchPage() {
 								</p>
 								<div className="flex items-center gap-4">
 									<Link
-										href="https://x.com/EffectTS_"
-										variant="icon"
-										aria-label="X (Twitter)"
-									>
-										<i className="ri-twitter-x-fill text-2xl" />
-									</Link>
-									<Link
-										href="https://bsky.app/profile/effect-ts.bsky.social"
-										variant="icon"
-										aria-label="Bluesky"
-									>
-										<i className="ri-bluesky-fill text-2xl" />
-									</Link>
-									<Link
 										href="https://discord.gg/effect-ts"
 										variant="icon"
 										aria-label="Discord"
@@ -516,11 +509,25 @@ export function MerchPage() {
 										<i className="ri-discord-fill text-2xl" />
 									</Link>
 									<Link
+										href="https://x.com/EffectTS_"
+										variant="icon"
+										aria-label="X (Twitter)"
+									>
+										<i className="ri-twitter-x-fill text-2xl" />
+									</Link>
+									<Link
 										href="https://www.linkedin.com/company/effectful-technologies"
 										variant="icon"
 										aria-label="LinkedIn"
 									>
 										<i className="ri-linkedin-box-fill text-2xl" />
+									</Link>
+									<Link
+										href="https://bsky.app/profile/effect-ts.bsky.social"
+										variant="icon"
+										aria-label="Bluesky"
+									>
+										<i className="ri-bluesky-fill text-2xl" />
 									</Link>
 								</div>
 							</div>
@@ -540,7 +547,7 @@ export function MerchPage() {
 				</section>
 			</main>
 
-			<Footer hideCommunityBorder />
+			<Footer activePath="/merch" hideCommunityBorder />
 		</div>
 	);
 }

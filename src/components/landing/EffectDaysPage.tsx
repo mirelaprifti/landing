@@ -70,7 +70,7 @@ export function EffectDaysPage() {
 				Skip to main content
 			</a>
 
-			<Navigation transparent />
+      <Navigation activePath="/events" transparent />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -935,7 +935,7 @@ export function EffectDaysPage() {
 				</section>
 			</main>
 
-			<Footer hideCommunityBorder />
+      <Footer activePath="/events" hideCommunityBorder />
 		</div>
 	);
 }

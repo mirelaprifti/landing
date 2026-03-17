@@ -4,9 +4,10 @@ import { Button, Link } from "@/components/ui";
 
 interface NavigationProps {
 	transparent?: boolean;
+	activePath?: string;
 }
 
-export function Navigation({ transparent = false }: NavigationProps) {
+export function Navigation({ transparent = false, activePath }: NavigationProps) {
 	useEffect(() => {
 		let isMenuAnimating = false;
 
@@ -100,6 +101,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
 							<Link
 								href={getAssetPath("/blog")}
 								variant="nav"
+								active={activePath?.startsWith("/blog")}
 								className={transparent ? "text-white hover:text-white/80" : ""}
 							>
 								Blog
@@ -226,7 +228,7 @@ export function Navigation({ transparent = false }: NavigationProps) {
 							</a>
 							<a
 								href={getAssetPath("/blog")}
-								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/blog") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Blog
 							</a>

@@ -126,7 +126,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 	if (!post) {
 		return (
 			<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
-				<Navigation />
+				<Navigation activePath="/blog" />
 				<main className="flex min-h-[60vh] items-center justify-center pt-16">
 					<div className="flex flex-col items-center text-center">
 						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900">
@@ -144,7 +144,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						</a>
 					</div>
 				</main>
-				<Footer />
+				<Footer activePath="/blog" />
 			</div>
 		);
 	}
@@ -167,7 +167,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/blog" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -401,7 +401,7 @@ Effect.runPromise(program)`}</code>
 				</div>
 			</main>
 
-			<Footer />
+			<Footer activePath="/blog" />
 		</div>
 	);
 }

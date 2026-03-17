@@ -8,7 +8,7 @@ import path from "node:path";
 
 export function getStaticPaths() {
 	return EPISODES.map((episode) => ({
-		params: { episode: `episode-${episode.number}` },
+		params: { episode: episode.slug },
 		props: { episode },
 	}));
 }

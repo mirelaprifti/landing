@@ -2,7 +2,12 @@ import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { Link } from "@/components/ui";
 
-export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: boolean } = {}) {
+interface FooterProps {
+	hideCommunityBorder?: boolean;
+	activePath?: string;
+}
+
+export function Footer({ hideCommunityBorder = false, activePath }: FooterProps = {}) {
 	return (
 		<footer className="relative w-full px-4 pt-16 md:px-8 md:pt-20">
 			{/* Subtle gradient background */}
@@ -11,7 +16,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 			{/* Top solid border */}
 			<div className="absolute top-0 right-0 left-0 h-px bg-zinc-200 dark:bg-zinc-800" />
 
-			<div className="mx-auto w-full max-w-[73.75rem]">
+			<div className="relative mx-auto w-full max-w-[73.75rem]">
 				{/* Footer Links Block */}
 				<div className="flex flex-col">
 					{/* Four Column Links Section */}
@@ -44,31 +49,21 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 								</li>
 								<li>
 									<Link
-										href="https://effect-ts.github.io/effect/docs/ai/ai"
+										href={getAssetPath("/community-resources")}
 										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										active={activePath?.startsWith("/community-resources")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										@effect/ai
-										<i className="ri-arrow-right-up-line text-sm" />
+										Community resources
 									</Link>
 								</li>
 								<li>
 									<Link
-										href="https://effect-ts.github.io/effect/docs/cluster"
+										href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										@effect/cluster (alpha)
-										<i className="ri-arrow-right-up-line text-sm" />
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="https://github.com/Effect-TS/effect/blob/main/packages/workflow/README.md"
-										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										@effect/workflow
+										Workshops
 										<i className="ri-arrow-right-up-line text-sm" />
 									</Link>
 								</li>
@@ -102,16 +97,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 										<i className="ri-arrow-right-up-line text-sm" />
 									</Link>
 								</li>
-								<li>
-									<Link
-										href="https://github.com/Effect-TS/effect/blob/main/packages/cli/README.md"
-										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Effect CLI
-										<i className="ri-arrow-right-up-line text-sm" />
-									</Link>
-								</li>
+
 								<li>
 									<Link
 										href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
@@ -147,6 +133,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 									<Link
 										href={getAssetPath("/podcast")}
 										variant="footer"
+										active={activePath?.startsWith("/podcast")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Podcast 🎙️
@@ -156,6 +143,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 									<Link
 										href={getAssetPath("/events")}
 										variant="footer"
+										active={activePath?.startsWith("/events")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Events & meetups
@@ -163,20 +151,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/merch")}
+										href={getAssetPath("/implementation-partners")}
 										variant="footer"
+										active={activePath?.startsWith("/implementation-partners")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Effect merch
-									</Link>
-								</li>
-								<li>
-									<Link
-										href={getAssetPath("/community-resources")}
-										variant="footer"
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Community resources
+										Implementation Partners
 									</Link>
 								</li>
 								<li>
@@ -204,6 +184,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 									<Link
 										href={getAssetPath("/blog")}
 										variant="footer"
+										active={activePath?.startsWith("/blog")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Blog
@@ -222,6 +203,7 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 									<Link
 										href={getAssetPath("/brand-assets")}
 										variant="footer"
+										active={activePath?.startsWith("/brand-assets")}
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Logo guidelines
@@ -229,22 +211,12 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 								</li>
 								<li>
 									<Link
-										href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
+										href={getAssetPath("/merch")}
 										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										active={activePath?.startsWith("/merch")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Workshops
-										<i className="ri-arrow-right-up-line text-sm" />
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="https://effectful.co/"
-										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Effectful
-										<i className="ri-arrow-right-up-line text-sm" />
+										Effect merch
 									</Link>
 								</li>
 							</ul>
@@ -280,32 +252,6 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 							{/* Social Icons (centered on mobile, middle on desktop) */}
 							<div className="flex items-center justify-center gap-6 md:gap-5">
 								<Link
-									href="https://x.com/EffectTS_"
-									variant="icon"
-									aria-label="Follow Effect on X (Twitter)"
-									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								>
-									<div className="flex w-6 items-center justify-center">
-										<i
-											className="ri-twitter-x-fill text-2xl md:text-xl"
-											aria-hidden="true"
-										/>
-									</div>
-								</Link>
-								<Link
-									href="https://www.youtube.com/@EffectTS"
-									variant="icon"
-									aria-label="Subscribe to Effect on YouTube"
-									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								>
-									<div className="flex w-6 items-center justify-center">
-										<i
-											className="ri-youtube-fill text-2xl md:text-xl"
-											aria-hidden="true"
-										/>
-									</div>
-								</Link>
-								<Link
 									href="https://github.com/Effect-TS"
 									variant="icon"
 									aria-label="Visit Effect on GitHub"
@@ -332,14 +278,27 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 									</div>
 								</Link>
 								<Link
-									href="https://bsky.app/profile/effect-ts.bsky.social"
+									href="https://x.com/EffectTS_"
 									variant="icon"
-									aria-label="Follow Effect on Bluesky"
+									aria-label="Follow Effect on X (Twitter)"
 									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									<div className="flex w-6 items-center justify-center">
 										<i
-											className="ri-bluesky-fill text-2xl md:text-xl"
+											className="ri-twitter-x-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
+								</Link>
+								<Link
+									href="https://www.youtube.com/@EffectTS"
+									variant="icon"
+									aria-label="Subscribe to Effect on YouTube"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-youtube-fill text-2xl md:text-xl"
 											aria-hidden="true"
 										/>
 									</div>
@@ -353,6 +312,19 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 									<div className="flex w-6 items-center justify-center">
 										<i
 											className="ri-linkedin-fill text-2xl md:text-xl"
+											aria-hidden="true"
+										/>
+									</div>
+								</Link>
+								<Link
+									href="https://bsky.app/profile/effect-ts.bsky.social"
+									variant="icon"
+									aria-label="Follow Effect on Bluesky"
+									className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								>
+									<div className="flex w-6 items-center justify-center">
+										<i
+											className="ri-bluesky-fill text-2xl md:text-xl"
 											aria-hidden="true"
 										/>
 									</div>
@@ -373,8 +345,14 @@ export function Footer({ hideCommunityBorder = false }: { hideCommunityBorder?: 
 					{/* Bottom Copyright Section */}
 					<div className="flex flex-col items-center justify-between gap-4 px-4 pt-10 pb-16 md:flex-row md:gap-8 md:pt-8 md:pb-16">
 						<p className="text-sm text-zinc-600 dark:text-zinc-400">
-							© {new Date().getFullYear()} Effectful Technologies Inc. All
-							rights reserved.
+							© {new Date().getFullYear()}{" "}
+							<a
+								href="https://effectful.co/"
+								className="text-zinc-600 underline hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								Effectful Technologies Inc.
+							</a>{" "}
+							All rights reserved.
 						</p>
 						<div className="flex items-center gap-5">
 							<ThemeToggle />

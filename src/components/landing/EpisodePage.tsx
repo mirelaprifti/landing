@@ -38,7 +38,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/podcast" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -494,7 +494,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				</section>
 			</main>
 
-			<Footer hideCommunityBorder />
+			<Footer hideCommunityBorder activePath="/podcast" />
 		</div>
 	);
 }

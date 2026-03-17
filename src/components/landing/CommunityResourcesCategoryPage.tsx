@@ -110,7 +110,7 @@ export function CommunityResourcesCategoryPage({
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/community-resources" />
 			<GridOverlay />
 
 			{/* Vertical border lines */}
@@ -258,7 +258,7 @@ export function CommunityResourcesCategoryPage({
 				</div>
 			</main>
 
-			<Footer hideCommunityBorder />
+			<Footer activePath="/community-resources" hideCommunityBorder />
 		</div>
 	);
 }

@@ -205,7 +205,7 @@ export function FAQSection() {
 
 					{/* Right column - FAQ items (50%) */}
 					<div className="w-full lg:w-1/2">
-						<div className="space-y-3 pt-27 pr-4 pl-3">
+						<div className="space-y-4 pt-27 pr-4 pl-3">
 							{faqs.map((faq, index) => {
 								const isOpen = openIndices.has(index);
 								return (

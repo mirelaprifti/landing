@@ -1,0 +1,21 @@
+---
+import { PARTNERS } from "../../data/partners";
+import { PartnerDetailsPage } from "@/components/landing/PartnerDetailsPage";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  return PARTNERS.map((partner) => ({
+    params: { id: partner.id },
+    props: { partner },
+  }));
+}
+
+const { partner } = Astro.props;
+---
+
+<BaseLayout
+  title={`${partner.name} - Effect Implementation Partner`}
+  description={partner.description}
+>
+  <PartnerDetailsPage client:load partner={partner} />
+</BaseLayout>

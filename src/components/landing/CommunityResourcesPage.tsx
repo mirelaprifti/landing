@@ -297,7 +297,7 @@ export function CommunityResourcesPage() {
 				Skip to main content
 			</a>
 
-			<Navigation />
+			<Navigation activePath="/community-resources" />
 			<GridOverlay />
 
 			{/* Vertical border lines */}
@@ -494,7 +494,7 @@ export function CommunityResourcesPage() {
 				</div>
 			</main>
 
-			<Footer hideCommunityBorder />
+			<Footer activePath="/community-resources" hideCommunityBorder />
 		</div>
 	);
 }

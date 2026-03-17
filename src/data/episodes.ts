@@ -6,6 +6,7 @@ export interface Chapter {
 export interface Episode {
 	number: number;
 	title: string;
+	slug: string;
 	guest: string;
 	company: string;
 	description: string;
@@ -23,6 +24,7 @@ export const EPISODES: Episode[] = [
 	{
 		number: 7,
 		title: "Reliable Payroll Systems in TypeScript with Effect",
+		slug: "reliable-payroll-systems-warp",
 		guest: "Adam Rankin",
 		company: "Warp",
 		description:
@@ -68,6 +70,7 @@ https://github.com/rankincodes`,
 	{
 		number: 6,
 		title: "Inside OpenRouter's Tech Stack and Use of Effect",
+		slug: "scaling-ai-openrouter",
 		guest: "Louis Vichy",
 		company: "OpenRouter",
 		description:
@@ -103,6 +106,7 @@ https://github.com/rankincodes`,
 	{
 		number: 5,
 		title: "Event-Driven Systems in FinTech. How Spiko Leverages Effect",
+		slug: "event-driven-systems-spiko",
 		guest: "Samuel Briole",
 		company: "Spiko",
 		description:
@@ -160,6 +164,7 @@ effect-messaging: https://github.com/spiko-tech/effect-messaging`,
 	{
 		number: 4,
 		title: "From Skeptic to Advocate, Scaling Effect at Vercel",
+		slug: "scaling-effect-vercel",
 		guest: "Dillon Mulroy",
 		company: "Vercel",
 		description:
@@ -196,6 +201,7 @@ Whether you're skeptical or already experimenting with Effect, this conversation
 	{
 		number: 3,
 		title: "Scaling Voice AI at MasterClass with Effect & TypeScript",
+		slug: "scaling-voice-ai-masterclass",
 		guest: "David Golightly",
 		company: "MasterClass",
 		description:
@@ -234,6 +240,7 @@ Github: https://github.com/davidgoli`,
 	{
 		number: 2,
 		title: "Scaling AI for Customer Support at Markprompt with Effect",
+		slug: "scaling-ai-customer-support-markprompt",
 		guest: "Michael Fester",
 		company: "Markprompt",
 		description:
@@ -301,6 +308,7 @@ Github: https://github.com/davidgoli`,
 	{
 		number: 1,
 		title: "Adopting Effect at Zendesk with Attila Večerek",
+		slug: "adopting-effect-zendesk",
 		guest: "Attila Večerek",
 		company: "Zendesk",
 		description:
@@ -346,5 +354,5 @@ export function getEpisodeByNumber(number: number): Episode | undefined {
 }
 
 export function getEpisodeSlug(episode: Episode): string {
-	return `episode-${episode.number}`;
+	return episode.slug;
 }
