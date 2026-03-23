@@ -73,13 +73,13 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 								<li>
 									<a
 										href={getAssetPath("/podcast")}
-										className="text-zinc-400 transition-colors hover:text-white"
+										className="text-white transition-opacity hover:opacity-80"
 									>
-										Cause & Effect
+										Cause & Effect 🎙️
 									</a>
 								</li>
 								<li>/</li>
-								<li className="text-zinc-300">
+								<li className="text-zinc-400">
 									Episode #{episode.number.toString().padStart(2, "0")}
 								</li>
 							</ol>
