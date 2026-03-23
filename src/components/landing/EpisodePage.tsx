@@ -181,7 +181,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											</p>
 											{episode.companyLogo && (
 												<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block">
-													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 opacity-70 transition-opacity hover:opacity-100" />
+													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
 												</a>
 											)}
 
@@ -381,7 +381,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										</p>
 										{episode.companyLogo && (
 											<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block">
-												<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 opacity-70 transition-opacity hover:opacity-100" />
+												<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
 											</a>
 										)}
 

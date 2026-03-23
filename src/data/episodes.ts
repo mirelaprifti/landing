@@ -78,7 +78,7 @@ https://github.com/rankincodes`,
 		guest: "Louis Vichy",
 		company: "OpenRouter",
 		companyUrl: "https://openrouter.ai/",
-		companyLogo: undefined,
+		companyLogo: "/assets/images/open-router.svg",
 		description:
 			"Louis Vichy, co-founder of OpenRouter, joins Johannes Schickling and Michael Arnaldi to talk about OpenRouter's TypeScript stack, internal tooling powered by Effect, and the engineering challenges of scaling an AI platform processing trillions of tokens weekly.",
 		fullDescription: `Louis Vichy, co-founder of OpenRouter (https://openrouter.ai/), joins Johannes Schickling and Michael Arnaldi to talk about OpenRouter's TypeScript stack, their internal tooling powered by Effect, and the engineering challenges of scaling an AI platform processing trillions of tokens weekly.`,
