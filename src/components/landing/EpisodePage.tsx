@@ -66,9 +66,9 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Episode header */}
-				<section className="relative w-full bg-zinc-950 pt-10 pb-10">
+				<section className="relative w-full bg-zinc-950 pt-16 pb-10">
 					<div className="mx-auto max-w-[73.75rem] px-4">
-						<nav aria-label="Breadcrumb" className="mb-8">
+						<nav aria-label="Breadcrumb" className="mb-5">
 							<ol className="flex items-center gap-2 font-mono font-medium text-sm tracking-wider text-zinc-500 uppercase">
 								<li>
 									<a
@@ -86,7 +86,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 						</nav>
 
 						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-white">{episode.title}</h1>
-						<p className="mt-2 text-sm text-zinc-400">
+						<p className="mt-4 text-sm text-zinc-400">
 							{episode.date} · {episode.duration}
 						</p>
 					</div>
@@ -502,16 +502,25 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				</section>
 
 				{/* More episodes CTA */}
-				<section className="w-full border-t border-zinc-800 bg-zinc-950 py-20">
-					<div className="mx-auto max-w-[73.75rem] px-4">
+				<section className="relative w-full overflow-hidden border-t border-zinc-800 py-20">
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background: "radial-gradient(circle at 70% 50%, rgba(34, 197, 94, 0.07) 0%, transparent 50%), radial-gradient(circle at 85% 50%, rgba(124, 58, 237, 0.07) 0%, transparent 50%)",
+						}}
+					/>
+					<div className="relative mx-auto max-w-[73.75rem] px-4">
 						<div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
 							<div>
-								<p className="mb-2 font-mono text-sm tracking-wider text-zinc-400 uppercase">
-									{"// Cause & Effect"}
+								<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									{"// Cause & Effect 🎙️"}
 								</p>
 								<h3 className="text-2xl font-semibold tracking-tight text-white">
-									More conversations with Effect engineers
+									More real-world systems with Effect
 								</h3>
+								<p className="mt-2 text-zinc-400">
+									Learn how teams like Vercel, MasterClass, and others build in production.
+								</p>
 							</div>
 							<a
 								href={getAssetPath("/podcast")}
