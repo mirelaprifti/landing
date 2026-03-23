@@ -69,7 +69,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				<section className="relative w-full bg-zinc-950 pt-10 pb-10">
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						<nav aria-label="Breadcrumb" className="mb-8">
-							<ol className="flex items-center gap-2 font-mono text-sm tracking-wider text-zinc-500 uppercase">
+							<ol className="flex items-center gap-2 font-mono font-medium text-sm tracking-wider text-zinc-500 uppercase">
 								<li>
 									<a
 										href={getAssetPath("/podcast")}
