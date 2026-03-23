@@ -9,6 +9,8 @@ export interface Episode {
 	slug: string;
 	guest: string;
 	company: string;
+	companyUrl: string;
+	companyLogo?: string;
 	description: string;
 	fullDescription: string;
 	chapters: Chapter[];
@@ -27,6 +29,8 @@ export const EPISODES: Episode[] = [
 		slug: "reliable-payroll-systems-warp",
 		guest: "Adam Rankin",
 		company: "Warp",
+		companyUrl: "https://www.joinwarp.com/",
+		companyLogo: "/assets/images/warp-logo-white.svg",
 		description:
 			"In this episode, Johannes Schickling talks with Adam Rankin, CTO at Warp, about using Effect to bring structure and composability to a growing TypeScript codebase, enabling a small, fast-moving team to stay productive while shipping reliable payment & payroll systems.",
 		fullDescription: `In this episode, Johannes Schickling talks with Adam Rankin, CTO at Warp (https://www.joinwarp.com/), about using Effect to bring structure and composability to a growing TypeScript codebase, enabling a small, fast-moving team to stay productive while shipping reliable payment & payroll systems.
@@ -73,6 +77,8 @@ https://github.com/rankincodes`,
 		slug: "scaling-ai-openrouter",
 		guest: "Louis Vichy",
 		company: "OpenRouter",
+		companyUrl: "https://openrouter.ai/",
+		companyLogo: undefined,
 		description:
 			"Louis Vichy, co-founder of OpenRouter, joins Johannes Schickling and Michael Arnaldi to talk about OpenRouter's TypeScript stack, internal tooling powered by Effect, and the engineering challenges of scaling an AI platform processing trillions of tokens weekly.",
 		fullDescription: `Louis Vichy, co-founder of OpenRouter (https://openrouter.ai/), joins Johannes Schickling and Michael Arnaldi to talk about OpenRouter's TypeScript stack, their internal tooling powered by Effect, and the engineering challenges of scaling an AI platform processing trillions of tokens weekly.`,
@@ -109,6 +115,8 @@ https://github.com/rankincodes`,
 		slug: "event-driven-systems-spiko",
 		guest: "Samuel Briole",
 		company: "Spiko",
+		companyUrl: "https://www.spiko.io/",
+		companyLogo: "/assets/images/spiko-logo.svg",
 		description:
 			"This podcast episode features Samuel Briole, CTO of Spiko, a Paris-based FinTech startup building infrastructure for issuing regulated financial products on public blockchains, specifically risk-free products. Spiko utilizes the Effect extensively from backend to frontend.",
 		fullDescription: `This Cause & Effect podcast episode features Samuel Briole, CTO of Spiko (https://www.spiko.io/), a Paris-based FinTech startup building infrastructure for issuing regulated financial products on public blockchains, specifically risk-free products.
@@ -167,6 +175,8 @@ effect-messaging: https://github.com/spiko-tech/effect-messaging`,
 		slug: "scaling-effect-vercel",
 		guest: "Dillon Mulroy",
 		company: "Vercel",
+		companyUrl: "https://vercel.com/",
+		companyLogo: "/assets/images/vercel-logotype-dark.svg",
 		description:
 			"In this episode of Cause & Effect, Johannes Schickling is joined by Dillon Mulroy, Domains Lead at Vercel, who shares his personal journey with Effect and how Vercel gradually adopted it across their Domains platform. Dillon explains why Effect feels like a natural evolution of TypeScript.",
 		fullDescription: `In this episode of Cause & Effect, Johannes Schickling is joined by Dillon Mulroy, Domains Lead at Vercel, who shares his personal journey with Effect and how Vercel gradually adopted it across their Domains platform. Dillon explains why Effect feels like having superpowers for error handling, observability, testing, and more.
@@ -204,6 +214,8 @@ Whether you're skeptical or already experimenting with Effect, this conversation
 		slug: "scaling-voice-ai-masterclass",
 		guest: "David Golightly",
 		company: "MasterClass",
+		companyUrl: "https://www.masterclass.com/",
+		companyLogo: "/assets/images/masterclass-noM.svg",
 		description:
 			"In this episode Johannes Schickling had a conversation with David Golightly, Staff Engineer at MasterClass, to explore how his team built Cortex – a real-time voice AI orchestration layer that powers personalized conversations with celebrity instructors.",
 		fullDescription: `In this episode of Cause & Effect, Johannes Schickling had a conversation with David Golightly, Staff Engineer at MasterClass (https://www.masterclass.com/), to explore how his team built Cortex – a real-time voice AI orchestration layer that powers personalized conversations with celebrity instructors like Gordon Ramsay and Mark Cuban.
@@ -243,6 +255,8 @@ Github: https://github.com/davidgoli`,
 		slug: "scaling-ai-customer-support-markprompt",
 		guest: "Michael Fester",
 		company: "Markprompt",
+		companyUrl: "https://14.ai/",
+		companyLogo: "/assets/images/14-ai.svg",
 		description:
 			"Join us as we talk with Michael Fester from Markprompt about scaling AI-powered customer support with Effect, building reliable and high-performance infrastructure, and enhancing developer productivity in a fast-evolving AI landscape.",
 		fullDescription: `Join us as we talk with Michael Fester from Markprompt (now 14.ai – https://14.ai/) about scaling AI-powered customer support with Effect, building reliable and high-performance infrastructure, and enhancing developer productivity in a fast-evolving AI landscape. Hosted by Johannes Schickling.`,
@@ -311,6 +325,8 @@ Github: https://github.com/davidgoli`,
 		slug: "adopting-effect-zendesk",
 		guest: "Attila Večerek",
 		company: "Zendesk",
+		companyUrl: "https://www.zendesk.com/",
+		companyLogo: "/assets/images/zendesk-logo.svg",
 		description:
 			"In this inaugural episode, Johannes Schickling speaks with Attila Večerek, Tech Lead and Staff Engineer at Zendesk, about their journey adopting Effect incrementally within a large-scale, diverse codebase environment.",
 		fullDescription: `In this episode, Attila Večerek, Tech Lead & Staff Engineer, joins our host Johannes Schickling to discuss how Zendesk incrementally adopted Effect in a polyglot environment with a large codebase.

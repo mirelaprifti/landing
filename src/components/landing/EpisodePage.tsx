@@ -66,20 +66,29 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Episode header */}
-				<section className="relative w-full bg-zinc-950 pt-12 pb-12">
+				<section className="relative w-full bg-zinc-950 pt-10 pb-10">
 					<div className="mx-auto max-w-[73.75rem] px-4">
-						<a
-							href={getAssetPath("/podcast")}
-							className="mb-12 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
-						>
-							<i className="ri-arrow-left-line" />
-							<span>Back to all episodes</span>
-						</a>
+						<nav aria-label="Breadcrumb" className="mb-8">
+							<ol className="flex items-center gap-2 font-mono text-sm tracking-wider text-zinc-500 uppercase">
+								<li>
+									<a
+										href={getAssetPath("/podcast")}
+										className="text-zinc-400 transition-colors hover:text-white"
+									>
+										Cause & Effect
+									</a>
+								</li>
+								<li>/</li>
+								<li className="text-zinc-300">
+									Episode #{episode.number.toString().padStart(2, "0")}
+								</li>
+							</ol>
+						</nav>
 
-						<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// EPISODE #{episode.number.toString().padStart(2, "0")}
+						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-white">{episode.title}</h1>
+						<p className="mt-2 text-sm text-zinc-400">
+							{episode.date} · {episode.duration}
 						</p>
-						<h1 className="text-3xl font-bold text-white">{episode.title}</h1>
 					</div>
 				</section>
 
@@ -170,13 +179,11 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											<p className="text-lg font-semibold text-white">
 												{episode.guest}
 											</p>
-											<div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-zinc-400">
-												<span>{episode.company}</span>
-												<span className="text-zinc-600">·</span>
-												<span>{episode.date}</span>
-												<span className="text-zinc-600">·</span>
-												<span>{episode.duration}</span>
-											</div>
+											{episode.companyLogo && (
+												<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block">
+													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 opacity-70 transition-opacity hover:opacity-100" />
+												</a>
+											)}
 
 											{/* Listen on platforms */}
 											<div className="mt-4 border-t border-zinc-800 pt-4">
@@ -243,6 +250,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 															Spotify
 														</span>
 													</a>
+													<a
+														href={`https://www.youtube.com/watch?v=${episode.youtubeId}`}
+														target="_blank"
+														rel="noopener noreferrer"
+														className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+													>
+														<i className="ri-youtube-fill text-lg text-red-500" />
+														<span className="text-white hover:underline">
+															YouTube
+														</span>
+													</a>
 												</div>
 											</div>
 										</div>
@@ -298,7 +316,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 									</div>
 
 									{/* Expand button */}
-									<div className="mt-4 hidden lg:block">
+									<div className="mt-4 hidden justify-end lg:flex">
 										<button
 											onClick={() => setIsExpanded(true)}
 											className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
@@ -361,13 +379,11 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										<p className="text-lg font-semibold text-white">
 											{episode.guest}
 										</p>
-										<div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-zinc-400">
-											<span>{episode.company}</span>
-											<span className="text-zinc-600">·</span>
-											<span>{episode.date}</span>
-											<span className="text-zinc-600">·</span>
-											<span>{episode.duration}</span>
-										</div>
+										{episode.companyLogo && (
+											<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block">
+												<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 opacity-70 transition-opacity hover:opacity-100" />
+											</a>
+										)}
 
 										{/* Listen on platforms */}
 										<div className="mt-4 border-t border-zinc-800 pt-4">
@@ -434,6 +450,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 														Spotify
 													</span>
 												</a>
+												<a
+													href={`https://www.youtube.com/watch?v=${episode.youtubeId}`}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+												>
+													<i className="ri-youtube-fill text-lg text-red-500" />
+													<span className="text-white hover:underline">
+														YouTube
+													</span>
+												</a>
 											</div>
 										</div>
 									</div>
@@ -475,21 +502,25 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				</section>
 
 				{/* More episodes CTA */}
-				<section className="w-full border-t border-zinc-800 bg-zinc-950 py-16">
-					<div className="mx-auto max-w-[73.75rem] px-4 text-center">
-						<h3 className="mb-4 text-2xl font-semibold text-white">
-							Enjoyed this episode?
-						</h3>
-						<p className="mb-6 text-zinc-400">
-							Check out more conversations with engineers building with Effect
-						</p>
-						<a
-							href={getAssetPath("/podcast")}
-							className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-100"
-						>
-							<span>Browse all episodes</span>
-							<i className="ri-arrow-right-line" />
-						</a>
+				<section className="w-full border-t border-zinc-800 bg-zinc-950 py-20">
+					<div className="mx-auto max-w-[73.75rem] px-4">
+						<div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+							<div>
+								<p className="mb-2 font-mono text-sm tracking-wider text-zinc-400 uppercase">
+									{"// Cause & Effect"}
+								</p>
+								<h3 className="text-2xl font-semibold tracking-tight text-white">
+									More conversations with Effect engineers
+								</h3>
+							</div>
+							<a
+								href={getAssetPath("/podcast")}
+								className="inline-flex shrink-0 items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-200"
+							>
+								<span>Browse all episodes</span>
+								<i className="ri-arrow-right-line" />
+							</a>
+						</div>
 					</div>
 				</section>
 			</main>

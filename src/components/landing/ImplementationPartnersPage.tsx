@@ -229,8 +229,8 @@ export function ImplementationPartnersPage() {
 
 				{/* Other Partners */}
 				{otherPartners.length > 0 && (
-					<section className="px-8 py-16">
-						<div className="mx-auto w-full max-w-[73.75rem]">
+					<section className="py-16">
+						<div className="mx-auto w-full max-w-[73.75rem] px-4">
 							<div className="border-t border-zinc-800 pt-16">
 								<p className="mb-8 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
 									{"// Partners"}

@@ -222,16 +222,15 @@ export function PodcastPage() {
 					<div className="relative mx-auto max-w-[73.75rem] px-4">
 						<div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-12">
 							{/* Text content */}
-							<div className="max-w-xl">
+							<div className="max-w-3xl">
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// The Podcast 🎙️
+									// Cause & Effect 🎙️
 								</p>
-								<h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-									Cause & Effect
+								<h1 className="text-3xl font-bold text-white sm:text-4xl md:text-4xl">
+									How companies ship with Effect
 								</h1>
 								<p className="mt-4 text-base leading-snug text-zinc-400 sm:text-lg">
-									Exploring how engineers are using Effect to build
-									production-grade software in TypeScript.
+									Engineers from Vercel, Zendesk, and MasterClass share what worked, what didn't, and why they chose Effect.
 								</p>
 
 								{/* Mobile platform links */}
