@@ -223,14 +223,14 @@ export function PodcastPage() {
 						<div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-12">
 							{/* Text content */}
 							<div className="max-w-3xl">
-								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Cause & Effect 🎙️
 								</p>
-								<h1 className="text-3xl font-bold text-white sm:text-4xl md:text-4xl">
+								<h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-4xl">
 									How companies ship with Effect
 								</h1>
-								<p className="mt-4 text-base leading-snug text-zinc-400 sm:text-lg">
-									Engineers from Vercel, Zendesk, and MasterClass share what worked, what didn't, and why they chose Effect.
+								<p className="mt-2.5 text-base leading-snug text-zinc-400 sm:text-lg">
+									Stories from engineering teams at Vercel, Zendesk, MasterClass, and more.
 								</p>
 
 								{/* Mobile platform links */}
@@ -347,7 +347,7 @@ export function PodcastPage() {
 							</div>
 							{/* Platform links */}
 							<div className="hidden lg:block">
-								<div className="relative px-6 py-5">
+								<div className="relative px-8 py-6">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700" />
 									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-700" />

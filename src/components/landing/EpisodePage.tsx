@@ -126,25 +126,6 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 								<div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
 									{/* About and Chapters - Main column */}
 									<div className="lg:col-span-2 lg:pr-16">
-										{/* About this episode */}
-										<div>
-											<h3 className="mb-3 text-lg font-semibold text-white">
-												About this episode
-											</h3>
-											<div className="prose prose-invert prose-sm max-w-none">
-												{episode.fullDescription
-													.split("\n\n")
-													.map((paragraph, i) => (
-														<p
-															key={i}
-															className="mb-3 text-sm leading-relaxed text-zinc-400"
-														>
-															{paragraph}
-														</p>
-													))}
-											</div>
-										</div>
-
 										{/* Chapters */}
 										{episode.chapters && episode.chapters.length > 0 && (
 											<div className="mt-6">
@@ -324,25 +305,6 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											<i className="ri-expand-diagonal-line" />
 											<span>Expand video</span>
 										</button>
-									</div>
-
-									{/* About this episode */}
-									<div className="mt-8">
-										<h3 className="mb-3 text-lg font-semibold text-white">
-											About this episode
-										</h3>
-										<div className="prose prose-invert prose-base max-w-none">
-											{episode.fullDescription
-												.split("\n\n")
-												.map((paragraph, i) => (
-													<p
-														key={i}
-														className="mb-3 text-base leading-relaxed text-zinc-400"
-													>
-														{paragraph}
-													</p>
-												))}
-										</div>
 									</div>
 
 									{/* Chapters */}
