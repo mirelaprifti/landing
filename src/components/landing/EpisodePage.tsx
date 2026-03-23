@@ -506,30 +506,26 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
-							background: "radial-gradient(circle at 70% 50%, rgba(34, 197, 94, 0.07) 0%, transparent 50%), radial-gradient(circle at 85% 50%, rgba(124, 58, 237, 0.07) 0%, transparent 50%)",
+							background: "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.12) 0%, transparent 30%)",
 						}}
 					/>
-					<div className="relative mx-auto max-w-[73.75rem] px-4">
-						<div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-							<div>
-								<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									{"// Cause & Effect 🎙️"}
-								</p>
-								<h3 className="text-2xl font-semibold tracking-tight text-white">
-									More real-world systems with Effect
-								</h3>
-								<p className="mt-2 text-zinc-400">
-									Learn how teams like Vercel, MasterClass, and others build in production.
-								</p>
-							</div>
-							<a
-								href={getAssetPath("/podcast")}
-								className="inline-flex shrink-0 items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-200"
-							>
-								<span>Browse all episodes</span>
-								<i className="ri-arrow-right-line" />
-							</a>
-						</div>
+					<div className="relative mx-auto max-w-[73.75rem] px-4 text-center">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							{"// Cause & Effect 🎙️"}
+						</p>
+						<h3 className="text-3xl font-semibold tracking-tight text-white">
+							Real-world systems with Effect
+						</h3>
+						<p className="mt-2 text-zinc-400">
+							How teams like Vercel, MasterClass, and others build in production.
+						</p>
+						<a
+							href={getAssetPath("/podcast")}
+							className="mt-6 inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-200"
+						>
+							<span>See all episodes</span>
+							<i className="ri-arrow-right-line" />
+						</a>
 					</div>
 				</section>
 			</main>
