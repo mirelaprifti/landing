@@ -1,6 +1,7 @@
 import { getAssetPath } from "../../utils/assetPath";
 import { PARTNERS, type Partner } from "../../data/partners";
 import { GridOverlay } from "../GridOverlay";
+import { ContactForm } from "./ContactForm";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -31,18 +32,11 @@ function FeaturedPartnerCard({ partner }: { partner: Partner }) {
 
 					{/* Language & Region tags */}
 					<div className="mb-8 flex flex-wrap items-center gap-3">
-						{/* Region - Distinct "Location" Badge */}
-						<div className="flex items-center gap-1.5 text-sm font-medium text-zinc-200">
-							<div className="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-800/50 text-zinc-400">
-								<i className="ri-map-pin-2-fill text-xs" aria-hidden="true" />
-							</div>
+						<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1.5 text-sm font-medium text-zinc-200">
+							<i className="ri-map-pin-2-fill text-xs text-zinc-400" aria-hidden="true" />
 							{partner.region}
 						</div>
-
-						<div className="h-1 w-1 rounded-full bg-zinc-800" />
-
-						{/* Language - Tech-style Tag */}
-						<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900/50 px-2.5 py-1 font-mono text-xs text-zinc-400">
+						<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1.5 text-sm font-medium text-zinc-200">
 							<span className="text-sm leading-none">{partner.languageFlag}</span>
 							{partner.language}
 						</div>
@@ -83,16 +77,11 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
 			{/* Language & Region tags */}
 			<div className="mb-6 flex flex-wrap items-center gap-3">
-				{/* Region */}
-				<div className="flex items-center gap-1.5 text-xs font-medium text-zinc-400">
-					<i className="ri-map-pin-2-fill text-zinc-500" aria-hidden="true" />
+				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-2.5 py-1 text-xs font-medium text-zinc-300">
+					<i className="ri-map-pin-2-fill text-xs text-zinc-400" aria-hidden="true" />
 					{partner.region}
 				</div>
-
-				<div className="h-0.5 w-0.5 rounded-full bg-zinc-700" />
-
-				{/* Language */}
-				<div className="inline-flex items-center gap-1.5 rounded border border-zinc-800 bg-zinc-900/30 px-2 py-0.5 font-mono text-[10px] text-zinc-500 uppercase tracking-wide">
+				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-2.5 py-1 text-xs font-medium text-zinc-300">
 					<span className="text-xs leading-none">{partner.languageFlag}</span>
 					{partner.language}
 				</div>
@@ -165,7 +154,7 @@ export function ImplementationPartnersPage() {
 
 			<main id="main-content" className="relative z-10 pt-16">
 				{/* Hero Section */}
-				<section className="relative w-full pt-16 pb-12 md:pt-20 md:pb-16">
+				<section className="relative w-full pt-16 pb-8 md:pt-20 md:pb-10">
 					{/* Grid background */}
 					<div
 						className="pointer-events-none absolute inset-0"
@@ -203,8 +192,8 @@ export function ImplementationPartnersPage() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
 							{"// Implementation partners"}
 						</p>
-						<h1 className="text-3xl font-bold text-white md:text-5xl">
-							Get help implementing Effect
+						<h1 className="text-3xl font-bold text-white md:text-4xl">
+							Get help adopting Effect
 						</h1>
 						<p className="mt-4 max-w-xl text-lg text-zinc-400">
 							Work with vetted companies that bring deep expertise in
@@ -214,9 +203,9 @@ export function ImplementationPartnersPage() {
 				</section>
 
 				{/* Featured Partners */}
-				<section className="py-8">
+				<section className="pt-0 pb-12">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="border-t border-zinc-800 pt-16">
+						<div className="border-t border-zinc-800 pt-12">
 							{featuredPartners.map((partner) => (
 								<FeaturedPartnerCard
 									key={partner.id}
@@ -229,9 +218,9 @@ export function ImplementationPartnersPage() {
 
 				{/* Other Partners */}
 				{otherPartners.length > 0 && (
-					<section className="py-16">
+					<section className="pb-24">
 						<div className="mx-auto w-full max-w-[73.75rem] px-4">
-							<div className="border-t border-zinc-800 pt-16">
+							<div className="border-t border-zinc-800 pt-12">
 								<p className="mb-8 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
 									{"// Partners"}
 								</p>
@@ -247,6 +236,24 @@ export function ImplementationPartnersPage() {
 						</div>
 					</section>
 				)}
+
+				{/* Contact Form */}
+				<section className="pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="border-t border-zinc-800 pt-12">
+							<p className="mb-4 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
+								{"// Get in touch"}
+							</p>
+							<h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
+								Need help adopting Effect?
+							</h2>
+							<p className="mb-10 max-w-xl text-base text-zinc-400">
+								Tell us about your project and we'll connect you with the right implementation partner.
+							</p>
+							<ContactForm />
+						</div>
+					</div>
+				</section>
 
 			</main>
 

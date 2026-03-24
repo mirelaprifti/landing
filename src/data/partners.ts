@@ -40,4 +40,18 @@ export const PARTNERS: Partner[] = [
 		languageFlag: "\u{1F1EB}\u{1F1F7}",
 		region: "France",
 	},
+	{
+		id: "doubleloop",
+		name: "Double Loop",
+		description:
+			"Software consultancy specializing in functional programming and Effect for building reliable systems.",
+		longDescription:
+			"Double Loop helps teams adopt Effect and functional programming to build robust, maintainable software. Based in Italy, they bring deep expertise in TypeScript and Effect to deliver production-grade solutions.",
+		websiteUrl: "https://doubleloop.io/",
+		logoPath: "/assets/partner-logos/doubleloop.svg",
+		featured: false,
+		language: "Italian",
+		languageFlag: "\u{1F1EE}\u{1F1F9}",
+		region: "Italy",
+	},
 ];
