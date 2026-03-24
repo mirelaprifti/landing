@@ -1218,7 +1218,7 @@ export function EventsPage() {
 										{perk.href && (
 											<Link
 												href={perk.href}
-												variant="inline"
+												variant="subtle"
 												className="group/link mt-2 inline-flex items-center gap-1.5 text-sm font-medium"
 											>
 												<span className="underline decoration-zinc-600 underline-offset-4 transition-colors group-hover/link:decoration-white">
@@ -1238,27 +1238,25 @@ export function EventsPage() {
 				</div>
 				<section className="py-24 md:pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 md:p-12">
+						<div className="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 px-8 py-12 md:px-14 md:py-16">
 							{/* Background gradient */}
 							<div
-								className="pointer-events-none absolute inset-0 opacity-50"
+								className="pointer-events-none absolute inset-0 opacity-60"
 								style={{
 									background:
-										"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 60%)",
+										"radial-gradient(ellipse 70% 60% at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 60%)",
 								}}
 							/>
 
-							<div className="relative">
-								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							<div className="relative text-center">
+								<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Effect Community
 								</p>
-								<h2 className="leading-tighter mb-3 text-2xl font-semibold text-white md:text-3xl">
+								<h2 className="leading-tighter mb-2.5 text-2xl font-semibold text-white md:text-3xl">
 									Can't find an event near you?
 								</h2>
-								<p className="mb-8 max-w-2xl text-base text-zinc-400">
-									No worries — the Effect community is online every day.
-									Thousands of developers are already on Discord sharing ideas,
-									asking questions, and helping each other ship.
+								<p className="mx-auto mb-6 max-w-xl text-base text-zinc-400">
+									Join 6,000+ developers on Discord building production systems with Effect.
 								</p>
 
 								<Button

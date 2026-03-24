@@ -11,6 +11,8 @@ const AI_CASE_STUDIES = [
 		title: "// Voice AI Orchestration Layer",
 		href: "https://youtu.be/Cj2pVPqdOVs",
 		accentColor: "bg-violet-500",
+		slashColor: "text-violet-500",
+		dividerColor: "rgb(139 92 246 / 0.4)",
 		// Soft radial glow in corner
 		bgStyle: {
 			background:
@@ -26,6 +28,8 @@ const AI_CASE_STUDIES = [
 		title: "// AI for Customer Support",
 		href: "https://youtu.be/gGFPhFrGCng",
 		accentColor: "bg-emerald-400",
+		slashColor: "text-emerald-400",
+		dividerColor: "rgb(52 211 153 / 0.4)",
 		// Soft radial glow in corner
 		bgStyle: {
 			background:
@@ -141,6 +145,7 @@ export function AIBuildingSection() {
 							rel="noopener noreferrer"
 							className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900"
 						>
+
 							{/* Top accent line */}
 							<div
 								className={`absolute top-0 right-0 left-0 h-0.5 ${study.accentColor}`}
@@ -156,17 +161,8 @@ export function AIBuildingSection() {
 							<div className="relative flex flex-col gap-4 px-8 pt-8 pb-7">
 								{/* Title */}
 								<h4 className="font-mono text-sm font-medium text-zinc-400 uppercase transition-colors group-hover:text-white">
-									{study.title}
+									<span className={study.slashColor}>{"//"}</span>{study.title.replace("//", "")}
 								</h4>
-
-								{/* Dashed divider */}
-								<div
-									className="h-px w-full"
-									style={{
-										backgroundImage:
-											"repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
-									}}
-								/>
 
 								{/* Logos row with arrow */}
 								<div className="flex items-center justify-between">
