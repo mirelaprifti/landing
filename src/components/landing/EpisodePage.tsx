@@ -68,7 +68,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				{/* Episode header */}
 				<section className="relative w-full bg-zinc-950 pt-16 pb-10">
 					<div className="mx-auto max-w-[73.75rem] px-4">
-						<nav aria-label="Breadcrumb" className="mb-5">
+						<nav aria-label="Breadcrumb" className="mb-4">
 							<ol className="flex items-center gap-2 font-mono font-medium text-sm tracking-wider text-zinc-500 uppercase">
 								<li>
 									<a
@@ -86,9 +86,6 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 						</nav>
 
 						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-white">{episode.title}</h1>
-						<p className="mt-4 text-sm text-zinc-400">
-							{episode.date} · {episode.duration}
-						</p>
 					</div>
 				</section>
 
@@ -160,11 +157,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											<p className="text-lg font-semibold text-white">
 												{episode.guest}
 											</p>
-											{episode.companyLogo && (
-												<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block">
-													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
-												</a>
-											)}
+											<div className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
+												{episode.companyLogo && (
+													<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer">
+														<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
+													</a>
+												)}
+												<span>·</span>
+												<span>{episode.date}</span>
+												<span>·</span>
+												<span>{episode.duration}</span>
+											</div>
 
 											{/* Listen on platforms */}
 											<div className="mt-4 border-t border-zinc-800 pt-4">
@@ -244,6 +247,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 													</a>
 												</div>
 											</div>
+
 										</div>
 
 										{/* Transcript */}
@@ -341,11 +345,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										<p className="text-lg font-semibold text-white">
 											{episode.guest}
 										</p>
-										{episode.companyLogo && (
-											<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block">
-												<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
-											</a>
-										)}
+										<div className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
+											{episode.companyLogo && (
+												<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer">
+													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
+												</a>
+											)}
+											<span>·</span>
+											<span>{episode.date}</span>
+											<span>·</span>
+											<span>{episode.duration}</span>
+										</div>
 
 										{/* Listen on platforms */}
 										<div className="mt-4 border-t border-zinc-800 pt-4">
@@ -425,6 +435,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 												</a>
 											</div>
 										</div>
+
 									</div>
 
 									{/* Transcript */}
