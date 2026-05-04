@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-	AUTHORS,
 	BLOG_POSTS,
 	BLOG_TAGS,
 	type BlogPost,
@@ -9,7 +8,6 @@ import {
 	getTagColor,
 } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
-import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -59,41 +57,17 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative block overflow-hidden rounded-2xl bg-zinc-900/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-emerald-500/[0.08]"
+			className="group relative block overflow-hidden rounded-lg border border-[#2D3138] bg-[#191C21] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-emerald-500/[0.08]"
 		>
-			{/* Mesh gradient background */}
-			<div
-				className="pointer-events-none absolute inset-0"
-				style={{
-					background: `
-						radial-gradient(ellipse 60% 50% at 0% 0%, rgba(52, 211, 153, 0.10) 0%, transparent 50%),
-						radial-gradient(ellipse 50% 60% at 100% 100%, rgba(129, 140, 248, 0.06) 0%, transparent 50%),
-						radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 40%)
-					`,
-				}}
-			/>
-
-			{/* Hover glow intensification */}
-			<div
-				className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-				style={{
-					background:
-						"radial-gradient(ellipse 60% 50% at 0% 0%, rgba(52, 211, 153, 0.14) 0%, transparent 50%)",
-				}}
-			/>
-
-			{/* Top accent line */}
-			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
-
-			<div className="relative grid grid-cols-1 gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-12 md:p-12">
-				<div className="min-w-0">
+			<div className="relative grid grid-cols-1 gap-6 p-5 md:grid-cols-12 md:items-center md:gap-10 md:p-6">
+				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
-					<div className="mb-6 flex flex-wrap items-center gap-3">
+					<div className="mb-3 flex flex-wrap items-center gap-3">
 						<span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-400 uppercase ring-1 ring-emerald-500/20 ring-inset">
 							<span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-							Featured
+							Release
 						</span>
-					{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
+					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
 							className="inline-flex items-center gap-1 rounded-full bg-zinc-800/60 px-3 py-1 text-xs font-medium text-zinc-400"
@@ -111,12 +85,12 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.title}
 					</h2>
 
-					<p className="mt-4 line-clamp-3 max-w-xl text-base text-zinc-300">
+					<p className="mt-3 line-clamp-3 max-w-xl text-base text-zinc-300">
 						{post.excerpt}
 					</p>
 
 					{/* Authors + meta */}
-					<div className="mt-8 flex flex-wrap items-center gap-4">
+					<div className="mt-5 flex flex-wrap items-center gap-4">
 						{post.authors.map((author) => (
 							<div
 								key={author.name}
@@ -142,9 +116,9 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 				</div>
 
 				{/* Right side: cover image or CTA arrow */}
-				<div className="hidden md:flex md:flex-col md:items-center md:gap-3">
+				<div className="hidden md:col-span-5 md:flex md:flex-col md:items-center md:gap-3">
 					{post.coverImage ? (
-						<div className="relative aspect-video w-[320px] overflow-hidden rounded-xl border border-zinc-800/50 lg:w-[400px]">
+						<div className="relative aspect-2/1 w-full overflow-hidden rounded-md border border-zinc-800/50">
 							<img
 								src={getAssetPath(post.coverImage)}
 								alt={post.title}
@@ -164,7 +138,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 
 				{/* Mobile: cover image below text */}
 				{post.coverImage && (
-					<div className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800/50 md:hidden">
+					<div className="relative aspect-video overflow-hidden rounded-md border border-zinc-800/50 md:hidden">
 						<img
 							src={getAssetPath(post.coverImage)}
 							alt={post.title}
@@ -179,21 +153,13 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 
 // ── Shared Horizontal Scroll Rail ─────────────────────────────────
 function HorizontalScrollRail({
-	icon,
-	iconBg,
 	title,
-	subtitle,
-	accentColor,
 	ariaLabel,
 	onViewAll,
 	children,
 	itemCount,
 }: {
-	icon: string;
-	iconBg: string;
 	title: string;
-	subtitle: string;
-	accentColor: string;
 	ariaLabel: string;
 	onViewAll: () => void;
 	children: React.ReactNode;
@@ -232,17 +198,9 @@ function HorizontalScrollRail({
 		<section aria-label={ariaLabel} className="py-12">
 			{/* Section header */}
 			<div className="mb-6 flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<div className={`flex h-8 w-8 items-center justify-center rounded-lg ${iconBg}`}>
-						<i className={`${icon} text-base ${accentColor}`} />
-					</div>
-					<div>
-						<h2 className="text-base font-semibold text-white">
-							{title}
-						</h2>
-						<p className="text-xs text-zinc-400">{subtitle}</p>
-					</div>
-				</div>
+				<h2 className="text-xl font-semibold text-white">
+					{title}
+				</h2>
 
 				<div className="flex items-center gap-3">
 					<button
@@ -321,36 +279,23 @@ function TWIECard({ post }: { post: BlogPost }) {
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-xl bg-zinc-900/70 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/90 hover:shadow-xl hover:shadow-violet-500/5"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-[#272B31] bg-[#191C21] p-4 pb-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-500/5"
 		>
-			{/* Top accent line */}
-			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
-
 			<div>
 				<div className="flex items-center justify-between">
-					<span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-800/60 px-2.5 py-0.5 text-xs font-medium tracking-wide text-zinc-400 uppercase">
-						<span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-						TWIE
-					</span>
 					{issueNumber && (
-						<span className="font-mono text-xs font-semibold text-zinc-300">
+						<span className="font-mono text-base font-semibold text-white">
 							{issueNumber}
 						</span>
 					)}
+					<time className="font-mono text-xs text-zinc-400 tabular-nums">
+						{post.date}
+					</time>
 				</div>
 
-				<p className="mt-3 line-clamp-2 text-sm leading-relaxed text-zinc-300">
+				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-300">
 					{post.excerpt}
 				</p>
-			</div>
-
-			<div className="mt-4 flex items-center justify-between">
-				<time className="font-mono text-xs text-zinc-400 tabular-nums">
-					{post.date}
-				</time>
-				<div className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors group-hover:text-violet-400">
-					<i className="ri-arrow-right-up-line text-sm" />
-				</div>
 			</div>
 		</a>
 	);
@@ -359,11 +304,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
 	return (
 		<HorizontalScrollRail
-			icon="ri-newspaper-line"
-			iconBg="bg-violet-500/10"
 			title="This Week in Effect"
-			subtitle="Weekly community digest"
-			accentColor="text-violet-400"
 			ariaLabel="This Week in Effect posts"
 			onViewAll={onViewAll}
 			itemCount={posts.length}
@@ -375,34 +316,29 @@ function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () =>
 	);
 }
 
-// ── Post Card (grid card style) ──────────────────────────────────
+// ── Post Card (list row style) ──────────────────────────────────
 function PostCard({ post }: { post: BlogPost }) {
 	const url = getPostUrl(post);
 	const isExternal = url.startsWith("http");
-	const accentColor = getTagColor(post.tags[0] ?? "");
 	return (
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative flex flex-col overflow-hidden rounded-xl bg-zinc-900/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-900/90 hover:shadow-xl hover:shadow-black/25"
+			className="group block border-t border-zinc-700/80 px-4 py-6 transition-colors first:border-t-0 hover:bg-zinc-800/60"
 		>
-			{/* Top accent */}
-			<div
-				className="h-px w-full"
-				style={{
-					background: `linear-gradient(to right, transparent, ${accentColor}40, transparent)`,
-				}}
-			/>
-
-			<div className="flex flex-1 flex-col p-6">
-				{/* Tags row */}
-				<div className="flex flex-wrap items-center gap-1.5">
+			<div className="flex items-baseline justify-between gap-4">
+				<div className="min-w-0 flex-1">
+					{/* Title + tags */}
+					<div className="flex flex-wrap items-center gap-3">
+						<h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white">
+							{post.title}
+						</h3>
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => {
 							const color = getTagColor(tag);
 							return (
 								<span
 									key={tag}
-									className="inline-flex items-center gap-1 rounded-full bg-zinc-800/60 px-2 py-0.5 text-xs font-medium tracking-wide text-zinc-400"
+									className="inline-flex items-center gap-1.5 rounded-full bg-zinc-800/60 px-2.5 py-0.5 text-xs font-medium text-zinc-300"
 								>
 									<span
 										className="h-1.5 w-1.5 rounded-full"
@@ -413,99 +349,51 @@ function PostCard({ post }: { post: BlogPost }) {
 							);
 						})}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center rounded-full bg-zinc-800/60 px-2 py-0.5 text-xs font-medium text-zinc-400">
+							<span className="inline-flex items-center rounded-full bg-zinc-800/60 px-2.5 py-0.5 text-xs font-medium text-zinc-400">
 								+{post.tags.length - 2}
 							</span>
 						)}
 					</div>
 
-				{/* Title */}
-				<h3 className="mt-3 text-sm font-semibold leading-snug text-zinc-100 transition-colors group-hover:text-white">
-					{post.title}
-				</h3>
-
-				{/* Excerpt */}
-				<p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-zinc-400">
-					{post.excerpt}
-				</p>
-
-				{/* Meta row */}
-				<div className="mt-4 flex items-center justify-between border-t border-zinc-800/40 pt-4">
-					<div className="flex items-center gap-2 text-xs text-zinc-400">
-						<div className="flex items-center -space-x-1.5">
-							{post.authors.slice(0, 3).map((author) => (
-								<AvatarWithFallback
-									key={author.name}
-									src={getAssetPath(author.avatar)}
-									alt={author.name}
-									className="h-5 w-5 rounded-full border-2 border-zinc-900 object-cover"
-								/>
-							))}
-						</div>
-						{post.authors.length === 1 && (
-							<span className="text-zinc-400">{post.authors[0].name}</span>
-						)}
-					</div>
-					<div className="flex items-center gap-2 text-xs text-zinc-400">
-						<time className="font-mono tabular-nums">{post.date}</time>
-						<div className="flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 opacity-0 transition-all group-hover:text-white group-hover:opacity-100">
-							<i
-								className="ri-arrow-right-line text-xs"
-							/>
-						</div>
-					</div>
+					{/* Excerpt */}
+					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400">
+						{post.excerpt}
+					</p>
 				</div>
+				<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
+					{post.date}
+				</time>
 			</div>
 		</a>
 	);
 }
 
-function SidebarSection({
-	title,
-	children,
-	defaultOpen = true,
-}: {
-	title: string;
-	children: React.ReactNode;
-	defaultOpen?: boolean;
-}) {
-	const [open, setOpen] = useState(defaultOpen);
-	return (
-		<div className="mb-2">
-			<button
-				type="button"
-				onClick={() => setOpen(!open)}
-				className="flex w-full cursor-pointer items-center justify-between py-3 text-left"
-			>
-				<span className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
-					{title}
-				</span>
-				<i
-					className={`ri-arrow-down-s-line text-sm text-zinc-400 transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
-				/>
-			</button>
-			<div
-				className="grid transition-all duration-200"
-				style={{
-					gridTemplateRows: open ? "1fr" : "0fr",
-					opacity: open ? 1 : 0,
-				}}
-			>
-				<div className="overflow-hidden">
-					<div className="pb-4">{children}</div>
-				</div>
-			</div>
-		</div>
-	);
-}
-
 export function BlogPage() {
-	const [searchQuery, setSearchQuery] = useState("");
 	const [activeTag, setActiveTag] = useState<BlogTag>("All");
-	const [activeAuthor, setActiveAuthor] = useState<string | null>(null);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [sortBy, setSortBy] = useState<"newest" | "oldest">("newest");
+	const [sortOpen, setSortOpen] = useState(false);
 	const postListRef = useRef<HTMLDivElement>(null);
 	const contentZoneRef = useRef<HTMLDivElement>(null);
+	const sortRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (!sortOpen) return;
+		const handleClick = (e: MouseEvent) => {
+			if (!sortRef.current?.contains(e.target as Node)) {
+				setSortOpen(false);
+			}
+		};
+		const handleKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setSortOpen(false);
+		};
+		window.addEventListener("mousedown", handleClick);
+		window.addEventListener("keydown", handleKey);
+		return () => {
+			window.removeEventListener("mousedown", handleClick);
+			window.removeEventListener("keydown", handleKey);
+		};
+	}, [sortOpen]);
 
 	const goToPage = useCallback((page: number | ((prev: number) => number)) => {
 		setCurrentPage(page);
@@ -530,29 +418,10 @@ export function BlogPage() {
 		[],
 	);
 
-	// Filter tags list — keep all categories in sidebar
-	const sidebarTags = useMemo(() => BLOG_TAGS, []);
-
 	const filteredPosts = useMemo(() => {
 		// When the user explicitly selects TWIE tag, show those in the grid
 		if (activeTag === "This Week In Effect") {
-			let posts = twiePosts;
-			if (activeAuthor) {
-				posts = posts.filter((p) =>
-					p.authors.some((a) => a.name === activeAuthor),
-				);
-			}
-			if (searchQuery.trim()) {
-				const q = searchQuery.toLowerCase();
-				posts = posts.filter(
-					(p) =>
-						p.title.toLowerCase().includes(q) ||
-						p.excerpt.toLowerCase().includes(q) ||
-						p.tags.some((t) => t.toLowerCase().includes(q)) ||
-						p.authors.some((a) => a.name.toLowerCase().includes(q)),
-				);
-			}
-			return posts;
+			return twiePosts;
 		}
 
 		// For "All" — show posts that are NOT in TWIE (they have their own rail)
@@ -563,28 +432,15 @@ export function BlogPage() {
 			posts = posts.filter((p) => p.tags.includes(activeTag));
 		}
 
-		if (activeAuthor) {
-			posts = posts.filter((p) =>
-				p.authors.some((a) => a.name === activeAuthor),
-			);
-		}
+		const sorted = [...posts].sort((a, b) => {
+			const cmp = new Date(a.date).getTime() - new Date(b.date).getTime();
+			return sortBy === "newest" ? -cmp : cmp;
+		});
 
-		if (searchQuery.trim()) {
-			const q = searchQuery.toLowerCase();
-			posts = posts.filter(
-				(p) =>
-					p.title.toLowerCase().includes(q) ||
-					p.excerpt.toLowerCase().includes(q) ||
-					p.tags.some((t) => t.toLowerCase().includes(q)) ||
-					p.authors.some((a) => a.name.toLowerCase().includes(q)),
-			);
-		}
+		return sorted;
+	}, [activeTag, twiePosts, nonTwiePosts, sortBy]);
 
-		return posts;
-	}, [activeTag, activeAuthor, searchQuery, twiePosts, nonTwiePosts]);
-
-	const hasActiveFilters =
-		activeTag !== "All" || activeAuthor !== null || searchQuery.trim() !== "";
+	const hasActiveFilters = activeTag !== "All";
 
 	// Show TWIE rail unless user is already viewing TWIE posts in the main grid
 	const showTWIERail = activeTag !== "This Week In Effect";
@@ -631,27 +487,13 @@ export function BlogPage() {
 		return counts;
 	}, [nonTwiePosts, twiePosts]);
 
-	// Compute author counts
-	const authorEntries = useMemo(() => {
-		const counts: Record<string, number> = {};
-		for (const post of BLOG_POSTS) {
-			for (const author of post.authors) {
-				counts[author.name] = (counts[author.name] || 0) + 1;
-			}
-		}
-		return Object.entries(counts).sort((a, b) => a[0].localeCompare(b[0]));
-	}, []);
-
 	const clearFilters = useCallback(() => {
 		setActiveTag("All");
-		setActiveAuthor(null);
-		setSearchQuery("");
 		setCurrentPage(1);
 	}, []);
 
 	const handleTagChange = useCallback((tag: BlogTag) => {
 		setActiveTag(tag);
-		setActiveAuthor(null);
 		setCurrentPage(1);
 		if (postListRef.current) {
 			const navbarHeight = 64; // h-16
@@ -659,14 +501,6 @@ export function BlogPage() {
 			window.scrollTo({ top, behavior: "smooth" });
 		}
 	}, []);
-
-	const handleAuthorChange = useCallback(
-		(name: string) => {
-			setActiveAuthor(activeAuthor === name ? null : name);
-			setCurrentPage(1);
-		},
-		[activeAuthor],
-	);
 
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
@@ -744,22 +578,32 @@ export function BlogPage() {
 				<main id="main-content" className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						{/* Page header */}
-						<div className="pt-16 pb-8 md:pt-24 md:pb-12">
-							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-								// Blog
-							</p>
-							<h1
-								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
+						<div className="flex items-start justify-between gap-6 pt-16 pb-8 md:pt-24 md:pb-12">
+							<div>
+								<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Blog
+								</p>
+								<h1
+									className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
+								>
+									Get with the latest updates{" "}
+									<br className="hidden md:block" />
+									from the Effect ecosystem
+								</h1>
+							</div>
+							<a
+								href="/rss.xml"
+								aria-label="RSS feed"
+								className="inline-flex shrink-0 items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-700 hover:text-white"
 							>
-								Stay up to date with the latest{" "}
-								<br className="hidden md:block" />
-								from the Effect ecosystem
-							</h1>
+								<i className="ri-rss-line text-base" aria-hidden="true" />
+								<span className="hidden sm:inline">RSS</span>
+							</a>
 						</div>
 
 						{/* Featured post — first thing after heading */}
 						{featuredPost && (
-							<div className="pb-16 md:pb-24">
+							<div className="border-t border-zinc-800 py-8 md:py-10">
 								<FeaturedPost post={featuredPost} />
 							</div>
 						)}
@@ -775,33 +619,76 @@ export function BlogPage() {
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 
 					{/* TWIE horizontal scroll rail */}
-					{showTWIERail && <TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />}
+					{showTWIERail && (
+						<>
+							<TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />
+							<div className="h-px w-full bg-zinc-800" />
+						</>
+					)}
 
 					{/* Two-column layout: content + sidebar */}
-					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_260px]">
+					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_240px] lg:gap-20">
 						{/* Main content */}
-						<div className="min-w-0 pb-24 lg:border-r lg:border-zinc-800/60 lg:pr-12">
-							{/* Search bar */}
-							<div ref={postListRef} className="relative mt-12 mb-8">
-								<i className="ri-search-line absolute top-1/2 left-3.5 -translate-y-1/2 text-sm text-zinc-400" />
-								<input
-									type="text"
-									value={searchQuery}
-									onChange={(e) => setSearchQuery(e.target.value)}
-									placeholder="Search posts..."
-									aria-label="Search blog posts"
-									className="w-full rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-4 pl-10 text-sm text-white placeholder-zinc-400 transition-all duration-200 outline-none focus:border-zinc-700 focus:bg-zinc-900/80 focus:ring-1 focus:ring-zinc-700"
-								/>
-								{searchQuery && (
+						<div className="min-w-0 pb-24">
+							{/* Header row: Latest heading + Sort */}
+							<div ref={postListRef} className="mt-12 mb-6 flex items-end justify-between gap-4">
+								<h2 className="text-2xl font-semibold tracking-tight text-white">
+									Latest
+								</h2>
+								<div ref={sortRef} className="relative">
 									<button
 										type="button"
-										onClick={() => setSearchQuery("")}
-										aria-label="Clear search"
-										className="absolute top-1/2 right-3 -translate-y-1/2 rounded p-0.5 text-zinc-400 transition-colors hover:text-zinc-200"
+										onClick={() => setSortOpen((o) => !o)}
+										aria-haspopup="listbox"
+										aria-expanded={sortOpen}
+										className="inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-transparent py-1.5 pr-2 pl-3 text-sm text-zinc-300 transition-colors hover:border-zinc-700 hover:text-white"
 									>
-										<i className="ri-close-line text-base" />
+										<span>
+											{sortBy === "newest" ? "Newest first" : "Oldest first"}
+										</span>
+										<i
+											className={`ri-arrow-down-s-line text-sm text-zinc-400 transition-transform ${sortOpen ? "rotate-180" : ""}`}
+										/>
 									</button>
-								)}
+									{sortOpen && (
+										<ul
+											role="listbox"
+											className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-md border border-[#272B31] bg-[#191C21] shadow-lg shadow-black/40"
+										>
+											{(
+												[
+													["newest", "Newest first"],
+													["oldest", "Oldest first"],
+												] as const
+											).map(([value, label]) => {
+												const isActive = sortBy === value;
+												return (
+													<li key={value}>
+														<button
+															type="button"
+															role="option"
+															aria-selected={isActive}
+															onClick={() => {
+																setSortBy(value);
+																setSortOpen(false);
+															}}
+															className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors ${
+																isActive
+																	? "bg-zinc-800/60 text-white"
+																	: "text-zinc-300 hover:bg-zinc-900/60 hover:text-white"
+															}`}
+														>
+															<span>{label}</span>
+															{isActive && (
+																<i className="ri-check-line text-sm text-zinc-400" />
+															)}
+														</button>
+													</li>
+												);
+											})}
+										</ul>
+									)}
+								</div>
 							</div>
 
 							{/* Mobile filters */}
@@ -825,8 +712,8 @@ export function BlogPage() {
 							{paginatedPosts.length > 0 ? (
 								<>
 									<div
-										key={`${activeTag}-${activeAuthor}-${searchQuery}-${safePage}`}
-										className="blog-grid-enter grid grid-cols-1 gap-4 md:grid-cols-2"
+										key={`${activeTag}-${safePage}`}
+										className="blog-grid-enter flex flex-col"
 									>
 										{paginatedPosts.map((post) => (
 											<PostCard key={post.slug} post={post} />
@@ -909,9 +796,7 @@ export function BlogPage() {
 										No posts found
 									</p>
 									<p className="mt-2 max-w-sm text-center text-sm leading-relaxed text-zinc-400">
-										{searchQuery.trim()
-											? `Nothing matched "${searchQuery}". Try a different term or browse by category.`
-											: "No posts match the current filters."}
+										No posts match the current filters.
 									</p>
 
 									{/* Suggested tags */}
@@ -923,7 +808,6 @@ export function BlogPage() {
 													type="button"
 													onClick={() => {
 														handleTagChange(tag as BlogTag);
-														setSearchQuery("");
 													}}
 													className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/60 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
 												>
@@ -950,108 +834,54 @@ export function BlogPage() {
 							)}
 						</div>
 
-						{/* Sidebar */}
-						<aside className="hidden pt-12 pl-12 lg:block">
-							<div className="sticky" style={{ top: "var(--nav-height)" }}>
-								{/* Tags */}
-								<SidebarSection title="Categories">
-									<ul className="space-y-0.5">
-										{sidebarTags.map((tag) => {
-											const isActive = activeTag === tag;
-											const color =
-												tag === "All" ? "#71717a" : getTagColor(tag);
-											return (
-												<li key={tag}>
-													<button
-														type="button"
-														onClick={() => handleTagChange(tag)}
-														className={`relative flex cursor-pointer w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
-															isActive
-																? "bg-zinc-800/80 font-medium text-white"
-																: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
-														}`}
-													>
-														{/* Active left bar */}
-														{isActive && (
-															<div
-																className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full"
-																style={{ backgroundColor: color }}
-															/>
-														)}
-														{/* Color dot */}
-														{tag !== "All" && (
-															<span
-																className="h-2 w-2 shrink-0 rounded-full"
-																style={{
-																	backgroundColor: color,
-																}}
-															/>
-														)}
-														<span className="flex-1">{tag}</span>
-														<span className="text-xs text-zinc-400 tabular-nums">
-															{tagCounts[tag]}
-														</span>
-													</button>
-												</li>
-											);
-										})}
-									</ul>
-								</SidebarSection>
-
-								{/* Authors */}
-								<SidebarSection title="Authors">
-									<ul className="space-y-1">
-										{authorEntries.map(([name, count]) => {
-											const author = Object.values(AUTHORS).find(
-												(a) => a.name === name,
-											);
-											const isActive = activeAuthor === name;
-											return (
-												<li key={name}>
-													<button
-														type="button"
-														onClick={() => handleAuthorChange(name)}
-														className={`group/author cursor-pointer relative flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left transition-all duration-150 ${
-															isActive
-																? "bg-zinc-800/80 text-white"
-																: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
-														}`}
-													>
-														{/* Active left bar */}
-														{isActive && (
-															<div className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full bg-white" />
-														)}
-														{author && (
-															<AvatarWithFallback
-																src={getAssetPath(author.avatar)}
-																alt={name}
-																className={`h-6 w-6 rounded-full object-cover ring-1 ring-inset ${isActive ? "ring-zinc-700" : "ring-zinc-800"}`}
-															/>
-														)}
-														<span className="min-w-0 flex-1 truncate text-sm font-medium">
-															{name}
-														</span>
-														<span className="shrink-0 text-xs text-zinc-400 tabular-nums">
-															{count}
-														</span>
-													</button>
-												</li>
-											);
-										})}
-									</ul>
-								</SidebarSection>
-
-								{/* RSS */}
-								<div className="mt-4 border-t border-zinc-800/60 pt-4">
-									<Link
-										href="https://effect.website/blog/rss.xml"
-										variant="subtle"
-										className="flex items-center gap-2 rounded-md px-3 py-2"
-									>
-										<i className="ri-rss-line text-base" />
-										RSS Feed
-									</Link>
-								</div>
+						{/* Sidebar — Categories */}
+						<aside className="hidden pt-12 pb-24 lg:block">
+							<div className="sticky" style={{ top: "calc(var(--nav-height, 64px) + 1.5rem)" }}>
+								<p className="mb-3 px-3 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
+									Categories
+								</p>
+								<ul className="space-y-0.5">
+									{[...BLOG_TAGS]
+										.sort((a, b) => {
+											if (a === "All") return -1;
+											if (b === "All") return 1;
+											return (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0);
+										})
+										.map((tag) => {
+										const isActive = activeTag === tag;
+										const color = tag === "All" ? "#71717a" : getTagColor(tag);
+										return (
+											<li key={tag}>
+												<button
+													type="button"
+													onClick={() => handleTagChange(tag)}
+													className={`relative flex w-full cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
+														isActive
+															? "bg-zinc-800/80 font-medium text-white"
+															: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
+													}`}
+												>
+													{isActive && (
+														<div
+															className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full"
+															style={{ backgroundColor: color }}
+														/>
+													)}
+													{tag !== "All" && (
+														<span
+															className="h-2 w-2 shrink-0 rounded-full"
+															style={{ backgroundColor: color }}
+														/>
+													)}
+													<span className="flex-1">{tag}</span>
+													<span className="text-xs text-zinc-400 tabular-nums">
+														{tagCounts[tag]}
+													</span>
+												</button>
+											</li>
+										);
+									})}
+								</ul>
 							</div>
 						</aside>
 					</div>

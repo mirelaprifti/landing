@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { BLOG_POSTS, type BlogPost, getPostUrl, getTagColor } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
@@ -6,10 +7,74 @@ import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
+function ShareButtons({ title }: { title: string }) {
+	const [copied, setCopied] = useState(false);
+	const shareUrl =
+		typeof window !== "undefined" ? window.location.href : "";
+	const encodedUrl = encodeURIComponent(shareUrl);
+	const encodedTitle = encodeURIComponent(title);
+	const xUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+	const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+
+	const handleCopy = async () => {
+		if (typeof window === "undefined") return;
+		try {
+			await navigator.clipboard.writeText(window.location.href);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		} catch {
+			// noop
+		}
+	};
+
+	const buttonClass =
+		"inline-flex h-10 w-10 items-center justify-center rounded-md bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200 ring-inset transition-all hover:bg-zinc-900 hover:text-white hover:ring-zinc-900 dark:bg-zinc-800/80 dark:text-zinc-200 dark:ring-zinc-700/80 dark:hover:bg-white dark:hover:text-zinc-900 dark:hover:ring-white";
+
+	return (
+		<div className="flex items-center gap-3">
+			<span className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+				Share
+			</span>
+			<div className="flex items-center gap-2">
+				<a
+					href={xUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Share on X"
+					className={buttonClass}
+				>
+					<i className="ri-twitter-x-line text-lg" aria-hidden="true" />
+				</a>
+				<a
+					href={linkedInUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Share on LinkedIn"
+					className={buttonClass}
+				>
+					<i className="ri-linkedin-fill text-lg" aria-hidden="true" />
+				</a>
+				<button
+					type="button"
+					onClick={handleCopy}
+					aria-label={copied ? "Link copied" : "Copy link"}
+					className={buttonClass}
+				>
+					<i
+						className={`${copied ? "ri-check-line" : "ri-link"} text-lg`}
+						aria-hidden="true"
+					/>
+				</button>
+			</div>
+		</div>
+	);
+}
+
 function TableOfContents({
 	className,
 	showBackLink = true,
-}: { className?: string; showBackLink?: boolean }) {
+	postTitle,
+}: { className?: string; showBackLink?: boolean; postTitle?: string }) {
 	const tocItems = [
 		{
 			id: "faster-runtime",
@@ -25,37 +90,76 @@ function TableOfContents({
 		{ id: "try-it-now", label: "Try it now", depth: 0 },
 	];
 
+	const [activeId, setActiveId] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const headings = tocItems
+			.map((item) => document.getElementById(item.id))
+			.filter((el): el is HTMLElement => el !== null);
+		if (headings.length === 0) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries
+					.filter((e) => e.isIntersecting)
+					.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+				if (visible.length > 0) {
+					setActiveId(visible[0].target.id);
+				}
+			},
+			{ rootMargin: "-80px 0px -70% 0px", threshold: 0 },
+		);
+
+		headings.forEach((el) => observer.observe(el));
+		return () => observer.disconnect();
+	}, []);
+
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
-			<p className="mb-4 text-xs font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+			<p className="mb-3 text-xs font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 				On this page
 			</p>
-			<ul className="space-y-0.5 border-l border-zinc-200 dark:border-zinc-800">
-				{tocItems.map((item) => (
-					<li key={item.id}>
-						<a
-							href={`#${item.id}`}
-							className={`block border-l-2 border-transparent text-sm transition-all duration-150 hover:border-zinc-400 hover:text-zinc-900 dark:hover:text-white ${
-								item.depth === 0
-									? "py-1.5 pl-4 text-zinc-700 dark:text-zinc-300"
-									: "py-1.5 pl-7 text-zinc-600 dark:text-zinc-400"
-							}`}
-						>
-							{item.label}
-						</a>
-					</li>
-				))}
+			<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
+			<ul className="space-y-0.5">
+				{tocItems.map((item) => {
+					const isActive = activeId === item.id;
+					return (
+						<li key={item.id}>
+							<a
+								href={`#${item.id}`}
+								className={`block text-sm transition-colors duration-150 ${
+									item.depth === 0 ? "py-1.5" : "py-1.5 pl-3"
+								} ${
+									isActive
+										? "font-medium text-zinc-900 dark:text-white"
+										: item.depth === 0
+											? "text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+											: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								}`}
+							>
+								{item.label}
+							</a>
+						</li>
+					);
+				})}
 			</ul>
 
-			{/* Back to all posts */}
+			{/* Share + Back to blog */}
 			{showBackLink && (
 				<div className="mt-8 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+					{postTitle && (
+						<>
+							<ShareButtons title={postTitle} />
+							<div className="mt-5 border-t border-zinc-200 pt-5 dark:border-zinc-800" />
+						</>
+					)}
 					<a
 						href={getAssetPath("/blog")}
 						className="flex items-center gap-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 					>
 						<i className="ri-arrow-left-s-line text-base" />
-						All posts
+						Back to blog
 					</a>
 				</div>
 			)}
@@ -182,22 +286,22 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 			<main id="main-content" className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<nav className="flex items-center gap-2 pt-10 pb-6 text-sm md:pt-14">
+						<Link
+							href={getAssetPath("/blog")}
+							variant="subtle"
+							className="group inline-flex items-center gap-1"
+						>
+							<i className="ri-arrow-left-s-line text-base" />
+							Back to blog
+						</Link>
+					</nav>
+					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
 						{/* Article */}
-						<article className="min-w-0 pb-20 md:border-r md:border-zinc-200/60 md:pr-12 dark:md:border-zinc-800/60">
-							{/* Back link + breadcrumb */}
-							<div className="pt-10 pb-10 md:pt-14 md:pb-12">
-								<nav className="mb-8 flex items-center gap-2 text-sm">
-									<Link
-										href={getAssetPath("/blog")}
-										variant="subtle"
-										className="group inline-flex items-center gap-1"
-									>
-										<i className="ri-arrow-left-s-line text-base" />
-										Go to all posts
-									</Link>
-								</nav>
-
+						<article className="min-w-0 pb-20 md:pr-12">
+							{/* Tags + Title block */}
+							<div className="pt-8 pb-10 md:pb-12">
 								{/* Tags */}
 								<div className="mb-5 flex flex-wrap gap-2">
 									{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
@@ -220,7 +324,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								</h1>
 
 								{/* Excerpt */}
-								<p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 md:text-lg dark:text-zinc-300">
+								<p className="mt-4 max-w-3xl text-lg leading-relaxed text-zinc-700 md:text-xl dark:text-zinc-300">
 									{post.excerpt}
 								</p>
 
@@ -258,7 +362,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 
 							{/* Article content */}
-							<div className="prose prose-zinc prose-headings:font-bold prose-headings:tracking-tight prose-h2:mt-14 prose-h2:mb-5 prose-h2:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-xl prose-p:text-zinc-700 prose-p:text-base prose-p:leading-relaxed prose-a:text-zinc-900 prose-a:underline prose-a:decoration-zinc-300 prose-a:underline-offset-4 hover:prose-a:decoration-zinc-600 prose-strong:text-zinc-900 prose-code:rounded-md prose-code:bg-zinc-100 prose-code:px-2 prose-code:py-1 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-200 prose-pre:bg-zinc-50 prose-pre:text-sm prose-li:text-zinc-700 prose-hr:border-zinc-200 dark:prose-invert dark:prose-p:text-zinc-300 dark:prose-a:text-white dark:prose-a:decoration-zinc-400 dark:hover:prose-a:decoration-zinc-300 dark:prose-strong:text-white dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200 dark:prose-pre:border-zinc-800 dark:prose-pre:bg-zinc-900/80 dark:prose-li:text-zinc-300 dark:prose-hr:border-zinc-800 mt-10 max-w-none">
+							<div className="prose prose-zinc prose-headings:font-bold prose-headings:tracking-tight prose-h2:mt-14 prose-h2:mb-5 prose-h2:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-xl prose-p:text-zinc-700 prose-p:text-lg prose-p:leading-relaxed prose-a:text-zinc-900 prose-a:underline prose-a:decoration-zinc-300 prose-a:underline-offset-4 hover:prose-a:decoration-zinc-600 prose-strong:text-zinc-900 prose-code:rounded-md prose-code:bg-zinc-100 prose-code:px-2 prose-code:py-1 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-200 prose-pre:bg-zinc-50 prose-pre:text-sm prose-li:text-zinc-700 prose-li:text-lg prose-hr:border-zinc-200 dark:prose-invert dark:prose-p:text-zinc-300 dark:prose-a:text-white dark:prose-a:decoration-zinc-400 dark:hover:prose-a:decoration-zinc-300 dark:prose-strong:text-white dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200 dark:prose-pre:border-zinc-800 dark:prose-pre:bg-zinc-900/80 dark:prose-li:text-zinc-300 dark:prose-hr:border-zinc-800 mt-10 max-w-none">
 								<h2 id="faster-runtime">Faster runtime. Leaner bundles.</h2>
 								<p>
 									The core fiber runtime has been rewritten from scratch to have
@@ -394,9 +498,57 @@ Effect.runPromise(program)`}</code>
 						</article>
 
 						{/* Right sidebar - TOC */}
-						<aside className="hidden py-14 pl-10 md:block">
-							<TableOfContents />
+						<aside className="hidden pt-104 pb-14 pl-10 md:block">
+							<TableOfContents postTitle={post.title} />
 						</aside>
+					</div>
+
+					{/* Community CTA — full width inside content container */}
+					<div className="mt-16 h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+					<div className="grid grid-cols-1 items-end gap-8 py-12 md:grid-cols-12 md:gap-10">
+						{/* Content */}
+						<div className="md:col-span-7">
+							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+								// Community
+							</p>
+							<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
+								Keep the conversation going on Discord
+							</h2>
+							<p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+								Ask questions, share what you're building, and connect with
+								thousands of engineers using Effect in production.
+							</p>
+						</div>
+
+						{/* CTA */}
+						<div className="md:col-span-5">
+							<div className="relative flex flex-col items-center gap-4 px-8 py-8">
+								{/* Corner brackets */}
+								<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
+								<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
+								<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
+								<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
+
+								<a
+									href="https://discord.gg/effect-ts"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-6 py-3 text-base font-medium text-white transition-all hover:shadow-[0_0_20px_rgba(0,0,0,0.15)] dark:bg-white dark:text-zinc-950 dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+								>
+									Join the Discord
+									<i className="ri-arrow-right-line text-base" aria-hidden="true" />
+								</a>
+								<a
+									href="https://discord.gg/effect-ts"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-1 font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+								>
+									discord.gg/effect-ts
+									<i className="ri-arrow-right-up-line" aria-hidden="true" />
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</main>
