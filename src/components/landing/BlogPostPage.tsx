@@ -374,8 +374,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 						</div>
 
-						{/* TOC — col 10-12, spans all rows so it stays sticky alongside article body */}
-						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:row-span-3 md:block md:pt-2 md:pl-4">
+						{/* TOC — col 10-12, aligned with article body (row 3) */}
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-10 md:pl-4">
 							<TableOfContents postTitle={post.title} />
 						</aside>
 
