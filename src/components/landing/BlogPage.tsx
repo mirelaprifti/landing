@@ -360,8 +360,26 @@ export function BlogPage() {
 	const [activeTag, setActiveTag] = useState<BlogTag>("All");
 	const [currentPage, setCurrentPage] = useState(1);
 	const [sortBy, setSortBy] = useState<"newest" | "oldest">("newest");
+	const [catOpen, setCatOpen] = useState(false);
 	const postListRef = useRef<HTMLDivElement>(null);
 	const contentZoneRef = useRef<HTMLDivElement>(null);
+	const catRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (!catOpen) return;
+		const handleClick = (e: MouseEvent) => {
+			if (!catRef.current?.contains(e.target as Node)) setCatOpen(false);
+		};
+		const handleKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setCatOpen(false);
+		};
+		window.addEventListener("mousedown", handleClick);
+		window.addEventListener("keydown", handleKey);
+		return () => {
+			window.removeEventListener("mousedown", handleClick);
+			window.removeEventListener("keydown", handleKey);
+		};
+	}, [catOpen]);
 
 	const goToPage = useCallback((page: number | ((prev: number) => number)) => {
 		setCurrentPage(page);
@@ -594,43 +612,82 @@ export function BlogPage() {
 						</>
 					)}
 
-					{/* Two-column layout: content + sidebar */}
-					<div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_240px] lg:gap-20">
-						{/* Main content */}
+					{/* Single-column layout */}
+					<div>
 						<div className="min-w-0 pb-24">
-							{/* Header row: Latest heading + Sort */}
-							<div ref={postListRef} className="mt-12 mb-6 flex items-end justify-between gap-4">
+							{/* Header row: heading + Category filter + Sort */}
+							<div ref={postListRef} className="mt-12 mb-6 flex flex-wrap items-end justify-between gap-4">
 								<h2 className="text-2xl font-semibold tracking-tight text-white">
 									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
-								<button
-									type="button"
-									onClick={() => setSortBy((s) => (s === "newest" ? "oldest" : "newest"))}
-									aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
-									className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
-								>
-									<span className="text-zinc-200 group-hover:text-white">
-										{sortBy === "newest" ? "Newest" : "Oldest"}
-									</span>
-									<i className="ri-arrow-up-down-line text-sm text-zinc-500 group-hover:text-zinc-300" />
-								</button>
-							</div>
-
-							{/* Mobile filters */}
-							<div className="relative mb-8 lg:hidden">
-								<select
-									value={activeTag}
-									onChange={(e) => handleTagChange(e.target.value as BlogTag)}
-									aria-label="Filter by category"
-									className="w-full appearance-none rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-10 pl-4 text-sm text-white transition-all duration-200 outline-none focus:border-zinc-700 focus:ring-1 focus:ring-zinc-700"
-								>
-									{BLOG_TAGS.map((tag) => (
-										<option key={tag} value={tag}>
-											{tag} ({tagCounts[tag]})
-										</option>
-									))}
-								</select>
-								<i className="ri-arrow-down-s-line pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-base text-zinc-400" />
+								<div className="flex items-baseline gap-6">
+									{/* Category dropdown */}
+									<div ref={catRef} className="relative">
+										<button
+											type="button"
+											onClick={() => setCatOpen((o) => !o)}
+											aria-haspopup="listbox"
+											aria-expanded={catOpen}
+											className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
+										>
+											<span className="text-zinc-500 group-hover:text-zinc-400">Category:</span>
+											<span className="text-zinc-200 group-hover:text-white">{activeTag}</span>
+											<i className={`ri-arrow-down-s-line text-sm text-zinc-500 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
+										</button>
+										{catOpen && (
+											<ul
+												role="listbox"
+												className="absolute right-0 z-20 mt-2 w-64 border border-zinc-700 bg-zinc-950 py-2 shadow-lg shadow-black/40"
+											>
+												{[...BLOG_TAGS]
+													.sort((a, b) => {
+														if (a === "All") return -1;
+														if (b === "All") return 1;
+														return (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0);
+													})
+													.map((tag) => {
+														const isActive = activeTag === tag;
+														return (
+															<li key={tag}>
+																<button
+																	type="button"
+																	role="option"
+																	aria-selected={isActive}
+																	onClick={() => {
+																		handleTagChange(tag);
+																		setCatOpen(false);
+																	}}
+																	className={`flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left text-sm transition-colors ${
+																		isActive
+																			? "text-white"
+																			: "text-zinc-300 hover:text-white"
+																	}`}
+																>
+																	<span className={isActive ? "font-medium" : ""}>{tag}</span>
+																	<span className={`font-mono text-xs tabular-nums ${isActive ? "text-white" : "text-zinc-500"}`}>
+																		{String(tagCounts[tag] ?? 0).padStart(3, "0")}
+																	</span>
+																</button>
+															</li>
+														);
+													})}
+											</ul>
+										)}
+									</div>
+									{/* Sort toggle */}
+									<button
+										type="button"
+										onClick={() => setSortBy((s) => (s === "newest" ? "oldest" : "newest"))}
+										aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
+										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
+									>
+										<span className="text-zinc-500 group-hover:text-zinc-400">Sort:</span>
+										<span className="text-zinc-200 group-hover:text-white">
+											{sortBy === "newest" ? "Newest" : "Oldest"}
+										</span>
+										<i className="ri-arrow-up-down-line text-sm text-zinc-500 group-hover:text-zinc-300" />
+									</button>
+								</div>
 							</div>
 
 							{/* Post grid */}
@@ -753,53 +810,6 @@ export function BlogPage() {
 							)}
 						</div>
 
-						{/* Sidebar — Categories */}
-						<aside className="hidden pt-12 pb-24 lg:block">
-							<div className="sticky" style={{ top: "calc(var(--nav-height, 64px) + 1.5rem)" }}>
-								<p className="mb-4 px-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
-									Categories
-								</p>
-								<ul>
-									{[...BLOG_TAGS]
-										.sort((a, b) => {
-											if (a === "All") return -1;
-											if (b === "All") return 1;
-											return (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0);
-										})
-										.map((tag) => {
-										const isActive = activeTag === tag;
-										return (
-											<li key={tag}>
-												<button
-													type="button"
-													onClick={() => handleTagChange(tag)}
-													className={`group relative flex w-full cursor-pointer items-baseline gap-3 px-3 py-2 text-left text-sm transition-colors duration-200 ${
-														isActive
-															? "text-white"
-															: "text-zinc-300 hover:text-white"
-													}`}
-												>
-													<span className={isActive ? "flex-1 font-medium" : "flex-1"}>{tag}</span>
-													<span
-														aria-hidden="true"
-														className={`font-mono text-xs tabular-nums transition-colors duration-200 ${
-															isActive ? "text-white" : "text-zinc-500 group-hover:text-zinc-300"
-														}`}
-													>
-														{String(tagCounts[tag] ?? 0).padStart(3, "0")}
-													</span>
-													<span
-														className={`pointer-events-none absolute right-3 bottom-1 left-3 h-px bg-white transition-transform duration-300 ease-out origin-left ${
-															isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-[0.08]"
-														}`}
-													/>
-												</button>
-											</li>
-										);
-									})}
-								</ul>
-							</div>
-						</aside>
 					</div>
 				</div>
 			</div>
