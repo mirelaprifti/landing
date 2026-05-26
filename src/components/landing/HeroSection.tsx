@@ -64,13 +64,12 @@ export function HeroSection() {
 					</p>
 					{/* Headline */}
 					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tighter">
-						The missing standard library for TypeScript applications
+						Reliable TypeScript for the AI era
 					</h1>
 
 					{/* Subheadline */}
 					<p className="mt-6 md:mx-auto text-lg text-zinc-400 max-w-3xl leading-snug">
-						Effect is an open-source ecosystem for building software that is
-						scalable, reliable, and maintainable from the start.
+						Build production-grade systems with the structure, safety, and observability developers need — and AI agents can work with.
 					</p>
 
 					{/* Install command */}
