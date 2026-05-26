@@ -348,9 +348,13 @@ function PostCard({ post }: { post: BlogPost }) {
 							</span>
 						)}
 					</div>
-					<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
-						{post.date}
-					</time>
+					<div className="flex items-baseline gap-2 font-mono text-xs text-zinc-400 tabular-nums">
+						<time className="shrink-0">{post.date}</time>
+						<i
+							aria-hidden="true"
+							className="ri-arrow-right-line text-sm text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+						/>
+					</div>
 				</div>
 			</div>
 		</a>
