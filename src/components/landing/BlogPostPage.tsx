@@ -119,9 +119,10 @@ function TableOfContents({
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
 			<div className="rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<p className="mb-4 text-base font-semibold text-zinc-900 dark:text-white">
-					Table of contents
+				<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+					On this page
 				</p>
+				<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
 				<ul className="space-y-2">
 					{tocItems.map((item) => {
 						const isActive = activeId === item.id;
