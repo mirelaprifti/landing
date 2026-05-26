@@ -156,25 +156,15 @@ function TableOfContents({
 						</>
 					)}
 					{postDate && (
-						<>
-							<p className="flex flex-col gap-0.5">
-								<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-500">
-									Last updated
-								</span>
-								<time className="font-mono text-xs text-zinc-700 tabular-nums dark:text-zinc-300">
-									{postDate}
-								</time>
-							</p>
-							<div className="my-5 border-t border-zinc-200 dark:border-zinc-800" />
-						</>
+						<p className="flex flex-col gap-0.5">
+							<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-500">
+								Last updated
+							</span>
+							<time className="font-mono text-xs text-zinc-700 tabular-nums dark:text-zinc-300">
+								{postDate}
+							</time>
+						</p>
 					)}
-					<a
-						href={getAssetPath("/blog")}
-						className="flex items-center gap-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-					>
-						<i className="ri-arrow-left-s-line text-base" />
-						Back to blog
-					</a>
 				</div>
 			)}
 		</nav>
