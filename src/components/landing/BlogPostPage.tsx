@@ -379,9 +379,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-10 md:pl-4">
 							{/* Byline */}
 							<div className="mb-8">
-								<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
-									Written by
-								</p>
 								{post.authors.map((author) => (
 									<Link
 										key={author.name}
@@ -398,7 +395,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 											<span className="truncate text-sm font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
 												{author.name}
 											</span>
-											<span className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+											<span className="mt-0.5 truncate font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-400">
 												{author.title}
 											</span>
 										</span>
