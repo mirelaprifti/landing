@@ -319,7 +319,7 @@ function PostCard({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group block border-t border-zinc-700/80 py-6 transition-colors first:border-t-0"
+			className="group block -mx-4 border-t border-zinc-700/80 px-4 py-6 transition-colors first:border-t-0 hover:bg-zinc-900/60"
 		>
 			<div className="grid grid-cols-12 items-baseline gap-4">
 				<div className="col-span-12 min-w-0 md:col-span-8">
