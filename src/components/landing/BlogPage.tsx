@@ -854,15 +854,27 @@ export function BlogPage() {
 												<button
 													type="button"
 													onClick={() => handleTagChange(tag)}
-													className={`relative flex w-full cursor-pointer items-center justify-between border-l px-3 py-2 text-left text-sm transition-colors duration-150 ${
+													className={`group relative flex w-full cursor-pointer items-baseline gap-3 px-3 py-2 text-left text-sm transition-colors duration-200 ${
 														isActive
-															? "border-white font-medium text-white"
-															: "border-transparent text-zinc-500 hover:border-zinc-700 hover:text-zinc-200"
+															? "text-white"
+															: "text-zinc-500 hover:text-zinc-200"
 													}`}
 												>
-													<span>{tag}</span>
-													<span className={`text-xs tabular-nums ${isActive ? "text-zinc-400" : "text-zinc-600"}`}>
-														{tagCounts[tag]}
+													<span
+														aria-hidden="true"
+														className={`font-mono text-xs tabular-nums transition-colors duration-200 ${
+															isActive ? "text-white" : "text-zinc-700 group-hover:text-zinc-500"
+														}`}
+													>
+														{String(tagCounts[tag] ?? 0).padStart(3, "0")}
+													</span>
+													<span className="relative flex-1">
+														<span className={isActive ? "font-medium" : ""}>{tag}</span>
+														<span
+															className={`absolute -bottom-0.5 left-0 h-px bg-white transition-all duration-300 ease-out ${
+																isActive ? "w-full" : "w-0 group-hover:w-3"
+															}`}
+														/>
 													</span>
 												</button>
 											</li>
