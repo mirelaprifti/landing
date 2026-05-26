@@ -190,7 +190,7 @@ function HorizontalScrollRail({
 	if (itemCount === 0) return null;
 
 	return (
-		<section aria-label={ariaLabel} className="py-12">
+		<section aria-label={ariaLabel} className="pt-16 pb-8 md:pt-20 md:pb-10">
 			{/* Section header */}
 			<div className="mb-6 flex items-center justify-between">
 				<h2 className="text-xl font-semibold text-white">
