@@ -63,7 +63,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
-						<span className="inline-flex items-center rounded-md border border-white px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-white uppercase">
+						<span className="inline-flex items-center rounded-md border-2 border-white px-2.5 py-1 font-mono text-[11px] font-semibold tracking-[0.18em] text-white uppercase">
 							Release
 						</span>
 					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
