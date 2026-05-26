@@ -57,7 +57,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative block overflow-hidden rounded-lg border border-[#2D3138] bg-[#191C21] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-emerald-500/[0.08]"
+			className="group relative block overflow-hidden rounded-md border border-zinc-800 bg-zinc-900/40 transition-colors duration-200 hover:border-zinc-600 hover:bg-zinc-900/70"
 		>
 			<div className="relative grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:items-center md:gap-10 md:p-6">
 				<div className="min-w-0 md:col-span-7">
@@ -123,7 +123,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 							<div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-zinc-900/60 to-transparent" />
 						</div>
 					) : (
-						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
+						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition-colors duration-200 group-hover:border-white group-hover:text-white">
 							<i
 								className="ri-arrow-right-line text-lg"
 							/>
