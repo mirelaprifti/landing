@@ -292,46 +292,68 @@ export function BlogPostPage({ slug }: { slug: string }) {
 			</div>
 
 			<main id="main-content" className="relative w-full pt-16">
-				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-3 font-mono text-xs tracking-wider uppercase md:pt-20">
-						<a
-							href={getAssetPath("/blog")}
-							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-						>
-							Blog
-						</a>
-						<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">/</span>
-						<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-							{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
-								<a
-									key={tag}
-									href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
-									className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
-								>
-									{tag}
-								</a>
-							))}
-						</div>
-					</nav>
-					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
-						{/* Article */}
-						<article className="min-w-0 pb-20 md:pr-12">
-							{/* Title block */}
-							<div className="pt-4 pb-10 md:pb-12">
+				{/* Hero — grid background + title */}
+				<section className="relative overflow-hidden">
+					{/* Stripe-style grid background */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage: `
+								linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+								linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+							`,
+							backgroundSize: "196.6px 194px",
+							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					{/* Fade out grid at top and bottom */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+						}}
+					/>
+					{/* Subtle ambient glow */}
+					<div
+						className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
+						style={{
+							background:
+								"radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.10) 0%, transparent 50%)",
+						}}
+					/>
 
-								{/* Title */}
-								<h1 className="max-w-3xl text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-3 font-mono text-sm tracking-wider uppercase md:pt-20">
+							<a
+								href={getAssetPath("/blog")}
+								className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								Blog
+							</a>
+							<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">/</span>
+							<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+								{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
+									<a
+										key={tag}
+										href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
+										className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+									>
+										{tag}
+									</a>
+								))}
+							</div>
+						</nav>
+						{/* Title block — 8 of 12 columns */}
+						<div className="grid grid-cols-12 gap-4 pt-4 pb-10 md:pb-14">
+							<div className="col-span-12 md:col-span-8">
+								<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
 									{post.title}
 								</h1>
-
-								{/* Excerpt */}
-								<p className="mt-4 max-w-3xl text-lg leading-relaxed text-zinc-700 md:text-xl dark:text-zinc-300">
+								<p className="mt-4 text-lg leading-relaxed text-zinc-700 md:text-xl dark:text-zinc-300">
 									{post.excerpt}
 								</p>
-
-								{/* Meta */}
 								<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
-									{/* Authors */}
 									{post.authors.map((author) => (
 										<Link
 											key={author.name}
@@ -353,7 +375,14 @@ export function BlogPostPage({ slug }: { slug: string }) {
 									<time>{post.date}</time>
 								</div>
 							</div>
+						</div>
+					</div>
+				</section>
 
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
+						{/* Article */}
+						<article className="min-w-0 pb-20 md:pr-12">
 							{/* Divider */}
 							<div className="h-px bg-zinc-200 dark:bg-zinc-800" />
 
