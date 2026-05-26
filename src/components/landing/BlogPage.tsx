@@ -616,7 +616,7 @@ export function BlogPage() {
 					<div>
 						<div className="min-w-0 pb-24">
 							{/* Header row: heading + Category filter + Sort */}
-							<div ref={postListRef} className="mt-12 mb-6 flex flex-wrap items-end justify-between gap-4">
+							<div ref={postListRef} className="mt-12 mb-6 flex flex-wrap items-baseline justify-between gap-4">
 								<h2 className="text-2xl font-semibold tracking-tight text-white">
 									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
