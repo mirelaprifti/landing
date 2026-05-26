@@ -365,10 +365,10 @@ export function BlogPostPage({ slug }: { slug: string }) {
 											className="h-10 w-10 rounded-md object-cover"
 										/>
 										<span className="flex min-w-0 flex-col">
-											<span className="truncate text-sm font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
+											<span className="truncate text-base font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
 												{author.name}
 											</span>
-											<span className="mt-0.5 truncate text-sm text-zinc-500 dark:text-zinc-400">
+											<span className="mt-0.5 truncate text-xs text-zinc-500 dark:text-zinc-400">
 												{author.title}
 											</span>
 										</span>
