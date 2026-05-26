@@ -323,11 +323,12 @@ function PostCard({ post }: { post: BlogPost }) {
 		>
 			<div className="grid grid-cols-12 items-baseline gap-4">
 				<div className="col-span-12 min-w-0 md:col-span-8">
-					<h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white">
-						{post.title}
+					<h3 className="relative inline-block text-lg font-semibold text-white">
+						<span>{post.title}</span>
+						<span className="absolute right-0 -bottom-0.5 left-0 h-px origin-left scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
 					</h3>
 					{/* Excerpt */}
-					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400">
+					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400 transition-colors group-hover:text-zinc-200">
 						{post.excerpt}
 					</p>
 				</div>
