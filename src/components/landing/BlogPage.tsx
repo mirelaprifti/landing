@@ -621,7 +621,7 @@ export function BlogPage() {
 							{/* Header row: Latest heading + Sort */}
 							<div ref={postListRef} className="mt-12 mb-6 flex items-end justify-between gap-4">
 								<h2 className="text-2xl font-semibold tracking-tight text-white">
-									Latest
+									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
 								<div ref={sortRef} className="relative">
 									<button
