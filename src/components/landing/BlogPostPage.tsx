@@ -129,7 +129,7 @@ function TableOfContents({
 							<li key={item.id}>
 								<a
 									href={`#${item.id}`}
-									className={`group/toc flex gap-2 text-sm leading-snug transition-colors duration-150 ${
+									className={`block text-sm leading-snug transition-colors duration-150 ${
 										item.depth === 0 ? "" : "pl-4"
 									} ${
 										isActive
@@ -137,10 +137,7 @@ function TableOfContents({
 											: "text-zinc-600 hover:text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-400 dark:hover:text-white"
 									}`}
 								>
-									<span aria-hidden="true" className="mt-0.5 shrink-0 font-mono text-zinc-400 dark:text-zinc-600">
-										└
-									</span>
-									<span>{item.label}</span>
+									{item.label}
 								</a>
 							</li>
 						);
