@@ -565,8 +565,8 @@ Effect.runPromise(program)`}</code>
 							</p>
 						</div>
 
-						{/* CTA — col-start-10 col-span-3 to match sidebar */}
-						<div className="md:col-start-10 md:col-span-3">
+						{/* CTA — col-start-9 col-span-4 */}
+						<div className="md:col-start-9 md:col-span-4">
 							<div className="relative flex flex-col items-center gap-3 px-6 py-6">
 								{/* Corner brackets */}
 								<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
