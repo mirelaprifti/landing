@@ -107,11 +107,19 @@ export function Navigation({ transparent = false, activePath }: NavigationProps)
 								Blog
 							</Link>
 							<Link
+								href={getAssetPath("/podcast")}
+								variant="nav"
+								active={activePath?.startsWith("/podcast")}
+								className={transparent ? "text-white hover:text-white/80" : ""}
+							>
+								Podcast
+							</Link>
+							<Link
 								href="https://effect.website/play/"
 								variant="nav"
 								className={transparent ? "text-white hover:text-white/80" : ""}
 							>
-								Playground
+								Play
 							</Link>
 							<Link
 								href="https://www.effect.solutions/"
@@ -233,12 +241,18 @@ export function Navigation({ transparent = false, activePath }: NavigationProps)
 								Blog
 							</a>
 							<a
+								href={getAssetPath("/podcast")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/podcast") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+							>
+								Podcast
+							</a>
+							<a
 								href="https://effect.website/play/"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
-								Playground
+								Play
 							</a>
 							<a
 								href="https://www.effect.solutions/"

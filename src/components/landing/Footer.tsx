@@ -49,16 +49,6 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/community-resources")}
-										variant="footer"
-										active={activePath?.startsWith("/community-resources")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Community resources
-									</Link>
-								</li>
-								<li>
-									<Link
 										href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -141,22 +131,12 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/events")}
+										href="https://luma.com/effect-community"
 										variant="footer"
-										active={activePath?.startsWith("/events")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Events & meetups
-									</Link>
-								</li>
-								<li>
-									<Link
-										href={getAssetPath("/implementation-partners")}
-										variant="footer"
-										active={activePath?.startsWith("/implementation-partners")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Implementation Partners
+										<i className="ri-arrow-right-up-line text-sm" />
 									</Link>
 								</li>
 								<li>
@@ -167,6 +147,16 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 									>
 										Discord
 										<i className="ri-arrow-right-up-line text-sm" />
+									</Link>
+								</li>
+								<li>
+									<Link
+										href={getAssetPath("/implementation-partners")}
+										variant="footer"
+										active={activePath?.startsWith("/implementation-partners")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Implementation Partners
 									</Link>
 								</li>
 							</ul>
