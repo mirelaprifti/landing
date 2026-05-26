@@ -313,7 +313,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							))}
 						</div>
 					</nav>
-					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
 						{/* Article */}
 						<article className="min-w-0 pb-20 md:pr-12">
