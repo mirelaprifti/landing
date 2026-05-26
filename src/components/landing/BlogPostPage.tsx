@@ -292,11 +292,10 @@ export function BlogPostPage({ slug }: { slug: string }) {
 			</div>
 
 			<main id="main-content" className="relative w-full pt-16">
-				{/* Hero — grid background + title */}
-				<section className="relative overflow-hidden">
-					{/* Stripe-style grid background */}
+				{/* Hero background — absolute overlay, limited height */}
+				<div className="pointer-events-none absolute inset-x-0 top-16 z-0 h-[520px] overflow-hidden">
 					<div
-						className="pointer-events-none absolute inset-0"
+						className="absolute inset-0"
 						style={{
 							backgroundImage: `
 								linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
@@ -306,85 +305,85 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							backgroundPosition: "calc(50% + 97px) 0",
 						}}
 					/>
-					{/* Fade out grid at top and bottom */}
 					<div
-						className="pointer-events-none absolute inset-0"
+						className="absolute inset-0"
 						style={{
 							background:
 								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 						}}
 					/>
-					{/* Subtle ambient glow */}
 					<div
-						className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
+						className="absolute inset-x-0 top-0 h-[400px]"
 						style={{
 							background:
 								"radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.10) 0%, transparent 50%)",
 						}}
 					/>
+				</div>
 
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-						<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-3 font-mono text-sm tracking-wider uppercase md:pt-20">
-							<a
-								href={getAssetPath("/blog")}
-								className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-							>
-								Blog
-							</a>
-							<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">/</span>
-							<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-								{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
-									<a
-										key={tag}
-										href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
-										className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+				<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
+					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-20">
+						<a
+							href={getAssetPath("/blog")}
+							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+						>
+							Blog
+						</a>
+						<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">/</span>
+						<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+							{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
+								<a
+									key={tag}
+									href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
+									className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+								>
+									{tag}
+								</a>
+							))}
+						</div>
+					</nav>
+
+					{/* Unified 12-col grid: title (col 1-8) + TOC (col 10-12 spanning all rows) + full-width divider + article body */}
+					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
+						{/* Title block — col 1-8, row 1 */}
+						<div className="md:col-span-8 md:row-start-1 md:pt-2 md:pb-10">
+							<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
+								{post.title}
+							</h1>
+							<p className="mt-4 text-base leading-relaxed text-zinc-700 md:text-lg dark:text-zinc-300">
+								{post.excerpt}
+							</p>
+							<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
+								{post.authors.map((author) => (
+									<Link
+										key={author.name}
+										href={author.url}
+										variant="inline"
+										className="flex items-center gap-2 font-medium no-underline hover:underline"
 									>
-										{tag}
-									</a>
+										<img
+											src={getAssetPath(author.avatar)}
+											alt={author.name}
+											className="h-6 w-6 rounded-full object-cover"
+										/>
+										<span>{author.name}</span>
+									</Link>
 								))}
-							</div>
-						</nav>
-						{/* Title block — 8 of 12 columns */}
-						<div className="grid grid-cols-12 gap-4 pt-4 pb-10 md:pb-14">
-							<div className="col-span-12 md:col-span-8">
-								<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
-									{post.title}
-								</h1>
-								<p className="mt-4 text-base leading-relaxed text-zinc-700 md:text-lg dark:text-zinc-300">
-									{post.excerpt}
-								</p>
-								<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
-									{post.authors.map((author) => (
-										<Link
-											key={author.name}
-											href={author.url}
-											variant="inline"
-											className="flex items-center gap-2 font-medium no-underline hover:underline"
-										>
-											<img
-												src={getAssetPath(author.avatar)}
-												alt={author.name}
-												className="h-6 w-6 rounded-full object-cover"
-											/>
-											<span>{author.name}</span>
-										</Link>
-									))}
-									<span className="text-zinc-300 dark:text-zinc-700">
-										&middot;
-									</span>
-									<time>{post.date}</time>
-								</div>
+								<span className="text-zinc-300 dark:text-zinc-700">&middot;</span>
+								<time>{post.date}</time>
 							</div>
 						</div>
-					</div>
-				</section>
 
-				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					{/* Full-width divider between hero and article */}
-					<div className="h-px bg-zinc-200 dark:bg-zinc-800" />
-					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
-						{/* Article */}
-						<article className="min-w-0 pb-20 md:pr-12">
+						{/* TOC — col 10-12, spans all rows so it stays sticky alongside article body */}
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:row-span-3 md:block md:pt-2 md:pl-4">
+							<TableOfContents postTitle={post.title} />
+						</aside>
+
+						{/* Full-width divider — col 1-12, row 2 */}
+						<div className="md:col-span-12 md:row-start-2 h-px bg-zinc-200 dark:bg-zinc-800" />
+
+						{/* Article body — col 1-8, row 3 */}
+						<article className="min-w-0 pb-20 md:col-span-8 md:row-start-3">
 							{/* Mobile Table of Contents */}
 							<div className="mt-10 mb-10 block md:hidden">
 								<TableOfContents showBackLink={false} className="static" />
@@ -525,11 +524,6 @@ Effect.runPromise(program)`}</code>
 							{/* Post navigation */}
 							<PostNavigation currentSlug={slug} />
 						</article>
-
-						{/* Right sidebar - TOC */}
-						<aside className="hidden pt-104 pb-14 pl-10 md:block">
-							<TableOfContents postTitle={post.title} />
-						</aside>
 					</div>
 
 					{/* Community CTA — full width inside content container */}
