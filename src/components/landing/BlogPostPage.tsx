@@ -157,7 +157,7 @@ function TableOfContents({
 					)}
 					{postDate && (
 						<>
-							<p className="mb-5 flex flex-col gap-0.5">
+							<p className="flex flex-col gap-0.5">
 								<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-500">
 									Last updated
 								</span>
@@ -165,6 +165,7 @@ function TableOfContents({
 									{postDate}
 								</time>
 							</p>
+							<div className="my-5 border-t border-zinc-200 dark:border-zinc-800" />
 						</>
 					)}
 					<a
