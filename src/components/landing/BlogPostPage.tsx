@@ -392,7 +392,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										<img
 											src={getAssetPath(author.avatar)}
 											alt={author.name}
-											className="h-7 w-7 rounded-full object-cover"
+											className="h-10 w-10 rounded-md object-cover"
 										/>
 										<span className="text-sm text-zinc-800 dark:text-zinc-200">{author.name}</span>
 									</Link>
