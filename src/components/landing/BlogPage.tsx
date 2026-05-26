@@ -322,9 +322,17 @@ function PostCard({ post }: { post: BlogPost }) {
 			className="group block border-t border-zinc-700/80 px-4 py-6 transition-colors first:border-t-0 hover:bg-zinc-800/60"
 		>
 			<div className="grid grid-cols-12 items-baseline gap-4">
-				<div className="col-span-12 min-w-0 sm:col-span-11 md:col-span-8">
-					{/* Tags above title */}
-					<div className="mb-2 flex flex-wrap items-center gap-2">
+				<div className="col-span-12 min-w-0 md:col-span-8">
+					<h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white">
+						{post.title}
+					</h3>
+					{/* Excerpt */}
+					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400">
+						{post.excerpt}
+					</p>
+				</div>
+				<div className="col-span-12 flex flex-wrap items-baseline gap-x-3 gap-y-2 md:col-span-4 md:flex-col md:items-end md:gap-2">
+					<div className="flex flex-wrap items-center gap-2 md:justify-end">
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
 							<span
 								key={tag}
@@ -339,18 +347,10 @@ function PostCard({ post }: { post: BlogPost }) {
 							</span>
 						)}
 					</div>
-					<h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white">
-						{post.title}
-					</h3>
-
-					{/* Excerpt */}
-					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400">
-						{post.excerpt}
-					</p>
+					<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
+						{post.date}
+					</time>
 				</div>
-				<time className="col-span-12 shrink-0 font-mono text-xs text-zinc-400 tabular-nums sm:col-span-1 md:col-span-4 md:text-right">
-					{post.date}
-				</time>
 			</div>
 		</a>
 	);
