@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { BLOG_POSTS, type BlogPost, getPostUrl, getTagColor } from "../../data/blog";
+import { BLOG_POSTS, getPostUrl } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
@@ -28,11 +28,11 @@ function ShareButtons({ title }: { title: string }) {
 	};
 
 	const buttonClass =
-		"inline-flex h-10 w-10 items-center justify-center rounded-md bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200 ring-inset transition-all hover:bg-zinc-900 hover:text-white hover:ring-zinc-900 dark:bg-zinc-800/80 dark:text-zinc-200 dark:ring-zinc-700/80 dark:hover:bg-white dark:hover:text-zinc-900 dark:hover:ring-white";
+		"inline-flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
 
 	return (
 		<div className="flex items-center gap-3">
-			<span className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+			<span className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
 				Share
 			</span>
 			<div className="flex items-center gap-2">
@@ -117,28 +117,35 @@ function TableOfContents({
 
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
-			<p className="mb-3 text-xs font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+			<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
 				On this page
 			</p>
 			<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
-			<ul className="space-y-0.5">
+			<ul>
 				{tocItems.map((item) => {
 					const isActive = activeId === item.id;
 					return (
 						<li key={item.id}>
 							<a
 								href={`#${item.id}`}
-								className={`block text-sm transition-colors duration-150 ${
+								className={`group/toc relative block text-sm transition-colors duration-150 ${
 									item.depth === 0 ? "py-1.5" : "py-1.5 pl-3"
 								} ${
 									isActive
 										? "font-medium text-zinc-900 dark:text-white"
 										: item.depth === 0
 											? "text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-											: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								}`}
 							>
-								{item.label}
+								<span>{item.label}</span>
+								<span
+									className={`pointer-events-none absolute right-0 -bottom-px h-px bg-zinc-900 transition-transform duration-300 ease-out origin-left dark:bg-white ${
+										item.depth === 0 ? "left-0" : "left-3"
+									} ${
+										isActive ? "scale-x-100" : "scale-x-0 group-hover/toc:scale-x-[0.08]"
+									}`}
+								/>
 							</a>
 						</li>
 					);
@@ -188,9 +195,9 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					{...(prevIsExternal
 						? { target: "_blank", rel: "noopener noreferrer" }
 						: {})}
-					className="group flex flex-col rounded-lg border border-zinc-200 bg-zinc-50/50 px-6 py-5 transition-all duration-200 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:border-zinc-700 dark:hover:bg-zinc-900/60"
+					className="group flex flex-col rounded-md border border-zinc-300 px-6 py-5 transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
 				>
-					<span className="flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
 						<i className="ri-arrow-left-s-line text-base transition-transform duration-200 group-hover:-translate-x-0.5" />
 						Previous
 					</span>
@@ -207,9 +214,9 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					{...(nextIsExternal
 						? { target: "_blank", rel: "noopener noreferrer" }
 						: {})}
-					className="group flex flex-col items-end rounded-lg border border-zinc-200 bg-zinc-50/50 px-6 py-5 text-right transition-all duration-200 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:border-zinc-700 dark:hover:bg-zinc-900/60"
+					className="group flex flex-col items-end rounded-md border border-zinc-300 px-6 py-5 text-right transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
 				>
-					<span className="flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
 						Next
 						<i className="ri-arrow-right-s-line text-base transition-transform duration-200 group-hover:translate-x-0.5" />
 					</span>
@@ -307,12 +314,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 									{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
 										<span
 											key={tag}
-											className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+											className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-700 uppercase dark:border-zinc-600 dark:text-zinc-200"
 										>
-											<span
-												className="h-1.5 w-1.5 rounded-full"
-												style={{ backgroundColor: getTagColor(tag) }}
-											/>
 											{tag}
 										</span>
 									))}
