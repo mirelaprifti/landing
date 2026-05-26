@@ -549,37 +549,30 @@ Effect.runPromise(program)`}</code>
 						</article>
 					</div>
 
-					{/* Community CTA — full width inside content container */}
+					{/* Community CTA — aligned with body/sidebar columns */}
 					<div className="mt-16 h-px w-full bg-zinc-200 dark:bg-zinc-800" />
-					<div className="grid grid-cols-1 items-end gap-8 py-12 md:grid-cols-12 md:gap-10">
-						{/* Content */}
-						<div className="md:col-span-7">
+					<div className="grid grid-cols-1 items-center gap-8 py-16 md:grid-cols-12 md:gap-x-6 md:py-20">
+						{/* Content — cols 1-8 to match body */}
+						<div className="md:col-span-8">
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 								// Community
 							</p>
 							<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
-								Keep the conversation going on Discord
+								Join the conversation on Discord
 							</h2>
-							<p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-								Ask questions, share what you're building, and connect with
-								thousands of engineers using Effect in production.
+							<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+								Ask questions, share what you're building, and meet engineers running Effect in production.
 							</p>
 						</div>
 
-						{/* CTA */}
-						<div className="md:col-span-5">
-							<div className="relative flex flex-col items-center gap-4 px-8 py-8">
-								{/* Corner brackets */}
-								<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
-								<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
-								<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
-								<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
-
+						{/* CTA — col-start-10 col-span-3 to match sidebar */}
+						<div className="md:col-start-10 md:col-span-3">
+							<div className="relative flex flex-col items-start gap-3">
 								<a
 									href="https://discord.gg/effect-ts"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-6 py-3 text-base font-medium text-white transition-all hover:shadow-[0_0_20px_rgba(0,0,0,0.15)] dark:bg-white dark:text-zinc-950 dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+									className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
 								>
 									Join the Discord
 									<i className="ri-arrow-right-line text-base" aria-hidden="true" />
@@ -588,7 +581,7 @@ Effect.runPromise(program)`}</code>
 									href="https://discord.gg/effect-ts"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1 font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+									className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
 								>
 									discord.gg/effect-ts
 									<i className="ri-arrow-right-up-line" aria-hidden="true" />
