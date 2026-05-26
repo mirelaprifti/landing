@@ -50,7 +50,7 @@ export function InstallCommand() {
 						<img
 							src={getAssetPath(PM_ICONS[pm])}
 							alt={pm}
-							className="h-3.5 w-auto"
+							className={`${pm === "npm" ? "h-5" : "h-3.5"} w-auto`}
 						/>
 						{activePM === pm && (
 							<div className="absolute bottom-0 left-0 right-0 h-px bg-white" />
