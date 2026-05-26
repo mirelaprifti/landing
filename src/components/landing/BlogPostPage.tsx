@@ -326,7 +326,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						>
 							Blog
 						</a>
-						<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">/</span>
+						<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">//</span>
 						<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
 							{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
 								<a
