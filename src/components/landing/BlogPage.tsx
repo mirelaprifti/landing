@@ -652,16 +652,21 @@ export function BlogPage() {
 																		handleTagChange(tag);
 																		setCatOpen(false);
 																	}}
-																	className={`flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left text-sm transition-colors ${
+																	className={`group/item relative flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left font-mono text-xs tracking-wider uppercase transition-colors ${
 																		isActive
 																			? "text-white"
 																			: "text-zinc-300 hover:text-white"
 																	}`}
 																>
-																	<span className={isActive ? "font-medium" : ""}>{tag}</span>
-																	<span className={`font-mono text-xs tabular-nums ${isActive ? "text-white" : "text-zinc-500"}`}>
+																	<span>{tag}</span>
+																	<span className={`tabular-nums ${isActive ? "text-white" : "text-zinc-500"}`}>
 																		{String(tagCounts[tag] ?? 0).padStart(3, "0")}
 																	</span>
+																	<span
+																		className={`pointer-events-none absolute right-4 bottom-1 left-4 h-px bg-white transition-transform duration-300 ease-out origin-left ${
+																			isActive ? "scale-x-100" : "scale-x-0 group-hover/item:scale-x-[0.08]"
+																		}`}
+																	/>
 																</button>
 															</li>
 														);
