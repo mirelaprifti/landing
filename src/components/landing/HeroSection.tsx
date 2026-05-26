@@ -53,15 +53,15 @@ export function HeroSection() {
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 md:pt-[96px]">
 				{/* Content */}
 				<div className="max-w-4xl text-left md:mx-auto md:text-center">
-					{/* Import statement */}
-					<p className="mb-[12px] font-mono text-sm md:text-[1.1rem]">
-						<span className="text-violet-400">import</span>
-						<span className="text-zinc-300">{" { "}</span>
-						<span className="text-white">Effect</span>
-						<span className="text-zinc-300">{" } "}</span>
-						<span className="text-violet-400">from</span>
-						<span className="text-emerald-400">{' "effect"'}</span>
-					</p>
+					{/* Eyebrow */}
+					<a
+						href="/blog/effect-v4-beta"
+						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:text-white md:text-sm"
+					>
+						<span className="text-zinc-500 group-hover:text-zinc-400">//</span>
+						<span>Effect 4.0 — Now in Beta</span>
+						<i className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
+					</a>
 					{/* Headline */}
 					<h1 className="text-4xl font-bold text-white md:text-[4rem] leading-tighter">
 						Reliable TypeScript{" "}
