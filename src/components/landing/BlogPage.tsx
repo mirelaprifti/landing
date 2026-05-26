@@ -274,7 +274,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-[#272B31] bg-[#191C21] p-4 pb-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-500/5"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-800 bg-zinc-900/40 p-4 pb-5 transition-colors duration-200 hover:border-zinc-600 hover:bg-zinc-900/70"
 		>
 			<div>
 				<div className="flex items-center justify-between">
@@ -644,7 +644,7 @@ export function BlogPage() {
 								<h2 className="text-2xl font-semibold tracking-tight text-white">
 									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
-								<div className="flex items-baseline gap-6">
+								<div className="flex flex-wrap items-baseline gap-x-4 gap-y-3 sm:gap-x-6">
 									{/* Category dropdown */}
 									<div ref={catRef} className="relative">
 										<button
@@ -654,7 +654,7 @@ export function BlogPage() {
 											aria-expanded={catOpen}
 											className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 										>
-											<span className="text-zinc-500 group-hover:text-zinc-400">Category:</span>
+											<span className="hidden text-zinc-500 group-hover:text-zinc-400 sm:inline">Category:</span>
 											<span className="text-zinc-200 group-hover:text-white">{activeTag}</span>
 											<i className={`ri-arrow-down-s-line text-sm text-zinc-500 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
 										</button>
@@ -749,9 +749,9 @@ export function BlogPage() {
 													disabled={safePage <= 1}
 													onClick={() => goToPage((p) => p - 1)}
 													aria-label="Previous page"
-													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-40"
+													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
-													<i className="ri-arrow-left-s-line text-sm" />
+													<i className="ri-arrow-left-s-line text-base" />
 												</button>
 
 												{(() => {
@@ -772,22 +772,30 @@ export function BlogPage() {
 														page === "ellipsis" ? (
 															<span
 																key={`ellipsis-${idx}`}
-																className="px-1.5 text-xs text-zinc-400"
+																className="px-1.5 font-mono text-xs text-zinc-500"
 															>
-																...
+																···
 															</span>
 														) : (
 															<button
 																key={page}
 																type="button"
 																onClick={() => goToPage(page)}
-																className={`min-w-[2rem] rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors ${
+																aria-current={page === safePage ? "page" : undefined}
+																className={`group/page relative flex h-8 min-w-8 items-center justify-center px-2 font-mono text-xs tabular-nums transition-colors ${
 																	page === safePage
-																		? "bg-zinc-800 text-white ring-1 ring-zinc-700"
-																		: "text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200"
+																		? "text-white"
+																		: "text-zinc-400 hover:text-white"
 																}`}
 															>
-																{page}
+																<span className={page === safePage ? "font-semibold" : ""}>
+																	{String(page).padStart(2, "0")}
+																</span>
+																<span
+																	className={`pointer-events-none absolute right-2 -bottom-0.5 left-2 h-px bg-white transition-transform duration-300 ease-out origin-left ${
+																		page === safePage ? "scale-x-100" : "scale-x-0 group-hover/page:scale-x-[0.2]"
+																	}`}
+																/>
 															</button>
 														),
 													);
@@ -798,9 +806,9 @@ export function BlogPage() {
 													disabled={safePage >= totalPages}
 													onClick={() => goToPage((p) => p + 1)}
 													aria-label="Next page"
-													className="rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-40"
+													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
-													<i className="ri-arrow-right-s-line text-sm" />
+													<i className="ri-arrow-right-s-line text-base" />
 												</button>
 											</nav>
 										</>
@@ -839,7 +847,7 @@ export function BlogPage() {
 									<button
 										type="button"
 										onClick={clearFilters}
-										className="mt-6 rounded-lg px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-900/60 hover:text-white"
+										className="mt-6 rounded-md border border-zinc-700 px-4 py-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:border-zinc-500 hover:text-white"
 									>
 										Clear all filters
 									</button>
