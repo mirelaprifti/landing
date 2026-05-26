@@ -560,6 +560,9 @@ Effect.runPromise(program)`}</code>
 							<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
 								Join the conversation on Discord
 							</h2>
+							<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+								Meet engineers running Effect in production.
+							</p>
 						</div>
 
 						{/* CTA — col-start-9 col-span-4 */}
