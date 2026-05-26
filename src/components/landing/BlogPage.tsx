@@ -569,27 +569,17 @@ export function BlogPage() {
 				<main id="main-content" className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						{/* Page header */}
-						<div className="flex items-start justify-between gap-6 pt-16 pb-8 md:pt-24 md:pb-12">
-							<div>
-								<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Effect Blog
-								</p>
-								<h1
-									className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
-								>
-									Releases, write-ups, and notes{" "}
-									<br className="hidden md:block" />
-									from the Effect team
-								</h1>
-							</div>
-							<a
-								href="/rss.xml"
-								aria-label="RSS feed"
-								className="inline-flex shrink-0 items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-700 hover:text-white"
+						<div className="pt-16 pb-8 md:pt-24 md:pb-12">
+							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								// Effect Blog
+							</p>
+							<h1
+								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
 							>
-								<i className="ri-rss-line text-base" aria-hidden="true" />
-								<span className="hidden sm:inline">RSS</span>
-							</a>
+								Releases, write-ups, and notes{" "}
+								<br className="hidden md:block" />
+								from the Effect team
+							</h1>
 						</div>
 
 						{/* Featured post — first thing after heading */}
@@ -691,6 +681,15 @@ export function BlogPage() {
 										</span>
 										<i className="ri-arrow-up-down-line text-sm text-zinc-500 group-hover:text-zinc-300" />
 									</button>
+									{/* RSS feed */}
+									<a
+										href="/rss.xml"
+										aria-label="RSS feed"
+										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-200 uppercase transition-colors hover:text-white"
+									>
+										<span>RSS</span>
+										<i className="ri-rss-line text-sm text-zinc-500 group-hover:text-zinc-300" aria-hidden="true" />
+									</a>
 								</div>
 							</div>
 
