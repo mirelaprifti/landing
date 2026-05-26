@@ -74,7 +74,8 @@ function TableOfContents({
 	className,
 	showBackLink = true,
 	postTitle,
-}: { className?: string; showBackLink?: boolean; postTitle?: string }) {
+	postDate,
+}: { className?: string; showBackLink?: boolean; postTitle?: string; postDate?: string }) {
 	const tocItems = [
 		{
 			id: "faster-runtime",
@@ -117,48 +118,55 @@ function TableOfContents({
 
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
-			<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
-				On this page
-			</p>
-			<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
-			<ul>
-				{tocItems.map((item) => {
-					const isActive = activeId === item.id;
-					return (
-						<li key={item.id}>
-							<a
-								href={`#${item.id}`}
-								className={`group/toc relative block text-sm transition-colors duration-150 ${
-									item.depth === 0 ? "py-1.5" : "py-1.5 pl-3"
-								} ${
-									isActive
-										? "font-medium text-zinc-900 dark:text-white"
-										: item.depth === 0
-											? "text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-											: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								}`}
-							>
-								<span>{item.label}</span>
-								<span
-									className={`pointer-events-none absolute right-0 -bottom-px h-px bg-zinc-900 transition-transform duration-300 ease-out origin-left dark:bg-white ${
-										item.depth === 0 ? "left-0" : "left-3"
+			<div className="rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
+				<p className="mb-4 text-base font-semibold text-zinc-900 dark:text-white">
+					Table of contents
+				</p>
+				<ul className="space-y-2">
+					{tocItems.map((item) => {
+						const isActive = activeId === item.id;
+						return (
+							<li key={item.id}>
+								<a
+									href={`#${item.id}`}
+									className={`group/toc flex gap-2 text-sm leading-snug transition-colors duration-150 ${
+										item.depth === 0 ? "" : "pl-4"
 									} ${
-										isActive ? "scale-x-100" : "scale-x-0 group-hover/toc:scale-x-[0.08]"
+										isActive
+											? "text-zinc-900 underline underline-offset-4 dark:text-white"
+											: "text-zinc-600 hover:text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-400 dark:hover:text-white"
 									}`}
-								/>
-							</a>
-						</li>
-					);
-				})}
-			</ul>
+								>
+									<span aria-hidden="true" className="mt-0.5 shrink-0 font-mono text-zinc-400 dark:text-zinc-600">
+										└
+									</span>
+									<span>{item.label}</span>
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 
-			{/* Share + Back to blog */}
+			{/* Share + Last updated + Back to blog */}
 			{showBackLink && (
-				<div className="mt-8 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+				<div className="mt-6">
 					{postTitle && (
 						<>
 							<ShareButtons title={postTitle} />
 							<div className="mt-5 border-t border-zinc-200 pt-5 dark:border-zinc-800" />
+						</>
+					)}
+					{postDate && (
+						<>
+							<p className="mb-5 flex flex-col gap-0.5">
+								<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-500">
+									Last updated
+								</span>
+								<time className="font-mono text-xs text-zinc-700 tabular-nums dark:text-zinc-300">
+									{postDate}
+								</time>
+							</p>
 						</>
 					)}
 					<a
@@ -402,7 +410,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 									</Link>
 								))}
 							</div>
-							<TableOfContents postTitle={post.title} />
+							<TableOfContents postTitle={post.title} postDate={post.date} />
 						</aside>
 
 						{/* Full-width divider */}
