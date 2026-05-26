@@ -577,9 +577,9 @@ export function BlogPage() {
 								<h1
 									className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
 								>
-									Stay up to date{" "}
+									Stay up to date with{" "}
 									<br className="hidden md:block" />
-									with the Effect ecosystem
+									the Effect ecosystem
 								</h1>
 							</div>
 							<a
