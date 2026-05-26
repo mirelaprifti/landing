@@ -293,7 +293,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 			<main id="main-content" className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-10 pb-6 font-mono text-xs tracking-wider uppercase md:pt-14">
+					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-3 font-mono text-xs tracking-wider uppercase md:pt-20">
 						<a
 							href={getAssetPath("/blog")}
 							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -317,7 +317,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						{/* Article */}
 						<article className="min-w-0 pb-20 md:pr-12">
 							{/* Title block */}
-							<div className="pt-8 pb-10 md:pb-12">
+							<div className="pt-4 pb-10 md:pb-12">
 
 								{/* Title */}
 								<h1 className="max-w-3xl text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
