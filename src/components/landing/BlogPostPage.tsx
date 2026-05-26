@@ -350,7 +350,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
 									{post.title}
 								</h1>
-								<p className="mt-4 text-lg leading-relaxed text-zinc-700 md:text-xl dark:text-zinc-300">
+								<p className="mt-4 text-base leading-relaxed text-zinc-700 md:text-lg dark:text-zinc-300">
 									{post.excerpt}
 								</p>
 								<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
@@ -380,12 +380,11 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				</section>
 
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					{/* Full-width divider between hero and article */}
+					<div className="h-px bg-zinc-200 dark:bg-zinc-800" />
 					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
 						{/* Article */}
 						<article className="min-w-0 pb-20 md:pr-12">
-							{/* Divider */}
-							<div className="h-px bg-zinc-200 dark:bg-zinc-800" />
-
 							{/* Mobile Table of Contents */}
 							<div className="mt-10 mb-10 block md:hidden">
 								<TableOfContents showBackLink={false} className="static" />
