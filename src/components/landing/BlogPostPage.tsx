@@ -392,7 +392,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 											<span className="truncate text-base font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
 												{author.name}
 											</span>
-											<span className="mt-0.5 truncate font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-400">
+											<span className="mt-0.5 truncate font-mono text-[10px] tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 												{author.title}
 											</span>
 										</span>
