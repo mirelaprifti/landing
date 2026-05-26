@@ -197,11 +197,11 @@ function HorizontalScrollRail({
 					{title}
 				</h2>
 
-				<div className="flex items-center gap-3">
+				<div className="flex items-center gap-5">
 					<button
 						type="button"
 						onClick={onViewAll}
-						className="text-sm font-medium text-zinc-400 transition-colors hover:text-white"
+						className="font-mono text-xs tracking-wider text-zinc-200 uppercase transition-colors hover:text-white"
 					>
 						View all
 					</button>
@@ -213,18 +213,18 @@ function HorizontalScrollRail({
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
 							aria-label="Scroll left"
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-40"
+							className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
-							<i className="ri-arrow-left-s-line text-sm" />
+							<i className="ri-arrow-left-s-line text-base" />
 						</button>
 						<button
 							type="button"
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
 							aria-label="Scroll right"
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/80 text-zinc-300 transition-colors hover:border-zinc-600 hover:bg-zinc-700/80 hover:text-white disabled:pointer-events-none disabled:opacity-40"
+							className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
-							<i className="ri-arrow-right-s-line text-sm" />
+							<i className="ri-arrow-right-s-line text-base" />
 						</button>
 					</div>
 				</div>
