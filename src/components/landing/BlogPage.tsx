@@ -63,13 +63,13 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
-						<span className="inline-flex items-center border border-white px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-white uppercase">
+						<span className="inline-flex items-center rounded-md border border-white px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-white uppercase">
 							Release
 						</span>
 					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
-							className="inline-flex items-center border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
+							className="inline-flex items-center rounded-md border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
@@ -341,13 +341,13 @@ function PostCard({ post }: { post: BlogPost }) {
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="inline-flex items-center border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
+								className="inline-flex items-center rounded-md border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
 						))}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase">
+							<span className="inline-flex items-center rounded-md border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase">
 								+{post.tags.length - 2}
 							</span>
 						)}
@@ -632,7 +632,7 @@ export function BlogPage() {
 										{catOpen && (
 											<ul
 												role="listbox"
-												className="absolute right-0 z-20 mt-2 w-64 border border-zinc-700 bg-zinc-950 py-2 shadow-lg shadow-black/40"
+												className="absolute right-0 z-20 mt-2 w-64 rounded-md border border-zinc-700 bg-zinc-950 py-2 shadow-lg shadow-black/40"
 											>
 												{[...BLOG_TAGS]
 													.sort((a, b) => {
@@ -799,7 +799,7 @@ export function BlogPage() {
 													onClick={() => {
 														handleTagChange(tag as BlogTag);
 													}}
-													className="inline-flex items-center border border-zinc-800 px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase transition-colors hover:border-zinc-500 hover:text-white"
+													className="inline-flex items-center rounded-md border border-zinc-800 px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase transition-colors hover:border-zinc-500 hover:text-white"
 												>
 													{tag}
 												</button>
