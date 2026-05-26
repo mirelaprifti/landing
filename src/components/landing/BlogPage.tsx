@@ -362,7 +362,14 @@ function PostCard({ post }: { post: BlogPost }) {
 }
 
 export function BlogPage() {
-	const [activeTag, setActiveTag] = useState<BlogTag>("All");
+	const [activeTag, setActiveTag] = useState<BlogTag>(() => {
+		if (typeof window === "undefined") return "All";
+		const param = new URLSearchParams(window.location.search).get("category");
+		if (param && (BLOG_TAGS as readonly string[]).includes(param)) {
+			return param as BlogTag;
+		}
+		return "All";
+	});
 	const [currentPage, setCurrentPage] = useState(1);
 	const [sortBy, setSortBy] = useState<"newest" | "oldest">("newest");
 	const [catOpen, setCatOpen] = useState(false);
@@ -478,19 +485,47 @@ export function BlogPage() {
 		return counts;
 	}, [nonTwiePosts, twiePosts]);
 
+	const syncUrl = useCallback((tag: BlogTag) => {
+		if (typeof window === "undefined") return;
+		const url = new URL(window.location.href);
+		if (tag === "All") url.searchParams.delete("category");
+		else url.searchParams.set("category", tag);
+		window.history.pushState({ category: tag }, "", url);
+	}, []);
+
 	const clearFilters = useCallback(() => {
 		setActiveTag("All");
 		setCurrentPage(1);
-	}, []);
+		syncUrl("All");
+	}, [syncUrl]);
 
 	const handleTagChange = useCallback((tag: BlogTag) => {
 		setActiveTag(tag);
 		setCurrentPage(1);
+		syncUrl(tag);
+		// Only scroll up when the post list has scrolled out of view (tab-like behavior)
 		if (postListRef.current) {
-			const navbarHeight = 64; // h-16
-			const top = postListRef.current.getBoundingClientRect().top + window.scrollY - navbarHeight;
-			window.scrollTo({ top, behavior: "smooth" });
+			const navbarHeight = 64;
+			const { top } = postListRef.current.getBoundingClientRect();
+			if (top < navbarHeight) {
+				const targetTop = top + window.scrollY - navbarHeight;
+				window.scrollTo({ top: targetTop, behavior: "smooth" });
+			}
 		}
+	}, [syncUrl]);
+
+	useEffect(() => {
+		const handlePopState = () => {
+			const param = new URLSearchParams(window.location.search).get("category");
+			if (param && (BLOG_TAGS as readonly string[]).includes(param)) {
+				setActiveTag(param as BlogTag);
+			} else {
+				setActiveTag("All");
+			}
+			setCurrentPage(1);
+		};
+		window.addEventListener("popstate", handlePopState);
+		return () => window.removeEventListener("popstate", handlePopState);
 	}, []);
 
 	return (
