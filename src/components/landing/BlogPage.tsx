@@ -84,30 +84,6 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.excerpt}
 					</p>
 
-					{/* Authors + meta */}
-					<div className="mt-4 flex flex-wrap items-center gap-4">
-						{post.authors.map((author) => (
-							<div
-								key={author.name}
-								className="flex items-center gap-2"
-							>
-								<AvatarWithFallback
-									src={getAssetPath(author.avatar)}
-									alt={author.name}
-									className="h-8 w-8 rounded-full border-2 border-zinc-800 object-cover"
-								/>
-								<div className="flex flex-col">
-									<span className="font-mono text-sm font-medium text-zinc-200">
-										{author.name}
-									</span>
-								</div>
-							</div>
-						))}
-						<div className="flex items-center gap-3 font-mono text-sm text-zinc-400">
-							<span className="h-4 w-px bg-zinc-800" />
-							<time>{post.date}</time>
-						</div>
-					</div>
 				</div>
 
 				{/* Right side: cover image or CTA arrow */}
