@@ -59,7 +59,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			className="group relative block overflow-hidden rounded-lg border border-[#2D3138] bg-[#191C21] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-emerald-500/[0.08]"
 		>
-			<div className="relative grid grid-cols-1 gap-6 p-5 md:grid-cols-12 md:items-center md:gap-10 md:p-6">
+			<div className="relative grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:items-center md:gap-10 md:p-5">
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
@@ -80,12 +80,12 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.title}
 					</h2>
 
-					<p className="mt-3 line-clamp-3 max-w-xl text-base text-zinc-300">
+					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-300">
 						{post.excerpt}
 					</p>
 
 					{/* Authors + meta */}
-					<div className="mt-5 flex flex-wrap items-center gap-4">
+					<div className="mt-4 flex flex-wrap items-center gap-4">
 						{post.authors.map((author) => (
 							<div
 								key={author.name}
@@ -584,7 +584,7 @@ export function BlogPage() {
 
 						{/* Featured post — first thing after heading */}
 						{featuredPost && (
-							<div className="border-t border-zinc-800 py-8 md:py-10">
+							<div className="border-t border-zinc-800 py-5 md:py-6">
 								<FeaturedPost post={featuredPost} />
 							</div>
 						)}
