@@ -440,8 +440,6 @@ export function BlogPage() {
 
 	const hasActiveFilters = activeTag !== "All";
 
-	// Show TWIE rail unless user is already viewing TWIE posts in the main grid
-	const showTWIERail = activeTag !== "This Week In Effect";
 
 	// Separate featured post from the rest (search all posts — featured may be a Release)
 	const featuredPost = useMemo(() => {
@@ -635,12 +633,8 @@ export function BlogPage() {
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 
 					{/* TWIE horizontal scroll rail */}
-					{showTWIERail && (
-						<>
-							<TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />
-							<div className="h-px w-full bg-zinc-800" />
-						</>
-					)}
+					<TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />
+					<div className="h-px w-full bg-zinc-800" />
 
 					{/* Single-column layout */}
 					<div>
