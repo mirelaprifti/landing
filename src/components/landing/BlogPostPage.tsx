@@ -293,33 +293,32 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 			<main id="main-content" className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<nav className="flex items-center gap-2 pt-10 pb-6 text-sm md:pt-14">
-						<Link
+					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-10 pb-6 font-mono text-xs tracking-wider uppercase md:pt-14">
+						<a
 							href={getAssetPath("/blog")}
-							variant="subtle"
-							className="group inline-flex items-center gap-1"
+							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 						>
-							<i className="ri-arrow-left-s-line text-base" />
-							Back to blog
-						</Link>
+							Blog
+						</a>
+						<span className="text-zinc-400 dark:text-zinc-600" aria-hidden="true">/</span>
+						<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+							{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
+								<a
+									key={tag}
+									href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
+									className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+								>
+									{tag}
+								</a>
+							))}
+						</div>
 					</nav>
 					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 					<div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_240px]">
 						{/* Article */}
 						<article className="min-w-0 pb-20 md:pr-12">
-							{/* Tags + Title block */}
+							{/* Title block */}
 							<div className="pt-8 pb-10 md:pb-12">
-								{/* Tags */}
-								<div className="mb-5 flex flex-wrap gap-2">
-									{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
-										<span
-											key={tag}
-											className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-700 uppercase dark:border-zinc-600 dark:text-zinc-200"
-										>
-											{tag}
-										</span>
-									))}
-								</div>
 
 								{/* Title */}
 								<h1 className="max-w-3xl text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
