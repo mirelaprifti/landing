@@ -62,14 +62,14 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 			<div className="relative grid grid-cols-1 gap-6 p-5 md:grid-cols-12 md:items-center md:gap-10 md:p-6">
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
-					<div className="mb-3 flex flex-wrap items-center gap-3">
-						<span className="font-mono text-[10px] font-semibold tracking-[0.18em] text-white uppercase">
+					<div className="mb-3 flex flex-wrap items-center gap-2">
+						<span className="inline-flex items-center border border-white px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-white uppercase">
 							Release
 						</span>
 					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
-							className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase"
+							className="inline-flex items-center border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase"
 							>
 								{tag}
 							</span>
@@ -323,25 +323,25 @@ function PostCard({ post }: { post: BlogPost }) {
 		>
 			<div className="flex items-baseline justify-between gap-4">
 				<div className="min-w-0 flex-1">
-					{/* Title + tags */}
-					<div className="flex flex-wrap items-center gap-3">
-						<h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white">
-							{post.title}
-						</h3>
+					{/* Tags above title */}
+					<div className="mb-2 flex flex-wrap items-center gap-2">
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase"
+								className="inline-flex items-center border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase"
 							>
 								{tag}
 							</span>
 						))}
 						{post.tags.length > 2 && (
-							<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-600 uppercase">
+							<span className="inline-flex items-center border border-zinc-800 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase">
 								+{post.tags.length - 2}
 							</span>
 						)}
 					</div>
+					<h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white">
+						{post.title}
+					</h3>
 
 					{/* Excerpt */}
 					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400">
