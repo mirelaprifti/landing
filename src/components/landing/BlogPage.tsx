@@ -860,14 +860,6 @@ export function BlogPage() {
 															: "text-zinc-500 hover:text-zinc-200"
 													}`}
 												>
-													<span
-														aria-hidden="true"
-														className={`font-mono text-xs tabular-nums transition-colors duration-200 ${
-															isActive ? "text-white" : "text-zinc-700 group-hover:text-zinc-500"
-														}`}
-													>
-														{String(tagCounts[tag] ?? 0).padStart(3, "0")}
-													</span>
 													<span className="relative flex-1">
 														<span className={isActive ? "font-medium" : ""}>{tag}</span>
 														<span
@@ -875,6 +867,14 @@ export function BlogPage() {
 																isActive ? "w-full" : "w-0 group-hover:w-3"
 															}`}
 														/>
+													</span>
+													<span
+														aria-hidden="true"
+														className={`font-mono text-xs tabular-nums transition-colors duration-200 ${
+															isActive ? "text-white" : "text-zinc-700 group-hover:text-zinc-500"
+														}`}
+													>
+														{String(tagCounts[tag] ?? 0).padStart(3, "0")}
 													</span>
 												</button>
 											</li>
