@@ -569,7 +569,7 @@ Effect.runPromise(program)`}</code>
 
 					{/* Community CTA — aligned with body/sidebar columns */}
 					<div className="mt-16 h-px w-full bg-zinc-200 dark:bg-zinc-800" />
-					<div className="grid grid-cols-1 items-center gap-8 py-16 md:grid-cols-12 md:gap-x-6 md:py-20">
+					<div className="grid grid-cols-1 items-center gap-6 py-12 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:py-20">
 						{/* Content — cols 1-8 to match body */}
 						<div className="md:col-span-8">
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
@@ -585,7 +585,7 @@ Effect.runPromise(program)`}</code>
 
 						{/* CTA — col-start-9 col-span-4 */}
 						<div className="md:col-start-9 md:col-span-4">
-							<div className="relative flex flex-col items-center gap-3 px-6 py-6">
+							<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
 								{/* Corner brackets */}
 								<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
 								<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
