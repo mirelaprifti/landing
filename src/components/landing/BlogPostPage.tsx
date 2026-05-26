@@ -351,7 +351,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								{post.excerpt}
 							</p>
 							{/* Mobile-only byline (sidebar version shows on md+) */}
-							<div className="mt-8 flex flex-wrap items-center justify-between gap-4 md:hidden">
+							<div className="mt-8 flex flex-wrap items-center gap-4 md:hidden">
 								{post.authors.map((author) => (
 									<Link
 										key={author.name}
@@ -374,9 +374,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										</span>
 									</Link>
 								))}
-								<time className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-500">
-									{post.date}
-								</time>
 							</div>
 						</div>
 
