@@ -353,7 +353,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							<p className="mt-4 text-base leading-relaxed text-zinc-700 md:text-lg dark:text-zinc-300">
 								{post.excerpt}
 							</p>
-							<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
+							{/* Mobile-only byline (sidebar version shows on md+) */}
+							<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 md:hidden dark:text-zinc-400">
 								{post.authors.map((author) => (
 									<Link
 										key={author.name}
@@ -374,8 +375,32 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 						</div>
 
-						{/* TOC — col 10-12, aligned with article body (row 3) */}
+						{/* Sidebar — Author meta + TOC, aligned with article body (row 3) */}
 						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-10 md:pl-4">
+							{/* Byline */}
+							<div className="mb-8">
+								<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+									Written by
+								</p>
+								{post.authors.map((author) => (
+									<Link
+										key={author.name}
+										href={author.url}
+										variant="inline"
+										className="flex items-center gap-2 font-medium no-underline hover:underline"
+									>
+										<img
+											src={getAssetPath(author.avatar)}
+											alt={author.name}
+											className="h-7 w-7 rounded-full object-cover"
+										/>
+										<span className="text-sm text-zinc-800 dark:text-zinc-200">{author.name}</span>
+									</Link>
+								))}
+								<time className="mt-2 block font-mono text-xs tracking-wider text-zinc-500 uppercase tabular-nums dark:text-zinc-500">
+									{post.date}
+								</time>
+							</div>
 							<TableOfContents postTitle={post.title} />
 						</aside>
 
