@@ -325,6 +325,10 @@ function PostCard({ post }: { post: BlogPost }) {
 				<div className="col-span-12 min-w-0 md:col-span-8">
 					<h3 className="relative inline-block text-lg font-semibold text-white">
 						<span>{post.title}</span>
+						<i
+							aria-hidden="true"
+							className="ri-arrow-right-line ml-2 align-middle text-base text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+						/>
 						<span className="absolute right-0 -bottom-0.5 left-0 h-px origin-left scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
 					</h3>
 					{/* Excerpt */}
@@ -351,10 +355,6 @@ function PostCard({ post }: { post: BlogPost }) {
 					<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
 						{post.date}
 					</time>
-					<i
-						aria-hidden="true"
-						className="ri-arrow-right-line text-base text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 md:self-end"
-					/>
 				</div>
 			</div>
 		</a>
