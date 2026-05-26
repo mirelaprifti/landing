@@ -373,7 +373,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						</div>
 
 						{/* Sidebar — Author meta + TOC, aligned with article body (row 3) */}
-						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-10 md:pl-4">
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-10">
 							{/* Byline */}
 							<div className="mb-8">
 								{post.authors.map((author) => (
