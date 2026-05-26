@@ -567,7 +567,13 @@ Effect.runPromise(program)`}</code>
 
 						{/* CTA — col-start-10 col-span-3 to match sidebar */}
 						<div className="md:col-start-10 md:col-span-3">
-							<div className="relative flex flex-col items-start gap-3">
+							<div className="relative flex flex-col items-center gap-3 px-6 py-6">
+								{/* Corner brackets */}
+								<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
+								<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
+								<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
+								<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
+
 								<a
 									href="https://discord.gg/effect-ts"
 									target="_blank"
