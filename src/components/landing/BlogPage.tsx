@@ -837,10 +837,10 @@ export function BlogPage() {
 						{/* Sidebar — Categories */}
 						<aside className="hidden pt-12 pb-24 lg:block">
 							<div className="sticky" style={{ top: "calc(var(--nav-height, 64px) + 1.5rem)" }}>
-								<p className="mb-3 px-3 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
+								<p className="mb-4 px-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
 									Categories
 								</p>
-								<ul className="space-y-0.5">
+								<ul>
 									{[...BLOG_TAGS]
 										.sort((a, b) => {
 											if (a === "All") return -1;
@@ -849,32 +849,19 @@ export function BlogPage() {
 										})
 										.map((tag) => {
 										const isActive = activeTag === tag;
-										const color = tag === "All" ? "#71717a" : getTagColor(tag);
 										return (
 											<li key={tag}>
 												<button
 													type="button"
 													onClick={() => handleTagChange(tag)}
-													className={`relative flex w-full cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-all duration-150 ${
+													className={`relative flex w-full cursor-pointer items-center justify-between border-l px-3 py-2 text-left text-sm transition-colors duration-150 ${
 														isActive
-															? "bg-zinc-800/80 font-medium text-white"
-															: "text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-200"
+															? "border-white font-medium text-white"
+															: "border-transparent text-zinc-500 hover:border-zinc-700 hover:text-zinc-200"
 													}`}
 												>
-													{isActive && (
-														<div
-															className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full"
-															style={{ backgroundColor: color }}
-														/>
-													)}
-													{tag !== "All" && (
-														<span
-															className="h-2 w-2 shrink-0 rounded-full"
-															style={{ backgroundColor: color }}
-														/>
-													)}
-													<span className="flex-1">{tag}</span>
-													<span className="text-xs text-zinc-400 tabular-nums">
+													<span>{tag}</span>
+													<span className={`text-xs tabular-nums ${isActive ? "text-zinc-400" : "text-zinc-600"}`}>
 														{tagCounts[tag]}
 													</span>
 												</button>
