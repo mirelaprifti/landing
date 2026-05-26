@@ -321,8 +321,8 @@ function PostCard({ post }: { post: BlogPost }) {
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			className="group block border-t border-zinc-700/80 px-4 py-6 transition-colors first:border-t-0 hover:bg-zinc-800/60"
 		>
-			<div className="flex items-baseline justify-between gap-4">
-				<div className="min-w-0 flex-1">
+			<div className="grid grid-cols-12 items-baseline gap-4">
+				<div className="col-span-12 min-w-0 sm:col-span-11 md:col-span-7">
 					{/* Tags above title */}
 					<div className="mb-2 flex flex-wrap items-center gap-2">
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
@@ -348,7 +348,7 @@ function PostCard({ post }: { post: BlogPost }) {
 						{post.excerpt}
 					</p>
 				</div>
-				<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
+				<time className="col-span-12 shrink-0 font-mono text-xs text-zinc-400 tabular-nums sm:col-span-1 md:col-span-5 md:text-right">
 					{post.date}
 				</time>
 			</div>
