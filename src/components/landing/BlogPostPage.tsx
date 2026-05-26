@@ -389,10 +389,10 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										<img
 											src={getAssetPath(author.avatar)}
 											alt={author.name}
-											className="h-10 w-10 rounded-md object-cover"
+											className="h-12 w-12 rounded-md object-cover"
 										/>
 										<span className="flex min-w-0 flex-col">
-											<span className="truncate text-sm font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
+											<span className="truncate text-base font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
 												{author.name}
 											</span>
 											<span className="mt-0.5 truncate font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-400">
