@@ -213,7 +213,7 @@ function HorizontalScrollRail({
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
 							aria-label="Scroll left"
-							className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:text-white disabled:pointer-events-none disabled:opacity-30"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
 							<i className="ri-arrow-left-s-line text-base" />
 						</button>
@@ -222,7 +222,7 @@ function HorizontalScrollRail({
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
 							aria-label="Scroll right"
-							className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:text-white disabled:pointer-events-none disabled:opacity-30"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
 							<i className="ri-arrow-right-s-line text-base" />
 						</button>
