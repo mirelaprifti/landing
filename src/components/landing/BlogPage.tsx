@@ -69,7 +69,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
-							className="inline-flex items-center border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase"
+							className="inline-flex items-center border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
@@ -328,13 +328,13 @@ function PostCard({ post }: { post: BlogPost }) {
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="inline-flex items-center border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase"
+								className="inline-flex items-center border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
 						))}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center border border-zinc-800 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase">
+							<span className="inline-flex items-center border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase">
 								+{post.tags.length - 2}
 							</span>
 						)}
