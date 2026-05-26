@@ -379,8 +379,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							<TableOfContents postTitle={post.title} />
 						</aside>
 
-						{/* Full-width divider — col 1-12, row 2 */}
-						<div className="md:col-span-12 md:row-start-2 h-px bg-zinc-200 dark:bg-zinc-800" />
+						{/* Divider — spans body column only */}
+						<div className="md:col-span-8 md:row-start-2 h-px bg-zinc-200 dark:bg-zinc-800" />
 
 						{/* Article body — col 1-8, row 3 */}
 						<article className="min-w-0 pb-20 md:col-span-8 md:row-start-3">
