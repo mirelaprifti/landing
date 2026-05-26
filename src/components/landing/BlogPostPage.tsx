@@ -351,24 +351,32 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								{post.excerpt}
 							</p>
 							{/* Mobile-only byline (sidebar version shows on md+) */}
-							<div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-600 md:hidden dark:text-zinc-400">
+							<div className="mt-8 flex flex-wrap items-center justify-between gap-4 md:hidden">
 								{post.authors.map((author) => (
 									<Link
 										key={author.name}
 										href={author.url}
 										variant="inline"
-										className="flex items-center gap-2 font-medium no-underline hover:underline"
+										className="group/byline flex items-center gap-3 no-underline"
 									>
 										<img
 											src={getAssetPath(author.avatar)}
 											alt={author.name}
-											className="h-6 w-6 rounded-full object-cover"
+											className="h-10 w-10 rounded-md object-cover"
 										/>
-										<span>{author.name}</span>
+										<span className="flex min-w-0 flex-col">
+											<span className="truncate text-sm font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
+												{author.name}
+											</span>
+											<span className="mt-0.5 truncate text-sm text-zinc-500 dark:text-zinc-400">
+												{author.title}
+											</span>
+										</span>
 									</Link>
 								))}
-								<span className="text-zinc-300 dark:text-zinc-700">&middot;</span>
-								<time>{post.date}</time>
+								<time className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-500">
+									{post.date}
+								</time>
 							</div>
 						</div>
 
@@ -541,6 +549,19 @@ Effect.runPromise(program)`}</code>
 										Discord
 									</a>{" "}
 									to share your experience.
+								</p>
+							</div>
+
+							{/* Mobile-only Share + Last updated */}
+							<div className="mt-12 flex flex-col gap-6 border-t border-zinc-200 pt-8 md:hidden dark:border-zinc-800">
+								<ShareButtons title={post.title} />
+								<p className="flex flex-col gap-0.5">
+									<span className="font-mono text-[10px] tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+										Last updated
+									</span>
+									<time className="font-mono text-xs text-zinc-700 tabular-nums dark:text-zinc-300">
+										{post.date}
+									</time>
 								</p>
 							</div>
 
