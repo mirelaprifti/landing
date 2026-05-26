@@ -555,7 +555,7 @@ Effect.runPromise(program)`}</code>
 						{/* Content — cols 1-8 to match body */}
 						<div className="md:col-span-8">
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-								// Community
+								// Effect Community
 							</p>
 							<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
 								Join the conversation on Discord
