@@ -360,28 +360,8 @@ export function BlogPage() {
 	const [activeTag, setActiveTag] = useState<BlogTag>("All");
 	const [currentPage, setCurrentPage] = useState(1);
 	const [sortBy, setSortBy] = useState<"newest" | "oldest">("newest");
-	const [sortOpen, setSortOpen] = useState(false);
 	const postListRef = useRef<HTMLDivElement>(null);
 	const contentZoneRef = useRef<HTMLDivElement>(null);
-	const sortRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!sortOpen) return;
-		const handleClick = (e: MouseEvent) => {
-			if (!sortRef.current?.contains(e.target as Node)) {
-				setSortOpen(false);
-			}
-		};
-		const handleKey = (e: KeyboardEvent) => {
-			if (e.key === "Escape") setSortOpen(false);
-		};
-		window.addEventListener("mousedown", handleClick);
-		window.addEventListener("keydown", handleKey);
-		return () => {
-			window.removeEventListener("mousedown", handleClick);
-			window.removeEventListener("keydown", handleKey);
-		};
-	}, [sortOpen]);
 
 	const goToPage = useCallback((page: number | ((prev: number) => number)) => {
 		setCurrentPage(page);
@@ -623,61 +603,17 @@ export function BlogPage() {
 								<h2 className="text-2xl font-semibold tracking-tight text-white">
 									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
-								<div ref={sortRef} className="relative">
-									<button
-										type="button"
-										onClick={() => setSortOpen((o) => !o)}
-										aria-haspopup="listbox"
-										aria-expanded={sortOpen}
-										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-400 uppercase transition-colors hover:text-white"
-									>
-										<span className="text-zinc-500 group-hover:text-zinc-400">Sort:</span>
-										<span className="text-zinc-200 group-hover:text-white">
-											{sortBy === "newest" ? "Newest" : "Oldest"}
-										</span>
-										<i
-											className={`ri-arrow-down-s-line text-sm text-zinc-500 transition-transform group-hover:text-zinc-300 ${sortOpen ? "rotate-180" : ""}`}
-										/>
-									</button>
-									{sortOpen && (
-										<ul
-											role="listbox"
-											className="absolute right-0 z-20 mt-2 w-36 overflow-hidden border border-zinc-700 bg-zinc-950 shadow-lg shadow-black/40"
-										>
-											{(
-												[
-													["newest", "Newest"],
-													["oldest", "Oldest"],
-												] as const
-											).map(([value, label]) => {
-												const isActive = sortBy === value;
-												return (
-													<li key={value}>
-														<button
-															type="button"
-															role="option"
-															aria-selected={isActive}
-															onClick={() => {
-																setSortBy(value);
-																setSortOpen(false);
-															}}
-															className={`flex w-full items-center justify-between px-3 py-2 text-left font-mono text-xs tracking-wider uppercase transition-colors ${
-																isActive
-																	? "text-white"
-																	: "text-zinc-400 hover:text-white"
-															}`}
-														>
-															<span>{label}</span>
-															{isActive && (
-																<i className="ri-check-line text-sm text-white" />
-															)}
-														</button>
-													</li>
-												);
-											})}
-										</ul>
-									)}
-								</div>
+								<button
+									type="button"
+									onClick={() => setSortBy((s) => (s === "newest" ? "oldest" : "newest"))}
+									aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
+									className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
+								>
+									<span className="text-zinc-200 group-hover:text-white">
+										{sortBy === "newest" ? "Newest" : "Oldest"}
+									</span>
+									<i className="ri-arrow-up-down-line text-sm text-zinc-500 group-hover:text-zinc-300" />
+								</button>
 							</div>
 
 							{/* Mobile filters */}
