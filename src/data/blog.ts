@@ -78,7 +78,7 @@ export const AUTHORS: Record<string, BlogAuthor> = {
 	},
 	maxwell: {
 		name: "Maxwell Brown",
-		title: "Effect Core contributor",
+		title: "Effect Core Contributor",
 		avatar: "/authors/maxwell_brown.png",
 		url: "https://github.com/IMax153",
 	},
