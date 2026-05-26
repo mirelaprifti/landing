@@ -1,3 +1,4 @@
+import { AgentCommand } from "./AgentCommand";
 import { InstallCommand } from "./InstallCommand";
 
 export function HeroSection() {
@@ -74,9 +75,20 @@ export function HeroSection() {
 						Build production-grade systems with the structure, safety, and observability developers need — and AI agents can work with.
 					</p>
 
-					{/* Install command */}
-					<div className="mt-6 md:mx-auto max-w-[34.75rem]">
-						<InstallCommand />
+					{/* Dual CTA — humans + agents */}
+					<div className="mt-8 grid gap-4 md:mx-auto md:max-w-4xl md:grid-cols-2 md:gap-6">
+						<div className="text-left">
+							<p className="mb-2 font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+								For developers
+							</p>
+							<InstallCommand />
+						</div>
+						<div className="text-left">
+							<p className="mb-2 font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+								For AI agents
+							</p>
+							<AgentCommand />
+						</div>
 					</div>
 				</div>
 			</div>
