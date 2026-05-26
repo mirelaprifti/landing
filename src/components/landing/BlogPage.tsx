@@ -629,24 +629,25 @@ export function BlogPage() {
 										onClick={() => setSortOpen((o) => !o)}
 										aria-haspopup="listbox"
 										aria-expanded={sortOpen}
-										className="inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-transparent py-1.5 pr-2 pl-3 text-sm text-zinc-300 transition-colors hover:border-zinc-700 hover:text-white"
+										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-400 uppercase transition-colors hover:text-white"
 									>
-										<span>
-											{sortBy === "newest" ? "Newest first" : "Oldest first"}
+										<span className="text-zinc-500 group-hover:text-zinc-400">Sort:</span>
+										<span className="text-zinc-200 group-hover:text-white">
+											{sortBy === "newest" ? "Newest" : "Oldest"}
 										</span>
 										<i
-											className={`ri-arrow-down-s-line text-sm text-zinc-400 transition-transform ${sortOpen ? "rotate-180" : ""}`}
+											className={`ri-arrow-down-s-line text-sm text-zinc-500 transition-transform group-hover:text-zinc-300 ${sortOpen ? "rotate-180" : ""}`}
 										/>
 									</button>
 									{sortOpen && (
 										<ul
 											role="listbox"
-											className="absolute right-0 z-20 mt-1 w-40 overflow-hidden rounded-md border border-[#272B31] bg-[#191C21] shadow-lg shadow-black/40"
+											className="absolute right-0 z-20 mt-2 w-36 overflow-hidden border border-zinc-700 bg-zinc-950 shadow-lg shadow-black/40"
 										>
 											{(
 												[
-													["newest", "Newest first"],
-													["oldest", "Oldest first"],
+													["newest", "Newest"],
+													["oldest", "Oldest"],
 												] as const
 											).map(([value, label]) => {
 												const isActive = sortBy === value;
@@ -660,15 +661,15 @@ export function BlogPage() {
 																setSortBy(value);
 																setSortOpen(false);
 															}}
-															className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors ${
+															className={`flex w-full items-center justify-between px-3 py-2 text-left font-mono text-xs tracking-wider uppercase transition-colors ${
 																isActive
-																	? "bg-zinc-800/60 text-white"
-																	: "text-zinc-300 hover:bg-zinc-900/60 hover:text-white"
+																	? "text-white"
+																	: "text-zinc-400 hover:text-white"
 															}`}
 														>
 															<span>{label}</span>
 															{isActive && (
-																<i className="ri-check-line text-sm text-zinc-400" />
+																<i className="ri-check-line text-sm text-white" />
 															)}
 														</button>
 													</li>
