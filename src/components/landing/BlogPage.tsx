@@ -681,7 +681,6 @@ export function BlogPage() {
 										aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
 										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 									>
-										<span className="text-zinc-500 group-hover:text-zinc-400">Sort:</span>
 										<span className="text-zinc-200 group-hover:text-white">
 											{sortBy === "newest" ? "Newest" : "Oldest"}
 										</span>
