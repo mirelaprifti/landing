@@ -387,14 +387,21 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										key={author.name}
 										href={author.url}
 										variant="inline"
-										className="flex items-center gap-2 font-medium no-underline hover:underline"
+										className="group/byline flex items-center gap-3 no-underline"
 									>
 										<img
 											src={getAssetPath(author.avatar)}
 											alt={author.name}
 											className="h-10 w-10 rounded-md object-cover"
 										/>
-										<span className="text-sm text-zinc-800 dark:text-zinc-200">{author.name}</span>
+										<span className="flex min-w-0 flex-col">
+											<span className="truncate text-sm font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
+												{author.name}
+											</span>
+											<span className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+												{author.title}
+											</span>
+										</span>
 									</Link>
 								))}
 								<time className="mt-2 block font-mono text-xs tracking-wider text-zinc-500 uppercase tabular-nums dark:text-zinc-500">
