@@ -401,9 +401,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 										</span>
 									</Link>
 								))}
-								<time className="mt-2 block font-mono text-xs tracking-wider text-zinc-500 uppercase tabular-nums dark:text-zinc-500">
-									{post.date}
-								</time>
 							</div>
 							<TableOfContents postTitle={post.title} />
 						</aside>
