@@ -569,7 +569,7 @@ export function BlogPage() {
 						<div className="flex items-start justify-between gap-6 pt-16 pb-8 md:pt-24 md:pb-12">
 							<div>
 								<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Blog
+									// Effect Blog
 								</p>
 								<h1
 									className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
