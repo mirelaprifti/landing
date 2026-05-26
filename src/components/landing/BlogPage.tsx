@@ -839,14 +839,14 @@ export function BlogPage() {
 													className={`group relative flex w-full cursor-pointer items-baseline gap-3 px-3 py-2 text-left text-sm transition-colors duration-200 ${
 														isActive
 															? "text-white"
-															: "text-zinc-500 hover:text-zinc-200"
+															: "text-zinc-300 hover:text-white"
 													}`}
 												>
 													<span className={isActive ? "flex-1 font-medium" : "flex-1"}>{tag}</span>
 													<span
 														aria-hidden="true"
 														className={`font-mono text-xs tabular-nums transition-colors duration-200 ${
-															isActive ? "text-white" : "text-zinc-700 group-hover:text-zinc-500"
+															isActive ? "text-white" : "text-zinc-500 group-hover:text-zinc-300"
 														}`}
 													>
 														{String(tagCounts[tag] ?? 0).padStart(3, "0")}
