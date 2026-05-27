@@ -76,7 +76,7 @@ export function HeroSection() {
 					</p>
 
 					{/* Dual CTA — humans + agents */}
-					<div className="mt-8 grid gap-4 md:mx-auto md:max-w-4xl md:grid-cols-2 md:gap-6">
+					<div className="mt-8 grid gap-4 md:mx-auto md:max-w-4xl md:grid-cols-2">
 						<InstallCommand />
 						<AgentCommand />
 					</div>
