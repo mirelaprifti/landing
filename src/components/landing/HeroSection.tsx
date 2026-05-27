@@ -65,7 +65,7 @@ export function HeroSection() {
 					</a>
 					{/* Headline */}
 					<h1 className="text-4xl font-bold text-white md:text-[3.4rem] leading-tighter">
-						Reliable TypeScript for the AI era
+						Production-ready TypeScript for the AI era
 					</h1>
 
 					{/* Subheadline */}
