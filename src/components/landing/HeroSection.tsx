@@ -64,7 +64,7 @@ export function HeroSection() {
 						<i className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
 					</a>
 					{/* Headline */}
-					<h1 className="text-4xl font-bold text-white leading-tighter">
+					<h1 className="text-4xl font-bold text-white md:text-[3.4rem] leading-tighter">
 						Reliable TypeScript for the AI era
 					</h1>
 
