@@ -77,18 +77,8 @@ export function HeroSection() {
 
 					{/* Dual CTA — humans + agents */}
 					<div className="mt-8 grid gap-4 md:mx-auto md:max-w-4xl md:grid-cols-2 md:gap-6">
-						<div className="text-left">
-							<p className="mb-2 font-mono text-[10px] tracking-wider text-zinc-300 uppercase">
-								For developers
-							</p>
-							<InstallCommand />
-						</div>
-						<div className="text-left">
-							<p className="mb-2 font-mono text-[10px] tracking-wider text-zinc-300 uppercase">
-								For AI agents
-							</p>
-							<AgentCommand />
-						</div>
+						<InstallCommand />
+						<AgentCommand />
 					</div>
 				</div>
 			</div>
