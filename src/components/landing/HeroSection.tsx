@@ -70,7 +70,7 @@ export function HeroSection() {
 
 					{/* Subheadline */}
 					<p className="mt-6 md:mx-auto text-lg text-zinc-400 max-w-3xl leading-snug">
-						Build production-grade systems with the structure, safety, and observability developers need — and AI agents can work with.
+						Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
 					</p>
 
 					{/* Dual CTA — humans + agents */}
