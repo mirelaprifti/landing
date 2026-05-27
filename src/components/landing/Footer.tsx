@@ -206,7 +206,7 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 										active={activePath?.startsWith("/merch")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Effect merch
+										Effect merch 🧢
 									</Link>
 								</li>
 							</ul>
