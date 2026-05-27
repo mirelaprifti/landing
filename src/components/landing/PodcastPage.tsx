@@ -196,7 +196,7 @@ export function PodcastPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero Section */}
-				<section className="relative w-full overflow-hidden bg-zinc-950 pt-16 pb-12 md:pt-24 md:pb-24">
+				<section className="relative w-full overflow-hidden bg-zinc-950 pt-20 pb-10 md:pt-32 md:pb-16">
 					{/* Grid background */}
 					<div
 						className="pointer-events-none absolute inset-0"
