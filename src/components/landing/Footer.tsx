@@ -57,6 +57,16 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 										<i className="ri-arrow-right-up-line text-sm" />
 									</Link>
 								</li>
+								<li>
+									<Link
+										href="https://www.effect.solutions/"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										LLM Guide
+										<i className="ri-arrow-right-up-line text-sm" />
+									</Link>
+								</li>
 							</ul>
 						</div>
 
@@ -95,16 +105,6 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										VS Code Extension
-										<i className="ri-arrow-right-up-line text-sm" />
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="https://www.effect.solutions/"
-										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Effect Solutions
 										<i className="ri-arrow-right-up-line text-sm" />
 									</Link>
 								</li>
