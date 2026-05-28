@@ -314,9 +314,11 @@ export function MythsPage() {
 							};
 							return (
 								<div className="mt-10 flex flex-col gap-y-4">
-									<ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+									{/* First 3 — each full width, stacked */}
+									<ul className="flex flex-col gap-4">
 										{MYTHS.slice(0, 3).map(renderChip)}
 									</ul>
+									{/* Remaining 4 — single row, evenly split */}
 									<ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 										{MYTHS.slice(3).map((m, i) => renderChip(m, i + 3))}
 									</ul>
