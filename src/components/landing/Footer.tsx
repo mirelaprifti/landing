@@ -192,22 +192,22 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/brand-assets")}
-										variant="footer"
-										active={activePath?.startsWith("/brand-assets")}
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Logo guidelines
-									</Link>
-								</li>
-								<li>
-									<Link
 										href={getAssetPath("/merch")}
 										variant="footer"
 										active={activePath?.startsWith("/merch")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect merch 🧢
+									</Link>
+								</li>
+								<li>
+									<Link
+										href={getAssetPath("/brand-assets")}
+										variant="footer"
+										active={activePath?.startsWith("/brand-assets")}
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Logo guidelines
 									</Link>
 								</li>
 							</ul>
