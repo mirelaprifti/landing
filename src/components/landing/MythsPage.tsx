@@ -340,10 +340,9 @@ export function MythsPage() {
 									{/* Text — 7 cols, with padding toward visual */}
 									<div
 										className={`md:col-span-7 ${
-											isReversed
-												? "md:col-start-6 md:pl-16"
-												: "md:col-start-1 md:pr-16"
+											isReversed ? "md:col-start-6" : "md:col-start-1"
 										}`}
+										style={isReversed ? { paddingLeft: 64 } : { paddingRight: 64 }}
 									>
 										<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 											// Myth {String(idx + 1).padStart(2, "0")}
