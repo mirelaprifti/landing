@@ -182,8 +182,9 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href="https://effect.website/docs/additional-resources/myths/"
+										href={getAssetPath("/myths")}
 										variant="footer"
+										active={activePath?.startsWith("/myths")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Myths about Effect 💀
