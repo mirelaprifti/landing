@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { MythsPage } from "@/components/landing/MythsPage";
+---
+
+<BaseLayout
+  title="Myths about Effect"
+  description="Common misconceptions about Effect — addressed. Performance, bundle size, learning curve, and more."
+>
+  <MythsPage client:load />
+</BaseLayout>
