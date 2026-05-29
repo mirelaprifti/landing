@@ -15,7 +15,11 @@ type Myth = {
 	title: string;
 	body: string[];
 	visual: Visual;
-	lists?: { title: string; items: { name: string; href: string }[] }[];
+	lists?: {
+		title: string;
+		groups?: { label: string; items: { name: string; href: string }[] }[];
+		items?: { name: string; href: string }[];
+	}[];
 };
 
 const MYTHS: Myth[] = [
@@ -95,22 +99,52 @@ const MYTHS: Myth[] = [
 		lists: [
 			{
 				title: "Starter functions",
-				items: [
-					{ name: "Effect.succeed", href: "https://effect.website/docs/getting-started/creating-effects/#succeed" },
-					{ name: "Effect.fail", href: "https://effect.website/docs/getting-started/creating-effects/#fail" },
-					{ name: "Effect.sync", href: "https://effect.website/docs/getting-started/creating-effects/#sync" },
-					{ name: "Effect.tryPromise", href: "https://effect.website/docs/getting-started/creating-effects/#trypromise" },
-					{ name: "Effect.gen", href: "https://effect.website/docs/getting-started/using-generators/" },
-					{ name: "Effect.runPromise", href: "https://effect.website/docs/getting-started/running-effects/#runpromise" },
-					{ name: "Effect.catchTag", href: "https://effect.website/docs/error-management/expected-errors/#catchtag" },
-					{ name: "Effect.catchAll", href: "https://effect.website/docs/error-management/expected-errors/#catchall" },
-					{ name: "Effect.acquireRelease", href: "https://effect.website/docs/resource-management/scope/#acquirerelease" },
-					{ name: "Effect.acquireUseRelease", href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease" },
-					{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
-					{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
-					{ name: "Effect.andThen", href: "https://effect.website/docs/getting-started/building-pipelines/#andthen" },
-					{ name: "Effect.map", href: "https://effect.website/docs/getting-started/building-pipelines/#map" },
-					{ name: "Effect.tap", href: "https://effect.website/docs/getting-started/building-pipelines/#tap" },
+				groups: [
+					{
+						label: "Create",
+						items: [
+							{ name: "Effect.succeed", href: "https://effect.website/docs/getting-started/creating-effects/#succeed" },
+							{ name: "Effect.fail", href: "https://effect.website/docs/getting-started/creating-effects/#fail" },
+							{ name: "Effect.sync", href: "https://effect.website/docs/getting-started/creating-effects/#sync" },
+							{ name: "Effect.tryPromise", href: "https://effect.website/docs/getting-started/creating-effects/#trypromise" },
+						],
+					},
+					{
+						label: "Compose",
+						items: [
+							{ name: "Effect.andThen", href: "https://effect.website/docs/getting-started/building-pipelines/#andthen" },
+							{ name: "Effect.map", href: "https://effect.website/docs/getting-started/building-pipelines/#map" },
+							{ name: "Effect.tap", href: "https://effect.website/docs/getting-started/building-pipelines/#tap" },
+						],
+					},
+					{
+						label: "Run",
+						items: [
+							{ name: "Effect.gen", href: "https://effect.website/docs/getting-started/using-generators/" },
+							{ name: "Effect.runPromise", href: "https://effect.website/docs/getting-started/running-effects/#runpromise" },
+						],
+					},
+					{
+						label: "Handle errors",
+						items: [
+							{ name: "Effect.catchTag", href: "https://effect.website/docs/error-management/expected-errors/#catchtag" },
+							{ name: "Effect.catchAll", href: "https://effect.website/docs/error-management/expected-errors/#catchall" },
+						],
+					},
+					{
+						label: "Manage resources",
+						items: [
+							{ name: "Effect.acquireRelease", href: "https://effect.website/docs/resource-management/scope/#acquirerelease" },
+							{ name: "Effect.acquireUseRelease", href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease" },
+						],
+					},
+					{
+						label: "Provide dependencies",
+						items: [
+							{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
+							{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
+						],
+					},
 				],
 			},
 			{
@@ -398,27 +432,57 @@ export function MythsPage() {
 												</p>
 											);
 										})}
-										{m.lists?.map((list) => (
-											<div key={list.title} className="mt-8">
-												<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
-													{list.title}
-												</p>
-												<ul className="flex flex-wrap gap-2">
-													{list.items.map((item) => (
-														<li key={item.name}>
-															<a
-																href={item.href}
-																target="_blank"
-																rel="noopener noreferrer"
-																className="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-2 py-0.5 font-mono text-[0.75rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white"
-															>
-																{item.name}
-															</a>
-														</li>
-													))}
-												</ul>
-											</div>
-										))}
+										{m.lists?.map((list) => {
+											const chipClass =
+												"inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-2 py-0.5 font-mono text-[0.75rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white";
+											return (
+												<div key={list.title} className="mt-8">
+													<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+														{list.title}
+													</p>
+													{list.groups ? (
+														<div className="space-y-3">
+															{list.groups.map((group) => (
+																<div key={group.label} className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+																	<p className="w-28 shrink-0 font-mono text-[0.7rem] tracking-wider text-zinc-500 uppercase">
+																		{group.label}
+																	</p>
+																	<ul className="flex flex-1 flex-wrap gap-2">
+																		{group.items.map((item) => (
+																			<li key={item.name}>
+																				<a
+																					href={item.href}
+																					target="_blank"
+																					rel="noopener noreferrer"
+																					className={chipClass}
+																				>
+																					{item.name}
+																				</a>
+																			</li>
+																		))}
+																	</ul>
+																</div>
+															))}
+														</div>
+													) : (
+														<ul className="flex flex-wrap gap-2">
+															{list.items?.map((item) => (
+																<li key={item.name}>
+																	<a
+																		href={item.href}
+																		target="_blank"
+																		rel="noopener noreferrer"
+																		className={chipClass}
+																	>
+																		{item.name}
+																	</a>
+																</li>
+															))}
+														</ul>
+													)}
+												</div>
+											);
+										})}
 									</div>
 
 									{/* Visual — 5 cols */}
