@@ -220,10 +220,10 @@ function VisualBlock({ visual }: { visual: Visual }) {
 	if (visual.kind === "compare") {
 		// Framed but wider — text-light content reads better in a horizontal band
 		return (
-			<div className="relative flex aspect-video items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<div className="flex items-center gap-6 font-mono text-xl md:text-3xl">
+			<div className="relative flex aspect-video items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
+				<div className="flex items-center gap-4 font-mono text-base whitespace-nowrap md:text-xl">
 					<span className="text-zinc-900 dark:text-white">{visual.left}</span>
-					<span className="text-4xl font-bold text-zinc-700 md:text-6xl dark:text-zinc-400">
+					<span className="text-2xl font-bold text-zinc-700 md:text-3xl dark:text-zinc-400">
 						{visual.relation}
 					</span>
 					<span className="text-zinc-900 dark:text-white">{visual.right}</span>
