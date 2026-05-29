@@ -546,67 +546,77 @@ export function MythsPage() {
 											</div>
 										</div>
 
-										{/* Row 2: starter functions (left) | starter modules (right) */}
-										<div className="mt-12 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2">
-											{m.visual.sections.map((section) => {
-												const chipClass =
-													"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
-												return (
-													<div
-														key={section.title}
-														className="flex flex-col gap-4 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40"
-													>
-														<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
-															{section.title}
-														</p>
-														{section.groups && (
-															<div className="flex flex-col gap-2.5">
-																{section.groups.map((group) => (
-																	<div
-																		key={group.label}
-																		className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
-																	>
-																		<p className="w-24 shrink-0 font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
-																			{group.label}
-																		</p>
-																		<ul className="flex flex-1 flex-wrap gap-1.5">
-																			{group.items.map((item) => (
-																				<li key={item.name}>
-																					<a
-																						href={item.href}
-																						target="_blank"
-																						rel="noopener noreferrer"
-																						className={chipClass}
-																					>
-																						{item.name}
-																					</a>
-																				</li>
-																			))}
-																		</ul>
+										{/* Row 2: ONE box, internal split — functions (7 cols) | modules (5 cols) */}
+										{(() => {
+											const chipClass =
+												"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
+											const fnsSection = m.visual.sections.find((s) => s.groups);
+											const modulesSection = m.visual.sections.find((s) => s.items);
+											return (
+												<div className="mt-12 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 md:mt-16 dark:border-zinc-800 dark:bg-zinc-900/40">
+													<div className="grid grid-cols-1 gap-8 md:grid-cols-12">
+														{fnsSection && (
+															<div className="flex flex-col gap-4 md:col-span-7">
+																<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+																	{fnsSection.title}
+																</p>
+																{fnsSection.groups && (
+																	<div className="flex flex-col gap-2.5">
+																		{fnsSection.groups.map((group) => (
+																			<div
+																				key={group.label}
+																				className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
+																			>
+																				<p className="w-24 shrink-0 font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+																					{group.label}
+																				</p>
+																				<ul className="flex flex-1 flex-wrap gap-1.5">
+																					{group.items.map((item) => (
+																						<li key={item.name}>
+																							<a
+																								href={item.href}
+																								target="_blank"
+																								rel="noopener noreferrer"
+																								className={chipClass}
+																							>
+																								{item.name}
+																							</a>
+																						</li>
+																					))}
+																				</ul>
+																			</div>
+																		))}
 																	</div>
-																))}
+																)}
 															</div>
 														)}
-														{section.items && (
-															<ul className="grid grid-cols-2 gap-1.5">
-																{section.items.map((item) => (
-																	<li key={item.name}>
-																		<a
-																			href={item.href}
-																			target="_blank"
-																			rel="noopener noreferrer"
-																			className={`${chipClass} w-full justify-center`}
-																		>
-																			{item.name}
-																		</a>
-																	</li>
-																))}
-															</ul>
+														{modulesSection && (
+															<div className="flex flex-col gap-4 md:col-span-5 md:border-l md:border-zinc-200 md:pl-6 dark:md:border-zinc-800">
+																<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+																	{modulesSection.title}
+																</p>
+																{modulesSection.items && (
+																	<ul className="grid grid-cols-2 gap-1.5">
+																		{modulesSection.items.map((item) => (
+																			<li key={item.name}>
+																				<a
+																					href={item.href}
+																					target="_blank"
+																					rel="noopener noreferrer"
+																					className={`${chipClass} w-full justify-center`}
+																				>
+																					{item.name}
+																				</a>
+																			</li>
+																		))}
+																	</ul>
+																)}
+															</div>
 														)}
 													</div>
-												);
-											})}
-										</div>
+												</div>
+											);
+										})()}
 									</div>
 								) : (
 								<div className="grid grid-cols-1 items-center gap-10 py-20 md:grid-cols-12 md:gap-x-0 md:py-24">
