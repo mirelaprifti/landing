@@ -521,8 +521,8 @@ export function MythsPage() {
 								{m.visual.kind === "fns" ? (
 									// Custom 2-row layout for myth with fns visual
 									<div className="py-20 md:py-24">
-										{/* Row 1: eyebrow + quote (left) | body (right) */}
-										<div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-x-0">
+										{/* Row 1: eyebrow + quote (left) | body (right) — bottom-aligned */}
+										<div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end md:gap-x-0">
 											<div className="md:col-span-6 md:pr-16">
 												<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 													// Myth {String(idx + 1).padStart(2, "0")}
