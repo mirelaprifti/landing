@@ -196,19 +196,20 @@ const MYTHS: Myth[] = [
 
 function VisualBlock({ visual }: { visual: Visual }) {
 	if (visual.kind === "stat") {
+		// Frame-less: typography stands free, no border/bg
 		return (
-			<div className="relative flex aspect-square flex-col justify-between rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
+			<div className="relative flex flex-col justify-center gap-6 py-4">
 				<p className="font-mono text-xs tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
 					{visual.label}
 				</p>
 				<p
 					className="font-mono font-bold tracking-tight text-zinc-900 dark:text-white"
-					style={{ fontSize: "clamp(4rem, 10vw, 7rem)", lineHeight: 1 }}
+					style={{ fontSize: "clamp(4.5rem, 12vw, 9rem)", lineHeight: 1 }}
 				>
 					{visual.value}
 				</p>
 				{visual.sublabel && (
-					<p className="text-sm text-zinc-700 dark:text-zinc-300">
+					<p className="max-w-sm text-sm text-zinc-700 dark:text-zinc-300">
 						{visual.sublabel}
 					</p>
 				)}
@@ -217,9 +218,10 @@ function VisualBlock({ visual }: { visual: Visual }) {
 	}
 
 	if (visual.kind === "compare") {
+		// Framed but wider — text-light content reads better in a horizontal band
 		return (
-			<div className="relative flex aspect-square items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<div className="flex flex-col items-center gap-3 font-mono text-xl md:text-3xl">
+			<div className="relative flex aspect-video items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
+				<div className="flex items-center gap-6 font-mono text-xl md:text-3xl">
 					<span className="text-zinc-900 dark:text-white">{visual.left}</span>
 					<span className="text-4xl font-bold text-zinc-700 md:text-6xl dark:text-zinc-400">
 						{visual.relation}
