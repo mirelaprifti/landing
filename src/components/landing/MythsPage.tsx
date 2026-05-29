@@ -15,7 +15,7 @@ type Myth = {
 	title: string;
 	body: string[];
 	visual: Visual;
-	lists?: { title: string; items: string[] }[];
+	lists?: { title: string; items: { name: string; href: string }[] }[];
 };
 
 const MYTHS: Myth[] = [
@@ -96,17 +96,34 @@ const MYTHS: Myth[] = [
 			{
 				title: "Starter functions",
 				items: [
-					"Effect.succeed, Effect.fail, Effect.sync, Effect.tryPromise",
-					"Effect.gen, Effect.runPromise",
-					"Effect.catchTag, Effect.catchAll",
-					"Effect.acquireRelease, Effect.acquireUseRelease",
-					"Effect.provide, Effect.provideService",
-					"Effect.andThen, Effect.map, Effect.tap",
+					{ name: "Effect.succeed", href: "https://effect.website/docs/getting-started/creating-effects/#succeed" },
+					{ name: "Effect.fail", href: "https://effect.website/docs/getting-started/creating-effects/#fail" },
+					{ name: "Effect.sync", href: "https://effect.website/docs/getting-started/creating-effects/#sync" },
+					{ name: "Effect.tryPromise", href: "https://effect.website/docs/getting-started/creating-effects/#trypromise" },
+					{ name: "Effect.gen", href: "https://effect.website/docs/getting-started/using-generators/" },
+					{ name: "Effect.runPromise", href: "https://effect.website/docs/getting-started/running-effects/#runpromise" },
+					{ name: "Effect.catchTag", href: "https://effect.website/docs/error-management/expected-errors/#catchtag" },
+					{ name: "Effect.catchAll", href: "https://effect.website/docs/error-management/expected-errors/#catchall" },
+					{ name: "Effect.acquireRelease", href: "https://effect.website/docs/resource-management/scope/#acquirerelease" },
+					{ name: "Effect.acquireUseRelease", href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease" },
+					{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
+					{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
+					{ name: "Effect.andThen", href: "https://effect.website/docs/getting-started/building-pipelines/#andthen" },
+					{ name: "Effect.map", href: "https://effect.website/docs/getting-started/building-pipelines/#map" },
+					{ name: "Effect.tap", href: "https://effect.website/docs/getting-started/building-pipelines/#tap" },
 				],
 			},
 			{
 				title: "Starter modules",
-				items: ["Effect, Context, Layer, Option, Either, Array, Match"],
+				items: [
+					{ name: "Effect", href: "https://effect-ts.github.io/effect/effect/Effect.ts.html" },
+					{ name: "Context", href: "https://effect.website/docs/requirements-management/services/#creating-a-service" },
+					{ name: "Layer", href: "https://effect.website/docs/requirements-management/layers/" },
+					{ name: "Option", href: "https://effect.website/docs/data-types/option/" },
+					{ name: "Either", href: "https://effect.website/docs/data-types/either/" },
+					{ name: "Array", href: "https://effect-ts.github.io/effect/effect/Array.ts.html" },
+					{ name: "Match", href: "https://effect.website/docs/code-style/pattern-matching/" },
+				],
 			},
 		],
 	},
@@ -382,17 +399,21 @@ export function MythsPage() {
 											);
 										})}
 										{m.lists?.map((list) => (
-											<div key={list.title} className="mt-6">
-												<p className="mb-2 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+											<div key={list.title} className="mt-8">
+												<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
 													{list.title}
 												</p>
-												<ul className="space-y-2">
+												<ul className="flex flex-wrap gap-2">
 													{list.items.map((item) => (
-														<li
-															key={item}
-															className="font-mono text-sm text-zinc-700 dark:text-zinc-300"
-														>
-															{item}
+														<li key={item.name}>
+															<a
+																href={item.href}
+																target="_blank"
+																rel="noopener noreferrer"
+																className="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-3 py-1.5 font-mono text-sm text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white"
+															>
+																{item.name}
+															</a>
 														</li>
 													))}
 												</ul>
