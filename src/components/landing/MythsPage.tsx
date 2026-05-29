@@ -162,7 +162,8 @@ const MYTHS: Myth[] = [
 			],
 		},
 		body: [
-			"The full Effect ecosystem is extensive — some modules contain thousands of functions — but productivity doesn't require comprehensive knowledge. You can start with 10–20 core functions and progressively discover additional capabilities, similar to learning TypeScript without knowing every npm package.",
+			"The full Effect ecosystem is extensive — some modules contain thousands of functions — but productivity doesn't require comprehensive knowledge.",
+			"You can start with 10–20 core functions and progressively discover additional capabilities, similar to learning TypeScript without knowing every npm package.",
 		],
 	},
 	{
@@ -518,12 +519,102 @@ export function MythsPage() {
 							className="relative border-t border-zinc-200 dark:border-zinc-800"
 						>
 							<div className="mx-auto w-full max-w-[73.75rem] px-4">
+								{m.visual.kind === "fns" ? (
+									// Custom 2-row layout for myth with fns visual
+									<div className="py-20 md:py-24">
+										{/* Row 1: eyebrow + quote (left) | body (right) */}
+										<div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-x-0">
+											<div className="md:col-span-6 md:pr-16">
+												<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+													// Myth {String(idx + 1).padStart(2, "0")}
+												</p>
+												<h2 className="border-l-2 border-zinc-300 pl-5 text-xl leading-snug font-medium tracking-tight text-zinc-700 italic md:text-2xl dark:border-zinc-700 dark:text-zinc-400">
+													“{m.title}”
+												</h2>
+											</div>
+											<div className="md:col-span-6">
+												{m.body.map((p, i) => (
+													<p
+														key={i}
+														className={`text-base leading-relaxed text-zinc-700 dark:text-zinc-300 ${
+															i === 0 ? "" : "mt-4"
+														}`}
+													>
+														{p}
+													</p>
+												))}
+											</div>
+										</div>
+
+										{/* Row 2: starter functions (left) | starter modules (right) */}
+										<div className="mt-12 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2">
+											{m.visual.sections.map((section) => {
+												const chipClass =
+													"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
+												return (
+													<div
+														key={section.title}
+														className="flex flex-col gap-4 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40"
+													>
+														<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+															{section.title}
+														</p>
+														{section.groups && (
+															<div className="flex flex-col gap-2.5">
+																{section.groups.map((group) => (
+																	<div
+																		key={group.label}
+																		className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
+																	>
+																		<p className="w-24 shrink-0 font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+																			{group.label}
+																		</p>
+																		<ul className="flex flex-1 flex-wrap gap-1.5">
+																			{group.items.map((item) => (
+																				<li key={item.name}>
+																					<a
+																						href={item.href}
+																						target="_blank"
+																						rel="noopener noreferrer"
+																						className={chipClass}
+																					>
+																						{item.name}
+																					</a>
+																				</li>
+																			))}
+																		</ul>
+																	</div>
+																))}
+															</div>
+														)}
+														{section.items && (
+															<ul className="grid grid-cols-2 gap-1.5">
+																{section.items.map((item) => (
+																	<li key={item.name}>
+																		<a
+																			href={item.href}
+																			target="_blank"
+																			rel="noopener noreferrer"
+																			className={`${chipClass} w-full justify-center`}
+																		>
+																			{item.name}
+																		</a>
+																	</li>
+																))}
+															</ul>
+														)}
+													</div>
+												);
+											})}
+										</div>
+									</div>
+								) : (
 								<div className="grid grid-cols-1 items-center gap-10 py-20 md:grid-cols-12 md:gap-x-0 md:py-24">
-									{/* Text — 6 or 7 cols, with padding toward visual */}
+									{/* Text — 7 cols, with padding toward visual */}
 									<div
-										className={`${m.visual.kind === "fns" ? "md:col-span-6" : "md:col-span-7"} ${
+										className={`md:col-span-7 ${
 											isReversed
-												? `${m.visual.kind === "fns" ? "md:col-start-7" : "md:col-start-6"} md:pl-16`
+												? "md:col-start-6 md:pl-16"
 												: "md:col-start-1 md:pr-16"
 										}`}
 									>
@@ -614,19 +705,16 @@ export function MythsPage() {
 										})}
 									</div>
 
-									{/* Visual — 5 or 6 cols */}
+									{/* Visual — 5 cols */}
 									<div
-										className={`${m.visual.kind === "fns" ? "md:col-span-6" : "md:col-span-5"} ${
-											isReversed
-												? "md:col-start-1 md:row-start-1"
-												: m.visual.kind === "fns"
-													? "md:col-start-7"
-													: "md:col-start-8"
+										className={`md:col-span-5 ${
+											isReversed ? "md:col-start-1 md:row-start-1" : "md:col-start-8"
 										}`}
 									>
 										<VisualBlock visual={m.visual} />
 									</div>
 								</div>
+								)}
 							</div>
 						</section>
 					);
