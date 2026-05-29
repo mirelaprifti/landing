@@ -560,11 +560,11 @@ export function MythsPage() {
 																	{fnsSection.title}
 																</p>
 																{fnsSection.groups && (
-																	<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+																	<div className="grid grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
 																		{fnsSection.groups.map((group) => (
 																			<div
 																				key={group.label}
-																				className="flex flex-col gap-3 rounded-md border border-zinc-200 p-3 dark:border-zinc-800"
+																				className="flex flex-col gap-2"
 																			>
 																				<p className="font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
 																					{group.label}
