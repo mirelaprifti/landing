@@ -510,7 +510,14 @@ export function MythsPage() {
 
 				{/* Myth sections — alternating layout */}
 				{MYTHS.map((m, idx) => {
-					const isReversed = idx % 2 === 1;
+					// Per-myth overrides for image placement (idx 4 = myth 5, etc.)
+					const reversedOverride: Record<number, boolean> = {
+						4: true, // Myth 05 — image on left
+						5: false, // Myth 06 — image on right
+						6: true, // Myth 07 — image on left
+					};
+					const isReversed =
+						idx in reversedOverride ? reversedOverride[idx] : idx % 2 === 1;
 					return (
 						<section
 							key={m.id}
