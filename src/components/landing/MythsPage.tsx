@@ -79,13 +79,10 @@ const MYTHS: Myth[] = [
 		short: "Bundle size is huge",
 		title: "The bundle size is HUGE",
 		visual: {
-			kind: "chart",
-			title: "Bundle size, gzipped",
-			bars: [
-				{ label: "Full Effect API", value: "—", pct: 100 },
-				{ label: "What you ship", value: "~25 KB", pct: 15, emphasis: true },
-			],
-			note: "Tree-shaking keeps only what your app actually imports.",
+			kind: "stat",
+			value: "~25 KB",
+			label: "Min gzipped",
+			sublabel: "Runtime + most functions a typical app needs",
 		},
 		body: [
 			"The minimum gzipped bundle cost is approximately 25KB, containing the Effect runtime plus most of the functions needed in a typical application. Effect tree-shakes effectively, so only the code you use gets included.",
