@@ -198,7 +198,7 @@ function VisualBlock({ visual }: { visual: Visual }) {
 	if (visual.kind === "stat") {
 		return (
 			<div className="relative flex aspect-square flex-col justify-between rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+				<p className="font-mono text-xs tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
 					{visual.label}
 				</p>
 				<p
@@ -208,7 +208,7 @@ function VisualBlock({ visual }: { visual: Visual }) {
 					{visual.value}
 				</p>
 				{visual.sublabel && (
-					<p className="text-sm text-zinc-600 dark:text-zinc-400">
+					<p className="text-sm text-zinc-700 dark:text-zinc-300">
 						{visual.sublabel}
 					</p>
 				)}
@@ -221,7 +221,7 @@ function VisualBlock({ visual }: { visual: Visual }) {
 			<div className="relative flex aspect-square items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
 				<div className="flex flex-col items-center gap-3 font-mono text-lg md:text-2xl">
 					<span className="text-zinc-900 dark:text-white">{visual.left}</span>
-					<span className="text-3xl font-bold text-zinc-500 md:text-5xl dark:text-zinc-500">
+					<span className="text-3xl font-bold text-zinc-700 md:text-5xl dark:text-zinc-400">
 						{visual.relation}
 					</span>
 					<span className="text-zinc-900 dark:text-white">{visual.right}</span>
@@ -355,7 +355,7 @@ export function MythsPage() {
 											href={`#${m.id}`}
 											className="flex w-full items-center justify-center gap-2 rounded-md border border-zinc-300 px-4 py-2 font-mono text-sm tracking-wider text-zinc-700 uppercase transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white"
 										>
-											<span className="text-zinc-500 dark:text-zinc-500">
+											<span className="text-zinc-700 dark:text-zinc-400">
 												{String(i + 1).padStart(2, "0")}
 											</span>
 											<span>{m.short}</span>
@@ -444,7 +444,7 @@ export function MythsPage() {
 														<div className="space-y-3">
 															{list.groups.map((group) => (
 																<div key={group.label} className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-																	<p className="w-28 shrink-0 font-mono text-[0.7rem] tracking-wider text-zinc-500 uppercase">
+																	<p className="w-28 shrink-0 font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
 																		{group.label}
 																	</p>
 																	<ul className="flex flex-1 flex-wrap gap-2">
