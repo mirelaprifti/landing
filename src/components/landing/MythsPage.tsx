@@ -20,6 +20,14 @@ type Visual =
 			title: string;
 			bars: { label: string; value: string; pct: number; emphasis?: boolean }[];
 			note?: string;
+		}
+	| {
+			kind: "fns";
+			sections: {
+				title: string;
+				groups?: { label: string; items: { name: string; href: string }[] }[];
+				items?: { name: string; href: string }[];
+			}[];
 		};
 
 type Myth = {
@@ -102,88 +110,74 @@ const MYTHS: Myth[] = [
 		short: "Impossible to learn",
 		title: "Effect is impossible to learn — there are so many functions and modules",
 		visual: {
-			kind: "stat",
-			value: "10–20",
-			label: "Functions to start",
-			chips: [
-				"succeed",
-				"fail",
-				"sync",
-				"gen",
-				"runPromise",
-				"catchTag",
-				"andThen",
-				"map",
-				"tap",
-				"provide",
+			kind: "fns",
+			sections: [
+				{
+					title: "Starter functions",
+					groups: [
+						{
+							label: "Create",
+							items: [
+								{ name: "Effect.succeed", href: "https://effect.website/docs/getting-started/creating-effects/#succeed" },
+								{ name: "Effect.fail", href: "https://effect.website/docs/getting-started/creating-effects/#fail" },
+								{ name: "Effect.sync", href: "https://effect.website/docs/getting-started/creating-effects/#sync" },
+								{ name: "Effect.tryPromise", href: "https://effect.website/docs/getting-started/creating-effects/#trypromise" },
+							],
+						},
+						{
+							label: "Compose",
+							items: [
+								{ name: "Effect.andThen", href: "https://effect.website/docs/getting-started/building-pipelines/#andthen" },
+								{ name: "Effect.map", href: "https://effect.website/docs/getting-started/building-pipelines/#map" },
+								{ name: "Effect.tap", href: "https://effect.website/docs/getting-started/building-pipelines/#tap" },
+							],
+						},
+						{
+							label: "Run",
+							items: [
+								{ name: "Effect.gen", href: "https://effect.website/docs/getting-started/using-generators/" },
+								{ name: "Effect.runPromise", href: "https://effect.website/docs/getting-started/running-effects/#runpromise" },
+							],
+						},
+						{
+							label: "Handle errors",
+							items: [
+								{ name: "Effect.catchTag", href: "https://effect.website/docs/error-management/expected-errors/#catchtag" },
+								{ name: "Effect.catchAll", href: "https://effect.website/docs/error-management/expected-errors/#catchall" },
+							],
+						},
+						{
+							label: "Manage resources",
+							items: [
+								{ name: "Effect.acquireRelease", href: "https://effect.website/docs/resource-management/scope/#acquirerelease" },
+								{ name: "Effect.acquireUseRelease", href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease" },
+							],
+						},
+						{
+							label: "Provide deps",
+							items: [
+								{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
+								{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
+							],
+						},
+					],
+				},
+				{
+					title: "Starter modules",
+					items: [
+						{ name: "Effect", href: "https://effect-ts.github.io/effect/effect/Effect.ts.html" },
+						{ name: "Context", href: "https://effect.website/docs/requirements-management/services/#creating-a-service" },
+						{ name: "Layer", href: "https://effect.website/docs/requirements-management/layers/" },
+						{ name: "Option", href: "https://effect.website/docs/data-types/option/" },
+						{ name: "Either", href: "https://effect.website/docs/data-types/either/" },
+						{ name: "Array", href: "https://effect-ts.github.io/effect/effect/Array.ts.html" },
+						{ name: "Match", href: "https://effect.website/docs/code-style/pattern-matching/" },
+					],
+				},
 			],
 		},
 		body: [
 			"The full Effect ecosystem is extensive — some modules contain thousands of functions — but productivity doesn't require comprehensive knowledge. You can start with 10–20 core functions and progressively discover additional capabilities, similar to learning TypeScript without knowing every npm package.",
-		],
-		lists: [
-			{
-				title: "Starter functions",
-				groups: [
-					{
-						label: "Create",
-						items: [
-							{ name: "Effect.succeed", href: "https://effect.website/docs/getting-started/creating-effects/#succeed" },
-							{ name: "Effect.fail", href: "https://effect.website/docs/getting-started/creating-effects/#fail" },
-							{ name: "Effect.sync", href: "https://effect.website/docs/getting-started/creating-effects/#sync" },
-							{ name: "Effect.tryPromise", href: "https://effect.website/docs/getting-started/creating-effects/#trypromise" },
-						],
-					},
-					{
-						label: "Compose",
-						items: [
-							{ name: "Effect.andThen", href: "https://effect.website/docs/getting-started/building-pipelines/#andthen" },
-							{ name: "Effect.map", href: "https://effect.website/docs/getting-started/building-pipelines/#map" },
-							{ name: "Effect.tap", href: "https://effect.website/docs/getting-started/building-pipelines/#tap" },
-						],
-					},
-					{
-						label: "Run",
-						items: [
-							{ name: "Effect.gen", href: "https://effect.website/docs/getting-started/using-generators/" },
-							{ name: "Effect.runPromise", href: "https://effect.website/docs/getting-started/running-effects/#runpromise" },
-						],
-					},
-					{
-						label: "Handle errors",
-						items: [
-							{ name: "Effect.catchTag", href: "https://effect.website/docs/error-management/expected-errors/#catchtag" },
-							{ name: "Effect.catchAll", href: "https://effect.website/docs/error-management/expected-errors/#catchall" },
-						],
-					},
-					{
-						label: "Manage resources",
-						items: [
-							{ name: "Effect.acquireRelease", href: "https://effect.website/docs/resource-management/scope/#acquirerelease" },
-							{ name: "Effect.acquireUseRelease", href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease" },
-						],
-					},
-					{
-						label: "Provide dependencies",
-						items: [
-							{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
-							{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
-						],
-					},
-				],
-			},
-			{
-				title: "Starter modules",
-				items: [
-					{ name: "Effect", href: "https://effect-ts.github.io/effect/effect/Effect.ts.html" },
-					{ name: "Context", href: "https://effect.website/docs/requirements-management/services/#creating-a-service" },
-					{ name: "Layer", href: "https://effect.website/docs/requirements-management/layers/" },
-					{ name: "Option", href: "https://effect.website/docs/data-types/option/" },
-					{ name: "Either", href: "https://effect.website/docs/data-types/either/" },
-					{ name: "Array", href: "https://effect-ts.github.io/effect/effect/Array.ts.html" },
-					{ name: "Match", href: "https://effect.website/docs/code-style/pattern-matching/" },
-				],
-			},
 		],
 	},
 	{
@@ -328,6 +322,66 @@ function VisualBlock({ visual }: { visual: Visual }) {
 			<pre className="overflow-x-auto rounded-md border border-zinc-200 bg-zinc-50/40 px-5 py-4 font-mono text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-300">
 				{visual.lines.join("\n")}
 			</pre>
+		);
+	}
+
+	if (visual.kind === "fns") {
+		const chipClass =
+			"inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
+		return (
+			<div className="relative flex flex-col gap-6 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
+				{visual.sections.map((section) => (
+					<div key={section.title} className="flex flex-col gap-3">
+						<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+							{section.title}
+						</p>
+						{section.groups && (
+							<div className="flex flex-col gap-2.5">
+								{section.groups.map((group) => (
+									<div
+										key={group.label}
+										className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
+									>
+										<p className="w-24 shrink-0 font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+											{group.label}
+										</p>
+										<ul className="flex flex-1 flex-wrap gap-1.5">
+											{group.items.map((item) => (
+												<li key={item.name}>
+													<a
+														href={item.href}
+														target="_blank"
+														rel="noopener noreferrer"
+														className={chipClass}
+													>
+														{item.name}
+													</a>
+												</li>
+											))}
+										</ul>
+									</div>
+								))}
+							</div>
+						)}
+						{section.items && (
+							<ul className="flex flex-wrap gap-1.5">
+								{section.items.map((item) => (
+									<li key={item.name}>
+										<a
+											href={item.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className={chipClass}
+										>
+											{item.name}
+										</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+				))}
+			</div>
 		);
 	}
 
