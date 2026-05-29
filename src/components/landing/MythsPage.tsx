@@ -91,21 +91,6 @@ const MYTHS: Myth[] = [
 		],
 	},
 	{
-		id: "bundle-size",
-		short: "Bundle size is huge",
-		title: "The bundle size is HUGE",
-		visual: {
-			kind: "stat",
-			value: "~25 KB",
-			label: "Min gzipped",
-			sublabel: "Runtime + most functions a typical app needs",
-		},
-		body: [
-			"The minimum gzipped bundle cost is approximately 25KB, containing the Effect runtime plus most of the functions needed in a typical application. Effect tree-shakes effectively, so only the code you use gets included.",
-			"Adopting Effect often reduces overall bundle size by replacing scattered library code with more concise application code.",
-		],
-	},
-	{
 		id: "impossible-to-learn",
 		short: "Impossible to learn",
 		title: "Effect is impossible to learn — there are so many functions and modules",
@@ -178,6 +163,21 @@ const MYTHS: Myth[] = [
 		},
 		body: [
 			"The full Effect ecosystem is extensive — some modules contain thousands of functions — but productivity doesn't require comprehensive knowledge. You can start with 10–20 core functions and progressively discover additional capabilities, similar to learning TypeScript without knowing every npm package.",
+		],
+	},
+	{
+		id: "bundle-size",
+		short: "Bundle size is huge",
+		title: "The bundle size is HUGE",
+		visual: {
+			kind: "stat",
+			value: "~25 KB",
+			label: "Min gzipped",
+			sublabel: "Runtime + most functions a typical app needs",
+		},
+		body: [
+			"The minimum gzipped bundle cost is approximately 25KB, containing the Effect runtime plus most of the functions needed in a typical application. Effect tree-shakes effectively, so only the code you use gets included.",
+			"Adopting Effect often reduces overall bundle size by replacing scattered library code with more concise application code.",
 		],
 	},
 	{
