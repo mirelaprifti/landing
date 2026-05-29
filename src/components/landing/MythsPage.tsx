@@ -400,7 +400,7 @@ export function MythsPage() {
 										})}
 										{m.lists?.map((list) => (
 											<div key={list.title} className="mt-8">
-												<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+												<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 													{list.title}
 												</p>
 												<ul className="flex flex-wrap gap-2">
@@ -410,7 +410,7 @@ export function MythsPage() {
 																href={item.href}
 																target="_blank"
 																rel="noopener noreferrer"
-																className="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-2 py-0.5 font-mono text-sm text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white"
+																className="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-2 py-0.5 font-mono text-[0.75rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white"
 															>
 																{item.name}
 															</a>
