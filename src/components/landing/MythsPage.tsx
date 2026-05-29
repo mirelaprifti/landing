@@ -219,9 +219,9 @@ function VisualBlock({ visual }: { visual: Visual }) {
 	if (visual.kind === "compare") {
 		return (
 			<div className="relative flex aspect-square items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<div className="flex flex-col items-center gap-3 font-mono text-lg md:text-2xl">
+				<div className="flex flex-col items-center gap-3 font-mono text-xl md:text-3xl">
 					<span className="text-zinc-900 dark:text-white">{visual.left}</span>
-					<span className="text-3xl font-bold text-zinc-700 md:text-5xl dark:text-zinc-400">
+					<span className="text-4xl font-bold text-zinc-700 md:text-6xl dark:text-zinc-400">
 						{visual.relation}
 					</span>
 					<span className="text-zinc-900 dark:text-white">{visual.right}</span>
