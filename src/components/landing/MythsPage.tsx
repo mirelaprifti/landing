@@ -556,7 +556,7 @@ export function MythsPage() {
 												<div className="mt-12 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 md:mt-16 dark:border-zinc-800 dark:bg-zinc-900/40">
 													<div className="grid grid-cols-1 gap-8 md:grid-cols-12">
 														{fnsSection && (
-															<div className="flex flex-col gap-4 md:col-span-8">
+															<div className="flex flex-col gap-4 md:col-span-7">
 																<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 																	{fnsSection.title}
 																</p>
@@ -591,7 +591,7 @@ export function MythsPage() {
 															</div>
 														)}
 														{modulesSection && (
-															<div className="flex flex-col gap-4 md:col-span-4 md:border-l md:border-zinc-200 md:pl-6 dark:md:border-zinc-800">
+															<div className="flex flex-col gap-4 md:col-span-5 md:border-l md:border-zinc-200 md:pl-6 dark:md:border-zinc-800">
 																<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 																	{modulesSection.title}
 																</p>
