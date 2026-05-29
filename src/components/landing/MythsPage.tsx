@@ -364,14 +364,14 @@ function VisualBlock({ visual }: { visual: Visual }) {
 							</div>
 						)}
 						{section.items && (
-							<ul className="flex flex-wrap gap-1.5">
+							<ul className="grid grid-cols-4 gap-1.5">
 								{section.items.map((item) => (
 									<li key={item.name}>
 										<a
 											href={item.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className={chipClass}
+											className={`${chipClass} w-full justify-center`}
 										>
 											{item.name}
 										</a>
