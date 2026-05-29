@@ -154,7 +154,7 @@ const MYTHS: Myth[] = [
 							],
 						},
 						{
-							label: "Provide deps",
+							label: "Provide dependencies",
 							items: [
 								{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
 								{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
@@ -327,25 +327,22 @@ function VisualBlock({ visual }: { visual: Visual }) {
 
 	if (visual.kind === "fns") {
 		const chipClass =
-			"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
+			"pointer-events-auto flex w-full cursor-pointer items-center justify-center rounded-md border border-zinc-300 px-2 py-1 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
 		return (
-			<div className="relative flex flex-col gap-6 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
+			<div className="relative flex flex-col gap-7 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
 				{visual.sections.map((section) => (
-					<div key={section.title} className="flex flex-col gap-3">
+					<div key={section.title} className="flex flex-col gap-4">
 						<p className="font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 							{section.title}
 						</p>
 						{section.groups && (
-							<div className="flex flex-col gap-2.5">
+							<div className="flex flex-col gap-4">
 								{section.groups.map((group) => (
-									<div
-										key={group.label}
-										className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
-									>
-										<p className="w-24 shrink-0 font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+									<div key={group.label} className="flex flex-col gap-2">
+										<p className="font-mono text-[0.65rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
 											{group.label}
 										</p>
-										<ul className="flex flex-1 flex-wrap gap-1.5">
+										<ul className="grid grid-cols-2 gap-1.5">
 											{group.items.map((item) => (
 												<li key={item.name}>
 													<a
@@ -364,7 +361,7 @@ function VisualBlock({ visual }: { visual: Visual }) {
 							</div>
 						)}
 						{section.items && (
-							<ul className="flex flex-wrap gap-1.5">
+							<ul className="grid grid-cols-4 gap-1.5">
 								{section.items.map((item) => (
 									<li key={item.name}>
 										<a
