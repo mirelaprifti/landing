@@ -519,11 +519,11 @@ export function MythsPage() {
 						>
 							<div className="mx-auto w-full max-w-[73.75rem] px-4">
 								<div className="grid grid-cols-1 items-center gap-10 py-20 md:grid-cols-12 md:gap-x-0 md:py-24">
-									{/* Text — 7 cols, with padding toward visual */}
+									{/* Text — 6 or 7 cols, with padding toward visual */}
 									<div
-										className={`md:col-span-7 ${
+										className={`${m.visual.kind === "fns" ? "md:col-span-6" : "md:col-span-7"} ${
 											isReversed
-												? "md:col-start-6 md:pl-16"
+												? `${m.visual.kind === "fns" ? "md:col-start-7" : "md:col-start-6"} md:pl-16`
 												: "md:col-start-1 md:pr-16"
 										}`}
 									>
@@ -614,10 +614,14 @@ export function MythsPage() {
 										})}
 									</div>
 
-									{/* Visual — 5 cols */}
+									{/* Visual — 5 or 6 cols */}
 									<div
-										className={`md:col-span-5 ${
-											isReversed ? "md:col-start-1 md:row-start-1" : "md:col-start-8"
+										className={`${m.visual.kind === "fns" ? "md:col-span-6" : "md:col-span-5"} ${
+											isReversed
+												? "md:col-start-1 md:row-start-1"
+												: m.visual.kind === "fns"
+													? "md:col-start-7"
+													: "md:col-start-8"
 										}`}
 									>
 										<VisualBlock visual={m.visual} />
