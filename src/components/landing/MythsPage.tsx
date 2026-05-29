@@ -162,7 +162,7 @@ const MYTHS: Myth[] = [
 			],
 		},
 		body: [
-			"The full Effect ecosystem is extensive — some modules contain thousands of functions — but productivity doesn't require comprehensive knowledge.",
+			"The full Effect ecosystem is extensive, but productivity doesn't require comprehensive knowledge.",
 			"You can start with 10–20 core functions and progressively discover additional capabilities, similar to learning TypeScript without knowing every npm package.",
 		],
 	},
