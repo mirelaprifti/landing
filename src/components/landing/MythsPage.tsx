@@ -4,7 +4,14 @@ import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
 type Visual =
-	| { kind: "stat"; value: string; label: string; sublabel?: string }
+	| {
+			kind: "stat";
+			value: string;
+			label: string;
+			sublabel?: string;
+			striken?: boolean;
+			chips?: string[];
+		}
 	| { kind: "compare"; left: string; right: string; relation: string }
 	| { kind: "logos"; items: { src: string; alt: string; h?: number }[] }
 	| { kind: "code"; lines: string[] }
@@ -53,6 +60,7 @@ const MYTHS: Myth[] = [
 			value: "500×",
 			label: "Myth",
 			sublabel: "Only applies to micro-benchmarks of 1 + 1",
+			striken: true,
 		},
 		body: [
 			"This comparison only applies when measuring trivial operations like 1 + 1 against Effect-wrapped equivalents. The performance difference stems from JIT compiler optimization differences, not Effect itself.",
@@ -97,7 +105,18 @@ const MYTHS: Myth[] = [
 			kind: "stat",
 			value: "10–20",
 			label: "Functions to start",
-			sublabel: "The rest you discover as you go",
+			chips: [
+				"succeed",
+				"fail",
+				"sync",
+				"gen",
+				"runPromise",
+				"catchTag",
+				"andThen",
+				"map",
+				"tap",
+				"provide",
+			],
 		},
 		body: [
 			"The full Effect ecosystem is extensive — some modules contain thousands of functions — but productivity doesn't require comprehensive knowledge. You can start with 10–20 core functions and progressively discover additional capabilities, similar to learning TypeScript without knowing every npm package.",
@@ -208,15 +227,32 @@ function VisualBlock({ visual }: { visual: Visual }) {
 					{visual.label}
 				</p>
 				<p
-					className="font-mono font-bold tracking-tight text-zinc-900 dark:text-white"
+					className={`font-mono font-bold tracking-tight ${
+						visual.striken
+							? "text-zinc-700 line-through decoration-zinc-900 decoration-4 dark:text-zinc-400 dark:decoration-zinc-300"
+							: "text-zinc-900 dark:text-white"
+					}`}
 					style={{ fontSize: "clamp(4rem, 10vw, 7rem)", lineHeight: 1 }}
 				>
 					{visual.value}
 				</p>
-				{visual.sublabel && (
-					<p className="text-sm text-zinc-700 dark:text-zinc-300">
-						{visual.sublabel}
-					</p>
+				{visual.chips ? (
+					<ul className="flex flex-wrap gap-1.5">
+						{visual.chips.map((chip) => (
+							<li
+								key={chip}
+								className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 dark:border-zinc-700 dark:text-zinc-300"
+							>
+								{chip}
+							</li>
+						))}
+					</ul>
+				) : (
+					visual.sublabel && (
+						<p className="text-sm text-zinc-700 dark:text-zinc-300">
+							{visual.sublabel}
+						</p>
+					)
 				)}
 			</div>
 		);
