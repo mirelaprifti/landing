@@ -7,7 +7,13 @@ type Visual =
 	| { kind: "stat"; value: string; label: string; sublabel?: string }
 	| { kind: "compare"; left: string; right: string; relation: string }
 	| { kind: "logos"; items: { src: string; alt: string; h?: number }[] }
-	| { kind: "code"; lines: string[] };
+	| { kind: "code"; lines: string[] }
+	| {
+			kind: "chart";
+			title: string;
+			bars: { label: string; value: string; pct: number; emphasis?: boolean }[];
+			note?: string;
+		};
 
 type Myth = {
 	id: string;
@@ -73,10 +79,13 @@ const MYTHS: Myth[] = [
 		short: "Bundle size is huge",
 		title: "The bundle size is HUGE",
 		visual: {
-			kind: "stat",
-			value: "~25 KB",
-			label: "Min gzipped",
-			sublabel: "Runtime + most functions a typical app needs",
+			kind: "chart",
+			title: "Bundle size, gzipped",
+			bars: [
+				{ label: "Full Effect API", value: "—", pct: 100 },
+				{ label: "What you ship", value: "~25 KB", pct: 15, emphasis: true },
+			],
+			note: "Tree-shaking keeps only what your app actually imports.",
 		},
 		body: [
 			"The minimum gzipped bundle cost is approximately 25KB, containing the Effect runtime plus most of the functions needed in a typical application. Effect tree-shakes effectively, so only the code you use gets included.",
@@ -196,20 +205,19 @@ const MYTHS: Myth[] = [
 
 function VisualBlock({ visual }: { visual: Visual }) {
 	if (visual.kind === "stat") {
-		// Frame-less: typography stands free, no border/bg
 		return (
-			<div className="relative flex flex-col justify-center gap-6 py-4">
+			<div className="relative flex aspect-square flex-col justify-between rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
 				<p className="font-mono text-xs tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
 					{visual.label}
 				</p>
 				<p
 					className="font-mono font-bold tracking-tight text-zinc-900 dark:text-white"
-					style={{ fontSize: "clamp(4.5rem, 12vw, 9rem)", lineHeight: 1 }}
+					style={{ fontSize: "clamp(4rem, 10vw, 7rem)", lineHeight: 1 }}
 				>
 					{visual.value}
 				</p>
 				{visual.sublabel && (
-					<p className="max-w-sm text-sm text-zinc-700 dark:text-zinc-300">
+					<p className="text-sm text-zinc-700 dark:text-zinc-300">
 						{visual.sublabel}
 					</p>
 				)}
@@ -218,16 +226,48 @@ function VisualBlock({ visual }: { visual: Visual }) {
 	}
 
 	if (visual.kind === "compare") {
-		// Framed but wider — text-light content reads better in a horizontal band
 		return (
-			<div className="relative flex aspect-video items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<div className="flex items-center gap-4 font-mono text-base whitespace-nowrap md:text-xl">
+			<div className="relative flex aspect-square items-center justify-center rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
+				<div className="flex flex-col items-center gap-3 font-mono text-xl md:text-3xl">
 					<span className="text-zinc-900 dark:text-white">{visual.left}</span>
-					<span className="text-2xl font-bold text-zinc-700 md:text-3xl dark:text-zinc-400">
+					<span className="text-4xl font-bold text-zinc-700 md:text-6xl dark:text-zinc-400">
 						{visual.relation}
 					</span>
 					<span className="text-zinc-900 dark:text-white">{visual.right}</span>
 				</div>
+			</div>
+		);
+	}
+
+	if (visual.kind === "chart") {
+		return (
+			<div className="relative flex aspect-square flex-col justify-center gap-6 rounded-md border border-zinc-200 bg-zinc-50/40 p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
+				<p className="font-mono text-xs tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+					{visual.title}
+				</p>
+				<div className="flex flex-col gap-5">
+					{visual.bars.map((bar) => (
+						<div key={bar.label} className="space-y-1.5">
+							<div className="flex items-baseline justify-between">
+								<p className="font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+									{bar.label}
+								</p>
+								<p className={`font-mono text-sm tabular-nums ${bar.emphasis ? "font-bold text-zinc-900 dark:text-white" : "text-zinc-700 dark:text-zinc-300"}`}>
+									{bar.value}
+								</p>
+							</div>
+							<div className="h-2 w-full overflow-hidden rounded-sm bg-zinc-200 dark:bg-zinc-800">
+								<div
+									className={`h-full ${bar.emphasis ? "bg-zinc-900 dark:bg-white" : "bg-zinc-400 dark:bg-zinc-600"}`}
+									style={{ width: `${bar.pct}%` }}
+								/>
+							</div>
+						</div>
+					))}
+				</div>
+				{visual.note && (
+					<p className="text-sm text-zinc-700 dark:text-zinc-300">{visual.note}</p>
+				)}
 			</div>
 		);
 	}
