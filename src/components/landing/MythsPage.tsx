@@ -551,7 +551,7 @@ export function MythsPage() {
 										{/* Row 2: ONE box, internal split — functions (7 cols) | modules (5 cols) */}
 										{(() => {
 											const chipClass =
-												"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-[0.7rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
+												"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-sm text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
 											const fnsSection = m.visual.sections.find((s) => s.groups);
 											const modulesSection = m.visual.sections.find((s) => s.items);
 											return (
