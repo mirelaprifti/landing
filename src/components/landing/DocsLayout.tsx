@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -58,6 +58,31 @@ export function DocsLayout({
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
+	const [activeId, setActiveId] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const headings = tocItems
+			.map((item) => document.getElementById(item.id))
+			.filter((el): el is HTMLElement => el !== null);
+		if (headings.length === 0) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries
+					.filter((e) => e.isIntersecting)
+					.sort(
+						(a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+					);
+				if (visible.length > 0) setActiveId(visible[0].target.id);
+			},
+			{ rootMargin: "-80px 0px -70% 0px", threshold: 0 },
+		);
+
+		for (const el of headings) observer.observe(el);
+		return () => observer.disconnect();
+	}, [tocItems]);
+
 	return (
 		<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<a
@@ -120,16 +145,23 @@ export function DocsLayout({
 							</p>
 							<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
 							<ul className="flex flex-col gap-3">
-								{tocItems.map((item) => (
-									<li key={item.id}>
-										<a
-											href={`#${item.id}`}
-											className="block text-sm leading-snug text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-										>
-											{item.label}
-										</a>
-									</li>
-								))}
+								{tocItems.map((item) => {
+									const isActive = activeId === item.id;
+									return (
+										<li key={item.id}>
+											<a
+												href={`#${item.id}`}
+												className={`block border-l-2 pl-3 text-sm leading-snug transition-colors ${
+													isActive
+														? "border-zinc-900 font-medium text-zinc-900 dark:border-white dark:text-white"
+														: "border-transparent text-zinc-700 hover:border-zinc-400 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-white"
+												}`}
+											>
+												{item.label}
+											</a>
+										</li>
+									);
+								})}
 							</ul>
 						</nav>
 					</aside>
