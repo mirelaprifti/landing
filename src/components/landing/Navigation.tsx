@@ -150,29 +150,6 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
-								<div className="flex items-center gap-4">
-								<Link
-									href="https://github.com/Effect-TS/effect"
-									variant="icon"
-									aria-label="Visit Effect on GitHub"
-									className={transparent ? "text-white hover:text-white/80" : ""}
-								>
-									<i className="ri-github-fill text-xl" aria-hidden="true" />
-								</Link>
-								<Link
-									href="https://discord.gg/effect-ts"
-									variant="icon"
-									aria-label="Join Effect Discord server"
-									className={transparent ? "text-white hover:text-white/80" : ""}
-								>
-									<i className="ri-discord-fill text-xl" aria-hidden="true" />
-								</Link>
-								</div>
-
-								<div
-									className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-700"}`}
-								/>
-
 								<button
 									type="button"
 									aria-label="Open search (Command K)"
@@ -191,6 +168,29 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 										⌘K
 									</kbd>
 								</button>
+
+								<div
+									className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-700"}`}
+								/>
+
+								<div className="flex items-center gap-4">
+									<Link
+										href="https://github.com/Effect-TS/effect"
+										variant="icon"
+										aria-label="Visit Effect on GitHub"
+										className={transparent ? "text-white hover:text-white/80" : ""}
+									>
+										<i className="ri-github-fill text-xl" aria-hidden="true" />
+									</Link>
+									<Link
+										href="https://discord.gg/effect-ts"
+										variant="icon"
+										aria-label="Join Effect Discord server"
+										className={transparent ? "text-white hover:text-white/80" : ""}
+									>
+										<i className="ri-discord-fill text-xl" aria-hidden="true" />
+									</Link>
+								</div>
 							</div>
 						</nav>
 					</header>
