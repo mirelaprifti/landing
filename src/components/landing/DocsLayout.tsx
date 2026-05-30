@@ -140,10 +140,10 @@ export function DocsLayout({
 														<li key={item.slug}>
 															<a
 																href={getAssetPath(`/docs/${item.slug}`)}
-																className={`block py-1.5 pl-3 text-sm transition-colors ${
+																className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
 																	isActive
-																		? "font-medium text-zinc-900 dark:text-white"
-																		: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+																		? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-white"
+																		: "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 																}`}
 															>
 																{item.label}
@@ -174,17 +174,17 @@ export function DocsLayout({
 								On this page
 							</p>
 							<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
-							<ul className="flex flex-col gap-3">
+							<ul className="-mx-3 flex flex-col gap-1">
 								{tocItems.map((item) => {
 									const isActive = activeId === item.id;
 									return (
 										<li key={item.id}>
 											<a
 												href={`#${item.id}`}
-												className={`block text-sm leading-snug transition-colors ${
+												className={`block rounded-md px-3 py-1.5 text-sm leading-snug transition-colors ${
 													isActive
-														? "font-medium text-zinc-900 dark:text-white"
-														: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+														? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-white"
+														: "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 												}`}
 											>
 												{item.label}
