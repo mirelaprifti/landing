@@ -37,7 +37,7 @@ export function EffectJobsPage() {
 
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero */}
-				<section className="relative overflow-hidden pb-16 md:pb-24">
+				<section className="relative overflow-hidden pb-10 md:pb-12">
 					<div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px] overflow-hidden">
 						<div
 							className="absolute inset-0"
