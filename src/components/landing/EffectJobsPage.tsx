@@ -123,11 +123,6 @@ export function EffectJobsPage() {
 													/>
 												</p>
 											</div>
-											{job.note && (
-												<p className="mt-1 font-mono text-xs text-zinc-700 dark:text-zinc-400">
-													{job.note}
-												</p>
-											)}
 										</a>
 									</li>
 								))}
