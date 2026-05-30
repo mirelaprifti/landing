@@ -122,7 +122,7 @@ export function DocsLayout({
 											type="button"
 											onClick={() => toggleSection(section.title)}
 											aria-expanded={isOpen}
-											className="flex w-full items-center justify-between py-2 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+											className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 										>
 											<span>{section.title}</span>
 											<i
