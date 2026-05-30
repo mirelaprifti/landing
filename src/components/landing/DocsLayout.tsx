@@ -113,13 +113,13 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
+							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
 						>
-							<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+							<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 								On this page
 							</p>
-							<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
-							<ul className="flex flex-col gap-1.5">
+							<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
+							<ul className="flex flex-col gap-3">
 								{tocItems.map((item) => (
 									<li key={item.id}>
 										<a
