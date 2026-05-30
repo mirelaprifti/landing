@@ -161,7 +161,7 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 								<button
 									type="button"
 									aria-label="Open search (Command K)"
-									className={`flex items-center gap-2 rounded-md border text-sm transition-colors ${wide ? "w-72 justify-between px-3 py-1.5" : "px-2 py-1"} ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
+									className={`flex cursor-text items-center gap-2 rounded-md border text-sm transition-colors ${wide ? "w-72 justify-between px-3 py-1.5" : "px-2 py-1"} ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
 								>
 									<span className="flex items-center gap-2">
 										<i
