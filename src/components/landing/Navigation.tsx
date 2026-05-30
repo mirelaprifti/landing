@@ -176,12 +176,15 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 								<button
 									type="button"
 									aria-label="Open search (Command K)"
-									className={`flex items-center gap-2 rounded-md border px-2 py-1 text-sm transition-colors ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-600 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900 hover:text-white"}`}
+									className={`flex items-center gap-2 rounded-md border text-sm transition-colors ${wide ? "w-72 justify-between px-3 py-1.5" : "px-2 py-1"} ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-600 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900 hover:text-white"}`}
 								>
-									<i
-										className="ri-search-line text-base font-medium"
-										aria-hidden="true"
-									/>
+									<span className="flex items-center gap-2">
+										<i
+											className="ri-search-line text-base font-medium"
+											aria-hidden="true"
+										/>
+										{wide && <span>Search the docs…</span>}
+									</span>
 									<kbd
 										className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-400/80"}`}
 									>

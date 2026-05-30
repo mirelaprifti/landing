@@ -59,6 +59,17 @@ export function DocsLayout({
 	children: ReactNode;
 }) {
 	const [activeId, setActiveId] = useState<string | null>(null);
+	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+	const toggleSection = (title: string) => {
+		setOpenSections((prev) => {
+			const containsActive = SIDEBAR.find((s) => s.title === title)?.items.some(
+				(item) => item.slug === activeSlug,
+			);
+			const currentlyOpen = prev[title] ?? containsActive ?? false;
+			return { ...prev, [title]: !currentlyOpen };
+		});
+	};
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -100,32 +111,51 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
-							{SIDEBAR.map((section) => (
-								<div key={section.title} className="mb-8 last:mb-0">
-									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-										{section.title}
-									</p>
-									<ul className="flex flex-col gap-0.5">
-										{section.items.map((item) => {
-											const isActive = item.slug === activeSlug;
-											return (
-												<li key={item.slug}>
-													<a
-														href={getAssetPath(`/docs/${item.slug}`)}
-														className={`block border-l border-transparent py-1.5 pl-3 text-sm transition-colors ${
-															isActive
-																? "border-zinc-900 font-medium text-zinc-900 dark:border-white dark:text-white"
-																: "text-zinc-700 hover:border-zinc-400 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-white"
-														}`}
-													>
-														{item.label}
-													</a>
-												</li>
-											);
-										})}
-									</ul>
-								</div>
-							))}
+							{SIDEBAR.map((section) => {
+								const containsActive = section.items.some(
+									(item) => item.slug === activeSlug,
+								);
+								const isOpen = openSections[section.title] ?? containsActive;
+								return (
+									<div key={section.title} className="mb-1 last:mb-0">
+										<button
+											type="button"
+											onClick={() => toggleSection(section.title)}
+											aria-expanded={isOpen}
+											className="flex w-full items-center justify-between py-2 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+										>
+											<span>{section.title}</span>
+											<i
+												className={`ri-arrow-down-s-line text-base transition-transform ${
+													isOpen ? "rotate-180" : ""
+												}`}
+												aria-hidden="true"
+											/>
+										</button>
+										{isOpen && (
+											<ul className="flex flex-col gap-0.5 pb-4">
+												{section.items.map((item) => {
+													const isActive = item.slug === activeSlug;
+													return (
+														<li key={item.slug}>
+															<a
+																href={getAssetPath(`/docs/${item.slug}`)}
+																className={`block py-1.5 pl-3 text-sm transition-colors ${
+																	isActive
+																		? "font-medium text-zinc-900 dark:text-white"
+																		: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+																}`}
+															>
+																{item.label}
+															</a>
+														</li>
+													);
+												})}
+											</ul>
+										)}
+									</div>
+								);
+							})}
 						</nav>
 					</aside>
 
