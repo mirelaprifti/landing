@@ -75,7 +75,7 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 	return (
 		<>
 			<div
-				className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-800 bg-zinc-950/85"}`}
+				className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-200 bg-white/85 dark:border-zinc-800 dark:bg-zinc-950/85"}`}
 			>
 				<div className="w-full">
 					<header className={`relative mx-auto w-full px-4 ${wide ? "max-w-[88rem]" : "max-w-[73.75rem]"}`}>
@@ -83,10 +83,18 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 							<a href="/" className="flex items-center">
 								<img
 									src={getAssetPath(
-										"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
+										"/assets/effect-logo/Combination mark/SVG/effect-logo-black.svg",
 									)}
 									alt="Effect"
-									className="h-[1.75rem] w-auto"
+									className="h-[1.75rem] w-auto dark:hidden"
+								/>
+								<img
+									src={getAssetPath(
+										"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
+									)}
+									alt=""
+									aria-hidden="true"
+									className="hidden h-[1.75rem] w-auto dark:block"
 								/>
 							</a>
 
@@ -153,7 +161,7 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 								<button
 									type="button"
 									aria-label="Open search (Command K)"
-									className={`flex items-center gap-2 rounded-md border text-sm transition-colors ${wide ? "w-72 justify-between px-3 py-1.5" : "px-2 py-1"} ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-600 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900 hover:text-white"}`}
+									className={`flex items-center gap-2 rounded-md border text-sm transition-colors ${wide ? "w-72 justify-between px-3 py-1.5" : "px-2 py-1"} ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
 								>
 									<span className="flex items-center gap-2">
 										<i
@@ -163,14 +171,14 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 										{wide && <span>Search the docs…</span>}
 									</span>
 									<kbd
-										className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-400/80"}`}
+										className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
 									>
 										⌘K
 									</kbd>
 								</button>
 
 								<div
-									className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-700"}`}
+									className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-200 dark:bg-zinc-700"}`}
 								/>
 
 								<div className="flex items-center gap-4">

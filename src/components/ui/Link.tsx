@@ -23,12 +23,12 @@ const linkVariants = cva("transition-colors", {
 	variants: {
 		variant: {
 			inline:
-				"text-white underline underline-offset-2 hover:text-zinc-300",
-			nav: "border-b border-transparent text-sm font-medium text-zinc-400 hover:border-current hover:text-white",
+				"text-zinc-900 underline underline-offset-2 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300",
+			nav: "border-b border-transparent text-sm font-medium text-zinc-700 hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 			footer:
-				"border-b border-transparent text-sm font-medium leading-relaxed text-zinc-400 hover:border-current hover:text-white",
-			subtle: "text-sm text-zinc-400 hover:text-white",
-			icon: "text-zinc-400 hover:text-white",
+				"border-b border-transparent text-sm font-medium leading-relaxed text-zinc-700 hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+			subtle: "text-sm text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+			icon: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 		},
 	},
 	defaultVariants: {
