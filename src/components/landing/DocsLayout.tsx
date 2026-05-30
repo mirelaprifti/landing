@@ -170,21 +170,21 @@ export function DocsLayout({
 							aria-label="On this page"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
 						>
-							<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page
 							</p>
 							<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
-							<ul className="-mx-3 flex flex-col gap-1">
+							<ul className="flex flex-col gap-3">
 								{tocItems.map((item) => {
 									const isActive = activeId === item.id;
 									return (
 										<li key={item.id}>
 											<a
 												href={`#${item.id}`}
-												className={`block rounded-md px-3 py-1.5 text-sm leading-snug transition-colors ${
+												className={`block text-sm leading-snug transition-colors ${
 													isActive
-														? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-white"
-														: "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+														? "font-semibold text-zinc-900 dark:text-white"
+														: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 												}`}
 											>
 												{item.label}
