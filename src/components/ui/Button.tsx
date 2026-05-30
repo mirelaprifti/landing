@@ -30,7 +30,7 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary:
-					"bg-white text-zinc-900 hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]",
+					"bg-zinc-900 text-white hover:bg-zinc-800 hover:shadow-[0_0_20px_rgba(0,0,0,0.15)] dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]",
 				secondary:
 					"border border-zinc-700 bg-zinc-900/50 text-white hover:border-zinc-500 hover:bg-zinc-800",
 				ghost:
