@@ -62,17 +62,17 @@ export function ThemeToggle() {
 	];
 
 	return (
-		<div className="inline-flex items-center rounded-lg border border-zinc-200 bg-zinc-100 p-0.5 dark:border-zinc-800 dark:bg-zinc-900">
+		<div className="inline-flex items-center rounded-md border border-zinc-200 p-0.5 dark:border-zinc-800">
 			{options.map((opt) => (
 				<button
 					key={opt.value}
 					type="button"
 					onClick={() => setAndApply(opt.value)}
 					aria-label={opt.label}
-					className={`flex items-center justify-center rounded-md px-2 py-1.5 text-sm transition-all duration-150 ${
+					className={`flex items-center justify-center rounded-md px-2 py-1.5 text-sm transition-colors ${
 						theme === opt.value
-							? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white"
-							: "text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+							? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+							: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 					}`}
 				>
 					<i className={`${opt.icon} text-sm`} />
