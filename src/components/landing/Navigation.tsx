@@ -158,24 +158,43 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
-								<button
-									type="button"
-									aria-label="Open search (Command K)"
-									className={`flex items-center gap-2 rounded-md border text-sm transition-colors ${wide ? "w-72 justify-between px-3 py-1.5" : "px-2 py-1"} ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
-								>
-									<span className="flex items-center gap-2">
+								{wide ? (
+									<div
+										className={`flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}
+									>
+										<i
+											className="ri-search-line shrink-0 text-base font-medium"
+											aria-hidden="true"
+										/>
+										<input
+											type="search"
+											aria-label="Search the docs"
+											placeholder="Search the docs…"
+											className={`min-w-0 flex-1 bg-transparent outline-none placeholder:text-zinc-500 dark:placeholder:text-zinc-400 ${transparent ? "text-white placeholder:text-white/70" : "text-zinc-900 dark:text-white"}`}
+										/>
+										<kbd
+											className={`shrink-0 text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
+										>
+											⌘K
+										</kbd>
+									</div>
+								) : (
+									<button
+										type="button"
+										aria-label="Open search (Command K)"
+										className={`flex items-center gap-2 rounded-md border px-2 py-1 text-sm transition-colors ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
+									>
 										<i
 											className="ri-search-line text-base font-medium"
 											aria-hidden="true"
 										/>
-										{wide && <span>Search the docs…</span>}
-									</span>
-									<kbd
-										className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
-									>
-										⌘K
-									</kbd>
-								</button>
+										<kbd
+											className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
+										>
+											⌘K
+										</kbd>
+									</button>
+								)}
 
 								<div
 									className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-200 dark:bg-zinc-700"}`}
