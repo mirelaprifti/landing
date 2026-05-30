@@ -37,7 +37,7 @@ export function EffectJobsPage() {
 
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero */}
-				<section className="relative overflow-hidden pb-12 md:pb-16">
+				<section className="relative overflow-hidden pb-16 md:pb-24">
 					<div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px] overflow-hidden">
 						<div
 							className="absolute inset-0"
@@ -67,14 +67,14 @@ export function EffectJobsPage() {
 					</div>
 
 					<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="pt-20 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase md:pt-28">
+						<p className="pt-16 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase md:pt-20">
 							// Effect Jobs
 						</p>
 
-						<h1 className="mt-4 text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl dark:text-white">
+						<h1 className="mt-2 text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl dark:text-white">
 							Companies hiring Effect engineers
 						</h1>
-						<p className="mt-5 text-lg leading-relaxed text-zinc-800 md:text-xl dark:text-zinc-400">
+						<p className="mt-6 text-lg leading-relaxed text-zinc-800 md:text-xl dark:text-zinc-400">
 							A community-powered directory of open roles where Effect is part of
 							the stack.
 						</p>
