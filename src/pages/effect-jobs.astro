@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { EffectJobsPage } from "@/components/landing/EffectJobsPage";
+---
+
+<BaseLayout
+  title="Effect Jobs — Companies Hiring Effect Engineers"
+  description="A community-powered directory of open roles where Effect is part of the stack."
+>
+  <EffectJobsPage client:load />
+</BaseLayout>
