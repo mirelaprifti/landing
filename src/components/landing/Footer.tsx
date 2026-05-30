@@ -31,8 +31,9 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<Link
-										href="https://effect.website/docs/"
+										href={getAssetPath("/docs/introduction")}
 										variant="footer"
+										active={activePath?.startsWith("/docs")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Documentation

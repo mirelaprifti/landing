@@ -101,8 +101,9 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 							<Link
-								href="https://effect.website/docs/"
+								href={getAssetPath("/docs/introduction")}
 								variant="nav"
+								active={activePath?.startsWith("/docs")}
 								className={transparent ? "text-white hover:text-white/80" : ""}
 							>
 								Docs
@@ -258,10 +259,8 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 						{/* Primary navigation */}
 						<div className="space-y-1">
 							<a
-								href="https://effect.website/docs/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+								href={getAssetPath("/docs/introduction")}
+								className={`block rounded-lg px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Docs
 							</a>
