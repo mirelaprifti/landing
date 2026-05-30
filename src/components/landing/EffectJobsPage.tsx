@@ -131,6 +131,25 @@ export function EffectJobsPage() {
 					</div>
 				</section>
 
+				{/* Disclaimer */}
+				<section className="relative border-t border-zinc-200 dark:border-zinc-800">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="grid grid-cols-1 gap-4 py-10 md:grid-cols-12">
+							<div className="md:col-span-12">
+								<p className="font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+									// Disclaimer
+								</p>
+								<p className="mt-3 text-base leading-relaxed text-zinc-800 dark:text-zinc-200">
+									Please note that these job postings are shared for informational
+									purposes, and we encourage applicants to verify details directly
+									with the hiring companies. Inclusion in the above list does not
+									imply endorsement by the Effect team.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				{/* Past & current employers — 6×3 logo grid */}
 				{LOGO_COMPANIES.length > 0 && (
 					<section className="relative border-t border-zinc-200 dark:border-zinc-800">
@@ -196,24 +215,6 @@ export function EffectJobsPage() {
 					</section>
 				)}
 
-				{/* Disclaimer */}
-				<section className="relative border-t border-zinc-200 dark:border-zinc-800">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 gap-4 py-10 md:grid-cols-12">
-							<div className="md:col-span-12">
-								<p className="font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
-									// Disclaimer
-								</p>
-								<p className="mt-3 text-base leading-relaxed text-zinc-800 dark:text-zinc-200">
-									Please note that these job postings are shared for informational
-									purposes, and we encourage applicants to verify details directly
-									with the hiring companies. Inclusion in the above list does not
-									imply endorsement by the Effect team.
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
 			</main>
 
 			<Footer activePath="/effect-jobs" />
