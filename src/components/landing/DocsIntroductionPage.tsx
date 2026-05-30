@@ -42,9 +42,6 @@ export function DocsIntroductionPage() {
 	return (
 		<DocsLayout activeSlug="introduction" tocItems={TOC}>
 			<article className="max-w-3xl">
-				<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-					// Docs / Getting Started
-				</p>
 				<h1
 					id="overview"
 					className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white"
