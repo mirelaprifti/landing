@@ -151,10 +151,10 @@ export function DocsLayout({
 										<li key={item.id}>
 											<a
 												href={`#${item.id}`}
-												className={`block border-l-2 pl-3 text-sm leading-snug transition-colors ${
+												className={`block text-sm leading-snug transition-colors ${
 													isActive
-														? "border-zinc-900 font-medium text-zinc-900 dark:border-white dark:text-white"
-														: "border-transparent text-zinc-700 hover:border-zinc-400 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-white"
+														? "font-medium text-zinc-900 dark:text-white"
+														: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 												}`}
 											>
 												{item.label}
