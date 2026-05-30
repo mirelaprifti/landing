@@ -223,6 +223,7 @@ Effect<number, Error, never>`}</CodeBlock>
 							rel="noopener noreferrer"
 							className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
 						>
+							<span className="sr-only">(opens in new tab) </span>
 							Discord
 						</a>{" "}
 						or discuss on{" "}
@@ -232,6 +233,7 @@ Effect<number, Error, never>`}</CodeBlock>
 							rel="noopener noreferrer"
 							className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
 						>
+							<span className="sr-only">(opens in new tab) </span>
 							GitHub
 						</a>
 						!

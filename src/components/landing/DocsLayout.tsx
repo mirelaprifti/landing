@@ -116,12 +116,14 @@ export function DocsLayout({
 									(item) => item.slug === activeSlug,
 								);
 								const isOpen = openSections[section.title] ?? containsActive;
+								const panelId = `docs-section-${section.title.toLowerCase().replace(/\s+/g, "-")}`;
 								return (
 									<div key={section.title} className="mb-1 last:mb-0">
 										<button
 											type="button"
 											onClick={() => toggleSection(section.title)}
 											aria-expanded={isOpen}
+											aria-controls={panelId}
 											className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 										>
 											<span>{section.title}</span>
@@ -133,13 +135,14 @@ export function DocsLayout({
 											/>
 										</button>
 										{isOpen && (
-											<ul className="flex flex-col gap-0.5 pb-4">
+											<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
 												{section.items.map((item) => {
 													const isActive = item.slug === activeSlug;
 													return (
 														<li key={item.slug}>
 															<a
 																href={getAssetPath(`/docs/${item.slug}`)}
+																aria-current={isActive ? "page" : undefined}
 																className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
 																	isActive
 																		? "bg-zinc-100 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
@@ -181,6 +184,7 @@ export function DocsLayout({
 										<li key={item.id}>
 											<a
 												href={`#${item.id}`}
+												aria-current={isActive ? "location" : undefined}
 												className={`block text-sm leading-snug transition-colors ${
 													isActive
 														? "font-semibold text-zinc-900 dark:text-white"

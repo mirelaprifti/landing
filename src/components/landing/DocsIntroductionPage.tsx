@@ -126,6 +126,7 @@ export function DocsIntroductionPage() {
 							rel="noopener noreferrer"
 							className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
 						>
+							<span className="sr-only">(opens in new tab) </span>
 							The one weird git trick that makes coding agents more Effect-ive
 						</a>
 						.
@@ -141,6 +142,7 @@ export function DocsIntroductionPage() {
 							rel="noopener noreferrer"
 							className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
 						>
+							<span className="sr-only">(opens in new tab) </span>
 							mikearnaldi/accountability
 						</a>
 						.
@@ -155,6 +157,7 @@ export function DocsIntroductionPage() {
 							rel="noopener noreferrer"
 							className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
 						>
+							<span className="sr-only">(opens in new tab) </span>
 							Effect-TS/tsgo
 						</a>
 						.
