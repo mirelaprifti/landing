@@ -5,9 +5,10 @@ import { Button, Link } from "@/components/ui";
 interface NavigationProps {
 	transparent?: boolean;
 	activePath?: string;
+	wide?: boolean;
 }
 
-export function Navigation({ transparent = false, activePath }: NavigationProps) {
+export function Navigation({ transparent = false, activePath, wide = false }: NavigationProps) {
 	useEffect(() => {
 		let isMenuAnimating = false;
 
@@ -77,7 +78,7 @@ export function Navigation({ transparent = false, activePath }: NavigationProps)
 				className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-800 bg-zinc-950/85"}`}
 			>
 				<div className="w-full">
-					<header className="relative mx-auto w-full max-w-[73.75rem] px-4">
+					<header className={`relative mx-auto w-full px-4 ${wide ? "max-w-[88rem]" : "max-w-[73.75rem]"}`}>
 						<nav className="flex h-16 items-center">
 							<a href="/" className="flex items-center">
 								<img

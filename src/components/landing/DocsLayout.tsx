@@ -66,7 +66,7 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" />
+			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
 				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 lg:grid-cols-[240px_1fr_240px]">
 					{/* Left sidebar */}
