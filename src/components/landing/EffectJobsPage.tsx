@@ -105,15 +105,19 @@ export function EffectJobsPage() {
 										>
 											<div className="grid grid-cols-12 items-baseline gap-4">
 												{/* Role */}
-												<h3 className="col-span-12 text-base font-semibold text-zinc-900 md:col-span-6 dark:text-white">
+												<h3 className="col-span-12 text-base font-semibold text-zinc-900 md:col-span-5 dark:text-white">
 													{job.role}
 												</h3>
 												{/* Company */}
 												<p className="col-span-12 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-3 dark:text-zinc-400 dark:group-hover:text-zinc-200">
 													{job.company}
 												</p>
+												{/* Location */}
+												<p className="col-span-12 font-mono text-[10px] tracking-[0.12em] text-zinc-700 uppercase md:col-span-2 dark:text-zinc-400">
+													{job.location ?? ""}
+												</p>
 												{/* Link */}
-												<p className="col-span-12 inline-flex items-baseline gap-1 truncate font-mono text-xs text-zinc-700 md:col-span-3 md:justify-end dark:text-zinc-400">
+												<p className="col-span-12 inline-flex items-baseline gap-1 truncate font-mono text-xs text-zinc-700 md:col-span-2 md:justify-end dark:text-zinc-400">
 													<span className="truncate">
 														{linkDisplay(job.url)}
 													</span>
