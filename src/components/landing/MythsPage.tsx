@@ -202,7 +202,7 @@ const MYTHS: Myth[] = [
 		title: "Effect should be a language, or use a different language",
 		visual: {
 			kind: "stat",
-			value: "78%",
+			value: "~78%",
 			label: "Adoption rate",
 			sublabel: "TypeScript is no longer optional",
 		},
