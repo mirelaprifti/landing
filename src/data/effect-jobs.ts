@@ -209,9 +209,14 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Tenzir",
 		logo: "/assets/effect-jobs-logos/tenzir.svg",
+		h: "1rem",
 	},
 	{
 		name: "opencode",
 		logo: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
+	},
+	{
+		name: "Wander",
+		logo: "/assets/effect-jobs-logos/wander.svg",
 	},
 ];
