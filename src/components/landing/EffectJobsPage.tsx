@@ -86,9 +86,9 @@ export function EffectJobsPage() {
 
 						{/* CTA */}
 						<div className="mt-8 flex flex-wrap items-center gap-3">
-							<Button href={SUBMIT_URLS.postJob} variant="primary" size="md">
+							<Button href={SUBMIT_URLS.postJob} variant="primary" size="lg">
 								Post a job
-								<i className="ri-arrow-right-up-line text-base" aria-hidden="true" />
+								<i className="ri-arrow-right-up-line text-lg" aria-hidden="true" />
 							</Button>
 						</div>
 					</div>
