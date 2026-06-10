@@ -83,6 +83,7 @@ export const JOBS: Job[] = [
 	{
 		company: "PhosPhor",
 		role: "Engineers with Effect experience",
+		location: "Remote · NYC",
 		url: "https://phosphor.co/",
 		logo: "/assets/effect-jobs-logos/phosphor-icon.png",
 	},
