@@ -75,6 +75,7 @@ export const JOBS: Job[] = [
 	{
 		company: "Joymore",
 		role: "Backend and Full Stack Engineers",
+		location: "Remote · prefer SF / Sacramento area",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/joymore-icon.svg",
