@@ -34,15 +34,18 @@ export const JOBS: Job[] = [
 	{
 		company: "Expand.ai",
 		role: "Founding Engineer",
+		location: "San Francisco, USA",
 		url: "https://expand.ai/careers/founding-engineer",
 		logo: "/assets/effect-jobs-logos/expand-ai-icon.png",
 	},
 	{
 		company: "Freckle.io",
 		role: "Full-stack Engineers",
+		location: "San Francisco · Remote OK",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/freckle-icon.png",
+		payRange: "$160K – $210K + equity",
 	},
 	{
 		company: "Gale",
