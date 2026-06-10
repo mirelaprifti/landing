@@ -203,4 +203,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		name: "Warp",
 		logo: "/assets/effect-jobs-logos/warp.svg",
 	},
+	{
+		name: "Samsung Food",
+		logo: "/assets/effect-jobs-logos/samsung-food.svg",
+		h: "1rem",
+	},
 ];
