@@ -67,6 +67,7 @@ export const JOBS: Job[] = [
 		role: "Backend and Full Stack Engineers",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/joymore-icon.svg",
 	},
 	{
 		company: "PhosPhor",
