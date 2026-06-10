@@ -59,6 +59,7 @@ export const JOBS: Job[] = [
 	{
 		company: "Goblins",
 		role: "Product Founding Engineer",
+		location: "Brooklyn, NYC",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/goblins-icon.png",
