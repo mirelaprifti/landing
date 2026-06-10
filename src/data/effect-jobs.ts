@@ -219,4 +219,8 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		name: "Wander",
 		logo: "/assets/effect-jobs-logos/wander.svg",
 	},
+	{
+		name: "Introw",
+		logo: "/assets/effect-jobs-logos/introw.svg",
+	},
 ];
