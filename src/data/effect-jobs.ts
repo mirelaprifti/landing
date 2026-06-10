@@ -54,6 +54,7 @@ export const JOBS: Job[] = [
 		type: "Internship",
 		url: "https://forms.galevisa.com/r/m6gr7e",
 		logo: "/assets/effect-jobs-logos/gale-icon.png",
+		payRange: "CAD 35–38/hr · USD 22–28/hr",
 	},
 	{
 		company: "Goblins",
