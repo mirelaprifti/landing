@@ -15,8 +15,8 @@ export type LogoCompany = {
 	name: string;
 	logo: string;
 	url?: string;
-	/** Optional height in tailwind units (h-5 = 20px). Defaults to 6. */
-	h?: number;
+	/** Optional height override as a CSS length (e.g. "1rem"). Defaults to 1.25rem. */
+	h?: string;
 	/** Force the logo to render as white via CSS filter (useful for colored raster logos). */
 	invert?: boolean;
 };
@@ -151,65 +151,56 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		name: "MasterClass",
 		logo: "/assets/quotes-logos/masterclass-noM.svg",
 		url: "https://www.masterclass.com",
-		h: 6,
+		h: "1rem",
 	},
 	{
 		name: "Vercel",
 		logo: "/assets/quotes-logos/vercel-logotype-dark.svg",
 		url: "https://vercel.com",
-		h: 5,
 	},
 	{
 		name: "Spiko",
 		logo: "/assets/quotes-logos/spiko-logo.svg",
 		url: "https://spiko.io",
-		h: 5,
 	},
 	{
 		name: "Acemate",
 		logo: "/assets/effect-jobs-logos/acemate.png",
 		url: "https://acemate.ai",
-		h: 5,
 		invert: true,
 	},
 	{
 		name: "Embedded Insurance",
 		logo: "/assets/effect-jobs-logos/embedded-insurance-logo.svg",
-		h: 6,
 	},
 	{
 		name: "Inato",
 		logo: "/assets/effect-jobs-logos/inato.png",
-		h: 5,
 	},
 	{
 		name: "Interfere",
 		logo: "/assets/effect-jobs-logos/intefere-white.svg",
-		h: 5,
 	},
 	{
 		name: "Manage Space",
 		logo: "/assets/effect-jobs-logos/manage-space.svg",
-		h: 6,
+		h: "1rem",
 	},
 	{
 		name: "Platonic Systems",
 		logo: "/assets/effect-jobs-logos/platonic-systems.svg",
-		h: 6,
+		h: "1rem",
 	},
 	{
 		name: "Precurion",
 		logo: "/assets/effect-jobs-logos/precurion.png",
-		h: 5,
 	},
 	{
 		name: "Globe Commerce",
 		logo: "/assets/effect-jobs-logos/globe-commerce.png",
-		h: 6,
 	},
 	{
 		name: "Warp",
 		logo: "/assets/effect-jobs-logos/warp.svg",
-		h: 6,
 	},
 ];
