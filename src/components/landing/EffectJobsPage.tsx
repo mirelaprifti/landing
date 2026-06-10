@@ -107,19 +107,20 @@ export function EffectJobsPage() {
 												{/* Company (with optional logo) */}
 												<p className="col-span-12 inline-flex items-center gap-3 text-base font-semibold text-zinc-900 md:col-span-3 dark:text-white">
 													<span className="sr-only">Company: </span>
-													{job.logo ? (
-														<img
-															src={getAssetPath(job.logo)}
-															alt=""
-															aria-hidden="true"
-															className="h-9 w-auto max-w-28 shrink-0 object-contain"
-														/>
-													) : (
-														<span
-															aria-hidden="true"
-															className="h-9 w-9 shrink-0 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700"
-														/>
-													)}
+													<span
+														aria-hidden="true"
+														className="flex h-9 w-28 shrink-0 items-center justify-start"
+													>
+														{job.logo ? (
+															<img
+																src={getAssetPath(job.logo)}
+																alt=""
+																className="max-h-9 max-w-full object-contain"
+															/>
+														) : (
+															<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
+														)}
+													</span>
 													<span className="truncate">{job.company}</span>
 												</p>
 												{/* Role */}
