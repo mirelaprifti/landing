@@ -112,12 +112,12 @@ export function EffectJobsPage() {
 															src={getAssetPath(job.logo)}
 															alt=""
 															aria-hidden="true"
-															className="h-6 w-6 shrink-0 rounded-sm object-contain"
+															className="h-9 w-auto max-w-28 shrink-0 object-contain"
 														/>
 													) : (
 														<span
 															aria-hidden="true"
-															className="h-6 w-6 shrink-0 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700"
+															className="h-9 w-9 shrink-0 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700"
 														/>
 													)}
 													<span className="truncate">{job.company}</span>
