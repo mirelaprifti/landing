@@ -192,4 +192,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/manage-space.svg",
 		h: 6,
 	},
+	{
+		name: "Platonic Systems",
+		logo: "/assets/effect-jobs-logos/platonic-systems.svg",
+		h: 6,
+	},
 ];
