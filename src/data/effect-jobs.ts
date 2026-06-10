@@ -130,6 +130,7 @@ export const JOBS: Job[] = [
 		role: "Product Engineer",
 		location: "San Francisco",
 		url: "https://www.ycombinator.com/companies/trellis-ai",
+		logo: "/assets/effect-jobs-logos/trellis.png",
 	},
 	{
 		company: "Consumer Music Startup",
