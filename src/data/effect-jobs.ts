@@ -17,6 +17,8 @@ export type LogoCompany = {
 	url?: string;
 	/** Optional height in tailwind units (h-5 = 20px). Defaults to 6. */
 	h?: number;
+	/** Force the logo to render as white via CSS filter (useful for colored raster logos). */
+	invert?: boolean;
 };
 
 export const SUBMIT_URLS = {
@@ -168,5 +170,6 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/acemate.png",
 		url: "https://acemate.ai",
 		h: 5,
+		invert: true,
 	},
 ];
