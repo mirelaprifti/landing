@@ -163,4 +163,10 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		url: "https://spiko.io",
 		h: 5,
 	},
+	{
+		name: "Acemate",
+		logo: "/assets/effect-jobs-logos/acemate.png",
+		url: "https://acemate.ai",
+		h: 5,
+	},
 ];
