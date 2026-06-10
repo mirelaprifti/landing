@@ -48,6 +48,7 @@ export const JOBS: Job[] = [
 		location: "Remote · CAN/US",
 		type: "Internship",
 		url: "https://forms.galevisa.com/r/m6gr7e",
+		logo: "/assets/effect-jobs-logos/gale-visa.png",
 	},
 	{
 		company: "Goblins",
