@@ -67,8 +67,10 @@ export const JOBS: Job[] = [
 	{
 		company: "HumanLayer",
 		role: "Founding Product Engineer",
+		location: "San Francisco",
 		url: "https://workatastartup.com/jobs/84491",
 		logo: "/assets/effect-jobs-logos/humanlayer.png",
+		payRange: "$180K – $250K",
 	},
 	{
 		company: "Joymore",
