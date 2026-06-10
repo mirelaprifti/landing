@@ -105,11 +105,11 @@ export function EffectJobsPage() {
 										>
 											<div className="grid grid-cols-12 items-center gap-4">
 												{/* Company (with optional logo) */}
-												<p className="col-span-12 inline-flex items-center gap-3 text-base font-semibold text-zinc-900 md:col-span-3 dark:text-white">
+												<p className="col-span-12 inline-flex items-center gap-2 text-base font-semibold text-zinc-900 md:col-span-3 dark:text-white">
 													<span className="sr-only">Company: </span>
 													<span
 														aria-hidden="true"
-														className="flex h-9 w-28 shrink-0 items-center justify-start"
+														className="flex h-9 w-12 shrink-0 items-center justify-start"
 													>
 														{job.logo ? (
 															<img
