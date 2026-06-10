@@ -182,4 +182,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/inato.png",
 		h: 5,
 	},
+	{
+		name: "Interfere",
+		logo: "/assets/effect-jobs-logos/intefere-white.svg",
+		h: 5,
+	},
 ];
