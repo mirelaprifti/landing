@@ -150,7 +150,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "MasterClass",
 		logo: "/assets/quotes-logos/masterclass-noM.svg",
-		h: "0.5rem",
+		h: "1rem",
 	},
 	{
 		name: "Vercel",
