@@ -139,7 +139,7 @@ export function EffectJobsPage() {
 													{job.payRange ?? ""}
 												</p>
 												{/* Location */}
-												<p className="col-span-12 font-mono text-[10px] tracking-[0.12em] text-zinc-700 uppercase md:col-span-2 dark:text-zinc-400">
+												<p className="col-span-12 font-mono text-xs text-zinc-700 md:col-span-2 dark:text-zinc-400">
 													<span className="sr-only">Location: </span>
 													{job.location ?? ""}
 												</p>
