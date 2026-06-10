@@ -197,4 +197,14 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/platonic-systems.svg",
 		h: 6,
 	},
+	{
+		name: "Precurion",
+		logo: "/assets/effect-jobs-logos/precurion.png",
+		h: 5,
+	},
+	{
+		name: "Globe Commerce",
+		logo: "/assets/effect-jobs-logos/globe-commerce.png",
+		h: 6,
+	},
 ];
