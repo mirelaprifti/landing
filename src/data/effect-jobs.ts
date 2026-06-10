@@ -33,6 +33,7 @@ export const JOBS: Job[] = [
 		company: "Expand.ai",
 		role: "Founding Engineer",
 		url: "https://expand.ai/careers/founding-engineer",
+		logo: "/assets/effect-jobs-logos/expand-ai.svg",
 	},
 	{
 		company: "Freckle.io",

@@ -104,24 +104,29 @@ export function EffectJobsPage() {
 											className="group block -mx-4 border-t border-zinc-300 px-4 py-4 transition-colors first:border-t-0 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800/80"
 										>
 											<div className="grid grid-cols-12 items-center gap-4">
-												{/* Role */}
-												<h3 className="col-span-12 text-base font-semibold text-zinc-900 md:col-span-4 dark:text-white">
-													<span className="sr-only">Role: </span>
-													{job.role}
-												</h3>
 												{/* Company (with optional logo) */}
-												<p className="col-span-12 inline-flex items-center gap-2 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-3 dark:text-zinc-400 dark:group-hover:text-zinc-200">
+												<p className="col-span-12 inline-flex items-center gap-3 text-base font-semibold text-zinc-900 md:col-span-3 dark:text-white">
 													<span className="sr-only">Company: </span>
-													{job.logo && (
+													{job.logo ? (
 														<img
 															src={getAssetPath(job.logo)}
 															alt=""
 															aria-hidden="true"
-															className="h-5 w-5 shrink-0 rounded-sm object-contain"
+															className="h-6 w-6 shrink-0 rounded-sm object-contain"
+														/>
+													) : (
+														<span
+															aria-hidden="true"
+															className="h-6 w-6 shrink-0 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700"
 														/>
 													)}
 													<span className="truncate">{job.company}</span>
 												</p>
+												{/* Role */}
+												<h3 className="col-span-12 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-4 dark:text-zinc-400 dark:group-hover:text-zinc-200">
+													<span className="sr-only">Role: </span>
+													{job.role}
+												</h3>
 												{/* Pay range */}
 												<p className="col-span-12 font-mono text-xs text-zinc-700 tabular-nums md:col-span-2 dark:text-zinc-300">
 													<span className="sr-only">Pay range: </span>
