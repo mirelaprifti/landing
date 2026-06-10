@@ -132,13 +132,6 @@ export const JOBS: Job[] = [
 		url: "https://www.ycombinator.com/companies/trellis-ai",
 		logo: "/assets/effect-jobs-logos/trellis.png",
 	},
-	{
-		company: "Consumer Music Startup",
-		role: "Effect Backend Consultant + Full-time Engineer",
-		location: "New York City",
-		url: "https://discord.gg/effect-ts",
-		note: "Posted on Discord #job-board",
-	},
 ];
 
 /**
