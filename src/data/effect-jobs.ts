@@ -60,6 +60,7 @@ export const JOBS: Job[] = [
 		company: "HumanLayer",
 		role: "Founding Product Engineer",
 		url: "https://workatastartup.com/jobs/84491",
+		logo: "/assets/effect-jobs-logos/humanlayer.png",
 	},
 	{
 		company: "Joymore",
@@ -71,6 +72,7 @@ export const JOBS: Job[] = [
 		company: "PhosPhor",
 		role: "Engineers with Effect experience",
 		url: "https://phosphor.co/",
+		logo: "/assets/effect-jobs-logos/phosphor.svg",
 	},
 	{
 		company: "Reap",
