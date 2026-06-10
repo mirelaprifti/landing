@@ -187,4 +187,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/intefere-white.svg",
 		h: 5,
 	},
+	{
+		name: "Manage Space",
+		logo: "/assets/effect-jobs-logos/manage-space.svg",
+		h: 6,
+	},
 ];
