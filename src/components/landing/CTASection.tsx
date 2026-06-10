@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { AgentCommand } from "./AgentCommand";
 import { InstallCommand } from "./InstallCommand";
 
 export function CTASection() {
@@ -50,9 +51,10 @@ export function CTASection() {
 						Stop installing a new package for every problem
 					</h2>
 
-					{/* Install command */}
-					<div className="mt-8 w-full max-w-[34.75rem]">
+					{/* Dual CTA — humans + agents */}
+					<div className="mt-8 grid w-full gap-4 md:max-w-4xl md:grid-cols-2">
 						<InstallCommand />
+						<AgentCommand />
 					</div>
 
 					{/* CTA Buttons */}
