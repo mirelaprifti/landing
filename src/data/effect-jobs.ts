@@ -163,10 +163,4 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		url: "https://spiko.io",
 		h: 5,
 	},
-	{
-		name: "Cloudflare",
-		logo: "/assets/quotes-logos/Cloudflare_logo_wht 2.svg",
-		url: "https://www.cloudflare.com",
-		h: 6,
-	},
 ];
