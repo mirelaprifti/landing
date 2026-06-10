@@ -40,7 +40,7 @@ export const JOBS: Job[] = [
 		role: "Full-stack Engineers",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/freckle-logo.svg",
+		logo: "/assets/effect-jobs-logos/freckle-icon.png",
 	},
 	{
 		company: "Gale",
