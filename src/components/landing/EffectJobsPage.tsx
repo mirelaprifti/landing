@@ -134,12 +134,12 @@ export function EffectJobsPage() {
 													{job.role}
 												</h3>
 												{/* Pay range */}
-												<p className="col-span-12 font-mono text-xs text-zinc-700 tabular-nums md:col-span-3 dark:text-zinc-300">
+												<p className="col-span-12 font-mono text-sm text-zinc-700 tabular-nums md:col-span-3 dark:text-zinc-300">
 													<span className="sr-only">Pay range: </span>
 													{job.payRange ?? ""}
 												</p>
 												{/* Location */}
-												<p className="col-span-12 font-mono text-xs text-zinc-700 md:col-span-2 dark:text-zinc-400">
+												<p className="col-span-12 font-mono text-sm text-zinc-700 md:col-span-2 dark:text-zinc-400">
 													<span className="sr-only">Location: </span>
 													{job.location ?? ""}
 												</p>
