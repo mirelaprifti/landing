@@ -157,7 +157,7 @@ export const JOBS: Job[] = [
 		location: "UK · US · Europe",
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1509855152184627340",
 		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/manage-space.svg",
+		logo: "/assets/effect-jobs-logos/managespace-icon 1.png",
 	},
 ];
 
