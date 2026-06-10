@@ -151,6 +151,14 @@ export const JOBS: Job[] = [
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/leap.svg",
 	},
+	{
+		company: "ManageSpace",
+		role: "Full Stack Engineer (mid-level)",
+		location: "UK · US · Europe",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1509855152184627340",
+		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/manage-space.svg",
+	},
 ];
 
 /**
