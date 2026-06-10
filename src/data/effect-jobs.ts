@@ -206,4 +206,8 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/samsung-food.svg",
 		h: "1rem",
 	},
+	{
+		name: "Tenzir",
+		logo: "/assets/effect-jobs-logos/tenzir.svg",
+	},
 ];
