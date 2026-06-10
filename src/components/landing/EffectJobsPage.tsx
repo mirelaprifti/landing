@@ -1,5 +1,6 @@
 import { JOBS, LOGO_COMPANIES, SUBMIT_URLS } from "../../data/effect-jobs";
 import { getAssetPath } from "../../utils/assetPath";
+import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -254,6 +255,7 @@ export function EffectJobsPage() {
 			</main>
 
 			<Footer activePath="/effect-jobs" />
+			<GridOverlay />
 		</div>
 	);
 }

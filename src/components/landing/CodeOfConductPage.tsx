@@ -1,4 +1,5 @@
 import { Link } from "@/components/ui";
+import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -217,6 +218,7 @@ export function CodeOfConductPage() {
 			</section>
 
 			<Footer activePath="/events" />
+			<GridOverlay />
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { getAssetPath } from "../../utils/assetPath";
+import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -741,6 +742,7 @@ export function MythsPage() {
 			</main>
 
 			<Footer activePath="/myths" />
+			<GridOverlay />
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -202,6 +203,7 @@ export function DocsLayout({
 				</div>
 			</div>
 			<Footer activePath="/docs" />
+			<GridOverlay />
 		</div>
 	);
 }
