@@ -146,8 +146,8 @@ export function DocsLayout({
 																aria-current={isActive ? "page" : undefined}
 																className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
 																	isActive
-																		? "bg-zinc-100 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																		: "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+																		? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+																		: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 																}`}
 															>
 																{item.label}
