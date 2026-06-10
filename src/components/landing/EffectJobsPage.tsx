@@ -218,7 +218,7 @@ export function EffectJobsPage() {
 															target="_blank"
 															rel="noopener noreferrer"
 															aria-label={company.name}
-															className="flex h-full w-full items-center justify-center px-4 transition-opacity hover:opacity-100"
+															className="flex h-full w-full items-center justify-center px-4 transition-opacity hover:opacity-90"
 														>
 															<img
 																src={getAssetPath(company.logo)}
@@ -227,7 +227,7 @@ export function EffectJobsPage() {
 																	height: company.h ?? "1.25rem",
 																	filter: company.invert ? "brightness(0) invert(1)" : undefined,
 																}}
-																className="w-auto opacity-100"
+																className="w-auto opacity-90"
 															/>
 														</a>
 													) : (
@@ -238,7 +238,7 @@ export function EffectJobsPage() {
 																height: company.h ?? "1.25rem",
 																filter: company.invert ? "brightness(0) invert(1)" : undefined,
 															}}
-															className="w-auto opacity-100"
+															className="w-auto opacity-90"
 														/>
 													)
 												) : null}
