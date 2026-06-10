@@ -95,6 +95,7 @@ export const JOBS: Job[] = [
 		type: "Part-time",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/siworks.png",
 	},
 	{
 		company: "Solid",
