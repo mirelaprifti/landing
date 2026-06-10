@@ -132,6 +132,7 @@ export const JOBS: Job[] = [
 	{
 		company: "Tranched",
 		role: "Full-stack Engineer — Web3",
+		location: "Paris · London · Amsterdam",
 		url: "https://tranched.fi/careers/fullstack-developer-web3",
 		logo: "/assets/effect-jobs-logos/tranched.png",
 	},
