@@ -132,13 +132,6 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 							>
 								Play
 							</Link>
-							<Link
-								href="https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/"
-								variant="nav"
-								className={transparent ? "text-white hover:text-white/80" : ""}
-							>
-								LLM Guide
-							</Link>
 							<Button
 								href="https://www.effect.institute/"
 								variant="primary"
@@ -293,14 +286,6 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
 								Play
-							</a>
-							<a
-								href="https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
-							>
-								LLM Guide
 							</a>
 							<a
 								href="https://www.effect.institute/"
