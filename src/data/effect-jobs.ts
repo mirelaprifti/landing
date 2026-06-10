@@ -150,23 +150,19 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "MasterClass",
 		logo: "/assets/quotes-logos/masterclass-noM.svg",
-		url: "https://www.masterclass.com",
 		h: "0.5rem",
 	},
 	{
 		name: "Vercel",
 		logo: "/assets/quotes-logos/vercel-logotype-dark.svg",
-		url: "https://vercel.com",
 	},
 	{
 		name: "Spiko",
 		logo: "/assets/quotes-logos/spiko-logo.svg",
-		url: "https://spiko.io",
 	},
 	{
 		name: "Acemate",
 		logo: "/assets/effect-jobs-logos/acemate.png",
-		url: "https://acemate.ai",
 		invert: true,
 	},
 	{
