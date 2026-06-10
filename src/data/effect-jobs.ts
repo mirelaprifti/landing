@@ -163,6 +163,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Acemate",
 		logo: "/assets/effect-jobs-logos/acemate.png",
+		h: "1rem",
 		invert: true,
 	},
 	{
@@ -176,6 +177,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Interfere",
 		logo: "/assets/effect-jobs-logos/intefere-white.svg",
+		h: "1rem",
 	},
 	{
 		name: "Manage Space",
