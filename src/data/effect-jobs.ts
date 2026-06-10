@@ -116,8 +116,10 @@ export const JOBS: Job[] = [
 	{
 		company: "Supermemory",
 		role: "Founding Backend / Infrastructure Engineer",
+		location: "San Francisco, CA · Hybrid",
 		url: "https://x.com/i/jobs/1928194391946186862",
 		logo: "/assets/effect-jobs-logos/supermemory-icon.png",
+		payRange: "$90K – $250K",
 	},
 	{
 		company: "Superwall",
