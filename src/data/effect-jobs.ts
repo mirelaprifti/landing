@@ -207,4 +207,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/globe-commerce.png",
 		h: 6,
 	},
+	{
+		name: "Warp",
+		logo: "/assets/effect-jobs-logos/warp.svg",
+		h: 6,
+	},
 ];
