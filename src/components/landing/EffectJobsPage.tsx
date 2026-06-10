@@ -129,12 +129,12 @@ export function EffectJobsPage() {
 													<span className="truncate">{job.company}</span>
 												</p>
 												{/* Role */}
-												<h3 className="col-span-12 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-4 dark:text-zinc-400 dark:group-hover:text-zinc-200">
+												<h3 className="col-span-12 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-3 dark:text-zinc-400 dark:group-hover:text-zinc-200">
 													<span className="sr-only">Role: </span>
 													{job.role}
 												</h3>
 												{/* Pay range */}
-												<p className="col-span-12 font-mono text-xs text-zinc-700 tabular-nums md:col-span-2 dark:text-zinc-300">
+												<p className="col-span-12 font-mono text-xs text-zinc-700 tabular-nums md:col-span-3 dark:text-zinc-300">
 													<span className="sr-only">Pay range: </span>
 													{job.payRange ?? ""}
 												</p>
