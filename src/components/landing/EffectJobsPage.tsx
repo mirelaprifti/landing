@@ -227,7 +227,7 @@ export function EffectJobsPage() {
 																	height: company.h ?? "1.25rem",
 																	filter: company.invert ? "brightness(0) invert(1)" : undefined,
 																}}
-																className="w-auto opacity-80 transition-opacity"
+																className="w-auto opacity-100"
 															/>
 														</a>
 													) : (
@@ -238,7 +238,7 @@ export function EffectJobsPage() {
 																height: company.h ?? "1.25rem",
 																filter: company.invert ? "brightness(0) invert(1)" : undefined,
 															}}
-															className="w-auto opacity-80"
+															className="w-auto opacity-100"
 														/>
 													)
 												) : null}
