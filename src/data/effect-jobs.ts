@@ -192,6 +192,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Precurion",
 		logo: "/assets/effect-jobs-logos/precurion.png",
+		h: "1rem",
 	},
 	{
 		name: "Globe Commerce",
@@ -222,5 +223,11 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Introw",
 		logo: "/assets/effect-jobs-logos/introw.svg",
+		h: "1rem",
+	},
+	{
+		name: "Magentus",
+		logo: "/assets/effect-jobs-logos/magentus 1.svg",
+		h: "1rem",
 	},
 ];
