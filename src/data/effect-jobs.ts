@@ -180,10 +180,8 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/quotes-logos/spiko-logo.svg",
 	},
 	{
-		name: "Acemate",
-		logo: "/assets/effect-jobs-logos/acemate.png",
-		h: "1rem",
-		invert: true,
+		name: "opencode",
+		logo: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
 	},
 	{
 		name: "Embedded Insurance",
@@ -232,8 +230,10 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		h: "1rem",
 	},
 	{
-		name: "opencode",
-		logo: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
+		name: "Acemate",
+		logo: "/assets/effect-jobs-logos/acemate.png",
+		h: "1rem",
+		invert: true,
 	},
 	{
 		name: "Wander",
