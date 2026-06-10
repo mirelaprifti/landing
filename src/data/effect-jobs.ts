@@ -130,12 +130,6 @@ export const JOBS: Job[] = [
 		payRange: "$130K Yr 1 → $175K Yr 2",
 	},
 	{
-		company: "Temper",
-		role: "Founding Engineer",
-		url: "https://news.ycombinator.com/item?id=47224903",
-		logo: "/assets/effect-jobs-logos/temper.png",
-	},
-	{
 		company: "Tranched",
 		role: "Full-stack Engineer — Web3",
 		url: "https://tranched.fi/careers/fullstack-developer-web3",
