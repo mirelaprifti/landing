@@ -177,4 +177,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		logo: "/assets/effect-jobs-logos/embedded-insurance-logo.svg",
 		h: 6,
 	},
+	{
+		name: "Inato",
+		logo: "/assets/effect-jobs-logos/inato.png",
+		h: 5,
+	},
 ];
