@@ -81,6 +81,22 @@ export const JOBS: Job[] = [
 		logo: "/assets/effect-jobs-logos/joymore-icon.svg",
 	},
 	{
+		company: "LEAP Legal Software",
+		role: "Full-stack Engineer",
+		location: "Sydney · Hybrid",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1512445948662386889",
+		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/leap.svg",
+	},
+	{
+		company: "ManageSpace",
+		role: "Full Stack Engineer (mid-level)",
+		location: "UK · US · Europe",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1509855152184627340",
+		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/managespace-icon 1.png",
+	},
+	{
 		company: "PhosPhor",
 		role: "Engineers with Effect experience",
 		location: "Remote · NYC",
@@ -142,22 +158,6 @@ export const JOBS: Job[] = [
 		location: "San Francisco",
 		url: "https://www.ycombinator.com/companies/trellis-ai",
 		logo: "/assets/effect-jobs-logos/trellis.png",
-	},
-	{
-		company: "LEAP Legal Software",
-		role: "Full-stack Engineer",
-		location: "Sydney · Hybrid",
-		url: "https://discord.com/channels/795981131316985866/796153351372275743/1512445948662386889",
-		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/leap.svg",
-	},
-	{
-		company: "ManageSpace",
-		role: "Full Stack Engineer (mid-level)",
-		location: "UK · US · Europe",
-		url: "https://discord.com/channels/795981131316985866/796153351372275743/1509855152184627340",
-		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/managespace-icon 1.png",
 	},
 ];
 
