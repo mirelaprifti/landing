@@ -34,7 +34,7 @@ export const JOBS: Job[] = [
 	{
 		company: "Expand.ai",
 		role: "Founding Engineer",
-		location: "San Francisco, USA",
+		location: "San Francisco, USA · Remote (exceptional cases)",
 		url: "https://expand.ai/careers/founding-engineer",
 		logo: "/assets/effect-jobs-logos/expand-ai-icon.png",
 	},
