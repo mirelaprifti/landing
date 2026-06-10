@@ -42,7 +42,7 @@ export const JOBS: Job[] = [
 		company: "Freckle.io",
 		role: "Full-stack Engineers",
 		location: "San Francisco · Remote (exceptional cases)",
-		url: "https://discord.gg/effect-ts",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1457982486310027408",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/freckle-icon.png",
 		payRange: "$160K – $210K + equity",
