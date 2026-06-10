@@ -210,4 +210,8 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		name: "Tenzir",
 		logo: "/assets/effect-jobs-logos/tenzir.svg",
 	},
+	{
+		name: "opencode",
+		logo: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
+	},
 ];
