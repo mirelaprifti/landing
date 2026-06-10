@@ -78,7 +78,7 @@ export function EffectJobsPage() {
 						<h1 className="mt-2 text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl dark:text-white">
 							Companies hiring Effect engineers
 						</h1>
-						<p className="mt-4 text-lg leading-relaxed text-zinc-800 md:text-xl dark:text-zinc-400">
+						<p className="mt-4 text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
 							A community-powered directory of open roles where Effect is part of
 							the stack.
 						</p>
