@@ -103,16 +103,29 @@ export function EffectJobsPage() {
 											rel="noopener noreferrer"
 											className="group block -mx-4 border-t border-zinc-300 px-4 py-4 transition-colors first:border-t-0 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800/80"
 										>
-											<div className="grid grid-cols-12 items-baseline gap-4">
+											<div className="grid grid-cols-12 items-center gap-4">
 												{/* Role */}
-												<h3 className="col-span-12 text-base font-semibold text-zinc-900 md:col-span-5 dark:text-white">
+												<h3 className="col-span-12 text-base font-semibold text-zinc-900 md:col-span-4 dark:text-white">
 													<span className="sr-only">Role: </span>
 													{job.role}
 												</h3>
-												{/* Company */}
-												<p className="col-span-12 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-3 dark:text-zinc-400 dark:group-hover:text-zinc-200">
+												{/* Company (with optional logo) */}
+												<p className="col-span-12 inline-flex items-center gap-2 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-3 dark:text-zinc-400 dark:group-hover:text-zinc-200">
 													<span className="sr-only">Company: </span>
-													{job.company}
+													{job.logo && (
+														<img
+															src={getAssetPath(job.logo)}
+															alt=""
+															aria-hidden="true"
+															className="h-5 w-5 shrink-0 rounded-sm object-contain"
+														/>
+													)}
+													<span className="truncate">{job.company}</span>
+												</p>
+												{/* Pay range */}
+												<p className="col-span-12 font-mono text-xs text-zinc-700 tabular-nums md:col-span-2 dark:text-zinc-300">
+													<span className="sr-only">Pay range: </span>
+													{job.payRange ?? ""}
 												</p>
 												{/* Location */}
 												<p className="col-span-12 font-mono text-[10px] tracking-[0.12em] text-zinc-700 uppercase md:col-span-2 dark:text-zinc-400">
@@ -120,15 +133,13 @@ export function EffectJobsPage() {
 													{job.location ?? ""}
 												</p>
 												{/* Link */}
-												<p className="col-span-12 inline-flex items-baseline gap-1 truncate font-mono text-xs text-zinc-700 md:col-span-2 md:justify-end dark:text-zinc-400">
+												<p className="col-span-12 inline-flex items-baseline gap-1 truncate font-mono text-xs text-zinc-700 md:col-span-1 md:justify-end dark:text-zinc-400">
 													<span className="sr-only">Apply: </span>
-													<span className="truncate">
-														{linkDisplay(job.url)}
-													</span>
+													<span className="sr-only">{linkDisplay(job.url)}</span>
 													<span className="sr-only"> (opens in new tab)</span>
 													<i
 														aria-hidden="true"
-														className="ri-arrow-right-up-line shrink-0 text-base text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
+														className="ri-arrow-right-up-line shrink-0 text-lg text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
 													/>
 												</p>
 											</div>

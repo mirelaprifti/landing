@@ -5,6 +5,10 @@ export type Job = {
 	type?: string;
 	url: string;
 	note?: string;
+	/** Path under /public/ (e.g. "/assets/jobs-logos/acemate.svg") */
+	logo?: string;
+	/** Free-form pay range, e.g. "$150K – $200K" or "€80K – €120K" */
+	payRange?: string;
 };
 
 export type LogoCompany = {
