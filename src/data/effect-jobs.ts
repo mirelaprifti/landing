@@ -172,4 +172,9 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		h: 5,
 		invert: true,
 	},
+	{
+		name: "Embedded Insurance",
+		logo: "/assets/effect-jobs-logos/embedded-insurance-logo.svg",
+		h: 6,
+	},
 ];
