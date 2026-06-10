@@ -7,8 +7,12 @@ import { Navigation } from "./Navigation";
 function linkDisplay(url: string): string {
 	try {
 		const parsed = new URL(url);
-		// Discord invite link → friendly label
-		if (parsed.hostname.endsWith("discord.gg")) return "Discord #job-board";
+		// Discord invite / channel link → friendly label
+		if (
+			parsed.hostname.endsWith("discord.gg") ||
+			parsed.hostname.endsWith("discord.com")
+		)
+			return "Discord #job-board";
 		return parsed.hostname.replace(/^www\./, "");
 	} catch {
 		return url;

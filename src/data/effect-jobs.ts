@@ -98,8 +98,9 @@ export const JOBS: Job[] = [
 	{
 		company: "SIWorks",
 		role: "Senior Full-Stack Engineer",
+		location: "Remote · Portland / Vancouver WA preferred",
 		type: "Part-time",
-		url: "https://discord.gg/effect-ts",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1501997185309347840",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/siworks.png",
 	},
