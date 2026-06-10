@@ -80,6 +80,7 @@ export const JOBS: Job[] = [
 		location: "Remote-friendly · HK",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/reap.png",
 	},
 	{
 		company: "Sellhub",
