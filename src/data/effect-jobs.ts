@@ -143,6 +143,13 @@ export const JOBS: Job[] = [
 		url: "https://www.ycombinator.com/companies/trellis-ai",
 		logo: "/assets/effect-jobs-logos/trellis.png",
 	},
+	{
+		company: "LEAP Legal Software",
+		role: "Full-stack Engineer",
+		location: "Sydney · Hybrid",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1512445948662386889",
+		note: "Posted on Discord #job-board",
+	},
 ];
 
 /**
