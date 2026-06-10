@@ -60,7 +60,7 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href="https://www.effect.solutions/"
+										href="https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
