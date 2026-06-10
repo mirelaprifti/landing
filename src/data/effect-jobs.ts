@@ -103,6 +103,7 @@ export const JOBS: Job[] = [
 		location: "Bay Area",
 		url: "https://discord.gg/effect-ts",
 		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/solid.png",
 	},
 	{
 		company: "Supermemory",
