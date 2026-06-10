@@ -151,7 +151,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 		name: "MasterClass",
 		logo: "/assets/quotes-logos/masterclass-noM.svg",
 		url: "https://www.masterclass.com",
-		h: "1rem",
+		h: "0.75rem",
 	},
 	{
 		name: "Vercel",
@@ -184,7 +184,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Manage Space",
 		logo: "/assets/effect-jobs-logos/manage-space.svg",
-		h: "1rem",
+		h: "0.75rem",
 	},
 	{
 		name: "Platonic Systems",
