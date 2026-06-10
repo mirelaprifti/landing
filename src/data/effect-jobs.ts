@@ -96,13 +96,6 @@ export const JOBS: Job[] = [
 		logo: "/assets/effect-jobs-logos/reap.png",
 	},
 	{
-		company: "Sellhub",
-		role: "Backend Engineer",
-		url: "https://discord.gg/effect-ts",
-		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/sellhub.png",
-	},
-	{
 		company: "SIWorks",
 		role: "Senior Full-Stack Engineer",
 		type: "Part-time",
