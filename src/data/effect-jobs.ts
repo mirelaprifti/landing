@@ -91,7 +91,7 @@ export const JOBS: Job[] = [
 		company: "Reap",
 		role: "Backend / Cloud Engineer",
 		location: "HK · Remote-friendly",
-		url: "https://discord.gg/effect-ts",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1494185541233541270",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/reap.png",
 	},
