@@ -105,16 +105,19 @@ export const JOBS: Job[] = [
 		company: "Supermemory",
 		role: "Founding Backend / Infrastructure Engineer",
 		url: "https://x.com/i/jobs/1928194391946186862",
+		logo: "/assets/effect-jobs-logos/supermemory.svg",
 	},
 	{
 		company: "Superwall",
 		role: "Full-stack Mobile Developer",
 		url: "https://x.com/jakemor/status/1972770955500876070",
+		logo: "/assets/effect-jobs-logos/superwall.svg",
 	},
 	{
 		company: "Temper",
 		role: "Founding Engineer",
 		url: "https://news.ycombinator.com/item?id=47224903",
+		logo: "/assets/effect-jobs-logos/temper.png",
 	},
 	{
 		company: "Tranched",
