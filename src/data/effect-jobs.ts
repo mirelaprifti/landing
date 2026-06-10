@@ -105,7 +105,7 @@ export const JOBS: Job[] = [
 		company: "Supermemory",
 		role: "Founding Backend / Infrastructure Engineer",
 		url: "https://x.com/i/jobs/1928194391946186862",
-		logo: "/assets/effect-jobs-logos/supermemory.svg",
+		logo: "/assets/effect-jobs-logos/supermemory-icon.png",
 	},
 	{
 		company: "Superwall",
