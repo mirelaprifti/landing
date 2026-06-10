@@ -220,7 +220,7 @@ export function EffectJobsPage() {
 																src={getAssetPath(company.logo)}
 																alt={company.name}
 																style={{
-																	height: `${(company.h ?? 6) * 4}px`,
+																	height: company.h ?? "1.25rem",
 																	filter: company.invert ? "brightness(0) invert(1)" : undefined,
 																}}
 																className="w-auto opacity-80 transition-opacity"
