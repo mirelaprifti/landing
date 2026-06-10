@@ -111,7 +111,7 @@ export const JOBS: Job[] = [
 		company: "Superwall",
 		role: "Full-stack Mobile Developer",
 		url: "https://x.com/jakemor/status/1972770955500876070",
-		logo: "/assets/effect-jobs-logos/superwall.svg",
+		logo: "/assets/effect-jobs-logos/sw-icon.png",
 	},
 	{
 		company: "Temper",
