@@ -108,9 +108,10 @@ export const JOBS: Job[] = [
 		company: "Solid",
 		role: "Early engineering team",
 		location: "Bay Area",
-		url: "https://discord.gg/effect-ts",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1455623052636459209",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/solid.png",
+		payRange: "$150K – $250K + equity",
 	},
 	{
 		company: "Supermemory",
