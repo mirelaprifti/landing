@@ -94,66 +94,86 @@ export function EffectJobsPage() {
 					</div>
 				</section>
 
-				{/* Open positions */}
+				{/* Open positions — card grid */}
 				<section className="relative border-t border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 gap-10 py-16 md:grid-cols-12 md:gap-x-0 md:py-20">
-							{/* Job list — Role · Company · Link · Location */}
-							<ul className="md:col-span-12">
+						<div className="py-16 md:py-20">
+							<ul className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-2 lg:grid-cols-3 dark:bg-zinc-800">
 								{JOBS.map((job) => (
-									<li key={`${job.company}-${job.role}`}>
+									<li key={`${job.company}-${job.role}`} className="bg-zinc-50 dark:bg-zinc-950">
 										<a
 											href={job.url}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group block -mx-4 border-t border-zinc-300 px-4 py-4 transition-colors first:border-t-0 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800/80"
+											className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
 										>
-											<div className="grid grid-cols-12 items-center gap-4">
-												{/* Company (with optional logo) */}
-												<p className="col-span-12 inline-flex items-center gap-2 text-base font-semibold text-zinc-900 md:col-span-3 dark:text-white">
-													<span className="sr-only">Company: </span>
-													<span
-														aria-hidden="true"
-														className="flex h-9 w-12 shrink-0 items-center justify-start"
-													>
-														{job.logo ? (
-															<img
-																src={getAssetPath(job.logo)}
-																alt=""
-																className="max-h-9 max-w-full object-contain"
-															/>
-														) : (
-															<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
-														)}
-													</span>
-													<span className="truncate">{job.company}</span>
-												</p>
-												{/* Role */}
-												<h3 className="col-span-12 text-base text-zinc-700 transition-colors group-hover:text-zinc-900 md:col-span-3 dark:text-zinc-400 dark:group-hover:text-zinc-200">
-													<span className="sr-only">Role: </span>
-													{job.role}
-												</h3>
-												{/* Pay range */}
-												<p className="col-span-12 font-mono text-sm text-zinc-700 tabular-nums md:col-span-3 dark:text-zinc-300">
-													<span className="sr-only">Pay range: </span>
-													{job.payRange ?? ""}
-												</p>
-												{/* Location */}
-												<p className="col-span-12 font-mono text-sm text-zinc-700 md:col-span-2 dark:text-zinc-400">
-													<span className="sr-only">Location: </span>
-													{job.location ?? ""}
-												</p>
-												{/* Link */}
-												<p className="col-span-12 inline-flex items-baseline gap-1 truncate font-mono text-xs text-zinc-700 md:col-span-1 md:justify-end dark:text-zinc-400">
-													<span className="sr-only">Apply: </span>
-													<span className="sr-only">{linkDisplay(job.url)}</span>
-													<span className="sr-only"> (opens in new tab)</span>
-													<i
-														aria-hidden="true"
-														className="ri-arrow-right-up-line shrink-0 text-lg text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
-													/>
-												</p>
+											{/* Header: logo + apply arrow */}
+											<div className="flex items-start justify-between">
+												<span
+													aria-hidden="true"
+													className="flex h-9 w-12 shrink-0 items-center justify-start"
+												>
+													{job.logo ? (
+														<img
+															src={getAssetPath(job.logo)}
+															alt=""
+															className="max-h-9 max-w-full object-contain"
+														/>
+													) : (
+														<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
+													)}
+												</span>
+												<i
+													aria-hidden="true"
+													className="ri-arrow-right-up-line shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
+												/>
 											</div>
+
+											{/* Company + role */}
+											<p className="mt-4 text-sm font-semibold text-zinc-900 dark:text-white">
+												<span className="sr-only">Company: </span>
+												{job.company}
+											</p>
+											<h3 className="mt-1 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
+												<span className="sr-only">Role: </span>
+												{job.role}
+											</h3>
+
+											{/* Description */}
+											{job.description && (
+												<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+													{job.description}
+												</p>
+											)}
+
+											{/* Meta footer */}
+											<div className="mt-auto pt-6">
+												<dl className="flex flex-col gap-1.5 border-t border-zinc-200 pt-4 font-mono text-xs text-zinc-700 dark:border-zinc-800 dark:text-zinc-400">
+													{job.payRange && (
+														<div className="flex gap-2">
+															<dt className="sr-only">Pay range</dt>
+															<dd className="tabular-nums">{job.payRange}</dd>
+														</div>
+													)}
+													{job.location && (
+														<div className="flex gap-2">
+															<dt className="sr-only">Location</dt>
+															<dd>{job.location}</dd>
+														</div>
+													)}
+													{job.type && (
+														<div className="flex gap-2">
+															<dt className="sr-only">Type</dt>
+															<dd>{job.type}</dd>
+														</div>
+													)}
+												</dl>
+											</div>
+
+											{/* Screen-reader-only link target */}
+											<span className="sr-only">
+												Apply at {linkDisplay(job.url)} (opens in new tab)
+											</span>
 										</a>
 									</li>
 								))}
