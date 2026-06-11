@@ -207,7 +207,7 @@ export function EffectJobsPage() {
 
 										{/* Headline */}
 										<h3 className="mt-5 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
-											Hiring with Effect?
+											Hiring Effect engineers?
 										</h3>
 
 										{/* Body */}
