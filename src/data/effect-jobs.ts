@@ -17,7 +17,7 @@ export type LogoCompany = {
 	name: string;
 	logo: string;
 	url?: string;
-	/** Optional height override as a CSS length (e.g. "1rem"). Defaults to 1.25rem. */
+	/** Optional height override as a CSS length (e.g. "16px"). Defaults to 20px. */
 	h?: string;
 	/** Force the logo to render as white via CSS filter (useful for colored raster logos). */
 	invert?: boolean;
@@ -186,7 +186,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "MasterClass",
 		logo: "/assets/quotes-logos/masterclass-noM.svg",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Vercel",
@@ -211,22 +211,22 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Interfere",
 		logo: "/assets/effect-jobs-logos/intefere-white.svg",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Manage Space",
 		logo: "/assets/effect-jobs-logos/manage-space.svg",
-		h: "0.7rem",
+		h: "10px",
 	},
 	{
 		name: "Platonic Systems",
 		logo: "/assets/effect-jobs-logos/platonic-systems.svg",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Precurion",
 		logo: "/assets/effect-jobs-logos/precurion.png",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Globe Commerce",
@@ -239,17 +239,17 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Samsung Food",
 		logo: "/assets/effect-jobs-logos/samsung-food.svg",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Tenzir",
 		logo: "/assets/effect-jobs-logos/tenzir.svg",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Acemate",
 		logo: "/assets/effect-jobs-logos/acemate.png",
-		h: "1rem",
+		h: "16px",
 		invert: true,
 	},
 	{
@@ -259,11 +259,11 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Introw",
 		logo: "/assets/effect-jobs-logos/introw.svg",
-		h: "1rem",
+		h: "16px",
 	},
 	{
 		name: "Magentus",
 		logo: "/assets/effect-jobs-logos/magentus 1.svg",
-		h: "1rem",
+		h: "16px",
 	},
 ];
