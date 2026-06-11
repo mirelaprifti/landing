@@ -107,37 +107,39 @@ export function EffectJobsPage() {
 											rel="noopener noreferrer"
 											className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
 										>
-											{/* Header: logo + apply arrow */}
-											<div className="flex items-start justify-between">
-												<span
-													aria-hidden="true"
-													className="flex h-9 w-12 shrink-0 items-center justify-start"
-												>
-													{job.logo ? (
-														<img
-															src={getAssetPath(job.logo)}
-															alt=""
-															className="max-h-9 max-w-full object-contain"
-														/>
-													) : (
-														<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
-													)}
-												</span>
+											{/* Header: logo + company name on left, apply arrow on right */}
+											<div className="flex items-center justify-between gap-3">
+												<div className="flex min-w-0 items-center gap-3">
+													<span
+														aria-hidden="true"
+														className="flex h-9 w-9 shrink-0 items-center justify-center"
+													>
+														{job.logo ? (
+															<img
+																src={getAssetPath(job.logo)}
+																alt=""
+																className="max-h-9 max-w-full object-contain"
+															/>
+														) : (
+															<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
+														)}
+													</span>
+													<p className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+														<span className="sr-only">Company: </span>
+														{job.company}
+													</p>
+												</div>
 												<i
 													aria-hidden="true"
 													className="ri-arrow-right-up-line shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
 												/>
 											</div>
 
-											{/* Role (headline) + company (sub) */}
+											{/* Role (headline) */}
 											<h3 className="mt-5 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
 												<span className="sr-only">Role: </span>
 												{job.role}
 											</h3>
-											<p className="mt-1 text-sm text-zinc-700 dark:text-zinc-400">
-												<span className="sr-only">Company: </span>
-												{job.company}
-											</p>
 
 											{/* Description */}
 											{job.description && (
