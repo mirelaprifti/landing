@@ -76,6 +76,7 @@ export const JOBS: Job[] = [
 		url: "https://workatastartup.com/jobs/84491",
 		logo: "/assets/effect-jobs-logos/humanlayer.png",
 		payRange: "$180K – $250K",
+		description: "Help CTOs and VPEs drive the transition to 99% AI-written code in their engineering orgs.",
 	},
 	{
 		company: "Joymore",
