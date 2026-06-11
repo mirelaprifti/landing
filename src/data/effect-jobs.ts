@@ -55,7 +55,6 @@ export const JOBS: Job[] = [
 		company: "Gale",
 		role: "SWE Intern",
 		location: "Remote · CAN/US",
-		type: "Internship",
 		url: "https://forms.galevisa.com/r/m6gr7e",
 		logo: "/assets/effect-jobs-logos/gale-icon.png",
 		payRange: "CAD 35–38/hr · USD 22–28/hr",
@@ -68,6 +67,7 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1439740311277404231",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/goblins-icon.png",
+		description: "Build America's favorite teacher, starting with K–12 math.",
 	},
 	{
 		company: "HumanLayer",
