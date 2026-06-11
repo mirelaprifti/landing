@@ -163,7 +163,7 @@ export function EffectJobsPage() {
 													</div>
 												)}
 												{job.location && (
-													<div className="mt-3 flex gap-2 border-t border-zinc-200 pt-3 dark:border-zinc-800">
+													<div className="mt-2 flex gap-2 border-t border-zinc-200 pt-2 dark:border-zinc-800">
 														<dt className="sr-only">Location</dt>
 														<dd>{job.location}</dd>
 													</div>
