@@ -177,6 +177,50 @@ export function EffectJobsPage() {
 										</a>
 									</li>
 								))}
+
+								{/* CTA card — invites teams to post a job */}
+								<li className="bg-zinc-50 dark:bg-zinc-950 sm:col-span-2 lg:col-span-2">
+									<a
+										href={SUBMIT_URLS.postJob}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 focus-visible:bg-zinc-100 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 focus-visible:outline-none dark:hover:bg-zinc-900/80 dark:focus-visible:bg-zinc-900/80 dark:focus-visible:ring-white"
+									>
+										{/* Header: dashed-frame placeholder + arrow */}
+										<div className="flex items-center justify-between gap-4">
+											<div className="flex min-w-0 items-center gap-4">
+												<span
+													aria-hidden="true"
+													className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-dashed border-zinc-400 text-lg text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"
+												>
+													<i className="ri-add-line" />
+												</span>
+												<p className="truncate font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+													// Post a job
+												</p>
+											</div>
+											<i
+												aria-hidden="true"
+												className="ri-arrow-right-up-line shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
+											/>
+										</div>
+
+										{/* Headline */}
+										<h3 className="mt-5 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
+											Hiring with Effect?
+										</h3>
+
+										{/* Body */}
+										<p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+											Open a GitHub issue with your role and we'll add it to this
+											board.
+										</p>
+
+										<span className="sr-only">
+											Opens GitHub issue template in a new tab
+										</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
