@@ -111,6 +111,7 @@ export const JOBS: Job[] = [
 		location: "Remote · NYC",
 		url: "https://phosphor.co/",
 		logo: "/assets/effect-jobs-logos/phosphor-icon.png",
+		description: "Building non-dilutive growth engines for industrial and climate technology companies.",
 	},
 	{
 		company: "Reap",
