@@ -216,15 +216,6 @@ export function EffectJobsPage() {
 											board.
 										</p>
 
-										{/* Footer — mirrors the meta strip on job cards */}
-										<div className="mt-auto flex flex-col gap-1.5 pt-6 font-mono text-xs text-zinc-700 dark:text-zinc-400">
-											<p>Free · Reviewed within ~24h</p>
-											<p className="mt-2 inline-flex items-center gap-2 border-t border-zinc-200 pt-2 dark:border-zinc-800">
-												<i className="ri-github-fill text-base" aria-hidden="true" />
-												<span>Submit via GitHub issue</span>
-											</p>
-										</div>
-
 										<span className="sr-only">
 											Opens GitHub issue template in a new tab
 										</span>
