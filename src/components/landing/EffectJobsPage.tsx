@@ -254,28 +254,14 @@ export function EffectJobsPage() {
 									// Teams running Effect in production
 								</p>
 
-								<ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
+								<ul className="grid grid-cols-2 gap-px bg-zinc-200 sm:grid-cols-3 md:grid-cols-6 dark:bg-zinc-800">
 									{Array.from({ length: 18 }).map((_, idx) => {
 										const company = LOGO_COMPANIES[idx];
-										const cols = 6;
-										const rows = 3;
-										const col = idx % cols;
-										const row = Math.floor(idx / cols);
-										const isLastCol = col === cols - 1;
-										const isLastRow = row === rows - 1;
 										return (
 											<li
 												key={company?.name ?? `empty-${idx}`}
-												className="relative flex aspect-5/2 items-center justify-center"
+												className="flex aspect-5/2 items-center justify-center bg-zinc-50 dark:bg-zinc-950"
 											>
-												{/* Right vertical line — inset top/bottom to leave a gap at intersections */}
-												{!isLastCol && (
-													<span className="pointer-events-none absolute top-2 right-0 bottom-2 w-px bg-zinc-200 dark:bg-zinc-800" />
-												)}
-												{/* Bottom horizontal line — inset left/right to leave a gap at intersections */}
-												{!isLastRow && (
-													<span className="pointer-events-none absolute right-2 bottom-0 left-2 h-px bg-zinc-200 dark:bg-zinc-800" />
-												)}
 												{company ? (
 													company.url ? (
 														<a
