@@ -174,6 +174,7 @@ export const JOBS: Job[] = [
 		location: "San Francisco",
 		url: "https://www.ycombinator.com/companies/trellis-ai",
 		logo: "/assets/effect-jobs-logos/trellis.png",
+		description: "AI for automating healthcare paperwork.",
 	},
 ];
 
