@@ -149,6 +149,7 @@ export const JOBS: Job[] = [
 		url: "https://x.com/i/jobs/1928194391946186862",
 		logo: "/assets/effect-jobs-logos/supermemory-icon.png",
 		payRange: "$90K – $250K",
+		description: "The leading context and memory engine in the world, serving tens of thousands of customers.",
 	},
 	{
 		company: "Superwall",
