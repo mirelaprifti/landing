@@ -44,7 +44,7 @@ export const JOBS: Job[] = [
 	{
 		company: "Freckle.io",
 		role: "Full-stack Engineers",
-		location: "San Francisco · Remote (exceptional cases)",
+		location: "San Francisco · Remote",
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1457982486310027408",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/freckle-icon.png",
@@ -125,7 +125,7 @@ export const JOBS: Job[] = [
 	{
 		company: "SIWorks",
 		role: "Senior Full-Stack Engineer",
-		location: "Remote · Portland / Vancouver WA preferred",
+		location: "Remote · Portland / Vancouver WA",
 		type: "Part-time",
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1501997185309347840",
 		note: "Posted on Discord #job-board",
