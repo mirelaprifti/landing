@@ -97,7 +97,7 @@ export function EffectJobsPage() {
 				{/* Open positions — card grid */}
 				<section className="relative border-t border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="pt-8 pb-16 md:pt-10 md:pb-20">
+						<div className="pt-8 md:pt-10">
 							<ul className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-2 lg:grid-cols-3 dark:bg-zinc-800">
 								{JOBS.map((job) => (
 									<li key={`${job.company}-${job.role}`} className="bg-zinc-50 dark:bg-zinc-950">
