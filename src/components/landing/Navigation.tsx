@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { Button, Link } from "@/components/ui";
-import { ThemeToggle } from "../ui/ThemeToggle";
 
 interface NavigationProps {
 	transparent?: boolean;
@@ -214,14 +213,6 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 									</Link>
 								</div>
 
-								{wide && (
-									<>
-										<div
-											className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-200 dark:bg-zinc-700"}`}
-										/>
-										<ThemeToggle />
-									</>
-								)}
 							</div>
 						</nav>
 					</header>
