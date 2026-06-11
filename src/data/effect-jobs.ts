@@ -94,6 +94,7 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1512445948662386889",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/leap.svg",
+		description: "Join the LEAP CRM team to work on a greenfield project, still in its early stages.",
 	},
 	{
 		company: "ManageSpace",
