@@ -149,7 +149,7 @@ export function EffectJobsPage() {
 											)}
 
 											{/* Meta footer: pay + type above divider, location below */}
-											<dl className="mt-auto flex flex-col gap-1.5 pt-6 font-mono text-xs text-zinc-700 dark:text-zinc-400">
+											<dl className="mt-auto flex flex-col gap-1.5 pt-6 font-mono text-sm text-zinc-700 dark:text-zinc-400">
 												{job.payRange && (
 													<div className="flex gap-2">
 														<dt className="sr-only">Pay range</dt>
