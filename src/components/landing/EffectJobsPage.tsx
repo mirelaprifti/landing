@@ -112,16 +112,16 @@ export function EffectJobsPage() {
 												<div className="flex min-w-0 items-center gap-4">
 													<span
 														aria-hidden="true"
-														className="flex h-14 w-14 shrink-0 items-center justify-center"
+														className="flex h-12 w-12 shrink-0 items-center justify-center"
 													>
 														{job.logo ? (
 															<img
 																src={getAssetPath(job.logo)}
 																alt=""
-																className="max-h-14 max-w-full object-contain"
+																className="max-h-12 max-w-full object-contain"
 															/>
 														) : (
-															<span className="h-11 w-11 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
+															<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
 														)}
 													</span>
 													<p className="truncate text-base font-semibold text-zinc-900 dark:text-white">
@@ -148,29 +148,27 @@ export function EffectJobsPage() {
 												</p>
 											)}
 
-											{/* Meta footer */}
-											<div className="mt-auto pt-6">
-												<dl className="flex flex-col gap-1.5 border-t border-zinc-200 pt-4 font-mono text-xs text-zinc-700 dark:border-zinc-800 dark:text-zinc-400">
-													{job.payRange && (
-														<div className="flex gap-2">
-															<dt className="sr-only">Pay range</dt>
-															<dd className="tabular-nums">{job.payRange}</dd>
-														</div>
-													)}
-													{job.location && (
-														<div className="flex gap-2">
-															<dt className="sr-only">Location</dt>
-															<dd>{job.location}</dd>
-														</div>
-													)}
-													{job.type && (
-														<div className="flex gap-2">
-															<dt className="sr-only">Type</dt>
-															<dd>{job.type}</dd>
-														</div>
-													)}
-												</dl>
-											</div>
+											{/* Meta footer: pay + type above divider, location below */}
+											<dl className="mt-auto flex flex-col gap-1.5 pt-6 font-mono text-xs text-zinc-700 dark:text-zinc-400">
+												{job.payRange && (
+													<div className="flex gap-2">
+														<dt className="sr-only">Pay range</dt>
+														<dd className="tabular-nums">{job.payRange}</dd>
+													</div>
+												)}
+												{job.type && (
+													<div className="flex gap-2">
+														<dt className="sr-only">Type</dt>
+														<dd>{job.type}</dd>
+													</div>
+												)}
+												{job.location && (
+													<div className="mt-3 flex gap-2 border-t border-zinc-200 pt-3 dark:border-zinc-800">
+														<dt className="sr-only">Location</dt>
+														<dd>{job.location}</dd>
+													</div>
+												)}
+											</dl>
 
 											{/* Screen-reader-only link target */}
 											<span className="sr-only">
