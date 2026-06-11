@@ -39,6 +39,7 @@ export const JOBS: Job[] = [
 		location: "San Francisco, USA",
 		url: "https://expand.ai/careers/founding-engineer",
 		logo: "/assets/effect-jobs-logos/expand-ai-icon.png",
+		description: "Help turn the internet into a database.",
 	},
 	{
 		company: "Freckle.io",
@@ -48,6 +49,7 @@ export const JOBS: Job[] = [
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/freckle-icon.png",
 		payRange: "$160K – $210K + equity",
+		description: "Help build a data-enrichment product for GTM teams.",
 	},
 	{
 		company: "Gale",
@@ -57,6 +59,7 @@ export const JOBS: Job[] = [
 		url: "https://forms.galevisa.com/r/m6gr7e",
 		logo: "/assets/effect-jobs-logos/gale-icon.png",
 		payRange: "CAD 35–38/hr · USD 22–28/hr",
+		description: "Help American businesses get work authorization for their employees.",
 	},
 	{
 		company: "Goblins",
