@@ -105,7 +105,7 @@ export function EffectJobsPage() {
 											href={job.url}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
+											className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 focus-visible:bg-zinc-100 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 focus-visible:outline-none dark:hover:bg-zinc-900/80 dark:focus-visible:bg-zinc-900/80 dark:focus-visible:ring-white"
 										>
 											{/* Header: logo + company name on left, apply arrow on right */}
 											<div className="flex items-center justify-between gap-4">
