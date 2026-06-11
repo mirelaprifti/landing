@@ -140,6 +140,7 @@ export const JOBS: Job[] = [
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/solid.png",
 		payRange: "$150K – $250K + equity",
+		description: "Building a code-first framework — all focused on enabling non-technical users to ship production-quality code.",
 	},
 	{
 		company: "Supermemory",
