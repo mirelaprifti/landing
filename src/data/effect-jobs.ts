@@ -216,7 +216,7 @@ export const LOGO_COMPANIES: LogoCompany[] = [
 	{
 		name: "Manage Space",
 		logo: "/assets/effect-jobs-logos/manage-space.svg",
-		h: "0.75rem",
+		h: "0.7rem",
 	},
 	{
 		name: "Platonic Systems",
