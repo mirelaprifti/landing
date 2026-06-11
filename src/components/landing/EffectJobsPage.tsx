@@ -108,23 +108,23 @@ export function EffectJobsPage() {
 											className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
 										>
 											{/* Header: logo + company name on left, apply arrow on right */}
-											<div className="flex items-center justify-between gap-3">
-												<div className="flex min-w-0 items-center gap-3">
+											<div className="flex items-center justify-between gap-4">
+												<div className="flex min-w-0 items-center gap-4">
 													<span
 														aria-hidden="true"
-														className="flex h-9 w-9 shrink-0 items-center justify-center"
+														className="flex h-16 w-16 shrink-0 items-center justify-center"
 													>
 														{job.logo ? (
 															<img
 																src={getAssetPath(job.logo)}
 																alt=""
-																className="max-h-9 max-w-full object-contain"
+																className="max-h-16 max-w-full object-contain"
 															/>
 														) : (
-															<span className="h-9 w-9 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
+															<span className="h-12 w-12 rounded-sm border border-dashed border-zinc-300 dark:border-zinc-700" />
 														)}
 													</span>
-													<p className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+													<p className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
 														<span className="sr-only">Company: </span>
 														{job.company}
 													</p>
@@ -136,7 +136,7 @@ export function EffectJobsPage() {
 											</div>
 
 											{/* Role (headline) */}
-											<h3 className="mt-5 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
+											<h3 className="mt-5 text-xl leading-tight font-semibold text-zinc-900 dark:text-white">
 												<span className="sr-only">Role: </span>
 												{job.role}
 											</h3>
