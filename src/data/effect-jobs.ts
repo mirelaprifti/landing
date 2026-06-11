@@ -85,6 +85,7 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1506377610073215118",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/joymore-icon.svg",
+		description: "High-growth startup, small team — building agents/copilots with heavy pipeline and task orchestration.",
 	},
 	{
 		company: "LEAP Legal Software",
