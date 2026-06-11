@@ -158,6 +158,7 @@ export const JOBS: Job[] = [
 		url: "https://x.com/jakemor/status/1972770955500876070",
 		logo: "/assets/effect-jobs-logos/sw-icon.png",
 		payRange: "$130K Yr 1 → $175K Yr 2",
+		description: "If you're passionate about mobile apps and monetization, we'd love to chat.",
 	},
 	{
 		company: "Tranched",
