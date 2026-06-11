@@ -130,6 +130,7 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1501997185309347840",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/siworks.png",
+		description: "Small profitable startup — mortgage marketing and transportation software.",
 	},
 	{
 		company: "Solid",
