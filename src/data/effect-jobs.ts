@@ -166,6 +166,7 @@ export const JOBS: Job[] = [
 		location: "Paris · London · Amsterdam",
 		url: "https://tranched.fi/careers/fullstack-developer-web3",
 		logo: "/assets/effect-jobs-logos/tranched.png",
+		description: "Automating the structuring and management of complex securitisation transactions.",
 	},
 	{
 		company: "Trellis AI",
