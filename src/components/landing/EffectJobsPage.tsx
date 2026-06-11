@@ -249,7 +249,7 @@ export function EffectJobsPage() {
 				{LOGO_COMPANIES.length > 0 && (
 					<section className="relative border-t border-zinc-200 dark:border-zinc-800">
 						<div className="mx-auto w-full max-w-[73.75rem] px-4">
-							<div className="py-16 md:py-20">
+							<div className="pt-16 pb-8 md:pt-20 md:pb-10">
 								<p className="mb-8 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Teams running Effect in production
 								</p>
