@@ -9,7 +9,7 @@ export type Job = {
 	logo?: string;
 	/** Free-form pay range, e.g. "$150K – $200K" or "€80K – €120K" */
 	payRange?: string;
-	/** 1–2 sentence description of the role / team / product. Falls back to a blank slot if absent. */
+	/** 1–2 sentence summary of the JOB POSTING — what the role entails day-to-day. Not a company blurb. */
 	description?: string;
 };
 

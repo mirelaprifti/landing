@@ -129,15 +129,15 @@ export function EffectJobsPage() {
 												/>
 											</div>
 
-											{/* Company + role */}
-											<p className="mt-4 text-sm font-semibold text-zinc-900 dark:text-white">
-												<span className="sr-only">Company: </span>
-												{job.company}
-											</p>
-											<h3 className="mt-1 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
+											{/* Role (headline) + company (sub) */}
+											<h3 className="mt-5 text-lg leading-tight font-semibold text-zinc-900 dark:text-white">
 												<span className="sr-only">Role: </span>
 												{job.role}
 											</h3>
+											<p className="mt-1 text-sm text-zinc-700 dark:text-zinc-400">
+												<span className="sr-only">Company: </span>
+												{job.company}
+											</p>
 
 											{/* Description */}
 											{job.description && (
