@@ -120,6 +120,7 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1494185541233541270",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/reap.png",
+		description: "Fintech using Effect as part of the stack — looking for strong engineers with a solid functional-programming background.",
 	},
 	{
 		company: "SIWorks",
