@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
-import { Button, Link } from "@/components/ui";
+import { Link } from "@/components/ui";
 
 interface NavigationProps {
 	transparent?: boolean;
@@ -131,14 +131,6 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 							>
 								Play
 							</Link>
-							<Button
-								href="https://www.effect.institute/"
-								variant="primary"
-								size="sm"
-								className="rounded-md py-1.5"
-							>
-								Learn
-							</Button>
 							</div>
 
 							{/* Mobile menu button */}
@@ -277,14 +269,6 @@ export function Navigation({ transparent = false, activePath, wide = false }: Na
 								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
 							>
 								Play
-							</a>
-							<a
-								href="https://www.effect.institute/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="block rounded-md px-3 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-zinc-800"
-							>
-								Learn Effect
 							</a>
 						</div>
 
