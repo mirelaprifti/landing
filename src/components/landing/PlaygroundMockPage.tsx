@@ -122,7 +122,7 @@ export function PlaygroundMockPage() {
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<Navigation activePath="/play" wide />
 
-			{/* Main playground shell */}
+			{/* Main playground shell — sidebar + editor row, then full-width bottom panel */}
 			<div className="flex flex-1 overflow-hidden pt-16">
 				{/* Sidebar — file tree */}
 				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-6 md:flex dark:border-zinc-800 dark:bg-zinc-950">
@@ -158,100 +158,97 @@ export function PlaygroundMockPage() {
 					</nav>
 				</aside>
 
-				{/* Editor + bottom panel column */}
-				<div className="flex min-w-0 flex-1 flex-col">
-					{/* Editor surface */}
-					<div className="relative flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
-						{/* Floating actions — top-right of the editor */}
-						<div className="pointer-events-none absolute top-2 right-3 z-10 flex items-center gap-1">
-							<div className="pointer-events-auto">
-								<Button variant="ghost" size="sm">
-									Reset
-								</Button>
-							</div>
-							<div className="pointer-events-auto">
-								<Button variant="ghost" size="sm">
-									Share
-								</Button>
-							</div>
+				{/* Editor surface */}
+				<div className="relative min-w-0 flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
+					{/* Floating actions — top-right of the editor */}
+					<div className="pointer-events-none absolute top-2 right-3 z-10 flex items-center gap-1">
+						<div className="pointer-events-auto">
+							<Button variant="ghost" size="sm">
+								Reset
+							</Button>
 						</div>
-						<pre className="m-0 flex">
-							{/* Gutter */}
-							<div
-								aria-hidden="true"
-								className="sticky left-0 shrink-0 select-none border-r border-zinc-200 bg-white px-4 py-4 text-right text-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-600"
-							>
-								{LINES.map((_, i) => (
-									<div key={i} className="tabular-nums">
-										{i + 1}
-									</div>
-								))}
-							</div>
-							{/* Code */}
-							<code className="block flex-1 px-4 py-4">
-								{LINES.map((line, i) => (
-									<div key={i} className="min-h-6 whitespace-pre">
-										{line}
-									</div>
-								))}
-							</code>
-						</pre>
+						<div className="pointer-events-auto">
+							<Button variant="ghost" size="sm">
+								Share
+							</Button>
+						</div>
 					</div>
-
-					{/* Bottom panel */}
-					<div className="flex h-56 shrink-0 flex-col border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
-						{/* Tabs */}
-						<div role="tablist" className="flex border-b border-zinc-200 dark:border-zinc-800">
-							{[
-								{ id: "terminal", label: "Terminal" },
-								{ id: "trace", label: "Trace Viewer" },
-							].map((t) => {
-								const isActive = activeTab === t.id;
-								return (
-									<button
-										key={t.id}
-										type="button"
-										role="tab"
-										aria-selected={isActive}
-										onClick={() => setActiveTab(t.id as "terminal" | "trace")}
-										className={`-mb-px border-b-2 px-4 py-2.5 font-mono text-xs tracking-wider uppercase transition-colors ${
-											isActive
-												? "border-zinc-900 text-zinc-900 dark:border-white dark:text-white"
-												: "border-transparent text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-										}`}
-									>
-										{t.label}
-									</button>
-								);
-							})}
-						</div>
-
-						{/* Panel content */}
-						<div className="flex-1 overflow-auto bg-zinc-100 px-4 py-4 font-mono text-sm leading-6 dark:bg-zinc-900">
-							{activeTab === "terminal" ? (
-								<div className="space-y-1">
-									{TERMINAL_LINES.map((line, i) => (
-										<div key={i} className="flex gap-3">
-											<span className="shrink-0 text-zinc-500 tabular-nums">{line.time}</span>
-											<span
-												className={
-													line.tone === "err"
-														? "text-red-500 dark:text-red-400"
-														: "text-zinc-800 dark:text-zinc-300"
-												}
-											>
-												- {line.text}
-											</span>
-										</div>
-									))}
+					<pre className="m-0 flex">
+						{/* Gutter */}
+						<div
+							aria-hidden="true"
+							className="sticky left-0 shrink-0 select-none border-r border-zinc-200 bg-white px-4 py-4 text-right text-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-600"
+						>
+							{LINES.map((_, i) => (
+								<div key={i} className="tabular-nums">
+									{i + 1}
 								</div>
-							) : (
-								<p className="font-mono text-xs text-zinc-500">
-									// Trace view goes here. Mockup only.
-								</p>
-							)}
+							))}
 						</div>
-					</div>
+						{/* Code */}
+						<code className="block flex-1 px-4 py-4">
+							{LINES.map((line, i) => (
+								<div key={i} className="min-h-6 whitespace-pre">
+									{line}
+								</div>
+							))}
+						</code>
+					</pre>
+				</div>
+			</div>
+
+			{/* Bottom panel — full width, sits below sidebar + editor row */}
+			<div className="flex h-56 shrink-0 flex-col border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
+				{/* Tabs */}
+				<div role="tablist" className="flex border-b border-zinc-200 dark:border-zinc-800">
+					{[
+						{ id: "terminal", label: "Terminal" },
+						{ id: "trace", label: "Trace Viewer" },
+					].map((t) => {
+						const isActive = activeTab === t.id;
+						return (
+							<button
+								key={t.id}
+								type="button"
+								role="tab"
+								aria-selected={isActive}
+								onClick={() => setActiveTab(t.id as "terminal" | "trace")}
+								className={`-mb-px border-b-2 px-4 py-2.5 font-mono text-xs tracking-wider uppercase transition-colors ${
+									isActive
+										? "border-zinc-900 text-zinc-900 dark:border-white dark:text-white"
+										: "border-transparent text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+								}`}
+							>
+								{t.label}
+							</button>
+						);
+					})}
+				</div>
+
+				{/* Panel content */}
+				<div className="flex-1 overflow-auto bg-zinc-100 px-4 py-4 font-mono text-sm leading-6 dark:bg-zinc-900">
+					{activeTab === "terminal" ? (
+						<div className="space-y-1">
+							{TERMINAL_LINES.map((line, i) => (
+								<div key={i} className="flex gap-3">
+									<span className="shrink-0 text-zinc-500 tabular-nums">{line.time}</span>
+									<span
+										className={
+											line.tone === "err"
+												? "text-red-500 dark:text-red-400"
+												: "text-zinc-800 dark:text-zinc-300"
+										}
+									>
+										- {line.text}
+									</span>
+								</div>
+							))}
+						</div>
+					) : (
+						<p className="font-mono text-xs text-zinc-500">
+							// Trace view goes here. Mockup only.
+						</p>
+					)}
 				</div>
 			</div>
 
