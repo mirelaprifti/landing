@@ -210,7 +210,7 @@ export function PlaygroundMockPage() {
 
 	return (
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
-			<Navigation activePath="/play" wide />
+			<Navigation activePath="/play" fullWidth />
 
 			{/* Main playground shell — sidebar + editor row, then full-width bottom panel */}
 			<div className="flex flex-1 overflow-hidden pt-16">
