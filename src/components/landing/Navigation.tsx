@@ -126,8 +126,9 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 								Podcast
 							</Link>
 							<Link
-								href="https://effect.website/play/"
+								href={getAssetPath("/play")}
 								variant="nav"
+								active={activePath?.startsWith("/play")}
 								className={transparent ? "text-white hover:text-white/80" : ""}
 							>
 								Play
@@ -264,10 +265,8 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 								Podcast
 							</a>
 							<a
-								href="https://effect.website/play/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+								href={getAssetPath("/play")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/play") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Play
 							</a>
