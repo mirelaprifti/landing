@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { GridOverlay } from "../GridOverlay";
+import { Button } from "../ui/Button";
 import { Navigation } from "./Navigation";
 
-type FileItem = { name: string; tag: string };
+type FileItem = { name: string };
 type FileSection = { title: string; items: FileItem[] };
 
 const FILES: FileSection[] = [
 	{
 		title: "src",
-		items: [
-			{ name: "main.ts", tag: "TS" },
-			{ name: "DevTools.ts", tag: "TS" },
-		],
+		items: [{ name: "main.ts" }, { name: "DevTools.ts" }],
 	},
 	{
 		title: "root",
 		items: [
-			{ name: "package.json", tag: "JSON" },
-			{ name: "dprint.json", tag: "JSON" },
-			{ name: "tsconfig.json", tag: "JSON" },
+			{ name: "package.json" },
+			{ name: "dprint.json" },
+			{ name: "tsconfig.json" },
 		],
 	},
 ];
@@ -143,15 +141,12 @@ export function PlaygroundMockPage() {
 													type="button"
 													onClick={() => setActiveFile(file.name)}
 													aria-current={isActive ? "true" : undefined}
-													className={`flex w-full items-center gap-3 rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
+													className={`block w-full rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
 														isActive
 															? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
 															: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 													}`}
 												>
-													<span className="inline-flex w-9 shrink-0 justify-center font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
-														{file.tag}
-													</span>
 													<span className="truncate">{file.name}</span>
 												</button>
 											</li>
@@ -170,19 +165,13 @@ export function PlaygroundMockPage() {
 						<p className="truncate font-mono text-xs tracking-wider text-zinc-500 uppercase">
 							// {activeFile}
 						</p>
-						<div className="flex items-center gap-2">
-							<button
-								type="button"
-								className="rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white"
-							>
+						<div className="flex items-center gap-1">
+							<Button variant="ghost" size="sm">
 								Reset
-							</button>
-							<button
-								type="button"
-								className="rounded-md bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
-							>
+							</Button>
+							<Button variant="ghost" size="sm">
 								Share
-							</button>
+							</Button>
 						</div>
 					</div>
 
