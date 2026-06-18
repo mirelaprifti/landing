@@ -160,23 +160,21 @@ export function PlaygroundMockPage() {
 
 				{/* Editor + bottom panel column */}
 				<div className="flex min-w-0 flex-1 flex-col">
-					{/* Top toolbar */}
-					<div className="flex items-center justify-between gap-3 border-b border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-800 dark:bg-zinc-950">
-						<p className="truncate font-mono text-xs tracking-wider text-zinc-500 uppercase">
-							// {activeFile}
-						</p>
-						<div className="flex items-center gap-1">
-							<Button variant="ghost" size="sm">
-								Reset
-							</Button>
-							<Button variant="ghost" size="sm">
-								Share
-							</Button>
-						</div>
-					</div>
-
 					{/* Editor surface */}
-					<div className="flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
+					<div className="relative flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
+						{/* Floating actions — top-right of the editor */}
+						<div className="pointer-events-none absolute top-2 right-3 z-10 flex items-center gap-1">
+							<div className="pointer-events-auto">
+								<Button variant="ghost" size="sm">
+									Reset
+								</Button>
+							</div>
+							<div className="pointer-events-auto">
+								<Button variant="ghost" size="sm">
+									Share
+								</Button>
+							</div>
+						</div>
 						<pre className="m-0 flex">
 							{/* Gutter */}
 							<div
