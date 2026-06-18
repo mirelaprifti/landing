@@ -34,7 +34,7 @@ const buttonVariants = cva(
 				secondary:
 					"border border-zinc-700 bg-zinc-900/50 text-white hover:border-zinc-500 hover:bg-zinc-800",
 				ghost:
-					"text-zinc-400 hover:bg-zinc-800 hover:text-white",
+					"text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white",
 				discord:
 					"bg-[#5865F2] text-white hover:bg-[#4752C4]",
 			},
