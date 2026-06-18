@@ -1,3 +1,4 @@
+import { File, Folder } from "lucide-react";
 import { useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
@@ -129,7 +130,8 @@ export function PlaygroundMockPage() {
 						{FILES.map((section, sectionIdx) => (
 							<div key={section.title ?? `unlabelled-${sectionIdx}`} className="mb-6">
 								{section.title && (
-									<p className="mb-2 px-3 font-mono text-xs font-semibold tracking-wider text-zinc-500 uppercase">
+									<p className="mb-2 inline-flex items-center gap-2 px-3 font-mono text-xs font-semibold tracking-wider text-zinc-500 uppercase">
+										<Folder className="h-3.5 w-3.5" aria-hidden="true" />
 										{section.title}
 									</p>
 								)}
@@ -142,12 +144,13 @@ export function PlaygroundMockPage() {
 													type="button"
 													onClick={() => setActiveFile(file.name)}
 													aria-current={isActive ? "true" : undefined}
-													className={`block w-full rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
+													className={`flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
 														isActive
 															? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
 															: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 													}`}
 												>
+													<File className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
 													<span className="truncate">{file.name}</span>
 												</button>
 											</li>
