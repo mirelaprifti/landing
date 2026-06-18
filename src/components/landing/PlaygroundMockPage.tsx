@@ -1,24 +1,25 @@
-import { File, Folder } from "lucide-react";
+import { ChevronDown, ChevronRight, File, Folder } from "lucide-react";
 import { useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
 import { Navigation } from "./Navigation";
 
-type FileItem = { name: string };
-type FileSection = { title?: string; items: FileItem[] };
+type TreeNode =
+	| { type: "folder"; name: string; children: TreeNode[] }
+	| { type: "file"; name: string };
 
-const FILES: FileSection[] = [
+const TREE: TreeNode[] = [
 	{
-		title: "src",
-		items: [{ name: "main.ts" }, { name: "DevTools.ts" }],
-	},
-	{
-		items: [
-			{ name: "package.json" },
-			{ name: "dprint.json" },
-			{ name: "tsconfig.json" },
+		type: "folder",
+		name: "src",
+		children: [
+			{ type: "file", name: "main.ts" },
+			{ type: "file", name: "DevTools.ts" },
 		],
 	},
+	{ type: "file", name: "package.json" },
+	{ type: "file", name: "dprint.json" },
+	{ type: "file", name: "tsconfig.json" },
 ];
 
 // Token classes — color replaced with weight + muted grays
@@ -114,9 +115,98 @@ const TERMINAL_LINES: { time: string; text: string; tone?: "ok" | "err" }[] = [
 	{ time: "18:00:10", text: "Found 0 errors. Watching for file changes.", tone: "ok" },
 ];
 
+function Tree({
+	nodes,
+	depth,
+	activeFile,
+	openFolders,
+	onSelect,
+	onToggleFolder,
+}: {
+	nodes: TreeNode[];
+	depth: number;
+	activeFile: string;
+	openFolders: Set<string>;
+	onSelect: (name: string) => void;
+	onToggleFolder: (name: string) => void;
+}) {
+	return (
+		<ul className="flex flex-col">
+			{nodes.map((node) => {
+				if (node.type === "folder") {
+					const isOpen = openFolders.has(node.name);
+					return (
+						<li key={`folder-${node.name}`}>
+							<button
+								type="button"
+								onClick={() => onToggleFolder(node.name)}
+								aria-expanded={isOpen}
+								className="flex w-full items-center gap-1.5 rounded-md py-1.5 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+								style={{ paddingLeft: `${depth * 12 + 6}px`, paddingRight: "12px" }}
+							>
+								{isOpen ? (
+									<ChevronDown className="h-3.5 w-3.5 shrink-0 text-zinc-500" aria-hidden="true" />
+								) : (
+									<ChevronRight className="h-3.5 w-3.5 shrink-0 text-zinc-500" aria-hidden="true" />
+								)}
+								<Folder className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
+								<span className="truncate">{node.name}</span>
+							</button>
+							{isOpen && node.children.length > 0 && (
+								<Tree
+									nodes={node.children}
+									depth={depth + 1}
+									activeFile={activeFile}
+									openFolders={openFolders}
+									onSelect={onSelect}
+									onToggleFolder={onToggleFolder}
+								/>
+							)}
+						</li>
+					);
+				}
+
+				const isActive = node.name === activeFile;
+				return (
+					<li key={`file-${node.name}`}>
+						<button
+							type="button"
+							onClick={() => onSelect(node.name)}
+							aria-current={isActive ? "true" : undefined}
+							className={`flex w-full items-center gap-1.5 rounded-md py-1.5 text-left text-sm transition-colors ${
+								isActive
+									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+									: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+							}`}
+							style={{ paddingLeft: `${depth * 12 + 6}px`, paddingRight: "12px" }}
+						>
+							{/* Spacer to align with folder chevron */}
+							<span className="inline-block h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+							<File className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
+							<span className="truncate">{node.name}</span>
+						</button>
+					</li>
+				);
+			})}
+		</ul>
+	);
+}
+
 export function PlaygroundMockPage() {
 	const [activeFile, setActiveFile] = useState("main.ts");
 	const [activeTab, setActiveTab] = useState<"terminal" | "trace">("terminal");
+	const [openFolders, setOpenFolders] = useState<Set<string>>(new Set(["src"]));
+
+	const toggleFolder = (name: string) =>
+		setOpenFolders((prev) => {
+			const next = new Set(prev);
+			if (next.has(name)) {
+				next.delete(name);
+			} else {
+				next.add(name);
+			}
+			return next;
+		});
 
 	return (
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
@@ -127,38 +217,14 @@ export function PlaygroundMockPage() {
 				{/* Sidebar — file tree */}
 				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-6 md:flex dark:border-zinc-800 dark:bg-zinc-950">
 					<nav>
-						{FILES.map((section, sectionIdx) => (
-							<div key={section.title ?? `unlabelled-${sectionIdx}`} className="mb-6">
-								{section.title && (
-									<p className="mb-2 inline-flex items-center gap-2 px-3 font-mono text-xs font-semibold tracking-wider text-zinc-500 uppercase">
-										<Folder className="h-3.5 w-3.5" aria-hidden="true" />
-										{section.title}
-									</p>
-								)}
-								<ul className="flex flex-col">
-									{section.items.map((file) => {
-										const isActive = file.name === activeFile;
-										return (
-											<li key={file.name}>
-												<button
-													type="button"
-													onClick={() => setActiveFile(file.name)}
-													aria-current={isActive ? "true" : undefined}
-													className={`flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
-														isActive
-															? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-															: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-													}`}
-												>
-													<File className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
-													<span className="truncate">{file.name}</span>
-												</button>
-											</li>
-										);
-									})}
-								</ul>
-							</div>
-						))}
+						<Tree
+							nodes={TREE}
+							depth={0}
+							activeFile={activeFile}
+							openFolders={openFolders}
+							onSelect={setActiveFile}
+							onToggleFolder={toggleFolder}
+						/>
 					</nav>
 				</aside>
 
