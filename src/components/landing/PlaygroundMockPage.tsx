@@ -22,11 +22,11 @@ const TREE: TreeNode[] = [
 	{ type: "file", name: "tsconfig.json" },
 ];
 
-// Token classes — color replaced with weight + muted grays
+// Token classes — restrained 2-accent palette (indigo for keywords, emerald for strings)
 const tokenClass = {
-	kw: "font-semibold text-zinc-900 dark:text-white", // keywords
+	kw: "font-semibold text-indigo-700 dark:text-indigo-300", // keywords
 	id: "text-zinc-700 dark:text-zinc-300", // identifiers / foreground
-	str: "text-zinc-500 dark:text-zinc-400", // strings (muted)
+	str: "text-emerald-700 dark:text-emerald-400", // strings
 	cmt: "text-zinc-500 dark:text-zinc-500 italic", // comments
 	num: "text-zinc-700 dark:text-zinc-300", // numbers
 	punct: "text-zinc-500 dark:text-zinc-500", // punctuation
