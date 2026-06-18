@@ -231,14 +231,22 @@ export function PlaygroundMockPage() {
 				{/* Editor surface */}
 				<div className="relative min-w-0 flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
 					{/* Floating actions — top-right of the editor */}
-					<div className="pointer-events-none absolute top-2 right-3 z-10 flex items-center gap-1">
+					<div className="pointer-events-none absolute top-2 right-3 z-10 flex items-center gap-2">
 						<div className="pointer-events-auto">
-							<Button variant="ghost" size="sm">
+							<Button
+								variant="ghost"
+								size="sm"
+								className="border border-zinc-200 dark:border-zinc-800"
+							>
 								Reset
 							</Button>
 						</div>
 						<div className="pointer-events-auto">
-							<Button variant="ghost" size="sm">
+							<Button
+								variant="ghost"
+								size="sm"
+								className="border border-zinc-200 dark:border-zinc-800"
+							>
 								Share
 							</Button>
 						</div>
