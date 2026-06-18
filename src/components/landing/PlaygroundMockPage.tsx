@@ -215,7 +215,7 @@ export function PlaygroundMockPage() {
 			{/* Main playground shell — sidebar + editor row, then full-width bottom panel */}
 			<div className="flex flex-1 overflow-hidden pt-16">
 				{/* Sidebar — file tree */}
-				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-6 md:flex dark:border-zinc-800 dark:bg-zinc-950">
+				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-4 md:flex dark:border-zinc-800 dark:bg-zinc-950">
 					<nav>
 						<Tree
 							nodes={TREE}
