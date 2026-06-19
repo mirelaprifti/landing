@@ -381,13 +381,6 @@ export function PartnerZivergePage() {
 										aria-hidden="true"
 									/>
 								</Button>
-								<Button
-									href={getAssetPath("/implementation-partners")}
-									variant="ghost"
-									size="md"
-								>
-									Browse other partners
-								</Button>
 							</div>
 						</div>
 					</div>
