@@ -37,27 +37,29 @@ function VideoWithPosterOverlay() {
 				<track kind="captions" />
 			</video>
 
-			{showOverlay && (
-				<>
-					{/* Thumbnail layer — re-rendered every time playback stops */}
-					<img
-						src={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
-						alt=""
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-0 h-full w-full bg-black object-contain"
-					/>
-					<button
-						type="button"
-						onClick={startPlayback}
-						aria-label="Play video"
-						className="group absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40"
-					>
-						<span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-zinc-900 transition-transform group-hover:scale-105">
-							<i className="ri-play-fill translate-x-0.5 text-4xl" aria-hidden="true" />
-						</span>
-					</button>
-				</>
-			)}
+			{/* Thumbnail + play-button overlay — fades in/out on play/pause */}
+			<img
+				src={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
+				alt=""
+				aria-hidden="true"
+				className={`pointer-events-none absolute inset-0 h-full w-full bg-black object-contain transition-opacity duration-300 ease-out ${
+					showOverlay ? "opacity-100" : "opacity-0"
+				}`}
+			/>
+			<button
+				type="button"
+				onClick={startPlayback}
+				aria-label="Play video"
+				tabIndex={showOverlay ? 0 : -1}
+				aria-hidden={!showOverlay}
+				className={`group absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 ease-out hover:bg-black/40 ${
+					showOverlay ? "opacity-100" : "pointer-events-none opacity-0"
+				}`}
+			>
+				<span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-zinc-900 transition-transform group-hover:scale-105">
+					<i className="ri-play-fill translate-x-0.5 text-4xl" aria-hidden="true" />
+				</span>
+			</button>
 		</div>
 	);
 }
