@@ -1,5 +1,5 @@
 import { AgentCommand } from "./AgentCommand";
-import { AgentTracePanel } from "./AgentTracePanel";
+import { AgentTerminalLive } from "./AgentTerminalLive";
 import { InstallCommand } from "./InstallCommand";
 
 export function HeroSection() {
@@ -83,9 +83,9 @@ export function HeroSection() {
 						</div>
 					</div>
 
-					{/* Right column — agent trace panel */}
+					{/* Right column — live agent terminal */}
 					<div>
-						<AgentTracePanel />
+						<AgentTerminalLive />
 					</div>
 				</div>
 			</div>
