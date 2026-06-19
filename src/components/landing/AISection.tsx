@@ -8,8 +8,8 @@ export function AISection() {
 			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
 
 			<div className="relative mx-auto w-full max-w-[73.75rem]">
-				{/* Header row - Two columns: heading left, tweet right */}
-				<div className="mb-20 grid grid-cols-1 gap-6 px-4 lg:grid-cols-2 lg:items-start">
+				{/* Header row - Two columns: heading left, video right */}
+				<div className="mb-12 grid grid-cols-1 gap-10 px-4 lg:grid-cols-2 lg:items-center">
 					{/* Left column - Heading section */}
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
@@ -32,12 +32,22 @@ export function AISection() {
 					</Button>
 					</div>
 
-					{/* Right column - Tweet card */}
+					{/* Right column - Video placeholder */}
+					<div className="aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm">
+						<div className="flex h-full w-full flex-col items-center justify-center gap-3 text-zinc-400">
+							<i className="ri-play-circle-line text-5xl" />
+							<span className="text-sm font-medium">Video coming soon</span>
+						</div>
+					</div>
+				</div>
+
+				{/* Tweet card — moved below the heading row, full-width single column */}
+				<div className="mb-20 px-4">
 					<a
 						href="https://x.com/davis7/status/1988847914538672262"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="block rounded-lg border border-zinc-700/70 bg-zinc-900 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/60"
+						className="mx-auto block max-w-2xl rounded-lg border border-zinc-700/70 bg-zinc-900 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/60"
 					>
 						{/* Author row */}
 						<div className="mb-4 flex items-center justify-between">

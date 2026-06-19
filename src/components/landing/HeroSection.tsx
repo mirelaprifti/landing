@@ -51,7 +51,7 @@ export function HeroSection() {
 				}
 			`}</style>
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 md:pt-[96px]">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-24 md:pb-24">
 				{/* Content */}
 				<div className="max-w-4xl text-left md:mx-auto md:text-center">
 					{/* Eyebrow */}
@@ -77,16 +77,6 @@ export function HeroSection() {
 					<div className="mt-8 grid gap-4 md:mx-auto md:max-w-4xl md:grid-cols-2">
 						<InstallCommand />
 						<AgentCommand />
-					</div>
-				</div>
-			</div>
-
-			{/* Video - sits on top of the grid, overlapping the hero bottom edge */}
-			<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4 mt-12 pb-20 md:pb-[96px]">
-				<div className="mx-auto max-w-5xl aspect-video rounded-lg border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm flex items-center justify-center">
-					<div className="flex flex-col items-center gap-3 text-zinc-400">
-						<i className="ri-play-circle-line text-5xl" />
-						<span className="text-sm font-medium">Video coming soon</span>
 					</div>
 				</div>
 			</div>
