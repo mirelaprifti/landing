@@ -57,3 +57,6 @@ next-env.d.ts
 
 # Claude Code session context
 .claude/
+
+# Large source video — encoded mp4 is what ships
+public/videos/*.mov
