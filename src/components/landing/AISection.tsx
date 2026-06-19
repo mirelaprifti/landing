@@ -1,5 +1,45 @@
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
+
+function VideoWithPosterOverlay() {
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const [played, setPlayed] = useState(false);
+
+	const startPlayback = () => {
+		setPlayed(true);
+		videoRef.current?.play();
+	};
+
+	return (
+		<div className="relative aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-black">
+			<video
+				ref={videoRef}
+				src={getAssetPath("/videos/ben-davis-video.mp4")}
+				poster={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
+				controls={played}
+				playsInline
+				preload="metadata"
+				className="h-full w-full object-contain"
+			>
+				<track kind="captions" />
+			</video>
+
+			{!played && (
+				<button
+					type="button"
+					onClick={startPlayback}
+					aria-label="Play video"
+					className="group absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40"
+				>
+					<span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-zinc-900 transition-transform group-hover:scale-105">
+						<i className="ri-play-fill text-4xl translate-x-0.5" aria-hidden="true" />
+					</span>
+				</button>
+			)}
+		</div>
+	);
+}
 
 export function AISection() {
 	return (
@@ -33,18 +73,7 @@ export function AISection() {
 					</div>
 
 					{/* Right column - Video */}
-					<div className="aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-black">
-						<video
-							src={getAssetPath("/videos/ben-davis-video.mp4")}
-							poster={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
-							controls
-							playsInline
-							preload="metadata"
-							className="h-full w-full object-contain"
-						>
-							<track kind="captions" />
-						</video>
-					</div>
+					<VideoWithPosterOverlay />
 				</div>
 
 				{/* Features - 1x4 grid */}
