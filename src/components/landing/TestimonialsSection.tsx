@@ -82,6 +82,43 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
+			{/* Featured video — half-width, sits above the 4-card grid */}
+			<div className="mx-auto mb-8 w-full max-w-[73.75rem] px-4">
+				<a
+					href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="group relative flex flex-col overflow-hidden lg:w-1/2"
+				>
+					{/* Video thumbnail area */}
+					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
+						<img
+							src="https://img.youtube.com/vi/-mL7VVvkLGM/maxresdefault.jpg"
+							alt="Coding agent — featured video"
+							className="h-full w-full object-cover"
+						/>
+						<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
+							<div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
+								<svg
+									className="ml-1 h-5 w-5 text-zinc-900"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path d="M8 5v14l11-7z" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					{/* Label area */}
+					<div className="flex items-center justify-between px-0 py-2">
+						<span className="font-mono text-[13px] text-zinc-400 uppercase group-hover:text-zinc-200">
+							Coding Agent
+						</span>
+						<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
+					</div>
+				</a>
+			</div>
+
 			{/* Use Case Cards - Video thumbnails grid */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
