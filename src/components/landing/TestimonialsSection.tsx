@@ -81,7 +81,7 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Featured video — own row, with an eyebrow above and constrained width */}
+			{/* Featured video — own row, modest width */}
 			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
 				<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 					// Featured episode
@@ -90,18 +90,18 @@ export function TestimonialsSection() {
 					href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="group relative flex flex-col overflow-hidden"
+					className="group relative flex max-w-3xl flex-col overflow-hidden"
 				>
-					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 lg:aspect-21/9">
+					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
 						<img
 							src={getAssetPath("/assets/images/kit-langton-banner.png")}
 							alt="Kit Langton — Coding Agent"
 							className="h-full w-full object-cover"
 						/>
 						<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
-							<div className="flex h-16 w-16 scale-0 items-center justify-center rounded-full bg-white/85 transition-transform duration-300 group-hover:scale-100">
+							<div className="flex h-14 w-14 scale-0 items-center justify-center rounded-full bg-white/85 transition-transform duration-300 group-hover:scale-100">
 								<svg
-									className="ml-1 h-6 w-6 text-zinc-900"
+									className="ml-1 h-5 w-5 text-zinc-900"
 									viewBox="0 0 24 24"
 									fill="currentColor"
 								>
