@@ -64,7 +64,7 @@ type Differentiator = { icon: LucideIcon; title: string; body: string };
 const DIFFERENTIATORS: Differentiator[] = [
 	{
 		icon: GitBranch,
-		title: "Functional programming roots",
+		title: "Deep Effect roots",
 		body: "A decade-plus of work on effect systems — first on the JVM with ZIO, now in TypeScript with Effect. The team contributes to the libraries you depend on.",
 	},
 	{
