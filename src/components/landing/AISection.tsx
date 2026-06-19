@@ -36,6 +36,7 @@ export function AISection() {
 					<div className="aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-black">
 						<video
 							src={getAssetPath("/videos/ben-davis-video.mp4")}
+							poster={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
 							controls
 							playsInline
 							preload="metadata"
