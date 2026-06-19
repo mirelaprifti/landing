@@ -35,7 +35,7 @@ export function AISection() {
 					{/* Right column - Video */}
 					<div className="aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm">
 						<video
-							src={getAssetPath("/assets/icons-svgs/bendavis-video.mp4")}
+							src={getAssetPath("/videos/ben-davis-video.mov")}
 							controls
 							playsInline
 							preload="metadata"
