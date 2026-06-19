@@ -83,8 +83,8 @@ export function HeroSection() {
 							Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
 						</p>
 
-						{/* Dual CTA — humans + agents */}
-						<div className="mt-8 grid gap-4 sm:grid-cols-2">
+						{/* Dual CTA — humans + agents (stacked) */}
+						<div className="mt-8 flex flex-col gap-4">
 							<InstallCommand />
 							<AgentCommand />
 						</div>
