@@ -81,17 +81,15 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Featured video — own row, modest width */}
-			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
-				<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-					// Featured episode
-				</p>
+			{/* Featured episode — editorial 2-col layout */}
+			<div className="mx-auto mb-16 w-full max-w-[73.75rem] px-4">
 				<a
 					href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="group relative flex flex-col overflow-hidden lg:w-1/2"
+					className="group grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center"
 				>
+					{/* Left — video thumbnail with play overlay */}
 					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
 						<img
 							src={getAssetPath("/assets/images/kit-langton-banner.png")}
@@ -110,16 +108,30 @@ export function TestimonialsSection() {
 							</div>
 						</div>
 					</div>
-					<div className="flex items-center justify-between px-0 py-3">
-						<div className="flex flex-col gap-1">
-							<span className="text-base font-semibold text-white group-hover:text-zinc-100">
-								Coding Agent
-							</span>
-							<span className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-								Kit Langton · Cause & Effect #08
-							</span>
-						</div>
-						<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
+
+					{/* Right — editorial framing */}
+					<div className="flex flex-col">
+						<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+							// Cause &amp; Effect · Episode 08
+						</p>
+						<h3 className="mt-3 text-2xl leading-tight font-semibold text-white md:text-3xl">
+							Coding Agent
+						</h3>
+						<p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+							With Kit Langton, OpenCode
+						</p>
+						<p className="mt-5 max-w-md text-base leading-relaxed text-zinc-300">
+							How OpenCode uses Effect to ship a production-grade coding
+							agent — from runtime structure to error handling under model
+							failures.
+						</p>
+						<span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-white">
+							Watch episode
+							<i
+								className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+								aria-hidden="true"
+							/>
+						</span>
 					</div>
 				</a>
 			</div>
