@@ -47,15 +47,15 @@ type CaseStudy = {
 const CASE_STUDIES: CaseStudy[] = [
 	{
 		client: "Placeholder Client A",
-		headline: "Rebuilt the data ingestion layer on Effect",
-		body: "Replaced a brittle, callback-heavy pipeline with composable Effect workflows — recovering 40% of engineering time previously spent on incident response.",
-		stat: { label: "Reduction in pager incidents", value: "−72%" },
+		headline: "Untangled a callback-heavy ingestion pipeline",
+		body: "Rewrote a brittle, Promise-chained data layer as a single composable Effect graph. The on-call rotation stopped paging every weekend.",
+		stat: { label: "Production pages, six months in", value: "−72%" },
 	},
 	{
 		client: "Placeholder Client B",
-		headline: "End-to-end migration from Promise chains to Effect",
-		body: "Coached the platform team through a six-month migration. Net result: half the lines of code, and a dependency graph that fits in one screen.",
-		stat: { label: "LOC reduction", value: "−51%" },
+		headline: "Walked a platform team off Promise chains",
+		body: "Six months of pairing, code review, and incremental migration. The dependency graph now fits on one screen and the codebase lost half its lines.",
+		stat: { label: "Lines of code", value: "−51%" },
 	},
 ];
 
@@ -273,10 +273,10 @@ export function PartnerZivergePage() {
 				<section className="border-b border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-16 md:py-20">
 						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
-							// Featured work
+							// In production
 						</p>
 						<h2 className="mt-3 text-3xl leading-tight font-bold text-zinc-900 md:text-4xl dark:text-white">
-							Selected engagements
+							What Ziverge has shipped
 						</h2>
 
 						<ul className="mt-12 grid grid-cols-1 gap-px bg-zinc-200 md:grid-cols-2 dark:bg-zinc-800">
