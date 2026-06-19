@@ -4,11 +4,20 @@ import { getAssetPath } from "../../utils/assetPath";
 
 function VideoWithPosterOverlay() {
 	const videoRef = useRef<HTMLVideoElement>(null);
-	const [played, setPlayed] = useState(false);
+	const [showOverlay, setShowOverlay] = useState(true);
 
 	const startPlayback = () => {
-		setPlayed(true);
+		setShowOverlay(false);
 		videoRef.current?.play();
+	};
+
+	const handlePlay = () => setShowOverlay(false);
+	const handlePause = () => setShowOverlay(true);
+	const handleEnded = () => {
+		if (videoRef.current) {
+			videoRef.current.currentTime = 0;
+		}
+		setShowOverlay(true);
 	};
 
 	return (
@@ -17,25 +26,37 @@ function VideoWithPosterOverlay() {
 				ref={videoRef}
 				src={getAssetPath("/videos/ben-davis-video.mp4")}
 				poster={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
-				controls={played}
+				controls={!showOverlay}
 				playsInline
 				preload="metadata"
+				onPlay={handlePlay}
+				onPause={handlePause}
+				onEnded={handleEnded}
 				className="h-full w-full object-contain"
 			>
 				<track kind="captions" />
 			</video>
 
-			{!played && (
-				<button
-					type="button"
-					onClick={startPlayback}
-					aria-label="Play video"
-					className="group absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40"
-				>
-					<span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-zinc-900 transition-transform group-hover:scale-105">
-						<i className="ri-play-fill text-4xl translate-x-0.5" aria-hidden="true" />
-					</span>
-				</button>
+			{showOverlay && (
+				<>
+					{/* Thumbnail layer — re-rendered every time playback stops */}
+					<img
+						src={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
+						alt=""
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0 h-full w-full bg-black object-contain"
+					/>
+					<button
+						type="button"
+						onClick={startPlayback}
+						aria-label="Play video"
+						className="group absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40"
+					>
+						<span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-zinc-900 transition-transform group-hover:scale-105">
+							<i className="ri-play-fill translate-x-0.5 text-4xl" aria-hidden="true" />
+						</span>
+					</button>
+				</>
 			)}
 		</div>
 	);
