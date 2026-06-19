@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui";
-import { getAssetPath } from "../../utils/assetPath";
 
 export function AISection() {
 	return (
@@ -32,17 +31,12 @@ export function AISection() {
 					</Button>
 					</div>
 
-					{/* Right column - Video */}
+					{/* Right column - Video placeholder (awaiting encoded mp4 + poster) */}
 					<div className="aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm">
-						<video
-							src={getAssetPath("/videos/ben-davis-video.mov")}
-							controls
-							playsInline
-							preload="metadata"
-							className="h-full w-full object-cover"
-						>
-							<track kind="captions" />
-						</video>
+						<div className="flex h-full w-full flex-col items-center justify-center gap-3 text-zinc-400">
+							<i className="ri-play-circle-line text-5xl" />
+							<span className="text-sm font-medium">Video coming soon</span>
+						</div>
 					</div>
 				</div>
 
