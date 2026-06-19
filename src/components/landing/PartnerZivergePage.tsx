@@ -183,15 +183,14 @@ export function PartnerZivergePage() {
 					</div>
 				</section>
 
-				{/* At a glance — 4-col fact strip */}
+				{/* At a glance — fact strip */}
 				<section className="border-y border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<dl className="grid grid-cols-2 gap-px bg-zinc-200 sm:grid-cols-4 dark:bg-zinc-800">
+						<dl className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-3 dark:bg-zinc-800">
 							{[
 								{ label: "Region", value: "Global" },
 								{ label: "Working language", value: "English" },
-								{ label: "Team size", value: "20–50" },
-								{ label: "Effect since", value: "2024" },
+								{ label: "Certifications", value: "Effect Engineer Program" },
 							].map((fact) => (
 								<div
 									key={fact.label}
