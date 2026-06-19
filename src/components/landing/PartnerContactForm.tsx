@@ -46,14 +46,14 @@ export function PartnerContactForm({
 
 	if (submitted) {
 		return (
-			<div className="border border-zinc-200 bg-white p-8 dark:border-zinc-800 dark:bg-zinc-900">
-				<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
+			<div>
+				<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
 					// Sent
 				</p>
 				<h3 className="mt-3 text-xl font-semibold text-zinc-900 dark:text-white">
 					Thanks — we'll be in touch
 				</h3>
-				<p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+				<p className="mt-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-400">
 					We'll review your details and connect you with the {partnerName} team
 					shortly.
 				</p>
@@ -62,16 +62,13 @@ export function PartnerContactForm({
 	}
 
 	const fieldClass =
-		"w-full border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder-zinc-400 outline-none transition-colors focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:placeholder-zinc-600 dark:focus:border-zinc-500";
+		"w-full border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder-zinc-400 outline-none transition-colors focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-white dark:placeholder-zinc-600 dark:focus:border-white";
 
 	const labelClass =
-		"mb-2 block font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase";
+		"mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300";
 
 	return (
-		<form
-			onSubmit={handleSubmit}
-			className="border border-zinc-200 bg-white p-6 md:p-8 dark:border-zinc-800 dark:bg-zinc-900"
-		>
+		<form onSubmit={handleSubmit}>
 			{/* Hidden routing fields — Formspree uses these */}
 			<input type="hidden" name="_subject" value={`${partnerName} — partner inquiry`} />
 			<input type="hidden" name="partner" value={partnerName} />
