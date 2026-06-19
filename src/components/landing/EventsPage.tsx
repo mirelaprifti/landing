@@ -815,12 +815,12 @@ function EventsTabSection() {
 						{upcomingEvents.length === 0 ? (
 							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 bg-zinc-900/30 px-6 py-16 text-center">
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800/60">
-									<i className="ri-calendar-check-line text-xl text-zinc-500" />
+									<i className="ri-calendar-check-line text-xl text-zinc-500 dark:text-zinc-400" />
 								</div>
 								<p className="mb-1 text-base font-medium text-zinc-300">
 									No upcoming events right now
 								</p>
-								<p className="mb-6 max-w-sm text-sm text-zinc-500">
+								<p className="mb-6 max-w-sm text-sm text-zinc-500 dark:text-zinc-400">
 									Join the Discord to be the first to know when new events are
 									announced.
 								</p>

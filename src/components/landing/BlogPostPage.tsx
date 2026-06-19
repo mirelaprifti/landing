@@ -32,7 +32,7 @@ function ShareButtons({ title }: { title: string }) {
 
 	return (
 		<div className="flex items-center gap-3">
-			<span className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+			<span className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 				Share
 			</span>
 			<div className="flex items-center gap-2">
@@ -119,7 +119,7 @@ function TableOfContents({
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
 			<div className="rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+				<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 					On this page
 				</p>
 				<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
@@ -157,7 +157,7 @@ function TableOfContents({
 					)}
 					{postDate && (
 						<p className="flex flex-col gap-0.5">
-							<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-500">
+							<span className="font-mono text-[10px] tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-400">
 								Last updated
 							</span>
 							<time className="font-mono text-xs text-zinc-700 tabular-nums dark:text-zinc-300">
@@ -194,7 +194,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 						: {})}
 					className="group flex flex-col rounded-md border border-zinc-300 px-6 py-5 transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
 				>
-					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						<i className="ri-arrow-left-s-line text-base transition-transform duration-200 group-hover:-translate-x-0.5" />
 						Previous
 					</span>
@@ -213,7 +213,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 						: {})}
 					className="group flex flex-col items-end rounded-md border border-zinc-300 px-6 py-5 text-right transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
 				>
-					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						Next
 						<i className="ri-arrow-right-s-line text-base transition-transform duration-200 group-hover:translate-x-0.5" />
 					</span>
@@ -553,7 +553,7 @@ Effect.runPromise(program)`}</code>
 							<div className="mt-12 flex flex-col gap-6 border-t border-zinc-200 pt-8 md:hidden dark:border-zinc-800">
 								<ShareButtons title={post.title} />
 								<p className="flex flex-col gap-0.5">
-									<span className="font-mono text-[10px] tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+									<span className="font-mono text-[10px] tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 										Last updated
 									</span>
 									<time className="font-mono text-xs text-zinc-700 tabular-nums dark:text-zinc-300">

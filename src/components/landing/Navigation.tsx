@@ -158,7 +158,7 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 											type="search"
 											aria-label="Search the docs"
 											placeholder="Search the docs…"
-											className={`min-w-0 flex-1 bg-transparent outline-none placeholder:text-zinc-500 dark:placeholder:text-zinc-400 ${transparent ? "text-white placeholder:text-white/70" : "text-zinc-900 dark:text-white"}`}
+											className={`min-w-0 flex-1 bg-transparent outline-none placeholder:text-zinc-500 dark:text-zinc-400 dark:placeholder:text-zinc-400 ${transparent ? "text-white placeholder:text-white/70" : "text-zinc-900 dark:text-white"}`}
 										/>
 										<kbd
 											className={`shrink-0 text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}

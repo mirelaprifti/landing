@@ -630,9 +630,9 @@ export function BlogPage() {
 											aria-expanded={catOpen}
 											className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 										>
-											<span className="hidden text-zinc-500 group-hover:text-zinc-400 sm:inline">Category:</span>
+											<span className="hidden text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400 sm:inline">Category:</span>
 											<span className="text-zinc-200 group-hover:text-white">{activeTag}</span>
-											<i className={`ri-arrow-down-s-line text-sm text-zinc-500 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
+											<i className={`ri-arrow-down-s-line text-sm text-zinc-500 dark:text-zinc-400 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
 										</button>
 										{catOpen && (
 											<ul
@@ -664,7 +664,7 @@ export function BlogPage() {
 																	}`}
 																>
 																	<span>{tag}</span>
-																	<span className={`tabular-nums ${isActive ? "text-white" : "text-zinc-500"}`}>
+																	<span className={`tabular-nums ${isActive ? "text-white" : "text-zinc-500 dark:text-zinc-400"}`}>
 																		{String(tagCounts[tag] ?? 0).padStart(3, "0")}
 																	</span>
 																	<span
@@ -689,7 +689,7 @@ export function BlogPage() {
 										<span className="text-zinc-200 group-hover:text-white">
 											{sortBy === "newest" ? "Newest" : "Oldest"}
 										</span>
-										<i className="ri-arrow-up-down-line text-sm text-zinc-500 group-hover:text-zinc-300" />
+										<i className="ri-arrow-up-down-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" />
 									</button>
 									{/* RSS feed */}
 									<a
@@ -698,7 +698,7 @@ export function BlogPage() {
 										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-200 uppercase transition-colors hover:text-white"
 									>
 										<span>RSS</span>
-										<i className="ri-rss-line text-sm text-zinc-500 group-hover:text-zinc-300" aria-hidden="true" />
+										<i className="ri-rss-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" aria-hidden="true" />
 									</a>
 								</div>
 							</div>
@@ -748,7 +748,7 @@ export function BlogPage() {
 														page === "ellipsis" ? (
 															<span
 																key={`ellipsis-${idx}`}
-																className="px-1.5 font-mono text-xs text-zinc-500"
+																className="px-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400"
 															>
 																···
 															</span>

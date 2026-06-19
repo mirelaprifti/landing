@@ -147,7 +147,7 @@ export function PartnerZivergePage() {
 
 							{/* Content column */}
 							<div className="md:col-span-8">
-								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 									// Implementation Partner
 								</p>
 								<h1 className="mt-3 text-4xl leading-tight font-bold tracking-tight text-zinc-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -197,7 +197,7 @@ export function PartnerZivergePage() {
 									key={fact.label}
 									className="flex flex-col gap-1 bg-zinc-50 px-6 py-6 dark:bg-zinc-950"
 								>
-									<dt className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
+									<dt className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 										{fact.label}
 									</dt>
 									<dd className="text-xl font-semibold text-zinc-900 tabular-nums dark:text-white">
@@ -214,7 +214,7 @@ export function PartnerZivergePage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-16 md:py-20">
 						<div className="grid grid-cols-1 gap-10 md:grid-cols-12">
 							<div className="md:col-span-4">
-								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 									// About
 								</p>
 							</div>
@@ -238,7 +238,7 @@ export function PartnerZivergePage() {
 				{/* What we do */}
 				<section className="border-b border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-16 md:py-20">
-						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// Services
 						</p>
 						<h2 className="mt-3 text-3xl leading-tight font-bold text-zinc-900 md:text-4xl dark:text-white">
@@ -254,7 +254,7 @@ export function PartnerZivergePage() {
 										className="flex flex-col gap-4 bg-zinc-50 p-8 dark:bg-zinc-950"
 									>
 										<Icon
-											className="h-6 w-6 text-zinc-500"
+											className="h-6 w-6 text-zinc-500 dark:text-zinc-400"
 											aria-hidden="true"
 										/>
 										<h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
@@ -273,7 +273,7 @@ export function PartnerZivergePage() {
 				{/* Featured work */}
 				<section className="border-b border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-16 md:py-20">
-						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// In production
 						</p>
 						<h2 className="mt-3 text-3xl leading-tight font-bold text-zinc-900 md:text-4xl dark:text-white">
@@ -286,7 +286,7 @@ export function PartnerZivergePage() {
 									key={cs.client}
 									className="flex flex-col gap-5 bg-zinc-50 p-8 md:p-10 dark:bg-zinc-950"
 								>
-									<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
+									<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 										{cs.client}
 									</p>
 									<h3 className="text-xl leading-tight font-semibold text-zinc-900 dark:text-white">
@@ -296,7 +296,7 @@ export function PartnerZivergePage() {
 										{cs.body}
 									</p>
 									<div className="mt-auto border-t border-zinc-200 pt-5 dark:border-zinc-800">
-										<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
+										<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 											{cs.stat.label}
 										</p>
 										<p className="mt-1 text-3xl font-bold tabular-nums text-[#c2410c] dark:text-[#ff634b]">
@@ -314,7 +314,7 @@ export function PartnerZivergePage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-16 md:py-20">
 						<div className="grid grid-cols-1 gap-10 md:grid-cols-12">
 							<div className="md:col-span-4">
-								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 									// Why Ziverge
 								</p>
 								<h2 className="mt-3 text-3xl leading-tight font-bold text-zinc-900 md:text-4xl dark:text-white">
@@ -331,7 +331,7 @@ export function PartnerZivergePage() {
 												className={`flex gap-6 py-6 ${idx > 0 ? "border-t border-zinc-200 dark:border-zinc-800" : ""}`}
 											>
 												<Icon
-													className="mt-1 h-5 w-5 shrink-0 text-zinc-500"
+													className="mt-1 h-5 w-5 shrink-0 text-zinc-500 dark:text-zinc-400"
 													aria-hidden="true"
 												/>
 												<div>
@@ -354,7 +354,7 @@ export function PartnerZivergePage() {
 				{/* Contact + form — centered, restrained */}
 				<section id="contact" className="border-b border-zinc-200 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-2xl px-4 py-16 md:py-20">
-						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// Get in touch
 						</p>
 						<h2 className="mt-3 text-2xl leading-tight font-semibold text-zinc-900 md:text-3xl dark:text-white">

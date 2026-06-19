@@ -59,9 +59,9 @@ export function HeroSection() {
 						href="/blog/effect-v4-beta"
 						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:text-white md:text-sm"
 					>
-						<span className="text-zinc-500 group-hover:text-zinc-400">//</span>
+						<span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400">//</span>
 						<span>Effect 4.0 — Now in Beta</span>
-						<i className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
+						<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
 					</a>
 					{/* Headline */}
 					<h1 className="text-4xl font-bold text-white md:text-[3.4rem] leading-tighter">

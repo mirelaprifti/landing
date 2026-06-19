@@ -27,9 +27,9 @@ const tokenClass = {
 	kw: "font-semibold text-indigo-700 dark:text-indigo-300", // keywords
 	id: "text-zinc-700 dark:text-zinc-300", // identifiers / foreground
 	str: "text-emerald-700 dark:text-emerald-400", // strings
-	cmt: "text-zinc-500 dark:text-zinc-500 italic", // comments
+	cmt: "text-zinc-500 dark:text-zinc-400 italic", // comments
 	num: "text-zinc-700 dark:text-zinc-300", // numbers
-	punct: "text-zinc-500 dark:text-zinc-500", // punctuation
+	punct: "text-zinc-500 dark:text-zinc-400", // punctuation
 };
 
 function Token({ kind, children }: { kind: keyof typeof tokenClass; children: React.ReactNode }) {
@@ -145,11 +145,11 @@ function Tree({
 								style={{ paddingLeft: `${depth * 12 + 6}px`, paddingRight: "12px" }}
 							>
 								{isOpen ? (
-									<ChevronDown className="h-3.5 w-3.5 shrink-0 text-zinc-500" aria-hidden="true" />
+									<ChevronDown className="h-3.5 w-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
 								) : (
-									<ChevronRight className="h-3.5 w-3.5 shrink-0 text-zinc-500" aria-hidden="true" />
+									<ChevronRight className="h-3.5 w-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
 								)}
-								<Folder className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
+								<Folder className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
 								<span className="truncate">{node.name}</span>
 							</button>
 							{isOpen && node.children.length > 0 && (
@@ -182,7 +182,7 @@ function Tree({
 						>
 							{/* Spacer to align with folder chevron */}
 							<span className="inline-block h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-							<File className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
+							<File className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
 							<span className="truncate">{node.name}</span>
 						</button>
 					</li>
@@ -294,7 +294,7 @@ export function PlaygroundMockPage() {
 								className={`-mb-px border-b-2 px-4 py-2.5 font-mono text-xs tracking-wider uppercase transition-colors ${
 									isActive
 										? "border-zinc-900 text-zinc-900 dark:border-white dark:text-white"
-										: "border-transparent text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+										: "border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
 								}`}
 							>
 								{t.label}
@@ -309,7 +309,7 @@ export function PlaygroundMockPage() {
 						<div className="space-y-1">
 							{TERMINAL_LINES.map((line, i) => (
 								<div key={i} className="flex gap-3">
-									<span className="shrink-0 text-zinc-500 tabular-nums">{line.time}</span>
+									<span className="shrink-0 text-zinc-500 dark:text-zinc-400 tabular-nums">{line.time}</span>
 									<span
 										className={
 											line.tone === "err"
@@ -323,7 +323,7 @@ export function PlaygroundMockPage() {
 							))}
 						</div>
 					) : (
-						<p className="font-mono text-xs text-zinc-500">
+						<p className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
 							// Trace view goes here. Mockup only.
 						</p>
 					)}

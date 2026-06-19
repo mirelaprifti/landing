@@ -47,7 +47,7 @@ export function PartnerContactForm({
 	if (submitted) {
 		return (
 			<div>
-				<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+				<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 					// Sent
 				</p>
 				<h3 className="mt-3 text-xl font-semibold text-zinc-900 dark:text-white">
