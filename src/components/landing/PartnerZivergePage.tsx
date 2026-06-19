@@ -109,34 +109,45 @@ export function PartnerZivergePage() {
 				</div>
 
 				{/* Hero */}
-				<section className="relative overflow-hidden">
-					<div
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage: `
-								linear-gradient(to right, rgba(228, 228, 231, 0.5) 1px, transparent 1px),
-								linear-gradient(to bottom, rgba(228, 228, 231, 0.5) 1px, transparent 1px)
-							`,
-							backgroundSize: "196.6px 180px",
-							backgroundPosition: "calc(50% + 97px) 0",
-						}}
-					/>
-					<div
-						className="pointer-events-none absolute inset-0 dark:hidden"
-						style={{
-							background:
-								"linear-gradient(to bottom, #fafafa 0%, transparent 20%, transparent 70%, #fafafa 100%)",
-						}}
-					/>
-					<div
-						className="pointer-events-none absolute inset-0 hidden dark:block"
-						style={{
-							background:
-								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 70%, #09090b 100%)",
-						}}
-					/>
+				<section className="relative overflow-hidden pb-10 md:pb-12">
+					<div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px] overflow-hidden">
+						<div
+							className="absolute inset-0"
+							style={{
+								backgroundImage: `
+									linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+									linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+								`,
+								backgroundSize: "196.6px 194px",
+								backgroundPosition: "calc(50% + 97px) 0",
+							}}
+						/>
+						{/* Light-mode fade */}
+						<div
+							className="absolute inset-0 dark:hidden"
+							style={{
+								background:
+									"linear-gradient(to bottom, #fafafa 0%, transparent 20%, transparent 60%, #fafafa 100%)",
+							}}
+						/>
+						{/* Dark-mode fade */}
+						<div
+							className="absolute inset-0 hidden dark:block"
+							style={{
+								background:
+									"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+							}}
+						/>
+						<div
+							className="absolute inset-x-0 top-0 h-[400px]"
+							style={{
+								background:
+									"radial-gradient(ellipse 50% 80% at 50% -20%, rgba(255, 255, 255, 0.10) 0%, transparent 50%)",
+							}}
+						/>
+					</div>
 
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-20 md:pt-24 md:pb-28">
+					<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-20 md:pt-24 md:pb-28">
 						<div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
 							{/* Logo column */}
 							<div className="md:col-span-4">
