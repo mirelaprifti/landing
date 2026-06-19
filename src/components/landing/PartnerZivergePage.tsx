@@ -364,7 +364,9 @@ export function PartnerZivergePage() {
 							Work with Ziverge
 						</h2>
 						<p className="mt-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-400">
-							A short note is enough — we'll route it straight to the team.
+							Tell us about your team, your stack, and what you're trying to
+							ship. The more context you share, the faster we can route your
+							message to the right people.
 						</p>
 						<div className="mt-10">
 							<PartnerContactForm partnerName="Ziverge" />
