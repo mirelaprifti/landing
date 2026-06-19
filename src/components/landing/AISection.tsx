@@ -56,8 +56,8 @@ function VideoWithPosterOverlay() {
 					showOverlay ? "opacity-100" : "pointer-events-none opacity-0"
 				}`}
 			>
-				<span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-zinc-900 transition-transform group-hover:scale-105">
-					<i className="ri-play-fill translate-x-0.5 text-4xl" aria-hidden="true" />
+				<span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/80 text-zinc-900 backdrop-blur-sm transition-transform group-hover:scale-105">
+					<i className="ri-play-fill translate-x-0.5 text-3xl" aria-hidden="true" />
 				</span>
 			</button>
 		</div>
