@@ -298,7 +298,7 @@ export function PartnerZivergePage() {
 										<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
 											{cs.stat.label}
 										</p>
-										<p className="mt-1 text-3xl font-bold text-indigo-700 tabular-nums dark:text-indigo-300">
+										<p className="mt-1 text-3xl font-bold text-zinc-900 tabular-nums dark:text-white">
 											{cs.stat.value}
 										</p>
 									</div>
