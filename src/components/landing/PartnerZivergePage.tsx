@@ -1,9 +1,9 @@
 import {
 	Cpu,
 	GitBranch,
+	Globe,
 	LifeBuoy,
 	type LucideIcon,
-	ShieldCheck,
 	Sparkles,
 	Workflow,
 } from "lucide-react";
@@ -68,9 +68,9 @@ const DIFFERENTIATORS: Differentiator[] = [
 		body: "A decade-plus of work on effect systems — first on the JVM with ZIO, now in TypeScript with Effect. The team brings hard-won production experience to every engagement.",
 	},
 	{
-		icon: ShieldCheck,
-		title: "Production-grade by default",
-		body: "Every engagement ships with observability, retry policies, and structured error handling baked in. No \"happy path\" demos.",
+		icon: Globe,
+		title: "Global delivery",
+		body: "Timezone coverage across the Americas, Europe, and Asia means there's always someone on call. Incidents don't have to wait until your next standup.",
 	},
 	{
 		icon: Sparkles,
