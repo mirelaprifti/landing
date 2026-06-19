@@ -92,22 +92,6 @@ export function PartnerZivergePage() {
 			<Navigation activePath="/implementation-partners" />
 
 			<main id="main-content" className="relative w-full pt-16">
-				{/* Breadcrumb */}
-				<div className="relative border-b border-zinc-200 dark:border-zinc-800">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-4">
-						<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
-							<a
-								href={getAssetPath("/implementation-partners")}
-								className="transition-colors hover:text-zinc-900 dark:hover:text-white"
-							>
-								// Implementation Partners
-							</a>
-							<span className="mx-2 text-zinc-400 dark:text-zinc-600">/</span>
-							<span className="text-zinc-900 dark:text-white">Ziverge</span>
-						</p>
-					</div>
-				</div>
-
 				{/* Hero */}
 				<section className="relative overflow-hidden pb-10 md:pb-12">
 					<div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px] overflow-hidden">
