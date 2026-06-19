@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui";
-import { getAssetPath } from "../../utils/assetPath";
 
 export function AISection() {
 	return (
@@ -39,44 +38,6 @@ export function AISection() {
 							<span className="text-sm font-medium">Video coming soon</span>
 						</div>
 					</div>
-				</div>
-
-				{/* Tweet card — moved below the heading row, full-width single column */}
-				<div className="mb-20 px-4">
-					<a
-						href="https://x.com/davis7/status/1988847914538672262"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="mx-auto block max-w-2xl rounded-lg border border-zinc-700/70 bg-zinc-900 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/60"
-					>
-						{/* Author row */}
-						<div className="mb-4 flex items-center justify-between">
-							<div className="flex items-center gap-3">
-								<img
-									src={getAssetPath("/assets/images/bendavis.jpg")}
-									alt="Ben Davis"
-									className="h-10 w-10 rounded-full object-cover"
-								/>
-								<div>
-									<div className="text-sm font-medium text-white">
-										Ben Davis
-									</div>
-									<div className="text-xs text-zinc-400">@davis7</div>
-								</div>
-							</div>
-							<i className="ri-twitter-x-line text-white" />
-						</div>
-						{/* Quote */}
-						<p className="text-sm leading-relaxed text-zinc-300">
-							<span className="text-zinc-400">@MichaelArnaldi</span> suggested
-							cloning the effect repo as a git subtree, giving it to Claude,
-							then using that as docs. It sounds absurd, but it's actually kind
-							amazing...
-						</p>
-						<span className="mt-3 inline-flex items-center gap-1 text-xs text-zinc-400">
-							Full post <i className="ri-arrow-right-up-line" />
-						</span>
-					</a>
 				</div>
 
 				{/* Features - 1x4 grid */}
