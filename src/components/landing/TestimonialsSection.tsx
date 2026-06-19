@@ -90,7 +90,7 @@ export function TestimonialsSection() {
 					href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="group relative flex max-w-3xl flex-col overflow-hidden"
+					className="group relative flex flex-col overflow-hidden lg:w-1/2"
 				>
 					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
 						<img
