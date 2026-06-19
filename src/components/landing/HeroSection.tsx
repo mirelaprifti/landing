@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { AgentChatMockup } from "./AgentChatMockup";
 import { AgentCommand } from "./AgentCommand";
 import { AgentTerminalLive } from "./AgentTerminalLive";
 import { AgentTracePanel } from "./AgentTracePanel";
 import { InstallCommand } from "./InstallCommand";
 
-type Variant = "trace" | "terminal";
+type Variant = "trace" | "chat" | "terminal";
 
 export function HeroSection() {
 	const [variant, setVariant] = useState<Variant>("trace");
@@ -59,8 +60,8 @@ export function HeroSection() {
 			`}</style>
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-24 md:pb-24">
-				{/* 2-col layout: content left, agent trace right */}
-				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+				{/* 2-col layout: content left, agent visual right (top-aligned) */}
+				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
 					{/* Left column — content */}
 					<div className="max-w-2xl">
 						{/* Eyebrow */}
@@ -89,7 +90,7 @@ export function HeroSection() {
 						</div>
 					</div>
 
-					{/* Right column — visual panel with A/C comparison toggle */}
+					{/* Right column — visual panel with A/B/C comparison toggle */}
 					<div>
 						{/* Compare-mode toggle (demo only) */}
 						<div
@@ -97,33 +98,32 @@ export function HeroSection() {
 							aria-label="Compare hero visuals"
 							className="mb-3 inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/60 p-0.5 font-mono text-[10px] tracking-wider uppercase"
 						>
-							<button
-								type="button"
-								onClick={() => setVariant("trace")}
-								aria-pressed={variant === "trace"}
-								className={`rounded px-2.5 py-1 transition-colors ${
-									variant === "trace"
-										? "bg-zinc-800 text-white"
-										: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-200"
-								}`}
-							>
-								A · Trace
-							</button>
-							<button
-								type="button"
-								onClick={() => setVariant("terminal")}
-								aria-pressed={variant === "terminal"}
-								className={`rounded px-2.5 py-1 transition-colors ${
-									variant === "terminal"
-										? "bg-zinc-800 text-white"
-										: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-200"
-								}`}
-							>
-								C · Live terminal
-							</button>
+							{(
+								[
+									{ id: "trace", label: "A · Trace" },
+									{ id: "chat", label: "B · Chat" },
+									{ id: "terminal", label: "C · Terminal" },
+								] as const
+							).map((opt) => (
+								<button
+									key={opt.id}
+									type="button"
+									onClick={() => setVariant(opt.id)}
+									aria-pressed={variant === opt.id}
+									className={`rounded px-2.5 py-1 transition-colors ${
+										variant === opt.id
+											? "bg-zinc-800 text-white"
+											: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-200"
+									}`}
+								>
+									{opt.label}
+								</button>
+							))}
 						</div>
 
-						{variant === "trace" ? <AgentTracePanel /> : <AgentTerminalLive />}
+						{variant === "trace" && <AgentTracePanel />}
+						{variant === "chat" && <AgentChatMockup />}
+						{variant === "terminal" && <AgentTerminalLive />}
 					</div>
 				</div>
 			</div>
