@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { AgentCommand } from "./AgentCommand";
 import { AgentTerminalLive } from "./AgentTerminalLive";
+import { AgentTracePanel } from "./AgentTracePanel";
 import { InstallCommand } from "./InstallCommand";
 
+type Variant = "trace" | "terminal";
+
 export function HeroSection() {
+	const [variant, setVariant] = useState<Variant>("trace");
+
 	return (
 		<section className="relative w-full">
 			{/* Stripe-like grid background - full width, centered */}
@@ -83,9 +89,41 @@ export function HeroSection() {
 						</div>
 					</div>
 
-					{/* Right column — live agent terminal */}
+					{/* Right column — visual panel with A/C comparison toggle */}
 					<div>
-						<AgentTerminalLive />
+						{/* Compare-mode toggle (demo only) */}
+						<div
+							role="group"
+							aria-label="Compare hero visuals"
+							className="mb-3 inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/60 p-0.5 font-mono text-[10px] tracking-wider uppercase"
+						>
+							<button
+								type="button"
+								onClick={() => setVariant("trace")}
+								aria-pressed={variant === "trace"}
+								className={`rounded px-2.5 py-1 transition-colors ${
+									variant === "trace"
+										? "bg-zinc-800 text-white"
+										: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-200"
+								}`}
+							>
+								A · Trace
+							</button>
+							<button
+								type="button"
+								onClick={() => setVariant("terminal")}
+								aria-pressed={variant === "terminal"}
+								className={`rounded px-2.5 py-1 transition-colors ${
+									variant === "terminal"
+										? "bg-zinc-800 text-white"
+										: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-200"
+								}`}
+							>
+								C · Live terminal
+							</button>
+						</div>
+
+						{variant === "trace" ? <AgentTracePanel /> : <AgentTerminalLive />}
 					</div>
 				</div>
 			</div>
