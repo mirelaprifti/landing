@@ -65,7 +65,7 @@ const DIFFERENTIATORS: Differentiator[] = [
 	{
 		icon: GitBranch,
 		title: "Deep Effect roots",
-		body: "A decade-plus of work on effect systems — first on the JVM with ZIO, now in TypeScript with Effect. The team contributes to the libraries you depend on.",
+		body: "A decade-plus of work on effect systems — first on the JVM with ZIO, now in TypeScript with Effect. The team brings hard-won production experience to every engagement.",
 	},
 	{
 		icon: ShieldCheck,
