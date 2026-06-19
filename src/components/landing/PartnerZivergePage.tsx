@@ -354,25 +354,20 @@ export function PartnerZivergePage() {
 					</div>
 				</section>
 
-				{/* Contact CTA + form */}
+				{/* Contact + form — centered, restrained */}
 				<section id="contact" className="border-b border-zinc-200 dark:border-zinc-800">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-20 md:py-28">
-						<div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-							<div className="md:col-span-5">
-								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
-									// Get in touch
-								</p>
-								<h2 className="mt-3 text-3xl leading-tight font-bold text-zinc-900 md:text-4xl lg:text-5xl dark:text-white">
-									Work with Ziverge
-								</h2>
-								<p className="mt-5 max-w-md text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
-									Tell us a bit about your project and we'll route your
-									message straight to the Ziverge team.
-								</p>
-							</div>
-							<div className="md:col-span-7">
-								<PartnerContactForm partnerName="Ziverge" />
-							</div>
+					<div className="mx-auto w-full max-w-2xl px-4 py-16 md:py-20">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+							// Get in touch
+						</p>
+						<h2 className="mt-3 text-2xl leading-tight font-semibold text-zinc-900 md:text-3xl dark:text-white">
+							Work with Ziverge
+						</h2>
+						<p className="mt-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-400">
+							A short note is enough — we'll route it straight to the team.
+						</p>
+						<div className="mt-10">
+							<PartnerContactForm partnerName="Ziverge" />
 						</div>
 					</div>
 				</section>
