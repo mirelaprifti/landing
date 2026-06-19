@@ -42,81 +42,86 @@ const useCases = [
 export function TestimonialsSection() {
 	return (
 		<section className="relative py-24 md:pt-40 md:pb-24">
-			{/* Header — two columns: heading + resource links on left, featured video on right */}
+			{/* Header — full width, restrained */}
 			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-end">
-					{/* Left column — heading + resource links */}
-					<div>
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Who uses Effect
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Real-world production systems
-						</h2>
-						<div className="mt-8 flex flex-wrap items-center gap-6">
-							<a
-								href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
-							>
-								Cause & Effect Podcast
-								<i className="ri-arrow-right-up-line text-base" />
-							</a>
-							<a
-								href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
-							>
-								Effect Days 2024
-								<i className="ri-arrow-right-up-line text-base" />
-							</a>
-							<a
-								href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
-							>
-								Effect Days 2025
-								<i className="ri-arrow-right-up-line text-base" />
-							</a>
-						</div>
-					</div>
-
-					{/* Right column — featured video */}
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// Who uses Effect
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					Real-world production systems
+				</h2>
+				<div className="mt-8 flex flex-wrap items-center gap-6">
 					<a
-						href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group relative flex flex-col overflow-hidden"
+						className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
 					>
-						<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
-							<img
-								src={getAssetPath("/assets/images/kit-langton-banner.png")}
-								alt="Coding agent — featured video"
-								className="h-full w-full object-cover"
-							/>
-							<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
-								<div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
-									<svg
-										className="ml-1 h-5 w-5 text-zinc-900"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-									>
-										<path d="M8 5v14l11-7z" />
-									</svg>
-								</div>
-							</div>
-						</div>
-						<div className="flex items-center justify-between px-0 py-2">
-							<span className="font-mono text-[13px] text-zinc-400 uppercase group-hover:text-zinc-200">
-								Coding Agent
-							</span>
-							<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
-						</div>
+						Cause & Effect Podcast
+						<i className="ri-arrow-right-up-line text-base" />
+					</a>
+					<a
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
+					>
+						Effect Days 2024
+						<i className="ri-arrow-right-up-line text-base" />
+					</a>
+					<a
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
+					>
+						Effect Days 2025
+						<i className="ri-arrow-right-up-line text-base" />
 					</a>
 				</div>
+			</div>
+
+			{/* Featured video — own row, with an eyebrow above and constrained width */}
+			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+					// Featured episode
+				</p>
+				<a
+					href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="group relative flex flex-col overflow-hidden"
+				>
+					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 lg:aspect-21/9">
+						<img
+							src={getAssetPath("/assets/images/kit-langton-banner.png")}
+							alt="Kit Langton — Coding Agent"
+							className="h-full w-full object-cover"
+						/>
+						<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
+							<div className="flex h-16 w-16 scale-0 items-center justify-center rounded-full bg-white/85 transition-transform duration-300 group-hover:scale-100">
+								<svg
+									className="ml-1 h-6 w-6 text-zinc-900"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path d="M8 5v14l11-7z" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div className="flex items-center justify-between px-0 py-3">
+						<div className="flex flex-col gap-1">
+							<span className="text-base font-semibold text-white group-hover:text-zinc-100">
+								Coding Agent
+							</span>
+							<span className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+								Kit Langton · Cause & Effect #08
+							</span>
+						</div>
+						<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
+					</div>
+				</a>
 			</div>
 
 			{/* Use Case Cards - Video thumbnails grid */}
