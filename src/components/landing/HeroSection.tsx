@@ -1,4 +1,5 @@
 import { AgentCommand } from "./AgentCommand";
+import { AgentTracePanel } from "./AgentTracePanel";
 import { InstallCommand } from "./InstallCommand";
 
 export function HeroSection() {
@@ -52,31 +53,39 @@ export function HeroSection() {
 			`}</style>
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-24 md:pb-24">
-				{/* Content */}
-				<div className="max-w-4xl text-left md:mx-auto md:text-center">
-					{/* Eyebrow */}
-					<a
-						href="/blog/effect-v4-beta"
-						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:text-white md:text-sm"
-					>
-						<span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400">//</span>
-						<span>Effect 4.0 — Now in Beta</span>
-						<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
-					</a>
-					{/* Headline */}
-					<h1 className="text-4xl font-bold text-white md:text-[3.4rem] leading-tighter">
-						Reliable TypeScript for the AI era
-					</h1>
+				{/* 2-col layout: content left, agent trace right */}
+				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+					{/* Left column — content */}
+					<div className="max-w-2xl">
+						{/* Eyebrow */}
+						<a
+							href="/blog/effect-v4-beta"
+							className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:text-white md:text-sm"
+						>
+							<span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400">//</span>
+							<span>Effect 4.0 — Now in Beta</span>
+							<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
+						</a>
+						{/* Headline */}
+						<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl lg:text-[3.4rem]">
+							Reliable TypeScript for the AI era
+						</h1>
 
-					{/* Subheadline */}
-					<p className="mt-6 md:mx-auto text-lg text-zinc-400 max-w-3xl leading-snug">
-						Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
-					</p>
+						{/* Subheadline */}
+						<p className="mt-6 max-w-xl text-lg leading-snug text-zinc-400">
+							Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
+						</p>
 
-					{/* Dual CTA — humans + agents */}
-					<div className="mt-8 grid gap-4 md:mx-auto md:max-w-4xl md:grid-cols-2">
-						<InstallCommand />
-						<AgentCommand />
+						{/* Dual CTA — humans + agents */}
+						<div className="mt-8 grid gap-4 sm:grid-cols-2">
+							<InstallCommand />
+							<AgentCommand />
+						</div>
+					</div>
+
+					{/* Right column — agent trace panel */}
+					<div>
+						<AgentTracePanel />
 					</div>
 				</div>
 			</div>
