@@ -65,7 +65,7 @@ const DIFFERENTIATORS: Differentiator[] = [
 	{
 		icon: GitBranch,
 		title: "Functional programming roots",
-		body: "A decade-plus of work on functional effect systems — first on the JVM with ZIO, now in TypeScript with Effect. The team contributes to the libraries you depend on.",
+		body: "A decade-plus of work on effect systems — first on the JVM with ZIO, now in TypeScript with Effect. The team contributes to the libraries you depend on.",
 	},
 	{
 		icon: ShieldCheck,
@@ -155,7 +155,7 @@ export function PartnerZivergePage() {
 								<p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
 									Engineering expertise across distributed systems, AI/ML, and
 									cloud-native architecture — delivered by the team behind some
-									of the foundational work on functional effect systems.
+									of the foundational work on effect systems.
 								</p>
 
 								<div className="mt-8 flex flex-wrap items-center gap-3">
@@ -219,17 +219,15 @@ export function PartnerZivergePage() {
 							</div>
 							<div className="md:col-span-8">
 								<p className="text-xl leading-relaxed text-zinc-900 dark:text-white">
-									Ziverge has spent over a decade shipping functional effect
-									systems in production — first on the JVM with ZIO, now in
-									TypeScript with Effect.
+									Ziverge has spent over a decade shipping effect systems in
+									production — first on the JVM with ZIO, now in TypeScript
+									with Effect.
 								</p>
 								<p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-400">
 									Their engineers work alongside your team to adopt Effect
 									pragmatically: not as a rewrite, not as a research project,
 									but as a stepwise migration toward production-grade
-									reliability. They've built and maintained the libraries you
-									use, so when something breaks at 3am, they know where to
-									look.
+									reliability.
 								</p>
 							</div>
 						</div>
