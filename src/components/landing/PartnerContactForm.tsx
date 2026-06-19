@@ -138,17 +138,20 @@ export function PartnerContactForm({
 				<p className="mt-4 text-sm text-red-600 dark:text-red-400">{error}</p>
 			)}
 
-			<div className="mt-6 flex items-center gap-4">
-				<Button type="submit" variant="primary" size="md" disabled={submitting}>
-					{submitting ? "Sending…" : `Contact ${partnerName}`}
+			<div className="mt-6">
+				<Button
+					type="submit"
+					variant="primary"
+					size="md"
+					disabled={submitting}
+					className="w-full"
+				>
+					{submitting ? "Sending…" : "Send message"}
 					<i
 						className="ri-arrow-right-up-line text-base"
 						aria-hidden="true"
 					/>
 				</Button>
-				<p className="font-mono text-xs text-zinc-500">
-					We'll route your message directly to the team.
-				</p>
 			</div>
 		</form>
 	);
