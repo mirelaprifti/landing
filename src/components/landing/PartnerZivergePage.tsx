@@ -298,7 +298,10 @@ export function PartnerZivergePage() {
 										<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
 											{cs.stat.label}
 										</p>
-										<p className="mt-1 text-3xl font-bold text-zinc-900 tabular-nums dark:text-white">
+										<p
+											className="mt-1 text-3xl font-bold tabular-nums"
+											style={{ color: "#ff634b" }}
+										>
 											{cs.stat.value}
 										</p>
 									</div>
