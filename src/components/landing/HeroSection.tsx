@@ -78,7 +78,9 @@ export function HeroSection() {
 
 					{/* Subheadline */}
 					<p className="mx-auto mt-6 max-w-2xl text-lg leading-snug text-zinc-400">
-						Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
+						Production-ready systems developers ship, AI agents understand, and
+						customers depend on. Built with the structure, safety, and
+						observability for all three.
 					</p>
 
 					{/* Single consolidated command panel — Install + AI prompt */}
