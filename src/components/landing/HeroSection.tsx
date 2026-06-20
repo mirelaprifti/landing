@@ -8,7 +8,6 @@ const HERO_LOGOS: { name: string; src: string; h: string }[] = [
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "1.5rem" },
 	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "1.25rem" },
 	{ name: "Spiko", src: "/assets/quotes-logos/spiko-logo.svg", h: "1.25rem" },
-	{ name: "Zendesk", src: "/assets/test-logos/zendesk-logo.svg", h: "1rem" },
 ];
 
 export function HeroSection() {
