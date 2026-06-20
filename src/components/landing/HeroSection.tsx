@@ -13,7 +13,7 @@ const HERO_LOGOS: {
 	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
 	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
-	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 2 },
+	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 3 },
 ];
 
 export function HeroSection() {
