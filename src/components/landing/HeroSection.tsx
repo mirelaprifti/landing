@@ -92,7 +92,7 @@ export function HeroSection() {
 						<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// In production at
 						</p>
-						<ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+						<ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
 							{HERO_LOGOS.map((logo) => (
 								<li key={logo.name} className="flex items-center">
 									<img
