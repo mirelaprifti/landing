@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAssetPath } from "@/utils/assetPath";
 
 const INSTALL_COMMANDS: Record<string, string> = {
@@ -46,6 +46,27 @@ export function HeroCommandPanel() {
 	const [mode, setMode] = useState<Mode>("install");
 	const [activePM, setActivePM] = useState<string>("bun");
 	const [copied, setCopied] = useState(false);
+	const [pmOpen, setPmOpen] = useState(false);
+	const pmRef = useRef<HTMLDivElement>(null);
+
+	// Close popover on outside click or Escape
+	useEffect(() => {
+		if (!pmOpen) return;
+		const handlePointer = (e: MouseEvent) => {
+			if (pmRef.current && !pmRef.current.contains(e.target as Node)) {
+				setPmOpen(false);
+			}
+		};
+		const handleKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setPmOpen(false);
+		};
+		document.addEventListener("mousedown", handlePointer);
+		document.addEventListener("keydown", handleKey);
+		return () => {
+			document.removeEventListener("mousedown", handlePointer);
+			document.removeEventListener("keydown", handleKey);
+		};
+	}, [pmOpen]);
 
 	const copyValue =
 		mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PROMPT;
@@ -58,7 +79,7 @@ export function HeroCommandPanel() {
 	};
 
 	return (
-		<div className="overflow-hidden rounded-md bg-zinc-900/50 p-1 ring-1 ring-zinc-700 ring-inset">
+		<div className="rounded-md bg-zinc-900/50 p-1 ring-1 ring-zinc-700 ring-inset">
 			{/* Mode tabs: Install | Prompt for AI agents */}
 			<div role="tablist" className="flex border-b border-zinc-800">
 				<button
@@ -95,7 +116,7 @@ export function HeroCommandPanel() {
 				</button>
 			</div>
 
-			{/* Copyable line — command takes the full width, PM picker sits to the right of it */}
+			{/* Command row */}
 			<button
 				type="button"
 				onClick={copy}
@@ -112,32 +133,73 @@ export function HeroCommandPanel() {
 				) : (
 					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
 				)}
+
 				{mode === "install" && (
 					<div
-						role="group"
-						aria-label="Package manager"
+						ref={pmRef}
+						className="relative shrink-0"
 						onClick={(e) => e.stopPropagation()}
-						className="flex shrink-0 items-center gap-0.5 rounded-sm border-l border-zinc-800 bg-zinc-900/60 pl-2"
 					>
-						{PM_OPTIONS.map((pm) => (
-							<button
-								key={pm}
-								type="button"
-								onClick={() => setActivePM(pm)}
-								aria-label={pm}
-								aria-pressed={activePM === pm}
-								className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm transition-colors ${
-									activePM === pm ? "bg-zinc-800" : "hover:bg-zinc-800/60"
+						{/* Active PM chip */}
+						<button
+							type="button"
+							onClick={() => setPmOpen((open) => !open)}
+							aria-haspopup="listbox"
+							aria-expanded={pmOpen}
+							aria-label={`Package manager: ${activePM}`}
+							className="flex items-center gap-1.5 rounded-sm border-l border-zinc-800 pl-3 pr-1 py-0.5 text-xs text-zinc-300 transition-colors hover:text-white"
+						>
+							<img
+								src={getAssetPath(PM_ICONS[activePM])}
+								alt=""
+								aria-hidden="true"
+								className={`${activePM === "npm" ? "h-4.5" : "h-4"} w-auto`}
+							/>
+							<span>{activePM}</span>
+							<i
+								className={`ri-arrow-down-s-line text-base text-zinc-500 transition-transform ${
+									pmOpen ? "rotate-180" : ""
 								}`}
+								aria-hidden="true"
+							/>
+						</button>
+
+						{/* Popover list */}
+						{pmOpen && (
+							<ul
+								role="listbox"
+								className="absolute right-0 top-full z-20 mt-2 w-36 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 shadow-xl"
 							>
-								<img
-									src={getAssetPath(PM_ICONS[pm])}
-									alt=""
-									aria-hidden="true"
-									className={`${pm === "npm" ? "h-4.5" : "h-4"} w-auto ${activePM === pm ? "opacity-100" : "opacity-60"}`}
-								/>
-							</button>
-						))}
+								{PM_OPTIONS.map((pm) => (
+									<li key={pm} role="option" aria-selected={activePM === pm}>
+										<button
+											type="button"
+											onClick={() => {
+												setActivePM(pm);
+												setPmOpen(false);
+											}}
+											className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors hover:bg-zinc-800 ${
+												activePM === pm ? "text-white" : "text-zinc-400"
+											}`}
+										>
+											<img
+												src={getAssetPath(PM_ICONS[pm])}
+												alt=""
+												aria-hidden="true"
+												className={`${pm === "npm" ? "h-4.5" : "h-4"} w-auto shrink-0`}
+											/>
+											<span className="flex-1">{pm}</span>
+											{activePM === pm && (
+												<i
+													className="ri-check-line shrink-0 text-zinc-500"
+													aria-hidden="true"
+												/>
+											)}
+										</button>
+									</li>
+								))}
+							</ul>
+						)}
 					</div>
 				)}
 			</button>
