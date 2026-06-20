@@ -8,33 +8,21 @@ const AI_CASE_STUDIES = [
 		),
 		partnerLogo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
 		partnerLogoClass: "h-4",
+		thumbnail: "https://img.youtube.com/vi/Cj2pVPqdOVs/maxresdefault.jpg",
 		title: "// Voice AI Orchestration Layer",
 		href: "https://youtu.be/Cj2pVPqdOVs",
-		accentColor: "bg-violet-500",
-		slashColor: "text-violet-500",
-		dividerColor: "rgb(139 92 246 / 0.4)",
-		// Soft radial glow in corner
-		bgStyle: {
-			background:
-				"radial-gradient(ellipse 80% 100% at 100% 100%, rgba(139, 92, 246, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)",
-		},
 	},
 	{
 		effectLogo: getAssetPath(
 			"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
 		),
-		partnerLogo: getAssetPath("/assets/test-logos/14-ai.svg"),
-		partnerLogoClass: "h-6",
-		title: "// AI for Customer Support",
-		href: "https://youtu.be/gGFPhFrGCng",
-		accentColor: "bg-emerald-400",
-		slashColor: "text-emerald-400",
-		dividerColor: "rgb(52 211 153 / 0.4)",
-		// Soft radial glow in corner
-		bgStyle: {
-			background:
-				"radial-gradient(ellipse 80% 100% at 100% 100%, rgba(16, 185, 129, 0.35) 0%, rgba(52, 211, 153, 0.2) 40%, transparent 70%)",
-		},
+		partnerLogo: getAssetPath(
+			"/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
+		),
+		partnerLogoClass: "h-5",
+		thumbnail: getAssetPath("/assets/images/kit-langton-banner.png"),
+		title: "// Coding Agent",
+		href: "https://www.youtube.com/watch?v=-mL7VVvkLGM",
 	},
 ];
 
@@ -135,47 +123,52 @@ export function AIBuildingSection() {
 					))}
 				</div>
 
-				{/* AI Case Studies */}
-				<div className="mt-16 grid grid-cols-1 gap-4 px-4 md:grid-cols-2">
+				{/* AI Case Studies — featured video cards */}
+				<div className="mt-16 grid grid-cols-1 gap-6 px-4 md:grid-cols-2">
 					{AI_CASE_STUDIES.map((study, index) => (
 						<a
 							key={index}
 							href={study.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700 hover:bg-zinc-900"
+							className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 transition-all hover:border-zinc-700"
 						>
+							{/* Video thumbnail with play overlay */}
+							<div className="relative aspect-video w-full overflow-hidden bg-black">
+								<img
+									src={study.thumbnail}
+									alt=""
+									className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+								/>
+								<div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors duration-300 group-hover:bg-black/20">
+									<div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/85 transition-transform duration-300 group-hover:scale-105">
+										<svg
+											className="ml-1 h-6 w-6 text-zinc-900"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+										>
+											<path d="M8 5v14l11-7z" />
+										</svg>
+									</div>
+								</div>
+							</div>
 
-							{/* Top accent line */}
-							<div
-								className={`absolute top-0 right-0 left-0 h-0.5 ${study.accentColor}`}
-							/>
-
-							{/* Decorative gradient background */}
-							<div
-								className="pointer-events-none absolute inset-0 transition-opacity group-hover:opacity-100"
-								style={study.bgStyle}
-							/>
-
-							{/* Content */}
-							<div className="relative flex flex-col gap-4 px-8 pt-8 pb-7">
-								{/* Title */}
-								<h4 className="font-mono text-sm font-medium text-zinc-400 uppercase transition-colors group-hover:text-white">
-									<span className={study.slashColor}>{"//"}</span>{study.title.replace("//", "")}
+							{/* Card footer — title + logos */}
+							<div className="relative flex flex-col gap-4 px-6 py-5">
+								<h4 className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase transition-colors group-hover:text-white">
+									{study.title}
 								</h4>
-
-								{/* Logos row with arrow */}
 								<div className="flex items-center justify-between">
 									<div className="flex items-center gap-5">
 										<img src={study.effectLogo} alt="Effect" className="h-6" />
-										<span className="text-zinc-600">|</span>
+										<span className="text-zinc-700">|</span>
 										<img
 											src={study.partnerLogo}
 											alt=""
 											className={study.partnerLogoClass}
 										/>
 									</div>
-									<i className="ri-arrow-right-up-line text-zinc-200 transition-colors group-hover:text-white" />
+									<i className="ri-arrow-right-up-line text-zinc-300 transition-colors group-hover:text-white" />
 								</div>
 							</div>
 						</a>
