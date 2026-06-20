@@ -169,7 +169,7 @@ export function FeaturesSection() {
 	return (
 		<section id="features" className="relative w-full pb-24 md:pb-24">
 			{/* Content Container */}
-			<div className="relative mx-auto max-w-295">
+			<div className="relative mx-auto max-w-4xl">
 				{/* Tab Navigation and Content */}
 				<div className="relative border-t border-r border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
