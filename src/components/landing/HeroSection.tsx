@@ -78,8 +78,8 @@ export function HeroSection() {
 
 					{/* Subheadline */}
 					<p className="mx-auto mt-6 max-w-3xl text-lg leading-snug text-zinc-400">
-						Production-ready TypeScript systems your team can ship, AI agents
-						can work with, and customers can depend on.
+						Production-ready TypeScript systems your team can ship, customers
+						can depend on, and AI agents can work with.
 					</p>
 
 					{/* Single consolidated command panel — Install + AI prompt */}
