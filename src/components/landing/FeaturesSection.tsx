@@ -168,11 +168,6 @@ export function FeaturesSection() {
 
 	return (
 		<section id="features" className="relative w-full pb-24 md:pb-24">
-			{/* Centered eyebrow bridging the hero and the tabs */}
-			<p className="mb-8 text-center font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase md:mb-10">
-				// See Effect in action
-			</p>
-
 			{/* Content Container */}
 			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
