@@ -65,18 +65,6 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
-
-				{/* Slim bridge between hero → Features — centered mono eyebrow with flanking hairline rules */}
-				<div className="w-full py-6">
-					<div className="mx-auto flex w-full max-w-[73.75rem] items-center gap-6 px-4">
-						<span aria-hidden="true" className="h-px flex-1 bg-zinc-800" />
-						<p className="shrink-0 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase md:text-sm">
-							// See Effect in action
-						</p>
-						<span aria-hidden="true" className="h-px flex-1 bg-zinc-800" />
-					</div>
-				</div>
-
 				<FeaturesSection />
 				<SectionDivider />
 				<ProblemSection />
