@@ -111,7 +111,7 @@ export function HeroCommandPanel() {
 					<div
 						role="group"
 						aria-label="Package manager"
-						className="flex shrink-0 items-center gap-0.5 rounded-sm bg-zinc-900/60 p-0.5"
+						className="flex shrink-0 items-center gap-0.5 rounded-sm bg-zinc-900/60"
 						onClick={(e) => e.stopPropagation()}
 					>
 						{PM_OPTIONS.map((pm) => (
@@ -121,7 +121,7 @@ export function HeroCommandPanel() {
 								onClick={() => setActivePM(pm)}
 								aria-label={pm}
 								aria-pressed={activePM === pm}
-								className={`flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm transition-colors ${
+								className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-sm transition-colors ${
 									activePM === pm ? "bg-zinc-800" : "hover:bg-zinc-800/60"
 								}`}
 							>
@@ -129,7 +129,7 @@ export function HeroCommandPanel() {
 									src={getAssetPath(PM_ICONS[pm])}
 									alt=""
 									aria-hidden="true"
-									className={`${pm === "npm" ? "h-3.5" : "h-3"} w-auto ${activePM === pm ? "opacity-100" : "opacity-60"}`}
+									className={`${pm === "npm" ? "h-4.5" : "h-4"} w-auto ${activePM === pm ? "opacity-100" : "opacity-60"}`}
 								/>
 							</button>
 						))}
