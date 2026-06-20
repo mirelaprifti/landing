@@ -3,10 +3,10 @@ import { HeroCommandPanel } from "./HeroCommandPanel";
 
 const HERO_LOGOS: { name: string; src: string; h: string; invert?: boolean }[] = [
 	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px" },
-	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "16px", invert: true },
+	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px" },
-	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "18px" },
+	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
 ];
 
 export function HeroSection() {
