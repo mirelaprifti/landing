@@ -87,7 +87,7 @@ export function HeroCommandPanel() {
 					role="tab"
 					aria-selected={mode === "install"}
 					onClick={() => setMode("install")}
-					className={`group relative flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
+					className={`group relative flex items-center gap-2 px-5 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
 						mode === "install"
 							? "text-white"
 							: "text-zinc-500 hover:text-zinc-300 dark:text-zinc-400"
@@ -103,7 +103,7 @@ export function HeroCommandPanel() {
 					role="tab"
 					aria-selected={mode === "prompt"}
 					onClick={() => setMode("prompt")}
-					className={`group relative flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
+					className={`group relative flex items-center gap-2 px-5 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
 						mode === "prompt"
 							? "text-white"
 							: "text-zinc-500 hover:text-zinc-300 dark:text-zinc-400"
@@ -120,7 +120,7 @@ export function HeroCommandPanel() {
 			<button
 				type="button"
 				onClick={copy}
-				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-4 py-1 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 hover:text-white"
+				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-5 py-1 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 hover:text-white"
 				aria-label={
 					mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
 				}
