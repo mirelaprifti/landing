@@ -169,7 +169,7 @@ export function FeaturesSection() {
 	return (
 		<section id="features" className="relative w-full pb-24 md:pb-24">
 			{/* Content Container */}
-			<div className="relative mx-auto max-w-4xl">
+			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
 				<div className="relative border-t border-r border-zinc-800 shadow-2xl shadow-black/20">
 					{/* Tab Headers */}
@@ -213,7 +213,7 @@ export function FeaturesSection() {
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
 								<div
-									className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-y border-zinc-800 bg-zinc-950 px-4 py-3"
+									className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-y border-zinc-800 bg-zinc-950 py-3"
 									style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 								>
 									{currentTabConfig.subTabs.map((subTab) => (
