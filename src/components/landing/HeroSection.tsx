@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
 
@@ -16,7 +17,12 @@ const HERO_LOGOS: {
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 3 },
 ];
 
+type Alignment = "center" | "left";
+
 export function HeroSection() {
+	const [align, setAlign] = useState<Alignment>("center");
+	const isLeft = align === "left";
+
 	return (
 		<section className="relative w-full">
 			{/* Grid background */}
@@ -66,9 +72,43 @@ export function HeroSection() {
 				}
 			`}</style>
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-24 md:pt-24">
-				{/* Centered content */}
-				<div className="mx-auto max-w-4xl text-center">
+			{/* Compare toggle — demo only */}
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-6">
+				<div
+					role="group"
+					aria-label="Compare hero alignment"
+					className="ml-auto inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/60 p-0.5 font-mono text-[10px] tracking-wider uppercase"
+					style={{ float: "right" }}
+				>
+					{(
+						[
+							{ id: "center", label: "Centered" },
+							{ id: "left", label: "Left" },
+						] as const
+					).map((opt) => (
+						<button
+							key={opt.id}
+							type="button"
+							onClick={() => setAlign(opt.id)}
+							aria-pressed={align === opt.id}
+							className={`rounded px-2.5 py-1 transition-colors ${
+								align === opt.id
+									? "bg-zinc-800 text-white"
+									: "text-zinc-500 dark:text-zinc-400 hover:text-zinc-200"
+							}`}
+						>
+							{opt.label}
+						</button>
+					))}
+				</div>
+				<div className="clear-both" />
+			</div>
+
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-14 pb-24 md:pt-16">
+				{/* Content — alignment switches between centered and left */}
+				<div
+					className={`max-w-4xl ${isLeft ? "text-left" : "mx-auto text-center"}`}
+				>
 					{/* Eyebrow */}
 					<a
 						href="/blog/effect-v4-beta"
@@ -84,22 +124,32 @@ export function HeroSection() {
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mx-auto mt-6 max-w-3xl text-xl leading-snug text-zinc-400 lg:max-w-3xl">
+					<p
+						className={`mt-6 max-w-3xl text-xl leading-snug text-zinc-400 lg:max-w-3xl ${isLeft ? "" : "mx-auto"}`}
+					>
 						Build production-ready systems your team can ship, customers can
 						depend on — and AI agents can work with.
 					</p>
 
 					{/* Single consolidated command panel — Install + AI prompt */}
-					<div className="mx-auto mt-8 max-w-xl">
+					<div className={`mt-8 max-w-xl ${isLeft ? "" : "mx-auto"}`}>
 						<HeroCommandPanel />
 					</div>
 
-					{/* Customer logos — trust strip, constrained to command panel width */}
-					<div className="mx-auto mt-14 flex max-w-xl flex-col items-center gap-5">
+					{/* Customer logos — trust strip */}
+					<div
+						className={`mt-14 flex max-w-xl flex-col gap-5 ${
+							isLeft ? "items-start" : "mx-auto items-center"
+						}`}
+					>
 						<p className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// In production at
 						</p>
-						<ul className="flex flex-wrap items-end justify-center gap-x-[20px] gap-y-5">
+						<ul
+							className={`flex flex-wrap items-end gap-x-[20px] gap-y-5 ${
+								isLeft ? "justify-start" : "justify-center"
+							}`}
+						>
 							{HERO_LOGOS.map((logo) => (
 								<li key={logo.name} className="flex items-end">
 									<img
