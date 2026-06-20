@@ -181,7 +181,7 @@ export function FeaturesSection() {
 							<button
 								key={tabId}
 								onClick={() => setActiveTab(tabId)}
-								className={`flex-1 shrink-0 cursor-pointer px-4 py-5 font-mono text-sm tracking-wide whitespace-nowrap uppercase transition-colors md:px-6 md:text-base ${
+								className={`flex-1 shrink-0 cursor-pointer px-4 py-3 font-mono text-sm tracking-wide whitespace-nowrap uppercase transition-colors md:px-6 md:text-base ${
 									activeTab === tabId
 										? "font-medium text-white"
 										: "leading-relaxed text-zinc-400 hover:text-white"
