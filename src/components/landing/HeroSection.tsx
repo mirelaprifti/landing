@@ -1,5 +1,4 @@
 import { AgentCommand } from "./AgentCommand";
-import { HeroCodeSnippet } from "./HeroCodeSnippet";
 import { InstallCommand } from "./InstallCommand";
 
 export function HeroSection() {
@@ -81,10 +80,6 @@ export function HeroSection() {
 					</div>
 				</div>
 
-				{/* Representative Effect program — sits below the centered content */}
-				<div className="mx-auto mt-16 w-full max-w-3xl text-left">
-					<HeroCodeSnippet />
-				</div>
 			</div>
 		</section>
 	);

@@ -65,14 +65,14 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
+				{/* Interactive Examples treated as an extension of the hero — no divider */}
+				<FeaturesSection />
 				<SectionDivider />
 				<ProblemSection />
 				<SectionDivider />
 				<TestimonialsSection />
 				<SectionDivider />
 				<WhatIsEffectSection />
-				<SectionDivider />
-				<FeaturesSection />
 				<SectionDivider />
 				<AIBuildingSection />
 				<SectionDivider />
