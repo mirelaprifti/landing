@@ -52,7 +52,7 @@ export function HeroSection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-12 md:pt-24 md:pb-16">
 				{/* Centered content */}
-				<div className="mx-auto max-w-3xl text-center">
+				<div className="mx-auto max-w-4xl text-center">
 					{/* Eyebrow */}
 					<a
 						href="/blog/effect-v4-beta"
@@ -63,7 +63,7 @@ export function HeroSection() {
 						<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
 					</a>
 					{/* Headline */}
-					<h1 className="leading-tighter text-4xl font-bold text-white md:text-[3.4rem]">
+					<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl md:whitespace-nowrap lg:text-[3.4rem]">
 						Reliable TypeScript for the AI era
 					</h1>
 
