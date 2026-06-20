@@ -167,7 +167,7 @@ export function FeaturesSection() {
 	}, [activeSubTabPerTab, activeTab]);
 
 	return (
-		<section id="features" className="relative w-full py-24 md:pt-40 md:pb-24">
+		<section id="features" className="relative w-full pt-4 pb-24 md:pt-6 md:pb-24">
 			{/* Content Container */}
 			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
