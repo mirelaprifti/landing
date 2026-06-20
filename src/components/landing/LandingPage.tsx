@@ -72,11 +72,8 @@ export function LandingPage() {
 						aria-hidden="true"
 						className="pointer-events-none absolute inset-0"
 						style={{
-							backgroundImage: `
-								linear-gradient(to right, rgba(63, 63, 70, 0.5) 1px, transparent 1px),
-								linear-gradient(to bottom, rgba(63, 63, 70, 0.5) 1px, transparent 1px)
-							`,
-							backgroundSize: "24px 24px",
+							backgroundImage:
+								"repeating-linear-gradient(45deg, rgba(63, 63, 70, 0.35) 0px, rgba(63, 63, 70, 0.35) 1px, transparent 1px, transparent 10px)",
 						}}
 					/>
 					<p className="relative py-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase md:text-sm">
