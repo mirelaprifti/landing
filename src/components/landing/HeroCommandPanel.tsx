@@ -107,12 +107,17 @@ export function HeroCommandPanel() {
 				<span className="flex-1 truncate">
 					{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
 				</span>
+				{copied ? (
+					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
+				) : (
+					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
+				)}
 				{mode === "install" && (
 					<div
 						role="group"
 						aria-label="Package manager"
-						className="flex shrink-0 items-center gap-0.5 rounded-sm bg-zinc-900/60"
 						onClick={(e) => e.stopPropagation()}
+						className="flex shrink-0 items-center gap-0.5 rounded-sm border-l border-zinc-800 bg-zinc-900/60 pl-2"
 					>
 						{PM_OPTIONS.map((pm) => (
 							<button
@@ -134,11 +139,6 @@ export function HeroCommandPanel() {
 							</button>
 						))}
 					</div>
-				)}
-				{copied ? (
-					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
-				) : (
-					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
 				)}
 			</button>
 		</div>
