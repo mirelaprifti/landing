@@ -222,7 +222,7 @@ export function FeaturesSection() {
 											onClick={() => handleSubTabChange(subTab.id)}
 											className={`flex-1 cursor-pointer px-3 py-2 font-mono text-sm whitespace-nowrap transition-colors ${
 												currentActiveSubTab === subTab.id
-													? "bg-zinc-900 text-white"
+													? "bg-[#242427] text-white"
 													: "text-zinc-400 hover:bg-zinc-800/50 hover:text-white"
 											}`}
 										>
