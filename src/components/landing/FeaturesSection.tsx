@@ -170,9 +170,9 @@ export function FeaturesSection() {
 		<section id="features" className="relative w-full pb-24 md:pb-24">
 			{/* Section header */}
 			<div className="mx-auto mb-10 w-full max-w-295 px-4 text-center md:mb-12">
-				<p className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-					// See Effect in action
-				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					See Effect in action
+				</h2>
 			</div>
 
 			{/* Content Container */}
