@@ -156,7 +156,9 @@ export function HeroSection() {
 										src={getAssetPath(logo.src)}
 										alt={logo.name}
 										style={{
-											height: logo.h,
+											height: isLeft
+											? `${parseInt(logo.h, 10) + 2}px`
+											: logo.h,
 											filter: logo.invert ? "brightness(0) invert(1)" : undefined,
 											transform: logo.nudgeY
 												? `translateY(${logo.nudgeY}px)`
