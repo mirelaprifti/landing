@@ -3,7 +3,7 @@ import { HeroCommandPanel } from "./HeroCommandPanel";
 
 const HERO_LOGOS: { name: string; src: string; h: string; invert?: boolean }[] = [
 	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "20px" },
-	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "17px", invert: true },
+	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "16px", invert: true },
 	{ name: "Cloudflare", src: "/assets/quotes-logos/Cloudflare_logo_wht 2.svg", h: "20px" },
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px" },
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "16px" },
@@ -91,9 +91,9 @@ export function HeroSection() {
 						<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// In production at
 						</p>
-						<ul className="flex flex-wrap items-end justify-center gap-x-10 gap-y-5">
+						<ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
 							{HERO_LOGOS.map((logo) => (
-								<li key={logo.name} className="flex items-end">
+								<li key={logo.name} className="flex items-center">
 									<img
 										src={getAssetPath(logo.src)}
 										alt={logo.name}
