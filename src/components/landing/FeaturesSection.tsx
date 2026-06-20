@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { EffectAcquireReleaseExample } from "@/examples/effect-acquire-release";
 import { EffectFinalizerExample } from "@/examples/effect-add-finalizer";
@@ -157,8 +156,6 @@ export function FeaturesSection() {
 		}));
 	};
 
-	const activeTabIndex = useMemo(() => TAB_IDS.indexOf(activeTab), [activeTab]);
-
 	const currentTabConfig = TAB_CONFIG[activeTab];
 
 	// Get the current active sub-tab for this tab
@@ -183,28 +180,13 @@ export function FeaturesSection() {
 								onClick={() => setActiveTab(tabId)}
 								className={`flex-1 shrink-0 cursor-pointer px-4 py-3 font-mono text-sm tracking-wide whitespace-nowrap uppercase transition-colors md:px-6 md:text-base ${
 									activeTab === tabId
-										? "font-medium text-white"
+										? "bg-zinc-900 font-medium text-white"
 										: "leading-relaxed text-zinc-400 hover:text-white"
 								}`}
 							>
 								{TAB_CONFIG[tabId].label}
 							</button>
 						))}
-						{/* Sliding indicator */}
-						<motion.div
-							className="absolute bottom-0 h-px bg-zinc-300"
-							initial={false}
-							animate={{
-								left: `${(activeTabIndex / TAB_IDS.length) * 100}%`,
-								width: `${100 / TAB_IDS.length}%`,
-							}}
-							transition={{
-								type: "spring",
-								stiffness: 300,
-								damping: 25,
-								mass: 0.8,
-							}}
-						/>
 					</div>
 
 					{/* Tab Content */}
