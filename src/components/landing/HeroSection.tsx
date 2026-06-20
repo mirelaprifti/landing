@@ -5,7 +5,8 @@ const HERO_LOGOS: { name: string; src: string; h: string }[] = [
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "0.625rem" },
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "1.25rem" },
 	{ name: "Cloudflare", src: "/assets/quotes-logos/Cloudflare_logo_wht 2.svg", h: "1.25rem" },
-	{ name: "Astro", src: "/assets/quotes-logos/Astro.svg", h: "1.25rem" },
+	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "1.5rem" },
+	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "1.25rem" },
 	{ name: "Spiko", src: "/assets/quotes-logos/spiko-logo.svg", h: "1.25rem" },
 	{ name: "Zendesk", src: "/assets/test-logos/zendesk-logo.svg", h: "1rem" },
 ];
