@@ -10,11 +10,11 @@ const HERO_LOGOS: {
 	/** Optical nudge in px — positive = down. Compensates for wordmarks that sit visually higher than their bounding box. */
 	nudgeY?: number;
 }[] = [
-	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
-	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
-	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
-	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
-	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 3 },
+	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "22px" },
+	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "20px", nudgeY: 2 },
+	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "16px" },
+	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "17px", invert: true },
+	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "22px", nudgeY: 3 },
 ];
 
 type Alignment = "center" | "left";
