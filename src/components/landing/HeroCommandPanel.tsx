@@ -95,54 +95,49 @@ export function HeroCommandPanel() {
 				</button>
 			</div>
 
-			{/* Sub-row for Install: package-manager picker */}
-			{mode === "install" && (
-				<div className="flex border-b border-zinc-800/60">
-					{PM_OPTIONS.map((pm) => (
-						<button
-							key={pm}
-							type="button"
-							onClick={() => setActivePM(pm)}
-							aria-label={pm}
-							aria-pressed={activePM === pm}
-							className={`group relative flex flex-1 cursor-pointer items-center justify-center gap-1.5 px-3 py-2 transition-colors ${
-								activePM === pm
-									? "text-white"
-									: "text-zinc-500 hover:text-zinc-300 dark:text-zinc-400"
-							}`}
-						>
-							<img
-								src={getAssetPath(PM_ICONS[pm])}
-								alt=""
-								aria-hidden="true"
-								className={`${pm === "npm" ? "h-5" : "h-3.5"} w-auto`}
-							/>
-							{activePM === pm && (
-								<div className="absolute right-0 bottom-0 left-0 h-px bg-white/70" />
-							)}
-						</button>
-					))}
-				</div>
-			)}
-
-			{/* Copyable line */}
-			<button
-				type="button"
-				onClick={copy}
-				className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-2.5 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30"
-				aria-label={
-					mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
-				}
-			>
-				<span className="truncate">
-					{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
-				</span>
-				{copied ? (
-					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
-				) : (
-					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
+			{/* Copyable line — package-manager picker now inline on the left */}
+			<div className="flex w-full items-center gap-3 px-3 py-2.5">
+				{mode === "install" && (
+					<div className="flex shrink-0 items-center gap-0.5 rounded-sm bg-zinc-900/60 p-0.5">
+						{PM_OPTIONS.map((pm) => (
+							<button
+								key={pm}
+								type="button"
+								onClick={() => setActivePM(pm)}
+								aria-label={pm}
+								aria-pressed={activePM === pm}
+								className={`flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm transition-colors ${
+									activePM === pm ? "bg-zinc-800" : "hover:bg-zinc-800/60"
+								}`}
+							>
+								<img
+									src={getAssetPath(PM_ICONS[pm])}
+									alt=""
+									aria-hidden="true"
+									className={`${pm === "npm" ? "h-3.5" : "h-3"} w-auto ${activePM === pm ? "opacity-100" : "opacity-60"}`}
+								/>
+							</button>
+						))}
+					</div>
 				)}
-			</button>
+				<button
+					type="button"
+					onClick={copy}
+					className="flex flex-1 cursor-pointer items-center justify-between gap-4 px-2 text-left font-mono text-sm text-zinc-300 transition-colors hover:text-white"
+					aria-label={
+						mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
+					}
+				>
+					<span className="truncate">
+						{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
+					</span>
+					{copied ? (
+						<i className="ri-check-line shrink-0 text-base text-zinc-200" />
+					) : (
+						<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
+					)}
+				</button>
+			</div>
 		</div>
 	);
 }
