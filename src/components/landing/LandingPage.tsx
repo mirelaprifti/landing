@@ -66,18 +66,26 @@ export function LandingPage() {
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
 
-				{/* Slim banner bridging hero → Features — dot pattern with centered label */}
+				{/* Slim banner bridging hero → Features — vertical lines with edge fade */}
 				<div className="relative w-full overflow-hidden border-y border-zinc-800 bg-zinc-950">
 					<div
 						aria-hidden="true"
 						className="pointer-events-none absolute inset-0"
 						style={{
 							backgroundImage:
-								"radial-gradient(circle, rgba(82, 82, 91, 0.6) 1px, transparent 1px)",
-							backgroundSize: "12px 12px",
+								"repeating-linear-gradient(to right, rgba(82, 82, 91, 0.7) 0px, rgba(82, 82, 91, 0.7) 1px, transparent 1px, transparent 8px)",
 						}}
 					/>
-					{/* Center spotlight — the label punches through with a soft solid bg */}
+					{/* Edge fades — pattern softly fades into the bg at left and right */}
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent"
+					/>
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent"
+					/>
+					{/* Centered label */}
 					<p className="relative inline-flex w-full items-center justify-center py-4 text-center">
 						<span className="bg-zinc-950 px-6 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase md:text-sm">
 							// See Effect in action
