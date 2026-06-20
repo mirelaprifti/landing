@@ -95,10 +95,25 @@ export function HeroCommandPanel() {
 				</button>
 			</div>
 
-			{/* Copyable line — package-manager picker now inline on the left */}
-			<div className="flex w-full items-center gap-3 px-3 py-2.5">
+			{/* Copyable line — command takes the full width, PM picker sits to the right of it */}
+			<button
+				type="button"
+				onClick={copy}
+				className="flex w-full cursor-pointer items-center gap-3 px-4 py-2.5 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 hover:text-white"
+				aria-label={
+					mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
+				}
+			>
+				<span className="flex-1 truncate">
+					{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
+				</span>
 				{mode === "install" && (
-					<div className="flex shrink-0 items-center gap-0.5 rounded-sm bg-zinc-900/60 p-0.5">
+					<div
+						role="group"
+						aria-label="Package manager"
+						className="flex shrink-0 items-center gap-0.5 rounded-sm bg-zinc-900/60 p-0.5"
+						onClick={(e) => e.stopPropagation()}
+					>
 						{PM_OPTIONS.map((pm) => (
 							<button
 								key={pm}
@@ -120,24 +135,12 @@ export function HeroCommandPanel() {
 						))}
 					</div>
 				)}
-				<button
-					type="button"
-					onClick={copy}
-					className="flex flex-1 cursor-pointer items-center justify-between gap-4 px-2 text-left font-mono text-sm text-zinc-300 transition-colors hover:text-white"
-					aria-label={
-						mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
-					}
-				>
-					<span className="truncate">
-						{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
-					</span>
-					{copied ? (
-						<i className="ri-check-line shrink-0 text-base text-zinc-200" />
-					) : (
-						<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
-					)}
-				</button>
-			</div>
+				{copied ? (
+					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
+				) : (
+					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
+				)}
+			</button>
 		</div>
 	);
 }
