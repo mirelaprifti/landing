@@ -2,11 +2,11 @@ import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
 
 const HERO_LOGOS: { name: string; src: string; h: string; invert?: boolean }[] = [
-	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "17px" },
-	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "13px", invert: true },
-	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "17px" },
-	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "17px" },
-	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "13px" },
+	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px" },
+	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "14px", invert: true },
+	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "18px" },
+	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "18px" },
+	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
 ];
 
 export function HeroSection() {
