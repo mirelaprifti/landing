@@ -72,8 +72,8 @@ export function HeroSection() {
 						<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
 					</a>
 					{/* Headline */}
-					<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl md:whitespace-nowrap lg:text-[3.4rem]">
-						Reliable TypeScript for the AI era
+					<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl lg:text-[3.4rem]">
+						Reliable TypeScript for production systems in the AI era
 					</h1>
 
 					{/* Subheadline */}
