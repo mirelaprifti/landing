@@ -1,12 +1,19 @@
 import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
 
-const HERO_LOGOS: { name: string; src: string; h: string; invert?: boolean }[] = [
+const HERO_LOGOS: {
+	name: string;
+	src: string;
+	h: string;
+	invert?: boolean;
+	/** Optical nudge in px — positive = down. Compensates for wordmarks that sit visually higher than their bounding box. */
+	nudgeY?: number;
+}[] = [
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
-	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px" },
+	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
 	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
-	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px" },
+	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 2 },
 ];
 
 export function HeroSection() {
@@ -101,6 +108,9 @@ export function HeroSection() {
 										style={{
 											height: logo.h,
 											filter: logo.invert ? "brightness(0) invert(1)" : undefined,
+											transform: logo.nudgeY
+												? `translateY(${logo.nudgeY}px)`
+												: undefined,
 										}}
 										className="w-auto opacity-90"
 									/>
