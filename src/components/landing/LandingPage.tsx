@@ -66,18 +66,28 @@ export function LandingPage() {
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
 
-				{/* Slim banner bridging hero → Features */}
+				{/* Slim banner bridging hero → Features — repeating // glyphs with label in the middle */}
 				<div className="relative w-full overflow-hidden border-y border-zinc-800 bg-zinc-950">
+					{/* Edge fades so the repeating glyphs feather out toward the sides */}
 					<div
 						aria-hidden="true"
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage:
-								"repeating-linear-gradient(45deg, rgba(63, 63, 70, 0.35) 0px, rgba(63, 63, 70, 0.35) 1px, transparent 1px, transparent 10px)",
-						}}
+						className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-zinc-950 to-transparent"
 					/>
-					<p className="relative py-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase md:text-sm">
-						// See Effect in action
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-zinc-950 to-transparent"
+					/>
+
+					<p className="relative flex items-center justify-center gap-3 overflow-hidden py-4 text-center font-mono text-xs whitespace-nowrap text-zinc-700 uppercase md:text-sm">
+						<span aria-hidden="true" className="flex-1 tracking-[0.5em] text-zinc-700">
+							{"// ".repeat(40)}
+						</span>
+						<span className="shrink-0 px-4 font-medium tracking-wider text-zinc-300">
+							See Effect in action
+						</span>
+						<span aria-hidden="true" className="flex-1 tracking-[0.5em] text-zinc-700">
+							{"// ".repeat(40)}
+						</span>
 					</p>
 				</div>
 
