@@ -7,7 +7,6 @@ const HERO_LOGOS: { name: string; src: string; h: string; invert?: boolean }[] =
 	{ name: "Cloudflare", src: "/assets/quotes-logos/Cloudflare_logo_wht 2.svg", h: "1.25rem" },
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "1rem", invert: true },
 	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "1.25rem" },
-	{ name: "Spiko", src: "/assets/quotes-logos/spiko-logo.svg", h: "1.25rem" },
 ];
 
 export function HeroSection() {
