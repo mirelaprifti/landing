@@ -1,10 +1,9 @@
-import { AgentCommand } from "./AgentCommand";
-import { InstallCommand } from "./InstallCommand";
+import { HeroCommandPanel } from "./HeroCommandPanel";
 
 export function HeroSection() {
 	return (
 		<section className="relative w-full">
-			{/* Stripe-like grid background - full width, centered */}
+			{/* Grid background */}
 			<div
 				className="pointer-events-none absolute inset-0"
 				style={{
@@ -17,7 +16,7 @@ export function HeroSection() {
 				}}
 			/>
 
-			{/* Fade out grid at top and bottom */}
+			{/* Top/bottom fade */}
 			<div
 				className="pointer-events-none absolute inset-0"
 				style={{
@@ -26,7 +25,7 @@ export function HeroSection() {
 				}}
 			/>
 
-			{/* Subtle glow - Stripe-style ambient light with pulse animation */}
+			{/* Subtle glow */}
 			<div
 				className="pointer-events-none absolute inset-x-0 top-0 h-[600px] animate-[glow-pulse_4s_ease-in-out_infinite]"
 				style={{
@@ -36,7 +35,7 @@ export function HeroSection() {
 					`,
 				}}
 			/>
-			{/* Noise texture overlay for organic glow effect */}
+			{/* Noise overlay */}
 			<div
 				className="pointer-events-none absolute inset-x-0 top-0 h-[600px] opacity-[0.15] mix-blend-overlay"
 				style={{
@@ -51,35 +50,31 @@ export function HeroSection() {
 				}
 			`}</style>
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-20 md:pt-24 md:pb-24">
-				{/* 2-col layout: copy left, dual CTA right */}
-				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-					{/* Left column — copy */}
-					<div>
-						{/* Eyebrow */}
-						<a
-							href="/blog/effect-v4-beta"
-							className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:text-white md:text-sm"
-						>
-							<span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400">//</span>
-							<span>Effect 4.0 — Now in Beta</span>
-							<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
-						</a>
-						{/* Headline */}
-						<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl lg:text-[3.4rem]">
-							Reliable TypeScript for the AI era
-						</h1>
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-12 md:pt-24 md:pb-16">
+				{/* Centered content */}
+				<div className="mx-auto max-w-3xl text-center">
+					{/* Eyebrow */}
+					<a
+						href="/blog/effect-v4-beta"
+						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:text-white md:text-sm"
+					>
+						<span className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400">//</span>
+						<span>Effect 4.0 — Now in Beta</span>
+						<i className="ri-arrow-right-line text-base text-zinc-500 dark:text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
+					</a>
+					{/* Headline */}
+					<h1 className="leading-tighter text-4xl font-bold text-white md:text-[3.4rem]">
+						Reliable TypeScript for the AI era
+					</h1>
 
-						{/* Subheadline */}
-						<p className="mt-6 max-w-xl text-lg leading-snug text-zinc-400">
-							Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
-						</p>
-					</div>
+					{/* Subheadline */}
+					<p className="mx-auto mt-6 max-w-2xl text-lg leading-snug text-zinc-400">
+						Build production-ready systems with the structure, safety, and observability developers need — and AI agents can work with.
+					</p>
 
-					{/* Right column — dual CTA, stacked */}
-					<div className="flex flex-col gap-4">
-						<InstallCommand />
-						<AgentCommand />
+					{/* Single consolidated command panel — Install + AI prompt */}
+					<div className="mx-auto mt-8 max-w-xl">
+						<HeroCommandPanel />
 					</div>
 				</div>
 			</div>
