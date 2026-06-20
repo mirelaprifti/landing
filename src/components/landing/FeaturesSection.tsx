@@ -168,6 +168,13 @@ export function FeaturesSection() {
 
 	return (
 		<section id="features" className="relative w-full pb-24 md:pb-24">
+			{/* Section header */}
+			<div className="mx-auto mb-10 w-full max-w-295 px-4 md:mb-12">
+				<p className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// See Effect in action
+				</p>
+			</div>
+
 			{/* Content Container */}
 			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
