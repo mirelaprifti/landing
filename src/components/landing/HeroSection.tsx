@@ -1,4 +1,14 @@
+import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
+
+const HERO_LOGOS: { name: string; src: string; h: string }[] = [
+	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "0.625rem" },
+	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "1.25rem" },
+	{ name: "Cloudflare", src: "/assets/quotes-logos/Cloudflare_logo_wht 2.svg", h: "1.25rem" },
+	{ name: "Astro", src: "/assets/quotes-logos/Astro.svg", h: "1.25rem" },
+	{ name: "Spiko", src: "/assets/quotes-logos/spiko-logo.svg", h: "1.25rem" },
+	{ name: "Zendesk", src: "/assets/test-logos/zendesk-logo.svg", h: "1rem" },
+];
 
 export function HeroSection() {
 	return (
@@ -75,6 +85,25 @@ export function HeroSection() {
 					{/* Single consolidated command panel — Install + AI prompt */}
 					<div className="mx-auto mt-8 max-w-xl">
 						<HeroCommandPanel />
+					</div>
+
+					{/* Customer logos — trust strip */}
+					<div className="mt-14 flex flex-col items-center gap-5">
+						<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+							// In production at
+						</p>
+						<ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+							{HERO_LOGOS.map((logo) => (
+								<li key={logo.name} className="flex items-center">
+									<img
+										src={getAssetPath(logo.src)}
+										alt={logo.name}
+										style={{ height: logo.h }}
+										className="w-auto opacity-70 transition-opacity hover:opacity-100"
+									/>
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 			</div>
