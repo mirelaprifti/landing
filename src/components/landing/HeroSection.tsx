@@ -101,7 +101,7 @@ export function HeroSection() {
 											height: logo.h,
 											filter: logo.invert ? "brightness(0) invert(1)" : undefined,
 										}}
-										className="w-auto opacity-70 transition-opacity hover:opacity-100"
+										className="w-auto"
 									/>
 								</li>
 							))}
