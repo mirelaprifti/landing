@@ -213,14 +213,14 @@ export function FeaturesSection() {
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
 								<div
-									className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-y border-zinc-800 bg-zinc-950"
+									className="scrollbar-hide flex items-center border-y border-zinc-800 bg-zinc-950"
 									style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 								>
 									{currentTabConfig.subTabs.map((subTab) => (
 										<button
 											key={subTab.id}
 											onClick={() => handleSubTabChange(subTab.id)}
-											className={`shrink-0 cursor-pointer rounded-md px-3 py-1.5 font-mono text-sm whitespace-nowrap transition-colors ${
+											className={`flex-1 cursor-pointer px-3 py-2 font-mono text-sm whitespace-nowrap transition-colors ${
 												currentActiveSubTab === subTab.id
 													? "bg-zinc-900 text-white"
 													: "text-zinc-400 hover:bg-zinc-800/50 hover:text-white"
