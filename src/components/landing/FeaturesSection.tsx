@@ -169,7 +169,7 @@ export function FeaturesSection() {
 	return (
 		<section id="features" className="relative w-full pb-24 md:pb-24">
 			{/* Section header */}
-			<div className="mx-auto mb-10 w-full max-w-295 px-4 md:mb-12">
+			<div className="mx-auto mb-10 w-full max-w-295 px-4 text-center md:mb-12">
 				<p className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// See Effect in action
 				</p>
