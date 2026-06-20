@@ -66,31 +66,15 @@ export function LandingPage() {
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
 
-				{/* Slim banner bridging hero → Features — vertical lines with edge fade */}
-				<div className="relative w-full overflow-hidden border-y border-zinc-800 bg-zinc-950">
-					<div
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage:
-								"repeating-linear-gradient(to right, rgba(82, 82, 91, 0.25) 0px, rgba(82, 82, 91, 0.25) 1px, transparent 1px, transparent 8px)",
-						}}
-					/>
-					{/* Edge fades — pattern softly fades into the bg at left and right */}
-					<div
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent"
-					/>
-					<div
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent"
-					/>
-					{/* Centered label */}
-					<p className="relative inline-flex w-full items-center justify-center py-4 text-center">
-						<span className="bg-zinc-950 px-6 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase md:text-sm">
+				{/* Slim bridge between hero → Features — centered mono eyebrow with flanking hairline rules */}
+				<div className="w-full py-6">
+					<div className="mx-auto flex w-full max-w-[73.75rem] items-center gap-6 px-4">
+						<span aria-hidden="true" className="h-px flex-1 bg-zinc-800" />
+						<p className="shrink-0 font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase md:text-sm">
 							// See Effect in action
-						</span>
-					</p>
+						</p>
+						<span aria-hidden="true" className="h-px flex-1 bg-zinc-800" />
+					</div>
 				</div>
 
 				<FeaturesSection />
