@@ -86,7 +86,7 @@ export function LandingPage() {
 						className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent"
 					/>
 					{/* Centered label */}
-					<p className="relative inline-flex w-full items-center justify-center py-4 text-center">
+					<p className="relative inline-flex w-full items-center justify-center py-1 text-center">
 						<span className="bg-zinc-950 px-6 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase md:text-sm">
 							// See Effect in action
 						</span>
