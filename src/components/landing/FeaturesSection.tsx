@@ -171,7 +171,7 @@ export function FeaturesSection() {
 			{/* Content Container */}
 			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
-				<div className="relative border-t border-r border-zinc-800 shadow-2xl shadow-black/20">
+				<div className="relative border-r border-zinc-800 shadow-2xl shadow-black/20 before:absolute before:top-0 before:right-4 before:left-4 before:h-px before:bg-zinc-800">
 					{/* Tab Headers */}
 					<div
 						className="scrollbar-hide relative flex overflow-x-auto bg-zinc-950/90"
