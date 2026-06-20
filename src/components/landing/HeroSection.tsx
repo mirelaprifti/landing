@@ -10,10 +10,10 @@ const HERO_LOGOS: {
 	nudgeY?: number;
 }[] = [
 	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
-	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
-	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
+	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 3 },
+	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
 ];
 
 export function HeroSection() {
