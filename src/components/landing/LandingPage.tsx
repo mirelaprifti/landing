@@ -73,7 +73,7 @@ export function LandingPage() {
 						className="pointer-events-none absolute inset-0"
 						style={{
 							backgroundImage:
-								"repeating-linear-gradient(to right, rgba(82, 82, 91, 0.35) 0px, rgba(82, 82, 91, 0.35) 1px, transparent 1px, transparent 8px)",
+								"repeating-linear-gradient(to right, rgba(82, 82, 91, 0.25) 0px, rgba(82, 82, 91, 0.25) 1px, transparent 1px, transparent 8px)",
 						}}
 					/>
 					{/* Edge fades — pattern softly fades into the bg at left and right */}
