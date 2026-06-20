@@ -96,6 +96,9 @@ export function HeroSection() {
 
 					{/* Customer logos — trust strip, constrained to command panel width */}
 					<div className="mx-auto mt-14 flex max-w-xl flex-col items-center gap-5">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// In production at
+						</p>
 						<ul className="flex flex-wrap items-end justify-center gap-x-[20px] gap-y-5">
 							{HERO_LOGOS.map((logo) => (
 								<li key={logo.name} className="flex items-end">
