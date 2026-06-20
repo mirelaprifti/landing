@@ -138,7 +138,7 @@ export function HeroSection() {
 
 					{/* Customer logos — trust strip */}
 					<div
-						className={`mt-14 flex max-w-xl flex-col gap-5 ${
+						className={`mt-14 flex flex-col gap-5 ${
 							isLeft ? "items-start" : "mx-auto items-center"
 						}`}
 					>
@@ -146,7 +146,7 @@ export function HeroSection() {
 							// In production at
 						</p>
 						<ul
-							className={`flex flex-wrap items-end gap-x-[20px] gap-y-5 ${
+							className={`flex flex-wrap items-end gap-x-[28px] gap-y-5 ${
 								isLeft ? "justify-start" : "justify-center"
 							}`}
 						>
