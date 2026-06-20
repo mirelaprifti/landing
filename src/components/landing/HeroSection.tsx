@@ -78,9 +78,9 @@ export function HeroSection() {
 
 					{/* Subheadline */}
 					<p className="mx-auto mt-6 max-w-2xl text-lg leading-snug text-zinc-400">
-						Production-ready systems developers ship, AI agents understand, and
-						customers depend on. Structure, safety, and observability — built
-						in.
+						Build production-ready TypeScript systems your team can ship, AI
+						agents can work with, and customers can depend on. Structure,
+						safety, and observability — built in.
 					</p>
 
 					{/* Single consolidated command panel — Install + AI prompt */}
