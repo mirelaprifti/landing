@@ -213,7 +213,7 @@ export function FeaturesSection() {
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
 								<div
-									className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-y border-zinc-800 bg-zinc-950 py-3"
+									className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-y border-zinc-800 bg-zinc-950"
 									style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 								>
 									{currentTabConfig.subTabs.map((subTab) => (
