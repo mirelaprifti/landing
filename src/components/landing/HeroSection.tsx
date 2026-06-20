@@ -66,7 +66,7 @@ export function HeroSection() {
 				}
 			`}</style>
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-12 md:pt-24 md:pb-16">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-20 pb-24 md:pt-24 md:pb-32">
 				{/* Centered content */}
 				<div className="mx-auto max-w-4xl text-center">
 					{/* Eyebrow */}
