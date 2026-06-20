@@ -116,24 +116,15 @@ export function HeroCommandPanel() {
 				</button>
 			</div>
 
-			{/* Command row */}
+			{/* Command row — same height for INSTALL and PROMPT modes */}
 			<button
 				type="button"
 				onClick={copy}
-				className="flex w-full cursor-pointer items-center gap-3 px-4 py-2.5 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 hover:text-white"
+				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-4 py-1 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 hover:text-white"
 				aria-label={
 					mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
 				}
 			>
-				<span className="flex-1 truncate">
-					{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
-				</span>
-				{copied ? (
-					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
-				) : (
-					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
-				)}
-
 				{mode === "install" && (
 					<div
 						ref={pmRef}
@@ -147,7 +138,7 @@ export function HeroCommandPanel() {
 							aria-haspopup="listbox"
 							aria-expanded={pmOpen}
 							aria-label={`Package manager: ${activePM}`}
-							className="flex items-center gap-1.5 rounded-sm border-l border-zinc-800 pl-3 pr-1 py-0.5 text-xs text-zinc-300 transition-colors hover:text-white"
+							className="flex items-center gap-1.5 rounded-sm border-r border-zinc-800 py-0.5 pr-3 pl-1 text-xs text-zinc-300 transition-colors hover:text-white"
 						>
 							<img
 								src={getAssetPath(PM_ICONS[activePM])}
@@ -164,11 +155,11 @@ export function HeroCommandPanel() {
 							/>
 						</button>
 
-						{/* Popover list */}
+						{/* Popover list — anchored to the chip's left edge */}
 						{pmOpen && (
 							<ul
 								role="listbox"
-								className="absolute right-0 top-full z-20 mt-2 w-36 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 shadow-xl"
+								className="absolute top-full left-0 z-20 mt-2 w-36 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 shadow-xl"
 							>
 								{PM_OPTIONS.map((pm) => (
 									<li key={pm} role="option" aria-selected={activePM === pm}>
@@ -201,6 +192,16 @@ export function HeroCommandPanel() {
 							</ul>
 						)}
 					</div>
+				)}
+
+				<span className="flex-1 truncate">
+					{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
+				</span>
+
+				{copied ? (
+					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
+				) : (
+					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
 				)}
 			</button>
 		</div>
