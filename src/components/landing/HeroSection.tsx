@@ -6,7 +6,7 @@ const HERO_LOGOS: { name: string; src: string; h: string; invert?: boolean }[] =
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "1rem", invert: true },
 	{ name: "Cloudflare", src: "/assets/quotes-logos/Cloudflare_logo_wht 2.svg", h: "1.25rem" },
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "1.25rem" },
-	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "0.625rem" },
+	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "0.875rem" },
 ];
 
 export function HeroSection() {
