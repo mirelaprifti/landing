@@ -87,8 +87,8 @@ export function HeroSection() {
 						<HeroCommandPanel />
 					</div>
 
-					{/* Customer logos — trust strip */}
-					<div className="mt-14 flex flex-col items-center gap-5">
+					{/* Customer logos — trust strip, constrained to command panel width */}
+					<div className="mx-auto mt-14 flex max-w-xl flex-col items-center gap-5">
 						<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// In production at
 						</p>
