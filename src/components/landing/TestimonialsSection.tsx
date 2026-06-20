@@ -81,61 +81,6 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Featured episode — editorial 2-col layout */}
-			<div className="mx-auto mb-16 w-full max-w-[73.75rem] px-4">
-				<a
-					href="https://www.youtube.com/watch?v=-mL7VVvkLGM"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="group grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center"
-				>
-					{/* Left — video thumbnail with play overlay */}
-					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
-						<img
-							src={getAssetPath("/assets/images/kit-langton-banner.png")}
-							alt="Kit Langton — Coding Agent"
-							className="h-full w-full object-cover"
-						/>
-						<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
-							<div className="flex h-14 w-14 scale-0 items-center justify-center rounded-full bg-white/85 transition-transform duration-300 group-hover:scale-100">
-								<svg
-									className="ml-1 h-5 w-5 text-zinc-900"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-								>
-									<path d="M8 5v14l11-7z" />
-								</svg>
-							</div>
-						</div>
-					</div>
-
-					{/* Right — editorial framing */}
-					<div className="flex flex-col">
-						<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-							// Cause &amp; Effect · Episode 08
-						</p>
-						<h3 className="mt-3 text-2xl leading-tight font-semibold text-white md:text-3xl">
-							Coding Agent
-						</h3>
-						<p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-							With Kit Langton, OpenCode
-						</p>
-						<p className="mt-5 max-w-md text-base leading-relaxed text-zinc-300">
-							How OpenCode uses Effect to ship a production-grade coding
-							agent — from runtime structure to error handling under model
-							failures.
-						</p>
-						<span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-white">
-							Watch episode
-							<i
-								className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-								aria-hidden="true"
-							/>
-						</span>
-					</div>
-				</a>
-			</div>
-
 			{/* Use Case Cards - Video thumbnails grid */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
