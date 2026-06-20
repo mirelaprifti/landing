@@ -70,10 +70,13 @@ export function LandingPage() {
 				<div className="relative w-full overflow-hidden border-y border-zinc-800 bg-zinc-950">
 					<div
 						aria-hidden="true"
-						className="pointer-events-none absolute inset-0 opacity-30"
+						className="pointer-events-none absolute inset-0"
 						style={{
-							backgroundImage:
-								"repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 1px, transparent 1px, transparent 8px)",
+							backgroundImage: `
+								linear-gradient(to right, rgba(63, 63, 70, 0.5) 1px, transparent 1px),
+								linear-gradient(to bottom, rgba(63, 63, 70, 0.5) 1px, transparent 1px)
+							`,
+							backgroundSize: "24px 24px",
 						}}
 					/>
 					<p className="relative py-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase md:text-sm">
