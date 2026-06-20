@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui";
-import { AgentCommand } from "./AgentCommand";
-import { InstallCommand } from "./InstallCommand";
+import { HeroCommandPanel } from "./HeroCommandPanel";
 
 export function CTASection() {
 	return (
@@ -51,10 +50,9 @@ export function CTASection() {
 						Stop installing a new package for every problem
 					</h2>
 
-					{/* Dual CTA — humans + agents */}
-					<div className="mt-8 grid w-full gap-4 md:max-w-4xl md:grid-cols-2">
-						<InstallCommand />
-						<AgentCommand />
+					{/* Unified install + AI prompt panel */}
+					<div className="mt-8 w-full max-w-xl">
+						<HeroCommandPanel />
 					</div>
 
 					{/* CTA Buttons */}
