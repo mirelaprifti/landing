@@ -10,7 +10,7 @@ const HERO_LOGOS: {
 	nudgeY?: number;
 }[] = [
 	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
-	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
+	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 4 },
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
 	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 3 },
@@ -96,7 +96,7 @@ export function HeroSection() {
 
 					{/* Customer logos — trust strip, constrained to command panel width */}
 					<div className="mx-auto mt-14 flex max-w-xl flex-col items-center gap-5">
-						<p className="font-mono text-xs tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// In production at
 						</p>
 						<ul className="flex flex-wrap items-end justify-center gap-x-[20px] gap-y-5">
