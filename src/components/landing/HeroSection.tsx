@@ -77,7 +77,7 @@ export function HeroSection() {
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mx-auto mt-6 max-w-3xl text-xl leading-snug text-zinc-400 lg:max-w-xl">
+					<p className="mx-auto mt-6 max-w-3xl text-xl leading-snug text-zinc-400 lg:max-w-lg">
 						Production-ready TypeScript systems your team can ship, customers
 						can depend on, and AI agents can work with.
 					</p>
