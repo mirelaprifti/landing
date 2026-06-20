@@ -146,7 +146,7 @@ export function HeroSection() {
 							// In production at
 						</p>
 						<ul
-							className={`flex flex-wrap items-end gap-x-[28px] gap-y-5 ${
+							className={`flex flex-wrap items-end gap-x-8 gap-y-5 ${
 								isLeft ? "justify-start" : "justify-center"
 							}`}
 						>
