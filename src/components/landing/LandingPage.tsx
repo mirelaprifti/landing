@@ -65,7 +65,22 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
-				{/* Interactive Examples treated as an extension of the hero — no divider */}
+
+				{/* Slim banner bridging hero → Features */}
+				<div className="relative w-full overflow-hidden border-y border-zinc-800 bg-zinc-950">
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0 opacity-30"
+						style={{
+							backgroundImage:
+								"repeating-linear-gradient(to right, rgb(39 39 42) 0px, rgb(39 39 42) 1px, transparent 1px, transparent 8px)",
+						}}
+					/>
+					<p className="relative py-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase md:text-sm">
+						// See Effect in action
+					</p>
+				</div>
+
 				<FeaturesSection />
 				<SectionDivider />
 				<ProblemSection />
