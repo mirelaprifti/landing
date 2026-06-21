@@ -101,7 +101,7 @@ export function TestimonialsSection() {
 			</div>
 
 			{/* Featured cards — Opencode + MasterClass, larger */}
-			<div className="mx-auto mb-6 w-full max-w-[73.75rem] px-4">
+			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 					{featuredCases.map((useCase, index) => (
 						<a
