@@ -149,17 +149,7 @@ export function TestimonialsSection() {
 										alt=""
 										className="h-full w-full object-cover"
 									/>
-									<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
-										<div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-105">
-											<svg
-												className="ml-1 h-6 w-6 text-zinc-900"
-												viewBox="0 0 24 24"
-												fill="currentColor"
-											>
-												<path d="M8 5v14l11-7z" />
-											</svg>
-										</div>
-									</div>
+									<div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
 								</div>
 							</a>
 						</div>
