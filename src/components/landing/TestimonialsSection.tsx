@@ -20,43 +20,14 @@ const featuredCases = [
 			"/assets/images/david-golightly – banner_compressed.webp",
 		),
 	},
-];
-
-const useCases = [
 	{
-		logo: getAssetPath("/assets/test-logos/warp-logo-white.svg"),
-		title: "HR Systems",
-		href: "https://youtu.be/2cN1R9zIxp4",
-		alt: "Warp",
-		thumbnail: getAssetPath(
-			"/assets/images/adam-rankin-banner_compressed.webp",
-		),
-	},
-	{
-		logo: getAssetPath("/assets/test-logos/open-router.svg"),
-		title: "Internal Tooling",
+		headline: "OpenRouter uses Effect",
+		description:
+			"Louis Vichy on how OpenRouter built their internal tooling and infrastructure with Effect.",
 		href: "https://youtu.be/x6-AVCwBIWc",
 		alt: "OpenRouter",
 		thumbnail: getAssetPath(
 			"/assets/images/louis-vichy-banner_compressed.webp",
-		),
-	},
-	{
-		logo: getAssetPath("/assets/test-logos/zendesk-logo.svg"),
-		title: "Enerprise Customer Support",
-		href: "https://www.youtube.com/watch?v=rNAqPHBQFEQ",
-		alt: "Attila Večerek",
-		thumbnail: getAssetPath(
-			"/assets/images/attila-vecerek-banner_compressed.webp",
-		),
-	},
-	{
-		logo: getAssetPath("/assets/quotes-logos/spiko-logo.svg"),
-		title: "Fintech Infrastructure",
-		href: "https://www.youtube.com/watch?v=lFOHVZnJLew",
-		alt: "Samuel Briole",
-		thumbnail: getAssetPath(
-			"/assets/images/samuel-briole-banner_compressed.webp",
 		),
 	},
 ];
@@ -101,7 +72,7 @@ export function TestimonialsSection() {
 			</div>
 
 			{/* Featured rows — alternating text/video layout */}
-			<div className="mx-auto mb-16 flex w-full max-w-[73.75rem] flex-col gap-12 px-4 md:gap-16">
+			<div className="mx-auto flex w-full max-w-[73.75rem] flex-col gap-12 px-4 md:gap-16">
 				{featuredCases.map((featured, index) => {
 					const videoOnRight = index % 2 === 0;
 					return (
@@ -155,48 +126,6 @@ export function TestimonialsSection() {
 				})}
 			</div>
 
-			{/* Use Case Cards - Video thumbnails grid */}
-			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-					{useCases.map((useCase, index) => (
-						<a
-							key={index}
-							href={useCase.href}
-							{...(useCase.href.startsWith("http")
-								? { target: "_blank", rel: "noopener noreferrer" }
-								: {})}
-							className="group relative flex flex-col overflow-hidden transition-all hover:border-zinc-500"
-						>
-							{/* Video thumbnail area */}
-							<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
-								<img
-									src={useCase.thumbnail}
-									alt={`${useCase.alt} case study`}
-									className="h-full w-full object-cover"
-								/>
-								<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
-									<div className="flex h-12 w-12 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
-										<svg
-											className="ml-1 h-5 w-5 text-zinc-900"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path d="M8 5v14l11-7z" />
-										</svg>
-									</div>
-								</div>
-							</div>
-							{/* Label area */}
-							<div className="flex items-center justify-between px-0 py-2">
-								<span className="font-mono text-[13px] text-zinc-400 uppercase group-hover:text-zinc-200">
-									{useCase.title}
-								</span>
-								<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
-							</div>
-						</a>
-					))}
-				</div>
-			</div>
 		</section>
 	);
 }
