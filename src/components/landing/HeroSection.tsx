@@ -162,7 +162,7 @@ export function HeroSection() {
 												? `translateY(${logo.nudgeY}px)`
 												: undefined,
 										}}
-										className="w-auto opacity-90"
+										className="w-auto"
 									/>
 								</li>
 							))}
