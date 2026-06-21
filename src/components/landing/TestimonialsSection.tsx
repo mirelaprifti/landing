@@ -11,10 +11,10 @@ const featuredCases = [
 	{
 		logo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
 		title: "Voice AI Orchestration",
-		href: "https://youtu.be/Cj2pVPqdOVs",
+		href: "https://www.youtube.com/watch?v=x2bUuOZ-htU&list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl&index=6",
 		alt: "MasterClass",
 		thumbnail: getAssetPath(
-			"/assets/images/michael-fester – banner_compressed (1).webp",
+			"/assets/images/david-golightly – banner_compressed.webp",
 		),
 	},
 ];
