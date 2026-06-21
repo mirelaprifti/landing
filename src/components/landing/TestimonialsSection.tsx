@@ -115,7 +115,7 @@ export function TestimonialsSection() {
 							<div
 								className={`flex flex-col gap-5 ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
 							>
-								<h3 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
+								<h3 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 									{featured.headline}
 								</h3>
 								<p className="max-w-md text-base leading-relaxed text-zinc-400">
