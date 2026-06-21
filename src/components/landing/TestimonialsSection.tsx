@@ -24,7 +24,7 @@ const featuredCases = [
 		headline: "OpenRouter uses Effect",
 		description:
 			"Louis Vichy on how OpenRouter built their internal tooling and infrastructure with Effect.",
-		href: "https://youtu.be/x6-AVCwBIWc",
+		href: "https://youtu.be/AVJIqQi11lM",
 		alt: "OpenRouter",
 		thumbnail: getAssetPath(
 			"/assets/images/louis-vichy-banner_compressed.webp",
