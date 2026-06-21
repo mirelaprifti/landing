@@ -2,6 +2,20 @@ import { getAssetPath } from "../../utils/assetPath";
 
 const useCases = [
 	{
+		logo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
+		title: "Voice AI Orchestration",
+		href: "https://youtu.be/Cj2pVPqdOVs",
+		alt: "MasterClass",
+		thumbnail: "https://img.youtube.com/vi/Cj2pVPqdOVs/maxresdefault.jpg",
+	},
+	{
+		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
+		title: "Coding Agent",
+		href: "https://www.youtube.com/watch?v=-mL7VVvkLGM",
+		alt: "opencode",
+		thumbnail: getAssetPath("/assets/images/kit-langton-banner.png"),
+	},
+	{
 		logo: getAssetPath("/assets/test-logos/warp-logo-white.svg"),
 		title: "HR Systems",
 		href: "https://youtu.be/2cN1R9zIxp4",
@@ -83,7 +97,7 @@ export function TestimonialsSection() {
 
 			{/* Use Case Cards - Video thumbnails grid */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					{useCases.map((useCase, index) => (
 						<a
 							key={index}
