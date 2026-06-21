@@ -74,7 +74,7 @@ export function TestimonialsSection() {
 			{/* Featured rows — alternating text/video layout */}
 			<div className="mx-auto flex w-full max-w-[73.75rem] flex-col gap-12 px-4 md:gap-16">
 				{featuredCases.map((featured, index) => {
-					const videoOnRight = index % 2 === 0;
+					const videoOnRight = index % 2 === 1;
 					return (
 						<div
 							key={`featured-${index}`}
