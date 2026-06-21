@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 
 const featuredCases = [
@@ -71,34 +72,31 @@ export function TestimonialsSection() {
 				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 					Real-world production systems
 				</h2>
-				<div className="mt-8 flex flex-wrap items-center gap-6">
-					<a
+				<div className="mt-8 flex flex-wrap items-center gap-3">
+					<Button
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
+						variant="secondary"
+						className="inline-flex items-center gap-2"
 					>
 						Cause & Effect Podcast
 						<i className="ri-arrow-right-up-line text-base" />
-					</a>
-					<a
+					</Button>
+					<Button
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
+						variant="secondary"
+						className="inline-flex items-center gap-2"
 					>
 						Effect Days 2024
 						<i className="ri-arrow-right-up-line text-base" />
-					</a>
-					<a
+					</Button>
+					<Button
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1 text-base font-medium text-zinc-300 transition-colors hover:text-zinc-300"
+						variant="secondary"
+						className="inline-flex items-center gap-2"
 					>
 						Effect Days 2025
 						<i className="ri-arrow-right-up-line text-base" />
-					</a>
+					</Button>
 				</div>
 			</div>
 
