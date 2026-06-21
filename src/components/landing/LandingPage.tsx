@@ -67,9 +67,9 @@ export function LandingPage() {
 				<HeroSection />
 				<FeaturesSection />
 				<SectionDivider />
-				<ProblemSection />
-				<SectionDivider />
 				<TestimonialsSection />
+				<SectionDivider />
+				<ProblemSection />
 				<SectionDivider />
 				<WhatIsEffectSection />
 				<SectionDivider />
