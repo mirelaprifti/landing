@@ -109,7 +109,7 @@ export function TestimonialsSection() {
 					return (
 						<div
 							key={`featured-${index}`}
-							className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center"
+							className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start"
 						>
 							{/* Text block */}
 							<div
