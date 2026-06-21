@@ -10,7 +10,7 @@ const featuredCases = [
 		thumbnail: getAssetPath("/assets/images/kit-langton-banner-website.png"),
 	},
 	{
-		headline: "MasterClass Cortez powered by Effect",
+		headline: "MasterClass Cortex powered by Effect",
 		description:
 			"Building a real-time voice AI orchestration layer that powers personalized conversations with celebrity instructors like Gordon Ramsay and Mark Cuban.",
 		href: "https://www.youtube.com/watch?v=x2bUuOZ-htU&list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl&index=6",
