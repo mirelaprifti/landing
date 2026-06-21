@@ -14,7 +14,7 @@ const HERO_LOGOS: {
 	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
 	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
 	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
-	{ name: "Vercel", src: "/assets/quotes-logos/vercel-logotype-dark.svg", h: "20px", nudgeY: 3 },
+	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "20px" },
 ];
 
 type Alignment = "center" | "left";
