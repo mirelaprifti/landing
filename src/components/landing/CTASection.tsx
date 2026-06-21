@@ -36,15 +36,10 @@ export function CTASection() {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="flex flex-col items-center text-center">
-					<p className="mb-3 font-mono text-base tracking-wider">
-						<span className="text-violet-400">import</span>{" "}
-						<span className="text-zinc-300">
-							{"{ "}
-							<span className="text-white">Effect</span>
-							{" }"}
-						</span>{" "}
-						<span className="text-violet-400">from</span>{" "}
-						<span className="text-emerald-400">"effect"</span>
+					<p className="mb-3 font-mono text-base text-zinc-500">
+						<span>import {"{ "}</span>
+						<span className="text-white">Effect</span>
+						<span>{" }"} from "effect"</span>
 					</p>
 					<h2 className="leading-tighter max-w-3xl text-4xl font-bold text-white">
 						Stop installing a new package for every problem
