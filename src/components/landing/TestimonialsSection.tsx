@@ -103,7 +103,7 @@ export function TestimonialsSection() {
 			</div>
 
 			{/* Featured rows — alternating text/video layout */}
-			<div className="mx-auto mb-16 flex w-full max-w-5xl flex-col gap-12 px-4 md:gap-16">
+			<div className="mx-auto mb-16 flex w-full max-w-[73.75rem] flex-col gap-12 px-4 md:gap-16">
 				{featuredCases.map((featured, index) => {
 					const videoOnRight = index % 2 === 0;
 					return (
@@ -113,7 +113,7 @@ export function TestimonialsSection() {
 						>
 							{/* Text block */}
 							<div
-								className={`flex flex-col gap-5 ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
+								className={`flex max-w-md flex-col gap-5 ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
 							>
 								<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
 									{featured.headline}
