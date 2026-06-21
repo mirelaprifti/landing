@@ -113,7 +113,7 @@ export function TestimonialsSection() {
 						>
 							{/* Text block */}
 							<div
-								className={`flex max-w-md flex-col gap-5 ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
+								className={`flex max-w-sm flex-col gap-5 ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
 							>
 								<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
 									{featured.headline}
