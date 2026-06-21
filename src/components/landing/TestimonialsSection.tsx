@@ -2,20 +2,24 @@ import { getAssetPath } from "../../utils/assetPath";
 
 const featuredCases = [
 	{
-		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
-		title: "Coding Agent",
+		headline: "opencode uses Effect",
+		description:
+			"Kit Langton walks through how opencode built a production coding agent on Effect — from runtime structure to error handling under model failures.",
 		href: "https://www.youtube.com/watch?v=-mL7VVvkLGM",
 		alt: "opencode",
 		thumbnail: getAssetPath("/assets/images/kit-langton-banner-website.png"),
+		speaker: { name: "Kit Langton", role: "opencode" },
 	},
 	{
-		logo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
-		title: "Voice AI Orchestration",
+		headline: "MasterClass uses Effect",
+		description:
+			"David Golightly on how MasterClass shipped a voice AI orchestration layer with Effect — type-safe, observable, and resilient under real production load.",
 		href: "https://www.youtube.com/watch?v=x2bUuOZ-htU&list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl&index=6",
 		alt: "MasterClass",
 		thumbnail: getAssetPath(
 			"/assets/images/david-golightly – banner_compressed.webp",
 		),
+		speaker: { name: "David Golightly", role: "MasterClass" },
 	},
 ];
 
@@ -100,45 +104,78 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
-			{/* Featured cards — Opencode + MasterClass, larger */}
-			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-					{featuredCases.map((useCase, index) => (
-						<a
+			{/* Featured rows — alternating text/video layout */}
+			<div className="mx-auto mb-16 flex w-full max-w-[73.75rem] flex-col gap-12 px-4 md:gap-16">
+				{featuredCases.map((featured, index) => {
+					const videoOnRight = index % 2 === 0;
+					return (
+						<div
 							key={`featured-${index}`}
-							href={useCase.href}
-							{...(useCase.href.startsWith("http")
-								? { target: "_blank", rel: "noopener noreferrer" }
-								: {})}
-							className="group relative flex flex-col overflow-hidden transition-all"
+							className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12"
 						>
-							<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
-								<img
-									src={useCase.thumbnail}
-									alt={`${useCase.alt} case study`}
-									className="h-full w-full object-cover"
-								/>
-								<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
-									<div className="flex h-14 w-14 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
-										<svg
-											className="ml-1 h-6 w-6 text-zinc-900"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path d="M8 5v14l11-7z" />
-										</svg>
+							{/* Text block */}
+							<div
+								className={`flex flex-col gap-5 ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
+							>
+								<h3 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
+									{featured.headline}
+								</h3>
+								<p className="max-w-md text-base leading-relaxed text-zinc-400">
+									{featured.description}
+								</p>
+								<a
+									href={featured.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group inline-flex items-center gap-1.5 text-sm font-medium text-white"
+								>
+									Watch the talk
+									<i
+										className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+										aria-hidden="true"
+									/>
+								</a>
+							</div>
+
+							{/* Video block */}
+							<a
+								href={featured.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={`Watch ${featured.headline}`}
+								className={`group relative ${videoOnRight ? "lg:order-2" : "lg:order-1"}`}
+							>
+								<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
+									<img
+										src={featured.thumbnail}
+										alt=""
+										className="h-full w-full object-cover"
+									/>
+									<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
+										<div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-105">
+											<svg
+												className="ml-1 h-6 w-6 text-zinc-900"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+											>
+												<path d="M8 5v14l11-7z" />
+											</svg>
+										</div>
+									</div>
+									{/* Speaker title card overlay */}
+									<div className="absolute right-3 bottom-3 rounded-md border border-zinc-700/80 bg-zinc-900/90 px-3 py-2 backdrop-blur-sm">
+										<p className="text-sm font-semibold text-white">
+											{featured.speaker.name}
+										</p>
+										<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
+											{featured.speaker.role}
+										</p>
 									</div>
 								</div>
-							</div>
-							<div className="flex items-center justify-between px-0 py-2">
-								<span className="font-mono text-sm text-zinc-400 uppercase group-hover:text-zinc-200">
-									{useCase.title}
-								</span>
-								<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
-							</div>
-						</a>
-					))}
-				</div>
+							</a>
+						</div>
+					);
+				})}
 			</div>
 
 			{/* Use Case Cards - Video thumbnails grid */}
