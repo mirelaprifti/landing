@@ -116,7 +116,7 @@ export function TestimonialsSection() {
 								<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
 									{featured.headline}
 								</h3>
-								<p className="max-w-md text-lg leading-relaxed text-zinc-400">
+								<p className="max-w-md text-base leading-relaxed text-zinc-300">
 									{featured.description}
 								</p>
 								<a
