@@ -13,7 +13,9 @@ const featuredCases = [
 		title: "Voice AI Orchestration",
 		href: "https://youtu.be/Cj2pVPqdOVs",
 		alt: "MasterClass",
-		thumbnail: "https://img.youtube.com/vi/Cj2pVPqdOVs/maxresdefault.jpg",
+		thumbnail: getAssetPath(
+			"/assets/images/michael-fester – banner_compressed (1).webp",
+		),
 	},
 ];
 

@@ -73,8 +73,7 @@ export function LandingPage() {
 				<SectionDivider />
 				<WhatIsEffectSection />
 				<SectionDivider />
-				<AIBuildingSection />
-				<SectionDivider />
+				{/* AIBuildingSection hidden — content moved to TestimonialsSection featured cards */}
 				<AISection />
 				<SectionDivider />
 				<QuotesGridSection />
