@@ -53,14 +53,6 @@ export function WhatIsEffectSection() {
 							</li>
 						</ul>
 
-						<Link
-							href="https://effect.website/docs/getting-started/why-effect/"
-							variant="inline"
-							className="group mt-8 inline-flex items-center gap-2 text-base font-medium"
-						>
-							<span>Why Effect</span>
-							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-						</Link>
 					</div>
 
 					{/* Right column - Type signature */}
