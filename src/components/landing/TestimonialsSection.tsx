@@ -2,24 +2,22 @@ import { getAssetPath } from "../../utils/assetPath";
 
 const featuredCases = [
 	{
-		headline: "opencode uses Effect",
+		headline: "Migrating a TypeScript codebase to Effect",
 		description:
-			"Kit Langton walks through how opencode built a production coding agent on Effect — from runtime structure to error handling under model failures.",
+			"Kit Langton shows what it takes to migrate a large TypeScript codebase to Effect.",
 		href: "https://www.youtube.com/watch?v=-mL7VVvkLGM",
 		alt: "opencode",
 		thumbnail: getAssetPath("/assets/images/kit-langton-banner-website.png"),
-		speaker: { name: "Kit Langton", role: "opencode" },
 	},
 	{
-		headline: "MasterClass uses Effect",
+		headline: "Real-time voice AI orchestration",
 		description:
-			"David Golightly on how MasterClass shipped a voice AI orchestration layer with Effect — type-safe, observable, and resilient under real production load.",
+			"Building a real-time voice AI orchestration layer that powers personalized conversations with celebrity instructors like Gordon Ramsay and Mark Cuban.",
 		href: "https://www.youtube.com/watch?v=x2bUuOZ-htU&list=PLDf3uQLaK2B_jaZ5Fy7IPNq0FIViV_CQl&index=6",
 		alt: "MasterClass",
 		thumbnail: getAssetPath(
 			"/assets/images/david-golightly – banner_compressed.webp",
 		),
-		speaker: { name: "David Golightly", role: "MasterClass" },
 	},
 ];
 
@@ -161,15 +159,6 @@ export function TestimonialsSection() {
 												<path d="M8 5v14l11-7z" />
 											</svg>
 										</div>
-									</div>
-									{/* Speaker title card overlay */}
-									<div className="absolute right-3 bottom-3 rounded-md border border-zinc-700/80 bg-zinc-900/90 px-3 py-2 backdrop-blur-sm">
-										<p className="text-sm font-semibold text-white">
-											{featured.speaker.name}
-										</p>
-										<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
-											{featured.speaker.role}
-										</p>
 									</div>
 								</div>
 							</a>
