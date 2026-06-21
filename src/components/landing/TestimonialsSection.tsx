@@ -1,13 +1,6 @@
 import { getAssetPath } from "../../utils/assetPath";
 
-const useCases = [
-	{
-		logo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
-		title: "Voice AI Orchestration",
-		href: "https://youtu.be/Cj2pVPqdOVs",
-		alt: "MasterClass",
-		thumbnail: "https://img.youtube.com/vi/Cj2pVPqdOVs/maxresdefault.jpg",
-	},
+const featuredCases = [
 	{
 		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
 		title: "Coding Agent",
@@ -15,6 +8,16 @@ const useCases = [
 		alt: "opencode",
 		thumbnail: getAssetPath("/assets/images/kit-langton-banner.png"),
 	},
+	{
+		logo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
+		title: "Voice AI Orchestration",
+		href: "https://youtu.be/Cj2pVPqdOVs",
+		alt: "MasterClass",
+		thumbnail: "https://img.youtube.com/vi/Cj2pVPqdOVs/maxresdefault.jpg",
+	},
+];
+
+const useCases = [
 	{
 		logo: getAssetPath("/assets/test-logos/warp-logo-white.svg"),
 		title: "HR Systems",
@@ -95,9 +98,50 @@ export function TestimonialsSection() {
 				</div>
 			</div>
 
+			{/* Featured cards — Opencode + MasterClass, larger */}
+			<div className="mx-auto mb-6 w-full max-w-[73.75rem] px-4">
+				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+					{featuredCases.map((useCase, index) => (
+						<a
+							key={`featured-${index}`}
+							href={useCase.href}
+							{...(useCase.href.startsWith("http")
+								? { target: "_blank", rel: "noopener noreferrer" }
+								: {})}
+							className="group relative flex flex-col overflow-hidden transition-all"
+						>
+							<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
+								<img
+									src={useCase.thumbnail}
+									alt={`${useCase.alt} case study`}
+									className="h-full w-full object-cover"
+								/>
+								<div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20">
+									<div className="flex h-14 w-14 scale-0 items-center justify-center rounded-full bg-white/90 transition-transform duration-300 group-hover:scale-100">
+										<svg
+											className="ml-1 h-6 w-6 text-zinc-900"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+										>
+											<path d="M8 5v14l11-7z" />
+										</svg>
+									</div>
+								</div>
+							</div>
+							<div className="flex items-center justify-between px-0 py-2">
+								<span className="font-mono text-sm text-zinc-400 uppercase group-hover:text-zinc-200">
+									{useCase.title}
+								</span>
+								<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-200" />
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+
 			{/* Use Case Cards - Video thumbnails grid */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 					{useCases.map((useCase, index) => (
 						<a
 							key={index}
