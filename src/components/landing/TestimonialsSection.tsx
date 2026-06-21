@@ -6,7 +6,7 @@ const featuredCases = [
 		title: "Coding Agent",
 		href: "https://www.youtube.com/watch?v=-mL7VVvkLGM",
 		alt: "opencode",
-		thumbnail: getAssetPath("/assets/images/kit-langton-banner.png"),
+		thumbnail: getAssetPath("/assets/images/kit-langton-banner-website.png"),
 	},
 	{
 		logo: getAssetPath("/assets/quotes-logos/masterclass-noM.svg"),
