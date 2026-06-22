@@ -104,7 +104,7 @@ export function HeroSection() {
 				<div className="clear-both" />
 			</div>
 
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-14 pb-24 md:pt-16">
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-14 pb-32 md:pt-16">
 				{/* Content — alignment switches between centered and left */}
 				<div
 					className={`max-w-4xl ${isLeft ? "text-left" : "mx-auto text-center"}`}
