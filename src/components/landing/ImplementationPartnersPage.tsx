@@ -446,7 +446,7 @@ export function ImplementationPartnersPage() {
 					</>
 				)}
 
-				<OtherPartnersSection partners={otherPartners} />
+				{/* <OtherPartnersSection partners={otherPartners} /> hidden for now */}
 
 				{/* Contact Form */}
 				<section id="contact" className="border-t border-zinc-800 py-16 md:py-20">
