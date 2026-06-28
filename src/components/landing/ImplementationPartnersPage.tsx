@@ -43,14 +43,14 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					{partner.tier === "premier"
-						? "// Global Premier Partner"
+						? "// Global Partner"
 						: "// Implementation Partner"}
 				</p>
 
 				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
 					<div>
 						<h1 className="leading-tighter text-3xl font-bold text-white md:text-5xl">
-							Effect's First Global Premier Partner
+							Effect's First Global Partner
 						</h1>
 						{partner.tagline && (
 							<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-300">
