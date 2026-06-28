@@ -1,97 +1,377 @@
-import { getAssetPath } from "../../utils/assetPath";
+import { useState } from "react";
+import { Button } from "@/components/ui";
 import { PARTNERS, type Partner } from "../../data/partners";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { ContactForm } from "./ContactForm";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
-function FeaturedPartnerCard({ partner }: { partner: Partner }) {
+/* Hero — partner identity, tagline, CTAs */
+function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 	return (
-		<a
-			href={getAssetPath(`/partners/${partner.id}`)}
-			className="group block overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/40 transition-all duration-300 ease-out hover:border-zinc-700"
-		>
-			<div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr]">
-				{/* Logo area */}
-				<div className="flex items-center justify-center border-b border-zinc-800 p-8 md:border-r md:border-b-0 md:p-12">
-					<img
-						src={getAssetPath(partner.logoPath)}
-						alt={`${partner.name} logo`}
-						className="h-12 w-auto max-w-[240px] md:h-16"
-					/>
-				</div>
+		<section className="relative w-full pt-16 pb-12 md:pt-24 md:pb-16">
+			{/* Grid background */}
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					backgroundImage: `
+						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+					`,
+					backgroundSize: "196.6px 171px",
+					backgroundPosition: "calc(50% + 97px) 0",
+				}}
+			/>
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{
+					background:
+						"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+				}}
+			/>
+			<div
+				className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
+				style={{
+					background: `
+						radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+						radial-gradient(ellipse 30% 50% at 80% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
+					`,
+				}}
+			/>
 
-				{/* Content area */}
-				<div className="p-8 md:p-12">
-					<h2 className="mb-4 text-2xl font-bold text-white">
-						{partner.name}
-					</h2>
-					<p className="mb-6 text-base leading-relaxed text-zinc-400">
-						{partner.longDescription}
-					</p>
+			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					{partner.tier === "premier"
+						? "// Global Premier Partner"
+						: "// Implementation Partner"}
+				</p>
 
-					{/* Language & Region tags */}
-					<div className="mb-8 flex flex-wrap items-center gap-3">
-						<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1.5 text-sm font-medium text-zinc-200">
-							<i className="ri-map-pin-2-fill text-xs text-zinc-400" aria-hidden="true" />
-							{partner.region}
-						</div>
-						<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1.5 text-sm font-medium text-zinc-200">
-							<span className="text-sm leading-none">{partner.languageFlag}</span>
-							{partner.language}
-						</div>
+				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+					<div>
+						<h1 className="leading-tighter text-3xl font-bold text-white md:text-5xl">
+							Effect's First Global Premier Partner
+						</h1>
+						{partner.tagline && (
+							<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-300">
+								{partner.tagline}
+							</p>
+						)}
+
+						{(partner.ctaPrimary || partner.ctaSecondary) && (
+							<div className="mt-8 flex flex-wrap items-center gap-3">
+								{partner.ctaPrimary && (
+									<Button
+										href={partner.ctaPrimary.href}
+										variant="primary"
+										size="md"
+										className="group"
+									>
+										{partner.ctaPrimary.label}
+										<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+									</Button>
+								)}
+								{partner.ctaSecondary && (
+									<Button
+										href={partner.ctaSecondary.href}
+										variant="secondary"
+										size="md"
+									>
+										{partner.ctaSecondary.label}
+									</Button>
+								)}
+							</div>
+						)}
 					</div>
 
-					<span className="inline-flex items-center text-sm font-medium text-white">
-						View details
-						<i
-							className="ri-arrow-right-line ml-1 text-sm text-zinc-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-zinc-300"
-							aria-hidden="true"
+					{/* Partner logo block */}
+					<div className="flex items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/40 p-10">
+						<img
+							src={getAssetPath(partner.logoPath)}
+							alt={`${partner.name} logo`}
+							className="h-16 w-auto max-w-[280px]"
 						/>
-					</span>
+					</div>
 				</div>
 			</div>
-		</a>
+		</section>
 	);
 }
 
-function PartnerCard({ partner }: { partner: Partner }) {
+/* Track-record stats + customer testimonial */
+function PartnerStatsSection({ partner }: { partner: Partner }) {
+	if (!partner.stats?.length) return null;
+
+	return (
+		<section className="border-t border-zinc-800 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// Track record
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					Production-grade delivery, at scale
+				</h2>
+
+				<div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+					{partner.stats.map((stat) => (
+						<div
+							key={stat.label}
+							className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-6"
+						>
+							<p className="text-4xl font-semibold text-white md:text-5xl">
+								{stat.value}
+							</p>
+							<p className="mt-2 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+								{stat.label}
+							</p>
+						</div>
+					))}
+				</div>
+
+				{partner.testimonial && (
+					<figure className="mt-10 rounded-lg border border-zinc-800 bg-zinc-900/40 p-8 md:p-10">
+						<blockquote className="text-lg leading-relaxed text-zinc-200 md:text-xl">
+							{`"${partner.testimonial.quote}"`}
+						</blockquote>
+						<figcaption className="mt-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+							— {partner.testimonial.author}
+						</figcaption>
+					</figure>
+				)}
+			</div>
+		</section>
+	);
+}
+
+/* What we offer — service cards */
+function PartnerServicesSection({ partner }: { partner: Partner }) {
+	if (!partner.services?.length) return null;
+
+	return (
+		<section className="border-t border-zinc-800 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// Services
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					What we offer
+				</h2>
+				<p className="mt-4 max-w-2xl text-base text-zinc-400">
+					From first Effect adoption to full certification — everything a team
+					needs to succeed with Effect in production.
+				</p>
+
+				<div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+					{partner.services.map((service) => (
+						<div
+							key={service.title}
+							className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
+						>
+							<p className="mb-2 font-mono text-xs tracking-wider text-zinc-500 uppercase">
+								{service.eyebrow ?? "Service"}
+							</p>
+							<h3 className="text-lg font-semibold text-white md:text-xl">
+								{service.title}
+							</h3>
+							<p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+								{service.description}
+							</p>
+							{service.cta && (
+								<a
+									href={service.cta.href}
+									className="group mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-white"
+								>
+									{service.cta.label}
+									<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+								</a>
+							)}
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+	);
+}
+
+/* Training & certification feature block */
+function PartnerTrainingSection({ partner }: { partner: Partner }) {
+	if (!partner.training) return null;
+	const t = partner.training;
+
+	return (
+		<section id="training" className="border-t border-zinc-800 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// Coming soon
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					{t.title}
+				</h2>
+
+				<div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]">
+					<div className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
+						<p className="text-base leading-relaxed text-zinc-300">
+							{t.description}
+						</p>
+
+						<p className="mt-6 mb-3 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+							// What you'll learn
+						</p>
+						<ul className="flex flex-wrap gap-2">
+							{t.topics.map((topic) => (
+								<li
+									key={topic}
+									className="inline-flex items-center rounded-md border border-zinc-700 bg-zinc-800/40 px-3 py-1.5 text-sm text-zinc-200"
+								>
+									{topic}
+								</li>
+							))}
+						</ul>
+					</div>
+
+					<div className="flex flex-col justify-between rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
+						<div>
+							<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
+								// Certification
+							</p>
+							<p className="mt-3 text-4xl font-semibold text-white md:text-5xl">
+								{t.price}
+							</p>
+							<p className="mt-2 text-sm text-zinc-400">
+								The only Effect certification backed directly by the team that
+								built the framework.
+							</p>
+						</div>
+						<Button
+							href={t.cta.href}
+							variant="primary"
+							size="md"
+							className="group mt-6 w-full justify-center"
+						>
+							{t.cta.label}
+							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+						</Button>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
+}
+
+/* What this means for your team — differentiators */
+function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
+	if (!partner.differentiators?.length) return null;
+
+	return (
+		<section className="border-t border-zinc-800 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// Why {partner.name}
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					What this means for your team
+				</h2>
+
+				<div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+					{partner.differentiators.map((d) => (
+						<div key={d.eyebrow} className="flex flex-col gap-3">
+							<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
+								{d.eyebrow}
+							</p>
+							<h3 className="text-lg font-semibold text-white">
+								{d.title}
+							</h3>
+							<p className="text-sm leading-relaxed text-zinc-400">
+								{d.description}
+							</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+	);
+}
+
+/* FAQ accordion */
+function FaqItem({ q, a }: { q: string; a: string }) {
+	const [open, setOpen] = useState(false);
+	return (
+		<div className="border-b border-zinc-800">
+			<button
+				type="button"
+				onClick={() => setOpen((v) => !v)}
+				aria-expanded={open}
+				className="flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-white transition-colors hover:text-zinc-200"
+			>
+				<span>{q}</span>
+				<i
+					className={`ri-arrow-down-s-line shrink-0 text-xl text-zinc-400 transition-transform ${
+						open ? "rotate-180" : ""
+					}`}
+					aria-hidden="true"
+				/>
+			</button>
+			{open && (
+				<p className="pb-5 text-sm leading-relaxed text-zinc-400">{a}</p>
+			)}
+		</div>
+	);
+}
+
+function PartnerFaqSection({ partner }: { partner: Partner }) {
+	if (!partner.faqs?.length) return null;
+
+	return (
+		<section className="border-t border-zinc-800 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// FAQ
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					Frequently asked questions
+				</h2>
+
+				<div className="mt-8 max-w-3xl">
+					{partner.faqs.map((f) => (
+						<FaqItem key={f.question} q={f.question} a={f.answer} />
+					))}
+				</div>
+			</div>
+		</section>
+	);
+}
+
+/* Smaller "other partners" cards */
+function OtherPartnerCard({ partner }: { partner: Partner }) {
 	return (
 		<a
 			href={getAssetPath(`/partners/${partner.id}`)}
-			className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/40 p-8 transition-all duration-300 ease-out hover:border-zinc-700"
+			className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 transition-all duration-300 ease-out hover:border-zinc-700"
 		>
-			{/* Logo */}
-			<div className="mb-6 flex items-center">
+			<div className="mb-5 flex items-center">
 				<img
 					src={getAssetPath(partner.logoPath)}
 					alt={`${partner.name} logo`}
 					className="h-8 w-auto max-w-[160px]"
 				/>
 			</div>
-
-			{/* Description */}
 			<p className="mb-4 flex-1 text-sm leading-relaxed text-zinc-400">
 				{partner.longDescription}
 			</p>
-
-			{/* Language & Region tags */}
-			<div className="mb-6 flex flex-wrap items-center gap-3">
-				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-2.5 py-1 text-xs font-medium text-zinc-300">
+			<div className="mb-5 flex flex-wrap items-center gap-3">
+				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/40 px-2.5 py-1 text-xs font-medium text-zinc-300">
 					<i className="ri-map-pin-2-fill text-xs text-zinc-400" aria-hidden="true" />
 					{partner.region}
 				</div>
-				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/60 px-2.5 py-1 text-xs font-medium text-zinc-300">
+				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/40 px-2.5 py-1 text-xs font-medium text-zinc-300">
 					<span className="text-xs leading-none">{partner.languageFlag}</span>
 					{partner.language}
 				</div>
 			</div>
-
-			{/* Link indicator */}
 			<span className="inline-flex items-center text-sm font-medium text-white">
 				View details
 				<i
-					className="ri-arrow-right-line ml-1 text-sm text-zinc-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-zinc-300"
+					className="ri-arrow-right-line ml-1 text-sm text-zinc-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-zinc-300"
 					aria-hidden="true"
 				/>
 			</span>
@@ -99,8 +379,29 @@ function PartnerCard({ partner }: { partner: Partner }) {
 	);
 }
 
+function OtherPartnersSection({ partners }: { partners: Partner[] }) {
+	if (!partners.length) return null;
+	return (
+		<section className="border-t border-zinc-800 py-16 md:py-20">
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+					// Regional partners
+				</p>
+				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+					Other implementation partners
+				</h2>
+				<div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+					{partners.map((p) => (
+						<OtherPartnerCard key={p.id} partner={p} />
+					))}
+				</div>
+			</div>
+		</section>
+	);
+}
+
 export function ImplementationPartnersPage() {
-	const featuredPartners = PARTNERS.filter((p) => p.featured);
+	const featuredPartner = PARTNERS.find((p) => p.featured);
 	const otherPartners = PARTNERS.filter((p) => !p.featured);
 
 	return (
@@ -127,134 +428,42 @@ export function ImplementationPartnersPage() {
 			{/* Vertical border lines container */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					{/* Left vertical line */}
 					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
-					{/* Right vertical line */}
 					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
 				</div>
 			</div>
 
-			{/* Center vertical line - dashed, behind content */}
-			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
-				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
-						style={{
-							width: "1px",
-							backgroundImage:
-								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
-							maskImage:
-								"linear-gradient(to bottom, black 0%, black 200px, transparent 300px, transparent 350px, black 450px, black 100%)",
-							WebkitMaskImage:
-								"linear-gradient(to bottom, black 0%, black 200px, transparent 300px, transparent 350px, black 450px, black 100%)",
-						}}
-					/>
-				</div>
-			</div>
-
 			<main id="main-content" className="relative z-10 pt-16">
-				{/* Hero Section */}
-				<section className="relative w-full pt-16 pb-8 md:pt-20 md:pb-10">
-					{/* Grid background */}
-					<div
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage: `
-                linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
-              `,
-							backgroundSize: "196.6px 171px",
-							backgroundPosition: "calc(50% + 97px) 0",
-						}}
-					/>
-
-					{/* Fade out grid at top and bottom */}
-					<div
-						className="pointer-events-none absolute inset-0"
-						style={{
-							background:
-								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
-						}}
-					/>
-
-					{/* Subtle glow */}
-					<div
-						className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
-						style={{
-							background: `
-                radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 30% 50% at 80% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
-              `,
-						}}
-					/>
-
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
-							{"// Implementation partners"}
-						</p>
-						<h1 className="text-3xl font-bold text-white md:text-4xl">
-							Get help adopting Effect
-						</h1>
-						<p className="mt-4 max-w-xl text-lg text-zinc-400">
-							Work with vetted companies that bring deep expertise in
-							Effect to help your team build production-grade software.
-						</p>
-					</div>
-				</section>
-
-				{/* Featured Partners */}
-				<section className="pt-0 pb-12">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							{featuredPartners.map((partner) => (
-								<FeaturedPartnerCard
-									key={partner.id}
-									partner={partner}
-								/>
-							))}
-						</div>
-					</div>
-				</section>
-
-				{/* Other Partners */}
-				{otherPartners.length > 0 && (
-					<section className="pb-24">
-						<div className="mx-auto w-full max-w-[73.75rem] px-4">
-							<div className="border-t border-zinc-800 pt-12">
-								<p className="mb-8 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
-									{"// Partners"}
-								</p>
-								<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-									{otherPartners.map((partner) => (
-										<PartnerCard
-											key={partner.id}
-											partner={partner}
-										/>
-									))}
-								</div>
-							</div>
-						</div>
-					</section>
+				{featuredPartner && (
+					<>
+						<FeaturedPartnerHero partner={featuredPartner} />
+						<PartnerStatsSection partner={featuredPartner} />
+						<PartnerServicesSection partner={featuredPartner} />
+						<PartnerTrainingSection partner={featuredPartner} />
+						<PartnerDifferentiatorsSection partner={featuredPartner} />
+						<PartnerFaqSection partner={featuredPartner} />
+					</>
 				)}
 
+				<OtherPartnersSection partners={otherPartners} />
+
 				{/* Contact Form */}
-				<section className="pb-24">
+				<section id="contact" className="border-t border-zinc-800 py-16 md:py-20">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							<p className="mb-4 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
-								{"// Get in touch"}
-							</p>
-							<h2 className="mb-3 text-2xl font-semibold text-white md:text-3xl">
-								Need help adopting Effect?
-							</h2>
-							<p className="mb-10 max-w-xl text-base text-zinc-400">
-								Tell us about your project and we'll connect you with the right implementation partner.
-							</p>
-							<ContactForm />
-						</div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Get in touch
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Ready to build with Effect?
+						</h2>
+						<p className="mt-4 mb-10 max-w-xl text-base text-zinc-400">
+							Tell us where you are with Effect and what you're trying to build.
+							We'll scope the right engagement — implementation, team extension,
+							or support — and get back to you quickly.
+						</p>
+						<ContactForm />
 					</div>
 				</section>
-
 			</main>
 
 			<Footer activePath="/implementation-partners" />
