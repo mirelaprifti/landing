@@ -49,7 +49,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 
 				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
 					<div>
-						<h1 className="leading-tighter text-3xl font-bold text-white md:text-5xl">
+						<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl">
 							Effect's First Global Partner
 						</h1>
 						{partner.tagline && (
@@ -170,7 +170,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 							<p className="mb-2 font-mono text-xs tracking-wider text-zinc-500 uppercase">
 								{service.eyebrow ?? "Service"}
 							</p>
-							<h3 className="text-lg font-semibold text-white md:text-xl">
+							<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
 								{service.title}
 							</h3>
 							<p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
@@ -279,7 +279,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 							<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
 								{d.eyebrow}
 							</p>
-							<h3 className="text-lg font-semibold text-white">
+							<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
 								{d.title}
 							</h3>
 							<p className="text-sm leading-relaxed text-zinc-400">
