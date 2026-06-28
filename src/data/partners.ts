@@ -13,7 +13,6 @@ export interface PartnerService {
 export interface PartnerTraining {
 	title: string;
 	description: string;
-	price: string;
 	topics: string[];
 	cta: { label: string; href: string };
 }
@@ -123,7 +122,6 @@ export const PARTNERS: Partner[] = [
 			title: "Effect Training & Certification",
 			description:
 				"Structured training that takes engineers from Effect fundamentals to production-ready expertise. Online-first, agent-native by design, with recurring cohorts and potential in-person sessions at Effect Days in December.",
-			price: "$195",
 			topics: [
 				"Fibers & concurrency",
 				"Typed errors",

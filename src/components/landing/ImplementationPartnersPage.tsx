@@ -234,12 +234,13 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 							<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
 								// Certification
 							</p>
-							<p className="mt-3 text-4xl font-semibold text-white md:text-5xl">
-								{t.price}
-							</p>
-							<p className="mt-2 text-sm text-zinc-400">
+							<p className="mt-3 text-lg font-semibold text-white md:text-xl">
 								The only Effect certification backed directly by the team that
 								built the framework.
+							</p>
+							<p className="mt-3 text-sm text-zinc-400">
+								Recurring cohorts and potential in-person sessions at Effect
+								Days. Notify me to be first to hear about dates and details.
 							</p>
 						</div>
 						<Button
