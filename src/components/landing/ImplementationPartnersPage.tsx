@@ -442,7 +442,6 @@ export function ImplementationPartnersPage() {
 						<PartnerServicesSection partner={featuredPartner} />
 						<PartnerTrainingSection partner={featuredPartner} />
 						<PartnerDifferentiatorsSection partner={featuredPartner} />
-						<PartnerFaqSection partner={featuredPartner} />
 					</>
 				)}
 
