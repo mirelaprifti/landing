@@ -172,7 +172,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 					</div>
 					<Button
 						href="#contact"
-						variant="secondary"
+						variant="primary"
 						size="md"
 						className="group shrink-0"
 					>
