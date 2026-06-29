@@ -221,7 +221,7 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Backed by the team that built Effect
+							// Backed by the Effect team
 						</p>
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							{t.title}
