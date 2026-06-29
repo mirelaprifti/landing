@@ -47,7 +47,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 							// Implementation Partner
 						</p>
 						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
-							Effect's First Global Partner
+							Get help adopting Effect
 						</h1>
 						{partner.tagline && (
 							<p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300">
