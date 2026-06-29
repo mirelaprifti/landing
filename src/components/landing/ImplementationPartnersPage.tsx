@@ -174,7 +174,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 							key={service.title}
 							className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
 						>
-							<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
+							<h3 className="leading-tighter text-lg font-semibold text-white">
 								{service.title}
 							</h3>
 							<p className="mt-3 text-sm leading-relaxed text-zinc-400">
