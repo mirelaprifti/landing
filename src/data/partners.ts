@@ -79,7 +79,7 @@ export const PARTNERS: Partner[] = [
 		languageFlag: "\u{1F1EC}\u{1F1E7}",
 		region: "Global",
 		tier: "premier",
-		brandColor: "#F84B2C",
+		brandColor: "#FF634B",
 		tagline:
 			"Effect implementation, team extension, and structured training — everything teams need to ship in production.",
 		ctaPrimary: { label: "Get in touch", href: "#contact" },
