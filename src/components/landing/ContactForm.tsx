@@ -70,7 +70,7 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 						placeholder="jane@company.com"
 					/>
 				</div>
-				<div>
+				<div className="md:col-span-2">
 					<label
 						htmlFor="company"
 						className="mb-2 block text-sm font-medium text-zinc-300"
