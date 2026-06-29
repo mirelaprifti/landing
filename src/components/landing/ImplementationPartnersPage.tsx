@@ -68,13 +68,23 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 										<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
 									</Button>
 								)}
-								{partner.ctaSecondary && (
+								{partner.ctaSecondary ? (
 									<Button
 										href={partner.ctaSecondary.href}
 										variant="secondary"
 										size="md"
 									>
 										{partner.ctaSecondary.label}
+									</Button>
+								) : (
+									<Button
+										href={partner.websiteUrl}
+										variant="secondary"
+										size="md"
+										className="group"
+									>
+										Visit {partner.name}
+										<i className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
 									</Button>
 								)}
 							</div>
