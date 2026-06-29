@@ -255,10 +255,6 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 								The only Effect certification backed directly by the team that
 								built the framework.
 							</p>
-							<p className="mt-3 text-sm text-zinc-400">
-								Recurring cohorts and potential in-person sessions at Effect
-								Days. Notify me to be first to hear about dates and details.
-							</p>
 						</div>
 						<Button
 							href={t.cta.href}
