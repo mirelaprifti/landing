@@ -123,7 +123,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 					{partner.stats.map((stat) => (
 						<div
 							key={stat.label}
-							className="border-y border-zinc-700 bg-zinc-900/40 p-6"
+							className="border-x border-zinc-700 bg-zinc-900/40 p-6"
 						>
 							<p className="text-4xl font-semibold text-white md:text-5xl">
 								{stat.value}
