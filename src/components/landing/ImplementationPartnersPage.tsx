@@ -228,8 +228,8 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 					{t.description}
 				</p>
 
-				<div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.5fr_1fr]">
-					<div>
+				<div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-12">
+					<div className="lg:col-span-8">
 						<p className="mb-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
 							// What you'll learn
 						</p>
@@ -249,7 +249,7 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 						</ul>
 					</div>
 
-					<div className="lg:border-l lg:border-zinc-800 lg:pl-10">
+					<div className="lg:col-span-4 lg:col-start-9 lg:border-l lg:border-zinc-800 lg:pl-10">
 						<p className="text-xl leading-snug font-semibold text-white md:text-2xl">
 							Backed by the team that built Effect.
 						</p>
