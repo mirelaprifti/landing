@@ -174,24 +174,12 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 							key={service.title}
 							className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
 						>
-							<p className="mb-2 font-mono text-xs tracking-wider text-zinc-500 uppercase">
-								{service.eyebrow ?? "Service"}
-							</p>
 							<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
 								{service.title}
 							</h3>
-							<p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+							<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 								{service.description}
 							</p>
-							{service.cta && (
-								<a
-									href={service.cta.href}
-									className="group mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-white"
-								>
-									{service.cta.label}
-									<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-								</a>
-							)}
 						</div>
 					))}
 				</div>
