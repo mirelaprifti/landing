@@ -42,18 +42,16 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-					{partner.tier === "premier"
-						? "// Global Partner"
-						: "// Implementation Partner"}
+					// Implementation Partner
 				</p>
 
-				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center">
 					<div>
-						<h1 className="leading-tighter text-4xl font-bold text-white md:text-5xl">
+						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
 							Effect's First Global Partner
 						</h1>
 						{partner.tagline && (
-							<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-300">
+							<p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300">
 								{partner.tagline}
 							</p>
 						)}
@@ -84,12 +82,12 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 						)}
 					</div>
 
-					{/* Partner logo block */}
-					<div className="flex items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/40 p-10">
+					{/* Partner logo block — square */}
+					<div className="flex aspect-square w-full items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/40 p-12">
 						<img
 							src={getAssetPath(partner.logoPath)}
 							alt={`${partner.name} logo`}
-							className="h-16 w-auto max-w-[280px]"
+							className="h-auto max-h-24 w-auto max-w-[60%] object-contain"
 						/>
 					</div>
 				</div>
