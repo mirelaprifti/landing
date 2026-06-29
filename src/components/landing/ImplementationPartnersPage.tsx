@@ -172,7 +172,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 					{partner.services.map((service) => (
 						<div
 							key={service.title}
-							className="flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
+							className="flex flex-col border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
 						>
 							<h3 className="leading-tighter text-lg font-semibold text-white">
 								{service.title}
