@@ -274,23 +274,39 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 								);
 							})}
 						</ul>
-						{/* Vertical divider — dashed 2px, split top + bottom halves with a gap at center */}
+						{/* Vertical divider — 1px line with 2px dashes, split top + bottom halves with a gap at center */}
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute top-0 left-1/2 hidden h-[calc(50%-1.5rem)] -translate-x-1/2 border-l-2 border-dashed border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute top-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-px -translate-x-1/2 text-zinc-700/80 sm:block"
+							style={{
+								backgroundImage:
+									"repeating-linear-gradient(to bottom, currentColor 0 2px, transparent 2px 4px)",
+							}}
 						/>
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[calc(50%-1.5rem)] -translate-x-1/2 border-l-2 border-dashed border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-px -translate-x-1/2 text-zinc-700/80 sm:block"
+							style={{
+								backgroundImage:
+									"repeating-linear-gradient(to bottom, currentColor 0 2px, transparent 2px 4px)",
+							}}
 						/>
-						{/* Horizontal divider — dashed 2px, split left + right halves with a gap at center */}
+						{/* Horizontal divider — 1px line with 2px dashes, split left + right halves with a gap at center */}
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute top-1/2 left-0 hidden w-[calc(50%-1.5rem)] -translate-y-1/2 border-t-2 border-dashed border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute top-1/2 left-0 hidden h-px w-[calc(50%-1.5rem)] -translate-y-1/2 text-zinc-700/80 sm:block"
+							style={{
+								backgroundImage:
+									"repeating-linear-gradient(to right, currentColor 0 2px, transparent 2px 4px)",
+							}}
 						/>
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute top-1/2 right-0 hidden w-[calc(50%-1.5rem)] -translate-y-1/2 border-t-2 border-dashed border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute top-1/2 right-0 hidden h-px w-[calc(50%-1.5rem)] -translate-y-1/2 text-zinc-700/80 sm:block"
+							style={{
+								backgroundImage:
+									"repeating-linear-gradient(to right, currentColor 0 2px, transparent 2px 4px)",
+							}}
 						/>
 					</div>
 				</div>
