@@ -128,7 +128,7 @@ export const PARTNERS: Partner[] = [
 		training: {
 			title: "Effect Training & Certification",
 			description:
-				"Structured training that takes engineers from Effect fundamentals to production-ready expertise. Online-first, agent-native by design, with recurring cohorts and potential in-person sessions.",
+				"Structured training from Effect fundamentals to production-ready expertise.",
 			topics: [
 				"Fibers & concurrency",
 				"Typed errors",

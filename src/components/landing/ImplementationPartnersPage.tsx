@@ -224,44 +224,48 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 					{t.title}
 				</h2>
+				<p className="mt-4 max-w-2xl text-base text-zinc-400">
+					{t.description}
+				</p>
 
-				<div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]">
-					<div className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
-						<p className="text-base leading-relaxed text-zinc-300">
-							{t.description}
-						</p>
-
-						<p className="mt-6 mb-3 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+				<div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.5fr_1fr]">
+					<div>
+						<p className="mb-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
 							// What you'll learn
 						</p>
-						<ul className="flex flex-wrap gap-2">
+						<ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
 							{t.topics.map((topic) => (
 								<li
 									key={topic}
-									className="inline-flex items-center rounded-md border border-zinc-700 bg-zinc-800/40 px-3 py-1.5 text-sm text-zinc-200"
+									className="flex items-center gap-2.5 text-base text-zinc-200"
 								>
+									<i
+										className="ri-check-line text-zinc-500"
+										aria-hidden="true"
+									/>
 									{topic}
 								</li>
 							))}
 						</ul>
 					</div>
 
-					<div className="flex flex-col justify-between rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
-						<div>
-							<p className="text-lg font-semibold text-white md:text-xl">
-								Backed by the team that built Effect.
-							</p>
-						</div>
-						<Button
-							href={t.cta.href}
-							variant="primary"
-							size="md"
-							className="group mt-6 w-full justify-center"
-						>
-							{t.cta.label}
-							<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-						</Button>
+					<div className="lg:border-l lg:border-zinc-800 lg:pl-10">
+						<p className="text-xl leading-snug font-semibold text-white md:text-2xl">
+							Backed by the team that built Effect.
+						</p>
 					</div>
+				</div>
+
+				<div className="mt-10">
+					<Button
+						href={t.cta.href}
+						variant="primary"
+						size="md"
+						className="group"
+					>
+						{t.cta.label}
+						<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+					</Button>
 				</div>
 			</div>
 		</section>
