@@ -1,5 +1,4 @@
 import { type FormEvent, useState } from "react";
-import { PARTNERS } from "../../data/partners";
 
 export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 	const [submitted, setSubmitted] = useState(false);
@@ -86,29 +85,6 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 						className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500"
 						placeholder="Acme Inc."
 					/>
-				</div>
-				<div>
-					<label
-						htmlFor="partner-type"
-						className="mb-2 block text-sm font-medium text-zinc-300"
-					>
-						Type of partner needed
-					</label>
-					<select
-						id="partner-type"
-						name="partner-type"
-						required
-						defaultValue={defaultPartner ?? ""}
-						className="w-full appearance-none rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-white outline-none transition-colors focus:border-zinc-500"
-					>
-						<option value="">Select an option</option>
-						{PARTNERS.map((p) => (
-							<option key={p.id} value={p.name}>
-								{p.name} ({p.region} &middot; {p.language})
-							</option>
-						))}
-						<option value="not-sure">Not sure yet</option>
-					</select>
 				</div>
 				<div className="md:col-span-2">
 					<label
