@@ -245,9 +245,15 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 					<p className="mb-6 font-mono text-xs tracking-wider text-zinc-400 uppercase">
 						// What you'll be able to do
 					</p>
-					<ul className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
+					<ul className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2">
 						{t.topics.map((outcome) => (
 							<li key={outcome.title}>
+								{outcome.icon && (
+									<i
+										className={`${outcome.icon} mb-3 text-2xl text-zinc-300`}
+										aria-hidden="true"
+									/>
+								)}
 								<h3 className="text-base font-semibold text-white">
 									{outcome.title}
 								</h3>

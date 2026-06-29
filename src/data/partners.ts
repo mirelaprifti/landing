@@ -14,6 +14,7 @@ export interface PartnerService {
 export interface TrainingOutcome {
 	title: string;
 	detail: string;
+	icon?: string;
 }
 
 export interface PartnerTraining {
@@ -138,18 +139,22 @@ export const PARTNERS: Partner[] = [
 				{
 					title: "Concurrent systems",
 					detail: "Fibers, scheduling, structured concurrency",
+					icon: "ri-git-branch-line",
 				},
 				{
 					title: "Type-safe failure modes",
 					detail: "Typed errors, recovery, observability",
+					icon: "ri-shield-check-line",
 				},
 				{
 					title: "Production reliability",
 					detail: "Resource safety, dependency injection, lifecycle management",
+					icon: "ri-rocket-line",
 				},
 				{
 					title: "Agent-native patterns",
 					detail: "AI workflows, deterministic execution",
+					icon: "ri-robot-2-line",
 				},
 			],
 			cta: { label: "Reserve your seat", href: "#contact" },
