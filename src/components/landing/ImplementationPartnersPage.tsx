@@ -229,20 +229,18 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 				</p>
 
 				<div className="mt-12">
-					<p className="mb-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
-						// What you'll learn
+					<p className="mb-6 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+						// What you'll be able to do
 					</p>
-					<ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
-						{t.topics.map((topic) => (
-							<li
-								key={topic}
-								className="flex items-center gap-2.5 text-base text-zinc-200"
-							>
-								<i
-									className="ri-check-line text-zinc-500"
-									aria-hidden="true"
-								/>
-								{topic}
+					<ul className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
+						{t.topics.map((outcome) => (
+							<li key={outcome.title}>
+								<h3 className="text-base font-semibold text-white">
+									{outcome.title}
+								</h3>
+								<p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+									{outcome.detail}
+								</p>
 							</li>
 						))}
 					</ul>

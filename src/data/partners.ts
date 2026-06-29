@@ -11,10 +11,15 @@ export interface PartnerService {
 	cta?: { label: string; href: string };
 }
 
+export interface TrainingOutcome {
+	title: string;
+	detail: string;
+}
+
 export interface PartnerTraining {
 	title: string;
 	description: string;
-	topics: string[];
+	topics: TrainingOutcome[];
 	cta: { label: string; href: string };
 }
 
@@ -130,12 +135,22 @@ export const PARTNERS: Partner[] = [
 			description:
 				"Structured training from Effect fundamentals to production-ready expertise. Backed by the team that built Effect.",
 			topics: [
-				"Fibers & concurrency",
-				"Typed errors",
-				"Dependency injection",
-				"Scheduling",
-				"Resource safety",
-				"Agent-native workflows",
+				{
+					title: "Concurrent systems",
+					detail: "Fibers, scheduling, structured concurrency",
+				},
+				{
+					title: "Type-safe failure modes",
+					detail: "Typed errors, recovery, observability",
+				},
+				{
+					title: "Production reliability",
+					detail: "Resource safety, dependency injection, lifecycle management",
+				},
+				{
+					title: "Agent-native patterns",
+					detail: "AI workflows, deterministic execution",
+				},
 			],
 			cta: { label: "Reserve your seat", href: "#contact" },
 		},
