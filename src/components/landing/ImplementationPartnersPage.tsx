@@ -245,23 +245,37 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 					<p className="mb-6 font-mono text-xs tracking-wider text-zinc-400 uppercase">
 						// What you'll be able to do
 					</p>
-					<ul className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2">
-						{t.topics.map((outcome) => (
-							<li key={outcome.title}>
-								{outcome.icon && (
-									<i
-										className={`${outcome.icon} mb-3 text-2xl text-zinc-300`}
-										aria-hidden="true"
-									/>
-								)}
-								<h3 className="text-base font-semibold text-white">
-									{outcome.title}
-								</h3>
-								<p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
-									{outcome.detail}
-								</p>
-							</li>
-						))}
+					<ul className="grid grid-cols-1 sm:grid-cols-2">
+						{t.topics.map((outcome, idx) => {
+							const isLeftColumn = idx % 2 === 0;
+							const isInLastRow = idx >= t.topics.length - 2;
+							const isLastOverall = idx === t.topics.length - 1;
+							return (
+								<li
+									key={outcome.title}
+									className={`py-6 first:pt-0 sm:p-8 ${
+										!isLastOverall ? "border-b border-zinc-800" : ""
+									} ${
+										isLeftColumn ? "sm:border-r sm:border-zinc-800 sm:pl-0" : "sm:pr-0"
+									} ${isInLastRow ? "sm:border-b-0 sm:pb-0" : ""} ${
+										idx === 0 ? "sm:pt-0" : ""
+									} ${idx === 1 ? "sm:pt-0" : ""}`}
+								>
+									{outcome.icon && (
+										<i
+											className={`${outcome.icon} mb-3 text-2xl text-zinc-300`}
+											aria-hidden="true"
+										/>
+									)}
+									<h3 className="text-base font-semibold text-white">
+										{outcome.title}
+									</h3>
+									<p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+										{outcome.detail}
+									</p>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
 			</div>
