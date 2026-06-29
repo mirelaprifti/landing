@@ -19,7 +19,7 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 
 	if (submitted) {
 		return (
-			<div className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-8 text-center md:p-12">
+			<div className="rounded-lg border border-zinc-700 bg-zinc-900/40 p-8 text-center md:p-12">
 				<i className="ri-check-line mb-4 text-4xl text-emerald-400" />
 				<h3 className="mb-2 text-xl font-bold text-white">
 					Request received
@@ -35,7 +35,7 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-8 md:p-12"
+			className="rounded-lg border border-zinc-700 bg-zinc-900/40 p-8 md:p-12"
 		>
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 				<div>
