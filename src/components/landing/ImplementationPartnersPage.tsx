@@ -248,10 +248,7 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 
 					<div className="flex flex-col justify-between rounded-lg border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
 						<div>
-							<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
-								// Certification
-							</p>
-							<p className="mt-3 text-lg font-semibold text-white md:text-xl">
+							<p className="text-lg font-semibold text-white md:text-xl">
 								The only Effect certification backed directly by the team that
 								built the framework.
 							</p>
