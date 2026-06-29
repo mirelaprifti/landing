@@ -130,7 +130,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 							</p>
 							<p
 								className="mt-2 font-mono text-xs tracking-wider uppercase"
-								style={{ color: partner.brandColor ?? "#a1a1aa" }}
+								style={{ color: partner.brandColor ? "#FFA083" : "#a1a1aa" }}
 							>
 								{stat.label}
 							</p>
