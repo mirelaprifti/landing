@@ -125,7 +125,10 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 							key={stat.label}
 							className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-6"
 						>
-							<p className="text-4xl font-semibold text-white md:text-5xl">
+							<p
+								className="text-4xl font-semibold md:text-5xl"
+								style={{ color: partner.brandColor ?? "#ffffff" }}
+							>
 								{stat.value}
 							</p>
 							<p className="mt-2 font-mono text-xs tracking-wider text-zinc-400 uppercase">

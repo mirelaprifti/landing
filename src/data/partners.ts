@@ -51,6 +51,8 @@ export interface Partner {
 	region: string;
 	/** Extended content shown only for the page's featured partner detail layout. */
 	tier?: "premier" | "standard";
+	/** Partner brand accent color (any valid CSS color). Used to color stat numbers, etc. */
+	brandColor?: string;
 	tagline?: string;
 	ctaPrimary?: PartnerCTA;
 	ctaSecondary?: PartnerCTA;
@@ -77,6 +79,7 @@ export const PARTNERS: Partner[] = [
 		languageFlag: "\u{1F1EC}\u{1F1E7}",
 		region: "Global",
 		tier: "premier",
+		brandColor: "#F84B2C",
 		tagline:
 			"Effect implementation, team extension, and structured training — everything teams need to ship in production.",
 		ctaPrimary: { label: "Get in touch", href: "#contact" },
