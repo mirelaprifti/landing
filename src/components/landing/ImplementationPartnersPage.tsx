@@ -329,11 +329,11 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 					What this means for your team
 				</h2>
 
-				<div className="mt-10 flex flex-col gap-10 md:gap-12">
+				<div className="mt-10 flex flex-col divide-y divide-zinc-800">
 					{partner.differentiators.map((d, idx) => (
 						<div
 							key={d.eyebrow}
-							className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12"
+							className="grid grid-cols-1 gap-6 py-10 first:pt-0 last:pb-0 lg:grid-cols-12 lg:gap-12 md:py-12"
 						>
 							<div className="flex flex-col gap-3 lg:col-span-5">
 								<h3 className="leading-tighter text-lg font-semibold text-white">
