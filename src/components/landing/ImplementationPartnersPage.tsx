@@ -467,18 +467,24 @@ export function ImplementationPartnersPage() {
 				{/* Contact Form */}
 				<section id="contact" className="border-t border-zinc-800 py-16 md:py-20">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Get in touch
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Ready to build with Effect?
-						</h2>
-						<p className="mt-4 mb-10 max-w-xl text-base text-zinc-400">
-							Tell us where you are with Effect and what you're trying to build.
-							We'll scope the right engagement — implementation, team extension,
-							or support — and get back to you quickly.
-						</p>
-						<ContactForm />
+						<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+							<div>
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Get in touch
+								</p>
+								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+									Ready to build with Effect?
+								</h2>
+								<p className="mt-4 max-w-xl text-base text-zinc-400">
+									Tell us where you are with Effect and what you're trying to build.
+									We'll scope the right engagement — implementation, team extension,
+									or support — and get back to you quickly.
+								</p>
+							</div>
+							<div>
+								<ContactForm />
+							</div>
+						</div>
 					</div>
 				</section>
 			</main>
