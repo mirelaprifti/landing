@@ -228,32 +228,24 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 					{t.description}
 				</p>
 
-				<div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-12">
-					<div className="lg:col-span-8">
-						<p className="mb-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
-							// What you'll learn
-						</p>
-						<ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
-							{t.topics.map((topic) => (
-								<li
-									key={topic}
-									className="flex items-center gap-2.5 text-base text-zinc-200"
-								>
-									<i
-										className="ri-check-line text-zinc-500"
-										aria-hidden="true"
-									/>
-									{topic}
-								</li>
-							))}
-						</ul>
-					</div>
-
-					<div className="lg:col-span-4 lg:col-start-9 lg:border-l lg:border-zinc-800 lg:pl-10">
-						<p className="text-xl leading-snug font-semibold text-white md:text-2xl">
-							Backed by the team that built Effect.
-						</p>
-					</div>
+				<div className="mt-12">
+					<p className="mb-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+						// What you'll learn
+					</p>
+					<ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+						{t.topics.map((topic) => (
+							<li
+								key={topic}
+								className="flex items-center gap-2.5 text-base text-zinc-200"
+							>
+								<i
+									className="ri-check-line text-zinc-500"
+									aria-hidden="true"
+								/>
+								{topic}
+							</li>
+						))}
+					</ul>
 				</div>
 
 				<div className="mt-10">
