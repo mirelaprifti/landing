@@ -245,38 +245,54 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 					<p className="mb-6 font-mono text-xs tracking-wider text-zinc-400 uppercase">
 						// What you'll be able to do
 					</p>
-					<ul className="grid grid-cols-1 sm:grid-cols-2">
-						{t.topics.map((outcome, idx) => {
-							const isLeftColumn = idx % 2 === 0;
-							const isInLastRow = idx >= t.topics.length - 2;
-							const isLastOverall = idx === t.topics.length - 1;
-							return (
-								<li
-									key={outcome.title}
-									className={`py-6 first:pt-0 sm:p-8 ${
-										!isLastOverall ? "border-b border-zinc-800" : ""
-									} ${
-										isLeftColumn ? "sm:border-r sm:border-zinc-800 sm:pl-0" : "sm:pr-0"
-									} ${isInLastRow ? "sm:border-b-0 sm:pb-0" : ""} ${
-										idx === 0 ? "sm:pt-0" : ""
-									} ${idx === 1 ? "sm:pt-0" : ""}`}
-								>
-									{outcome.icon && (
-										<i
-											className={`${outcome.icon} mb-3 text-2xl text-zinc-300`}
-											aria-hidden="true"
-										/>
-									)}
-									<h3 className="text-base font-semibold text-white">
-										{outcome.title}
-									</h3>
-									<p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
-										{outcome.detail}
-									</p>
-								</li>
-							);
-						})}
-					</ul>
+					<div className="relative">
+						<ul className="grid grid-cols-1 sm:grid-cols-2">
+							{t.topics.map((outcome, idx) => {
+								const isLastOverall = idx === t.topics.length - 1;
+								return (
+									<li
+										key={outcome.title}
+										className={`py-6 first:pt-0 sm:p-8 sm:first:pt-8 ${
+											!isLastOverall ? "border-b border-zinc-800 sm:border-b-0" : ""
+										} ${idx % 2 === 0 ? "sm:pl-0" : "sm:pr-0"} ${
+											idx < 2 ? "sm:pt-0" : "sm:pb-0"
+										}`}
+									>
+										{outcome.icon && (
+											<i
+												className={`${outcome.icon} mb-3 text-2xl text-zinc-300`}
+												aria-hidden="true"
+											/>
+										)}
+										<h3 className="text-base font-semibold text-white">
+											{outcome.title}
+										</h3>
+										<p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+											{outcome.detail}
+										</p>
+									</li>
+								);
+							})}
+						</ul>
+						{/* Vertical divider — split into top + bottom halves with a gap at center */}
+						<div
+							aria-hidden="true"
+							className="pointer-events-none absolute top-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-px bg-zinc-800 sm:block"
+						/>
+						<div
+							aria-hidden="true"
+							className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-px bg-zinc-800 sm:block"
+						/>
+						{/* Horizontal divider — split into left + right halves with a gap at center */}
+						<div
+							aria-hidden="true"
+							className="pointer-events-none absolute top-1/2 left-0 hidden h-px w-[calc(50%-1.5rem)] bg-zinc-800 sm:block"
+						/>
+						<div
+							aria-hidden="true"
+							className="pointer-events-none absolute top-1/2 right-0 hidden h-px w-[calc(50%-1.5rem)] bg-zinc-800 sm:block"
+						/>
+					</div>
 				</div>
 			</div>
 		</section>
