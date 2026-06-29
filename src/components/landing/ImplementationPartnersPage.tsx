@@ -330,12 +330,12 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 				</h2>
 
 				<div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
-					{partner.differentiators.map((d) => (
+					{partner.differentiators.map((d, idx) => (
 						<div key={d.eyebrow} className="flex flex-col gap-3">
-							<p className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
-								{d.eyebrow}
+							<p className="font-mono text-xs tracking-wider text-zinc-500 uppercase">
+								{String(idx + 1).padStart(2, "0")}
 							</p>
-							<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
+							<h3 className="leading-tighter text-lg font-semibold text-white">
 								{d.title}
 							</h3>
 							<p className="text-sm leading-relaxed text-zinc-400">

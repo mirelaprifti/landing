@@ -162,7 +162,7 @@ export const PARTNERS: Partner[] = [
 		differentiators: [
 			{
 				eyebrow: "Expertise",
-				title: "The deepest Effect expertise available",
+				title: "Deepest Effect expertise",
 				description:
 					"Years designing Effect systems, a formative role in ZIO's creation, and a culture of Effect Days. Your team learns from the people who shaped the paradigm.",
 			},
@@ -174,7 +174,7 @@ export const PARTNERS: Partner[] = [
 			},
 			{
 				eyebrow: "Ecosystem",
-				title: "Built for the ecosystem",
+				title: "Ecosystem-native",
 				description:
 					"An idiomatic Golem SDK for Effect, active open-source contribution. We're invested in the ecosystem, not just the engagement.",
 			},
