@@ -188,7 +188,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 					{partner.services.map((service) => (
 						<div
 							key={service.title}
-							className="flex flex-col border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
+							className="flex flex-col border border-zinc-700 bg-zinc-900/40 p-6 md:p-8"
 						>
 							{service.icon && (
 								<i
