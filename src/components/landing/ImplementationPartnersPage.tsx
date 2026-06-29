@@ -218,15 +218,28 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 	return (
 		<section id="training" className="border-t border-zinc-800 py-16 md:py-20">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-					// Coming soon
-				</p>
-				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-					{t.title}
-				</h2>
-				<p className="mt-4 max-w-2xl text-base text-zinc-400">
-					{t.description}
-				</p>
+				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+					<div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Coming soon
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							{t.title}
+						</h2>
+						<p className="mt-4 max-w-2xl text-base text-zinc-400">
+							{t.description}
+						</p>
+					</div>
+					<Button
+						href={t.cta.href}
+						variant="primary"
+						size="md"
+						className="group shrink-0"
+					>
+						{t.cta.label}
+						<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+					</Button>
+				</div>
 
 				<div className="mt-12">
 					<p className="mb-6 font-mono text-xs tracking-wider text-zinc-400 uppercase">
@@ -244,18 +257,6 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 							</li>
 						))}
 					</ul>
-				</div>
-
-				<div className="mt-10">
-					<Button
-						href={t.cta.href}
-						variant="primary"
-						size="md"
-						className="group"
-					>
-						{t.cta.label}
-						<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-					</Button>
 				</div>
 			</div>
 		</section>
