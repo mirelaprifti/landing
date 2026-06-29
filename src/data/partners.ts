@@ -80,7 +80,6 @@ export const PARTNERS: Partner[] = [
 		tagline:
 			"The credentialed services and training partner for teams adopting Effect in production — consulting, implementation, team extension, and certification.",
 		ctaPrimary: { label: "Get implementation help", href: "#contact" },
-		ctaSecondary: { label: "Training — notify me", href: "#training" },
 		stats: [
 			{ value: "273+", label: "Projects Delivered" },
 			{ value: "27+", label: "Clients Served" },
