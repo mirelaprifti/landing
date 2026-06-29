@@ -41,12 +41,11 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 			/>
 
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-				<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-					// Implementation Partner
-				</p>
-
 				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center">
 					<div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Implementation Partner
+						</p>
 						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
 							Effect's First Global Partner
 						</h1>
