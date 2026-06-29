@@ -274,23 +274,23 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 								);
 							})}
 						</ul>
-						{/* Vertical divider — double-line, split top + bottom halves with a gap at center */}
+						{/* Vertical divider — dashed 2px, split top + bottom halves with a gap at center */}
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute top-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-[5px] -translate-x-1/2 border-l border-r border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute top-0 left-1/2 hidden h-[calc(50%-1.5rem)] -translate-x-1/2 border-l-2 border-dashed border-zinc-700/80 sm:block"
 						/>
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-[5px] -translate-x-1/2 border-l border-r border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[calc(50%-1.5rem)] -translate-x-1/2 border-l-2 border-dashed border-zinc-700/80 sm:block"
 						/>
-						{/* Horizontal divider — double-line, split left + right halves with a gap at center */}
+						{/* Horizontal divider — dashed 2px, split left + right halves with a gap at center */}
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute top-1/2 left-0 hidden h-[5px] w-[calc(50%-1.5rem)] -translate-y-1/2 border-t border-b border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute top-1/2 left-0 hidden w-[calc(50%-1.5rem)] -translate-y-1/2 border-t-2 border-dashed border-zinc-700/80 sm:block"
 						/>
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute top-1/2 right-0 hidden h-[5px] w-[calc(50%-1.5rem)] -translate-y-1/2 border-t border-b border-zinc-700/80 sm:block"
+							className="pointer-events-none absolute top-1/2 right-0 hidden w-[calc(50%-1.5rem)] -translate-y-1/2 border-t-2 border-dashed border-zinc-700/80 sm:block"
 						/>
 					</div>
 				</div>
