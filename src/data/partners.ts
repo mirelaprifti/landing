@@ -79,7 +79,7 @@ export const PARTNERS: Partner[] = [
 		tier: "premier",
 		tagline:
 			"Effect implementation, team extension, and structured training — everything teams need to ship in production.",
-		ctaPrimary: { label: "Get implementation help", href: "#contact" },
+		ctaPrimary: { label: "Get in touch", href: "#contact" },
 		stats: [
 			{ value: "273+", label: "Projects Delivered" },
 			{ value: "27+", label: "Clients Served" },
