@@ -157,16 +157,29 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 	return (
 		<section className="border-t border-zinc-800 py-16 md:py-20">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-					// Services
-				</p>
-				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-					What we offer
-				</h2>
-				<p className="mt-4 max-w-2xl text-base text-zinc-400">
-					From first Effect adoption to full certification — everything a team
-					needs to succeed with Effect in production.
-				</p>
+				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+					<div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Services
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							What we offer
+						</h2>
+						<p className="mt-4 max-w-2xl text-base text-zinc-400">
+							From first Effect adoption to full certification — everything a team
+							needs to succeed with Effect in production.
+						</p>
+					</div>
+					<Button
+						href="#contact"
+						variant="secondary"
+						size="md"
+						className="group shrink-0"
+					>
+						Get in touch
+						<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+					</Button>
+				</div>
 
 				<div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
 					{partner.services.map((service) => (
