@@ -190,6 +190,12 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 							key={service.title}
 							className="flex flex-col border border-zinc-800 bg-zinc-900/40 p-6 md:p-8"
 						>
+							{service.icon && (
+								<i
+									className={`${service.icon} mb-4 text-2xl text-zinc-300`}
+									aria-hidden="true"
+								/>
+							)}
 							<h3 className="leading-tighter text-lg font-semibold text-white">
 								{service.title}
 							</h3>

@@ -7,6 +7,7 @@ export interface PartnerService {
 	title: string;
 	description: string;
 	eyebrow?: string;
+	icon?: string;
 	cta?: { label: string; href: string };
 }
 
@@ -98,12 +99,14 @@ export const PARTNERS: Partner[] = [
 				title: "Implementation & Consulting",
 				description:
 					"Hands-on Effect adoption for your production codebase. We assess your stack, design the migration path, and implement — with the depth that only comes from building Effect systems for over a decade.",
+				icon: "ri-tools-line",
 				cta: { label: "Start a conversation", href: "#contact" },
 			},
 			{
 				title: "Team Extension",
 				description:
 					"Embed Ziverge engineers alongside your team. They work in your repos, your ceremonies, your reviews — accelerating Effect adoption while your engineers develop fluency alongside them.",
+				icon: "ri-team-line",
 				cta: { label: "Embed an engineer", href: "#contact" },
 			},
 			{
@@ -111,12 +114,14 @@ export const PARTNERS: Partner[] = [
 				description:
 					"Structured Effect training from foundational concepts to advanced patterns — fibers, typed errors, dependency injection, and agent-native workflows.",
 				eyebrow: "Coming soon",
+				icon: "ri-graduation-cap-line",
 				cta: { label: "Get notified", href: "#training" },
 			},
 			{
 				title: "Open-Source & Commercial Support",
 				description:
 					"Ongoing support for teams running Effect in production. Includes access to Ziverge's Golem SDK for Effect.",
+				icon: "ri-lifebuoy-line",
 				cta: { label: "Get support", href: "#contact" },
 			},
 		],
