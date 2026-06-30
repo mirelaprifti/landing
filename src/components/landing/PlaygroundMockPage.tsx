@@ -196,6 +196,7 @@ export function PlaygroundMockPage() {
 	const [activeFile, setActiveFile] = useState("main.ts");
 	const [activeTab, setActiveTab] = useState<"terminal" | "trace">("terminal");
 	const [openFolders, setOpenFolders] = useState<Set<string>>(new Set(["src"]));
+	const [resetConfirmOpen, setResetConfirmOpen] = useState(false);
 
 	const toggleFolder = (name: string) =>
 		setOpenFolders((prev) => {
@@ -236,6 +237,7 @@ export function PlaygroundMockPage() {
 							<Button
 								variant="ghost"
 								size="sm"
+								onClick={() => setResetConfirmOpen(true)}
 								className="border border-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 							>
 								Reset
@@ -331,6 +333,58 @@ export function PlaygroundMockPage() {
 			</div>
 
 			<GridOverlay />
+
+			{/* Reset confirmation dialog */}
+			{resetConfirmOpen && (
+				<div
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby="reset-dialog-title"
+					aria-describedby="reset-dialog-description"
+					className="fixed inset-0 z-50 flex items-center justify-center p-4"
+				>
+					{/* Overlay */}
+					<button
+						type="button"
+						aria-label="Close dialog"
+						onClick={() => setResetConfirmOpen(false)}
+						className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+					/>
+
+					{/* Dialog panel */}
+					<div className="relative w-full max-w-md border border-zinc-700 bg-zinc-900 p-6 shadow-2xl">
+						<h2
+							id="reset-dialog-title"
+							className="leading-tighter text-lg font-semibold text-white"
+						>
+							Reset playground?
+						</h2>
+						<p
+							id="reset-dialog-description"
+							className="mt-3 text-sm leading-relaxed text-zinc-400"
+						>
+							This will discard your current code and restore the default
+							example. This action can't be undone.
+						</p>
+						<div className="mt-6 flex items-center justify-end gap-3">
+							<Button
+								variant="secondary"
+								size="md"
+								onClick={() => setResetConfirmOpen(false)}
+							>
+								Cancel
+							</Button>
+							<Button
+								variant="primary"
+								size="md"
+								onClick={() => setResetConfirmOpen(false)}
+							>
+								Reset
+							</Button>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }
