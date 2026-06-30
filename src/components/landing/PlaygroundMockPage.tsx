@@ -348,7 +348,7 @@ export function PlaygroundMockPage() {
 						type="button"
 						aria-label="Close dialog"
 						onClick={() => setResetConfirmOpen(false)}
-						className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+						className="absolute inset-0 bg-black/40 backdrop-blur-sm"
 					/>
 
 					{/* Dialog panel */}
