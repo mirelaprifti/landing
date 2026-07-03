@@ -47,7 +47,7 @@ function DownloadLink({ href, label }: { href: string; label: string }) {
 		<button
 			type="button"
 			onClick={handleDownload}
-			className="cursor-pointer text-sm text-white underline transition-colors hover:no-underline"
+			className="cursor-pointer text-sm text-zinc-900 underline transition-colors hover:no-underline dark:text-white"
 		>
 			{label}
 		</button>
@@ -56,10 +56,10 @@ function DownloadLink({ href, label }: { href: string; label: string }) {
 
 export function PressKitPage() {
 	return (
-		<div className="relative min-h-screen bg-zinc-950 text-white">
+		<div className="relative min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white">
 			{/* Dithered background overlay */}
 			<div
-				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.03] dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
 					backgroundSize: "4px 4px",
@@ -68,7 +68,7 @@ export function PressKitPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:top-0 focus:left-0"
+				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 px-6 py-4 font-semibold focus:top-0 focus:left-0 dark:bg-zinc-800"
 			>
 				Skip to main content
 			</a>
@@ -80,9 +80,9 @@ export function PressKitPage() {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 					{/* Right vertical line */}
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 			</div>
 
