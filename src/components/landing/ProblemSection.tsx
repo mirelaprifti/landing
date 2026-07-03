@@ -137,7 +137,7 @@ function ComplexityChart() {
 							y1={y}
 							x2="400"
 							y2={y}
-							stroke="rgb(39 39 42)"
+							stroke="var(--grid-line)"
 							strokeWidth="1"
 							strokeOpacity="0.4"
 						/>

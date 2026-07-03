@@ -22,10 +22,10 @@ function QuoteCard({
 					<span className="font-medium text-zinc-900 dark:text-white">{author}</span>
 				</div>
 				<div
-					className="h-[1px] flex-grow"
+					className="h-[1px] flex-grow text-zinc-300 dark:text-zinc-700"
 					style={{
 						background:
-							"linear-gradient(to right, transparent 0%, rgba(63, 63, 70, 1) 100%)",
+							"linear-gradient(to right, transparent 0%, currentColor 100%)",
 					}}
 				/>
 				{logo ? (
@@ -500,9 +500,8 @@ export function QuotesSection() {
 		<section className="relative z-[70] w-full overflow-hidden bg-white py-20 md:py-24 dark:bg-zinc-950">
 			{/* Top dashed border */}
 			<div
-				className="absolute top-0 right-0 left-0 h-[1px]"
+				className="absolute top-0 right-0 left-0 h-[1px] bg-zinc-300 dark:bg-zinc-700"
 				style={{
-					background: "#3f3f46",
 					WebkitMask:
 						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
@@ -590,9 +589,8 @@ export function QuotesSection() {
 
 			{/* Bottom dashed border */}
 			<div
-				className="absolute right-0 bottom-0 left-0 h-[1px]"
+				className="absolute right-0 bottom-0 left-0 h-[1px] bg-zinc-300 dark:bg-zinc-700"
 				style={{
-					background: "#3f3f46",
 					WebkitMask:
 						"repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
 					mask: "repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 4px)",
