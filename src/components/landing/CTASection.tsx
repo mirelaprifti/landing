@@ -9,8 +9,8 @@ export function CTASection() {
 				className="pointer-events-none absolute inset-0"
 				style={{
 					backgroundImage: `
-						linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-						linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+						linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+						linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 					`,
 					backgroundSize: "196.6px 180px",
 					backgroundPosition: "calc(50% + 97px) 0",
@@ -22,13 +22,13 @@ export function CTASection() {
 				className="pointer-events-none absolute inset-0"
 				style={{
 					background:
-						"linear-gradient(to bottom, #09090b 0%, transparent 15%, transparent 80%, #09090b 100%)",
+						"linear-gradient(to bottom, var(--page-fade) 0%, transparent 15%, transparent 80%, var(--page-fade) 100%)",
 				}}
 			/>
 
 			{/* Texture overlay */}
 			<div
-				className="pointer-events-none absolute inset-0 opacity-[0.015]"
+				className="pointer-events-none absolute inset-0 hidden opacity-[0.015] dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
 				}}
@@ -38,10 +38,10 @@ export function CTASection() {
 				<div className="flex flex-col items-center text-center">
 					<p className="mb-3 font-mono text-base text-zinc-500">
 						<span>import {"{ "}</span>
-						<span className="text-white">Effect</span>
+						<span className="text-zinc-900 dark:text-white">Effect</span>
 						<span>{" }"} from "effect"</span>
 					</p>
-					<h2 className="leading-tighter max-w-3xl text-4xl font-bold text-white">
+					<h2 className="leading-tighter max-w-3xl text-4xl font-bold text-zinc-900 dark:text-white">
 						Stop installing a new package for every problem
 					</h2>
 

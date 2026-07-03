@@ -15,11 +15,11 @@ function QuoteCard({
 	logoSize?: string;
 }) {
 	return (
-		<div className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md border border-zinc-700 bg-zinc-900/30 p-8">
-			<p className="text-lg leading-relaxed text-zinc-300">"{text}"</p>
+		<div className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md border border-zinc-300 bg-zinc-100/30 p-8 dark:border-zinc-700 dark:bg-zinc-900/30">
+			<p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">"{text}"</p>
 			<div className="mt-auto flex w-full items-center gap-4">
 				<div className="flex items-center gap-3">
-					<span className="font-medium text-white">{author}</span>
+					<span className="font-medium text-zinc-900 dark:text-white">{author}</span>
 				</div>
 				<div
 					className="h-[1px] flex-grow"
@@ -29,9 +29,13 @@ function QuoteCard({
 					}}
 				/>
 				{logo ? (
-					<img src={logo} alt={company} className={logoSize} />
+					<img
+						src={logo}
+						alt={company}
+						className={`${logoSize} brightness-0 dark:brightness-100`}
+					/>
 				) : (
-					<i className="ri-twitter-x-line flex items-center text-lg text-zinc-300" />
+					<i className="ri-twitter-x-line flex items-center text-lg text-zinc-700 dark:text-zinc-300" />
 				)}
 			</div>
 		</div>
@@ -310,10 +314,10 @@ export function QuotesGridSection() {
 				{/* Header row with title and navigation arrows */}
 				<div className="mb-12 flex items-end justify-between">
 					<div>
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Community
 						</p>
-						<h2 className="leading-tighter text-2xl font-bold text-white md:text-3xl">
+						<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
 							What developers are saying...
 						</h2>
 					</div>
@@ -322,18 +326,18 @@ export function QuotesGridSection() {
 						<button
 							type="button"
 							onClick={() => scroll("left")}
-							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<i className="ri-arrow-left-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<i className="ri-arrow-left-line text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
 						</button>
 						<button
 							type="button"
 							onClick={() => scroll("right")}
-							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<i className="ri-arrow-right-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<i className="ri-arrow-right-line text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
 						</button>
 					</div>
 				</div>
@@ -363,23 +367,23 @@ export function QuotesGridSection() {
 					{infiniteQuotes.map((quote, index) => (
 						<div
 							key={index}
-							className="flex h-56 w-80 shrink-0 flex-col border border-zinc-700 bg-zinc-950 p-6"
+							className="flex h-56 w-80 shrink-0 flex-col border border-zinc-300 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-950"
 						>
-							<p className="line-clamp-4 text-base leading-relaxed text-zinc-400">
+							<p className="line-clamp-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
 								"{quote.text}"
 							</p>
 							<div className="mt-auto flex items-center justify-between">
-								<span className="font-mono text-sm font-medium text-zinc-200">
+								<span className="font-mono text-sm font-medium text-zinc-800 dark:text-zinc-200">
 									{quote.author}
 								</span>
 								{quote.logo ? (
 									<img
 										src={quote.logo}
 										alt={quote.company}
-										className={quote.logoSize || "h-4"}
+										className={`${quote.logoSize || "h-4"} brightness-0 dark:brightness-100`}
 									/>
 								) : (
-									<i className="ri-twitter-x-line flex items-center text-lg text-zinc-400" />
+									<i className="ri-twitter-x-line flex items-center text-lg text-zinc-600 dark:text-zinc-400" />
 								)}
 							</div>
 						</div>
@@ -390,14 +394,16 @@ export function QuotesGridSection() {
 				<div
 					className="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-16 md:block"
 					style={{
-						background: "linear-gradient(to right, rgb(9 9 11), transparent)",
+						background:
+							"linear-gradient(to right, var(--page-fade), transparent)",
 					}}
 				/>
 				{/* Right fade gradient */}
 				<div
 					className="pointer-events-none absolute top-0 right-0 bottom-0 w-16"
 					style={{
-						background: "linear-gradient(to left, rgb(9 9 11), transparent)",
+						background:
+							"linear-gradient(to left, var(--page-fade), transparent)",
 					}}
 				/>
 			</div>
@@ -491,7 +497,7 @@ export function QuotesSection() {
 	const handleMouseUp = () => setIsDragging(false);
 
 	return (
-		<section className="relative z-[70] w-full overflow-hidden bg-zinc-950 py-20 md:py-24">
+		<section className="relative z-[70] w-full overflow-hidden bg-white py-20 md:py-24 dark:bg-zinc-950">
 			{/* Top dashed border */}
 			<div
 				className="absolute top-0 right-0 left-0 h-[1px]"
@@ -503,14 +509,14 @@ export function QuotesSection() {
 				}}
 			/>
 
-			<div className="mx-auto flex w-full flex-col gap-8 bg-zinc-950 md:gap-12">
+			<div className="mx-auto flex w-full flex-col gap-8 bg-white md:gap-12 dark:bg-zinc-950">
 				{/* Header row with title and arrow controls */}
 				<div className="mx-auto flex w-full max-w-[73.75rem] flex-row items-center justify-between px-4">
 					<div>
-						<p className="mb-2 font-mono text-sm tracking-wider text-zinc-400 uppercase">
+						<p className="mb-2 font-mono text-sm tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Testimonials
 						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+						<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
 							What developers are saying
 						</h2>
 					</div>
@@ -518,18 +524,18 @@ export function QuotesSection() {
 						<button
 							type="button"
 							onClick={() => scroll("left")}
-							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all duration-200 hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<i className="ri-arrow-left-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<i className="ri-arrow-left-line text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
 						</button>
 						<button
 							type="button"
 							onClick={() => scroll("right")}
-							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800"
+							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all duration-200 hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<i className="ri-arrow-right-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<i className="ri-arrow-right-line text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
 						</button>
 					</div>
 				</div>
@@ -567,14 +573,16 @@ export function QuotesSection() {
 					<div
 						className="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-24 md:block"
 						style={{
-							background: "linear-gradient(to left, transparent, #09090b)",
+							background:
+								"linear-gradient(to left, transparent, var(--page-fade))",
 						}}
 					/>
 					{/* Right fade gradient */}
 					<div
 						className="pointer-events-none absolute top-0 right-0 bottom-0 w-24"
 						style={{
-							background: "linear-gradient(to right, transparent, #09090b)",
+							background:
+								"linear-gradient(to right, transparent, var(--page-fade))",
 						}}
 					/>
 				</div>

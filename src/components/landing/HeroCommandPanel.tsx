@@ -19,6 +19,9 @@ const PM_ICONS: Record<string, string> = {
 
 const PM_OPTIONS = ["bun", "deno", "npm", "yarn", "pnpm"] as const;
 
+// Icons whose SVG source is pure white — need darkening on light backgrounds
+const WHITE_PM_ICONS = new Set(["npm", "yarn", "deno"]);
+
 const AGENT_PROMPT = `Help me build an Effect app in TypeScript. Start by reading https://effect.website/docs/getting-started and follow it exactly: scaffold a fresh TypeScript project, install \`effect\`, create a \`main.ts\` with a simple \`Effect.gen\` program that logs "hello, world", and run it with \`bun run main.ts\` (or the npm/pnpm/yarn equivalent) so I see it execute. Confirm it runs before moving on.
 
 Then STOP and ASK ME what I want to build. From there, consult only the docs you need for what I asked for — don't march me through every guide.
@@ -79,9 +82,9 @@ export function HeroCommandPanel() {
 	};
 
 	return (
-		<div className="rounded-md bg-zinc-900/50 p-1 ring-1 ring-zinc-700 ring-inset">
+		<div className="rounded-md bg-zinc-100/50 p-1 ring-1 ring-zinc-300 ring-inset dark:bg-zinc-900/50 dark:ring-zinc-700">
 			{/* Mode tabs: Install | Prompt for AI agents */}
-			<div role="tablist" className="flex border-b border-zinc-800">
+			<div role="tablist" className="flex border-b border-zinc-200 dark:border-zinc-800">
 				<button
 					type="button"
 					role="tab"
@@ -89,13 +92,13 @@ export function HeroCommandPanel() {
 					onClick={() => setMode("install")}
 					className={`group relative flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
 						mode === "install"
-							? "text-white"
-							: "text-zinc-500 hover:text-zinc-300 dark:text-zinc-400"
+							? "text-zinc-900 dark:text-white"
+							: "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
 					}`}
 				>
 					Install
 					{mode === "install" && (
-						<span className="absolute right-0 bottom-0 left-0 h-px bg-white" />
+						<span className="absolute right-0 bottom-0 left-0 h-px bg-zinc-900 dark:bg-white" />
 					)}
 				</button>
 				<button
@@ -105,13 +108,13 @@ export function HeroCommandPanel() {
 					onClick={() => setMode("prompt")}
 					className={`group relative flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
 						mode === "prompt"
-							? "text-white"
-							: "text-zinc-500 hover:text-zinc-300 dark:text-zinc-400"
+							? "text-zinc-900 dark:text-white"
+							: "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
 					}`}
 				>
 					Prompt for AI agents
 					{mode === "prompt" && (
-						<span className="absolute right-0 bottom-0 left-0 h-px bg-white" />
+						<span className="absolute right-0 bottom-0 left-0 h-px bg-zinc-900 dark:bg-white" />
 					)}
 				</button>
 			</div>
@@ -120,7 +123,7 @@ export function HeroCommandPanel() {
 			<button
 				type="button"
 				onClick={copy}
-				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-4 py-1 text-left font-mono text-sm text-zinc-300 transition-colors hover:bg-zinc-800/30 hover:text-white"
+				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-4 py-1 text-left font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-200/40 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/30 dark:hover:text-white"
 				aria-label={
 					mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
 				}
@@ -138,13 +141,13 @@ export function HeroCommandPanel() {
 							aria-haspopup="listbox"
 							aria-expanded={pmOpen}
 							aria-label={`Package manager: ${activePM}`}
-							className="flex items-center gap-1.5 rounded-sm border-r border-zinc-800 py-0.5 pr-3 pl-1 text-xs text-zinc-300 transition-colors hover:text-white"
+							className="flex items-center gap-1.5 rounded-sm border-r border-zinc-200 py-0.5 pr-3 pl-1 text-xs text-zinc-700 transition-colors hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:text-white"
 						>
 							<img
 								src={getAssetPath(PM_ICONS[activePM])}
 								alt=""
 								aria-hidden="true"
-								className={`${activePM === "npm" ? "h-4.5" : "h-4"} w-auto`}
+								className={`${activePM === "npm" ? "h-4.5" : "h-4"} w-auto ${WHITE_PM_ICONS.has(activePM) ? "brightness-0 dark:brightness-100" : ""}`}
 							/>
 							<span>{activePM}</span>
 							<i
@@ -159,7 +162,7 @@ export function HeroCommandPanel() {
 						{pmOpen && (
 							<ul
 								role="listbox"
-								className="absolute top-full left-0 z-20 mt-2 w-36 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 shadow-xl"
+								className="absolute top-full left-0 z-20 mt-2 w-36 overflow-hidden rounded-md border border-zinc-200 bg-zinc-100 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
 							>
 								{PM_OPTIONS.map((pm) => (
 									<li key={pm} role="option" aria-selected={activePM === pm}>
@@ -169,15 +172,17 @@ export function HeroCommandPanel() {
 												setActivePM(pm);
 												setPmOpen(false);
 											}}
-											className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors hover:bg-zinc-800 ${
-												activePM === pm ? "text-white" : "text-zinc-400"
+											className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800 ${
+												activePM === pm
+													? "text-zinc-900 dark:text-white"
+													: "text-zinc-600 dark:text-zinc-400"
 											}`}
 										>
 											<img
 												src={getAssetPath(PM_ICONS[pm])}
 												alt=""
 												aria-hidden="true"
-												className={`${pm === "npm" ? "h-4.5" : "h-4"} w-auto shrink-0`}
+												className={`${pm === "npm" ? "h-4.5" : "h-4"} w-auto shrink-0 ${WHITE_PM_ICONS.has(pm) ? "brightness-0 dark:brightness-100" : ""}`}
 											/>
 											<span className="flex-1">{pm}</span>
 											{activePM === pm && (
@@ -199,9 +204,9 @@ export function HeroCommandPanel() {
 				</span>
 
 				{copied ? (
-					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
+					<i className="ri-check-line shrink-0 text-base text-zinc-800 dark:text-zinc-200" />
 				) : (
-					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
+					<i className="ri-file-copy-line shrink-0 text-base text-zinc-600 dark:text-zinc-400" />
 				)}
 			</button>
 		</div>

@@ -11,15 +11,15 @@ export function FAQSection() {
 				<>
 					<p>
 						Effect's syntax may feel unfamiliar at first:{" "}
-						<code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">
+						<code className="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 							yield*
 						</code>
 						,{" "}
-						<code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">
+						<code className="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 							Effect.gen
 						</code>
 						,{" "}
-						<code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">
+						<code className="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 							TaggedError
 						</code>
 						… But that's because it's doing something TypeScript can't do on its
@@ -42,11 +42,11 @@ export function FAQSection() {
 			answer: (
 				<p>
 					You can be productive in a few days. Start by replacing{" "}
-					<code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">
+					<code className="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 						await
 					</code>{" "}
 					with{" "}
-					<code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-sm text-zinc-200">
+					<code className="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 						yield*
 					</code>
 					, everything else follows naturally.
@@ -134,15 +134,15 @@ export function FAQSection() {
 						Yes! You can start small, wrapping existing async code or APIs in
 						Effect and expanding from there:
 					</p>
-					<pre className="mt-3 mb-3 overflow-x-auto border border-zinc-800 bg-zinc-900/50 p-4">
-						<code className="font-mono text-sm text-zinc-300">
-							<span className="text-zinc-400">
+					<pre className="mt-3 mb-3 overflow-x-auto border border-zinc-200 bg-zinc-100/50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+						<code className="font-mono text-sm text-zinc-700 dark:text-zinc-300">
+							<span className="text-zinc-600 dark:text-zinc-400">
 								{"// Enter the Effect world"}
 							</span>
 							{"\n"}
 							{"Effect.tryPromise(() => nonEffectAPI())"}
 							{"\n\n"}
-							<span className="text-zinc-400">
+							<span className="text-zinc-600 dark:text-zinc-400">
 								{"// Exit back to normal promises"}
 							</span>
 							{"\n"}
@@ -178,14 +178,14 @@ export function FAQSection() {
 					{/* Left column - Header and CTA (50%) */}
 					<div className="w-full px-4 lg:w-1/2">
 						<div>
-							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 								// FAQ
 							</p>
-							<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
 								Questions we get asked a lot
 							</h2>
 
-							<p className="mt-5 max-w-lg text-lg leading-relaxed text-zinc-400">
+							<p className="mt-5 max-w-lg text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
 								Can't find what you're looking for? Our community is always
 								happy to help.
 							</p>
@@ -213,8 +213,8 @@ export function FAQSection() {
 										key={index}
 										className={`rounded-md border transition-colors duration-200 ${
 											isOpen
-												? "border-zinc-700 bg-zinc-900/40"
-												: "border-zinc-700 hover:border-zinc-600 hover:bg-zinc-900/50"
+												? "border-zinc-300 bg-zinc-100/40 dark:border-zinc-700 dark:bg-zinc-900/40"
+												: "border-zinc-300 hover:border-zinc-400 hover:bg-zinc-100/50 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-900/50"
 										}`}
 									>
 										<button
@@ -227,8 +227,8 @@ export function FAQSection() {
 											<span
 												className={`text-base leading-snug font-medium transition-colors ${
 													isOpen
-														? "text-white"
-														: "text-zinc-300 group-hover:text-white"
+														? "text-zinc-900 dark:text-white"
+														: "text-zinc-700 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white"
 												}`}
 											>
 												{faq.question}
@@ -238,8 +238,8 @@ export function FAQSection() {
 											<div
 												className={`flex h-6 w-6 shrink-0 items-center justify-center transition-all duration-200 ${
 													isOpen
-														? "bg-white text-zinc-900"
-														: "bg-zinc-800/80 text-zinc-400 group-hover:bg-zinc-700"
+														? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+														: "bg-zinc-200/80 text-zinc-600 group-hover:bg-zinc-300 dark:bg-zinc-800/80 dark:text-zinc-400 dark:group-hover:bg-zinc-700"
 												}`}
 											>
 												<i
@@ -259,7 +259,7 @@ export function FAQSection() {
 											}`}
 										>
 											<div className="overflow-hidden">
-												<div className="px-5 pb-5 text-[15px] leading-relaxed text-zinc-400">
+												<div className="px-5 pb-5 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
 													{faq.answer}
 												</div>
 											</div>
