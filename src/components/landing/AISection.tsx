@@ -21,7 +21,7 @@ function VideoWithPosterOverlay() {
 	};
 
 	return (
-		<div className="relative aspect-video w-full overflow-hidden rounded-lg border border-zinc-800 bg-black">
+		<div className="relative aspect-video w-full overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 bg-black">
 			<video
 				ref={videoRef}
 				src={getAssetPath("/videos/ben-davis-video.mp4")}
@@ -68,7 +68,7 @@ export function AISection() {
 	return (
 		<section className="relative w-full overflow-hidden py-24 md:pt-40 md:pb-24">
 			{/* Subtle gradient background */}
-			<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/0 via-zinc-950/0 to-zinc-900/50" />
+			<div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/0 to-zinc-100/50 dark:from-zinc-950/0 dark:via-zinc-950/0 dark:to-zinc-900/50" />
 
 			<div className="relative mx-auto w-full max-w-[73.75rem]">
 				{/* Header row - Two columns: heading left, video right */}

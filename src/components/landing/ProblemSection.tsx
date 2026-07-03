@@ -201,18 +201,18 @@ function ComplexityChart() {
 			</div>
 
 			<div className="mt-5 flex items-center justify-center gap-6">
-				<span className="font-mono text-xs tracking-wider text-zinc-400 uppercase">
+				<span className="font-mono text-xs tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 					Complexity at scale:
 				</span>
 				<div className="flex items-center gap-1.5">
 					<div className="h-1.5 w-1.5 rounded-full bg-red-500" />
-					<span className="font-mono text-xs text-zinc-400 uppercase">
+					<span className="font-mono text-xs text-zinc-600 dark:text-zinc-400 uppercase">
 						Without Effect
 					</span>
 				</div>
 				<div className="flex items-center gap-1.5">
 					<div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-					<span className="font-mono text-xs text-zinc-400 uppercase">
+					<span className="font-mono text-xs text-zinc-600 dark:text-zinc-400 uppercase">
 						With Effect
 					</span>
 				</div>
@@ -228,7 +228,7 @@ export function ProblemSection() {
 				className="pointer-events-none absolute inset-x-0 top-0 h-32"
 				style={{
 					background:
-						"linear-gradient(to bottom, #09090b 0%, transparent 100%)",
+						"linear-gradient(to bottom, var(--page-fade) 0%, transparent 100%)",
 				}}
 			/>
 
@@ -236,10 +236,10 @@ export function ProblemSection() {
 				{/* Top row - Header + Chart */}
 				<div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-8">
 					<div>
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 							// What Effect Solves
 						</p>
-						<h2 className="leading-tighter max-w-md text-2xl font-semibold text-white md:text-3xl">
+						<h2 className="leading-tighter max-w-md text-2xl font-semibold text-zinc-900 dark:text-white md:text-3xl">
 							Built-in solutions for the hard problems
 						</h2>
 					</div>
@@ -254,18 +254,18 @@ export function ProblemSection() {
 					{FEATURES.map((feature, index) => (
 						<div
 							key={index}
-							className="flex flex-col border border-zinc-700 bg-zinc-950 p-7"
+							className="flex flex-col border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 p-7"
 						>
-							<p className="text-base font-medium text-zinc-400">{feature.problem}</p>
+							<p className="text-base font-medium text-zinc-600 dark:text-zinc-400">{feature.problem}</p>
 							{/* Arrow connector */}
 							<div className="my-4 flex items-center gap-2">
-								<div className="h-px flex-1 bg-zinc-700" />
-								<i className="ri-arrow-down-line text-sm text-white" />
-								<div className="h-px flex-1 bg-zinc-700" />
+								<div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
+								<i className="ri-arrow-down-line text-sm text-zinc-900 dark:text-white" />
+								<div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
 							</div>
-							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-white uppercase">
-								<div className="flex h-6 w-6 shrink-0 items-center justify-center bg-zinc-800">
-									<i className={`${feature.icon} text-sm text-zinc-200`} />
+							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-zinc-900 dark:text-white uppercase">
+								<div className="flex h-6 w-6 shrink-0 items-center justify-center bg-zinc-200 dark:bg-zinc-800">
+									<i className={`${feature.icon} text-sm text-zinc-800 dark:text-zinc-200`} />
 								</div>
 								{feature.title}
 							</h3>
@@ -274,7 +274,7 @@ export function ProblemSection() {
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-3">
 										<i className="ri-check-line shrink-0 pl-1 text-sm text-emerald-500" />
-										<span className="text-sm text-zinc-400">{item}</span>
+										<span className="text-sm text-zinc-600 dark:text-zinc-400">{item}</span>
 									</div>
 								))}
 							</div>
