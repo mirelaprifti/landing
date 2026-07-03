@@ -116,7 +116,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 	return (
 		<a
 			href={getAssetPath(`/podcast/episodes/${episode.slug}`)}
-			className="group my-4 flex flex-col gap-8 p-4 transition-colors hover:bg-zinc-900/60 md:flex-row md:gap-8"
+			className="group my-4 flex flex-col gap-8 p-4 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60 md:flex-row md:gap-8"
 		>
 			{/* Thumbnail */}
 			<div className="relative aspect-video w-full flex-shrink-0 overflow-hidden md:w-[40%]">
@@ -129,16 +129,16 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 
 			{/* Episode content */}
 			<div className="flex flex-1 flex-col justify-center pr-8">
-				<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase transition-colors duration-300 group-hover:text-zinc-300">
+				<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
 					// Episode #{episode.number.toString().padStart(2, "0")}
 				</p>
-				<h4 className="text-lg font-semibold text-white md:text-xl">
+				<h4 className="text-lg font-semibold text-zinc-900 dark:text-white md:text-xl">
 					{episode.title}
 				</h4>
-				<p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-400 md:text-base">
+				<p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 md:text-base">
 					{episode.description}
 				</p>
-				<div className="mt-4 flex items-center gap-2 text-sm text-zinc-400 transition-colors duration-300 group-hover:text-zinc-400">
+				<div className="mt-4 flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors duration-300 group-hover:text-zinc-600 dark:group-hover:text-zinc-400">
 					<span>{episode.date}</span>
 					<span>·</span>
 					<span>{episode.duration}</span>
@@ -150,10 +150,10 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 
 export function PodcastPage() {
 	return (
-		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+		<div className="relative min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white antialiased">
 			{/* Dithered background overlay */}
 			<div
-				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03] hidden dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
 					backgroundSize: "4px 4px",
@@ -163,7 +163,7 @@ export function PodcastPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 dark:bg-zinc-800 px-6 py-4 font-semibold text-zinc-900 dark:text-white no-underline focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -174,8 +174,8 @@ export function PodcastPage() {
 			{/* Vertical border lines container */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 			</div>
 
@@ -183,11 +183,13 @@ export function PodcastPage() {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800"
 						style={{
 							width: "1px",
-							backgroundImage:
-								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
+							maskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+							WebkitMaskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
 						}}
 					/>
 				</div>
@@ -196,14 +198,14 @@ export function PodcastPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero Section */}
-				<section className="relative w-full overflow-hidden bg-zinc-950 pt-20 pb-10 md:pt-32 md:pb-16">
+				<section className="relative w-full overflow-hidden bg-white dark:bg-zinc-950 pt-20 pb-10 md:pt-32 md:pb-16">
 					{/* Grid background */}
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
 							backgroundImage: `
-                linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
               `,
 							backgroundSize: "196.6px 186px",
 							backgroundPosition: "calc(50% + 97px) 0",
@@ -215,7 +217,7 @@ export function PodcastPage() {
 						className="pointer-events-none absolute inset-0"
 						style={{
 							background:
-								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 60%, var(--page-fade) 100%)",
 						}}
 					/>
 
@@ -223,13 +225,13 @@ export function PodcastPage() {
 						<div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-12">
 							{/* Text content */}
 							<div className="max-w-3xl">
-								<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 									// Cause & Effect 🎙️
 								</p>
-								<h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-4xl">
+								<h1 className="text-3xl font-semibold text-zinc-900 dark:text-white sm:text-4xl md:text-4xl">
 									How companies ship with Effect
 								</h1>
-								<p className="mt-2.5 text-base leading-snug text-zinc-400 sm:text-lg">
+								<p className="mt-2.5 text-base leading-snug text-zinc-600 dark:text-zinc-400 sm:text-lg">
 									Stories from engineering teams at Vercel, Zendesk, MasterClass, and more.
 								</p>
 
@@ -279,7 +281,7 @@ export function PodcastPage() {
 												fill="#fff"
 											/>
 										</svg>
-										<span className="text-sm text-white group-hover:underline">
+										<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 											Apple Podcasts
 										</span>
 									</Link>
@@ -297,7 +299,7 @@ export function PodcastPage() {
 										>
 											<path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
 										</svg>
-										<span className="text-sm text-white group-hover:underline">
+										<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 											Spotify
 										</span>
 									</Link>
@@ -321,7 +323,7 @@ export function PodcastPage() {
 												d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"
 											/>
 										</svg>
-										<span className="text-sm text-white group-hover:underline">
+										<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 											YouTube
 										</span>
 									</Link>
@@ -332,14 +334,14 @@ export function PodcastPage() {
 										aria-label="RSS Feed"
 									>
 										<svg
-											className="h-5 w-5 shrink-0 text-white"
+											className="h-5 w-5 shrink-0 text-zinc-900 dark:text-white"
 											viewBox="0 0 24 24"
 											fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg"
 										>
 											<path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93v-2.83z" />
 										</svg>
-										<span className="text-sm text-white group-hover:underline">
+										<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 											RSS
 										</span>
 									</Link>
@@ -349,12 +351,12 @@ export function PodcastPage() {
 							<div className="hidden lg:block">
 								<div className="relative px-8 py-6">
 									{/* Corner brackets */}
-									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700" />
-									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-700" />
-									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-700" />
-									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-700" />
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
 
-									<p className="mb-4 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+									<p className="mb-4 font-mono text-xs tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 										// Available on
 									</p>
 									<div className="flex flex-col gap-3">
@@ -402,7 +404,7 @@ export function PodcastPage() {
 													fill="#fff"
 												/>
 											</svg>
-											<span className="text-sm text-white group-hover:underline">
+											<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 												Apple Podcasts
 											</span>
 										</Link>
@@ -421,7 +423,7 @@ export function PodcastPage() {
 											>
 												<path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
 											</svg>
-											<span className="text-sm text-white group-hover:underline">
+											<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 												Spotify
 											</span>
 										</Link>
@@ -446,7 +448,7 @@ export function PodcastPage() {
 													d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"
 												/>
 											</svg>
-											<span className="text-sm text-white group-hover:underline">
+											<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 												YouTube
 											</span>
 										</Link>
@@ -458,14 +460,14 @@ export function PodcastPage() {
 											aria-label="RSS Feed"
 										>
 											<svg
-												className="h-5 w-5 shrink-0 text-white"
+												className="h-5 w-5 shrink-0 text-zinc-900 dark:text-white"
 												viewBox="0 0 24 24"
 												fill="currentColor"
 												xmlns="http://www.w3.org/2000/svg"
 											>
 												<path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93v-2.83z" />
 											</svg>
-											<span className="text-sm text-white group-hover:underline">
+											<span className="text-sm text-zinc-900 dark:text-white group-hover:underline">
 												RSS
 											</span>
 										</Link>
@@ -477,14 +479,14 @@ export function PodcastPage() {
 				</section>
 
 				{/* Episodes Section */}
-				<section className="w-full gap-16 border-t border-zinc-800 bg-zinc-950 pb-24">
+				<section className="w-full gap-16 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 pb-24">
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						<div className="flex flex-col">
 							{EPISODES.map((episode, index) => (
 								<div key={episode.number}>
 									<EpisodeCard episode={episode} />
 									{index < EPISODES.length - 1 && (
-										<div className="h-px w-full bg-zinc-800" />
+										<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 									)}
 								</div>
 							))}

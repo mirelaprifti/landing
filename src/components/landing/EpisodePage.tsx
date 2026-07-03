@@ -20,10 +20,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	return (
-		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+		<div className="relative min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white antialiased">
 			{/* Dithered background overlay */}
 			<div
-				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03] hidden dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
 					backgroundSize: "4px 4px",
@@ -33,7 +33,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 dark:bg-zinc-800 px-6 py-4 font-semibold text-zinc-900 dark:text-white no-underline focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -44,8 +44,8 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 			{/* Vertical border lines container */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 			</div>
 
@@ -53,11 +53,13 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800"
 						style={{
 							width: "1px",
-							backgroundImage:
-								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
+							maskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+							WebkitMaskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
 						}}
 					/>
 				</div>
@@ -66,37 +68,37 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Episode header */}
-				<section className="relative w-full bg-zinc-950 pt-16 pb-10">
+				<section className="relative w-full bg-white dark:bg-zinc-950 pt-16 pb-10">
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						<nav aria-label="Breadcrumb" className="mb-4">
 							<ol className="flex items-center gap-2 font-mono font-medium text-sm tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 								<li>
 									<a
 										href={getAssetPath("/podcast")}
-										className="text-white transition-opacity hover:opacity-80"
+										className="text-zinc-900 dark:text-white transition-opacity hover:opacity-80"
 									>
 										Cause & Effect 🎙️
 									</a>
 								</li>
 								<li>/</li>
-								<li className="text-zinc-400">
+								<li className="text-zinc-600 dark:text-zinc-400">
 									Episode #{episode.number.toString().padStart(2, "0")}
 								</li>
 							</ol>
 						</nav>
 
-						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-white">{episode.title}</h1>
+						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">{episode.title}</h1>
 					</div>
 				</section>
 
 				{/* Video + Transcript Section */}
-				<section className="w-full border-t border-zinc-800 bg-zinc-950 py-8">
+				<section className="w-full border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-8">
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						{/* When expanded: Video is full width, content below in grid */}
 						{isExpanded ? (
 							<>
 								{/* Full-width video */}
-								<div className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-900">
+								<div className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-900">
 									<iframe
 										src={`https://www.youtube.com/embed/${episode.youtubeId}`}
 										title={episode.title}
@@ -112,7 +114,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 								<div className="mt-4 hidden lg:block">
 									<button
 										onClick={() => setIsExpanded(false)}
-										className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+										className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 									>
 										<i className="ri-collapse-diagonal-line" />
 										<span>Collapse video</span>
@@ -126,7 +128,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										{/* Chapters */}
 										{episode.chapters && episode.chapters.length > 0 && (
 											<div className="mt-6">
-												<h3 className="mb-3 text-lg font-semibold text-white">
+												<h3 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">
 													Chapters
 												</h3>
 												<ul className="space-y-2">
@@ -135,10 +137,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 															key={i}
 															className="flex items-start gap-3 text-sm"
 														>
-															<span className="font-mono text-zinc-400">
+															<span className="font-mono text-zinc-600 dark:text-zinc-400">
 																{chapter.time}
 															</span>
-															<span className="text-zinc-400">
+															<span className="text-zinc-600 dark:text-zinc-400">
 																{chapter.title}
 															</span>
 														</li>
@@ -150,17 +152,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
 									{/* Sidebar - Guest info and Transcript */}
 									<div>
-										<div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-											<p className="mb-2 text-xs font-medium tracking-wider text-zinc-300 uppercase">
+										<div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/50 p-4">
+											<p className="mb-2 text-xs font-medium tracking-wider text-zinc-700 dark:text-zinc-300 uppercase">
 												Featured Guest
 											</p>
-											<p className="text-lg font-semibold text-white">
+											<p className="text-lg font-semibold text-zinc-900 dark:text-white">
 												{episode.guest}
 											</p>
-											<div className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
+											<div className="mt-3 flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
 												{episode.companyLogo && (
 													<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer">
-														<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
+														<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 brightness-0 dark:brightness-100" />
 													</a>
 												)}
 												<span>·</span>
@@ -170,8 +172,8 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											</div>
 
 											{/* Listen on platforms */}
-											<div className="mt-4 border-t border-zinc-800 pt-4">
-												<p className="mb-3 text-xs font-medium tracking-wider text-zinc-400 uppercase">
+											<div className="mt-4 border-t border-zinc-200 dark:border-zinc-800 pt-4">
+												<p className="mb-3 text-xs font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 													Listen on
 												</p>
 												<div className="flex items-center gap-4">
@@ -288,7 +290,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 							<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 								{/* Video, About, and Chapters - Main column */}
 								<div className="lg:col-span-2 lg:pr-16">
-									<div className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-900">
+									<div className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-900">
 										<iframe
 											src={`https://www.youtube.com/embed/${episode.youtubeId}`}
 											title={episode.title}
@@ -304,7 +306,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 									<div className="mt-4 hidden justify-end lg:flex">
 										<button
 											onClick={() => setIsExpanded(true)}
-											className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+											className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 										>
 											<i className="ri-expand-diagonal-line" />
 											<span>Expand video</span>
@@ -314,7 +316,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 									{/* Chapters */}
 									{episode.chapters && episode.chapters.length > 0 && (
 										<div className="mt-8 mb-12">
-											<h3 className="mb-3 text-lg font-semibold text-white">
+											<h3 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">
 												Chapters
 											</h3>
 											<ul className="space-y-2">
@@ -323,10 +325,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 														key={i}
 														className="flex items-start gap-3 text-sm"
 													>
-														<span className="font-mono text-zinc-400">
+														<span className="font-mono text-zinc-600 dark:text-zinc-400">
 															{chapter.time}
 														</span>
-														<span className="text-zinc-200">
+														<span className="text-zinc-800 dark:text-zinc-200">
 															{chapter.title}
 														</span>
 													</li>
@@ -338,17 +340,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 
 								{/* Sidebar - Guest info and Transcript */}
 								<div>
-									<div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-										<p className="mb-2 text-xs font-medium tracking-wider text-zinc-400 uppercase">
+									<div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/50 p-4">
+										<p className="mb-2 text-xs font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 											Featured Guest
 										</p>
-										<p className="text-lg font-semibold text-white">
+										<p className="text-lg font-semibold text-zinc-900 dark:text-white">
 											{episode.guest}
 										</p>
-										<div className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
+										<div className="mt-3 flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
 											{episode.companyLogo && (
 												<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer">
-													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5" />
+													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 brightness-0 dark:brightness-100" />
 												</a>
 											)}
 											<span>·</span>
@@ -358,8 +360,8 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										</div>
 
 										{/* Listen on platforms */}
-										<div className="mt-4 border-t border-zinc-800 pt-4">
-											<p className="mb-3 text-xs font-medium tracking-wider text-zinc-400 uppercase">
+										<div className="mt-4 border-t border-zinc-200 dark:border-zinc-800 pt-4">
+											<p className="mb-3 text-xs font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 												Listen on
 											</p>
 											<div className="flex items-center gap-4">
