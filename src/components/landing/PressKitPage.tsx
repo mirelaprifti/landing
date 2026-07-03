@@ -68,7 +68,7 @@ export function PressKitPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 px-6 py-4 font-semibold focus:top-0 focus:left-0 dark:bg-zinc-800"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 px-6 py-4 font-semibold text-zinc-900 no-underline focus:top-0 focus:left-0 dark:bg-zinc-800 dark:text-white"
 			>
 				Skip to main content
 			</a>
@@ -246,7 +246,7 @@ export function PressKitPage() {
 				{/* Ground Rules Section */}
 				<section className="pt-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="border-t border-zinc-800 pt-24">
+						<div className="border-t border-zinc-200 pt-24 dark:border-zinc-800">
 							<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 								// Ground rules
 							</h2>
@@ -264,7 +264,7 @@ export function PressKitPage() {
 											className="h-24 w-auto"
 										/>
 									</div>
-									<span className="text-base text-zinc-400">
+									<span className="text-base text-zinc-600 dark:text-zinc-400">
 										Use the white logo on a dark background.
 									</span>
 								</div>
@@ -280,7 +280,7 @@ export function PressKitPage() {
 											className="h-24 w-auto"
 										/>
 									</div>
-									<span className="text-base text-zinc-400">
+									<span className="text-base text-zinc-600 dark:text-zinc-400">
 										Use the black logo on a light background.
 									</span>
 								</div>
@@ -288,7 +288,7 @@ export function PressKitPage() {
 								{/* Can use on image */}
 								<div className="flex flex-col gap-3">
 									<div
-										className="overflow-hiddenborder relative flex h-52 items-center justify-center border-zinc-800"
+										className="relative flex h-52 items-center justify-center overflow-hidden border border-zinc-200 dark:border-zinc-800"
 										style={{
 											background:
 												"linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(99, 102, 241, 0.35) 100%)",
@@ -324,7 +324,7 @@ export function PressKitPage() {
 											className="relative z-10 h-24 w-auto"
 										/>
 									</div>
-									<span className="text-base leading-tight text-zinc-400">
+									<span className="text-base leading-tight text-zinc-600 dark:text-zinc-400">
 										Use a gradient or image background, as long as the logo is
 										clearly visible and legible.
 									</span>
@@ -335,7 +335,7 @@ export function PressKitPage() {
 							<div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-16">
 								{/* Don't change colors */}
 								<div className="flex flex-col gap-3">
-									<div className="flex h-52 items-center justify-center gap-16 border border-zinc-800 bg-zinc-950">
+									<div className="flex h-52 items-center justify-center gap-16 border border-zinc-200 bg-zinc-950 dark:border-zinc-800">
 										<div className="relative">
 											<img
 												src={getAssetPath(
@@ -361,14 +361,14 @@ export function PressKitPage() {
 											<i className="ri-close-circle-fill absolute -right-4 -bottom-4 text-lg text-red-500" />
 										</div>
 									</div>
-									<span className="text-base text-zinc-400">
+									<span className="text-base text-zinc-600 dark:text-zinc-400">
 										Do not make the logo any color other than black or white.
 									</span>
 								</div>
 
 								{/* Don't stretch */}
 								<div className="mb-4 flex flex-col gap-3">
-									<div className="flex h-52 items-center justify-center gap-20 border border-zinc-800 bg-zinc-900/30 px-8">
+									<div className="flex h-52 items-center justify-center gap-20 border border-zinc-200 bg-zinc-950 dark:border-zinc-800 px-8">
 										<div className="relative">
 											<img
 												src={getAssetPath(
@@ -402,7 +402,7 @@ export function PressKitPage() {
 											<i className="ri-close-circle-fill absolute -right-4 -bottom-4 text-lg text-red-500" />
 										</div>
 									</div>
-									<span className="text-base text-zinc-400">
+									<span className="text-base text-zinc-600 dark:text-zinc-400">
 										Do not shrink or stretch the logo. Be sure to maintain the
 										proportions.
 									</span>
@@ -410,7 +410,7 @@ export function PressKitPage() {
 
 								{/* Don't add shadows */}
 								<div className="flex flex-col gap-3">
-									<div className="flex h-52 items-center justify-center gap-16 border border-zinc-800 bg-zinc-900/30">
+									<div className="flex h-52 items-center justify-center gap-16 border border-zinc-200 bg-zinc-950 dark:border-zinc-800">
 										<div className="relative">
 											<img
 												src={getAssetPath(
@@ -435,14 +435,14 @@ export function PressKitPage() {
 											<i className="ri-close-circle-fill absolute -right-4 -bottom-4 text-lg text-red-500" />
 										</div>
 									</div>
-									<span className="text-base text-zinc-400">
+									<span className="text-base text-zinc-600 dark:text-zinc-400">
 										Do not place drop shadows.
 									</span>
 								</div>
 
 								{/* Don't rotate */}
 								<div className="flex flex-col gap-3">
-									<div className="flex h-52 items-center justify-center gap-16 border border-zinc-800 bg-zinc-900/30">
+									<div className="flex h-52 items-center justify-center gap-16 border border-zinc-200 bg-zinc-950 dark:border-zinc-800">
 										<div className="relative">
 											<img
 												src={getAssetPath(
@@ -465,7 +465,7 @@ export function PressKitPage() {
 											<i className="ri-close-circle-fill absolute -right-4 -bottom-4 text-lg text-red-500" />
 										</div>
 									</div>
-									<span className="text-base text-zinc-400">
+									<span className="text-base text-zinc-600 dark:text-zinc-400">
 										Do not rotate the logo.
 									</span>
 								</div>
@@ -475,7 +475,7 @@ export function PressKitPage() {
 				</section>
 
 				{/* Clear Space & Minimum Size Section */}
-				<section className="border-b border-zinc-800 pb-12">
+				<section className="border-b border-zinc-200 pb-12 dark:border-zinc-800">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="py-24">
 							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -485,7 +485,7 @@ export function PressKitPage() {
 										// Clear space
 									</h2>
 									<div className="flex flex-col gap-3">
-										<div className="flex h-52 items-center justify-center gap-12 border border-zinc-800 bg-zinc-900/30">
+										<div className="flex h-52 items-center justify-center gap-12 border border-zinc-200 bg-zinc-950 dark:border-zinc-800">
 											{/* Logo symbol with padding visualization */}
 											<div
 												className="relative p-4"
@@ -535,7 +535,7 @@ export function PressKitPage() {
 												</div>
 											</div>
 										</div>
-										<span className="text-base text-zinc-400">
+										<span className="text-base text-zinc-600 dark:text-zinc-400">
 											Maintain clear space of at least 50% of the logo height on
 											all sides.
 										</span>
@@ -548,7 +548,7 @@ export function PressKitPage() {
 										// Minimum size
 									</h2>
 									<div className="flex flex-col gap-3">
-										<div className="flex h-52 items-center justify-center gap-16 border border-zinc-800 bg-zinc-900/30">
+										<div className="flex h-52 items-center justify-center gap-16 border border-zinc-200 bg-zinc-950 dark:border-zinc-800">
 											{/* Logo symbol minimum */}
 											<div className="flex flex-col items-center gap-2 py-4">
 												<img
@@ -576,7 +576,7 @@ export function PressKitPage() {
 												</span>
 											</div>
 										</div>
-										<span className="text-base text-zinc-400">
+										<span className="text-base text-zinc-600 dark:text-zinc-400">
 											To ensure legibility, never scale the logo below the
 											minimum size above.
 										</span>
