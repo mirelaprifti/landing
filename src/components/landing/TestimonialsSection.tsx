@@ -37,10 +37,10 @@ export function TestimonialsSection() {
 		<section className="relative py-24 md:pt-40 md:pb-24">
 			{/* Header — full width, restrained */}
 			<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
-				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 					// Effect in the real world
 				</p>
-				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+				<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 dark:text-white md:text-3xl">
 					Real-world production systems
 				</h2>
 				<div className="mt-8 flex flex-wrap items-center gap-3">
@@ -84,17 +84,17 @@ export function TestimonialsSection() {
 							<div
 								className={`flex w-full flex-col gap-5 lg:mx-auto lg:max-w-[26rem] ${videoOnRight ? "lg:order-1" : "lg:order-2"}`}
 							>
-								<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
+								<h3 className="leading-tighter text-xl font-semibold text-zinc-900 dark:text-white md:text-2xl">
 									{featured.headline}
 								</h3>
-								<p className="max-w-md text-base leading-relaxed text-zinc-300">
+								<p className="max-w-md text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 									{featured.description}
 								</p>
 								<a
 									href={featured.href}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-white"
+									className="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white"
 								>
 									Watch the talk
 									<i
@@ -112,7 +112,7 @@ export function TestimonialsSection() {
 								aria-label={`Watch ${featured.headline}`}
 								className={`group relative ${videoOnRight ? "lg:order-2" : "lg:order-1"}`}
 							>
-								<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
+								<div className="relative aspect-video w-full overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900">
 									<img
 										src={featured.thumbnail}
 										alt=""

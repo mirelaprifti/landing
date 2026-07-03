@@ -192,10 +192,10 @@ function ComplexityChart() {
 			</div>
 
 			<div className="mt-3 flex justify-between">
-				<span className="font-mono text-[10px] tracking-wide text-zinc-400/75 uppercase">
+				<span className="font-mono text-[10px] tracking-wide text-zinc-600/75 dark:text-zinc-400/75 uppercase">
 					Start
 				</span>
-				<span className="font-mono text-[10px] tracking-wide text-zinc-400/75 uppercase">
+				<span className="font-mono text-[10px] tracking-wide text-zinc-600/75 dark:text-zinc-400/75 uppercase">
 					Scale
 				</span>
 			</div>
