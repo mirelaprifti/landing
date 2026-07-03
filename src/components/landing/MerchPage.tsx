@@ -322,10 +322,10 @@ function ProductCard({ product }: { product: Product }) {
 
 export function MerchPage() {
 	return (
-		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+		<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			{/* Dithered background overlay - subtle texture across entire page */}
 			<div
-				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.03] dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
 					backgroundSize: "4px 4px",
@@ -334,7 +334,7 @@ export function MerchPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:top-0 focus:left-0"
+				className="text-whiteno-underline absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 px-6 py-4 font-semibold focus:top-0 focus:left-0 dark:bg-zinc-800"
 			>
 				Skip to main content
 			</a>
@@ -346,9 +346,9 @@ export function MerchPage() {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					{/* Left vertical line */}
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 					{/* Right vertical line */}
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 			</div>
 
@@ -369,12 +369,12 @@ export function MerchPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero Section */}
-				<section className="relative w-full bg-zinc-950 pt-16 pb-16">
+				<section className="relative w-full bg-white pt-16 pb-16 dark:bg-zinc-950">
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center lg:grid-cols-2">
 							{/* Left: Text content */}
 							<div className="flex flex-col gap-6 lg:pr-8">
-								<h1 className="text-4xl font-semibold text-white md:text-5xl lg:text-5xl">
+								<h1 className="text-4xl font-semibold text-zinc-900 md:text-5xl lg:text-5xl dark:text-white">
 									Show off your{" "}
 									<span
 										className="relative inline-block px-4 py-1.5 font-mono"
@@ -394,7 +394,7 @@ export function MerchPage() {
 									</span>{" "}
 									style
 								</h1>
-								<p className="max-w-md text-lg text-zinc-400">
+								<p className="max-w-md text-lg text-zinc-600 dark:text-zinc-400">
 									Explore a selection of Effect-branded items – designed for the
 									community.
 								</p>
@@ -414,7 +414,7 @@ export function MerchPage() {
 							{/* Right: Product preview grid - bento layout */}
 							<div className="mt-8 grid grid-cols-2 grid-rows-2 gap-3 lg:mt-0">
 								{/* Featured: Hoodie - spans full height on left */}
-								<div className="relative row-span-2 flex items-center justify-center overflow-hidden border border-zinc-800 bg-zinc-900/40 p-6">
+								<div className="relative row-span-2 flex items-center justify-center overflow-hidden border border-zinc-200 bg-zinc-100/40 p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
 									<img
 										src={getAssetPath("/assets/merch/hoodie-1.avif")}
 										alt="Effect hoodie"
