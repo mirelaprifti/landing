@@ -356,11 +356,11 @@ export function MerchPage() {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 text-zinc-200 dark:text-zinc-800"
 						style={{
 							width: "1px",
 							backgroundImage:
-								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
+								"repeating-linear-gradient(to bottom, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
 						}}
 					/>
 				</div>
@@ -376,15 +376,7 @@ export function MerchPage() {
 							<div className="flex flex-col gap-6 lg:pr-8">
 								<h1 className="text-4xl font-semibold text-zinc-900 md:text-5xl lg:text-5xl dark:text-white">
 									Show off your{" "}
-									<span
-										className="relative inline-block px-4 py-1.5 font-mono"
-										style={{
-											background:
-												"linear-gradient(to top right, rgba(40, 25, 0, 0.2) 0%, rgba(251, 191, 36, 0.1) 100%)",
-											boxShadow:
-												"0 0 20px rgba(251, 191, 36, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03)",
-										}}
-									>
+									<span className="relative inline-block px-4 py-1.5 font-mono dark:bg-[linear-gradient(to_top_right,rgba(40,25,0,0.2)_0%,rgba(251,191,36,0.1)_100%)] dark:shadow-[0_0_20px_rgba(251,191,36,0.08),inset_0_1px_0_rgba(255,255,255,0.03)]">
 										{/* Corner brackets */}
 										<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-amber-400/50" />
 										<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-amber-400/50" />
@@ -424,10 +416,10 @@ export function MerchPage() {
 								{/* Cap - top right */}
 								<div className="relative flex aspect-square items-center justify-center overflow-hidden p-4 transition-all duration-200 hover:shadow-lg hover:shadow-black/20">
 									{/* Corner brackets */}
-									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700/80" />
-									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-700/80" />
-									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-700/80" />
-									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-700/80" />
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300/80 dark:border-zinc-700/80" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300/80 dark:border-zinc-700/80" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300/80 dark:border-zinc-700/80" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300/80 dark:border-zinc-700/80" />
 									<img
 										src={getAssetPath("/assets/merch/cap-1.avif")}
 										alt="Effect.orDie cap"
@@ -437,10 +429,10 @@ export function MerchPage() {
 								{/* Tote - bottom right */}
 								<div className="relative flex aspect-square items-center justify-center overflow-hidden p-4 transition-all duration-200 hover:shadow-lg hover:shadow-black/20">
 									{/* Corner brackets */}
-									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700/80" />
-									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-700/80" />
-									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-700/80" />
-									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-700/80" />
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300/80 dark:border-zinc-700/80" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300/80 dark:border-zinc-700/80" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300/80 dark:border-zinc-700/80" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300/80 dark:border-zinc-700/80" />
 									<img
 										src={getAssetPath("/assets/merch/tote-1.avif")}
 										alt="Effect tote bag"
@@ -486,18 +478,18 @@ export function MerchPage() {
 				</section>
 
 				{/* Effect in the Wild Section */}
-				<section className="relative w-full bg-zinc-950 py-4">
+				<section className="relative w-full bg-white py-4 dark:bg-zinc-950">
 					<div className="mx-auto max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-8">
 							{/* Content */}
 							<div className="flex flex-col items-start pt-16 md:pt-0">
-								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 									// Effect in the wild
 								</p>
-								<h2 className="leading-tighter text-[2.75rem] font-semibold text-zinc-200">
+								<h2 className="leading-tighter text-[2.75rem] font-semibold text-zinc-800 dark:text-zinc-200">
 									Got your Effect merch?
 								</h2>
-								<p className="mt-4 mb-6 max-w-lg text-lg text-zinc-400">
+								<p className="mt-4 mb-6 max-w-lg text-lg text-zinc-600 dark:text-zinc-400">
 									Share it with the community!
 								</p>
 								<div className="flex items-center gap-4">
