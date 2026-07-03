@@ -90,11 +90,11 @@ export function PressKitPage() {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 text-zinc-200 dark:text-zinc-800"
 						style={{
 							width: "1px",
 							backgroundImage:
-								"repeating-linear-gradient(to bottom, rgb(39 39 42) 0px, rgb(39 39 42) 2px, transparent 2px, transparent 4px)",
+								"repeating-linear-gradient(to bottom, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
 							maskImage:
 								"linear-gradient(to bottom, black 0%, black 200px, transparent 300px, transparent 350px, black 450px, black 100%)",
 							WebkitMaskImage:
@@ -112,8 +112,8 @@ export function PressKitPage() {
 						className="pointer-events-none absolute inset-0"
 						style={{
 							backgroundImage: `
-                linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
               `,
 							backgroundSize: "196.6px 171px",
 							backgroundPosition: "calc(50% + 97px) 0",
@@ -125,7 +125,7 @@ export function PressKitPage() {
 						className="pointer-events-none absolute inset-0"
 						style={{
 							background:
-								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 60%, var(--page-fade) 100%)",
 						}}
 					/>
 
@@ -134,20 +134,20 @@ export function PressKitPage() {
 						className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
 						style={{
 							background: `
-                radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 80% at 70% -20%, var(--hero-glow-b) 0%, transparent 50%),
                 radial-gradient(ellipse 30% 50% at 80% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
               `,
 						}}
 					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wide text-zinc-400 uppercase">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 							// Logo
 						</p>
-						<h1 className="text-3xl font-bold text-white md:text-5xl">
+						<h1 className="text-3xl font-bold text-zinc-900 md:text-5xl dark:text-white">
 							Effect logo guidelines
 						</h1>
-						<p className="mt-4 max-w-xl text-lg text-zinc-400">
+						<p className="mt-4 max-w-xl text-lg text-zinc-600 dark:text-zinc-400">
 							Please follow our guidelines when using the Effect logo for
 							presentations, articles, and other media.
 						</p>
@@ -157,11 +157,11 @@ export function PressKitPage() {
 				{/* Logos Section - Two columns */}
 				<section className="py-8">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="border-t border-zinc-800 pt-24">
+						<div className="border-t border-zinc-200 pt-24 dark:border-zinc-800">
 							<div className="grid grid-cols-1 gap-12 md:grid-cols-2">
 								{/* Combination Mark */}
 								<div>
-									<h2 className="leading-tighter mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-4 font-mono text-sm tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 										{COMBINATION_MARK.name}
 									</h2>
 
@@ -172,18 +172,18 @@ export function PressKitPage() {
 												`/assets/${COMBINATION_MARK.files.svg.black}`,
 											)}
 											alt="Effect combination mark"
-											className="h-14 w-auto invert"
+											className="h-14 w-auto dark:invert"
 										/>
 									</div>
 
-									<p className="mb-4 text-base text-zinc-400">
+									<p className="mb-4 text-base text-zinc-600 dark:text-zinc-400">
 										{COMBINATION_MARK.description}
 									</p>
 
 									{/* Download Links */}
 									<div className="flex items-center gap-2">
-										<i className="ri-download-2-line text-base text-zinc-400" />
-										<span className="text-sm text-zinc-400">Download:</span>
+										<i className="ri-download-2-line text-base text-zinc-600 dark:text-zinc-400" />
+										<span className="text-sm text-zinc-600 dark:text-zinc-400">Download:</span>
 										<DownloadLink
 											href={getAssetPath(
 												`/assets/${COMBINATION_MARK.files.png.black}`,
@@ -201,7 +201,7 @@ export function PressKitPage() {
 
 								{/* Logo Symbol */}
 								<div>
-									<h2 className="leading-tighter mb-4 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-4 font-mono text-sm tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 										{LOGO_SYMBOL.name}
 									</h2>
 
@@ -212,18 +212,18 @@ export function PressKitPage() {
 												`/assets/${LOGO_SYMBOL.files.svg.black}`,
 											)}
 											alt="Effect logo symbol"
-											className="h-14 w-auto invert"
+											className="h-14 w-auto dark:invert"
 										/>
 									</div>
 
-									<p className="mb-4 text-base text-zinc-400">
+									<p className="mb-4 text-base text-zinc-600 dark:text-zinc-400">
 										{LOGO_SYMBOL.description}
 									</p>
 
 									{/* Download Links */}
 									<div className="flex items-center gap-2">
-										<i className="ri-download-2-line text-base text-zinc-400" />
-										<span className="text-sm text-zinc-400">Download:</span>
+										<i className="ri-download-2-line text-base text-zinc-600 dark:text-zinc-400" />
+										<span className="text-sm text-zinc-600 dark:text-zinc-400">Download:</span>
 										<DownloadLink
 											href={getAssetPath(
 												`/assets/${LOGO_SYMBOL.files.png.black}`,
@@ -247,7 +247,7 @@ export function PressKitPage() {
 				<section className="pt-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-24">
-							<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+							<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 								// Ground rules
 							</h2>
 
@@ -255,7 +255,7 @@ export function PressKitPage() {
 							<div className="mb-24 grid grid-cols-1 gap-4 md:grid-cols-3">
 								{/* Use white on dark */}
 								<div className="flex flex-col gap-3">
-									<div className="bg-zinc-9050 flex h-52 items-center justify-center border border-zinc-700/75">
+									<div className="flex h-52 items-center justify-center border border-zinc-300/75 bg-zinc-950 dark:border-zinc-700/75">
 										<img
 											src={getAssetPath(
 												`/assets/${LOGO_SYMBOL.files.svg.white}`,
@@ -481,7 +481,7 @@ export function PressKitPage() {
 							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 								{/* Clear Space */}
 								<div>
-									<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 										// Clear space
 									</h2>
 									<div className="flex flex-col gap-3">
@@ -544,7 +544,7 @@ export function PressKitPage() {
 
 								{/* Minimum Size */}
 								<div>
-									<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-400 uppercase">
+									<h2 className="leading-tighter mb-8 font-mono text-sm tracking-wide text-zinc-600 uppercase dark:text-zinc-400">
 										// Minimum size
 									</h2>
 									<div className="flex flex-col gap-3">
