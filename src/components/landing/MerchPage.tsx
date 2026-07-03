@@ -378,10 +378,10 @@ export function MerchPage() {
 									Show off your{" "}
 									<span className="relative inline-block px-4 py-1.5 font-mono dark:bg-[linear-gradient(to_top_right,rgba(40,25,0,0.2)_0%,rgba(251,191,36,0.1)_100%)] dark:shadow-[0_0_20px_rgba(251,191,36,0.08),inset_0_1px_0_rgba(255,255,255,0.03)]">
 										{/* Corner brackets */}
-										<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-amber-400/50" />
-										<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-amber-400/50" />
-										<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-amber-400/50" />
-										<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-amber-400/50" />
+										<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-amber-600 dark:border-amber-400/50" />
+										<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-amber-600 dark:border-amber-400/50" />
+										<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-amber-600 dark:border-amber-400/50" />
+										<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-amber-600 dark:border-amber-400/50" />
 										Effect
 									</span>{" "}
 									style
