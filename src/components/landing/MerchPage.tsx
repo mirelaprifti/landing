@@ -374,7 +374,7 @@ export function MerchPage() {
 						<div className="grid grid-cols-1 items-center lg:grid-cols-2">
 							{/* Left: Text content */}
 							<div className="flex flex-col gap-6 lg:pr-8">
-								<h1 className="text-4xl font-semibold text-zinc-900 md:text-5xl lg:text-5xl dark:text-white">
+								<h1 className="text-4xl font-bold text-zinc-900 md:text-5xl lg:text-5xl dark:text-white">
 									Show off your{" "}
 									<span className="relative inline-block px-4 py-1.5 font-mono dark:bg-[linear-gradient(to_top_right,rgba(40,25,0,0.2)_0%,rgba(251,191,36,0.1)_100%)] dark:shadow-[0_0_20px_rgba(251,191,36,0.08),inset_0_1px_0_rgba(255,255,255,0.03)]">
 										{/* Corner brackets */}
@@ -486,7 +486,7 @@ export function MerchPage() {
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 									// Effect in the wild
 								</p>
-								<h2 className="leading-tighter text-[2.75rem] font-semibold text-zinc-800 dark:text-zinc-200">
+								<h2 className="leading-tighter text-[2.75rem] font-bold text-zinc-800 dark:text-zinc-200">
 									Got your Effect merch?
 								</h2>
 								<p className="mt-4 mb-6 max-w-lg text-lg text-zinc-600 dark:text-zinc-400">
