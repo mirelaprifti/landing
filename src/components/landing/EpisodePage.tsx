@@ -181,7 +181,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 														href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
 														target="_blank"
 														rel="noopener noreferrer"
-														className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+														className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 													>
 														<svg
 															className="h-5 w-5 shrink-0"
@@ -221,7 +221,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 																fill="#fff"
 															/>
 														</svg>
-														<span className="text-white hover:underline">
+														<span className="text-zinc-900 dark:text-white hover:underline">
 															Apple Podcasts
 														</span>
 													</a>
@@ -229,10 +229,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 														href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
 														target="_blank"
 														rel="noopener noreferrer"
-														className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+														className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 													>
 														<i className="ri-spotify-fill text-lg text-green-500" />
-														<span className="text-white hover:underline">
+														<span className="text-zinc-900 dark:text-white hover:underline">
 															Spotify
 														</span>
 													</a>
@@ -240,10 +240,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 														href={`https://www.youtube.com/watch?v=${episode.youtubeId}`}
 														target="_blank"
 														rel="noopener noreferrer"
-														className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+														className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 													>
 														<i className="ri-youtube-fill text-lg text-red-500" />
-														<span className="text-white hover:underline">
+														<span className="text-zinc-900 dark:text-white hover:underline">
 															YouTube
 														</span>
 													</a>
@@ -255,17 +255,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										{/* Transcript */}
 										{transcript && transcript.length > 0 && (
 											<div className="relative mt-6">
-												<h3 className="mb-4 text-lg font-semibold text-white">
+												<h3 className="mb-4 text-lg font-semibold text-zinc-900 dark:text-white">
 													Transcript
 												</h3>
 												<div className="relative">
 													<div className="scrollbar-thin max-h-[500px] space-y-2 overflow-y-auto pr-4">
 														{transcript.map((entry, i) => (
 															<div key={i} className="flex gap-4">
-																<span className="w-12 shrink-0 font-mono text-sm text-zinc-400">
+																<span className="w-12 shrink-0 font-mono text-sm text-zinc-600 dark:text-zinc-400">
 																	{formatTimestamp(entry.startTime)}
 																</span>
-																<p className="flex-1 text-sm leading-relaxed text-zinc-300">
+																<p className="flex-1 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
 																	{entry.text}
 																</p>
 															</div>
@@ -276,7 +276,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 														className="pointer-events-none absolute right-0 bottom-0 left-0 h-16"
 														style={{
 															background:
-																"linear-gradient(to bottom, transparent, #09090b)",
+																"linear-gradient(to bottom, transparent, var(--page-fade))",
 														}}
 													/>
 												</div>
@@ -369,7 +369,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 													href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+													className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 												>
 													<svg
 														className="h-5 w-5 shrink-0"
@@ -409,7 +409,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 															fill="#fff"
 														/>
 													</svg>
-													<span className="text-white hover:underline">
+													<span className="text-zinc-900 dark:text-white hover:underline">
 														Apple Podcasts
 													</span>
 												</a>
@@ -417,10 +417,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 													href="https://open.spotify.com/show/4QTFiem4o0G9V2vXtv8vMU"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+													className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 												>
 													<i className="ri-spotify-fill text-lg text-green-500" />
-													<span className="text-white hover:underline">
+													<span className="text-zinc-900 dark:text-white hover:underline">
 														Spotify
 													</span>
 												</a>
@@ -428,10 +428,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 													href={`https://www.youtube.com/watch?v=${episode.youtubeId}`}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+													className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 												>
 													<i className="ri-youtube-fill text-lg text-red-500" />
-													<span className="text-white hover:underline">
+													<span className="text-zinc-900 dark:text-white hover:underline">
 														YouTube
 													</span>
 												</a>
@@ -443,17 +443,17 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 									{/* Transcript */}
 									{transcript && transcript.length > 0 && (
 										<div className="relative mt-6">
-											<h3 className="mb-4 text-lg font-semibold text-white">
+											<h3 className="mb-4 text-lg font-semibold text-zinc-900 dark:text-white">
 												Transcript
 											</h3>
 											<div className="relative">
 												<div className="scrollbar-thin max-h-[500px] space-y-2 overflow-y-auto pr-4">
 													{transcript.map((entry, i) => (
 														<div key={i} className="flex gap-4">
-															<span className="w-12 shrink-0 font-mono text-sm text-zinc-400">
+															<span className="w-12 shrink-0 font-mono text-sm text-zinc-600 dark:text-zinc-400">
 																{formatTimestamp(entry.startTime)}
 															</span>
-															<p className="flex-1 text-sm leading-relaxed text-zinc-300">
+															<p className="flex-1 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
 																{entry.text}
 															</p>
 														</div>
@@ -464,7 +464,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 													className="pointer-events-none absolute right-0 bottom-0 left-0 h-16"
 													style={{
 														background:
-															"linear-gradient(to bottom, transparent, #09090b)",
+															"linear-gradient(to bottom, transparent, var(--page-fade))",
 													}}
 												/>
 											</div>
@@ -477,7 +477,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 				</section>
 
 				{/* More episodes CTA */}
-				<section className="relative w-full overflow-hidden border-t border-zinc-800 py-20">
+				<section className="relative w-full overflow-hidden border-t border-zinc-200 dark:border-zinc-800 py-20">
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
@@ -485,18 +485,18 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 						}}
 					/>
 					<div className="relative mx-auto max-w-[73.75rem] px-4 text-center">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 							{"// Cause & Effect 🎙️"}
 						</p>
-						<h3 className="text-3xl font-semibold tracking-tight text-white">
+						<h3 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
 							Real-world systems with Effect
 						</h3>
-						<p className="mt-2 text-zinc-400">
+						<p className="mt-2 text-zinc-600 dark:text-zinc-400">
 							How teams like Vercel, MasterClass, and others build in production.
 						</p>
 						<a
 							href={getAssetPath("/podcast")}
-							className="mt-6 inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-base font-medium text-zinc-900 transition-all hover:bg-zinc-200"
+							className="mt-6 inline-flex items-center gap-2 rounded-md bg-zinc-900 dark:bg-white px-6 py-3 text-base font-medium text-white dark:text-zinc-900 transition-all hover:bg-zinc-800 dark:hover:bg-zinc-200"
 						>
 							<span>See all episodes</span>
 							<i className="ri-arrow-right-line" />
