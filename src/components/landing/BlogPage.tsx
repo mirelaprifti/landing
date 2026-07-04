@@ -542,7 +542,7 @@ export function BlogPage() {
 							linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 						`,
 						backgroundSize: "196.6px 194px",
-						backgroundPosition: "calc(50% + 97px) calc(50% + 8px)",
+						backgroundPosition: "calc(50% + 97px) calc(50% + 5px)",
 					}}
 				/>
 
