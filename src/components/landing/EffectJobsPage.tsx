@@ -76,7 +76,7 @@ export function EffectJobsPage() {
 							// Effect Jobs
 						</p>
 
-						<h1 className="mt-2 text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl dark:text-white">
+						<h1 className="mt-2 text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 							Companies hiring Effect engineers
 						</h1>
 						<p className="mt-4 text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
