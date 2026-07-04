@@ -52,7 +52,7 @@ export function EffectJobsPage() {
 									linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 								`,
 								backgroundSize: "196.6px 194px",
-								backgroundPosition: "calc(50% + 97px) -30px",
+								backgroundPosition: "calc(50% + 97px) -34px",
 							}}
 						/>
 						<div
