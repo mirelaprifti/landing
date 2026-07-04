@@ -60,7 +60,7 @@
 /* Theme-aware values for inline-style backgrounds (grid lines, fades, glows) */
 :root {
 	--page-fade: #ffffff;
-	--grid-line: rgba(228, 228, 231, 0.8);
+	--grid-line: rgba(228, 228, 231, 0.7);
 	--hero-glow-a: rgba(9, 9, 11, 0.05);
 	--hero-glow-b: rgba(9, 9, 11, 0.03);
 }
