@@ -57,7 +57,7 @@ export function ThemeToggleButton({ className = "" }: { className?: string }) {
 			className={`flex items-center justify-center transition-colors ${className}`}
 		>
 			<i
-				className={`${mounted && !isDark ? "ri-sun-line" : "ri-moon-line"} text-xl`}
+				className={`${mounted && !isDark ? "ri-sun-fill" : "ri-moon-fill"} text-xl`}
 				aria-hidden="true"
 			/>
 		</button>
