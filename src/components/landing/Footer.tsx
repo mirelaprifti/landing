@@ -1,5 +1,4 @@
 import { getAssetPath } from "../../utils/assetPath";
-import { ThemeToggle } from "../ui/ThemeToggle";
 import { Link } from "@/components/ui";
 
 interface FooterProps {
@@ -348,7 +347,6 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 							All rights reserved.
 						</p>
 						<div className="flex items-center gap-5">
-							<ThemeToggle />
 							<div className="flex items-center gap-4">
 								<Link
 									href="mailto:contact@effectful.co"
