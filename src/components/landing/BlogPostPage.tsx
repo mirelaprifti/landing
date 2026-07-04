@@ -299,7 +299,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 							`,
 							backgroundSize: "196.6px 194px",
-							backgroundPosition: "calc(50% + 97px) 0",
+							backgroundPosition: "calc(50% + 97px) -8px",
 						}}
 					/>
 					<div
