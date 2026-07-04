@@ -11,6 +11,11 @@ interface NavigationProps {
 }
 
 export function Navigation({ transparent = false, activePath, wide = false, fullWidth = false }: NavigationProps) {
+	// Theme switch only appears on reading/tool pages (blog, playground, docs)
+	const showThemeToggle = ["/blog", "/play", "/docs"].some((p) =>
+		activePath?.startsWith(p),
+	);
+
 	useEffect(() => {
 		let isMenuAnimating = false;
 
@@ -206,13 +211,15 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 									>
 										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</Link>
-									<ThemeToggleButton
-										className={
-											transparent
-												? "text-white hover:text-white/80"
-												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-										}
-									/>
+									{showThemeToggle && (
+										<ThemeToggleButton
+											className={
+												transparent
+													? "text-white hover:text-white/80"
+													: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											}
+										/>
+									)}
 								</div>
 
 							</div>
