@@ -106,6 +106,14 @@ export const JOBS: Job[] = [
 		description: "AI-native platform for commercial real estate operators.",
 	},
 	{
+		company: "OpenRouter",
+		role: "Effect Engineers",
+		url: "https://x.com/louis_g_v/status/2067841625418588233",
+		note: "Posted on X",
+		logo: "/assets/images/open-router.svg",
+		description: "Help build the unified interface for LLMs, processing trillions of tokens weekly.",
+	},
+	{
 		company: "PhosPhor",
 		role: "Engineers with Effect experience",
 		location: "Remote · NYC",
