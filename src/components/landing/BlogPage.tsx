@@ -169,7 +169,7 @@ function HorizontalScrollRail({
 		<section aria-label={ariaLabel} className="pt-16 pb-8 md:pt-20 md:pb-10">
 			{/* Section header */}
 			<div className="mb-6 flex items-center justify-between">
-				<h2 className="text-xl font-semibold text-white">
+				<h2 className="text-xl font-semibold text-zinc-900 dark:text-white">
 					{title}
 				</h2>
 
@@ -177,7 +177,7 @@ function HorizontalScrollRail({
 					<button
 						type="button"
 						onClick={onViewAll}
-						className="font-mono text-xs tracking-wider text-zinc-200 uppercase transition-colors hover:text-white"
+						className="font-mono text-xs tracking-wider text-zinc-800 dark:text-zinc-200 uppercase transition-colors hover:text-zinc-900 dark:hover:text-white"
 					>
 						View all
 					</button>
@@ -189,7 +189,7 @@ function HorizontalScrollRail({
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
 							aria-label="Scroll left"
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
 							<i className="ri-arrow-left-s-line text-base" />
 						</button>
@@ -198,7 +198,7 @@ function HorizontalScrollRail({
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
 							aria-label="Scroll right"
-							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
 							<i className="ri-arrow-right-s-line text-base" />
 						</button>
@@ -219,17 +219,17 @@ function HorizontalScrollRail({
 
 				{/* Right fade affordance */}
 				{canScrollRight && (
-					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
+					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-white dark:from-zinc-950 to-transparent" />
 				)}
 
 				{/* Left fade affordance */}
 				{canScrollLeft && (
-					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent" />
+					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-white dark:from-zinc-950 to-transparent" />
 				)}
 
 				{/* Mobile swipe hint */}
 				{canScrollRight && (
-					<div className="pointer-events-none absolute right-2 bottom-4 flex items-center gap-1 text-xs text-zinc-400 sm:hidden">
+					<div className="pointer-events-none absolute right-2 bottom-4 flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 sm:hidden">
 						<span>Swipe</span>
 						<i className="ri-arrow-right-line text-xs" />
 					</div>
@@ -250,21 +250,21 @@ function TWIECard({ post }: { post: BlogPost }) {
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-800 bg-zinc-900/40 p-4 pb-5 transition-colors duration-200 hover:border-zinc-600 hover:bg-zinc-900/70"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-4 pb-5 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
 		>
 			<div>
 				<div className="flex items-center justify-between">
 					{issueNumber && (
-						<span className="font-mono text-base font-semibold text-white">
+						<span className="font-mono text-base font-semibold text-zinc-900 dark:text-white">
 							{issueNumber}
 						</span>
 					)}
-					<time className="font-mono text-xs text-zinc-400 tabular-nums">
+					<time className="font-mono text-xs text-zinc-600 dark:text-zinc-400 tabular-nums">
 						{post.date}
 					</time>
 				</div>
 
-				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-300">
+				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
 					{post.excerpt}
 				</p>
 			</div>
@@ -295,20 +295,20 @@ function PostCard({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group block -mx-4 border-t border-zinc-700/80 px-4 py-6 transition-colors first:border-t-0 hover:bg-zinc-900/60"
+			className="group block -mx-4 border-t border-zinc-300/80 dark:border-zinc-700/80 px-4 py-6 transition-colors first:border-t-0 hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 		>
 			<div className="grid grid-cols-12 items-baseline gap-4">
 				<div className="col-span-12 min-w-0 md:col-span-8">
-					<h3 className="relative inline-block text-lg font-semibold text-white">
+					<h3 className="relative inline-block text-lg font-semibold text-zinc-900 dark:text-white">
 						<span>{post.title}</span>
 						<i
 							aria-hidden="true"
-							className="ri-arrow-right-line ml-2 align-middle text-base text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+							className="ri-arrow-right-line ml-2 align-middle text-base text-zinc-900 dark:text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
 						/>
-						<span className="absolute right-0 -bottom-0.5 left-0 h-px origin-left scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
+						<span className="absolute right-0 -bottom-0.5 left-0 h-px origin-left scale-x-0 bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
 					</h3>
 					{/* Excerpt */}
-					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-400 transition-colors group-hover:text-zinc-200">
+					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 transition-colors group-hover:text-zinc-800 dark:group-hover:text-zinc-200">
 						{post.excerpt}
 					</p>
 				</div>
@@ -317,18 +317,18 @@ function PostCard({ post }: { post: BlogPost }) {
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="inline-flex items-center rounded-md border border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
+								className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
 						))}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center rounded-md border border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase">
+							<span className="inline-flex items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase">
 								+{post.tags.length - 2}
 							</span>
 						)}
 					</div>
-					<time className="shrink-0 font-mono text-xs text-zinc-400 tabular-nums">
+					<time className="shrink-0 font-mono text-xs text-zinc-600 dark:text-zinc-400 tabular-nums">
 						{post.date}
 					</time>
 				</div>
@@ -503,10 +503,10 @@ export function BlogPage() {
 	}, []);
 
 	return (
-		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+		<div className="relative min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white antialiased">
 			<a
 				href="#main-content"
-				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 dark:bg-zinc-800 px-6 py-4 font-semibold text-zinc-900 dark:text-white no-underline focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -516,7 +516,7 @@ export function BlogPage() {
 
 			{/* Dithered background overlay - subtle texture across entire page */}
 			<div
-				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03] hidden dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
 					backgroundSize: "4px 4px",
@@ -526,8 +526,8 @@ export function BlogPage() {
 			{/* Vertical border lines */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 			</div>
 
@@ -538,8 +538,8 @@ export function BlogPage() {
 					className="pointer-events-none absolute inset-0"
 					style={{
 						backgroundImage: `
-							linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-							linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+							linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+							linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 						`,
 						backgroundSize: "196.6px 194px",
 						backgroundPosition: "calc(50% + 97px) 0",
@@ -551,7 +551,7 @@ export function BlogPage() {
 					className="pointer-events-none absolute inset-0"
 					style={{
 						background:
-							"linear-gradient(to bottom, #09090b 0%, transparent 30%, transparent 50%, #09090b 100%)",
+							"linear-gradient(to bottom, var(--page-fade) 0%, transparent 30%, transparent 50%, var(--page-fade) 100%)",
 					}}
 				/>
 
@@ -560,7 +560,7 @@ export function BlogPage() {
 					className="pointer-events-none absolute inset-x-0 top-0 h-[500px]"
 					style={{
 						background: `
-							radial-gradient(ellipse 50% 80% at 50% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+							radial-gradient(ellipse 50% 80% at 50% -20%, var(--hero-glow-b) 0%, transparent 50%),
 							radial-gradient(ellipse 30% 50% at 70% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
 						`,
 					}}
@@ -568,7 +568,7 @@ export function BlogPage() {
 
 				{/* Noise texture */}
 				<div
-					className="pointer-events-none absolute inset-x-0 top-0 h-[500px] opacity-[0.12] mix-blend-overlay"
+					className="pointer-events-none absolute inset-x-0 top-0 h-[500px] opacity-[0.12] mix-blend-overlay hidden dark:block"
 					style={{
 						backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
 						backgroundRepeat: "repeat",
@@ -579,11 +579,11 @@ export function BlogPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						{/* Page header */}
 						<div className="pt-16 pb-8 md:pt-24 md:pb-12">
-							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 								// Effect Blog
 							</p>
 							<h1
-								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-white"
+								className="max-w-2xl text-3xl font-semibold leading-tighter tracking-tight text-zinc-900 dark:text-white"
 							>
 								Releases, write-ups, and notes{" "}
 								<br className="hidden md:block" />
@@ -593,7 +593,7 @@ export function BlogPage() {
 
 						{/* Featured post — first thing after heading */}
 						{featuredPost && (
-							<div className="border-t border-zinc-800 py-5 md:py-6">
+							<div className="border-t border-zinc-200 dark:border-zinc-800 py-5 md:py-6">
 								<FeaturedPost post={featuredPost} />
 							</div>
 						)}
@@ -602,7 +602,7 @@ export function BlogPage() {
 			</div>
 
 			{/* Section divider */}
-			<div className="h-px w-full bg-zinc-800" />
+			<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 			{/* ── Content zone ───────────────────────────── */}
 			<div ref={contentZoneRef} className="relative">
@@ -610,14 +610,14 @@ export function BlogPage() {
 
 					{/* TWIE horizontal scroll rail */}
 					<TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />
-					<div className="h-px w-full bg-zinc-800" />
+					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 					{/* Single-column layout */}
 					<div>
 						<div className="min-w-0 pb-24">
 							{/* Header row: heading + Category filter + Sort */}
-							<div ref={postListRef} className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-700/80 pb-4 md:mt-20">
-								<h2 className="text-2xl font-semibold tracking-tight text-white">
+							<div ref={postListRef} className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 dark:border-zinc-700/80 pb-4 md:mt-20">
+								<h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">
 									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
 								<div className="flex flex-wrap items-baseline gap-x-4 gap-y-3 sm:gap-x-6">
@@ -631,13 +631,13 @@ export function BlogPage() {
 											className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 										>
 											<span className="hidden text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-400 sm:inline">Category:</span>
-											<span className="text-zinc-200 group-hover:text-white">{activeTag}</span>
+											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">{activeTag}</span>
 											<i className={`ri-arrow-down-s-line text-sm text-zinc-500 dark:text-zinc-400 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
 										</button>
 										{catOpen && (
 											<ul
 												role="listbox"
-												className="absolute right-0 z-20 mt-2 w-64 rounded-md border border-zinc-700 bg-zinc-950 py-2 shadow-lg shadow-black/40"
+												className="absolute right-0 z-20 mt-2 w-64 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 py-2 shadow-lg shadow-black/40"
 											>
 												{[...BLOG_TAGS]
 													.sort((a, b) => {
@@ -659,16 +659,16 @@ export function BlogPage() {
 																	}}
 																	className={`group/item relative flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left font-mono text-xs tracking-wider uppercase transition-colors ${
 																		isActive
-																			? "text-white"
-																			: "text-zinc-300 hover:text-white"
+																			? "text-zinc-900 dark:text-white"
+																			: "text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white"
 																	}`}
 																>
 																	<span>{tag}</span>
-																	<span className={`tabular-nums ${isActive ? "text-white" : "text-zinc-500 dark:text-zinc-400"}`}>
+																	<span className={`tabular-nums ${isActive ? "text-zinc-900 dark:text-white" : "text-zinc-500 dark:text-zinc-400"}`}>
 																		{String(tagCounts[tag] ?? 0).padStart(3, "0")}
 																	</span>
 																	<span
-																		className={`pointer-events-none absolute right-4 bottom-1 left-4 h-px bg-white transition-transform duration-300 ease-out origin-left ${
+																		className={`pointer-events-none absolute right-4 bottom-1 left-4 h-px bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out origin-left ${
 																			isActive ? "scale-x-100" : "scale-x-0 group-hover/item:scale-x-[0.08]"
 																		}`}
 																	/>
@@ -686,7 +686,7 @@ export function BlogPage() {
 										aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
 										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 									>
-										<span className="text-zinc-200 group-hover:text-white">
+										<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 											{sortBy === "newest" ? "Newest" : "Oldest"}
 										</span>
 										<i className="ri-arrow-up-down-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" />
@@ -695,7 +695,7 @@ export function BlogPage() {
 									<a
 										href="/rss.xml"
 										aria-label="RSS feed"
-										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-200 uppercase transition-colors hover:text-white"
+										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-800 dark:text-zinc-200 uppercase transition-colors hover:text-zinc-900 dark:hover:text-white"
 									>
 										<span>RSS</span>
 										<i className="ri-rss-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" aria-hidden="true" />
@@ -718,14 +718,14 @@ export function BlogPage() {
 									{/* Pagination */}
 									{totalPages > 1 && (
 										<>
-											<div className="mt-12 h-px bg-zinc-800" />
+											<div className="mt-12 h-px bg-zinc-200 dark:bg-zinc-800" />
 											<nav aria-label="Blog pagination" className="mt-8 flex items-center justify-center gap-1">
 												<button
 													type="button"
 													disabled={safePage <= 1}
 													onClick={() => goToPage((p) => p - 1)}
 													aria-label="Previous page"
-													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
 													<i className="ri-arrow-left-s-line text-base" />
 												</button>
@@ -760,15 +760,15 @@ export function BlogPage() {
 																aria-current={page === safePage ? "page" : undefined}
 																className={`group/page relative flex h-8 min-w-8 items-center justify-center px-2 font-mono text-xs tabular-nums transition-colors ${
 																	page === safePage
-																		? "text-white"
-																		: "text-zinc-400 hover:text-white"
+																		? "text-zinc-900 dark:text-white"
+																		: "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
 																}`}
 															>
 																<span className={page === safePage ? "font-semibold" : ""}>
 																	{String(page).padStart(2, "0")}
 																</span>
 																<span
-																	className={`pointer-events-none absolute right-2 -bottom-0.5 left-2 h-px bg-white transition-transform duration-300 ease-out origin-left ${
+																	className={`pointer-events-none absolute right-2 -bottom-0.5 left-2 h-px bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out origin-left ${
 																		page === safePage ? "scale-x-100" : "scale-x-0 group-hover/page:scale-x-[0.2]"
 																	}`}
 																/>
@@ -782,7 +782,7 @@ export function BlogPage() {
 													disabled={safePage >= totalPages}
 													onClick={() => goToPage((p) => p + 1)}
 													aria-label="Next page"
-													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
 													<i className="ri-arrow-right-s-line text-base" />
 												</button>
@@ -792,13 +792,13 @@ export function BlogPage() {
 								</>
 							) : (
 								<div className="flex flex-col items-center justify-center py-24">
-									<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-900/60">
-										<i className="ri-file-search-line text-2xl text-zinc-400" />
+									<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-100/60 dark:bg-zinc-900/60">
+										<i className="ri-file-search-line text-2xl text-zinc-600 dark:text-zinc-400" />
 									</div>
-									<p className="mt-6 text-base font-medium text-zinc-300">
+									<p className="mt-6 text-base font-medium text-zinc-700 dark:text-zinc-300">
 										No posts found
 									</p>
-									<p className="mt-2 max-w-sm text-center text-sm leading-relaxed text-zinc-400">
+									<p className="mt-2 max-w-sm text-center text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										No posts match the current filters.
 									</p>
 
@@ -812,7 +812,7 @@ export function BlogPage() {
 													onClick={() => {
 														handleTagChange(tag as BlogTag);
 													}}
-													className="inline-flex items-center rounded-md border border-zinc-800 px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-zinc-400 uppercase transition-colors hover:border-zinc-500 hover:text-white"
+													className="inline-flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
 												>
 													{tag}
 												</button>
@@ -823,7 +823,7 @@ export function BlogPage() {
 									<button
 										type="button"
 										onClick={clearFilters}
-										className="mt-6 rounded-md border border-zinc-700 px-4 py-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors hover:border-zinc-500 hover:text-white"
+										className="mt-6 rounded-md border border-zinc-300 dark:border-zinc-700 px-4 py-2 font-mono text-xs tracking-wider text-zinc-700 dark:text-zinc-300 uppercase transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
 									>
 										Clear all filters
 									</button>
