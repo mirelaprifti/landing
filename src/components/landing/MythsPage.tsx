@@ -446,7 +446,7 @@ export function MythsPage() {
 						</p>
 
 						<div className="mt-2 max-w-4xl pb-4">
-							<h1 className="text-4xl leading-tight font-bold tracking-tight text-zinc-900 md:text-5xl lg:text-6xl dark:text-white">
+							<h1 className="text-4xl leading-tight font-bold tracking-tight text-zinc-900 md:text-5xl dark:text-white">
 								Myths about Effect
 							</h1>
 							<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
