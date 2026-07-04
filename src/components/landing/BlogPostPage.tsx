@@ -407,9 +407,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							<TableOfContents postTitle={post.title} postDate={post.date} />
 						</aside>
 
-						{/* Full-width divider */}
-						<div className="hidden md:col-span-12 md:row-start-2 md:block md:h-px md:bg-zinc-200 dark:md:bg-zinc-800" />
-
 						{/* Article body — col 1-8, row 3 */}
 						<article className="min-w-0 pb-20 md:col-span-8 md:row-start-3">
 							{/* Mobile Table of Contents */}
