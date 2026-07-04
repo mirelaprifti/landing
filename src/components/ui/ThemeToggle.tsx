@@ -20,6 +20,50 @@ function applyTheme(theme: Theme) {
 	}
 }
 
+/**
+ * Compact icon-only theme toggle for the navbar. Cycles light <-> dark
+ * (sets an explicit preference); the footer's ThemeToggle remains the
+ * full 3-state control including "system".
+ */
+export function ThemeToggleButton({ className = "" }: { className?: string }) {
+	const [mounted, setMounted] = useState(false);
+	const [isDark, setIsDark] = useState(false);
+
+	// Track the effective mode, including changes made from the footer control
+	useEffect(() => {
+		setMounted(true);
+		const root = document.documentElement;
+		setIsDark(root.classList.contains("dark"));
+		const observer = new MutationObserver(() => {
+			setIsDark(root.classList.contains("dark"));
+		});
+		observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+		return () => observer.disconnect();
+	}, []);
+
+	const toggle = useCallback(() => {
+		const next = !document.documentElement.classList.contains("dark");
+		applyTheme(next ? "dark" : "light");
+		localStorage.setItem("theme", next ? "dark" : "light");
+	}, []);
+
+	return (
+		<button
+			type="button"
+			onClick={toggle}
+			aria-label={
+				mounted && isDark ? "Switch to light mode" : "Switch to dark mode"
+			}
+			className={`flex items-center justify-center transition-colors ${className}`}
+		>
+			<i
+				className={`${mounted && !isDark ? "ri-sun-line" : "ri-moon-line"} text-xl`}
+				aria-hidden="true"
+			/>
+		</button>
+	);
+}
+
 export function ThemeToggle() {
 	const [theme, setTheme] = useState<Theme>("system");
 

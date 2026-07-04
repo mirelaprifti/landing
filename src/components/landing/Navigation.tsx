@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { Link } from "@/components/ui";
+import { ThemeToggleButton } from "../ui/ThemeToggle";
 
 interface NavigationProps {
 	transparent?: boolean;
@@ -205,6 +206,13 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 									>
 										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</Link>
+									<ThemeToggleButton
+										className={
+											transparent
+												? "text-white hover:text-white/80"
+												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										}
+									/>
 								</div>
 
 							</div>
