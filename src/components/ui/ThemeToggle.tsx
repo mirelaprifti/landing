@@ -22,9 +22,15 @@ function applyTheme(theme: Theme) {
 
 export function ThemeToggle() {
 	const [theme, setTheme] = useState<Theme>("system");
+	const [forceLight, setForceLight] = useState(false);
 
 	// Read stored preference on mount
 	useEffect(() => {
+		// Pages pinned to light mode don't offer a theme choice.
+		if (document.documentElement.classList.contains("force-light")) {
+			setForceLight(true);
+			return;
+		}
 		const stored = localStorage.getItem("theme") as Theme | null;
 		if (stored === "light" || stored === "dark") {
 			setTheme(stored);
@@ -60,6 +66,8 @@ export function ThemeToggle() {
 		{ value: "system", icon: "ri-computer-line", label: "System" },
 		{ value: "dark", icon: "ri-moon-line", label: "Dark" },
 	];
+
+	if (forceLight) return null;
 
 	return (
 		<div className="inline-flex items-center rounded-md border border-zinc-200 p-0.5 dark:border-zinc-800">
