@@ -173,7 +173,7 @@ export const JOBS: Job[] = [
 		role: "Product Engineer",
 		location: "Munich, Germany",
 		url: "https://syntwin.ai/careers/product-engineer",
-		logo: "/assets/effect-jobs-logos/SynTwin.png",
+		logo: "/assets/effect-jobs-logos/syntwyn-logo.jpg",
 		payRange: "€90K – €120K depending on seniority",
 		description: "Build digital twins of top performers that run personalised 1:1 conversations at scale.",
 	},
