@@ -238,7 +238,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				<main className="flex min-h-[60vh] items-center justify-center pt-16">
 					<div className="flex flex-col items-center text-center">
 						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900">
-							<i className="ri-article-line text-3xl text-zinc-400" />
+							<i className="ri-article-line text-3xl text-zinc-600 dark:text-zinc-400" />
 						</div>
 						<p className="mt-5 text-lg text-zinc-700 dark:text-zinc-300">
 							Post not found.
@@ -295,8 +295,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						className="absolute inset-0"
 						style={{
 							backgroundImage: `
-								linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-								linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 							`,
 							backgroundSize: "196.6px 194px",
 							backgroundPosition: "calc(50% + 97px) 0",
@@ -306,14 +306,14 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						className="absolute inset-0"
 						style={{
 							background:
-								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 60%, var(--page-fade) 100%)",
 						}}
 					/>
 					<div
 						className="absolute inset-x-0 top-0 h-[400px]"
 						style={{
 							background:
-								"radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.10) 0%, transparent 50%)",
+								"radial-gradient(ellipse 50% 80% at 70% -20%, var(--hero-glow-a) 0%, transparent 50%)",
 						}}
 					/>
 				</div>

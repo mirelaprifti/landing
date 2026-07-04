@@ -57,30 +57,30 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative block overflow-hidden rounded-md border border-zinc-800 bg-zinc-900/40 transition-colors duration-200 hover:border-zinc-600 hover:bg-zinc-900/70"
+			className="group relative block overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
 		>
 			<div className="relative grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:items-center md:gap-10 md:p-6">
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
-						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-white uppercase">
+						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-zinc-900 dark:text-white uppercase">
 							Release
 						</span>
 					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
-							className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-200 uppercase"
+							className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
 						))}
 					</div>
 
-					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl">
+					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-3xl">
 						{post.title}
 					</h2>
 
-					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-300">
+					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-700 dark:text-zinc-300">
 						{post.excerpt}
 					</p>
 
@@ -89,7 +89,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 				{/* Right side: cover image or CTA arrow */}
 				<div className="hidden md:col-span-5 md:flex md:flex-col md:items-center md:gap-3">
 					{post.coverImage ? (
-						<div className="relative aspect-2/1 w-full overflow-hidden rounded-md border border-zinc-800/50">
+						<div className="relative aspect-2/1 w-full overflow-hidden rounded-md border border-zinc-200/50 dark:border-zinc-800/50">
 							<img
 								src={getAssetPath(post.coverImage)}
 								alt={post.title}
@@ -99,7 +99,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 							<div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-zinc-900/60 to-transparent" />
 						</div>
 					) : (
-						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition-colors duration-200 group-hover:border-white group-hover:text-white">
+						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:group-hover:border-white group-hover:text-zinc-900 dark:group-hover:text-white">
 							<i
 								className="ri-arrow-right-line text-lg"
 							/>
@@ -109,7 +109,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 
 				{/* Mobile: cover image below text */}
 				{post.coverImage && (
-					<div className="relative aspect-video overflow-hidden rounded-md border border-zinc-800/50 md:hidden">
+					<div className="relative aspect-video overflow-hidden rounded-md border border-zinc-200/50 dark:border-zinc-800/50 md:hidden">
 						<img
 							src={getAssetPath(post.coverImage)}
 							alt={post.title}
