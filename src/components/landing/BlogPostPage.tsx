@@ -319,7 +319,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				</div>
 
 				<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
-					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-20">
+					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-24">
 						<a
 							href={getAssetPath("/blog")}
 							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
