@@ -21,6 +21,17 @@ function linkDisplay(url: string): string {
 }
 
 export function EffectJobsPage() {
+	// CTA card fills whatever remains of the last grid row (1, 2, or 3 slots on lg; 1 or 2 on sm)
+	const lgRemainder = JOBS.length % 3;
+	const ctaSpan = [
+		JOBS.length % 2 === 0 ? "sm:col-span-2" : "sm:col-span-1",
+		lgRemainder === 0
+			? "lg:col-span-3"
+			: lgRemainder === 1
+				? "lg:col-span-2"
+				: "lg:col-span-1",
+	].join(" ");
+
 	return (
 		<div className="relative min-h-screen bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<a
@@ -179,7 +190,7 @@ export function EffectJobsPage() {
 								))}
 
 								{/* CTA card — invites teams to post a job */}
-								<li className="bg-zinc-50 dark:bg-zinc-950 sm:col-span-2 lg:col-span-2">
+								<li className={`bg-zinc-50 dark:bg-zinc-950 ${ctaSpan}`}>
 									<a
 										href={SUBMIT_URLS.postJob}
 										target="_blank"
