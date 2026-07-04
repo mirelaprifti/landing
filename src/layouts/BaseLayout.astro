@@ -5,15 +5,12 @@ interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
-	/** Force light mode on this page, ignoring the stored/system theme preference. */
-	forceLight?: boolean;
 }
 
 const {
 	title = "Effect Examples",
 	description = "Interactive Effect examples",
 	ogImage,
-	forceLight = false,
 } = Astro.props;
 
 const base = import.meta.env.PROD ? "/landing" : "";
@@ -37,7 +34,7 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
 ---
 
 <!doctype html>
-<html lang="en" class={forceLight ? "force-light" : "dark"}>
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -60,11 +57,6 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
     <!-- Theme: prevent flash of wrong theme -->
     <script is:inline>
       (function() {
-        // Pages with .force-light are pinned to light mode — skip theme resolution.
-        if (document.documentElement.classList.contains('force-light')) {
-          document.documentElement.classList.remove('dark');
-          return;
-        }
         var stored = localStorage.getItem('theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (stored === 'light') {
