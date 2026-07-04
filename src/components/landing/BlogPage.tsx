@@ -593,7 +593,7 @@ export function BlogPage() {
 
 						{/* Featured post — first thing after heading */}
 						{featuredPost && (
-							<div className="border-t border-zinc-200 dark:border-zinc-800 py-5 md:py-6">
+							<div className="py-5 md:py-6">
 								<FeaturedPost post={featuredPost} />
 							</div>
 						)}
