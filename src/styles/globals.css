@@ -79,6 +79,21 @@ body {
 	font-family: Inter, sans-serif;
 }
 
+/* Smooth theme switch — .theme-transition is added to <html> for the duration
+   of a light/dark toggle, then removed so hover states stay snappy */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+	transition:
+		background-color 0.25s ease-out,
+		border-color 0.25s ease-out,
+		color 0.25s ease-out,
+		fill 0.25s ease-out,
+		stroke 0.25s ease-out !important;
+	transition-delay: 0s !important;
+}
+
 code,
 pre,
 .font-mono {

@@ -3,7 +3,17 @@ import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark" | "system";
 
+let transitionTimeout: number | undefined;
+
 function applyTheme(theme: Theme) {
+	// Briefly enable color transitions so the mode change cross-fades
+	const root = document.documentElement;
+	root.classList.add("theme-transition");
+	window.clearTimeout(transitionTimeout);
+	transitionTimeout = window.setTimeout(() => {
+		root.classList.remove("theme-transition");
+	}, 300);
+
 	if (theme === "dark") {
 		document.documentElement.classList.add("dark");
 	} else if (theme === "light") {
