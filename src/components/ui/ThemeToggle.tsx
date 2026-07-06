@@ -1,3 +1,4 @@
+import { Moon, Sun } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark" | "system";
@@ -56,10 +57,11 @@ export function ThemeToggleButton({ className = "" }: { className?: string }) {
 			}
 			className={`flex items-center justify-center transition-colors ${className}`}
 		>
-			<i
-				className={`${mounted && !isDark ? "ri-sun-fill" : "ri-moon-fill"} text-xl`}
-				aria-hidden="true"
-			/>
+			{mounted && !isDark ? (
+				<Sun size={20} aria-hidden="true" />
+			) : (
+				<Moon size={20} aria-hidden="true" />
+			)}
 		</button>
 	);
 }
