@@ -299,7 +299,7 @@ export function PlaygroundMockPage() {
 								<div
 									role="dialog"
 									aria-label="Share this playground"
-									className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] border border-zinc-300 bg-white p-5 font-sans shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
+									className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] rounded-md border border-zinc-300 bg-white p-5 font-sans shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
 								>
 									<h2 className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white">
 										Share
@@ -316,13 +316,13 @@ export function PlaygroundMockPage() {
 											value={SHARE_URL}
 											aria-label="Share link"
 											onFocus={(e) => e.currentTarget.select()}
-											className="min-w-0 flex-1 border border-zinc-300 bg-zinc-50 px-3 py-2 font-mono text-sm text-zinc-900 outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
+											className="min-w-0 flex-1 rounded-md border border-zinc-300 bg-zinc-50 px-3 py-2 font-mono text-sm text-zinc-900 outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
 										/>
 										<button
 											type="button"
 											onClick={copyShareUrl}
 											aria-label="Copy share link"
-											className="flex h-9 w-9 shrink-0 items-center justify-center border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+											className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 										>
 											{shareCopied ? (
 												<Check size={16} aria-hidden="true" />
@@ -340,7 +340,7 @@ export function PlaygroundMockPage() {
 										<button
 											type="button"
 											aria-label="Download playground files"
-											className="flex h-9 w-9 shrink-0 items-center justify-center border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+											className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 										>
 											<Download size={16} aria-hidden="true" />
 										</button>
@@ -448,7 +448,7 @@ export function PlaygroundMockPage() {
 					/>
 
 					{/* Dialog panel */}
-					<div className="relative w-full max-w-md animate-[dialogIn_0.25s_ease-out] border border-zinc-300 bg-white p-6 shadow-2xl dark:border-zinc-700 dark:bg-zinc-900">
+					<div className="relative w-full max-w-md animate-[dialogIn_0.25s_ease-out] rounded-md border border-zinc-300 bg-white p-6 shadow-2xl dark:border-zinc-700 dark:bg-zinc-900">
 						<h2
 							id="reset-dialog-title"
 							className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white"
