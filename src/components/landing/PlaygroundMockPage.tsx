@@ -299,7 +299,7 @@ export function PlaygroundMockPage() {
 								<div
 									role="dialog"
 									aria-label="Share this playground"
-									className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] border border-zinc-300 bg-white p-5 shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
+									className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] border border-zinc-300 bg-white p-5 font-sans shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
 								>
 									<h2 className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white">
 										Share
