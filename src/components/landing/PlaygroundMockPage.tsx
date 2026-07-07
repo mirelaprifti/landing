@@ -1,5 +1,13 @@
-import { ChevronDown, ChevronRight, File, Folder } from "lucide-react";
-import { useState } from "react";
+import {
+	Check,
+	ChevronDown,
+	ChevronRight,
+	Copy,
+	Download,
+	File,
+	Folder,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
 import { Navigation } from "./Navigation";
@@ -197,6 +205,37 @@ export function PlaygroundMockPage() {
 	const [activeTab, setActiveTab] = useState<"terminal" | "trace">("terminal");
 	const [openFolders, setOpenFolders] = useState<Set<string>>(new Set(["src"]));
 	const [resetConfirmOpen, setResetConfirmOpen] = useState(false);
+	const [shareOpen, setShareOpen] = useState(false);
+	const [shareCopied, setShareCopied] = useState(false);
+	const shareRef = useRef<HTMLDivElement>(null);
+
+	const SHARE_URL = "https://effect.website/play#cb512fbe0b7a";
+
+	// Close share popover on outside click or Escape
+	useEffect(() => {
+		if (!shareOpen) return;
+		const handlePointer = (e: MouseEvent) => {
+			if (shareRef.current && !shareRef.current.contains(e.target as Node)) {
+				setShareOpen(false);
+			}
+		};
+		const handleKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setShareOpen(false);
+		};
+		document.addEventListener("mousedown", handlePointer);
+		document.addEventListener("keydown", handleKey);
+		return () => {
+			document.removeEventListener("mousedown", handlePointer);
+			document.removeEventListener("keydown", handleKey);
+		};
+	}, [shareOpen]);
+
+	const copyShareUrl = () => {
+		navigator.clipboard.writeText(SHARE_URL).then(() => {
+			setShareCopied(true);
+			setTimeout(() => setShareCopied(false), 1500);
+		});
+	};
 
 	const toggleFolder = (name: string) =>
 		setOpenFolders((prev) => {
@@ -243,14 +282,71 @@ export function PlaygroundMockPage() {
 								Reset
 							</Button>
 						</div>
-						<div className="pointer-events-auto">
+						<div ref={shareRef} className="pointer-events-auto relative">
 							<Button
 								variant="ghost"
 								size="sm"
+								onClick={() => setShareOpen((open) => !open)}
+								aria-haspopup="dialog"
+								aria-expanded={shareOpen}
 								className="border border-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 							>
 								Share
 							</Button>
+
+							{/* Share popover */}
+							{shareOpen && (
+								<div
+									role="dialog"
+									aria-label="Share this playground"
+									className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] border border-zinc-300 bg-white p-5 shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
+								>
+									<h2 className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white">
+										Share
+									</h2>
+									<p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+										Use the link to share this playground with others.
+									</p>
+
+									{/* Link row */}
+									<div className="mt-4 flex items-center gap-2">
+										<input
+											type="text"
+											readOnly
+											value={SHARE_URL}
+											aria-label="Share link"
+											onFocus={(e) => e.currentTarget.select()}
+											className="min-w-0 flex-1 border border-zinc-300 bg-zinc-50 px-3 py-2 font-mono text-sm text-zinc-900 outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
+										/>
+										<button
+											type="button"
+											onClick={copyShareUrl}
+											aria-label="Copy share link"
+											className="flex h-9 w-9 shrink-0 items-center justify-center border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+										>
+											{shareCopied ? (
+												<Check size={16} aria-hidden="true" />
+											) : (
+												<Copy size={16} aria-hidden="true" />
+											)}
+										</button>
+									</div>
+
+									{/* Download row */}
+									<div className="mt-4 flex items-center justify-between gap-2">
+										<p className="text-sm text-zinc-600 dark:text-zinc-400">
+											Or download the files locally
+										</p>
+										<button
+											type="button"
+											aria-label="Download playground files"
+											className="flex h-9 w-9 shrink-0 items-center justify-center border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+										>
+											<Download size={16} aria-hidden="true" />
+										</button>
+									</div>
+								</div>
+							)}
 						</div>
 					</div>
 					<pre className="m-0 flex">
