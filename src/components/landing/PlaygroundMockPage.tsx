@@ -348,11 +348,11 @@ export function PlaygroundMockPage() {
 						type="button"
 						aria-label="Close dialog"
 						onClick={() => setResetConfirmOpen(false)}
-						className="absolute inset-0 bg-black/25 backdrop-blur-xs"
+						className="absolute inset-0 animate-[fadeIn_0.2s_ease-out] bg-black/25 backdrop-blur-xs"
 					/>
 
 					{/* Dialog panel */}
-					<div className="relative w-full max-w-md border border-zinc-700 bg-zinc-900 p-6 shadow-2xl">
+					<div className="relative w-full max-w-md animate-[dialogIn_0.25s_ease-out] border border-zinc-700 bg-zinc-900 p-6 shadow-2xl">
 						<h2
 							id="reset-dialog-title"
 							className="leading-tighter text-lg font-semibold text-white"
