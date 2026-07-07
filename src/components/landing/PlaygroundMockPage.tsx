@@ -352,16 +352,16 @@ export function PlaygroundMockPage() {
 					/>
 
 					{/* Dialog panel */}
-					<div className="relative w-full max-w-md animate-[dialogIn_0.25s_ease-out] border border-zinc-700 bg-zinc-900 p-6 shadow-2xl">
+					<div className="relative w-full max-w-md animate-[dialogIn_0.25s_ease-out] border border-zinc-300 bg-white p-6 shadow-2xl dark:border-zinc-700 dark:bg-zinc-900">
 						<h2
 							id="reset-dialog-title"
-							className="leading-tighter text-lg font-semibold text-white"
+							className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white"
 						>
 							Reset playground?
 						</h2>
 						<p
 							id="reset-dialog-description"
-							className="mt-3 text-sm leading-relaxed text-zinc-400"
+							className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400"
 						>
 							This will discard your current code and restore the default
 							example. This action can't be undone.
