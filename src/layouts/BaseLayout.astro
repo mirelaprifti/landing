@@ -5,12 +5,16 @@ interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
+	/** Pages with a theme switch (blog, playground, docs) resolve light/dark from
+	 * the stored/system preference. All other pages are always dark. */
+	themeable?: boolean;
 }
 
 const {
 	title = "Effect Examples",
 	description = "Interactive Effect examples",
 	ogImage,
+	themeable = false,
 } = Astro.props;
 
 const base = import.meta.env.PROD ? "/landing" : "";
@@ -54,25 +58,28 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
     />
     <title>{title}</title>
 
-    <!-- Theme: prevent flash of wrong theme -->
-    <script is:inline>
-      (function() {
-        var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (stored === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else if (stored === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          // system mode (default)
-          if (prefersDark) {
+    <!-- Theme: prevent flash of wrong theme. Only pages with a theme switch
+         resolve the preference; all other pages stay dark. -->
+    {themeable && (
+      <script is:inline>
+        (function() {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else if (stored === 'dark') {
             document.documentElement.classList.add('dark');
           } else {
-            document.documentElement.classList.remove('dark');
+            // system mode (default)
+            if (prefersDark) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
           }
-        }
-      })();
-    </script>
+        })();
+      </script>
+    )}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
