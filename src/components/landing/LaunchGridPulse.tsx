@@ -43,10 +43,9 @@ export function LaunchGridPulse({
 		const heroTop = gridTop;
 		const heroBottom = gridTop + ROWS * CELL_H;
 
-		// Wave origin: ON the center-most grid line, between the two central
-		// columns, at headline height
-		const originX = anchorX;
-		const originY = gridTop + CELL_H * 1.2;
+		// Wave origin: center of the page
+		const originX = W / 2;
+		const originY = H / 2;
 
 		// Build one path containing all grid lines in the hero area
 		const gridPath = new Path2D();
