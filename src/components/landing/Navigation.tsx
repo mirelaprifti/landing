@@ -6,11 +6,13 @@ import { ThemeToggleButton } from "../ui/ThemeToggle";
 interface NavigationProps {
 	transparent?: boolean;
 	activePath?: string;
+	/** Shift the fixed navbar down to make room for a site-wide banner above it. */
+	belowBanner?: boolean;
 	wide?: boolean;
 	fullWidth?: boolean;
 }
 
-export function Navigation({ transparent = false, activePath, wide = false, fullWidth = false }: NavigationProps) {
+export function Navigation({ transparent = false, activePath, wide = false, fullWidth = false, belowBanner = false }: NavigationProps) {
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
 	const showThemeToggle = ["/blog", "/play", "/docs"].some((p) =>
 		activePath?.startsWith(p),
@@ -82,7 +84,7 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 	return (
 		<>
 			<div
-				className={`fixed top-0 right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-200 bg-zinc-50/85 dark:border-zinc-800 dark:bg-zinc-950/85"}`}
+				className={`fixed ${belowBanner ? "top-10" : "top-0"} right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-200 bg-zinc-50/85 dark:border-zinc-800 dark:bg-zinc-950/85"}`}
 			>
 				<div className="w-full">
 					<header className={`relative mx-auto w-full px-4 ${fullWidth ? "" : wide ? "max-w-[88rem]" : "max-w-[73.75rem]"}`}>
