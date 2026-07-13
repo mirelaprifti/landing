@@ -39,11 +39,11 @@ export function LaunchConfetti() {
 		const offCtx = off.getContext("2d");
 		if (!offCtx) return;
 
-		// Fit the text to ~80% of the viewport width
+		// Fit the text to ~92% of the viewport width
 		let fontSize = 160;
 		offCtx.font = `700 ${fontSize}px Inter, sans-serif`;
 		const measured = offCtx.measureText(TEXT).width;
-		fontSize = Math.min(180, (fontSize * (W * 0.8)) / measured);
+		fontSize = Math.min(280, (fontSize * (W * 0.92)) / measured);
 
 		off.width = W;
 		off.height = Math.ceil(fontSize * 1.4);
