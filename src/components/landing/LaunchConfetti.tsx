@@ -22,10 +22,12 @@ export function LaunchConfetti() {
 		ctx.scale(dpr, dpr);
 
 		const COLORS = [
-			"#ffffff",
-			"#a1a1aa", // zinc-400
 			"#34d399", // emerald-400
 			"#a78bfa", // violet-400
+			"#fbbf24", // amber-400
+			"#38bdf8", // sky-400
+			"#f472b6", // pink-400
+			"#ffffff",
 		];
 
 		type Particle = {
@@ -41,13 +43,13 @@ export function LaunchConfetti() {
 			opacity: number;
 		};
 
-		const particles: Particle[] = Array.from({ length: 120 }, () => ({
+		const particles: Particle[] = Array.from({ length: 180 }, () => ({
 			x: Math.random() * window.innerWidth,
-			y: -20 - Math.random() * 100,
-			vx: (Math.random() - 0.5) * 2,
-			vy: 2 + Math.random() * 3,
-			w: 6 + Math.random() * 4,
-			h: 8 + Math.random() * 6,
+			y: -20 - Math.random() * 150,
+			vx: (Math.random() - 0.5) * 3,
+			vy: 2.5 + Math.random() * 3.5,
+			w: 7 + Math.random() * 5,
+			h: 10 + Math.random() * 7,
 			color: COLORS[Math.floor(Math.random() * COLORS.length)],
 			rotation: Math.random() * Math.PI * 2,
 			vr: (Math.random() - 0.5) * 0.2,

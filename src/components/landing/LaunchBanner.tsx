@@ -31,12 +31,12 @@ export function LaunchBanner({
 	if (!visible) return null;
 
 	return (
-		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center bg-zinc-900 px-10 text-zinc-100 dark:bg-white dark:text-zinc-900">
+		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
 			<a
 				href="/blog/effect-v4"
 				className="group flex min-w-0 items-center gap-2 text-sm font-medium"
 			>
-				<span className="hidden font-mono text-xs tracking-wider uppercase opacity-70 sm:inline">
+				<span className="hidden font-mono text-xs tracking-wider text-emerald-400 uppercase sm:inline">
 					// New
 				</span>
 				<span className="truncate">
