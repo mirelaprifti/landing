@@ -61,15 +61,6 @@ export const JOBS: Job[] = [
 		description: "Help American businesses get work authorization for their employees.",
 	},
 	{
-		company: "Goblins",
-		role: "Product Founding Engineer",
-		location: "Brooklyn, NYC",
-		url: "https://discord.com/channels/795981131316985866/796153351372275743/1439740311277404231",
-		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/goblins-icon.png",
-		description: "Build America's favorite teacher, starting with K–12 math.",
-	},
-	{
 		company: "HumanLayer",
 		role: "Founding Product Engineer",
 		location: "San Francisco",
@@ -131,16 +122,6 @@ export const JOBS: Job[] = [
 		description: "Fintech using Effect as part of the stack — looking for strong engineers with a solid functional-programming background.",
 	},
 	{
-		company: "SIWorks",
-		role: "Senior Full-Stack Engineer",
-		location: "Remote · Portland / Vancouver WA",
-		type: "Part-time",
-		url: "https://discord.com/channels/795981131316985866/796153351372275743/1501997185309347840",
-		note: "Posted on Discord #job-board",
-		logo: "/assets/effect-jobs-logos/siworks.png",
-		description: "Small profitable startup — mortgage marketing and transportation software.",
-	},
-	{
 		company: "Solid",
 		role: "Early engineering team",
 		location: "Bay Area",
@@ -184,14 +165,6 @@ export const JOBS: Job[] = [
 		url: "https://tranched.fi/careers/fullstack-developer-web3",
 		logo: "/assets/effect-jobs-logos/tranched.png",
 		description: "Automating the structuring and management of complex securitisation transactions.",
-	},
-	{
-		company: "Trellis AI",
-		role: "Product Engineer",
-		location: "San Francisco",
-		url: "https://www.ycombinator.com/companies/trellis-ai",
-		logo: "/assets/effect-jobs-logos/trellis.png",
-		description: "AI for automating healthcare paperwork.",
 	},
 ];
 
