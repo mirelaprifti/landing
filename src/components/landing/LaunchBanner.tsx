@@ -46,14 +46,17 @@ export function LaunchBanner({
 						style={{
 							background:
 								"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent)",
-							animation: "banner-border-spread 2.4s ease-out 0.1s 1 both",
+							animation: "banner-border-spread 8s ease-out 0.1s infinite both",
 						}}
 					/>
 					<style>{`
 						@keyframes banner-border-spread {
+							/* Sweep (~1.9s), fade, then stay quiet for the rest of the 8s cycle */
 							0% { width: 0%; opacity: 1; }
-							60% { width: 110%; opacity: 1; }
-							100% { width: 110%; opacity: 0; }
+							18% { width: 110%; opacity: 1; }
+							28% { width: 110%; opacity: 0; }
+							28.1% { width: 0%; opacity: 0; }
+							100% { width: 0%; opacity: 0; }
 						}
 					`}</style>
 				</>
