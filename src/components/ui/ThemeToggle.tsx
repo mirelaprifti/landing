@@ -1,5 +1,5 @@
-import { Moon, Sun } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { Check, Monitor, Moon, Sun } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Theme = "light" | "dark" | "system";
 
@@ -32,19 +32,24 @@ function applyTheme(theme: Theme) {
 }
 
 /**
- * Compact icon-only theme toggle for the navbar. Cycles light <-> dark
- * (sets an explicit preference); the footer's ThemeToggle remains the
- * full 3-state control including "system".
+ * Compact theme control for the navbar. The icon shows the effective mode;
+ * clicking opens a Light / Dark / System menu so users can also return to
+ * following their OS preference.
  */
 export function ThemeToggleButton({ className = "" }: { className?: string }) {
 	const [mounted, setMounted] = useState(false);
 	const [isDark, setIsDark] = useState(false);
+	const [theme, setTheme] = useState<Theme>("system");
+	const [open, setOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
 
-	// Track the effective mode, including changes made from the footer control
+	// Track the effective mode and the stored preference
 	useEffect(() => {
 		setMounted(true);
 		const root = document.documentElement;
 		setIsDark(root.classList.contains("dark"));
+		const stored = localStorage.getItem("theme") as Theme | null;
+		setTheme(stored === "light" || stored === "dark" ? stored : "system");
 		const observer = new MutationObserver(() => {
 			setIsDark(root.classList.contains("dark"));
 		});
@@ -52,27 +57,106 @@ export function ThemeToggleButton({ className = "" }: { className?: string }) {
 		return () => observer.disconnect();
 	}, []);
 
-	const toggle = useCallback(() => {
-		const next = !document.documentElement.classList.contains("dark");
-		applyTheme(next ? "dark" : "light");
-		localStorage.setItem("theme", next ? "dark" : "light");
+	// Follow OS preference changes while in system mode
+	useEffect(() => {
+		const mq = window.matchMedia("(prefers-color-scheme: dark)");
+		const handler = () => {
+			if (theme === "system") applyTheme("system");
+		};
+		mq.addEventListener("change", handler);
+		return () => mq.removeEventListener("change", handler);
+	}, [theme]);
+
+	// Close menu on outside click or Escape
+	useEffect(() => {
+		if (!open) return;
+		const handlePointer = (e: MouseEvent) => {
+			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+				setOpen(false);
+			}
+		};
+		const handleKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setOpen(false);
+		};
+		document.addEventListener("mousedown", handlePointer);
+		document.addEventListener("keydown", handleKey);
+		return () => {
+			document.removeEventListener("mousedown", handlePointer);
+			document.removeEventListener("keydown", handleKey);
+		};
+	}, [open]);
+
+	const selectTheme = useCallback((next: Theme) => {
+		setTheme(next);
+		applyTheme(next);
+		if (next === "system") {
+			localStorage.removeItem("theme");
+		} else {
+			localStorage.setItem("theme", next);
+		}
+		setOpen(false);
 	}, []);
 
+	const options: { value: Theme; icon: typeof Sun; label: string }[] = [
+		{ value: "light", icon: Sun, label: "Light" },
+		{ value: "dark", icon: Moon, label: "Dark" },
+		{ value: "system", icon: Monitor, label: "System" },
+	];
+
 	return (
-		<button
-			type="button"
-			onClick={toggle}
-			aria-label={
-				mounted && isDark ? "Switch to light mode" : "Switch to dark mode"
-			}
-			className={`flex items-center justify-center transition-colors ${className}`}
-		>
-			{mounted && !isDark ? (
-				<Sun size={20} aria-hidden="true" />
-			) : (
-				<Moon size={20} aria-hidden="true" />
+		<div ref={menuRef} className="relative">
+			<button
+				type="button"
+				onClick={() => setOpen((o) => !o)}
+				aria-haspopup="menu"
+				aria-expanded={open}
+				aria-label="Change theme"
+				className={`flex items-center justify-center transition-colors ${className}`}
+			>
+				{mounted && !isDark ? (
+					<Sun size={20} aria-hidden="true" />
+				) : (
+					<Moon size={20} aria-hidden="true" />
+				)}
+			</button>
+
+			{open && (
+				<div
+					role="menu"
+					aria-label="Theme"
+					className="absolute top-full right-0 z-50 mt-2 w-36 overflow-hidden rounded-md border border-zinc-300 bg-white py-1 shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
+				>
+					{options.map((opt) => {
+						const Icon = opt.icon;
+						const isActive = theme === opt.value;
+						return (
+							<button
+								key={opt.value}
+								type="button"
+								role="menuitemradio"
+								aria-checked={isActive}
+								onClick={() => selectTheme(opt.value)}
+								className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+									isActive
+										? "text-zinc-900 dark:text-white"
+										: "text-zinc-600 dark:text-zinc-400"
+								}`}
+							>
+								<Icon size={15} aria-hidden="true" />
+								<span className="flex-1">{opt.label}</span>
+								{isActive && (
+									<Check
+										size={14}
+										className="text-zinc-500 dark:text-zinc-400"
+										aria-hidden="true"
+									/>
+								)}
+							</button>
+						);
+					})}
+				</div>
 			)}
-		</button>
+		</div>
 	);
 }
 
