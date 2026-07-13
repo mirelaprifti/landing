@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 
 /**
- * One-time launch celebration: subtle glitter with Effect syntax.
- * Soft bursts release a shimmer of tiny twinkling specks, with occasional
- * small code tokens (yield*, pipe, v4...) drifting among them at low opacity.
- * - Fires once on mount, ~5s, then removes itself entirely
+ * One-time celebratory confetti for the v4 launch page — classic style.
+ * Staggered fireworks bursts of paper confetti: pieces tumble, sway on air
+ * resistance, and float down in the brand-adjacent vivid palette.
+ * - Fires once on mount, ~4s, then removes itself entirely
  * - Respects prefers-reduced-motion (renders nothing)
  */
 export function LaunchConfetti() {
@@ -22,42 +22,29 @@ export function LaunchConfetti() {
 		canvas.height = window.innerHeight * dpr;
 		ctx.scale(dpr, dpr);
 
-		// Glitter tints — mostly silver/white, brand hues as soft accents
-		const SPECK_COLORS = [
+		const COLORS = [
+			"#34d399", "#6ee7b7", // emerald 400/300
+			"#a78bfa", "#c4b5fd", // violet 400/300
+			"#fbbf24", "#fcd34d", // amber 400/300
+			"#38bdf8", "#7dd3fc", // sky 400/300
+			"#f472b6", "#f9a8d4", // pink 400/300
 			"#ffffff",
-			"#ffffff",
-			"#e4e4e7",
-			"#d4d4d8",
-			"#6ee7b7", // emerald-300
-			"#c4b5fd", // violet-300
-			"#7dd3fc", // sky-300
-		];
-
-		const TOKENS: { text: string; color: string }[] = [
-			{ text: "yield*", color: "#a5b4fc" },
-			{ text: "pipe", color: "#e4e4e7" },
-			{ text: "Effect.gen", color: "#e4e4e7" },
-			{ text: "{ }", color: "#a1a1aa" },
-			{ text: "=>", color: "#a1a1aa" },
-			{ text: '"effect"', color: "#34d399" },
-			{ text: "v4", color: "#ffffff" },
 		];
 
 		type Particle = {
-			kind: "speck" | "token";
 			x: number;
 			y: number;
 			vx: number;
 			vy: number;
-			size: number;
-			text?: string;
+			w: number;
+			h: number;
 			color: string;
 			rotation: number;
+			vr: number;
 			born: number;
 			life: number;
-			twinklePhase: number;
-			twinkleSpeed: number;
-			baseOpacity: number;
+			tumblePhase: number;
+			tumbleSpeed: number;
 			swayPhase: number;
 			swaySpeed: number;
 			swayAmp: number;
@@ -73,35 +60,25 @@ export function LaunchConfetti() {
 			bornAt: number,
 		) => {
 			for (let i = 0; i < count; i++) {
-				// 85% glitter specks, 15% small drifting tokens
-				const isToken = Math.random() < 0.2;
-				const token = TOKENS[Math.floor(Math.random() * TOKENS.length)];
 				const angle = Math.random() * Math.PI * 2;
-				const speed = power * (0.3 + Math.random() * 0.8);
+				const speed = power * (0.4 + Math.random() * 0.9);
 				particles.push({
-					kind: isToken ? "token" : "speck",
 					x: cx,
 					y: cy,
 					vx: Math.cos(angle) * speed,
-					vy: Math.sin(angle) * speed - power * 0.3,
-					size: isToken
-						? 12 + Math.random() * 5
-						: 2.2 + Math.random() * 3,
-					text: isToken ? token.text : undefined,
-					color: isToken
-						? token.color
-						: SPECK_COLORS[Math.floor(Math.random() * SPECK_COLORS.length)],
-					rotation: (Math.random() - 0.5) * 0.4,
+					vy: Math.sin(angle) * speed - power * 0.35,
+					w: 6 + Math.random() * 5,
+					h: 8 + Math.random() * 7,
+					color: COLORS[Math.floor(Math.random() * COLORS.length)],
+					rotation: Math.random() * Math.PI * 2,
+					vr: (Math.random() - 0.5) * 0.3,
 					born: bornAt,
-					life: 3000 + Math.random() * 1800,
-					twinklePhase: Math.random() * Math.PI * 2,
-					twinkleSpeed: 0.12 + Math.random() * 0.2,
-					baseOpacity: isToken
-						? 0.55 + Math.random() * 0.35
-						: 0.75 + Math.random() * 0.25,
+					life: 2200 + Math.random() * 1400,
+					tumblePhase: Math.random() * Math.PI * 2,
+					tumbleSpeed: 0.12 + Math.random() * 0.18,
 					swayPhase: Math.random() * Math.PI * 2,
-					swaySpeed: 0.02 + Math.random() * 0.03,
-					swayAmp: 0.4 + Math.random() * 1,
+					swaySpeed: 0.03 + Math.random() * 0.04,
+					swayAmp: 0.8 + Math.random() * 1.8,
 				});
 			}
 		};
@@ -109,20 +86,20 @@ export function LaunchConfetti() {
 		const W = window.innerWidth;
 		const H = window.innerHeight;
 
-		// Gentle, staggered shimmer pops
+		// Staggered volley: center pop first, then flanks, then a top finale
 		const VOLLEYS: { at: number; x: number; y: number; n: number; p: number }[] = [
-			{ at: 0, x: W * 0.5, y: H * 0.38, n: 280, p: 9 },
-			{ at: 350, x: W * 0.22, y: H * 0.28, n: 190, p: 8 },
-			{ at: 600, x: W * 0.78, y: H * 0.28, n: 190, p: 8 },
-			{ at: 950, x: W * 0.5, y: H * 0.2, n: 220, p: 10 },
+			{ at: 0, x: W * 0.5, y: H * 0.42, n: 110, p: 16 },
+			{ at: 220, x: W * 0.18, y: H * 0.3, n: 80, p: 14 },
+			{ at: 380, x: W * 0.82, y: H * 0.3, n: 80, p: 14 },
+			{ at: 620, x: W * 0.5, y: H * 0.18, n: 90, p: 17 },
 		];
 		let volleyIndex = 0;
 
-		const DRAG = 0.965;
-		const GRAVITY = 0.045;
+		const DRAG = 0.96;
+		const GRAVITY = 0.16;
 		const easeIn = (t: number) => t * t;
 		const start = performance.now();
-		const DURATION = 5200;
+		const DURATION = 4200;
 		let raf: number;
 
 		const tick = (now: number) => {
@@ -138,8 +115,6 @@ export function LaunchConfetti() {
 			}
 
 			ctx.clearRect(0, 0, W, H);
-			ctx.textAlign = "center";
-			ctx.textBaseline = "middle";
 
 			for (const p of particles) {
 				const age = now - p.born;
@@ -148,37 +123,24 @@ export function LaunchConfetti() {
 				p.vx *= DRAG;
 				p.vy = p.vy * DRAG + GRAVITY;
 				p.swayPhase += p.swaySpeed;
-				p.twinklePhase += p.twinkleSpeed;
+				p.tumblePhase += p.tumbleSpeed;
 				p.x += p.vx + Math.sin(p.swayPhase) * p.swayAmp;
 				p.y += p.vy;
+				p.rotation += p.vr;
 
 				const t = age / p.life;
-				const fade = t > 0.5 ? 1 - easeIn((t - 0.5) / 0.5) : 1;
-				// Twinkle: opacity shimmers as each speck catches the light
-				const twinkle =
-					p.kind === "speck"
-						? 0.45 + 0.55 * Math.abs(Math.sin(p.twinklePhase))
-						: 0.8 + 0.2 * Math.sin(p.twinklePhase);
-				const opacity = p.baseOpacity * twinkle * fade;
-				if (opacity <= 0.01) continue;
+				const opacity = t > 0.55 ? 1 - easeIn((t - 0.55) / 0.45) : 1;
+
+				// Paper tumble: the piece flips in "3D" by squashing its height
+				const flip = Math.abs(Math.sin(p.tumblePhase));
 
 				ctx.save();
 				ctx.translate(p.x, p.y);
+				ctx.rotate(p.rotation);
 				ctx.globalAlpha = opacity;
-
-				if (p.kind === "speck") {
-					// Soft glow makes specks read as glitter, not dust
-					ctx.shadowColor = p.color;
-					ctx.shadowBlur = 9;
-					ctx.fillStyle = p.color;
-					ctx.rotate(Math.PI / 4); // diamond orientation
-					ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-				} else {
-					ctx.rotate(p.rotation);
-					ctx.fillStyle = p.color;
-					ctx.font = `500 ${p.size}px "JetBrains Mono", monospace`;
-					ctx.fillText(p.text ?? "", 0, 0);
-				}
+				ctx.fillStyle = p.color;
+				const h = Math.max(p.h * flip, 1.5);
+				ctx.fillRect(-p.w / 2, -h / 2, p.w, h);
 				ctx.restore();
 			}
 
@@ -190,10 +152,7 @@ export function LaunchConfetti() {
 			}
 		};
 
-		document.fonts?.load('500 12px "JetBrains Mono"').finally(() => {
-			raf = requestAnimationFrame(tick);
-		});
-
+		raf = requestAnimationFrame(tick);
 		return () => cancelAnimationFrame(raf);
 	}, []);
 
