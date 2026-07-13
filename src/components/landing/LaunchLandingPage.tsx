@@ -7,7 +7,7 @@ import { FeaturesSection } from "./FeaturesSection";
 import { Footer } from "./Footer";
 import { LaunchBanner } from "./LaunchBanner";
 import { LaunchHeroSection } from "./LaunchHeroSection";
-import { LaunchConfetti } from "./LaunchConfetti";
+import { LaunchGridPulse } from "./LaunchGridPulse";
 import { Navigation } from "./Navigation";
 import { ProblemSection } from "./ProblemSection";
 import { QuotesGridSection } from "./QuotesSection";
@@ -28,7 +28,7 @@ export function LaunchLandingPage() {
 	return (
 		<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			{/* One-time celebration on load */}
-			<LaunchConfetti />
+			<LaunchGridPulse />
 
 			{/* Site-wide launch banner above the navbar */}
 			<LaunchBanner onVisibilityChange={setBannerVisible} />
