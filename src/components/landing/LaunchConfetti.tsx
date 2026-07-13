@@ -74,7 +74,7 @@ export function LaunchConfetti() {
 		) => {
 			for (let i = 0; i < count; i++) {
 				// 85% glitter specks, 15% small drifting tokens
-				const isToken = Math.random() < 0.15;
+				const isToken = Math.random() < 0.2;
 				const token = TOKENS[Math.floor(Math.random() * TOKENS.length)];
 				const angle = Math.random() * Math.PI * 2;
 				const speed = power * (0.3 + Math.random() * 0.8);
@@ -85,8 +85,8 @@ export function LaunchConfetti() {
 					vx: Math.cos(angle) * speed,
 					vy: Math.sin(angle) * speed - power * 0.3,
 					size: isToken
-						? 9 + Math.random() * 4
-						: 1.2 + Math.random() * 2.2,
+						? 12 + Math.random() * 5
+						: 2.2 + Math.random() * 3,
 					text: isToken ? token.text : undefined,
 					color: isToken
 						? token.color
@@ -97,8 +97,8 @@ export function LaunchConfetti() {
 					twinklePhase: Math.random() * Math.PI * 2,
 					twinkleSpeed: 0.12 + Math.random() * 0.2,
 					baseOpacity: isToken
-						? 0.35 + Math.random() * 0.3
-						: 0.5 + Math.random() * 0.5,
+						? 0.55 + Math.random() * 0.35
+						: 0.75 + Math.random() * 0.25,
 					swayPhase: Math.random() * Math.PI * 2,
 					swaySpeed: 0.02 + Math.random() * 0.03,
 					swayAmp: 0.4 + Math.random() * 1,
@@ -111,9 +111,10 @@ export function LaunchConfetti() {
 
 		// Gentle, staggered shimmer pops
 		const VOLLEYS: { at: number; x: number; y: number; n: number; p: number }[] = [
-			{ at: 0, x: W * 0.5, y: H * 0.38, n: 160, p: 7 },
-			{ at: 350, x: W * 0.22, y: H * 0.28, n: 110, p: 6 },
-			{ at: 600, x: W * 0.78, y: H * 0.28, n: 110, p: 6 },
+			{ at: 0, x: W * 0.5, y: H * 0.38, n: 280, p: 9 },
+			{ at: 350, x: W * 0.22, y: H * 0.28, n: 190, p: 8 },
+			{ at: 600, x: W * 0.78, y: H * 0.28, n: 190, p: 8 },
+			{ at: 950, x: W * 0.5, y: H * 0.2, n: 220, p: 10 },
 		];
 		let volleyIndex = 0;
 
@@ -156,7 +157,7 @@ export function LaunchConfetti() {
 				// Twinkle: opacity shimmers as each speck catches the light
 				const twinkle =
 					p.kind === "speck"
-						? 0.25 + 0.75 * Math.abs(Math.sin(p.twinklePhase))
+						? 0.45 + 0.55 * Math.abs(Math.sin(p.twinklePhase))
 						: 0.8 + 0.2 * Math.sin(p.twinklePhase);
 				const opacity = p.baseOpacity * twinkle * fade;
 				if (opacity <= 0.01) continue;
@@ -168,7 +169,7 @@ export function LaunchConfetti() {
 				if (p.kind === "speck") {
 					// Soft glow makes specks read as glitter, not dust
 					ctx.shadowColor = p.color;
-					ctx.shadowBlur = 5;
+					ctx.shadowBlur = 9;
 					ctx.fillStyle = p.color;
 					ctx.rotate(Math.PI / 4); // diamond orientation
 					ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
