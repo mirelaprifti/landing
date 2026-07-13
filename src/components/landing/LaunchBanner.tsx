@@ -34,7 +34,7 @@ export function LaunchBanner({
 	if (!visible) return null;
 
 	return (
-		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center overflow-hidden border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
+		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
 			{/* Border light-up — the grid pulse arrives at the banner: light
 			    spreads from the center outward along the bottom hairline */}
 			{glintKey > 0 && (
