@@ -46,7 +46,7 @@ export function LaunchBanner({
 						style={{
 							background:
 								"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent)",
-							animation: "banner-border-spread 8s ease-out 0.1s infinite both",
+							animation: "banner-border-spread 12s ease-out 0.1s infinite both",
 						}}
 					/>
 					<style>{`
