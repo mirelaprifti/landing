@@ -67,9 +67,11 @@ export function LaunchGridPulse({
 		}
 
 		const maxDist = Math.max(...cells.map((c) => c.d));
-		const DURATION = 2800;
-		const WAVE_TIME = 2000; // wavefront reaches the farthest cell
-		const BAND = 170; // wavefront thickness in px
+		const DURATION = 3000;
+		const WAVE_TIME = 2200; // wavefront reaches the farthest cell
+		// Tight wavefront so cells light discretely — wide bands blur the
+		// two-column opening into a single centered glow
+		const BAND = 95;
 		const start = performance.now();
 		let raf: number;
 

@@ -45,7 +45,7 @@ export function LaunchBanner({
 						style={{
 							background:
 								"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent)",
-							animation: "banner-glint 0.9s ease-out 1 both",
+							animation: "banner-glint 1.7s ease-in-out 0.15s 1 both",
 						}}
 					/>
 					<style>{`
