@@ -39,6 +39,7 @@ jobs:
         env:
           SITE: https://mirelaprifti.github.io
           BASE: /landing
+          PUBLIC_POSTHOG_KEY: ${{ secrets.PUBLIC_POSTHOG_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
