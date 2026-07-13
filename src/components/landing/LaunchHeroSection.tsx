@@ -1,5 +1,42 @@
+import { useEffect, useState } from "react";
 import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
+
+/** Split-flap style version counter: rolls 3.9 -> 4.0 on mount. */
+function FlipVersion() {
+	const [flipped, setFlipped] = useState(false);
+
+	useEffect(() => {
+		// Let the initial state paint first, then roll
+		const t = window.setTimeout(() => setFlipped(true), 500);
+		return () => window.clearTimeout(t);
+	}, []);
+
+	const reelStyle = (delay: number): React.CSSProperties => ({
+		display: "flex",
+		flexDirection: "column",
+		transform: flipped ? "translateY(-1.3em)" : "translateY(0)",
+		transition: `transform 650ms cubic-bezier(0.65, 0, 0.35, 1) ${delay}ms`,
+	});
+
+	return (
+		<span
+			className="inline-flex overflow-hidden align-bottom"
+			style={{ height: "1.3em", lineHeight: "1.3em" }}
+			aria-label="4.0"
+		>
+			<span style={reelStyle(0)} aria-hidden="true">
+				<span>3</span>
+				<span>4</span>
+			</span>
+			<span aria-hidden="true">.</span>
+			<span style={reelStyle(140)} aria-hidden="true">
+				<span>9</span>
+				<span>0</span>
+			</span>
+		</span>
+	);
+}
 
 const HERO_LOGOS: {
 	name: string;
@@ -16,7 +53,15 @@ const HERO_LOGOS: {
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "22px", nudgeY: 2 },
 ];
 
-export function LaunchHeroSection() {
+export function LaunchHeroSection({
+	versionFlip = false,
+	headlineGlint = false,
+}: {
+	/** Decoration: eyebrow version rolls 3.9 -> 4.0 like a split-flap counter. */
+	versionFlip?: boolean;
+	/** Decoration: a light sheen sweeps once across the headline on load. */
+	headlineGlint?: boolean;
+} = {}) {
 	return (
 		<section className="relative w-full">
 			{/* Grid background */}
@@ -74,12 +119,38 @@ export function LaunchHeroSection() {
 						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 md:text-sm dark:text-zinc-300 dark:hover:text-white"
 					>
 						<span className="text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-400">//</span>
-						<span>Effect 4.0 — Out now</span>
+						<span>
+							Effect {versionFlip ? <FlipVersion /> : "4.0"} — Out now
+						</span>
 						<i className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300" aria-hidden="true" />
 					</a>
 					{/* Headline */}
-					<h1 className="leading-tighter text-4xl font-bold text-zinc-900 md:text-5xl md:whitespace-nowrap lg:text-[3.4rem] dark:text-white">
+					<h1 className="leading-tighter relative text-4xl font-bold text-zinc-900 md:text-5xl md:whitespace-nowrap lg:text-[3.4rem] dark:text-white">
 						Reliable TypeScript for the AI era
+						{headlineGlint && (
+							<>
+								<span
+									aria-hidden="true"
+									className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden"
+								>
+									<span
+										className="absolute top-0 bottom-0 w-28 -skew-x-12"
+										style={{
+											background:
+												"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.35), transparent)",
+											animation:
+												"glint-sweep 1.3s ease-out 500ms 1 both",
+										}}
+									/>
+								</span>
+								<style>{`
+									@keyframes glint-sweep {
+										from { left: -15%; }
+										to { left: 110%; }
+									}
+								`}</style>
+							</>
+						)}
 					</h1>
 
 					{/* Subheadline */}
