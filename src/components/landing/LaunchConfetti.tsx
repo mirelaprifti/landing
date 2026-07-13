@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 
 /**
  * One-time celebratory confetti for the v4 launch page.
- * Fireworks-style: staggered bursts fire particles radially outward at high
- * velocity; drag slows them, then gravity pulls them down.
- * - Fires once on mount, ~3s, then removes itself entirely
+ * Fireworks-style staggered bursts with paper-like motion: pieces tumble in
+ * 3D (simulated by height flip), sway on air resistance, and float down.
+ * - Fires once on mount, ~4s, then removes itself entirely
  * - Respects prefers-reduced-motion (renders nothing)
  */
 export function LaunchConfetti() {
@@ -22,14 +22,17 @@ export function LaunchConfetti() {
 		canvas.height = window.innerHeight * dpr;
 		ctx.scale(dpr, dpr);
 
+		// Two tones per hue — adds depth without leaving the brand palette
 		const COLORS = [
-			"#34d399", // emerald-400
-			"#a78bfa", // violet-400
-			"#fbbf24", // amber-400
-			"#38bdf8", // sky-400
-			"#f472b6", // pink-400
+			"#34d399", "#6ee7b7", // emerald 400/300
+			"#a78bfa", "#c4b5fd", // violet 400/300
+			"#fbbf24", "#fcd34d", // amber 400/300
+			"#38bdf8", "#7dd3fc", // sky 400/300
+			"#f472b6", "#f9a8d4", // pink 400/300
 			"#ffffff",
 		];
+
+		type Shape = "chip" | "ribbon" | "dot";
 
 		type Particle = {
 			x: number;
@@ -43,9 +46,22 @@ export function LaunchConfetti() {
 			vr: number;
 			born: number;
 			life: number;
+			shape: Shape;
+			tumblePhase: number;
+			tumbleSpeed: number;
+			swayPhase: number;
+			swaySpeed: number;
+			swayAmp: number;
 		};
 
 		const particles: Particle[] = [];
+
+		const randomShape = (): Shape => {
+			const r = Math.random();
+			if (r < 0.55) return "chip";
+			if (r < 0.85) return "ribbon";
+			return "dot";
+		};
 
 		const burst = (
 			cx: number,
@@ -55,21 +71,30 @@ export function LaunchConfetti() {
 			bornAt: number,
 		) => {
 			for (let i = 0; i < count; i++) {
-				// Radial explosion with an upward bias
 				const angle = Math.random() * Math.PI * 2;
 				const speed = power * (0.4 + Math.random() * 0.9);
+				const shape = randomShape();
 				particles.push({
 					x: cx,
 					y: cy,
 					vx: Math.cos(angle) * speed,
 					vy: Math.sin(angle) * speed - power * 0.35,
-					w: 6 + Math.random() * 5,
-					h: 8 + Math.random() * 7,
+					w: shape === "ribbon" ? 4 + Math.random() * 3 : 6 + Math.random() * 5,
+					h:
+						shape === "ribbon"
+							? 14 + Math.random() * 10
+							: 8 + Math.random() * 7,
 					color: COLORS[Math.floor(Math.random() * COLORS.length)],
 					rotation: Math.random() * Math.PI * 2,
-					vr: (Math.random() - 0.5) * 0.4,
+					vr: (Math.random() - 0.5) * 0.3,
 					born: bornAt,
-					life: 1600 + Math.random() * 900,
+					life: 2200 + Math.random() * 1400,
+					shape,
+					tumblePhase: Math.random() * Math.PI * 2,
+					tumbleSpeed: 0.12 + Math.random() * 0.18,
+					swayPhase: Math.random() * Math.PI * 2,
+					swaySpeed: 0.03 + Math.random() * 0.04,
+					swayAmp: 0.8 + Math.random() * 1.8,
 				});
 			}
 		};
@@ -86,16 +111,16 @@ export function LaunchConfetti() {
 		];
 		let volleyIndex = 0;
 
-		const DRAG = 0.955;
-		const GRAVITY = 0.22;
+		const DRAG = 0.96;
+		const GRAVITY = 0.16;
+		const easeIn = (t: number) => t * t;
 		const start = performance.now();
-		const DURATION = 3400;
+		const DURATION = 4200;
 		let raf: number;
 
 		const tick = (now: number) => {
 			const elapsed = now - start;
 
-			// Fire pending volleys
 			while (
 				volleyIndex < VOLLEYS.length &&
 				elapsed >= VOLLEYS[volleyIndex].at
@@ -110,22 +135,37 @@ export function LaunchConfetti() {
 			for (const p of particles) {
 				const age = now - p.born;
 				if (age > p.life) continue;
+
+				// Physics: burst decays into a floaty, swaying fall
 				p.vx *= DRAG;
 				p.vy = p.vy * DRAG + GRAVITY;
-				p.x += p.vx;
+				p.swayPhase += p.swaySpeed;
+				p.tumblePhase += p.tumbleSpeed;
+				p.x += p.vx + Math.sin(p.swayPhase) * p.swayAmp;
 				p.y += p.vy;
 				p.rotation += p.vr;
 
-				// Fade out over the last 40% of each particle's life
+				// Smooth fade over the last 45% of life
 				const t = age / p.life;
-				const opacity = t > 0.6 ? 1 - (t - 0.6) / 0.4 : 1;
+				const opacity = t > 0.55 ? 1 - easeIn((t - 0.55) / 0.45) : 1;
+
+				// Paper tumble: the piece flips in "3D" by squashing its height
+				const flip =
+					p.shape === "dot" ? 1 : Math.abs(Math.sin(p.tumblePhase));
 
 				ctx.save();
 				ctx.translate(p.x, p.y);
 				ctx.rotate(p.rotation);
 				ctx.globalAlpha = opacity;
 				ctx.fillStyle = p.color;
-				ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+				if (p.shape === "dot") {
+					ctx.beginPath();
+					ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+					ctx.fill();
+				} else {
+					const h = Math.max(p.h * flip, 1.5);
+					ctx.fillRect(-p.w / 2, -h / 2, p.w, h);
+				}
 				ctx.restore();
 			}
 
