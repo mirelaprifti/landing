@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react";
 
 /**
- * One-time launch celebration: Effect-syntax confetti, chip style.
- * Staggered bursts of little code chips — rounded dark pills with hairline
- * borders and syntax-colored JetBrains Mono tokens (yield*, Effect.gen,
- * pipe...). Rare inverted white "v4" chips headline the swarm.
- * - Fires once on mount, ~4s, then removes itself entirely
+ * One-time launch celebration: subtle glitter with Effect syntax.
+ * Soft bursts release a shimmer of tiny twinkling specks, with occasional
+ * small code tokens (yield*, pipe, v4...) drifting among them at low opacity.
+ * - Fires once on mount, ~5s, then removes itself entirely
  * - Respects prefers-reduced-motion (renders nothing)
  */
 export function LaunchConfetti() {
@@ -23,62 +22,48 @@ export function LaunchConfetti() {
 		canvas.height = window.innerHeight * dpr;
 		ctx.scale(dpr, dpr);
 
-		// Tokens weighted like real source; colors follow the site's syntax palette
-		const TOKENS: { text: string; color: string; weight: number }[] = [
-			{ text: "{ }", color: "#a1a1aa", weight: 8 },
-			{ text: "=>", color: "#a1a1aa", weight: 7 },
-			{ text: "yield*", color: "#a5b4fc", weight: 8 },
-			{ text: "const", color: "#a5b4fc", weight: 5 },
-			{ text: "function*", color: "#a5b4fc", weight: 3 },
-			{ text: "Effect.gen", color: "#e4e4e7", weight: 6 },
-			{ text: "pipe", color: "#e4e4e7", weight: 6 },
-			{ text: "Effect", color: "#ffffff", weight: 5 },
-			{ text: "Schema", color: "#e4e4e7", weight: 3 },
-			{ text: "Fiber", color: "#e4e4e7", weight: 3 },
-			{ text: "Layer", color: "#e4e4e7", weight: 3 },
-			{ text: '"effect"', color: "#34d399", weight: 6 },
-			{ text: "Success", color: "#34d399", weight: 3 },
-			{ text: "Error", color: "#f87171", weight: 3 },
-			{ text: "Requirements", color: "#a78bfa", weight: 2 },
+		// Glitter tints — mostly silver/white, brand hues as soft accents
+		const SPECK_COLORS = [
+			"#ffffff",
+			"#ffffff",
+			"#e4e4e7",
+			"#d4d4d8",
+			"#6ee7b7", // emerald-300
+			"#c4b5fd", // violet-300
+			"#7dd3fc", // sky-300
 		];
 
-		const pickToken = () => {
-			const total = TOKENS.reduce((sum, t) => sum + t.weight, 0);
-			let r = Math.random() * total;
-			for (const t of TOKENS) {
-				r -= t.weight;
-				if (r <= 0) return t;
-			}
-			return TOKENS[0];
-		};
+		const TOKENS: { text: string; color: string }[] = [
+			{ text: "yield*", color: "#a5b4fc" },
+			{ text: "pipe", color: "#e4e4e7" },
+			{ text: "Effect.gen", color: "#e4e4e7" },
+			{ text: "{ }", color: "#a1a1aa" },
+			{ text: "=>", color: "#a1a1aa" },
+			{ text: '"effect"', color: "#34d399" },
+			{ text: "v4", color: "#ffffff" },
+		];
 
 		type Particle = {
+			kind: "speck" | "token";
 			x: number;
 			y: number;
 			vx: number;
 			vy: number;
-			text: string;
+			size: number;
+			text?: string;
 			color: string;
-			fontSize: number;
-			hero: boolean;
-			chipW: number;
-			chipH: number;
 			rotation: number;
-			vr: number;
 			born: number;
 			life: number;
+			twinklePhase: number;
+			twinkleSpeed: number;
+			baseOpacity: number;
 			swayPhase: number;
 			swaySpeed: number;
 			swayAmp: number;
 		};
 
 		const particles: Particle[] = [];
-
-		const measureChip = (text: string, fontSize: number, bold: boolean) => {
-			ctx.font = `${bold ? "700" : "500"} ${fontSize}px "JetBrains Mono", monospace`;
-			const w = ctx.measureText(text).width;
-			return { chipW: w + fontSize * 1.1, chipH: fontSize * 1.9 };
-		};
 
 		const burst = (
 			cx: number,
@@ -88,31 +73,35 @@ export function LaunchConfetti() {
 			bornAt: number,
 		) => {
 			for (let i = 0; i < count; i++) {
-				// ~7% of chips are the inverted white "v4" heroes
-				const hero = Math.random() < 0.07;
-				const token = hero ? { text: "v4", color: "#18181b" } : pickToken();
-				const fontSize = hero ? 20 + Math.random() * 8 : 10 + Math.random() * 5;
-				const { chipW, chipH } = measureChip(token.text, fontSize, hero);
+				// 85% glitter specks, 15% small drifting tokens
+				const isToken = Math.random() < 0.15;
+				const token = TOKENS[Math.floor(Math.random() * TOKENS.length)];
 				const angle = Math.random() * Math.PI * 2;
-				const speed = power * (0.4 + Math.random() * 0.9);
+				const speed = power * (0.3 + Math.random() * 0.8);
 				particles.push({
+					kind: isToken ? "token" : "speck",
 					x: cx,
 					y: cy,
 					vx: Math.cos(angle) * speed,
-					vy: Math.sin(angle) * speed - power * 0.35,
-					text: token.text,
-					color: token.color,
-					fontSize,
-					hero,
-					chipW,
-					chipH,
-					rotation: (Math.random() - 0.5) * 0.5,
-					vr: (Math.random() - 0.5) * 0.04,
+					vy: Math.sin(angle) * speed - power * 0.3,
+					size: isToken
+						? 9 + Math.random() * 4
+						: 1.2 + Math.random() * 2.2,
+					text: isToken ? token.text : undefined,
+					color: isToken
+						? token.color
+						: SPECK_COLORS[Math.floor(Math.random() * SPECK_COLORS.length)],
+					rotation: (Math.random() - 0.5) * 0.4,
 					born: bornAt,
-					life: 2400 + Math.random() * 1400,
+					life: 3000 + Math.random() * 1800,
+					twinklePhase: Math.random() * Math.PI * 2,
+					twinkleSpeed: 0.12 + Math.random() * 0.2,
+					baseOpacity: isToken
+						? 0.35 + Math.random() * 0.3
+						: 0.5 + Math.random() * 0.5,
 					swayPhase: Math.random() * Math.PI * 2,
-					swaySpeed: 0.03 + Math.random() * 0.04,
-					swayAmp: 0.7 + Math.random() * 1.6,
+					swaySpeed: 0.02 + Math.random() * 0.03,
+					swayAmp: 0.4 + Math.random() * 1,
 				});
 			}
 		};
@@ -120,24 +109,19 @@ export function LaunchConfetti() {
 		const W = window.innerWidth;
 		const H = window.innerHeight;
 
-		// Staggered volley: center pop first, then flanks, then a top finale
+		// Gentle, staggered shimmer pops
 		const VOLLEYS: { at: number; x: number; y: number; n: number; p: number }[] = [
-			{ at: 0, x: W * 0.5, y: H * 0.42, n: 55, p: 15 },
-			{ at: 220, x: W * 0.18, y: H * 0.3, n: 40, p: 13 },
-			{ at: 380, x: W * 0.82, y: H * 0.3, n: 40, p: 13 },
-			{ at: 620, x: W * 0.5, y: H * 0.18, n: 48, p: 16 },
+			{ at: 0, x: W * 0.5, y: H * 0.38, n: 160, p: 7 },
+			{ at: 350, x: W * 0.22, y: H * 0.28, n: 110, p: 6 },
+			{ at: 600, x: W * 0.78, y: H * 0.28, n: 110, p: 6 },
 		];
 		let volleyIndex = 0;
 
-		const DRAG = 0.96;
-		const GRAVITY = 0.13;
+		const DRAG = 0.965;
+		const GRAVITY = 0.045;
 		const easeIn = (t: number) => t * t;
-		const easeOutBack = (t: number) => {
-			const c = 1.70158;
-			return 1 + (c + 1) * (t - 1) ** 3 + c * (t - 1) ** 2;
-		};
 		const start = performance.now();
-		const DURATION = 4200;
+		const DURATION = 5200;
 		let raf: number;
 
 		const tick = (now: number) => {
@@ -163,35 +147,37 @@ export function LaunchConfetti() {
 				p.vx *= DRAG;
 				p.vy = p.vy * DRAG + GRAVITY;
 				p.swayPhase += p.swaySpeed;
+				p.twinklePhase += p.twinkleSpeed;
 				p.x += p.vx + Math.sin(p.swayPhase) * p.swayAmp;
 				p.y += p.vy;
-				p.rotation += p.vr;
 
 				const t = age / p.life;
-				const opacity = t > 0.55 ? 1 - easeIn((t - 0.55) / 0.45) : 1;
-				// Pop-in: chips scale up with a slight overshoot in their first 220ms
-				const pop = age < 220 ? easeOutBack(age / 220) : 1;
+				const fade = t > 0.5 ? 1 - easeIn((t - 0.5) / 0.5) : 1;
+				// Twinkle: opacity shimmers as each speck catches the light
+				const twinkle =
+					p.kind === "speck"
+						? 0.25 + 0.75 * Math.abs(Math.sin(p.twinklePhase))
+						: 0.8 + 0.2 * Math.sin(p.twinklePhase);
+				const opacity = p.baseOpacity * twinkle * fade;
+				if (opacity <= 0.01) continue;
 
 				ctx.save();
 				ctx.translate(p.x, p.y);
-				ctx.rotate(p.rotation);
-				ctx.scale(pop, pop);
 				ctx.globalAlpha = opacity;
 
-				// Chip body
-				const r = p.chipH / 2.6;
-				ctx.beginPath();
-				ctx.roundRect(-p.chipW / 2, -p.chipH / 2, p.chipW, p.chipH, r);
-				ctx.fillStyle = p.hero ? "#ffffff" : "#18181b";
-				ctx.fill();
-				ctx.lineWidth = 1;
-				ctx.strokeStyle = p.hero ? "#ffffff" : "#3f3f46";
-				ctx.stroke();
-
-				// Token text
-				ctx.fillStyle = p.color;
-				ctx.font = `${p.hero ? "700" : "500"} ${p.fontSize}px "JetBrains Mono", monospace`;
-				ctx.fillText(p.text, 0, 1);
+				if (p.kind === "speck") {
+					// Soft glow makes specks read as glitter, not dust
+					ctx.shadowColor = p.color;
+					ctx.shadowBlur = 5;
+					ctx.fillStyle = p.color;
+					ctx.rotate(Math.PI / 4); // diamond orientation
+					ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+				} else {
+					ctx.rotate(p.rotation);
+					ctx.fillStyle = p.color;
+					ctx.font = `500 ${p.size}px "JetBrains Mono", monospace`;
+					ctx.fillText(p.text ?? "", 0, 0);
+				}
 				ctx.restore();
 			}
 
@@ -203,8 +189,7 @@ export function LaunchConfetti() {
 			}
 		};
 
-		// Ensure the mono font is ready so chips measure and render correctly
-		document.fonts?.load('500 14px "JetBrains Mono"').finally(() => {
+		document.fonts?.load('500 12px "JetBrains Mono"').finally(() => {
 			raf = requestAnimationFrame(tick);
 		});
 
