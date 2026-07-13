@@ -98,8 +98,8 @@ export function ThemeToggleButton({ className = "" }: { className?: string }) {
 	}, []);
 
 	const options: { value: Theme; icon: typeof Sun; label: string }[] = [
-		{ value: "light", icon: Sun, label: "Light" },
 		{ value: "dark", icon: Moon, label: "Dark" },
+		{ value: "light", icon: Sun, label: "Light" },
 		{ value: "system", icon: Monitor, label: "System" },
 	];
 
