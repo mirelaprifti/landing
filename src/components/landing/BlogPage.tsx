@@ -63,13 +63,13 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
-						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.18em] text-zinc-900 dark:text-white uppercase">
+						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs font-semibold tracking-[0.18em] text-zinc-900 dark:text-white uppercase">
 							Release
 						</span>
 					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
 						<span
 							key={tag}
-							className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
+							className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
@@ -317,13 +317,13 @@ function PostCard({ post }: { post: BlogPost }) {
 						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
 							<span
 								key={tag}
-								className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
+								className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
 							>
 								{tag}
 							</span>
 						))}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 font-mono text-[10px] tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase">
+							<span className="inline-flex items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase">
 								+{post.tags.length - 2}
 							</span>
 						)}
@@ -811,7 +811,7 @@ export function BlogPage() {
 													onClick={() => {
 														handleTagChange(tag as BlogTag);
 													}}
-													className="inline-flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+													className="inline-flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-xs tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
 												>
 													{tag}
 												</button>
