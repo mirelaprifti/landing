@@ -9,8 +9,11 @@ const DISMISS_KEY = "v4-launch-banner-dismissed";
  */
 export function LaunchBanner({
 	onVisibilityChange,
+	glintKey = 0,
 }: {
 	onVisibilityChange?: (visible: boolean) => void;
+	/** Increment to sweep a light sheen across the banner (finale of the grid pulse). */
+	glintKey?: number;
 }) {
 	const [visible, setVisible] = useState(true);
 
@@ -31,7 +34,28 @@ export function LaunchBanner({
 	if (!visible) return null;
 
 	return (
-		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
+		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center overflow-hidden border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
+			{/* Glint sweep — fired when the grid pulse completes */}
+			{glintKey > 0 && (
+				<>
+					<span
+						key={glintKey}
+						aria-hidden="true"
+						className="pointer-events-none absolute top-0 bottom-0 w-32 -skew-x-12 motion-reduce:hidden"
+						style={{
+							background:
+								"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent)",
+							animation: "banner-glint 0.9s ease-out 1 both",
+						}}
+					/>
+					<style>{`
+						@keyframes banner-glint {
+							from { left: -12%; }
+							to { left: 110%; }
+						}
+					`}</style>
+				</>
+			)}
 			<a
 				href="/blog/effect-v4"
 				className="group flex min-w-0 items-center gap-2 text-sm font-medium"

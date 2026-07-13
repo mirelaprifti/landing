@@ -11,8 +11,11 @@ import { useEffect, useRef } from "react";
 export function LaunchGridPulse({
 	/** Y offset of the hero grid origin in viewport px (banner + navbar). */
 	gridTop = 104,
+	/** Called once when the pulse finishes (used to chain follow-up effects). */
+	onComplete,
 }: {
 	gridTop?: number;
+	onComplete?: () => void;
 }) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -39,7 +42,10 @@ export function LaunchGridPulse({
 		// Collect cell rectangles: columns spanning the viewport, ROWS rows down
 		type Cell = { x: number; y: number; cx: number; cy: number; d: number };
 		const cells: Cell[] = [];
-		const originX = W / 2;
+		// Origin sits ON the center-most grid line, so the wave reaches the two
+		// columns flanking it simultaneously — the pulse opens with a symmetric
+		// pair of columns, not a single centered one.
+		const originX = anchorX;
 		const originY = gridTop + CELL_H * 1.2; // wave origin ≈ headline zone
 
 		const firstCol = Math.floor((0 - anchorX) / CELL_W) - 1;
@@ -99,12 +105,13 @@ export function LaunchGridPulse({
 			} else {
 				ctx.clearRect(0, 0, W, H);
 				canvas.style.display = "none";
+				onComplete?.();
 			}
 		};
 
 		raf = requestAnimationFrame(tick);
 		return () => cancelAnimationFrame(raf);
-	}, [gridTop]);
+	}, [gridTop, onComplete]);
 
 	return (
 		<canvas

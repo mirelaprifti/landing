@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { AISection } from "./AISection";
 import { CTASection } from "./CTASection";
@@ -88,6 +88,7 @@ export function LaunchLandingPage() {
 	const [bannerVisible, setBannerVisible] = useState(true);
 	const [decoration, setDecoration] = useState<Decoration>("grid-pulse");
 	const [replayKey, setReplayKey] = useState(0);
+	const [bannerGlintKey, setBannerGlintKey] = useState(0);
 
 	// Grid origin in viewport px: banner (40, when visible) + navbar (64)
 	const gridTop = bannerVisible ? 104 : 64;
@@ -97,11 +98,21 @@ export function LaunchLandingPage() {
 		setReplayKey((k) => k + 1);
 	};
 
+	// Finale: when the grid pulse completes, a glint sweeps across the banner.
+	// Stable ref — a fresh callback per render would restart the pulse effect.
+	const handlePulseComplete = useCallback(() => {
+		setBannerGlintKey((k) => k + 1);
+	}, []);
+
 	return (
 		<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			{/* Launch decoration under review — switcher bottom-right */}
 			{decoration === "grid-pulse" && (
-				<LaunchGridPulse key={replayKey} gridTop={gridTop} />
+				<LaunchGridPulse
+					key={replayKey}
+					gridTop={gridTop}
+					onComplete={handlePulseComplete}
+				/>
 			)}
 			{decoration === "circuit" && (
 				<LaunchCircuitTraces key={replayKey} gridTop={gridTop} />
@@ -115,7 +126,10 @@ export function LaunchLandingPage() {
 			/>
 
 			{/* Site-wide launch banner above the navbar */}
-			<LaunchBanner onVisibilityChange={setBannerVisible} />
+			<LaunchBanner
+				onVisibilityChange={setBannerVisible}
+				glintKey={bannerGlintKey}
+			/>
 
 			{/* Dithered background overlay - subtle texture across entire page (dark mode only) */}
 			<div
