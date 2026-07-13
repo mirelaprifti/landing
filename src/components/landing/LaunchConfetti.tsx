@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 
 /**
- * One-time celebratory confetti for the v4 launch page.
- * Fireworks-style staggered bursts with paper-like motion: pieces tumble in
- * 3D (simulated by height flip), sway on air resistance, and float down.
+ * One-time launch celebration: code confetti. Staggered fireworks bursts of
+ * source-code tokens (yield*, Effect.gen, pipe, braces...) in JetBrains Mono,
+ * colored with the site's syntax palette. Rare oversized "v4" pieces headline.
  * - Fires once on mount, ~4s, then removes itself entirely
  * - Respects prefers-reduced-motion (renders nothing)
  */
@@ -22,31 +22,51 @@ export function LaunchConfetti() {
 		canvas.height = window.innerHeight * dpr;
 		ctx.scale(dpr, dpr);
 
-		// Two tones per hue — adds depth without leaving the brand palette
-		const COLORS = [
-			"#34d399", "#6ee7b7", // emerald 400/300
-			"#a78bfa", "#c4b5fd", // violet 400/300
-			"#fbbf24", "#fcd34d", // amber 400/300
-			"#38bdf8", "#7dd3fc", // sky 400/300
-			"#f472b6", "#f9a8d4", // pink 400/300
-			"#ffffff",
+		// Tokens weighted like real source — symbols common, keywords next,
+		// full API names as accents. Colors follow the site's syntax palette.
+		const TOKENS: { text: string; color: string; weight: number }[] = [
+			{ text: "{ }", color: "#a1a1aa", weight: 10 }, // punctuation — zinc
+			{ text: "=>", color: "#a1a1aa", weight: 8 },
+			{ text: "( )", color: "#a1a1aa", weight: 6 },
+			{ text: "*", color: "#a5b4fc", weight: 6 }, // indigo keywords
+			{ text: "yield*", color: "#a5b4fc", weight: 8 },
+			{ text: "const", color: "#a5b4fc", weight: 5 },
+			{ text: "function*", color: "#a5b4fc", weight: 3 },
+			{ text: "Effect.gen", color: "#e4e4e7", weight: 6 }, // identifiers
+			{ text: "pipe", color: "#e4e4e7", weight: 6 },
+			{ text: "Effect", color: "#ffffff", weight: 5 },
+			{ text: "Schema", color: "#e4e4e7", weight: 3 },
+			{ text: "Fiber", color: "#e4e4e7", weight: 3 },
+			{ text: "Layer", color: "#e4e4e7", weight: 3 },
+			{ text: '"effect"', color: "#34d399", weight: 6 }, // strings — emerald
+			{ text: "Success", color: "#34d399", weight: 3 },
+			{ text: "Error", color: "#f87171", weight: 3 }, // red-400
+			{ text: "Requirements", color: "#a78bfa", weight: 2 }, // violet-400
 		];
 
-		type Shape = "chip" | "ribbon" | "dot";
+		const pickToken = () => {
+			const total = TOKENS.reduce((sum, t) => sum + t.weight, 0);
+			let r = Math.random() * total;
+			for (const t of TOKENS) {
+				r -= t.weight;
+				if (r <= 0) return t;
+			}
+			return TOKENS[0];
+		};
 
 		type Particle = {
 			x: number;
 			y: number;
 			vx: number;
 			vy: number;
-			w: number;
-			h: number;
+			text: string;
 			color: string;
+			fontSize: number;
+			bold: boolean;
 			rotation: number;
 			vr: number;
 			born: number;
 			life: number;
-			shape: Shape;
 			tumblePhase: number;
 			tumbleSpeed: number;
 			swayPhase: number;
@@ -56,13 +76,6 @@ export function LaunchConfetti() {
 
 		const particles: Particle[] = [];
 
-		const randomShape = (): Shape => {
-			const r = Math.random();
-			if (r < 0.55) return "chip";
-			if (r < 0.85) return "ribbon";
-			return "dot";
-		};
-
 		const burst = (
 			cx: number,
 			cy: number,
@@ -71,27 +84,28 @@ export function LaunchConfetti() {
 			bornAt: number,
 		) => {
 			for (let i = 0; i < count; i++) {
+				// ~6% of pieces are the oversized white "v4" hero tokens
+				const isHero = Math.random() < 0.06;
+				const token = isHero
+					? { text: "v4", color: "#ffffff" }
+					: pickToken();
 				const angle = Math.random() * Math.PI * 2;
 				const speed = power * (0.4 + Math.random() * 0.9);
-				const shape = randomShape();
 				particles.push({
 					x: cx,
 					y: cy,
 					vx: Math.cos(angle) * speed,
 					vy: Math.sin(angle) * speed - power * 0.35,
-					w: shape === "ribbon" ? 4 + Math.random() * 3 : 6 + Math.random() * 5,
-					h:
-						shape === "ribbon"
-							? 14 + Math.random() * 10
-							: 8 + Math.random() * 7,
-					color: COLORS[Math.floor(Math.random() * COLORS.length)],
-					rotation: Math.random() * Math.PI * 2,
-					vr: (Math.random() - 0.5) * 0.3,
+					text: token.text,
+					color: token.color,
+					fontSize: isHero ? 26 + Math.random() * 12 : 11 + Math.random() * 7,
+					bold: isHero,
+					rotation: (Math.random() - 0.5) * 1.1,
+					vr: (Math.random() - 0.5) * 0.06,
 					born: bornAt,
 					life: 2200 + Math.random() * 1400,
-					shape,
 					tumblePhase: Math.random() * Math.PI * 2,
-					tumbleSpeed: 0.12 + Math.random() * 0.18,
+					tumbleSpeed: 0.08 + Math.random() * 0.1,
 					swayPhase: Math.random() * Math.PI * 2,
 					swaySpeed: 0.03 + Math.random() * 0.04,
 					swayAmp: 0.8 + Math.random() * 1.8,
@@ -104,15 +118,15 @@ export function LaunchConfetti() {
 
 		// Staggered volley: center pop first, then flanks, then a top finale
 		const VOLLEYS: { at: number; x: number; y: number; n: number; p: number }[] = [
-			{ at: 0, x: W * 0.5, y: H * 0.42, n: 110, p: 16 },
-			{ at: 220, x: W * 0.18, y: H * 0.3, n: 80, p: 14 },
-			{ at: 380, x: W * 0.82, y: H * 0.3, n: 80, p: 14 },
-			{ at: 620, x: W * 0.5, y: H * 0.18, n: 90, p: 17 },
+			{ at: 0, x: W * 0.5, y: H * 0.42, n: 70, p: 15 },
+			{ at: 220, x: W * 0.18, y: H * 0.3, n: 50, p: 13 },
+			{ at: 380, x: W * 0.82, y: H * 0.3, n: 50, p: 13 },
+			{ at: 620, x: W * 0.5, y: H * 0.18, n: 60, p: 16 },
 		];
 		let volleyIndex = 0;
 
 		const DRAG = 0.96;
-		const GRAVITY = 0.16;
+		const GRAVITY = 0.14;
 		const easeIn = (t: number) => t * t;
 		const start = performance.now();
 		const DURATION = 4200;
@@ -131,12 +145,13 @@ export function LaunchConfetti() {
 			}
 
 			ctx.clearRect(0, 0, W, H);
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
 
 			for (const p of particles) {
 				const age = now - p.born;
 				if (age > p.life) continue;
 
-				// Physics: burst decays into a floaty, swaying fall
 				p.vx *= DRAG;
 				p.vy = p.vy * DRAG + GRAVITY;
 				p.swayPhase += p.swaySpeed;
@@ -145,27 +160,20 @@ export function LaunchConfetti() {
 				p.y += p.vy;
 				p.rotation += p.vr;
 
-				// Smooth fade over the last 45% of life
 				const t = age / p.life;
 				const opacity = t > 0.55 ? 1 - easeIn((t - 0.55) / 0.45) : 1;
 
-				// Paper tumble: the piece flips in "3D" by squashing its height
-				const flip =
-					p.shape === "dot" ? 1 : Math.abs(Math.sin(p.tumblePhase));
+				// Card flip — tokens tumble like slips of paper
+				const flip = 0.35 + 0.65 * Math.abs(Math.sin(p.tumblePhase));
 
 				ctx.save();
 				ctx.translate(p.x, p.y);
 				ctx.rotate(p.rotation);
+				ctx.scale(1, flip);
 				ctx.globalAlpha = opacity;
 				ctx.fillStyle = p.color;
-				if (p.shape === "dot") {
-					ctx.beginPath();
-					ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
-					ctx.fill();
-				} else {
-					const h = Math.max(p.h * flip, 1.5);
-					ctx.fillRect(-p.w / 2, -h / 2, p.w, h);
-				}
+				ctx.font = `${p.bold ? "700" : "500"} ${p.fontSize}px "JetBrains Mono", monospace`;
+				ctx.fillText(p.text, 0, 0);
 				ctx.restore();
 			}
 
@@ -177,7 +185,11 @@ export function LaunchConfetti() {
 			}
 		};
 
-		raf = requestAnimationFrame(tick);
+		// Ensure the mono font is ready so tokens don't render in a fallback
+		document.fonts?.load('500 14px "JetBrains Mono"').finally(() => {
+			raf = requestAnimationFrame(tick);
+		});
+
 		return () => cancelAnimationFrame(raf);
 	}, []);
 
