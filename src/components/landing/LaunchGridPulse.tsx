@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Launch celebration: the hero grid lights up. A wave radiates outward from
- * the center on load, briefly illuminating grid cells and their borders as it
+ * Launch celebration: the hero grid lights up. A ring of light radiates
+ * outward from the center-most grid line, illuminating the grid lines as it
  * passes, then everything settles back to the ambient grid.
+ * Rendered as one continuous radial-gradient sweep over the grid geometry —
+ * no per-cell popping.
  * - Geometry matches the hero grid (196.6 x 194 cells anchored at 50%+97px)
- * - Fires once on mount (~2.8s), then removes itself entirely
+ * - Fires once on mount (~3s), then removes itself entirely
  * - Respects prefers-reduced-motion (renders nothing)
  */
 export function LaunchGridPulse({
@@ -36,75 +38,97 @@ export function LaunchGridPulse({
 		// Hero grid geometry — must match HeroSection's background grid
 		const CELL_W = 196.6;
 		const CELL_H = 194;
-		const anchorX = W / 2 + 97; // vertical line anchor
-		const ROWS = 3; // stay within the hero's visible grid area
+		const anchorX = W / 2 + 97;
+		const ROWS = 3;
+		const heroTop = gridTop;
+		const heroBottom = gridTop + ROWS * CELL_H;
 
-		// Collect cell rectangles: columns spanning the viewport, ROWS rows down
-		type Cell = { x: number; y: number; cx: number; cy: number; d: number };
-		const cells: Cell[] = [];
-		// Origin sits ON the center-most grid line, so the wave reaches the two
-		// columns flanking it simultaneously — the pulse opens with a symmetric
-		// pair of columns, not a single centered one.
+		// Wave origin: ON the center-most grid line, between the two central
+		// columns, at headline height
 		const originX = anchorX;
-		const originY = gridTop + CELL_H * 1.2; // wave origin ≈ headline zone
+		const originY = gridTop + CELL_H * 1.2;
 
+		// Build one path containing all grid lines in the hero area
+		const gridPath = new Path2D();
 		const firstCol = Math.floor((0 - anchorX) / CELL_W) - 1;
-		const lastCol = Math.ceil((W - anchorX) / CELL_W);
-		for (let row = 0; row < ROWS; row++) {
-			for (let col = firstCol; col <= lastCol; col++) {
-				const x = anchorX + col * CELL_W;
-				const y = gridTop + row * CELL_H;
-				const cx = x + CELL_W / 2;
-				const cy = y + CELL_H / 2;
-				cells.push({
-					x,
-					y,
-					cx,
-					cy,
-					d: Math.hypot(cx - originX, cy - originY),
-				});
-			}
+		const lastCol = Math.ceil((W - anchorX) / CELL_W) + 1;
+		for (let col = firstCol; col <= lastCol; col++) {
+			const x = anchorX + col * CELL_W;
+			gridPath.moveTo(x, heroTop);
+			gridPath.lineTo(x, heroBottom);
+		}
+		for (let row = 0; row <= ROWS; row++) {
+			const y = gridTop + row * CELL_H;
+			gridPath.moveTo(0, y);
+			gridPath.lineTo(W, y);
 		}
 
-		const maxDist = Math.max(...cells.map((c) => c.d));
+		const corners = [
+			[0, heroTop],
+			[W, heroTop],
+			[0, heroBottom],
+			[W, heroBottom],
+		];
+		const maxDist = Math.max(
+			...corners.map(([x, y]) => Math.hypot(x - originX, y - originY)),
+		);
+
+		const BAND = 150; // ring thickness in px
 		const DURATION = 3000;
-		const WAVE_TIME = 2200; // wavefront reaches the farthest cell
-		// Tight wavefront so cells light discretely — wide bands blur the
-		// two-column opening into a single centered glow
-		const BAND = 95;
+		const WAVE_TIME = 2300; // ring reaches the farthest corner
 		const start = performance.now();
 		let raf: number;
+		let done = false;
 
 		const tick = (now: number) => {
 			const elapsed = now - start;
 			ctx.clearRect(0, 0, W, H);
 
 			const r = (elapsed / WAVE_TIME) * (maxDist + BAND);
-			// Whole-effect fade in the final 600ms
 			const globalFade =
-				elapsed > DURATION - 600 ? (DURATION - elapsed) / 600 : 1;
+				elapsed > DURATION - 600 ? Math.max(0, (DURATION - elapsed) / 600) : 1;
 
-			for (const c of cells) {
-				// Gaussian falloff around the wavefront
-				const delta = c.d - r;
-				const intensity = Math.exp(-(delta * delta) / (2 * (BAND / 2) ** 2));
-				if (intensity < 0.02) continue;
+			if (globalFade > 0 && r > 0) {
+				// One radial gradient forms the moving ring of light
+				const inner = Math.max(0, r - BAND);
+				const outer = r + BAND * 0.4;
+				const ring = ctx.createRadialGradient(
+					originX,
+					originY,
+					inner,
+					originX,
+					originY,
+					outer,
+				);
+				ring.addColorStop(0, "rgba(255, 255, 255, 0)");
+				ring.addColorStop(0.7, `rgba(255, 255, 255, ${0.35 * globalFade})`);
+				ring.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-				const a = intensity * globalFade;
-
-				// Cell fill — faint white wash
-				ctx.fillStyle = `rgba(255, 255, 255, ${a * 0.05})`;
-				ctx.fillRect(c.x, c.y, CELL_W, CELL_H);
-
-				// Cell borders — brighter, the actual "lighting up"
-				ctx.strokeStyle = `rgba(255, 255, 255, ${a * 0.28})`;
+				// Grid lines light up as the ring passes
+				ctx.strokeStyle = ring;
 				ctx.lineWidth = 1;
-				ctx.strokeRect(c.x + 0.5, c.y + 0.5, CELL_W - 1, CELL_H - 1);
+				ctx.stroke(gridPath);
+
+				// Faint interior wash inside the ring band
+				const wash = ctx.createRadialGradient(
+					originX,
+					originY,
+					inner,
+					originX,
+					originY,
+					outer,
+				);
+				wash.addColorStop(0, "rgba(255, 255, 255, 0)");
+				wash.addColorStop(0.7, `rgba(255, 255, 255, ${0.03 * globalFade})`);
+				wash.addColorStop(1, "rgba(255, 255, 255, 0)");
+				ctx.fillStyle = wash;
+				ctx.fillRect(0, heroTop, W, heroBottom - heroTop);
 			}
 
 			if (elapsed < DURATION) {
 				raf = requestAnimationFrame(tick);
-			} else {
+			} else if (!done) {
+				done = true;
 				ctx.clearRect(0, 0, W, H);
 				canvas.style.display = "none";
 				onComplete?.();
