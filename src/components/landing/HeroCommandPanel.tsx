@@ -38,14 +38,29 @@ For everything else (Schema, Platform, RPC, AI SDK, Cluster), fetch https://effe
 Important:
 - Confirm with me before each install or deploy. Don't batch.
 - Use \`bun add effect\` (or the npm/pnpm/yarn equivalent).
-- Effect v4 is in beta — if I'm using v3, follow the v3 docs; if I'm starting fresh, use v4 from https://effect.website/blog/effect-v4-beta.
+- VERSION_NOTE
 - Effect uses \`Effect.gen\` with generators, not async/await — don't try to mix them.`;
+
+const VERSION_NOTES = {
+	beta: "Effect v4 is in beta — if I'm using v3, follow the v3 docs; if I'm starting fresh, use v4 from https://effect.website/blog/effect-v4-beta.",
+	stable:
+		"Use Effect v4 — it's the current stable version. If I'm on v3, follow the v3 docs and see the migration guide at https://effect.website/blog/effect-v4.",
+};
 
 const AGENT_PREVIEW = "Help me build an Effect app in TypeScript…";
 
 type Mode = "install" | "prompt";
 
-export function HeroCommandPanel() {
+export function HeroCommandPanel({
+	v4Stable = false,
+}: {
+	/** Launch variant: describe v4 as stable instead of beta in the AI prompt. */
+	v4Stable?: boolean;
+} = {}) {
+	const agentPrompt = AGENT_PROMPT.replace(
+		"VERSION_NOTE",
+		v4Stable ? VERSION_NOTES.stable : VERSION_NOTES.beta,
+	);
 	const [mode, setMode] = useState<Mode>("install");
 	const [activePM, setActivePM] = useState<string>("bun");
 	const [copied, setCopied] = useState(false);
@@ -72,7 +87,7 @@ export function HeroCommandPanel() {
 	}, [pmOpen]);
 
 	const copyValue =
-		mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PROMPT;
+		mode === "install" ? INSTALL_COMMANDS[activePM] : agentPrompt;
 
 	const copy = () => {
 		navigator.clipboard.writeText(copyValue).then(() => {

@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui";
 import { HeroCommandPanel } from "./HeroCommandPanel";
 
-export function CTASection() {
+export function CTASection({
+	v4Stable = false,
+}: {
+	/** Launch variant: describe v4 as stable instead of beta in the AI prompt. */
+	v4Stable?: boolean;
+} = {}) {
 	return (
 		<section className="relative w-full overflow-hidden py-36 md:py-24">
 			{/* Grid background */}
@@ -47,7 +52,7 @@ export function CTASection() {
 
 					{/* Unified install + AI prompt panel */}
 					<div className="mt-8 w-full max-w-xl">
-						<HeroCommandPanel />
+						<HeroCommandPanel v4Stable={v4Stable} />
 					</div>
 
 					{/* CTA Buttons */}

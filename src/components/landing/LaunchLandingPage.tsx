@@ -5,8 +5,8 @@ import { CTASection } from "./CTASection";
 import { FAQSection } from "./FAQSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { Footer } from "./Footer";
-import { HeroSection } from "./HeroSection";
 import { LaunchBanner } from "./LaunchBanner";
+import { LaunchHeroSection } from "./LaunchHeroSection";
 import { LaunchConfetti } from "./LaunchConfetti";
 import { Navigation } from "./Navigation";
 import { ProblemSection } from "./ProblemSection";
@@ -81,7 +81,7 @@ export function LaunchLandingPage() {
 				id="main-content"
 				className={`relative w-full ${bannerVisible ? "pt-26" : "pt-16"}`}
 			>
-				<HeroSection />
+				<LaunchHeroSection />
 				<FeaturesSection />
 				<SectionDivider />
 				<TestimonialsSection />
@@ -96,7 +96,7 @@ export function LaunchLandingPage() {
 				<SectionDivider />
 				<FAQSection />
 				<SectionDivider />
-				<CTASection />
+				<CTASection v4Stable />
 			</main>
 
 			<Footer hideCommunityBorder />
