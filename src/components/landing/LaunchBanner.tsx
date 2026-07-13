@@ -35,23 +35,25 @@ export function LaunchBanner({
 
 	return (
 		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center overflow-hidden border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
-			{/* Glint sweep — fired when the grid pulse completes */}
+			{/* Border light-up — the grid pulse arrives at the banner: light
+			    spreads from the center outward along the bottom hairline */}
 			{glintKey > 0 && (
 				<>
 					<span
 						key={glintKey}
 						aria-hidden="true"
-						className="pointer-events-none absolute top-0 bottom-0 w-32 -skew-x-12 motion-reduce:hidden"
+						className="pointer-events-none absolute bottom-[-1px] left-1/2 h-px -translate-x-1/2 motion-reduce:hidden"
 						style={{
 							background:
-								"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent)",
-							animation: "banner-glint 2.8s ease-in-out 0.15s 1 both",
+								"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent)",
+							animation: "banner-border-spread 2.4s ease-out 0.1s 1 both",
 						}}
 					/>
 					<style>{`
-						@keyframes banner-glint {
-							from { left: -12%; }
-							to { left: 110%; }
+						@keyframes banner-border-spread {
+							0% { width: 0%; opacity: 1; }
+							60% { width: 110%; opacity: 1; }
+							100% { width: 110%; opacity: 0; }
 						}
 					`}</style>
 				</>
