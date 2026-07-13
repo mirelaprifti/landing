@@ -158,15 +158,14 @@ export const JOBS: Job[] = [
 		payRange: "€90K – €120K depending on seniority",
 		description: "Build digital twins of top performers that run personalised 1:1 conversations at scale.",
 	},
-	// Tranched — hidden for now, restore by uncommenting
-	// {
-	// 	company: "Tranched",
-	// 	role: "Full-stack Engineer — Web3",
-	// 	location: "Paris · London · Amsterdam",
-	// 	url: "https://tranched.fi/careers/fullstack-developer-web3",
-	// 	logo: "/assets/effect-jobs-logos/tranched.png",
-	// 	description: "Automating the structuring and management of complex securitisation transactions.",
-	// },
+	{
+		company: "Tranched",
+		role: "Full-stack Engineer — Web3",
+		location: "Paris · London · Amsterdam",
+		url: "https://tranched.fi/careers/fullstack-developer-web3",
+		logo: "/assets/effect-jobs-logos/tranched.png",
+		description: "Automating the structuring and management of complex securitisation transactions.",
+	},
 ];
 
 /**
