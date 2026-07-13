@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 
 /**
- * One-time celebratory confetti burst for the v4 launch page — 80s edition.
- * - Neon synthwave palette with glow, mixed shapes (chips, ribbons, dots)
+ * One-time celebratory confetti for the v4 launch page — explosive edition.
+ * Fireworks-style: staggered bursts fire particles radially outward at high
+ * velocity; drag slows them, then gravity pulls them down.
  * - Fires once on mount, ~3s, then removes itself entirely
  * - Respects prefers-reduced-motion (renders nothing)
  */
@@ -21,18 +22,14 @@ export function LaunchConfetti() {
 		canvas.height = window.innerHeight * dpr;
 		ctx.scale(dpr, dpr);
 
-		// Neon synthwave palette
 		const COLORS = [
-			"#ff2975", // hot pink
-			"#ff00ff", // magenta
-			"#00ffff", // cyan
-			"#39ff14", // neon green
-			"#f8ee00", // electric yellow
-			"#8c1eff", // electric purple
-			"#ff6ec7", // neon rose
+			"#34d399", // emerald-400
+			"#a78bfa", // violet-400
+			"#fbbf24", // amber-400
+			"#38bdf8", // sky-400
+			"#f472b6", // pink-400
+			"#ffffff",
 		];
-
-		type Shape = "chip" | "ribbon" | "dot";
 
 		type Particle = {
 			x: number;
@@ -44,80 +41,98 @@ export function LaunchConfetti() {
 			color: string;
 			rotation: number;
 			vr: number;
-			opacity: number;
-			shape: Shape;
-			wobblePhase: number;
-			wobbleSpeed: number;
-			wobbleAmp: number;
+			born: number;
+			life: number;
 		};
 
-		const randomShape = (): Shape => {
-			const r = Math.random();
-			if (r < 0.5) return "chip";
-			if (r < 0.8) return "ribbon";
-			return "dot";
+		const particles: Particle[] = [];
+
+		const burst = (
+			cx: number,
+			cy: number,
+			count: number,
+			power: number,
+			bornAt: number,
+		) => {
+			for (let i = 0; i < count; i++) {
+				// Radial explosion with an upward bias
+				const angle = Math.random() * Math.PI * 2;
+				const speed = power * (0.4 + Math.random() * 0.9);
+				particles.push({
+					x: cx,
+					y: cy,
+					vx: Math.cos(angle) * speed,
+					vy: Math.sin(angle) * speed - power * 0.35,
+					w: 6 + Math.random() * 5,
+					h: 8 + Math.random() * 7,
+					color: COLORS[Math.floor(Math.random() * COLORS.length)],
+					rotation: Math.random() * Math.PI * 2,
+					vr: (Math.random() - 0.5) * 0.4,
+					born: bornAt,
+					life: 1600 + Math.random() * 900,
+				});
+			}
 		};
 
-		const particles: Particle[] = Array.from({ length: 220 }, () => {
-			const shape = randomShape();
-			return {
-				x: Math.random() * window.innerWidth,
-				y: -30 - Math.random() * 200,
-				vx: (Math.random() - 0.5) * 4,
-				vy: 2.5 + Math.random() * 4,
-				w: shape === "ribbon" ? 5 + Math.random() * 3 : 7 + Math.random() * 6,
-				h: shape === "ribbon" ? 22 + Math.random() * 16 : 9 + Math.random() * 7,
-				color: COLORS[Math.floor(Math.random() * COLORS.length)],
-				rotation: Math.random() * Math.PI * 2,
-				vr: (Math.random() - 0.5) * 0.35,
-				opacity: 1,
-				shape,
-				wobblePhase: Math.random() * Math.PI * 2,
-				wobbleSpeed: 0.08 + Math.random() * 0.12,
-				wobbleAmp: 1 + Math.random() * 2.5,
-			};
-		});
+		const W = window.innerWidth;
+		const H = window.innerHeight;
 
+		// Staggered volley: center pop first, then flanks, then a top finale
+		const VOLLEYS: { at: number; x: number; y: number; n: number; p: number }[] = [
+			{ at: 0, x: W * 0.5, y: H * 0.42, n: 110, p: 16 },
+			{ at: 220, x: W * 0.18, y: H * 0.3, n: 80, p: 14 },
+			{ at: 380, x: W * 0.82, y: H * 0.3, n: 80, p: 14 },
+			{ at: 620, x: W * 0.5, y: H * 0.18, n: 90, p: 17 },
+		];
+		let volleyIndex = 0;
+
+		const DRAG = 0.955;
+		const GRAVITY = 0.22;
 		const start = performance.now();
-		const DURATION = 3200;
+		const DURATION = 3400;
 		let raf: number;
 
 		const tick = (now: number) => {
 			const elapsed = now - start;
-			ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-			const fade = elapsed > DURATION - 900 ? (DURATION - elapsed) / 900 : 1;
+			// Fire pending volleys
+			while (
+				volleyIndex < VOLLEYS.length &&
+				elapsed >= VOLLEYS[volleyIndex].at
+			) {
+				const v = VOLLEYS[volleyIndex];
+				burst(v.x, v.y, v.n, v.p, now);
+				volleyIndex++;
+			}
+
+			ctx.clearRect(0, 0, W, H);
 
 			for (const p of particles) {
-				p.wobblePhase += p.wobbleSpeed;
-				p.x += p.vx + Math.sin(p.wobblePhase) * p.wobbleAmp;
+				const age = now - p.born;
+				if (age > p.life) continue;
+				p.vx *= DRAG;
+				p.vy = p.vy * DRAG + GRAVITY;
+				p.x += p.vx;
 				p.y += p.vy;
-				p.vy += 0.055;
 				p.rotation += p.vr;
-				p.opacity = Math.max(0, fade);
+
+				// Fade out over the last 40% of each particle's life
+				const t = age / p.life;
+				const opacity = t > 0.6 ? 1 - (t - 0.6) / 0.4 : 1;
 
 				ctx.save();
 				ctx.translate(p.x, p.y);
 				ctx.rotate(p.rotation);
-				ctx.globalAlpha = p.opacity;
-				// Neon glow — the 80s ingredient
-				ctx.shadowColor = p.color;
-				ctx.shadowBlur = 12;
+				ctx.globalAlpha = opacity;
 				ctx.fillStyle = p.color;
-				if (p.shape === "dot") {
-					ctx.beginPath();
-					ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
-					ctx.fill();
-				} else {
-					ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-				}
+				ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
 				ctx.restore();
 			}
 
 			if (elapsed < DURATION) {
 				raf = requestAnimationFrame(tick);
 			} else {
-				ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+				ctx.clearRect(0, 0, W, H);
 				canvas.style.display = "none";
 			}
 		};
