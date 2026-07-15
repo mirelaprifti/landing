@@ -164,7 +164,7 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Expertise",
 				title: "Deepest Effect expertise",
 				description:
-					"Years designing Effect systems, a formative role in ZIO's creation, and a culture of Effect Days. Your team learns from the people who shaped the paradigm.",
+					"Years designing Effect systems and a formative role in ZIO's creation. Your team learns from the people who shaped the paradigm.",
 			},
 			{
 				eyebrow: "Delivery",
@@ -202,7 +202,7 @@ export const PARTNERS: Partner[] = [
 				question:
 					"How is the training delivered, and how long does it take?",
 				answer:
-					"Training is online-first with recurring cohorts. It is designed to be agent-native — meaning the tools and workflows taught reflect how engineers actually work with AI assistance today. In-person sessions at Effect Days (December) are planned. Duration depends on the track.",
+					"Training is online-first with recurring cohorts. It is designed to be agent-native — meaning the tools and workflows taught reflect how engineers actually work with AI assistance today. Duration depends on the track.",
 			},
 			{
 				question:
