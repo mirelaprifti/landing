@@ -505,11 +505,11 @@ export function ImplementationPartnersPage() {
 									Ready to build with Effect?
 								</h2>
 								<p className="mt-4 max-w-xl text-base text-zinc-400">
-									Tell us where you are with Effect and what you're trying to
-									build. We'll connect you with{" "}
-									{featuredPartner?.name ?? "the right partner"} to scope the
+									Share where you are with Effect and what you're trying to
+									build. Your inquiry goes directly to{" "}
+									{featuredPartner?.name ?? "the partner"}, who will scope the
 									right engagement — implementation, team extension, or
-									training.
+									training — and get back to you quickly.
 								</p>
 							</div>
 							<div>
