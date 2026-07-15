@@ -97,6 +97,7 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 						id="message"
 						name="message"
 						rows={4}
+						required
 						className="w-full resize-none rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500"
 						placeholder="Briefly describe your project or training needs — team size, timeline, and what you're looking for..."
 					/>
