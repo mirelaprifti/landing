@@ -163,10 +163,6 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							What we offer
 						</h2>
-						<p className="mt-4 max-w-2xl text-base text-zinc-400">
-							From first Effect adoption to full certification — everything a team
-							needs to succeed with Effect in production.
-						</p>
 					</div>
 					<Button
 						href="#contact"
