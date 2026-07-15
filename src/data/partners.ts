@@ -165,7 +165,7 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Expertise",
 				title: "Deepest Effect expertise",
 				description:
-					"Years designing Effect systems and a formative role in ZIO's creation. Your team learns from the people who shaped the paradigm.",
+					"Your team learns from the people who shaped the paradigm — from ZIO to Effect.",
 				link: {
 					label: "Why Effect is more important than ZIO — John A. De Goes",
 					href: "https://www.youtube.com/watch?v=Ei6VTwhI8QQ",
