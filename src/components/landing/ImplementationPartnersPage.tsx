@@ -328,7 +328,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									{String(idx + 1).padStart(2, "0")}
 								</p>
 							</div>
-							<p className="text-base leading-relaxed text-zinc-300 lg:col-span-7 lg:text-lg">
+							<p className="text-base leading-relaxed text-zinc-400 lg:col-span-7 lg:text-lg">
 								{d.description}
 							</p>
 						</div>
