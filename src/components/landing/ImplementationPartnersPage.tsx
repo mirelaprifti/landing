@@ -237,9 +237,6 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 				</div>
 
 				<div className="mt-12">
-					<p className="mb-6 font-mono text-xs tracking-wider text-zinc-400 uppercase">
-						// What you'll be able to do
-					</p>
 					<div className="relative">
 						<ul className="grid grid-cols-1 sm:grid-cols-2">
 							{t.topics.map((outcome, idx) => {
