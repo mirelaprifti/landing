@@ -249,10 +249,10 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 												aria-hidden="true"
 											/>
 										)}
-										<h3 className="text-base font-semibold text-white">
+										<h3 className="text-lg font-semibold text-white">
 											{outcome.title}
 										</h3>
-										<p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+										<p className="mt-1.5 text-base leading-relaxed text-zinc-400">
 											{outcome.detail}
 										</p>
 									</li>
