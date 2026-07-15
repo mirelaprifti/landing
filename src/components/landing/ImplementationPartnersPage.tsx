@@ -217,9 +217,6 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							{t.title}
 						</h2>
-						<p className="mt-4 max-w-2xl text-base text-zinc-400">
-							{t.description}
-						</p>
 					</div>
 					<Button
 						href={t.cta.href}
