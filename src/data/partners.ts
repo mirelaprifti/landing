@@ -88,7 +88,7 @@ export const PARTNERS: Partner[] = [
 		tier: "premier",
 		brandColor: "#FF634B",
 		tagline:
-			"Effect implementation, team extension, and structured training — everything your team needs to ship in production.",
+			"Effect implementation, team extension, and structured training, everything teams need to ship in production.",
 		ctaPrimary: { label: "Get in touch", href: "#contact" },
 		stats: [
 			{ value: "273+", label: "Projects Delivered" },
