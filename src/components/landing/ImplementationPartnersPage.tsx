@@ -91,8 +91,13 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 						)}
 					</div>
 
-					{/* Partner logo block — square */}
-					<div className="flex aspect-square w-full items-center justify-center border border-zinc-700/80 bg-zinc-900 p-12">
+					{/* Partner logo block — square, corner brackets only */}
+					<div className="relative flex aspect-square w-full items-center justify-center bg-zinc-900/50 p-12">
+						{/* Corner brackets */}
+						<span className="absolute top-0 left-0 h-4 w-4 border-t border-l border-zinc-700/80" />
+						<span className="absolute top-0 right-0 h-4 w-4 border-t border-r border-zinc-700/80" />
+						<span className="absolute bottom-0 left-0 h-4 w-4 border-b border-l border-zinc-700/80" />
+						<span className="absolute right-0 bottom-0 h-4 w-4 border-r border-b border-zinc-700/80" />
 						<img
 							src={getAssetPath(partner.logoPath)}
 							alt={`${partner.name} logo`}
