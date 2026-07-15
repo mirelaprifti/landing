@@ -321,12 +321,12 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 							className="grid grid-cols-1 gap-6 py-10 first:pt-0 last:pb-0 lg:grid-cols-12 lg:gap-12 md:py-12"
 						>
 							<div className="flex flex-col gap-3 lg:col-span-5">
-								<h3 className="leading-tighter text-lg font-semibold text-white">
-									{d.title}
-								</h3>
-								<p className="font-mono text-base tracking-wider text-zinc-500 lg:mt-auto">
+								<p className="font-mono text-base tracking-wider text-zinc-500">
 									{String(idx + 1).padStart(2, "0")}
 								</p>
+								<h3 className="leading-tighter text-lg font-semibold text-white lg:mt-auto">
+									{d.title}
+								</h3>
 							</div>
 							<p className="text-base leading-relaxed text-zinc-400 lg:col-span-7 lg:text-lg">
 								{d.description}
