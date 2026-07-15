@@ -35,9 +35,9 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="rounded-lg border border-zinc-700 bg-zinc-900/40 p-8 md:p-12"
+			className="rounded-lg border border-zinc-700 bg-zinc-900/40 p-6 md:p-8"
 		>
-			<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+			<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
 				<div>
 					<label
 						htmlFor="name"
