@@ -161,7 +161,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 							// Services
 						</p>
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							What we offer
+							What {partner.name} offers
 						</h2>
 					</div>
 					<Button

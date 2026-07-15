@@ -104,7 +104,7 @@ export const PARTNERS: Partner[] = [
 			{
 				title: "Implementation & Consulting",
 				description:
-					"Hands-on Effect adoption for your production codebase. We assess your stack, design the migration path, and implement — with the depth that only comes from building Effect systems for over a decade.",
+					"Hands-on Effect adoption for your production codebase. Ziverge assesses your stack, designs the migration path, and implements — with the depth that only comes from building Effect systems for over a decade.",
 				icon: "ri-tools-line",
 				cta: { label: "Start a conversation", href: "#contact" },
 			},
@@ -176,7 +176,7 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Ecosystem",
 				title: "Ecosystem-native",
 				description:
-					"An idiomatic Golem SDK for Effect, active open-source contribution. We're invested in the ecosystem, not just the engagement.",
+					"An idiomatic Golem SDK for Effect, active open-source contribution. Ziverge is invested in the ecosystem, not just the engagement.",
 			},
 		],
 		faqs: [
