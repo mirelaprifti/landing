@@ -91,14 +91,14 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 						htmlFor="message"
 						className="mb-2 block text-sm font-medium text-zinc-300"
 					>
-						Tell us about your project
+						How can we help?
 					</label>
 					<textarea
 						id="message"
 						name="message"
 						rows={4}
 						className="w-full resize-none rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500"
-						placeholder="Briefly describe your project, team size, and what kind of help you're looking for..."
+						placeholder="Briefly describe your project or training needs — team size, timeline, and what you're looking for..."
 					/>
 				</div>
 			</div>
