@@ -50,7 +50,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 							Get help adopting Effect with {partner.name}
 						</h1>
 						{partner.tagline && (
-							<p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300">
+							<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
 								{partner.tagline}
 							</p>
 						)}
