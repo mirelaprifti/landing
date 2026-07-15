@@ -126,7 +126,7 @@ export const PARTNERS: Partner[] = [
 			{
 				title: "Open-Source & Commercial Support",
 				description:
-					"Ongoing support for teams running Effect in production. Includes access to Ziverge's Golem SDK for Effect.",
+					"Ongoing support for teams running Effect in production, from open-source maintenance to commercial support contracts.",
 				icon: "ri-lifebuoy-line",
 				cta: { label: "Get support", href: "#contact" },
 			},
@@ -176,7 +176,7 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Ecosystem",
 				title: "Ecosystem-native",
 				description:
-					"An idiomatic Golem SDK for Effect, active open-source contribution. Ziverge is invested in the ecosystem, not just the engagement.",
+					"Active open-source contribution across the Effect ecosystem. Ziverge is invested in the ecosystem, not just the engagement.",
 			},
 		],
 		faqs: [
