@@ -30,16 +30,6 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 						"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 				}}
 			/>
-			<div
-				className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
-				style={{
-					background: `
-						radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-						radial-gradient(ellipse 30% 50% at 80% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
-					`,
-				}}
-			/>
-
 			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center">
 					<div>
