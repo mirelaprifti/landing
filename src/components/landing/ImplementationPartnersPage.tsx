@@ -244,7 +244,7 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 								return (
 									<li
 										key={outcome.title}
-										className={`py-6 first:pt-0 sm:p-8 sm:first:pt-8 ${
+										className={`py-6 first:pt-0 sm:p-8 ${
 											!isLastOverall ? "border-b border-zinc-800 sm:border-b-0" : ""
 										} ${idx % 2 === 0 ? "sm:pl-0" : "sm:pr-0"} ${
 											idx < 2 ? "sm:pt-0" : "sm:pb-0"
