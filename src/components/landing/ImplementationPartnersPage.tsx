@@ -328,9 +328,25 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									{d.title}
 								</h3>
 							</div>
-							<p className="text-base leading-relaxed text-zinc-400 lg:col-span-7 lg:text-lg">
-								{d.description}
-							</p>
+							<div className="lg:col-span-7">
+								<p className="text-base leading-relaxed text-zinc-400 lg:text-lg">
+									{d.description}
+								</p>
+								{d.link && (
+									<a
+										href={d.link.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="group mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-white"
+									>
+										{d.link.label}
+										<i
+											className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+											aria-hidden="true"
+										/>
+									</a>
+								)}
+							</div>
 						</div>
 					))}
 				</div>

@@ -28,6 +28,7 @@ export interface PartnerDifferentiator {
 	eyebrow: string;
 	title: string;
 	description: string;
+	link?: { label: string; href: string };
 }
 
 export interface PartnerFAQ {
@@ -165,6 +166,10 @@ export const PARTNERS: Partner[] = [
 				title: "Deepest Effect expertise",
 				description:
 					"Years designing Effect systems and a formative role in ZIO's creation. Your team learns from the people who shaped the paradigm.",
+				link: {
+					label: "Why Effect is more important than ZIO — John A. De Goes",
+					href: "https://www.youtube.com/watch?v=Ei6VTwhI8QQ",
+				},
 			},
 			{
 				eyebrow: "Delivery",
