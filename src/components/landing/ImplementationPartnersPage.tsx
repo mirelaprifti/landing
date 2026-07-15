@@ -105,7 +105,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 	if (!partner.stats?.length) return null;
 
 	return (
-		<section className="border-t border-zinc-800 py-16 md:py-20">
+		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// Track record
@@ -153,7 +153,7 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 	if (!partner.services?.length) return null;
 
 	return (
-		<section className="border-t border-zinc-800 py-16 md:py-20">
+		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 					<div>
@@ -207,7 +207,7 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 	const t = partner.training;
 
 	return (
-		<section id="training" className="border-t border-zinc-800 py-16 md:py-20">
+		<section id="training" className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 					<div>
@@ -305,7 +305,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 	if (!partner.differentiators?.length) return null;
 
 	return (
-		<section className="border-t border-zinc-800 py-16 md:py-20">
+		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// Why {partner.name}
@@ -385,7 +385,7 @@ function PartnerFaqSection({ partner }: { partner: Partner }) {
 	if (!partner.faqs?.length) return null;
 
 	return (
-		<section className="border-t border-zinc-800 py-16 md:py-20">
+		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// FAQ
@@ -445,7 +445,7 @@ function OtherPartnerCard({ partner }: { partner: Partner }) {
 function OtherPartnersSection({ partners }: { partners: Partner[] }) {
 	if (!partners.length) return null;
 	return (
-		<section className="border-t border-zinc-800 py-16 md:py-20">
+		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// Regional partners
@@ -510,7 +510,7 @@ export function ImplementationPartnersPage() {
 				{/* <OtherPartnersSection partners={otherPartners} /> hidden for now */}
 
 				{/* Contact Form */}
-				<section id="contact" className="border-t border-zinc-800 py-16 md:py-20">
+				<section id="contact" className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
 							<div>
