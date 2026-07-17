@@ -9,7 +9,7 @@ import { Navigation } from "./Navigation";
 /* Hero — partner identity, tagline, CTAs */
 function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 	return (
-		<section className="relative w-full pt-4 pb-0">
+		<section className="relative aspect-2/1 w-full pt-4 pb-0">
 			{/* Grid background */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -29,8 +29,8 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 						"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 				}}
 			/>
-			<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center">
+			<div className="relative mx-auto flex h-full w-full max-w-[73.75rem] items-center px-4">
+				<div className="w-full grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Implementation Partner
