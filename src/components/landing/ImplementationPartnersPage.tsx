@@ -127,15 +127,22 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 					))}
 				</div>
 
-				{partner.testimonial && (
-					<figure className="mt-10 border-x border-zinc-800 bg-zinc-900/40 p-6">
-						<blockquote className="text-lg leading-relaxed text-zinc-200 md:text-xl">
-							{`"${partner.testimonial.quote}"`}
-						</blockquote>
-						<figcaption className="mt-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
-							— {partner.testimonial.author}
-						</figcaption>
-					</figure>
+				{partner.testimonials && partner.testimonials.length > 0 && (
+					<div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+						{partner.testimonials.map((testimonial) => (
+							<figure
+								key={testimonial.author}
+								className="flex flex-col border-x border-zinc-800 bg-zinc-900/40 p-6"
+							>
+								<blockquote className="flex-1 text-lg leading-relaxed text-zinc-200">
+									{`"${testimonial.quote}"`}
+								</blockquote>
+								<figcaption className="mt-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+									— {testimonial.author}
+								</figcaption>
+							</figure>
+						))}
+					</div>
 				)}
 			</div>
 		</section>

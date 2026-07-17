@@ -67,7 +67,7 @@ export interface Partner {
 	ctaPrimary?: PartnerCTA;
 	ctaSecondary?: PartnerCTA;
 	stats?: PartnerStat[];
-	testimonial?: PartnerTestimonial;
+	testimonials?: PartnerTestimonial[];
 	services?: PartnerService[];
 	training?: PartnerTraining;
 	differentiators?: PartnerDifferentiator[];
@@ -99,11 +99,18 @@ export const PARTNERS: Partner[] = [
 			{ value: "27+", label: "Clients Served" },
 			{ value: "15+", label: "Countries" },
 		],
-		testimonial: {
-			quote:
-				"Ziverge brought a level of functional programming depth we couldn't hire for internally. The engagement moved fast and the output was production quality from day one.",
-			author: "Engineering Leader, Coralogix",
-		},
+		testimonials: [
+			{
+				quote:
+					"Ziverge brought a level of functional programming depth we couldn't hire for internally. The engagement moved fast and the output was production quality from day one.",
+				author: "Engineering Leader, Coralogix",
+			},
+			{
+				quote:
+					"In the early days of Effect I reached out to John for advice, and his insights have been essential for the initial design of Effect. As part of that collaboration I got the opportunity to participate in some of his ZIO workshops. I was very inspired by the quality and dedication that John puts into developing training material, and by the structure of his workshops. I look forward to seeing him do the same for Effect in TypeScript.",
+				author: "Michael Arnaldi, Creator of Effect",
+			},
+		],
 		services: [
 			{
 				title: "Implementation & Consulting",
