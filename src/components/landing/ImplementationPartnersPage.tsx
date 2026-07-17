@@ -569,7 +569,7 @@ export function ImplementationPartnersPage() {
 									type="button"
 									onClick={copyEmail}
 									aria-label={`Copy email address ${featuredPartner.contactEmail}`}
-									className="group mt-10 inline-flex cursor-pointer items-center gap-3 border border-zinc-700 bg-zinc-900/60 px-8 py-4 font-mono text-lg text-white backdrop-blur-sm transition-colors hover:border-zinc-500 hover:bg-zinc-900 md:text-xl"
+									className="group mt-10 inline-flex cursor-pointer items-center gap-3 border border-zinc-700 bg-zinc-900/60 px-8 py-4 font-mono text-lg text-white backdrop-blur-sm transition-colors hover:border-zinc-500 hover:bg-zinc-900"
 								>
 									{featuredPartner.contactEmail}
 									{emailCopied ? (
