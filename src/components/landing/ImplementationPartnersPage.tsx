@@ -140,7 +140,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 								>
 									<blockquote
 										className={`flex-1 leading-relaxed text-zinc-200 ${
-											isFeature ? "text-lg md:text-xl" : "text-base"
+											isFeature ? "text-base" : "text-lg"
 										}`}
 									>
 										{`"${testimonial.quote}"`}
