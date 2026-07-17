@@ -30,7 +30,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 				}}
 			/>
 			<div className="relative mx-auto flex h-full w-full max-w-[73.75rem] items-center px-4">
-				<div className="grid w-full grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center">
+				<div className="grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:items-center">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Implementation Partner
