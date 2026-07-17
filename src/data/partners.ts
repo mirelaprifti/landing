@@ -189,10 +189,10 @@ export const PARTNERS: Partner[] = [
 					"Effect expertise paired with the engineering discipline to ship — architecture, reviews, and production readiness.",
 			},
 			{
-				eyebrow: "Ecosystem",
-				title: "Ecosystem-native",
+				eyebrow: "Training",
+				title: "Proven training pedigree",
 				description:
-					"Active open-source contribution across the Effect ecosystem — invested in its long-term health, not just the engagement.",
+					"Structured workshops from fundamentals to advanced patterns — endorsed by Effectful, the team behind Effect.",
 			},
 		],
 		faqs: [
