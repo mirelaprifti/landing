@@ -90,7 +90,7 @@ export const PARTNERS: Partner[] = [
 		region: "Global",
 		tier: "premier",
 		brandColor: "#FF634B",
-		contactEmail: "ziverge@effectful.co",
+		contactEmail: "contact@ziverge.com",
 		tagline:
 			"Effect implementation, team extension, and training, everything teams need to ship Effect in production.",
 		ctaPrimary: { label: "Get in touch", href: "#contact" },
