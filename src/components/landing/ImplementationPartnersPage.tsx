@@ -128,7 +128,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 				</div>
 
 				{partner.testimonial && (
-					<figure className="mt-10 border border-zinc-800 bg-zinc-900/40 p-8 md:p-10">
+					<figure className="mt-10 border-x border-zinc-800 bg-zinc-900/40 p-6">
 						<blockquote className="text-lg leading-relaxed text-zinc-200 md:text-xl">
 							{`"${partner.testimonial.quote}"`}
 						</blockquote>
