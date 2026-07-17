@@ -130,7 +130,8 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 				{partner.testimonials && partner.testimonials.length > 0 && (
 					<div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
 						{partner.testimonials.map((testimonial, idx) => {
-							const isFeature = idx === 0;
+							// The long quote (second entry) gets the wide card at smaller type
+							const isFeature = idx === 1;
 							return (
 								<figure
 									key={testimonial.author}
