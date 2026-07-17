@@ -534,8 +534,8 @@ export function ImplementationPartnersPage() {
 						className="pointer-events-none absolute inset-0"
 						style={{
 							backgroundImage: `
-								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
+								linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px),
+								linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)
 							`,
 							backgroundSize: "196.6px 180px",
 							backgroundPosition: "calc(50% + 97px) 0",
