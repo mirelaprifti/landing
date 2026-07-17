@@ -128,20 +128,29 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 				</div>
 
 				{partner.testimonials && partner.testimonials.length > 0 && (
-					<div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-						{partner.testimonials.map((testimonial) => (
-							<figure
-								key={testimonial.author}
-								className="flex flex-col border-x border-zinc-800 bg-zinc-900/40 p-6"
-							>
-								<blockquote className="flex-1 text-lg leading-relaxed text-zinc-200">
-									{`"${testimonial.quote}"`}
-								</blockquote>
-								<figcaption className="mt-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
-									— {testimonial.author}
-								</figcaption>
-							</figure>
-						))}
+					<div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
+						{partner.testimonials.map((testimonial, idx) => {
+							const isFeature = idx === 0;
+							return (
+								<figure
+									key={testimonial.author}
+									className={`flex flex-col border-x border-zinc-800 bg-zinc-900/40 ${
+										isFeature ? "p-8 lg:col-span-7" : "p-6 lg:col-span-5"
+									}`}
+								>
+									<blockquote
+										className={`flex-1 leading-relaxed text-zinc-200 ${
+											isFeature ? "text-lg md:text-xl" : "text-base"
+										}`}
+									>
+										{`"${testimonial.quote}"`}
+									</blockquote>
+									<figcaption className="mt-5 font-mono text-xs tracking-wider text-zinc-400 uppercase">
+										— {testimonial.author}
+									</figcaption>
+								</figure>
+							);
+						})}
 					</div>
 				)}
 			</div>
