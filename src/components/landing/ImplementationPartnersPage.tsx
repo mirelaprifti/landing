@@ -348,8 +348,12 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 										href={d.link.href}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="group mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-white"
+										className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white"
 									>
+										<i
+											className="ri-youtube-fill text-lg text-zinc-400 transition-colors group-hover:text-zinc-300"
+											aria-hidden="true"
+										/>
 										{d.link.label}
 										<i
 											className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
