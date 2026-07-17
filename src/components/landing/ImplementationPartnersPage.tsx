@@ -576,13 +576,10 @@ export function ImplementationPartnersPage() {
 								>
 									{featuredPartner.contactEmail}
 									{emailCopied ? (
-										<i
-											className="ri-check-line text-lg text-zinc-200"
-											aria-hidden="true"
-										/>
+										<i className="ri-check-line text-lg" aria-hidden="true" />
 									) : (
 										<i
-											className="ri-file-copy-line text-lg text-zinc-400 transition-colors group-hover:text-zinc-200"
+											className="ri-file-copy-line text-lg"
 											aria-hidden="true"
 										/>
 									)}
