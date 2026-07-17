@@ -128,7 +128,7 @@ export const PARTNERS: Partner[] = [
 				cta: { label: "Embed an engineer", href: "#contact" },
 			},
 			{
-				title: "Training & Certification",
+				title: "Training",
 				description:
 					"Structured Effect training from foundational concepts to advanced patterns — fibers, typed errors, dependency injection, and agent-native workflows.",
 				eyebrow: "Coming soon",
@@ -144,7 +144,7 @@ export const PARTNERS: Partner[] = [
 			},
 		],
 		training: {
-			title: "Effect Training & Certification",
+			title: "Effect Training",
 			description:
 				"Structured training from Effect fundamentals to production-ready expertise.",
 			topics: [
