@@ -558,7 +558,7 @@ export function ImplementationPartnersPage() {
 							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
 								Ready to build with Effect?
 							</h2>
-							<p className="mt-4 max-w-xl text-lg text-zinc-400">
+							<p className="mt-4 max-w-xl text-lg leading-normal text-zinc-400">
 								Share where you are with Effect and what you're trying to
 								build. Your inquiry goes directly to{" "}
 								{featuredPartner?.name ?? "the partner"}, who will scope the
