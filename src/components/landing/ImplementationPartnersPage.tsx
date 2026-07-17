@@ -9,7 +9,7 @@ import { Navigation } from "./Navigation";
 /* Hero — partner identity, tagline, CTAs */
 function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 	return (
-		<section className="relative w-full py-4">
+		<section className="relative w-full pt-4 pb-0">
 			{/* Grid background */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -99,7 +99,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 	if (!partner.stats?.length) return null;
 
 	return (
-		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+		<section className="border-t border-zinc-800 py-24 md:pt-[108px] md:pb-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 					// Track record
