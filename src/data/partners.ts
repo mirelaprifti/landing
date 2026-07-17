@@ -92,7 +92,7 @@ export const PARTNERS: Partner[] = [
 		brandColor: "#FF634B",
 		contactEmail: "contact@ziverge.com",
 		tagline:
-			"Effect implementation, team extension, and structured training, everything teams need to ship in production.",
+			"Effect implementation, team extension, and training, everything teams need to ship Effect in production.",
 		ctaPrimary: { label: "Get in touch", href: "#contact" },
 		stats: [
 			{ value: "273+", label: "Projects Delivered" },
