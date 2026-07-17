@@ -176,7 +176,7 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Expertise",
 				title: "Deepest Effect expertise",
 				description:
-					"10+ years designing effect systems and a formative role in ZIO's creation — your team learns from the people who shaped the paradigm.",
+					"Over a decade of building effect systems, from ZIO to Effect.",
 				link: {
 					label: "Why Effect is more important than ZIO — John A. De Goes",
 					href: "https://www.youtube.com/watch?v=Ei6VTwhI8QQ",
@@ -186,13 +186,13 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Delivery",
 				title: "Enterprise-grade delivery",
 				description:
-					"Production systems for Disney, DHL, and Credit Karma — Effect expertise paired with the engineering discipline to ship.",
+					"Effect expertise paired with the engineering discipline to ship — architecture, reviews, and production readiness.",
 			},
 			{
-				eyebrow: "Ecosystem",
-				title: "Built for the ecosystem",
+				eyebrow: "Training",
+				title: "Proven training pedigree",
 				description:
-					"Active open-source contribution and a direct line to Effectful for the questions that matter — invested in the ecosystem, not just the engagement.",
+					"Structured workshops from fundamentals to advanced patterns — endorsed by Effectful, the team behind Effect.",
 			},
 		],
 		faqs: [
