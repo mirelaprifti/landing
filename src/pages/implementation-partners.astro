@@ -1,8 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { ImplementationPartnersPage } from "@/components/landing/ImplementationPartnersPage";
+// The implementation-partners index currently redirects to the sole featured
+// partner. Replace with a partner directory page when more partners join.
+return Astro.redirect("/implementation-partners/ziverge");
 ---
-
-<BaseLayout title="Implementation Partners - Effect" description="Companies that help you implement Effect in your projects and teams">
-  <ImplementationPartnersPage client:load />
-</BaseLayout>

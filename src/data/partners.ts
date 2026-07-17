@@ -61,6 +61,8 @@ export interface Partner {
 	tier?: "premier" | "standard";
 	/** Partner brand accent color (any valid CSS color). Used to color stat numbers, etc. */
 	brandColor?: string;
+	/** Inquiry email shown in the contact section (routes to the partner). */
+	contactEmail?: string;
 	tagline?: string;
 	ctaPrimary?: PartnerCTA;
 	ctaSecondary?: PartnerCTA;
@@ -88,6 +90,7 @@ export const PARTNERS: Partner[] = [
 		region: "Global",
 		tier: "premier",
 		brandColor: "#FF634B",
+		contactEmail: "ziverge@effectful.co",
 		tagline:
 			"Effect implementation, team extension, and structured training, everything teams need to ship in production.",
 		ctaPrimary: { label: "Get in touch", href: "#contact" },

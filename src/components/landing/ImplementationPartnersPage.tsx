@@ -3,7 +3,6 @@ import { Button } from "@/components/ui";
 import { PARTNERS, type Partner } from "../../data/partners";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
-import { ContactForm } from "./ContactForm";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -509,28 +508,33 @@ export function ImplementationPartnersPage() {
 
 				{/* <OtherPartnersSection partners={otherPartners} /> hidden for now */}
 
-				{/* Contact Form */}
+				{/* Contact — direct email to the partner */}
 				<section id="contact" className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-							<div>
-								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Get in touch
-								</p>
-								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-									Ready to build with Effect?
-								</h2>
-								<p className="mt-4 max-w-xl text-base text-zinc-400">
-									Share where you are with Effect and what you're trying to
-									build. Your inquiry goes directly to{" "}
-									{featuredPartner?.name ?? "the partner"}, who will scope the
-									right engagement, and get back to you quickly.
-								</p>
-							</div>
-							<div>
-								<ContactForm />
-							</div>
-						</div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Get in touch
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Ready to build with Effect?
+						</h2>
+						<p className="mt-4 max-w-xl text-base text-zinc-400">
+							Share where you are with Effect and what you're trying to build.
+							Your inquiry goes directly to{" "}
+							{featuredPartner?.name ?? "the partner"}, who will scope the
+							right engagement, and get back to you quickly.
+						</p>
+						{featuredPartner?.contactEmail && (
+							<a
+								href={`mailto:${featuredPartner.contactEmail}`}
+								className="group mt-8 inline-flex items-center gap-3 font-mono text-xl text-white transition-colors hover:text-zinc-300 md:text-2xl"
+							>
+								<i
+									className="ri-mail-line text-xl text-zinc-400 transition-colors group-hover:text-zinc-300"
+									aria-hidden="true"
+								/>
+								{featuredPartner.contactEmail}
+							</a>
+						)}
 					</div>
 				</section>
 			</main>
