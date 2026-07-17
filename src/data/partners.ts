@@ -176,7 +176,7 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Expertise",
 				title: "Deepest Effect expertise",
 				description:
-					"Your team learns from the people who pioneered the effect-system paradigm with ZIO.",
+					"Over a decade of building effect systems, from ZIO to Effect.",
 				link: {
 					label: "Why Effect is more important than ZIO — John A. De Goes",
 					href: "https://www.youtube.com/watch?v=Ei6VTwhI8QQ",
@@ -186,13 +186,13 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Delivery",
 				title: "Enterprise-grade delivery",
 				description:
-					"Production systems for Disney, DHL, and Credit Karma. Effect expertise paired with the engineering discipline to ship — architecture decisions, review standards, and production readiness.",
+					"Effect expertise paired with the engineering discipline to ship.",
 			},
 			{
 				eyebrow: "Ecosystem",
 				title: "Ecosystem-native",
 				description:
-					"Active open-source contribution across the Effect ecosystem. Ziverge is invested in the ecosystem, not just the engagement.",
+					"Active open-source contribution, invested in the ecosystem beyond the engagement.",
 			},
 		],
 		faqs: [
