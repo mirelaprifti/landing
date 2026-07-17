@@ -472,6 +472,15 @@ function OtherPartnersSection({ partners }: { partners: Partner[] }) {
 export function ImplementationPartnersPage() {
 	const featuredPartner = PARTNERS.find((p) => p.featured);
 	const otherPartners = PARTNERS.filter((p) => !p.featured);
+	const [emailCopied, setEmailCopied] = useState(false);
+
+	const copyEmail = () => {
+		if (!featuredPartner?.contactEmail) return;
+		navigator.clipboard.writeText(featuredPartner.contactEmail).then(() => {
+			setEmailCopied(true);
+			setTimeout(() => setEmailCopied(false), 1500);
+		});
+	};
 
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white">
@@ -556,16 +565,25 @@ export function ImplementationPartnersPage() {
 								right engagement, and get back to you quickly.
 							</p>
 							{featuredPartner?.contactEmail && (
-								<a
-									href={`mailto:${featuredPartner.contactEmail}`}
-									className="group mt-10 inline-flex items-center gap-3 border border-zinc-700 bg-zinc-900/60 px-8 py-4 font-mono text-lg text-white backdrop-blur-sm transition-colors hover:border-zinc-500 hover:bg-zinc-900 md:text-xl"
+								<button
+									type="button"
+									onClick={copyEmail}
+									aria-label={`Copy email address ${featuredPartner.contactEmail}`}
+									className="group mt-10 inline-flex cursor-pointer items-center gap-3 border border-zinc-700 bg-zinc-900/60 px-8 py-4 font-mono text-lg text-white backdrop-blur-sm transition-colors hover:border-zinc-500 hover:bg-zinc-900 md:text-xl"
 								>
-									<i
-										className="ri-mail-line text-xl text-zinc-400 transition-colors group-hover:text-zinc-200"
-										aria-hidden="true"
-									/>
 									{featuredPartner.contactEmail}
-								</a>
+									{emailCopied ? (
+										<i
+											className="ri-check-line text-xl text-zinc-200"
+											aria-hidden="true"
+										/>
+									) : (
+										<i
+											className="ri-file-copy-line text-xl text-zinc-400 transition-colors group-hover:text-zinc-200"
+											aria-hidden="true"
+										/>
+									)}
+								</button>
 							)}
 						</div>
 					</div>
