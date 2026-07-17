@@ -186,13 +186,13 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Delivery",
 				title: "Enterprise-grade delivery",
 				description:
-					"Effect expertise paired with the engineering discipline to ship.",
+					"Effect expertise paired with the engineering discipline to ship — architecture, reviews, and production readiness.",
 			},
 			{
 				eyebrow: "Ecosystem",
 				title: "Ecosystem-native",
 				description:
-					"Active open-source contribution, invested in the ecosystem beyond the engagement.",
+					"Active open-source contribution across the Effect ecosystem — invested in its long-term health, not just the engagement.",
 			},
 		],
 		faqs: [
