@@ -186,13 +186,13 @@ export const PARTNERS: Partner[] = [
 				eyebrow: "Delivery",
 				title: "Enterprise-grade delivery",
 				description:
-					"Effect expertise paired with the engineering discipline to ship — architecture, reviews, and production readiness.",
+					"Effect expertise paired with the engineering discipline to ship: architecture, reviews, and production readiness.",
 			},
 			{
 				eyebrow: "Training",
 				title: "Proven training pedigree",
 				description:
-					"Structured workshops from fundamentals to advanced patterns — endorsed by Effectful, the team behind Effect.",
+					"Structured workshops from fundamentals to advanced patterns, endorsed by Effectful, the team behind Effect.",
 			},
 		],
 		faqs: [
