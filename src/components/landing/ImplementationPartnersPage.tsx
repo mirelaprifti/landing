@@ -9,7 +9,7 @@ import { Navigation } from "./Navigation";
 /* Hero — partner identity, tagline, CTAs */
 function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 	return (
-		<section className="relative w-full py-24 md:pt-40 md:pb-24">
+		<section className="relative w-full pt-16 pb-12 md:pt-24 md:pb-16">
 			{/* Grid background */}
 			<div
 				className="pointer-events-none absolute inset-0"
