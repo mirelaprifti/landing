@@ -516,32 +516,58 @@ export function ImplementationPartnersPage() {
 				{/* <OtherPartnersSection partners={otherPartners} /> hidden for now */}
 
 				{/* Contact — direct email to the partner */}
-				<section id="contact" className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Get in touch
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Ready to build with Effect?
-						</h2>
-						<p className="mt-4 max-w-xl text-base text-zinc-400">
-							Share where you are with Effect and what you're trying to build.
-							Your inquiry goes directly to{" "}
-							{featuredPartner?.name ?? "the partner"}, who will scope the
-							right engagement, and get back to you quickly.
-						</p>
-						{featuredPartner?.contactEmail && (
-							<a
-								href={`mailto:${featuredPartner.contactEmail}`}
-								className="group mt-8 inline-flex items-center gap-3 font-mono text-xl text-white transition-colors hover:text-zinc-300 md:text-2xl"
-							>
-								<i
-									className="ri-mail-line text-xl text-zinc-400 transition-colors group-hover:text-zinc-300"
-									aria-hidden="true"
-								/>
-								{featuredPartner.contactEmail}
-							</a>
-						)}
+				<section
+					id="contact"
+					className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-36"
+				>
+					{/* Grid background */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage: `
+								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
+							`,
+							backgroundSize: "196.6px 180px",
+							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					{/* Fade grid at top and bottom */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 25%, transparent 75%, var(--page-fade) 100%)",
+						}}
+					/>
+
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="flex flex-col items-center text-center">
+							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								// Get in touch
+							</p>
+							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
+								Ready to build with Effect?
+							</h2>
+							<p className="mt-4 max-w-xl text-base text-zinc-400">
+								Share where you are with Effect and what you're trying to
+								build. Your inquiry goes directly to{" "}
+								{featuredPartner?.name ?? "the partner"}, who will scope the
+								right engagement, and get back to you quickly.
+							</p>
+							{featuredPartner?.contactEmail && (
+								<a
+									href={`mailto:${featuredPartner.contactEmail}`}
+									className="group mt-10 inline-flex items-center gap-3 border border-zinc-700 bg-zinc-900/60 px-8 py-4 font-mono text-lg text-white backdrop-blur-sm transition-colors hover:border-zinc-500 hover:bg-zinc-900 md:text-xl"
+								>
+									<i
+										className="ri-mail-line text-xl text-zinc-400 transition-colors group-hover:text-zinc-200"
+										aria-hidden="true"
+									/>
+									{featuredPartner.contactEmail}
+								</a>
+							)}
+						</div>
 					</div>
 				</section>
 			</main>
