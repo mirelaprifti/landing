@@ -527,7 +527,7 @@ export function ImplementationPartnersPage() {
 				{/* Contact — direct email to the partner */}
 				<section
 					id="contact"
-					className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-36"
+					className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-32"
 				>
 					{/* Grid background */}
 					<div
