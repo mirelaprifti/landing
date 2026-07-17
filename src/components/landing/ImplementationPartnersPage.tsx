@@ -229,15 +229,6 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 							From fundamentals to production
 						</h2>
 					</div>
-					<Button
-						href={t.cta.href}
-						variant="primary"
-						size="md"
-						className="group shrink-0"
-					>
-						{t.cta.label}
-						<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
-					</Button>
 				</div>
 
 				<div className="mt-12">
