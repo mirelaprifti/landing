@@ -81,7 +81,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 					</div>
 
 					{/* Partner logo block — square */}
-					<div className="relative flex aspect-square w-full items-center justify-center bg-[#121214] p-12 md:col-span-7">
+					<div className="relative flex aspect-square w-full items-center justify-center bg-[#121214] p-12 md:col-span-6 md:col-start-7">
 						<img
 							src={getAssetPath(partner.logoPath)}
 							alt={`${partner.name} logo`}
