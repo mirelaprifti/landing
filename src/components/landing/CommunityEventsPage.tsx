@@ -14,7 +14,7 @@ const SUPPORT_ITEMS: {
 }[] = [
 	{
 		title: "Speaker kit",
-		description: "Everything you need to get a talk accepted and built.",
+		description: "Another pair of eyes before you go on stage.",
 		icon: "ri-slideshow-line",
 		details: [
 			"Slide templates",
