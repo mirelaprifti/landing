@@ -83,7 +83,7 @@ export function HeroSection() {
 					</h1>
 
 					{/* Subheadline */}
-					<p className="mx-auto mt-6 max-w-3xl text-xl leading-snug text-zinc-600 lg:max-w-3xl dark:text-zinc-400">
+					<p className="mx-auto mt-6 max-w-3xl text-lg leading-snug text-zinc-600 lg:max-w-3xl dark:text-zinc-400">
 						Build production-ready systems your team can ship, customers can
 						depend on — and AI agents can work with.
 					</p>
