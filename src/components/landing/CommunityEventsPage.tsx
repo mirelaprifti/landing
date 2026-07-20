@@ -161,9 +161,8 @@ export function CommunityEventsPage() {
 									Bring Effect to your community events
 								</h1>
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[66.67%] lg:max-w-[30rem]">
-									Host an Effect meetup,{" "}
-									<br className="hidden md:block" />
-									or crash your local TypeScript meetup with an Effect talk.
+									Host an Effect meetup, or crash your local TypeScript
+									meetup with an Effect talk.
 									We'll help you prepare, promote it, and share it with the
 									community.
 								</p>
