@@ -9,7 +9,7 @@ import { Navigation } from "./Navigation";
 /* Hero — partner identity, tagline, CTAs */
 function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 	return (
-		<section className="relative w-full lg:h-[36.875rem]">
+		<section className="relative w-full md:h-[36.875rem]">
 			{/* Grid background */}
 			<div
 				className="pointer-events-none absolute inset-0"
@@ -29,8 +29,8 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 						"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 				}}
 			/>
-			<div className="relative mx-auto flex h-full w-full max-w-[73.75rem] items-center px-4 pt-32 pb-16 lg:pt-0 lg:pb-0">
-				<div className="grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:items-center">
+			<div className="relative mx-auto flex h-full w-full max-w-[73.75rem] items-center px-4 pt-32 pb-16 md:pt-0 md:pb-0">
+				<div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-2 md:items-center">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Adoption Partner
