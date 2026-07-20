@@ -69,14 +69,14 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 			caption: "// Miami '26",
 		},
 		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg",
-			caption: "// Hamburg",
+			caption: "// Hamburg '25",
 		},
 	],
 	[
 		{
 			src: "/assets/events/paris-nov-2-web.jpg",
 			alt: "Effect meetup in Paris",
-			caption: "// Paris",
+			caption: "// Paris '24",
 		},
 		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami",
 			caption: "// Miami '26",
@@ -86,7 +86,7 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 		{
 			src: "/assets/events/paris-april-4-web.jpg",
 			alt: "Effect meetup in Paris",
-			caption: "// Paris",
+			caption: "// Paris '25",
 		},
 		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami",
 			caption: "// Miami '26",
