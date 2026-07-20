@@ -211,7 +211,7 @@ export function CommunityEventsPage() {
 										</span>
 									</h3>
 									{/* Comment line */}
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
+									<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 										# {item.description}
 									</p>
 									{/* Output */}
@@ -219,7 +219,7 @@ export function CommunityEventsPage() {
 										{item.details.map((detail) => (
 											<li
 												key={detail}
-												className="flex items-baseline gap-2.5 text-sm text-zinc-300"
+												className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-300"
 											>
 												<span
 													className="text-emerald-400"
