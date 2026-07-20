@@ -146,20 +146,12 @@ export function CommunityEventsPage() {
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							Bring Effect to existing tech communities
 						</h2>
-						<div className="mt-4 max-w-2xl space-y-4 text-lg leading-normal text-zinc-400">
-							<p>
-								We want to help community members bring practical Effect talks
-								to the developer communities they're already part of — a
-								TypeScript meetup, an AI engineering event, a backend or
-								infrastructure conference, an open-source workshop, a podcast,
-								or a livestream.
-							</p>
-							<p>
-								You don't need to organize an Effect-specific event. The goal
-								is to bring useful Effect ideas to the tech communities that
-								already exist around the world.
-							</p>
-						</div>
+						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
+							We want to help community members bring practical Effect talks to
+							the developer communities they're already part of — a TypeScript
+							meetup, an AI engineering event, a backend or infrastructure
+							conference, an open-source workshop, a podcast, or a livestream.
+						</p>
 					</div>
 				</section>
 
