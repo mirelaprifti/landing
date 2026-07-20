@@ -123,7 +123,7 @@ export const PARTNERS: Partner[] = [
 			{
 				title: "Team Extension",
 				description:
-					"Embed Ziverge engineers alongside your team. They work in your repos, your ceremonies, your reviews — accelerating Effect adoption while your engineers develop fluency alongside them.",
+					"Embed Ziverge engineers alongside your team. They work in your repos, participate in your development process, and collaborate on code reviews, accelerating Effect adoption while also helping your engineers build fluency through hands-on experience.",
 				icon: "ri-team-line",
 				cta: { label: "Embed an engineer", href: "#contact" },
 			},
