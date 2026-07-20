@@ -243,7 +243,7 @@ export function CommunityEventsPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
 						{/* Left — section header */}
-						<div className="lg:col-span-5">
+						<div className="lg:col-span-6">
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Talk ideas
 							</p>
@@ -256,7 +256,7 @@ export function CommunityEventsPage() {
 						</div>
 
 						{/* Right — stacked terminal prompts */}
-						<ul className="flex flex-col gap-3 lg:col-span-7">
+						<ul className="flex flex-col gap-3 lg:col-span-6">
 							{TALK_IDEAS.map((idea) => (
 								<li key={idea.label}>
 									{idea.href ? (
