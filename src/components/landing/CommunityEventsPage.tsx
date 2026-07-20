@@ -161,10 +161,11 @@ export function CommunityEventsPage() {
 									Bring Effect to your community events
 								</h1>
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[66.67%] lg:max-w-[30rem]">
-									Speaking about Effect at a meetup, conference,{" "}
+									Host an Effect meetup,{" "}
 									<br className="hidden md:block" />
-									or any developer event? We'll help you prepare, promote it,
-									and share it with the community.
+									or crash your local TypeScript meetup with an Effect talk.
+									We'll help you prepare, promote it, and share it with the
+									community.
 								</p>
 								<div className="mt-8">
 									<FormButton />
@@ -325,8 +326,8 @@ export function CommunityEventsPage() {
 							</h2>
 							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
 								Tell us what you're planning — even if you don't need help.
-								We'd love to know about it and help more people discover your
-								talk.
+								Talks are how local Effect communities get started, and we'd
+								love to help yours grow.
 							</p>
 							<div className="mt-10">
 								<FormButton />
