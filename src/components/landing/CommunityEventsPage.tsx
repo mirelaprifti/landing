@@ -251,9 +251,22 @@ export function CommunityEventsPage() {
 							A few Effect-friendly angles to get you started:
 						</p>
 
-						<ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-							{TALK_IDEAS.map((idea) => (
-								<li key={idea.label}>
+						<ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-12 lg:gap-y-4">
+							{TALK_IDEAS.map((idea, idx) => (
+								<li
+									key={idea.label}
+									className={
+										[
+											"lg:col-span-5", // Reliable TypeScript…
+											"lg:col-span-3 lg:col-start-7", // Stop agent slop
+											"lg:col-span-3 lg:col-start-10", // Typed errors
+											"lg:col-span-4 lg:col-start-2", // Retries, timeouts…
+											"lg:col-span-4 lg:col-start-7", // Building AI agents
+											"lg:col-span-6 lg:col-start-4", // Production-grade…
+											"lg:col-span-3 lg:col-start-10", // What's new in v4
+										][idx] ?? ""
+									}
+								>
 									{idea.href ? (
 										<a
 											href={idea.href}
