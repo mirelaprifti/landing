@@ -17,7 +17,6 @@ const SUPPORT_ITEMS: {
 		description: "Everything you need to get a talk accepted and built.",
 		icon: "ri-slideshow-line",
 		details: [
-			"Talk ideas for different audiences",
 			"Slide templates",
 			"Abstract & CFP templates",
 			"Demo examples",
@@ -209,47 +208,37 @@ export function CommunityEventsPage() {
 							{SUPPORT_ITEMS.map((item) => (
 								<div
 									key={item.title}
-									className="group flex flex-col overflow-hidden rounded-md border border-zinc-700/80 bg-zinc-900/40 transition-colors hover:border-zinc-600"
+									className="group flex flex-col rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 font-mono transition-colors hover:border-zinc-700 md:p-6"
 								>
-									{/* Window header bar */}
-									<div className="flex items-center gap-3 border-b border-zinc-800 bg-zinc-900/80 px-4 py-2.5">
-										<span className="flex gap-1.5" aria-hidden="true">
-											<span className="h-2 w-2 rounded-full bg-zinc-700 transition-colors group-hover:bg-zinc-600" />
-											<span className="h-2 w-2 rounded-full bg-zinc-700 transition-colors group-hover:bg-zinc-600" />
-											<span className="h-2 w-2 rounded-full bg-zinc-700 transition-colors group-hover:bg-zinc-600" />
+									{/* Command line — doubles as the card title */}
+									<h3 className="text-sm text-zinc-200">
+										<span className="text-zinc-500" aria-hidden="true">
+											${" "}
 										</span>
-										<span className="min-w-0 truncate font-mono text-xs tracking-wider text-zinc-400 lowercase">
-											{item.title.replaceAll(" ", "-")}
-										</span>
-										<i
-											className={`${item.icon} ml-auto text-base text-zinc-500 transition-colors group-hover:text-zinc-300`}
-											aria-hidden="true"
-										/>
-									</div>
-
-									{/* Window body */}
-									<div className="flex flex-1 flex-col p-6">
-										<h3 className="leading-tighter text-lg font-semibold text-white">
-											{item.title}
-										</h3>
-										<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-											{item.description}
-										</p>
-										<ul className="mt-4 flex flex-col gap-2">
-											{item.details.map((detail) => (
-												<li
-													key={detail}
-													className="flex items-center gap-2.5 text-sm text-zinc-300"
+										effect support --
+										{item.title.replaceAll(" ", "-").toLowerCase()}
+									</h3>
+									{/* Comment line */}
+									<p className="mt-2 text-xs leading-relaxed text-zinc-500">
+										# {item.description}
+									</p>
+									{/* Output */}
+									<ul className="mt-4 flex flex-col gap-1.5">
+										{item.details.map((detail) => (
+											<li
+												key={detail}
+												className="flex items-baseline gap-2.5 text-sm text-zinc-300"
+											>
+												<span
+													className="text-emerald-400"
+													aria-hidden="true"
 												>
-													<i
-														className="ri-check-line text-zinc-500"
-														aria-hidden="true"
-													/>
-													{detail}
-												</li>
-											))}
-										</ul>
-									</div>
+													✓
+												</span>
+												{detail}
+											</li>
+										))}
+									</ul>
 								</div>
 							))}
 						</div>
