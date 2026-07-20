@@ -174,7 +174,7 @@ export const PARTNERS: Partner[] = [
 		differentiators: [
 			{
 				eyebrow: "Expertise",
-				title: "Deepest Effect expertise",
+				title: "Deep Effect expertise",
 				description:
 					"Over a decade of building effect systems, from ZIO to Effect.",
 				link: {

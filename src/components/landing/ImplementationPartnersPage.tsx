@@ -556,7 +556,7 @@ export function ImplementationPartnersPage() {
 								// Get in touch
 							</p>
 							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
-								Ready to build with Effect?
+								Ready to build?
 							</h2>
 							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
 								Share where you are with Effect and what you're trying to
