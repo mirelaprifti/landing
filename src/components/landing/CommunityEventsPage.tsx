@@ -56,30 +56,41 @@ const SUPPORT_ITEMS: {
 
 // Hand-balanced columns: heights computed from the photos' natural
 // aspect ratios so all three columns end within a few percent of each other.
-const GALLERY_COLUMNS: { src: string; alt: string }[][] = [
+const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 	[
-		{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
+		{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan",
+			caption: "// Milan '26",
+		},
 	],
 	[
 		{
 			src: "/assets/events/miami-2026-davidk-web.jpg",
 			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
 		},
-		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
+		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg",
+			caption: "// Hamburg",
+		},
 	],
 	[
 		{
 			src: "/assets/events/paris-nov-2-web.jpg",
 			alt: "Effect meetup in Paris",
+			caption: "// Paris",
 		},
-		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami" },
+		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
+		},
 	],
 	[
 		{
 			src: "/assets/events/paris-april-4-web.jpg",
 			alt: "Effect meetup in Paris",
+			caption: "// Paris",
 		},
-		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
+		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami",
+			caption: "// Miami '26",
+		},
 	],
 ];
 
@@ -293,15 +304,28 @@ export function CommunityEventsPage() {
 									className="flex flex-col gap-4"
 								>
 									{column.map((photo) => (
-										<img
+										<div
 											key={photo.src}
-											src={getAssetPath(photo.src)}
-											alt={photo.alt}
-											loading="lazy"
-											className={`w-full border border-zinc-800 ${
-												column.length === 1 ? "h-full object-cover" : ""
+											className={`relative overflow-hidden border border-zinc-800 ${
+												column.length === 1 ? "flex-1" : ""
 											}`}
-										/>
+										>
+											<img
+												src={getAssetPath(photo.src)}
+												alt={photo.alt}
+												loading="lazy"
+												className={`w-full saturate-[0.85] ${
+													column.length === 1
+														? "absolute inset-0 h-full object-cover"
+														: ""
+												}`}
+											/>
+											{/* Scrim — blends the photo into the dark page */}
+											<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+											<p className="absolute bottom-2.5 left-3 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+												{photo.caption}
+											</p>
+										</div>
 									))}
 								</div>
 							))}
