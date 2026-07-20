@@ -132,6 +132,16 @@ export function CommunityEventsPage() {
 								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
 						}}
 					/>
+					{/* Subtle glow */}
+					<div
+						className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
+						style={{
+							background: `
+								radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+								radial-gradient(ellipse 30% 50% at 80% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
+							`,
+						}}
+					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
@@ -145,9 +155,26 @@ export function CommunityEventsPage() {
 							livestream, or any developer event? Share it with us — we'll
 							support it where useful and help more people discover it.
 						</p>
-						<div className="mt-8">
+						<div className="mt-8 flex flex-wrap items-center gap-3">
 							<FormButton />
+							<Button
+								href="#talk-ideas"
+								variant="secondary"
+								size="md"
+								className="group"
+							>
+								Browse talk ideas
+								<i
+									className="ri-arrow-down-line text-base transition-transform group-hover:translate-y-0.5"
+									aria-hidden="true"
+								/>
+							</Button>
 						</div>
+
+						{/* Support strip — what speakers get */}
+						<p className="mt-14 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+							// Speaker kit · Prep sessions · Promotion · Swag
+						</p>
 					</div>
 				</section>
 
@@ -184,7 +211,10 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* Talk ideas */}
-				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+				<section
+					id="talk-ideas"
+					className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24"
+				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Talk ideas
