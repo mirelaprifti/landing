@@ -308,21 +308,22 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 
 	return (
 		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
-			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-					// Why {partner.name}
-				</p>
-				<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-					What this means for your team
-				</h2>
+			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 lg:grid-cols-12">
+				<div className="lg:col-span-5">
+					<div className="lg:sticky lg:top-28">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Why {partner.name}
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							What this means for your team
+						</h2>
+					</div>
+				</div>
 
-				<div className="mt-10 flex flex-col divide-y divide-zinc-800">
+				<div className="flex flex-col divide-y divide-zinc-800 lg:col-span-7">
 					{partner.differentiators.map((d, idx) => (
-						<div
-							key={d.eyebrow}
-							className="grid grid-cols-1 gap-4 py-8 first:pt-0 last:pb-0 lg:grid-cols-12 lg:items-baseline lg:gap-12"
-						>
-							<div className="flex items-baseline gap-5 lg:col-span-5">
+						<div key={d.eyebrow} className="py-8 first:pt-0 last:pb-0">
+							<div className="flex items-baseline gap-5">
 								<p className="font-mono text-xl font-medium text-zinc-700">
 									{String(idx + 1).padStart(2, "0")}
 								</p>
@@ -330,29 +331,27 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									{d.title}
 								</h3>
 							</div>
-							<div className="lg:col-span-7">
-								<p className="max-w-xl text-base leading-relaxed text-zinc-400">
-									{d.description}
-								</p>
-								{d.link && (
-									<a
-										href={d.link.href}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white"
-									>
-										<i
-											className="ri-youtube-fill text-lg text-[#FF0000]"
-											aria-hidden="true"
-										/>
-										{d.link.label}
-										<i
-											className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-											aria-hidden="true"
-										/>
-									</a>
-								)}
-							</div>
+							<p className="mt-3 max-w-xl text-base leading-relaxed text-zinc-400 lg:pl-12">
+								{d.description}
+							</p>
+							{d.link && (
+								<a
+									href={d.link.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white lg:ml-12"
+								>
+									<i
+										className="ri-youtube-fill text-lg text-[#FF0000]"
+										aria-hidden="true"
+									/>
+									{d.link.label}
+									<i
+										className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+										aria-hidden="true"
+									/>
+								</a>
+							)}
 						</div>
 					))}
 				</div>
