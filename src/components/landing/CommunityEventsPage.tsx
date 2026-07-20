@@ -242,8 +242,8 @@ export function CommunityEventsPage() {
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
-						{/* Left — section header */}
-						<div className="lg:col-span-6">
+						{/* Left — section header, vertically centered against the list */}
+						<div className="lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Talk ideas
 							</p>
