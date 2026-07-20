@@ -119,7 +119,7 @@ export function CommunityEventsPage() {
 
 			<main id="main-content" className="relative z-10 pt-16">
 				{/* Hero */}
-				<section className="relative w-full pt-16 pb-12 md:pt-24 md:pb-16">
+				<section className="relative w-full pt-16 pb-16 md:pt-24 md:pb-24">
 					{/* Grid background */}
 					<div
 						className="pointer-events-none absolute inset-0"
@@ -151,7 +151,7 @@ export function CommunityEventsPage() {
 					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+						<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
 							{/* Left — copy */}
 							<div>
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
