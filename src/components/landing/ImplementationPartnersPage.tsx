@@ -341,13 +341,10 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									rel="noopener noreferrer"
 									className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white md:ml-12"
 								>
-									<span
-										className="relative inline-flex items-center justify-center"
+									<i
+										className="ri-youtube-fill text-lg text-[#FF0000]"
 										aria-hidden="true"
-									>
-										<span className="absolute inset-[30%] bg-white" />
-										<i className="ri-youtube-fill relative text-lg text-[#FF0000]" />
-									</span>
+									/>
 									{d.link.label}
 									<i
 										className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
