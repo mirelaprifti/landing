@@ -162,8 +162,8 @@ export function CommunityEventsPage() {
 								</h1>
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400">
 									Speaking about Effect at a meetup, conference, podcast, or
-									any developer event? Share it with us. We'll support it and
-									help more people discover it.
+									any developer event? Share it with us. We'll help you
+									prepare, promote it, and share it with the community.
 								</p>
 								<div className="mt-8">
 									<FormButton />
