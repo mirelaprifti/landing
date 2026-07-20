@@ -30,8 +30,8 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 				}}
 			/>
 			<div className="relative mx-auto flex h-full w-full max-w-[73.75rem] items-center px-4 pt-32 pb-16 md:pt-0 md:pb-0">
-				<div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-2 md:items-center">
-					<div>
+				<div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-12 md:items-center">
+					<div className="md:col-span-5">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Adoption Partner
 						</p>
@@ -81,7 +81,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 					</div>
 
 					{/* Partner logo block — square */}
-					<div className="relative flex aspect-square w-full items-center justify-center bg-[#121214] p-12">
+					<div className="relative flex aspect-square w-full items-center justify-center bg-[#121214] p-12 md:col-span-7">
 						<img
 							src={getAssetPath(partner.logoPath)}
 							alt={`${partner.name} logo`}
