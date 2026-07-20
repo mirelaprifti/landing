@@ -85,7 +85,11 @@ export function HeroSection() {
 					{/* Subheadline */}
 					<p className="mx-auto mt-6 max-w-3xl text-lg leading-snug text-zinc-600 lg:max-w-3xl dark:text-zinc-400">
 						Build production-ready systems your team can ship, customers can
-						depend on, and AI agents can work with.
+						depend on,{" "}
+						<span className="text-zinc-800 dark:text-zinc-200">
+							and AI agents can work with
+						</span>
+						.
 					</p>
 
 					{/* Single consolidated command panel — Install + AI prompt */}
