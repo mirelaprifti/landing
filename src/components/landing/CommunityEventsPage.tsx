@@ -298,7 +298,9 @@ export function CommunityEventsPage() {
 											src={getAssetPath(photo.src)}
 											alt={photo.alt}
 											loading="lazy"
-											className="w-full border border-zinc-800"
+											className={`w-full border border-zinc-800 ${
+												column.length === 1 ? "h-full object-cover" : ""
+											}`}
 										/>
 									))}
 								</div>
