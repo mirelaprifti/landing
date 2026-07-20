@@ -231,32 +231,9 @@ export function CommunityEventsPage() {
 											</li>
 										))}
 									</ul>
-									{/* Idle prompt — pinned to the card bottom */}
-									<p
-										className="mt-auto pt-6 text-sm text-zinc-500"
-										aria-hidden="true"
-									>
-										${" "}
-										<span
-											className="inline-block h-[1.05em] w-[0.55em] translate-y-[0.18em] bg-zinc-500"
-											style={{
-												animation:
-													"terminal-cursor-blink 1.2s steps(1) infinite",
-											}}
-										/>
-									</p>
 								</div>
 							))}
 						</div>
-						<style>{`
-							@keyframes terminal-cursor-blink {
-								0%, 49% { opacity: 1; }
-								50%, 100% { opacity: 0; }
-							}
-							@media (prefers-reduced-motion: reduce) {
-								[style*="terminal-cursor-blink"] { animation: none !important; }
-							}
-						`}</style>
 					</div>
 				</section>
 
