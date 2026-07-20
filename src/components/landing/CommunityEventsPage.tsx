@@ -251,31 +251,31 @@ export function CommunityEventsPage() {
 							A few Effect-friendly angles to get you started:
 						</p>
 
-						<ul className="mt-8 grid max-w-4xl grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2">
+						<ul className="mt-8 flex max-w-4xl flex-wrap gap-3">
 							{TALK_IDEAS.map((idea) => (
-								<li
-									key={idea.label}
-									className="flex items-center gap-2.5 text-base text-zinc-200"
-								>
-									<i
-										className="ri-check-line text-zinc-500"
-										aria-hidden="true"
-									/>
+								<li key={idea.label}>
 									{idea.href ? (
 										<a
 											href={idea.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group inline-flex items-center gap-1.5 transition-colors hover:text-white"
+											className="group inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-2 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
 										>
-											{idea.label}
-											<i
-												className="ri-arrow-right-up-line text-sm text-zinc-500 transition-colors group-hover:text-zinc-300"
+											<span
+												className="text-zinc-600 transition-colors group-hover:text-emerald-400"
 												aria-hidden="true"
-											/>
+											>
+												❯
+											</span>
+											{idea.label}
 										</a>
 									) : (
-										idea.label
+										<span className="inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-2 font-mono text-sm text-zinc-300">
+											<span className="text-zinc-600" aria-hidden="true">
+												❯
+											</span>
+											{idea.label}
+										</span>
 									)}
 								</li>
 							))}
