@@ -59,25 +59,27 @@ const SUPPORT_ITEMS: {
 const GALLERY_COLUMNS: { src: string; alt: string }[][] = [
 	[
 		{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
-		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
 	],
 	[
 		{
 			src: "/assets/events/miami-2026-davidk-web.jpg",
 			alt: "Effect meetup in Miami",
 		},
+		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
+	],
+	[
 		{
 			src: "/assets/events/paris-nov-2-web.jpg",
 			alt: "Effect meetup in Paris",
 		},
+		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami" },
 	],
 	[
 		{
 			src: "/assets/events/paris-april-4-web.jpg",
 			alt: "Effect meetup in Paris",
 		},
-		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
-		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami" },
+		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
 	],
 ];
 
@@ -283,7 +285,7 @@ export function CommunityEventsPage() {
 				{/* Event gallery */}
 				<section className="border-t border-zinc-800 py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+						<div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
 							{GALLERY_COLUMNS.map((column, columnIndex) => (
 								<div
 									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
