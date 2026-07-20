@@ -59,29 +59,25 @@ const SUPPORT_ITEMS: {
 const GALLERY_COLUMNS: { src: string; alt: string }[][] = [
 	[
 		{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
-		{
-			src: "/assets/events/miami-2026-davidk-web.jpg",
-			alt: "Effect meetup in Miami",
-		},
+		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
 	],
 	[
 		{
-			src: "/assets/events/paris-april-3-web.jpg",
-			alt: "Effect meetup in Paris",
+			src: "/assets/events/miami-2026-davidk-web.jpg",
+			alt: "Effect meetup in Miami",
 		},
 		{
 			src: "/assets/events/paris-nov-2-web.jpg",
 			alt: "Effect meetup in Paris",
 		},
-		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
 	],
 	[
 		{
 			src: "/assets/events/paris-april-4-web.jpg",
 			alt: "Effect meetup in Paris",
 		},
+		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
 		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami" },
-		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
 	],
 ];
 
