@@ -330,10 +330,8 @@ export function CommunityEventsPage() {
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								// Get in touch
 							</p>
-							<h2 className="leading-tighter max-w-2xl text-2xl font-bold text-white md:text-3xl">
-								Bringing Effect to a{" "}
-								<br className="hidden md:block" />
-								developer event?
+							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
+								Bringing Effect to a developer event?
 							</h2>
 							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
 								Tell us what you're planning — even if you don't need help.
