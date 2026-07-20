@@ -165,20 +165,8 @@ export function CommunityEventsPage() {
 									any developer event? Share it with us. We'll support it and
 									help more people discover it.
 								</p>
-								<div className="mt-8 flex flex-wrap items-center gap-3">
+								<div className="mt-8">
 									<FormButton />
-									<Button
-										href="#talk-ideas"
-										variant="secondary"
-										size="md"
-										className="group"
-									>
-										Browse talk ideas
-										<i
-											className="ri-arrow-down-line text-base transition-transform group-hover:translate-y-0.5"
-											aria-hidden="true"
-										/>
-									</Button>
 								</div>
 
 								{/* Support strip — what speakers get */}
