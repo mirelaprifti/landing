@@ -320,13 +320,13 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 					{partner.differentiators.map((d, idx) => (
 						<div
 							key={d.eyebrow}
-							className="grid grid-cols-1 gap-4 py-8 first:pt-0 last:pb-0 lg:grid-cols-12 lg:gap-12"
+							className="grid grid-cols-1 gap-4 py-8 first:pt-0 last:pb-0 lg:grid-cols-12 lg:items-baseline lg:gap-12"
 						>
-							<div className="flex items-baseline gap-4 lg:col-span-5">
-								<p className="font-mono text-sm tracking-wider text-zinc-500">
+							<div className="flex items-baseline gap-5 lg:col-span-5">
+								<p className="font-mono text-sm text-zinc-600">
 									{String(idx + 1).padStart(2, "0")}
 								</p>
-								<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
+								<h3 className="leading-tighter text-xl font-semibold text-white">
 									{d.title}
 								</h3>
 							</div>
