@@ -116,7 +116,7 @@ export const PARTNERS: Partner[] = [
 			{
 				title: "Implementation & Consulting",
 				description:
-					"Hands-on Effect adoption for your production codebase. Ziverge assesses your stack, designs the migration path, and implements — with the depth that only comes from building Effect systems for over a decade.",
+					"Hands-on Effect adoption for your production codebase. Ziverge assesses your stack, designs the migration path, and implements with the depth that only comes from building Effect systems for over a decade.",
 				icon: "ri-tools-line",
 				cta: { label: "Start a conversation", href: "#contact" },
 			},
@@ -130,7 +130,7 @@ export const PARTNERS: Partner[] = [
 			{
 				title: "Training",
 				description:
-					"Structured Effect training from foundational concepts to advanced patterns — fibers, typed errors, dependency injection, and agent-native workflows.",
+					"Structured Effect training from foundational concepts to advanced patterns: fibers, typed errors, dependency injection, and agent-native workflows.",
 				eyebrow: "Coming soon",
 				icon: "ri-graduation-cap-line",
 				cta: { label: "Get notified", href: "#training" },
