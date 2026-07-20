@@ -157,7 +157,7 @@ export function CommunityEventsPage() {
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Effect talks
 								</p>
-								<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
+								<h1 className="leading-tighter text-3xl font-bold text-white">
 									Bring Effect to your community events
 								</h1>
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400">
