@@ -35,7 +35,7 @@ const SUPPORT_ITEMS: {
 	},
 	{
 		title: "Swag",
-		description: "Something for your audience to take home.",
+		description: "Something for you to take home.",
 		icon: "ri-t-shirt-line",
 		details: [
 			"Mini swag kits for smaller local events",
