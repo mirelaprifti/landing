@@ -74,12 +74,14 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 	],
 	[
 		{
+			src: "/assets/events/miami-ariel-web.jpg",
+			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
+		},
+		{
 			src: "/assets/events/paris-nov-2-web.jpg",
 			alt: "Effect meetup in Paris",
 			caption: "// Paris '24",
-		},
-		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami",
-			caption: "// Miami '26",
 		},
 	],
 	[
