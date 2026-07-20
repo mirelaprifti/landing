@@ -320,7 +320,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 					</div>
 				</div>
 
-				<div className="flex flex-col divide-y divide-zinc-800 md:col-span-6">
+				<div className="flex flex-col divide-y divide-zinc-800 md:col-span-6 md:col-start-7">
 					{partner.differentiators.map((d, idx) => (
 						<div key={d.eyebrow} className="py-8 first:pt-0 last:pb-0">
 							<div className="flex items-baseline gap-5">
