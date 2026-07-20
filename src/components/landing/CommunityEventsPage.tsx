@@ -54,6 +54,18 @@ const SUPPORT_ITEMS: {
 	},
 ];
 
+const GALLERY_ASPECTS = [
+	"aspect-[4/3]",
+	"aspect-[3/4]",
+	"aspect-square",
+	"aspect-square",
+	"aspect-[4/3]",
+	"aspect-[3/4]",
+	"aspect-[3/4]",
+	"aspect-square",
+	"aspect-[4/3]",
+];
+
 const GALLERY: { src: string; alt: string }[] = [
 	{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
 	{
@@ -271,15 +283,20 @@ export function CommunityEventsPage() {
 								</div>
 							))}
 						</div>
-						{/* Event photo strip */}
-						<div className="mt-4 flex gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-							{GALLERY.map((photo) => (
+					</div>
+				</section>
+
+				{/* Event gallery */}
+				<section className="border-t border-zinc-800 py-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="columns-2 gap-4 md:columns-3">
+							{GALLERY.map((photo, index) => (
 								<img
 									key={photo.src}
 									src={getAssetPath(photo.src)}
 									alt={photo.alt}
 									loading="lazy"
-									className="h-52 w-auto shrink-0 border border-zinc-800 object-cover md:h-64"
+									className={`mb-4 w-full break-inside-avoid border border-zinc-800 object-cover ${GALLERY_ASPECTS[index % GALLERY_ASPECTS.length]}`}
 								/>
 							))}
 						</div>
