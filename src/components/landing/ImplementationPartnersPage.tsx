@@ -309,7 +309,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 	return (
 		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 md:grid-cols-12">
-				<div className="md:col-span-4">
+				<div className="md:col-span-5">
 					<div className="md:sticky md:top-28">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Why {partner.name}
@@ -317,10 +317,13 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 						<h2 className="leading-tighter max-w-md text-2xl font-semibold text-white md:text-3xl">
 							What this means for your team
 						</h2>
+						<p className="mt-4 max-w-xs text-base leading-relaxed text-zinc-400">
+							Why teams choose {partner.name} to take Effect into production.
+						</p>
 					</div>
 				</div>
 
-				<div className="flex flex-col divide-y divide-zinc-800 md:col-span-6 md:col-start-7">
+				<div className="flex flex-col divide-y divide-zinc-800 md:col-span-7 md:col-start-6 md:pt-10.5 lg:col-span-6 lg:col-start-7">
 					{partner.differentiators.map((d, idx) => (
 						<div key={d.eyebrow} className="py-8 first:pt-0 last:pb-0">
 							<div className="flex items-baseline gap-5">
