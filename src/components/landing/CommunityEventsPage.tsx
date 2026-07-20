@@ -68,13 +68,6 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 ];
 
-const STEPS: string[] = [
-	"Tell us about your event or talk idea.",
-	"We help with materials, prep, promotion, or swag where useful.",
-	"You give the talk.",
-	"Send us the recording, slides, or photos so we can help share it.",
-];
-
 function FormButton({ variant = "primary" }: { variant?: "primary" | "secondary" }) {
 	return (
 		<Button href={FORM_URL} variant={variant} size="md" className="group">
@@ -232,28 +225,6 @@ export function CommunityEventsPage() {
 								</li>
 							))}
 						</ul>
-					</div>
-				</section>
-
-				{/* How it works */}
-				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Four simple steps
-						</h2>
-
-						<div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-							{STEPS.map((step, idx) => (
-								<div key={step} className="flex flex-col gap-3">
-									<p className="font-mono text-base tracking-wider text-zinc-500">
-										{String(idx + 1).padStart(2, "0")}
-									</p>
-									<p className="text-base leading-relaxed text-zinc-300">
-										{step}
-									</p>
-								</div>
-							))}
-						</div>
 					</div>
 				</section>
 
