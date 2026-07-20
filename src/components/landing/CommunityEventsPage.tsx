@@ -228,9 +228,6 @@ export function CommunityEventsPage() {
 				{/* How it works */}
 				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// How it works
-						</p>
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							Four simple steps
 						</h2>
