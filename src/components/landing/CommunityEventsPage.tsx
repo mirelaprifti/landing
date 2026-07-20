@@ -169,11 +169,7 @@ export function CommunityEventsPage() {
 									<FormButton />
 								</div>
 
-								{/* Support strip — what speakers get */}
-								<p className="mt-14 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
-									Speaker kit · Promotion · Swag
-								</p>
-							</div>
+								</div>
 
 							{/* Right — community proof photo */}
 							<div className="relative overflow-hidden rounded-md border border-zinc-800">
