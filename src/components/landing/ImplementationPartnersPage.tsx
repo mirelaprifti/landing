@@ -308,9 +308,9 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 
 	return (
 		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
-			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 lg:grid-cols-12">
-				<div className="lg:col-span-6">
-					<div className="lg:sticky lg:top-28">
+			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 md:grid-cols-3">
+				<div className="md:col-span-1">
+					<div className="md:sticky md:top-28">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Why {partner.name}
 						</p>
@@ -320,7 +320,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 					</div>
 				</div>
 
-				<div className="flex flex-col divide-y divide-zinc-800 lg:col-span-6">
+				<div className="flex flex-col divide-y divide-zinc-800 md:col-span-2">
 					{partner.differentiators.map((d, idx) => (
 						<div key={d.eyebrow} className="py-8 first:pt-0 last:pb-0">
 							<div className="flex items-baseline gap-5">
@@ -331,7 +331,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									{d.title}
 								</h3>
 							</div>
-							<p className="mt-3 max-w-xl text-base leading-relaxed text-zinc-400 lg:pl-12">
+							<p className="mt-3 max-w-xl text-base leading-relaxed text-zinc-400 md:pl-12">
 								{d.description}
 							</p>
 							{d.link && (
@@ -339,7 +339,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									href={d.link.href}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white lg:ml-12"
+									className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white md:ml-12"
 								>
 									<i
 										className="ri-youtube-fill text-lg text-[#FF0000]"
