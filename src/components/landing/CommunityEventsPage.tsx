@@ -196,7 +196,7 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
 							{SUPPORT_ITEMS.map((item) => (
 								<div
 									key={item.title}
