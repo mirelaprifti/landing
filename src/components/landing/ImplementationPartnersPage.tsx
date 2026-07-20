@@ -318,7 +318,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 							What this means for your team
 						</h2>
 						<p className="mt-4 max-w-xs text-base leading-relaxed text-zinc-400">
-							Why teams choose {partner.name} to take Effect into production.
+							Why teams choose {partner.name}
 						</p>
 					</div>
 				</div>
