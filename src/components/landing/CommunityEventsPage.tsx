@@ -106,7 +106,7 @@ export function CommunityEventsPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/community-events" />
+			<Navigation activePath="/community-talks" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -142,7 +142,7 @@ export function CommunityEventsPage() {
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Community events
+							// Community talks
 						</p>
 						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
 							Bring Effect to your community events
@@ -318,7 +318,7 @@ export function CommunityEventsPage() {
 				</section>
 			</main>
 
-			<Footer activePath="/community-events" />
+			<Footer activePath="/community-talks" />
 		</div>
 	);
 }
