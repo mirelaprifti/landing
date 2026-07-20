@@ -56,14 +56,14 @@ const SUPPORT_ITEMS: {
 
 const GALLERY_ASPECTS = [
 	"aspect-[4/3]",
-	"aspect-[3/4]",
 	"aspect-square",
+	"aspect-[16/9]",
+	"aspect-[16/9]",
+	"aspect-[4/3]",
 	"aspect-square",
 	"aspect-[4/3]",
-	"aspect-[3/4]",
-	"aspect-[3/4]",
+	"aspect-[16/9]",
 	"aspect-square",
-	"aspect-[4/3]",
 ];
 
 const GALLERY: { src: string; alt: string }[] = [
@@ -287,9 +287,9 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* Event gallery */}
-				<section className="border-t border-zinc-800 py-24">
+				<section className="border-t border-zinc-800 py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="columns-2 gap-4 md:columns-3">
+						<div className="columns-2 gap-4 md:columns-4">
 							{GALLERY.map((photo, index) => (
 								<img
 									key={photo.src}
