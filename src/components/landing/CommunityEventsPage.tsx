@@ -1,0 +1,299 @@
+import { Button } from "@/components/ui";
+import { GridOverlay } from "../GridOverlay";
+import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
+
+const FORM_URL =
+	"https://docs.google.com/forms/d/e/1FAIpQLSdiqkoogZ8a2h10oF2ANRTDE_m9l-huR8cpoedbMpjAd29tNw/viewform";
+
+const SUPPORT_ITEMS: {
+	title: string;
+	description: string;
+	icon: string;
+}[] = [
+	{
+		title: "Speaker kit",
+		description:
+			"Talk ideas for different audiences, slide templates, abstract and CFP templates, and demo examples where useful.",
+		icon: "ri-slideshow-line",
+	},
+	{
+		title: "Prep support",
+		description:
+			"Feedback on your topic, abstract, or slides — and an optional prep session with the Effect team.",
+		icon: "ri-chat-check-line",
+	},
+	{
+		title: "Promotion",
+		description:
+			"We share your event with the Effect community, repost recordings, slides, and recaps, and add useful videos to our community thread.",
+		icon: "ri-megaphone-line",
+	},
+	{
+		title: "Swag",
+		description:
+			"Mini swag kits for smaller local events, and larger kits for accepted talks at bigger events.",
+		icon: "ri-t-shirt-line",
+	},
+];
+
+const TALK_IDEAS: string[] = [
+	"Reliable TypeScript for production systems",
+	"Stop agent slop with Effect",
+	"Typed errors in TypeScript",
+	"Retries, timeouts, and cancellation",
+	"Building AI agents with Effect",
+	"Production-grade TypeScript for the AI era",
+	"What's new in Effect v4",
+];
+
+const STEPS: string[] = [
+	"Tell us about your event or talk idea.",
+	"We help with materials, prep, promotion, or swag where useful.",
+	"You give the talk.",
+	"Send us the recording, slides, or photos so we can help share it.",
+];
+
+function FormButton({ variant = "primary" }: { variant?: "primary" | "secondary" }) {
+	return (
+		<Button href={FORM_URL} variant={variant} size="md" className="group">
+			Tell us about your Effect talk
+			<i
+				className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+				aria-hidden="true"
+			/>
+		</Button>
+	);
+}
+
+export function CommunityEventsPage() {
+	return (
+		<div className="relative min-h-screen bg-zinc-950 text-white">
+			{/* Dithered background overlay */}
+			<div
+				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
+					backgroundSize: "4px 4px",
+				}}
+			/>
+			{/* Skip Navigation Link */}
+			<a
+				href="#main-content"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
+			>
+				Skip to main content
+			</a>
+
+			<Navigation activePath="/community-events" />
+			<GridOverlay />
+
+			{/* Vertical border lines container */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+				</div>
+			</div>
+
+			<main id="main-content" className="relative z-10 pt-16">
+				{/* Hero */}
+				<section className="relative w-full pt-16 pb-12 md:pt-24 md:pb-16">
+					{/* Grid background */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage: `
+								linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
+								linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
+							`,
+							backgroundSize: "196.6px 171px",
+							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+						}}
+					/>
+
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Community events
+						</p>
+						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
+							Bring Effect to your community events
+						</h1>
+						<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+							Speaking about Effect at a meetup, conference, workshop, podcast,
+							livestream, or any developer event? Share it with us — we'll
+							support it where useful and help more people discover it.
+						</p>
+						<div className="mt-8">
+							<FormButton />
+						</div>
+					</div>
+				</section>
+
+				{/* What this is */}
+				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// The idea
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Bring Effect to existing tech communities
+						</h2>
+						<div className="mt-4 max-w-2xl space-y-4 text-lg leading-normal text-zinc-400">
+							<p>
+								We want to help community members bring practical Effect talks
+								to the developer communities they're already part of — a
+								TypeScript meetup, an AI engineering event, a backend or
+								infrastructure conference, an open-source workshop, a podcast,
+								or a livestream.
+							</p>
+							<p>
+								You don't need to organize an Effect-specific event. The goal
+								is to bring useful Effect ideas to the tech communities that
+								already exist around the world.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				{/* How we can help */}
+				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Support
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							What we can help with
+						</h2>
+
+						<div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+							{SUPPORT_ITEMS.map((item) => (
+								<div
+									key={item.title}
+									className="flex flex-col border border-zinc-700 bg-zinc-900/40 p-6 md:p-8"
+								>
+									<i
+										className={`${item.icon} mb-4 text-2xl text-zinc-300`}
+										aria-hidden="true"
+									/>
+									<h3 className="leading-tighter text-lg font-semibold text-white">
+										{item.title}
+									</h3>
+									<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+										{item.description}
+									</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* Talk ideas */}
+				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Talk ideas
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Not sure what to talk about?
+						</h2>
+						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
+							A few Effect-friendly angles to get you started:
+						</p>
+
+						<ul className="mt-8 grid max-w-4xl grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2">
+							{TALK_IDEAS.map((idea) => (
+								<li
+									key={idea}
+									className="flex items-center gap-2.5 text-base text-zinc-200"
+								>
+									<i
+										className="ri-check-line text-zinc-500"
+										aria-hidden="true"
+									/>
+									{idea}
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
+
+				{/* How it works */}
+				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// How it works
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Four simple steps
+						</h2>
+
+						<div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+							{STEPS.map((step, idx) => (
+								<div key={step} className="flex flex-col gap-3">
+									<p className="font-mono text-base tracking-wider text-zinc-500">
+										{String(idx + 1).padStart(2, "0")}
+									</p>
+									<p className="text-base leading-relaxed text-zinc-300">
+										{step}
+									</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* Final CTA */}
+				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-32">
+					{/* Grid background */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage: `
+								linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px),
+								linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)
+							`,
+							backgroundSize: "196.6px 180px",
+							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, #09090b 0%, transparent 25%, transparent 75%, #09090b 100%)",
+						}}
+					/>
+
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="flex flex-col items-center text-center">
+							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								// Get in touch
+							</p>
+							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
+								Bringing Effect to a developer event?
+							</h2>
+							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
+								Tell us what you're planning — even if you don't need help.
+								We'd love to know about it and help more people discover your
+								talk.
+							</p>
+							<div className="mt-10">
+								<FormButton />
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+
+			<Footer activePath="/community-events" />
+		</div>
+	);
+}
