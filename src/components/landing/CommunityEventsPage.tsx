@@ -37,14 +37,35 @@ const SUPPORT_ITEMS: {
 	},
 ];
 
-const TALK_IDEAS: string[] = [
-	"Reliable TypeScript for production systems",
-	"Stop agent slop with Effect",
-	"Typed errors in TypeScript",
-	"Retries, timeouts, and cancellation",
-	"Building AI agents with Effect",
-	"Production-grade TypeScript for the AI era",
-	"What's new in Effect v4",
+const TALK_IDEAS: { label: string; href?: string }[] = [
+	{
+		label: "Reliable TypeScript for production systems",
+		href: "https://effect.website/docs/getting-started/why-effect/",
+	},
+	{
+		label: "Stop agent slop with Effect",
+		href: "https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/",
+	},
+	{
+		label: "Typed errors in TypeScript",
+		href: "https://effect.website/docs/error-management/two-error-types",
+	},
+	{
+		label: "Retries, timeouts, and cancellation",
+		href: "https://effect.website/docs/error-management/retrying",
+	},
+	{
+		label: "Building AI agents with Effect",
+		href: "https://effect.website/docs/ai/introduction",
+	},
+	{
+		label: "Production-grade TypeScript for the AI era",
+		href: "https://www.effect.solutions/",
+	},
+	{
+		label: "What's new in Effect v4",
+		href: "https://effect.website/blog/effect-v4-beta",
+	},
 ];
 
 const STEPS: string[] = [
@@ -203,14 +224,29 @@ export function CommunityEventsPage() {
 						<ul className="mt-8 grid max-w-4xl grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2">
 							{TALK_IDEAS.map((idea) => (
 								<li
-									key={idea}
+									key={idea.label}
 									className="flex items-center gap-2.5 text-base text-zinc-200"
 								>
 									<i
 										className="ri-check-line text-zinc-500"
 										aria-hidden="true"
 									/>
-									{idea}
+									{idea.href ? (
+										<a
+											href={idea.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="group inline-flex items-center gap-1.5 transition-colors hover:text-white"
+										>
+											{idea.label}
+											<i
+												className="ri-arrow-right-up-line text-sm text-zinc-500 transition-colors group-hover:text-zinc-300"
+												aria-hidden="true"
+											/>
+										</a>
+									) : (
+										idea.label
+									)}
 								</li>
 							))}
 						</ul>
