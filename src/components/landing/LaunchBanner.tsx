@@ -34,7 +34,7 @@ export function LaunchBanner({
 	if (!visible) return null;
 
 	return (
-		<div className="fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100">
+		<div className="group fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100 transition-colors has-[a:hover]:bg-zinc-800">
 			{/* Border light-up — the grid pulse arrives at the banner: light
 			    spreads from the center outward along the bottom hairline */}
 			{glintKey > 0 && (
@@ -61,10 +61,13 @@ export function LaunchBanner({
 					`}</style>
 				</>
 			)}
+			{/* Whole-banner click target */}
 			<a
 				href="/blog/effect-v4"
-				className="group flex min-w-0 items-center gap-2 text-sm font-medium"
-			>
+				aria-label="Effect 4.0 is here — read the announcement"
+				className="absolute inset-0"
+			/>
+			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm font-medium">
 				<span className="hidden font-mono text-xs tracking-wider text-emerald-400 uppercase sm:inline">
 					// New
 				</span>
@@ -75,12 +78,12 @@ export function LaunchBanner({
 					className="ri-arrow-right-line shrink-0 text-base transition-transform group-hover:translate-x-0.5"
 					aria-hidden="true"
 				/>
-			</a>
+			</div>
 			<button
 				type="button"
 				onClick={dismiss}
 				aria-label="Dismiss announcement"
-				className="absolute right-3 flex h-6 w-6 items-center justify-center opacity-60 transition-opacity hover:opacity-100"
+				className="absolute right-3 z-10 flex h-6 w-6 items-center justify-center opacity-60 transition-opacity hover:opacity-100"
 			>
 				<X size={15} aria-hidden="true" />
 			</button>
