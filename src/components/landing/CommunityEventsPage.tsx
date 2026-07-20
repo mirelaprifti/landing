@@ -214,8 +214,10 @@ export function CommunityEventsPage() {
 									<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 										# {item.description}
 									</p>
+									{/* Divider between prompt block and output */}
+									<div className="mt-5 border-t border-zinc-800" />
 									{/* Output */}
-									<ul className="mt-6 flex flex-col gap-3">
+									<ul className="mt-5 flex flex-col gap-3">
 										{item.details.map((detail) => (
 											<li
 												key={detail}
