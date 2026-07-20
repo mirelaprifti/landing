@@ -109,6 +109,17 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 										<i className="ri-arrow-right-up-line text-sm" />
 									</Link>
 								</li>
+
+								<li>
+									<Link
+										href="https://github.com/Effect-TS/language-service#diagnostics"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Linting Rules
+										<i className="ri-arrow-right-up-line text-sm" />
+									</Link>
+								</li>
 							</ul>
 						</div>
 
