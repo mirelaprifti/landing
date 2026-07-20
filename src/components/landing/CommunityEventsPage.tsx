@@ -14,6 +14,16 @@ const SUPPORT_ITEMS: {
 	details: string[];
 }[] = [
 	{
+		title: "Meetups",
+		description: "From your first event to a recurring local community.",
+		icon: "ri-group-line",
+		details: [
+			"Help planning and hosting your first event",
+			"Connecting you with Effect developers nearby",
+			"Listing your meetup on the Effect events calendar",
+		],
+	},
+	{
 		title: "Speaker kit",
 		description: "Another pair of eyes before you go on stage.",
 		icon: "ri-slideshow-line",
@@ -196,7 +206,7 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{SUPPORT_ITEMS.map((item) => (
 								<div
 									key={item.title}
