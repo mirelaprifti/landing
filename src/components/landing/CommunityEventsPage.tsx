@@ -201,15 +201,15 @@ export function CommunityEventsPage() {
 									className="group flex flex-col rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 font-mono transition-colors hover:border-zinc-700 md:p-6"
 								>
 									{/* Command line — doubles as the card title */}
-									<h3 className="text-sm text-zinc-200">
-										<span className="text-zinc-500" aria-hidden="true">
-											${" "}
+									<h3 className="text-sm text-zinc-500">
+										<span aria-hidden="true">$ </span>
+										effect support{" "}
+										<span className="font-semibold text-white">
+											{item.title.replaceAll(" ", "-").toLowerCase()}
 										</span>
-										effect support --
-										{item.title.replaceAll(" ", "-").toLowerCase()}
 									</h3>
 									{/* Comment line */}
-									<p className="mt-2 text-xs leading-relaxed text-zinc-500">
+									<p className="mt-2 text-xs leading-relaxed text-zinc-400">
 										# {item.description}
 									</p>
 									{/* Output */}
