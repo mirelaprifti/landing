@@ -200,7 +200,7 @@ export function CommunityEventsPage() {
 							{SUPPORT_ITEMS.map((item) => (
 								<div
 									key={item.title}
-									className="group flex flex-col border border-zinc-800 bg-[#0C0C0E] p-6 font-mono transition-colors hover:border-zinc-700 md:p-8"
+									className="flex flex-col border border-zinc-800 bg-[#0C0C0E] p-6 font-mono md:p-8"
 								>
 									{/* Command line — doubles as the card title */}
 									<h3 className="text-sm text-zinc-500">
