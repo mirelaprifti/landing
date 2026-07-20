@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -150,37 +151,53 @@ export function CommunityEventsPage() {
 					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Effect talks
-						</p>
-						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
-							Bring Effect to your community events
-						</h1>
-						<p className="mt-6 max-w-3xl text-lg leading-relaxed text-zinc-400">
-							Speaking about Effect at a meetup, conference, podcast, or any
-							developer event? Share it with us. We'll support it and help
-							more people discover it.
-						</p>
-						<div className="mt-8 flex flex-wrap items-center gap-3">
-							<FormButton />
-							<Button
-								href="#talk-ideas"
-								variant="secondary"
-								size="md"
-								className="group"
-							>
-								Browse talk ideas
-								<i
-									className="ri-arrow-down-line text-base transition-transform group-hover:translate-y-0.5"
-									aria-hidden="true"
-								/>
-							</Button>
-						</div>
+						<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+							{/* Left — copy */}
+							<div>
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Effect talks
+								</p>
+								<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
+									Bring Effect to your community events
+								</h1>
+								<p className="mt-6 text-lg leading-relaxed text-zinc-400">
+									Speaking about Effect at a meetup, conference, podcast, or
+									any developer event? Share it with us. We'll support it and
+									help more people discover it.
+								</p>
+								<div className="mt-8 flex flex-wrap items-center gap-3">
+									<FormButton />
+									<Button
+										href="#talk-ideas"
+										variant="secondary"
+										size="md"
+										className="group"
+									>
+										Browse talk ideas
+										<i
+											className="ri-arrow-down-line text-base transition-transform group-hover:translate-y-0.5"
+											aria-hidden="true"
+										/>
+									</Button>
+								</div>
 
-						{/* Support strip — what speakers get */}
-						<p className="mt-14 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
-							Speaker kit · Promotion · Swag
-						</p>
+								{/* Support strip — what speakers get */}
+								<p className="mt-14 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
+									Speaker kit · Promotion · Swag
+								</p>
+							</div>
+
+							{/* Right — community proof photo */}
+							<div className="relative overflow-hidden rounded-md border border-zinc-800">
+								<img
+									src={getAssetPath("/assets/images/meetup-effect-days.avif")}
+									alt="An Effect community meetup"
+									className="h-full w-full object-cover"
+								/>
+								{/* Blend into the dark page */}
+								<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent" />
+							</div>
+						</div>
 					</div>
 				</section>
 
