@@ -58,25 +58,29 @@ const SUPPORT_ITEMS: {
 // aspect ratios so all three columns end within a few percent of each other.
 const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 	[
-		{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan",
+		{
+			src: "/assets/events/milan-26-web.jpg",
+			alt: "Effect meetup in Milan",
 			caption: "// Milan '26",
 		},
 	],
 	[
 		{
-			src: "/assets/events/miami-2026-davidk-web.jpg",
-			alt: "Effect meetup in Miami",
-			caption: "// Miami '26",
+			src: "/assets/events/paris-april-4-web.jpg",
+			alt: "Effect meetup in Paris",
+			caption: "// Paris '25",
 		},
-		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg",
-			caption: "// Hamburg '25",
-		},
-	],
-	[
 		{
 			src: "/assets/events/miami-ariel-web.jpg",
 			alt: "Effect meetup in Miami",
 			caption: "// Miami '26",
+		},
+	],
+	[
+		{
+			src: "/assets/events/hamburg-web.jpg",
+			alt: "Effect meetup in Hamburg",
+			caption: "// Hamburg '25",
 		},
 		{
 			src: "/assets/events/paris-nov-2-web.jpg",
@@ -86,11 +90,13 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 	],
 	[
 		{
-			src: "/assets/events/paris-april-4-web.jpg",
-			alt: "Effect meetup in Paris",
-			caption: "// Paris '25",
+			src: "/assets/events/miami-2026-davidk-web.jpg",
+			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
 		},
-		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami",
+		{
+			src: "/assets/events/miami-dax-web.jpg",
+			alt: "Effect talk in Miami",
 			caption: "// Miami '26",
 		},
 	],
