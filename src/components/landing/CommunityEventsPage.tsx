@@ -188,24 +188,75 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						<div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-							{SUPPORT_ITEMS.map((item) => (
-								<div
-									key={item.title}
-									className="flex flex-col border border-zinc-700 bg-zinc-900/40 p-6 md:p-8"
-								>
-									<i
-										className={`${item.icon} mb-4 text-2xl text-zinc-300`}
-										aria-hidden="true"
-									/>
-									<h3 className="leading-tighter text-lg font-semibold text-white">
-										{item.title}
-									</h3>
-									<p className="mt-3 text-sm leading-relaxed text-zinc-400">
-										{item.description}
-									</p>
-								</div>
-							))}
+						<div className="relative mt-12">
+							<ul className="grid grid-cols-1 sm:grid-cols-2">
+								{SUPPORT_ITEMS.map((item, idx) => {
+									const isLastOverall = idx === SUPPORT_ITEMS.length - 1;
+									return (
+										<li
+											key={item.title}
+											className={`group py-6 first:pt-0 sm:p-8 ${
+												!isLastOverall
+													? "border-b border-zinc-800 sm:border-b-0"
+													: ""
+											} ${idx % 2 === 0 ? "sm:pl-0" : "sm:pr-0"} ${
+												idx < 2 ? "sm:pt-0" : "sm:pb-0"
+											}`}
+										>
+											<div className="flex items-center justify-between">
+												<span className="flex h-11 w-11 items-center justify-center border border-zinc-700 bg-zinc-900/60 transition-colors group-hover:border-zinc-500">
+													<i
+														className={`${item.icon} text-xl text-zinc-300 transition-colors group-hover:text-white`}
+														aria-hidden="true"
+													/>
+												</span>
+												<span className="font-mono text-base tracking-wider text-zinc-600">
+													{String(idx + 1).padStart(2, "0")}
+												</span>
+											</div>
+											<h3 className="leading-tighter mt-5 text-lg font-semibold text-white">
+												{item.title}
+											</h3>
+											<p className="mt-3 max-w-md text-base leading-relaxed text-zinc-400">
+												{item.description}
+											</p>
+										</li>
+									);
+								})}
+							</ul>
+							{/* Dashed cross dividers — 1px line, 3px dashes, gap at center */}
+							<div
+								aria-hidden="true"
+								className="pointer-events-none absolute top-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-px -translate-x-1/2 text-zinc-700 sm:block"
+								style={{
+									backgroundImage:
+										"repeating-linear-gradient(to bottom, currentColor 0 3px, transparent 3px 6px)",
+								}}
+							/>
+							<div
+								aria-hidden="true"
+								className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[calc(50%-1.5rem)] w-px -translate-x-1/2 text-zinc-700 sm:block"
+								style={{
+									backgroundImage:
+										"repeating-linear-gradient(to bottom, currentColor 0 3px, transparent 3px 6px)",
+								}}
+							/>
+							<div
+								aria-hidden="true"
+								className="pointer-events-none absolute top-1/2 left-0 hidden h-px w-[calc(50%-1.5rem)] -translate-y-1/2 text-zinc-700 sm:block"
+								style={{
+									backgroundImage:
+										"repeating-linear-gradient(to right, currentColor 0 3px, transparent 3px 6px)",
+								}}
+							/>
+							<div
+								aria-hidden="true"
+								className="pointer-events-none absolute top-1/2 right-0 hidden h-px w-[calc(50%-1.5rem)] -translate-y-1/2 text-zinc-700 sm:block"
+								style={{
+									backgroundImage:
+										"repeating-linear-gradient(to right, currentColor 0 3px, transparent 3px 6px)",
+								}}
+							/>
 						</div>
 					</div>
 				</section>
