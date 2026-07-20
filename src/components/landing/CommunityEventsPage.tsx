@@ -61,7 +61,6 @@ const GALLERY: { src: string; alt: string }[] = [
 		alt: "Effect meetup in Paris",
 	},
 	{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
-	{ src: "/assets/events/milan-2025-web.jpg", alt: "Effect meetup in Milan" },
 	{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
 	{
 		src: "/assets/events/paris-nov-2-web.jpg",
