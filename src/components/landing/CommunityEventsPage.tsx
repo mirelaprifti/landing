@@ -140,7 +140,7 @@ export function CommunityEventsPage() {
 						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
 							Bring Effect to your community events
 						</h1>
-						<p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+						<p className="mt-6 max-w-3xl text-lg leading-relaxed text-zinc-400">
 							Speaking about Effect at a meetup, conference, workshop, podcast,
 							livestream, or any developer event? Share it with us — we'll
 							support it where useful and help more people discover it.
