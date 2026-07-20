@@ -90,7 +90,7 @@ export function PartnerZivergePage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/implementation-partners" />
+			<Navigation activePath="/adoption-partners" />
 
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero */}
@@ -148,7 +148,7 @@ export function PartnerZivergePage() {
 							{/* Content column */}
 							<div className="md:col-span-8">
 								<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-									// Implementation Partner
+									// Adoption Partner
 								</p>
 								<h1 className="mt-3 text-4xl leading-tight font-bold tracking-tight text-zinc-900 md:text-5xl lg:text-6xl dark:text-white">
 									Ziverge
@@ -371,7 +371,7 @@ export function PartnerZivergePage() {
 				</section>
 			</main>
 
-			<Footer activePath="/implementation-partners" />
+			<Footer activePath="/adoption-partners" />
 			<GridOverlay />
 		</div>
 	);

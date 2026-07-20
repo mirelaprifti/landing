@@ -25,7 +25,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/implementation-partners" />
+			<Navigation activePath="/adoption-partners" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -82,7 +82,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="mb-8">
 							<a
-								href={getAssetPath("/implementation-partners")}
+								href={getAssetPath("/adoption-partners")}
 								className="group inline-flex items-center gap-1 font-mono text-sm text-zinc-400 transition-colors hover:text-white"
 							>
 								<i
@@ -176,7 +176,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 				</section>
 			</main>
 
-			<Footer activePath="/implementation-partners" />
+			<Footer activePath="/adoption-partners" />
 		</div>
 	);
 }

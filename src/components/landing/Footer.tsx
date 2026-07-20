@@ -160,6 +160,16 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 										Effect Jobs
 									</Link>
 								</li>
+								<li>
+									<Link
+										href={getAssetPath("/adoption-partners")}
+										variant="footer"
+										active={activePath?.startsWith("/adoption-partners")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Adoption Partners
+									</Link>
+								</li>
 							</ul>
 						</div>
 

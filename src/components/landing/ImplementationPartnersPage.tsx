@@ -33,7 +33,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 				<div className="grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:items-center">
 					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Implementation Partner
+							// Adoption Partner
 						</p>
 						<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
 							Get help adopting Effect with {partner.name}
@@ -500,7 +500,7 @@ export function ImplementationPartnersPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/implementation-partners" />
+			<Navigation activePath="/adoption-partners" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -590,7 +590,7 @@ export function ImplementationPartnersPage() {
 				</section>
 			</main>
 
-			<Footer activePath="/implementation-partners" />
+			<Footer activePath="/adoption-partners" />
 		</div>
 	);
 }
