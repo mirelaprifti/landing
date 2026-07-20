@@ -195,7 +195,7 @@ export function CommunityEventsPage() {
 									className="h-full w-full object-cover"
 								/>
 								{/* Blend into the dark page */}
-								<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent" />
+								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/40 via-transparent to-transparent" />
 							</div>
 						</div>
 					</div>
