@@ -190,7 +190,11 @@ export function CommunityEventsPage() {
 									className="h-full w-full object-cover"
 								/>
 								{/* Blend into the dark page */}
-								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/40 via-transparent to-transparent" />
+								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+								{/* Photo caption */}
+								<p className="absolute bottom-3 left-4 font-mono text-xs text-zinc-300">
+									Effect Meetup NYC '25 at Warp's offices
+								</p>
 							</div>
 						</div>
 					</div>
