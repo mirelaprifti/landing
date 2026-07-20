@@ -1,4 +1,5 @@
 ---
 // Legacy path — the partners page moved to /adoption-partners.
-return Astro.redirect("/adoption-partners/ziverge");
+const base = import.meta.env.PROD ? "/landing" : "";
+return Astro.redirect(`${base}/adoption-partners/ziverge`);
 ---
