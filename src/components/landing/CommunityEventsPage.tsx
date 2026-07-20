@@ -19,8 +19,7 @@ const SUPPORT_ITEMS: {
 		details: [
 			"Slide templates",
 			"Feedback on your topic or abstract",
-			"Slide review",
-			"Optional prep session with the Effect team",
+			"Prep session with the Effect team",
 		],
 	},
 	{
