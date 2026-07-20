@@ -152,7 +152,7 @@ export function CommunityEventsPage() {
 						</h1>
 						<p className="mt-6 max-w-3xl text-lg leading-relaxed text-zinc-400">
 							Speaking about Effect at a meetup, conference, workshop, podcast,
-							livestream, or any developer event? Share it with us — we'll
+							livestream, or any developer event? Share it with us. We'll
 							support it and help more people discover it.
 						</p>
 						<div className="mt-8 flex flex-wrap items-center gap-3">
