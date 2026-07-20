@@ -205,61 +205,53 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						<div className="relative mt-14">
-							{/* Vertical rail — dashed line the icon nodes sit on */}
-							<div
-								aria-hidden="true"
-								className="pointer-events-none absolute top-3 bottom-3 left-[21px] w-px text-zinc-700 md:left-[25px]"
-								style={{
-									backgroundImage:
-										"repeating-linear-gradient(to bottom, currentColor 0 3px, transparent 3px 6px)",
-								}}
-							/>
-
-							<ul className="flex flex-col gap-14 md:gap-16">
-								{SUPPORT_ITEMS.map((item, idx) => (
-									<li
-										key={item.title}
-										className="group relative flex gap-6 md:gap-10"
-									>
-										{/* Node — solid bg masks the rail behind it */}
-										<span className="z-10 flex h-11 w-11 shrink-0 items-center justify-center border border-zinc-700 bg-zinc-950 transition-colors group-hover:border-zinc-500 md:h-[52px] md:w-[52px]">
-											<i
-												className={`${item.icon} text-xl text-zinc-300 transition-colors group-hover:text-white`}
-												aria-hidden="true"
-											/>
+						<div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
+							{SUPPORT_ITEMS.map((item) => (
+								<div
+									key={item.title}
+									className="group flex flex-col overflow-hidden rounded-md border border-zinc-700/80 bg-zinc-900/40 transition-colors hover:border-zinc-600"
+								>
+									{/* Window header bar */}
+									<div className="flex items-center gap-3 border-b border-zinc-800 bg-zinc-900/80 px-4 py-2.5">
+										<span className="flex gap-1.5" aria-hidden="true">
+											<span className="h-2 w-2 rounded-full bg-zinc-700 transition-colors group-hover:bg-zinc-600" />
+											<span className="h-2 w-2 rounded-full bg-zinc-700 transition-colors group-hover:bg-zinc-600" />
+											<span className="h-2 w-2 rounded-full bg-zinc-700 transition-colors group-hover:bg-zinc-600" />
 										</span>
+										<span className="min-w-0 truncate font-mono text-xs tracking-wider text-zinc-400 lowercase">
+											{item.title.replaceAll(" ", "-")}
+										</span>
+										<i
+											className={`${item.icon} ml-auto text-base text-zinc-500 transition-colors group-hover:text-zinc-300`}
+											aria-hidden="true"
+										/>
+									</div>
 
-										<div className="min-w-0 pt-1">
-											<div className="flex items-baseline gap-3">
-												<h3 className="leading-tighter text-lg font-semibold text-white">
-													{item.title}
-												</h3>
-												<span className="font-mono text-sm tracking-wider text-zinc-600">
-													{String(idx + 1).padStart(2, "0")}
-												</span>
-											</div>
-											<p className="mt-2 text-base leading-relaxed text-zinc-400">
-												{item.description}
-											</p>
-											<ul className="mt-4 grid grid-cols-1 gap-x-10 gap-y-2 sm:grid-cols-2">
-												{item.details.map((detail) => (
-													<li
-														key={detail}
-														className="flex items-center gap-2.5 text-sm text-zinc-300"
-													>
-														<i
-															className="ri-check-line text-zinc-500"
-															aria-hidden="true"
-														/>
-														{detail}
-													</li>
-												))}
-											</ul>
-										</div>
-									</li>
-								))}
-							</ul>
+									{/* Window body */}
+									<div className="flex flex-1 flex-col p-6">
+										<h3 className="leading-tighter text-lg font-semibold text-white">
+											{item.title}
+										</h3>
+										<p className="mt-2 text-sm leading-relaxed text-zinc-400">
+											{item.description}
+										</p>
+										<ul className="mt-4 flex flex-col gap-2">
+											{item.details.map((detail) => (
+												<li
+													key={detail}
+													className="flex items-center gap-2.5 text-sm text-zinc-300"
+												>
+													<i
+														className="ri-check-line text-zinc-500"
+														aria-hidden="true"
+													/>
+													{detail}
+												</li>
+											))}
+										</ul>
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
