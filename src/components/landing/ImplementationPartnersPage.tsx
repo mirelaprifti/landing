@@ -342,7 +342,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 									className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white md:ml-12"
 								>
 									<i
-										className="ri-youtube-fill text-lg text-[#FF0000]"
+										className="ri-youtube-fill text-lg text-white"
 										aria-hidden="true"
 									/>
 									{d.link.label}
