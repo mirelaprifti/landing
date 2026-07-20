@@ -307,7 +307,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 	if (!partner.differentiators?.length) return null;
 
 	return (
-		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+		<section className="border-t border-zinc-800 py-24">
 			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 md:grid-cols-12">
 				<div className="md:col-span-5 md:flex md:items-center">
 					<div>
