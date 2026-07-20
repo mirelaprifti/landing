@@ -209,7 +209,7 @@ export function CommunityEventsPage() {
 										</span>
 									</h3>
 									{/* Comment line */}
-									<p className="mt-2 text-xs leading-relaxed text-zinc-400">
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										# {item.description}
 									</p>
 									{/* Output */}
