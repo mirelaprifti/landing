@@ -142,6 +142,16 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
+										href={getAssetPath("/effect-talks")}
+										variant="footer"
+										active={activePath?.startsWith("/effect-talks")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Effect Talks
+									</Link>
+								</li>
+								<li>
+									<Link
 										href="https://discord.gg/effect-ts"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
