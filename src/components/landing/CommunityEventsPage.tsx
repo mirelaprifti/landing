@@ -240,7 +240,7 @@ export function CommunityEventsPage() {
 				{/* Talk ideas */}
 				<section
 					id="talk-ideas"
-					className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24"
+					className="border-t border-zinc-800 py-24"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
