@@ -309,7 +309,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 	return (
 		<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 lg:grid-cols-12">
-				<div className="lg:col-span-5">
+				<div className="lg:col-span-6">
 					<div className="lg:sticky lg:top-28">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Why {partner.name}
@@ -320,7 +320,7 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 					</div>
 				</div>
 
-				<div className="flex flex-col divide-y divide-zinc-800 lg:col-span-7">
+				<div className="flex flex-col divide-y divide-zinc-800 lg:col-span-6">
 					{partner.differentiators.map((d, idx) => (
 						<div key={d.eyebrow} className="py-8 first:pt-0 last:pb-0">
 							<div className="flex items-baseline gap-5">
