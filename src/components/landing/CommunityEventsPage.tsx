@@ -257,13 +257,16 @@ export function CommunityEventsPage() {
 									key={idea.label}
 									className={
 										[
+											// Row 1 — anchored to both page edges
 											"lg:col-span-5", // Reliable TypeScript…
 											"lg:col-span-3 lg:col-start-7", // Stop agent slop
 											"lg:col-span-3 lg:col-start-10", // Typed errors
-											"lg:col-span-4 lg:col-start-2", // Retries, timeouts…
-											"lg:col-span-4 lg:col-start-7", // Building AI agents
-											"lg:col-span-6 lg:col-start-4", // Production-grade…
-											"lg:col-span-3 lg:col-start-10", // What's new in v4
+											// Row 2 — inset from both edges, gap drifts left
+											"lg:col-span-4 lg:col-start-3", // Retries, timeouts…
+											"lg:col-span-4 lg:col-start-8", // Building AI agents
+											// Row 3 — near-symmetric pair, gap drifts right
+											"lg:col-span-6 lg:col-start-2", // Production-grade…
+											"lg:col-span-3 lg:col-start-9", // What's new in v4
 										][idx] ?? ""
 									}
 								>
