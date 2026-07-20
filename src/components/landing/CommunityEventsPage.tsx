@@ -158,24 +158,6 @@ export function CommunityEventsPage() {
 					</div>
 				</section>
 
-				{/* What this is */}
-				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// The idea
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Bring Effect to existing tech communities
-						</h2>
-						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
-							We want to help community members bring practical Effect talks to
-							the developer communities they're already part of — a TypeScript
-							meetup, an AI engineering event, a backend or infrastructure
-							conference, an open-source workshop, a podcast, or a livestream.
-						</p>
-					</div>
-				</section>
-
 				{/* How we can help */}
 				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
