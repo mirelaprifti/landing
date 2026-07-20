@@ -316,36 +316,43 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 					What this means for your team
 				</h2>
 
-				<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-14 md:grid-cols-3">
+				<div className="mt-10 flex flex-col divide-y divide-zinc-800">
 					{partner.differentiators.map((d, idx) => (
-						<div key={d.eyebrow} className="flex flex-col">
-							<p className="font-mono text-sm tracking-wider text-zinc-500">
-								{String(idx + 1).padStart(2, "0")}
-							</p>
-							<h3 className="leading-tighter mt-4 text-xl font-semibold text-white">
-								{d.title}
-							</h3>
-							<p className="mt-2 max-w-[40ch] text-base leading-relaxed text-zinc-400">
-								{d.description}
-							</p>
-							{d.link && (
-								<a
-									href={d.link.href}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="group mt-auto inline-flex w-fit items-center gap-2 pt-5 text-sm font-medium text-white"
-								>
-									<i
-										className="ri-youtube-fill text-lg text-[#FF0000]"
-										aria-hidden="true"
-									/>
-									{d.link.label}
-									<i
-										className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-										aria-hidden="true"
-									/>
-								</a>
-							)}
+						<div
+							key={d.eyebrow}
+							className="grid grid-cols-1 gap-4 py-8 first:pt-0 last:pb-0 lg:grid-cols-12 lg:gap-12"
+						>
+							<div className="flex items-baseline gap-4 lg:col-span-5">
+								<p className="font-mono text-sm tracking-wider text-zinc-500">
+									{String(idx + 1).padStart(2, "0")}
+								</p>
+								<h3 className="leading-tighter text-xl font-semibold text-white md:text-2xl">
+									{d.title}
+								</h3>
+							</div>
+							<div className="lg:col-span-7">
+								<p className="max-w-xl text-base leading-relaxed text-zinc-400">
+									{d.description}
+								</p>
+								{d.link && (
+									<a
+										href={d.link.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="group mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-white"
+									>
+										<i
+											className="ri-youtube-fill text-lg text-[#FF0000]"
+											aria-hidden="true"
+										/>
+										{d.link.label}
+										<i
+											className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+											aria-hidden="true"
+										/>
+									</a>
+								)}
+							</div>
 						</div>
 					))}
 				</div>
