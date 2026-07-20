@@ -54,30 +54,35 @@ const SUPPORT_ITEMS: {
 	},
 ];
 
-const GALLERY: { src: string; alt: string }[] = [
-	{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
-	{
-		src: "/assets/events/paris-april-3-web.jpg",
-		alt: "Effect meetup in Paris",
-	},
-	{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
-	{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
-	{
-		src: "/assets/events/paris-nov-2-web.jpg",
-		alt: "Effect meetup in Paris",
-	},
-	{
-		src: "/assets/events/miami-2026-davidk-web.jpg",
-		alt: "Effect meetup in Miami",
-	},
-	{
-		src: "/assets/events/paris-april-4-web.jpg",
-		alt: "Effect meetup in Paris",
-	},
-	{
-		src: "/assets/events/miami-ariel-web.jpg",
-		alt: "Effect meetup in Miami",
-	},
+// Hand-balanced columns: heights computed from the photos' natural
+// aspect ratios so all three columns end within a few percent of each other.
+const GALLERY_COLUMNS: { src: string; alt: string }[][] = [
+	[
+		{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
+		{
+			src: "/assets/events/miami-2026-davidk-web.jpg",
+			alt: "Effect meetup in Miami",
+		},
+	],
+	[
+		{
+			src: "/assets/events/paris-april-3-web.jpg",
+			alt: "Effect meetup in Paris",
+		},
+		{
+			src: "/assets/events/paris-nov-2-web.jpg",
+			alt: "Effect meetup in Paris",
+		},
+		{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
+	],
+	[
+		{
+			src: "/assets/events/paris-april-4-web.jpg",
+			alt: "Effect meetup in Paris",
+		},
+		{ src: "/assets/events/miami-ariel-web.jpg", alt: "Effect meetup in Miami" },
+		{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
+	],
 ];
 
 const TALK_IDEAS: { label: string; href?: string }[] = [
@@ -282,15 +287,23 @@ export function CommunityEventsPage() {
 				{/* Event gallery */}
 				<section className="border-t border-zinc-800 py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="columns-2 gap-4 md:columns-4">
-							{GALLERY.map((photo) => (
-								<img
-									key={photo.src}
-									src={getAssetPath(photo.src)}
-									alt={photo.alt}
-									loading="lazy"
-									className="mb-4 w-full break-inside-avoid border border-zinc-800"
-								/>
+						<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+							{GALLERY_COLUMNS.map((column, columnIndex) => (
+								<div
+									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
+									key={columnIndex}
+									className="flex flex-col gap-4"
+								>
+									{column.map((photo) => (
+										<img
+											key={photo.src}
+											src={getAssetPath(photo.src)}
+											alt={photo.alt}
+											loading="lazy"
+											className="w-full border border-zinc-800"
+										/>
+									))}
+								</div>
 							))}
 						</div>
 					</div>
