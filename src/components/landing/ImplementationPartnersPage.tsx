@@ -136,7 +136,7 @@ function PartnerStatsSection({ partner }: { partner: Partner }) {
 								<figure
 									key={testimonial.author}
 									className={`flex flex-col border-x border-zinc-800 bg-zinc-900/40 ${
-										isFeature ? "p-8 lg:col-span-7" : "p-6 lg:col-span-5"
+										isFeature ? "p-8 pb-6 lg:col-span-7" : "p-6 lg:col-span-5"
 									}`}
 								>
 									<blockquote
