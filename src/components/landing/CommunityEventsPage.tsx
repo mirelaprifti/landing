@@ -54,6 +54,27 @@ const SUPPORT_ITEMS: {
 	},
 ];
 
+const GALLERY: { src: string; alt: string }[] = [
+	{ src: "/assets/events/milan-26-web.jpg", alt: "Effect meetup in Milan" },
+	{
+		src: "/assets/events/paris-april-3-web.jpg",
+		alt: "Effect meetup in Paris",
+	},
+	{ src: "/assets/events/miami-dax-web.jpg", alt: "Effect talk in Miami" },
+	{ src: "/assets/events/img_0730-web.jpg", alt: "Effect community event" },
+	{ src: "/assets/events/hamburg-web.jpg", alt: "Effect meetup in Hamburg" },
+	{
+		src: "/assets/events/paris-nov-2-web.jpg",
+		alt: "Effect meetup in Paris",
+	},
+	{ src: "/assets/events/img_1667-web.jpg", alt: "Effect community event" },
+	{
+		src: "/assets/events/paris-april-4-web.jpg",
+		alt: "Effect meetup in Paris",
+	},
+	{ src: "/assets/events/img_1687-web.jpg", alt: "Effect community event" },
+];
+
 const TALK_IDEAS: { label: string; href?: string }[] = [
 	{
 		label: "Reliable TypeScript for production systems",
@@ -248,6 +269,18 @@ export function CommunityEventsPage() {
 										))}
 									</ul>
 								</div>
+							))}
+						</div>
+						{/* Event photo strip */}
+						<div className="mt-4 flex gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+							{GALLERY.map((photo) => (
+								<img
+									key={photo.src}
+									src={getAssetPath(photo.src)}
+									alt={photo.alt}
+									loading="lazy"
+									className="h-52 w-auto shrink-0 border border-zinc-800 object-cover md:h-64"
+								/>
 							))}
 						</div>
 					</div>
