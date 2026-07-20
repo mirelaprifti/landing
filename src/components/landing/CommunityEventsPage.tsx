@@ -173,7 +173,7 @@ export function CommunityEventsPage() {
 
 						{/* Support strip — what speakers get */}
 						<p className="mt-14 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
-							// Speaker kit · Prep sessions · Promotion · Swag
+							Speaker kit · Prep sessions · Promotion · Swag
 						</p>
 					</div>
 				</section>
