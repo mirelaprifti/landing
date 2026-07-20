@@ -241,35 +241,24 @@ export function CommunityEventsPage() {
 					className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Talk ideas
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Not sure what to talk about?
-						</h2>
-						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
-							A few Effect-friendly angles to get you started:
-						</p>
+					<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+						{/* Left — section header */}
+						<div className="lg:col-span-5">
+							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+								// Talk ideas
+							</p>
+							<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+								Not sure what to talk about?
+							</h2>
+							<p className="mt-4 text-lg leading-normal text-zinc-400">
+								A few Effect-friendly angles to get you started:
+							</p>
+						</div>
 
-						<ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-12 lg:gap-y-4">
-							{TALK_IDEAS.map((idea, idx) => (
-								<li
-									key={idea.label}
-									className={
-										[
-											// Row 1 — three bricks, edge to edge
-											"lg:col-span-4", // Reliable TypeScript…
-											"lg:col-span-4 lg:col-start-5", // Stop agent slop
-											"lg:col-span-4 lg:col-start-9", // Typed errors
-											// Row 2 — centered pair, half-brick offset
-											"lg:col-span-4 lg:col-start-3", // Retries, timeouts…
-											"lg:col-span-4 lg:col-start-7", // Building AI agents
-											// Row 3 — wide pair, hole dead center
-											"lg:col-span-5 lg:col-start-2", // Production-grade…
-											"lg:col-span-5 lg:col-start-8", // What's new in v4
-										][idx] ?? ""
-									}
-								>
+						{/* Right — stacked terminal prompts */}
+						<ul className="flex flex-col gap-3 lg:col-span-7">
+							{TALK_IDEAS.map((idea) => (
+								<li key={idea.label}>
 									{idea.href ? (
 										<a
 											href={idea.href}
@@ -297,7 +286,8 @@ export function CommunityEventsPage() {
 							))}
 						</ul>
 					</div>
-				</section>
+				</div>
+			</section>
 
 				{/* Final CTA */}
 				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-32">
