@@ -251,7 +251,7 @@ export function CommunityEventsPage() {
 							A few Effect-friendly angles to get you started:
 						</p>
 
-						<ul className="mt-8 flex max-w-4xl flex-wrap gap-3">
+						<ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 							{TALK_IDEAS.map((idea) => (
 								<li key={idea.label}>
 									{idea.href ? (
@@ -259,7 +259,7 @@ export function CommunityEventsPage() {
 											href={idea.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-2 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
+											className="group flex items-center gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
 										>
 											<span
 												className="text-zinc-600 transition-colors group-hover:text-emerald-400"
@@ -267,14 +267,14 @@ export function CommunityEventsPage() {
 											>
 												❯
 											</span>
-											{idea.label}
+											<span className="truncate">{idea.label}</span>
 										</a>
 									) : (
-										<span className="inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-2 font-mono text-sm text-zinc-300">
+										<span className="flex items-center gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
 											<span className="text-zinc-600" aria-hidden="true">
 												❯
 											</span>
-											{idea.label}
+											<span className="truncate">{idea.label}</span>
 										</span>
 									)}
 								</li>
