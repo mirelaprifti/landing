@@ -18,15 +18,6 @@ const SUPPORT_ITEMS: {
 		icon: "ri-slideshow-line",
 		details: [
 			"Slide templates",
-			"Abstract & CFP templates",
-			"Demo examples",
-		],
-	},
-	{
-		title: "Prep support",
-		description: "A second pair of eyes before you go on stage.",
-		icon: "ri-chat-check-line",
-		details: [
 			"Feedback on your topic or abstract",
 			"Slide review",
 			"Optional prep session with the Effect team",
@@ -189,7 +180,7 @@ export function CommunityEventsPage() {
 
 						{/* Support strip — what speakers get */}
 						<p className="mt-14 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase">
-							Speaker kit · Prep sessions · Promotion · Swag
+							Speaker kit · Promotion · Swag
 						</p>
 					</div>
 				</section>
@@ -204,7 +195,7 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
 							{SUPPORT_ITEMS.map((item) => (
 								<div
 									key={item.title}
