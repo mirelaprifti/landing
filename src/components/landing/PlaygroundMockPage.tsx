@@ -219,10 +219,10 @@ function PlaygroundLoader() {
 
 	useEffect(() => {
 		if (doneCount < BOOT_STEPS.length) {
-			const timer = setTimeout(() => setDoneCount((n) => n + 1), 900);
+			const timer = setTimeout(() => setDoneCount((n) => n + 1), 700);
 			return () => clearTimeout(timer);
 		}
-		const timer = setTimeout(() => setHidden(true), 500);
+		const timer = setTimeout(() => setHidden(true), 400);
 		return () => clearTimeout(timer);
 	}, [doneCount]);
 
