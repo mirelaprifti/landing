@@ -435,12 +435,28 @@ export function ApiReferenceIndexPage() {
 							effect
 						</a>
 						, serves as the foundation, offering primitives for managing side
-						effects, ensuring type safety, and supporting concurrency. The
-						packages below extend it, organized by area.
+						effects, ensuring type safety, and supporting concurrency.
 					</p>
 				</div>
 
-				<div className="mt-10">
+				<h2 className="mt-14 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+					Monorepo Structure
+				</h2>
+				<p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+					The Effect ecosystem is organized as a{" "}
+					<a
+						href="https://github.com/Effect-TS/effect"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
+					>
+						<span className="sr-only">(opens in new tab) </span>monorepo
+					</a>{" "}
+					of packages, each extending the core functionality. Below is an
+					overview of the packages included, organized by area.
+				</p>
+
+				<div className="mt-8">
 					<SearchInput
 						value={query}
 						onChange={setQuery}
