@@ -150,7 +150,7 @@ export function DocsIntroductionPage() {
 					<p>
 						A key part of optimizing the feedback loop (and the developer
 						experience in general when using Effect) is to use the Effect LSP
-						plugin. We advise using the latest <code className="rounded-md border border-zinc-300 bg-white px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100">tsgo</code> implementation at{" "}
+						plugin. We advise using the latest <code className="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100">tsgo</code> implementation at{" "}
 						<a
 							href="https://github.com/Effect-TS/tsgo"
 							target="_blank"
