@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { getAssetPath } from "../../utils/assetPath";
 import { Link } from "@/components/ui";
+import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
 
 interface NavigationProps {
@@ -12,7 +12,13 @@ interface NavigationProps {
 	fullWidth?: boolean;
 }
 
-export function Navigation({ transparent = false, activePath, wide = false, fullWidth = false, belowBanner = false }: NavigationProps) {
+export function Navigation({
+	transparent = false,
+	activePath,
+	wide = false,
+	fullWidth = false,
+	belowBanner = false,
+}: NavigationProps) {
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
 	const showThemeToggle = ["/blog", "/play", "/docs"].some((p) =>
 		activePath?.startsWith(p),
@@ -87,7 +93,9 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 				className={`fixed ${belowBanner ? "top-10" : "top-0"} right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-200 bg-zinc-50/85 dark:border-zinc-800 dark:bg-zinc-950/85"}`}
 			>
 				<div className="w-full">
-					<header className={`relative mx-auto w-full px-4 ${fullWidth ? "" : wide ? "max-w-[88rem]" : "max-w-[73.75rem]"}`}>
+					<header
+						className={`relative mx-auto w-full px-4 ${fullWidth ? "" : wide ? "max-w-[88rem]" : "max-w-[73.75rem]"}`}
+					>
 						<nav className="flex h-16 items-center">
 							<a href="/" className="flex items-center">
 								<img
@@ -109,38 +117,46 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
-							<Link
-								href={getAssetPath("/docs/introduction")}
-								variant="nav"
-								active={activePath?.startsWith("/docs")}
-								className={transparent ? "text-white hover:text-white/80" : ""}
-							>
-								Docs
-							</Link>
-							<Link
-								href={getAssetPath("/blog")}
-								variant="nav"
-								active={activePath?.startsWith("/blog")}
-								className={transparent ? "text-white hover:text-white/80" : ""}
-							>
-								Blog
-							</Link>
-							<Link
-								href={getAssetPath("/podcast")}
-								variant="nav"
-								active={activePath?.startsWith("/podcast")}
-								className={transparent ? "text-white hover:text-white/80" : ""}
-							>
-								Podcast
-							</Link>
-							<Link
-								href={getAssetPath("/play")}
-								variant="nav"
-								active={activePath?.startsWith("/play")}
-								className={transparent ? "text-white hover:text-white/80" : ""}
-							>
-								Play
-							</Link>
+								<Link
+									href={getAssetPath("/docs/introduction")}
+									variant="nav"
+									active={activePath?.startsWith("/docs")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Docs
+								</Link>
+								<Link
+									href={getAssetPath("/blog")}
+									variant="nav"
+									active={activePath?.startsWith("/blog")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Blog
+								</Link>
+								<Link
+									href={getAssetPath("/podcast")}
+									variant="nav"
+									active={activePath?.startsWith("/podcast")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Podcast
+								</Link>
+								<Link
+									href={getAssetPath("/play")}
+									variant="nav"
+									active={activePath?.startsWith("/play")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Play
+								</Link>
 							</div>
 
 							{/* Mobile menu button */}
@@ -156,7 +172,7 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
 								{wide ? (
 									<div
-										className={`flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}
+										className={`search-pill flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "search-pill-inverted border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}
 									>
 										<i
 											className="ri-search-line shrink-0 text-base font-medium"
@@ -201,7 +217,9 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 										href="https://github.com/Effect-TS/effect"
 										variant="icon"
 										aria-label="Visit Effect on GitHub"
-										className={transparent ? "text-white hover:text-white/80" : ""}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
 									>
 										<i className="ri-github-fill text-xl" aria-hidden="true" />
 									</Link>
@@ -209,7 +227,9 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 										href="https://discord.gg/effect-ts"
 										variant="icon"
 										aria-label="Join Effect Discord server"
-										className={transparent ? "text-white hover:text-white/80" : ""}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
 									>
 										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</Link>
@@ -223,7 +243,6 @@ export function Navigation({ transparent = false, activePath, wide = false, full
 										/>
 									)}
 								</div>
-
 							</div>
 						</nav>
 					</header>

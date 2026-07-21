@@ -327,6 +327,27 @@ a:focus-visible {
 	outline-color: #ffffff;
 }
 
+/* Search pills (navbar + API reference): the focus ring is drawn once, on the
+   container, so the inner input must not double it up */
+.search-pill:focus-within {
+	outline: 2px solid #09090b;
+	outline-offset: 2px;
+}
+
+.dark .search-pill:focus-within,
+.search-pill-inverted:focus-within {
+	outline-color: #ffffff;
+}
+
+.search-pill input:focus-visible {
+	outline: none;
+}
+
+.search-pill input::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
 /* Visual Effect Tab Styles */
 .visual-effect-tab {
 	transition: all 0.3s ease;

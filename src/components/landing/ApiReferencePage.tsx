@@ -249,7 +249,7 @@ function SearchInput({
 	placeholder: string;
 }) {
 	return (
-		<div className="flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition-colors focus-within:border-zinc-500 dark:border-zinc-600 dark:text-zinc-400 dark:focus-within:border-zinc-500">
+		<div className="search-pill flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition-colors focus-within:border-zinc-500 dark:border-zinc-600 dark:text-zinc-400 dark:focus-within:border-zinc-500">
 			<i
 				className="ri-search-line shrink-0 text-base font-medium"
 				aria-hidden="true"
@@ -260,7 +260,7 @@ function SearchInput({
 				onChange={(e) => onChange(e.target.value)}
 				placeholder={placeholder}
 				aria-label={placeholder}
-				className="min-w-0 flex-1 bg-transparent text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
+				className="min-w-0 flex-1 bg-transparent text-zinc-900 placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 			/>
 		</div>
 	);
