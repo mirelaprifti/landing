@@ -421,10 +421,10 @@ export function ApiReferenceIndexPage() {
 				</h1>
 				<div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
-						Effect is a powerful TypeScript framework that provides a
-						fully-fledged functional effect system with a rich standard library.
-						It consists of several packages that work together to help build
-						robust TypeScript applications.
+						Effect is a powerful TypeScript library designed to help developers
+						easily create complex, synchronous, and asynchronous programs. It
+						consists of several packages that work together to help build robust
+						TypeScript applications.
 					</p>
 					<p>
 						The core package,{" "}
@@ -434,9 +434,9 @@ export function ApiReferenceIndexPage() {
 						>
 							effect
 						</a>
-						, serves as the foundation of the framework, offering primitives for
-						managing side effects, ensuring type safety, and supporting
-						concurrency. The packages below extend it, organized by area.
+						, serves as the foundation, offering primitives for managing side
+						effects, ensuring type safety, and supporting concurrency. The
+						packages below extend it, organized by area.
 					</p>
 				</div>
 
