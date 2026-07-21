@@ -110,6 +110,14 @@ function ApiReferenceLayout({
 																		: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 																}`}
 															>
+																{pkg.name.startsWith("@effect/") && (
+																	<span
+																		aria-hidden="true"
+																		className="-ml-2 text-zinc-400 dark:text-zinc-600"
+																	>
+																		/
+																	</span>
+																)}
 																{pkg.slug}
 															</a>
 														</li>
