@@ -179,7 +179,7 @@ export function ApiReferenceLayout({
 																			: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 																	}`}
 																>
-																	{pkg.slug}
+																	{pkg.name}
 																</a>
 																{isActive && activeModule && (
 																	<ul className="mt-1 mb-2 ml-3 flex flex-col gap-0.5 border-l border-zinc-200 pl-2 dark:border-zinc-800">
