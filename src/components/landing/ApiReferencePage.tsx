@@ -428,12 +428,9 @@ export function ApiReferenceIndexPage() {
 					</p>
 					<p>
 						The core package,{" "}
-						<a
-							href={getAssetPath("/docs/api/effect")}
-							className="font-mono text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
-						>
+						<code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 							effect
-						</a>
+						</code>
 						, serves as the foundation, offering primitives for managing side
 						effects, ensuring type safety, and supporting concurrency.
 					</p>
@@ -443,17 +440,9 @@ export function ApiReferenceIndexPage() {
 					Monorepo Structure
 				</h2>
 				<p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-					The Effect ecosystem is organized as a{" "}
-					<a
-						href="https://github.com/Effect-TS/effect"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
-					>
-						<span className="sr-only">(opens in new tab) </span>monorepo
-					</a>{" "}
-					of packages, each extending the core functionality. Below is an
-					overview of the packages included, organized by area.
+					The Effect ecosystem is organized as a monorepo of packages, each
+					extending the core functionality. Below is an overview of the packages
+					included, organized by area.
 				</p>
 
 				<div className="mt-8">
