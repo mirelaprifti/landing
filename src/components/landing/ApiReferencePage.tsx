@@ -103,13 +103,14 @@ function ApiReferenceLayout({
 															<a
 																href={getAssetPath(`/docs/api/${slug}`)}
 																aria-current={isActive ? "page" : undefined}
+																title={pkg.name}
 																className={`block truncate rounded-md py-1.5 pl-3 font-mono text-[13px] transition-colors ${
 																	isActive
 																		? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
 																		: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 																}`}
 															>
-																{pkg.name}
+																{pkg.slug}
 															</a>
 														</li>
 													);
