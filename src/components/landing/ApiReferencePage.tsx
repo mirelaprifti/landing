@@ -134,9 +134,7 @@ export function ApiReferenceLayout({
 							</div>
 							{version === "v4" && (
 								<p className="px-1 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
-									The v4 reference is coming soon. In v4, most ecosystem
-									packages are merged into the core{" "}
-									<span className="font-mono">effect</span> package.
+									The v4 reference is coming soon.
 								</p>
 							)}
 							{version === "v3" &&
