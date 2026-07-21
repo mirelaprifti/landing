@@ -55,7 +55,7 @@ function ApiReferenceLayout({
 			</a>
 			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
-				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 lg:grid-cols-[260px_1fr]">
+				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 lg:grid-cols-[240px_1fr]">
 					{/* Left sidebar: packages */}
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
@@ -235,7 +235,7 @@ export function ApiReferencePackagePage({ slug }: { slug: string }) {
 				<h1 className="font-mono text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 					{pkg.name}
 				</h1>
-				<p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+				<p className="mt-8 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					{pkg.description}
 				</p>
 
@@ -282,7 +282,7 @@ export function ApiReferencePackagePage({ slug }: { slug: string }) {
 						.
 					</p>
 				) : groups ? (
-					<div className="mt-10 space-y-10">
+					<div className="mt-10 space-y-14">
 						{groups.map((group) => (
 							<section key={group.title} aria-label={group.title}>
 								<h2 className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
@@ -334,7 +334,7 @@ export function ApiReferenceIndexPage() {
 				<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 					API Reference
 				</h1>
-				<div className="mt-4 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+				<div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
 						Effect is a powerful TypeScript framework that provides a
 						fully-fledged functional effect system with a rich standard library.
@@ -372,7 +372,7 @@ export function ApiReferenceIndexPage() {
 						.
 					</p>
 				) : (
-					<div className="mt-10 space-y-12">
+					<div className="mt-10 space-y-14">
 						{groups.map((group) => (
 							<section key={group.title} aria-label={group.title}>
 								<h2 className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
