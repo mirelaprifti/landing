@@ -40,10 +40,7 @@ function ApiReferenceLayout({
 
 	const toggleSection = (title: string) => {
 		setOpenSections((prev) => {
-			const containsActive = API_PACKAGE_GROUPS.find(
-				(g) => g.title === title,
-			)?.slugs.includes(activeSlug ?? "");
-			const currentlyOpen = prev[title] ?? containsActive ?? false;
+			const currentlyOpen = prev[title] ?? true;
 			return { ...prev, [title]: !currentlyOpen };
 		});
 	};
@@ -77,8 +74,7 @@ function ApiReferenceLayout({
 								API Reference
 							</a>
 							{API_PACKAGE_GROUPS.map((group) => {
-								const containsActive = group.slugs.includes(activeSlug ?? "");
-								const isOpen = openSections[group.title] ?? containsActive;
+								const isOpen = openSections[group.title] ?? true;
 								const panelId = `api-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`;
 								return (
 									<div key={group.title} className="mb-1 last:mb-0">
@@ -338,10 +334,26 @@ export function ApiReferenceIndexPage() {
 				<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 					API Reference
 				</h1>
-				<p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-					Complete API documentation for the Effect ecosystem — the core library
-					and every official package, organized by area.
-				</p>
+				<div className="mt-4 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+					<p>
+						Effect is a powerful TypeScript framework that provides a
+						fully-fledged functional effect system with a rich standard library.
+						It consists of several packages that work together to help build
+						robust TypeScript applications.
+					</p>
+					<p>
+						The core package,{" "}
+						<a
+							href={getAssetPath("/docs/api/effect")}
+							className="font-mono text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
+						>
+							effect
+						</a>
+						, serves as the foundation of the framework, offering primitives for
+						managing side effects, ensuring type safety, and supporting
+						concurrency. The packages below extend it, organized by area.
+					</p>
+				</div>
 
 				<div className="mt-10">
 					<SearchInput
