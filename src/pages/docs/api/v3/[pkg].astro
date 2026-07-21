@@ -1,7 +1,7 @@
 ---
 import { ApiReferencePackagePage } from "@/components/landing/ApiReferencePage";
 import { API_PACKAGES } from "@/components/landing/apiReferenceData";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
 
 export function getStaticPaths() {
 	return API_PACKAGES.map((pkg) => ({ params: { pkg: pkg.slug } }));

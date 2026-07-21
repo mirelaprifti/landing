@@ -1,0 +1,47 @@
+---
+import { ApiReferenceLayout } from "@/components/landing/ApiReferencePage";
+import { getAssetPath } from "@/utils/assetPath";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	themeable
+	title="API Reference (v4) — Effect Docs"
+	description="The Effect v4 API reference is coming soon."
+>
+	<ApiReferenceLayout version="v4" client:load>
+		<article class="max-w-4xl">
+			<h1
+				class="text-3xl leading-tight font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white"
+			>
+				API Reference
+				<span class="ml-2 align-middle font-mono text-lg font-normal text-zinc-500 dark:text-zinc-400"
+					>v4</span
+				>
+			</h1>
+			<div
+				class="mt-8 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300"
+			>
+				<p>The v4 API reference is coming soon.</p>
+				<p>
+					In Effect v4, most ecosystem packages are merged into the core{" "}
+					<code
+						class="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100"
+						>effect</code
+					>{" "}
+					package, so the v4 reference will have a different, much flatter
+					structure than v3.
+				</p>
+				<p>
+					In the meantime, the{" "}
+					<a
+						href={getAssetPath("/docs/api/v3")}
+						class="text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300"
+						>v3 reference</a
+					>{" "}
+					covers the current stable release.
+				</p>
+			</div>
+		</article>
+	</ApiReferenceLayout>
+</BaseLayout>

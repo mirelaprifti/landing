@@ -30,14 +30,20 @@ function githubUrl(pkg: ApiPackage): string {
 }
 
 export type ApiTocItem = { id: string; label: string; depth: number };
+export type ApiVersion = "v3" | "v4";
 
 export function ApiReferenceLayout({
 	activeSlug,
+	activeModule,
 	tocItems,
+	version = "v3",
 	children,
 }: {
 	activeSlug?: string;
+	/** When set, the active package expands in the sidebar to list its modules. */
+	activeModule?: string;
 	tocItems?: ApiTocItem[];
+	version?: ApiVersion;
 	children: ReactNode;
 }) {
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
@@ -95,9 +101,9 @@ export function ApiReferenceLayout({
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
 							<a
-								href={getAssetPath("/docs/api")}
+								href={getAssetPath(`/docs/api/${version}`)}
 								aria-current={activeSlug === undefined ? "page" : undefined}
-								className={`mb-4 block rounded-md px-3 py-2 font-mono text-sm font-medium tracking-wider uppercase transition-colors ${
+								className={`mb-3 block rounded-md px-3 py-2 font-mono text-sm font-medium tracking-wider uppercase transition-colors ${
 									activeSlug === undefined
 										? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
 										: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900/60 dark:hover:text-white"
@@ -105,61 +111,113 @@ export function ApiReferenceLayout({
 							>
 								API Reference
 							</a>
-							{API_PACKAGE_GROUPS.map((group) => {
-								const isOpen = openSections[group.title] ?? true;
-								const panelId = `api-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`;
-								return (
-									<div key={group.title} className="mb-1 last:mb-0">
-										<button
-											type="button"
-											onClick={() => toggleSection(group.title)}
-											aria-expanded={isOpen}
-											aria-controls={panelId}
-											className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-										>
-											<span>{group.title}</span>
-											<i
-												className={`ri-arrow-down-s-line text-base transition-transform ${
-													isOpen ? "rotate-180" : ""
-												}`}
-												aria-hidden="true"
-											/>
-										</button>
-										{isOpen && (
-											<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
-												{group.slugs.map((slug) => {
-													const pkg = packageBySlug(slug);
-													const isActive = slug === activeSlug;
-													return (
-														<li key={slug}>
-															<a
-																href={getAssetPath(`/docs/api/${slug}`)}
-																aria-current={isActive ? "page" : undefined}
-																title={pkg.name}
-																className={`block truncate rounded-md py-1.5 pl-3 font-mono text-[13px] transition-colors ${
-																	isActive
-																		? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																		: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-																}`}
-															>
-																{pkg.name.startsWith("@effect/") && (
-																	<span
-																		aria-hidden="true"
-																		className="-ml-2 text-zinc-400 dark:text-zinc-600"
-																	>
-																		/
-																	</span>
+							{/* Version switcher */}
+							<div
+								role="group"
+								aria-label="API reference version"
+								className="mb-4 grid grid-cols-2 gap-1 rounded-md border border-zinc-200 p-1 dark:border-zinc-800"
+							>
+								{(["v3", "v4"] as const).map((v) => (
+									<a
+										key={v}
+										href={getAssetPath(`/docs/api/${v}`)}
+										aria-current={version === v ? "page" : undefined}
+										className={`rounded px-2 py-1 text-center font-mono text-xs transition-colors ${
+											version === v
+												? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+												: "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+										}`}
+									>
+										{v}
+									</a>
+								))}
+							</div>
+							{version === "v4" && (
+								<p className="px-1 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
+									The v4 reference is coming soon. In v4, most ecosystem
+									packages are merged into the core{" "}
+									<span className="font-mono">effect</span> package.
+								</p>
+							)}
+							{version === "v3" &&
+								API_PACKAGE_GROUPS.map((group) => {
+									const isOpen = openSections[group.title] ?? true;
+									const panelId = `api-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`;
+									return (
+										<div key={group.title} className="mb-1 last:mb-0">
+											<button
+												type="button"
+												onClick={() => toggleSection(group.title)}
+												aria-expanded={isOpen}
+												aria-controls={panelId}
+												className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+											>
+												<span>{group.title}</span>
+												<i
+													className={`ri-arrow-down-s-line text-base transition-transform ${
+														isOpen ? "rotate-180" : ""
+													}`}
+													aria-hidden="true"
+												/>
+											</button>
+											{isOpen && (
+												<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
+													{group.slugs.map((slug) => {
+														const pkg = packageBySlug(slug);
+														const isActive = slug === activeSlug;
+														return (
+															<li key={slug}>
+																<a
+																	href={getAssetPath(`/docs/api/v3/${slug}`)}
+																	aria-current={
+																		isActive && !activeModule
+																			? "page"
+																			: undefined
+																	}
+																	title={pkg.name}
+																	className={`block truncate rounded-md py-1.5 pl-3 font-mono text-[13px] transition-colors ${
+																		isActive
+																			? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+																			: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+																	}`}
+																>
+																	{pkg.slug}
+																</a>
+																{isActive && activeModule && (
+																	<ul className="mt-1 mb-2 ml-3 flex flex-col gap-0.5 border-l border-zinc-200 pl-2 dark:border-zinc-800">
+																		{pkg.modules.map((mod) => {
+																			const isActiveModule =
+																				mod.name === activeModule;
+																			return (
+																				<li key={mod.name}>
+																					<a
+																						href={getAssetPath(mod.href)}
+																						aria-current={
+																							isActiveModule
+																								? "page"
+																								: undefined
+																						}
+																						className={`block truncate rounded py-1 pl-2 font-mono text-xs transition-colors ${
+																							isActiveModule
+																								? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+																								: "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+																						}`}
+																					>
+																						{mod.name}
+																					</a>
+																				</li>
+																			);
+																		})}
+																	</ul>
 																)}
-																{pkg.slug}
-															</a>
-														</li>
-													);
-												})}
-											</ul>
-										)}
-									</div>
-								);
-							})}
+															</li>
+														);
+													})}
+												</ul>
+											)}
+										</div>
+									);
+								})}
 						</nav>
 					</aside>
 
@@ -306,7 +364,7 @@ export function ApiReferencePackagePage({ slug }: { slug: string }) {
 					className="mb-6 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
 				>
 					<a
-						href={getAssetPath("/docs/api")}
+						href={getAssetPath("/docs/api/v3")}
 						className="transition-colors hover:text-zinc-900 dark:hover:text-white"
 					>
 						API Reference
@@ -472,7 +530,7 @@ export function ApiReferenceIndexPage() {
 									{group.packages.map((pkg) => (
 										<a
 											key={pkg.slug}
-											href={getAssetPath(`/docs/api/${pkg.slug}`)}
+											href={getAssetPath(`/docs/api/v3/${pkg.slug}`)}
 											className="group rounded-md border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
 										>
 											<div className="flex items-center justify-between gap-2">

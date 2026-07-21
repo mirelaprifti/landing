@@ -1,0 +1,10 @@
+---
+// Legacy unversioned URLs redirect to the v3 reference.
+import { API_PACKAGES } from "@/components/landing/apiReferenceData";
+
+export function getStaticPaths() {
+	return API_PACKAGES.map((pkg) => ({ params: { pkg: pkg.slug } }));
+}
+
+return Astro.redirect(`/docs/api/v3/${Astro.params.pkg}`);
+---

@@ -1,0 +1,12 @@
+---
+import { ApiReferenceIndexPage } from "@/components/landing/ApiReferencePage";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  themeable
+  title="API Reference — Effect Docs"
+  description="Complete API documentation for the Effect ecosystem — the core library and every official package."
+>
+  <ApiReferenceIndexPage client:load />
+</BaseLayout>

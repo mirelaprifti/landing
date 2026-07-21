@@ -1,12 +1,4 @@
 ---
-import { ApiReferenceIndexPage } from "@/components/landing/ApiReferencePage";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+// The API reference is versioned; default to the v3 reference.
+return Astro.redirect("/docs/api/v3");
 ---
-
-<BaseLayout
-  themeable
-  title="API Reference — Effect Docs"
-  description="Complete API documentation for the Effect ecosystem — the core library and every official package."
->
-  <ApiReferenceIndexPage client:load />
-</BaseLayout>

@@ -50,7 +50,7 @@ const SIDEBAR: NavSection[] = [
 	},
 	{
 		title: "Reference",
-		items: [{ slug: "api", label: "API Reference" }],
+		items: [{ slug: "api/v3", label: "API Reference" }],
 	},
 ];
 
