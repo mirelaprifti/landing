@@ -249,9 +249,9 @@ function SearchInput({
 	placeholder: string;
 }) {
 	return (
-		<div className="relative">
+		<div className="flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition-colors focus-within:border-zinc-500 dark:border-zinc-600 dark:text-zinc-400 dark:focus-within:border-zinc-500">
 			<i
-				className="ri-search-line pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-base text-zinc-400 dark:text-zinc-500"
+				className="ri-search-line shrink-0 text-base font-medium"
 				aria-hidden="true"
 			/>
 			<input
@@ -260,7 +260,7 @@ function SearchInput({
 				onChange={(e) => onChange(e.target.value)}
 				placeholder={placeholder}
 				aria-label={placeholder}
-				className="w-full rounded-md border border-zinc-200 bg-white py-2.5 pr-4 pl-10 font-mono text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-zinc-600"
+				className="min-w-0 flex-1 bg-transparent text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 			/>
 		</div>
 	);
@@ -428,7 +428,7 @@ export function ApiReferenceIndexPage() {
 					</p>
 					<p>
 						The core package,{" "}
-						<code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
+						<code className="rounded-md border border-zinc-300 bg-white px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100">
 							effect
 						</code>
 						, serves as the foundation, offering primitives for managing side
