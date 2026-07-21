@@ -479,7 +479,7 @@ export function ApiReferenceIndexPage() {
 												<span className="truncate font-mono text-sm font-semibold text-zinc-900 dark:text-white">
 													{pkg.name}
 												</span>
-												<span className="shrink-0 font-mono text-xs text-zinc-400 dark:text-zinc-500">
+												<span className="shrink-0 font-mono text-xs text-zinc-500 dark:text-zinc-400">
 													{pkg.modules.length} modules
 												</span>
 											</div>
