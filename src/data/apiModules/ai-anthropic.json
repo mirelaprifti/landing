@@ -1,0 +1,1146 @@
+{
+ "AnthropicClient": {
+  "name": "AnthropicClient",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly anthropicVersion?: string | undefined\n  readonly organizationId?: Redacted.Redacted | undefined\n  readonly projectId?: Redacted.Redacted | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Effect.Effect<Service, never, HttpClient.HttpClient | Scope.Scope>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L84",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "anthropicclient-class",
+      "level": 2,
+      "name": "AnthropicClient",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class AnthropicClient"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly anthropicVersion?: string | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Layer.Layer<AnthropicClient, never, HttpClient.HttpClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L622",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerconfig",
+      "level": 2,
+      "name": "layerConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerConfig: (options: {\n  readonly apiKey?: Config.Config<Redacted.Redacted | undefined> | undefined\n  readonly apiUrl?: Config.Config<string | undefined> | undefined\n  readonly anthropicVersion?: Config.Config<string | undefined> | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Layer.Layer<AnthropicClient, ConfigError, HttpClient.HttpClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L700",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "messagestreamevent-type-alias",
+      "level": 2,
+      "name": "MessageStreamEvent",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type MessageStreamEvent = typeof MessageStreamEvent.Type"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L616",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 2,
+      "name": "Service",
+      "kind": "interface",
+      "description": [
+       {
+        "html": "<p>Represents the interface that the <code>AnthropicClient</code> service provides.</p>"
+       },
+       {
+        "html": "<p>This service abstracts the complexity of communicating with Anthropic\u2019s API, providing both high-level text generation methods and low-level HTTP access for advanced use cases.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service {\n  /**\n   * The underlying HTTP client capable of communicating with the Anthropic API.\n   *\n   * This client is pre-configured with authentication, base URL, and standard\n   * headers required for Anthropic API communication. It provides direct access\n   * to the generated Anthropic API client for operations not covered by the\n   * higher-level methods.\n   *\n   * Use this when you need to:\n   * - Access provider-specific API endpoints not available through the AI SDK\n   * - Implement custom request/response handling\n   * - Use Anthropic API features not yet supported by the Effect AI abstractions\n   * - Perform batch operations or non-streaming requests\n   *\n   * The client automatically handles authentication and follows Anthropic's\n   * API conventions for request formatting and error handling.\n   */\n  readonly client: Generated.Client\n\n  readonly streamRequest: <A, I, R>(\n    request: HttpClientRequest.HttpClientRequest,\n    schema: Schema.Schema<A, I, R>\n  ) => Stream.Stream<A, AiError.AiError, R>\n\n  readonly createMessage: (options: {\n    readonly params?: typeof Generated.BetaMessagesPostParams.Encoded | undefined\n    readonly payload: typeof Generated.BetaCreateMessageParams.Encoded\n  }) => Effect.Effect<Generated.BetaMessage, AiError.AiError>\n\n  readonly createMessageStream: (options: {\n    readonly params?: typeof Generated.BetaMessagesPostParams.Encoded | undefined\n    readonly payload: Omit<typeof Generated.BetaCreateMessageParams.Encoded, \"stream\">\n  }) => Stream.Stream<MessageStreamEvent, AiError.AiError>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "schemas",
+    "title": "Schemas",
+    "exports": [
+     {
+      "id": "citationsdelta-class",
+      "level": 2,
+      "name": "CitationsDelta",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class CitationsDelta"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L511",
+      "since": "1.0.0"
+     },
+     {
+      "id": "contentblockdeltaevent-class",
+      "level": 2,
+      "name": "ContentBlockDeltaEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ContentBlockDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L572",
+      "since": "1.0.0"
+     },
+     {
+      "id": "contentblockstartevent-class",
+      "level": 2,
+      "name": "ContentBlockStartEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ContentBlockStartEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L499",
+      "since": "1.0.0"
+     },
+     {
+      "id": "contentblockstopevent-class",
+      "level": 2,
+      "name": "ContentBlockStopEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ContentBlockStopEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L590",
+      "since": "1.0.0"
+     },
+     {
+      "id": "errorevent-class",
+      "level": 2,
+      "name": "ErrorEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ErrorEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L342",
+      "since": "1.0.0"
+     },
+     {
+      "id": "inputjsoncontentblockdelta-class",
+      "level": 2,
+      "name": "InputJsonContentBlockDelta",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class InputJsonContentBlockDelta"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L528",
+      "since": "1.0.0"
+     },
+     {
+      "id": "messagedelta-class",
+      "level": 2,
+      "name": "MessageDelta",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class MessageDelta"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L392",
+      "since": "1.0.0"
+     },
+     {
+      "id": "messagedeltaevent-class",
+      "level": 2,
+      "name": "MessageDeltaEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class MessageDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L462",
+      "since": "1.0.0"
+     },
+     {
+      "id": "messagedeltausage-class",
+      "level": 2,
+      "name": "MessageDeltaUsage",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class MessageDeltaUsage"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L418",
+      "since": "1.0.0"
+     },
+     {
+      "id": "messagestartevent-class",
+      "level": 2,
+      "name": "MessageStartEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class MessageStartEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L365",
+      "since": "1.0.0"
+     },
+     {
+      "id": "messagestopevent-class",
+      "level": 2,
+      "name": "MessageStopEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class MessageStopEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L489",
+      "since": "1.0.0"
+     },
+     {
+      "id": "messagestreamevent",
+      "level": 2,
+      "name": "MessageStreamEvent",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MessageStreamEvent: Schema.Union<\n  [\n    typeof PingEvent,\n    typeof ErrorEvent,\n    typeof MessageStartEvent,\n    typeof MessageDeltaEvent,\n    typeof MessageStopEvent,\n    typeof ContentBlockStartEvent,\n    typeof ContentBlockDeltaEvent,\n    typeof ContentBlockStopEvent\n  ]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L601",
+      "since": "1.0.0"
+     },
+     {
+      "id": "pingevent-class",
+      "level": 2,
+      "name": "PingEvent",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class PingEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L332",
+      "since": "1.0.0"
+     },
+     {
+      "id": "servertoolusage-class",
+      "level": 2,
+      "name": "ServerToolUsage",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ServerToolUsage"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L376",
+      "since": "1.0.0"
+     },
+     {
+      "id": "signaturecontentblockdelta-class",
+      "level": 2,
+      "name": "SignatureContentBlockDelta",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class SignatureContentBlockDelta"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L539",
+      "since": "1.0.0"
+     },
+     {
+      "id": "textcontentblockdelta-class",
+      "level": 2,
+      "name": "TextContentBlockDelta",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class TextContentBlockDelta"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L550",
+      "since": "1.0.0"
+     },
+     {
+      "id": "thinkingcontentblockdelta-class",
+      "level": 2,
+      "name": "ThinkingContentBlockDelta",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ThinkingContentBlockDelta"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicClient.ts#L561",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "AnthropicConfig": {
+  "name": "AnthropicConfig",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicConfig.ts",
+  "categories": [
+   {
+    "id": "configuration",
+    "title": "Configuration",
+    "exports": [
+     {
+      "id": "withclienttransform",
+      "level": 2,
+      "name": "withClientTransform",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withClientTransform: {\n  (transform: (client: HttpClient) => HttpClient): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, transform: (client: HttpClient) => HttpClient): Effect.Effect<A, E, R>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicConfig.ts#L43",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "anthropicconfig-class",
+      "level": 2,
+      "name": "AnthropicConfig",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class AnthropicConfig"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicConfig.ts#L13",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "anthropicconfig-namespace",
+      "level": 2,
+      "name": "AnthropicConfig",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicConfig.ts#L29",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 3,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service {\n  readonly transformClient?: (client: HttpClient) => HttpClient\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicConfig.ts#L34",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "AnthropicLanguageModel": {
+  "name": "AnthropicLanguageModel",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts",
+  "categories": [
+   {
+    "id": "ai-models",
+    "title": "Ai Models",
+    "exports": [
+     {
+      "id": "model",
+      "level": 2,
+      "name": "model",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const model: (\n  model: (string & {}) | Model,\n  config?: Omit<Config.Service, \"model\">\n) => AiModel.Model<\"anthropic\", LanguageModel.LanguageModel, AnthropicClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L298",
+      "since": "1.0.0"
+     },
+     {
+      "id": "modelwithtokenizer",
+      "level": 2,
+      "name": "modelWithTokenizer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const modelWithTokenizer: (\n  model: (string & {}) | Model,\n  config?: Omit<Config.Service, \"model\">\n) => AiModel.Model<\"anthropic\", LanguageModel.LanguageModel | Tokenizer.Tokenizer, AnthropicClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L308",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "configuration",
+    "title": "Configuration",
+    "exports": [
+     {
+      "id": "withconfigoverride",
+      "level": 2,
+      "name": "withConfigOverride",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withConfigOverride: {\n  (config: Config.Service): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, config: Config.Service): Effect.Effect<A, E, R>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L416",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Effect.Effect<LanguageModel.Service, never, AnthropicClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L318",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "config-class",
+      "level": 2,
+      "name": "Config",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class Config"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Layer.Layer<LanguageModel.LanguageModel, never, AnthropicClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L396",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwithtokenizer",
+      "level": 2,
+      "name": "layerWithTokenizer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWithTokenizer: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Layer.Layer<LanguageModel.LanguageModel | Tokenizer.Tokenizer, never, AnthropicClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L406",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "anthropictools-type-alias",
+      "level": 2,
+      "name": "AnthropicTools",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>Represents all possible Anthropic provider-defined tools.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type AnthropicTools =\n  | typeof Generated.BetaTool.Encoded\n  | typeof Generated.BetaBashTool20241022.Encoded\n  | typeof Generated.BetaBashTool20250124.Encoded\n  | typeof Generated.BetaComputerUseTool20241022.Encoded\n  | typeof Generated.BetaComputerUseTool20250124.Encoded\n  | typeof Generated.BetaTextEditor20241022.Encoded\n  | typeof Generated.BetaTextEditor20250124.Encoded\n  | typeof Generated.BetaTextEditor20250429.Encoded\n  | typeof Generated.BetaTextEditor20250728.Encoded"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L1399",
+      "since": "1.0.0"
+     },
+     {
+      "id": "model-type-alias",
+      "level": 2,
+      "name": "Model",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type Model = typeof Generated.Model.Encoded"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L34",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "provider-metadata",
+    "title": "Provider Metadata",
+    "exports": [
+     {
+      "id": "anthropicreasoninginfo-type-alias",
+      "level": 2,
+      "name": "AnthropicReasoningInfo",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type AnthropicReasoningInfo =\n  | {\n      readonly type: \"thinking\"\n      /**\n       * Thinking content as an encrypted string, which is used to verify\n       * that thinking content was indeed generated by Anthropic's API.\n       */\n      readonly signature: typeof Generated.ResponseThinkingBlock.fields.thinking.Encoded\n    }\n  | {\n      readonly type: \"redacted_thinking\"\n      /**\n       * Thinking content which was flagged by Anthropic's safety systems, and\n       * was therefore encrypted.\n       */\n      readonly redactedData: typeof Generated.RequestRedactedThinkingBlock.fields.data.Encoded\n    }"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L87",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tool-calling",
+    "title": "Tool Calling",
+    "exports": [
+     {
+      "id": "preparetools",
+      "level": 2,
+      "name": "prepareTools",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A helper method which takes in large language model provider options from the base Effect AI SDK as well as Anthropic request configuration options and returns the prepared tools, tool choice, and Anthropic betas to include in a request.</p>"
+       },
+       {
+        "html": "<p>This method is primarily exposed for use by other Effect provider integrations which can utilize Anthropic models (i.e. Amazon Bedrock).</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const prepareTools: (\n  options: LanguageModel.ProviderOptions,\n  config: Config.Service\n) => Effect.Effect<\n  {\n    readonly betas: ReadonlySet<string>\n    readonly tools: ReadonlyArray<AnthropicTools> | undefined\n    readonly toolChoice: typeof Generated.BetaToolChoice.Encoded | undefined\n  },\n  AiError.AiError\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L1422",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "config-namespace",
+      "level": 2,
+      "name": "Config",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L60",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 3,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service\n  extends Simplify<\n    Partial<Omit<typeof Generated.CreateMessageParams.Encoded, \"messages\" | \"tools\" | \"tool_choice\" | \"stream\">>\n  > {\n  readonly disableParallelToolCalls?: boolean\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicLanguageModel.ts#L65",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "AnthropicTokenizer": {
+  "name": "AnthropicTokenizer",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTokenizer.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: Tokenizer.Service"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTokenizer.ts#L17",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<Tokenizer.Tokenizer, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTokenizer.ts#L59",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "AnthropicTool": {
+  "name": "AnthropicTool",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts",
+  "categories": [
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "coordinate",
+      "level": 2,
+      "name": "Coordinate",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Coordinate: Schema.Tuple2<typeof Schema.Number, typeof Schema.Number>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L127",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "schemas",
+    "title": "Schemas",
+    "exports": [
+     {
+      "id": "providerdefinedtools",
+      "level": 2,
+      "name": "ProviderDefinedTools",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ProviderDefinedTools: Schema.Union<\n  [\n    typeof Generated.BetaBashTool20241022,\n    typeof Generated.BetaBashTool20250124,\n    typeof Generated.BetaCodeExecutionTool20250522,\n    typeof Generated.BetaComputerUseTool20241022,\n    typeof Generated.BetaComputerUseTool20250124,\n    typeof Generated.BetaTextEditor20241022,\n    typeof Generated.BetaTextEditor20250124,\n    typeof Generated.BetaTextEditor20250429,\n    typeof Generated.BetaTextEditor20250728,\n    typeof Generated.BetaWebSearchTool20250305\n  ]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L13",
+      "since": "1.0.0"
+     },
+     {
+      "id": "providerdefinedtools-type-alias",
+      "level": 2,
+      "name": "ProviderDefinedTools",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ProviderDefinedTools = typeof ProviderDefinedTools.Type"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L41",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tool-calling",
+    "title": "Tool Calling",
+    "exports": [
+     {
+      "id": "getproviderdefinedtoolname",
+      "level": 2,
+      "name": "getProviderDefinedToolName",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A helper method which takes in the name of a tool as returned in the response from a large language model provider, and returns either the provider-defined name for of the tool as found in the corresponding <code>Toolkit</code>, or <code>undefined</code> if the tool name is not a provider-defined tool.</p>"
+       },
+       {
+        "html": "<p>For example, if the large language model provider returns the tool name <code>\"web_search\"</code> in a response, calling this method would return <code>\"AnthropicWebSearch\"</code>.</p>"
+       },
+       {
+        "html": "<p>This method is primarily exposed for use by other Effect provider integrations which can utilize Anthropic tools (i.e. Amazon Bedrock).</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getProviderDefinedToolName: (name: string) => string | undefined"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L553",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tools",
+    "title": "Tools",
+    "exports": [
+     {
+      "id": "bash_20241022",
+      "level": 2,
+      "name": "Bash_20241022",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Bash_20241022: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicBash\",\n  {\n    readonly args: Schema.Struct<{}>\n    readonly parameters: Schema.Struct<{\n      command: typeof Schema.NonEmptyString\n      restart: Schema.optional<typeof Schema.Boolean>\n    }>\n    readonly success: typeof Schema.String\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L47",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bash_20250124",
+      "level": 2,
+      "name": "Bash_20250124",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Bash_20250124: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicBash\",\n  {\n    readonly args: Schema.Struct<{}>\n    readonly parameters: Schema.Struct<{\n      command: typeof Schema.NonEmptyString\n      restart: Schema.optional<typeof Schema.Boolean>\n    }>\n    readonly success: typeof Schema.String\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L70",
+      "since": "1.0.0"
+     },
+     {
+      "id": "codeexecution_20250522",
+      "level": 2,
+      "name": "CodeExecution_20250522",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const CodeExecution_20250522: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly cache_control?:\n    | { readonly type: \"ephemeral\"; readonly ttl?: \"5m\" | \"1h\" | null | undefined }\n    | null\n    | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicCodeExecution\",\n  {\n    readonly args: Schema.Struct<{\n      readonly cache_control: Schema.optionalWith<typeof Generated.BetaCacheControlEphemeral, { nullable: true }>\n    }>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Generated.BetaResponseCodeExecutionResultBlock\n    readonly failure: typeof Generated.BetaResponseCodeExecutionToolResultError\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L93",
+      "since": "1.0.0"
+     },
+     {
+      "id": "codeexecution_20250825",
+      "level": 2,
+      "name": "CodeExecution_20250825",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const CodeExecution_20250825: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly cache_control?:\n    | { readonly type: \"ephemeral\"; readonly ttl?: \"5m\" | \"1h\" | null | undefined }\n    | null\n    | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicCodeExecution\",\n  {\n    readonly args: Schema.Struct<{\n      readonly cache_control: Schema.optionalWith<typeof Generated.BetaCacheControlEphemeral, { nullable: true }>\n    }>\n    readonly parameters: Tool.EmptyParams\n    readonly success: Schema.Union<\n      [\n        typeof Generated.BetaResponseBashCodeExecutionResultBlock,\n        typeof Generated.BetaResponseTextEditorCodeExecutionViewResultBlock,\n        typeof Generated.BetaResponseTextEditorCodeExecutionCreateResultBlock,\n        typeof Generated.BetaResponseTextEditorCodeExecutionStrReplaceResultBlock\n      ]\n    >\n    readonly failure: Schema.Union<\n      [\n        typeof Generated.BetaResponseCodeExecutionToolResultError,\n        typeof Generated.BetaResponseTextEditorCodeExecutionToolResultError\n      ]\n    >\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L106",
+      "since": "1.0.0"
+     },
+     {
+      "id": "computeruse_20241022",
+      "level": 2,
+      "name": "ComputerUse_20241022",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Allow Claude to interact with computer environments through the computer use tool, which provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ComputerUse_20241022: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly display_height_px: number\n  readonly display_width_px: number\n  readonly cache_control?:\n    | { readonly type: \"ephemeral\"; readonly ttl?: \"5m\" | \"1h\" | null | undefined }\n    | null\n    | undefined\n  readonly display_number?: number | null | undefined\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicComputerUse\",\n  {\n    readonly args: Schema.Struct<{\n      readonly cache_control: Schema.optionalWith<typeof Generated.BetaCacheControlEphemeral, { nullable: true }>\n      readonly display_height_px: Schema.filter<typeof Schema.Int>\n      readonly display_number: Schema.optionalWith<Schema.filter<typeof Schema.Int>, { nullable: true }>\n      readonly display_width_px: Schema.filter<typeof Schema.Int>\n    }>\n    readonly parameters: Schema.Struct<{\n      action: Schema.Literal<[\"screenshot\", \"left_click\", \"type\", \"key\", \"mouse_move\"]>\n      coordinate: Schema.optional<Schema.Tuple2<typeof Schema.Number, typeof Schema.Number>>\n      text: Schema.optional<typeof Schema.String>\n    }>\n    readonly success: typeof Schema.String\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L137",
+      "since": "1.0.0"
+     },
+     {
+      "id": "computeruse_20250124",
+      "level": 2,
+      "name": "ComputerUse_20250124",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Allow Claude to interact with computer environments through the computer use tool, which provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ComputerUse_20250124: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly display_height_px: number\n  readonly display_width_px: number\n  readonly cache_control?:\n    | { readonly type: \"ephemeral\"; readonly ttl?: \"5m\" | \"1h\" | null | undefined }\n    | null\n    | undefined\n  readonly display_number?: number | null | undefined\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicComputerUse\",\n  {\n    readonly args: Schema.Struct<{\n      readonly cache_control: Schema.optionalWith<typeof Generated.BetaCacheControlEphemeral, { nullable: true }>\n      readonly display_height_px: Schema.filter<typeof Schema.Int>\n      readonly display_number: Schema.optionalWith<Schema.filter<typeof Schema.Int>, { nullable: true }>\n      readonly display_width_px: Schema.filter<typeof Schema.Int>\n    }>\n    readonly parameters: Schema.Struct<{\n      action: Schema.Literal<\n        [\n          \"screenshot\",\n          \"left_click\",\n          \"type\",\n          \"key\",\n          \"mouse_move\",\n          \"scroll\",\n          \"left_click_drag\",\n          \"middle_click\",\n          \"right_click\",\n          \"double_click\",\n          \"triple_click\",\n          \"left_mouse_down\",\n          \"left_mouse_up\",\n          \"hold_key\",\n          \"wait\"\n        ]\n      >\n      coordinate: Schema.optional<Schema.Tuple2<typeof Schema.Number, typeof Schema.Number>>\n      start_coordinate: Schema.optional<Schema.Tuple2<typeof Schema.Number, typeof Schema.Number>>\n      text: Schema.optional<typeof Schema.String>\n      scroll_direction: Schema.optional<Schema.Literal<[\"up\", \"down\", \"left\", \"right\"]>>\n      scroll_amount: Schema.optional<typeof Schema.Number>\n      duration: Schema.optional<typeof Schema.Number>\n    }>\n    readonly success: typeof Schema.String\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L186",
+      "since": "1.0.0"
+     },
+     {
+      "id": "texteditor_20241022",
+      "level": 2,
+      "name": "TextEditor_20241022",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Allow Claude to directly interact with your files, providing hands-on assistance rather than just suggesting changes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TextEditor_20241022: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicTextEditor\",\n  {\n    readonly args: Schema.Struct<{}>\n    readonly parameters: Schema.Struct<{\n      command: Schema.Literal<[\"view\", \"create\", \"str_replace\", \"insert\", \"undo_edit\"]>\n      path: typeof Schema.String\n      file_text: Schema.optional<typeof Schema.String>\n      insert_line: Schema.optional<typeof Schema.Number>\n      new_str: Schema.optional<typeof Schema.String>\n      old_str: Schema.optional<typeof Schema.String>\n      view_range: Schema.optional<Schema.Array$<typeof Schema.Number>>\n    }>\n    readonly success: typeof Schema.Void\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L285",
+      "since": "1.0.0"
+     },
+     {
+      "id": "texteditor_20250124",
+      "level": 2,
+      "name": "TextEditor_20250124",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Allow Claude to directly interact with your files, providing hands-on assistance rather than just suggesting changes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TextEditor_20250124: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicTextEditor\",\n  {\n    readonly args: Schema.Struct<{}>\n    readonly parameters: Schema.Struct<{\n      command: Schema.Literal<[\"view\", \"create\", \"str_replace\", \"insert\", \"undo_edit\"]>\n      path: typeof Schema.String\n      file_text: Schema.optional<typeof Schema.String>\n      insert_line: Schema.optional<typeof Schema.Number>\n      new_str: Schema.optional<typeof Schema.String>\n      old_str: Schema.optional<typeof Schema.String>\n      view_range: Schema.optional<Schema.Array$<typeof Schema.Number>>\n    }>\n    readonly success: typeof Schema.Void\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L345",
+      "since": "1.0.0"
+     },
+     {
+      "id": "texteditor_20250429",
+      "level": 2,
+      "name": "TextEditor_20250429",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Allow Claude to directly interact with your files, providing hands-on assistance rather than just suggesting changes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TextEditor_20250429: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicTextEditor\",\n  {\n    readonly args: Schema.Struct<{}>\n    readonly parameters: Schema.Struct<{\n      command: Schema.Literal<[\"view\", \"create\", \"str_replace\", \"insert\"]>\n      path: typeof Schema.String\n      file_text: Schema.optional<typeof Schema.String>\n      insert_line: Schema.optional<typeof Schema.Number>\n      new_str: Schema.optional<typeof Schema.String>\n      old_str: Schema.optional<typeof Schema.String>\n      view_range: Schema.optional<Schema.Array$<typeof Schema.Number>>\n    }>\n    readonly success: typeof Schema.Void\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L405",
+      "since": "1.0.0"
+     },
+     {
+      "id": "texteditor_20250728",
+      "level": 2,
+      "name": "TextEditor_20250728",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Allow Claude to directly interact with your files, providing hands-on assistance rather than just suggesting changes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TextEditor_20250728: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly failureMode?: Mode | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicTextEditor\",\n  {\n    readonly args: Schema.Struct<{}>\n    readonly parameters: Schema.Struct<{\n      command: Schema.Literal<[\"view\", \"create\", \"str_replace\", \"insert\"]>\n      path: typeof Schema.String\n      file_text: Schema.optional<typeof Schema.String>\n      insert_line: Schema.optional<typeof Schema.Number>\n      new_str: Schema.optional<typeof Schema.String>\n      old_str: Schema.optional<typeof Schema.String>\n      view_range: Schema.optional<Schema.Array$<typeof Schema.Number>>\n    }>\n    readonly success: typeof Schema.Void\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  true\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L464",
+      "since": "1.0.0"
+     },
+     {
+      "id": "websearch_20250305",
+      "level": 2,
+      "name": "WebSearch_20250305",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const WebSearch_20250305: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly cache_control?:\n    | { readonly type: \"ephemeral\"; readonly ttl?: \"5m\" | \"1h\" | null | undefined }\n    | null\n    | undefined\n  readonly allowed_domains?: ReadonlyArray<string> | null | undefined\n  readonly blocked_domains?: ReadonlyArray<string> | null | undefined\n  readonly max_uses?: number | null | undefined\n  readonly user_location?:\n    | {\n        readonly type: \"approximate\"\n        readonly city?: string | null | undefined\n        readonly country?: string | null | undefined\n        readonly region?: string | null | undefined\n        readonly timezone?: string | null | undefined\n      }\n    | null\n    | undefined\n}) => Tool.ProviderDefined<\n  \"AnthropicWebSearch\",\n  {\n    readonly args: Schema.Struct<{\n      readonly cache_control: Schema.optionalWith<typeof Generated.CacheControlEphemeral, { nullable: true }>\n      readonly allowed_domains: Schema.optionalWith<Schema.Array$<typeof Schema.String>, { nullable: true }>\n      readonly blocked_domains: Schema.optionalWith<Schema.Array$<typeof Schema.String>, { nullable: true }>\n      readonly max_uses: Schema.optionalWith<Schema.filter<typeof Schema.Int>, { nullable: true }>\n      readonly user_location: Schema.optionalWith<typeof Generated.UserLocation, { nullable: true }>\n    }>\n    readonly parameters: Tool.EmptyParams\n    readonly success: Schema.Array$<typeof Generated.RequestWebSearchResultBlock>\n    readonly failure: typeof Generated.ResponseWebSearchToolResultError\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/AnthropicTool.ts#L520",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "anthropicclient-namespace-export",
+      "level": 2,
+      "name": "AnthropicClient (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./AnthropicClient.js\u201d module as <code>AnthropicClient</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as AnthropicClient from \"./AnthropicClient.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts#L4",
+      "since": "1.0.0"
+     },
+     {
+      "id": "anthropicconfig-namespace-export",
+      "level": 2,
+      "name": "AnthropicConfig (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./AnthropicConfig.js\u201d module as <code>AnthropicConfig</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as AnthropicConfig from \"./AnthropicConfig.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts#L9",
+      "since": "1.0.0"
+     },
+     {
+      "id": "anthropiclanguagemodel-namespace-export",
+      "level": 2,
+      "name": "AnthropicLanguageModel (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./AnthropicLanguageModel.js\u201d module as <code>AnthropicLanguageModel</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as AnthropicLanguageModel from \"./AnthropicLanguageModel.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts#L14",
+      "since": "1.0.0"
+     },
+     {
+      "id": "anthropictokenizer-namespace-export",
+      "level": 2,
+      "name": "AnthropicTokenizer (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./AnthropicTokenizer.js\u201d module as <code>AnthropicTokenizer</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as AnthropicTokenizer from \"./AnthropicTokenizer.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "anthropictool-namespace-export",
+      "level": 2,
+      "name": "AnthropicTool (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./AnthropicTool.js\u201d module as <code>AnthropicTool</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as AnthropicTool from \"./AnthropicTool.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "generated-namespace-export",
+      "level": 2,
+      "name": "Generated (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Generated.js\u201d module as <code>Generated</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Generated from \"./Generated.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/anthropic/src/index.ts#L29",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

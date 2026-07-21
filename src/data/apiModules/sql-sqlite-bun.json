@@ -1,0 +1,286 @@
+{
+ "SqliteClient": {
+  "name": "SqliteClient",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts",
+  "categories": [
+   {
+    "id": "constructor",
+    "title": "constructor",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (\n  options: SqliteClientConfig\n) => Effect.Effect<SqliteClient, never, Scope.Scope | Reactivity.Reactivity>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L78",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (config: SqliteClientConfig) => Layer.Layer<SqliteClient | Client.SqlClient, ConfigError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L222",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerconfig",
+      "level": 2,
+      "name": "layerConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerConfig: (\n  config: Config.Config.Wrap<SqliteClientConfig>\n) => Layer.Layer<SqliteClient | Client.SqlClient, ConfigError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L204",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "sqliteclient-interface",
+      "level": 2,
+      "name": "SqliteClient",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SqliteClient extends Client.SqlClient {\n  readonly [TypeId]: TypeId\n  readonly config: SqliteClientConfig\n  readonly export: Effect.Effect<Uint8Array, SqlError>\n  readonly loadExtension: (path: string) => Effect.Effect<void, SqlError>\n\n  /** Not supported in sqlite */\n  readonly updateValues: never\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L36",
+      "since": "1.0.0"
+     },
+     {
+      "id": "sqliteclientconfig-interface",
+      "level": 2,
+      "name": "SqliteClientConfig",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SqliteClientConfig {\n  readonly filename: string\n  readonly readonly?: boolean | undefined\n  readonly create?: boolean | undefined\n  readonly readwrite?: boolean | undefined\n  readonly disableWAL?: boolean | undefined\n\n  readonly spanAttributes?: Record<string, unknown> | undefined\n\n  readonly transformResultNames?: ((str: string) => string) | undefined\n  readonly transformQueryNames?: ((str: string) => string) | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L56",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tags",
+    "title": "tags",
+    "exports": [
+     {
+      "id": "sqliteclient",
+      "level": 2,
+      "name": "SqliteClient",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SqliteClient: Context.Tag<SqliteClient, SqliteClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L50",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "type-ids",
+    "title": "type ids",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteClient.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "SqliteMigrator": {
+  "name": "SqliteMigrator",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteMigrator.ts",
+  "categories": [
+   {
+    "id": "constructor",
+    "title": "constructor",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: <R>(\n  options: Migrator.MigratorOptions<R>\n) => Layer.Layer<\n  never,\n  SqlError | Migrator.MigrationError,\n  SqliteClient | Client.SqlClient | CommandExecutor | FileSystem | Path | R\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteMigrator.ts#L84",
+      "since": "1.0.0"
+     },
+     {
+      "id": "run",
+      "level": 2,
+      "name": "run",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const run: <R2 = never>(\n  options: Migrator.MigratorOptions<R2>\n) => Effect.Effect<\n  ReadonlyArray<readonly [id: number, name: string]>,\n  Migrator.MigrationError | SqlError,\n  FileSystem | Path | SqliteClient | Client.SqlClient | CommandExecutor | R2\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteMigrator.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectsqlmigrator-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/sql/Migrator\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/sql/Migrator\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteMigrator.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "effectsqlmigratorfilesystem-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/sql/Migrator/FileSystem\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator/FileSystem\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/sql/Migrator/FileSystem\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/SqliteMigrator.ts#L24",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "sqliteclient-namespace-export",
+      "level": 2,
+      "name": "SqliteClient (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./SqliteClient.js\u201d module as <code>SqliteClient</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as SqliteClient from \"./SqliteClient.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/index.ts#L4",
+      "since": "1.0.0"
+     },
+     {
+      "id": "sqlitemigrator-namespace-export",
+      "level": 2,
+      "name": "SqliteMigrator (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./SqliteMigrator.js\u201d module as <code>SqliteMigrator</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as SqliteMigrator from \"./SqliteMigrator.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-sqlite-bun/src/index.ts#L9",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

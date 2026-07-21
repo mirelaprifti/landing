@@ -1,0 +1,5537 @@
+{
+ "Alternative": {
+  "name": "Alternative",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Alternative.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "alternative-interface",
+      "level": 2,
+      "name": "Alternative",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Alternative<F extends TypeLambda> extends SemiAlternative<F>, Coproduct<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Alternative.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Applicative": {
+  "name": "Applicative",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Applicative.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "applicative-interface",
+      "level": 2,
+      "name": "Applicative",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Applicative<F extends TypeLambda> extends SemiApplicative<F>, Product<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Applicative.ts#L15",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "getmonoid",
+      "level": 2,
+      "name": "getMonoid",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Lift a <code>Monoid</code> into <code>F</code>, combining the inner values using the provided <code>Monoid</code>:</p>"
+       },
+       {
+        "html": "<ul> <li><code>combine</code> is provided by <code>semiApplicative.getSemigroup</code>.</li> <li><code>empty</code> is <code>F.of(M.empty)</code></li> </ul>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoid: <F extends TypeLambda>(\n  F: Applicative<F>\n) => <A, R, O, E>(M: Monoid<A>) => Monoid<Kind<F, R, O, E, A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Applicative.ts#L25",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Bicovariant": {
+  "name": "Bicovariant",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bicovariant.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "bicovariant-interface",
+      "level": 2,
+      "name": "Bicovariant",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Bicovariant<F extends TypeLambda> extends TypeClass<F> {\n  readonly bimap: {\n    <E1, E2, A, B>(f: (e: E1) => E2, g: (a: A) => B): <R, O>(self: Kind<F, R, O, E1, A>) => Kind<F, R, O, E2, B>\n    <R, O, E1, A, E2, B>(self: Kind<F, R, O, E1, A>, f: (e: E1) => E2, g: (a: A) => B): Kind<F, R, O, E2, B>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bicovariant.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "bimapcomposition",
+      "level": 2,
+      "name": "bimapComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default ternary <code>bimap</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const bimapComposition: <F extends TypeLambda, G extends TypeLambda>(\n  CovariantF: Covariant<F>,\n  BicovariantG: Bicovariant<G>\n) => <FR, FO, FE, GR, GO, E1, A, E2, B>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, E1, A>>,\n  f: (e: E1) => E2,\n  g: (a: A) => B\n) => Kind<F, FR, FO, FE, Kind<G, GR, GO, E2, B>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bicovariant.ts#L31",
+      "since": "0.24.0"
+     },
+     {
+      "id": "map",
+      "level": 2,
+      "name": "map",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>map</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const map: <F extends TypeLambda>(F: Bicovariant<F>) => Covariant<F>[\"map\"]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bicovariant.ts#L62",
+      "since": "0.24.0"
+     },
+     {
+      "id": "mapleft",
+      "level": 2,
+      "name": "mapLeft",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>mapLeft</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const mapLeft: <F extends TypeLambda>(\n  F: Bicovariant<F>\n) => {\n  <E, G>(f: (e: E) => G): <R, O, A>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, G, A>\n  <R, O, E, A, G>(self: Kind<F, R, O, E, A>, f: (e: E) => G): Kind<F, R, O, G, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bicovariant.ts#L46",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Bounded": {
+  "name": "Bounded",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "max",
+      "level": 2,
+      "name": "max",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>Monoid</code> that returns last maximum of elements.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const max: <A>(B: Bounded<A>) => Monoid<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L43",
+      "since": "0.24.0"
+     },
+     {
+      "id": "min",
+      "level": 2,
+      "name": "min",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>Monoid</code> that returns last minimum of elements.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const min: <A>(B: Bounded<A>) => Monoid<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L35",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "predicates",
+    "title": "predicates",
+    "exports": [
+     {
+      "id": "between",
+      "level": 2,
+      "name": "between",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Checks if a value is between the lower and upper limit of a bound.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const between: <A>(B: Bounded<A>) => (a: A) => boolean"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L51",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "bounded-interface",
+      "level": 2,
+      "name": "Bounded",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Bounded<A> {\n  readonly compare: Order<A>\n  readonly maxBound: A\n  readonly minBound: A\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L15",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-lambdas",
+    "title": "type lambdas",
+    "exports": [
+     {
+      "id": "boundedtypelambda-interface",
+      "level": 2,
+      "name": "BoundedTypeLambda",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface BoundedTypeLambda extends TypeLambda {\n  readonly type: Bounded<this[\"Target\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L25",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "clamp",
+      "level": 2,
+      "name": "clamp",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Clamp a value between <code>minBound</code> and <code>maxBound</code> values.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const clamp: <A>(B: Bounded<A>) => (a: A) => A"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L60",
+      "since": "0.24.0"
+     },
+     {
+      "id": "reverse",
+      "level": 2,
+      "name": "reverse",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Reverses the <code>Order</code> of a <code>Bounded</code> and flips <code>maxBound</code> and <code>minBound</code> values.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const reverse: <A>(B: Bounded<A>) => Bounded<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Bounded.ts#L69",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Chainable": {
+  "name": "Chainable",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Chainable.ts",
+  "categories": [
+   {
+    "id": "combining",
+    "title": "combining",
+    "exports": [
+     {
+      "id": "zipleft",
+      "level": 2,
+      "name": "zipLeft",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Sequences the specified effect after this effect, but ignores the value produced by the effect.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const zipLeft: <F extends TypeLambda>(\n  F: Chainable<F>\n) => {\n  <R2, O2, E2, _>(\n    that: Kind<F, R2, O2, E2, _>\n  ): <R1, O1, E1, A>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, A>\n  <R1, O1, E1, A, R2, O2, E2, _>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, _>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Chainable.ts#L23",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "do-notation",
+    "title": "do notation",
+    "exports": [
+     {
+      "id": "bind",
+      "level": 2,
+      "name": "bind",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const bind: <F extends TypeLambda>(\n  F: Chainable<F>\n) => {\n  <N extends string, A extends object, R2, O2, E2, B>(\n    name: Exclude<N, keyof A>,\n    f: (a: NoInfer<A>) => Kind<F, R2, O2, E2, B>\n  ): <R1, O1, E1>(\n    self: Kind<F, R1, O1, E1, A>\n  ) => Kind<F, R1 & R2, O1 | O2, E1 | E2, { [K in keyof A | N]: K extends keyof A ? A[K] : B }>\n  <R1, O1, E1, A extends object, N extends string, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, A>,\n    name: Exclude<N, keyof A>,\n    f: (a: NoInfer<A>) => Kind<F, R2, O2, E2, B>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, { [K in keyof A | N]: K extends keyof A ? A[K] : B }>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Chainable.ts#L63",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "chainable-interface",
+      "level": 2,
+      "name": "Chainable",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Chainable<F extends TypeLambda> extends FlatMap<F>, Covariant<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Chainable.ts#L14",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "tap",
+      "level": 2,
+      "name": "tap",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns an effect that effectfully \u201cpeeks\u201d at the success of this effect.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tap: <F extends TypeLambda>(\n  F: Chainable<F>\n) => {\n  <A, R2, O2, E2, _>(\n    f: (a: A) => Kind<F, R2, O2, E2, _>\n  ): <R1, O1, E1>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, A>\n  <R1, O1, E1, A, R2, O2, E2, _>(\n    self: Kind<F, R1, O1, E1, A>,\n    f: (a: A) => Kind<F, R2, O2, E2, _>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Chainable.ts#L42",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Contravariant": {
+  "name": "Contravariant",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Contravariant.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "contravariant-interface",
+      "level": 2,
+      "name": "Contravariant",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Contravariant<F extends TypeLambda> extends Invariant<F> {\n  readonly contramap: {\n    <B, A>(f: (b: B) => A): <R, O, E>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, B>\n    <R, O, E, A, B>(self: Kind<F, R, O, E, A>, f: (b: B) => A): Kind<F, R, O, E, B>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Contravariant.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "contramapcomposition",
+      "level": 2,
+      "name": "contramapComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Composing two contravariant functors yields a Covariant functor.</p>"
+       },
+       {
+        "html": "<p>Returns a default binary <code>map</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const contramapComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Contravariant<F>,\n  G: Contravariant<G>\n) => <FR, FO, FE, GR, GO, GE, A, B>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>,\n  f: (a: A) => B\n) => Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, B>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Contravariant.ts#L26",
+      "since": "0.24.0"
+     },
+     {
+      "id": "imap",
+      "level": 2,
+      "name": "imap",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>imap</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const imap: <F extends TypeLambda>(\n  contramap: <R, O, E, A, B>(self: Kind<F, R, O, E, A>, f: (b: B) => A) => Kind<F, R, O, E, B>\n) => Invariant<F>[\"imap\"]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Contravariant.ts#L40",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Coproduct": {
+  "name": "Coproduct",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Coproduct.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "coproduct-interface",
+      "level": 2,
+      "name": "Coproduct",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Coproduct<F extends TypeLambda> extends SemiCoproduct<F> {\n  readonly zero: <A>() => Kind<F, unknown, never, never, A>\n\n  readonly coproductAll: <R, O, E, A>(collection: Iterable<Kind<F, R, O, E, A>>) => Kind<F, R, O, E, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Coproduct.ts#L13",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "getmonoid",
+      "level": 2,
+      "name": "getMonoid",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoid: <F extends TypeLambda>(F: Coproduct<F>) => <R, O, E, A>() => Monoid<Kind<F, R, O, E, A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Coproduct.ts#L24",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Covariant": {
+  "name": "Covariant",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts",
+  "categories": [
+   {
+    "id": "do-notation",
+    "title": "do notation",
+    "exports": [
+     {
+      "id": "let",
+      "level": 2,
+      "name": "let",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const let: <F extends TypeLambda>(\n  F: Covariant<F>\n) => {\n  <N extends string, A extends object, B>(\n    name: Exclude<N, keyof A>,\n    f: (a: A) => B\n  ): <R, O, E>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, { [K in keyof A | N]: K extends keyof A ? A[K] : B }>\n  <R, O, E, A extends object, N extends string, B>(\n    self: Kind<F, R, O, E, A>,\n    name: Exclude<N, keyof A>,\n    f: (a: A) => B\n  ): Kind<F, R, O, E, { [K in keyof A | N]: K extends keyof A ? A[K] : B }>\n}"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import * as covariant from \"@effect/typeclass/Covariant\"\nimport type { HKT } from \"effect\"\nimport { dual, pipe } from \"effect/Function\"\n\ninterface MyData<A> {\n  readonly value: A\n}\n\ninterface MyDataTypeLambda extends HKT.TypeLambda {\n  readonly type: MyData<this[\"Target\"]>\n}\n\nconst map: covariant.Covariant<MyDataTypeLambda>[\"map\"] = dual(\n  2,\n  <A, B>(self: MyData<A>, f: (a: A) => B): MyData<B> => ({ value: f(self.value) })\n)\n\nconst Covariant: covariant.Covariant<MyDataTypeLambda> = { imap: covariant.imap<MyDataTypeLambda>(map), map }\n\nconst notation = {\n  Do: { value: {} } as MyData<{}>,\n  let: covariant.let(Covariant)\n}\n\nconsole.log(\n  pipe(\n    notation.Do,\n    notation.let(\"foo\", () => \"bar\")\n  )\n)\n// { value: { foo: \"bar\" } }"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L134",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "mapping",
+    "title": "mapping",
+    "exports": [
+     {
+      "id": "as",
+      "level": 2,
+      "name": "as",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const as: <F extends TypeLambda>(\n  F: Covariant<F>\n) => {\n  <B>(b: B): <R, O, E, _>(self: Kind<F, R, O, E, _>) => Kind<F, R, O, E, B>\n  <R, O, E, _, B>(self: Kind<F, R, O, E, _>, b: B): Kind<F, R, O, E, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L59",
+      "since": "0.24.0"
+     },
+     {
+      "id": "asvoid",
+      "level": 2,
+      "name": "asVoid",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const asVoid: <F extends TypeLambda>(\n  F: Covariant<F>\n) => <R, O, E, _>(self: Kind<F, R, O, E, _>) => Kind<F, R, O, E, void>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L72",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flap",
+      "level": 2,
+      "name": "flap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const flap: <F extends TypeLambda>(\n  F: Covariant<F>\n) => {\n  <R, O, E, A, B>(self: Kind<F, R, O, E, (a: A) => B>): (a: A) => Kind<F, R, O, E, B>\n  <A, R, O, E, B>(a: A, self: Kind<F, R, O, E, (a: A) => B>): Kind<F, R, O, E, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L46",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "covariant-interface",
+      "level": 2,
+      "name": "Covariant",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Covariant<F extends TypeLambda> extends Invariant<F> {\n  readonly map: {\n    <A, B>(f: (a: A) => B): <R, O, E>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, B>\n    <R, O, E, A, B>(self: Kind<F, R, O, E, A>, f: (a: A) => B): Kind<F, R, O, E, B>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "imap",
+      "level": 2,
+      "name": "imap",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>imap</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const imap: <F extends TypeLambda>(\n  map: <R, O, E, A, B>(self: Kind<F, R, O, E, A>, f: (a: A) => B) => Kind<F, R, O, E, B>\n) => Invariant<F>[\"imap\"]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L38",
+      "since": "0.24.0"
+     },
+     {
+      "id": "mapcomposition",
+      "level": 2,
+      "name": "mapComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>map</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const mapComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Covariant<F>,\n  G: Covariant<G>\n) => <FR, FO, FE, GR, GO, GE, A, B>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>,\n  f: (a: A) => B\n) => Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, B>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Covariant.ts#L24",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Filterable": {
+  "name": "Filterable",
+  "since": "0.24.0",
+  "description": [
+   {
+    "html": "<p><code>Filterable</code> represents data structures which can be <em>partitioned</em>/<em>filtered</em>.</p>"
+   }
+  ],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts",
+  "categories": [
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "filterable-interface",
+      "level": 2,
+      "name": "Filterable",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Filterable<F extends TypeLambda> extends TypeClass<F> {\n  readonly partitionMap: {\n    <A, B, C>(\n      f: (a: A) => Either.Either<C, B>\n    ): <R, O, E>(self: Kind<F, R, O, E, A>) => [Kind<F, R, O, E, B>, Kind<F, R, O, E, C>]\n    <R, O, E, A, B, C>(\n      self: Kind<F, R, O, E, A>,\n      f: (a: A) => Either.Either<C, B>\n    ): [Kind<F, R, O, E, B>, Kind<F, R, O, E, C>]\n  }\n\n  readonly filterMap: {\n    <A, B>(f: (a: A) => Option.Option<B>): <R, O, E>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, B>\n    <R, O, E, A, B>(self: Kind<F, R, O, E, A>, f: (a: A) => Option.Option<B>): Kind<F, R, O, E, B>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L16",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "compact",
+      "level": 2,
+      "name": "compact",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const compact: <F extends TypeLambda>(\n  F: Filterable<F>\n) => <R, O, E, A>(self: Kind<F, R, O, E, Option.Option<A>>) => Kind<F, R, O, E, A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L72",
+      "since": "0.24.0"
+     },
+     {
+      "id": "filter",
+      "level": 2,
+      "name": "filter",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const filter: <F extends TypeLambda>(\n  F: Filterable<F>\n) => {\n  <C extends A, B extends A, A = C>(\n    refinement: (a: A) => a is B\n  ): <R, O, E>(self: Kind<F, R, O, E, C>) => Kind<F, R, O, E, B>\n  <B extends A, A = B>(predicate: (a: A) => boolean): <R, O, E>(self: Kind<F, R, O, E, B>) => Kind<F, R, O, E, B>\n  <R, O, E, C extends A, B extends A, A = C>(\n    self: Kind<F, R, O, E, C>,\n    refinement: (a: A) => a is B\n  ): Kind<F, R, O, E, B>\n  <R, O, E, B extends A, A = B>(self: Kind<F, R, O, E, B>, predicate: (a: A) => boolean): Kind<F, R, O, E, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L88",
+      "since": "0.24.0"
+     },
+     {
+      "id": "filtermapcomposition",
+      "level": 2,
+      "name": "filterMapComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default binary <code>filterMap</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const filterMapComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Covariant<F>,\n  G: Filterable<G>\n) => <FR, FO, FE, GR, GO, GE, A, B>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>,\n  f: (a: A) => Option.Option<B>\n) => Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, B>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L60",
+      "since": "0.24.0"
+     },
+     {
+      "id": "partition",
+      "level": 2,
+      "name": "partition",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const partition: <F extends TypeLambda>(\n  F: Filterable<F>\n) => {\n  <C extends A, B extends A, A = C>(\n    refinement: (a: A) => a is B\n  ): <R, O, E>(self: Kind<F, R, O, E, C>) => [Kind<F, R, O, E, C>, Kind<F, R, O, E, B>]\n  <B extends A, A = B>(\n    predicate: (a: A) => boolean\n  ): <R, O, E>(self: Kind<F, R, O, E, B>) => [Kind<F, R, O, E, B>, Kind<F, R, O, E, B>]\n  <R, O, E, C extends A, B extends A, A = C>(\n    self: Kind<F, R, O, E, C>,\n    refinement: (a: A) => a is B\n  ): [Kind<F, R, O, E, C>, Kind<F, R, O, E, B>]\n  <R, O, E, B extends A, A = B>(\n    self: Kind<F, R, O, E, B>,\n    predicate: (a: A) => boolean\n  ): [Kind<F, R, O, E, B>, Kind<F, R, O, E, B>]\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L115",
+      "since": "0.24.0"
+     },
+     {
+      "id": "partitionmapcomposition",
+      "level": 2,
+      "name": "partitionMapComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default binary <code>partitionMap</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const partitionMapComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Covariant<F>,\n  G: Filterable<G>\n) => <FR, FO, FE, GR, GO, GE, A, B, C>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>,\n  f: (a: A) => Either.Either<C, B>\n) => [Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, B>>, Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, C>>]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L40",
+      "since": "0.24.0"
+     },
+     {
+      "id": "separate",
+      "level": 2,
+      "name": "separate",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const separate: <F extends TypeLambda>(\n  F: Filterable<F>\n) => <R, O, E, A, B>(self: Kind<F, R, O, E, Either.Either<B, A>>) => [Kind<F, R, O, E, A>, Kind<F, R, O, E, B>]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Filterable.ts#L79",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "FlatMap": {
+  "name": "FlatMap",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/FlatMap.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "flatmap-interface",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface FlatMap<F extends TypeLambda> extends TypeClass<F> {\n  readonly flatMap: {\n    <A, R2, O2, E2, B>(\n      f: (a: A) => Kind<F, R2, O2, E2, B>\n    ): <R1, O1, E1>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O1 | O2, E1 | E2, B>\n    <R1, O1, E1, A, R2, O2, E2, B>(\n      self: Kind<F, R1, O1, E1, A>,\n      f: (a: A) => Kind<F, R2, O2, E2, B>\n    ): Kind<F, R1 & R2, O1 | O2, E1 | E2, B>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/FlatMap.ts#L11",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "composek",
+      "level": 2,
+      "name": "composeK",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const composeK: <F extends TypeLambda>(\n  F: FlatMap<F>\n) => {\n  <B, R2, O2, E2, C>(\n    bfc: (b: B) => Kind<F, R2, O2, E2, C>\n  ): <A, R1, O1, E1>(afb: (a: A) => Kind<F, R1, O1, E1, B>) => (a: A) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>\n  <A, R1, O1, E1, B, R2, O2, E2, C>(\n    afb: (a: A) => Kind<F, R1, O1, E1, B>,\n    bfc: (b: B) => Kind<F, R2, O2, E2, C>\n  ): (a: A) => Kind<F, R1 & R2, O1 | O2, E1 | E2, C>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/FlatMap.ts#L53",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flatten",
+      "level": 2,
+      "name": "flatten",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const flatten: <F extends TypeLambda>(\n  F: FlatMap<F>\n) => <R2, O2, E2, R1, O1, E1, A>(\n  self: Kind<F, R2, O2, E2, Kind<F, R1, O1, E1, A>>\n) => Kind<F, R1 & R2, O1 | O2, E1 | E2, A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/FlatMap.ts#L26",
+      "since": "0.24.0"
+     },
+     {
+      "id": "zipright",
+      "level": 2,
+      "name": "zipRight",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A variant of <code>flatMap</code> that ignores the value produced by this effect.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const zipRight: <F extends TypeLambda>(\n  F: FlatMap<F>\n) => {\n  <R2, O2, E2, B>(\n    that: Kind<F, R2, O2, E2, B>\n  ): <R1, O1, E1, _>(self: Kind<F, R1, O1, E1, _>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>\n  <R1, O1, E1, _, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, _>,\n    that: Kind<F, R2, O2, E2, B>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/FlatMap.ts#L36",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Foldable": {
+  "name": "Foldable",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "foldable-interface",
+      "level": 2,
+      "name": "Foldable",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Foldable<F extends TypeLambda> extends TypeClass<F> {\n  readonly reduce: {\n    <A, B>(b: B, f: (b: B, a: A) => B): <R, O, E>(self: Kind<F, R, O, E, A>) => B\n    <R, O, E, A, B>(self: Kind<F, R, O, E, A>, b: B, f: (b: B, a: A) => B): B\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L15",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "combinemap",
+      "level": 2,
+      "name": "combineMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const combineMap: <F extends TypeLambda>(\n  F: Foldable<F>\n) => <M>(M: Monoid<M>) => {\n  <A>(f: (a: A) => M): <R, O, E>(self: Kind<F, R, O, E, A>) => M\n  <R, O, E, A>(self: Kind<F, R, O, E, A>, f: (a: A) => M): M\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L62",
+      "since": "0.24.0"
+     },
+     {
+      "id": "coproductmapkind",
+      "level": 2,
+      "name": "coproductMapKind",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const coproductMapKind: <F extends TypeLambda>(\n  F: Foldable<F>\n) => <G extends TypeLambda>(\n  G: Coproduct<G>\n) => {\n  <A, R, O, E, B>(f: (a: A) => Kind<G, R, O, E, B>): <FR, FO, FE>(self: Kind<F, FR, FO, FE, A>) => Kind<G, R, O, E, B>\n  <FR, FO, FE, A, R, O, E, B>(self: Kind<F, FR, FO, FE, A>, f: (a: A) => Kind<G, R, O, E, B>): Kind<G, R, O, E, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L101",
+      "since": "0.24.0"
+     },
+     {
+      "id": "reducecomposition",
+      "level": 2,
+      "name": "reduceComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default ternary <code>reduce</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const reduceComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Foldable<F>,\n  G: Foldable<G>\n) => <FR, FO, FE, GR, GO, GE, A, B>(self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>, b: B, f: (b: B, a: A) => B) => B"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L27",
+      "since": "0.24.0"
+     },
+     {
+      "id": "reducekind",
+      "level": 2,
+      "name": "reduceKind",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const reduceKind: <F extends TypeLambda>(\n  F: Foldable<F>\n) => <G extends TypeLambda>(\n  G: Monad<G>\n) => {\n  <B, A, R, O, E>(\n    b: B,\n    f: (b: B, a: A) => Kind<G, R, O, E, B>\n  ): <FR, FO, FE>(self: Kind<F, FR, FO, FE, A>) => Kind<G, R, O, E, B>\n  <FR, FO, FE, A, B, R, O, E>(\n    self: Kind<F, FR, FO, FE, A>,\n    b: B,\n    f: (b: B, a: A) => Kind<G, R, O, E, B>\n  ): Kind<G, R, O, E, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L75",
+      "since": "0.24.0"
+     },
+     {
+      "id": "toarray",
+      "level": 2,
+      "name": "toArray",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const toArray: <F extends TypeLambda>(F: Foldable<F>) => <R, O, E, A>(self: Kind<F, R, O, E, A>) => Array<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L55",
+      "since": "0.24.0"
+     },
+     {
+      "id": "toarraymap",
+      "level": 2,
+      "name": "toArrayMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const toArrayMap: <F extends TypeLambda>(\n  F: Foldable<F>\n) => {\n  <A, B>(f: (a: A) => B): <R, O, E>(self: Kind<F, R, O, E, A>) => Array<B>\n  <R, O, E, A, B>(self: Kind<F, R, O, E, A>, f: (a: A) => B): Array<B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Foldable.ts#L40",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Invariant": {
+  "name": "Invariant",
+  "since": "0.24.0",
+  "description": [
+   {
+    "html": "<p>The <code>Invariant</code> typeclass is a higher-order abstraction over types that allow mapping the contents of a type in both directions. It is similar to the <code>Covariant</code> typeclass but provides an <code>imap</code> opration, which allows transforming a value in both directions. This typeclass is useful when dealing with data types that can be converted to and from some other types. The <code>imap</code> operation provides a way to convert such data types to other types that they can interact with while preserving their invariants.</p>"
+   }
+  ],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Invariant.ts",
+  "categories": [
+   {
+    "id": "do-notation",
+    "title": "do notation",
+    "exports": [
+     {
+      "id": "bindto",
+      "level": 2,
+      "name": "bindTo",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const bindTo: <F extends TypeLambda>(\n  F: Invariant<F>\n) => {\n  <N extends string>(name: N): <R, O, E, A>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, { [K in N]: A }>\n  <R, O, E, A, N extends string>(self: Kind<F, R, O, E, A>, name: N): Kind<F, R, O, E, { [K in N]: A }>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Invariant.ts#L49",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "invariant-interface",
+      "level": 2,
+      "name": "Invariant",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Invariant<F extends TypeLambda> extends TypeClass<F> {\n  readonly imap: {\n    <A, B>(to: (a: A) => B, from: (b: B) => A): <R, O, E>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, B>\n    <R, O, E, A, B>(self: Kind<F, R, O, E, A>, to: (a: A) => B, from: (b: B) => A): Kind<F, R, O, E, B>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Invariant.ts#L16",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "imapcomposition",
+      "level": 2,
+      "name": "imapComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default ternary <code>imap</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const imapComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Invariant<F>,\n  G: Invariant<G>\n) => <FR, FO, FE, GR, GO, GE, A, B>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>,\n  to: (a: A) => B,\n  from: (b: B) => A\n) => Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, B>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Invariant.ts#L35",
+      "since": "0.24.0"
+     },
+     {
+      "id": "tupled",
+      "level": 2,
+      "name": "tupled",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Convert a value in a singleton array in a given effect.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tupled: <F extends TypeLambda>(\n  F: Invariant<F>\n) => <R, O, E, A>(self: Kind<F, R, O, E, A>) => Kind<F, R, O, E, [A]>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Invariant.ts#L68",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Monad": {
+  "name": "Monad",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monad.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "monad-interface",
+      "level": 2,
+      "name": "Monad",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Monad<F extends TypeLambda> extends FlatMap<F>, Pointed<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monad.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Monoid": {
+  "name": "Monoid",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts",
+  "categories": [
+   {
+    "id": "combinators",
+    "title": "combinators",
+    "exports": [
+     {
+      "id": "array",
+      "level": 2,
+      "name": "array",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Given a type <code>A</code>, this function creates and returns a <code>Semigroup</code> for <code>ReadonlyArray&lt;A&gt;</code>.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is the empty array.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const array: <A>() => Monoid<ReadonlyArray<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L88",
+      "since": "0.24.0"
+     },
+     {
+      "id": "reverse",
+      "level": 2,
+      "name": "reverse",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>The dual of a <code>Monoid</code>, obtained by swapping the arguments of <code>combine</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const reverse: <A>(M: Monoid<A>) => Monoid<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L54",
+      "since": "0.24.0"
+     },
+     {
+      "id": "struct",
+      "level": 2,
+      "name": "struct",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>This function creates and returns a new <code>Monoid</code> for a struct of values based on the given <code>Monoid</code>s for each property in the struct. The returned <code>Monoid</code> combines two structs of the same type by applying the corresponding <code>Monoid</code> passed as arguments to each property in the struct.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value of the returned <code>Monoid</code> is a struct where each property is the <code>empty</code> value of the corresponding <code>Monoid</code> in the input <code>monoids</code> object.</p>"
+       },
+       {
+        "html": "<p>It is useful when you need to combine two structs of the same type and you have a specific way of combining each property of the struct.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const struct: <R extends { readonly [x: string]: Monoid<any> }>(\n  fields: R\n) => Monoid<{ readonly [K in keyof R]: [R[K]] extends [Monoid<infer A>] ? A : never }>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L101",
+      "since": "0.24.0"
+     },
+     {
+      "id": "tuple",
+      "level": 2,
+      "name": "tuple",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Similar to <code>Promise.all</code> but operates on <code>Monoid</code>s.</p>"
+       },
+       {
+        "html": "",
+        "code": {
+         "lang": "plaintext",
+         "code": "[Monoid<A>, Monoid<B>, ...] -> Monoid<[A, B, ...]>"
+        }
+       },
+       {
+        "html": "<p>This function creates and returns a new <code>Monoid</code> for a tuple of values based on the given <code>Monoid</code>s for each element in the tuple. The returned <code>Monoid</code> combines two tuples of the same type by applying the corresponding <code>Monoid</code> passed as arguments to each element in the tuple.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value of the returned <code>Monoid</code> is the tuple of <code>empty</code> values of the input <code>Monoid</code>s.</p>"
+       },
+       {
+        "html": "<p>It is useful when you need to combine two tuples of the same type and you have a specific way of combining each element of the tuple.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tuple: <T extends ReadonlyArray<Monoid<any>>>(\n  ...elements: T\n) => Monoid<{ readonly [I in keyof T]: [T[I]] extends [Monoid<infer A>] ? A : never }>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L73",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "fromsemigroup",
+      "level": 2,
+      "name": "fromSemigroup",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const fromSemigroup: <A>(S: Semigroup<A>, empty: Monoid<A>[\"empty\"]) => Monoid<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L21",
+      "since": "0.24.0"
+     },
+     {
+      "id": "max",
+      "level": 2,
+      "name": "max",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Get a monoid where <code>combine</code> will return the maximum, based on the provided bounded order.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is the <code>minimum</code> value.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const max: <A>(B: Bounded<A>) => Monoid<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L46",
+      "since": "0.24.0"
+     },
+     {
+      "id": "min",
+      "level": 2,
+      "name": "min",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Get a monoid where <code>combine</code> will return the minimum, based on the provided bounded order.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is the <code>maxBound</code> value.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const min: <A>(B: Bounded<A>) => Monoid<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L36",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "monoid-interface",
+      "level": 2,
+      "name": "Monoid",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Monoid<A> extends Semigroup<A> {\n  readonly empty: A\n  readonly combineAll: (collection: Iterable<A>) => A\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Monoid.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Of": {
+  "name": "Of",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Of.ts",
+  "categories": [
+   {
+    "id": "do-notation",
+    "title": "do notation",
+    "exports": [
+     {
+      "id": "do",
+      "level": 2,
+      "name": "Do",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Do: <F extends TypeLambda>(F: Of<F>) => <R = unknown, O = never, E = never>() => Kind<F, R, O, E, {}>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Of.ts#L40",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "of-interface",
+      "level": 2,
+      "name": "Of",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Of<F extends TypeLambda> extends TypeClass<F> {\n  readonly of: <A>(a: A) => Kind<F, unknown, never, never, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Of.ts#L10",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "ofcomposition",
+      "level": 2,
+      "name": "ofComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>of</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ofComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: Of<F>,\n  G: Of<G>\n) => <A>(a: A) => Kind<F, unknown, never, never, Kind<G, unknown, never, never, A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Of.ts#L19",
+      "since": "0.24.0"
+     },
+     {
+      "id": "void",
+      "level": 2,
+      "name": "void",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const void: <F extends TypeLambda>(F: Of<F>) => <R = unknown, O = never, E = never>() => Kind<F, R, O, E, void>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Of.ts#L33",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Pointed": {
+  "name": "Pointed",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Pointed.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "pointed-interface",
+      "level": 2,
+      "name": "Pointed",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Pointed<F extends TypeLambda> extends Covariant<F>, Of<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Pointed.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Product": {
+  "name": "Product",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Product.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "product-interface",
+      "level": 2,
+      "name": "Product",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Product<F extends TypeLambda> extends SemiProduct<F>, Of<F> {\n  readonly productAll: <R, O, E, A>(collection: Iterable<Kind<F, R, O, E, A>>) => Kind<F, R, O, E, Array<A>>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Product.ts#L13",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "struct",
+      "level": 2,
+      "name": "struct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const struct: <F extends TypeLambda>(\n  F: Product<F>\n) => <R extends { readonly [x: string]: Kind<F, any, any, any, any> }>(\n  fields: R\n) => Kind<\n  F,\n  [R[keyof R]] extends [Kind<F, infer R, any, any, any>] ? R : never,\n  R[keyof R] extends never ? never : [R[keyof R]] extends [Kind<F, any, infer O, any, any>] ? O : never,\n  R[keyof R] extends never ? never : [R[keyof R]] extends [Kind<F, any, any, infer E, any>] ? E : never,\n  { [K in keyof R]: [R[K]] extends [Kind<F, any, any, any, infer A>] ? A : never }\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Product.ts#L43",
+      "since": "0.24.0"
+     },
+     {
+      "id": "tuple",
+      "level": 2,
+      "name": "tuple",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tuple: <F extends TypeLambda>(\n  F: Product<F>\n) => <T extends ReadonlyArray<Kind<F, any, any, any, any>>>(\n  ...elements: T\n) => Kind<\n  F,\n  [T[number]] extends [Kind<F, infer R, any, any, any>] ? R : never,\n  T[number] extends never ? never : [T[number]] extends [Kind<F, any, infer O, any, any>] ? O : never,\n  T[number] extends never ? never : [T[number]] extends [Kind<F, any, any, infer E, any>] ? E : never,\n  { [I in keyof T]: [T[I]] extends [Kind<F, any, any, any, infer A>] ? A : never }\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Product.ts#L22",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "SemiAlternative": {
+  "name": "SemiAlternative",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiAlternative.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "semialternative-interface",
+      "level": 2,
+      "name": "SemiAlternative",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SemiAlternative<F extends TypeLambda> extends SemiCoproduct<F>, Covariant<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiAlternative.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "SemiApplicative": {
+  "name": "SemiApplicative",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts",
+  "categories": [
+   {
+    "id": "lifting",
+    "title": "lifting",
+    "exports": [
+     {
+      "id": "getsemigroup",
+      "level": 2,
+      "name": "getSemigroup",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Lift a <code>Semigroup</code> into \u2018F\u2019, the inner values are combined using the provided <code>Semigroup</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroup: <F extends TypeLambda>(\n  F: SemiApplicative<F>\n) => <A, R, O, E>(S: Semigroup<A>) => Semigroup<Kind<F, R, O, E, A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L23",
+      "since": "0.24.0"
+     },
+     {
+      "id": "lift2",
+      "level": 2,
+      "name": "lift2",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Lifts a binary function into <code>F</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const lift2: <F extends TypeLambda>(\n  F: SemiApplicative<F>\n) => <A, B, C>(\n  f: (a: A, b: B) => C\n) => {\n  <R2, O2, E2>(\n    that: Kind<F, R2, O2, E2, B>\n  ): <R1, O1, E1>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>\n  <R1, O1, E1, R2, O2, E2>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, B>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, C>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L114",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "semiapplicative-interface",
+      "level": 2,
+      "name": "SemiApplicative",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SemiApplicative<F extends TypeLambda> extends SemiProduct<F>, Covariant<F> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L15",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "ap",
+      "level": 2,
+      "name": "ap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ap: <F extends TypeLambda>(\n  F: SemiApplicative<F>\n) => {\n  <R2, O2, E2, A>(\n    that: Kind<F, R2, O2, E2, A>\n  ): <R1, O1, E1, B>(self: Kind<F, R1, O1, E1, (a: A) => B>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>\n  <R1, O1, E1, A, B, R2, O2, E2>(\n    self: Kind<F, R1, O1, E1, (a: A) => B>,\n    that: Kind<F, R2, O2, E2, A>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L58",
+      "since": "0.24.0"
+     },
+     {
+      "id": "zipleft",
+      "level": 2,
+      "name": "zipLeft",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const zipLeft: <F extends TypeLambda>(\n  F: SemiApplicative<F>\n) => {\n  <R2, O2, E2, _>(\n    that: Kind<F, R2, O2, E2, _>\n  ): <R1, O1, E1, A>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, A>\n  <R1, O1, E1, A, R2, O2, E2, _>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, _>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L77",
+      "since": "0.24.0"
+     },
+     {
+      "id": "zipright",
+      "level": 2,
+      "name": "zipRight",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const zipRight: <F extends TypeLambda>(\n  F: SemiApplicative<F>\n) => {\n  <R2, O2, E2, B>(\n    that: Kind<F, R2, O2, E2, B>\n  ): <R1, O1, E1, _>(self: Kind<F, R1, O1, E1, _>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>\n  <R1, O1, E1, _, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, _>,\n    that: Kind<F, R2, O2, E2, B>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L94",
+      "since": "0.24.0"
+     },
+     {
+      "id": "zipwith",
+      "level": 2,
+      "name": "zipWith",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Zips two <code>F</code> values together using a provided function, returning a new <code>F</code> of the result.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const zipWith: <F extends TypeLambda>(\n  F: SemiApplicative<F>\n) => {\n  <R2, O2, E2, B, A, C>(\n    that: Kind<F, R2, O2, E2, B>,\n    f: (a: A, b: B) => C\n  ): <R1, O1, E1>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>\n  <R1, O1, E1, A, R2, O2, E2, B, C>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, B>,\n    f: (a: A, b: B) => C\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, C>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiApplicative.ts#L35",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "SemiCoproduct": {
+  "name": "SemiCoproduct",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiCoproduct.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "semicoproduct-interface",
+      "level": 2,
+      "name": "SemiCoproduct",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SemiCoproduct<F extends TypeLambda> extends Invariant<F> {\n  readonly coproduct: <R1, O1, E1, A, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, B>\n  ) => Kind<F, R1 & R2, O1 | O2, E1 | E2, A | B>\n\n  readonly coproductMany: <R, O, E, A>(\n    self: Kind<F, R, O, E, A>,\n    collection: Iterable<Kind<F, R, O, E, A>>\n  ) => Kind<F, R, O, E, A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiCoproduct.ts#L13",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "getsemigroup",
+      "level": 2,
+      "name": "getSemigroup",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroup: <F extends TypeLambda>(\n  F: SemiCoproduct<F>\n) => <R, O, E, A>() => Semigroup<Kind<F, R, O, E, A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiCoproduct.ts#L28",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "SemiProduct": {
+  "name": "SemiProduct",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "productmany",
+      "level": 2,
+      "name": "productMany",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>productMany</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const productMany: <F extends TypeLambda>(\n  map: Covariant<F>[\"map\"],\n  product: SemiProduct<F>[\"product\"]\n) => SemiProduct<F>[\"productMany\"]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L32",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "do-notation",
+    "title": "do notation",
+    "exports": [
+     {
+      "id": "andthenbind",
+      "level": 2,
+      "name": "andThenBind",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const andThenBind: <F extends TypeLambda>(\n  F: SemiProduct<F>\n) => {\n  <N extends string, A extends object, R2, O2, E2, B>(\n    name: Exclude<N, keyof A>,\n    that: Kind<F, R2, O2, E2, B>\n  ): <R1, O1, E1>(\n    self: Kind<F, R1, O1, E1, A>\n  ) => Kind<F, R1 & R2, O1 | O2, E1 | E2, { [K in keyof A | N]: K extends keyof A ? A[K] : B }>\n  <R1, O1, E1, A extends object, N extends string, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, A>,\n    name: Exclude<N, keyof A>,\n    that: Kind<F, R2, O2, E2, B>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, { [K in keyof A | N]: K extends keyof A ? A[K] : B }>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L89",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "semiproduct-interface",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SemiProduct<F extends TypeLambda> extends Invariant<F> {\n  readonly product: <R1, O1, E1, A, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, B>\n  ) => Kind<F, R1 & R2, O1 | O2, E1 | E2, [A, B]>\n\n  readonly productMany: <R, O, E, A>(\n    self: Kind<F, R, O, E, A>,\n    collection: Iterable<Kind<F, R, O, E, A>>\n  ) => Kind<F, R, O, E, [A, ...Array<A>]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L14",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "appendelement",
+      "level": 2,
+      "name": "appendElement",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Appends an element to the end of a tuple.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const appendElement: <F extends TypeLambda>(\n  F: SemiProduct<F>\n) => {\n  <R2, O2, E2, B>(\n    that: Kind<F, R2, O2, E2, B>\n  ): <R1, O1, E1, A extends ReadonlyArray<any>>(\n    self: Kind<F, R1, O1, E1, A>\n  ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, [...A, B]>\n  <R1, O1, E1, A extends ReadonlyArray<any>, R2, O2, E2, B>(\n    self: Kind<F, R1, O1, E1, A>,\n    that: Kind<F, R2, O2, E2, B>\n  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, [...A, B]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L118",
+      "since": "0.24.0"
+     },
+     {
+      "id": "nonemptystruct",
+      "level": 2,
+      "name": "nonEmptyStruct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const nonEmptyStruct: <F extends TypeLambda>(\n  F: SemiProduct<F>\n) => <R extends { readonly [x: string]: Kind<F, any, any, any, any> }>(\n  fields: EnforceNonEmptyRecord<R> & { readonly [x: string]: Kind<F, any, any, any, any> }\n) => Kind<\n  F,\n  [R[keyof R]] extends [Kind<F, infer R, any, any, any>] ? R : never,\n  [R[keyof R]] extends [Kind<F, any, infer O, any, any>] ? O : never,\n  [R[keyof R]] extends [Kind<F, any, any, infer E, any>] ? E : never,\n  { [K in keyof R]: [R[K]] extends [Kind<F, any, any, any, infer A>] ? A : never }\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L161",
+      "since": "0.24.0"
+     },
+     {
+      "id": "nonemptytuple",
+      "level": 2,
+      "name": "nonEmptyTuple",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const nonEmptyTuple: <F extends TypeLambda>(\n  F: SemiProduct<F>\n) => <T extends readonly [Kind<F, any, any, any, any>, ...Array<Kind<F, any, any, any, any>>]>(\n  ...elements: T\n) => Kind<\n  F,\n  [T[number]] extends [Kind<F, infer R, any, any, any>] ? R : never,\n  [T[number]] extends [Kind<F, any, infer O, any, any>] ? O : never,\n  [T[number]] extends [Kind<F, any, any, infer E, any>] ? E : never,\n  { [I in keyof T]: [T[I]] extends [Kind<F, any, any, any, infer A>] ? A : never }\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L138",
+      "since": "0.24.0"
+     },
+     {
+      "id": "productcomposition",
+      "level": 2,
+      "name": "productComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>product</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const productComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: SemiApplicative<F>,\n  G: SemiProduct<G>\n) => <FR1, FO1, FE1, GR1, GO1, GE1, A, FR2, FO2, FE2, GR2, GO2, GE2, B>(\n  self: Kind<F, FR1, FO1, FE1, Kind<G, GR1, GO1, GE1, A>>,\n  that: Kind<F, FR2, FO2, FE2, Kind<G, GR2, GO2, GE2, B>>\n) => Kind<F, FR1 & FR2, FO1 | FO2, FE1 | FE2, Kind<G, GR1 & GR2, GO1 | GO2, GE1 | GE2, [A, B]>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L55",
+      "since": "0.24.0"
+     },
+     {
+      "id": "productmanycomposition",
+      "level": 2,
+      "name": "productManyComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>productMany</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const productManyComposition: <F extends TypeLambda, G extends TypeLambda>(\n  F: SemiApplicative<F>,\n  G: SemiProduct<G>\n) => <FR, FO, FE, GR, GO, GE, A>(\n  self: Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>,\n  collection: Iterable<Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, A>>>\n) => Kind<F, FR, FO, FE, Kind<G, GR, GO, GE, [A, ...Array<A>]>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/SemiProduct.ts#L75",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Semigroup": {
+  "name": "Semigroup",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts",
+  "categories": [
+   {
+    "id": "combinators",
+    "title": "combinators",
+    "exports": [
+     {
+      "id": "array",
+      "level": 2,
+      "name": "array",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Given a type <code>A</code>, this function creates and returns a <code>Semigroup</code> for <code>ReadonlyArray&lt;A&gt;</code>. The returned <code>Semigroup</code> combines two arrays by concatenating them.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const array: <A>() => Semigroup<ReadonlyArray<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L225",
+      "since": "0.24.0"
+     },
+     {
+      "id": "struct",
+      "level": 2,
+      "name": "struct",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>This function creates and returns a new <code>Semigroup</code> for a struct of values based on the given <code>Semigroup</code>s for each property in the struct. The returned <code>Semigroup</code> combines two structs of the same type by applying the corresponding <code>Semigroup</code> passed as arguments to each property in the struct.</p>"
+       },
+       {
+        "html": "<p>It is useful when you need to combine two structs of the same type and you have a specific way of combining each property of the struct.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const struct: <R extends { readonly [x: string]: Semigroup<any> }>(\n  fields: R\n) => Semigroup<{ readonly [K in keyof R]: [R[K]] extends [Semigroup<infer A>] ? A : never }>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L236",
+      "since": "0.24.0"
+     },
+     {
+      "id": "tuple",
+      "level": 2,
+      "name": "tuple",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Similar to <code>Promise.all</code> but operates on <code>Semigroup</code>s.</p>"
+       },
+       {
+        "html": "",
+        "code": {
+         "lang": "plaintext",
+         "code": "[Semigroup<A>, Semigroup<B>, ...] -> Semigroup<[A, B, ...]>"
+        }
+       },
+       {
+        "html": "<p>This function creates and returns a new <code>Semigroup</code> for a tuple of values based on the given <code>Semigroup</code>s for each element in the tuple. The returned <code>Semigroup</code> combines two tuples of the same type by applying the corresponding <code>Semigroup</code> passed as arguments to each element in the tuple.</p>"
+       },
+       {
+        "html": "<p>It is useful when you need to combine two tuples of the same type and you have a specific way of combining each element of the tuple.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tuple: <T extends ReadonlyArray<Semigroup<any>>>(\n  ...elements: T\n) => Semigroup<{ readonly [I in keyof T]: [T[I]] extends [Semigroup<infer A>] ? A : never }>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L214",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "constant",
+      "level": 2,
+      "name": "constant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const constant: <A>(a: A) => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L65",
+      "since": "0.24.0"
+     },
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>The <code>combineMany</code> parameter is optional and defaults to a standard implementation. You can provide a custom implementation when performance optimizations are possible.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <A>(combine: Semigroup<A>[\"combine\"], combineMany?: Semigroup<A>[\"combineMany\"]) => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L37",
+      "since": "0.24.0"
+     },
+     {
+      "id": "max",
+      "level": 2,
+      "name": "max",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>Semigroup</code> that returns last maximum of elements.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const max: <A>(O: Order<A>) => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L59",
+      "since": "0.24.0"
+     },
+     {
+      "id": "min",
+      "level": 2,
+      "name": "min",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>Semigroup</code> that returns last minimum of elements.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const min: <A>(O: Order<A>) => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L51",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<SemigroupTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L144",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product",
+      "level": 2,
+      "name": "Product",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Product: product_.Product<SemigroupTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L191",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiProduct: semiProduct.SemiProduct<SemigroupTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L179",
+      "since": "0.24.0"
+     },
+     {
+      "id": "first",
+      "level": 2,
+      "name": "first",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Always return the first argument.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const first: <A = never>() => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L109",
+      "since": "0.24.0"
+     },
+     {
+      "id": "last",
+      "level": 2,
+      "name": "last",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Always return the last argument.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const last: <A = never>() => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L117",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "semigroup-interface",
+      "level": 2,
+      "name": "Semigroup",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Semigroup<A> {\n  readonly combine: (self: A, that: A) => A\n  readonly combineMany: (self: A, collection: Iterable<A>) => A\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L16",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-lambdas",
+    "title": "type lambdas",
+    "exports": [
+     {
+      "id": "semigrouptypelambda-interface",
+      "level": 2,
+      "name": "SemigroupTypeLambda",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface SemigroupTypeLambda extends TypeLambda {\n  readonly type: Semigroup<this[\"Target\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L25",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "imap",
+      "level": 2,
+      "name": "imap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const imap: {\n  <A, B>(to: (a: A) => B, from: (b: B) => A): (self: Semigroup<A>) => Semigroup<B>\n  <A, B>(self: Semigroup<A>, to: (a: A) => B, from: (b: B) => A): Semigroup<B>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L131",
+      "since": "0.24.0"
+     },
+     {
+      "id": "intercalate",
+      "level": 2,
+      "name": "intercalate",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>The <code>intercalate</code> API returns a function that takes a <code>Semigroup</code> instance and a separator value, and returns a new <code>Semigroup</code> instance that combines values with the given separator.</p>"
+       },
+       {
+        "html": "<p>This API is useful when you want to combine values with a specific separator. For example, when you want to concatenate an array of strings with a separator string in between.</p>"
+       },
+       {
+        "html": "<p>It is interesting to note that there is no equivalent API in the <code>Monoid</code> module. This is because the value <code>empty</code>, which is required for the <code>Monoid</code> interface, cannot exist.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const intercalate: {\n  <A>(separator: A): (S: Semigroup<A>) => Semigroup<A>\n  <A>(S: Semigroup<A>, separator: A): Semigroup<A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L95",
+      "since": "0.24.0"
+     },
+     {
+      "id": "reverse",
+      "level": 2,
+      "name": "reverse",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>The dual of a <code>Semigroup</code>, obtained by flipping the arguments of <code>combine</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const reverse: <A>(S: Semigroup<A>) => Semigroup<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Semigroup.ts#L72",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Traversable": {
+  "name": "Traversable",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Traversable.ts",
+  "categories": [
+   {
+    "id": "type-class",
+    "title": "type class",
+    "exports": [
+     {
+      "id": "traversable-interface",
+      "level": 2,
+      "name": "Traversable",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Traversable<T extends TypeLambda> extends TypeClass<T> {\n  readonly traverse: <F extends TypeLambda>(\n    F: Applicative<F>\n  ) => {\n    <A, R, O, E, B>(\n      f: (a: A) => Kind<F, R, O, E, B>\n    ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, A>) => Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>\n    <TR, TO, TE, A, R, O, E, B>(\n      self: Kind<T, TR, TO, TE, A>,\n      f: (a: A) => Kind<F, R, O, E, B>\n    ): Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Traversable.ts#L12",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "sequence",
+      "level": 2,
+      "name": "sequence",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default <code>sequence</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const sequence: <T extends TypeLambda>(\n  T: Traversable<T>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => <TR, TO, TE, R, O, E, A>(\n  self: Kind<T, TR, TO, TE, Kind<F, R, O, E, A>>\n) => Kind<F, R, O, E, Kind<T, TR, TO, TE, A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Traversable.ts#L46",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversecomposition",
+      "level": 2,
+      "name": "traverseComposition",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default binary <code>traverse</code> composition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const traverseComposition: <T extends TypeLambda, G extends TypeLambda>(\n  T: Traversable<T>,\n  G: Traversable<G>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => <TR, TO, TE, GR, GO, GE, A, R, O, E, B>(\n  self: Kind<T, TR, TO, TE, Kind<G, GR, GO, GE, A>>,\n  f: (a: A) => Kind<F, R, O, E, B>\n) => Kind<F, R, O, E, Kind<T, TR, TO, TE, Kind<G, GR, GO, GE, B>>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Traversable.ts#L31",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversetap",
+      "level": 2,
+      "name": "traverseTap",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Given a function which returns a <code>F</code> effect, thread this effect through the running of this function on all the values in <code>T</code>, returning an <code>T&lt;A&gt;</code> in a <code>F</code> context, ignoring the values returned by the provided function.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const traverseTap: <T extends TypeLambda>(\n  T: Traversable<T>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => {\n  <A, R, O, E, B>(\n    f: (a: A) => Kind<F, R, O, E, B>\n  ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, A>) => Kind<F, R, O, E, Kind<T, TR, TO, TE, A>>\n  <TR, TO, TE, A, R, O, E, B>(\n    self: Kind<T, TR, TO, TE, A>,\n    f: (a: A) => Kind<F, R, O, E, B>\n  ): Kind<F, R, O, E, Kind<T, TR, TO, TE, A>>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Traversable.ts#L61",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "TraversableFilterable": {
+  "name": "TraversableFilterable",
+  "since": "0.24.0",
+  "description": [
+   {
+    "html": "<p><code>TraversableFilterable</code> represents data structures which can be <em>partitioned</em> with effects in some <code>Applicative</code> functor.</p>"
+   }
+  ],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/TraversableFilterable.ts",
+  "categories": [
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "traversablefilterable-interface",
+      "level": 2,
+      "name": "TraversableFilterable",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface TraversableFilterable<T extends TypeLambda> extends TypeClass<T> {\n  readonly traversePartitionMap: <F extends TypeLambda>(\n    F: Applicative<F>\n  ) => {\n    <A, R, O, E, B, C>(\n      f: (a: A) => Kind<F, R, O, E, Either<C, B>>\n    ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, A>) => Kind<F, R, O, E, [Kind<T, TR, TO, TE, B>, Kind<T, TR, TO, TE, C>]>\n    <TR, TO, TE, A, R, O, E, B, C>(\n      self: Kind<T, TR, TO, TE, A>,\n      f: (a: A) => Kind<F, R, O, E, Either<C, B>>\n    ): Kind<F, R, O, E, [Kind<T, TR, TO, TE, B>, Kind<T, TR, TO, TE, C>]>\n  }\n\n  readonly traverseFilterMap: <F extends TypeLambda>(\n    F: Applicative<F>\n  ) => {\n    <A, R, O, E, B>(\n      f: (a: A) => Kind<F, R, O, E, Option<B>>\n    ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, A>) => Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>\n    <TR, TO, TE, A, R, O, E, B>(\n      self: Kind<T, TR, TO, TE, A>,\n      f: (a: A) => Kind<F, R, O, E, Option<B>>\n    ): Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/TraversableFilterable.ts#L22",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "traversefilter",
+      "level": 2,
+      "name": "traverseFilter",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const traverseFilter: <T extends TypeLambda>(\n  T: TraversableFilterable<T>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => {\n  <B extends A, R, O, E, A = B>(\n    predicate: (a: A) => Kind<F, R, O, E, boolean>\n  ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, B>) => Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>\n  <TR, TO, TE, B extends A, R, O, E, A = B>(\n    self: Kind<T, TR, TO, TE, B>,\n    predicate: (a: A) => Kind<F, R, O, E, boolean>\n  ): Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/TraversableFilterable.ts#L85",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversefiltermap",
+      "level": 2,
+      "name": "traverseFilterMap",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default binary <code>traverseFilterMap</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const traverseFilterMap: <T extends TypeLambda>(\n  T: Traversable<T> & Filterable<T>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => <TR, TO, TE, A, R, O, E, B>(\n  self: Kind<T, TR, TO, TE, A>,\n  f: (a: A) => Kind<F, R, O, E, Option<B>>\n) => Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/TraversableFilterable.ts#L71",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversepartition",
+      "level": 2,
+      "name": "traversePartition",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const traversePartition: <T extends TypeLambda>(\n  T: TraversableFilterable<T>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => {\n  <B extends A, R, O, E, A = B>(\n    predicate: (a: A) => Kind<F, R, O, E, boolean>\n  ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, B>) => Kind<F, R, O, E, [Kind<T, TR, TO, TE, B>, Kind<T, TR, TO, TE, B>]>\n  <TR, TO, TE, B extends A, R, O, E, A = B>(\n    self: Kind<T, TR, TO, TE, B>,\n    predicate: (a: A) => Kind<F, R, O, E, boolean>\n  ): Kind<F, R, O, E, [Kind<T, TR, TO, TE, B>, Kind<T, TR, TO, TE, B>]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/TraversableFilterable.ts#L113",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversepartitionmap",
+      "level": 2,
+      "name": "traversePartitionMap",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Returns a default binary <code>traversePartitionMap</code> implementation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const traversePartitionMap: <T extends TypeLambda>(\n  T: Traversable<T> & Covariant<T> & Filterable<T>\n) => <F extends TypeLambda>(\n  F: Applicative<F>\n) => <TR, TO, TE, A, R, O, E, B, C>(\n  self: Kind<T, TR, TO, TE, A>,\n  f: (a: A) => Kind<F, R, O, E, Either<C, B>>\n) => Kind<F, R, O, E, [Kind<T, TR, TO, TE, B>, Kind<T, TR, TO, TE, C>]>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/TraversableFilterable.ts#L55",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Array": {
+  "name": "data/Array",
+  "since": "0.24.0",
+  "description": [
+   {
+    "html": "<p>This module provides utility functions for working with arrays in TypeScript.</p>"
+   }
+  ],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "applicative",
+      "level": 2,
+      "name": "Applicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Applicative: applicative.Applicative<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L219",
+      "since": "0.24.0"
+     },
+     {
+      "id": "chainable",
+      "level": 2,
+      "name": "Chainable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Chainable: chainable.Chainable<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L152",
+      "since": "0.24.0"
+     },
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L117",
+      "since": "0.24.0"
+     },
+     {
+      "id": "filterable",
+      "level": 2,
+      "name": "Filterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Filterable: filterable.Filterable<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L162",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flatmap",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FlatMap: flatMap_.FlatMap<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L144",
+      "since": "0.24.0"
+     },
+     {
+      "id": "foldable",
+      "level": 2,
+      "name": "Foldable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Foldable: foldable.Foldable<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L243",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L126",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monad",
+      "level": 2,
+      "name": "Monad",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monad: monad.Monad<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L232",
+      "since": "0.24.0"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L109",
+      "since": "0.24.0"
+     },
+     {
+      "id": "pointed",
+      "level": 2,
+      "name": "Pointed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Pointed: pointed.Pointed<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L134",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product",
+      "level": 2,
+      "name": "Product",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Product: product_.Product<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L202",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiapplicative",
+      "level": 2,
+      "name": "SemiApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiApplicative: semiApplicative.SemiApplicative<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L189",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiProduct: semiProduct.SemiProduct<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L179",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversable",
+      "level": 2,
+      "name": "Traversable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Traversable: traversable.Traversable<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L171",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversablefilterable",
+      "level": 2,
+      "name": "TraversableFilterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TraversableFilterable: traversableFilterable.TraversableFilterable<ArrayInstances.ReadonlyArrayTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L251",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getmonoid",
+      "level": 2,
+      "name": "getMonoid",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoid: <A>() => Monoid<ReadonlyArray<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L268",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemigroup",
+      "level": 2,
+      "name": "getSemigroup",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroup: <A>() => Semigroup<ReadonlyArray<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Array.ts#L262",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/BigInt": {
+  "name": "data/BigInt",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "monoidmultiply",
+      "level": 2,
+      "name": "MonoidMultiply",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>bigint</code> monoid under multiplication.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>1n</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidMultiply: monoid.Monoid<bigint>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { MonoidMultiply } from \"@effect/typeclass/data/BigInt\"\n\nconsole.log(MonoidMultiply.combine(2n, 3n))\n// 6n\nconsole.log(MonoidMultiply.combine(2n, MonoidMultiply.empty))\n// 2n"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts#L128",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidsum",
+      "level": 2,
+      "name": "MonoidSum",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>bigint</code> monoid under addition.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>0n</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidSum: monoid.Monoid<bigint>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { MonoidSum } from \"@effect/typeclass/data/BigInt\"\n\nconsole.log(MonoidSum.combine(2n, 3n))\n// 5n\nconsole.log(MonoidSum.combine(2n, MonoidSum.empty))\n// 2n"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts#L104",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmax",
+      "level": 2,
+      "name": "SemigroupMax",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Semigroup</code> that uses the maximum between two values.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMax: semigroup.Semigroup<bigint>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupMax } from \"@effect/typeclass/data/BigInt\"\n\nconsole.log(SemigroupMax.combine(2n, 3n))\n// 3n"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts#L83",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmin",
+      "level": 2,
+      "name": "SemigroupMin",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Semigroup</code> that uses the minimum between two values.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMin: semigroup.Semigroup<bigint>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupMin } from \"@effect/typeclass/data/BigInt\"\n\nconsole.log(SemigroupMin.combine(2n, 3n))\n// 2n"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts#L66",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmultiply",
+      "level": 2,
+      "name": "SemigroupMultiply",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>bigint</code> semigroup under multiplication.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMultiply: semigroup.Semigroup<bigint>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts#L34",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupsum",
+      "level": 2,
+      "name": "SemigroupSum",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>bigint</code> semigroup under addition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupSum: semigroup.Semigroup<bigint>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupSum } from \"@effect/typeclass/data/BigInt\"\n\nconsole.log(SemigroupSum.combine(2n, 3n))\n// 5n"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/BigInt.ts#L24",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Boolean": {
+  "name": "data/Boolean",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "monoideqv",
+      "level": 2,
+      "name": "MonoidEqv",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> monoid under equivalence.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>true</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidEqv: monoid.Monoid<boolean>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L163",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidevery",
+      "level": 2,
+      "name": "MonoidEvery",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> monoid under conjunction, see also <code>SemigroupEvery</code>.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>true</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidEvery: monoid.Monoid<boolean>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L133",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidsome",
+      "level": 2,
+      "name": "MonoidSome",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> monoid under disjunction, see also <code>SemigroupSome</code>.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>false</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidSome: monoid.Monoid<boolean>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L143",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidxor",
+      "level": 2,
+      "name": "MonoidXor",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> monoid under exclusive disjunction, see also <code>SemigroupXor</code>.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>false</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidXor: monoid.Monoid<boolean>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L153",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupeqv",
+      "level": 2,
+      "name": "SemigroupEqv",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> semigroup under equivalence.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupEqv: semigroup.Semigroup<boolean>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupEqv } from \"@effect/typeclass/data/Boolean\"\n\nconsole.log(SemigroupEqv.combine(true, true))\n// true\nconsole.log(SemigroupEqv.combine(true, false))\n// false\nconsole.log(SemigroupEqv.combine(false, true))\n// false\nconsole.log(SemigroupEqv.combine(false, false))\n// true"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L123",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupevery",
+      "level": 2,
+      "name": "SemigroupEvery",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> semigroup under conjunction.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupEvery: semigroup.Semigroup<boolean>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupEvery } from \"@effect/typeclass/data/Boolean\"\n\nconsole.log(SemigroupEvery.combine(true, true))\n// true\nconsole.log(SemigroupEvery.combine(true, false))\n// false\nconsole.log(SemigroupEvery.combine(false, true))\n// false\nconsole.log(SemigroupEvery.combine(false, false))\n// false"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L28",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupsome",
+      "level": 2,
+      "name": "SemigroupSome",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> semigroup under disjunction.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupSome: semigroup.Semigroup<boolean>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupSome } from \"@effect/typeclass/data/Boolean\"\n\nconsole.log(SemigroupSome.combine(true, true))\n// true\nconsole.log(SemigroupSome.combine(true, false))\n// true\nconsole.log(SemigroupSome.combine(false, true))\n// true\nconsole.log(SemigroupSome.combine(false, false))\n// false"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L64",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupxor",
+      "level": 2,
+      "name": "SemigroupXor",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>boolean</code> semigroup under exclusive disjunction.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupXor: semigroup.Semigroup<boolean>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupXor } from \"@effect/typeclass/data/Boolean\"\n\nconsole.log(SemigroupXor.combine(true, true))\n// false\nconsole.log(SemigroupXor.combine(true, false))\n// true\nconsole.log(SemigroupXor.combine(false, true))\n// true\nconsole.log(SemigroupXor.combine(false, false))\n// false"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Boolean.ts#L100",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Duration": {
+  "name": "data/Duration",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "bounded",
+      "level": 2,
+      "name": "Bounded",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Bounded: bounded.Bounded<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L13",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidmax",
+      "level": 2,
+      "name": "MonoidMax",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidMax: monoid.Monoid<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L44",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidmin",
+      "level": 2,
+      "name": "MonoidMin",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidMin: monoid.Monoid<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L59",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidsum",
+      "level": 2,
+      "name": "MonoidSum",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidSum: monoid.Monoid<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L29",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmax",
+      "level": 2,
+      "name": "SemigroupMax",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMax: semigroup.Semigroup<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L38",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmin",
+      "level": 2,
+      "name": "SemigroupMin",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMin: semigroup.Semigroup<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L53",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupsum",
+      "level": 2,
+      "name": "SemigroupSum",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupSum: semigroup.Semigroup<Duration.Duration>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Duration.ts#L23",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Effect": {
+  "name": "data/Effect",
+  "since": "0.24.40",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "chainable",
+      "level": 2,
+      "name": "Chainable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Chainable: chainable.Chainable<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L94",
+      "since": "0.24.40"
+     },
+     {
+      "id": "concurrencyoptions-type-alias",
+      "level": 2,
+      "name": "ConcurrencyOptions",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ConcurrencyOptions = {\n  readonly concurrency?: Concurrency | undefined\n  readonly batching?: boolean | \"inherit\" | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L31",
+      "since": "0.24.40"
+     },
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L51",
+      "since": "0.24.40"
+     },
+     {
+      "id": "flatmap",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FlatMap: flatMap_.FlatMap<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L86",
+      "since": "0.24.40"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L60",
+      "since": "0.24.40"
+     },
+     {
+      "id": "monad",
+      "level": 2,
+      "name": "Monad",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monad: monad.Monad<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L104",
+      "since": "0.24.40"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L68",
+      "since": "0.24.40"
+     },
+     {
+      "id": "pointed",
+      "level": 2,
+      "name": "Pointed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Pointed: pointed.Pointed<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L76",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getapplicative",
+      "level": 2,
+      "name": "getApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getApplicative: (options?: ConcurrencyOptions) => applicative.Applicative<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L150",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getproduct",
+      "level": 2,
+      "name": "getProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getProduct: (options?: ConcurrencyOptions) => product_.Product<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L125",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getsemiapplicative",
+      "level": 2,
+      "name": "getSemiApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemiApplicative: (\n  options?: ConcurrencyOptions\n) => semiApplicative.SemiApplicative<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L137",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getsemiproduct",
+      "level": 2,
+      "name": "getSemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemiProduct: (options?: ConcurrencyOptions) => semiProduct.SemiProduct<Effect.EffectTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Effect.ts#L115",
+      "since": "0.24.40"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Either": {
+  "name": "data/Either",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "applicative",
+      "level": 2,
+      "name": "Applicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Applicative: applicative.Applicative<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L239",
+      "since": "0.24.0"
+     },
+     {
+      "id": "bicovariant",
+      "level": 2,
+      "name": "Bicovariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Bicovariant: bicovariant.Bicovariant<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L134",
+      "since": "0.24.0"
+     },
+     {
+      "id": "chainable",
+      "level": 2,
+      "name": "Chainable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Chainable: chainable.Chainable<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L185",
+      "since": "0.24.0"
+     },
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L142",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flatmap",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FlatMap: flatMap_.FlatMap<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L177",
+      "since": "0.24.0"
+     },
+     {
+      "id": "foldable",
+      "level": 2,
+      "name": "Foldable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Foldable: foldable.Foldable<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L273",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L151",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monad",
+      "level": 2,
+      "name": "Monad",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monad: monad.Monad<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L195",
+      "since": "0.24.0"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L159",
+      "since": "0.24.0"
+     },
+     {
+      "id": "pointed",
+      "level": 2,
+      "name": "Pointed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Pointed: pointed.Pointed<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L167",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product",
+      "level": 2,
+      "name": "Product",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Product: product_.Product<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L216",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semialternative",
+      "level": 2,
+      "name": "SemiAlternative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiAlternative: semiAlternative.SemiAlternative<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L262",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiapplicative",
+      "level": 2,
+      "name": "SemiApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiApplicative: semiApplicative.SemiApplicative<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L228",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semicoproduct",
+      "level": 2,
+      "name": "SemiCoproduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiCoproduct: semiCoproduct.SemiCoproduct<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L252",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiProduct: semiProduct.SemiProduct<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L206",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversable",
+      "level": 2,
+      "name": "Traversable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Traversable: traversable.Traversable<Either.EitherTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Either.ts#L284",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Identity": {
+  "name": "data/Identity",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "applicative",
+      "level": 2,
+      "name": "Applicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Applicative: applicative.Applicative<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L179",
+      "since": "0.24.0"
+     },
+     {
+      "id": "chainable",
+      "level": 2,
+      "name": "Chainable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Chainable: chainable.Chainable<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L125",
+      "since": "0.24.0"
+     },
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L82",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flatmap",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FlatMap: flatMap_.FlatMap<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L117",
+      "since": "0.24.0"
+     },
+     {
+      "id": "foldable",
+      "level": 2,
+      "name": "Foldable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Foldable: foldable.Foldable<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L215",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L91",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monad",
+      "level": 2,
+      "name": "Monad",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monad: monad.Monad<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L135",
+      "since": "0.24.0"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L99",
+      "since": "0.24.0"
+     },
+     {
+      "id": "pointed",
+      "level": 2,
+      "name": "Pointed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Pointed: pointed.Pointed<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L107",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product",
+      "level": 2,
+      "name": "Product",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Product: product_.Product<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L156",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiapplicative",
+      "level": 2,
+      "name": "SemiApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiApplicative: semiApplicative.SemiApplicative<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L168",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiProduct: semiProduct.SemiProduct<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L146",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversable",
+      "level": 2,
+      "name": "Traversable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Traversable: traversable.Traversable<IdentityTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L223",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemialternative",
+      "level": 2,
+      "name": "getSemiAlternative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemiAlternative: <A>(S: Semigroup<A>) => semiAlternative.SemiAlternative<IdentityTypeLambdaFix<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L204",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemicoproduct",
+      "level": 2,
+      "name": "getSemiCoproduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemiCoproduct: <A>(S: Semigroup<A>) => semiCoproduct.SemiCoproduct<IdentityTypeLambdaFix<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L192",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "identity-type-alias",
+      "level": 2,
+      "name": "Identity",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type A = A"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L60",
+      "since": "0.24.0"
+     }
+    ]
+   },
+   {
+    "id": "type-lambdas",
+    "title": "type lambdas",
+    "exports": [
+     {
+      "id": "identitytypelambda-interface",
+      "level": 2,
+      "name": "IdentityTypeLambda",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface IdentityTypeLambda extends TypeLambda {\n  readonly type: Identity<this[\"Target\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L66",
+      "since": "0.24.0"
+     },
+     {
+      "id": "identitytypelambdafix-interface",
+      "level": 2,
+      "name": "IdentityTypeLambdaFix",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface IdentityTypeLambdaFix<A> extends TypeLambda {\n  readonly type: Identity<A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Identity.ts#L74",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Micro": {
+  "name": "data/Micro",
+  "since": "0.24.40",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "chainable",
+      "level": 2,
+      "name": "Chainable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Chainable: chainable.Chainable<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L93",
+      "since": "0.24.40"
+     },
+     {
+      "id": "concurrencyoptions-type-alias",
+      "level": 2,
+      "name": "ConcurrencyOptions",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ConcurrencyOptions = {\n  readonly concurrency?: Concurrency | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L31",
+      "since": "0.24.40"
+     },
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L50",
+      "since": "0.24.40"
+     },
+     {
+      "id": "flatmap",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FlatMap: flatMap_.FlatMap<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L85",
+      "since": "0.24.40"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L59",
+      "since": "0.24.40"
+     },
+     {
+      "id": "monad",
+      "level": 2,
+      "name": "Monad",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monad: monad.Monad<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L103",
+      "since": "0.24.40"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L67",
+      "since": "0.24.40"
+     },
+     {
+      "id": "pointed",
+      "level": 2,
+      "name": "Pointed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Pointed: pointed.Pointed<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L75",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getapplicative",
+      "level": 2,
+      "name": "getApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getApplicative: (options?: ConcurrencyOptions) => applicative.Applicative<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L149",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getproduct",
+      "level": 2,
+      "name": "getProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getProduct: (options?: ConcurrencyOptions) => product_.Product<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L124",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getsemiapplicative",
+      "level": 2,
+      "name": "getSemiApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemiApplicative: (\n  options?: ConcurrencyOptions\n) => semiApplicative.SemiApplicative<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L136",
+      "since": "0.24.40"
+     },
+     {
+      "id": "getsemiproduct",
+      "level": 2,
+      "name": "getSemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemiProduct: (options?: ConcurrencyOptions) => semiProduct.SemiProduct<Micro.MicroTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Micro.ts#L114",
+      "since": "0.24.40"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Number": {
+  "name": "data/Number",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "bounded",
+      "level": 2,
+      "name": "Bounded",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Bounded: bounded.Bounded<number>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L13",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidmax",
+      "level": 2,
+      "name": "MonoidMax",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Monoid</code> that uses the maximum between two values.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>Infinity</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidMax: monoid.Monoid<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { MonoidMax } from \"@effect/typeclass/data/Number\"\n\nconsole.log(MonoidMax.combine(2, 3))\n// 3\nconsole.log(MonoidMax.combine(2, MonoidMax.empty))\n// 2"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L184",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidmin",
+      "level": 2,
+      "name": "MonoidMin",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Monoid</code> that uses the minimum between two values.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>-Infinity</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidMin: monoid.Monoid<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { MonoidMin } from \"@effect/typeclass/data/Number\"\n\nconsole.log(MonoidMin.combine(2, 3))\n// 2\nconsole.log(MonoidMin.combine(2, MonoidMin.empty))\n// 2"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L163",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidmultiply",
+      "level": 2,
+      "name": "MonoidMultiply",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>number</code> monoid under multiplication.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>1</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidMultiply: monoid.Monoid<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { MonoidMultiply } from \"@effect/typeclass/data/Number\"\n\nconsole.log(MonoidMultiply.combine(2, 3))\n// 6\nconsole.log(MonoidMultiply.combine(2, MonoidMultiply.empty))\n// 2"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L142",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoidsum",
+      "level": 2,
+      "name": "MonoidSum",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>number</code> monoid under addition.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>0</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MonoidSum: monoid.Monoid<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { MonoidSum } from \"@effect/typeclass/data/Number\"\n\nconsole.log(MonoidSum.combine(2, 3))\n// 5\nconsole.log(MonoidSum.combine(2, MonoidSum.empty))\n// 2"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L121",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmax",
+      "level": 2,
+      "name": "SemigroupMax",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Semigroup</code> that uses the maximum between two values.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMax: semigroup.Semigroup<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupMax } from \"@effect/typeclass/data/Number\"\n\nconsole.log(SemigroupMax.combine(2, 3))\n// 3"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L100",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmin",
+      "level": 2,
+      "name": "SemigroupMin",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Semigroup</code> that uses the minimum between two values.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMin: semigroup.Semigroup<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupMin } from \"@effect/typeclass/data/Number\"\n\nconsole.log(SemigroupMin.combine(2, 3))\n// 2"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L83",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupmultiply",
+      "level": 2,
+      "name": "SemigroupMultiply",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>number</code> semigroup under multiplication.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupMultiply: semigroup.Semigroup<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupMultiply } from \"@effect/typeclass/data/Number\"\n\nconsole.log(SemigroupMultiply.combine(2, 3))\n// 6"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L51",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroupsum",
+      "level": 2,
+      "name": "SemigroupSum",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>number</code> semigroup under addition.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemigroupSum: semigroup.Semigroup<number>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { SemigroupSum } from \"@effect/typeclass/data/Number\"\n\nconsole.log(SemigroupSum.combine(2, 3))\n// 5"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Number.ts#L34",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Option": {
+  "name": "data/Option",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "alternative",
+      "level": 2,
+      "name": "Alternative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Alternative: alternative.Alternative<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L224",
+      "since": "0.24.0"
+     },
+     {
+      "id": "applicative",
+      "level": 2,
+      "name": "Applicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Applicative: applicative.Applicative<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L178",
+      "since": "0.24.0"
+     },
+     {
+      "id": "chainable",
+      "level": 2,
+      "name": "Chainable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Chainable: chainable.Chainable<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L124",
+      "since": "0.24.0"
+     },
+     {
+      "id": "coproduct",
+      "level": 2,
+      "name": "Coproduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Coproduct: coproduct_.Coproduct<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L201",
+      "since": "0.24.0"
+     },
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L81",
+      "since": "0.24.0"
+     },
+     {
+      "id": "filterable",
+      "level": 2,
+      "name": "Filterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Filterable: filterable.Filterable<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L248",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flatmap",
+      "level": 2,
+      "name": "FlatMap",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FlatMap: flatMap_.FlatMap<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L116",
+      "since": "0.24.0"
+     },
+     {
+      "id": "foldable",
+      "level": 2,
+      "name": "Foldable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Foldable: foldable.Foldable<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L237",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L90",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monad",
+      "level": 2,
+      "name": "Monad",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monad: monad.Monad<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L134",
+      "since": "0.24.0"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L98",
+      "since": "0.24.0"
+     },
+     {
+      "id": "pointed",
+      "level": 2,
+      "name": "Pointed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Pointed: pointed.Pointed<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L106",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product",
+      "level": 2,
+      "name": "Product",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Product: product_.Product<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L155",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semialternative",
+      "level": 2,
+      "name": "SemiAlternative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiAlternative: semiAlternative.SemiAlternative<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L213",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiapplicative",
+      "level": 2,
+      "name": "SemiApplicative",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiApplicative: semiApplicative.SemiApplicative<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L167",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semicoproduct",
+      "level": 2,
+      "name": "SemiCoproduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiCoproduct: semiCoproduct.SemiCoproduct<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L191",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiProduct: semiProduct.SemiProduct<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L145",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversable",
+      "level": 2,
+      "name": "Traversable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Traversable: traversable.Traversable<Option.OptionTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L257",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getoptionalmonoid",
+      "level": 2,
+      "name": "getOptionalMonoid",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getOptionalMonoid: <A>(Semigroup: Semigroup<A>) => Monoid<Option.Option<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Option.ts#L265",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Ordering": {
+  "name": "data/Ordering",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Ordering.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "monoid",
+      "level": 2,
+      "name": "Monoid",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>Monoid</code> instance for <code>Ordering</code>, returns the left-most non-zero <code>Ordering</code>.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>0</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monoid: monoid.Monoid<Ordering>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { Monoid } from \"@effect/typeclass/data/Ordering\"\n\nconsole.log(Monoid.combine(Monoid.empty, -1))\n// -1\nconsole.log(Monoid.combine(Monoid.empty, 1))\n// 1\nconsole.log(Monoid.combine(1, -1))\n// 1"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Ordering.ts#L64",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroup",
+      "level": 2,
+      "name": "Semigroup",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>Semigroup</code> instance for <code>Ordering</code>, returns the left-most non-zero <code>Ordering</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Semigroup: semigroup.Semigroup<Ordering>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import { Semigroup } from \"@effect/typeclass/data/Ordering\"\n\nconsole.log(Semigroup.combine(0, -1))\n// -1\nconsole.log(Semigroup.combine(0, 1))\n// 1\nconsole.log(Semigroup.combine(1, -1))\n// 1"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Ordering.ts#L27",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Predicate": {
+  "name": "data/Predicate",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "contravariant",
+      "level": 2,
+      "name": "Contravariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Contravariant: contravariant.Contravariant<Predicate.PredicateTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L57",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<Predicate.PredicateTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L66",
+      "since": "0.24.0"
+     },
+     {
+      "id": "of",
+      "level": 2,
+      "name": "Of",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Of: of_.Of<Predicate.PredicateTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L74",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product",
+      "level": 2,
+      "name": "Product",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Product: product_.Product<Predicate.PredicateTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L92",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct",
+      "level": 2,
+      "name": "SemiProduct",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SemiProduct: semiProduct.SemiProduct<Predicate.PredicateTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L82",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getmonoideqv",
+      "level": 2,
+      "name": "getMonoidEqv",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoidEqv: <A>() => monoid.Monoid<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L111",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getmonoidevery",
+      "level": 2,
+      "name": "getMonoidEvery",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoidEvery: <A>() => monoid.Monoid<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L179",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getmonoidsome",
+      "level": 2,
+      "name": "getMonoidSome",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoidSome: <A>() => monoid.Monoid<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L152",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getmonoidxor",
+      "level": 2,
+      "name": "getMonoidXor",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoidXor: <A>() => monoid.Monoid<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L125",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemigroupeqv",
+      "level": 2,
+      "name": "getSemigroupEqv",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroupEqv: <A>() => Semigroup<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L104",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemigroupevery",
+      "level": 2,
+      "name": "getSemigroupEvery",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroupEvery: <A>() => Semigroup<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L159",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemigroupsome",
+      "level": 2,
+      "name": "getSemigroupSome",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroupSome: <A>() => Semigroup<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L132",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getsemigroupxor",
+      "level": 2,
+      "name": "getSemigroupXor",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroupXor: <A>() => Semigroup<Predicate.Predicate<A>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Predicate.ts#L118",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Record": {
+  "name": "data/Record",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "covariant",
+      "level": 2,
+      "name": "Covariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Covariant: covariant.Covariant<Record.ReadonlyRecordTypeLambda<string>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L139",
+      "since": "0.24.0"
+     },
+     {
+      "id": "filterable",
+      "level": 2,
+      "name": "Filterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Filterable: filterable.Filterable<Record.ReadonlyRecordTypeLambda<string>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L172",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant",
+      "level": 2,
+      "name": "Invariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Invariant: invariant.Invariant<Record.ReadonlyRecordTypeLambda<string>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L155",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversable",
+      "level": 2,
+      "name": "Traversable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Traversable: traversable.Traversable<Record.ReadonlyRecordTypeLambda<string>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L188",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversablefilterable",
+      "level": 2,
+      "name": "TraversableFilterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TraversableFilterable: traversableFilterable.TraversableFilterable<\n  Record.ReadonlyRecordTypeLambda<string>\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L205",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getcovariant",
+      "level": 2,
+      "name": "getCovariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getCovariant: <K extends string>() => covariant.Covariant<Record.ReadonlyRecordTypeLambda<K>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L128",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getfilterable",
+      "level": 2,
+      "name": "getFilterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getFilterable: <K extends string>() => filterable.Filterable<Record.ReadonlyRecordTypeLambda<K>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L161",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getinvariant",
+      "level": 2,
+      "name": "getInvariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getInvariant: <K extends string>() => invariant.Invariant<Record.ReadonlyRecordTypeLambda<K>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L145",
+      "since": "0.24.0"
+     },
+     {
+      "id": "getmonoidunion",
+      "level": 2,
+      "name": "getMonoidUnion",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Monoid</code> that creates a union of two records.</p>"
+       },
+       {
+        "html": "<p>It allows combining two records where values for matching keys are combined using the provided <code>Monoid</code> instance. If a key exists in only one of the records, that key-value pair is included as is in the resulting record.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value for this <code>Monoid</code> is an empty record <code>{}</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getMonoidUnion: <A>(value: monoid.Monoid<A>) => monoid.Monoid<Record.ReadonlyRecord<string, A>>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import * as NumberInstances from \"@effect/typeclass/data/Number\"\nimport { getMonoidUnion } from \"@effect/typeclass/data/Record\"\n\nconst monoid = getMonoidUnion(NumberInstances.MonoidSum)\n\nconsole.log(monoid.combine({ a: 1 }, { a: 1, b: 3 }))\n// { a: 2, b: 3 }\n\nconsole.log(monoid.combine({ a: 1 }, monoid.empty))\n// { a: 1 }"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L260",
+      "since": "0.29.4"
+     },
+     {
+      "id": "getsemigroupintersection",
+      "level": 2,
+      "name": "getSemigroupIntersection",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Semigroup</code> that creates an intersection of two records.</p>"
+       },
+       {
+        "html": "<p>This <code>Semigroup</code> takes two records and combines them into a new record containing only the keys that are present in both records. The values for matching keys are combined using the provided <code>Semigroup</code> instance.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroupIntersection: <A>(\n  value: semigroup.Semigroup<A>\n) => semigroup.Semigroup<Record.ReadonlyRecord<string, A>>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import * as NumberInstances from \"@effect/typeclass/data/Number\"\nimport { getSemigroupIntersection } from \"@effect/typeclass/data/Record\"\n\nconsole.log(getSemigroupIntersection(NumberInstances.MonoidSum).combine({ a: 1 }, { a: 1, b: 3 }))\n// { a: 2 }"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L284",
+      "since": "0.29.4"
+     },
+     {
+      "id": "getsemigroupunion",
+      "level": 2,
+      "name": "getSemigroupUnion",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>Semigroup</code> that creates a union of two records.</p>"
+       },
+       {
+        "html": "<p>This <code>Semigroup</code> takes two records and combines them into a single record. If a key exists in both records, the provided <code>Semigroup</code> instance is used to combine the values for that key. If a key exists in only one of the records, that key-value pair is included as is in the resulting record.</p>"
+       },
+       {
+        "html": "<p>For example, when using the <code>MonoidSum</code>, values for matching keys will be summed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getSemigroupUnion: <A>(\n  value: semigroup.Semigroup<A>\n) => semigroup.Semigroup<Record.ReadonlyRecord<string, A>>"
+      },
+      "examples": [
+       {
+        "lang": "ts",
+        "code": "import * as NumberInstances from \"@effect/typeclass/data/Number\"\nimport { getSemigroupUnion } from \"@effect/typeclass/data/Record\"\n\nconsole.log(getSemigroupUnion(NumberInstances.MonoidSum).combine({ a: 1 }, { a: 1, b: 3 }))\n// { a: 2, b: 3 }"
+       }
+      ],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L229",
+      "since": "0.29.4"
+     },
+     {
+      "id": "gettraversable",
+      "level": 2,
+      "name": "getTraversable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getTraversable: <K extends string>() => traversable.Traversable<Record.ReadonlyRecordTypeLambda<K>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L178",
+      "since": "0.24.0"
+     },
+     {
+      "id": "gettraversablefilterable",
+      "level": 2,
+      "name": "getTraversableFilterable",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const getTraversableFilterable: <K extends string>() => traversableFilterable.TraversableFilterable<\n  Record.ReadonlyRecordTypeLambda<K>\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Record.ts#L194",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/String": {
+  "name": "data/String",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/String.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "monoid",
+      "level": 2,
+      "name": "Monoid",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>string</code> monoid under concatenation.</p>"
+       },
+       {
+        "html": "<p>The <code>empty</code> value is <code>''</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Monoid: monoid.Monoid<string>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/String.ts#L23",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroup",
+      "level": 2,
+      "name": "Semigroup",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p><code>string</code> semigroup under concatenation.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Semigroup: semigroup.Semigroup<string>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/String.ts#L13",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "data/Tuple": {
+  "name": "data/Tuple",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Tuple.ts",
+  "categories": [
+   {
+    "id": "instances",
+    "title": "instances",
+    "exports": [
+     {
+      "id": "bicovariant",
+      "level": 2,
+      "name": "Bicovariant",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Bicovariant: bicovariant.Bicovariant<Tuple.TupleTypeLambda>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/Tuple.ts#L24",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "0.24.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "alternative-namespace-export",
+      "level": 2,
+      "name": "Alternative (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Alternative.js\u201d module as <code>Alternative</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Alternative from \"./Alternative.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L4",
+      "since": "0.24.0"
+     },
+     {
+      "id": "applicative-namespace-export",
+      "level": 2,
+      "name": "Applicative (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Applicative.js\u201d module as <code>Applicative</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Applicative from \"./Applicative.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L9",
+      "since": "0.24.0"
+     },
+     {
+      "id": "bicovariant-namespace-export",
+      "level": 2,
+      "name": "Bicovariant (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Bicovariant.js\u201d module as <code>Bicovariant</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Bicovariant from \"./Bicovariant.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L14",
+      "since": "0.24.0"
+     },
+     {
+      "id": "bounded-namespace-export",
+      "level": 2,
+      "name": "Bounded (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Bounded.js\u201d module as <code>Bounded</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Bounded from \"./Bounded.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L19",
+      "since": "0.24.0"
+     },
+     {
+      "id": "chainable-namespace-export",
+      "level": 2,
+      "name": "Chainable (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Chainable.js\u201d module as <code>Chainable</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Chainable from \"./Chainable.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L24",
+      "since": "0.24.0"
+     },
+     {
+      "id": "contravariant-namespace-export",
+      "level": 2,
+      "name": "Contravariant (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Contravariant.js\u201d module as <code>Contravariant</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Contravariant from \"./Contravariant.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L29",
+      "since": "0.24.0"
+     },
+     {
+      "id": "coproduct-namespace-export",
+      "level": 2,
+      "name": "Coproduct (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Coproduct.js\u201d module as <code>Coproduct</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Coproduct from \"./Coproduct.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L34",
+      "since": "0.24.0"
+     },
+     {
+      "id": "covariant-namespace-export",
+      "level": 2,
+      "name": "Covariant (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Covariant.js\u201d module as <code>Covariant</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Covariant from \"./Covariant.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L39",
+      "since": "0.24.0"
+     },
+     {
+      "id": "filterable-namespace-export",
+      "level": 2,
+      "name": "Filterable (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Filterable.js\u201d module as <code>Filterable</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Filterable from \"./Filterable.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L46",
+      "since": "0.24.0"
+     },
+     {
+      "id": "flatmap-namespace-export",
+      "level": 2,
+      "name": "FlatMap (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./FlatMap.js\u201d module as <code>FlatMap</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as FlatMap from \"./FlatMap.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L51",
+      "since": "0.24.0"
+     },
+     {
+      "id": "foldable-namespace-export",
+      "level": 2,
+      "name": "Foldable (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Foldable.js\u201d module as <code>Foldable</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Foldable from \"./Foldable.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L56",
+      "since": "0.24.0"
+     },
+     {
+      "id": "invariant-namespace-export",
+      "level": 2,
+      "name": "Invariant (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Invariant.js\u201d module as <code>Invariant</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Invariant from \"./Invariant.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L66",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monad-namespace-export",
+      "level": 2,
+      "name": "Monad (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Monad.js\u201d module as <code>Monad</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Monad from \"./Monad.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L71",
+      "since": "0.24.0"
+     },
+     {
+      "id": "monoid-namespace-export",
+      "level": 2,
+      "name": "Monoid (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Monoid.js\u201d module as <code>Monoid</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Monoid from \"./Monoid.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L76",
+      "since": "0.24.0"
+     },
+     {
+      "id": "of-namespace-export",
+      "level": 2,
+      "name": "Of (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Of.js\u201d module as <code>Of</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Of from \"./Of.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L81",
+      "since": "0.24.0"
+     },
+     {
+      "id": "pointed-namespace-export",
+      "level": 2,
+      "name": "Pointed (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Pointed.js\u201d module as <code>Pointed</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Pointed from \"./Pointed.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L86",
+      "since": "0.24.0"
+     },
+     {
+      "id": "product-namespace-export",
+      "level": 2,
+      "name": "Product (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Product.js\u201d module as <code>Product</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Product from \"./Product.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L91",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semialternative-namespace-export",
+      "level": 2,
+      "name": "SemiAlternative (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./SemiAlternative.js\u201d module as <code>SemiAlternative</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as SemiAlternative from \"./SemiAlternative.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L96",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiapplicative-namespace-export",
+      "level": 2,
+      "name": "SemiApplicative (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./SemiApplicative.js\u201d module as <code>SemiApplicative</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as SemiApplicative from \"./SemiApplicative.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L101",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semicoproduct-namespace-export",
+      "level": 2,
+      "name": "SemiCoproduct (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./SemiCoproduct.js\u201d module as <code>SemiCoproduct</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as SemiCoproduct from \"./SemiCoproduct.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L106",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semiproduct-namespace-export",
+      "level": 2,
+      "name": "SemiProduct (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./SemiProduct.js\u201d module as <code>SemiProduct</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as SemiProduct from \"./SemiProduct.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L111",
+      "since": "0.24.0"
+     },
+     {
+      "id": "semigroup-namespace-export",
+      "level": 2,
+      "name": "Semigroup (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Semigroup.js\u201d module as <code>Semigroup</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Semigroup from \"./Semigroup.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L116",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversable-namespace-export",
+      "level": 2,
+      "name": "Traversable (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Traversable.js\u201d module as <code>Traversable</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Traversable from \"./Traversable.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L121",
+      "since": "0.24.0"
+     },
+     {
+      "id": "traversablefilterable-namespace-export",
+      "level": 2,
+      "name": "TraversableFilterable (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./TraversableFilterable.js\u201d module as <code>TraversableFilterable</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as TraversableFilterable from \"./TraversableFilterable.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/typeclass/src/index.ts#L128",
+      "since": "0.24.0"
+     }
+    ]
+   }
+  ]
+ }
+}

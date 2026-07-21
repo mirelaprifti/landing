@@ -3,6 +3,7 @@
   "name": "ClusterCron",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ClusterCron.ts",
   "categories": [
    {
     "id": "constructors",
@@ -30,6 +31,7 @@
   "name": "ClusterError",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ClusterError.ts",
   "categories": [
    {
     "id": "symbols",
@@ -385,6 +387,7 @@
   "name": "ClusterMetrics",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ClusterMetrics.ts",
   "categories": [
    {
     "id": "metrics",
@@ -468,6 +471,7 @@
   "name": "ClusterSchema",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ClusterSchema.ts",
   "categories": [
    {
     "id": "annotations",
@@ -565,6 +569,7 @@
   "name": "ClusterWorkflowEngine",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ClusterWorkflowEngine.ts",
   "categories": [
    {
     "id": "constructors",
@@ -612,6 +617,7 @@
   "name": "DeliverAt",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/DeliverAt.ts",
   "categories": [
    {
     "id": "accessors",
@@ -699,6 +705,7 @@
   "name": "Entity",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Entity.ts",
   "categories": [
    {
     "id": "keep-alive",
@@ -1025,6 +1032,7 @@
   "name": "EntityAddress",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/EntityAddress.ts",
   "categories": [
    {
     "id": "constructors",
@@ -1176,6 +1184,7 @@
   "name": "EntityId",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/EntityId.ts",
   "categories": [
    {
     "id": "constructors",
@@ -1237,6 +1246,7 @@
   "name": "EntityProxy",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/EntityProxy.ts",
   "categories": [
    {
     "id": "constructors",
@@ -1252,7 +1262,7 @@
         "html": "<p>Derives an <code>HttpApiGroup</code> from an <code>Entity</code>.</p>"
        },
        {
-        "html": "<pre data-lang=\"ts\">import { ClusterSchema, Entity, EntityProxy, EntityProxyServer } from &quot;@effect/cluster&quot;\nimport { HttpApi, HttpApiBuilder } from &quot;@effect/platform&quot;\nimport { Rpc } from &quot;@effect/rpc&quot;\nimport { Layer, Schema } from &quot;effect&quot;\n\nexport const Counter = Entity.make(&quot;Counter&quot;, [\n  Rpc.make(&quot;Increment&quot;, {\n    payload: { id: Schema.String, amount: Schema.Number },\n    primaryKey: ({ id }) =&gt; id,\n    success: Schema.Number\n  })\n]).annotateRpcs(ClusterSchema.Persisted, true)\n\n// Use EntityProxy.toHttpApiGroup to create a `HttpApiGroup` from the\n// Counter entity\nexport class MyApi extends HttpApi.make(&quot;api&quot;).add(EntityProxy.toHttpApiGroup(&quot;counter&quot;, Counter).prefix(&quot;/counter&quot;)) {}\n\n// Use EntityProxyServer.layerHttpApi to create a layer that implements\n// the handlers for the HttpApiGroup\nconst ApiLayer = HttpApiBuilder.api(MyApi).pipe(\n  Layer.provide(EntityProxyServer.layerHttpApi(MyApi, &quot;counter&quot;, Counter))\n)</pre>",
+        "html": "",
         "code": {
          "lang": "ts",
          "code": "import { ClusterSchema, Entity, EntityProxy, EntityProxyServer } from \"@effect/cluster\"\nimport { HttpApi, HttpApiBuilder } from \"@effect/platform\"\nimport { Rpc } from \"@effect/rpc\"\nimport { Layer, Schema } from \"effect\"\n\nexport const Counter = Entity.make(\"Counter\", [\n  Rpc.make(\"Increment\", {\n    payload: { id: Schema.String, amount: Schema.Number },\n    primaryKey: ({ id }) => id,\n    success: Schema.Number\n  })\n]).annotateRpcs(ClusterSchema.Persisted, true)\n\n// Use EntityProxy.toHttpApiGroup to create a `HttpApiGroup` from the\n// Counter entity\nexport class MyApi extends HttpApi.make(\"api\").add(EntityProxy.toHttpApiGroup(\"counter\", Counter).prefix(\"/counter\")) {}\n\n// Use EntityProxyServer.layerHttpApi to create a layer that implements\n// the handlers for the HttpApiGroup\nconst ApiLayer = HttpApiBuilder.api(MyApi).pipe(\n  Layer.provide(EntityProxyServer.layerHttpApi(MyApi, \"counter\", Counter))\n)"
@@ -1277,7 +1287,7 @@
         "html": "<p>Derives an <code>RpcGroup</code> from an <code>Entity</code>.</p>"
        },
        {
-        "html": "<pre data-lang=\"ts\">import { ClusterSchema, Entity, EntityProxy, EntityProxyServer } from &quot;@effect/cluster&quot;\nimport { Rpc, RpcServer } from &quot;@effect/rpc&quot;\nimport { Layer, Schema } from &quot;effect&quot;\n\nexport const Counter = Entity.make(&quot;Counter&quot;, [\n  Rpc.make(&quot;Increment&quot;, {\n    payload: { id: Schema.String, amount: Schema.Number },\n    primaryKey: ({ id }) =&gt; id,\n    success: Schema.Number\n  })\n]).annotateRpcs(ClusterSchema.Persisted, true)\n\n// Use EntityProxy.toRpcGroup to create a `RpcGroup` from the Counter entity\nexport class MyRpcs extends EntityProxy.toRpcGroup(Counter) {}\n\n// Use EntityProxyServer.layerRpcHandlers to create a layer that implements\n// the rpc handlers\nconst RpcServerLayer = RpcServer.layer(MyRpcs).pipe(Layer.provide(EntityProxyServer.layerRpcHandlers(Counter)))</pre>",
+        "html": "",
         "code": {
          "lang": "ts",
          "code": "import { ClusterSchema, Entity, EntityProxy, EntityProxyServer } from \"@effect/cluster\"\nimport { Rpc, RpcServer } from \"@effect/rpc\"\nimport { Layer, Schema } from \"effect\"\n\nexport const Counter = Entity.make(\"Counter\", [\n  Rpc.make(\"Increment\", {\n    payload: { id: Schema.String, amount: Schema.Number },\n    primaryKey: ({ id }) => id,\n    success: Schema.Number\n  })\n]).annotateRpcs(ClusterSchema.Persisted, true)\n\n// Use EntityProxy.toRpcGroup to create a `RpcGroup` from the Counter entity\nexport class MyRpcs extends EntityProxy.toRpcGroup(Counter) {}\n\n// Use EntityProxyServer.layerRpcHandlers to create a layer that implements\n// the rpc handlers\nconst RpcServerLayer = RpcServer.layer(MyRpcs).pipe(Layer.provide(EntityProxyServer.layerRpcHandlers(Counter)))"
@@ -1334,6 +1344,7 @@
   "name": "EntityProxyServer",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/EntityProxyServer.ts",
   "categories": [
    {
     "id": "layers",
@@ -1395,6 +1406,7 @@
   "name": "EntityResource",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/EntityResource.ts",
   "categories": [
    {
     "id": "constructors",
@@ -1533,6 +1545,7 @@
   "name": "EntityType",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/EntityType.ts",
   "categories": [
    {
     "id": "constructors",
@@ -1580,6 +1593,7 @@
   "name": "Envelope",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Envelope.ts",
   "categories": [
    {
     "id": "constructors",
@@ -2029,6 +2043,7 @@
   "name": "HttpRunner",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/HttpRunner.ts",
   "categories": [
    {
     "id": "http-app",
@@ -2234,6 +2249,7 @@
   "name": "K8sHttpClient",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/K8sHttpClient.ts",
   "categories": [
    {
     "id": "constructors",
@@ -2349,6 +2365,7 @@
   "name": "MachineId",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/MachineId.ts",
   "categories": [
    {
     "id": "constructors",
@@ -2416,6 +2433,7 @@
   "name": "Message",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Message.ts",
   "categories": [
    {
     "id": "incoming",
@@ -2651,6 +2669,7 @@
   "name": "MessageStorage",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/MessageStorage.ts",
   "categories": [
    {
     "id": "constructors",
@@ -2977,6 +2996,7 @@
   "name": "Reply",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Reply.ts",
   "categories": [
    {
     "id": "guards",
@@ -3336,6 +3356,7 @@
   "name": "Runner",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Runner.ts",
   "categories": [
    {
     "id": "constructors",
@@ -3493,6 +3514,7 @@
   "name": "RunnerAddress",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/RunnerAddress.ts",
   "categories": [
    {
     "id": "constructors",
@@ -3658,6 +3680,7 @@
   "name": "RunnerHealth",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/RunnerHealth.ts",
   "categories": [
    {
     "id": "constructors",
@@ -3795,6 +3818,7 @@
   "name": "RunnerServer",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/RunnerServer.ts",
   "categories": [
    {
     "id": "layers",
@@ -3882,6 +3906,7 @@
   "name": "RunnerStorage",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/RunnerStorage.ts",
   "categories": [
    {
     "id": "encoded",
@@ -3987,6 +4012,7 @@
   "name": "Runners",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Runners.ts",
   "categories": [
    {
     "id": "client",
@@ -4176,6 +4202,7 @@
   "name": "ShardId",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ShardId.ts",
   "categories": [
    {
     "id": "constructors",
@@ -4355,6 +4382,7 @@
   "name": "Sharding",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Sharding.ts",
   "categories": [
    {
     "id": "layers",
@@ -4402,6 +4430,7 @@
   "name": "ShardingConfig",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ShardingConfig.ts",
   "categories": [
    {
     "id": "config",
@@ -4559,6 +4588,7 @@
   "name": "ShardingRegistrationEvent",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/ShardingRegistrationEvent.ts",
   "categories": [
    {
     "id": "models",
@@ -4631,6 +4661,7 @@
   "name": "SingleRunner",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/SingleRunner.ts",
   "categories": [
    {
     "id": "layers",
@@ -4662,6 +4693,7 @@
   "name": "Singleton",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Singleton.ts",
   "categories": [
    {
     "id": "constructors",
@@ -4689,6 +4721,7 @@
   "name": "SingletonAddress",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/SingletonAddress.ts",
   "categories": [
    {
     "id": "address",
@@ -4790,6 +4823,7 @@
   "name": "Snowflake",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/Snowflake.ts",
   "categories": [
    {
     "id": "epoch",
@@ -5102,6 +5136,7 @@
   "name": "SocketRunner",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/SocketRunner.ts",
   "categories": [
    {
     "id": "layers",
@@ -5143,6 +5178,7 @@
   "name": "SqlMessageStorage",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/SqlMessageStorage.ts",
   "categories": [
    {
     "id": "constructors",
@@ -5204,6 +5240,7 @@
   "name": "SqlRunnerStorage",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/SqlRunnerStorage.ts",
   "categories": [
    {
     "id": "constructors",
@@ -5265,6 +5302,7 @@
   "name": "TestRunner",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/TestRunner.ts",
   "categories": [
    {
     "id": "layers",
@@ -5299,6 +5337,7 @@
   "name": "index",
   "since": "1.0.0",
   "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/cluster/src/index.ts",
   "categories": [
    {
     "id": "utils",

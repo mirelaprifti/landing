@@ -1,0 +1,290 @@
+{
+ "Mysql": {
+  "name": "Mysql",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Mysql.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <TSchema extends Record<string, unknown> = Record<string, never>>(\n  config?: Omit<DrizzleConfig<TSchema>, \"logger\">\n) => Effect.Effect<MySqlRemoteDatabase<TSchema>, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Mysql.ts#L20",
+      "since": "1.0.0"
+     },
+     {
+      "id": "makewithconfig",
+      "level": 2,
+      "name": "makeWithConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeWithConfig: (config: DrizzleConfig) => Effect.Effect<MySqlRemoteDatabase, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Mysql.ts#L32",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<MysqlDrizzle, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Mysql.ts#L53",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwithconfig",
+      "level": 2,
+      "name": "layerWithConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWithConfig: (config: DrizzleConfig) => Layer.Layer<MysqlDrizzle, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Mysql.ts#L59",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tags",
+    "title": "tags",
+    "exports": [
+     {
+      "id": "mysqldrizzle-class",
+      "level": 2,
+      "name": "MysqlDrizzle",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class MysqlDrizzle"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Mysql.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Pg": {
+  "name": "Pg",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Pg.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <TSchema extends Record<string, unknown> = Record<string, never>>(\n  config?: Omit<DrizzleConfig<TSchema>, \"logger\">\n) => Effect.Effect<PgRemoteDatabase<TSchema>, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Pg.ts#L20",
+      "since": "1.0.0"
+     },
+     {
+      "id": "makewithconfig",
+      "level": 2,
+      "name": "makeWithConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeWithConfig: (config: DrizzleConfig) => Effect.Effect<PgRemoteDatabase, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Pg.ts#L32",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<PgDrizzle, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Pg.ts#L53",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwithconfig",
+      "level": 2,
+      "name": "layerWithConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWithConfig: (config: DrizzleConfig) => Layer.Layer<PgDrizzle, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Pg.ts#L59",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tags",
+    "title": "tags",
+    "exports": [
+     {
+      "id": "pgdrizzle-class",
+      "level": 2,
+      "name": "PgDrizzle",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class PgDrizzle"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Pg.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Sqlite": {
+  "name": "Sqlite",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Sqlite.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <TSchema extends Record<string, unknown> = Record<string, never>>(\n  config?: Omit<DrizzleConfig<TSchema>, \"logger\">\n) => Effect.Effect<SqliteRemoteDatabase<TSchema>, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Sqlite.ts#L20",
+      "since": "1.0.0"
+     },
+     {
+      "id": "makewithconfig",
+      "level": 2,
+      "name": "makeWithConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeWithConfig: (config: DrizzleConfig) => Effect.Effect<SqliteRemoteDatabase, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Sqlite.ts#L32",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<SqliteDrizzle, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Sqlite.ts#L53",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwithconfig",
+      "level": 2,
+      "name": "layerWithConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWithConfig: (config: DrizzleConfig) => Layer.Layer<SqliteDrizzle, never, Client.SqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Sqlite.ts#L59",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tags",
+    "title": "tags",
+    "exports": [
+     {
+      "id": "sqlitedrizzle-class",
+      "level": 2,
+      "name": "SqliteDrizzle",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class SqliteDrizzle"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-drizzle/src/Sqlite.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

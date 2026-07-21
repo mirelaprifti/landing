@@ -1,0 +1,667 @@
+{
+ "MssqlClient": {
+  "name": "MssqlClient",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts",
+  "categories": [
+   {
+    "id": "compiler",
+    "title": "compiler",
+    "exports": [
+     {
+      "id": "makecompiler",
+      "level": 2,
+      "name": "makeCompiler",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeCompiler: (transform?: (_: string) => string) => Statement.Compiler"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L465",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (\n  options: MssqlClientConfig\n) => Effect.Effect<MssqlClient, SqlError, Scope.Scope | Reactivity.Reactivity>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L123",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (config: MssqlClientConfig) => Layer.Layer<Client.SqlClient | MssqlClient, ConfigError | SqlError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L451",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerconfig",
+      "level": 2,
+      "name": "layerConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerConfig: (\n  config: Config.Config.Wrap<MssqlClientConfig>\n) => Layer.Layer<Client.SqlClient | MssqlClient, ConfigError | SqlError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L433",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "mssqlclient-interface",
+      "level": 2,
+      "name": "MssqlClient",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface MssqlClient extends Client.SqlClient {\n  readonly [TypeId]: TypeId\n\n  readonly config: MssqlClientConfig\n\n  readonly param: (type: DataType, value: unknown, options?: ParameterOptions) => Statement.Fragment\n\n  readonly call: <I extends Record<string, Parameter<any>>, O extends Record<string, Parameter<any>>, A extends object>(\n    procedure: Procedure.ProcedureWithValues<I, O, A>\n  ) => Effect.Effect<Procedure.Procedure.Result<O, A>, SqlError>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L47",
+      "since": "1.0.0"
+     },
+     {
+      "id": "mssqlclientconfig-interface",
+      "level": 2,
+      "name": "MssqlClientConfig",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface MssqlClientConfig {\n  readonly domain?: string | undefined\n  readonly server: string\n  readonly instanceName?: string | undefined\n  readonly encrypt?: boolean | undefined\n  readonly trustServer?: boolean | undefined\n  readonly port?: number | undefined\n  readonly authType?: string | undefined\n  readonly database?: string | undefined\n  readonly username?: string | undefined\n  readonly password?: Redacted.Redacted | undefined\n  readonly connectTimeout?: Duration.DurationInput | undefined\n\n  readonly minConnections?: number | undefined\n  readonly maxConnections?: number | undefined\n  readonly connectionTTL?: Duration.DurationInput | undefined\n\n  readonly parameterTypes?: Record<string, DataType> | undefined\n\n  readonly spanAttributes?: Record<string, unknown> | undefined\n\n  readonly transformResultNames?: ((str: string) => string) | undefined\n  readonly transformQueryNames?: ((str: string) => string) | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L77",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tags",
+    "title": "tags",
+    "exports": [
+     {
+      "id": "mssqlclient",
+      "level": 2,
+      "name": "MssqlClient",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MssqlClient: Context.Tag<MssqlClient, MssqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L71",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "type-ids",
+    "title": "type ids",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L35",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L41",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "defaultparametertypes",
+      "level": 2,
+      "name": "defaultParameterTypes",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const defaultParameterTypes: Record<Statement.PrimitiveKind, DataType>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlClient.ts#L514",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "MssqlMigrator": {
+  "name": "MssqlMigrator",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlMigrator.ts",
+  "categories": [
+   {
+    "id": "constructor",
+    "title": "constructor",
+    "exports": [
+     {
+      "id": "run",
+      "level": 2,
+      "name": "run",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const run: <R>(\n  options: Migrator.MigratorOptions<R>\n) => Effect.Effect<\n  ReadonlyArray<readonly [id: number, name: string]>,\n  SqlError | Migrator.MigrationError,\n  Client.SqlClient | R\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlMigrator.ts#L24",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: <R>(\n  options: Migrator.MigratorOptions<R>\n) => Layer.Layer<never, SqlError | Migrator.MigrationError, Client.SqlClient | R>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlMigrator.ts#L36",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectsqlmigrator-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/sql/Migrator\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/sql/Migrator\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlMigrator.ts#L13",
+      "since": "1.0.0"
+     },
+     {
+      "id": "effectsqlmigratorfilesystem-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/sql/Migrator/FileSystem\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator/FileSystem\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/sql/Migrator/FileSystem\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/MssqlMigrator.ts#L18",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Parameter": {
+  "name": "Parameter",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Parameter.ts",
+  "categories": [
+   {
+    "id": "constructor",
+    "title": "constructor",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <A>(name: string, type: DataType, options?: ParameterOptions) => Parameter<A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Parameter.ts#L36",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "model",
+    "title": "model",
+    "exports": [
+     {
+      "id": "parameter-interface",
+      "level": 2,
+      "name": "Parameter",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Parameter<A> {\n  readonly [ParameterId]: (_: never) => A\n  readonly _tag: \"Parameter\"\n  readonly name: string\n  readonly type: DataType\n  readonly options: ParameterOptions\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Parameter.ts#L24",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "type-id",
+    "title": "type id",
+    "exports": [
+     {
+      "id": "parameterid",
+      "level": 2,
+      "name": "ParameterId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ParameterId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Parameter.ts#L12",
+      "since": "1.0.0"
+     },
+     {
+      "id": "parameterid-type-alias",
+      "level": 2,
+      "name": "ParameterId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ParameterId = typeof ParameterId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Parameter.ts#L18",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Procedure": {
+  "name": "Procedure",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts",
+  "categories": [
+   {
+    "id": "combinator",
+    "title": "combinator",
+    "exports": [
+     {
+      "id": "compile",
+      "level": 2,
+      "name": "compile",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const compile: <\n  I extends Record<string, Parameter.Parameter<any>>,\n  O extends Record<string, Parameter.Parameter<any>>,\n  A\n>(\n  self: Procedure<I, O, A>\n) => (input: Procedure.ParametersRecord<I>) => ProcedureWithValues<I, O, A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L170",
+      "since": "1.0.0"
+     },
+     {
+      "id": "outputparam",
+      "level": 2,
+      "name": "outputParam",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const outputParam: <A>() => <N extends string, T extends DataType>(\n  name: N,\n  type: T,\n  options?: ParameterOptions\n) => <I extends Record<string, Parameter.Parameter<any>>, O extends Record<string, Parameter.Parameter<any>>>(\n  self: Procedure<I, O>\n) => Procedure<I, Simplify<O & { [K in N]: Parameter.Parameter<A> }>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L135",
+      "since": "1.0.0"
+     },
+     {
+      "id": "param",
+      "level": 2,
+      "name": "param",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const param: <A>() => <N extends string, T extends DataType>(\n  name: N,\n  type: T,\n  options?: ParameterOptions\n) => <I extends Record<string, Parameter.Parameter<any>>, O extends Record<string, Parameter.Parameter<any>>>(\n  self: Procedure<I, O>\n) => Procedure<Simplify<I & { [K in N]: Parameter.Parameter<A> }>, O>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L112",
+      "since": "1.0.0"
+     },
+     {
+      "id": "withrows",
+      "level": 2,
+      "name": "withRows",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withRows: <A extends object = Row>() => <\n  I extends Record<string, Parameter.Parameter<any>>,\n  O extends Record<string, Parameter.Parameter<any>>\n>(\n  self: Procedure<I, O>\n) => Procedure<I, O, A>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L158",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructor",
+    "title": "constructor",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (name: string) => Procedure<{}, {}>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L100",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "model",
+    "title": "model",
+    "exports": [
+     {
+      "id": "procedure-interface",
+      "level": 2,
+      "name": "Procedure",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Procedure<\n  I extends Record<string, Parameter.Parameter<any>>,\n  O extends Record<string, Parameter.Parameter<any>>,\n  A = never\n> extends Pipeable {\n  readonly [TypeId]: {\n    readonly _A: Covariant<A>\n  }\n  readonly _tag: \"Procedure\"\n  readonly name: string\n  readonly params: I\n  readonly outputParams: O\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L29",
+      "since": "1.0.0"
+     },
+     {
+      "id": "procedurewithvalues-interface",
+      "level": 2,
+      "name": "ProcedureWithValues",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface ProcedureWithValues<\n  I extends Record<string, Parameter.Parameter<any>>,\n  O extends Record<string, Parameter.Parameter<any>>,\n  A\n> extends Procedure<I, O, A> {\n  readonly values: Procedure.ParametersRecord<I>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L47",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "type-id",
+    "title": "type id",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L17",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L23",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "procedure-namespace",
+      "level": 2,
+      "name": "Procedure",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L58",
+      "since": "1.0.0"
+     },
+     {
+      "id": "result-interface",
+      "level": 3,
+      "name": "Result",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Result<O extends Record<string, Parameter.Parameter<any>>, A> {\n  readonly output: ParametersRecord<O>\n  readonly rows: ReadonlyArray<A>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L75",
+      "since": "1.0.0"
+     },
+     {
+      "id": "parametersrecord-type-alias",
+      "level": 3,
+      "name": "ParametersRecord",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type { readonly [K in keyof A]: A[K] extends Parameter.Parameter<infer T> ? T : never; } = & {\n      readonly [K in keyof A]: A[K] extends Parameter.Parameter<infer T> ? T\n        : never\n    }\n    & {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/Procedure.ts#L62",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "mssqlclient-namespace-export",
+      "level": 2,
+      "name": "MssqlClient (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./MssqlClient.js\u201d module as <code>MssqlClient</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as MssqlClient from \"./MssqlClient.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/index.ts#L15",
+      "since": "1.0.0"
+     },
+     {
+      "id": "mssqlmigrator-namespace-export",
+      "level": 2,
+      "name": "MssqlMigrator (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./MssqlMigrator.js\u201d module as <code>MssqlMigrator</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as MssqlMigrator from \"./MssqlMigrator.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/index.ts#L20",
+      "since": "1.0.0"
+     },
+     {
+      "id": "mssqltypes",
+      "level": 2,
+      "name": "MssqlTypes",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MssqlTypes: {\n  TinyInt: DataType\n  Bit: DataType\n  SmallInt: DataType\n  Int: DataType\n  SmallDateTime: DataType\n  Real: DataType\n  Money: DataType\n  DateTime: DataType\n  Float: DataType\n  Decimal: DataType & {\n    resolvePrecision: NonNullable<DataType[\"resolvePrecision\"]>\n    resolveScale: NonNullable<DataType[\"resolveScale\"]>\n  }\n  Numeric: DataType & {\n    resolveScale: NonNullable<DataType[\"resolveScale\"]>\n    resolvePrecision: NonNullable<DataType[\"resolvePrecision\"]>\n  }\n  SmallMoney: DataType\n  BigInt: DataType\n  Image: DataType\n  Text: DataType\n  UniqueIdentifier: DataType\n  NText: DataType\n  VarBinary: { maximumLength: number } & DataType\n  VarChar: { maximumLength: number } & DataType\n  Binary: { maximumLength: number } & DataType\n  Char: { maximumLength: number } & DataType\n  NVarChar: { maximumLength: number } & DataType\n  NChar: DataType & { maximumLength: number }\n  Xml: DataType\n  Time: DataType\n  Date: DataType\n  DateTime2: DataType & { resolveScale: NonNullable<DataType[\"resolveScale\"]> }\n  DateTimeOffset: DataType & { resolveScale: NonNullable<DataType[\"resolveScale\"]> }\n  UDT: DataType\n  TVP: DataType\n  Variant: DataType\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/index.ts#L9",
+      "since": "1.0.0"
+     },
+     {
+      "id": "parameter-namespace-export",
+      "level": 2,
+      "name": "Parameter (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Parameter.js\u201d module as <code>Parameter</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Parameter from \"./Parameter.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/index.ts#L25",
+      "since": "1.0.0"
+     },
+     {
+      "id": "procedure-namespace-export",
+      "level": 2,
+      "name": "Procedure (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Procedure.js\u201d module as <code>Procedure</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Procedure from \"./Procedure.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mssql/src/index.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

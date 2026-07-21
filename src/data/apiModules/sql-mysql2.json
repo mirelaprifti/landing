@@ -1,0 +1,312 @@
+{
+ "MysqlClient": {
+  "name": "MysqlClient",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts",
+  "categories": [
+   {
+    "id": "compiler",
+    "title": "compiler",
+    "exports": [
+     {
+      "id": "makecompiler",
+      "level": 2,
+      "name": "makeCompiler",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeCompiler: (transform?: (_: string) => string) => Statement.Compiler"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L307",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: MysqlClientConfig) => Effect.Effect<MysqlClient, SqlError, Scope | Reactivity.Reactivity>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L85",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (config: MysqlClientConfig) => Layer.Layer<MysqlClient | Client.SqlClient, ConfigError | SqlError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L293",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerconfig",
+      "level": 2,
+      "name": "layerConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerConfig: (\n  config: Config.Config.Wrap<MysqlClientConfig>\n) => Layer.Layer<MysqlClient | Client.SqlClient, ConfigError | SqlError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L275",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "mysqlclient-interface",
+      "level": 2,
+      "name": "MysqlClient",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface MysqlClient extends Client.SqlClient {\n  readonly [TypeId]: TypeId\n  readonly config: MysqlClientConfig\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L43",
+      "since": "1.0.0"
+     },
+     {
+      "id": "mysqlclientconfig-interface",
+      "level": 2,
+      "name": "MysqlClientConfig",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface MysqlClientConfig {\n  /**\n   * Connection URI. Setting this will override the other connection options\n   */\n  readonly url?: Redacted.Redacted | undefined\n\n  readonly host?: string | undefined\n  readonly port?: number | undefined\n  readonly database?: string | undefined\n  readonly username?: string | undefined\n  readonly password?: Redacted.Redacted | undefined\n\n  readonly maxConnections?: number | undefined\n  readonly connectionTTL?: Duration.DurationInput | undefined\n\n  readonly poolConfig?: Mysql.PoolOptions | undefined\n\n  readonly spanAttributes?: Record<string, unknown> | undefined\n\n  readonly transformResultNames?: ((str: string) => string) | undefined\n  readonly transformQueryNames?: ((str: string) => string) | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L58",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "tags",
+    "title": "tags",
+    "exports": [
+     {
+      "id": "mysqlclient",
+      "level": 2,
+      "name": "MysqlClient",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const MysqlClient: Context.Tag<MysqlClient, MysqlClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L52",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "type-ids",
+    "title": "type ids",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L31",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlClient.ts#L37",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "MysqlMigrator": {
+  "name": "MysqlMigrator",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlMigrator.ts",
+  "categories": [
+   {
+    "id": "constructor",
+    "title": "constructor",
+    "exports": [
+     {
+      "id": "run",
+      "level": 2,
+      "name": "run",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const run: <R2 = never>(\n  options: Migrator.MigratorOptions<R2>\n) => Effect.Effect<\n  ReadonlyArray<readonly [id: number, name: string]>,\n  Migrator.MigrationError | SqlError,\n  FileSystem | Path | MysqlClient | Client.SqlClient | CommandExecutor | R2\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlMigrator.ts#L31",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: <R>(\n  options: Migrator.MigratorOptions<R>\n) => Layer.Layer<\n  never,\n  Migrator.MigrationError | SqlError,\n  MysqlClient | Client.SqlClient | CommandExecutor | FileSystem | Path | R\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlMigrator.ts#L104",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectsqlmigrator-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/sql/Migrator\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/sql/Migrator\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlMigrator.ts#L20",
+      "since": "1.0.0"
+     },
+     {
+      "id": "effectsqlmigratorfilesystem-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/sql/Migrator/FileSystem\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator/FileSystem\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/sql/Migrator/FileSystem\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/MysqlMigrator.ts#L25",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "mysqlclient-namespace-export",
+      "level": 2,
+      "name": "MysqlClient (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./MysqlClient.js\u201d module as <code>MysqlClient</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as MysqlClient from \"./MysqlClient.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/index.ts#L4",
+      "since": "1.0.0"
+     },
+     {
+      "id": "mysqlmigrator-namespace-export",
+      "level": 2,
+      "name": "MysqlMigrator (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./MysqlMigrator.js\u201d module as <code>MysqlMigrator</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as MysqlMigrator from \"./MysqlMigrator.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-mysql2/src/index.ts#L9",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,2011 @@
+{
+ "OpenAiClient": {
+  "name": "OpenAiClient",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly organizationId?: Redacted.Redacted | undefined\n  readonly projectId?: Redacted.Redacted | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Effect.Effect<Service, never, HttpClient.HttpClient | Scope.Scope>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L68",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "openaiclient-class",
+      "level": 2,
+      "name": "OpenAiClient",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class OpenAiClient"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L29",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly organizationId?: Redacted.Redacted | undefined\n  readonly projectId?: Redacted.Redacted | undefined\n  readonly transformClient?: (client: HttpClient.HttpClient) => HttpClient.HttpClient\n}) => Layer.Layer<OpenAiClient, never, HttpClient.HttpClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L242",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerconfig",
+      "level": 2,
+      "name": "layerConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerConfig: (options: {\n  readonly apiKey?: Config.Config<Redacted.Redacted | undefined> | undefined\n  readonly apiUrl?: Config.Config<string | undefined> | undefined\n  readonly organizationId?: Config.Config<Redacted.Redacted | undefined> | undefined\n  readonly projectId?: Config.Config<Redacted.Redacted | undefined> | undefined\n  readonly transformClient?: (client: HttpClient.HttpClient) => HttpClient.HttpClient\n}) => Layer.Layer<OpenAiClient, ConfigError, HttpClient.HttpClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L254",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "responsestreamevent-type-alias",
+      "level": 2,
+      "name": "ResponseStreamEvent",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>Represents the events that can be emitted during a streaming response.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type ResponseStreamEvent = typeof ResponseStreamEvent.Type"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1933",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 2,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service {\n  readonly client: Generated.Client\n\n  readonly streamRequest: <A, I, R>(\n    request: HttpClientRequest.HttpClientRequest,\n    schema: Schema.Schema<A, I, R>\n  ) => Stream.Stream<A, AiError.AiError, R>\n\n  readonly createResponse: (\n    options: typeof Generated.CreateResponse.Encoded\n  ) => Effect.Effect<Generated.Response, AiError.AiError>\n\n  readonly createResponseStream: (\n    options: Omit<typeof Generated.CreateResponse.Encoded, \"stream\">\n  ) => Stream.Stream<ResponseStreamEvent, AiError.AiError>\n\n  readonly createEmbedding: (\n    options: typeof Generated.CreateEmbeddingRequest.Encoded\n  ) => Effect.Effect<Generated.CreateEmbeddingResponse, AiError.AiError>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L37",
+      "since": "1.0.0"
+     },
+     {
+      "id": "streamcompletionrequest-type-alias",
+      "level": 2,
+      "name": "StreamCompletionRequest",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type StreamCompletionRequest = Omit<typeof Generated.CreateChatCompletionRequest.Encoded, \"stream\">"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L62",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "schemas",
+    "title": "Schemas",
+    "exports": [
+     {
+      "id": "logprobs-class",
+      "level": 2,
+      "name": "LogProbs",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class LogProbs"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L559",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecodeinterpretercallcodedeltaevent-class",
+      "level": 2,
+      "name": "ResponseCodeInterpreterCallCodeDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a partial code snippet is streamed by the code interpreter.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCodeInterpreterCallCodeDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1669",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecodeinterpretercallcodedoneevent-class",
+      "level": 2,
+      "name": "ResponseCodeInterpreterCallCodeDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the code snippet is finalized by the code interpreter.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCodeInterpreterCallCodeDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1701",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecodeinterpretercallcompletedevent-class",
+      "level": 2,
+      "name": "ResponseCodeInterpreterCallCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the code interpreter call is completed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCodeInterpreterCallCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1641",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecodeinterpretercallinprogressevent-class",
+      "level": 2,
+      "name": "ResponseCodeInterpreterCallInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a code interpreter call is in progress.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCodeInterpreterCallInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1581",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecodeinterpretercallinterpretingevent-class",
+      "level": 2,
+      "name": "ResponseCodeInterpreterCallInterpretingEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the code interpreter is actively interpreting the code snippet.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCodeInterpreterCallInterpretingEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1611",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecompletedevent-class",
+      "level": 2,
+      "name": "ResponseCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the model response is complete.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L349",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecontentpartaddedevent-class",
+      "level": 2,
+      "name": "ResponseContentPartAddedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a new content part is added.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseContentPartAddedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L483",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecontentpartdoneevent-class",
+      "level": 2,
+      "name": "ResponseContentPartDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a content part is done.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseContentPartDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L522",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecreatedevent-class",
+      "level": 2,
+      "name": "ResponseCreatedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>An event that is emitted when a response is created.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCreatedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L280",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecustomtoolcallinputdeltaevent-class",
+      "level": 2,
+      "name": "ResponseCustomToolCallInputDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Event representing a delta (partial update) to the input of a custom tool call.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCustomToolCallInputDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1732",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsecustomtoolcallinputdoneevent-class",
+      "level": 2,
+      "name": "ResponseCustomToolCallInputDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Event indicating that input for a custom tool call is complete.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseCustomToolCallInputDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1763",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseerrorevent-class",
+      "level": 2,
+      "name": "ResponseErrorEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an error occurs.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseErrorEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1794",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsefailedevent-class",
+      "level": 2,
+      "name": "ResponseFailedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>An event that is emitted when a response fails.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseFailedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L395",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsefilesearchcallcompletedevent-class",
+      "level": 2,
+      "name": "ResponseFileSearchCallCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a file search call is completed (results found).</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseFileSearchCallCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L894",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsefilesearchcallinprogressevent-class",
+      "level": 2,
+      "name": "ResponseFileSearchCallInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a file search call is initiated.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseFileSearchCallInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L840",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsefilesearchcallsearchingevent-class",
+      "level": 2,
+      "name": "ResponseFileSearchCallSearchingEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a file search is currently searching.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseFileSearchCallSearchingEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L867",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsefunctioncallargumentsdeltaevent-class",
+      "level": 2,
+      "name": "ResponseFunctionCallArgumentsDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when there is a partial function-call arguments delta.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseFunctionCallArgumentsDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L778",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsefunctioncallargumentsdoneevent-class",
+      "level": 2,
+      "name": "ResponseFunctionCallArgumentsDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when function-call arguments are finalized.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseFunctionCallArgumentsDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L809",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseimagegenerationcallcompletedevent-class",
+      "level": 2,
+      "name": "ResponseImageGenerationCallCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an image generation tool call has completed and the final image is available.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseImageGenerationCallCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1327",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseimagegenerationcallgeneratingevent-class",
+      "level": 2,
+      "name": "ResponseImageGenerationCallGeneratingEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an image generation tool call is actively generating an image (intermediate state).</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseImageGenerationCallGeneratingEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1259",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseimagegenerationcallinprogressevent-class",
+      "level": 2,
+      "name": "ResponseImageGenerationCallInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an image generation tool call is in progress.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseImageGenerationCallInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1229",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseimagegenerationcallpartialimageevent-class",
+      "level": 2,
+      "name": "ResponseImageGenerationCallPartialImageEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a partial image is available during image generation streaming.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseImageGenerationCallPartialImageEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1288",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseinprogressevent-class",
+      "level": 2,
+      "name": "ResponseInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the response is in progress.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L326",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseincompleteevent-class",
+      "level": 2,
+      "name": "ResponseIncompleteEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>An event that is emitted when a response finishes as incomplete.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseIncompleteEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L372",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcpcallargumentsdeltaevent-class",
+      "level": 2,
+      "name": "ResponseMcpCallArgumentsDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when there is a delta (partial update) to the arguments of an MCP tool call.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpCallArgumentsDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1355",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcpcallargumentsdoneevent-class",
+      "level": 2,
+      "name": "ResponseMcpCallArgumentsDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the arguments for an MCP tool call are finalized.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpCallArgumentsDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1387",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcpcallcompletedevent-class",
+      "level": 2,
+      "name": "ResponseMcpCallCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an MCP tool call has completed successfully.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpCallCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1445",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcpcallfailedevent-class",
+      "level": 2,
+      "name": "ResponseMcpCallFailedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an MCP tool call has failed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpCallFailedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1472",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcpcallinprogressevent-class",
+      "level": 2,
+      "name": "ResponseMcpCallInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an MCP tool call is in progress.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpCallInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1418",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcplisttoolscompletedevent-class",
+      "level": 2,
+      "name": "ResponseMcpListToolsCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the list of available MCP tools has been successfully retrieved.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpListToolsCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1527",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcplisttoolsfailedevent-class",
+      "level": 2,
+      "name": "ResponseMcpListToolsFailedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the attempt to list available MCP tools has failed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpListToolsFailedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1554",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsemcplisttoolsinprogressevent-class",
+      "level": 2,
+      "name": "ResponseMcpListToolsInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when the system is in the process of retrieving the list of available MCP tools.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseMcpListToolsInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1500",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseoutputitemaddedevent-class",
+      "level": 2,
+      "name": "ResponseOutputItemAddedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a new output item is added.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseOutputItemAddedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L429",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseoutputitemdoneevent-class",
+      "level": 2,
+      "name": "ResponseOutputItemDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an output item is marked done.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseOutputItemDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L456",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseoutputtextannotationaddedevent-class",
+      "level": 2,
+      "name": "ResponseOutputTextAnnotationAddedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when an annotation is added to output text content.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseOutputTextAnnotationAddedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L669",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseoutputtextdeltaevent-class",
+      "level": 2,
+      "name": "ResponseOutputTextDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when there is an additional text delta.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseOutputTextDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L591",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseoutputtextdoneevent-class",
+      "level": 2,
+      "name": "ResponseOutputTextDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when text content is finalized.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseOutputTextDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L630",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsequeuedevent-class",
+      "level": 2,
+      "name": "ResponseQueuedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a response is queued and waiting to be processed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseQueuedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L303",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsereasoningsummarypartaddedevent-class",
+      "level": 2,
+      "name": "ResponseReasoningSummaryPartAddedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a reasoning summary part is completed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseReasoningSummaryPartAddedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1019",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsereasoningsummarypartdoneevent-class",
+      "level": 2,
+      "name": "ResponseReasoningSummaryPartDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a new reasoning summary part is added.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseReasoningSummaryPartDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1054",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsereasoningsummarytextdeltaevent-class",
+      "level": 2,
+      "name": "ResponseReasoningSummaryTextDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a delta is added to a reasoning summary text.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseReasoningSummaryTextDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1089",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsereasoningsummarytextdoneevent-class",
+      "level": 2,
+      "name": "ResponseReasoningSummaryTextDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a reasoning summary text is completed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseReasoningSummaryTextDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1124",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsereasoningtextdeltaevent-class",
+      "level": 2,
+      "name": "ResponseReasoningTextDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a delta is added to a reasoning text.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseReasoningTextDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1159",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsereasoningtextdoneevent-class",
+      "level": 2,
+      "name": "ResponseReasoningTextDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a reasoning text is completed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseReasoningTextDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1194",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responserefusaldeltaevent-class",
+      "level": 2,
+      "name": "ResponseRefusalDeltaEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when there is a partial refusal text.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseRefusalDeltaEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L708",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responserefusaldoneevent-class",
+      "level": 2,
+      "name": "ResponseRefusalDoneEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when refusal text is finalized.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseRefusalDoneEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L743",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsestreamevent",
+      "level": 2,
+      "name": "ResponseStreamEvent",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Represents the events that can be emitted during a streaming response.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ResponseStreamEvent: Schema.Union<\n  [\n    typeof ResponseCreatedEvent,\n    typeof ResponseQueuedEvent,\n    typeof ResponseInProgressEvent,\n    typeof ResponseCompletedEvent,\n    typeof ResponseIncompleteEvent,\n    typeof ResponseFailedEvent,\n    typeof ResponseOutputItemAddedEvent,\n    typeof ResponseOutputItemDoneEvent,\n    typeof ResponseContentPartAddedEvent,\n    typeof ResponseContentPartDoneEvent,\n    typeof ResponseOutputTextDeltaEvent,\n    typeof ResponseOutputTextDoneEvent,\n    typeof ResponseOutputTextAnnotationAddedEvent,\n    typeof ResponseRefusalDeltaEvent,\n    typeof ResponseRefusalDoneEvent,\n    typeof ResponseFunctionCallArgumentsDeltaEvent,\n    typeof ResponseFunctionCallArgumentsDoneEvent,\n    typeof ResponseFileSearchCallInProgressEvent,\n    typeof ResponseFileSearchCallSearchingEvent,\n    typeof ResponseFileSearchCallCompletedEvent,\n    typeof ResponseWebSearchCallInProgressEvent,\n    typeof ResponseWebSearchCallSearchingEvent,\n    typeof ResponseWebSearchCallCompletedEvent,\n    typeof ResponseReasoningSummaryPartAddedEvent,\n    typeof ResponseReasoningSummaryPartDoneEvent,\n    typeof ResponseReasoningSummaryTextDeltaEvent,\n    typeof ResponseReasoningSummaryTextDoneEvent,\n    typeof ResponseReasoningTextDeltaEvent,\n    typeof ResponseReasoningTextDoneEvent,\n    typeof ResponseImageGenerationCallInProgressEvent,\n    typeof ResponseImageGenerationCallGeneratingEvent,\n    typeof ResponseImageGenerationCallPartialImageEvent,\n    typeof ResponseImageGenerationCallCompletedEvent,\n    typeof ResponseMcpCallArgumentsDeltaEvent,\n    typeof ResponseMcpCallArgumentsDoneEvent,\n    typeof ResponseMcpCallInProgressEvent,\n    typeof ResponseMcpCallCompletedEvent,\n    typeof ResponseMcpCallFailedEvent,\n    typeof ResponseMcpListToolsInProgressEvent,\n    typeof ResponseMcpListToolsCompletedEvent,\n    typeof ResponseMcpListToolsFailedEvent,\n    typeof ResponseCodeInterpreterCallInProgressEvent,\n    typeof ResponseCodeInterpreterCallInterpretingEvent,\n    typeof ResponseCodeInterpreterCallCompletedEvent,\n    typeof ResponseCodeInterpreterCallCodeDeltaEvent,\n    typeof ResponseCodeInterpreterCallCodeDoneEvent,\n    typeof ResponseCustomToolCallInputDeltaEvent,\n    typeof ResponseCustomToolCallInputDoneEvent,\n    typeof ResponseErrorEvent\n  ]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1825",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsewebsearchcallcompletedevent-class",
+      "level": 2,
+      "name": "ResponseWebSearchCallCompletedEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a web search call is completed.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseWebSearchCallCompletedEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L975",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsewebsearchcallinprogressevent-class",
+      "level": 2,
+      "name": "ResponseWebSearchCallInProgressEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a web search call is initiated.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseWebSearchCallInProgressEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L921",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responsewebsearchcallsearchingevent-class",
+      "level": 2,
+      "name": "ResponseWebSearchCallSearchingEvent",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>Emitted when a web search call is executing.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class ResponseWebSearchCallSearchingEvent"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L948",
+      "since": "1.0.0"
+     },
+     {
+      "id": "summarypart-class",
+      "level": 2,
+      "name": "SummaryPart",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class SummaryPart"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiClient.ts#L1000",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "OpenAiConfig": {
+  "name": "OpenAiConfig",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiConfig.ts",
+  "categories": [
+   {
+    "id": "configuration",
+    "title": "Configuration",
+    "exports": [
+     {
+      "id": "withclienttransform",
+      "level": 2,
+      "name": "withClientTransform",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withClientTransform: {\n  (transform: (client: HttpClient) => HttpClient): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, transform: (client: HttpClient) => HttpClient): Effect.Effect<A, E, R>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiConfig.ts#L43",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "openaiconfig-class",
+      "level": 2,
+      "name": "OpenAiConfig",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class OpenAiConfig"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiConfig.ts#L13",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "openaiconfig-namespace",
+      "level": 2,
+      "name": "OpenAiConfig",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiConfig.ts#L29",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 3,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service {\n  readonly transformClient?: (client: HttpClient) => HttpClient\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiConfig.ts#L34",
+      "since": "1.0."
+     }
+    ]
+   }
+  ]
+ },
+ "OpenAiEmbeddingModel": {
+  "name": "OpenAiEmbeddingModel",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts",
+  "categories": [
+   {
+    "id": "configuration",
+    "title": "Configuration",
+    "exports": [
+     {
+      "id": "withconfigoverride",
+      "level": 2,
+      "name": "withConfigOverride",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withConfigOverride: {\n  (config: Config.Service): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, config: Config.Service): Effect.Effect<A, E, R>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L207",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "makedataloader",
+      "level": 2,
+      "name": "makeDataLoader",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeDataLoader: (options: {\n  readonly model: (string & {}) | Model\n  readonly config: Config.DataLoader\n}) => Effect.Effect<EmbeddingModel.Service, never, OpenAiClient.OpenAiClient | Scope>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L150",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "config-class",
+      "level": 2,
+      "name": "Config",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class Config"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L29",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layerbatched",
+      "level": 2,
+      "name": "layerBatched",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerBatched: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Config.Batched\n}) => Layer.Layer<EmbeddingModel.EmbeddingModel, never, OpenAiClient.OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L187",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerdataloader",
+      "level": 2,
+      "name": "layerDataLoader",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerDataLoader: (options: {\n  readonly model: (string & {}) | Model\n  readonly config: Config.DataLoader\n}) => Layer.Layer<EmbeddingModel.EmbeddingModel, never, OpenAiClient.OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L197",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "model-type-alias",
+      "level": 2,
+      "name": "Model",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type Model = typeof Generated.CreateEmbeddingRequestModelEnum.Encoded"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "model",
+      "level": 2,
+      "name": "model",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const model: (\n  model: (string & {}) | Model,\n  {\n    mode,\n    ...config\n  }: Simplify<({ readonly mode: \"batched\" } & Config.Batched) | ({ readonly mode: \"data-loader\" } & Config.DataLoader)>\n) => AiModel.Model<\"openai\", EmbeddingModel.EmbeddingModel, OpenAiClient.OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L91",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "config-namespace",
+      "level": 2,
+      "name": "Config",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L45",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 3,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service extends Simplify<Partial<Omit<typeof Generated.CreateEmbeddingRequest.Encoded, \"input\">>> {}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L50",
+      "since": "1.0."
+     },
+     {
+      "id": "batched-interface",
+      "level": 3,
+      "name": "Batched",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Batched extends Omit<Config.Service, \"model\"> {\n  readonly maxBatchSize?: number\n  readonly cache?: {\n    readonly capacity: number\n    readonly timeToLive: Duration.DurationInput\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L65",
+      "since": "1.0."
+     },
+     {
+      "id": "dataloader-interface",
+      "level": 3,
+      "name": "DataLoader",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface DataLoader extends Omit<Config.Service, \"model\"> {\n  readonly window: Duration.DurationInput\n  readonly maxBatchSize?: number\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiEmbeddingModel.ts#L77",
+      "since": "1.0."
+     }
+    ]
+   }
+  ]
+ },
+ "OpenAiLanguageModel": {
+  "name": "OpenAiLanguageModel",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts",
+  "categories": [
+   {
+    "id": "ai-models",
+    "title": "Ai Models",
+    "exports": [
+     {
+      "id": "model",
+      "level": 2,
+      "name": "model",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const model: (\n  model: (string & {}) | Model,\n  config?: Omit<Config.Service, \"model\">\n) => AiModel.Model<\"openai\", LanguageModel.LanguageModel, OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L269",
+      "since": "1.0.0"
+     },
+     {
+      "id": "modelwithtokenizer",
+      "level": 2,
+      "name": "modelWithTokenizer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const modelWithTokenizer: (\n  model: (string & {}) | Model,\n  config?: Omit<Config.Service, \"model\">\n) => AiModel.Model<\"openai\", LanguageModel.LanguageModel | Tokenizer.Tokenizer, OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L279",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "configuration",
+    "title": "Configuration",
+    "exports": [
+     {
+      "id": "withconfigoverride",
+      "level": 2,
+      "name": "withConfigOverride",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withConfigOverride: {\n  (overrides: Config.Service): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, overrides: Config.Service): Effect.Effect<A, E, R>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L373",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Effect.Effect<LanguageModel.Service, never, OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L289",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "context",
+    "title": "Context",
+    "exports": [
+     {
+      "id": "config-class",
+      "level": 2,
+      "name": "Config",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class Config"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Layer.Layer<LanguageModel.LanguageModel, never, OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L353",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwithtokenizer",
+      "level": 2,
+      "name": "layerWithTokenizer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWithTokenizer: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Layer.Layer<LanguageModel.LanguageModel | Tokenizer.Tokenizer, never, OpenAiClient>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L363",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "model-type-alias",
+      "level": 2,
+      "name": "Model",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type Model = typeof Generated.ChatModel.Encoded | typeof Generated.ModelIdsResponsesEnum.Encoded"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L34",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "config-namespace",
+      "level": 2,
+      "name": "Config",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L60",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface",
+      "level": 3,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service\n  extends Simplify<\n    Partial<Omit<typeof Generated.CreateResponse.Encoded, \"input\" | \"tools\" | \"tool_choice\" | \"stream\" | \"text\">>\n  > {\n  /**\n   * File ID prefixes used to identify file IDs in Responses API.\n   * When undefined, all file data is treated as base64 content.\n   *\n   * Examples:\n   * - OpenAI: ['file-'] for IDs like 'file-abc123'\n   * - Azure OpenAI: ['assistant-'] for IDs like 'assistant-abc123'\n   */\n  readonly fileIdPrefixes?: ReadonlyArray<string>\n  /**\n   * Configuration options for a text response from the model.\n   */\n  readonly text?: {\n    /**\n     * Constrains the verbosity of the model's response. Lower values will\n     * result in more concise responses, while higher values will result in\n     * more verbose responses.\n     *\n     * Defaults to `\"medium\"`.\n     */\n    readonly verbosity?: \"low\" | \"medium\" | \"high\"\n  }\n\n  /**\n   * Controls whether tool and response format schemas are sent with\n   * `strict: true` to enable OpenAI's structured outputs mode.\n   *\n   * When `true` (default), OpenAI validates that tool schemas comply with\n   * strict mode requirements (all properties in `required`,\n   * `additionalProperties: false` on all objects, etc.).\n   *\n   * Set to `false` to send tool schemas without strict mode validation,\n   * which is useful when tool parameter schemas use `Schema.optional()`\n   * (optional properties are not listed in `required` by Effect's JSON\n   * schema generator, which strict mode rejects).\n   *\n   * Defaults to `true` for backward compatibility.\n   */\n  readonly strict?: boolean\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L65",
+      "since": "1.0.0"
+     },
+     {
+      "id": "providermetadata-namespace",
+      "level": 2,
+      "name": "ProviderMetadata",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L251",
+      "since": "1.0.0"
+     },
+     {
+      "id": "service-interface-1",
+      "level": 3,
+      "name": "Service",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Service {\n  source: {} | {}\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiLanguageModel.ts#L256",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "OpenAiTelemetry": {
+  "name": "OpenAiTelemetry",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts",
+  "categories": [
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "allattributes-type-alias",
+      "level": 2,
+      "name": "AllAttributes",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>All telemetry attributes which are part of the GenAI specification, including the OpenAi-specific attributes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type AllAttributes = Telemetry.AllAttributes & RequestAttributes & ResponseAttributes"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L33",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaitelemetryattributes-type-alias",
+      "level": 2,
+      "name": "OpenAiTelemetryAttributes",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>The attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.</p>"
+       },
+       {
+        "html": "<p>{@see https://opentelemetry.io/docs/specs/semconv/attributes-registry/gen-ai/}</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type OpenAiTelemetryAttributes = Simplify<\n  Telemetry.GenAITelemetryAttributes &\n    Telemetry.AttributesWithPrefix<RequestAttributes, \"gen_ai.openai.request\"> &\n    Telemetry.AttributesWithPrefix<ResponseAttributes, \"gen_ai.openai.request\">\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L20",
+      "since": "1.0.0"
+     },
+     {
+      "id": "requestattributes-interface",
+      "level": 2,
+      "name": "RequestAttributes",
+      "kind": "interface",
+      "description": [
+       {
+        "html": "<p>Telemetry attributes which are part of the GenAI specification and are namespaced by <code>gen_ai.openai.request</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface RequestAttributes {\n  /**\n   * The response format that is requested.\n   */\n  readonly responseFormat?: (string & {}) | WellKnownResponseFormat | null | undefined\n  /**\n   * The service tier requested. May be a specific tier, `default`, or `auto`.\n   */\n  readonly serviceTier?: (string & {}) | WellKnownServiceTier | null | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L42",
+      "since": "1.0.0"
+     },
+     {
+      "id": "responseattributes-interface",
+      "level": 2,
+      "name": "ResponseAttributes",
+      "kind": "interface",
+      "description": [
+       {
+        "html": "<p>Telemetry attributes which are part of the GenAI specification and are namespaced by <code>gen_ai.openai.response</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface ResponseAttributes {\n  /**\n   * The service tier used for the response.\n   */\n  readonly serviceTier?: string | null | undefined\n  /**\n   * A fingerprint to track any eventual change in the Generative AI\n   * environment.\n   */\n  readonly systemFingerprint?: string | null | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L60",
+      "since": "1.0.0"
+     },
+     {
+      "id": "wellknownresponseformat-type-alias",
+      "level": 2,
+      "name": "WellKnownResponseFormat",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>The <code>gen_ai.openai.request.response_format</code> attribute has the following list of well-known values.</p>"
+       },
+       {
+        "html": "<p>If one of them applies, then the respective value <strong>MUST</strong> be used; otherwise, a custom value <strong>MAY</strong> be used.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type WellKnownResponseFormat = \"json_object\" | \"json_schema\" | \"text\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L82",
+      "since": "1.0.0"
+     },
+     {
+      "id": "wellknownservicetier-type-alias",
+      "level": 2,
+      "name": "WellKnownServiceTier",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>The <code>gen_ai.openai.request.service_tier</code> attribute has the following list of well-known values.</p>"
+       },
+       {
+        "html": "<p>If one of them applies, then the respective value <strong>MUST</strong> be used; otherwise, a custom value <strong>MAY</strong> be used.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type WellKnownServiceTier = \"auto\" | \"default\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L94",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "openaitelemetryattributeoptions-type-alias",
+      "level": 2,
+      "name": "OpenAiTelemetryAttributeOptions",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>Since v1.0.0, Models</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type OpenAiTelemetryAttributeOptions = Telemetry.GenAITelemetryAttributeOptions & {\n  openai?:\n    | {\n        request?: RequestAttributes | undefined\n        response?: ResponseAttributes | undefined\n      }\n    | undefined\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L100",
+      "since": null
+     },
+     {
+      "id": "addgenaiannotations",
+      "level": 2,
+      "name": "addGenAIAnnotations",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Applies the specified OpenAi GenAI telemetry attributes to the provided <code>Span</code>.</p>"
+       },
+       {
+        "html": "<p><strong>NOTE</strong>: This method will mutate the <code>Span</code> <strong>in-place</strong>.</p>"
+       },
+       {
+        "html": "<p>Since v1.0.0, Utilities</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const addGenAIAnnotations: ((options: OpenAiTelemetryAttributeOptions) => (span: Span) => void) &\n  ((span: Span, options: OpenAiTelemetryAttributeOptions) => void)"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTelemetry.ts#L123",
+      "since": null
+     }
+    ]
+   }
+  ]
+ },
+ "OpenAiTokenizer": {
+  "name": "OpenAiTokenizer",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTokenizer.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: { readonly model: string }) => Tokenizer.Service"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTokenizer.ts#L15",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (options: { readonly model: string }) => Layer.Layer<Tokenizer.Tokenizer>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTokenizer.ts#L66",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "OpenAiTool": {
+  "name": "OpenAiTool",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTool.ts",
+  "categories": [
+   {
+    "id": "tools",
+    "title": "Tools",
+    "exports": [
+     {
+      "id": "codeinterpreter",
+      "level": 2,
+      "name": "CodeInterpreter",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const CodeInterpreter: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly container: string | { readonly type: \"auto\"; readonly file_ids?: ReadonlyArray<string> | undefined }\n}) => Tool.ProviderDefined<\n  \"OpenAiCodeInterpreter\",\n  {\n    readonly args: Schema.Struct<{\n      container: Schema.Union<\n        [\n          typeof Schema.String,\n          Schema.Struct<{\n            type: Schema.Literal<[\"auto\"]>\n            file_ids: Schema.optional<Schema.Array$<typeof Schema.String>>\n          }>\n        ]\n      >\n    }>\n    readonly parameters: Schema.Struct<{\n      code: Schema.NullOr<typeof Schema.String>\n      container_id: typeof Schema.String\n    }>\n    readonly success: Schema.NullOr<\n      Schema.Array$<\n        Schema.Union<[typeof Generated.CodeInterpreterOutputLogs, typeof Generated.CodeInterpreterOutputImage]>\n      >\n    >\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTool.ts#L13",
+      "since": "1.0.0"
+     },
+     {
+      "id": "filesearch",
+      "level": 2,
+      "name": "FileSearch",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const FileSearch: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly vector_store_ids: ReadonlyArray<string>\n  readonly max_num_results?: number | null | undefined\n  readonly ranking_options?:\n    | {\n        readonly ranker?: \"auto\" | \"default-2024-11-15\" | null | undefined\n        readonly score_threshold?: number | null | undefined\n        readonly hybrid_search?: { readonly embedding_weight: number; readonly text_weight: number } | null | undefined\n      }\n    | null\n    | undefined\n  readonly filters?:\n    | {\n        readonly key: string\n        readonly value: string | number | boolean | ReadonlyArray<string | number>\n        readonly type: \"eq\" | \"ne\" | \"gt\" | \"gte\" | \"lt\" | \"lte\"\n      }\n    | {\n        readonly type: \"and\" | \"or\"\n        readonly filters: ReadonlyArray<{\n          readonly key: string\n          readonly value: string | number | boolean | ReadonlyArray<string | number>\n          readonly type: \"eq\" | \"ne\" | \"gt\" | \"gte\" | \"lt\" | \"lte\"\n        }>\n      }\n    | null\n    | undefined\n}) => Tool.ProviderDefined<\n  \"OpenAiFileSearch\",\n  {\n    readonly args: Schema.Struct<{\n      readonly vector_store_ids: Schema.Array$<typeof Schema.String>\n      readonly max_num_results: Schema.optionalWith<typeof Schema.Int, { nullable: true }>\n      readonly ranking_options: Schema.optionalWith<typeof Generated.RankingOptions, { nullable: true }>\n      readonly filters: Schema.optionalWith<typeof Generated.Filters, { nullable: true }>\n    }>\n    readonly parameters: Tool.EmptyParams\n    readonly success: Schema.SchemaClass<\n      {\n        readonly status: \"in_progress\" | \"searching\" | \"completed\" | \"incomplete\" | \"failed\"\n        readonly queries: ReadonlyArray<string>\n        readonly results?:\n          | ReadonlyArray<{\n              readonly file_id?: string | undefined\n              readonly text?: string | undefined\n              readonly filename?: string | undefined\n              readonly attributes?: { readonly [x: string]: unknown } | undefined\n              readonly score?: number | undefined\n            }>\n          | undefined\n      },\n      {\n        readonly status: \"in_progress\" | \"searching\" | \"completed\" | \"incomplete\" | \"failed\"\n        readonly queries: ReadonlyArray<string>\n        readonly results?:\n          | ReadonlyArray<{\n              readonly file_id?: string | null | undefined\n              readonly text?: string | null | undefined\n              readonly filename?: string | null | undefined\n              readonly attributes?: { readonly [x: string]: unknown } | null | undefined\n              readonly score?: number | null | undefined\n            }>\n          | null\n          | undefined\n      },\n      never\n    >\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTool.ts#L50",
+      "since": "1.0.0"
+     },
+     {
+      "id": "websearch",
+      "level": 2,
+      "name": "WebSearch",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const WebSearch: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly filters?: { readonly allowed_domains?: ReadonlyArray<string> | null | undefined } | null | undefined\n  readonly user_location?:\n    | {\n        readonly type?: \"approximate\" | null | undefined\n        readonly country?: string | null | undefined\n        readonly region?: string | null | undefined\n        readonly city?: string | null | undefined\n        readonly timezone?: string | null | undefined\n      }\n    | null\n    | undefined\n  readonly search_context_size?: \"low\" | \"medium\" | \"high\" | null | undefined\n}) => Tool.ProviderDefined<\n  \"OpenAiWebSearch\",\n  {\n    readonly args: Schema.Struct<{\n      readonly filters: Schema.optionalWith<\n        Schema.Struct<{\n          allowed_domains: Schema.optionalWith<Schema.Array$<typeof Schema.String>, { nullable: true }>\n        }>,\n        { nullable: true }\n      >\n      readonly user_location: Schema.optionalWith<\n        Schema.Struct<{\n          type: Schema.optionalWith<Schema.Literal<[\"approximate\"]>, { nullable: true; default: () => \"approximate\" }>\n          country: Schema.optionalWith<typeof Schema.String, { nullable: true }>\n          region: Schema.optionalWith<typeof Schema.String, { nullable: true }>\n          city: Schema.optionalWith<typeof Schema.String, { nullable: true }>\n          timezone: Schema.optionalWith<typeof Schema.String, { nullable: true }>\n        }>,\n        { nullable: true }\n      >\n      readonly search_context_size: Schema.optionalWith<\n        typeof Generated.WebSearchToolSearchContextSize,\n        { nullable: true; default: () => \"medium\" }\n      >\n    }>\n    readonly parameters: Schema.Struct<{\n      action: Schema.Union<\n        [\n          typeof Generated.WebSearchActionSearch,\n          typeof Generated.WebSearchActionOpenPage,\n          typeof Generated.WebSearchActionFind\n        ]\n      >\n    }>\n    readonly success: Schema.Struct<{ status: typeof Generated.WebSearchToolCallStatus }>\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTool.ts#L62",
+      "since": "1.0.0"
+     },
+     {
+      "id": "websearchpreview",
+      "level": 2,
+      "name": "WebSearchPreview",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const WebSearchPreview: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly user_location?:\n    | {\n        readonly type: \"approximate\"\n        readonly country?: string | null | undefined\n        readonly region?: string | null | undefined\n        readonly city?: string | null | undefined\n        readonly timezone?: string | null | undefined\n      }\n    | null\n    | undefined\n  readonly search_context_size?: \"low\" | \"medium\" | \"high\" | null | undefined\n}) => Tool.ProviderDefined<\n  \"OpenAiWebSearchPreview\",\n  {\n    readonly args: Schema.Struct<{\n      readonly user_location: Schema.optionalWith<typeof Generated.ApproximateLocation, { nullable: true }>\n      readonly search_context_size: Schema.optionalWith<typeof Generated.SearchContextSize, { nullable: true }>\n    }>\n    readonly parameters: Schema.Struct<{\n      action: Schema.Union<\n        [\n          typeof Generated.WebSearchActionSearch,\n          typeof Generated.WebSearchActionOpenPage,\n          typeof Generated.WebSearchActionFind\n        ]\n      >\n    }>\n    readonly success: Schema.Struct<{ status: typeof Generated.WebSearchToolCallStatus }>\n    readonly failure: typeof Schema.Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/OpenAiTool.ts#L83",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "generated-namespace-export",
+      "level": 2,
+      "name": "Generated (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Generated.js\u201d module as <code>Generated</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Generated from \"./Generated.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L4",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaiclient-namespace-export",
+      "level": 2,
+      "name": "OpenAiClient (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiClient.js\u201d module as <code>OpenAiClient</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiClient from \"./OpenAiClient.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L9",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaiconfig-namespace-export",
+      "level": 2,
+      "name": "OpenAiConfig (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiConfig.js\u201d module as <code>OpenAiConfig</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiConfig from \"./OpenAiConfig.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L14",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaiembeddingmodel-namespace-export",
+      "level": 2,
+      "name": "OpenAiEmbeddingModel (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiEmbeddingModel.js\u201d module as <code>OpenAiEmbeddingModel</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiEmbeddingModel from \"./OpenAiEmbeddingModel.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openailanguagemodel-namespace-export",
+      "level": 2,
+      "name": "OpenAiLanguageModel (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiLanguageModel.js\u201d module as <code>OpenAiLanguageModel</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiLanguageModel from \"./OpenAiLanguageModel.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaitelemetry-namespace-export",
+      "level": 2,
+      "name": "OpenAiTelemetry (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiTelemetry.js\u201d module as <code>OpenAiTelemetry</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiTelemetry from \"./OpenAiTelemetry.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L29",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaitokenizer-namespace-export",
+      "level": 2,
+      "name": "OpenAiTokenizer (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiTokenizer.js\u201d module as <code>OpenAiTokenizer</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiTokenizer from \"./OpenAiTokenizer.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L34",
+      "since": "1.0.0"
+     },
+     {
+      "id": "openaitool-namespace-export",
+      "level": 2,
+      "name": "OpenAiTool (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./OpenAiTool.js\u201d module as <code>OpenAiTool</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as OpenAiTool from \"./OpenAiTool.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/openai/src/index.ts#L39",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

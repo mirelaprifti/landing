@@ -1,0 +1,1287 @@
+{
+ "BunClusterHttp": {
+  "name": "BunClusterHttp",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterHttp.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: <\n  const ClientOnly extends boolean = false,\n  const Storage extends \"local\" | \"sql\" | \"byo\" = never\n>(options: {\n  readonly transport: \"http\" | \"websocket\"\n  readonly serialization?: \"msgpack\" | \"ndjson\" | undefined\n  readonly clientOnly?: ClientOnly | undefined\n  readonly storage?: Storage | undefined\n  readonly shardingConfig?: Partial<ShardingConfig.ShardingConfig[\"Type\"]> | undefined\n}) => ClientOnly extends true\n  ? Layer.Layer<\n      Sharding | Runners.Runners | (\"byo\" extends Storage ? never : MessageStorage.MessageStorage),\n      ConfigError,\n      \"local\" extends Storage\n        ? never\n        : \"byo\" extends Storage\n          ? MessageStorage.MessageStorage | RunnerStorage.RunnerStorage\n          : SqlClient\n    >\n  : Layer.Layer<\n      Sharding | Runners.Runners | MessageStorage.MessageStorage,\n      ServeError | ConfigError,\n      \"local\" extends Storage\n        ? never\n        : \"byo\" extends Storage\n          ? MessageStorage.MessageStorage | RunnerStorage.RunnerStorage\n          : SqlClient\n    >"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterHttp.ts#L52",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerhttpserver",
+      "level": 2,
+      "name": "layerHttpServer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerHttpServer: Layer.Layer<\n  HttpServer | HttpPlatform | Etag.Generator | BunContext,\n  ServeError,\n  ShardingConfig.ShardingConfig\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterHttp.ts#L32",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunClusterSocket": {
+  "name": "BunClusterSocket",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterSocket.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: <\n  const ClientOnly extends boolean = false,\n  const Storage extends \"local\" | \"sql\" | \"byo\" = never\n>(options?: {\n  readonly serialization?: \"msgpack\" | \"ndjson\" | undefined\n  readonly clientOnly?: ClientOnly | undefined\n  readonly storage?: Storage | undefined\n  readonly shardingConfig?: Partial<ShardingConfig.ShardingConfig[\"Type\"]> | undefined\n}) => ClientOnly extends true\n  ? Layer.Layer<\n      Sharding | Runners.Runners | (\"byo\" extends Storage ? never : MessageStorage.MessageStorage),\n      ConfigError,\n      \"local\" extends Storage\n        ? never\n        : \"byo\" extends Storage\n          ? MessageStorage.MessageStorage | RunnerStorage.RunnerStorage\n          : SqlClient\n    >\n  : Layer.Layer<\n      Sharding | Runners.Runners | (\"byo\" extends Storage ? never : MessageStorage.MessageStorage),\n      SocketServer.SocketServerError | ConfigError,\n      \"local\" extends Storage\n        ? never\n        : \"byo\" extends Storage\n          ? MessageStorage.MessageStorage | RunnerStorage.RunnerStorage\n          : SqlClient\n    >"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterSocket.ts#L37",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "re-exports",
+    "title": "Re-exports",
+    "exports": [
+     {
+      "id": "layerclientprotocol",
+      "level": 2,
+      "name": "layerClientProtocol",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerClientProtocol: Layer.Layer<Runners.RpcClientProtocol, never, RpcSerialization.RpcSerialization>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterSocket.ts#L25",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layersocketserver",
+      "level": 2,
+      "name": "layerSocketServer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerSocketServer: Layer.Layer<\n  SocketServer.SocketServer,\n  SocketServer.SocketServerError,\n  ShardingConfig.ShardingConfig\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunClusterSocket.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunCommandExecutor": {
+  "name": "BunCommandExecutor",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunCommandExecutor.ts",
+  "categories": [
+   {
+    "id": "layer",
+    "title": "layer",
+    "exports": [
+     {
+      "id": "layer-1",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer<CommandExecutor, never, FileSystem>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunCommandExecutor.ts#L13",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunContext": {
+  "name": "BunContext",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunContext.ts",
+  "categories": [
+   {
+    "id": "layer",
+    "title": "layer",
+    "exports": [
+     {
+      "id": "layer-1",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<BunContext, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunContext.ts#L32",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "models",
+    "exports": [
+     {
+      "id": "buncontext-type-alias",
+      "level": 2,
+      "name": "BunContext",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type BunContext =\n  | CommandExecutor.CommandExecutor\n  | FileSystem.FileSystem\n  | Path.Path\n  | Terminal.Terminal\n  | Worker.WorkerManager"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunContext.ts#L21",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunFileSystem": {
+  "name": "BunFileSystem",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunFileSystem.ts",
+  "categories": [
+   {
+    "id": "layer",
+    "title": "layer",
+    "exports": [
+     {
+      "id": "layer-1",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer<FileSystem, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunFileSystem.ts#L12",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunFileSystem/ParcelWatcher": {
+  "name": "BunFileSystem/ParcelWatcher",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/ParcelWatcher.ts",
+  "categories": [
+   {
+    "id": "layer",
+    "title": "layer",
+    "exports": [
+     {
+      "id": "layer-1",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer<WatchBackend, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/ParcelWatcher.ts#L12",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunHttpPlatform": {
+  "name": "BunHttpPlatform",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpPlatform.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: Effect.Effect<Platform.HttpPlatform, never, FileSystem.FileSystem | Etag.Generator>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpPlatform.ts#L15",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<Platform.HttpPlatform, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpPlatform.ts#L21",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunHttpServer": {
+  "name": "BunHttpServer",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts",
+  "categories": [
+   {
+    "id": "options",
+    "title": "Options",
+    "exports": [
+     {
+      "id": "serveoptions-type-alias",
+      "level": 2,
+      "name": "ServeOptions",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ServeOptions<R> = (\n  | Omit<Bun.ServeOptions, \"fetch\" | \"error\">\n  | Bun.TLSServeOptions\n  | Bun.UnixServeOptions\n  | Bun.UnixTLSServeOptions\n) & { readonly routes?: R }"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L22",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <R extends { [K in keyof R]: Bun.RouterTypes.RouteValue<Extract<K, string>> } = {}>(\n  options: ServeOptions<R>\n) => Effect.Effect<Server.HttpServer, never, Scope.Scope>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L35",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: <R extends { [K in keyof R]: Bun.RouterTypes.RouteValue<Extract<K, string>> } = {}>(\n  options: ServeOptions<R>\n) => Layer.Layer<Server.HttpServer | Platform.HttpPlatform | Etag.Generator | BunContext.BunContext>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L51",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerconfig",
+      "level": 2,
+      "name": "layerConfig",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerConfig: <R extends { [K in keyof R]: Bun.RouterTypes.RouteValue<Extract<K, string>> } = {}>(\n  options: Config.Config.Wrap<ServeOptions<R>>\n) => Layer.Layer<\n  Server.HttpServer | Platform.HttpPlatform | Etag.Generator | BunContext.BunContext,\n  ConfigError.ConfigError\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L75",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layercontext",
+      "level": 2,
+      "name": "layerContext",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A Layer providing the <code>HttpPlatform</code>, <code>FileSystem</code>, <code>Etag.Generator</code>, and <code>Path</code> services.</p>"
+       },
+       {
+        "html": "<p>The <code>FileSystem</code> service is a no-op implementation, so this layer is only useful for platforms that have no file system.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerContext: Layer.Layer<Platform.HttpPlatform | Etag.Generator | BunContext.BunContext, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L92",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerserver",
+      "level": 2,
+      "name": "layerServer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerServer: <R extends { [K in keyof R]: Bun.RouterTypes.RouteValue<Extract<K, string>> } = {}>(\n  options: ServeOptions<R>\n) => Layer.Layer<Server.HttpServer>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L43",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layertest",
+      "level": 2,
+      "name": "layerTest",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Layer starting a server on a random port and producing an <code>HttpClient</code> with prepended url of the running http server.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerTest: Layer.Layer<\n  Server.HttpServer | Platform.HttpPlatform | Etag.Generator | BunContext.BunContext | HttpClient.HttpClient,\n  HttpServerError.ServeError,\n  never\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServer.ts#L62",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunHttpServerRequest": {
+  "name": "BunHttpServerRequest",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServerRequest.ts",
+  "categories": [
+   {
+    "id": "conversions",
+    "title": "conversions",
+    "exports": [
+     {
+      "id": "torequest",
+      "level": 2,
+      "name": "toRequest",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const toRequest: (self: ServerRequest.HttpServerRequest) => Request"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunHttpServerRequest.ts#L11",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunKeyValueStore": {
+  "name": "BunKeyValueStore",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunKeyValueStore.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layerfilesystem",
+      "level": 2,
+      "name": "layerFileSystem",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerFileSystem: (\n  directory: string\n) => Layer.Layer<KeyValueStore.KeyValueStore, PlatformError.PlatformError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunKeyValueStore.ts#L13",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunMultipart": {
+  "name": "BunMultipart",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunMultipart.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "persisted",
+      "level": 2,
+      "name": "persisted",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const persisted: (\n  source: Request\n) => Effect.Effect<Multipart.Persisted, Multipart.MultipartError, FileSystem.FileSystem | Path.Path | Scope.Scope>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunMultipart.ts#L22",
+      "since": "1.0.0"
+     },
+     {
+      "id": "stream",
+      "level": 2,
+      "name": "stream",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const stream: (source: Request) => Stream.Stream<Multipart.Part, Multipart.MultipartError>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunMultipart.ts#L16",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunPath": {
+  "name": "BunPath",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunPath.ts",
+  "categories": [
+   {
+    "id": "layer",
+    "title": "layer",
+    "exports": [
+     {
+      "id": "layer-1",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer<Path, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunPath.ts#L13",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerposix",
+      "level": 2,
+      "name": "layerPosix",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerPosix: Layer<Path, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunPath.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwin32",
+      "level": 2,
+      "name": "layerWin32",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWin32: Layer<Path, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunPath.ts#L25",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunRuntime": {
+  "name": "BunRuntime",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunRuntime.ts",
+  "categories": [
+   {
+    "id": "runtime",
+    "title": "runtime",
+    "exports": [
+     {
+      "id": "runmain",
+      "level": 2,
+      "name": "runMain",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const runMain: RunMain"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunRuntime.ts#L11",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunSink": {
+  "name": "BunSink",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSink.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectplatform-node-sharednodesink-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/platform-node-shared/NodeSink\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/platform-node-shared/NodeSink\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/platform-node-shared/NodeSink\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSink.ts#L8",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunSocket": {
+  "name": "BunSocket",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSocket.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layerwebsocket",
+      "level": 2,
+      "name": "layerWebSocket",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWebSocket: (\n  url: string,\n  options?: { readonly closeCodeIsError?: (code: number) => boolean }\n) => Layer.Layer<Socket.Socket>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSocket.ts#L16",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerwebsocketconstructor",
+      "level": 2,
+      "name": "layerWebSocketConstructor",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWebSocketConstructor: Layer.Layer<Socket.WebSocketConstructor, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSocket.ts#L27",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectplatform-node-sharednodesocket-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/platform-node-shared/NodeSocket\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/platform-node-shared/NodeSocket\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/platform-node-shared/NodeSocket\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSocket.ts#L10",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunSocketServer": {
+  "name": "BunSocketServer",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSocketServer.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectplatform-node-sharednodesocketserver-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/platform-node-shared/NodeSocketServer\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/platform-node-shared/NodeSocketServer\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/platform-node-shared/NodeSocketServer\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunSocketServer.ts#L8",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunStream": {
+  "name": "BunStream",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunStream.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "effectplatform-node-sharednodestream-namespace-export",
+      "level": 2,
+      "name": "\u201c@effect/platform-node-shared/NodeStream\u201d (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c@effect/platform-node-shared/NodeStream\u201d module.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * from \"@effect/platform-node-shared/NodeStream\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunStream.ts#L8",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunTerminal": {
+  "name": "BunTerminal",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunTerminal.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (shouldQuit?: (input: UserInput) => boolean) => Effect<Terminal, never, Scope>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunTerminal.ts#L14",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "layer",
+    "title": "layer",
+    "exports": [
+     {
+      "id": "layer-1",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer<Terminal, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunTerminal.ts#L20",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunWorker": {
+  "name": "BunWorker",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorker.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: (spawn: (id: number) => Worker) => Layer.Layer<Worker.WorkerManager | Worker.Spawner, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorker.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layermanager",
+      "level": 2,
+      "name": "layerManager",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerManager: Layer.Layer<Worker.WorkerManager, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorker.ts#L12",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerplatform",
+      "level": 2,
+      "name": "layerPlatform",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerPlatform: (\n  spawn: (id: number) => globalThis.Worker\n) => Layer.Layer<Worker.PlatformWorker | Worker.Spawner, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorker.ts#L32",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerworker",
+      "level": 2,
+      "name": "layerWorker",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerWorker: Layer.Layer<Worker.PlatformWorker, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorker.ts#L18",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "BunWorkerRunner": {
+  "name": "BunWorkerRunner",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorkerRunner.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "layers",
+    "exports": [
+     {
+      "id": "layer",
+      "level": 2,
+      "name": "layer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layer: Layer.Layer<Runner.PlatformRunner, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorkerRunner.ts#L20",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "re-exports",
+    "title": "re-exports",
+    "exports": [
+     {
+      "id": "launch",
+      "level": 2,
+      "name": "launch",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const launch: <A, E, R>(layer: Layer.Layer<A, E, R>) => Effect<void, E | WorkerError, R>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/BunWorkerRunner.ts#L13",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "bunclusterhttp-namespace-export",
+      "level": 2,
+      "name": "BunClusterHttp (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunClusterHttp.js\u201d module as <code>BunClusterHttp</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunClusterHttp from \"./BunClusterHttp.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L4",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunclustersocket-namespace-export",
+      "level": 2,
+      "name": "BunClusterSocket (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunClusterSocket.js\u201d module as <code>BunClusterSocket</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunClusterSocket from \"./BunClusterSocket.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L9",
+      "since": "1.0.0"
+     },
+     {
+      "id": "buncommandexecutor-namespace-export",
+      "level": 2,
+      "name": "BunCommandExecutor (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunCommandExecutor.js\u201d module as <code>BunCommandExecutor</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunCommandExecutor from \"./BunCommandExecutor.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L14",
+      "since": "1.0.0"
+     },
+     {
+      "id": "buncontext-namespace-export",
+      "level": 2,
+      "name": "BunContext (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunContext.js\u201d module as <code>BunContext</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunContext from \"./BunContext.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunfilesystem-namespace-export",
+      "level": 2,
+      "name": "BunFileSystem (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunFileSystem.js\u201d module as <code>BunFileSystem</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunFileSystem from \"./BunFileSystem.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunhttpplatform-namespace-export",
+      "level": 2,
+      "name": "BunHttpPlatform (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunHttpPlatform.js\u201d module as <code>BunHttpPlatform</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunHttpPlatform from \"./BunHttpPlatform.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L29",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunhttpserver-namespace-export",
+      "level": 2,
+      "name": "BunHttpServer (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunHttpServer.js\u201d module as <code>BunHttpServer</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunHttpServer from \"./BunHttpServer.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L34",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunhttpserverrequest-namespace-export",
+      "level": 2,
+      "name": "BunHttpServerRequest (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunHttpServerRequest.js\u201d module as <code>BunHttpServerRequest</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunHttpServerRequest from \"./BunHttpServerRequest.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L39",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunkeyvaluestore-namespace-export",
+      "level": 2,
+      "name": "BunKeyValueStore (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunKeyValueStore.js\u201d module as <code>BunKeyValueStore</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunKeyValueStore from \"./BunKeyValueStore.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L44",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunmultipart-namespace-export",
+      "level": 2,
+      "name": "BunMultipart (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunMultipart.js\u201d module as <code>BunMultipart</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunMultipart from \"./BunMultipart.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L49",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunpath-namespace-export",
+      "level": 2,
+      "name": "BunPath (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunPath.js\u201d module as <code>BunPath</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunPath from \"./BunPath.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L54",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunruntime-namespace-export",
+      "level": 2,
+      "name": "BunRuntime (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunRuntime.js\u201d module as <code>BunRuntime</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunRuntime from \"./BunRuntime.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L59",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunsink-namespace-export",
+      "level": 2,
+      "name": "BunSink (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunSink.js\u201d module as <code>BunSink</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunSink from \"./BunSink.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L64",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunsocket-namespace-export",
+      "level": 2,
+      "name": "BunSocket (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunSocket.js\u201d module as <code>BunSocket</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunSocket from \"./BunSocket.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L69",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunsocketserver-namespace-export",
+      "level": 2,
+      "name": "BunSocketServer (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunSocketServer.js\u201d module as <code>BunSocketServer</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunSocketServer from \"./BunSocketServer.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L74",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunstream-namespace-export",
+      "level": 2,
+      "name": "BunStream (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunStream.js\u201d module as <code>BunStream</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunStream from \"./BunStream.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L79",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunterminal-namespace-export",
+      "level": 2,
+      "name": "BunTerminal (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunTerminal.js\u201d module as <code>BunTerminal</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunTerminal from \"./BunTerminal.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L84",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunworker-namespace-export",
+      "level": 2,
+      "name": "BunWorker (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunWorker.js\u201d module as <code>BunWorker</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunWorker from \"./BunWorker.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L89",
+      "since": "1.0.0"
+     },
+     {
+      "id": "bunworkerrunner-namespace-export",
+      "level": 2,
+      "name": "BunWorkerRunner (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./BunWorkerRunner.js\u201d module as <code>BunWorkerRunner</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as BunWorkerRunner from \"./BunWorkerRunner.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-bun/src/index.ts#L94",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}

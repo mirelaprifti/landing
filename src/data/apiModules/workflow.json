@@ -1,0 +1,1855 @@
+{
+ "Activity": {
+  "name": "Activity",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts",
+  "categories": [
+   {
+    "id": "attempts",
+    "title": "Attempts",
+    "exports": [
+     {
+      "id": "currentattempt-class",
+      "level": 2,
+      "name": "CurrentAttempt",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class CurrentAttempt"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L175",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <\n  R,\n  Success extends Schema.Schema.Any = typeof Schema.Void,\n  Error extends Schema.Schema.All = typeof Schema.Never\n>(options: {\n  readonly name: string\n  readonly success?: Success | undefined\n  readonly error?: Error | undefined\n  readonly execute: Effect.Effect<Success[\"Type\"], Error[\"Type\"], R>\n  readonly interruptRetryPolicy?: Schedule.Schedule<any, Cause.Cause<unknown>> | undefined\n}) => Activity<Success, Error, Exclude<R, WorkflowInstance | WorkflowEngine | Scope>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L85",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "error-handling",
+    "title": "Error handling",
+    "exports": [
+     {
+      "id": "retry",
+      "level": 2,
+      "name": "retry",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const retry: {\n  <E, O extends Types.NoExcessProperties<Omit<Effect.Retry.Options<E>, \"schedule\">, O>>(\n    options: O\n  ): <A, R>(self: Effect.Effect<A, E, R>) => Effect.Retry.Return<R, E, A, O>\n  <A, E, R, O extends Types.NoExcessProperties<Omit<Effect.Retry.Options<E>, \"schedule\">, O>>(\n    self: Effect.Effect<A, E, R>,\n    options: O\n  ): Effect.Retry.Return<R, E, A, O>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L152",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "idempotency",
+    "title": "Idempotency",
+    "exports": [
+     {
+      "id": "idempotencykey",
+      "level": 2,
+      "name": "idempotencyKey",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const idempotencyKey: (\n  name: string,\n  options?: { readonly includeAttempt?: boolean | undefined } | undefined\n) => Effect.Effect<string, never, WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L183",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "activity-interface",
+      "level": 2,
+      "name": "Activity",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Activity<\n  Success extends Schema.Schema.Any = typeof Schema.Void,\n  Error extends Schema.Schema.All = typeof Schema.Never,\n  R = never\n> extends Effect.Effect<\n    Success[\"Type\"],\n    Error[\"Type\"],\n    Success[\"Context\"] | Error[\"Context\"] | R | WorkflowEngine | WorkflowInstance\n  > {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly successSchema: Success\n  readonly errorSchema: Error\n  readonly exitSchema: Schema.Schema<\n    Exit.Exit<Success[\"Type\"], Error[\"Type\"]>,\n    Exit.Exit<Success[\"Encoded\"], Error[\"Encoded\"]>,\n    Success[\"Context\"] | Error[\"Context\"]\n  >\n  readonly execute: Effect.Effect<\n    Success[\"Type\"],\n    Error[\"Type\"],\n    Success[\"Context\"] | Error[\"Context\"] | R | Scope | WorkflowEngine | WorkflowInstance\n  >\n  readonly executeEncoded: Effect.Effect<\n    Success[\"Encoded\"],\n    Error[\"Encoded\"],\n    Success[\"Context\"] | Error[\"Context\"] | R | Scope | WorkflowEngine | WorkflowInstance\n  >\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L36",
+      "since": "1.0.0"
+     },
+     {
+      "id": "any-interface",
+      "level": 2,
+      "name": "Any",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Any {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly successSchema: Schema.Schema.Any\n  readonly errorSchema: Schema.Schema.All\n  readonly execute: Effect.Effect<any, any, any>\n  readonly executeEncoded: Effect.Effect<any, any, any>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L72",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "racing",
+    "title": "Racing",
+    "exports": [
+     {
+      "id": "raceall",
+      "level": 2,
+      "name": "raceAll",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const raceAll: <const Activities extends NonEmptyReadonlyArray<Any>>(\n  name: string,\n  activities: Activities\n) => Effect.Effect<\n  Activities[number] extends Activity<infer _A, infer _E, infer _R> ? _A[\"Type\"] : never,\n  Activities[number] extends Activity<infer _A, infer _E, infer _R> ? _E[\"Type\"] : never,\n  | (Activities[number] extends Activity<infer Success, infer Error, infer R>\n      ? Success[\"Context\"] | Error[\"Context\"] | R\n      : never)\n  | WorkflowEngine\n  | WorkflowInstance\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L205",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "symbols",
+    "title": "Symbols",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Activity.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "DurableClock": {
+  "name": "DurableClock",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableClock.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: (options: { readonly name: string; readonly duration: Duration.DurationInput }) => DurableClock"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableClock.ts#L39",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "durableclock-interface",
+      "level": 2,
+      "name": "DurableClock",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface DurableClock {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly duration: Duration.Duration\n  readonly deferred: DurableDeferred.DurableDeferred<typeof Schema.Void>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableClock.ts#L28",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "sleeping",
+    "title": "Sleeping",
+    "exports": [
+     {
+      "id": "sleep",
+      "level": 2,
+      "name": "sleep",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const sleep: (options: {\n  readonly name: string\n  readonly duration: Duration.DurationInput\n  readonly inMemoryThreshold?: Duration.DurationInput | undefined\n}) => Effect.Effect<void, never, WorkflowEngine | WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableClock.ts#L61",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "symbols",
+    "title": "Symbols",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableClock.ts#L16",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableClock.ts#L22",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "DurableDeferred": {
+  "name": "DurableDeferred",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts",
+  "categories": [
+   {
+    "id": "combinators",
+    "title": "Combinators",
+    "exports": [
+     {
+      "id": "await",
+      "level": 2,
+      "name": "await",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const await: <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n  self: DurableDeferred<Success, Error>\n) => Effect.Effect<\n  Success[\"Type\"],\n  Error[\"Type\"],\n  WorkflowEngine | WorkflowInstance | Success[\"Context\"] | Error[\"Context\"]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L129",
+      "since": "1.0.0"
+     },
+     {
+      "id": "done",
+      "level": 2,
+      "name": "done",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const done: {\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n    readonly token: Token\n    readonly exit: Exit.Exit<Success[\"Type\"], Error[\"Type\"]>\n  }): (\n    self: DurableDeferred<Success, Error>\n  ) => Effect.Effect<void, never, WorkflowEngine | Success[\"Context\"] | Error[\"Context\"]>\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>,\n    options: { readonly token: Token; readonly exit: Exit.Exit<Success[\"Type\"], Error[\"Type\"]> }\n  ): Effect.Effect<void, never, WorkflowEngine | Success[\"Context\"] | Error[\"Context\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L389",
+      "since": "1.0.0"
+     },
+     {
+      "id": "fail",
+      "level": 2,
+      "name": "fail",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const fail: {\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n    readonly token: Token\n    readonly error: Error[\"Type\"]\n  }): (self: DurableDeferred<Success, Error>) => Effect.Effect<void, never, WorkflowEngine | Error[\"Context\"]>\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>,\n    options: { readonly token: Token; readonly error: Error[\"Type\"] }\n  ): Effect.Effect<void, never, WorkflowEngine | Error[\"Context\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L464",
+      "since": "1.0.0"
+     },
+     {
+      "id": "failcause",
+      "level": 2,
+      "name": "failCause",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const failCause: {\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n    readonly token: Token\n    readonly cause: Cause.Cause<Error[\"Type\"]>\n  }): (self: DurableDeferred<Success, Error>) => Effect.Effect<void, never, WorkflowEngine | Error[\"Context\"]>\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>,\n    options: { readonly token: Token; readonly cause: Cause.Cause<Error[\"Type\"]> }\n  ): Effect.Effect<void, never, WorkflowEngine | Error[\"Context\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L497",
+      "since": "1.0.0"
+     },
+     {
+      "id": "into",
+      "level": 2,
+      "name": "into",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const into: {\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>\n  ): <R>(\n    effect: Effect.Effect<Success[\"Type\"], Error[\"Type\"], R>\n  ) => Effect.Effect<\n    Success[\"Type\"],\n    Error[\"Type\"],\n    R | WorkflowEngine | WorkflowInstance | Success[\"Context\"] | Error[\"Context\"]\n  >\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All, R>(\n    effect: Effect.Effect<Success[\"Type\"], Error[\"Type\"], R>,\n    self: DurableDeferred<Success, Error>\n  ): Effect.Effect<\n    Success[\"Type\"],\n    Error[\"Type\"],\n    R | WorkflowEngine | WorkflowInstance | Success[\"Context\"] | Error[\"Context\"]\n  >\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L136",
+      "since": "1.0.0"
+     },
+     {
+      "id": "succeed",
+      "level": 2,
+      "name": "succeed",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const succeed: {\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n    readonly token: Token\n    readonly value: Success[\"Type\"]\n  }): (self: DurableDeferred<Success, Error>) => Effect.Effect<void, never, WorkflowEngine | Success[\"Context\"]>\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>,\n    options: { readonly token: Token; readonly value: Success[\"Type\"] }\n  ): Effect.Effect<void, never, WorkflowEngine | Success[\"Context\"]>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L431",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <\n  Success extends Schema.Schema.Any = typeof Schema.Void,\n  Error extends Schema.Schema.All = typeof Schema.Never\n>(\n  name: string,\n  options?: { readonly success?: Success | undefined; readonly error?: Error | undefined }\n) => DurableDeferred<Success, Error>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L62",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "any-interface",
+      "level": 2,
+      "name": "Any",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Any {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly successSchema: Schema.Schema.Any\n  readonly errorSchema: Schema.Schema.All\n  readonly exitSchema: Schema.ExitFromSelf<any, any, any>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L50",
+      "since": "1.0.0"
+     },
+     {
+      "id": "durabledeferred-interface",
+      "level": 2,
+      "name": "DurableDeferred",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface DurableDeferred<\n  Success extends Schema.Schema.Any,\n  Error extends Schema.Schema.All = typeof Schema.Never\n> {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly successSchema: Success\n  readonly errorSchema: Error\n  readonly exitSchema: Schema.ExitFromSelf<Success, Error, typeof Schema.Defect>\n  readonly withActivityAttempt: Effect.Effect<DurableDeferred<Success, Error>>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L34",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "racing",
+    "title": "Racing",
+    "exports": [
+     {
+      "id": "raceall",
+      "level": 2,
+      "name": "raceAll",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const raceAll: <\n  const Effects extends NonEmptyReadonlyArray<Effect.Effect<any, any, any>>,\n  SI,\n  SR,\n  EI,\n  ER\n>(options: {\n  name: string\n  success: Schema.Schema<Effects[number] extends Effect.Effect<infer S, infer _E, infer _R> ? S : never, SI, SR>\n  error: Schema.Schema<Effects[number] extends Effect.Effect<infer _S, infer E, infer _R> ? E : never, EI, ER>\n  effects: Effects\n}) => Effect.Effect<\n  Effects[number] extends Effect.Effect<infer _A, infer _E, infer _R> ? _A : never,\n  Effects[number] extends Effect.Effect<infer _A, infer _E, infer _R> ? _E : never,\n  | (Effects[number] extends Effect.Effect<infer _A, infer _R, infer R> ? R : never)\n  | SR\n  | ER\n  | WorkflowEngine\n  | WorkflowInstance\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L189",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "symbols",
+    "title": "Symbols",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L22",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L28",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "token",
+    "title": "Token",
+    "exports": [
+     {
+      "id": "token-1",
+      "level": 2,
+      "name": "Token",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Token: Schema.brand<typeof Schema.String, unique symbol>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L253",
+      "since": "1.0.0"
+     },
+     {
+      "id": "token-type-alias",
+      "level": 2,
+      "name": "Token",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type Token = Brand.Branded<string, TokenTypeId>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L247",
+      "since": "1.0.0"
+     },
+     {
+      "id": "tokenparsed-class",
+      "level": 2,
+      "name": "TokenParsed",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class TokenParsed"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L264",
+      "since": "1.0.0"
+     },
+     {
+      "id": "tokentypeid",
+      "level": 2,
+      "name": "TokenTypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TokenTypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L235",
+      "since": "1.0.0"
+     },
+     {
+      "id": "tokentypeid-type-alias",
+      "level": 2,
+      "name": "TokenTypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TokenTypeId = typeof TokenTypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L241",
+      "since": "1.0.0"
+     },
+     {
+      "id": "token-2",
+      "level": 2,
+      "name": "token",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const token: <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n  self: DurableDeferred<Success, Error>\n) => Effect.Effect<Token, never, WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L310",
+      "since": "1.0.0"
+     },
+     {
+      "id": "tokenfromexecutionid",
+      "level": 2,
+      "name": "tokenFromExecutionId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tokenFromExecutionId: {\n  (options: {\n    readonly workflow: Workflow.Any\n    readonly executionId: string\n  }): <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>\n  ) => Token\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>,\n    options: { readonly workflow: Workflow.Any; readonly executionId: string }\n  ): Token\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L324",
+      "since": "1.0.0"
+     },
+     {
+      "id": "tokenfrompayload",
+      "level": 2,
+      "name": "tokenFromPayload",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const tokenFromPayload: {\n  <W extends Workflow.Any>(options: {\n    readonly workflow: W\n    readonly payload: Schema.Simplify<Schema.Struct.Constructor<W[\"payloadSchema\"][\"fields\"]>>\n  }): <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(\n    self: DurableDeferred<Success, Error>\n  ) => Effect.Effect<Token>\n  <Success extends Schema.Schema.Any, Error extends Schema.Schema.All, W extends Workflow.Any>(\n    self: DurableDeferred<Success, Error>,\n    options: {\n      readonly workflow: W\n      readonly payload: Schema.Simplify<Schema.Struct.Constructor<W[\"payloadSchema\"][\"fields\"]>>\n    }\n  ): Effect.Effect<Token>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableDeferred.ts#L355",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "DurableQueue": {
+  "name": "DurableQueue",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>A <code>DurableQueue</code> wraps a <code>PersistedQueue</code>, providing a way to wait for items to finish processing using a <code>DurableDeferred</code>.</p>"
+       },
+       {
+        "html": "",
+        "code": {
+         "lang": "ts",
+         "code": "import { DurableQueue, Workflow } from \"@effect/workflow\"\nimport { Effect, Schema } from \"effect\"\n\n// Define a DurableQueue that can be used to derive workers and offer items for\n// processing.\nconst ApiQueue = DurableQueue.make({\n  name: \"ApiQueue\",\n  payload: {\n    id: Schema.String\n  },\n  success: Schema.Void,\n  error: Schema.Never,\n  idempotencyKey(payload) {\n    return payload.id\n  }\n})\n\nconst MyWorkflow = Workflow.make({\n  name: \"MyWorkflow\",\n  payload: {\n    id: Schema.String\n  },\n  idempotencyKey: ({ id }) => id\n})\n\nconst MyWorkflowLayer = MyWorkflow.toLayer(\n  Effect.fn(function* () {\n    // Add an item to the DurableQueue defined above.\n    //\n    // When the worker has finished processing the item, the workflow will\n    // resume.\n    //\n    yield* DurableQueue.process(ApiQueue, { id: \"api-call-1\" })\n\n    yield* Effect.log(\"Workflow succeeded!\")\n  })\n)\n\n// Define a worker layer that can process items from the DurableQueue.\nconst ApiWorker = DurableQueue.worker(\n  ApiQueue,\n  Effect.fn(function* ({ id }) {\n    yield* Effect.log(`Worker processing API call with id: ${id}`)\n  }),\n  { concurrency: 5 } // Process up to 5 items concurrently\n)"
+        }
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <\n  Payload extends Schema.Schema.Any | Schema.Struct.Fields,\n  Success extends Schema.Schema.Any = typeof Schema.Void,\n  Error extends Schema.Schema.All = typeof Schema.Never\n>(options: {\n  readonly name: string\n  readonly payload: Payload\n  readonly idempotencyKey: (\n    payload: Payload extends Schema.Struct.Fields ? Schema.Struct<Payload>[\"Type\"] : Payload[\"Type\"]\n  ) => string\n  readonly success?: Success | undefined\n  readonly error?: Error | undefined\n}) => DurableQueue<Payload extends Schema.Struct.Fields ? Schema.Struct<Payload> : Payload, Success, Error>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L98",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "durablequeue-interface",
+      "level": 2,
+      "name": "DurableQueue",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface DurableQueue<\n  Payload extends Schema.Schema.Any,\n  Success extends Schema.Schema.Any = typeof Schema.Void,\n  Error extends Schema.Schema.All = typeof Schema.Never\n> {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly payloadSchema: Payload\n  readonly idempotencyKey: (payload: Payload[\"Type\"]) => string\n  readonly deferred: DurableDeferred.DurableDeferred<Success, Error>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L30",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "processing",
+    "title": "Processing",
+    "exports": [
+     {
+      "id": "process",
+      "level": 2,
+      "name": "process",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const process: <\n  Payload extends Schema.Schema.Any,\n  Success extends Schema.Schema.Any,\n  Error extends Schema.Schema.All\n>(\n  self: DurableQueue<Payload, Success, Error>,\n  payload: Payload[\"Type\"],\n  options?: { readonly retrySchedule?: Schedule.Schedule<any, PersistedQueue.PersistedQueueError> | undefined }\n) => Effect.Effect<\n  Success[\"Type\"],\n  Error[\"Type\"],\n  | WorkflowEngine.WorkflowEngine\n  | WorkflowEngine.WorkflowInstance\n  | PersistedQueue.PersistedQueueFactory\n  | Success[\"Context\"]\n  | Error[\"Context\"]\n  | Payload[\"Context\"]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L155",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "type-ids",
+    "title": "Type IDs",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: \"~@effect/workflow/DurableQueue\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = \"~@effect/workflow/DurableQueue\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L18",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "worker",
+    "title": "Worker",
+    "exports": [
+     {
+      "id": "makeworker",
+      "level": 2,
+      "name": "makeWorker",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeWorker: <\n  Payload extends Schema.Schema.Any,\n  Success extends Schema.Schema.Any,\n  Error extends Schema.Schema.All,\n  R\n>(\n  self: DurableQueue<Payload, Success, Error>,\n  f: (payload: Payload[\"Type\"]) => Effect.Effect<Success[\"Type\"], Error[\"Type\"], R>,\n  options?: { readonly concurrency?: number | undefined } | undefined\n) => Effect.Effect<\n  never,\n  never,\n  | WorkflowEngine.WorkflowEngine\n  | PersistedQueue.PersistedQueueFactory\n  | R\n  | Payload[\"Context\"]\n  | Success[\"Context\"]\n  | Error[\"Context\"]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L228",
+      "since": "1.0.0"
+     },
+     {
+      "id": "worker-1",
+      "level": 2,
+      "name": "worker",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const worker: <\n  Payload extends Schema.Schema.Any,\n  Success extends Schema.Schema.Any,\n  Error extends Schema.Schema.All,\n  R\n>(\n  self: DurableQueue<Payload, Success, Error>,\n  f: (payload: Payload[\"Type\"]) => Effect.Effect<Success[\"Type\"], Error[\"Type\"], R>,\n  options?: { readonly concurrency?: number | undefined } | undefined\n) => Layer.Layer<\n  never,\n  never,\n  | WorkflowEngine.WorkflowEngine\n  | PersistedQueue.PersistedQueueFactory\n  | R\n  | Payload[\"Context\"]\n  | Success[\"Context\"]\n  | Error[\"Context\"]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableQueue.ts#L310",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "DurableRateLimiter": {
+  "name": "DurableRateLimiter",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableRateLimiter.ts",
+  "categories": [
+   {
+    "id": "accessors",
+    "title": "Accessors",
+    "exports": [
+     {
+      "id": "ratelimit",
+      "level": 2,
+      "name": "rateLimit",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const rateLimit: (options: {\n  readonly name: string\n  readonly algorithm?: \"fixed-window\" | \"token-bucket\" | undefined\n  readonly window: Duration.DurationInput\n  readonly limit: number\n  readonly key: string\n  readonly tokens?: number | undefined\n}) => Activity.Activity<typeof Schema.Void, typeof RateLimiter.RateLimitStoreError, RateLimiter.RateLimiter>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/DurableRateLimiter.ts#L15",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "Workflow": {
+  "name": "Workflow",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts",
+  "categories": [
+   {
+    "id": "annotations",
+    "title": "Annotations",
+    "exports": [
+     {
+      "id": "capturedefects-class",
+      "level": 2,
+      "name": "CaptureDefects",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>If you set this annotation to <code>true</code> for a workflow, it will capture defects and include them in the result of the workflow or it\u2019s activities.</p>"
+       },
+       {
+        "html": "<p>By default, this is set to <code>true</code>, meaning that defects will be captured.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class CaptureDefects"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L696",
+      "since": "1.0.0"
+     },
+     {
+      "id": "suspendonfailure-class",
+      "level": 2,
+      "name": "SuspendOnFailure",
+      "kind": "class",
+      "description": [
+       {
+        "html": "<p>If you set this annotation to <code>true</code> for a workflow, it will suspend if it encounters any kind of error.</p>"
+       },
+       {
+        "html": "<p>You can then manually resume the workflow later with <code>Workflow.resume(executionId)</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class SuspendOnFailure"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L710",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "compensation",
+    "title": "Compensation",
+    "exports": [
+     {
+      "id": "withcompensation",
+      "level": 2,
+      "name": "withCompensation",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Add compensation logic to an effect inside a Workflow. The compensation finalizer will be called if the entire workflow fails, allowing you to perform cleanup or other actions based on the success value and the cause of the workflow failure.</p>"
+       },
+       {
+        "html": "<p>NOTE: Compensation will not work for nested activities. Compensation finalizers are only registered for top-level effects in the workflow.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const withCompensation: {\n  <A, R2>(\n    compensation: (value: A, cause: Cause.Cause<unknown>) => Effect.Effect<void, never, R2>\n  ): <E, R>(effect: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R | R2 | WorkflowInstance | Scope.Scope>\n  <A, E, R, R2>(\n    effect: Effect.Effect<A, E, R>,\n    compensation: (value: A, cause: Cause.Cause<unknown>) => Effect.Effect<void, never, R2>\n  ): Effect.Effect<A, E, R | R2 | WorkflowInstance | Scope.Scope>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L656",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "fromtaggedrequest",
+      "level": 2,
+      "name": "fromTaggedRequest",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const fromTaggedRequest: <S extends AnyTaggedRequestSchema>(\n  schema: S,\n  options?: { readonly suspendedRetrySchedule?: Schedule.Schedule<any, unknown> | undefined }\n) => Workflow<S[\"_tag\"], S, S[\"success\"], S[\"failure\"]>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L365",
+      "since": "1.0.0"
+     },
+     {
+      "id": "make",
+      "level": 2,
+      "name": "make",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const make: <\n  const Name extends string,\n  Payload extends Schema.Struct.Fields | AnyStructSchema,\n  Success extends Schema.Schema.Any = typeof Schema.Void,\n  Error extends Schema.Schema.All = typeof Schema.Never\n>(options: {\n  readonly name: Name\n  readonly payload: Payload\n  readonly idempotencyKey: (\n    payload: Payload extends Schema.Struct.Fields ? Schema.Struct.Type<Payload> : Payload[\"Type\"]\n  ) => string\n  readonly success?: Success\n  readonly error?: Error\n  readonly suspendedRetrySchedule?: Schedule.Schedule<any, unknown> | undefined\n  readonly annotations?: Context.Context<never>\n}) => Workflow<Name, Payload extends Schema.Struct.Fields ? Schema.Struct<Payload> : Payload, Success, Error>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L263",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "models",
+    "title": "Models",
+    "exports": [
+     {
+      "id": "any-interface",
+      "level": 2,
+      "name": "Any",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Any {\n  readonly [TypeId]: TypeId\n  readonly name: string\n  readonly payloadSchema: AnyStructSchema\n  readonly successSchema: Schema.Schema.Any\n  readonly errorSchema: Schema.Schema.All\n  readonly annotations: Context.Context<never>\n  readonly executionId: (payload: any) => Effect.Effect<string>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L229",
+      "since": "1.0.0"
+     },
+     {
+      "id": "execution-interface",
+      "level": 2,
+      "name": "Execution",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Execution<Name extends string> {\n  readonly _: unique symbol\n  readonly name: Name\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L220",
+      "since": "1.0.0"
+     },
+     {
+      "id": "requirements-type-alias",
+      "level": 2,
+      "name": "Requirements",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type Requirements<Workflows> =\n  Workflows extends Workflow<infer _Name, infer _Payload, infer _Success, infer _Error>\n    ? _Payload[\"Context\"] | _Success[\"Context\"] | _Error[\"Context\"]\n    : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L243",
+      "since": "1.0.0"
+     },
+     {
+      "id": "workflow-interface",
+      "level": 2,
+      "name": "Workflow",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Workflow<\n  Name extends string,\n  Payload extends AnyStructSchema,\n  Success extends Schema.Schema.Any,\n  Error extends Schema.Schema.All\n> {\n  readonly [TypeId]: TypeId\n  readonly name: Name\n  readonly payloadSchema: Payload\n  readonly successSchema: Success\n  readonly errorSchema: Error\n  readonly annotations: Context.Context<never>\n\n  /**\n   * Add an annotation to the workflow.\n   */\n  annotate<I, S>(tag: Context.Tag<I, S>, value: S): Workflow<Name, Payload, Success, Error>\n\n  /**\n   * Add the annotations from a Context object to the workflow.\n   */\n  annotateContext<I>(context: Context.Context<I>): Workflow<Name, Payload, Success, Error>\n\n  /**\n   * Execute the workflow with the given payload.\n   */\n  readonly execute: <const Discard extends boolean = false>(\n    payload: [keyof Payload[\"fields\"]] extends [never]\n      ? void\n      : Schema.Simplify<Schema.Struct.Constructor<Payload[\"fields\"]>>,\n    options?: {\n      readonly discard?: Discard\n    }\n  ) => Effect.Effect<\n    Discard extends true ? string : Success[\"Type\"],\n    Discard extends true ? never : Error[\"Type\"],\n    WorkflowEngine | Payload[\"Context\"] | Success[\"Context\"] | Error[\"Context\"]\n  >\n\n  /**\n   * Poll a workflow execution for its current status.\n   *\n   * If the workflow has not run yet, it will return `undefined`, otherwise it\n   * will return the current `Workflow.Result`.\n   */\n  readonly poll: (\n    executionId: string\n  ) => Effect.Effect<\n    Result<Success[\"Type\"], Error[\"Type\"]> | undefined,\n    never,\n    WorkflowEngine | Success[\"Context\"] | Error[\"Context\"]\n  >\n\n  /**\n   * Interrupt a workflow execution for the given execution ID.\n   */\n  readonly interrupt: (executionId: string) => Effect.Effect<void, never, WorkflowEngine>\n\n  /**\n   * Manually resume a workflow execution for the given execution ID.\n   */\n  readonly resume: (executionId: string) => Effect.Effect<void, never, WorkflowEngine>\n\n  /**\n   * Create a layer that registers the workflow and provides an effect to\n   * execute it.\n   */\n  readonly toLayer: <R>(\n    execute: (payload: Payload[\"Type\"], executionId: string) => Effect.Effect<Success[\"Type\"], Error[\"Type\"], R>\n  ) => Layer.Layer<\n    never,\n    never,\n    | WorkflowEngine\n    | Exclude<R, WorkflowEngine | WorkflowInstance | Execution<Name> | Scope.Scope>\n    | Payload[\"Context\"]\n    | Success[\"Context\"]\n    | Error[\"Context\"]\n  >\n\n  /**\n   * For the given payload, compute the deterministic execution ID.\n   */\n  readonly executionId: (\n    payload: Schema.Simplify<Schema.Struct.Constructor<Payload[\"fields\"]>>\n  ) => Effect.Effect<string>\n\n  /**\n   * Add compensation logic to an effect inside a Workflow. The compensation finalizer will be\n   * called if the entire workflow fails, allowing you to perform cleanup or\n   * other actions based on the success value and the cause of the workflow failure.\n   *\n   * NOTE: Compensation will not work for nested activities. Compensation\n   * finalizers are only registered for top-level effects in the workflow.\n   */\n  readonly withCompensation: {\n    <A, R2>(\n      compensation: (value: A, cause: Cause.Cause<Error[\"Type\"]>) => Effect.Effect<void, never, R2>\n    ): <E, R>(\n      effect: Effect.Effect<A, E, R>\n    ) => Effect.Effect<A, E, R | R2 | WorkflowInstance | Execution<Name> | Scope.Scope>\n    <A, E, R, R2>(\n      effect: Effect.Effect<A, E, R>,\n      compensation: (value: A, cause: Cause.Cause<Error[\"Type\"]>) => Effect.Effect<void, never, R2>\n    ): Effect.Effect<A, E, R | R2 | WorkflowInstance | Execution<Name> | Scope.Scope>\n  }\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L74",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "result",
+    "title": "Result",
+    "exports": [
+     {
+      "id": "complete-class",
+      "level": 2,
+      "name": "Complete",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class Complete<A, E>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L412",
+      "since": "1.0.0"
+     },
+     {
+      "id": "schemafromself-static-method",
+      "level": 3,
+      "name": "SchemaFromSelf (static method)",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SchemaFromSelf: <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(_options: {\n  readonly success: Success\n  readonly error: Error\n}) => Schema.Schema<Complete<Success[\"Type\"], Error[\"Type\"]>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L423",
+      "since": "1.0.0"
+     },
+     {
+      "id": "schemaencoded-static-method",
+      "level": 3,
+      "name": "SchemaEncoded (static method)",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const SchemaEncoded: <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n  readonly success: Success\n  readonly error: Error\n}) => Schema.Struct<{ _tag: Schema.tag<\"Complete\">; exit: Schema.Exit<Success, Error, typeof Schema.Defect> }>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L435",
+      "since": "1.0.0"
+     },
+     {
+      "id": "schema-static-method",
+      "level": 3,
+      "name": "Schema (static method)",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Schema: <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n  readonly success: Success\n  readonly error: Error\n}) => Schema.Schema<Complete<Success[\"Type\"], Error[\"Type\"]>, CompleteEncoded<Success[\"Encoded\"], Error[\"Encoded\"]>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L448",
+      "since": "1.0.0"
+     },
+     {
+      "id": "resulttypeid-property",
+      "level": 3,
+      "name": "[ResultTypeId] (property)",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "readonly [ResultTypeId]: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L418",
+      "since": "1.0.0"
+     },
+     {
+      "id": "completeencoded-interface",
+      "level": 2,
+      "name": "CompleteEncoded",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface CompleteEncoded<A, E> {\n  readonly _tag: \"Complete\"\n  readonly exit: Schema.ExitEncoded<A, E, unknown>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L474",
+      "since": "1.0.0"
+     },
+     {
+      "id": "result-1",
+      "level": 2,
+      "name": "Result",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const Result: <Success extends Schema.Schema.Any, Error extends Schema.Schema.All>(options: {\n  readonly success: Success\n  readonly error: Error\n}) => Schema.Schema<\n  Result<Success[\"Type\"], Error[\"Type\"]>,\n  ResultEncoded<Success[\"Encoded\"], Error[\"Encoded\"]>,\n  Success[\"Context\"] | Error[\"Context\"]\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L496",
+      "since": "1.0.0"
+     },
+     {
+      "id": "result-type-alias",
+      "level": 2,
+      "name": "Result",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type Result<A, E> = Complete<A, E> | Suspended"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L400",
+      "since": "1.0.0"
+     },
+     {
+      "id": "resultencoded-type-alias",
+      "level": 2,
+      "name": "ResultEncoded",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ResultEncoded<A, E> = CompleteEncoded<A, E> | typeof Suspended.Encoded"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L406",
+      "since": "1.0.0"
+     },
+     {
+      "id": "resulttypeid",
+      "level": 2,
+      "name": "ResultTypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const ResultTypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L381",
+      "since": "1.0.0"
+     },
+     {
+      "id": "resulttypeid-type-alias",
+      "level": 2,
+      "name": "ResultTypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ResultTypeId = typeof ResultTypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L387",
+      "since": "1.0.0"
+     },
+     {
+      "id": "suspended-class",
+      "level": 2,
+      "name": "Suspended",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class Suspended"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L483",
+      "since": "1.0.0"
+     },
+     {
+      "id": "resulttypeid-property-1",
+      "level": 3,
+      "name": "[ResultTypeId] (property)",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "readonly [ResultTypeId]: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L489",
+      "since": "1.0.0"
+     },
+     {
+      "id": "intoresult",
+      "level": 2,
+      "name": "intoResult",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const intoResult: <A, E, R>(\n  effect: Effect.Effect<A, E, R>\n) => Effect.Effect<Result<A, E>, never, Exclude<R, Scope.Scope> | WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L511",
+      "since": "1.0.0"
+     },
+     {
+      "id": "isresult",
+      "level": 2,
+      "name": "isResult",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const isResult: <A = unknown, E = unknown>(u: unknown) => u is Result<A, E>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L393",
+      "since": "1.0.0"
+     },
+     {
+      "id": "wrapactivityresult",
+      "level": 2,
+      "name": "wrapActivityResult",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const wrapActivityResult: <A, E, R>(\n  effect: Effect.Effect<A, E, R>,\n  isSuspend: (value: A) => boolean\n) => Effect.Effect<A, E, R | WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L566",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "scope",
+    "title": "Scope",
+    "exports": [
+     {
+      "id": "addfinalizer",
+      "level": 2,
+      "name": "addFinalizer",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const addFinalizer: <R>(\n  f: (exit: Exit.Exit<unknown, unknown>) => Effect.Effect<void, never, R>\n) => Effect.Effect<void, never, WorkflowInstance | R>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L631",
+      "since": "1.0.0"
+     },
+     {
+      "id": "providescope",
+      "level": 2,
+      "name": "provideScope",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Provides the workflow scope to the given effect.</p>"
+       },
+       {
+        "html": "<p>The workflow scope is only closed when the workflow execution fully completes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const provideScope: <A, E, R>(\n  effect: Effect.Effect<A, E, R>\n) => Effect.Effect<A, E, Exclude<R, Scope.Scope> | WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L622",
+      "since": "1.0.0"
+     },
+     {
+      "id": "scope-1",
+      "level": 2,
+      "name": "scope",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Accesses the workflow scope.</p>"
+       },
+       {
+        "html": "<p>The workflow scope is only closed when the workflow execution fully completes.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const scope: Effect.Effect<Scope.Scope, never, WorkflowInstance>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L607",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "symbols",
+    "title": "Symbols",
+    "exports": [
+     {
+      "id": "typeid",
+      "level": 2,
+      "name": "TypeId",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const TypeId: unique symbol"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L27",
+      "since": "1.0.0"
+     },
+     {
+      "id": "typeid-type-alias",
+      "level": 2,
+      "name": "TypeId",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type TypeId = typeof TypeId"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L68",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "constructors-1",
+    "title": "constructors",
+    "exports": [
+     {
+      "id": "anytaggedrequestschema-interface",
+      "level": 2,
+      "name": "AnyTaggedRequestSchema",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface AnyTaggedRequestSchema extends AnyStructSchema {\n  readonly _tag: string\n  readonly Type: PrimaryKey.PrimaryKey\n  readonly success: Schema.Schema.Any\n  readonly failure: Schema.Schema.All\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L209",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "anystructschema-interface",
+      "level": 2,
+      "name": "AnyStructSchema",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface AnyStructSchema extends Pipeable {\n  readonly [Schema.TypeId]: any\n  readonly make: any\n  readonly Type: any\n  readonly Encoded: any\n  readonly Context: any\n  readonly ast: AST.AST\n  readonly fields: Schema.Struct.Fields\n  readonly annotations: any\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L194",
+      "since": "1.0.0"
+     },
+     {
+      "id": "workflow-namespace",
+      "level": 2,
+      "name": "Workflow",
+      "kind": "namespace",
+      "description": [],
+      "signature": null,
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L32",
+      "since": "1.0.0"
+     },
+     {
+      "id": "payload-type-alias",
+      "level": 3,
+      "name": "Payload",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>Extracts the type of the Payload of a <code>Workflow</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type Payload<W> = W extends Workflow<any, infer Payload, any, any> ? Payload[\"Type\"] : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L39",
+      "since": "1.0.0"
+     },
+     {
+      "id": "success-type-alias",
+      "level": 3,
+      "name": "Success",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>Extracts the type of the Success of a <code>Workflow</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type Success<W> = W extends Workflow<any, any, infer Success, any> ? Success[\"Type\"] : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L49",
+      "since": "1.0.0"
+     },
+     {
+      "id": "error-type-alias",
+      "level": 3,
+      "name": "Error",
+      "kind": "type alias",
+      "description": [
+       {
+        "html": "<p>Extracts the type of the Error of a <code>Workflow</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "type Error<W> = W extends Workflow<any, any, any, infer Error> ? Error[\"Type\"] : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L59",
+      "since": "1.0.0"
+     },
+     {
+      "id": "suspend",
+      "level": 2,
+      "name": "suspend",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const suspend: (instance: WorkflowInstance[\"Type\"]) => Effect.Effect<never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/Workflow.ts#L680",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "WorkflowEngine": {
+  "name": "WorkflowEngine",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "makeunsafe",
+      "level": 2,
+      "name": "makeUnsafe",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const makeUnsafe: (options: Encoded) => WorkflowEngine[\"Type\"]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts#L317",
+      "since": "4.0.0"
+     }
+    ]
+   },
+   {
+    "id": "encoded",
+    "title": "Encoded",
+    "exports": [
+     {
+      "id": "encoded-interface",
+      "level": 2,
+      "name": "Encoded",
+      "kind": "interface",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "export interface Encoded {\n  readonly register: (\n    workflow: Workflow.Any,\n    execute: (\n      payload: object,\n      executionId: string\n    ) => Effect.Effect<unknown, unknown, WorkflowInstance | WorkflowEngine>\n  ) => Effect.Effect<void, never, Scope.Scope>\n  readonly execute: <const Discard extends boolean>(\n    workflow: Workflow.Any,\n    options: {\n      readonly executionId: string\n      readonly payload: object\n      readonly discard: Discard\n      readonly parent?: WorkflowInstance[\"Type\"] | undefined\n    }\n  ) => Effect.Effect<Discard extends true ? void : Workflow.Result<unknown, unknown>>\n  readonly poll: (\n    workflow: Workflow.Any,\n    executionId: string\n  ) => Effect.Effect<Workflow.Result<unknown, unknown> | undefined>\n  readonly interrupt: (workflow: Workflow.Any, executionId: string) => Effect.Effect<void>\n  readonly resume: (workflow: Workflow.Any, executionId: string) => Effect.Effect<void>\n  readonly activityExecute: (\n    activity: Activity.Any,\n    attempt: number\n  ) => Effect.Effect<Workflow.Result<unknown, unknown>, never, WorkflowInstance>\n  readonly deferredResult: (\n    deferred: DurableDeferred.Any\n  ) => Effect.Effect<Exit.Exit<unknown, unknown> | undefined, never, WorkflowInstance>\n  readonly deferredDone: (options: {\n    readonly workflowName: string\n    readonly executionId: string\n    readonly deferredName: string\n    readonly exit: Exit.Exit<unknown, unknown>\n  }) => Effect.Effect<void>\n  readonly scheduleClock: (\n    workflow: Workflow.Any,\n    options: {\n      readonly executionId: string\n      readonly clock: DurableClock\n    }\n  ) => Effect.Effect<void>\n}"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts#L252",
+      "since": "4.0.0"
+     }
+    ]
+   },
+   {
+    "id": "in-memory",
+    "title": "In-memory",
+    "exports": [
+     {
+      "id": "layermemory",
+      "level": 2,
+      "name": "layerMemory",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerMemory: Layer.Layer<WorkflowEngine, never, never>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts#L469",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "services",
+    "title": "Services",
+    "exports": [
+     {
+      "id": "workflowengine-class",
+      "level": 2,
+      "name": "WorkflowEngine",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class WorkflowEngine"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts#L24",
+      "since": "4.0.0"
+     },
+     {
+      "id": "workflowinstance-class",
+      "level": 2,
+      "name": "WorkflowInstance",
+      "kind": "class",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare class WorkflowInstance"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts#L189",
+      "since": "4.0.0"
+     },
+     {
+      "id": "initial-static-method",
+      "level": 3,
+      "name": "initial (static method)",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const initial: (workflow: Workflow.Any, executionId: string) => WorkflowInstance[\"Type\"]"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowEngine.ts#L229",
+      "since": null
+     }
+    ]
+   }
+  ]
+ },
+ "WorkflowProxy": {
+  "name": "WorkflowProxy",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxy.ts",
+  "categories": [
+   {
+    "id": "constructors",
+    "title": "Constructors",
+    "exports": [
+     {
+      "id": "tohttpapigroup",
+      "level": 2,
+      "name": "toHttpApiGroup",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Derives an <code>HttpApiGroup</code> from a list of workflows.</p>"
+       },
+       {
+        "html": "",
+        "code": {
+         "lang": "ts",
+         "code": "import { HttpApi, HttpApiBuilder } from \"@effect/platform\"\nimport { Workflow, WorkflowProxy, WorkflowProxyServer } from \"@effect/workflow\"\nimport { Layer, Schema } from \"effect\"\n\nconst EmailWorkflow = Workflow.make({\n  name: \"EmailWorkflow\",\n  payload: {\n    id: Schema.String,\n    to: Schema.String\n  },\n  idempotencyKey: ({ id }) => id\n})\n\nconst myWorkflows = [EmailWorkflow] as const\n\n// Use WorkflowProxy.toHttpApiGroup to create a `HttpApiGroup` from the\n// workflows\nclass MyApi extends HttpApi.make(\"api\").add(WorkflowProxy.toHttpApiGroup(\"workflows\", myWorkflows)) {}\n\n// Use WorkflowProxyServer.layerHttpApi to create a layer that implements the\n// workflows HttpApiGroup\nconst ApiLayer = HttpApiBuilder.api(MyApi).pipe(\n  Layer.provide(WorkflowProxyServer.layerHttpApi(MyApi, \"workflows\", myWorkflows))\n)"
+        }
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const toHttpApiGroup: <const Name extends string, const Workflows extends NonEmptyReadonlyArray<Workflow.Any>>(\n  name: Name,\n  workflows: Workflows\n) => HttpApiGroup.HttpApiGroup<Name, ConvertHttpApi<Workflows[number]>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxy.ts#L122",
+      "since": "1.0.0"
+     },
+     {
+      "id": "torpcgroup",
+      "level": 2,
+      "name": "toRpcGroup",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Derives an <code>RpcGroup</code> from a list of workflows.</p>"
+       },
+       {
+        "html": "",
+        "code": {
+         "lang": "ts",
+         "code": "import { RpcServer } from \"@effect/rpc\"\nimport { Workflow, WorkflowProxy, WorkflowProxyServer } from \"@effect/workflow\"\nimport { Layer, Schema } from \"effect\"\n\nconst EmailWorkflow = Workflow.make({\n  name: \"EmailWorkflow\",\n  payload: {\n    id: Schema.String,\n    to: Schema.String\n  },\n  idempotencyKey: ({ id }) => id\n})\n\nconst myWorkflows = [EmailWorkflow] as const\n\n// Use WorkflowProxy.toRpcGroup to create a `RpcGroup` from the\n// workflows\nclass MyRpcs extends WorkflowProxy.toRpcGroup(myWorkflows) {}\n\n// Use WorkflowProxyServer.layerRpcHandlers to create a layer that implements\n// the rpc handlers\nconst ApiLayer = RpcServer.layer(MyRpcs).pipe(Layer.provide(WorkflowProxyServer.layerRpcHandlers(myWorkflows)))"
+        }
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const toRpcGroup: <\n  const Workflows extends NonEmptyReadonlyArray<Workflow.Any>,\n  const Prefix extends string = \"\"\n>(\n  workflows: Workflows,\n  options?: { readonly prefix?: Prefix | undefined }\n) => RpcGroup.RpcGroup<ConvertRpcs<Workflows[number], Prefix>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxy.ts#L45",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "converthttpapi-type-alias",
+      "level": 2,
+      "name": "ConvertHttpApi",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ConvertHttpApi<Workflows> =\n  Workflows extends Workflow.Workflow<infer _Name, infer _Payload, infer _Success, infer _Error>\n    ?\n        | HttpApiEndpoint.HttpApiEndpoint<\n            _Name,\n            \"POST\",\n            never,\n            never,\n            _Payload[\"Type\"],\n            never,\n            _Success[\"Type\"],\n            _Error[\"Type\"],\n            _Payload[\"Context\"] | _Success[\"Context\"],\n            _Error[\"Context\"]\n          >\n        | HttpApiEndpoint.HttpApiEndpoint<\n            `${_Name}Discard`,\n            \"POST\",\n            never,\n            never,\n            _Payload[\"Type\"],\n            never,\n            void,\n            never,\n            _Payload[\"Context\"]\n          >\n        | HttpApiEndpoint.HttpApiEndpoint<\n            `${_Name}Resume`,\n            \"POST\",\n            never,\n            never,\n            typeof ResumePayload.Type,\n            never,\n            void,\n            never,\n            typeof ResumePayload.Context\n          >\n    : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxy.ts#L157",
+      "since": "1.0.0"
+     },
+     {
+      "id": "convertrpcs-type-alias",
+      "level": 2,
+      "name": "ConvertRpcs",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type ConvertRpcs<Workflows, Prefix> =\n  Workflows extends Workflow.Workflow<infer _Name, infer _Payload, infer _Success, infer _Error>\n    ?\n        | Rpc.Rpc<`${Prefix}${_Name}`, _Payload, _Success, _Error>\n        | Rpc.Rpc<`${Prefix}${_Name}Discard`, _Payload>\n        | Rpc.Rpc<`${Prefix}${_Name}Resume`, typeof ResumePayload>\n    : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxy.ts#L76",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "WorkflowProxyServer": {
+  "name": "WorkflowProxyServer",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxyServer.ts",
+  "categories": [
+   {
+    "id": "layers",
+    "title": "Layers",
+    "exports": [
+     {
+      "id": "layerhttpapi",
+      "level": 2,
+      "name": "layerHttpApi",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerHttpApi: <\n  ApiId extends string,\n  Groups extends HttpApiGroup.Any,\n  ApiE,\n  ApiR,\n  Name extends HttpApiGroup.Name<Groups>,\n  const Workflows extends NonEmptyReadonlyArray<Workflow.Any>\n>(\n  api: HttpApi.HttpApi<ApiId, Groups, ApiE, ApiR>,\n  name: Name,\n  workflows: Workflows\n) => Layer.Layer<ApiGroup<ApiId, Name>, never, WorkflowEngine | Workflow.Requirements<Workflows[number]>>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxyServer.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "layerrpchandlers",
+      "level": 2,
+      "name": "layerRpcHandlers",
+      "kind": null,
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "declare const layerRpcHandlers: <\n  const Workflows extends NonEmptyReadonlyArray<Workflow.Any>,\n  const Prefix extends string = \"\"\n>(\n  workflows: Workflows,\n  options?: { readonly prefix?: Prefix }\n) => Layer.Layer<\n  RpcHandlers<Workflows[number], Prefix>,\n  never,\n  WorkflowEngine | Workflow.Requirements<Workflows[number]>\n>"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxyServer.ts#L85",
+      "since": "1.0.0"
+     }
+    ]
+   },
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "rpchandlers-type-alias",
+      "level": 2,
+      "name": "RpcHandlers",
+      "kind": "type alias",
+      "description": [],
+      "signature": {
+       "lang": "ts",
+       "code": "type RpcHandlers<Workflows, Prefix> =\n  Workflows extends Workflow.Workflow<infer _Name, infer _Payload, infer _Success, infer _Error>\n    ?\n        | Rpc.Handler<`${Prefix}${_Name}`>\n        | Rpc.Handler<`${Prefix}${_Name}Discard`>\n        | Rpc.Handler<`${Prefix}${_Name}Resume`>\n    : never"
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/WorkflowProxyServer.ts#L129",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ },
+ "index": {
+  "name": "index",
+  "since": "1.0.0",
+  "description": [],
+  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts",
+  "categories": [
+   {
+    "id": "utils",
+    "title": "utils",
+    "exports": [
+     {
+      "id": "activity-namespace-export",
+      "level": 2,
+      "name": "Activity (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Activity.js\u201d module as <code>Activity</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Activity from \"./Activity.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L4",
+      "since": "1.0.0"
+     },
+     {
+      "id": "durableclock-namespace-export",
+      "level": 2,
+      "name": "DurableClock (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./DurableClock.js\u201d module as <code>DurableClock</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as DurableClock from \"./DurableClock.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L9",
+      "since": "1.0.0"
+     },
+     {
+      "id": "durabledeferred-namespace-export",
+      "level": 2,
+      "name": "DurableDeferred (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./DurableDeferred.js\u201d module as <code>DurableDeferred</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as DurableDeferred from \"./DurableDeferred.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L14",
+      "since": "1.0.0"
+     },
+     {
+      "id": "durablequeue-namespace-export",
+      "level": 2,
+      "name": "DurableQueue (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./DurableQueue.js\u201d module as <code>DurableQueue</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as DurableQueue from \"./DurableQueue.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L19",
+      "since": "1.0.0"
+     },
+     {
+      "id": "durableratelimiter-namespace-export",
+      "level": 2,
+      "name": "DurableRateLimiter (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./DurableRateLimiter.js\u201d module as <code>DurableRateLimiter</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as DurableRateLimiter from \"./DurableRateLimiter.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L24",
+      "since": "1.0.0"
+     },
+     {
+      "id": "workflow-namespace-export",
+      "level": 2,
+      "name": "Workflow (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./Workflow.js\u201d module as <code>Workflow</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as Workflow from \"./Workflow.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L29",
+      "since": "1.0.0"
+     },
+     {
+      "id": "workflowengine-namespace-export",
+      "level": 2,
+      "name": "WorkflowEngine (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./WorkflowEngine.js\u201d module as <code>WorkflowEngine</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as WorkflowEngine from \"./WorkflowEngine.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L34",
+      "since": "1.0.0"
+     },
+     {
+      "id": "workflowproxy-namespace-export",
+      "level": 2,
+      "name": "WorkflowProxy (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./WorkflowProxy.js\u201d module as <code>WorkflowProxy</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as WorkflowProxy from \"./WorkflowProxy.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L39",
+      "since": "1.0.0"
+     },
+     {
+      "id": "workflowproxyserver-namespace-export",
+      "level": 2,
+      "name": "WorkflowProxyServer (namespace export)",
+      "kind": null,
+      "description": [
+       {
+        "html": "<p>Re-exports all named exports from the \u201c./WorkflowProxyServer.js\u201d module as <code>WorkflowProxyServer</code>.</p>"
+       }
+      ],
+      "signature": {
+       "lang": "ts",
+       "code": "export * as WorkflowProxyServer from \"./WorkflowProxyServer.js\""
+      },
+      "examples": [],
+      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform/src/index.ts#L44",
+      "since": "1.0.0"
+     }
+    ]
+   }
+  ]
+ }
+}
