@@ -2,11 +2,14 @@ import {
 	Check,
 	ChevronDown,
 	ChevronRight,
+	CircleCheck,
 	Copy,
 	Download,
 	File,
 	Folder,
+	LoaderCircle,
 } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
@@ -200,6 +203,87 @@ function Tree({
 	);
 }
 
+const BOOT_STEPS = [
+	"Booting webcontainer",
+	"Installing dependencies",
+	"Starting dev server",
+];
+
+/**
+ * Boot loader overlay in the editorial design system — mock version of the
+ * playground's real loading screen, simulating the boot sequence on mount.
+ */
+function PlaygroundLoader() {
+	const [doneCount, setDoneCount] = useState(0);
+	const [hidden, setHidden] = useState(false);
+
+	useEffect(() => {
+		if (doneCount < BOOT_STEPS.length) {
+			const timer = setTimeout(() => setDoneCount((n) => n + 1), 900);
+			return () => clearTimeout(timer);
+		}
+		const timer = setTimeout(() => setHidden(true), 500);
+		return () => clearTimeout(timer);
+	}, [doneCount]);
+
+	const visibleSteps = BOOT_STEPS.slice(
+		0,
+		Math.min(doneCount + 1, BOOT_STEPS.length),
+	);
+
+	return (
+		<AnimatePresence initial={false}>
+			{!hidden && (
+				<motion.div
+					initial={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.5 }}
+					className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950"
+				>
+					<div className="w-full max-w-sm rounded-md border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
+						<p className="font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+							Loading Playground
+						</p>
+						<div className="mt-4 mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
+						<div className="flex flex-col space-y-3">
+							<AnimatePresence initial={false}>
+								{visibleSteps.map((step, index) => {
+									const isDone = index < doneCount;
+									return (
+										<motion.div
+											key={step}
+											initial={{ opacity: 0, y: 12 }}
+											animate={{ opacity: 1, y: 0 }}
+											exit={{ opacity: 0, y: -12 }}
+											transition={{ duration: 0.3, ease: "easeInOut" }}
+											className="flex w-full items-center space-x-2.5"
+										>
+											{isDone ? (
+												<CircleCheck className="h-4 w-4 shrink-0 text-green-500" />
+											) : (
+												<LoaderCircle className="h-4 w-4 shrink-0 animate-spin text-zinc-400 dark:text-zinc-500" />
+											)}
+											<span
+												className={`font-mono text-[13px] ${
+													isDone
+														? "text-zinc-500 dark:text-zinc-400"
+														: "text-zinc-900 dark:text-white"
+												}`}
+											>
+												{step}
+											</span>
+										</motion.div>
+									);
+								})}
+							</AnimatePresence>
+						</div>
+					</div>
+				</motion.div>
+			)}
+		</AnimatePresence>
+	);
+}
+
 export function PlaygroundMockPage() {
 	const [activeFile, setActiveFile] = useState("main.ts");
 	const [activeTab, setActiveTab] = useState<"terminal" | "trace">("terminal");
@@ -251,6 +335,7 @@ export function PlaygroundMockPage() {
 	return (
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<Navigation activePath="/play" fullWidth />
+			<PlaygroundLoader />
 
 			{/* Main playground shell — sidebar + editor row, then full-width bottom panel */}
 			<div className="flex flex-1 overflow-hidden pt-16">
