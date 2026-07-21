@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import {
@@ -29,14 +29,40 @@ function githubUrl(pkg: ApiPackage): string {
 	return `https://github.com/Effect-TS/effect/tree/main/packages/${dir}`;
 }
 
-function ApiReferenceLayout({
+export type ApiTocItem = { id: string; label: string; depth: number };
+
+export function ApiReferenceLayout({
 	activeSlug,
+	tocItems,
 	children,
 }: {
 	activeSlug?: string;
+	tocItems?: ApiTocItem[];
 	children: ReactNode;
 }) {
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+	const [activeId, setActiveId] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (!tocItems || tocItems.length === 0) return;
+		const headings = tocItems
+			.map((item) => document.getElementById(item.id))
+			.filter((el): el is HTMLElement => el !== null);
+		if (headings.length === 0) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries
+					.filter((e) => e.isIntersecting)
+					.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+				if (visible.length > 0) setActiveId(visible[0].target.id);
+			},
+			{ rootMargin: "-80px 0px -70% 0px", threshold: 0 },
+		);
+
+		for (const el of headings) observer.observe(el);
+		return () => observer.disconnect();
+	}, [tocItems]);
 
 	const toggleSection = (title: string) => {
 		setOpenSections((prev) => {
@@ -55,7 +81,13 @@ function ApiReferenceLayout({
 			</a>
 			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
-				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 lg:grid-cols-[240px_1fr]">
+				<div
+					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
+						tocItems
+							? "lg:grid-cols-[240px_1fr_240px]"
+							: "lg:grid-cols-[240px_1fr]"
+					}`}
+				>
 					{/* Left sidebar: packages */}
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
@@ -138,6 +170,44 @@ function ApiReferenceLayout({
 					>
 						{children}
 					</main>
+
+					{/* Right TOC */}
+					{tocItems && (
+						<aside className="hidden border-l border-zinc-200 lg:block dark:border-zinc-800">
+							<nav
+								aria-label="On this page"
+								className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
+							>
+								<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+									On this page
+								</p>
+								<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
+								<ul className="flex flex-col gap-2.5">
+									{tocItems.map((item) => {
+										const isActive = activeId === item.id;
+										return (
+											<li key={item.id}>
+												<a
+													href={`#${item.id}`}
+													aria-current={isActive ? "location" : undefined}
+													className={`block truncate text-sm leading-snug transition-colors ${
+														item.depth > 0 ? "font-mono text-[13px]" : ""
+													} ${
+														isActive
+															? "font-semibold text-zinc-900 dark:text-white"
+															: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+													}`}
+													style={{ paddingLeft: `${item.depth * 12}px` }}
+												>
+													{item.label}
+												</a>
+											</li>
+										);
+									})}
+								</ul>
+							</nav>
+						</aside>
+					)}
 				</div>
 			</div>
 			<Footer activePath="/docs" />
@@ -147,18 +217,24 @@ function ApiReferenceLayout({
 }
 
 function ModuleLink({ name, href }: { name: string; href: string }) {
+	const isExternal = !href.startsWith("/");
 	return (
 		<a
-			href={href}
+			href={isExternal ? href : getAssetPath(href)}
 			className="group flex items-center justify-between gap-2 rounded-md border border-zinc-200 bg-white px-3.5 py-2.5 transition-colors hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
 		>
 			<span className="truncate font-mono text-sm text-zinc-800 group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
 				{name}
 			</span>
 			<i
-				className="ri-arrow-right-line shrink-0 text-sm text-zinc-400 opacity-0 transition-opacity group-hover:opacity-100 dark:text-zinc-500"
+				className={`shrink-0 text-sm text-zinc-400 transition-opacity dark:text-zinc-500 ${
+					isExternal
+						? "ri-arrow-right-up-line opacity-60"
+						: "ri-arrow-right-line opacity-0 group-hover:opacity-100"
+				}`}
 				aria-hidden="true"
 			/>
+			{isExternal && <span className="sr-only">(external documentation)</span>}
 		</a>
 	);
 }
