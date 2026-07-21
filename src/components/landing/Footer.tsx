@@ -40,7 +40,7 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href="https://effect.website/docs/additional-resources/api-reference/"
+										href={getAssetPath("/docs/api")}
 										variant="footer"
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
