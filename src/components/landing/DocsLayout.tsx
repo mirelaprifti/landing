@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
@@ -48,6 +48,10 @@ const SIDEBAR: NavSection[] = [
 			{ slug: "pubsub", label: "PubSub" },
 		],
 	},
+	{
+		title: "Reference",
+		items: [{ slug: "api", label: "API Reference" }],
+	},
 ];
 
 export function DocsLayout({
@@ -83,9 +87,7 @@ export function DocsLayout({
 			(entries) => {
 				const visible = entries
 					.filter((e) => e.isIntersecting)
-					.sort(
-						(a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
-					);
+					.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 				if (visible.length > 0) setActiveId(visible[0].target.id);
 			},
 			{ rootMargin: "-80px 0px -70% 0px", threshold: 0 },
@@ -164,7 +166,10 @@ export function DocsLayout({
 					</aside>
 
 					{/* Main content */}
-					<main id="main-content" className="min-w-0 px-6 py-12 lg:px-12 lg:py-16">
+					<main
+						id="main-content"
+						className="min-w-0 px-6 py-12 lg:px-12 lg:py-16"
+					>
 						{children}
 					</main>
 
