@@ -143,12 +143,12 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/effect-talks")}
+										href={getAssetPath("/spread-the-effect")}
 										variant="footer"
-										active={activePath?.startsWith("/effect-talks")}
+										active={activePath?.startsWith("/spread-the-effect")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Effect Talks
+										Spread the Effect
 									</Link>
 								</li>
 								<li>

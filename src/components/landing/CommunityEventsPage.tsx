@@ -164,7 +164,7 @@ export function CommunityEventsPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/effect-talks" />
+			<Navigation activePath="/spread-the-effect" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -213,7 +213,7 @@ export function CommunityEventsPage() {
 							{/* Left — copy */}
 							<div>
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Effect talks
+									// Spread the Effect
 								</p>
 								<h1 className="leading-tighter text-3xl font-bold text-white">
 									Bring Effect to your community events
@@ -437,7 +437,7 @@ export function CommunityEventsPage() {
 				</section>
 			</main>
 
-			<Footer activePath="/effect-talks" />
+			<Footer activePath="/spread-the-effect" />
 		</div>
 	);
 }
