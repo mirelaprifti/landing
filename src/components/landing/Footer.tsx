@@ -392,13 +392,7 @@ export function Footer({
 									Email us
 								</Link>
 								<a
-									href="#"
-									className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								>
-									Terms
-								</a>
-								<a
-									href="#"
+									href={getAssetPath("/privacy")}
 									className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									Privacy
