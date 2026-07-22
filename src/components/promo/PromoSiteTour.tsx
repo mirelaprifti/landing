@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { getAssetPath } from "@/utils/assetPath";
 
 /**
  * Site-tour promo animation for social media — shows the REAL landing page
@@ -60,8 +59,6 @@ const TOUR: { match: string; hold: number }[] = [
 	{ match: "What developers are saying", hold: 1200 },
 	{ match: "Stop installing", hold: 1100 },
 ];
-
-const END_CARD_MS = 3000;
 
 function sleep(ms: number, state: { cancelled: boolean }) {
 	return new Promise<void>((resolve) => {
@@ -125,7 +122,7 @@ export function PromoSiteTour() {
 	const [format] = useState<Format>(getFormat);
 	const [cycle, setCycle] = useState(0);
 	const [scale, setScale] = useState(1);
-	const [showEndCard, setShowEndCard] = useState(false);
+	const [fadeOut, setFadeOut] = useState(false);
 	const [introDone, setIntroDone] = useState(false);
 	const [showHint, setShowHint] = useState(true);
 	const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -188,7 +185,7 @@ export function PromoSiteTour() {
 
 			// Type the URL, then reveal the page.
 			setIntroDone(false);
-			setShowEndCard(false);
+			setFadeOut(false);
 			win.scrollTo(0, 0);
 			await sleep(1400, state);
 			setIntroDone(true);
@@ -208,12 +205,12 @@ export function PromoSiteTour() {
 					await sleep(stop.hold, state);
 				}
 				if (state.cancelled) return;
-				setShowEndCard(true);
-				await sleep(END_CARD_MS, state);
-				// Reset behind the end card, then reveal the hero again.
+				// Fade to black, reset to the top, fade back in on the hero.
+				setFadeOut(true);
+				await sleep(900, state);
 				win.scrollTo(0, 0);
-				await sleep(400, state);
-				setShowEndCard(false);
+				await sleep(300, state);
+				setFadeOut(false);
 				await sleep(800, state);
 			}
 		};
@@ -322,74 +319,16 @@ export function PromoSiteTour() {
 					</motion.div>
 				</div>
 
-				{/* End card */}
+				{/* Fade to black between loops */}
 				<AnimatePresence>
-					{showEndCard && (
+					{fadeOut && (
 						<motion.div
 							className="absolute inset-0 z-10 bg-zinc-950"
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							transition={{ duration: 0.7 }}
-						>
-							{/* Same background language as the site: grid + soft glow */}
-							<div
-								className="pointer-events-none absolute inset-0"
-								style={{
-									backgroundImage: `
-										linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-										linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
-									`,
-									backgroundSize: "196.6px 194px",
-									backgroundPosition: "calc(50% + 97px) 0",
-								}}
-							/>
-							<div
-								className="pointer-events-none absolute inset-0"
-								style={{
-									background:
-										"linear-gradient(to bottom, var(--page-fade) 0%, transparent 30%, transparent 60%, var(--page-fade) 100%)",
-								}}
-							/>
-							<div
-								className="pointer-events-none absolute inset-0"
-								style={{
-									background:
-										"radial-gradient(ellipse 45% 55% at 50% 42%, var(--hero-glow-a) 0%, transparent 60%)",
-								}}
-							/>
-
-							<div className="absolute inset-0 flex flex-col items-center justify-center">
-								<motion.img
-									src={getAssetPath(
-										"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
-									)}
-									alt="Effect"
-									className="h-16 w-auto"
-									initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
-									animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-									transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-								/>
-								<motion.p
-									className="mt-7 text-2xl text-zinc-400"
-									initial={{ opacity: 0, y: 10 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-								>
-									Reliable TypeScript for the AI era
-								</motion.p>
-								<motion.div
-									className="mt-12 flex items-center gap-3 font-mono text-lg text-zinc-500"
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									transition={{ duration: 0.6, delay: 1.2 }}
-								>
-									<span>bun add effect</span>
-									<span className="text-zinc-700">·</span>
-									<span className="text-zinc-200">effect.website</span>
-								</motion.div>
-							</div>
-						</motion.div>
+							transition={{ duration: 0.8, ease: "easeInOut" }}
+						/>
 					)}
 				</AnimatePresence>
 
