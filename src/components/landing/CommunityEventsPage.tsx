@@ -290,7 +290,7 @@ export function CommunityEventsPage() {
 								className="absolute inset-0"
 								style={{
 									background:
-										"linear-gradient(to right, #09090b 0%, #09090b 30%, rgba(9, 9, 11, 0.9) 50%, rgba(9, 9, 11, 0.35) 72%, rgba(9, 9, 11, 0.2) 100%)",
+										"linear-gradient(to right, rgba(9, 9, 11, 0.92) 0%, rgba(9, 9, 11, 0.85) 30%, rgba(9, 9, 11, 0.65) 50%, rgba(9, 9, 11, 0.3) 72%, rgba(9, 9, 11, 0.15) 100%)",
 								}}
 							/>
 							{/* Blend top and bottom into the page */}
@@ -298,7 +298,7 @@ export function CommunityEventsPage() {
 								className="absolute inset-0"
 								style={{
 									background:
-										"linear-gradient(to bottom, #09090b 0%, transparent 30%, transparent 65%, #09090b 100%)",
+										"linear-gradient(to bottom, transparent 0%, transparent 65%, #09090b 100%)",
 								}}
 							/>
 							{/* Extra darkening on mobile, where text stacks over the photo */}
