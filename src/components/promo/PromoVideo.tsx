@@ -385,7 +385,7 @@ export function PromoVideo() {
 	const ActiveScene = SCENES[scene];
 
 	return (
-		<div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-zinc-950 [cursor:none]">
+		<div className="fixed inset-0 flex cursor-none items-center justify-center overflow-hidden bg-zinc-950">
 			<div
 				className="relative flex-none overflow-hidden bg-zinc-950"
 				style={{

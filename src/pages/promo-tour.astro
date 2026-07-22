@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PromoSiteTour } from "@/components/promo/PromoSiteTour";
+---
+
+<BaseLayout
+  title="Effect — Site Tour Promo"
+  description="Self-running site-tour animation for recording social media videos."
+>
+  <PromoSiteTour client:only="react" />
+</BaseLayout>
+
+<style is:global>
+  /* Keep the dev toolbar out of screen recordings */
+  astro-dev-toolbar {
+    display: none !important;
+  }
+</style>
