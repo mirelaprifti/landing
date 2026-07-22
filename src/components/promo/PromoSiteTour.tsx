@@ -70,8 +70,8 @@ function sleep(ms: number, state: { cancelled: boolean }) {
 	});
 }
 
-function easeInOutCubic(t: number) {
-	return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+function easeInOutQuint(t: number) {
+	return t < 0.5 ? 16 * t * t * t * t * t : 1 - (-2 * t + 2) ** 5 / 2;
 }
 
 function tweenScroll(
@@ -86,7 +86,7 @@ function tweenScroll(
 		const frame = (now: number) => {
 			if (state.cancelled) return resolve();
 			const t = Math.min(1, (now - start) / duration);
-			win.scrollTo(0, from + (to - from) * easeInOutCubic(t));
+			win.scrollTo(0, from + (to - from) * easeInOutQuint(t));
 			if (t < 1) requestAnimationFrame(frame);
 			else resolve();
 		};
@@ -200,7 +200,7 @@ export function PromoSiteTour() {
 					if (target !== null) {
 						const dist = Math.abs(target - win.scrollY);
 						if (dist > 4) {
-							const duration = Math.min(1700, Math.max(700, dist * 0.55));
+							const duration = Math.min(2000, Math.max(950, dist * 0.75));
 							await tweenScroll(win, target, duration, state);
 						}
 					}
