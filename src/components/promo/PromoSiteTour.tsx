@@ -125,7 +125,6 @@ export function PromoSiteTour() {
 	const [cycle, setCycle] = useState(0);
 	const [scale, setScale] = useState(1);
 	const [showEndCard, setShowEndCard] = useState(false);
-	const [moving, setMoving] = useState(false);
 	const [introDone, setIntroDone] = useState(false);
 	const [showHint, setShowHint] = useState(true);
 	const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -202,9 +201,7 @@ export function PromoSiteTour() {
 						const dist = Math.abs(target - win.scrollY);
 						if (dist > 4) {
 							const duration = Math.min(1700, Math.max(700, dist * 0.55));
-							setMoving(true);
 							await tweenScroll(win, target, duration, state);
-							setMoving(false);
 						}
 					}
 					await sleep(stop.hold, state);
@@ -293,16 +290,10 @@ export function PromoSiteTour() {
 							</div>
 							<div className="w-14" />
 						</div>
-						{/* Real site in an iframe, scaled to fit the frame.
-						    Blur + micro-zoom while scrolling for a camera-move feel. */}
-						<motion.div
+						{/* Real site in an iframe, scaled to fit the frame */}
+						<div
 							className="relative overflow-hidden bg-zinc-950"
 							style={{ height: viewportH }}
-							animate={{
-								filter: moving ? "blur(5px)" : "blur(0px)",
-								scale: moving ? 1.015 : 1,
-							}}
-							transition={{ duration: 0.4, ease: "easeInOut" }}
 						>
 							<iframe
 								ref={iframeRef}
@@ -326,7 +317,7 @@ export function PromoSiteTour() {
 									/>
 								)}
 							</AnimatePresence>
-						</motion.div>
+						</div>
 					</motion.div>
 				</div>
 
