@@ -9,8 +9,7 @@ import { Navigation } from "./Navigation";
 
 function ShareButtons({ title }: { title: string }) {
 	const [copied, setCopied] = useState(false);
-	const shareUrl =
-		typeof window !== "undefined" ? window.location.href : "";
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	const encodedUrl = encodeURIComponent(shareUrl);
 	const encodedTitle = encodeURIComponent(title);
 	const xUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
@@ -75,7 +74,12 @@ function TableOfContents({
 	showBackLink = true,
 	postTitle,
 	postDate,
-}: { className?: string; showBackLink?: boolean; postTitle?: string; postDate?: string }) {
+}: {
+	className?: string;
+	showBackLink?: boolean;
+	postTitle?: string;
+	postDate?: string;
+}) {
 	const tocItems = [
 		{
 			id: "faster-runtime",
@@ -319,24 +323,34 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				</div>
 
 				<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
-					<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-24">
+					<nav
+						aria-label="Breadcrumb"
+						className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-24"
+					>
 						<a
 							href={getAssetPath("/blog")}
 							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 						>
 							Blog
 						</a>
-						<span className="text-zinc-600 dark:text-zinc-400" aria-hidden="true">//</span>
+						<span
+							className="text-zinc-600 dark:text-zinc-400"
+							aria-hidden="true"
+						>
+							//
+						</span>
 						<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-							{[...post.tags].sort((a, b) => a.localeCompare(b)).map((tag) => (
-								<a
-									key={tag}
-									href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
-									className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
-								>
-									{tag}
-								</a>
-							))}
+							{[...post.tags]
+								.sort((a, b) => a.localeCompare(b))
+								.map((tag) => (
+									<a
+										key={tag}
+										href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
+										className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+									>
+										{tag}
+									</a>
+								))}
 						</div>
 					</nav>
 
@@ -596,7 +610,10 @@ Effect.runPromise(program)`}</code>
 									className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
 								>
 									Join the Discord
-									<i className="ri-arrow-right-line text-base" aria-hidden="true" />
+									<i
+										className="ri-arrow-right-line text-base"
+										aria-hidden="true"
+									/>
 								</a>
 								<a
 									href="https://discord.gg/effect-ts"

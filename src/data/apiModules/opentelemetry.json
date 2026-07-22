@@ -1,1438 +1,1438 @@
 {
- "Logger": {
-  "name": "Logger",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: Effect.Effect<Logger.Logger<unknown, void>, never, OtelLoggerProvider>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L32",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layerloggeradd",
-      "level": 2,
-      "name": "layerLoggerAdd",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerLoggerAdd: Layer.Layer<never, never, OtelLoggerProvider>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L81",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerloggerprovider",
-      "level": 2,
-      "name": "layerLoggerProvider",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerLoggerProvider: (\n  processor: Otel.LogRecordProcessor | NonEmptyReadonlyArray<Otel.LogRecordProcessor>,\n  config?: Omit<Otel.LoggerProviderConfig, \"resource\"> & { readonly shutdownTimeout?: DurationInput | undefined }\n) => Layer.Layer<OtelLoggerProvider, never, Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L101",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerloggerreplace",
-      "level": 2,
-      "name": "layerLoggerReplace",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerLoggerReplace: Layer.Layer<never, never, OtelLoggerProvider>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L91",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "otelloggerprovider-class",
-      "level": 2,
-      "name": "OtelLoggerProvider",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class OtelLoggerProvider"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L23",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Metrics": {
-  "name": "Metrics",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (\n  evaluate: LazyArg<MetricReader | NonEmptyReadonlyArray<MetricReader>>,\n  options?: { readonly shutdownTimeout?: DurationInput | undefined }\n) => Layer<never, never, Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts#L33",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "producer",
-    "title": "producer",
-    "exports": [
-     {
-      "id": "makeproducer",
-      "level": 2,
-      "name": "makeProducer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const makeProducer: Effect.Effect<MetricProducer, never, Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts#L18",
-      "since": "1.0.0"
-     },
-     {
-      "id": "registerproducer",
-      "level": 2,
-      "name": "registerProducer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const registerProducer: (\n  self: MetricProducer,\n  metricReader: LazyArg<MetricReader | NonEmptyReadonlyArray<MetricReader>>\n) => Effect.Effect<Array<any>, never, Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts#L24",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeSdk": {
-  "name": "NodeSdk",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts",
-  "categories": [
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: {\n  (evaluate: LazyArg<Configuration>): Layer.Layer<Resource.Resource>\n  <R, E>(evaluate: Effect.Effect<Configuration, E, R>): Layer.Layer<Resource.Resource, E, R>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L76",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerempty",
-      "level": 2,
-      "name": "layerEmpty",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerEmpty: Layer.Layer<Resource.Resource, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L125",
-      "since": "2.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layertracerprovider",
-      "level": 2,
-      "name": "layerTracerProvider",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerTracerProvider: (\n  processor: SpanProcessor | NonEmptyReadonlyArray<SpanProcessor>,\n  config?: Omit<TracerConfig, \"resource\"> & { readonly shutdownTimeout?: DurationInput | undefined }\n) => Layer.Layer<Tracer.OtelTracerProvider, never, Resource.Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L42",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "model",
-    "title": "model",
-    "exports": [
-     {
-      "id": "configuration-interface",
-      "level": 2,
-      "name": "Configuration",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Configuration {\n  readonly spanProcessor?: SpanProcessor | ReadonlyArray<SpanProcessor> | undefined\n  readonly tracerConfig?: Omit<TracerConfig, \"resource\"> | undefined\n  readonly metricReader?: MetricReader | ReadonlyArray<MetricReader> | undefined\n  readonly logRecordProcessor?: LogRecordProcessor | ReadonlyArray<LogRecordProcessor> | undefined\n  readonly loggerProviderConfig?: Omit<LoggerProviderConfig, \"resource\"> | undefined\n  readonly resource?:\n    | {\n        readonly serviceName: string\n        readonly serviceVersion?: string\n        readonly attributes?: OtelApi.Attributes\n      }\n    | undefined\n  readonly shutdownTimeout?: DurationInput | undefined\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L24",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Otlp": {
-  "name": "Otlp",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates an OTLP layer.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (options: {\n  readonly baseUrl: string\n  readonly resource?: {\n    readonly serviceName?: string | undefined\n    readonly serviceVersion?: string | undefined\n    readonly attributes?: Record<string, unknown>\n  }\n  readonly headers?: Headers.Input | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly tracerContext?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly loggerExportInterval?: Duration.DurationInput | undefined\n  readonly loggerExcludeLogSpans?: boolean | undefined\n  readonly metricsExportInterval?: Duration.DurationInput | undefined\n  readonly tracerExportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization.OtlpSerialization>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts#L23",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerjson",
-      "level": 2,
-      "name": "layerJson",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates an OTLP layer with JSON serialization.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerJson: (options: {\n  readonly baseUrl: string\n  readonly resource?: {\n    readonly serviceName?: string | undefined\n    readonly serviceVersion?: string | undefined\n    readonly attributes?: Record<string, unknown>\n  }\n  readonly headers?: Headers.Input | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly tracerContext?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly loggerExportInterval?: Duration.DurationInput | undefined\n  readonly loggerExcludeLogSpans?: boolean | undefined\n  readonly metricsExportInterval?: Duration.DurationInput | undefined\n  readonly tracerExportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts#L78",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerprotobuf",
-      "level": 2,
-      "name": "layerProtobuf",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates an OTLP layer with Protobuf serialization.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerProtobuf: (options: {\n  readonly baseUrl: string\n  readonly resource?: {\n    readonly serviceName?: string | undefined\n    readonly serviceVersion?: string | undefined\n    readonly attributes?: Record<string, unknown>\n  }\n  readonly headers?: Headers.Input | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly tracerContext?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly loggerExportInterval?: Duration.DurationInput | undefined\n  readonly loggerExcludeLogSpans?: boolean | undefined\n  readonly metricsExportInterval?: Duration.DurationInput | undefined\n  readonly tracerExportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts#L102",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "OtlpLogger": {
-  "name": "OtlpLogger",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpLogger.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "Constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n  readonly excludeLogSpans?: boolean | undefined\n}) => Effect.Effect<Logger.Logger<unknown, void>, never, HttpClient.HttpClient | OtlpSerialization | Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpLogger.ts#L29",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n  readonly excludeLogSpans?: boolean | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpLogger.ts#L87",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "OtlpMetrics": {
-  "name": "OtlpMetrics",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpMetrics.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "Constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Effect.Effect<void, never, HttpClient.HttpClient | OtlpSerialization | Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpMetrics.ts#L24",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpMetrics.ts#L287",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "OtlpResource": {
-  "name": "OtlpResource",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts",
-  "categories": [
-   {
-    "id": "attributes",
-    "title": "Attributes",
-    "exports": [
-     {
-      "id": "entriestoattributes",
-      "level": 2,
-      "name": "entriesToAttributes",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const entriesToAttributes: (entries: Iterable<[string, unknown]>) => Array<KeyValue>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L118",
-      "since": "1.0.0"
-     },
-     {
-      "id": "unknowntoattributevalue",
-      "level": 2,
-      "name": "unknownToAttributeValue",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const unknownToAttributeValue: (value: unknown) => AnyValue"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L133",
-      "since": "1.0.0"
-     },
-     {
-      "id": "unsafeservicename",
-      "level": 2,
-      "name": "unsafeServiceName",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const unsafeServiceName: (resource: Resource) => string"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L104",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "constructors",
-    "title": "Constructors",
-    "exports": [
-     {
-      "id": "fromconfig",
-      "level": 2,
-      "name": "fromConfig",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromConfig: (\n  options?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown> | undefined\n      }\n    | undefined\n) => Effect.Effect<Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L60",
-      "since": "1.0.0"
-     },
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (options: {\n  readonly serviceName: string\n  readonly serviceVersion?: string | undefined\n  readonly attributes?: Record<string, unknown> | undefined\n}) => Resource"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L27",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "models",
-    "title": "Models",
-    "exports": [
-     {
-      "id": "anyvalue-interface",
-      "level": 2,
-      "name": "AnyValue",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface AnyValue {\n  /** AnyValue stringValue */\n  stringValue?: string | null\n  /** AnyValue boolValue */\n  boolValue?: boolean | null\n  /** AnyValue intValue */\n  intValue?: number | null\n  /** AnyValue doubleValue */\n  doubleValue?: number | null\n  /** AnyValue arrayValue */\n  arrayValue?: ArrayValue\n  /** AnyValue kvlistValue */\n  kvlistValue?: KeyValueList\n  /** AnyValue bytesValue */\n  bytesValue?: Uint8Array\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L184",
-      "since": "1.0.0"
-     },
-     {
-      "id": "arrayvalue-interface",
-      "level": 2,
-      "name": "ArrayValue",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface ArrayValue {\n  /** ArrayValue values */\n  values: Array<AnyValue>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L205",
-      "since": "1.0.0"
-     },
-     {
-      "id": "fixed64-type-alias",
-      "level": 2,
-      "name": "Fixed64",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type Fixed64 = LongBits | string | number"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L232",
-      "since": "1.0.0"
-     },
-     {
-      "id": "keyvalue-interface",
-      "level": 2,
-      "name": "KeyValue",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface KeyValue {\n  /** KeyValue key */\n  key: string\n  /** KeyValue value */\n  value: AnyValue\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L173",
-      "since": "1.0.0"
-     },
-     {
-      "id": "keyvaluelist-interface",
-      "level": 2,
-      "name": "KeyValueList",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface KeyValueList {\n  /** KeyValueList values */\n  values: Array<KeyValue>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L214",
-      "since": "1.0.0"
-     },
-     {
-      "id": "longbits-interface",
-      "level": 2,
-      "name": "LongBits",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface LongBits {\n  low: number\n  high: number\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L223",
-      "since": "1.0.0"
-     },
-     {
-      "id": "resource-interface",
-      "level": 2,
-      "name": "Resource",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Resource {\n  /** Resource attributes */\n  attributes: Array<KeyValue>\n  /** Resource droppedAttributesCount */\n  droppedAttributesCount: number\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L16",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "OtlpSerialization": {
-  "name": "OtlpSerialization",
-  "since": "1.0.0",
-  "description": [
-   {
-    "html": "<p>OtlpSerialization service for tree-shakable protobuf support.</p>"
-   },
-   {
-    "html": "<p>This module provides the <code>OtlpSerialization</code> service that abstracts the encoding of OTLP telemetry data to HttpBody.</p>"
-   }
-  ],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layerjson",
-      "level": 2,
-      "name": "layerJson",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>JSON serializer layer for OTLP telemetry data.</p>"
-       },
-       {
-        "html": "<p>It encodes telemetry data as JSON with <code>application/json</code> content type.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerJson: Layer.Layer<OtlpSerialization, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts#L44",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerprotobuf",
-      "level": 2,
-      "name": "layerProtobuf",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Protobuf serializer layer for OTLP telemetry data.</p>"
-       },
-       {
-        "html": "<p>This serializer encodes telemetry data using Protocol Buffers binary format with <code>application/x-protobuf</code> content type. It provides more efficient wire format compared to JSON.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerProtobuf: Layer.Layer<OtlpSerialization, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts#L60",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "Tags",
-    "exports": [
-     {
-      "id": "otlpserialization-class",
-      "level": 2,
-      "name": "OtlpSerialization",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class OtlpSerialization"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts#L18",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "OtlpTracer": {
-  "name": "OtlpTracer",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpTracer.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "Constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly context?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Effect.Effect<Tracer.Tracer, never, HttpClient.HttpClient | OtlpSerialization | Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpTracer.ts#L30",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly context?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpTracer.ts#L112",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Resource": {
-  "name": "Resource",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts",
-  "categories": [
-   {
-    "id": "config",
-    "title": "config",
-    "exports": [
-     {
-      "id": "configtoattributes",
-      "level": 2,
-      "name": "configToAttributes",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const configToAttributes: (options: {\n  readonly serviceName: string\n  readonly serviceVersion?: string\n  readonly attributes?: OtelApi.Attributes\n}) => Record<string, string>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L46",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "identifier",
-    "title": "identifier",
-    "exports": [
-     {
-      "id": "resource-interface",
-      "level": 2,
-      "name": "Resource",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Resource {\n  readonly _: unique symbol\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L18",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (config: {\n  readonly serviceName: string\n  readonly serviceVersion?: string\n  readonly attributes?: OtelApi.Attributes\n}) => Layer.Layer<Resource, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L32",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerempty",
-      "level": 2,
-      "name": "layerEmpty",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerEmpty: Layer.Layer<Resource, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L108",
-      "since": "2.0.0"
-     },
-     {
-      "id": "layerfromenv",
-      "level": 2,
-      "name": "layerFromEnv",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerFromEnv: (additionalAttributes?: OtelApi.Attributes | undefined) => Layer.Layer<Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L69",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tag",
-    "title": "tag",
-    "exports": [
-     {
-      "id": "resource",
-      "level": 2,
-      "name": "Resource",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const Resource: Tag<Resource, Resources.Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L26",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Tracer": {
-  "name": "Tracer",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts",
-  "categories": [
-   {
-    "id": "accessors",
-    "title": "accessors",
-    "exports": [
-     {
-      "id": "currentotelspan",
-      "level": 2,
-      "name": "currentOtelSpan",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Get the current OpenTelemetry span.</p>"
-       },
-       {
-        "html": "<p>Works with both the official OpenTelemetry API (via <code>Tracer.layer</code>, <code>NodeSdk.layer</code>, etc.) and the lightweight OTLP module (<code>OtlpTracer.layer</code>).</p>"
-       },
-       {
-        "html": "<p>When using OTLP, the returned span is a wrapper that conforms to the OpenTelemetry <code>Span</code> interface.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const currentOtelSpan: Effect<Otel.Span, NoSuchElementException, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L44",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: Effect<EffectTracer, never, OtelTracer>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L17",
-      "since": "1.0.0"
-     },
-     {
-      "id": "makeexternalspan",
-      "level": 2,
-      "name": "makeExternalSpan",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const makeExternalSpan: (options: {\n  readonly traceId: string\n  readonly spanId: string\n  readonly traceFlags?: number | undefined\n  readonly traceState?: string | Otel.TraceState | undefined\n}) => ExternalSpan"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L23",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer<OtelTracer, never, OtelTracerProvider | Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L56",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerglobal",
-      "level": 2,
-      "name": "layerGlobal",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerGlobal: Layer<OtelTracer, never, Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L62",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerglobaltracer",
-      "level": 2,
-      "name": "layerGlobalTracer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerGlobalTracer: Layer<OtelTracer, never, Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L74",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layertracer",
-      "level": 2,
-      "name": "layerTracer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerTracer: Layer<OtelTracer, never, OtelTracerProvider | Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L68",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerwithoutoteltracer",
-      "level": 2,
-      "name": "layerWithoutOtelTracer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerWithoutOtelTracer: Layer<never, never, OtelTracer>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L50",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "propagation",
-    "title": "propagation",
-    "exports": [
-     {
-      "id": "withspancontext",
-      "level": 2,
-      "name": "withSpanContext",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Set the effect\u2019s parent span from the given opentelemetry <code>SpanContext</code>.</p>"
-       },
-       {
-        "html": "<p>This is handy when you set up OpenTelemetry outside of Effect and want to attach to a parent span.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const withSpanContext: {\n  (spanContext: Otel.SpanContext): <A, E, R>(effect: Effect<A, E, R>) => Effect<A, E, Exclude<R, ParentSpan>>\n  <A, E, R>(effect: Effect<A, E, R>, spanContext: Otel.SpanContext): Effect<A, E, Exclude<R, ParentSpan>>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L141",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "oteltraceflags",
-      "level": 2,
-      "name": "OtelTraceFlags",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const OtelTraceFlags: Tag<OtelTraceFlags, Otel.TraceFlags>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L116",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltraceflags-interface",
-      "level": 2,
-      "name": "OtelTraceFlags",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface OtelTraceFlags {\n  readonly _: unique symbol\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L108",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltracestate",
-      "level": 2,
-      "name": "OtelTraceState",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const OtelTraceState: Tag<OtelTraceState, Otel.TraceState>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L130",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltracestate-interface",
-      "level": 2,
-      "name": "OtelTraceState",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface OtelTraceState {\n  readonly _: unique symbol\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L122",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltracer",
-      "level": 2,
-      "name": "OtelTracer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const OtelTracer: Tag<OtelTracer, Otel.Tracer>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L102",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltracer-interface",
-      "level": 2,
-      "name": "OtelTracer",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface OtelTracer {\n  readonly _: unique symbol\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L94",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltracerprovider",
-      "level": 2,
-      "name": "OtelTracerProvider",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const OtelTracerProvider: Tag<OtelTracerProvider, Otel.TracerProvider>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L88",
-      "since": "1.0.0"
-     },
-     {
-      "id": "oteltracerprovider-interface",
-      "level": 2,
-      "name": "OtelTracerProvider",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface OtelTracerProvider {\n  readonly _: unique symbol\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L80",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "WebSdk": {
-  "name": "WebSdk",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts",
-  "categories": [
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: {\n  (evaluate: LazyArg<Configuration>): Layer.Layer<Resource.Resource>\n  <E, R>(evaluate: Effect.Effect<Configuration, E, R>): Layer.Layer<Resource.Resource, E, R>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts#L67",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layertracerprovider",
-      "level": 2,
-      "name": "layerTracerProvider",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerTracerProvider: (\n  processor: SpanProcessor | NonEmptyReadonlyArray<SpanProcessor>,\n  config?: Omit<TracerConfig, \"resource\">\n) => Layer.Layer<Tracer.OtelTracerProvider, never, Resource.Resource>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts#L40",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "model",
-    "title": "model",
-    "exports": [
-     {
-      "id": "configuration-interface",
-      "level": 2,
-      "name": "Configuration",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Configuration {\n  readonly spanProcessor?: SpanProcessor | ReadonlyArray<SpanProcessor> | undefined\n  readonly tracerConfig?: Omit<TracerConfig, \"resource\">\n  readonly metricReader?: MetricReader | ReadonlyArray<MetricReader> | undefined\n  readonly logRecordProcessor?: LogRecordProcessor | ReadonlyArray<LogRecordProcessor> | undefined\n  readonly loggerProviderConfig?: Omit<LoggerProviderConfig, \"resource\"> | undefined\n  readonly resource: {\n    readonly serviceName: string\n    readonly serviceVersion?: string\n    readonly attributes?: OtelApi.Attributes\n  }\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts#L23",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "index": {
-  "name": "index",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts",
-  "categories": [
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "logger-namespace-export",
-      "level": 2,
-      "name": "Logger (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Logger.js\u201d module as <code>Logger</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Logger from \"./Logger.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L4",
-      "since": "1.0.0"
-     },
-     {
-      "id": "metrics-namespace-export",
-      "level": 2,
-      "name": "Metrics (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Metrics.js\u201d module as <code>Metrics</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Metrics from \"./Metrics.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L9",
-      "since": "1.0.0"
-     },
-     {
-      "id": "nodesdk-namespace-export",
-      "level": 2,
-      "name": "NodeSdk (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./NodeSdk.js\u201d module as <code>NodeSdk</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as NodeSdk from \"./NodeSdk.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L14",
-      "since": "1.0.0"
-     },
-     {
-      "id": "otlp-namespace-export",
-      "level": 2,
-      "name": "Otlp (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Otlp.js\u201d module as <code>Otlp</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Otlp from \"./Otlp.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L19",
-      "since": "1.0.0"
-     },
-     {
-      "id": "otlplogger-namespace-export",
-      "level": 2,
-      "name": "OtlpLogger (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./OtlpLogger.js\u201d module as <code>OtlpLogger</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as OtlpLogger from \"./OtlpLogger.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L24",
-      "since": "1.0.0"
-     },
-     {
-      "id": "otlpmetrics-namespace-export",
-      "level": 2,
-      "name": "OtlpMetrics (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./OtlpMetrics.js\u201d module as <code>OtlpMetrics</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as OtlpMetrics from \"./OtlpMetrics.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L29",
-      "since": "1.0.0"
-     },
-     {
-      "id": "otlpresource-namespace-export",
-      "level": 2,
-      "name": "OtlpResource (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./OtlpResource.js\u201d module as <code>OtlpResource</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as OtlpResource from \"./OtlpResource.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L34",
-      "since": "1.0.0"
-     },
-     {
-      "id": "otlpserialization-namespace-export",
-      "level": 2,
-      "name": "OtlpSerialization (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./OtlpSerialization.js\u201d module as <code>OtlpSerialization</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as OtlpSerialization from \"./OtlpSerialization.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L44",
-      "since": "1.0.0"
-     },
-     {
-      "id": "otlptracer-namespace-export",
-      "level": 2,
-      "name": "OtlpTracer (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./OtlpTracer.js\u201d module as <code>OtlpTracer</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as OtlpTracer from \"./OtlpTracer.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L49",
-      "since": "1.0.0"
-     },
-     {
-      "id": "resource-namespace-export",
-      "level": 2,
-      "name": "Resource (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Resource.js\u201d module as <code>Resource</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Resource from \"./Resource.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L54",
-      "since": "1.0.0"
-     },
-     {
-      "id": "tracer-namespace-export",
-      "level": 2,
-      "name": "Tracer (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Tracer.js\u201d module as <code>Tracer</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Tracer from \"./Tracer.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L59",
-      "since": "1.0.0"
-     },
-     {
-      "id": "websdk-namespace-export",
-      "level": 2,
-      "name": "WebSdk (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./WebSdk.js\u201d module as <code>WebSdk</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as WebSdk from \"./WebSdk.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L64",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- }
+	"Logger": {
+		"name": "Logger",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: Effect.Effect<Logger.Logger<unknown, void>, never, OtelLoggerProvider>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L32",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layerloggeradd",
+						"level": 2,
+						"name": "layerLoggerAdd",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerLoggerAdd: Layer.Layer<never, never, OtelLoggerProvider>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L81",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerloggerprovider",
+						"level": 2,
+						"name": "layerLoggerProvider",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerLoggerProvider: (\n  processor: Otel.LogRecordProcessor | NonEmptyReadonlyArray<Otel.LogRecordProcessor>,\n  config?: Omit<Otel.LoggerProviderConfig, \"resource\"> & { readonly shutdownTimeout?: DurationInput | undefined }\n) => Layer.Layer<OtelLoggerProvider, never, Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L101",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerloggerreplace",
+						"level": 2,
+						"name": "layerLoggerReplace",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerLoggerReplace: Layer.Layer<never, never, OtelLoggerProvider>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L91",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "otelloggerprovider-class",
+						"level": 2,
+						"name": "OtelLoggerProvider",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class OtelLoggerProvider"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Logger.ts#L23",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Metrics": {
+		"name": "Metrics",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (\n  evaluate: LazyArg<MetricReader | NonEmptyReadonlyArray<MetricReader>>,\n  options?: { readonly shutdownTimeout?: DurationInput | undefined }\n) => Layer<never, never, Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts#L33",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "producer",
+				"title": "producer",
+				"exports": [
+					{
+						"id": "makeproducer",
+						"level": 2,
+						"name": "makeProducer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const makeProducer: Effect.Effect<MetricProducer, never, Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts#L18",
+						"since": "1.0.0"
+					},
+					{
+						"id": "registerproducer",
+						"level": 2,
+						"name": "registerProducer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const registerProducer: (\n  self: MetricProducer,\n  metricReader: LazyArg<MetricReader | NonEmptyReadonlyArray<MetricReader>>\n) => Effect.Effect<Array<any>, never, Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Metrics.ts#L24",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeSdk": {
+		"name": "NodeSdk",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts",
+		"categories": [
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: {\n  (evaluate: LazyArg<Configuration>): Layer.Layer<Resource.Resource>\n  <R, E>(evaluate: Effect.Effect<Configuration, E, R>): Layer.Layer<Resource.Resource, E, R>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L76",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerempty",
+						"level": 2,
+						"name": "layerEmpty",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerEmpty: Layer.Layer<Resource.Resource, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L125",
+						"since": "2.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layertracerprovider",
+						"level": 2,
+						"name": "layerTracerProvider",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerTracerProvider: (\n  processor: SpanProcessor | NonEmptyReadonlyArray<SpanProcessor>,\n  config?: Omit<TracerConfig, \"resource\"> & { readonly shutdownTimeout?: DurationInput | undefined }\n) => Layer.Layer<Tracer.OtelTracerProvider, never, Resource.Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L42",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "model",
+				"title": "model",
+				"exports": [
+					{
+						"id": "configuration-interface",
+						"level": 2,
+						"name": "Configuration",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Configuration {\n  readonly spanProcessor?: SpanProcessor | ReadonlyArray<SpanProcessor> | undefined\n  readonly tracerConfig?: Omit<TracerConfig, \"resource\"> | undefined\n  readonly metricReader?: MetricReader | ReadonlyArray<MetricReader> | undefined\n  readonly logRecordProcessor?: LogRecordProcessor | ReadonlyArray<LogRecordProcessor> | undefined\n  readonly loggerProviderConfig?: Omit<LoggerProviderConfig, \"resource\"> | undefined\n  readonly resource?:\n    | {\n        readonly serviceName: string\n        readonly serviceVersion?: string\n        readonly attributes?: OtelApi.Attributes\n      }\n    | undefined\n  readonly shutdownTimeout?: DurationInput | undefined\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/NodeSdk.ts#L24",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Otlp": {
+		"name": "Otlp",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates an OTLP layer.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (options: {\n  readonly baseUrl: string\n  readonly resource?: {\n    readonly serviceName?: string | undefined\n    readonly serviceVersion?: string | undefined\n    readonly attributes?: Record<string, unknown>\n  }\n  readonly headers?: Headers.Input | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly tracerContext?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly loggerExportInterval?: Duration.DurationInput | undefined\n  readonly loggerExcludeLogSpans?: boolean | undefined\n  readonly metricsExportInterval?: Duration.DurationInput | undefined\n  readonly tracerExportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization.OtlpSerialization>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts#L23",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerjson",
+						"level": 2,
+						"name": "layerJson",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates an OTLP layer with JSON serialization.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerJson: (options: {\n  readonly baseUrl: string\n  readonly resource?: {\n    readonly serviceName?: string | undefined\n    readonly serviceVersion?: string | undefined\n    readonly attributes?: Record<string, unknown>\n  }\n  readonly headers?: Headers.Input | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly tracerContext?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly loggerExportInterval?: Duration.DurationInput | undefined\n  readonly loggerExcludeLogSpans?: boolean | undefined\n  readonly metricsExportInterval?: Duration.DurationInput | undefined\n  readonly tracerExportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts#L78",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerprotobuf",
+						"level": 2,
+						"name": "layerProtobuf",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates an OTLP layer with Protobuf serialization.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerProtobuf: (options: {\n  readonly baseUrl: string\n  readonly resource?: {\n    readonly serviceName?: string | undefined\n    readonly serviceVersion?: string | undefined\n    readonly attributes?: Record<string, unknown>\n  }\n  readonly headers?: Headers.Input | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly tracerContext?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly loggerExportInterval?: Duration.DurationInput | undefined\n  readonly loggerExcludeLogSpans?: boolean | undefined\n  readonly metricsExportInterval?: Duration.DurationInput | undefined\n  readonly tracerExportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Otlp.ts#L102",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"OtlpLogger": {
+		"name": "OtlpLogger",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpLogger.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "Constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n  readonly excludeLogSpans?: boolean | undefined\n}) => Effect.Effect<Logger.Logger<unknown, void>, never, HttpClient.HttpClient | OtlpSerialization | Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpLogger.ts#L29",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly replaceLogger?: Logger.Logger<any, any> | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n  readonly excludeLogSpans?: boolean | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpLogger.ts#L87",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"OtlpMetrics": {
+		"name": "OtlpMetrics",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpMetrics.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "Constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Effect.Effect<void, never, HttpClient.HttpClient | OtlpSerialization | Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpMetrics.ts#L24",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpMetrics.ts#L287",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"OtlpResource": {
+		"name": "OtlpResource",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts",
+		"categories": [
+			{
+				"id": "attributes",
+				"title": "Attributes",
+				"exports": [
+					{
+						"id": "entriestoattributes",
+						"level": 2,
+						"name": "entriesToAttributes",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const entriesToAttributes: (entries: Iterable<[string, unknown]>) => Array<KeyValue>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L118",
+						"since": "1.0.0"
+					},
+					{
+						"id": "unknowntoattributevalue",
+						"level": 2,
+						"name": "unknownToAttributeValue",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const unknownToAttributeValue: (value: unknown) => AnyValue"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L133",
+						"since": "1.0.0"
+					},
+					{
+						"id": "unsafeservicename",
+						"level": 2,
+						"name": "unsafeServiceName",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const unsafeServiceName: (resource: Resource) => string"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L104",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "constructors",
+				"title": "Constructors",
+				"exports": [
+					{
+						"id": "fromconfig",
+						"level": 2,
+						"name": "fromConfig",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromConfig: (\n  options?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown> | undefined\n      }\n    | undefined\n) => Effect.Effect<Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L60",
+						"since": "1.0.0"
+					},
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (options: {\n  readonly serviceName: string\n  readonly serviceVersion?: string | undefined\n  readonly attributes?: Record<string, unknown> | undefined\n}) => Resource"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L27",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "models",
+				"title": "Models",
+				"exports": [
+					{
+						"id": "anyvalue-interface",
+						"level": 2,
+						"name": "AnyValue",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface AnyValue {\n  /** AnyValue stringValue */\n  stringValue?: string | null\n  /** AnyValue boolValue */\n  boolValue?: boolean | null\n  /** AnyValue intValue */\n  intValue?: number | null\n  /** AnyValue doubleValue */\n  doubleValue?: number | null\n  /** AnyValue arrayValue */\n  arrayValue?: ArrayValue\n  /** AnyValue kvlistValue */\n  kvlistValue?: KeyValueList\n  /** AnyValue bytesValue */\n  bytesValue?: Uint8Array\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L184",
+						"since": "1.0.0"
+					},
+					{
+						"id": "arrayvalue-interface",
+						"level": 2,
+						"name": "ArrayValue",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface ArrayValue {\n  /** ArrayValue values */\n  values: Array<AnyValue>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L205",
+						"since": "1.0.0"
+					},
+					{
+						"id": "fixed64-type-alias",
+						"level": 2,
+						"name": "Fixed64",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type Fixed64 = LongBits | string | number"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L232",
+						"since": "1.0.0"
+					},
+					{
+						"id": "keyvalue-interface",
+						"level": 2,
+						"name": "KeyValue",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface KeyValue {\n  /** KeyValue key */\n  key: string\n  /** KeyValue value */\n  value: AnyValue\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L173",
+						"since": "1.0.0"
+					},
+					{
+						"id": "keyvaluelist-interface",
+						"level": 2,
+						"name": "KeyValueList",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface KeyValueList {\n  /** KeyValueList values */\n  values: Array<KeyValue>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L214",
+						"since": "1.0.0"
+					},
+					{
+						"id": "longbits-interface",
+						"level": 2,
+						"name": "LongBits",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface LongBits {\n  low: number\n  high: number\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L223",
+						"since": "1.0.0"
+					},
+					{
+						"id": "resource-interface",
+						"level": 2,
+						"name": "Resource",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Resource {\n  /** Resource attributes */\n  attributes: Array<KeyValue>\n  /** Resource droppedAttributesCount */\n  droppedAttributesCount: number\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpResource.ts#L16",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"OtlpSerialization": {
+		"name": "OtlpSerialization",
+		"since": "1.0.0",
+		"description": [
+			{
+				"html": "<p>OtlpSerialization service for tree-shakable protobuf support.</p>"
+			},
+			{
+				"html": "<p>This module provides the <code>OtlpSerialization</code> service that abstracts the encoding of OTLP telemetry data to HttpBody.</p>"
+			}
+		],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layerjson",
+						"level": 2,
+						"name": "layerJson",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>JSON serializer layer for OTLP telemetry data.</p>"
+							},
+							{
+								"html": "<p>It encodes telemetry data as JSON with <code>application/json</code> content type.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerJson: Layer.Layer<OtlpSerialization, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts#L44",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerprotobuf",
+						"level": 2,
+						"name": "layerProtobuf",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Protobuf serializer layer for OTLP telemetry data.</p>"
+							},
+							{
+								"html": "<p>This serializer encodes telemetry data using Protocol Buffers binary format with <code>application/x-protobuf</code> content type. It provides more efficient wire format compared to JSON.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerProtobuf: Layer.Layer<OtlpSerialization, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts#L60",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "Tags",
+				"exports": [
+					{
+						"id": "otlpserialization-class",
+						"level": 2,
+						"name": "OtlpSerialization",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class OtlpSerialization"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpSerialization.ts#L18",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"OtlpTracer": {
+		"name": "OtlpTracer",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpTracer.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "Constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly context?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Effect.Effect<Tracer.Tracer, never, HttpClient.HttpClient | OtlpSerialization | Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpTracer.ts#L30",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (options: {\n  readonly url: string\n  readonly resource?:\n    | {\n        readonly serviceName?: string | undefined\n        readonly serviceVersion?: string | undefined\n        readonly attributes?: Record<string, unknown>\n      }\n    | undefined\n  readonly headers?: Headers.Input | undefined\n  readonly exportInterval?: Duration.DurationInput | undefined\n  readonly maxBatchSize?: number | undefined\n  readonly context?: (<X>(f: () => X, span: Tracer.AnySpan) => X) | undefined\n  readonly shutdownTimeout?: Duration.DurationInput | undefined\n}) => Layer.Layer<never, never, HttpClient.HttpClient | OtlpSerialization>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/OtlpTracer.ts#L112",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Resource": {
+		"name": "Resource",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts",
+		"categories": [
+			{
+				"id": "config",
+				"title": "config",
+				"exports": [
+					{
+						"id": "configtoattributes",
+						"level": 2,
+						"name": "configToAttributes",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const configToAttributes: (options: {\n  readonly serviceName: string\n  readonly serviceVersion?: string\n  readonly attributes?: OtelApi.Attributes\n}) => Record<string, string>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L46",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "identifier",
+				"title": "identifier",
+				"exports": [
+					{
+						"id": "resource-interface",
+						"level": 2,
+						"name": "Resource",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Resource {\n  readonly _: unique symbol\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L18",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (config: {\n  readonly serviceName: string\n  readonly serviceVersion?: string\n  readonly attributes?: OtelApi.Attributes\n}) => Layer.Layer<Resource, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L32",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerempty",
+						"level": 2,
+						"name": "layerEmpty",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerEmpty: Layer.Layer<Resource, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L108",
+						"since": "2.0.0"
+					},
+					{
+						"id": "layerfromenv",
+						"level": 2,
+						"name": "layerFromEnv",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerFromEnv: (additionalAttributes?: OtelApi.Attributes | undefined) => Layer.Layer<Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L69",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tag",
+				"title": "tag",
+				"exports": [
+					{
+						"id": "resource",
+						"level": 2,
+						"name": "Resource",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const Resource: Tag<Resource, Resources.Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Resource.ts#L26",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Tracer": {
+		"name": "Tracer",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts",
+		"categories": [
+			{
+				"id": "accessors",
+				"title": "accessors",
+				"exports": [
+					{
+						"id": "currentotelspan",
+						"level": 2,
+						"name": "currentOtelSpan",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Get the current OpenTelemetry span.</p>"
+							},
+							{
+								"html": "<p>Works with both the official OpenTelemetry API (via <code>Tracer.layer</code>, <code>NodeSdk.layer</code>, etc.) and the lightweight OTLP module (<code>OtlpTracer.layer</code>).</p>"
+							},
+							{
+								"html": "<p>When using OTLP, the returned span is a wrapper that conforms to the OpenTelemetry <code>Span</code> interface.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const currentOtelSpan: Effect<Otel.Span, NoSuchElementException, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L44",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: Effect<EffectTracer, never, OtelTracer>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L17",
+						"since": "1.0.0"
+					},
+					{
+						"id": "makeexternalspan",
+						"level": 2,
+						"name": "makeExternalSpan",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const makeExternalSpan: (options: {\n  readonly traceId: string\n  readonly spanId: string\n  readonly traceFlags?: number | undefined\n  readonly traceState?: string | Otel.TraceState | undefined\n}) => ExternalSpan"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L23",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer<OtelTracer, never, OtelTracerProvider | Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L56",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerglobal",
+						"level": 2,
+						"name": "layerGlobal",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerGlobal: Layer<OtelTracer, never, Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L62",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerglobaltracer",
+						"level": 2,
+						"name": "layerGlobalTracer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerGlobalTracer: Layer<OtelTracer, never, Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L74",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layertracer",
+						"level": 2,
+						"name": "layerTracer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerTracer: Layer<OtelTracer, never, OtelTracerProvider | Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L68",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerwithoutoteltracer",
+						"level": 2,
+						"name": "layerWithoutOtelTracer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerWithoutOtelTracer: Layer<never, never, OtelTracer>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L50",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "propagation",
+				"title": "propagation",
+				"exports": [
+					{
+						"id": "withspancontext",
+						"level": 2,
+						"name": "withSpanContext",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Set the effect\u2019s parent span from the given opentelemetry <code>SpanContext</code>.</p>"
+							},
+							{
+								"html": "<p>This is handy when you set up OpenTelemetry outside of Effect and want to attach to a parent span.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const withSpanContext: {\n  (spanContext: Otel.SpanContext): <A, E, R>(effect: Effect<A, E, R>) => Effect<A, E, Exclude<R, ParentSpan>>\n  <A, E, R>(effect: Effect<A, E, R>, spanContext: Otel.SpanContext): Effect<A, E, Exclude<R, ParentSpan>>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L141",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "oteltraceflags",
+						"level": 2,
+						"name": "OtelTraceFlags",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const OtelTraceFlags: Tag<OtelTraceFlags, Otel.TraceFlags>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L116",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltraceflags-interface",
+						"level": 2,
+						"name": "OtelTraceFlags",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface OtelTraceFlags {\n  readonly _: unique symbol\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L108",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltracestate",
+						"level": 2,
+						"name": "OtelTraceState",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const OtelTraceState: Tag<OtelTraceState, Otel.TraceState>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L130",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltracestate-interface",
+						"level": 2,
+						"name": "OtelTraceState",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface OtelTraceState {\n  readonly _: unique symbol\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L122",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltracer",
+						"level": 2,
+						"name": "OtelTracer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const OtelTracer: Tag<OtelTracer, Otel.Tracer>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L102",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltracer-interface",
+						"level": 2,
+						"name": "OtelTracer",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface OtelTracer {\n  readonly _: unique symbol\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L94",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltracerprovider",
+						"level": 2,
+						"name": "OtelTracerProvider",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const OtelTracerProvider: Tag<OtelTracerProvider, Otel.TracerProvider>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L88",
+						"since": "1.0.0"
+					},
+					{
+						"id": "oteltracerprovider-interface",
+						"level": 2,
+						"name": "OtelTracerProvider",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface OtelTracerProvider {\n  readonly _: unique symbol\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/Tracer.ts#L80",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"WebSdk": {
+		"name": "WebSdk",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts",
+		"categories": [
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: {\n  (evaluate: LazyArg<Configuration>): Layer.Layer<Resource.Resource>\n  <E, R>(evaluate: Effect.Effect<Configuration, E, R>): Layer.Layer<Resource.Resource, E, R>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts#L67",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layertracerprovider",
+						"level": 2,
+						"name": "layerTracerProvider",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerTracerProvider: (\n  processor: SpanProcessor | NonEmptyReadonlyArray<SpanProcessor>,\n  config?: Omit<TracerConfig, \"resource\">\n) => Layer.Layer<Tracer.OtelTracerProvider, never, Resource.Resource>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts#L40",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "model",
+				"title": "model",
+				"exports": [
+					{
+						"id": "configuration-interface",
+						"level": 2,
+						"name": "Configuration",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Configuration {\n  readonly spanProcessor?: SpanProcessor | ReadonlyArray<SpanProcessor> | undefined\n  readonly tracerConfig?: Omit<TracerConfig, \"resource\">\n  readonly metricReader?: MetricReader | ReadonlyArray<MetricReader> | undefined\n  readonly logRecordProcessor?: LogRecordProcessor | ReadonlyArray<LogRecordProcessor> | undefined\n  readonly loggerProviderConfig?: Omit<LoggerProviderConfig, \"resource\"> | undefined\n  readonly resource: {\n    readonly serviceName: string\n    readonly serviceVersion?: string\n    readonly attributes?: OtelApi.Attributes\n  }\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/WebSdk.ts#L23",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"index": {
+		"name": "index",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts",
+		"categories": [
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "logger-namespace-export",
+						"level": 2,
+						"name": "Logger (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Logger.js\u201d module as <code>Logger</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Logger from \"./Logger.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L4",
+						"since": "1.0.0"
+					},
+					{
+						"id": "metrics-namespace-export",
+						"level": 2,
+						"name": "Metrics (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Metrics.js\u201d module as <code>Metrics</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Metrics from \"./Metrics.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L9",
+						"since": "1.0.0"
+					},
+					{
+						"id": "nodesdk-namespace-export",
+						"level": 2,
+						"name": "NodeSdk (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./NodeSdk.js\u201d module as <code>NodeSdk</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as NodeSdk from \"./NodeSdk.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L14",
+						"since": "1.0.0"
+					},
+					{
+						"id": "otlp-namespace-export",
+						"level": 2,
+						"name": "Otlp (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Otlp.js\u201d module as <code>Otlp</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Otlp from \"./Otlp.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L19",
+						"since": "1.0.0"
+					},
+					{
+						"id": "otlplogger-namespace-export",
+						"level": 2,
+						"name": "OtlpLogger (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./OtlpLogger.js\u201d module as <code>OtlpLogger</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as OtlpLogger from \"./OtlpLogger.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L24",
+						"since": "1.0.0"
+					},
+					{
+						"id": "otlpmetrics-namespace-export",
+						"level": 2,
+						"name": "OtlpMetrics (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./OtlpMetrics.js\u201d module as <code>OtlpMetrics</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as OtlpMetrics from \"./OtlpMetrics.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L29",
+						"since": "1.0.0"
+					},
+					{
+						"id": "otlpresource-namespace-export",
+						"level": 2,
+						"name": "OtlpResource (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./OtlpResource.js\u201d module as <code>OtlpResource</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as OtlpResource from \"./OtlpResource.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L34",
+						"since": "1.0.0"
+					},
+					{
+						"id": "otlpserialization-namespace-export",
+						"level": 2,
+						"name": "OtlpSerialization (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./OtlpSerialization.js\u201d module as <code>OtlpSerialization</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as OtlpSerialization from \"./OtlpSerialization.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L44",
+						"since": "1.0.0"
+					},
+					{
+						"id": "otlptracer-namespace-export",
+						"level": 2,
+						"name": "OtlpTracer (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./OtlpTracer.js\u201d module as <code>OtlpTracer</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as OtlpTracer from \"./OtlpTracer.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L49",
+						"since": "1.0.0"
+					},
+					{
+						"id": "resource-namespace-export",
+						"level": 2,
+						"name": "Resource (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Resource.js\u201d module as <code>Resource</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Resource from \"./Resource.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L54",
+						"since": "1.0.0"
+					},
+					{
+						"id": "tracer-namespace-export",
+						"level": 2,
+						"name": "Tracer (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Tracer.js\u201d module as <code>Tracer</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Tracer from \"./Tracer.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L59",
+						"since": "1.0.0"
+					},
+					{
+						"id": "websdk-namespace-export",
+						"level": 2,
+						"name": "WebSdk (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./WebSdk.js\u201d module as <code>WebSdk</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as WebSdk from \"./WebSdk.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/opentelemetry/src/index.ts#L64",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	}
 }

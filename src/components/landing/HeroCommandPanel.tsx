@@ -99,7 +99,10 @@ export function HeroCommandPanel({
 	return (
 		<div className="rounded-md bg-zinc-100/50 p-1 ring-1 ring-zinc-300 ring-inset dark:bg-zinc-900/50 dark:ring-zinc-700">
 			{/* Mode tabs: Install | Prompt for AI agents */}
-			<div role="tablist" className="flex border-b border-zinc-200 dark:border-zinc-800">
+			<div
+				role="tablist"
+				className="flex border-b border-zinc-200 dark:border-zinc-800"
+			>
 				<button
 					type="button"
 					role="tab"
@@ -140,7 +143,9 @@ export function HeroCommandPanel({
 				onClick={copy}
 				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-4 py-1 text-left font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-200/40 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/30 dark:hover:text-white"
 				aria-label={
-					mode === "install" ? "Copy install command" : "Copy prompt for AI agents"
+					mode === "install"
+						? "Copy install command"
+						: "Copy prompt for AI agents"
 				}
 			>
 				{mode === "install" && (

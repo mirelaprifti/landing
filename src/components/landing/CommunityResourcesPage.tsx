@@ -88,7 +88,13 @@ function ResourceCard({
 
 // ── Featured Item Card ───────────────────────────────────────────
 
-function FeaturedItemCard({ item, large }: { item: CommunityItem; large?: boolean }) {
+function FeaturedItemCard({
+	item,
+	large,
+}: {
+	item: CommunityItem;
+	large?: boolean;
+}) {
 	return (
 		<a
 			href={item.url}
@@ -110,8 +116,12 @@ function FeaturedItemCard({ item, large }: { item: CommunityItem; large?: boolea
 			<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
 
 			{/* Title overlay */}
-			<div className={`absolute inset-x-0 bottom-0 px-4 pb-4 ${large ? "px-6 pb-6" : ""}`}>
-				<h3 className={`font-semibold leading-snug text-white drop-shadow-sm ${large ? "text-lg" : "text-[15px]"}`}>
+			<div
+				className={`absolute inset-x-0 bottom-0 px-4 pb-4 ${large ? "px-6 pb-6" : ""}`}
+			>
+				<h3
+					className={`font-semibold leading-snug text-white drop-shadow-sm ${large ? "text-lg" : "text-[15px]"}`}
+				>
 					{item.title}
 					<i
 						className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200"
@@ -132,22 +142,16 @@ function CategorySection({ category }: { category: Category }) {
 	const displayName = CATEGORY_DISPLAY_NAMES[category];
 
 	const items = useMemo(() => {
-		return COMMUNITY_ITEMS.filter(
-			(item) => item.category === category,
-		)
+		return COMMUNITY_ITEMS.filter((item) => item.category === category)
 			.sort(
 				(a, b) =>
-					new Date(b.dateAdded).getTime() -
-					new Date(a.dateAdded).getTime(),
+					new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
 			)
 			.slice(0, ITEMS_PER_SECTION);
 	}, [category]);
 
 	const totalCount = useMemo(
-		() =>
-			COMMUNITY_ITEMS.filter(
-				(item) => item.category === category,
-			).length,
+		() => COMMUNITY_ITEMS.filter((item) => item.category === category).length,
 		[category],
 	);
 
@@ -166,9 +170,7 @@ function CategorySection({ category }: { category: Category }) {
 							aria-hidden="true"
 						/>
 					</div>
-					<h2 className="text-lg font-semibold text-white">
-						{displayName}
-					</h2>
+					<h2 className="text-lg font-semibold text-white">{displayName}</h2>
 					<span className="text-sm text-zinc-400">{totalCount}</span>
 				</div>
 				<Link
@@ -213,8 +215,7 @@ function SearchResults({
 				item.tags?.some((t) => t.toLowerCase().includes(q)),
 		).sort(
 			(a, b) =>
-				new Date(b.dateAdded).getTime() -
-				new Date(a.dateAdded).getTime(),
+				new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
 		);
 	}, [query]);
 
@@ -231,8 +232,7 @@ function SearchResults({
 					No resources found
 				</p>
 				<p className="mt-2 max-w-sm text-center text-sm leading-relaxed text-zinc-400">
-					Nothing matched &ldquo;{query}&rdquo;. Try a different
-					search term.
+					Nothing matched &ldquo;{query}&rdquo;. Try a different search term.
 				</p>
 				<button
 					type="button"
@@ -248,8 +248,8 @@ function SearchResults({
 	return (
 		<div className="py-8">
 			<p className="mb-6 text-sm text-zinc-400">
-				{results.length} result{results.length === 1 ? "" : "s"}{" "}
-				matching &ldquo;{query}&rdquo;
+				{results.length} result{results.length === 1 ? "" : "s"} matching
+				&ldquo;{query}&rdquo;
 			</p>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{results.map((item) => (
@@ -279,9 +279,7 @@ export function CommunityResourcesPage() {
 	const activeCategories = useMemo(
 		() =>
 			CATEGORIES.filter((cat) =>
-				COMMUNITY_ITEMS.some(
-					(item) => item.category === cat,
-				),
+				COMMUNITY_ITEMS.some((item) => item.category === cat),
 			),
 		[],
 	);
@@ -334,8 +332,8 @@ export function CommunityResourcesPage() {
 								Community Resources
 							</h1>
 							<p className="mt-4 max-w-3xl text-base text-zinc-400 sm:text-lg">
-								Projects, libraries, tutorials, videos, and
-								tools built by the Effect community.
+								Projects, libraries, tutorials, videos, and tools built by the
+								Effect community.
 							</p>
 						</div>
 					</div>
@@ -348,48 +346,36 @@ export function CommunityResourcesPage() {
 			{/* ── Content ─────────────────────────────────── */}
 			<main id="main-content" className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				{/* Featured items — always visible */}
-				{featuredItems.length > 0 && (
-					<section
-						aria-label="Featured resources"
-						className="pt-12 pb-4"
-					>
-						{/* Hero row: large feature + 2×2 grid */}
-						<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-							{/* Primary featured video — half width */}
-							{featuredItems[0] && (
-								<FeaturedItemCard
-									item={featuredItems[0]}
-									large
-								/>
-							)}
+					{/* Featured items — always visible */}
+					{featuredItems.length > 0 && (
+						<section aria-label="Featured resources" className="pt-12 pb-4">
+							{/* Hero row: large feature + 2×2 grid */}
+							<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+								{/* Primary featured video — half width */}
+								{featuredItems[0] && (
+									<FeaturedItemCard item={featuredItems[0]} large />
+								)}
 
-							{/* 2×2 grid of next 4 videos */}
-							{featuredItems.length > 1 && (
-								<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-									{featuredItems.slice(1, 5).map((item) => (
-										<FeaturedItemCard
-											key={item.url}
-											item={item}
-										/>
+								{/* 2×2 grid of next 4 videos */}
+								{featuredItems.length > 1 && (
+									<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+										{featuredItems.slice(1, 5).map((item) => (
+											<FeaturedItemCard key={item.url} item={item} />
+										))}
+									</div>
+								)}
+							</div>
+
+							{/* Remaining featured items below */}
+							{featuredItems.length > 5 && (
+								<div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+									{featuredItems.slice(5).map((item) => (
+										<FeaturedItemCard key={item.url} item={item} />
 									))}
 								</div>
 							)}
-						</div>
-
-						{/* Remaining featured items below */}
-						{featuredItems.length > 5 && (
-							<div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-								{featuredItems.slice(5).map((item) => (
-									<FeaturedItemCard
-										key={item.url}
-										item={item}
-									/>
-								))}
-							</div>
-						)}
-					</section>
-				)}
+						</section>
+					)}
 
 					{/* Divider below featured */}
 					{featuredItems.length > 0 && (
@@ -407,9 +393,7 @@ export function CommunityResourcesPage() {
 								type="text"
 								placeholder="Search resources..."
 								value={searchQuery}
-								onChange={(e) =>
-									setSearchQuery(e.target.value)
-								}
+								onChange={(e) => setSearchQuery(e.target.value)}
 								aria-label="Search resources"
 								className="w-full rounded-lg border border-zinc-800 bg-zinc-900/50 py-2.5 pr-4 pl-10 text-sm text-white placeholder-zinc-400 outline-none transition-all duration-200 focus:border-zinc-700 focus:bg-zinc-900/80 focus:ring-1 focus:ring-zinc-700"
 							/>
@@ -420,10 +404,7 @@ export function CommunityResourcesPage() {
 									aria-label="Clear search"
 									className="absolute top-1/2 right-2.5 -translate-y-1/2 rounded p-0.5 text-zinc-400 transition-colors hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500"
 								>
-									<i
-										className="ri-close-line text-base"
-										aria-hidden="true"
-									/>
+									<i className="ri-close-line text-base" aria-hidden="true" />
 								</button>
 							)}
 						</div>
@@ -438,10 +419,7 @@ export function CommunityResourcesPage() {
 					) : (
 						<div className="divide-y divide-zinc-800/60">
 							{activeCategories.map((cat) => (
-								<CategorySection
-									key={cat}
-									category={cat}
-								/>
+								<CategorySection key={cat} category={cat} />
 							))}
 						</div>
 					)}
@@ -461,27 +439,32 @@ export function CommunityResourcesPage() {
 								</h2>
 								<p className="mt-1 text-sm text-zinc-400">
 									Drop it in{" "}
-									<a href="https://discord.com/channels/795981131316985866/1072147395632185354" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-300 underline hover:text-white transition-colors">🟢-projects-showcase</a>{" "}
+									<a
+										href="https://discord.com/channels/795981131316985866/1072147395632185354"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="font-medium text-zinc-300 underline hover:text-white transition-colors"
+									>
+										🟢-projects-showcase
+									</a>{" "}
 									on Discord, or{" "}
-									<a href="https://discord.com/channels/795981131316985866/1134767195239485440" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-300 underline hover:text-white transition-colors">🔵-effect-content</a>{" "}
+									<a
+										href="https://discord.com/channels/795981131316985866/1134767195239485440"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="font-medium text-zinc-300 underline hover:text-white transition-colors"
+									>
+										🔵-effect-content
+									</a>{" "}
 									for articles and tutorials.
 								</p>
 							</div>
 							<div className="flex items-center gap-3">
-								<Button
-									href="https://discord.gg/effect-ts"
-									variant="secondary"
-								>
-									<i
-										className="ri-discord-fill text-base"
-										aria-hidden="true"
-									/>
+								<Button href="https://discord.gg/effect-ts" variant="secondary">
+									<i className="ri-discord-fill text-base" aria-hidden="true" />
 									Discord
 								</Button>
-								<Button
-									href="#"
-									variant="secondary"
-								>
+								<Button href="#" variant="secondary">
 									<i
 										className="ri-file-list-line text-base"
 										aria-hidden="true"

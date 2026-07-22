@@ -221,8 +221,8 @@ export function PartnerZivergePage() {
 							<div className="md:col-span-8">
 								<p className="text-xl leading-relaxed text-zinc-900 dark:text-white">
 									Ziverge has spent over a decade shipping effect systems in
-									production — first on the JVM with ZIO, now in TypeScript
-									with Effect.
+									production — first on the JVM with ZIO, now in TypeScript with
+									Effect.
 								</p>
 								<p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-400">
 									Their engineers work alongside your team to adopt Effect
@@ -352,7 +352,10 @@ export function PartnerZivergePage() {
 				</section>
 
 				{/* Contact + form — centered, restrained */}
-				<section id="contact" className="border-b border-zinc-200 dark:border-zinc-800">
+				<section
+					id="contact"
+					className="border-b border-zinc-200 dark:border-zinc-800"
+				>
 					<div className="mx-auto w-full max-w-2xl px-4 py-16 md:py-20">
 						<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 							// Get in touch

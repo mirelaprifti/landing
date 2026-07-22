@@ -1,506 +1,506 @@
 {
- "GoogleClient": {
-  "name": "GoogleClient",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "Constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Effect.Effect<Service, never, HttpClient.HttpClient | Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L60",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "context",
-    "title": "Context",
-    "exports": [
-     {
-      "id": "googleclient-class",
-      "level": 2,
-      "name": "GoogleClient",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class GoogleClient"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L31",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Layer.Layer<GoogleClient, never, HttpClient.HttpClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L192",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerconfig",
-      "level": 2,
-      "name": "layerConfig",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerConfig: (options: {\n  readonly apiKey?: Config.Config<Redacted.Redacted | undefined> | undefined\n  readonly apiUrl?: Config.Config<string | undefined> | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Layer.Layer<GoogleClient, ConfigError, HttpClient.HttpClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L220",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "models",
-    "title": "Models",
-    "exports": [
-     {
-      "id": "service-interface",
-      "level": 2,
-      "name": "Service",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Service {\n  readonly client: Generated.Client\n\n  readonly streamRequest: <A, I, R>(\n    request: HttpClientRequest.HttpClientRequest,\n    schema: Schema.Schema<A, I, R>\n  ) => Stream.Stream<A, AiError.AiError, R>\n\n  readonly generateContent: (\n    request: typeof Generated.GenerateContentRequest.Encoded\n  ) => Effect.Effect<Generated.GenerateContentResponse, AiError.AiError>\n\n  readonly generateContentStream: (\n    request: typeof Generated.GenerateContentRequest.Encoded\n  ) => Stream.Stream<Generated.GenerateContentResponse, AiError.AiError>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L39",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "GoogleConfig": {
-  "name": "GoogleConfig",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts",
-  "categories": [
-   {
-    "id": "configuration",
-    "title": "Configuration",
-    "exports": [
-     {
-      "id": "withclienttransform",
-      "level": 2,
-      "name": "withClientTransform",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const withClientTransform: {\n  (transform: (client: HttpClient) => HttpClient): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, transform: (client: HttpClient) => HttpClient): Effect.Effect<A, E, R>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L43",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "context",
-    "title": "Context",
-    "exports": [
-     {
-      "id": "googleconfig-class",
-      "level": 2,
-      "name": "GoogleConfig",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class GoogleConfig"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L13",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "googleconfig-namespace",
-      "level": 2,
-      "name": "GoogleConfig",
-      "kind": "namespace",
-      "description": [],
-      "signature": null,
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L29",
-      "since": "1.0.0"
-     },
-     {
-      "id": "service-interface",
-      "level": 3,
-      "name": "Service",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Service {\n  readonly transformClient?: (client: HttpClient) => HttpClient\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L34",
-      "since": "1.0."
-     }
-    ]
-   }
-  ]
- },
- "GoogleLanguageModel": {
-  "name": "GoogleLanguageModel",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts",
-  "categories": [
-   {
-    "id": "aimodel",
-    "title": "AiModel",
-    "exports": [
-     {
-      "id": "model",
-      "level": 2,
-      "name": "model",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const model: (\n  model: (string & {}) | Model,\n  config?: Omit<Config.Service, \"model\">\n) => AiModel.Model<\"google\", LanguageModel.LanguageModel, GoogleClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L169",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "constructors",
-    "title": "Constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Effect.Effect<LanguageModel.Service, never, GoogleClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L179",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "context",
-    "title": "Context",
-    "exports": [
-     {
-      "id": "config-class",
-      "level": 2,
-      "name": "Config",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class Config"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L38",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Layer.Layer<LanguageModel.LanguageModel, never, GoogleClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L245",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "models",
-    "title": "Models",
-    "exports": [
-     {
-      "id": "model-type-alias",
-      "level": 2,
-      "name": "Model",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type Model = string"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L28",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "config-namespace",
-      "level": 2,
-      "name": "Config",
-      "kind": "namespace",
-      "description": [],
-      "signature": null,
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L54",
-      "since": "1.0.0"
-     },
-     {
-      "id": "service-interface",
-      "level": 3,
-      "name": "Service",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Service\n  extends Simplify<\n    Partial<\n      Omit<typeof Generated.GenerateContentRequest.Encoded, \"contents\" | \"tools\" | \"toolConfig\" | \"systemInstruction\">\n    >\n  > {\n  readonly toolConfig: Partial<{\n    readonly functionCallingConfig: Omit<typeof Generated.FunctionCallingConfig.Encoded, \"mode\">\n  }>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L59",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "GoogleTool": {
-  "name": "GoogleTool",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts",
-  "categories": [
-   {
-    "id": "tools",
-    "title": "Tools",
-    "exports": [
-     {
-      "id": "codeexecution",
-      "level": 2,
-      "name": "CodeExecution",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const CodeExecution: <Mode extends Tool.FailureMode | undefined = undefined>(args: {}) => Tool.ProviderDefined<\n  \"GoogleCodeExecution\",\n  {\n    readonly args: Struct<{}>\n    readonly parameters: Struct<{\n      readonly language: typeof Generated.ExecutableCodeLanguage\n      readonly code: typeof String$\n    }>\n    readonly success: typeof Generated.CodeExecutionResult\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L11",
-      "since": "1.0.0"
-     },
-     {
-      "id": "googlesearch",
-      "level": 2,
-      "name": "GoogleSearch",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const GoogleSearch: <Mode extends Tool.FailureMode | undefined = undefined>(args: {}) => Tool.ProviderDefined<\n  \"GoogleSearch\",\n  {\n    readonly args: Struct<{}>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Void\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L24",
-      "since": "1.0.0"
-     },
-     {
-      "id": "googlesearchretrieval",
-      "level": 2,
-      "name": "GoogleSearchRetrieval",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Gemini 1.5 support a legacy tool named <code>google_search_retrieval</code>. This tool provides a dynamic mode that allows the model to decide whether to perform a search based on its confidence that the prompt requires fresh information.</p>"
-       },
-       {
-        "html": "<p>If the model\u2019s confidence is above a <code>dynamic_threshold</code> you set (a value between <code>0.0</code> and <code>1.0</code>), it will perform a search.</p>"
-       },
-       {
-        "html": "<p><strong>Note</strong>: The <code>google_search</code> tool is recommended for Gemini 2.0 and later.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const GoogleSearchRetrieval: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly mode?: \"MODE_UNSPECIFIED\" | \"MODE_DYNAMIC\" | null | undefined\n  readonly dynamicThreshold?: number | null | undefined\n}) => Tool.ProviderDefined<\n  \"GoogleSearchRetrieval\",\n  {\n    readonly args: Struct<{\n      readonly mode: optionalWith<typeof Generated.DynamicRetrievalConfigMode, { nullable: true }>\n      readonly dynamicThreshold: optionalWith<typeof Number$, { nullable: true }>\n    }>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Void\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L44",
-      "since": "1.0.0"
-     },
-     {
-      "id": "urlcontext",
-      "level": 2,
-      "name": "UrlContext",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const UrlContext: <Mode extends Tool.FailureMode | undefined = undefined>(args: {}) => Tool.ProviderDefined<\n  \"GoogleUrlContext\",\n  {\n    readonly args: Struct<{}>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Void\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L55",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "index": {
-  "name": "index",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts",
-  "categories": [
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "generated-namespace-export",
-      "level": 2,
-      "name": "Generated (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Generated.js\u201d module as <code>Generated</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Generated from \"./Generated.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L4",
-      "since": "1.0.0"
-     },
-     {
-      "id": "googleclient-namespace-export",
-      "level": 2,
-      "name": "GoogleClient (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./GoogleClient.js\u201d module as <code>GoogleClient</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as GoogleClient from \"./GoogleClient.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L9",
-      "since": "1.0.0"
-     },
-     {
-      "id": "googleconfig-namespace-export",
-      "level": 2,
-      "name": "GoogleConfig (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./GoogleConfig.js\u201d module as <code>GoogleConfig</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as GoogleConfig from \"./GoogleConfig.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L14",
-      "since": "1.0.0"
-     },
-     {
-      "id": "googlelanguagemodel-namespace-export",
-      "level": 2,
-      "name": "GoogleLanguageModel (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./GoogleLanguageModel.js\u201d module as <code>GoogleLanguageModel</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as GoogleLanguageModel from \"./GoogleLanguageModel.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L19",
-      "since": "1.0.0"
-     },
-     {
-      "id": "googletool-namespace-export",
-      "level": 2,
-      "name": "GoogleTool (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./GoogleTool.js\u201d module as <code>GoogleTool</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as GoogleTool from \"./GoogleTool.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L24",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- }
+	"GoogleClient": {
+		"name": "GoogleClient",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "Constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Effect.Effect<Service, never, HttpClient.HttpClient | Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L60",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "context",
+				"title": "Context",
+				"exports": [
+					{
+						"id": "googleclient-class",
+						"level": 2,
+						"name": "GoogleClient",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class GoogleClient"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L31",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (options: {\n  readonly apiKey?: Redacted.Redacted | undefined\n  readonly apiUrl?: string | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Layer.Layer<GoogleClient, never, HttpClient.HttpClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L192",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerconfig",
+						"level": 2,
+						"name": "layerConfig",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerConfig: (options: {\n  readonly apiKey?: Config.Config<Redacted.Redacted | undefined> | undefined\n  readonly apiUrl?: Config.Config<string | undefined> | undefined\n  readonly transformClient?: ((client: HttpClient.HttpClient) => HttpClient.HttpClient) | undefined\n}) => Layer.Layer<GoogleClient, ConfigError, HttpClient.HttpClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L220",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "models",
+				"title": "Models",
+				"exports": [
+					{
+						"id": "service-interface",
+						"level": 2,
+						"name": "Service",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Service {\n  readonly client: Generated.Client\n\n  readonly streamRequest: <A, I, R>(\n    request: HttpClientRequest.HttpClientRequest,\n    schema: Schema.Schema<A, I, R>\n  ) => Stream.Stream<A, AiError.AiError, R>\n\n  readonly generateContent: (\n    request: typeof Generated.GenerateContentRequest.Encoded\n  ) => Effect.Effect<Generated.GenerateContentResponse, AiError.AiError>\n\n  readonly generateContentStream: (\n    request: typeof Generated.GenerateContentRequest.Encoded\n  ) => Stream.Stream<Generated.GenerateContentResponse, AiError.AiError>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleClient.ts#L39",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"GoogleConfig": {
+		"name": "GoogleConfig",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts",
+		"categories": [
+			{
+				"id": "configuration",
+				"title": "Configuration",
+				"exports": [
+					{
+						"id": "withclienttransform",
+						"level": 2,
+						"name": "withClientTransform",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const withClientTransform: {\n  (transform: (client: HttpClient) => HttpClient): <A, E, R>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E, R>\n  <A, E, R>(self: Effect.Effect<A, E, R>, transform: (client: HttpClient) => HttpClient): Effect.Effect<A, E, R>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L43",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "context",
+				"title": "Context",
+				"exports": [
+					{
+						"id": "googleconfig-class",
+						"level": 2,
+						"name": "GoogleConfig",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class GoogleConfig"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L13",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "googleconfig-namespace",
+						"level": 2,
+						"name": "GoogleConfig",
+						"kind": "namespace",
+						"description": [],
+						"signature": null,
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L29",
+						"since": "1.0.0"
+					},
+					{
+						"id": "service-interface",
+						"level": 3,
+						"name": "Service",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Service {\n  readonly transformClient?: (client: HttpClient) => HttpClient\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleConfig.ts#L34",
+						"since": "1.0."
+					}
+				]
+			}
+		]
+	},
+	"GoogleLanguageModel": {
+		"name": "GoogleLanguageModel",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts",
+		"categories": [
+			{
+				"id": "aimodel",
+				"title": "AiModel",
+				"exports": [
+					{
+						"id": "model",
+						"level": 2,
+						"name": "model",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const model: (\n  model: (string & {}) | Model,\n  config?: Omit<Config.Service, \"model\">\n) => AiModel.Model<\"google\", LanguageModel.LanguageModel, GoogleClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L169",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "constructors",
+				"title": "Constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Effect.Effect<LanguageModel.Service, never, GoogleClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L179",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "context",
+				"title": "Context",
+				"exports": [
+					{
+						"id": "config-class",
+						"level": 2,
+						"name": "Config",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class Config"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L38",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (options: {\n  readonly model: (string & {}) | Model\n  readonly config?: Omit<Config.Service, \"model\">\n}) => Layer.Layer<LanguageModel.LanguageModel, never, GoogleClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L245",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "models",
+				"title": "Models",
+				"exports": [
+					{
+						"id": "model-type-alias",
+						"level": 2,
+						"name": "Model",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type Model = string"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L28",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "config-namespace",
+						"level": 2,
+						"name": "Config",
+						"kind": "namespace",
+						"description": [],
+						"signature": null,
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L54",
+						"since": "1.0.0"
+					},
+					{
+						"id": "service-interface",
+						"level": 3,
+						"name": "Service",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Service\n  extends Simplify<\n    Partial<\n      Omit<typeof Generated.GenerateContentRequest.Encoded, \"contents\" | \"tools\" | \"toolConfig\" | \"systemInstruction\">\n    >\n  > {\n  readonly toolConfig: Partial<{\n    readonly functionCallingConfig: Omit<typeof Generated.FunctionCallingConfig.Encoded, \"mode\">\n  }>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleLanguageModel.ts#L59",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"GoogleTool": {
+		"name": "GoogleTool",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts",
+		"categories": [
+			{
+				"id": "tools",
+				"title": "Tools",
+				"exports": [
+					{
+						"id": "codeexecution",
+						"level": 2,
+						"name": "CodeExecution",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const CodeExecution: <Mode extends Tool.FailureMode | undefined = undefined>(args: {}) => Tool.ProviderDefined<\n  \"GoogleCodeExecution\",\n  {\n    readonly args: Struct<{}>\n    readonly parameters: Struct<{\n      readonly language: typeof Generated.ExecutableCodeLanguage\n      readonly code: typeof String$\n    }>\n    readonly success: typeof Generated.CodeExecutionResult\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L11",
+						"since": "1.0.0"
+					},
+					{
+						"id": "googlesearch",
+						"level": 2,
+						"name": "GoogleSearch",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const GoogleSearch: <Mode extends Tool.FailureMode | undefined = undefined>(args: {}) => Tool.ProviderDefined<\n  \"GoogleSearch\",\n  {\n    readonly args: Struct<{}>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Void\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L24",
+						"since": "1.0.0"
+					},
+					{
+						"id": "googlesearchretrieval",
+						"level": 2,
+						"name": "GoogleSearchRetrieval",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Gemini 1.5 support a legacy tool named <code>google_search_retrieval</code>. This tool provides a dynamic mode that allows the model to decide whether to perform a search based on its confidence that the prompt requires fresh information.</p>"
+							},
+							{
+								"html": "<p>If the model\u2019s confidence is above a <code>dynamic_threshold</code> you set (a value between <code>0.0</code> and <code>1.0</code>), it will perform a search.</p>"
+							},
+							{
+								"html": "<p><strong>Note</strong>: The <code>google_search</code> tool is recommended for Gemini 2.0 and later.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const GoogleSearchRetrieval: <Mode extends Tool.FailureMode | undefined = undefined>(args: {\n  readonly mode?: \"MODE_UNSPECIFIED\" | \"MODE_DYNAMIC\" | null | undefined\n  readonly dynamicThreshold?: number | null | undefined\n}) => Tool.ProviderDefined<\n  \"GoogleSearchRetrieval\",\n  {\n    readonly args: Struct<{\n      readonly mode: optionalWith<typeof Generated.DynamicRetrievalConfigMode, { nullable: true }>\n      readonly dynamicThreshold: optionalWith<typeof Number$, { nullable: true }>\n    }>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Void\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L44",
+						"since": "1.0.0"
+					},
+					{
+						"id": "urlcontext",
+						"level": 2,
+						"name": "UrlContext",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const UrlContext: <Mode extends Tool.FailureMode | undefined = undefined>(args: {}) => Tool.ProviderDefined<\n  \"GoogleUrlContext\",\n  {\n    readonly args: Struct<{}>\n    readonly parameters: Tool.EmptyParams\n    readonly success: typeof Void\n    readonly failure: typeof Never\n    readonly failureMode: Mode extends undefined ? \"error\" : Mode\n  },\n  false\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/GoogleTool.ts#L55",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"index": {
+		"name": "index",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts",
+		"categories": [
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "generated-namespace-export",
+						"level": 2,
+						"name": "Generated (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Generated.js\u201d module as <code>Generated</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Generated from \"./Generated.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L4",
+						"since": "1.0.0"
+					},
+					{
+						"id": "googleclient-namespace-export",
+						"level": 2,
+						"name": "GoogleClient (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./GoogleClient.js\u201d module as <code>GoogleClient</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as GoogleClient from \"./GoogleClient.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L9",
+						"since": "1.0.0"
+					},
+					{
+						"id": "googleconfig-namespace-export",
+						"level": 2,
+						"name": "GoogleConfig (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./GoogleConfig.js\u201d module as <code>GoogleConfig</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as GoogleConfig from \"./GoogleConfig.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L14",
+						"since": "1.0.0"
+					},
+					{
+						"id": "googlelanguagemodel-namespace-export",
+						"level": 2,
+						"name": "GoogleLanguageModel (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./GoogleLanguageModel.js\u201d module as <code>GoogleLanguageModel</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as GoogleLanguageModel from \"./GoogleLanguageModel.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L19",
+						"since": "1.0.0"
+					},
+					{
+						"id": "googletool-namespace-export",
+						"level": 2,
+						"name": "GoogleTool (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./GoogleTool.js\u201d module as <code>GoogleTool</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as GoogleTool from \"./GoogleTool.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/ai/google/src/index.ts#L24",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	}
 }

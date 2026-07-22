@@ -445,7 +445,10 @@ export function MerchPage() {
 				</section>
 
 				{/* Products Section */}
-				<section id="products" className="relative z-[70] w-full bg-zinc-100 pt-28 pb-32">
+				<section
+					id="products"
+					className="relative z-[70] w-full bg-zinc-100 pt-28 pb-32"
+				>
 					<div className="pointer-events-none absolute inset-0 hidden lg:block">
 						<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 							<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200" />

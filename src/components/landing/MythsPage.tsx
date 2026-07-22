@@ -12,7 +12,7 @@ type Visual =
 			sublabel?: string;
 			striken?: boolean;
 			chips?: string[];
-		}
+	  }
 	| { kind: "compare"; left: string; right: string; relation: string }
 	| { kind: "logos"; items: { src: string; alt: string; h?: number }[] }
 	| { kind: "code"; lines: string[] }
@@ -21,7 +21,7 @@ type Visual =
 			title: string;
 			bars: { label: string; value: string; pct: number; emphasis?: boolean }[];
 			note?: string;
-		}
+	  }
 	| {
 			kind: "fns";
 			sections: {
@@ -29,7 +29,7 @@ type Visual =
 				groups?: { label: string; items: { name: string; href: string }[] }[];
 				items?: { name: string; href: string }[];
 			}[];
-		};
+	  };
 
 type Myth = {
 	id: string;
@@ -94,7 +94,8 @@ const MYTHS: Myth[] = [
 	{
 		id: "impossible-to-learn",
 		short: "Impossible to learn",
-		title: "Effect is impossible to learn — there are so many functions and modules",
+		title:
+			"Effect is impossible to learn — there are so many functions and modules",
 		visual: {
 			kind: "fns",
 			sections: [
@@ -104,46 +105,91 @@ const MYTHS: Myth[] = [
 						{
 							label: "Create",
 							items: [
-								{ name: "Effect.succeed", href: "https://effect.website/docs/getting-started/creating-effects/#succeed" },
-								{ name: "Effect.fail", href: "https://effect.website/docs/getting-started/creating-effects/#fail" },
-								{ name: "Effect.sync", href: "https://effect.website/docs/getting-started/creating-effects/#sync" },
-								{ name: "Effect.tryPromise", href: "https://effect.website/docs/getting-started/creating-effects/#trypromise" },
+								{
+									name: "Effect.succeed",
+									href: "https://effect.website/docs/getting-started/creating-effects/#succeed",
+								},
+								{
+									name: "Effect.fail",
+									href: "https://effect.website/docs/getting-started/creating-effects/#fail",
+								},
+								{
+									name: "Effect.sync",
+									href: "https://effect.website/docs/getting-started/creating-effects/#sync",
+								},
+								{
+									name: "Effect.tryPromise",
+									href: "https://effect.website/docs/getting-started/creating-effects/#trypromise",
+								},
 							],
 						},
 						{
 							label: "Compose",
 							items: [
-								{ name: "Effect.andThen", href: "https://effect.website/docs/getting-started/building-pipelines/#andthen" },
-								{ name: "Effect.map", href: "https://effect.website/docs/getting-started/building-pipelines/#map" },
-								{ name: "Effect.tap", href: "https://effect.website/docs/getting-started/building-pipelines/#tap" },
+								{
+									name: "Effect.andThen",
+									href: "https://effect.website/docs/getting-started/building-pipelines/#andthen",
+								},
+								{
+									name: "Effect.map",
+									href: "https://effect.website/docs/getting-started/building-pipelines/#map",
+								},
+								{
+									name: "Effect.tap",
+									href: "https://effect.website/docs/getting-started/building-pipelines/#tap",
+								},
 							],
 						},
 						{
 							label: "Run",
 							items: [
-								{ name: "Effect.gen", href: "https://effect.website/docs/getting-started/using-generators/" },
-								{ name: "Effect.runPromise", href: "https://effect.website/docs/getting-started/running-effects/#runpromise" },
+								{
+									name: "Effect.gen",
+									href: "https://effect.website/docs/getting-started/using-generators/",
+								},
+								{
+									name: "Effect.runPromise",
+									href: "https://effect.website/docs/getting-started/running-effects/#runpromise",
+								},
 							],
 						},
 						{
 							label: "Handle errors",
 							items: [
-								{ name: "Effect.catchTag", href: "https://effect.website/docs/error-management/expected-errors/#catchtag" },
-								{ name: "Effect.catchAll", href: "https://effect.website/docs/error-management/expected-errors/#catchall" },
+								{
+									name: "Effect.catchTag",
+									href: "https://effect.website/docs/error-management/expected-errors/#catchtag",
+								},
+								{
+									name: "Effect.catchAll",
+									href: "https://effect.website/docs/error-management/expected-errors/#catchall",
+								},
 							],
 						},
 						{
 							label: "Manage resources",
 							items: [
-								{ name: "Effect.acquireRelease", href: "https://effect.website/docs/resource-management/scope/#acquirerelease" },
-								{ name: "Effect.acquireUseRelease", href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease" },
+								{
+									name: "Effect.acquireRelease",
+									href: "https://effect.website/docs/resource-management/scope/#acquirerelease",
+								},
+								{
+									name: "Effect.acquireUseRelease",
+									href: "https://effect.website/docs/resource-management/introduction/#acquireuserelease",
+								},
 							],
 						},
 						{
 							label: "Provide dependencies",
 							items: [
-								{ name: "Effect.provide", href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect" },
-								{ name: "Effect.provideService", href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation" },
+								{
+									name: "Effect.provide",
+									href: "https://effect.website/docs/requirements-management/layers/#providing-a-layer-to-an-effect",
+								},
+								{
+									name: "Effect.provideService",
+									href: "https://effect.website/docs/requirements-management/services/#providing-a-service-implementation",
+								},
 							],
 						},
 					],
@@ -151,13 +197,34 @@ const MYTHS: Myth[] = [
 				{
 					title: "Starter modules",
 					items: [
-						{ name: "Effect", href: "https://effect-ts.github.io/effect/effect/Effect.ts.html" },
-						{ name: "Context", href: "https://effect.website/docs/requirements-management/services/#creating-a-service" },
-						{ name: "Layer", href: "https://effect.website/docs/requirements-management/layers/" },
-						{ name: "Option", href: "https://effect.website/docs/data-types/option/" },
-						{ name: "Either", href: "https://effect.website/docs/data-types/either/" },
-						{ name: "Array", href: "https://effect-ts.github.io/effect/effect/Array.ts.html" },
-						{ name: "Match", href: "https://effect.website/docs/code-style/pattern-matching/" },
+						{
+							name: "Effect",
+							href: "https://effect-ts.github.io/effect/effect/Effect.ts.html",
+						},
+						{
+							name: "Context",
+							href: "https://effect.website/docs/requirements-management/services/#creating-a-service",
+						},
+						{
+							name: "Layer",
+							href: "https://effect.website/docs/requirements-management/layers/",
+						},
+						{
+							name: "Option",
+							href: "https://effect.website/docs/data-types/option/",
+						},
+						{
+							name: "Either",
+							href: "https://effect.website/docs/data-types/either/",
+						},
+						{
+							name: "Array",
+							href: "https://effect-ts.github.io/effect/effect/Array.ts.html",
+						},
+						{
+							name: "Match",
+							href: "https://effect.website/docs/code-style/pattern-matching/",
+						},
 					],
 				},
 			],
@@ -280,7 +347,9 @@ function VisualBlock({ visual }: { visual: Visual }) {
 								<p className="font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 									{bar.label}
 								</p>
-								<p className={`font-mono text-sm tabular-nums ${bar.emphasis ? "font-bold text-zinc-900 dark:text-white" : "text-zinc-700 dark:text-zinc-300"}`}>
+								<p
+									className={`font-mono text-sm tabular-nums ${bar.emphasis ? "font-bold text-zinc-900 dark:text-white" : "text-zinc-700 dark:text-zinc-300"}`}
+								>
 									{bar.value}
 								</p>
 							</div>
@@ -294,7 +363,9 @@ function VisualBlock({ visual }: { visual: Visual }) {
 					))}
 				</div>
 				{visual.note && (
-					<p className="text-sm text-zinc-700 dark:text-zinc-300">{visual.note}</p>
+					<p className="text-sm text-zinc-700 dark:text-zinc-300">
+						{visual.note}
+					</p>
 				)}
 			</div>
 		);
@@ -479,7 +550,9 @@ export function MythsPage() {
 														delay: i * 0.08,
 													}
 										}
-										whileHover={reduceMotion ? undefined : { rotate: 0, scale: 1.04 }}
+										whileHover={
+											reduceMotion ? undefined : { rotate: 0, scale: 1.04 }
+										}
 									>
 										<a
 											href={`#${m.id}`}
@@ -560,8 +633,12 @@ export function MythsPage() {
 										{(() => {
 											const chipClass =
 												"pointer-events-auto inline-flex cursor-pointer items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-sm text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
-											const fnsSection = m.visual.sections.find((s) => s.groups);
-											const modulesSection = m.visual.sections.find((s) => s.items);
+											const fnsSection = m.visual.sections.find(
+												(s) => s.groups,
+											);
+											const modulesSection = m.visual.sections.find(
+												(s) => s.items,
+											);
 											return (
 												<div className="mt-12 rounded-md border border-zinc-200 bg-zinc-50/40 p-6 md:mt-16 dark:border-zinc-800 dark:bg-zinc-900/40">
 													<div className="flex flex-col gap-8">
@@ -629,111 +706,116 @@ export function MythsPage() {
 										})()}
 									</div>
 								) : (
-								<div className="grid grid-cols-1 items-center gap-10 py-20 md:grid-cols-12 md:gap-x-0 md:py-24">
-									{/* Text — 7 cols, with padding toward visual */}
-									<div
-										className={`md:col-span-7 ${
-											isReversed
-												? "md:col-start-6 md:pl-16"
-												: "md:col-start-1 md:pr-16"
-										}`}
-									>
-										<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-											// Myth {String(idx + 1).padStart(2, "0")}
-										</p>
-										<h2 className="border-l-2 border-zinc-300 pl-5 text-xl leading-snug font-medium tracking-tight text-zinc-700 italic md:text-2xl dark:border-zinc-700 dark:text-zinc-400">
-											“{m.title}”
-										</h2>
-										{m.body.map((p, i) => {
-											// On the first paragraph, split off the first sentence and emphasize it
-											if (i === 0) {
-												const match = p.match(/^([^.]+\.)\s*(.*)$/);
-												const lead = match ? match[1] : p;
-												const rest = match ? match[2] : "";
-												return (
-													<div key={i} className="mt-10">
-														<p className="text-lg leading-snug font-semibold text-zinc-900 dark:text-white">
-															{lead}
-														</p>
-														{rest && (
-															<p className="mt-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-																{rest}
+									<div className="grid grid-cols-1 items-center gap-10 py-20 md:grid-cols-12 md:gap-x-0 md:py-24">
+										{/* Text — 7 cols, with padding toward visual */}
+										<div
+											className={`md:col-span-7 ${
+												isReversed
+													? "md:col-start-6 md:pl-16"
+													: "md:col-start-1 md:pr-16"
+											}`}
+										>
+											<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+												// Myth {String(idx + 1).padStart(2, "0")}
+											</p>
+											<h2 className="border-l-2 border-zinc-300 pl-5 text-xl leading-snug font-medium tracking-tight text-zinc-700 italic md:text-2xl dark:border-zinc-700 dark:text-zinc-400">
+												“{m.title}”
+											</h2>
+											{m.body.map((p, i) => {
+												// On the first paragraph, split off the first sentence and emphasize it
+												if (i === 0) {
+													const match = p.match(/^([^.]+\.)\s*(.*)$/);
+													const lead = match ? match[1] : p;
+													const rest = match ? match[2] : "";
+													return (
+														<div key={i} className="mt-10">
+															<p className="text-lg leading-snug font-semibold text-zinc-900 dark:text-white">
+																{lead}
 															</p>
+															{rest && (
+																<p className="mt-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+																	{rest}
+																</p>
+															)}
+														</div>
+													);
+												}
+												return (
+													<p
+														key={i}
+														className="mt-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300"
+													>
+														{p}
+													</p>
+												);
+											})}
+											{m.lists?.map((list) => {
+												const chipClass =
+													"inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-2 py-0.5 font-mono text-[0.75rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white";
+												return (
+													<div key={list.title} className="mt-8">
+														<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+															{list.title}
+														</p>
+														{list.groups ? (
+															<div className="space-y-3">
+																{list.groups.map((group) => (
+																	<div
+																		key={group.label}
+																		className="flex flex-wrap items-baseline gap-x-3 gap-y-2"
+																	>
+																		<p className="w-28 shrink-0 font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
+																			{group.label}
+																		</p>
+																		<ul className="flex flex-1 flex-wrap gap-2">
+																			{group.items.map((item) => (
+																				<li key={item.name}>
+																					<a
+																						href={item.href}
+																						target="_blank"
+																						rel="noopener noreferrer"
+																						className={chipClass}
+																					>
+																						{item.name}
+																					</a>
+																				</li>
+																			))}
+																		</ul>
+																	</div>
+																))}
+															</div>
+														) : (
+															<ul className="flex flex-wrap gap-2">
+																{list.items?.map((item) => (
+																	<li key={item.name}>
+																		<a
+																			href={item.href}
+																			target="_blank"
+																			rel="noopener noreferrer"
+																			className={chipClass}
+																		>
+																			{item.name}
+																		</a>
+																	</li>
+																))}
+															</ul>
 														)}
 													</div>
 												);
-											}
-											return (
-												<p
-													key={i}
-													className="mt-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300"
-												>
-													{p}
-												</p>
-											);
-										})}
-										{m.lists?.map((list) => {
-											const chipClass =
-												"inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-zinc-50/40 px-2 py-0.5 font-mono text-[0.75rem] text-zinc-700 transition-colors hover:border-zinc-900 hover:bg-white hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:border-white dark:hover:bg-zinc-900 dark:hover:text-white";
-											return (
-												<div key={list.title} className="mt-8">
-													<p className="mb-4 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
-														{list.title}
-													</p>
-													{list.groups ? (
-														<div className="space-y-3">
-															{list.groups.map((group) => (
-																<div key={group.label} className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-																	<p className="w-28 shrink-0 font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-400">
-																		{group.label}
-																	</p>
-																	<ul className="flex flex-1 flex-wrap gap-2">
-																		{group.items.map((item) => (
-																			<li key={item.name}>
-																				<a
-																					href={item.href}
-																					target="_blank"
-																					rel="noopener noreferrer"
-																					className={chipClass}
-																				>
-																					{item.name}
-																				</a>
-																			</li>
-																		))}
-																	</ul>
-																</div>
-															))}
-														</div>
-													) : (
-														<ul className="flex flex-wrap gap-2">
-															{list.items?.map((item) => (
-																<li key={item.name}>
-																	<a
-																		href={item.href}
-																		target="_blank"
-																		rel="noopener noreferrer"
-																		className={chipClass}
-																	>
-																		{item.name}
-																	</a>
-																</li>
-															))}
-														</ul>
-													)}
-												</div>
-											);
-										})}
-									</div>
+											})}
+										</div>
 
-									{/* Visual — 5 cols */}
-									<div
-										className={`md:col-span-5 ${
-											isReversed ? "md:col-start-1 md:row-start-1" : "md:col-start-8"
-										}`}
-									>
-										<VisualBlock visual={m.visual} />
+										{/* Visual — 5 cols */}
+										<div
+											className={`md:col-span-5 ${
+												isReversed
+													? "md:col-start-1 md:row-start-1"
+													: "md:col-start-8"
+											}`}
+										>
+											<VisualBlock visual={m.visual} />
+										</div>
 									</div>
-								</div>
 								)}
 							</div>
 						</section>

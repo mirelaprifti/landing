@@ -7,7 +7,13 @@ const tk = {
 	punct: "text-zinc-500",
 };
 
-function T({ kind, children }: { kind: keyof typeof tk; children: React.ReactNode }) {
+function T({
+	kind,
+	children,
+}: {
+	kind: keyof typeof tk;
+	children: React.ReactNode;
+}) {
 	return <span className={tk[kind]}>{children}</span>;
 }
 
@@ -15,19 +21,18 @@ const LINES: React.ReactNode[] = [
 	<>
 		<T kind="kw">import</T> <T kind="punct">{"{"}</T> <T kind="id">Effect</T>
 		<T kind="punct">,</T> <T kind="id">Schedule</T>
-		<T kind="punct">,</T> <T kind="id">Schema</T>{" "}
-		<T kind="punct">{"}"}</T> <T kind="kw">from</T>{" "}
-		<T kind="str">"effect"</T>
+		<T kind="punct">,</T> <T kind="id">Schema</T> <T kind="punct">{"}"}</T>{" "}
+		<T kind="kw">from</T> <T kind="str">"effect"</T>
 	</>,
 	<>
 		<T kind="kw">import</T> <T kind="punct">{"{"}</T>{" "}
-		<T kind="id">HttpClient</T> <T kind="punct">{"}"}</T>{" "}
-		<T kind="kw">from</T> <T kind="str">"@effect/platform"</T>
+		<T kind="id">HttpClient</T> <T kind="punct">{"}"}</T> <T kind="kw">from</T>{" "}
+		<T kind="str">"@effect/platform"</T>
 	</>,
 	<></>,
 	<>
-		<T kind="kw">const</T> <T kind="id">fetchUser</T>{" "}
-		<T kind="punct">=</T> <T kind="punct">(</T>
+		<T kind="kw">const</T> <T kind="id">fetchUser</T> <T kind="punct">=</T>{" "}
+		<T kind="punct">(</T>
 		<T kind="id">id</T>
 		<T kind="punct">:</T> <T kind="id">string</T>
 		<T kind="punct">)</T> <T kind="punct">{"=>"}</T>
@@ -67,8 +72,7 @@ const LINES: React.ReactNode[] = [
 	</>,
 	<>
 		{"    "}
-		<T kind="kw">return</T> <T kind="kw">yield</T>*{" "}
-		<T kind="id">Schema</T>
+		<T kind="kw">return</T> <T kind="kw">yield</T>* <T kind="id">Schema</T>
 		<T kind="punct">.</T>
 		<T kind="id">decode</T>
 		<T kind="punct">(</T>

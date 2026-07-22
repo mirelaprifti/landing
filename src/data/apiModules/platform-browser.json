@@ -1,1106 +1,1106 @@
 {
- "BrowserHttpClient": {
-  "name": "BrowserHttpClient",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts",
-  "categories": [
-   {
-    "id": "fiber-refs",
-    "title": "fiber refs",
-    "exports": [
-     {
-      "id": "currentxhrresponsetype",
-      "level": 2,
-      "name": "currentXHRResponseType",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const currentXHRResponseType: FiberRef.FiberRef<\"text\" | \"arraybuffer\">"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L31",
-      "since": "1.0.0"
-     },
-     {
-      "id": "withxhrarraybuffer",
-      "level": 2,
-      "name": "withXHRArrayBuffer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const withXHRArrayBuffer: <A, E, R>(effect: Effect<A, E, R>) => Effect<A, E, R>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L37",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layerxmlhttprequest",
-      "level": 2,
-      "name": "layerXMLHttpRequest",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerXMLHttpRequest: Layer.Layer<HttpClient.HttpClient, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L16",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "xmlhttprequest-class",
-      "level": 2,
-      "name": "XMLHttpRequest",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class XMLHttpRequest"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L22",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "BrowserKeyValueStore": {
-  "name": "BrowserKeyValueStore",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserKeyValueStore.ts",
-  "categories": [
-   {
-    "id": "models",
-    "title": "models",
-    "exports": [
-     {
-      "id": "layerlocalstorage",
-      "level": 2,
-      "name": "layerLocalStorage",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates a KeyValueStore layer that uses the browser\u2019s localStorage api. Values are stored between sessions.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerLocalStorage: Layer.Layer<KeyValueStore.KeyValueStore, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserKeyValueStore.ts#L14",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layersessionstorage",
-      "level": 2,
-      "name": "layerSessionStorage",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates a KeyValueStore layer that uses the browser\u2019s sessionStorage api. Values are stored only for the current session.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerSessionStorage: Layer.Layer<KeyValueStore.KeyValueStore, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserKeyValueStore.ts#L22",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "BrowserRuntime": {
-  "name": "BrowserRuntime",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserRuntime.ts",
-  "categories": [
-   {
-    "id": "runtime",
-    "title": "runtime",
-    "exports": [
-     {
-      "id": "runmain",
-      "level": 2,
-      "name": "runMain",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const runMain: RunMain"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserRuntime.ts#L11",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "BrowserSocket": {
-  "name": "BrowserSocket",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserSocket.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layerwebsocket",
-      "level": 2,
-      "name": "layerWebSocket",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerWebSocket: (\n  url: string,\n  options?: { readonly closeCodeIsError?: (code: number) => boolean }\n) => Layer.Layer<Socket.Socket>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserSocket.ts#L11",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerwebsocketconstructor",
-      "level": 2,
-      "name": "layerWebSocketConstructor",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>A WebSocket constructor that uses globalThis.WebSocket.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerWebSocketConstructor: Layer.Layer<Socket.WebSocketConstructor, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserSocket.ts#L24",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "BrowserStream": {
-  "name": "BrowserStream",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserStream.ts",
-  "categories": [
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "fromeventlistenerdocument",
-      "level": 2,
-      "name": "fromEventListenerDocument",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates a <code>Stream</code> from document.addEventListener.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromEventListenerDocument: <K extends keyof DocumentEventMap>(\n  type: K,\n  options?:\n    | boolean\n    | {\n        readonly capture?: boolean\n        readonly passive?: boolean\n        readonly once?: boolean\n        readonly bufferSize?: number | \"unbounded\" | undefined\n      }\n    | undefined\n) => Stream.Stream<DocumentEventMap[K], never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserStream.ts#L26",
-      "since": "1.0.0"
-     },
-     {
-      "id": "fromeventlistenerwindow",
-      "level": 2,
-      "name": "fromEventListenerWindow",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Creates a <code>Stream</code> from window.addEventListener.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromEventListenerWindow: <K extends keyof WindowEventMap>(\n  type: K,\n  options?:\n    | boolean\n    | {\n        readonly capture?: boolean\n        readonly passive?: boolean\n        readonly once?: boolean\n        readonly bufferSize?: number | \"unbounded\" | undefined\n      }\n    | undefined\n) => Stream.Stream<WindowEventMap[K], never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserStream.ts#L12",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "BrowserWorker": {
-  "name": "BrowserWorker",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (\n  spawn: (id: number) => Worker | SharedWorker | MessagePort\n) => Layer.Layer<Worker.WorkerManager | Worker.Spawner>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L23",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layermanager",
-      "level": 2,
-      "name": "layerManager",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerManager: Layer.Layer<Worker.WorkerManager, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L11",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerplatform",
-      "level": 2,
-      "name": "layerPlatform",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerPlatform: (\n  spawn: (id: number) => globalThis.Worker | globalThis.SharedWorker | MessagePort\n) => Layer.Layer<Worker.PlatformWorker | Worker.Spawner>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L31",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerworker",
-      "level": 2,
-      "name": "layerWorker",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerWorker: Layer.Layer<Worker.PlatformWorker, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L17",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "BrowserWorkerRunner": {
-  "name": "BrowserWorkerRunner",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (self: MessagePort | Window) => Runner.PlatformRunner"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L20",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer.Layer<Runner.PlatformRunner, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L26",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layermessageport",
-      "level": 2,
-      "name": "layerMessagePort",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerMessagePort: (port: MessagePort | Window) => Layer.Layer<Runner.PlatformRunner>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L32",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "re-exports",
-    "title": "re-exports",
-    "exports": [
-     {
-      "id": "launch",
-      "level": 2,
-      "name": "launch",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const launch: <A, E, R>(layer: Layer.Layer<A, E, R>) => Effect<void, E | WorkerError, R>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L13",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Clipboard": {
-  "name": "Clipboard",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts",
-  "categories": [
-   {
-    "id": "constructor",
-    "title": "constructor",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (impl: Omit<Clipboard, \"clear\" | \"writeBlob\" | TypeId>) => Clipboard"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L69",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "errors",
-    "title": "errors",
-    "exports": [
-     {
-      "id": "clipboarderror-class",
-      "level": 2,
-      "name": "ClipboardError",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class ClipboardError"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L52",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "interface",
-    "title": "interface",
-    "exports": [
-     {
-      "id": "clipboard-interface",
-      "level": 2,
-      "name": "Clipboard",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Clipboard {\n  readonly [TypeId]: TypeId\n\n  readonly read: Effect.Effect<ClipboardItems, ClipboardError>\n  readonly readString: Effect.Effect<string, ClipboardError>\n  readonly write: (items: ClipboardItems) => Effect.Effect<void, ClipboardError>\n  readonly writeString: (text: string) => Effect.Effect<void, ClipboardError>\n  readonly writeBlob: (blob: Blob) => Effect.Effect<void, ClipboardError>\n  readonly clear: Effect.Effect<void, ClipboardError>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L25",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>A layer that directly interfaces with the navigator.clipboard api</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer.Layer<Clipboard, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L85",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tag",
-    "title": "tag",
-    "exports": [
-     {
-      "id": "clipboard",
-      "level": 2,
-      "name": "Clipboard",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const Clipboard: Context.Tag<Clipboard, Clipboard>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L61",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "type-ids",
-    "title": "type ids",
-    "exports": [
-     {
-      "id": "errortypeid",
-      "level": 2,
-      "name": "ErrorTypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const ErrorTypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L40",
-      "since": "1.0.0"
-     },
-     {
-      "id": "errortypeid-type-alias",
-      "level": 2,
-      "name": "ErrorTypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type ErrorTypeId = typeof ErrorTypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L46",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid",
-      "level": 2,
-      "name": "TypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const TypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L13",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid-type-alias",
-      "level": 2,
-      "name": "TypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type TypeId = typeof TypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L19",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Geolocation": {
-  "name": "Geolocation",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts",
-  "categories": [
-   {
-    "id": "accessors",
-    "title": "accessors",
-    "exports": [
-     {
-      "id": "watchposition",
-      "level": 2,
-      "name": "watchPosition",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const watchPosition: (\n  options?: (PositionOptions & { readonly bufferSize?: number | undefined }) | undefined\n) => Stream.Stream<GeolocationPosition, GeolocationError, Geolocation>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L131",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "errors",
-    "title": "errors",
-    "exports": [
-     {
-      "id": "geolocationerror-class",
-      "level": 2,
-      "name": "GeolocationError",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class GeolocationError"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L67",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer.Layer<Geolocation, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L108",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "models",
-    "title": "models",
-    "exports": [
-     {
-      "id": "geolocation-interface",
-      "level": 2,
-      "name": "Geolocation",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Geolocation {\n  readonly [TypeId]: TypeId\n  readonly getCurrentPosition: (\n    options?: PositionOptions | undefined\n  ) => Effect.Effect<GeolocationPosition, GeolocationError>\n  readonly watchPosition: (\n    options?:\n      | (PositionOptions & {\n          readonly bufferSize?: number | undefined\n        })\n      | undefined\n  ) => Stream.Stream<GeolocationPosition, GeolocationError>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L29",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "geolocation",
-      "level": 2,
-      "name": "Geolocation",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const Geolocation: Context.Tag<Geolocation, Geolocation>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L47",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "type-ids",
-    "title": "type ids",
-    "exports": [
-     {
-      "id": "errortypeid",
-      "level": 2,
-      "name": "ErrorTypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const ErrorTypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L55",
-      "since": "1.0.0"
-     },
-     {
-      "id": "errortypeid-type-alias",
-      "level": 2,
-      "name": "ErrorTypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type ErrorTypeId = typeof ErrorTypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L61",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid",
-      "level": 2,
-      "name": "TypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const TypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L17",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid-type-alias",
-      "level": 2,
-      "name": "TypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type TypeId = typeof TypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L23",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Permissions": {
-  "name": "Permissions",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts",
-  "categories": [
-   {
-    "id": "errors",
-    "title": "errors",
-    "exports": [
-     {
-      "id": "permissionserror-class",
-      "level": 2,
-      "name": "PermissionsError",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class PermissionsError"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L60",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "interface",
-    "title": "interface",
-    "exports": [
-     {
-      "id": "permissions-interface",
-      "level": 2,
-      "name": "Permissions",
-      "kind": "interface",
-      "description": [
-       {
-        "html": "<p>Wrapper on the Permission API (<code>navigator.permissions</code>) with methods for querying status of permissions.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Permissions {\n  readonly [TypeId]: TypeId\n\n  /**\n   * Returns the state of a user permission on the global scope.\n   */\n  readonly query: <Name extends PermissionName>(\n    name: Name\n  ) => Effect.Effect<\n    // `name` is identical to the name passed to Permissions.query\n    // https://developer.mozilla.org/en-US/docs/Web/API/PermissionStatus\n    Omit<PermissionStatus, \"name\"> & { name: Name },\n    PermissionsError\n  >\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L28",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>A layer that directly interfaces with the <code>navigator.permissions</code> api</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer.Layer<Permissions, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L84",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "permissions",
-      "level": 2,
-      "name": "Permissions",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const Permissions: Context.Tag<Permissions, Permissions>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L74",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "type-ids",
-    "title": "type ids",
-    "exports": [
-     {
-      "id": "errortypeid",
-      "level": 2,
-      "name": "ErrorTypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const ErrorTypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L48",
-      "since": "1.0.0"
-     },
-     {
-      "id": "errortypeid-type-alias",
-      "level": 2,
-      "name": "ErrorTypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type ErrorTypeId = typeof ErrorTypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L54",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid",
-      "level": 2,
-      "name": "TypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const TypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L13",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid-type-alias",
-      "level": 2,
-      "name": "TypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type TypeId = typeof TypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L19",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "index": {
-  "name": "index",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts",
-  "categories": [
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "browserhttpclient-namespace-export",
-      "level": 2,
-      "name": "BrowserHttpClient (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserHttpClient.js\u201d module as <code>BrowserHttpClient</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserHttpClient from \"./BrowserHttpClient.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L4",
-      "since": "1.0.0"
-     },
-     {
-      "id": "browserkeyvaluestore-namespace-export",
-      "level": 2,
-      "name": "BrowserKeyValueStore (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserKeyValueStore.js\u201d module as <code>BrowserKeyValueStore</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserKeyValueStore from \"./BrowserKeyValueStore.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L9",
-      "since": "1.0.0"
-     },
-     {
-      "id": "browserruntime-namespace-export",
-      "level": 2,
-      "name": "BrowserRuntime (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserRuntime.js\u201d module as <code>BrowserRuntime</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserRuntime from \"./BrowserRuntime.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L14",
-      "since": "1.0.0"
-     },
-     {
-      "id": "browsersocket-namespace-export",
-      "level": 2,
-      "name": "BrowserSocket (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserSocket.js\u201d module as <code>BrowserSocket</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserSocket from \"./BrowserSocket.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L19",
-      "since": "1.0.0"
-     },
-     {
-      "id": "browserstream-namespace-export",
-      "level": 2,
-      "name": "BrowserStream (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserStream.js\u201d module as <code>BrowserStream</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserStream from \"./BrowserStream.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L24",
-      "since": "1.0.0"
-     },
-     {
-      "id": "browserworker-namespace-export",
-      "level": 2,
-      "name": "BrowserWorker (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserWorker.js\u201d module as <code>BrowserWorker</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserWorker from \"./BrowserWorker.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L29",
-      "since": "1.0.0"
-     },
-     {
-      "id": "browserworkerrunner-namespace-export",
-      "level": 2,
-      "name": "BrowserWorkerRunner (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./BrowserWorkerRunner.js\u201d module as <code>BrowserWorkerRunner</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as BrowserWorkerRunner from \"./BrowserWorkerRunner.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L34",
-      "since": "1.0.0"
-     },
-     {
-      "id": "clipboard-namespace-export",
-      "level": 2,
-      "name": "Clipboard (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Clipboard.js\u201d module as <code>Clipboard</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Clipboard from \"./Clipboard.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L39",
-      "since": "1.0.0"
-     },
-     {
-      "id": "geolocation-namespace-export",
-      "level": 2,
-      "name": "Geolocation (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Geolocation.js\u201d module as <code>Geolocation</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Geolocation from \"./Geolocation.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L44",
-      "since": "1.0.0"
-     },
-     {
-      "id": "permissions-namespace-export",
-      "level": 2,
-      "name": "Permissions (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./Permissions.js\u201d module as <code>Permissions</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as Permissions from \"./Permissions.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L49",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- }
+	"BrowserHttpClient": {
+		"name": "BrowserHttpClient",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts",
+		"categories": [
+			{
+				"id": "fiber-refs",
+				"title": "fiber refs",
+				"exports": [
+					{
+						"id": "currentxhrresponsetype",
+						"level": 2,
+						"name": "currentXHRResponseType",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const currentXHRResponseType: FiberRef.FiberRef<\"text\" | \"arraybuffer\">"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L31",
+						"since": "1.0.0"
+					},
+					{
+						"id": "withxhrarraybuffer",
+						"level": 2,
+						"name": "withXHRArrayBuffer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const withXHRArrayBuffer: <A, E, R>(effect: Effect<A, E, R>) => Effect<A, E, R>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L37",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layerxmlhttprequest",
+						"level": 2,
+						"name": "layerXMLHttpRequest",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerXMLHttpRequest: Layer.Layer<HttpClient.HttpClient, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L16",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "xmlhttprequest-class",
+						"level": 2,
+						"name": "XMLHttpRequest",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class XMLHttpRequest"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserHttpClient.ts#L22",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"BrowserKeyValueStore": {
+		"name": "BrowserKeyValueStore",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserKeyValueStore.ts",
+		"categories": [
+			{
+				"id": "models",
+				"title": "models",
+				"exports": [
+					{
+						"id": "layerlocalstorage",
+						"level": 2,
+						"name": "layerLocalStorage",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates a KeyValueStore layer that uses the browser\u2019s localStorage api. Values are stored between sessions.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerLocalStorage: Layer.Layer<KeyValueStore.KeyValueStore, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserKeyValueStore.ts#L14",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layersessionstorage",
+						"level": 2,
+						"name": "layerSessionStorage",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates a KeyValueStore layer that uses the browser\u2019s sessionStorage api. Values are stored only for the current session.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerSessionStorage: Layer.Layer<KeyValueStore.KeyValueStore, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserKeyValueStore.ts#L22",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"BrowserRuntime": {
+		"name": "BrowserRuntime",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserRuntime.ts",
+		"categories": [
+			{
+				"id": "runtime",
+				"title": "runtime",
+				"exports": [
+					{
+						"id": "runmain",
+						"level": 2,
+						"name": "runMain",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const runMain: RunMain"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserRuntime.ts#L11",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"BrowserSocket": {
+		"name": "BrowserSocket",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserSocket.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layerwebsocket",
+						"level": 2,
+						"name": "layerWebSocket",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerWebSocket: (\n  url: string,\n  options?: { readonly closeCodeIsError?: (code: number) => boolean }\n) => Layer.Layer<Socket.Socket>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserSocket.ts#L11",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerwebsocketconstructor",
+						"level": 2,
+						"name": "layerWebSocketConstructor",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>A WebSocket constructor that uses globalThis.WebSocket.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerWebSocketConstructor: Layer.Layer<Socket.WebSocketConstructor, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserSocket.ts#L24",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"BrowserStream": {
+		"name": "BrowserStream",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserStream.ts",
+		"categories": [
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "fromeventlistenerdocument",
+						"level": 2,
+						"name": "fromEventListenerDocument",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates a <code>Stream</code> from document.addEventListener.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromEventListenerDocument: <K extends keyof DocumentEventMap>(\n  type: K,\n  options?:\n    | boolean\n    | {\n        readonly capture?: boolean\n        readonly passive?: boolean\n        readonly once?: boolean\n        readonly bufferSize?: number | \"unbounded\" | undefined\n      }\n    | undefined\n) => Stream.Stream<DocumentEventMap[K], never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserStream.ts#L26",
+						"since": "1.0.0"
+					},
+					{
+						"id": "fromeventlistenerwindow",
+						"level": 2,
+						"name": "fromEventListenerWindow",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Creates a <code>Stream</code> from window.addEventListener.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromEventListenerWindow: <K extends keyof WindowEventMap>(\n  type: K,\n  options?:\n    | boolean\n    | {\n        readonly capture?: boolean\n        readonly passive?: boolean\n        readonly once?: boolean\n        readonly bufferSize?: number | \"unbounded\" | undefined\n      }\n    | undefined\n) => Stream.Stream<WindowEventMap[K], never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserStream.ts#L12",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"BrowserWorker": {
+		"name": "BrowserWorker",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (\n  spawn: (id: number) => Worker | SharedWorker | MessagePort\n) => Layer.Layer<Worker.WorkerManager | Worker.Spawner>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L23",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layermanager",
+						"level": 2,
+						"name": "layerManager",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerManager: Layer.Layer<Worker.WorkerManager, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L11",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerplatform",
+						"level": 2,
+						"name": "layerPlatform",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerPlatform: (\n  spawn: (id: number) => globalThis.Worker | globalThis.SharedWorker | MessagePort\n) => Layer.Layer<Worker.PlatformWorker | Worker.Spawner>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L31",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerworker",
+						"level": 2,
+						"name": "layerWorker",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerWorker: Layer.Layer<Worker.PlatformWorker, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorker.ts#L17",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"BrowserWorkerRunner": {
+		"name": "BrowserWorkerRunner",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (self: MessagePort | Window) => Runner.PlatformRunner"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L20",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer.Layer<Runner.PlatformRunner, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L26",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layermessageport",
+						"level": 2,
+						"name": "layerMessagePort",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerMessagePort: (port: MessagePort | Window) => Layer.Layer<Runner.PlatformRunner>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L32",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "re-exports",
+				"title": "re-exports",
+				"exports": [
+					{
+						"id": "launch",
+						"level": 2,
+						"name": "launch",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const launch: <A, E, R>(layer: Layer.Layer<A, E, R>) => Effect<void, E | WorkerError, R>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/BrowserWorkerRunner.ts#L13",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Clipboard": {
+		"name": "Clipboard",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts",
+		"categories": [
+			{
+				"id": "constructor",
+				"title": "constructor",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (impl: Omit<Clipboard, \"clear\" | \"writeBlob\" | TypeId>) => Clipboard"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L69",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "errors",
+				"title": "errors",
+				"exports": [
+					{
+						"id": "clipboarderror-class",
+						"level": 2,
+						"name": "ClipboardError",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class ClipboardError"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L52",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "interface",
+				"title": "interface",
+				"exports": [
+					{
+						"id": "clipboard-interface",
+						"level": 2,
+						"name": "Clipboard",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Clipboard {\n  readonly [TypeId]: TypeId\n\n  readonly read: Effect.Effect<ClipboardItems, ClipboardError>\n  readonly readString: Effect.Effect<string, ClipboardError>\n  readonly write: (items: ClipboardItems) => Effect.Effect<void, ClipboardError>\n  readonly writeString: (text: string) => Effect.Effect<void, ClipboardError>\n  readonly writeBlob: (blob: Blob) => Effect.Effect<void, ClipboardError>\n  readonly clear: Effect.Effect<void, ClipboardError>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L25",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>A layer that directly interfaces with the navigator.clipboard api</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer.Layer<Clipboard, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L85",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tag",
+				"title": "tag",
+				"exports": [
+					{
+						"id": "clipboard",
+						"level": 2,
+						"name": "Clipboard",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const Clipboard: Context.Tag<Clipboard, Clipboard>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L61",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "type-ids",
+				"title": "type ids",
+				"exports": [
+					{
+						"id": "errortypeid",
+						"level": 2,
+						"name": "ErrorTypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const ErrorTypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L40",
+						"since": "1.0.0"
+					},
+					{
+						"id": "errortypeid-type-alias",
+						"level": 2,
+						"name": "ErrorTypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type ErrorTypeId = typeof ErrorTypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L46",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid",
+						"level": 2,
+						"name": "TypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const TypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L13",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid-type-alias",
+						"level": 2,
+						"name": "TypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type TypeId = typeof TypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Clipboard.ts#L19",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Geolocation": {
+		"name": "Geolocation",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts",
+		"categories": [
+			{
+				"id": "accessors",
+				"title": "accessors",
+				"exports": [
+					{
+						"id": "watchposition",
+						"level": 2,
+						"name": "watchPosition",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const watchPosition: (\n  options?: (PositionOptions & { readonly bufferSize?: number | undefined }) | undefined\n) => Stream.Stream<GeolocationPosition, GeolocationError, Geolocation>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L131",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "errors",
+				"title": "errors",
+				"exports": [
+					{
+						"id": "geolocationerror-class",
+						"level": 2,
+						"name": "GeolocationError",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class GeolocationError"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L67",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer.Layer<Geolocation, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L108",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "models",
+				"title": "models",
+				"exports": [
+					{
+						"id": "geolocation-interface",
+						"level": 2,
+						"name": "Geolocation",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Geolocation {\n  readonly [TypeId]: TypeId\n  readonly getCurrentPosition: (\n    options?: PositionOptions | undefined\n  ) => Effect.Effect<GeolocationPosition, GeolocationError>\n  readonly watchPosition: (\n    options?:\n      | (PositionOptions & {\n          readonly bufferSize?: number | undefined\n        })\n      | undefined\n  ) => Stream.Stream<GeolocationPosition, GeolocationError>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L29",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "geolocation",
+						"level": 2,
+						"name": "Geolocation",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const Geolocation: Context.Tag<Geolocation, Geolocation>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L47",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "type-ids",
+				"title": "type ids",
+				"exports": [
+					{
+						"id": "errortypeid",
+						"level": 2,
+						"name": "ErrorTypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const ErrorTypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L55",
+						"since": "1.0.0"
+					},
+					{
+						"id": "errortypeid-type-alias",
+						"level": 2,
+						"name": "ErrorTypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type ErrorTypeId = typeof ErrorTypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L61",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid",
+						"level": 2,
+						"name": "TypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const TypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L17",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid-type-alias",
+						"level": 2,
+						"name": "TypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type TypeId = typeof TypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Geolocation.ts#L23",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Permissions": {
+		"name": "Permissions",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts",
+		"categories": [
+			{
+				"id": "errors",
+				"title": "errors",
+				"exports": [
+					{
+						"id": "permissionserror-class",
+						"level": 2,
+						"name": "PermissionsError",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class PermissionsError"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L60",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "interface",
+				"title": "interface",
+				"exports": [
+					{
+						"id": "permissions-interface",
+						"level": 2,
+						"name": "Permissions",
+						"kind": "interface",
+						"description": [
+							{
+								"html": "<p>Wrapper on the Permission API (<code>navigator.permissions</code>) with methods for querying status of permissions.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Permissions {\n  readonly [TypeId]: TypeId\n\n  /**\n   * Returns the state of a user permission on the global scope.\n   */\n  readonly query: <Name extends PermissionName>(\n    name: Name\n  ) => Effect.Effect<\n    // `name` is identical to the name passed to Permissions.query\n    // https://developer.mozilla.org/en-US/docs/Web/API/PermissionStatus\n    Omit<PermissionStatus, \"name\"> & { name: Name },\n    PermissionsError\n  >\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L28",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>A layer that directly interfaces with the <code>navigator.permissions</code> api</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer.Layer<Permissions, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L84",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "permissions",
+						"level": 2,
+						"name": "Permissions",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const Permissions: Context.Tag<Permissions, Permissions>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L74",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "type-ids",
+				"title": "type ids",
+				"exports": [
+					{
+						"id": "errortypeid",
+						"level": 2,
+						"name": "ErrorTypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const ErrorTypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L48",
+						"since": "1.0.0"
+					},
+					{
+						"id": "errortypeid-type-alias",
+						"level": 2,
+						"name": "ErrorTypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type ErrorTypeId = typeof ErrorTypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L54",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid",
+						"level": 2,
+						"name": "TypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const TypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L13",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid-type-alias",
+						"level": 2,
+						"name": "TypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type TypeId = typeof TypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/Permissions.ts#L19",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"index": {
+		"name": "index",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts",
+		"categories": [
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "browserhttpclient-namespace-export",
+						"level": 2,
+						"name": "BrowserHttpClient (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserHttpClient.js\u201d module as <code>BrowserHttpClient</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserHttpClient from \"./BrowserHttpClient.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L4",
+						"since": "1.0.0"
+					},
+					{
+						"id": "browserkeyvaluestore-namespace-export",
+						"level": 2,
+						"name": "BrowserKeyValueStore (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserKeyValueStore.js\u201d module as <code>BrowserKeyValueStore</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserKeyValueStore from \"./BrowserKeyValueStore.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L9",
+						"since": "1.0.0"
+					},
+					{
+						"id": "browserruntime-namespace-export",
+						"level": 2,
+						"name": "BrowserRuntime (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserRuntime.js\u201d module as <code>BrowserRuntime</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserRuntime from \"./BrowserRuntime.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L14",
+						"since": "1.0.0"
+					},
+					{
+						"id": "browsersocket-namespace-export",
+						"level": 2,
+						"name": "BrowserSocket (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserSocket.js\u201d module as <code>BrowserSocket</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserSocket from \"./BrowserSocket.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L19",
+						"since": "1.0.0"
+					},
+					{
+						"id": "browserstream-namespace-export",
+						"level": 2,
+						"name": "BrowserStream (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserStream.js\u201d module as <code>BrowserStream</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserStream from \"./BrowserStream.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L24",
+						"since": "1.0.0"
+					},
+					{
+						"id": "browserworker-namespace-export",
+						"level": 2,
+						"name": "BrowserWorker (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserWorker.js\u201d module as <code>BrowserWorker</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserWorker from \"./BrowserWorker.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L29",
+						"since": "1.0.0"
+					},
+					{
+						"id": "browserworkerrunner-namespace-export",
+						"level": 2,
+						"name": "BrowserWorkerRunner (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./BrowserWorkerRunner.js\u201d module as <code>BrowserWorkerRunner</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as BrowserWorkerRunner from \"./BrowserWorkerRunner.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L34",
+						"since": "1.0.0"
+					},
+					{
+						"id": "clipboard-namespace-export",
+						"level": 2,
+						"name": "Clipboard (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Clipboard.js\u201d module as <code>Clipboard</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Clipboard from \"./Clipboard.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L39",
+						"since": "1.0.0"
+					},
+					{
+						"id": "geolocation-namespace-export",
+						"level": 2,
+						"name": "Geolocation (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Geolocation.js\u201d module as <code>Geolocation</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Geolocation from \"./Geolocation.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L44",
+						"since": "1.0.0"
+					},
+					{
+						"id": "permissions-namespace-export",
+						"level": 2,
+						"name": "Permissions (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./Permissions.js\u201d module as <code>Permissions</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as Permissions from \"./Permissions.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-browser/src/index.ts#L49",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	}
 }

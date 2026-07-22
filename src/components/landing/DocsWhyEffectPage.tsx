@@ -29,16 +29,16 @@ export function DocsWhyEffectPage() {
 
 				<div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
-						Programming is challenging. When we build libraries and apps, we look
-						to many tools to handle the complexity and make our day-to-day more
-						manageable. Effect presents a new way of thinking about programming in
-						TypeScript.
+						Programming is challenging. When we build libraries and apps, we
+						look to many tools to handle the complexity and make our day-to-day
+						more manageable. Effect presents a new way of thinking about
+						programming in TypeScript.
 					</p>
 					<p>
-						Effect is an ecosystem of tools that help you build better applications
-						and libraries. As a result, you will also learn more about the
-						TypeScript language and how to use the type system to make your
-						programs more reliable and easier to maintain.
+						Effect is an ecosystem of tools that help you build better
+						applications and libraries. As a result, you will also learn more
+						about the TypeScript language and how to use the type system to make
+						your programs more reliable and easier to maintain.
 					</p>
 					<p>
 						In "typical" TypeScript, without Effect, we write code that assumes
@@ -57,14 +57,15 @@ export function DocsWhyEffectPage() {
 				<div className="space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
 						Based on the types, we have no idea that this function can throw an
-						exception. We can only find out by reading the code. This may not seem
-						like much of a problem when you only have one function in your
-						codebase, but when you have hundreds or thousands, it really starts to
-						add up. It's easy to forget that a function can throw an exception,
-						and it's easy to forget to handle that exception.
+						exception. We can only find out by reading the code. This may not
+						seem like much of a problem when you only have one function in your
+						codebase, but when you have hundreds or thousands, it really starts
+						to add up. It's easy to forget that a function can throw an
+						exception, and it's easy to forget to handle that exception.
 					</p>
 					<p>
-						Often, we will do the "easiest" thing and just wrap the function in a{" "}
+						Often, we will do the "easiest" thing and just wrap the function in
+						a{" "}
 						<code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 							try/catch
 						</code>{" "}
@@ -73,9 +74,9 @@ export function DocsWhyEffectPage() {
 						our complex application/library. We can do better.
 					</p>
 					<p>
-						One of the most important tools we have in TypeScript is the compiler.
-						It is the first line of defense against bugs, domain errors, and
-						general complexity.
+						One of the most important tools we have in TypeScript is the
+						compiler. It is the first line of defense against bugs, domain
+						errors, and general complexity.
 					</p>
 				</div>
 
@@ -87,15 +88,24 @@ export function DocsWhyEffectPage() {
 				</h2>
 				<div className="space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
-						While Effect is a vast ecosystem of many different tools, if it had to
-						be reduced down to just one idea, it would be the following:
+						While Effect is a vast ecosystem of many different tools, if it had
+						to be reduced down to just one idea, it would be the following:
 					</p>
 					<p>
 						Effect's major unique insight is that we can use the type system to
-						track <strong className="font-semibold text-zinc-900 dark:text-white">errors</strong> and{" "}
-						<strong className="font-semibold text-zinc-900 dark:text-white">context</strong>, not only{" "}
-						<strong className="font-semibold text-zinc-900 dark:text-white">success</strong> values as
-						shown in the divide example above.
+						track{" "}
+						<strong className="font-semibold text-zinc-900 dark:text-white">
+							errors
+						</strong>{" "}
+						and{" "}
+						<strong className="font-semibold text-zinc-900 dark:text-white">
+							context
+						</strong>
+						, not only{" "}
+						<strong className="font-semibold text-zinc-900 dark:text-white">
+							success
+						</strong>{" "}
+						values as shown in the divide example above.
 					</p>
 					<p>
 						Here's the same divide function from above, but with the Effect
@@ -115,9 +125,9 @@ const divide = (
 
 				<div className="space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
-						With this approach, the function no longer throws exceptions. Instead,
-						errors are handled as values, which can be passed along like success
-						values. The type signature also makes it clear:
+						With this approach, the function no longer throws exceptions.
+						Instead, errors are handled as values, which can be passed along
+						like success values. The type signature also makes it clear:
 					</p>
 					<ul className="ml-6 list-disc space-y-1">
 						<li>
@@ -152,10 +162,10 @@ Effect<number, Error, never>`}</CodeBlock>
 
 				<p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					Additionally, tracking context allows you to provide additional
-					information to your functions without having to pass in everything as an
-					argument. For example, you can swap out implementations of live external
-					services with mocks during your tests without changing any core business
-					logic.
+					information to your functions without having to pass in everything as
+					an argument. For example, you can swap out implementations of live
+					external services with mocks during your tests without changing any
+					core business logic.
 				</p>
 
 				<h2
@@ -166,8 +176,8 @@ Effect<number, Error, never>`}</CodeBlock>
 				</h2>
 				<div className="space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
-						Application code in TypeScript often solves the same problems over and
-						over again. Interacting with external services, filesystems,
+						Application code in TypeScript often solves the same problems over
+						and over again. Interacting with external services, filesystems,
 						databases, etc. are common problems for all application developers.
 						Effect provides a rich ecosystem of libraries that provide
 						standardized solutions to many of these problems.
@@ -175,9 +185,9 @@ Effect<number, Error, never>`}</CodeBlock>
 					<p>
 						Managing challenges like error handling, debugging, tracing,
 						async/promises, retries, streaming, concurrency, caching, resource
-						management, and a lot more are made manageable with Effect. You don't
-						have to re-invent the solutions to these problems, or install tons of
-						dependencies.
+						management, and a lot more are made manageable with Effect. You
+						don't have to re-invent the solutions to these problems, or install
+						tons of dependencies.
 					</p>
 				</div>
 
@@ -190,9 +200,9 @@ Effect<number, Error, never>`}</CodeBlock>
 				<p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					Effect is heavily inspired by great work done in other languages, like
 					Scala and Haskell. However, it's important to understand that Effect's
-					goal is to be a practical toolkit, and it goes to great lengths to solve
-					real, everyday problems that developers face when building applications
-					and libraries in TypeScript.
+					goal is to be a practical toolkit, and it goes to great lengths to
+					solve real, everyday problems that developers face when building
+					applications and libraries in TypeScript.
 				</p>
 
 				<h2
@@ -204,19 +214,19 @@ Effect<number, Error, never>`}</CodeBlock>
 				<div className="space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
 						Learning Effect is a lot of fun. Many developers in the Effect
-						ecosystem are using Effect to solve real problems in their day-to-day
-						work, and also experiment with cutting edge ideas for pushing
-						TypeScript to be the most useful language it can be.
+						ecosystem are using Effect to solve real problems in their
+						day-to-day work, and also experiment with cutting edge ideas for
+						pushing TypeScript to be the most useful language it can be.
 					</p>
 					<p>
-						You don't have to use all aspects of Effect at once, and can start with
-						the pieces of the ecosystem that make the most sense for the problems
-						you are solving. Effect is a toolkit, and you can pick and choose the
-						pieces that make the most sense for your use case.
+						You don't have to use all aspects of Effect at once, and can start
+						with the pieces of the ecosystem that make the most sense for the
+						problems you are solving. Effect is a toolkit, and you can pick and
+						choose the pieces that make the most sense for your use case.
 					</p>
 					<p>
-						The Effect community is always happy to help you learn and grow. Feel
-						free to hop into our{" "}
+						The Effect community is always happy to help you learn and grow.
+						Feel free to hop into our{" "}
 						<a
 							href="https://discord.gg/effect-ts"
 							target="_blank"

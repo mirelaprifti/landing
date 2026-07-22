@@ -232,17 +232,18 @@ export function PodcastPage() {
 									How companies ship with Effect
 								</h1>
 								<p className="mt-2.5 text-base leading-snug text-zinc-600 dark:text-zinc-400 sm:text-lg">
-									Stories from engineering teams at Vercel, Zendesk, MasterClass, and more.
+									Stories from engineering teams at Vercel, Zendesk,
+									MasterClass, and more.
 								</p>
 
 								{/* Mobile platform links */}
 								<div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 lg:hidden">
-								<Link
-									href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
-									variant="icon"
-									className="group flex items-center gap-3"
-									aria-label="Listen on Apple Podcasts"
-								>
+									<Link
+										href="https://podcasts.apple.com/us/podcast/cause-effect/id1781879869"
+										variant="icon"
+										className="group flex items-center gap-3"
+										aria-label="Listen on Apple Podcasts"
+									>
 										<svg
 											className="h-5 w-5 shrink-0"
 											viewBox="0 0 300 300"

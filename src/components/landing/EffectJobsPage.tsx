@@ -91,15 +91,18 @@ export function EffectJobsPage() {
 							Companies hiring Effect engineers
 						</h1>
 						<p className="mt-4 text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
-							A community-powered directory of open roles where Effect is part of
-							the stack.
+							A community-powered directory of open roles where Effect is part
+							of the stack.
 						</p>
 
 						{/* CTA */}
 						<div className="mt-8 flex flex-wrap items-center gap-3">
 							<Button href={SUBMIT_URLS.postJob} variant="primary" size="lg">
 								Post a job
-								<i className="ri-arrow-right-up-line text-lg" aria-hidden="true" />
+								<i
+									className="ri-arrow-right-up-line text-lg"
+									aria-hidden="true"
+								/>
 							</Button>
 						</div>
 					</div>
@@ -111,7 +114,10 @@ export function EffectJobsPage() {
 						<div className="pt-4">
 							<ul className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-2 lg:grid-cols-3 dark:bg-zinc-800">
 								{JOBS.map((job) => (
-									<li key={`${job.company}-${job.role}`} className="bg-zinc-50 dark:bg-zinc-950">
+									<li
+										key={`${job.company}-${job.role}`}
+										className="bg-zinc-50 dark:bg-zinc-950"
+									>
 										<a
 											href={job.url}
 											target="_blank"
@@ -223,8 +229,8 @@ export function EffectJobsPage() {
 
 										{/* Body */}
 										<p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
-											Open a GitHub issue with your role and we'll add it to this
-											board.
+											Open a GitHub issue with your role and we'll add it to
+											this board.
 										</p>
 
 										<span className="sr-only">
@@ -246,10 +252,10 @@ export function EffectJobsPage() {
 									// Disclaimer
 								</p>
 								<p className="mt-3 text-base leading-relaxed text-zinc-800 dark:text-zinc-200">
-									Please note that these job postings are shared for informational
-									purposes, and we encourage applicants to verify details directly
-									with the hiring companies. Inclusion in the above list does not
-									imply endorsement by the Effect team.
+									Please note that these job postings are shared for
+									informational purposes, and we encourage applicants to verify
+									details directly with the hiring companies. Inclusion in the
+									above list does not imply endorsement by the Effect team.
 								</p>
 							</div>
 						</div>
@@ -287,7 +293,9 @@ export function EffectJobsPage() {
 																alt={company.name}
 																style={{
 																	height: company.h ?? "20px",
-																	filter: company.invert ? "brightness(0) invert(1)" : undefined,
+																	filter: company.invert
+																		? "brightness(0) invert(1)"
+																		: undefined,
 																}}
 																className="w-auto opacity-90"
 															/>
@@ -298,7 +306,9 @@ export function EffectJobsPage() {
 															alt={company.name}
 															style={{
 																height: company.h ?? "20px",
-																filter: company.invert ? "brightness(0) invert(1)" : undefined,
+																filter: company.invert
+																	? "brightness(0) invert(1)"
+																	: undefined,
 															}}
 															className="w-auto opacity-90"
 														/>
@@ -312,7 +322,6 @@ export function EffectJobsPage() {
 						</div>
 					</section>
 				)}
-
 			</main>
 
 			<Footer activePath="/effect-jobs" />

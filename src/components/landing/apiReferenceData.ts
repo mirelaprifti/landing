@@ -16,7 +16,8 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "cli",
 		name: "@effect/cli",
-		description: "Build polished, type-safe command-line applications with arguments, options, and prompts.",
+		description:
+			"Build polished, type-safe command-line applications with arguments, options, and prompts.",
 		modules: [
 			{ name: "Args", href: "/docs/api/v3/cli/Args" },
 			{ name: "AutoCorrect", href: "/docs/api/v3/cli/AutoCorrect" },
@@ -40,19 +41,26 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "cluster",
 		name: "@effect/cluster",
-		description: "Distributed computing with entities, sharding, singletons, and durable messaging.",
+		description:
+			"Distributed computing with entities, sharding, singletons, and durable messaging.",
 		modules: [
 			{ name: "ClusterCron", href: "/docs/api/v3/cluster/ClusterCron" },
 			{ name: "ClusterError", href: "/docs/api/v3/cluster/ClusterError" },
 			{ name: "ClusterMetrics", href: "/docs/api/v3/cluster/ClusterMetrics" },
 			{ name: "ClusterSchema", href: "/docs/api/v3/cluster/ClusterSchema" },
-			{ name: "ClusterWorkflowEngine", href: "/docs/api/v3/cluster/ClusterWorkflowEngine" },
+			{
+				name: "ClusterWorkflowEngine",
+				href: "/docs/api/v3/cluster/ClusterWorkflowEngine",
+			},
 			{ name: "DeliverAt", href: "/docs/api/v3/cluster/DeliverAt" },
 			{ name: "Entity", href: "/docs/api/v3/cluster/Entity" },
 			{ name: "EntityAddress", href: "/docs/api/v3/cluster/EntityAddress" },
 			{ name: "EntityId", href: "/docs/api/v3/cluster/EntityId" },
 			{ name: "EntityProxy", href: "/docs/api/v3/cluster/EntityProxy" },
-			{ name: "EntityProxyServer", href: "/docs/api/v3/cluster/EntityProxyServer" },
+			{
+				name: "EntityProxyServer",
+				href: "/docs/api/v3/cluster/EntityProxyServer",
+			},
 			{ name: "EntityResource", href: "/docs/api/v3/cluster/EntityResource" },
 			{ name: "EntityType", href: "/docs/api/v3/cluster/EntityType" },
 			{ name: "Envelope", href: "/docs/api/v3/cluster/Envelope" },
@@ -72,29 +80,99 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "ShardId", href: "/docs/api/v3/cluster/ShardId" },
 			{ name: "Sharding", href: "/docs/api/v3/cluster/Sharding" },
 			{ name: "ShardingConfig", href: "/docs/api/v3/cluster/ShardingConfig" },
-			{ name: "ShardingRegistrationEvent", href: "/docs/api/v3/cluster/ShardingRegistrationEvent" },
+			{
+				name: "ShardingRegistrationEvent",
+				href: "/docs/api/v3/cluster/ShardingRegistrationEvent",
+			},
 			{ name: "SingleRunner", href: "/docs/api/v3/cluster/SingleRunner" },
 			{ name: "Singleton", href: "/docs/api/v3/cluster/Singleton" },
-			{ name: "SingletonAddress", href: "/docs/api/v3/cluster/SingletonAddress" },
+			{
+				name: "SingletonAddress",
+				href: "/docs/api/v3/cluster/SingletonAddress",
+			},
 			{ name: "Snowflake", href: "/docs/api/v3/cluster/Snowflake" },
 			{ name: "SocketRunner", href: "/docs/api/v3/cluster/SocketRunner" },
-			{ name: "SqlMessageStorage", href: "/docs/api/v3/cluster/SqlMessageStorage" },
-			{ name: "SqlRunnerStorage", href: "/docs/api/v3/cluster/SqlRunnerStorage" },
+			{
+				name: "SqlMessageStorage",
+				href: "/docs/api/v3/cluster/SqlMessageStorage",
+			},
+			{
+				name: "SqlRunnerStorage",
+				href: "/docs/api/v3/cluster/SqlRunnerStorage",
+			},
 			{ name: "TestRunner", href: "/docs/api/v3/cluster/TestRunner" },
 		],
 		moduleGroups: [
-			{ title: "Entities", modules: ["Entity", "EntityAddress", "EntityId", "EntityProxy", "EntityProxyServer", "EntityResource", "EntityType", "Singleton", "SingletonAddress"] },
-			{ title: "Sharding", modules: ["Sharding", "ShardingConfig", "ShardingRegistrationEvent", "ShardId", "MachineId"] },
-			{ title: "Runners", modules: ["Runner", "RunnerAddress", "RunnerHealth", "Runners", "RunnerServer", "RunnerStorage", "HttpRunner", "SocketRunner", "SingleRunner", "TestRunner"] },
-			{ title: "Messaging", modules: ["Message", "MessageStorage", "Envelope", "Reply", "DeliverAt", "Snowflake"] },
+			{
+				title: "Entities",
+				modules: [
+					"Entity",
+					"EntityAddress",
+					"EntityId",
+					"EntityProxy",
+					"EntityProxyServer",
+					"EntityResource",
+					"EntityType",
+					"Singleton",
+					"SingletonAddress",
+				],
+			},
+			{
+				title: "Sharding",
+				modules: [
+					"Sharding",
+					"ShardingConfig",
+					"ShardingRegistrationEvent",
+					"ShardId",
+					"MachineId",
+				],
+			},
+			{
+				title: "Runners",
+				modules: [
+					"Runner",
+					"RunnerAddress",
+					"RunnerHealth",
+					"Runners",
+					"RunnerServer",
+					"RunnerStorage",
+					"HttpRunner",
+					"SocketRunner",
+					"SingleRunner",
+					"TestRunner",
+				],
+			},
+			{
+				title: "Messaging",
+				modules: [
+					"Message",
+					"MessageStorage",
+					"Envelope",
+					"Reply",
+					"DeliverAt",
+					"Snowflake",
+				],
+			},
 			{ title: "Storage", modules: ["SqlMessageStorage", "SqlRunnerStorage"] },
-			{ title: "Cluster", modules: ["ClusterCron", "ClusterError", "ClusterMetrics", "ClusterSchema", "ClusterWorkflowEngine", "K8sHttpClient", "index"] },
+			{
+				title: "Cluster",
+				modules: [
+					"ClusterCron",
+					"ClusterError",
+					"ClusterMetrics",
+					"ClusterSchema",
+					"ClusterWorkflowEngine",
+					"K8sHttpClient",
+					"index",
+				],
+			},
 		],
 	},
 	{
 		slug: "effect",
 		name: "effect",
-		description: "The core Effect library \u2014 data types, concurrency, streams, scheduling, configuration, and more.",
+		description:
+			"The core Effect library \u2014 data types, concurrency, streams, scheduling, configuration, and more.",
 		modules: [
 			{ name: "Arbitrary", href: "/docs/api/v3/effect/Arbitrary" },
 			{ name: "Array", href: "/docs/api/v3/effect/Array" },
@@ -105,13 +183,19 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "Cache", href: "/docs/api/v3/effect/Cache" },
 			{ name: "Cause", href: "/docs/api/v3/effect/Cause" },
 			{ name: "Channel", href: "/docs/api/v3/effect/Channel" },
-			{ name: "ChildExecutorDecision", href: "/docs/api/v3/effect/ChildExecutorDecision" },
+			{
+				name: "ChildExecutorDecision",
+				href: "/docs/api/v3/effect/ChildExecutorDecision",
+			},
 			{ name: "Chunk", href: "/docs/api/v3/effect/Chunk" },
 			{ name: "Clock", href: "/docs/api/v3/effect/Clock" },
 			{ name: "Config", href: "/docs/api/v3/effect/Config" },
 			{ name: "ConfigError", href: "/docs/api/v3/effect/ConfigError" },
 			{ name: "ConfigProvider", href: "/docs/api/v3/effect/ConfigProvider" },
-			{ name: "ConfigProviderPathPatch", href: "/docs/api/v3/effect/ConfigProviderPathPatch" },
+			{
+				name: "ConfigProviderPathPatch",
+				href: "/docs/api/v3/effect/ConfigProviderPathPatch",
+			},
 			{ name: "Console", href: "/docs/api/v3/effect/Console" },
 			{ name: "Context", href: "/docs/api/v3/effect/Context" },
 			{ name: "Cron", href: "/docs/api/v3/effect/Cron" },
@@ -128,7 +212,10 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "Equal", href: "/docs/api/v3/effect/Equal" },
 			{ name: "Equivalence", href: "/docs/api/v3/effect/Equivalence" },
 			{ name: "ExecutionPlan", href: "/docs/api/v3/effect/ExecutionPlan" },
-			{ name: "ExecutionStrategy", href: "/docs/api/v3/effect/ExecutionStrategy" },
+			{
+				name: "ExecutionStrategy",
+				href: "/docs/api/v3/effect/ExecutionStrategy",
+			},
 			{ name: "Exit", href: "/docs/api/v3/effect/Exit" },
 			{ name: "FastCheck", href: "/docs/api/v3/effect/FastCheck" },
 			{ name: "Fiber", href: "/docs/api/v3/effect/Fiber" },
@@ -167,7 +254,10 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "MergeState", href: "/docs/api/v3/effect/MergeState" },
 			{ name: "MergeStrategy", href: "/docs/api/v3/effect/MergeStrategy" },
 			{ name: "Metric", href: "/docs/api/v3/effect/Metric" },
-			{ name: "MetricBoundaries", href: "/docs/api/v3/effect/MetricBoundaries" },
+			{
+				name: "MetricBoundaries",
+				href: "/docs/api/v3/effect/MetricBoundaries",
+			},
 			{ name: "MetricHook", href: "/docs/api/v3/effect/MetricHook" },
 			{ name: "MetricKey", href: "/docs/api/v3/effect/MetricKey" },
 			{ name: "MetricKeyType", href: "/docs/api/v3/effect/MetricKeyType" },
@@ -183,13 +273,19 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "MutableList", href: "/docs/api/v3/effect/MutableList" },
 			{ name: "MutableQueue", href: "/docs/api/v3/effect/MutableQueue" },
 			{ name: "MutableRef", href: "/docs/api/v3/effect/MutableRef" },
-			{ name: "NonEmptyIterable", href: "/docs/api/v3/effect/NonEmptyIterable" },
+			{
+				name: "NonEmptyIterable",
+				href: "/docs/api/v3/effect/NonEmptyIterable",
+			},
 			{ name: "Number", href: "/docs/api/v3/effect/Number" },
 			{ name: "Option", href: "/docs/api/v3/effect/Option" },
 			{ name: "Order", href: "/docs/api/v3/effect/Order" },
 			{ name: "Ordering", href: "/docs/api/v3/effect/Ordering" },
 			{ name: "ParseResult", href: "/docs/api/v3/effect/ParseResult" },
-			{ name: "PartitionedSemaphore", href: "/docs/api/v3/effect/PartitionedSemaphore" },
+			{
+				name: "PartitionedSemaphore",
+				href: "/docs/api/v3/effect/PartitionedSemaphore",
+			},
 			{ name: "Pipeable", href: "/docs/api/v3/effect/Pipeable" },
 			{ name: "Pool", href: "/docs/api/v3/effect/Pool" },
 			{ name: "Predicate", href: "/docs/api/v3/effect/Predicate" },
@@ -214,11 +310,23 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "Resource", href: "/docs/api/v3/effect/Resource" },
 			{ name: "Runtime", href: "/docs/api/v3/effect/Runtime" },
 			{ name: "RuntimeFlags", href: "/docs/api/v3/effect/RuntimeFlags" },
-			{ name: "RuntimeFlagsPatch", href: "/docs/api/v3/effect/RuntimeFlagsPatch" },
+			{
+				name: "RuntimeFlagsPatch",
+				href: "/docs/api/v3/effect/RuntimeFlagsPatch",
+			},
 			{ name: "Schedule", href: "/docs/api/v3/effect/Schedule" },
-			{ name: "ScheduleDecision", href: "/docs/api/v3/effect/ScheduleDecision" },
-			{ name: "ScheduleInterval", href: "/docs/api/v3/effect/ScheduleInterval" },
-			{ name: "ScheduleIntervals", href: "/docs/api/v3/effect/ScheduleIntervals" },
+			{
+				name: "ScheduleDecision",
+				href: "/docs/api/v3/effect/ScheduleDecision",
+			},
+			{
+				name: "ScheduleInterval",
+				href: "/docs/api/v3/effect/ScheduleInterval",
+			},
+			{
+				name: "ScheduleIntervals",
+				href: "/docs/api/v3/effect/ScheduleIntervals",
+			},
 			{ name: "Scheduler", href: "/docs/api/v3/effect/Scheduler" },
 			{ name: "Schema", href: "/docs/api/v3/effect/Schema" },
 			{ name: "SchemaAST", href: "/docs/api/v3/effect/SchemaAST" },
@@ -226,7 +334,10 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "ScopedCache", href: "/docs/api/v3/effect/ScopedCache" },
 			{ name: "ScopedRef", href: "/docs/api/v3/effect/ScopedRef" },
 			{ name: "Secret", href: "/docs/api/v3/effect/Secret" },
-			{ name: "SingleProducerAsyncInput", href: "/docs/api/v3/effect/SingleProducerAsyncInput" },
+			{
+				name: "SingleProducerAsyncInput",
+				href: "/docs/api/v3/effect/SingleProducerAsyncInput",
+			},
 			{ name: "Sink", href: "/docs/api/v3/effect/Sink" },
 			{ name: "SortedMap", href: "/docs/api/v3/effect/SortedMap" },
 			{ name: "SortedSet", href: "/docs/api/v3/effect/SortedSet" },
@@ -234,7 +345,10 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "Stream", href: "/docs/api/v3/effect/Stream" },
 			{ name: "Streamable", href: "/docs/api/v3/effect/Streamable" },
 			{ name: "StreamEmit", href: "/docs/api/v3/effect/StreamEmit" },
-			{ name: "StreamHaltStrategy", href: "/docs/api/v3/effect/StreamHaltStrategy" },
+			{
+				name: "StreamHaltStrategy",
+				href: "/docs/api/v3/effect/StreamHaltStrategy",
+			},
 			{ name: "String", href: "/docs/api/v3/effect/String" },
 			{ name: "Struct", href: "/docs/api/v3/effect/Struct" },
 			{ name: "Subscribable", href: "/docs/api/v3/effect/Subscribable" },
@@ -246,7 +360,10 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "TArray", href: "/docs/api/v3/effect/TArray" },
 			{ name: "TDeferred", href: "/docs/api/v3/effect/TDeferred" },
 			{ name: "TestAnnotation", href: "/docs/api/v3/effect/TestAnnotation" },
-			{ name: "TestAnnotationMap", href: "/docs/api/v3/effect/TestAnnotationMap" },
+			{
+				name: "TestAnnotationMap",
+				href: "/docs/api/v3/effect/TestAnnotationMap",
+			},
 			{ name: "TestAnnotations", href: "/docs/api/v3/effect/TestAnnotations" },
 			{ name: "TestClock", href: "/docs/api/v3/effect/TestClock" },
 			{ name: "TestConfig", href: "/docs/api/v3/effect/TestConfig" },
@@ -265,49 +382,113 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "Trie", href: "/docs/api/v3/effect/Trie" },
 			{ name: "TSemaphore", href: "/docs/api/v3/effect/TSemaphore" },
 			{ name: "TSet", href: "/docs/api/v3/effect/TSet" },
-			{ name: "TSubscriptionRef", href: "/docs/api/v3/effect/TSubscriptionRef" },
+			{
+				name: "TSubscriptionRef",
+				href: "/docs/api/v3/effect/TSubscriptionRef",
+			},
 			{ name: "Tuple", href: "/docs/api/v3/effect/Tuple" },
 			{ name: "Types", href: "/docs/api/v3/effect/Types" },
 			{ name: "Unify", href: "/docs/api/v3/effect/Unify" },
-			{ name: "UpstreamPullRequest", href: "/docs/api/v3/effect/UpstreamPullRequest" },
-			{ name: "UpstreamPullStrategy", href: "/docs/api/v3/effect/UpstreamPullStrategy" },
+			{
+				name: "UpstreamPullRequest",
+				href: "/docs/api/v3/effect/UpstreamPullRequest",
+			},
+			{
+				name: "UpstreamPullStrategy",
+				href: "/docs/api/v3/effect/UpstreamPullStrategy",
+			},
 			{ name: "Utils", href: "/docs/api/v3/effect/Utils" },
 		],
 	},
 	{
 		slug: "experimental",
 		name: "@effect/experimental",
-		description: "Experimental modules under active development \u2014 APIs may change without notice.",
+		description:
+			"Experimental modules under active development \u2014 APIs may change without notice.",
 		modules: [
 			{ name: "DevTools", href: "/docs/api/v3/experimental/DevTools" },
-			{ name: "DevTools/Client", href: "/docs/api/v3/experimental/DevTools/Client" },
-			{ name: "DevTools/Domain", href: "/docs/api/v3/experimental/DevTools/Domain" },
-			{ name: "DevTools/Server", href: "/docs/api/v3/experimental/DevTools/Server" },
+			{
+				name: "DevTools/Client",
+				href: "/docs/api/v3/experimental/DevTools/Client",
+			},
+			{
+				name: "DevTools/Domain",
+				href: "/docs/api/v3/experimental/DevTools/Domain",
+			},
+			{
+				name: "DevTools/Server",
+				href: "/docs/api/v3/experimental/DevTools/Server",
+			},
 			{ name: "Event", href: "/docs/api/v3/experimental/Event" },
 			{ name: "EventGroup", href: "/docs/api/v3/experimental/EventGroup" },
 			{ name: "EventJournal", href: "/docs/api/v3/experimental/EventJournal" },
 			{ name: "EventLog", href: "/docs/api/v3/experimental/EventLog" },
-			{ name: "EventLogEncryption", href: "/docs/api/v3/experimental/EventLogEncryption" },
-			{ name: "EventLogRemote", href: "/docs/api/v3/experimental/EventLogRemote" },
-			{ name: "EventLogServer", href: "/docs/api/v3/experimental/EventLogServer" },
-			{ name: "EventLogServer/Cloudflare", href: "/docs/api/v3/experimental/EventLogServer/Cloudflare" },
+			{
+				name: "EventLogEncryption",
+				href: "/docs/api/v3/experimental/EventLogEncryption",
+			},
+			{
+				name: "EventLogRemote",
+				href: "/docs/api/v3/experimental/EventLogRemote",
+			},
+			{
+				name: "EventLogServer",
+				href: "/docs/api/v3/experimental/EventLogServer",
+			},
+			{
+				name: "EventLogServer/Cloudflare",
+				href: "/docs/api/v3/experimental/EventLogServer/Cloudflare",
+			},
 			{ name: "index", href: "/docs/api/v3/experimental/index" },
 			{ name: "Machine", href: "/docs/api/v3/experimental/Machine" },
-			{ name: "Machine/Procedure", href: "/docs/api/v3/experimental/Machine/Procedure" },
-			{ name: "Machine/ProcedureList", href: "/docs/api/v3/experimental/Machine/ProcedureList" },
-			{ name: "Machine/SerializableProcedureList", href: "/docs/api/v3/experimental/Machine/SerializableProcedureList" },
-			{ name: "PersistedCache", href: "/docs/api/v3/experimental/PersistedCache" },
-			{ name: "PersistedQueue", href: "/docs/api/v3/experimental/PersistedQueue" },
-			{ name: "PersistedQueue/Redis", href: "/docs/api/v3/experimental/PersistedQueue/Redis" },
+			{
+				name: "Machine/Procedure",
+				href: "/docs/api/v3/experimental/Machine/Procedure",
+			},
+			{
+				name: "Machine/ProcedureList",
+				href: "/docs/api/v3/experimental/Machine/ProcedureList",
+			},
+			{
+				name: "Machine/SerializableProcedureList",
+				href: "/docs/api/v3/experimental/Machine/SerializableProcedureList",
+			},
+			{
+				name: "PersistedCache",
+				href: "/docs/api/v3/experimental/PersistedCache",
+			},
+			{
+				name: "PersistedQueue",
+				href: "/docs/api/v3/experimental/PersistedQueue",
+			},
+			{
+				name: "PersistedQueue/Redis",
+				href: "/docs/api/v3/experimental/PersistedQueue/Redis",
+			},
 			{ name: "Persistence", href: "/docs/api/v3/experimental/Persistence" },
-			{ name: "Persistence/Lmdb", href: "/docs/api/v3/experimental/Persistence/Lmdb" },
-			{ name: "Persistence/Redis", href: "/docs/api/v3/experimental/Persistence/Redis" },
+			{
+				name: "Persistence/Lmdb",
+				href: "/docs/api/v3/experimental/Persistence/Lmdb",
+			},
+			{
+				name: "Persistence/Redis",
+				href: "/docs/api/v3/experimental/Persistence/Redis",
+			},
 			{ name: "RateLimiter", href: "/docs/api/v3/experimental/RateLimiter" },
-			{ name: "RateLimiter/Redis", href: "/docs/api/v3/experimental/RateLimiter/Redis" },
+			{
+				name: "RateLimiter/Redis",
+				href: "/docs/api/v3/experimental/RateLimiter/Redis",
+			},
 			{ name: "Reactivity", href: "/docs/api/v3/experimental/Reactivity" },
-			{ name: "RequestResolver", href: "/docs/api/v3/experimental/RequestResolver" },
+			{
+				name: "RequestResolver",
+				href: "/docs/api/v3/experimental/RequestResolver",
+			},
 			{ name: "Sse", href: "/docs/api/v3/experimental/Sse" },
-			{ name: "VariantSchema", href: "/docs/api/v3/experimental/VariantSchema" },
+			{
+				name: "VariantSchema",
+				href: "/docs/api/v3/experimental/VariantSchema",
+			},
 		],
 	},
 	{
@@ -323,7 +504,10 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "OtlpLogger", href: "/docs/api/v3/opentelemetry/OtlpLogger" },
 			{ name: "OtlpMetrics", href: "/docs/api/v3/opentelemetry/OtlpMetrics" },
 			{ name: "OtlpResource", href: "/docs/api/v3/opentelemetry/OtlpResource" },
-			{ name: "OtlpSerialization", href: "/docs/api/v3/opentelemetry/OtlpSerialization" },
+			{
+				name: "OtlpSerialization",
+				href: "/docs/api/v3/opentelemetry/OtlpSerialization",
+			},
 			{ name: "OtlpTracer", href: "/docs/api/v3/opentelemetry/OtlpTracer" },
 			{ name: "Resource", href: "/docs/api/v3/opentelemetry/Resource" },
 			{ name: "Tracer", href: "/docs/api/v3/opentelemetry/Tracer" },
@@ -333,57 +517,109 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "platform",
 		name: "@effect/platform",
-		description: "Platform-agnostic abstractions for HTTP, file systems, sockets, workers, and more.",
+		description:
+			"Platform-agnostic abstractions for HTTP, file systems, sockets, workers, and more.",
 		modules: [
 			{ name: "ChannelSchema", href: "/docs/api/v3/platform/ChannelSchema" },
 			{ name: "Command", href: "/docs/api/v3/platform/Command" },
-			{ name: "CommandExecutor", href: "/docs/api/v3/platform/CommandExecutor" },
+			{
+				name: "CommandExecutor",
+				href: "/docs/api/v3/platform/CommandExecutor",
+			},
 			{ name: "Cookies", href: "/docs/api/v3/platform/Cookies" },
 			{ name: "Effectify", href: "/docs/api/v3/platform/Effectify" },
 			{ name: "Error", href: "/docs/api/v3/platform/Error" },
 			{ name: "Etag", href: "/docs/api/v3/platform/Etag" },
-			{ name: "FetchHttpClient", href: "/docs/api/v3/platform/FetchHttpClient" },
+			{
+				name: "FetchHttpClient",
+				href: "/docs/api/v3/platform/FetchHttpClient",
+			},
 			{ name: "FileSystem", href: "/docs/api/v3/platform/FileSystem" },
 			{ name: "Headers", href: "/docs/api/v3/platform/Headers" },
 			{ name: "HttpApi", href: "/docs/api/v3/platform/HttpApi" },
 			{ name: "HttpApiBuilder", href: "/docs/api/v3/platform/HttpApiBuilder" },
 			{ name: "HttpApiClient", href: "/docs/api/v3/platform/HttpApiClient" },
-			{ name: "HttpApiEndpoint", href: "/docs/api/v3/platform/HttpApiEndpoint" },
+			{
+				name: "HttpApiEndpoint",
+				href: "/docs/api/v3/platform/HttpApiEndpoint",
+			},
 			{ name: "HttpApiError", href: "/docs/api/v3/platform/HttpApiError" },
 			{ name: "HttpApiGroup", href: "/docs/api/v3/platform/HttpApiGroup" },
-			{ name: "HttpApiMiddleware", href: "/docs/api/v3/platform/HttpApiMiddleware" },
+			{
+				name: "HttpApiMiddleware",
+				href: "/docs/api/v3/platform/HttpApiMiddleware",
+			},
 			{ name: "HttpApiScalar", href: "/docs/api/v3/platform/HttpApiScalar" },
 			{ name: "HttpApiSchema", href: "/docs/api/v3/platform/HttpApiSchema" },
-			{ name: "HttpApiSecurity", href: "/docs/api/v3/platform/HttpApiSecurity" },
+			{
+				name: "HttpApiSecurity",
+				href: "/docs/api/v3/platform/HttpApiSecurity",
+			},
 			{ name: "HttpApiSwagger", href: "/docs/api/v3/platform/HttpApiSwagger" },
 			{ name: "HttpApp", href: "/docs/api/v3/platform/HttpApp" },
 			{ name: "HttpBody", href: "/docs/api/v3/platform/HttpBody" },
 			{ name: "HttpClient", href: "/docs/api/v3/platform/HttpClient" },
-			{ name: "HttpClientError", href: "/docs/api/v3/platform/HttpClientError" },
-			{ name: "HttpClientRequest", href: "/docs/api/v3/platform/HttpClientRequest" },
-			{ name: "HttpClientResponse", href: "/docs/api/v3/platform/HttpClientResponse" },
-			{ name: "HttpIncomingMessage", href: "/docs/api/v3/platform/HttpIncomingMessage" },
-			{ name: "HttpLayerRouter", href: "/docs/api/v3/platform/HttpLayerRouter" },
+			{
+				name: "HttpClientError",
+				href: "/docs/api/v3/platform/HttpClientError",
+			},
+			{
+				name: "HttpClientRequest",
+				href: "/docs/api/v3/platform/HttpClientRequest",
+			},
+			{
+				name: "HttpClientResponse",
+				href: "/docs/api/v3/platform/HttpClientResponse",
+			},
+			{
+				name: "HttpIncomingMessage",
+				href: "/docs/api/v3/platform/HttpIncomingMessage",
+			},
+			{
+				name: "HttpLayerRouter",
+				href: "/docs/api/v3/platform/HttpLayerRouter",
+			},
 			{ name: "HttpMethod", href: "/docs/api/v3/platform/HttpMethod" },
 			{ name: "HttpMiddleware", href: "/docs/api/v3/platform/HttpMiddleware" },
 			{ name: "HttpMultiplex", href: "/docs/api/v3/platform/HttpMultiplex" },
 			{ name: "HttpPlatform", href: "/docs/api/v3/platform/HttpPlatform" },
 			{ name: "HttpRouter", href: "/docs/api/v3/platform/HttpRouter" },
 			{ name: "HttpServer", href: "/docs/api/v3/platform/HttpServer" },
-			{ name: "HttpServerError", href: "/docs/api/v3/platform/HttpServerError" },
-			{ name: "HttpServerRequest", href: "/docs/api/v3/platform/HttpServerRequest" },
-			{ name: "HttpServerRespondable", href: "/docs/api/v3/platform/HttpServerRespondable" },
-			{ name: "HttpServerResponse", href: "/docs/api/v3/platform/HttpServerResponse" },
-			{ name: "HttpTraceContext", href: "/docs/api/v3/platform/HttpTraceContext" },
+			{
+				name: "HttpServerError",
+				href: "/docs/api/v3/platform/HttpServerError",
+			},
+			{
+				name: "HttpServerRequest",
+				href: "/docs/api/v3/platform/HttpServerRequest",
+			},
+			{
+				name: "HttpServerRespondable",
+				href: "/docs/api/v3/platform/HttpServerRespondable",
+			},
+			{
+				name: "HttpServerResponse",
+				href: "/docs/api/v3/platform/HttpServerResponse",
+			},
+			{
+				name: "HttpTraceContext",
+				href: "/docs/api/v3/platform/HttpTraceContext",
+			},
 			{ name: "index", href: "/docs/api/v3/platform/index" },
 			{ name: "KeyValueStore", href: "/docs/api/v3/platform/KeyValueStore" },
 			{ name: "MsgPack", href: "/docs/api/v3/platform/MsgPack" },
 			{ name: "Multipart", href: "/docs/api/v3/platform/Multipart" },
 			{ name: "Ndjson", href: "/docs/api/v3/platform/Ndjson" },
 			{ name: "OpenApi", href: "/docs/api/v3/platform/OpenApi" },
-			{ name: "OpenApiJsonSchema", href: "/docs/api/v3/platform/OpenApiJsonSchema" },
+			{
+				name: "OpenApiJsonSchema",
+				href: "/docs/api/v3/platform/OpenApiJsonSchema",
+			},
 			{ name: "Path", href: "/docs/api/v3/platform/Path" },
-			{ name: "PlatformConfigProvider", href: "/docs/api/v3/platform/PlatformConfigProvider" },
+			{
+				name: "PlatformConfigProvider",
+				href: "/docs/api/v3/platform/PlatformConfigProvider",
+			},
 			{ name: "PlatformLogger", href: "/docs/api/v3/platform/PlatformLogger" },
 			{ name: "Runtime", href: "/docs/api/v3/platform/Runtime" },
 			{ name: "Socket", href: "/docs/api/v3/platform/Socket" },
@@ -403,17 +639,44 @@ export const API_PACKAGES: ApiPackage[] = [
 		name: "@effect/platform-browser",
 		description: "Browser implementations of the platform abstractions.",
 		modules: [
-			{ name: "BrowserHttpClient", href: "/docs/api/v3/platform-browser/BrowserHttpClient" },
-			{ name: "BrowserKeyValueStore", href: "/docs/api/v3/platform-browser/BrowserKeyValueStore" },
-			{ name: "BrowserRuntime", href: "/docs/api/v3/platform-browser/BrowserRuntime" },
-			{ name: "BrowserSocket", href: "/docs/api/v3/platform-browser/BrowserSocket" },
-			{ name: "BrowserStream", href: "/docs/api/v3/platform-browser/BrowserStream" },
-			{ name: "BrowserWorker", href: "/docs/api/v3/platform-browser/BrowserWorker" },
-			{ name: "BrowserWorkerRunner", href: "/docs/api/v3/platform-browser/BrowserWorkerRunner" },
+			{
+				name: "BrowserHttpClient",
+				href: "/docs/api/v3/platform-browser/BrowserHttpClient",
+			},
+			{
+				name: "BrowserKeyValueStore",
+				href: "/docs/api/v3/platform-browser/BrowserKeyValueStore",
+			},
+			{
+				name: "BrowserRuntime",
+				href: "/docs/api/v3/platform-browser/BrowserRuntime",
+			},
+			{
+				name: "BrowserSocket",
+				href: "/docs/api/v3/platform-browser/BrowserSocket",
+			},
+			{
+				name: "BrowserStream",
+				href: "/docs/api/v3/platform-browser/BrowserStream",
+			},
+			{
+				name: "BrowserWorker",
+				href: "/docs/api/v3/platform-browser/BrowserWorker",
+			},
+			{
+				name: "BrowserWorkerRunner",
+				href: "/docs/api/v3/platform-browser/BrowserWorkerRunner",
+			},
 			{ name: "Clipboard", href: "/docs/api/v3/platform-browser/Clipboard" },
-			{ name: "Geolocation", href: "/docs/api/v3/platform-browser/Geolocation" },
+			{
+				name: "Geolocation",
+				href: "/docs/api/v3/platform-browser/Geolocation",
+			},
 			{ name: "index", href: "/docs/api/v3/platform-browser/index" },
-			{ name: "Permissions", href: "/docs/api/v3/platform-browser/Permissions" },
+			{
+				name: "Permissions",
+				href: "/docs/api/v3/platform-browser/Permissions",
+			},
 		],
 	},
 	{
@@ -421,26 +684,59 @@ export const API_PACKAGES: ApiPackage[] = [
 		name: "@effect/platform-bun",
 		description: "Bun implementations of the platform abstractions.",
 		modules: [
-			{ name: "BunClusterHttp", href: "/docs/api/v3/platform-bun/BunClusterHttp" },
-			{ name: "BunClusterSocket", href: "/docs/api/v3/platform-bun/BunClusterSocket" },
-			{ name: "BunCommandExecutor", href: "/docs/api/v3/platform-bun/BunCommandExecutor" },
+			{
+				name: "BunClusterHttp",
+				href: "/docs/api/v3/platform-bun/BunClusterHttp",
+			},
+			{
+				name: "BunClusterSocket",
+				href: "/docs/api/v3/platform-bun/BunClusterSocket",
+			},
+			{
+				name: "BunCommandExecutor",
+				href: "/docs/api/v3/platform-bun/BunCommandExecutor",
+			},
 			{ name: "BunContext", href: "/docs/api/v3/platform-bun/BunContext" },
-			{ name: "BunFileSystem", href: "/docs/api/v3/platform-bun/BunFileSystem" },
-			{ name: "BunFileSystem/ParcelWatcher", href: "/docs/api/v3/platform-bun/BunFileSystem/ParcelWatcher" },
-			{ name: "BunHttpPlatform", href: "/docs/api/v3/platform-bun/BunHttpPlatform" },
-			{ name: "BunHttpServer", href: "/docs/api/v3/platform-bun/BunHttpServer" },
-			{ name: "BunHttpServerRequest", href: "/docs/api/v3/platform-bun/BunHttpServerRequest" },
-			{ name: "BunKeyValueStore", href: "/docs/api/v3/platform-bun/BunKeyValueStore" },
+			{
+				name: "BunFileSystem",
+				href: "/docs/api/v3/platform-bun/BunFileSystem",
+			},
+			{
+				name: "BunFileSystem/ParcelWatcher",
+				href: "/docs/api/v3/platform-bun/BunFileSystem/ParcelWatcher",
+			},
+			{
+				name: "BunHttpPlatform",
+				href: "/docs/api/v3/platform-bun/BunHttpPlatform",
+			},
+			{
+				name: "BunHttpServer",
+				href: "/docs/api/v3/platform-bun/BunHttpServer",
+			},
+			{
+				name: "BunHttpServerRequest",
+				href: "/docs/api/v3/platform-bun/BunHttpServerRequest",
+			},
+			{
+				name: "BunKeyValueStore",
+				href: "/docs/api/v3/platform-bun/BunKeyValueStore",
+			},
 			{ name: "BunMultipart", href: "/docs/api/v3/platform-bun/BunMultipart" },
 			{ name: "BunPath", href: "/docs/api/v3/platform-bun/BunPath" },
 			{ name: "BunRuntime", href: "/docs/api/v3/platform-bun/BunRuntime" },
 			{ name: "BunSink", href: "/docs/api/v3/platform-bun/BunSink" },
 			{ name: "BunSocket", href: "/docs/api/v3/platform-bun/BunSocket" },
-			{ name: "BunSocketServer", href: "/docs/api/v3/platform-bun/BunSocketServer" },
+			{
+				name: "BunSocketServer",
+				href: "/docs/api/v3/platform-bun/BunSocketServer",
+			},
 			{ name: "BunStream", href: "/docs/api/v3/platform-bun/BunStream" },
 			{ name: "BunTerminal", href: "/docs/api/v3/platform-bun/BunTerminal" },
 			{ name: "BunWorker", href: "/docs/api/v3/platform-bun/BunWorker" },
-			{ name: "BunWorkerRunner", href: "/docs/api/v3/platform-bun/BunWorkerRunner" },
+			{
+				name: "BunWorkerRunner",
+				href: "/docs/api/v3/platform-bun/BunWorkerRunner",
+			},
 			{ name: "index", href: "/docs/api/v3/platform-bun/index" },
 		],
 	},
@@ -450,48 +746,121 @@ export const API_PACKAGES: ApiPackage[] = [
 		description: "Node.js implementations of the platform abstractions.",
 		modules: [
 			{ name: "index", href: "/docs/api/v3/platform-node/index" },
-			{ name: "NodeClusterHttp", href: "/docs/api/v3/platform-node/NodeClusterHttp" },
-			{ name: "NodeClusterSocket", href: "/docs/api/v3/platform-node/NodeClusterSocket" },
-			{ name: "NodeCommandExecutor", href: "/docs/api/v3/platform-node/NodeCommandExecutor" },
+			{
+				name: "NodeClusterHttp",
+				href: "/docs/api/v3/platform-node/NodeClusterHttp",
+			},
+			{
+				name: "NodeClusterSocket",
+				href: "/docs/api/v3/platform-node/NodeClusterSocket",
+			},
+			{
+				name: "NodeCommandExecutor",
+				href: "/docs/api/v3/platform-node/NodeCommandExecutor",
+			},
 			{ name: "NodeContext", href: "/docs/api/v3/platform-node/NodeContext" },
-			{ name: "NodeFileSystem", href: "/docs/api/v3/platform-node/NodeFileSystem" },
-			{ name: "NodeFileSystem/ParcelWatcher", href: "/docs/api/v3/platform-node/NodeFileSystem/ParcelWatcher" },
-			{ name: "NodeHttpClient", href: "/docs/api/v3/platform-node/NodeHttpClient" },
-			{ name: "NodeHttpPlatform", href: "/docs/api/v3/platform-node/NodeHttpPlatform" },
-			{ name: "NodeHttpServer", href: "/docs/api/v3/platform-node/NodeHttpServer" },
-			{ name: "NodeHttpServerRequest", href: "/docs/api/v3/platform-node/NodeHttpServerRequest" },
-			{ name: "NodeKeyValueStore", href: "/docs/api/v3/platform-node/NodeKeyValueStore" },
-			{ name: "NodeMultipart", href: "/docs/api/v3/platform-node/NodeMultipart" },
+			{
+				name: "NodeFileSystem",
+				href: "/docs/api/v3/platform-node/NodeFileSystem",
+			},
+			{
+				name: "NodeFileSystem/ParcelWatcher",
+				href: "/docs/api/v3/platform-node/NodeFileSystem/ParcelWatcher",
+			},
+			{
+				name: "NodeHttpClient",
+				href: "/docs/api/v3/platform-node/NodeHttpClient",
+			},
+			{
+				name: "NodeHttpPlatform",
+				href: "/docs/api/v3/platform-node/NodeHttpPlatform",
+			},
+			{
+				name: "NodeHttpServer",
+				href: "/docs/api/v3/platform-node/NodeHttpServer",
+			},
+			{
+				name: "NodeHttpServerRequest",
+				href: "/docs/api/v3/platform-node/NodeHttpServerRequest",
+			},
+			{
+				name: "NodeKeyValueStore",
+				href: "/docs/api/v3/platform-node/NodeKeyValueStore",
+			},
+			{
+				name: "NodeMultipart",
+				href: "/docs/api/v3/platform-node/NodeMultipart",
+			},
 			{ name: "NodePath", href: "/docs/api/v3/platform-node/NodePath" },
 			{ name: "NodeRuntime", href: "/docs/api/v3/platform-node/NodeRuntime" },
 			{ name: "NodeSink", href: "/docs/api/v3/platform-node/NodeSink" },
 			{ name: "NodeSocket", href: "/docs/api/v3/platform-node/NodeSocket" },
-			{ name: "NodeSocketServer", href: "/docs/api/v3/platform-node/NodeSocketServer" },
+			{
+				name: "NodeSocketServer",
+				href: "/docs/api/v3/platform-node/NodeSocketServer",
+			},
 			{ name: "NodeStream", href: "/docs/api/v3/platform-node/NodeStream" },
 			{ name: "NodeTerminal", href: "/docs/api/v3/platform-node/NodeTerminal" },
 			{ name: "NodeWorker", href: "/docs/api/v3/platform-node/NodeWorker" },
-			{ name: "NodeWorkerRunner", href: "/docs/api/v3/platform-node/NodeWorkerRunner" },
+			{
+				name: "NodeWorkerRunner",
+				href: "/docs/api/v3/platform-node/NodeWorkerRunner",
+			},
 			{ name: "Undici", href: "/docs/api/v3/platform-node/Undici" },
 		],
 	},
 	{
 		slug: "platform-node-shared",
 		name: "@effect/platform-node-shared",
-		description: "Shared internals for Node.js-compatible platform implementations.",
+		description:
+			"Shared internals for Node.js-compatible platform implementations.",
 		modules: [
-			{ name: "NodeClusterSocket", href: "/docs/api/v3/platform-node-shared/NodeClusterSocket" },
-			{ name: "NodeCommandExecutor", href: "/docs/api/v3/platform-node-shared/NodeCommandExecutor" },
-			{ name: "NodeFileSystem", href: "/docs/api/v3/platform-node-shared/NodeFileSystem" },
-			{ name: "NodeFileSystem/ParcelWatcher", href: "/docs/api/v3/platform-node-shared/NodeFileSystem/ParcelWatcher" },
-			{ name: "NodeKeyValueStore", href: "/docs/api/v3/platform-node-shared/NodeKeyValueStore" },
-			{ name: "NodeMultipart", href: "/docs/api/v3/platform-node-shared/NodeMultipart" },
+			{
+				name: "NodeClusterSocket",
+				href: "/docs/api/v3/platform-node-shared/NodeClusterSocket",
+			},
+			{
+				name: "NodeCommandExecutor",
+				href: "/docs/api/v3/platform-node-shared/NodeCommandExecutor",
+			},
+			{
+				name: "NodeFileSystem",
+				href: "/docs/api/v3/platform-node-shared/NodeFileSystem",
+			},
+			{
+				name: "NodeFileSystem/ParcelWatcher",
+				href: "/docs/api/v3/platform-node-shared/NodeFileSystem/ParcelWatcher",
+			},
+			{
+				name: "NodeKeyValueStore",
+				href: "/docs/api/v3/platform-node-shared/NodeKeyValueStore",
+			},
+			{
+				name: "NodeMultipart",
+				href: "/docs/api/v3/platform-node-shared/NodeMultipart",
+			},
 			{ name: "NodePath", href: "/docs/api/v3/platform-node-shared/NodePath" },
-			{ name: "NodeRuntime", href: "/docs/api/v3/platform-node-shared/NodeRuntime" },
+			{
+				name: "NodeRuntime",
+				href: "/docs/api/v3/platform-node-shared/NodeRuntime",
+			},
 			{ name: "NodeSink", href: "/docs/api/v3/platform-node-shared/NodeSink" },
-			{ name: "NodeSocket", href: "/docs/api/v3/platform-node-shared/NodeSocket" },
-			{ name: "NodeSocketServer", href: "/docs/api/v3/platform-node-shared/NodeSocketServer" },
-			{ name: "NodeStream", href: "/docs/api/v3/platform-node-shared/NodeStream" },
-			{ name: "NodeTerminal", href: "/docs/api/v3/platform-node-shared/NodeTerminal" },
+			{
+				name: "NodeSocket",
+				href: "/docs/api/v3/platform-node-shared/NodeSocket",
+			},
+			{
+				name: "NodeSocketServer",
+				href: "/docs/api/v3/platform-node-shared/NodeSocketServer",
+			},
+			{
+				name: "NodeStream",
+				href: "/docs/api/v3/platform-node-shared/NodeStream",
+			},
+			{
+				name: "NodeTerminal",
+				href: "/docs/api/v3/platform-node-shared/NodeTerminal",
+			},
 		],
 	},
 	{
@@ -512,7 +881,8 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "printer-ansi",
 		name: "@effect/printer-ansi",
-		description: "ANSI terminal rendering with colors and styles for the printer.",
+		description:
+			"ANSI terminal rendering with colors and styles for the printer.",
 		modules: [
 			{ name: "Ansi", href: "/docs/api/v3/printer-ansi/Ansi" },
 			{ name: "AnsiDoc", href: "/docs/api/v3/printer-ansi/AnsiDoc" },
@@ -542,11 +912,15 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "sql",
 		name: "@effect/sql",
-		description: "SQL toolkit with clients, statements, migrations, models, and resolvers.",
+		description:
+			"SQL toolkit with clients, statements, migrations, models, and resolvers.",
 		modules: [
 			{ name: "index", href: "/docs/api/v3/sql/index" },
 			{ name: "Migrator", href: "/docs/api/v3/sql/Migrator" },
-			{ name: "Migrator/FileSystem", href: "/docs/api/v3/sql/Migrator/FileSystem" },
+			{
+				name: "Migrator/FileSystem",
+				href: "/docs/api/v3/sql/Migrator/FileSystem",
+			},
 			{ name: "Model", href: "/docs/api/v3/sql/Model" },
 			{ name: "SqlClient", href: "/docs/api/v3/sql/SqlClient" },
 			{ name: "SqlConnection", href: "/docs/api/v3/sql/SqlConnection" },
@@ -565,8 +939,14 @@ export const API_PACKAGES: ApiPackage[] = [
 		name: "@effect/sql-clickhouse",
 		description: "ClickHouse client and migrator.",
 		modules: [
-			{ name: "ClickhouseClient", href: "/docs/api/v3/sql-clickhouse/ClickhouseClient" },
-			{ name: "ClickhouseMigrator", href: "/docs/api/v3/sql-clickhouse/ClickhouseMigrator" },
+			{
+				name: "ClickhouseClient",
+				href: "/docs/api/v3/sql-clickhouse/ClickhouseClient",
+			},
+			{
+				name: "ClickhouseMigrator",
+				href: "/docs/api/v3/sql-clickhouse/ClickhouseMigrator",
+			},
 			{ name: "index", href: "/docs/api/v3/sql-clickhouse/index" },
 		],
 	},
@@ -592,7 +972,8 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "sql-kysely",
 		name: "@effect/sql-kysely",
-		description: "Kysely query-builder integration for Postgres, MySQL, MSSQL, and SQLite.",
+		description:
+			"Kysely query-builder integration for Postgres, MySQL, MSSQL, and SQLite.",
 		modules: [
 			{ name: "Kysely", href: "/docs/api/v3/sql-kysely/Kysely" },
 			{ name: "Mssql", href: "/docs/api/v3/sql-kysely/Mssql" },
@@ -609,7 +990,10 @@ export const API_PACKAGES: ApiPackage[] = [
 		modules: [
 			{ name: "index", href: "/docs/api/v3/sql-libsql/index" },
 			{ name: "LibsqlClient", href: "/docs/api/v3/sql-libsql/LibsqlClient" },
-			{ name: "LibsqlMigrator", href: "/docs/api/v3/sql-libsql/LibsqlMigrator" },
+			{
+				name: "LibsqlMigrator",
+				href: "/docs/api/v3/sql-libsql/LibsqlMigrator",
+			},
 		],
 	},
 	{
@@ -650,8 +1034,14 @@ export const API_PACKAGES: ApiPackage[] = [
 		description: "SQLite client and migrator for Bun.",
 		modules: [
 			{ name: "index", href: "/docs/api/v3/sql-sqlite-bun/index" },
-			{ name: "SqliteClient", href: "/docs/api/v3/sql-sqlite-bun/SqliteClient" },
-			{ name: "SqliteMigrator", href: "/docs/api/v3/sql-sqlite-bun/SqliteMigrator" },
+			{
+				name: "SqliteClient",
+				href: "/docs/api/v3/sql-sqlite-bun/SqliteClient",
+			},
+			{
+				name: "SqliteMigrator",
+				href: "/docs/api/v3/sql-sqlite-bun/SqliteMigrator",
+			},
 		],
 	},
 	{
@@ -661,7 +1051,10 @@ export const API_PACKAGES: ApiPackage[] = [
 		modules: [
 			{ name: "index", href: "/docs/api/v3/sql-sqlite-do/index" },
 			{ name: "SqliteClient", href: "/docs/api/v3/sql-sqlite-do/SqliteClient" },
-			{ name: "SqliteMigrator", href: "/docs/api/v3/sql-sqlite-do/SqliteMigrator" },
+			{
+				name: "SqliteMigrator",
+				href: "/docs/api/v3/sql-sqlite-do/SqliteMigrator",
+			},
 		],
 	},
 	{
@@ -670,8 +1063,14 @@ export const API_PACKAGES: ApiPackage[] = [
 		description: "SQLite client and migrator for Node.js.",
 		modules: [
 			{ name: "index", href: "/docs/api/v3/sql-sqlite-node/index" },
-			{ name: "SqliteClient", href: "/docs/api/v3/sql-sqlite-node/SqliteClient" },
-			{ name: "SqliteMigrator", href: "/docs/api/v3/sql-sqlite-node/SqliteMigrator" },
+			{
+				name: "SqliteClient",
+				href: "/docs/api/v3/sql-sqlite-node/SqliteClient",
+			},
+			{
+				name: "SqliteMigrator",
+				href: "/docs/api/v3/sql-sqlite-node/SqliteMigrator",
+			},
 		],
 	},
 	{
@@ -680,8 +1079,14 @@ export const API_PACKAGES: ApiPackage[] = [
 		description: "SQLite client and migrator for React Native.",
 		modules: [
 			{ name: "index", href: "/docs/api/v3/sql-sqlite-react-native/index" },
-			{ name: "SqliteClient", href: "/docs/api/v3/sql-sqlite-react-native/SqliteClient" },
-			{ name: "SqliteMigrator", href: "/docs/api/v3/sql-sqlite-react-native/SqliteMigrator" },
+			{
+				name: "SqliteClient",
+				href: "/docs/api/v3/sql-sqlite-react-native/SqliteClient",
+			},
+			{
+				name: "SqliteMigrator",
+				href: "/docs/api/v3/sql-sqlite-react-native/SqliteMigrator",
+			},
 		],
 	},
 	{
@@ -692,14 +1097,21 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "index", href: "/docs/api/v3/sql-sqlite-wasm/index" },
 			{ name: "OpfsWorker", href: "/docs/api/v3/sql-sqlite-wasm/OpfsWorker" },
 			{ name: "sqlite-wasm", href: "/docs/api/v3/sql-sqlite-wasm/sqlite-wasm" },
-			{ name: "SqliteClient", href: "/docs/api/v3/sql-sqlite-wasm/SqliteClient" },
-			{ name: "SqliteMigrator", href: "/docs/api/v3/sql-sqlite-wasm/SqliteMigrator" },
+			{
+				name: "SqliteClient",
+				href: "/docs/api/v3/sql-sqlite-wasm/SqliteClient",
+			},
+			{
+				name: "SqliteMigrator",
+				href: "/docs/api/v3/sql-sqlite-wasm/SqliteMigrator",
+			},
 		],
 	},
 	{
 		slug: "typeclass",
 		name: "@effect/typeclass",
-		description: "Typeclasses and instances for functional programming abstractions.",
+		description:
+			"Typeclasses and instances for functional programming abstractions.",
 		modules: [
 			{ name: "Alternative", href: "/docs/api/v3/typeclass/Alternative" },
 			{ name: "Applicative", href: "/docs/api/v3/typeclass/Applicative" },
@@ -734,13 +1146,22 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "Of", href: "/docs/api/v3/typeclass/Of" },
 			{ name: "Pointed", href: "/docs/api/v3/typeclass/Pointed" },
 			{ name: "Product", href: "/docs/api/v3/typeclass/Product" },
-			{ name: "SemiAlternative", href: "/docs/api/v3/typeclass/SemiAlternative" },
-			{ name: "SemiApplicative", href: "/docs/api/v3/typeclass/SemiApplicative" },
+			{
+				name: "SemiAlternative",
+				href: "/docs/api/v3/typeclass/SemiAlternative",
+			},
+			{
+				name: "SemiApplicative",
+				href: "/docs/api/v3/typeclass/SemiApplicative",
+			},
 			{ name: "SemiCoproduct", href: "/docs/api/v3/typeclass/SemiCoproduct" },
 			{ name: "Semigroup", href: "/docs/api/v3/typeclass/Semigroup" },
 			{ name: "SemiProduct", href: "/docs/api/v3/typeclass/SemiProduct" },
 			{ name: "Traversable", href: "/docs/api/v3/typeclass/Traversable" },
-			{ name: "TraversableFilterable", href: "/docs/api/v3/typeclass/TraversableFilterable" },
+			{
+				name: "TraversableFilterable",
+				href: "/docs/api/v3/typeclass/TraversableFilterable",
+			},
 		],
 	},
 	{
@@ -755,24 +1176,35 @@ export const API_PACKAGES: ApiPackage[] = [
 	{
 		slug: "workflow",
 		name: "@effect/workflow",
-		description: "Durable workflows with activities, durable clocks, and deferred execution.",
+		description:
+			"Durable workflows with activities, durable clocks, and deferred execution.",
 		modules: [
 			{ name: "Activity", href: "/docs/api/v3/workflow/Activity" },
 			{ name: "DurableClock", href: "/docs/api/v3/workflow/DurableClock" },
-			{ name: "DurableDeferred", href: "/docs/api/v3/workflow/DurableDeferred" },
+			{
+				name: "DurableDeferred",
+				href: "/docs/api/v3/workflow/DurableDeferred",
+			},
 			{ name: "DurableQueue", href: "/docs/api/v3/workflow/DurableQueue" },
-			{ name: "DurableRateLimiter", href: "/docs/api/v3/workflow/DurableRateLimiter" },
+			{
+				name: "DurableRateLimiter",
+				href: "/docs/api/v3/workflow/DurableRateLimiter",
+			},
 			{ name: "index", href: "/docs/api/v3/workflow/index" },
 			{ name: "Workflow", href: "/docs/api/v3/workflow/Workflow" },
 			{ name: "WorkflowEngine", href: "/docs/api/v3/workflow/WorkflowEngine" },
 			{ name: "WorkflowProxy", href: "/docs/api/v3/workflow/WorkflowProxy" },
-			{ name: "WorkflowProxyServer", href: "/docs/api/v3/workflow/WorkflowProxyServer" },
+			{
+				name: "WorkflowProxyServer",
+				href: "/docs/api/v3/workflow/WorkflowProxyServer",
+			},
 		],
 	},
 	{
 		slug: "ai",
 		name: "@effect/ai",
-		description: "Provider-agnostic AI toolkit \u2014 language models, embeddings, tools, and MCP servers.",
+		description:
+			"Provider-agnostic AI toolkit \u2014 language models, embeddings, tools, and MCP servers.",
 		modules: [
 			{ name: "AiError", href: "/docs/api/v3/ai/AiError" },
 			{ name: "Chat", href: "/docs/api/v3/ai/Chat" },
@@ -796,12 +1228,30 @@ export const API_PACKAGES: ApiPackage[] = [
 		name: "@effect/ai-amazon-bedrock",
 		description: "Amazon Bedrock provider for the AI toolkit.",
 		modules: [
-			{ name: "AmazonBedrockClient", href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockClient" },
-			{ name: "AmazonBedrockConfig", href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockConfig" },
-			{ name: "AmazonBedrockLanguageModel", href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockLanguageModel" },
-			{ name: "AmazonBedrockSchema", href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockSchema" },
-			{ name: "AmazonBedrockTool", href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockTool" },
-			{ name: "EventStreamEncoding", href: "/docs/api/v3/ai-amazon-bedrock/EventStreamEncoding" },
+			{
+				name: "AmazonBedrockClient",
+				href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockClient",
+			},
+			{
+				name: "AmazonBedrockConfig",
+				href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockConfig",
+			},
+			{
+				name: "AmazonBedrockLanguageModel",
+				href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockLanguageModel",
+			},
+			{
+				name: "AmazonBedrockSchema",
+				href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockSchema",
+			},
+			{
+				name: "AmazonBedrockTool",
+				href: "/docs/api/v3/ai-amazon-bedrock/AmazonBedrockTool",
+			},
+			{
+				name: "EventStreamEncoding",
+				href: "/docs/api/v3/ai-amazon-bedrock/EventStreamEncoding",
+			},
 			{ name: "index", href: "/docs/api/v3/ai-amazon-bedrock/index" },
 		],
 	},
@@ -810,11 +1260,26 @@ export const API_PACKAGES: ApiPackage[] = [
 		name: "@effect/ai-anthropic",
 		description: "Anthropic provider for the AI toolkit.",
 		modules: [
-			{ name: "AnthropicClient", href: "/docs/api/v3/ai-anthropic/AnthropicClient" },
-			{ name: "AnthropicConfig", href: "/docs/api/v3/ai-anthropic/AnthropicConfig" },
-			{ name: "AnthropicLanguageModel", href: "/docs/api/v3/ai-anthropic/AnthropicLanguageModel" },
-			{ name: "AnthropicTokenizer", href: "/docs/api/v3/ai-anthropic/AnthropicTokenizer" },
-			{ name: "AnthropicTool", href: "/docs/api/v3/ai-anthropic/AnthropicTool" },
+			{
+				name: "AnthropicClient",
+				href: "/docs/api/v3/ai-anthropic/AnthropicClient",
+			},
+			{
+				name: "AnthropicConfig",
+				href: "/docs/api/v3/ai-anthropic/AnthropicConfig",
+			},
+			{
+				name: "AnthropicLanguageModel",
+				href: "/docs/api/v3/ai-anthropic/AnthropicLanguageModel",
+			},
+			{
+				name: "AnthropicTokenizer",
+				href: "/docs/api/v3/ai-anthropic/AnthropicTokenizer",
+			},
+			{
+				name: "AnthropicTool",
+				href: "/docs/api/v3/ai-anthropic/AnthropicTool",
+			},
 			{ name: "index", href: "/docs/api/v3/ai-anthropic/index" },
 		],
 	},
@@ -825,7 +1290,10 @@ export const API_PACKAGES: ApiPackage[] = [
 		modules: [
 			{ name: "GoogleClient", href: "/docs/api/v3/ai-google/GoogleClient" },
 			{ name: "GoogleConfig", href: "/docs/api/v3/ai-google/GoogleConfig" },
-			{ name: "GoogleLanguageModel", href: "/docs/api/v3/ai-google/GoogleLanguageModel" },
+			{
+				name: "GoogleLanguageModel",
+				href: "/docs/api/v3/ai-google/GoogleLanguageModel",
+			},
 			{ name: "GoogleTool", href: "/docs/api/v3/ai-google/GoogleTool" },
 			{ name: "index", href: "/docs/api/v3/ai-google/index" },
 		],
@@ -838,10 +1306,22 @@ export const API_PACKAGES: ApiPackage[] = [
 			{ name: "index", href: "/docs/api/v3/ai-openai/index" },
 			{ name: "OpenAiClient", href: "/docs/api/v3/ai-openai/OpenAiClient" },
 			{ name: "OpenAiConfig", href: "/docs/api/v3/ai-openai/OpenAiConfig" },
-			{ name: "OpenAiEmbeddingModel", href: "/docs/api/v3/ai-openai/OpenAiEmbeddingModel" },
-			{ name: "OpenAiLanguageModel", href: "/docs/api/v3/ai-openai/OpenAiLanguageModel" },
-			{ name: "OpenAiTelemetry", href: "/docs/api/v3/ai-openai/OpenAiTelemetry" },
-			{ name: "OpenAiTokenizer", href: "/docs/api/v3/ai-openai/OpenAiTokenizer" },
+			{
+				name: "OpenAiEmbeddingModel",
+				href: "/docs/api/v3/ai-openai/OpenAiEmbeddingModel",
+			},
+			{
+				name: "OpenAiLanguageModel",
+				href: "/docs/api/v3/ai-openai/OpenAiLanguageModel",
+			},
+			{
+				name: "OpenAiTelemetry",
+				href: "/docs/api/v3/ai-openai/OpenAiTelemetry",
+			},
+			{
+				name: "OpenAiTokenizer",
+				href: "/docs/api/v3/ai-openai/OpenAiTokenizer",
+			},
 			{ name: "OpenAiTool", href: "/docs/api/v3/ai-openai/OpenAiTool" },
 		],
 	},
@@ -851,18 +1331,74 @@ export const API_PACKAGES: ApiPackage[] = [
 		description: "OpenRouter provider for the AI toolkit.",
 		modules: [
 			{ name: "index", href: "/docs/api/v3/ai-openrouter/index" },
-			{ name: "OpenRouterClient", href: "/docs/api/v3/ai-openrouter/OpenRouterClient" },
-			{ name: "OpenRouterConfig", href: "/docs/api/v3/ai-openrouter/OpenRouterConfig" },
-			{ name: "OpenRouterLanguageModel", href: "/docs/api/v3/ai-openrouter/OpenRouterLanguageModel" },
+			{
+				name: "OpenRouterClient",
+				href: "/docs/api/v3/ai-openrouter/OpenRouterClient",
+			},
+			{
+				name: "OpenRouterConfig",
+				href: "/docs/api/v3/ai-openrouter/OpenRouterConfig",
+			},
+			{
+				name: "OpenRouterLanguageModel",
+				href: "/docs/api/v3/ai-openrouter/OpenRouterLanguageModel",
+			},
 		],
 	},
 ];
 
 export const API_PACKAGE_GROUPS: { title: string; slugs: string[] }[] = [
 	{ title: "Core", slugs: ["effect", "typeclass"] },
-	{ title: "Platform", slugs: ["platform", "platform-browser", "platform-bun", "platform-node", "platform-node-shared"] },
+	{
+		title: "Platform",
+		slugs: [
+			"platform",
+			"platform-browser",
+			"platform-bun",
+			"platform-node",
+			"platform-node-shared",
+		],
+	},
 	{ title: "Distributed", slugs: ["cluster", "rpc", "workflow"] },
-	{ title: "Databases", slugs: ["sql", "sql-clickhouse", "sql-d1", "sql-drizzle", "sql-kysely", "sql-libsql", "sql-mssql", "sql-mysql2", "sql-pg", "sql-sqlite-bun", "sql-sqlite-do", "sql-sqlite-node", "sql-sqlite-react-native", "sql-sqlite-wasm"] },
-	{ title: "AI", slugs: ["ai", "ai-amazon-bedrock", "ai-anthropic", "ai-google", "ai-openai", "ai-openrouter"] },
-	{ title: "Tooling", slugs: ["cli", "opentelemetry", "printer", "printer-ansi", "vitest", "experimental"] },
+	{
+		title: "Databases",
+		slugs: [
+			"sql",
+			"sql-clickhouse",
+			"sql-d1",
+			"sql-drizzle",
+			"sql-kysely",
+			"sql-libsql",
+			"sql-mssql",
+			"sql-mysql2",
+			"sql-pg",
+			"sql-sqlite-bun",
+			"sql-sqlite-do",
+			"sql-sqlite-node",
+			"sql-sqlite-react-native",
+			"sql-sqlite-wasm",
+		],
+	},
+	{
+		title: "AI",
+		slugs: [
+			"ai",
+			"ai-amazon-bedrock",
+			"ai-anthropic",
+			"ai-google",
+			"ai-openai",
+			"ai-openrouter",
+		],
+	},
+	{
+		title: "Tooling",
+		slugs: [
+			"cli",
+			"opentelemetry",
+			"printer",
+			"printer-ansi",
+			"vitest",
+			"experimental",
+		],
+	},
 ];

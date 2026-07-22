@@ -43,7 +43,13 @@ const tokenClass = {
 	punct: "text-zinc-500 dark:text-zinc-400", // punctuation
 };
 
-function Token({ kind, children }: { kind: keyof typeof tokenClass; children: React.ReactNode }) {
+function Token({
+	kind,
+	children,
+}: {
+	kind: keyof typeof tokenClass;
+	children: React.ReactNode;
+}) {
 	return <span className={tokenClass[kind]}>{children}</span>;
 }
 
@@ -51,7 +57,8 @@ const LINES: React.ReactNode[] = [
 	<>
 		<Token kind="kw">import</Token> <Token kind="punct">{"{"}</Token>{" "}
 		<Token kind="id">NodeRuntime</Token> <Token kind="punct">{"}"}</Token>{" "}
-		<Token kind="kw">from</Token> <Token kind="str">"@effect/platform-node"</Token>
+		<Token kind="kw">from</Token>{" "}
+		<Token kind="str">"@effect/platform-node"</Token>
 	</>,
 	<>
 		<Token kind="kw">import</Token> <Token kind="punct">{"{"}</Token>{" "}
@@ -123,7 +130,11 @@ const LINES: React.ReactNode[] = [
 
 const TERMINAL_LINES: { time: string; text: string; tone?: "ok" | "err" }[] = [
 	{ time: "18:00:09", text: "Starting compilation in watch mode..." },
-	{ time: "18:00:10", text: "Found 0 errors. Watching for file changes.", tone: "ok" },
+	{
+		time: "18:00:10",
+		text: "Found 0 errors. Watching for file changes.",
+		tone: "ok",
+	},
 ];
 
 function Tree({
@@ -153,14 +164,26 @@ function Tree({
 								onClick={() => onToggleFolder(node.name)}
 								aria-expanded={isOpen}
 								className="flex w-full items-center gap-1.5 rounded-md py-1.5 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-								style={{ paddingLeft: `${depth * 12 + 6}px`, paddingRight: "12px" }}
+								style={{
+									paddingLeft: `${depth * 12 + 6}px`,
+									paddingRight: "12px",
+								}}
 							>
 								{isOpen ? (
-									<ChevronDown className="h-3.5 w-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
+									<ChevronDown
+										className="h-3.5 w-3.5 shrink-0 text-zinc-500 dark:text-zinc-400"
+										aria-hidden="true"
+									/>
 								) : (
-									<ChevronRight className="h-3.5 w-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
+									<ChevronRight
+										className="h-3.5 w-3.5 shrink-0 text-zinc-500 dark:text-zinc-400"
+										aria-hidden="true"
+									/>
 								)}
-								<Folder className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
+								<Folder
+									className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400"
+									aria-hidden="true"
+								/>
 								<span className="truncate">{node.name}</span>
 							</button>
 							{isOpen && node.children.length > 0 && (
@@ -189,11 +212,20 @@ function Tree({
 									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
 									: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 							}`}
-							style={{ paddingLeft: `${depth * 12 + 6}px`, paddingRight: "12px" }}
+							style={{
+								paddingLeft: `${depth * 12 + 6}px`,
+								paddingRight: "12px",
+							}}
 						>
 							{/* Spacer to align with folder chevron */}
-							<span className="inline-block h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-							<File className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
+							<span
+								className="inline-block h-3.5 w-3.5 shrink-0"
+								aria-hidden="true"
+							/>
+							<File
+								className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400"
+								aria-hidden="true"
+							/>
 							<span className="truncate">{node.name}</span>
 						</button>
 					</li>
@@ -461,7 +493,10 @@ export function PlaygroundMockPage() {
 			{/* Bottom panel — full width, sits below sidebar + editor row */}
 			<div className="flex h-56 shrink-0 flex-col border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
 				{/* Tabs */}
-				<div role="tablist" className="flex border-b border-zinc-200 dark:border-zinc-800">
+				<div
+					role="tablist"
+					className="flex border-b border-zinc-200 dark:border-zinc-800"
+				>
 					{[
 						{ id: "terminal", label: "Terminal" },
 						{ id: "trace", label: "Trace Viewer" },
@@ -492,7 +527,9 @@ export function PlaygroundMockPage() {
 						<div className="space-y-1">
 							{TERMINAL_LINES.map((line, i) => (
 								<div key={i} className="flex gap-3">
-									<span className="shrink-0 text-zinc-500 dark:text-zinc-400 tabular-nums">{line.time}</span>
+									<span className="shrink-0 text-zinc-500 dark:text-zinc-400 tabular-nums">
+										{line.time}
+									</span>
 									<span
 										className={
 											line.tone === "err"

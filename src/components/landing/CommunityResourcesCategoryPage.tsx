@@ -93,12 +93,10 @@ export function CommunityResourcesCategoryPage({
 	const displayName = CATEGORY_DISPLAY_NAMES[category];
 
 	const items = useMemo(() => {
-		return COMMUNITY_ITEMS.filter((item) => item.category === category)
-			.sort(
-				(a, b) =>
-					new Date(b.dateAdded).getTime() -
-					new Date(a.dateAdded).getTime(),
-			);
+		return COMMUNITY_ITEMS.filter((item) => item.category === category).sort(
+			(a, b) =>
+				new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+		);
 	}, [category]);
 
 	return (
@@ -140,41 +138,39 @@ export function CommunityResourcesCategoryPage({
 				<div className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="pt-12 pb-8 md:pt-20 md:pb-10">
-						{/* Breadcrumb */}
-						<nav
-							aria-label="Breadcrumb"
-							className="flex items-center gap-2 font-mono text-sm uppercase tracking-wider"
-						>
-							<span className="text-zinc-600">{"// "}</span>
-							<a
-								href="/community-resources"
-								className="text-zinc-400 transition-colors hover:text-white"
+							{/* Breadcrumb */}
+							<nav
+								aria-label="Breadcrumb"
+								className="flex items-center gap-2 font-mono text-sm uppercase tracking-wider"
 							>
-								Community Resources
-							</a>
-							<i
-								className="ri-arrow-right-s-line text-zinc-600"
-								aria-hidden="true"
-							/>
-							<div className="flex items-center gap-2">
-								<div
-									className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
+								<span className="text-zinc-600">{"// "}</span>
+								<a
+									href="/community-resources"
+									className="text-zinc-400 transition-colors hover:text-white"
 								>
-									<i
-										className={`${icon} text-xs ${color.text}`}
-										aria-hidden="true"
-									/>
+									Community Resources
+								</a>
+								<i
+									className="ri-arrow-right-s-line text-zinc-600"
+									aria-hidden="true"
+								/>
+								<div className="flex items-center gap-2">
+									<div
+										className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
+									>
+										<i
+											className={`${icon} text-xs ${color.text}`}
+											aria-hidden="true"
+										/>
+									</div>
+									<span className="text-zinc-200">{displayName}</span>
 								</div>
-								<span className="text-zinc-200">
-									{displayName}
+								<span className="text-zinc-600">·</span>
+								<span className="text-zinc-400 normal-case tracking-normal">
+									{items.length} resource
+									{items.length === 1 ? "" : "s"}
 								</span>
-							</div>
-							<span className="text-zinc-600">·</span>
-							<span className="text-zinc-400 normal-case tracking-normal">
-								{items.length} resource
-								{items.length === 1 ? "" : "s"}
-							</span>
-						</nav>
+							</nav>
 						</div>
 					</div>
 				</div>
@@ -186,11 +182,7 @@ export function CommunityResourcesCategoryPage({
 					<div className="pb-12 md:pb-16">
 						<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 							{items.map((item) => (
-								<ResourceCard
-									key={item.url}
-									item={item}
-									color={color}
-								/>
+								<ResourceCard key={item.url} item={item} color={color} />
 							))}
 						</div>
 					</div>
@@ -202,10 +194,7 @@ export function CommunityResourcesCategoryPage({
 							variant="subtle"
 							className="group inline-flex items-center gap-2 font-medium"
 						>
-							<i
-								className="ri-arrow-left-line text-sm"
-								aria-hidden="true"
-							/>
+							<i className="ri-arrow-left-line text-sm" aria-hidden="true" />
 							Back to Community Resources
 						</Link>
 					</div>
@@ -225,27 +214,32 @@ export function CommunityResourcesCategoryPage({
 								</h2>
 								<p className="mt-1 text-sm text-zinc-400">
 									Drop it in{" "}
-									<a href="https://discord.com/channels/795981131316985866/1072147395632185354" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-300 underline hover:text-white transition-colors">🟢-projects-showcase</a>{" "}
+									<a
+										href="https://discord.com/channels/795981131316985866/1072147395632185354"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="font-medium text-zinc-300 underline hover:text-white transition-colors"
+									>
+										🟢-projects-showcase
+									</a>{" "}
 									on Discord, or{" "}
-									<a href="https://discord.com/channels/795981131316985866/1134767195239485440" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-300 underline hover:text-white transition-colors">🔵-effect-content</a>{" "}
+									<a
+										href="https://discord.com/channels/795981131316985866/1134767195239485440"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="font-medium text-zinc-300 underline hover:text-white transition-colors"
+									>
+										🔵-effect-content
+									</a>{" "}
 									for articles and tutorials.
 								</p>
 							</div>
 							<div className="flex items-center gap-3">
-								<Button
-									href="https://discord.gg/effect-ts"
-									variant="secondary"
-								>
-									<i
-										className="ri-discord-fill text-base"
-										aria-hidden="true"
-									/>
+								<Button href="https://discord.gg/effect-ts" variant="secondary">
+									<i className="ri-discord-fill text-base" aria-hidden="true" />
 									Discord
 								</Button>
-								<Button
-									href="#"
-									variant="secondary"
-								>
+								<Button href="#" variant="secondary">
 									<i
 										className="ri-file-list-line text-base"
 										aria-hidden="true"

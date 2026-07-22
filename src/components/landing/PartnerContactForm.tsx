@@ -35,10 +35,14 @@ export function PartnerContactForm({
 			if (res.ok) {
 				setSubmitted(true);
 			} else {
-				setError("Something went wrong. Please try again, or reach out via the partner's website.");
+				setError(
+					"Something went wrong. Please try again, or reach out via the partner's website.",
+				);
 			}
 		} catch {
-			setError("Network error. Please try again, or reach out via the partner's website.");
+			setError(
+				"Network error. Please try again, or reach out via the partner's website.",
+			);
 		} finally {
 			setSubmitting(false);
 		}
@@ -70,7 +74,11 @@ export function PartnerContactForm({
 	return (
 		<form onSubmit={handleSubmit}>
 			{/* Hidden routing fields — Formspree uses these */}
-			<input type="hidden" name="_subject" value={`${partnerName} — partner inquiry`} />
+			<input
+				type="hidden"
+				name="_subject"
+				value={`${partnerName} — partner inquiry`}
+			/>
 			<input type="hidden" name="partner" value={partnerName} />
 
 			<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -144,10 +152,7 @@ export function PartnerContactForm({
 					className="w-full"
 				>
 					{submitting ? "Sending…" : "Send message"}
-					<i
-						className="ri-arrow-right-up-line text-base"
-						aria-hidden="true"
-					/>
+					<i className="ri-arrow-right-up-line text-base" aria-hidden="true" />
 				</Button>
 			</div>
 		</form>

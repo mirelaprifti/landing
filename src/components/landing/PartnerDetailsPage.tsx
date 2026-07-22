@@ -111,7 +111,10 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 											{/* Region */}
 											<div className="flex items-center gap-2 text-sm text-zinc-300">
 												<div className="flex h-7 w-7 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400">
-													<i className="ri-map-pin-2-fill text-sm" aria-hidden="true" />
+													<i
+														className="ri-map-pin-2-fill text-sm"
+														aria-hidden="true"
+													/>
 												</div>
 												<span className="font-medium">{partner.region}</span>
 											</div>
@@ -124,7 +127,9 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 												<span className="text-base leading-none">
 													{partner.languageFlag}
 												</span>
-												<span className="font-mono text-xs">{partner.language}</span>
+												<span className="font-mono text-xs">
+													{partner.language}
+												</span>
 											</div>
 										</div>
 									</div>

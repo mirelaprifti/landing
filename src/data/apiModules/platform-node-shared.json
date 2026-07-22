@@ -1,890 +1,890 @@
 {
- "NodeClusterSocket": {
-  "name": "NodeClusterSocket",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeClusterSocket.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "Layers",
-    "exports": [
-     {
-      "id": "layerclientprotocol",
-      "level": 2,
-      "name": "layerClientProtocol",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerClientProtocol: Layer.Layer<Runners.RpcClientProtocol, never, RpcSerialization.RpcSerialization>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeClusterSocket.ts#L20",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layersocketserver",
-      "level": 2,
-      "name": "layerSocketServer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerSocketServer: Layer.Layer<\n  SocketServer.SocketServer,\n  SocketServer.SocketServerError,\n  ShardingConfig.ShardingConfig\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeClusterSocket.ts#L46",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeCommandExecutor": {
-  "name": "NodeCommandExecutor",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeCommandExecutor.ts",
-  "categories": [
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer<CommandExecutor, never, FileSystem>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeCommandExecutor.ts#L13",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeFileSystem": {
-  "name": "NodeFileSystem",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeFileSystem.ts",
-  "categories": [
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer<FileSystem, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeFileSystem.ts#L13",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeFileSystem/ParcelWatcher": {
-  "name": "NodeFileSystem/ParcelWatcher",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/ParcelWatcher.ts",
-  "categories": [
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>You can provide this Layer to use <code>@parcel/watcher</code> as the backend for watching files.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer<WatchBackend, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/ParcelWatcher.ts#L15",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeKeyValueStore": {
-  "name": "NodeKeyValueStore",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeKeyValueStore.ts",
-  "categories": [
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layerfilesystem",
-      "level": 2,
-      "name": "layerFileSystem",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerFileSystem: (\n  directory: string\n) => Layer.Layer<KeyValueStore.KeyValueStore, PlatformError.PlatformError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeKeyValueStore.ts#L14",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeMultipart": {
-  "name": "NodeMultipart",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "persisted",
-      "level": 2,
-      "name": "persisted",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const persisted: (\n  source: Readable,\n  headers: IncomingHttpHeaders\n) => Effect.Effect<Multipart.Persisted, Multipart.MultipartError, FileSystem.FileSystem | Path.Path | Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts#L27",
-      "since": "1.0.0"
-     },
-     {
-      "id": "stream",
-      "level": 2,
-      "name": "stream",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stream: (\n  source: Readable,\n  headers: IncomingHttpHeaders\n) => Stream.Stream<Multipart.Part, Multipart.MultipartError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts#L18",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "conversions",
-    "title": "conversions",
-    "exports": [
-     {
-      "id": "filetoreadable",
-      "level": 2,
-      "name": "fileToReadable",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fileToReadable: (file: Multipart.File) => Readable"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts#L40",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodePath": {
-  "name": "NodePath",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts",
-  "categories": [
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer<Path, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts#L13",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerposix",
-      "level": 2,
-      "name": "layerPosix",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerPosix: Layer<Path, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts#L19",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerwin32",
-      "level": 2,
-      "name": "layerWin32",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerWin32: Layer<Path, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts#L25",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeRuntime": {
-  "name": "NodeRuntime",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeRuntime.ts",
-  "categories": [
-   {
-    "id": "runtime",
-    "title": "runtime",
-    "exports": [
-     {
-      "id": "runmain",
-      "level": 2,
-      "name": "runMain",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const runMain: RunMain"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeRuntime.ts#L11",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeSink": {
-  "name": "NodeSink",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts",
-  "categories": [
-   {
-    "id": "constructor",
-    "title": "constructor",
-    "exports": [
-     {
-      "id": "fromwritable",
-      "level": 2,
-      "name": "fromWritable",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromWritable: <E, A = string | Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Writable | NodeJS.WritableStream>,\n  onError: (error: unknown) => E,\n  options?: FromWritableOptions\n) => Sink.Sink<void, A, never, E>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L18",
-      "since": "1.0.0"
-     },
-     {
-      "id": "fromwritablechannel",
-      "level": 2,
-      "name": "fromWritableChannel",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromWritableChannel: <IE, OE, A>(\n  writable: LazyArg<Writable | NodeJS.WritableStream>,\n  onError: (error: unknown) => OE,\n  options?: FromWritableOptions\n) => Channel<Chunk<never>, Chunk<A>, IE | OE, IE, void, unknown>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L28",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "stdio",
-    "title": "stdio",
-    "exports": [
-     {
-      "id": "stderr",
-      "level": 2,
-      "name": "stderr",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stderr: Sink.Sink<void, string | Uint8Array<ArrayBufferLike>, never, PlatformError, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L53",
-      "since": "1.0.0"
-     },
-     {
-      "id": "stdin",
-      "level": 2,
-      "name": "stdin",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stdin: Sink.Sink<void, string | Uint8Array<ArrayBufferLike>, never, PlatformError, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L68",
-      "since": "1.0.0"
-     },
-     {
-      "id": "stdout",
-      "level": 2,
-      "name": "stdout",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stdout: Sink.Sink<void, string | Uint8Array<ArrayBufferLike>, never, PlatformError, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L38",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeSocket": {
-  "name": "NodeSocket",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "fromduplex",
-      "level": 2,
-      "name": "fromDuplex",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromDuplex: <RO>(\n  open: Effect.Effect<Duplex, Socket.SocketError, RO>,\n  options?: { readonly openTimeout?: Duration.DurationInput | undefined }\n) => Effect.Effect<Socket.Socket, never, Exclude<RO, Scope.Scope>>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L79",
-      "since": "1.0.0"
-     },
-     {
-      "id": "makenet",
-      "level": 2,
-      "name": "makeNet",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const makeNet: (\n  options: Net.NetConnectOpts & { readonly openTimeout?: Duration.DurationInput | undefined }\n) => Effect.Effect<Socket.Socket, Socket.SocketError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L38",
-      "since": "1.0.0"
-     },
-     {
-      "id": "makenetchannel",
-      "level": 2,
-      "name": "makeNetChannel",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const makeNetChannel: <IE = never>(\n  options: Net.NetConnectOpts\n) => Channel.Channel<\n  Chunk.Chunk<Uint8Array>,\n  Chunk.Chunk<Uint8Array | string | Socket.CloseEvent>,\n  Socket.SocketError | IE,\n  IE,\n  void,\n  unknown\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L203",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layernet",
-      "level": 2,
-      "name": "layerNet",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerNet: (options: Net.NetConnectOpts) => Layer.Layer<Socket.Socket, Socket.SocketError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L221",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "netsocket",
-      "level": 2,
-      "name": "NetSocket",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const NetSocket: Context.Tag<NetSocket, Net.Socket>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L30",
-      "since": "1.0.0"
-     },
-     {
-      "id": "netsocket-interface",
-      "level": 2,
-      "name": "NetSocket",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface NetSocket {\n  readonly _: unique symbol\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L22",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeSocketServer": {
-  "name": "NodeSocketServer",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (\n  options: Net.ServerOpts & Net.ListenOptions\n) => Effect.Effect<\n  {\n    readonly address: SocketServer.Address\n    readonly run: <R, E, _>(\n      handler: (socket: Socket.Socket) => Effect.Effect<_, E, R>\n    ) => Effect.Effect<never, SocketServer.SocketServerError, R>\n  },\n  SocketServer.SocketServerError,\n  Scope.Scope\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L34",
-      "since": "1.0.0"
-     },
-     {
-      "id": "makewebsocket",
-      "level": 2,
-      "name": "makeWebSocket",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const makeWebSocket: (\n  options: WS.ServerOptions<typeof WS.WebSocket, typeof Http.IncomingMessage>\n) => Effect.Effect<SocketServer.SocketServer[\"Type\"], SocketServer.SocketServerError, Scope.Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L155",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (\n  options: Net.ServerOpts & Net.ListenOptions\n) => Layer.Layer<SocketServer.SocketServer, SocketServer.SocketServerError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L143",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerwebsocket",
-      "level": 2,
-      "name": "layerWebSocket",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerWebSocket: (\n  options: WS.ServerOptions\n) => Layer.Layer<SocketServer.SocketServer, SocketServer.SocketServerError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L240",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "incomingmessage-class",
-      "level": 2,
-      "name": "IncomingMessage",
-      "kind": "class",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare class IncomingMessage"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L25",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeStream": {
-  "name": "NodeStream",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts",
-  "categories": [
-   {
-    "id": "combinators",
-    "title": "combinators",
-    "exports": [
-     {
-      "id": "pipethroughduplex",
-      "level": 2,
-      "name": "pipeThroughDuplex",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const pipeThroughDuplex: {\n  <E2, B = Uint8Array<ArrayBufferLike>>(\n    duplex: LazyArg<Duplex>,\n    onError: (error: unknown) => E2,\n    options?: (FromReadableOptions & FromWritableOptions) | undefined\n  ): <R, E, A>(self: Stream.Stream<A, E, R>) => Stream.Stream<B, E2 | E, R>\n  <R, E, A, E2, B = Uint8Array<ArrayBufferLike>>(\n    self: Stream.Stream<A, E, R>,\n    duplex: LazyArg<Duplex>,\n    onError: (error: unknown) => E2,\n    options?: (FromReadableOptions & FromWritableOptions) | undefined\n  ): Stream.Stream<B, E | E2, R>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L68",
-      "since": "1.0.0"
-     },
-     {
-      "id": "pipethroughsimple",
-      "level": 2,
-      "name": "pipeThroughSimple",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const pipeThroughSimple: {\n  (\n    duplex: LazyArg<Duplex>\n  ): <R, E>(self: Stream.Stream<string | Uint8Array, E, R>) => Stream.Stream<Uint8Array, E | PlatformError, R>\n  <R, E>(\n    self: Stream.Stream<string | Uint8Array, E, R>,\n    duplex: LazyArg<Duplex>\n  ): Stream.Stream<Uint8Array, PlatformError | E, R>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L86",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "fromduplex",
-      "level": 2,
-      "name": "fromDuplex",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromDuplex: <IE, E, I = Uint8Array<ArrayBufferLike>, O = Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Duplex>,\n  onError: (error: unknown) => E,\n  options?: FromReadableOptions & FromWritableOptions\n) => Channel<Chunk<O>, Chunk<I>, IE | E, IE, void, unknown>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L58",
-      "since": "1.0.0"
-     },
-     {
-      "id": "fromreadable",
-      "level": 2,
-      "name": "fromReadable",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromReadable: <E, A = Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Readable | NodeJS.ReadableStream>,\n  onError: (error: unknown) => E,\n  options?: FromReadableOptions\n) => Stream.Stream<A, E>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L38",
-      "since": "1.0.0"
-     },
-     {
-      "id": "fromreadablechannel",
-      "level": 2,
-      "name": "fromReadableChannel",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const fromReadableChannel: <E, A = Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Readable | NodeJS.ReadableStream>,\n  onError: (error: unknown) => E,\n  options?: FromReadableOptions | undefined\n) => Channel<Chunk<A>, unknown, E>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L48",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "conversions",
-    "title": "conversions",
-    "exports": [
-     {
-      "id": "toreadable",
-      "level": 2,
-      "name": "toReadable",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const toReadable: <E, R>(stream: Stream.Stream<string | Uint8Array, E, R>) => Effect<Readable, never, R>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L100",
-      "since": "1.0.0"
-     },
-     {
-      "id": "toreadablenever",
-      "level": 2,
-      "name": "toReadableNever",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const toReadableNever: <E>(stream: Stream.Stream<string | Uint8Array, E, never>) => Readable"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L107",
-      "since": "1.0.0"
-     },
-     {
-      "id": "tostring",
-      "level": 2,
-      "name": "toString",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const toString: <E>(\n  readable: LazyArg<Readable | NodeJS.ReadableStream>,\n  options: {\n    readonly onFailure: (error: unknown) => E\n    readonly encoding?: BufferEncoding | undefined\n    readonly maxBytes?: SizeInput | undefined\n  }\n) => Effect<string, E>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L114",
-      "since": "1.0.0"
-     },
-     {
-      "id": "touint8array",
-      "level": 2,
-      "name": "toUint8Array",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const toUint8Array: <E>(\n  readable: LazyArg<Readable | NodeJS.ReadableStream>,\n  options: { readonly onFailure: (error: unknown) => E; readonly maxBytes?: SizeInput | undefined }\n) => Effect<Uint8Array, E>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L127",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "model",
-    "title": "model",
-    "exports": [
-     {
-      "id": "fromwritableoptions-interface",
-      "level": 2,
-      "name": "FromWritableOptions",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface FromWritableOptions {\n  readonly endOnDone?: boolean\n  readonly encoding?: BufferEncoding\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L29",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "models",
-    "title": "models",
-    "exports": [
-     {
-      "id": "fromreadableoptions-interface",
-      "level": 2,
-      "name": "FromReadableOptions",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface FromReadableOptions {\n  /** Defaults to undefined, which lets Node.js decide the chunk size */\n  readonly chunkSize?: SizeInput\n  /** Default to true, which means the stream will be closed when done */\n  readonly closeOnDone?: boolean | undefined\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L18",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "stdio",
-    "title": "stdio",
-    "exports": [
-     {
-      "id": "stderr",
-      "level": 2,
-      "name": "stderr",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stderr: Stream.Stream<Uint8Array<ArrayBufferLike>, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L152",
-      "since": "1.0.0"
-     },
-     {
-      "id": "stdin",
-      "level": 2,
-      "name": "stdin",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stdin: Stream.Stream<Uint8Array<ArrayBufferLike>, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L136",
-      "since": "1.0.0"
-     },
-     {
-      "id": "stdout",
-      "level": 2,
-      "name": "stdout",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const stdout: Stream.Stream<Uint8Array<ArrayBufferLike>, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L144",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "NodeTerminal": {
-  "name": "NodeTerminal",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeTerminal.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (shouldQuit?: (input: UserInput) => boolean) => Effect<Terminal, never, Scope>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeTerminal.ts#L13",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layer",
-    "title": "layer",
-    "exports": [
-     {
-      "id": "layer-1",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: Layer<Terminal, never, never>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeTerminal.ts#L20",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- }
+	"NodeClusterSocket": {
+		"name": "NodeClusterSocket",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeClusterSocket.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "Layers",
+				"exports": [
+					{
+						"id": "layerclientprotocol",
+						"level": 2,
+						"name": "layerClientProtocol",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerClientProtocol: Layer.Layer<Runners.RpcClientProtocol, never, RpcSerialization.RpcSerialization>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeClusterSocket.ts#L20",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layersocketserver",
+						"level": 2,
+						"name": "layerSocketServer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerSocketServer: Layer.Layer<\n  SocketServer.SocketServer,\n  SocketServer.SocketServerError,\n  ShardingConfig.ShardingConfig\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeClusterSocket.ts#L46",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeCommandExecutor": {
+		"name": "NodeCommandExecutor",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeCommandExecutor.ts",
+		"categories": [
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer<CommandExecutor, never, FileSystem>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeCommandExecutor.ts#L13",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeFileSystem": {
+		"name": "NodeFileSystem",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeFileSystem.ts",
+		"categories": [
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer<FileSystem, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeFileSystem.ts#L13",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeFileSystem/ParcelWatcher": {
+		"name": "NodeFileSystem/ParcelWatcher",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/ParcelWatcher.ts",
+		"categories": [
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>You can provide this Layer to use <code>@parcel/watcher</code> as the backend for watching files.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer<WatchBackend, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/ParcelWatcher.ts#L15",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeKeyValueStore": {
+		"name": "NodeKeyValueStore",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeKeyValueStore.ts",
+		"categories": [
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layerfilesystem",
+						"level": 2,
+						"name": "layerFileSystem",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerFileSystem: (\n  directory: string\n) => Layer.Layer<KeyValueStore.KeyValueStore, PlatformError.PlatformError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeKeyValueStore.ts#L14",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeMultipart": {
+		"name": "NodeMultipart",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "persisted",
+						"level": 2,
+						"name": "persisted",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const persisted: (\n  source: Readable,\n  headers: IncomingHttpHeaders\n) => Effect.Effect<Multipart.Persisted, Multipart.MultipartError, FileSystem.FileSystem | Path.Path | Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts#L27",
+						"since": "1.0.0"
+					},
+					{
+						"id": "stream",
+						"level": 2,
+						"name": "stream",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stream: (\n  source: Readable,\n  headers: IncomingHttpHeaders\n) => Stream.Stream<Multipart.Part, Multipart.MultipartError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts#L18",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "conversions",
+				"title": "conversions",
+				"exports": [
+					{
+						"id": "filetoreadable",
+						"level": 2,
+						"name": "fileToReadable",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fileToReadable: (file: Multipart.File) => Readable"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeMultipart.ts#L40",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodePath": {
+		"name": "NodePath",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts",
+		"categories": [
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer<Path, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts#L13",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerposix",
+						"level": 2,
+						"name": "layerPosix",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerPosix: Layer<Path, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts#L19",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerwin32",
+						"level": 2,
+						"name": "layerWin32",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerWin32: Layer<Path, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodePath.ts#L25",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeRuntime": {
+		"name": "NodeRuntime",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeRuntime.ts",
+		"categories": [
+			{
+				"id": "runtime",
+				"title": "runtime",
+				"exports": [
+					{
+						"id": "runmain",
+						"level": 2,
+						"name": "runMain",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const runMain: RunMain"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeRuntime.ts#L11",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeSink": {
+		"name": "NodeSink",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts",
+		"categories": [
+			{
+				"id": "constructor",
+				"title": "constructor",
+				"exports": [
+					{
+						"id": "fromwritable",
+						"level": 2,
+						"name": "fromWritable",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromWritable: <E, A = string | Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Writable | NodeJS.WritableStream>,\n  onError: (error: unknown) => E,\n  options?: FromWritableOptions\n) => Sink.Sink<void, A, never, E>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L18",
+						"since": "1.0.0"
+					},
+					{
+						"id": "fromwritablechannel",
+						"level": 2,
+						"name": "fromWritableChannel",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromWritableChannel: <IE, OE, A>(\n  writable: LazyArg<Writable | NodeJS.WritableStream>,\n  onError: (error: unknown) => OE,\n  options?: FromWritableOptions\n) => Channel<Chunk<never>, Chunk<A>, IE | OE, IE, void, unknown>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L28",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "stdio",
+				"title": "stdio",
+				"exports": [
+					{
+						"id": "stderr",
+						"level": 2,
+						"name": "stderr",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stderr: Sink.Sink<void, string | Uint8Array<ArrayBufferLike>, never, PlatformError, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L53",
+						"since": "1.0.0"
+					},
+					{
+						"id": "stdin",
+						"level": 2,
+						"name": "stdin",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stdin: Sink.Sink<void, string | Uint8Array<ArrayBufferLike>, never, PlatformError, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L68",
+						"since": "1.0.0"
+					},
+					{
+						"id": "stdout",
+						"level": 2,
+						"name": "stdout",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stdout: Sink.Sink<void, string | Uint8Array<ArrayBufferLike>, never, PlatformError, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSink.ts#L38",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeSocket": {
+		"name": "NodeSocket",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "fromduplex",
+						"level": 2,
+						"name": "fromDuplex",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromDuplex: <RO>(\n  open: Effect.Effect<Duplex, Socket.SocketError, RO>,\n  options?: { readonly openTimeout?: Duration.DurationInput | undefined }\n) => Effect.Effect<Socket.Socket, never, Exclude<RO, Scope.Scope>>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L79",
+						"since": "1.0.0"
+					},
+					{
+						"id": "makenet",
+						"level": 2,
+						"name": "makeNet",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const makeNet: (\n  options: Net.NetConnectOpts & { readonly openTimeout?: Duration.DurationInput | undefined }\n) => Effect.Effect<Socket.Socket, Socket.SocketError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L38",
+						"since": "1.0.0"
+					},
+					{
+						"id": "makenetchannel",
+						"level": 2,
+						"name": "makeNetChannel",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const makeNetChannel: <IE = never>(\n  options: Net.NetConnectOpts\n) => Channel.Channel<\n  Chunk.Chunk<Uint8Array>,\n  Chunk.Chunk<Uint8Array | string | Socket.CloseEvent>,\n  Socket.SocketError | IE,\n  IE,\n  void,\n  unknown\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L203",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layernet",
+						"level": 2,
+						"name": "layerNet",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerNet: (options: Net.NetConnectOpts) => Layer.Layer<Socket.Socket, Socket.SocketError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L221",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "netsocket",
+						"level": 2,
+						"name": "NetSocket",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const NetSocket: Context.Tag<NetSocket, Net.Socket>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L30",
+						"since": "1.0.0"
+					},
+					{
+						"id": "netsocket-interface",
+						"level": 2,
+						"name": "NetSocket",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface NetSocket {\n  readonly _: unique symbol\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocket.ts#L22",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeSocketServer": {
+		"name": "NodeSocketServer",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (\n  options: Net.ServerOpts & Net.ListenOptions\n) => Effect.Effect<\n  {\n    readonly address: SocketServer.Address\n    readonly run: <R, E, _>(\n      handler: (socket: Socket.Socket) => Effect.Effect<_, E, R>\n    ) => Effect.Effect<never, SocketServer.SocketServerError, R>\n  },\n  SocketServer.SocketServerError,\n  Scope.Scope\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L34",
+						"since": "1.0.0"
+					},
+					{
+						"id": "makewebsocket",
+						"level": 2,
+						"name": "makeWebSocket",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const makeWebSocket: (\n  options: WS.ServerOptions<typeof WS.WebSocket, typeof Http.IncomingMessage>\n) => Effect.Effect<SocketServer.SocketServer[\"Type\"], SocketServer.SocketServerError, Scope.Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L155",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (\n  options: Net.ServerOpts & Net.ListenOptions\n) => Layer.Layer<SocketServer.SocketServer, SocketServer.SocketServerError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L143",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerwebsocket",
+						"level": 2,
+						"name": "layerWebSocket",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerWebSocket: (\n  options: WS.ServerOptions\n) => Layer.Layer<SocketServer.SocketServer, SocketServer.SocketServerError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L240",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "incomingmessage-class",
+						"level": 2,
+						"name": "IncomingMessage",
+						"kind": "class",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare class IncomingMessage"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeSocketServer.ts#L25",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeStream": {
+		"name": "NodeStream",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts",
+		"categories": [
+			{
+				"id": "combinators",
+				"title": "combinators",
+				"exports": [
+					{
+						"id": "pipethroughduplex",
+						"level": 2,
+						"name": "pipeThroughDuplex",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const pipeThroughDuplex: {\n  <E2, B = Uint8Array<ArrayBufferLike>>(\n    duplex: LazyArg<Duplex>,\n    onError: (error: unknown) => E2,\n    options?: (FromReadableOptions & FromWritableOptions) | undefined\n  ): <R, E, A>(self: Stream.Stream<A, E, R>) => Stream.Stream<B, E2 | E, R>\n  <R, E, A, E2, B = Uint8Array<ArrayBufferLike>>(\n    self: Stream.Stream<A, E, R>,\n    duplex: LazyArg<Duplex>,\n    onError: (error: unknown) => E2,\n    options?: (FromReadableOptions & FromWritableOptions) | undefined\n  ): Stream.Stream<B, E | E2, R>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L68",
+						"since": "1.0.0"
+					},
+					{
+						"id": "pipethroughsimple",
+						"level": 2,
+						"name": "pipeThroughSimple",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const pipeThroughSimple: {\n  (\n    duplex: LazyArg<Duplex>\n  ): <R, E>(self: Stream.Stream<string | Uint8Array, E, R>) => Stream.Stream<Uint8Array, E | PlatformError, R>\n  <R, E>(\n    self: Stream.Stream<string | Uint8Array, E, R>,\n    duplex: LazyArg<Duplex>\n  ): Stream.Stream<Uint8Array, PlatformError | E, R>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L86",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "fromduplex",
+						"level": 2,
+						"name": "fromDuplex",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromDuplex: <IE, E, I = Uint8Array<ArrayBufferLike>, O = Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Duplex>,\n  onError: (error: unknown) => E,\n  options?: FromReadableOptions & FromWritableOptions\n) => Channel<Chunk<O>, Chunk<I>, IE | E, IE, void, unknown>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L58",
+						"since": "1.0.0"
+					},
+					{
+						"id": "fromreadable",
+						"level": 2,
+						"name": "fromReadable",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromReadable: <E, A = Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Readable | NodeJS.ReadableStream>,\n  onError: (error: unknown) => E,\n  options?: FromReadableOptions\n) => Stream.Stream<A, E>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L38",
+						"since": "1.0.0"
+					},
+					{
+						"id": "fromreadablechannel",
+						"level": 2,
+						"name": "fromReadableChannel",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const fromReadableChannel: <E, A = Uint8Array<ArrayBufferLike>>(\n  evaluate: LazyArg<Readable | NodeJS.ReadableStream>,\n  onError: (error: unknown) => E,\n  options?: FromReadableOptions | undefined\n) => Channel<Chunk<A>, unknown, E>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L48",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "conversions",
+				"title": "conversions",
+				"exports": [
+					{
+						"id": "toreadable",
+						"level": 2,
+						"name": "toReadable",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const toReadable: <E, R>(stream: Stream.Stream<string | Uint8Array, E, R>) => Effect<Readable, never, R>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L100",
+						"since": "1.0.0"
+					},
+					{
+						"id": "toreadablenever",
+						"level": 2,
+						"name": "toReadableNever",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const toReadableNever: <E>(stream: Stream.Stream<string | Uint8Array, E, never>) => Readable"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L107",
+						"since": "1.0.0"
+					},
+					{
+						"id": "tostring",
+						"level": 2,
+						"name": "toString",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const toString: <E>(\n  readable: LazyArg<Readable | NodeJS.ReadableStream>,\n  options: {\n    readonly onFailure: (error: unknown) => E\n    readonly encoding?: BufferEncoding | undefined\n    readonly maxBytes?: SizeInput | undefined\n  }\n) => Effect<string, E>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L114",
+						"since": "1.0.0"
+					},
+					{
+						"id": "touint8array",
+						"level": 2,
+						"name": "toUint8Array",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const toUint8Array: <E>(\n  readable: LazyArg<Readable | NodeJS.ReadableStream>,\n  options: { readonly onFailure: (error: unknown) => E; readonly maxBytes?: SizeInput | undefined }\n) => Effect<Uint8Array, E>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L127",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "model",
+				"title": "model",
+				"exports": [
+					{
+						"id": "fromwritableoptions-interface",
+						"level": 2,
+						"name": "FromWritableOptions",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface FromWritableOptions {\n  readonly endOnDone?: boolean\n  readonly encoding?: BufferEncoding\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L29",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "models",
+				"title": "models",
+				"exports": [
+					{
+						"id": "fromreadableoptions-interface",
+						"level": 2,
+						"name": "FromReadableOptions",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface FromReadableOptions {\n  /** Defaults to undefined, which lets Node.js decide the chunk size */\n  readonly chunkSize?: SizeInput\n  /** Default to true, which means the stream will be closed when done */\n  readonly closeOnDone?: boolean | undefined\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L18",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "stdio",
+				"title": "stdio",
+				"exports": [
+					{
+						"id": "stderr",
+						"level": 2,
+						"name": "stderr",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stderr: Stream.Stream<Uint8Array<ArrayBufferLike>, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L152",
+						"since": "1.0.0"
+					},
+					{
+						"id": "stdin",
+						"level": 2,
+						"name": "stdin",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stdin: Stream.Stream<Uint8Array<ArrayBufferLike>, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L136",
+						"since": "1.0.0"
+					},
+					{
+						"id": "stdout",
+						"level": 2,
+						"name": "stdout",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const stdout: Stream.Stream<Uint8Array<ArrayBufferLike>, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeStream.ts#L144",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"NodeTerminal": {
+		"name": "NodeTerminal",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeTerminal.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (shouldQuit?: (input: UserInput) => boolean) => Effect<Terminal, never, Scope>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeTerminal.ts#L13",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layer",
+				"title": "layer",
+				"exports": [
+					{
+						"id": "layer-1",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: Layer<Terminal, never, never>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/platform-node-shared/src/NodeTerminal.ts#L20",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	}
 }

@@ -87,7 +87,9 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 							</ol>
 						</nav>
 
-						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">{episode.title}</h1>
+						<h1 className="max-w-2/3 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+							{episode.title}
+						</h1>
 					</div>
 				</section>
 
@@ -161,8 +163,16 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											</p>
 											<div className="mt-3 flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
 												{episode.companyLogo && (
-													<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer">
-														<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 brightness-0 dark:brightness-100" />
+													<a
+														href={episode.companyUrl}
+														target="_blank"
+														rel="noopener noreferrer"
+													>
+														<img
+															src={getAssetPath(episode.companyLogo)}
+															alt={episode.company}
+															className="h-5 brightness-0 dark:brightness-100"
+														/>
 													</a>
 												)}
 												<span>·</span>
@@ -249,7 +259,6 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 													</a>
 												</div>
 											</div>
-
 										</div>
 
 										{/* Transcript */}
@@ -349,8 +358,16 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										</p>
 										<div className="mt-3 flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
 											{episode.companyLogo && (
-												<a href={episode.companyUrl} target="_blank" rel="noopener noreferrer">
-													<img src={getAssetPath(episode.companyLogo)} alt={episode.company} className="h-5 brightness-0 dark:brightness-100" />
+												<a
+													href={episode.companyUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													<img
+														src={getAssetPath(episode.companyLogo)}
+														alt={episode.company}
+														className="h-5 brightness-0 dark:brightness-100"
+													/>
 												</a>
 											)}
 											<span>·</span>
@@ -437,7 +454,6 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 												</a>
 											</div>
 										</div>
-
 									</div>
 
 									{/* Transcript */}
@@ -481,7 +497,8 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
-							background: "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.12) 0%, transparent 30%)",
+							background:
+								"radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.12) 0%, transparent 30%)",
 						}}
 					/>
 					<div className="relative mx-auto max-w-[73.75rem] px-4 text-center">
@@ -492,7 +509,8 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 							Real-world systems with Effect
 						</h3>
 						<p className="mt-2 text-zinc-600 dark:text-zinc-400">
-							How teams like Vercel, MasterClass, and others build in production.
+							How teams like Vercel, MasterClass, and others build in
+							production.
 						</p>
 						<a
 							href={getAssetPath("/podcast")}

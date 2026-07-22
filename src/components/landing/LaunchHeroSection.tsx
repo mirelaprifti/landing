@@ -46,10 +46,28 @@ const HERO_LOGOS: {
 	/** Optical nudge in px — positive = down. Compensates for wordmarks that sit visually higher than their bounding box. */
 	nudgeY?: number;
 }[] = [
-	{ name: "Cloudflare", src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png", h: "20px" },
-	{ name: "opencode", src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg", h: "18px", nudgeY: 2 },
-	{ name: "MasterClass", src: "/assets/quotes-logos/masterclass-noM.svg", h: "14px" },
-	{ name: "T3 Chat", src: "/assets/test-logos/t3-chat.png", h: "15px", invert: true },
+	{
+		name: "Cloudflare",
+		src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png",
+		h: "20px",
+	},
+	{
+		name: "opencode",
+		src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
+		h: "18px",
+		nudgeY: 2,
+	},
+	{
+		name: "MasterClass",
+		src: "/assets/quotes-logos/masterclass-noM.svg",
+		h: "14px",
+	},
+	{
+		name: "T3 Chat",
+		src: "/assets/test-logos/t3-chat.png",
+		h: "15px",
+		invert: true,
+	},
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "22px", nudgeY: 2 },
 ];
 
@@ -118,11 +136,16 @@ export function LaunchHeroSection({
 						href="/blog/effect-v4"
 						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 md:text-sm dark:text-zinc-300 dark:hover:text-white"
 					>
-						<span className="text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-400">//</span>
+						<span className="text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-400">
+							//
+						</span>
 						<span>
 							Effect {versionFlip ? <FlipVersion /> : "4.0"} — Out now
 						</span>
-						<i className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300" aria-hidden="true" />
+						<i
+							className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300"
+							aria-hidden="true"
+						/>
 					</a>
 					{/* Headline */}
 					<h1 className="leading-tighter relative text-4xl font-bold text-zinc-900 md:text-5xl md:whitespace-nowrap lg:text-[3.4rem] dark:text-white">
@@ -138,8 +161,7 @@ export function LaunchHeroSection({
 										style={{
 											background:
 												"linear-gradient(to right, transparent, rgba(255, 255, 255, 0.35), transparent)",
-											animation:
-												"glint-sweep 1.3s ease-out 500ms 1 both",
+											animation: "glint-sweep 1.3s ease-out 500ms 1 both",
 										}}
 									/>
 								</span>

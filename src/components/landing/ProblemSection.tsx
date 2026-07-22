@@ -256,7 +256,9 @@ export function ProblemSection() {
 							key={index}
 							className="flex flex-col border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 p-7"
 						>
-							<p className="text-base font-medium text-zinc-600 dark:text-zinc-400">{feature.problem}</p>
+							<p className="text-base font-medium text-zinc-600 dark:text-zinc-400">
+								{feature.problem}
+							</p>
 							{/* Arrow connector */}
 							<div className="my-4 flex items-center gap-2">
 								<div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
@@ -265,7 +267,9 @@ export function ProblemSection() {
 							</div>
 							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-zinc-900 dark:text-white uppercase">
 								<div className="flex h-6 w-6 shrink-0 items-center justify-center bg-zinc-200 dark:bg-zinc-800">
-									<i className={`${feature.icon} text-sm text-zinc-800 dark:text-zinc-200`} />
+									<i
+										className={`${feature.icon} text-sm text-zinc-800 dark:text-zinc-200`}
+									/>
 								</div>
 								{feature.title}
 							</h3>
@@ -274,7 +278,9 @@ export function ProblemSection() {
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-3">
 										<i className="ri-check-line shrink-0 pl-1 text-sm text-emerald-500" />
-										<span className="text-sm text-zinc-600 dark:text-zinc-400">{item}</span>
+										<span className="text-sm text-zinc-600 dark:text-zinc-400">
+											{item}
+										</span>
 									</div>
 								))}
 							</div>

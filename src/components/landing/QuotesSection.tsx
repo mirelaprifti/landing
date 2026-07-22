@@ -16,10 +16,14 @@ function QuoteCard({
 }) {
 	return (
 		<div className="flex h-[18.125rem] w-[calc(73.75rem*0.5-10px)] flex-shrink-0 flex-col rounded-md border border-zinc-300 bg-zinc-100/30 p-8 dark:border-zinc-700 dark:bg-zinc-900/30">
-			<p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">"{text}"</p>
+			<p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+				"{text}"
+			</p>
 			<div className="mt-auto flex w-full items-center gap-4">
 				<div className="flex items-center gap-3">
-					<span className="font-medium text-zinc-900 dark:text-white">{author}</span>
+					<span className="font-medium text-zinc-900 dark:text-white">
+						{author}
+					</span>
 				</div>
 				<div
 					className="h-[1px] flex-grow text-zinc-300 dark:text-zinc-700"

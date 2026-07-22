@@ -27,7 +27,8 @@ const linkVariants = cva("transition-colors", {
 			nav: "border-b border-transparent text-sm font-medium text-zinc-700 hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 			footer:
 				"border-b border-transparent text-sm font-medium leading-relaxed text-zinc-700 hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
-			subtle: "text-sm text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+			subtle:
+				"text-sm text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 			icon: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 		},
 	},
@@ -46,23 +47,30 @@ type LinkProps = {
 } & LinkVariantProps &
 	Omit<ComponentPropsWithoutRef<"a">, "className">;
 
-function Link({ variant, className, href, children, active, ...props }: LinkProps) {
+function Link({
+	variant,
+	className,
+	href,
+	children,
+	active,
+	...props
+}: LinkProps) {
 	const isExternal = href.startsWith("http");
-	const activeClass = active ? {
-		nav: "border-zinc-900 text-zinc-900 dark:border-white dark:text-white",
-		footer: "border-transparent text-zinc-900 dark:text-white",
-		inline: "",
-		subtle: "text-zinc-900 dark:text-white",
-		icon: "text-zinc-900 dark:text-white",
-	}[variant ?? "inline"] : "";
+	const activeClass = active
+		? {
+				nav: "border-zinc-900 text-zinc-900 dark:border-white dark:text-white",
+				footer: "border-transparent text-zinc-900 dark:text-white",
+				inline: "",
+				subtle: "text-zinc-900 dark:text-white",
+				icon: "text-zinc-900 dark:text-white",
+			}[variant ?? "inline"]
+		: "";
 
 	return (
 		<a
 			href={href}
 			className={cn(linkVariants({ variant }), className, activeClass)}
-			{...(isExternal
-				? { target: "_blank", rel: "noopener noreferrer" }
-				: {})}
+			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			{...props}
 		>
 			{children}

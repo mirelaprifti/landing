@@ -56,23 +56,20 @@ function renderLine(line: Line, chars: number): React.ReactNode {
 	if (line.kind === "blank") return <>&nbsp;</>;
 
 	if (line.kind === "prompt") {
-		return (
-			<span className="text-zinc-300">{line.text.slice(0, chars)}</span>
-		);
+		return <span className="text-zinc-300">{line.text.slice(0, chars)}</span>;
 	}
 
 	if (line.kind === "done") {
 		const visible = line.text.slice(0, chars);
-		return (
-			<span className="text-emerald-400">{visible}</span>
-		);
+		return <span className="text-emerald-400">{visible}</span>;
 	}
 
 	if (line.kind === "info") {
 		const tagPart = `[${line.tag}]`;
 		const fullText = ` ${line.text}`;
 		const tagShown = tagPart.slice(0, chars);
-		const textShown = chars > tagPart.length ? fullText.slice(0, chars - tagPart.length) : "";
+		const textShown =
+			chars > tagPart.length ? fullText.slice(0, chars - tagPart.length) : "";
 		return (
 			<>
 				<span className="text-zinc-500 dark:text-zinc-400">{tagShown}</span>
@@ -93,7 +90,10 @@ function renderLine(line: Line, chars: number): React.ReactNode {
 	const nameShown = namePart.slice(0, Math.min(remaining, namePart.length));
 	remaining -= nameShown.length;
 
-	const resultShown = resultPart.slice(0, Math.min(remaining, resultPart.length));
+	const resultShown = resultPart.slice(
+		0,
+		Math.min(remaining, resultPart.length),
+	);
 
 	return (
 		<>

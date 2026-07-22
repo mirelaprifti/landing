@@ -32,8 +32,7 @@ const upcomingEvents: Array<{
 		flag: "🇩🇪",
 		thumbnail:
 			"https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=1280,height=720/event-covers/wf/83140ba6-0f01-4b33-ad42-87b1c8f4c73e.png",
-		centerThumbnail:
-			"/assets/images/banner - berlin.png",
+		centerThumbnail: "/assets/images/banner - berlin.png",
 		href: "https://luma.com/z39v9xqn",
 		description:
 			"Join the Effect community in Berlin for the third local meetup.",
@@ -977,7 +976,7 @@ export function EventsPage() {
 				Skip to main content
 			</a>
 
-      <Navigation activePath="/events" />
+			<Navigation activePath="/events" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -1256,7 +1255,8 @@ export function EventsPage() {
 									Can't find an event near you?
 								</h2>
 								<p className="mx-auto mb-6 max-w-xl text-base text-zinc-400">
-									Join 6,000+ developers on Discord building production systems with Effect.
+									Join 6,000+ developers on Discord building production systems
+									with Effect.
 								</p>
 
 								<Button
@@ -1274,7 +1274,7 @@ export function EventsPage() {
 				</section>
 			</main>
 
-      <Footer activePath="/events" hideCommunityBorder />
+			<Footer activePath="/events" hideCommunityBorder />
 		</div>
 	);
 }

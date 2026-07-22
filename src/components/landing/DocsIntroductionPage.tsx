@@ -97,12 +97,12 @@ export function DocsIntroductionPage() {
 				</h2>
 				<div className="space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					<p>
-						The documentation is structured in a sequential manner, starting from
-						the basics and progressing to more advanced topics. This allows you to
-						follow along step-by-step as you build your Effect application.
-						However, you have the flexibility to read the documentation in any
-						order or jump directly to the pages that are relevant to your specific
-						use case.
+						The documentation is structured in a sequential manner, starting
+						from the basics and progressing to more advanced topics. This allows
+						you to follow along step-by-step as you build your Effect
+						application. However, you have the flexibility to read the
+						documentation in any order or jump directly to the pages that are
+						relevant to your specific use case.
 					</p>
 					<p>
 						To facilitate navigation within a page, you will find a table of
@@ -132,10 +132,10 @@ export function DocsIntroductionPage() {
 						.
 					</p>
 					<p>
-						When using LLMs it is also very important to optimize the feedback loop
-						to be as tight as possible. That can include writing custom linting
-						rules to fit your style preferences and patterns. An example of a
-						repository optimized for agentic coding can be found at{" "}
+						When using LLMs it is also very important to optimize the feedback
+						loop to be as tight as possible. That can include writing custom
+						linting rules to fit your style preferences and patterns. An example
+						of a repository optimized for agentic coding can be found at{" "}
 						<a
 							href="https://github.com/mikearnaldi/accountability"
 							target="_blank"
@@ -150,7 +150,11 @@ export function DocsIntroductionPage() {
 					<p>
 						A key part of optimizing the feedback loop (and the developer
 						experience in general when using Effect) is to use the Effect LSP
-						plugin. We advise using the latest <code className="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100">tsgo</code> implementation at{" "}
+						plugin. We advise using the latest{" "}
+						<code className="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100">
+							tsgo
+						</code>{" "}
+						implementation at{" "}
 						<a
 							href="https://github.com/Effect-TS/tsgo"
 							target="_blank"

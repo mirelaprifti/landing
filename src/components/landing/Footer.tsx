@@ -6,7 +6,10 @@ interface FooterProps {
 	activePath?: string;
 }
 
-export function Footer({ hideCommunityBorder = false, activePath }: FooterProps = {}) {
+export function Footer({
+	hideCommunityBorder = false,
+	activePath,
+}: FooterProps = {}) {
 	return (
 		<footer className="relative w-full px-4 pt-16 md:px-8 md:pt-20">
 			{/* Subtle gradient background */}
@@ -124,7 +127,9 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 						</div>
 
 						{/* Column 3: Community */}
-						<div className={`flex flex-1 flex-col gap-4 lg:pl-4${hideCommunityBorder ? "" : " lg:border-l lg:border-dashed lg:border-zinc-200 dark:lg:border-zinc-800"}`}>
+						<div
+							className={`flex flex-1 flex-col gap-4 lg:pl-4${hideCommunityBorder ? "" : " lg:border-l lg:border-dashed lg:border-zinc-200 dark:lg:border-zinc-800"}`}
+						>
 							{/* Column Header */}
 							<h3 className="font-mono font-semibold text-sm text-zinc-900 uppercase dark:text-zinc-100">
 								Community
@@ -388,13 +393,13 @@ export function Footer({ hideCommunityBorder = false, activePath }: FooterProps 
 								</Link>
 								<a
 									href="#"
-								className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-							>
-								Terms
-							</a>
-							<a
-								href="#"
-								className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								>
+									Terms
+								</a>
+								<a
+									href="#"
+									className="border-b border-transparent text-sm font-medium text-zinc-600 transition-colors hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									Privacy
 								</a>

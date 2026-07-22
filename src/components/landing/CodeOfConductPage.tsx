@@ -134,10 +134,7 @@ export function CodeOfConductPage() {
 							<p className="text-base leading-relaxed text-zinc-400">
 								You can report issues by contacting any staff member
 								(identifiable by their staff badges) or by emailing{" "}
-								<Link
-									href="mailto:contact@effectful.co"
-									variant="inline"
-								>
+								<Link href="mailto:contact@effectful.co" variant="inline">
 									contact@effectful.co
 								</Link>
 								.

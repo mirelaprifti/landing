@@ -235,8 +235,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	},
 	{
 		title: "Effect MCP Server",
-		description:
-			"MCP server for connecting LLMs to your Effect services.",
+		description: "MCP server for connecting LLMs to your Effect services.",
 		url: "https://github.com/tim-smart/effect-mcp",
 		category: "Tools",
 		author: "Tim Smart",
@@ -314,8 +313,7 @@ export const COMMUNITY_ITEMS: CommunityItem[] = [
 	},
 	{
 		title: "Building a Full-Stack App with Effect",
-		description:
-			"Live-coding a full-stack app with Effect RPC and Schema.",
+		description: "Live-coding a full-stack app with Effect RPC and Schema.",
 		url: "https://www.youtube.com/watch?v=grRHGQSn3hQ",
 		category: "Video",
 		author: "Michael Arnaldi",

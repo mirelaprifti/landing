@@ -218,7 +218,10 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 	const t = partner.training;
 
 	return (
-		<section id="training" className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
+		<section
+			id="training"
+			className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24"
+		>
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 					<div>
@@ -240,7 +243,9 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 									<li
 										key={outcome.title}
 										className={`py-6 first:pt-0 sm:p-8 ${
-											!isLastOverall ? "border-b border-zinc-800 sm:border-b-0" : ""
+											!isLastOverall
+												? "border-b border-zinc-800 sm:border-b-0"
+												: ""
 										} ${idx % 2 === 0 ? "sm:pl-0" : "sm:pr-0"} ${
 											idx < 2 ? "sm:pt-0" : "sm:pb-0"
 										}`}
@@ -428,7 +433,10 @@ function OtherPartnerCard({ partner }: { partner: Partner }) {
 			</p>
 			<div className="mb-5 flex flex-wrap items-center gap-3">
 				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/40 px-2.5 py-1 text-xs font-medium text-zinc-300">
-					<i className="ri-map-pin-2-fill text-xs text-zinc-400" aria-hidden="true" />
+					<i
+						className="ri-map-pin-2-fill text-xs text-zinc-400"
+						aria-hidden="true"
+					/>
 					{partner.region}
 				</div>
 				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/40 px-2.5 py-1 text-xs font-medium text-zinc-300">
@@ -558,8 +566,8 @@ export function ImplementationPartnersPage() {
 								Ready to build?
 							</h2>
 							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
-								Share where you are with Effect and what you're trying to
-								build. Your inquiry goes directly to{" "}
+								Share where you are with Effect and what you're trying to build.
+								Your inquiry goes directly to{" "}
 								{featuredPartner?.name ?? "the partner"}, who will scope the
 								right engagement, and get back to you quickly.
 							</p>
@@ -569,9 +577,9 @@ export function ImplementationPartnersPage() {
 									onClick={copyEmail}
 									aria-label={`Copy email address ${featuredPartner.contactEmail}`}
 									className="group mt-[37px] flex w-full max-w-[395px] cursor-pointer items-center justify-between gap-3 border border-zinc-700 bg-zinc-900/60 px-4 py-4 font-mono text-base backdrop-blur-sm transition-colors hover:border-zinc-500 hover:bg-zinc-900"
-								style={{
-									color: featuredPartner.brandColor ? "#FFA083" : "#ffffff",
-								}}
+									style={{
+										color: featuredPartner.brandColor ? "#FFA083" : "#ffffff",
+									}}
 								>
 									{featuredPartner.contactEmail}
 									{emailCopied ? (

@@ -1,290 +1,290 @@
 {
- "Kysely": {
-  "name": "Kysely",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Kysely.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: <DB>(config: KyselyConfig) => Kysely<DB>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Kysely.ts#L10",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "types",
-    "title": "types",
-    "exports": [
-     {
-      "id": "patchtypesjs-namespace-export",
-      "level": 2,
-      "name": "\u201d./patch.types.js\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"./patch.types.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Kysely.ts#L16",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Mssql": {
-  "name": "Mssql",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mssql.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mssql.ts#L12",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "types",
-    "title": "types",
-    "exports": [
-     {
-      "id": "patchtypesjs-namespace-export",
-      "level": 2,
-      "name": "\u201d./patch.types.js\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"./patch.types.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mssql.ts#L27",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Mysql": {
-  "name": "Mysql",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mysql.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mysql.ts#L12",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "types",
-    "title": "types",
-    "exports": [
-     {
-      "id": "patchtypesjs-namespace-export",
-      "level": 2,
-      "name": "\u201d./patch.types.js\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"./patch.types.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mysql.ts#L27",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Pg": {
-  "name": "Pg",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Pg.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Pg.ts#L12",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "types",
-    "title": "types",
-    "exports": [
-     {
-      "id": "patchtypesjs-namespace-export",
-      "level": 2,
-      "name": "\u201d./patch.types.js\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"./patch.types.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Pg.ts#L27",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "Sqlite": {
-  "name": "Sqlite",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Sqlite.ts",
-  "categories": [
-   {
-    "id": "constructors",
-    "title": "constructors",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Sqlite.ts#L12",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "types",
-    "title": "types",
-    "exports": [
-     {
-      "id": "patchtypesjs-namespace-export",
-      "level": 2,
-      "name": "\u201d./patch.types.js\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"./patch.types.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Sqlite.ts#L27",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "patch.types": {
-  "name": "patch.types",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/patch.types.ts",
-  "categories": [
-   {
-    "id": "types",
-    "title": "types",
-    "exports": [
-     {
-      "id": "effectkysely-interface",
-      "level": 2,
-      "name": "EffectKysely",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface EffectKysely<DB> extends Omit<Kysely<DB>, \"transaction\"> {\n  withTransaction: <R, E, A>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E | SqlError, R>\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/patch.types.ts#L38",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- }
+	"Kysely": {
+		"name": "Kysely",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Kysely.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: <DB>(config: KyselyConfig) => Kysely<DB>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Kysely.ts#L10",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "types",
+				"title": "types",
+				"exports": [
+					{
+						"id": "patchtypesjs-namespace-export",
+						"level": 2,
+						"name": "\u201d./patch.types.js\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"./patch.types.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Kysely.ts#L16",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Mssql": {
+		"name": "Mssql",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mssql.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mssql.ts#L12",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "types",
+				"title": "types",
+				"exports": [
+					{
+						"id": "patchtypesjs-namespace-export",
+						"level": 2,
+						"name": "\u201d./patch.types.js\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"./patch.types.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mssql.ts#L27",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Mysql": {
+		"name": "Mysql",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mysql.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mysql.ts#L12",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "types",
+				"title": "types",
+				"exports": [
+					{
+						"id": "patchtypesjs-namespace-export",
+						"level": 2,
+						"name": "\u201d./patch.types.js\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"./patch.types.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Mysql.ts#L27",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Pg": {
+		"name": "Pg",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Pg.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Pg.ts#L12",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "types",
+				"title": "types",
+				"exports": [
+					{
+						"id": "patchtypesjs-namespace-export",
+						"level": 2,
+						"name": "\u201d./patch.types.js\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"./patch.types.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Pg.ts#L27",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"Sqlite": {
+		"name": "Sqlite",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Sqlite.ts",
+		"categories": [
+			{
+				"id": "constructors",
+				"title": "constructors",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: <DB>(config?: Omit<KyselyConfig, \"dialect\">) => Effect<EffectKysely<DB>, never, SqlClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Sqlite.ts#L12",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "types",
+				"title": "types",
+				"exports": [
+					{
+						"id": "patchtypesjs-namespace-export",
+						"level": 2,
+						"name": "\u201d./patch.types.js\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./patch.types.js\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"./patch.types.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/Sqlite.ts#L27",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"patch.types": {
+		"name": "patch.types",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/patch.types.ts",
+		"categories": [
+			{
+				"id": "types",
+				"title": "types",
+				"exports": [
+					{
+						"id": "effectkysely-interface",
+						"level": 2,
+						"name": "EffectKysely",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface EffectKysely<DB> extends Omit<Kysely<DB>, \"transaction\"> {\n  withTransaction: <R, E, A>(self: Effect.Effect<A, E, R>) => Effect.Effect<A, E | SqlError, R>\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-kysely/src/patch.types.ts#L38",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	}
 }

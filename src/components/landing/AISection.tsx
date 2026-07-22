@@ -57,7 +57,10 @@ function VideoWithPosterOverlay() {
 				}`}
 			>
 				<span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/80 text-zinc-900 backdrop-blur-sm transition-transform group-hover:scale-105">
-					<i className="ri-play-fill translate-x-0.5 text-3xl" aria-hidden="true" />
+					<i
+						className="ri-play-fill translate-x-0.5 text-3xl"
+						aria-hidden="true"
+					/>
 				</span>
 			</button>
 		</div>
@@ -85,14 +88,14 @@ export function AISection() {
 							Effect's declarative patterns and strong type system make it
 							easier for LLMs to generate correct, production-ready code.
 						</p>
-					<Button
-						href="https://www.effect.solutions/"
-						variant="secondary"
-						className="mt-6 inline-flex items-center gap-2"
-					>
-						Quick start LLM guide
-						<i className="ri-arrow-right-up-line text-base" />
-					</Button>
+						<Button
+							href="https://www.effect.solutions/"
+							variant="secondary"
+							className="mt-6 inline-flex items-center gap-2"
+						>
+							Quick start LLM guide
+							<i className="ri-arrow-right-up-line text-base" />
+						</Button>
 					</div>
 
 					{/* Right column - Video */}
@@ -103,7 +106,9 @@ export function AISection() {
 				<div className="px-4">
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-4">
 						<div className="flex flex-col gap-2">
-							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">01</span>
+							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">
+								01
+							</span>
 							<p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
 								<span className="font-medium text-zinc-900 dark:text-white">
 									Predictable structure:
@@ -113,7 +118,9 @@ export function AISection() {
 							</p>
 						</div>
 						<div className="flex flex-col gap-2">
-							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">02</span>
+							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">
+								02
+							</span>
 							<p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
 								<span className="font-medium text-zinc-900 dark:text-white">
 									Typed feedback loop:
@@ -123,7 +130,9 @@ export function AISection() {
 							</p>
 						</div>
 						<div className="flex flex-col gap-2">
-							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">03</span>
+							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">
+								03
+							</span>
 							<p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
 								<span className="font-medium text-zinc-900 dark:text-white">
 									Built-in reliability:
@@ -133,9 +142,13 @@ export function AISection() {
 							</p>
 						</div>
 						<div className="flex flex-col gap-2">
-							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">04</span>
+							<span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">
+								04
+							</span>
 							<p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-								<span className="font-medium text-zinc-900 dark:text-white">Rich toolbox:</span>{" "}
+								<span className="font-medium text-zinc-900 dark:text-white">
+									Rich toolbox:
+								</span>{" "}
 								from schema validation to workflows, build in a language LLMs
 								understand.
 							</p>

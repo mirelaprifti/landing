@@ -1,339 +1,339 @@
 {
- "LibsqlClient": {
-  "name": "LibsqlClient",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts",
-  "categories": [
-   {
-    "id": "constructor",
-    "title": "constructor",
-    "exports": [
-     {
-      "id": "make",
-      "level": 2,
-      "name": "make",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const make: (\n  options: LibsqlClientConfig\n) => Effect.Effect<LibsqlClient, never, Scope.Scope | Reactivity.Reactivity>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L136",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "layers",
-    "title": "layers",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: (config: LibsqlClientConfig) => Layer.Layer<LibsqlClient | Client.SqlClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L318",
-      "since": "1.0.0"
-     },
-     {
-      "id": "layerconfig",
-      "level": 2,
-      "name": "layerConfig",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layerConfig: (\n  config: Config.Config.Wrap<LibsqlClientConfig>\n) => Layer.Layer<LibsqlClient | Client.SqlClient, ConfigError>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L300",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "models",
-    "title": "models",
-    "exports": [
-     {
-      "id": "libsqlclient-interface",
-      "level": 2,
-      "name": "LibsqlClient",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface LibsqlClient extends Client.SqlClient {\n  readonly [TypeId]: TypeId\n  readonly config: LibsqlClientConfig\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L37",
-      "since": "1.0.0"
-     },
-     {
-      "id": "libsqlclientconfig-type-alias",
-      "level": 2,
-      "name": "LibsqlClientConfig",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type LibsqlClientConfig = LibsqlClientConfig.Full | LibsqlClientConfig.Live"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L56",
-      "since": "1.0.0"
-     },
-     {
-      "id": "libsqlclientconfig-namespace",
-      "level": 2,
-      "name": "LibsqlClientConfig",
-      "kind": "namespace",
-      "description": [],
-      "signature": null,
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L62",
-      "since": "1.0.0"
-     },
-     {
-      "id": "base-interface",
-      "level": 3,
-      "name": "Base",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Base {\n  readonly spanAttributes?: Record<string, unknown> | undefined\n  readonly transformResultNames?: ((str: string) => string) | undefined\n  readonly transformQueryNames?: ((str: string) => string) | undefined\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L67",
-      "since": "1.0.0"
-     },
-     {
-      "id": "full-interface",
-      "level": 3,
-      "name": "Full",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Full extends Base {\n  /** The database URL.\n   *\n   * The client supports `libsql:`, `http:`/`https:`, `ws:`/`wss:` and `file:` URL. For more infomation,\n   * please refer to the project README:\n   *\n   * https://github.com/libsql/libsql-client-ts#supported-urls\n   */\n  readonly url: string | URL\n  /** Authentication token for the database. */\n  readonly authToken?: Redacted.Redacted | undefined\n  /** Encryption key for the database. */\n  readonly encryptionKey?: Redacted.Redacted | undefined\n  /** URL of a remote server to synchronize database with. */\n  readonly syncUrl?: string | URL | undefined\n  /** Sync interval in seconds. */\n  readonly syncInterval?: number | undefined\n  /** Enables or disables TLS for `libsql:` URLs.\n   *\n   * By default, `libsql:` URLs use TLS. You can set this option to `false` to disable TLS.\n   */\n  readonly tls?: boolean | undefined\n  /** How to convert SQLite integers to JavaScript values:\n   *\n   * - `\"number\"` (default): returns SQLite integers as JavaScript `number`-s (double precision floats).\n   * `number` cannot precisely represent integers larger than 2^53-1 in absolute value, so attempting to read\n   * larger integers will throw a `RangeError`.\n   * - `\"bigint\"`: returns SQLite integers as JavaScript `bigint`-s (arbitrary precision integers). Bigints can\n   * precisely represent all SQLite integers.\n   * - `\"string\"`: returns SQLite integers as strings.\n   */\n  readonly intMode?: \"number\" | \"bigint\" | \"string\" | undefined\n  /** Concurrency limit.\n   *\n   * By default, the client performs up to 20 concurrent requests. You can set this option to a higher\n   * number to increase the concurrency limit or set it to 0 to disable concurrency limits completely.\n   */\n  readonly concurrency?: number | undefined\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L77",
-      "since": "1.0.0"
-     },
-     {
-      "id": "live-interface",
-      "level": 3,
-      "name": "Live",
-      "kind": "interface",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "export interface Live extends Base {\n  readonly liveClient: Libsql.Client\n}"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L121",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "tags",
-    "title": "tags",
-    "exports": [
-     {
-      "id": "libsqlclient",
-      "level": 2,
-      "name": "LibsqlClient",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const LibsqlClient: Context.Tag<LibsqlClient, LibsqlClient>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L46",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "type-ids",
-    "title": "type ids",
-    "exports": [
-     {
-      "id": "typeid",
-      "level": 2,
-      "name": "TypeId",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const TypeId: unique symbol"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L25",
-      "since": "1.0.0"
-     },
-     {
-      "id": "typeid-type-alias",
-      "level": 2,
-      "name": "TypeId",
-      "kind": "type alias",
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "type TypeId = typeof TypeId"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L31",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "LibsqlMigrator": {
-  "name": "LibsqlMigrator",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts",
-  "categories": [
-   {
-    "id": "constructor",
-    "title": "constructor",
-    "exports": [
-     {
-      "id": "layer",
-      "level": 2,
-      "name": "layer",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const layer: <R>(\n  options: Migrator.MigratorOptions<R>\n) => Layer.Layer<never, Migrator.MigrationError | SqlError, Client.SqlClient | R>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L36",
-      "since": "1.0.0"
-     },
-     {
-      "id": "run",
-      "level": 2,
-      "name": "run",
-      "kind": null,
-      "description": [],
-      "signature": {
-       "lang": "ts",
-       "code": "declare const run: <R2 = never>(\n  options: Migrator.MigratorOptions<R2>\n) => Effect.Effect<\n  ReadonlyArray<readonly [id: number, name: string]>,\n  Migrator.MigrationError | SqlError,\n  Client.SqlClient | R2\n>"
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L24",
-      "since": "1.0.0"
-     }
-    ]
-   },
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "effectsqlmigrator-namespace-export",
-      "level": 2,
-      "name": "\u201c@effect/sql/Migrator\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"@effect/sql/Migrator\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L13",
-      "since": "1.0.0"
-     },
-     {
-      "id": "effectsqlmigratorfilesystem-namespace-export",
-      "level": 2,
-      "name": "\u201c@effect/sql/Migrator/FileSystem\u201d (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator/FileSystem\u201d module.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * from \"@effect/sql/Migrator/FileSystem\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L18",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- },
- "index": {
-  "name": "index",
-  "since": "1.0.0",
-  "description": [],
-  "sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/index.ts",
-  "categories": [
-   {
-    "id": "utils",
-    "title": "utils",
-    "exports": [
-     {
-      "id": "libsqlclient-namespace-export",
-      "level": 2,
-      "name": "LibsqlClient (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./LibsqlClient.js\u201d module as <code>LibsqlClient</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as LibsqlClient from \"./LibsqlClient.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/index.ts#L4",
-      "since": "1.0.0"
-     },
-     {
-      "id": "libsqlmigrator-namespace-export",
-      "level": 2,
-      "name": "LibsqlMigrator (namespace export)",
-      "kind": null,
-      "description": [
-       {
-        "html": "<p>Re-exports all named exports from the \u201c./LibsqlMigrator.js\u201d module as <code>LibsqlMigrator</code>.</p>"
-       }
-      ],
-      "signature": {
-       "lang": "ts",
-       "code": "export * as LibsqlMigrator from \"./LibsqlMigrator.js\""
-      },
-      "examples": [],
-      "source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/index.ts#L9",
-      "since": "1.0.0"
-     }
-    ]
-   }
-  ]
- }
+	"LibsqlClient": {
+		"name": "LibsqlClient",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts",
+		"categories": [
+			{
+				"id": "constructor",
+				"title": "constructor",
+				"exports": [
+					{
+						"id": "make",
+						"level": 2,
+						"name": "make",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const make: (\n  options: LibsqlClientConfig\n) => Effect.Effect<LibsqlClient, never, Scope.Scope | Reactivity.Reactivity>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L136",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "layers",
+				"title": "layers",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: (config: LibsqlClientConfig) => Layer.Layer<LibsqlClient | Client.SqlClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L318",
+						"since": "1.0.0"
+					},
+					{
+						"id": "layerconfig",
+						"level": 2,
+						"name": "layerConfig",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layerConfig: (\n  config: Config.Config.Wrap<LibsqlClientConfig>\n) => Layer.Layer<LibsqlClient | Client.SqlClient, ConfigError>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L300",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "models",
+				"title": "models",
+				"exports": [
+					{
+						"id": "libsqlclient-interface",
+						"level": 2,
+						"name": "LibsqlClient",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface LibsqlClient extends Client.SqlClient {\n  readonly [TypeId]: TypeId\n  readonly config: LibsqlClientConfig\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L37",
+						"since": "1.0.0"
+					},
+					{
+						"id": "libsqlclientconfig-type-alias",
+						"level": 2,
+						"name": "LibsqlClientConfig",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type LibsqlClientConfig = LibsqlClientConfig.Full | LibsqlClientConfig.Live"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L56",
+						"since": "1.0.0"
+					},
+					{
+						"id": "libsqlclientconfig-namespace",
+						"level": 2,
+						"name": "LibsqlClientConfig",
+						"kind": "namespace",
+						"description": [],
+						"signature": null,
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L62",
+						"since": "1.0.0"
+					},
+					{
+						"id": "base-interface",
+						"level": 3,
+						"name": "Base",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Base {\n  readonly spanAttributes?: Record<string, unknown> | undefined\n  readonly transformResultNames?: ((str: string) => string) | undefined\n  readonly transformQueryNames?: ((str: string) => string) | undefined\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L67",
+						"since": "1.0.0"
+					},
+					{
+						"id": "full-interface",
+						"level": 3,
+						"name": "Full",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Full extends Base {\n  /** The database URL.\n   *\n   * The client supports `libsql:`, `http:`/`https:`, `ws:`/`wss:` and `file:` URL. For more infomation,\n   * please refer to the project README:\n   *\n   * https://github.com/libsql/libsql-client-ts#supported-urls\n   */\n  readonly url: string | URL\n  /** Authentication token for the database. */\n  readonly authToken?: Redacted.Redacted | undefined\n  /** Encryption key for the database. */\n  readonly encryptionKey?: Redacted.Redacted | undefined\n  /** URL of a remote server to synchronize database with. */\n  readonly syncUrl?: string | URL | undefined\n  /** Sync interval in seconds. */\n  readonly syncInterval?: number | undefined\n  /** Enables or disables TLS for `libsql:` URLs.\n   *\n   * By default, `libsql:` URLs use TLS. You can set this option to `false` to disable TLS.\n   */\n  readonly tls?: boolean | undefined\n  /** How to convert SQLite integers to JavaScript values:\n   *\n   * - `\"number\"` (default): returns SQLite integers as JavaScript `number`-s (double precision floats).\n   * `number` cannot precisely represent integers larger than 2^53-1 in absolute value, so attempting to read\n   * larger integers will throw a `RangeError`.\n   * - `\"bigint\"`: returns SQLite integers as JavaScript `bigint`-s (arbitrary precision integers). Bigints can\n   * precisely represent all SQLite integers.\n   * - `\"string\"`: returns SQLite integers as strings.\n   */\n  readonly intMode?: \"number\" | \"bigint\" | \"string\" | undefined\n  /** Concurrency limit.\n   *\n   * By default, the client performs up to 20 concurrent requests. You can set this option to a higher\n   * number to increase the concurrency limit or set it to 0 to disable concurrency limits completely.\n   */\n  readonly concurrency?: number | undefined\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L77",
+						"since": "1.0.0"
+					},
+					{
+						"id": "live-interface",
+						"level": 3,
+						"name": "Live",
+						"kind": "interface",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "export interface Live extends Base {\n  readonly liveClient: Libsql.Client\n}"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L121",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "tags",
+				"title": "tags",
+				"exports": [
+					{
+						"id": "libsqlclient",
+						"level": 2,
+						"name": "LibsqlClient",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const LibsqlClient: Context.Tag<LibsqlClient, LibsqlClient>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L46",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "type-ids",
+				"title": "type ids",
+				"exports": [
+					{
+						"id": "typeid",
+						"level": 2,
+						"name": "TypeId",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const TypeId: unique symbol"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L25",
+						"since": "1.0.0"
+					},
+					{
+						"id": "typeid-type-alias",
+						"level": 2,
+						"name": "TypeId",
+						"kind": "type alias",
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "type TypeId = typeof TypeId"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlClient.ts#L31",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"LibsqlMigrator": {
+		"name": "LibsqlMigrator",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts",
+		"categories": [
+			{
+				"id": "constructor",
+				"title": "constructor",
+				"exports": [
+					{
+						"id": "layer",
+						"level": 2,
+						"name": "layer",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const layer: <R>(\n  options: Migrator.MigratorOptions<R>\n) => Layer.Layer<never, Migrator.MigrationError | SqlError, Client.SqlClient | R>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L36",
+						"since": "1.0.0"
+					},
+					{
+						"id": "run",
+						"level": 2,
+						"name": "run",
+						"kind": null,
+						"description": [],
+						"signature": {
+							"lang": "ts",
+							"code": "declare const run: <R2 = never>(\n  options: Migrator.MigratorOptions<R2>\n) => Effect.Effect<\n  ReadonlyArray<readonly [id: number, name: string]>,\n  Migrator.MigrationError | SqlError,\n  Client.SqlClient | R2\n>"
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L24",
+						"since": "1.0.0"
+					}
+				]
+			},
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "effectsqlmigrator-namespace-export",
+						"level": 2,
+						"name": "\u201c@effect/sql/Migrator\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"@effect/sql/Migrator\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L13",
+						"since": "1.0.0"
+					},
+					{
+						"id": "effectsqlmigratorfilesystem-namespace-export",
+						"level": 2,
+						"name": "\u201c@effect/sql/Migrator/FileSystem\u201d (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c@effect/sql/Migrator/FileSystem\u201d module.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * from \"@effect/sql/Migrator/FileSystem\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/LibsqlMigrator.ts#L18",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	},
+	"index": {
+		"name": "index",
+		"since": "1.0.0",
+		"description": [],
+		"sourceUrl": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/index.ts",
+		"categories": [
+			{
+				"id": "utils",
+				"title": "utils",
+				"exports": [
+					{
+						"id": "libsqlclient-namespace-export",
+						"level": 2,
+						"name": "LibsqlClient (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./LibsqlClient.js\u201d module as <code>LibsqlClient</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as LibsqlClient from \"./LibsqlClient.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/index.ts#L4",
+						"since": "1.0.0"
+					},
+					{
+						"id": "libsqlmigrator-namespace-export",
+						"level": 2,
+						"name": "LibsqlMigrator (namespace export)",
+						"kind": null,
+						"description": [
+							{
+								"html": "<p>Re-exports all named exports from the \u201c./LibsqlMigrator.js\u201d module as <code>LibsqlMigrator</code>.</p>"
+							}
+						],
+						"signature": {
+							"lang": "ts",
+							"code": "export * as LibsqlMigrator from \"./LibsqlMigrator.js\""
+						},
+						"examples": [],
+						"source": "https://github.com/Effect-TS/effect/tree/main/packages/sql-libsql/src/index.ts#L9",
+						"since": "1.0.0"
+					}
+				]
+			}
+		]
+	}
 }

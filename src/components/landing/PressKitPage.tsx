@@ -183,7 +183,9 @@ export function PressKitPage() {
 									{/* Download Links */}
 									<div className="flex items-center gap-2">
 										<i className="ri-download-2-line text-base text-zinc-600 dark:text-zinc-400" />
-										<span className="text-sm text-zinc-600 dark:text-zinc-400">Download:</span>
+										<span className="text-sm text-zinc-600 dark:text-zinc-400">
+											Download:
+										</span>
 										<DownloadLink
 											href={getAssetPath(
 												`/assets/${COMBINATION_MARK.files.png.black}`,
@@ -223,7 +225,9 @@ export function PressKitPage() {
 									{/* Download Links */}
 									<div className="flex items-center gap-2">
 										<i className="ri-download-2-line text-base text-zinc-600 dark:text-zinc-400" />
-										<span className="text-sm text-zinc-600 dark:text-zinc-400">Download:</span>
+										<span className="text-sm text-zinc-600 dark:text-zinc-400">
+											Download:
+										</span>
 										<DownloadLink
 											href={getAssetPath(
 												`/assets/${LOGO_SYMBOL.files.png.black}`,
@@ -586,8 +590,7 @@ export function PressKitPage() {
 						</div>
 					</div>
 				</section>
-
-				</main>
+			</main>
 
 			<Footer activePath="/brand-assets" hideCommunityBorder />
 		</div>

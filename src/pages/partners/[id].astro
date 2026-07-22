@@ -4,10 +4,10 @@ import { PartnerDetailsPage } from "@/components/landing/PartnerDetailsPage";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  return PARTNERS.map((partner) => ({
-    params: { id: partner.id },
-    props: { partner },
-  }));
+	return PARTNERS.map((partner) => ({
+		params: { id: partner.id },
+		props: { partner },
+	}));
 }
 
 const { partner } = Astro.props;

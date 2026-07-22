@@ -73,10 +73,7 @@ const SPANS: Span[] = [
 function StatusGlyph({ status }: { status: SpanStatus }) {
 	if (status === "err") {
 		return (
-			<i
-				className="ri-close-line text-base text-red-400"
-				aria-label="error"
-			/>
+			<i className="ri-close-line text-base text-red-400" aria-label="error" />
 		);
 	}
 	if (status === "retry") {
@@ -88,10 +85,7 @@ function StatusGlyph({ status }: { status: SpanStatus }) {
 		);
 	}
 	return (
-		<i
-			className="ri-check-line text-base text-emerald-400"
-			aria-label="ok"
-		/>
+		<i className="ri-check-line text-base text-emerald-400" aria-label="ok" />
 	);
 }
 

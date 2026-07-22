@@ -7,7 +7,13 @@ const tk = {
 	punct: "text-zinc-500",
 };
 
-function T({ kind, children }: { kind: keyof typeof tk; children: React.ReactNode }) {
+function T({
+	kind,
+	children,
+}: {
+	kind: keyof typeof tk;
+	children: React.ReactNode;
+}) {
 	return <span className={tk[kind]}>{children}</span>;
 }
 
@@ -15,8 +21,7 @@ function T({ kind, children }: { kind: keyof typeof tk; children: React.ReactNod
 const CODE_LINES: React.ReactNode[] = [
 	<>
 		<T kind="kw">import</T> <T kind="punct">{"{"}</T> <T kind="id">Effect</T>{" "}
-		<T kind="punct">{"}"}</T> <T kind="kw">from</T>{" "}
-		<T kind="str">"effect"</T>
+		<T kind="punct">{"}"}</T> <T kind="kw">from</T> <T kind="str">"effect"</T>
 	</>,
 	<></>,
 	<>

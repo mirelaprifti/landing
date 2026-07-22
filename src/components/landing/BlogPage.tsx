@@ -19,7 +19,11 @@ function AvatarWithFallback({
 	src,
 	alt,
 	className,
-}: { src: string; alt: string; className: string }) {
+}: {
+	src: string;
+	alt: string;
+	className: string;
+}) {
 	const [failed, setFailed] = useState(false);
 	if (failed) {
 		return (
@@ -66,14 +70,17 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs font-semibold tracking-[0.18em] text-zinc-900 dark:text-white uppercase">
 							Release
 						</span>
-					{[...post.tags].filter((tag) => tag !== "Effect" && tag !== "Release").sort((a, b) => a.localeCompare(b)).map((tag) => (
-						<span
-							key={tag}
-							className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
-							>
-								{tag}
-							</span>
-						))}
+						{[...post.tags]
+							.filter((tag) => tag !== "Effect" && tag !== "Release")
+							.sort((a, b) => a.localeCompare(b))
+							.map((tag) => (
+								<span
+									key={tag}
+									className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
+								>
+									{tag}
+								</span>
+							))}
 					</div>
 
 					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-3xl">
@@ -83,7 +90,6 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-700 dark:text-zinc-300">
 						{post.excerpt}
 					</p>
-
 				</div>
 
 				{/* Right side: cover image or CTA arrow */}
@@ -100,9 +106,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						</div>
 					) : (
 						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:group-hover:border-white group-hover:text-zinc-900 dark:group-hover:text-white">
-							<i
-								className="ri-arrow-right-line text-lg"
-							/>
+							<i className="ri-arrow-right-line text-lg" />
 						</div>
 					)}
 				</div>
@@ -272,7 +276,13 @@ function TWIECard({ post }: { post: BlogPost }) {
 	);
 }
 
-function TWIESection({ posts, onViewAll }: { posts: BlogPost[]; onViewAll: () => void }) {
+function TWIESection({
+	posts,
+	onViewAll,
+}: {
+	posts: BlogPost[];
+	onViewAll: () => void;
+}) {
 	return (
 		<HorizontalScrollRail
 			title="This Week in Effect"
@@ -314,14 +324,17 @@ function PostCard({ post }: { post: BlogPost }) {
 				</div>
 				<div className="col-span-12 flex flex-wrap items-baseline gap-x-3 gap-y-2 md:col-span-4 md:flex-col md:items-end md:gap-2">
 					<div className="flex flex-wrap items-center gap-2 md:justify-end">
-						{[...post.tags].sort((a, b) => a.localeCompare(b)).slice(0, 2).map((tag) => (
-							<span
-								key={tag}
-								className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
-							>
-								{tag}
-							</span>
-						))}
+						{[...post.tags]
+							.sort((a, b) => a.localeCompare(b))
+							.slice(0, 2)
+							.map((tag) => (
+								<span
+									key={tag}
+									className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
+								>
+									{tag}
+								</span>
+							))}
 						{post.tags.length > 2 && (
 							<span className="inline-flex items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase">
 								+{post.tags.length - 2}
@@ -385,10 +398,7 @@ export function BlogPage() {
 
 	// Posts that are not TWIE (main grid — includes Release posts)
 	const nonTwiePosts = useMemo(
-		() =>
-			BLOG_POSTS.filter(
-				(p) => !p.tags.includes("This Week In Effect"),
-			),
+		() => BLOG_POSTS.filter((p) => !p.tags.includes("This Week In Effect")),
 		[],
 	);
 
@@ -415,7 +425,6 @@ export function BlogPage() {
 	}, [activeTag, twiePosts, nonTwiePosts, sortBy]);
 
 	const hasActiveFilters = activeTag !== "All";
-
 
 	// Separate featured post from the rest (search all posts — featured may be a Release)
 	const featuredPost = useMemo(() => {
@@ -473,20 +482,23 @@ export function BlogPage() {
 		syncUrl("All");
 	}, [syncUrl]);
 
-	const handleTagChange = useCallback((tag: BlogTag) => {
-		setActiveTag(tag);
-		setCurrentPage(1);
-		syncUrl(tag);
-		// Only scroll up when the post list has scrolled out of view (tab-like behavior)
-		if (postListRef.current) {
-			const navbarHeight = 64;
-			const { top } = postListRef.current.getBoundingClientRect();
-			if (top < navbarHeight) {
-				const targetTop = top + window.scrollY - navbarHeight;
-				window.scrollTo({ top: targetTop, behavior: "smooth" });
+	const handleTagChange = useCallback(
+		(tag: BlogTag) => {
+			setActiveTag(tag);
+			setCurrentPage(1);
+			syncUrl(tag);
+			// Only scroll up when the post list has scrolled out of view (tab-like behavior)
+			if (postListRef.current) {
+				const navbarHeight = 64;
+				const { top } = postListRef.current.getBoundingClientRect();
+				if (top < navbarHeight) {
+					const targetTop = top + window.scrollY - navbarHeight;
+					window.scrollTo({ top: targetTop, behavior: "smooth" });
+				}
 			}
-		}
-	}, [syncUrl]);
+		},
+		[syncUrl],
+	);
 
 	useEffect(() => {
 		const handlePopState = () => {
@@ -582,9 +594,7 @@ export function BlogPage() {
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 								// Effect Blog
 							</p>
-							<h1
-								className="max-w-3xl text-3xl font-bold leading-tighter tracking-tight text-zinc-900 dark:text-white"
-							>
+							<h1 className="max-w-3xl text-3xl font-bold leading-tighter tracking-tight text-zinc-900 dark:text-white">
 								Releases, write-ups, and notes{" "}
 								<br className="hidden md:block" />
 								from the Effect team
@@ -607,16 +617,21 @@ export function BlogPage() {
 			{/* ── Content zone ───────────────────────────── */}
 			<div ref={contentZoneRef} className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-
 					{/* TWIE horizontal scroll rail */}
-					<TWIESection posts={twiePosts} onViewAll={() => handleTagChange("This Week In Effect")} />
+					<TWIESection
+						posts={twiePosts}
+						onViewAll={() => handleTagChange("This Week In Effect")}
+					/>
 					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 					{/* Single-column layout */}
 					<div>
 						<div className="min-w-0 pb-24">
 							{/* Header row: heading + Category filter + Sort */}
-							<div ref={postListRef} className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 dark:border-zinc-700/80 pb-4 md:mt-20">
+							<div
+								ref={postListRef}
+								className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 dark:border-zinc-700/80 pb-4 md:mt-20"
+							>
 								<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
 									{activeTag === "All" ? "All posts" : activeTag}
 								</h2>
@@ -630,8 +645,12 @@ export function BlogPage() {
 											aria-expanded={catOpen}
 											className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 										>
-											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">{activeTag}</span>
-											<i className={`ri-arrow-down-s-line text-sm text-zinc-500 dark:text-zinc-400 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
+											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
+												{activeTag}
+											</span>
+											<i
+												className={`ri-arrow-down-s-line text-sm text-zinc-500 dark:text-zinc-400 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`}
+											/>
 										</button>
 										{catOpen && (
 											<ul
@@ -663,12 +682,19 @@ export function BlogPage() {
 																	}`}
 																>
 																	<span>{tag}</span>
-																	<span className={`tabular-nums ${isActive ? "text-zinc-900 dark:text-white" : "text-zinc-500 dark:text-zinc-400"}`}>
-																		{String(tagCounts[tag] ?? 0).padStart(3, "0")}
+																	<span
+																		className={`tabular-nums ${isActive ? "text-zinc-900 dark:text-white" : "text-zinc-500 dark:text-zinc-400"}`}
+																	>
+																		{String(tagCounts[tag] ?? 0).padStart(
+																			3,
+																			"0",
+																		)}
 																	</span>
 																	<span
 																		className={`pointer-events-none absolute right-4 bottom-1 left-4 h-px bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out origin-left ${
-																			isActive ? "scale-x-100" : "scale-x-0 group-hover/item:scale-x-[0.08]"
+																			isActive
+																				? "scale-x-100"
+																				: "scale-x-0 group-hover/item:scale-x-[0.08]"
 																		}`}
 																	/>
 																</button>
@@ -681,7 +707,9 @@ export function BlogPage() {
 									{/* Sort toggle */}
 									<button
 										type="button"
-										onClick={() => setSortBy((s) => (s === "newest" ? "oldest" : "newest"))}
+										onClick={() =>
+											setSortBy((s) => (s === "newest" ? "oldest" : "newest"))
+										}
 										aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
 										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
 									>
@@ -697,7 +725,10 @@ export function BlogPage() {
 										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-800 dark:text-zinc-200 uppercase transition-colors hover:text-zinc-900 dark:hover:text-white"
 									>
 										<span>RSS</span>
-										<i className="ri-rss-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" aria-hidden="true" />
+										<i
+											className="ri-rss-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300"
+											aria-hidden="true"
+										/>
 									</a>
 								</div>
 							</div>
@@ -718,7 +749,10 @@ export function BlogPage() {
 									{totalPages > 1 && (
 										<>
 											<div className="mt-12 h-px bg-zinc-200 dark:bg-zinc-800" />
-											<nav aria-label="Blog pagination" className="mt-8 flex items-center justify-center gap-1">
+											<nav
+												aria-label="Blog pagination"
+												className="mt-8 flex items-center justify-center gap-1"
+											>
 												<button
 													type="button"
 													disabled={safePage <= 1}
@@ -756,19 +790,27 @@ export function BlogPage() {
 																key={page}
 																type="button"
 																onClick={() => goToPage(page)}
-																aria-current={page === safePage ? "page" : undefined}
+																aria-current={
+																	page === safePage ? "page" : undefined
+																}
 																className={`group/page relative flex h-8 min-w-8 items-center justify-center px-2 font-mono text-xs tabular-nums transition-colors ${
 																	page === safePage
 																		? "text-zinc-900 dark:text-white"
 																		: "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
 																}`}
 															>
-																<span className={page === safePage ? "font-semibold" : ""}>
+																<span
+																	className={
+																		page === safePage ? "font-semibold" : ""
+																	}
+																>
 																	{String(page).padStart(2, "0")}
 																</span>
 																<span
 																	className={`pointer-events-none absolute right-2 -bottom-0.5 left-2 h-px bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out origin-left ${
-																		page === safePage ? "scale-x-100" : "scale-x-0 group-hover/page:scale-x-[0.2]"
+																		page === safePage
+																			? "scale-x-100"
+																			: "scale-x-0 group-hover/page:scale-x-[0.2]"
 																	}`}
 																/>
 															</button>
@@ -829,7 +871,6 @@ export function BlogPage() {
 								</div>
 							)}
 						</div>
-
 					</div>
 				</div>
 			</div>

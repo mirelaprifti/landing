@@ -58,7 +58,8 @@ export const JOBS: Job[] = [
 		url: "https://forms.galevisa.com/r/m6gr7e",
 		logo: "/assets/effect-jobs-logos/gale-icon.png",
 		payRange: "CAD 35–38/hr · USD 22–28/hr",
-		description: "Help American businesses get work authorization for their employees.",
+		description:
+			"Help American businesses get work authorization for their employees.",
 	},
 	{
 		company: "HumanLayer",
@@ -67,7 +68,8 @@ export const JOBS: Job[] = [
 		url: "https://workatastartup.com/jobs/84491",
 		logo: "/assets/effect-jobs-logos/humanlayer.png",
 		payRange: "$180K – $250K",
-		description: "Help CTOs and VPEs drive the transition to 99% AI-written code in their engineering orgs.",
+		description:
+			"Help CTOs and VPEs drive the transition to 99% AI-written code in their engineering orgs.",
 	},
 	{
 		company: "Joymore",
@@ -76,7 +78,8 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1506377610073215118",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/joymore-icon.svg",
-		description: "High-growth startup, small team — building agents/copilots with heavy pipeline and task orchestration.",
+		description:
+			"High-growth startup, small team — building agents/copilots with heavy pipeline and task orchestration.",
 	},
 	{
 		company: "LEAP Legal Software",
@@ -85,7 +88,8 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1512445948662386889",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/leap.svg",
-		description: "Join the LEAP CRM team to work on a greenfield project, still in its early stages.",
+		description:
+			"Join the LEAP CRM team to work on a greenfield project, still in its early stages.",
 	},
 	{
 		company: "ManageSpace",
@@ -102,7 +106,8 @@ export const JOBS: Job[] = [
 		url: "https://x.com/louis_g_v/status/2067841625418588233",
 		note: "Posted on X",
 		logo: "/assets/images/open-router.svg",
-		description: "Help build the unified interface for LLMs, processing trillions of tokens weekly.",
+		description:
+			"Help build the unified interface for LLMs, processing trillions of tokens weekly.",
 	},
 	{
 		company: "PhosPhor",
@@ -110,7 +115,8 @@ export const JOBS: Job[] = [
 		location: "Remote · NYC",
 		url: "https://phosphor.co/",
 		logo: "/assets/effect-jobs-logos/phosphor-icon.png",
-		description: "Building non-dilutive growth engines for industrial and climate technology companies.",
+		description:
+			"Building non-dilutive growth engines for industrial and climate technology companies.",
 	},
 	{
 		company: "Reap",
@@ -119,7 +125,8 @@ export const JOBS: Job[] = [
 		url: "https://discord.com/channels/795981131316985866/796153351372275743/1494185541233541270",
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/reap.png",
-		description: "Fintech using Effect as part of the stack — looking for strong engineers with a solid functional-programming background.",
+		description:
+			"Fintech using Effect as part of the stack — looking for strong engineers with a solid functional-programming background.",
 	},
 	{
 		company: "Solid",
@@ -129,7 +136,8 @@ export const JOBS: Job[] = [
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/solid.png",
 		payRange: "$150K – $250K + equity",
-		description: "Building a code-first framework — all focused on enabling non-technical users to ship production-quality code.",
+		description:
+			"Building a code-first framework — all focused on enabling non-technical users to ship production-quality code.",
 	},
 	{
 		company: "Supermemory",
@@ -138,7 +146,8 @@ export const JOBS: Job[] = [
 		url: "https://x.com/i/jobs/1928194391946186862",
 		logo: "/assets/effect-jobs-logos/supermemory-icon.png",
 		payRange: "$90K – $250K",
-		description: "The leading context and memory engine in the world, serving tens of thousands of customers.",
+		description:
+			"The leading context and memory engine in the world, serving tens of thousands of customers.",
 	},
 	{
 		company: "Superwall",
@@ -147,7 +156,8 @@ export const JOBS: Job[] = [
 		url: "https://x.com/jakemor/status/1972770955500876070",
 		logo: "/assets/effect-jobs-logos/sw-icon.png",
 		payRange: "$130K Yr 1 → $175K Yr 2",
-		description: "If you're passionate about mobile apps and monetization, we'd love to chat.",
+		description:
+			"If you're passionate about mobile apps and monetization, we'd love to chat.",
 	},
 	{
 		company: "SynTwin",
@@ -156,7 +166,8 @@ export const JOBS: Job[] = [
 		url: "https://syntwin.ai/careers/product-engineer",
 		logo: "/assets/effect-jobs-logos/syntwyn-logo.jpg",
 		payRange: "€90K – €120K depending on seniority",
-		description: "Build digital twins of top performers that run personalised 1:1 conversations at scale.",
+		description:
+			"Build digital twins of top performers that run personalised 1:1 conversations at scale.",
 	},
 	{
 		company: "Tranched",
@@ -164,7 +175,8 @@ export const JOBS: Job[] = [
 		location: "Paris · London · Amsterdam",
 		url: "https://tranched.fi/careers/fullstack-developer-web3",
 		logo: "/assets/effect-jobs-logos/tranched.png",
-		description: "Automating the structuring and management of complex securitisation transactions.",
+		description:
+			"Automating the structuring and management of complex securitisation transactions.",
 	},
 ];
 
