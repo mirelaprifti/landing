@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PromoVideo } from "@/components/promo/PromoVideo";
+---
+
+<BaseLayout
+  title="Effect — Promo"
+  description="Self-running promo animation for recording social media videos."
+>
+  <PromoVideo client:only="react" />
+</BaseLayout>
+
+<style is:global>
+  /* Keep the dev toolbar out of screen recordings */
+  astro-dev-toolbar {
+    display: none !important;
+  }
+</style>
