@@ -51,16 +51,16 @@ function getFormat(): Format {
 
 /** Tour stops, resolved against the live page by heading text. */
 const TOUR: { match: string; hold: number }[] = [
-	{ match: "Reliable TypeScript", hold: 2800 },
-	{ match: "Effect.retry", hold: 3000 },
-	{ match: "Real-world production systems", hold: 3000 },
-	{ match: "Built-in solutions", hold: 3000 },
-	{ match: "Write Effect code with AI", hold: 3000 },
-	{ match: "What developers are saying", hold: 3000 },
-	{ match: "Stop installing", hold: 2000 },
+	{ match: "Reliable TypeScript", hold: 1800 },
+	{ match: "Effect.retry", hold: 1700 },
+	{ match: "Real-world production systems", hold: 1700 },
+	{ match: "Built-in solutions", hold: 1700 },
+	{ match: "Write Effect code with AI", hold: 1700 },
+	{ match: "What developers are saying", hold: 1700 },
+	{ match: "Stop installing", hold: 1400 },
 ];
 
-const END_CARD_MS = 4600;
+const END_CARD_MS = 3600;
 
 function sleep(ms: number, state: { cancelled: boolean }) {
 	return new Promise<void>((resolve) => {
@@ -189,9 +189,9 @@ export function PromoSiteTour() {
 			setIntroDone(false);
 			setShowEndCard(false);
 			win.scrollTo(0, 0);
-			await sleep(1600, state);
+			await sleep(1400, state);
 			setIntroDone(true);
-			await sleep(600, state);
+			await sleep(400, state);
 
 			while (!state.cancelled) {
 				for (const stop of TOUR) {
@@ -200,7 +200,7 @@ export function PromoSiteTour() {
 					if (target !== null) {
 						const dist = Math.abs(target - win.scrollY);
 						if (dist > 4) {
-							const duration = Math.min(2600, Math.max(1000, dist * 0.85));
+							const duration = Math.min(1700, Math.max(700, dist * 0.55));
 							await tweenScroll(win, target, duration, state);
 						}
 					}
