@@ -234,7 +234,7 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* Right — community proof photo */}
-							<div className="relative overflow-hidden border border-zinc-800">
+							<div className="relative overflow-hidden">
 								<img
 									src={getAssetPath("/assets/events/speakers.png")}
 									alt="An Effect community meetup"
