@@ -33,9 +33,7 @@ export function PrivacyPolicyPage() {
 								This website is operated by Effectful Technologies Inc.
 								(&quot;Effectful&quot;, &quot;we&quot;, &quot;us&quot;). We keep
 								data collection to a minimum: no advertising trackers, no
-								cross-site profiling, and no analytics cookies. This page
-								explains what little we do collect, why, and what your rights
-								are.
+								cross-site profiling, and no analytics cookies.
 							</p>
 						</div>
 
@@ -44,13 +42,11 @@ export function PrivacyPolicyPage() {
 								1. Analytics
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								We use PostHog in cookieless mode to understand aggregate usage
-								of this site — which pages are visited and how often. This mode
-								stores nothing on your device. Your IP address and browser user
-								agent are processed transiently to compute a salted identifier
-								that resets daily and cannot be used to track you across days or
-								across sites. We do not build individual profiles from this
-								data.
+								We use PostHog in cookieless mode to measure aggregate usage of
+								this site. It stores nothing on your device. Your IP address and
+								browser user agent are processed transiently to compute a salted
+								identifier that resets daily and cannot track you across days or
+								sites. We do not build individual profiles.
 							</p>
 						</div>
 
@@ -59,13 +55,11 @@ export function PrivacyPolicyPage() {
 								2. Information you give us
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								If you contact us by email or submit one of our forms (for
-								example, to tell us about an Effect talk), we receive the
-								information you provide — typically your name, email address,
-								and your message. We use it only to respond and to provide the
-								support you asked for, and we keep it no longer than needed for
-								that purpose. Forms are hosted by Google, whose privacy policy
-								applies to the submission process.
+								If you email us or submit one of our forms, we receive what you
+								provide, typically your name, email address, and message. We use
+								it only to respond and keep it no longer than needed. Forms are
+								hosted by Google, whose privacy policy applies to the
+								submission.
 							</p>
 						</div>
 
@@ -74,12 +68,10 @@ export function PrivacyPolicyPage() {
 								3. Cookies and local storage
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								We do not use analytics or advertising cookies, which is why you
-								see no cookie banner. The site stores a small number of
-								functional preferences in your browser&apos;s local storage —
-								such as your theme choice or a dismissed announcement banner.
-								These never leave your device and are not shared with us or
-								anyone else.
+								We use no analytics or advertising cookies, which is why there
+								is no cookie banner. The site stores a few functional
+								preferences in your browser&apos;s local storage, such as your
+								theme choice. These never leave your device.
 							</p>
 						</div>
 
@@ -88,10 +80,10 @@ export function PrivacyPolicyPage() {
 								4. Hosting and server logs
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								Like virtually every website, our hosting infrastructure keeps
-								standard technical logs (IP address, user agent, requested
-								pages) for security and operational purposes. These are retained
-								briefly and are not used for profiling.
+								Our hosting infrastructure keeps standard technical logs (IP
+								address, user agent, requested pages) for security and
+								operational purposes. They are retained briefly and not used for
+								profiling.
 							</p>
 						</div>
 
@@ -100,12 +92,10 @@ export function PrivacyPolicyPage() {
 								5. Third-party services
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								Some pages link to or embed content from third parties — for
-								example YouTube videos, our Discord community, GitHub, our
-								events calendar, and our merch store. When you follow those
-								links or interact with embedded content, the respective
-								provider&apos;s privacy policy applies. We do not control what
-								those services collect.
+								Some pages link to or embed content from third parties, such as
+								YouTube, Discord, GitHub, our events calendar, and our merch
+								store. When you interact with those services, their privacy
+								policies apply.
 							</p>
 						</div>
 
@@ -114,10 +104,10 @@ export function PrivacyPolicyPage() {
 								6. Legal basis
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								Where the GDPR applies, we process the data described above on
-								the basis of our legitimate interest in operating, securing, and
-								improving this site (Art. 6(1)(f)), and — for information you
-								send us — to take steps at your request (Art. 6(1)(b)).
+								Where the GDPR applies, we process this data based on our
+								legitimate interest in operating and securing the site (Art.
+								6(1)(f)) and, for information you send us, to take steps at your
+								request (Art. 6(1)(b)).
 							</p>
 						</div>
 
@@ -127,10 +117,9 @@ export function PrivacyPolicyPage() {
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
 								Depending on where you live, you may have the right to access,
-								correct, or delete personal data we hold about you, to object to
-								its processing, or to lodge a complaint with a supervisory
-								authority. To exercise any of these rights, email us — we&apos;ll
-								respond promptly.
+								correct, or delete your personal data, to object to its
+								processing, or to complain to a supervisory authority. Email us
+								to exercise any of these rights.
 							</p>
 						</div>
 
@@ -152,7 +141,7 @@ export function PrivacyPolicyPage() {
 								9. Changes to this policy
 							</h2>
 							<p className="text-base leading-relaxed text-zinc-400">
-								If we change how this site handles data, we&apos;ll update this
+								If we change how this site handles data, we will update this
 								page and the date at the top.
 							</p>
 						</div>
