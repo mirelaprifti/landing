@@ -81,32 +81,34 @@ function sleep(ms: number, state: { cancelled: boolean }) {
 	});
 }
 
-function easeInOutQuint(t: number) {
-	return t < 0.5 ? 16 * t * t * t * t * t : 1 - (-2 * t + 2) ** 5 / 2;
-}
-
-function tweenScroll(
-	win: Window,
-	to: number,
+/** Pan the full-height iframe with a compositor-driven WAAPI transform.
+ * The landing page's main thread stalls 100-200ms at a time under real
+ * scrolling (scroll-triggered work), which makes any scroll tween hitch;
+ * a transform animation runs entirely on the compositor and stays smooth. */
+function panTo(
+	iframe: HTMLIFrameElement,
+	iframeScale: number,
+	fromY: number,
+	toY: number,
 	duration: number,
 	state: { cancelled: boolean },
-) {
-	return new Promise<void>((resolve) => {
-		const from = win.scrollY;
-		let start: number | null = null;
-		// Drive the tween with the iframe's own rAF clock so every scroll
-		// update lands inside one of its render frames — the parent's rAF is
-		// not in lockstep with the iframe's and causes dropped-frame judder.
-		const frame = (now: number) => {
-			if (state.cancelled) return resolve();
-			if (start === null) start = now;
-			const t = Math.min(1, ((now - start) * SPEED) / duration);
-			win.scrollTo(0, from + (to - from) * easeInOutQuint(t));
-			if (t < 1) win.requestAnimationFrame(frame);
-			else resolve();
-		};
-		win.requestAnimationFrame(frame);
-	});
+): Promise<void> {
+	if (state.cancelled) return Promise.resolve();
+	const anim = iframe.animate(
+		[
+			{ transform: `scale(${iframeScale}) translateY(${-fromY}px)` },
+			{ transform: `scale(${iframeScale}) translateY(${-toY}px)` },
+		],
+		{
+			duration: duration / SPEED,
+			easing: "cubic-bezier(0.83, 0, 0.17, 1)",
+			fill: "forwards",
+		},
+	);
+	return anim.finished.then(
+		() => undefined,
+		() => undefined,
+	);
 }
 
 /** Find the scroll target for a tour stop by matching heading text. */
@@ -141,7 +143,9 @@ export function PromoSiteTour() {
 	const [introDone, setIntroDone] = useState(false);
 	const [loopKey, setLoopKey] = useState(0);
 	const [showHint, setShowHint] = useState(true);
+	const [pageHeight, setPageHeight] = useState<number | null>(null);
 	const iframeRef = useRef<HTMLIFrameElement>(null);
+	const posY = useRef(0);
 	const stage = FORMATS[format];
 
 	const iframeScale = stage.frameW / stage.designW;
@@ -194,16 +198,24 @@ export function PromoSiteTour() {
 				await sleep(200, state);
 			}
 			if (state.cancelled) return;
-			const win = iframe.contentWindow;
 			const doc = iframe.contentDocument;
-			if (!win || !doc) return;
+			if (!doc) return;
 			hideScrollbars(doc);
+
+			// Render the whole page in the (clipped) iframe so panning is a
+			// pure transform — no real scrolling happens at all.
+			const contentH = doc.documentElement.scrollHeight;
+			setPageHeight(contentH);
+			const visibleH = viewportH / iframeScale;
+			const maxY = Math.max(0, contentH - visibleH);
+			await sleep(300, state);
 
 			while (!state.cancelled) {
 				// Reset behind the cover and type the URL from scratch.
 				setIntroDone(false);
 				setLoopKey((k) => k + 1);
-				win.scrollTo(0, 0);
+				for (const a of iframe.getAnimations()) a.cancel();
+				posY.current = 0;
 				setFadeOut(false);
 				await sleep(1600, state);
 				setIntroDone(true);
@@ -213,10 +225,12 @@ export function PromoSiteTour() {
 					if (state.cancelled) return;
 					const target = resolveTarget(doc, stop.match);
 					if (target !== null) {
-						const dist = Math.abs(target - win.scrollY);
+						const y = Math.min(target, maxY);
+						const dist = Math.abs(y - posY.current);
 						if (dist > 4) {
 							const duration = Math.min(2000, Math.max(950, dist * 0.75));
-							await tweenScroll(win, target, duration, state);
+							await panTo(iframe, iframeScale, posY.current, y, duration, state);
+							posY.current = y;
 						}
 					}
 					await sleep(stop.hold, state);
@@ -313,8 +327,9 @@ export function PromoSiteTour() {
 								className="pointer-events-none origin-top-left border-0"
 								style={{
 									width: stage.designW,
-									height: viewportH / iframeScale,
+									height: pageHeight ?? viewportH / iframeScale,
 									transform: `scale(${iframeScale})`,
+									willChange: "transform",
 								}}
 							/>
 							{/* Cover while the URL types */}
