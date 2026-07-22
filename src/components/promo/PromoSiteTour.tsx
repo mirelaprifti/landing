@@ -61,14 +61,14 @@ const SPEED = (() => {
 
 /** Tour stops, resolved against the live page by heading text. */
 const TOUR: { match: string; hold: number }[] = [
-	{ match: "Reliable TypeScript", hold: 1100 },
-	{ match: "Effect.retry", hold: 800 },
-	{ match: "Real-world production systems", hold: 800 },
-	{ match: "Built-in solutions", hold: 800 },
-	{ match: "Track successes, errors, dependencies", hold: 800 },
-	{ match: "Write Effect code with AI", hold: 800 },
-	{ match: "What developers are saying", hold: 800 },
-	{ match: "Stop installing", hold: 900 },
+	{ match: "Reliable TypeScript", hold: 1000 },
+	{ match: "Effect.retry", hold: 700 },
+	{ match: "Real-world production systems", hold: 700 },
+	{ match: "Built-in solutions", hold: 700 },
+	{ match: "Track successes, errors, dependencies", hold: 700 },
+	{ match: "Write Effect code with AI", hold: 700 },
+	{ match: "What developers are saying", hold: 700 },
+	{ match: "Stop installing", hold: 800 },
 ];
 
 function sleep(ms: number, state: { cancelled: boolean }) {
@@ -223,9 +223,9 @@ export function PromoSiteTour() {
 				);
 				posY.current = 0;
 				setFadeOut(false);
-				await sleep(1600, state);
+				await sleep(1450, state);
 				setIntroDone(true);
-				await sleep(400, state);
+				await sleep(300, state);
 
 				for (const stop of TOUR) {
 					if (state.cancelled) return;
@@ -234,7 +234,7 @@ export function PromoSiteTour() {
 						const y = Math.min(target, maxY);
 						const dist = Math.abs(y - posY.current);
 						if (dist > 4) {
-							const duration = Math.min(2000, Math.max(950, dist * 0.75));
+							const duration = Math.min(1800, Math.max(880, dist * 0.66));
 							await panTo(iframe, iframeScale, posY.current, y, duration, state);
 							posY.current = y;
 						}
@@ -244,7 +244,7 @@ export function PromoSiteTour() {
 				if (state.cancelled) return;
 				// Fade to black, then start over from the URL typing.
 				setFadeOut(true);
-				await sleep(1100, state);
+				await sleep(950, state);
 			}
 		};
 		run();
@@ -275,9 +275,9 @@ export function PromoSiteTour() {
 						backgroundPosition: "calc(50% + 97px) 0",
 					}}
 				/>
-				{/* Glow */}
+				{/* Glow (static — a pulse here would flicker through the whole video) */}
 				<div
-					className="pointer-events-none absolute inset-0 animate-[glow-pulse_4s_ease-in-out_infinite]"
+					className="pointer-events-none absolute inset-0"
 					style={{
 						background: `
 							radial-gradient(ellipse 50% 80% at 70% -20%, var(--hero-glow-a) 0%, transparent 50%),
