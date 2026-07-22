@@ -119,22 +119,6 @@ export function HeroCommandPanel({
 						<span className="absolute right-0 bottom-0 left-0 h-px bg-zinc-900 dark:bg-white" />
 					)}
 				</button>
-				<button
-					type="button"
-					role="tab"
-					aria-selected={mode === "prompt"}
-					onClick={() => setMode("prompt")}
-					className={`group relative flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
-						mode === "prompt"
-							? "text-zinc-900 dark:text-white"
-							: "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
-					}`}
-				>
-					Prompt for AI agents
-					{mode === "prompt" && (
-						<span className="absolute right-0 bottom-0 left-0 h-px bg-zinc-900 dark:bg-white" />
-					)}
-				</button>
 			</div>
 
 			{/* Command row — same height for INSTALL and PROMPT modes */}
