@@ -326,38 +326,69 @@ export function PromoSiteTour() {
 				<AnimatePresence>
 					{showEndCard && (
 						<motion.div
-							className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-10 bg-zinc-950/90 backdrop-blur-xl"
+							className="absolute inset-0 z-10 bg-zinc-950"
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.7 }}
 						>
-							<motion.img
-								src={getAssetPath(
-									"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
-								)}
-								alt="Effect"
-								className="h-20 w-auto"
-								initial={{ opacity: 0, y: 16 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+							{/* Same background language as the site: grid + soft glow */}
+							<div
+								className="pointer-events-none absolute inset-0"
+								style={{
+									backgroundImage: `
+										linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+										linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
+									`,
+									backgroundSize: "196.6px 194px",
+									backgroundPosition: "calc(50% + 97px) 0",
+								}}
 							/>
-							<motion.div
-								className="flex items-center gap-4 rounded-xl border border-zinc-700 bg-zinc-900/80 px-8 py-4 font-mono text-2xl text-zinc-200"
-								initial={{ opacity: 0, scale: 0.95 }}
-								animate={{ opacity: 1, scale: 1 }}
-								transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
-							>
-								<span className="text-zinc-500">$</span> bun add effect
-							</motion.div>
-							<motion.p
-								className="font-mono text-3xl font-medium tracking-wide text-[#22c55e]"
-								initial={{ opacity: 0, y: 10 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: 1.5 }}
-							>
-								effect.website
-							</motion.p>
+							<div
+								className="pointer-events-none absolute inset-0"
+								style={{
+									background:
+										"linear-gradient(to bottom, var(--page-fade) 0%, transparent 30%, transparent 60%, var(--page-fade) 100%)",
+								}}
+							/>
+							<div
+								className="pointer-events-none absolute inset-0"
+								style={{
+									background:
+										"radial-gradient(ellipse 45% 55% at 50% 42%, var(--hero-glow-a) 0%, transparent 60%)",
+								}}
+							/>
+
+							<div className="absolute inset-0 flex flex-col items-center justify-center">
+								<motion.img
+									src={getAssetPath(
+										"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
+									)}
+									alt="Effect"
+									className="h-16 w-auto"
+									initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
+									animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+									transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+								/>
+								<motion.p
+									className="mt-7 text-2xl text-zinc-400"
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
+								>
+									Reliable TypeScript for the AI era
+								</motion.p>
+								<motion.div
+									className="mt-12 flex items-center gap-3 font-mono text-lg text-zinc-500"
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ duration: 0.6, delay: 1.2 }}
+								>
+									<span>bun add effect</span>
+									<span className="text-zinc-700">·</span>
+									<span className="text-zinc-200">effect.website</span>
+								</motion.div>
+							</div>
 						</motion.div>
 					)}
 				</AnimatePresence>
