@@ -124,6 +124,7 @@ export function PromoSiteTour() {
 	const [scale, setScale] = useState(1);
 	const [fadeOut, setFadeOut] = useState(false);
 	const [introDone, setIntroDone] = useState(false);
+	const [loopKey, setLoopKey] = useState(0);
 	const [showHint, setShowHint] = useState(true);
 	const iframeRef = useRef<HTMLIFrameElement>(null);
 	const stage = FORMATS[format];
@@ -183,15 +184,16 @@ export function PromoSiteTour() {
 			if (!win || !doc) return;
 			hideScrollbars(doc);
 
-			// Type the URL, then reveal the page.
-			setIntroDone(false);
-			setFadeOut(false);
-			win.scrollTo(0, 0);
-			await sleep(1400, state);
-			setIntroDone(true);
-			await sleep(400, state);
-
 			while (!state.cancelled) {
+				// Reset behind the cover and type the URL from scratch.
+				setIntroDone(false);
+				setLoopKey((k) => k + 1);
+				win.scrollTo(0, 0);
+				setFadeOut(false);
+				await sleep(1600, state);
+				setIntroDone(true);
+				await sleep(400, state);
+
 				for (const stop of TOUR) {
 					if (state.cancelled) return;
 					const target = resolveTarget(doc, stop.match);
@@ -205,13 +207,9 @@ export function PromoSiteTour() {
 					await sleep(stop.hold, state);
 				}
 				if (state.cancelled) return;
-				// Fade to black, reset to the top, fade back in on the hero.
+				// Fade to black, then start over from the URL typing.
 				setFadeOut(true);
-				await sleep(900, state);
-				win.scrollTo(0, 0);
-				await sleep(300, state);
-				setFadeOut(false);
-				await sleep(800, state);
+				await sleep(1100, state);
 			}
 		};
 		run();
@@ -284,7 +282,7 @@ export function PromoSiteTour() {
 								<span className="h-3 w-3 rounded-full bg-zinc-700" />
 							</div>
 							<div className="flex h-8 flex-1 items-center justify-center rounded-lg bg-zinc-800/80 font-mono text-sm text-zinc-300">
-								<TypedUrl key={`url-${cycle}`} />
+								<TypedUrl key={`url-${cycle}-${loopKey}`} />
 							</div>
 							<div className="w-14" />
 						</div>
