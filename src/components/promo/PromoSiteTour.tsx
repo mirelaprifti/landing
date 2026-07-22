@@ -48,6 +48,17 @@ function getFormat(): Format {
 	return f === "square" || f === "vertical" ? f : "wide";
 }
 
+/** Playback rate. ?speed=0.5 runs everything at half speed — used when
+ * recording video (capture in slow motion, retime 2x in the encode) so every
+ * output frame gets a freshly painted scroll position. */
+const SPEED = (() => {
+	if (typeof window === "undefined") return 1;
+	const s = Number.parseFloat(
+		new URLSearchParams(window.location.search).get("speed") ?? "1",
+	);
+	return Number.isFinite(s) && s >= 0.1 && s <= 2 ? s : 1;
+})();
+
 /** Tour stops, resolved against the live page by heading text. */
 const TOUR: { match: string; hold: number }[] = [
 	{ match: "Reliable TypeScript", hold: 1100 },
@@ -62,7 +73,7 @@ const TOUR: { match: string; hold: number }[] = [
 
 function sleep(ms: number, state: { cancelled: boolean }) {
 	return new Promise<void>((resolve) => {
-		const t = setTimeout(resolve, ms);
+		const t = setTimeout(resolve, ms / SPEED);
 		if (state.cancelled) {
 			clearTimeout(t);
 			resolve();
@@ -82,15 +93,19 @@ function tweenScroll(
 ) {
 	return new Promise<void>((resolve) => {
 		const from = win.scrollY;
-		const start = performance.now();
+		let start: number | null = null;
+		// Drive the tween with the iframe's own rAF clock so every scroll
+		// update lands inside one of its render frames — the parent's rAF is
+		// not in lockstep with the iframe's and causes dropped-frame judder.
 		const frame = (now: number) => {
 			if (state.cancelled) return resolve();
-			const t = Math.min(1, (now - start) / duration);
+			if (start === null) start = now;
+			const t = Math.min(1, ((now - start) * SPEED) / duration);
 			win.scrollTo(0, from + (to - from) * easeInOutQuint(t));
-			if (t < 1) requestAnimationFrame(frame);
+			if (t < 1) win.requestAnimationFrame(frame);
 			else resolve();
 		};
-		requestAnimationFrame(frame);
+		win.requestAnimationFrame(frame);
 	});
 }
 
@@ -309,7 +324,7 @@ export function PromoSiteTour() {
 										className="absolute inset-0 bg-zinc-950"
 										initial={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
-										transition={{ duration: 0.6 }}
+										transition={{ duration: 0.6 / SPEED }}
 									/>
 								)}
 							</AnimatePresence>
@@ -325,7 +340,7 @@ export function PromoSiteTour() {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							transition={{ duration: 0.8, ease: "easeInOut" }}
+							transition={{ duration: 0.8 / SPEED, ease: "easeInOut" }}
 						/>
 					)}
 				</AnimatePresence>
@@ -362,8 +377,8 @@ function TypedUrl() {
 				i++;
 				setCount(i);
 				if (i >= text.length) clearInterval(interval);
-			}, 70);
-		}, 400);
+			}, 70 / SPEED);
+		}, 400 / SPEED);
 		return () => {
 			clearTimeout(timeout);
 			clearInterval(interval);
