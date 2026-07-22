@@ -50,34 +50,14 @@ function getFormat(): Format {
 }
 
 /** Tour stops, resolved against the live page by heading text. */
-const TOUR: { match: string; caption: string | null; hold: number }[] = [
-	{ match: "Reliable TypeScript", caption: null, hold: 2800 },
-	{
-		match: "Effect.retry",
-		caption: "One package. Everything you need.",
-		hold: 3000,
-	},
-	{
-		match: "Real-world production systems",
-		caption: "Powering real-world production systems",
-		hold: 3000,
-	},
-	{
-		match: "Built-in solutions",
-		caption: "Built-in solutions for the hard problems",
-		hold: 3000,
-	},
-	{
-		match: "Write Effect code with AI",
-		caption: "Built for the AI era",
-		hold: 3000,
-	},
-	{
-		match: "What developers are saying",
-		caption: "Loved by developers",
-		hold: 3000,
-	},
-	{ match: "Stop installing", caption: null, hold: 2000 },
+const TOUR: { match: string; hold: number }[] = [
+	{ match: "Reliable TypeScript", hold: 2800 },
+	{ match: "Effect.retry", hold: 3000 },
+	{ match: "Real-world production systems", hold: 3000 },
+	{ match: "Built-in solutions", hold: 3000 },
+	{ match: "Write Effect code with AI", hold: 3000 },
+	{ match: "What developers are saying", hold: 3000 },
+	{ match: "Stop installing", hold: 2000 },
 ];
 
 const END_CARD_MS = 4600;
@@ -144,7 +124,6 @@ export function PromoSiteTour() {
 	const [format] = useState<Format>(getFormat);
 	const [cycle, setCycle] = useState(0);
 	const [scale, setScale] = useState(1);
-	const [caption, setCaption] = useState<string | null>(null);
 	const [showEndCard, setShowEndCard] = useState(false);
 	const [introDone, setIntroDone] = useState(false);
 	const [showHint, setShowHint] = useState(true);
@@ -209,7 +188,6 @@ export function PromoSiteTour() {
 			// Type the URL, then reveal the page.
 			setIntroDone(false);
 			setShowEndCard(false);
-			setCaption(null);
 			win.scrollTo(0, 0);
 			await sleep(1600, state);
 			setIntroDone(true);
@@ -218,7 +196,6 @@ export function PromoSiteTour() {
 			while (!state.cancelled) {
 				for (const stop of TOUR) {
 					if (state.cancelled) return;
-					setCaption(stop.caption);
 					const target = resolveTarget(doc, stop.match);
 					if (target !== null) {
 						const dist = Math.abs(target - win.scrollY);
@@ -230,7 +207,6 @@ export function PromoSiteTour() {
 					await sleep(stop.hold, state);
 				}
 				if (state.cancelled) return;
-				setCaption(null);
 				setShowEndCard(true);
 				await sleep(END_CARD_MS, state);
 				// Reset behind the end card, then reveal the hero again.
@@ -343,28 +319,6 @@ export function PromoSiteTour() {
 							</AnimatePresence>
 						</div>
 					</motion.div>
-				</div>
-
-				{/* Caption overlay */}
-				<div
-					className="pointer-events-none absolute inset-x-0 flex justify-center"
-					style={{ bottom: 56 }}
-				>
-					<AnimatePresence mode="wait">
-						{caption && (
-							<motion.p
-								key={caption}
-								className="rounded-full border border-zinc-700/80 bg-zinc-950/80 px-8 py-4 font-mono text-2xl tracking-wide text-zinc-100 backdrop-blur-md"
-								initial={{ opacity: 0, y: 16 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -10 }}
-								transition={{ duration: 0.45, ease: "easeOut" }}
-							>
-								<span className="text-zinc-500">{"// "}</span>
-								{caption}
-							</motion.p>
-						)}
-					</AnimatePresence>
 				</div>
 
 				{/* End card */}
