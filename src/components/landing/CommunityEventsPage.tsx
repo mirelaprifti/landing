@@ -283,7 +283,7 @@ export function CommunityEventsPage() {
 							<img
 								src={getAssetPath("/assets/events/speakers.png")}
 								alt=""
-								className="h-full w-full object-cover object-[75%_center] saturate-[0.85]"
+								className="h-full w-full object-cover object-[100%_0%] saturate-[0.85]"
 							/>
 							{/* Left-to-right scrim so the copy sits on solid dark */}
 							<div
