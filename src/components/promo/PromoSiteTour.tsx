@@ -55,6 +55,7 @@ const TOUR: { match: string; hold: number }[] = [
 	{ match: "Effect.retry", hold: 1700 },
 	{ match: "Real-world production systems", hold: 1700 },
 	{ match: "Built-in solutions", hold: 1700 },
+	{ match: "Track successes, errors, dependencies", hold: 1700 },
 	{ match: "Write Effect code with AI", hold: 1700 },
 	{ match: "What developers are saying", hold: 1700 },
 	{ match: "Stop installing", hold: 1400 },
