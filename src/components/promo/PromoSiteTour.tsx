@@ -211,10 +211,16 @@ export function PromoSiteTour() {
 			await sleep(300, state);
 
 			while (!state.cancelled) {
-				// Reset behind the cover and type the URL from scratch.
+				// Reset behind the cover and type the URL from scratch. Cancel the
+				// leftover fill-forwards pans, then pin the transform to the top
+				// with a filling zero-length animation so nothing can leak through.
 				setIntroDone(false);
 				setLoopKey((k) => k + 1);
-				for (const a of iframe.getAnimations()) a.cancel();
+				for (const a of [...iframe.getAnimations()]) a.cancel();
+				iframe.animate(
+					[{ transform: `scale(${iframeScale}) translateY(0px)` }],
+					{ duration: 1, fill: "forwards" },
+				);
 				posY.current = 0;
 				setFadeOut(false);
 				await sleep(1600, state);
