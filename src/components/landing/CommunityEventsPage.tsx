@@ -239,7 +239,7 @@ export function CommunityEventsPage() {
 						/>
 
 						<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-							<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+							<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
 								{/* Left — copy */}
 								<div>
 									<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
