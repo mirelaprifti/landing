@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
@@ -151,11 +150,6 @@ function FormButton({
 }
 
 export function CommunityEventsPage() {
-	// Prototype: lets us compare two hero layouts live. Remove once decided.
-	const [heroVariant, setHeroVariant] = useState<"split" | "background">(
-		"split",
-	);
-
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white">
 			{/* Dithered background overlay */}
@@ -175,25 +169,6 @@ export function CommunityEventsPage() {
 			</a>
 
 			<Navigation activePath="/spread-the-effect" />
-
-			{/* Prototype: hero layout switch. Remove once decided. */}
-			<div className="fixed right-4 bottom-4 z-100 flex items-center gap-1 rounded-md border border-zinc-700 bg-zinc-900/90 p-1 font-mono text-xs backdrop-blur">
-				<span className="px-2 text-zinc-500">// hero:</span>
-				{(["split", "background"] as const).map((variant) => (
-					<button
-						key={variant}
-						type="button"
-						onClick={() => setHeroVariant(variant)}
-						className={`rounded px-2.5 py-1.5 transition-colors ${
-							heroVariant === variant
-								? "bg-zinc-700 text-white"
-								: "text-zinc-400 hover:text-white"
-						}`}
-					>
-						{variant}
-					</button>
-				))}
-			</div>
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -206,130 +181,75 @@ export function CommunityEventsPage() {
 
 			<main id="main-content" className="relative z-10 pt-16">
 				{/* Hero */}
-				{heroVariant === "split" ? (
-					<section className="relative w-full pt-16 pb-16 md:pt-24 md:pb-24">
-						{/* Grid background */}
-						<div
-							className="pointer-events-none absolute inset-0"
-							style={{
-								backgroundImage: `
+				<section className="relative w-full pt-16 pb-16 md:pt-24 md:pb-24">
+					{/* Grid background */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage: `
 								linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
 								linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
 							`,
-								backgroundSize: "196.6px 171px",
-								backgroundPosition: "calc(50% + 97px) 0",
-							}}
-						/>
-						<div
-							className="pointer-events-none absolute inset-0"
-							style={{
-								background:
-									"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
-							}}
-						/>
-						{/* Subtle glow */}
-						<div
-							className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
-							style={{
-								background: `
+							backgroundSize: "196.6px 171px",
+							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, #09090b 0%, transparent 20%, transparent 60%, #09090b 100%)",
+						}}
+					/>
+					{/* Subtle glow */}
+					<div
+						className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
+						style={{
+							background: `
 								radial-gradient(ellipse 50% 80% at 70% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
 								radial-gradient(ellipse 30% 50% at 80% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 40%)
 							`,
-							}}
-						/>
+						}}
+					/>
 
-						<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-							<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-								{/* Left — copy */}
-								<div>
-									<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-										// Spread the Effect
-									</p>
-									<h1 className="leading-tighter text-3xl font-bold text-white">
-										Bring Effect to your community events
-									</h1>
-									<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[50%] lg:max-w-none">
-										Host an Effect meetup, or crash your local TypeScript{" "}
-										<br className="hidden lg:block" />
-										or AI event with an Effect talk. We'll help you prepare,
-										promote, and share it with the community.
-									</p>
-									<div className="mt-8">
-										<FormButton />
-									</div>
-								</div>
-
-								{/* Right — community proof photo */}
-								<div className="relative overflow-hidden rounded-md border border-zinc-800">
-									<img
-										src={getAssetPath("/assets/events/speakers.png")}
-										alt="An Effect community meetup"
-										className="h-full w-full object-cover"
-									/>
-									{/* Blend into the dark page */}
-									<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
-									{/* Photo caption */}
-									<p className="absolute bottom-3 left-4 font-mono text-xs tracking-wider text-zinc-300 uppercase">
-										// Effect Meetup NYC '25 at Warp's
-									</p>
-								</div>
-							</div>
-						</div>
-					</section>
-				) : (
-					<section className="relative w-full overflow-hidden">
-						{/* Full-bleed photo anchored right */}
-						<div className="pointer-events-none absolute inset-0">
-							<img
-								src={getAssetPath("/assets/events/speakers.png")}
-								alt=""
-								className="h-full w-full object-cover object-[100%_0%] saturate-[0.85]"
-							/>
-							{/* Left-to-right scrim so the copy sits on solid dark */}
-							<div
-								className="absolute inset-0"
-								style={{
-									background:
-										"linear-gradient(to right, rgba(9, 9, 11, 0.92) 0%, rgba(9, 9, 11, 0.85) 30%, rgba(9, 9, 11, 0.65) 50%, rgba(9, 9, 11, 0.3) 72%, rgba(9, 9, 11, 0.15) 100%)",
-								}}
-							/>
-							{/* Blend top and bottom into the page */}
-							<div
-								className="absolute inset-0"
-								style={{
-									background:
-										"linear-gradient(to bottom, transparent 0%, transparent 65%, #09090b 100%)",
-								}}
-							/>
-							{/* Extra darkening on mobile, where text stacks over the photo */}
-							<div className="absolute inset-0 bg-zinc-950/60 md:hidden" />
-						</div>
-
-						<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-24 pb-24 md:pt-36 md:pb-36">
-							<div className="max-w-xl">
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
+							{/* Left — copy */}
+							<div>
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Spread the Effect
 								</p>
 								<h1 className="leading-tighter text-3xl font-bold text-white">
 									Bring Effect to your community events
 								</h1>
-								<p className="mt-6 text-lg leading-relaxed text-zinc-400">
-									Host an Effect meetup, or crash your local TypeScript or AI
-									event with an Effect talk. We'll help you prepare, promote,
-									and share it with the community.
+								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[50%] lg:max-w-none">
+									Host an Effect meetup, or crash your local TypeScript{" "}
+									<br className="hidden lg:block" />
+									or AI event with an Effect talk. We'll help you prepare,
+									promote, and share it with the community.
 								</p>
 								<div className="mt-8">
 									<FormButton />
 								</div>
 							</div>
 
-							{/* Photo caption */}
-							<p className="absolute right-4 bottom-6 hidden font-mono text-xs tracking-wider text-zinc-300 uppercase md:block">
-								// Effect Meetup NYC '25 at Warp's
-							</p>
+							{/* Right — community proof photo */}
+							<div className="relative overflow-hidden rounded-md border border-zinc-800">
+								<img
+									src={getAssetPath("/assets/events/speakers.png")}
+									alt="An Effect community meetup"
+									className="h-full w-full object-cover"
+								/>
+								{/* Blend into the dark page */}
+								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+								{/* Photo caption */}
+								<p className="absolute bottom-3 left-4 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+									// Effect Meetup NYC '25 at Warp's
+								</p>
+							</div>
 						</div>
-					</section>
-				)}
+					</div>
+				</section>
 
 				{/* How we can help */}
 				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-24">
