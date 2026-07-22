@@ -50,13 +50,13 @@ function getFormat(): Format {
 
 /** Tour stops, resolved against the live page by heading text. */
 const TOUR: { match: string; hold: number }[] = [
-	{ match: "Reliable TypeScript", hold: 1500 },
-	{ match: "Effect.retry", hold: 1200 },
-	{ match: "Real-world production systems", hold: 1200 },
-	{ match: "Built-in solutions", hold: 1200 },
-	{ match: "Track successes, errors, dependencies", hold: 1200 },
-	{ match: "Write Effect code with AI", hold: 1200 },
-	{ match: "What developers are saying", hold: 1200 },
+	{ match: "Reliable TypeScript", hold: 1300 },
+	{ match: "Effect.retry", hold: 1000 },
+	{ match: "Real-world production systems", hold: 1000 },
+	{ match: "Built-in solutions", hold: 1000 },
+	{ match: "Track successes, errors, dependencies", hold: 1000 },
+	{ match: "Write Effect code with AI", hold: 1000 },
+	{ match: "What developers are saying", hold: 1000 },
 	{ match: "Stop installing", hold: 1100 },
 ];
 
