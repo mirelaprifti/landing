@@ -121,7 +121,7 @@ export function HeroSection() {
 						<p className="self-start md:self-center font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// In production at
 						</p>
-						<ul className="flex flex-wrap items-end justify-center gap-x-8 gap-y-5">
+						<ul className="flex flex-wrap items-end justify-start gap-x-8 gap-y-5 md:justify-center">
 							{HERO_LOGOS.map((logo) => (
 								<li key={logo.name} className="flex items-end">
 									<img
