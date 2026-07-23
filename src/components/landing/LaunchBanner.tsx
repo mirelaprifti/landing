@@ -39,15 +39,12 @@ export function LaunchBanner({
 			{/* Whole-banner click target */}
 			<a
 				href="/blog/effect-v4"
-				aria-label="Effect 4.0 is here — read the announcement"
+				aria-label="Effect 4.0 RC is here: read the announcement"
 				className="absolute inset-0"
 			/>
 			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm font-medium">
-				<span className="hidden font-mono text-xs tracking-wider text-emerald-400 uppercase sm:inline">
-					// New
-				</span>
 				<span className="truncate">
-					Effect 4.0 is here — faster runtime, 71% smaller bundles
+					Effect 4.0 RC is here: faster runtime, 71% smaller bundles
 				</span>
 				<i
 					className="ri-arrow-right-line shrink-0 text-base transition-transform group-hover:translate-x-0.5"
