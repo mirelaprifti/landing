@@ -232,7 +232,7 @@ export function PodcastPage() {
 									How companies ship with Effect
 								</h1>
 								<p className="mt-2.5 text-base leading-snug text-zinc-600 dark:text-zinc-400 sm:text-lg">
-									Stories from engineering teams at Vercel, Zendesk,
+									Engineering stories from OpenCode, OpenRouter,
 									MasterClass, and more.
 								</p>
 
