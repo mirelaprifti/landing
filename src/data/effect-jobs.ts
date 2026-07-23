@@ -34,6 +34,13 @@ export const SUBMIT_URLS = {
 
 export const JOBS: Job[] = [
 	{
+		company: "Datapizza",
+		role: "Software Engineer",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1529802533521064062",
+		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/datapizza-favicon.svg",
+	},
+	{
 		company: "Expand.ai",
 		role: "Founding Engineer",
 		location: "San Francisco, USA",
