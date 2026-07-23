@@ -43,6 +43,12 @@ export function LaunchBanner({
 				className="absolute inset-0"
 			/>
 			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm font-medium">
+				<span
+					className="font-mono text-xs text-emerald-400"
+					aria-hidden="true"
+				>
+					//
+				</span>
 				<span className="truncate">
 					Effect 4.0 RC is here: faster runtime, 71% smaller bundles
 				</span>
