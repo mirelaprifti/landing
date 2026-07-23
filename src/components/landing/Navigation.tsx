@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
@@ -12,6 +12,16 @@ interface NavigationProps {
 	fullWidth?: boolean;
 }
 
+function useShortcutHint() {
+	// SSR renders the Mac hint; corrected on mount for other platforms.
+	const [hint, setHint] = useState("\u2318K");
+	useEffect(() => {
+		const isMac = /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent);
+		if (!isMac) setHint("Ctrl K");
+	}, []);
+	return hint;
+}
+
 export function Navigation({
 	transparent = false,
 	activePath,
@@ -19,6 +29,7 @@ export function Navigation({
 	fullWidth = false,
 	belowBanner = false,
 }: NavigationProps) {
+	const shortcutHint = useShortcutHint();
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
 	const showThemeToggle = ["/blog", "/play", "/docs"].some((p) =>
 		activePath?.startsWith(p),
@@ -187,13 +198,13 @@ export function Navigation({
 										<kbd
 											className={`shrink-0 text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
 										>
-											⌘K
+											{shortcutHint}
 										</kbd>
 									</div>
 								) : (
 									<button
 										type="button"
-										aria-label="Open search (Command K)"
+										aria-label="Open search"
 										className={`flex items-center gap-2 rounded-md border px-2 py-1 text-sm transition-colors ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
 									>
 										<i
@@ -203,7 +214,7 @@ export function Navigation({
 										<kbd
 											className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
 										>
-											⌘K
+											{shortcutHint}
 										</kbd>
 									</button>
 								)}
@@ -345,12 +356,12 @@ export function Navigation({
 						{/* Search button */}
 						<button
 							type="button"
-							aria-label="Open search (Command K)"
+							aria-label="Open search"
 							className="mt-6 flex w-full items-center gap-3 rounded-md border border-zinc-500 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
 						>
 							<i className="ri-search-line text-lg" aria-hidden="true"></i>
 							<span className="text-sm">Search</span>
-							<kbd className="ml-auto text-xs text-zinc-300">⌘K</kbd>
+							<kbd className="ml-auto text-xs text-zinc-300">{shortcutHint}</kbd>
 						</button>
 					</nav>
 				</div>
