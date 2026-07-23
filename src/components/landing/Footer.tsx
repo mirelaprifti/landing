@@ -372,7 +372,7 @@ export function Footer({
 
 					{/* Bottom Copyright Section */}
 					<div className="flex flex-col items-center justify-between gap-4 px-4 pt-10 pb-16 md:flex-row md:gap-8 md:pt-8 md:pb-16">
-						<p className="text-sm text-zinc-600 dark:text-zinc-400">
+						<p className="text-center text-sm text-zinc-600 md:text-left dark:text-zinc-400">
 							© {new Date().getFullYear()}{" "}
 							<a
 								href="https://effectful.co/"
