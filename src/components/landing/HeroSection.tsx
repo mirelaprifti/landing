@@ -118,7 +118,7 @@ export function HeroSection() {
 
 					{/* Customer logos — trust strip */}
 					<div className="mx-auto mt-14 flex flex-col items-center gap-5">
-						<p className="self-start font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+						<p className="self-start md:self-center font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// In production at
 						</p>
 						<ul className="flex flex-wrap items-end justify-center gap-x-8 gap-y-5">
