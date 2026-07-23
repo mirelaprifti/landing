@@ -140,7 +140,7 @@ export function LaunchHeroSection({
 							//
 						</span>
 						<span>
-							Effect {versionFlip ? <FlipVersion /> : "4.0"} — Out now
+							Effect {versionFlip ? <FlipVersion /> : "4.0"} RC: Out now
 						</span>
 						<i
 							className="ri-arrow-right-line text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300"
