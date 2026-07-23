@@ -23,11 +23,10 @@ function SectionDivider() {
  * launch design can be tweaked independently. Route: /launch
  */
 export function LaunchLandingPage() {
-	const [bannerVisible, setBannerVisible] = useState(true);
 	const [bannerGlintKey, setBannerGlintKey] = useState(0);
 
 	// Grid origin in viewport px: banner (40, when visible) + navbar (64)
-	const gridTop = bannerVisible ? 104 : 64;
+	const gridTop = 104;
 
 	// Finale: when the grid pulse completes, light spreads along the banner
 	// border. Stable ref — a fresh callback per render would restart the pulse.
@@ -41,10 +40,7 @@ export function LaunchLandingPage() {
 			<LaunchGridPulse gridTop={gridTop} onComplete={handlePulseComplete} />
 
 			{/* Site-wide launch banner above the navbar */}
-			<LaunchBanner
-				onVisibilityChange={setBannerVisible}
-				glintKey={bannerGlintKey}
-			/>
+			<LaunchBanner glintKey={bannerGlintKey} />
 
 			{/* Dithered background overlay - subtle texture across entire page (dark mode only) */}
 			<div
@@ -62,7 +58,7 @@ export function LaunchLandingPage() {
 				Skip to main content
 			</a>
 
-			<Navigation belowBanner={bannerVisible} />
+			<Navigation belowBanner />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -92,7 +88,7 @@ export function LaunchLandingPage() {
 			{/* Main Content — extra top padding while the banner is visible */}
 			<main
 				id="main-content"
-				className={`relative w-full ${bannerVisible ? "pt-26" : "pt-16"}`}
+				className="relative w-full pt-26"
 			>
 				<LaunchHeroSection />
 				<FeaturesSection />

@@ -1,38 +1,13 @@
-import { X } from "lucide-react";
-import { useEffect, useState } from "react";
-
-const DISMISS_KEY = "v4-launch-banner-dismissed";
-
 /**
  * Slim site-wide launch banner. Sits above the fixed navbar.
- * Dismissible; the choice persists in localStorage.
+ * Always visible — not dismissible.
  */
 export function LaunchBanner({
-	onVisibilityChange,
 	glintKey = 0,
 }: {
-	onVisibilityChange?: (visible: boolean) => void;
 	/** Increment to sweep a light sheen across the banner (finale of the grid pulse). */
 	glintKey?: number;
 }) {
-	const [visible, setVisible] = useState(true);
-
-	useEffect(() => {
-		const dismissed = localStorage.getItem(DISMISS_KEY) === "true";
-		if (dismissed) {
-			setVisible(false);
-			onVisibilityChange?.(false);
-		}
-	}, [onVisibilityChange]);
-
-	const dismiss = () => {
-		setVisible(false);
-		localStorage.setItem(DISMISS_KEY, "true");
-		onVisibilityChange?.(false);
-	};
-
-	if (!visible) return null;
-
 	return (
 		<div className="group fixed top-0 right-0 left-0 z-[110] flex h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-10 text-zinc-100 transition-colors has-[a:hover]:bg-zinc-800">
 			{/* Border light-up — the grid pulse arrives at the banner: light
@@ -79,14 +54,6 @@ export function LaunchBanner({
 					aria-hidden="true"
 				/>
 			</div>
-			<button
-				type="button"
-				onClick={dismiss}
-				aria-label="Dismiss announcement"
-				className="absolute right-3 z-10 flex h-6 w-6 items-center justify-center opacity-60 transition-opacity hover:opacity-100"
-			>
-				<X size={15} aria-hidden="true" />
-			</button>
 		</div>
 	);
 }
