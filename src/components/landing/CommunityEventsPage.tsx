@@ -384,12 +384,6 @@ export function CommunityEventsPage() {
 												rel="noopener noreferrer"
 												className="group flex items-start gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
 											>
-												<span
-													className="text-zinc-600 transition-colors group-hover:text-emerald-400"
-													aria-hidden="true"
-												>
-													❯
-												</span>
 												{idea.label}
 												<Icon
 													name="arrow-up-right"
@@ -399,9 +393,6 @@ export function CommunityEventsPage() {
 											</a>
 										) : (
 											<span className="flex items-start gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
-												<span className="text-zinc-600" aria-hidden="true">
-													❯
-												</span>
 												{idea.label}
 											</span>
 										)}
