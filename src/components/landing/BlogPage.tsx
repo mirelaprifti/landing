@@ -68,7 +68,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
-						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs font-semibold tracking-[0.18em] text-zinc-900 dark:text-white uppercase">
+						<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs font-semibold text-zinc-900 dark:text-white">
 							Release
 						</span>
 						{[...post.tags]
@@ -77,7 +77,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 							.map((tag) => (
 								<span
 									key={tag}
-									className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
+									className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs text-zinc-800 dark:text-zinc-200"
 								>
 									{tag}
 								</span>
@@ -332,13 +332,13 @@ function PostCard({ post }: { post: BlogPost }) {
 							.map((tag) => (
 								<span
 									key={tag}
-									className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-800 dark:text-zinc-200 uppercase"
+									className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-xs text-zinc-800 dark:text-zinc-200"
 								>
 									{tag}
 								</span>
 							))}
 						{post.tags.length > 2 && (
-							<span className="inline-flex items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 font-mono text-xs tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase">
+							<span className="inline-flex items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 font-mono text-xs text-zinc-600 dark:text-zinc-400">
 								+{post.tags.length - 2}
 							</span>
 						)}
@@ -645,7 +645,7 @@ export function BlogPage() {
 											onClick={() => setCatOpen((o) => !o)}
 											aria-haspopup="listbox"
 											aria-expanded={catOpen}
-											className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
+											className="group inline-flex items-baseline gap-1.5 font-mono text-xs transition-colors"
 										>
 											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 												{activeTag}
@@ -678,7 +678,7 @@ export function BlogPage() {
 																		handleTagChange(tag);
 																		setCatOpen(false);
 																	}}
-																	className={`group/item relative flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left font-mono text-xs tracking-wider uppercase transition-colors ${
+																	className={`group/item relative flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left font-mono text-xs transition-colors ${
 																		isActive
 																			? "text-zinc-900 dark:text-white"
 																			: "text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white"
@@ -714,7 +714,7 @@ export function BlogPage() {
 											setSortBy((s) => (s === "newest" ? "oldest" : "newest"))
 										}
 										aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
-										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider uppercase transition-colors"
+										className="group inline-flex items-baseline gap-1.5 font-mono text-xs transition-colors"
 									>
 										<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 											{sortBy === "newest" ? "Newest" : "Oldest"}
@@ -863,7 +863,7 @@ export function BlogPage() {
 													onClick={() => {
 														handleTagChange(tag as BlogTag);
 													}}
-													className="inline-flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-xs tracking-[0.12em] text-zinc-600 dark:text-zinc-400 uppercase transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+													className="inline-flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-xs text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
 												>
 													{tag}
 												</button>

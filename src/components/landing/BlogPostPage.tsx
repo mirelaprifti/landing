@@ -357,7 +357,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 									<a
 										key={tag}
 										href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
-										className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+										className="normal-case text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
 									>
 										{tag}
 									</a>
