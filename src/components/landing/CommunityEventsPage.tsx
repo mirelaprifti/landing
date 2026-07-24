@@ -225,8 +225,7 @@ export function CommunityEventsPage() {
 									Bring Effect to your community events
 								</h1>
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[33.333%] lg:max-w-[66.667%]">
-									Crash your local TypeScript or AI event with an Effect talk,{" "}
-									<br className="hidden lg:block" />
+									Crash your local TypeScript or AI event with an Effect talk,
 									or host your own meetup. We can help you prepare and promote
 									it.
 								</p>
