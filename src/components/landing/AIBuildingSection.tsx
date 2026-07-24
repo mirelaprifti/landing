@@ -89,7 +89,10 @@ export function AIBuildingSection() {
 							className="group"
 						>
 							<span>Read the docs</span>
-							<Icon name="arrow-right" className="text-base transition-transform group-hover:translate-x-0.5" />
+							<Icon
+								name="arrow-right"
+								className="text-base transition-transform group-hover:translate-x-0.5"
+							/>
 						</Button>
 						<Button
 							href="https://github.com/Effect-TS/effect/tree/main/packages/ai"
@@ -169,7 +172,10 @@ export function AIBuildingSection() {
 											className={study.partnerLogoClass}
 										/>
 									</div>
-									<Icon name="arrow-up-right" className="text-zinc-300 transition-colors group-hover:text-white" />
+									<Icon
+										name="arrow-up-right"
+										className="text-zinc-300 transition-colors group-hover:text-white"
+									/>
 								</div>
 							</div>
 						</a>

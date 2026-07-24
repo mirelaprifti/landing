@@ -152,7 +152,11 @@ export function ApiReferenceLayout({
 												className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 											>
 												<span>{group.title}</span>
-												<Icon name="chevron-down" className={`text-base transition-transform ${ isOpen ? "rotate-180" : "" }`} aria-hidden="true" />
+												<Icon
+													name="chevron-down"
+													className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
+													aria-hidden="true"
+												/>
 											</button>
 											{isOpen && (
 												<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
@@ -301,7 +305,11 @@ function SearchInput({
 }) {
 	return (
 		<div className="search-pill flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition-colors focus-within:border-zinc-500 dark:border-zinc-600 dark:text-zinc-400 dark:focus-within:border-zinc-500">
-			<Icon name="search" className="shrink-0 text-base font-medium" aria-hidden="true" />
+			<Icon
+				name="search"
+				className="shrink-0 text-base font-medium"
+				aria-hidden="true"
+			/>
 			<input
 				type="search"
 				value={value}

@@ -167,11 +167,19 @@ export function PartnerZivergePage() {
 										size="md"
 									>
 										Visit ziverge.com
-										<Icon name="arrow-up-right" className="text-base" aria-hidden="true" />
+										<Icon
+											name="arrow-up-right"
+											className="text-base"
+											aria-hidden="true"
+										/>
 									</Button>
 									<Button href="#contact" variant="secondary" size="md">
 										Talk to Ziverge
-										<Icon name="arrow-right" className="text-base" aria-hidden="true" />
+										<Icon
+											name="arrow-right"
+											className="text-base"
+											aria-hidden="true"
+										/>
 									</Button>
 								</div>
 							</div>

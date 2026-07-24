@@ -55,7 +55,10 @@ export function DevToolsSection() {
 								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
 								<span>Read the docs</span>
-								<Icon name="arrow-right" className="text-base transition-transform group-hover:translate-x-0.5" />
+								<Icon
+									name="arrow-right"
+									className="text-base transition-transform group-hover:translate-x-0.5"
+								/>
 							</a>
 							<a
 								href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"

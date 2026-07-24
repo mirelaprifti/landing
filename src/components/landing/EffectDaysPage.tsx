@@ -225,7 +225,10 @@ export function EffectDaysPage() {
 										{/* Top section - Date */}
 										<div className="flex flex-1 items-center px-6">
 											<div className="flex items-center gap-2.5">
-												<Icon name="calendar" className="text-[1.1rem] text-zinc-200" />
+												<Icon
+													name="calendar"
+													className="text-[1.1rem] text-zinc-200"
+												/>
 												<p className="font-mono text-[1.1rem] font-medium text-white uppercase">
 													May 6–8, 2026
 												</p>
@@ -234,7 +237,10 @@ export function EffectDaysPage() {
 										{/* Bottom section - Location */}
 										<div className="flex flex-1 items-center px-6">
 											<div className="flex items-center gap-2.5">
-												<Icon name="map-pin" className="text-[1.1rem] text-zinc-200" />
+												<Icon
+													name="map-pin"
+													className="text-[1.1rem] text-zinc-200"
+												/>
 												<p className="font-mono text-[1.1rem] font-medium text-white uppercase">
 													Málaga, Spain
 												</p>
@@ -465,7 +471,10 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-zinc-900">
 														$449
 													</span>
-													<Icon name="arrow-up-right" className="text-sm text-zinc-600" />
+													<Icon
+														name="arrow-up-right"
+														className="text-sm text-zinc-600"
+													/>
 												</div>
 											</Button>
 											<Button
@@ -483,7 +492,10 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-white">
 														$549
 													</span>
-													<Icon name="arrow-up-right" className="text-sm text-zinc-400" />
+													<Icon
+														name="arrow-up-right"
+														className="text-sm text-zinc-400"
+													/>
 												</div>
 											</Button>
 										</div>
@@ -557,7 +569,10 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-zinc-900">
 														$314
 													</span>
-													<Icon name="arrow-up-right" className="text-sm text-zinc-600" />
+													<Icon
+														name="arrow-up-right"
+														className="text-sm text-zinc-600"
+													/>
 												</div>
 											</Button>
 											<Button
@@ -575,7 +590,10 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-white">
 														$399
 													</span>
-													<Icon name="arrow-up-right" className="text-sm text-zinc-400" />
+													<Icon
+														name="arrow-up-right"
+														className="text-sm text-zinc-400"
+													/>
 												</div>
 											</Button>
 										</div>

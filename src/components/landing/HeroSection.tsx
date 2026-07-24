@@ -96,7 +96,11 @@ export function HeroSection() {
 							//
 						</span>
 						<span>Effect 4.0 — Now in Beta</span>
-						<Icon name="arrow-right" className="text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300" aria-hidden="true" />
+						<Icon
+							name="arrow-right"
+							className="text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300"
+							aria-hidden="true"
+						/>
 					</a>
 					{/* Headline */}
 					<h1 className="leading-tighter text-4xl font-bold text-zinc-900 md:text-5xl md:whitespace-nowrap lg:text-[3.4rem] dark:text-white">

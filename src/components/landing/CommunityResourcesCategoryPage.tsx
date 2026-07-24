@@ -63,7 +63,11 @@ function ResourceCard({
 			{/* Title */}
 			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
-				<Icon name="arrow-up-right" className="ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+				<Icon
+					name="arrow-up-right"
+					className="ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+					aria-hidden="true"
+				/>
 			</h3>
 
 			{/* Description */}
@@ -148,7 +152,11 @@ export function CommunityResourcesCategoryPage({
 								>
 									Community Resources
 								</a>
-								<Icon name="chevron-right" className="text-zinc-600" aria-hidden="true" />
+								<Icon
+									name="chevron-right"
+									className="text-zinc-600"
+									aria-hidden="true"
+								/>
 								<div className="flex items-center gap-2">
 									<div
 										className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
@@ -236,7 +244,11 @@ export function CommunityResourcesCategoryPage({
 									Discord
 								</Button>
 								<Button href="#" variant="secondary">
-									<Icon name="clipboard-list" className="text-base" aria-hidden="true" />
+									<Icon
+										name="clipboard-list"
+										className="text-base"
+										aria-hidden="true"
+									/>
 									Submit Form
 								</Button>
 							</div>

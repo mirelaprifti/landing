@@ -79,7 +79,11 @@ function StatusGlyph({ status }: { status: SpanStatus }) {
 	}
 	if (status === "retry") {
 		return (
-			<Icon name="refresh-cw" className="text-base text-amber-300" aria-label="retried" />
+			<Icon
+				name="refresh-cw"
+				className="text-base text-amber-300"
+				aria-label="retried"
+			/>
 		);
 	}
 	return (

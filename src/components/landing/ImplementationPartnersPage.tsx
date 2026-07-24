@@ -55,7 +55,10 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 										className="group"
 									>
 										{partner.ctaPrimary.label}
-										<Icon name="arrow-right" className="text-base transition-transform group-hover:translate-x-0.5" />
+										<Icon
+											name="arrow-right"
+											className="text-base transition-transform group-hover:translate-x-0.5"
+										/>
 									</Button>
 								)}
 								{partner.ctaSecondary ? (
@@ -74,7 +77,10 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 										className="group"
 									>
 										Visit {partner.name}
-										<Icon name="arrow-up-right" className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+										<Icon
+											name="arrow-up-right"
+											className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+										/>
 									</Button>
 								)}
 							</div>
@@ -183,7 +189,10 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 						className="group shrink-0"
 					>
 						Get in touch
-						<Icon name="arrow-right" className="text-base transition-transform group-hover:translate-x-0.5" />
+						<Icon
+							name="arrow-right"
+							className="text-base transition-transform group-hover:translate-x-0.5"
+						/>
 					</Button>
 				</div>
 
@@ -354,7 +363,11 @@ function PartnerDifferentiatorsSection({ partner }: { partner: Partner }) {
 										aria-hidden="true"
 									/>
 									{d.link.label}
-									<Icon name="arrow-up-right" className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+									<Icon
+										name="arrow-up-right"
+										className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+										aria-hidden="true"
+									/>
 								</a>
 							)}
 						</div>
@@ -377,7 +390,11 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 				className="flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-white transition-colors hover:text-zinc-200"
 			>
 				<span>{q}</span>
-				<Icon name="chevron-down" className={`shrink-0 text-xl text-zinc-400 transition-transform ${ open ? "rotate-180" : "" }`} aria-hidden="true" />
+				<Icon
+					name="chevron-down"
+					className={`shrink-0 text-xl text-zinc-400 transition-transform ${open ? "rotate-180" : ""}`}
+					aria-hidden="true"
+				/>
 			</button>
 			{open && (
 				<p className="pb-5 text-sm leading-relaxed text-zinc-400">{a}</p>
@@ -428,7 +445,11 @@ function OtherPartnerCard({ partner }: { partner: Partner }) {
 			</p>
 			<div className="mb-5 flex flex-wrap items-center gap-3">
 				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/40 px-2.5 py-1 text-xs font-medium text-zinc-300">
-					<Icon name="map-pin" className="text-xs text-zinc-400" aria-hidden="true" />
+					<Icon
+						name="map-pin"
+						className="text-xs text-zinc-400"
+						aria-hidden="true"
+					/>
 					{partner.region}
 				</div>
 				<div className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-800/40 px-2.5 py-1 text-xs font-medium text-zinc-300">
@@ -438,7 +459,11 @@ function OtherPartnerCard({ partner }: { partner: Partner }) {
 			</div>
 			<span className="inline-flex items-center text-sm font-medium text-white">
 				View details
-				<Icon name="arrow-right" className="ml-1 text-sm text-zinc-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-zinc-300" aria-hidden="true" />
+				<Icon
+					name="arrow-right"
+					className="ml-1 text-sm text-zinc-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-zinc-300"
+					aria-hidden="true"
+				/>
 			</span>
 		</a>
 	);
@@ -574,7 +599,11 @@ export function ImplementationPartnersPage() {
 									{emailCopied ? (
 										<Icon name="check" className="text-lg" aria-hidden="true" />
 									) : (
-										<Icon name="copy" className="text-lg text-zinc-400 transition-colors group-hover:text-zinc-200" aria-hidden="true" />
+										<Icon
+											name="copy"
+											className="text-lg text-zinc-400 transition-colors group-hover:text-zinc-200"
+											aria-hidden="true"
+										/>
 									)}
 								</button>
 							)}

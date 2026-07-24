@@ -142,7 +142,11 @@ function FormButton({
 	return (
 		<Button href={FORM_URL} variant={variant} size="md" className="group">
 			Tell us about your Effect talk
-			<Icon name="arrow-up-right" className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+			<Icon
+				name="arrow-up-right"
+				className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+				aria-hidden="true"
+			/>
 		</Button>
 	);
 }
@@ -220,7 +224,7 @@ export function CommunityEventsPage() {
 								<h1 className="leading-tighter text-3xl font-bold text-white">
 									Bring Effect to your community events
 								</h1>
-								<p className="mt-6 max-w-none text-lg leading-relaxed text-zinc-400 md:max-w-2/3 lg:max-w-none">
+								<p className="mt-6 max-w-none text-lg leading-relaxed text-zinc-400 md:max-w-1/3 lg:max-w-none">
 									Crash your local TypeScript or AI event with an Effect talk,{" "}
 									<br className="hidden lg:block" />
 									or host your own meetup. We can help you prepare and promote

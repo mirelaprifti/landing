@@ -201,7 +201,10 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					className="group flex flex-col rounded-md border border-zinc-300 px-6 py-5 transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
 				>
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-						<Icon name="chevron-left" className="text-base transition-transform duration-200 group-hover:-translate-x-0.5" />
+						<Icon
+							name="chevron-left"
+							className="text-base transition-transform duration-200 group-hover:-translate-x-0.5"
+						/>
 						Previous
 					</span>
 					<span className="mt-2 line-clamp-1 text-base font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
@@ -221,7 +224,10 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 				>
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						Next
-						<Icon name="chevron-right" className="text-base transition-transform duration-200 group-hover:translate-x-0.5" />
+						<Icon
+							name="chevron-right"
+							className="text-base transition-transform duration-200 group-hover:translate-x-0.5"
+						/>
 					</span>
 					<span className="mt-2 line-clamp-1 text-base font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
 						{nextPost.title}
@@ -244,7 +250,10 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				<main className="flex min-h-[60vh] items-center justify-center pt-16">
 					<div className="flex flex-col items-center text-center">
 						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900">
-							<Icon name="newspaper" className="text-3xl text-zinc-600 dark:text-zinc-400" />
+							<Icon
+								name="newspaper"
+								className="text-3xl text-zinc-600 dark:text-zinc-400"
+							/>
 						</div>
 						<p className="mt-5 text-lg text-zinc-700 dark:text-zinc-300">
 							Post not found.
@@ -612,7 +621,11 @@ Effect.runPromise(program)`}</code>
 									className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
 								>
 									Join the Discord
-									<Icon name="arrow-right" className="text-base" aria-hidden="true" />
+									<Icon
+										name="arrow-right"
+										className="text-base"
+										aria-hidden="true"
+									/>
 								</a>
 								<a
 									href="https://discord.gg/effect-ts"

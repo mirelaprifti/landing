@@ -815,7 +815,10 @@ function EventsTabSection() {
 						{upcomingEvents.length === 0 ? (
 							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 bg-zinc-900/30 px-6 py-16 text-center">
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800/60">
-									<Icon name="calendar-check" className="text-xl text-zinc-500 dark:text-zinc-400" />
+									<Icon
+										name="calendar-check"
+										className="text-xl text-zinc-500 dark:text-zinc-400"
+									/>
 								</div>
 								<p className="mb-1 text-base font-medium text-zinc-300">
 									No upcoming events right now
@@ -923,7 +926,10 @@ function EventsTabSection() {
 												<TypeBadge type={event.type} />
 												<span className="ml-auto w-5 shrink-0 text-center">
 													{event.href && (
-														<Icon name="arrow-up-right" className="text-lg text-zinc-600 transition-colors group-hover:text-zinc-300" />
+														<Icon
+															name="arrow-up-right"
+															className="text-lg text-zinc-600 transition-colors group-hover:text-zinc-300"
+														/>
 													)}
 												</span>
 											</>

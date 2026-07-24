@@ -155,7 +155,11 @@ export function HeroCommandPanel({
 								className={`${activePM === "npm" ? "h-4.5" : "h-4"} w-auto ${WHITE_PM_ICONS.has(activePM) ? "brightness-0 dark:brightness-100" : ""}`}
 							/>
 							<span>{activePM}</span>
-							<Icon name="chevron-down" className={`text-base text-zinc-500 transition-transform ${ pmOpen ? "rotate-180" : "" }`} aria-hidden="true" />
+							<Icon
+								name="chevron-down"
+								className={`text-base text-zinc-500 transition-transform ${pmOpen ? "rotate-180" : ""}`}
+								aria-hidden="true"
+							/>
 						</button>
 
 						{/* Popover list — anchored to the chip's left edge */}
@@ -186,7 +190,11 @@ export function HeroCommandPanel({
 											/>
 											<span className="flex-1">{pm}</span>
 											{activePM === pm && (
-												<Icon name="check" className="shrink-0 text-zinc-500" aria-hidden="true" />
+												<Icon
+													name="check"
+													className="shrink-0 text-zinc-500"
+													aria-hidden="true"
+												/>
 											)}
 										</button>
 									</li>
@@ -201,9 +209,15 @@ export function HeroCommandPanel({
 				</span>
 
 				{copied ? (
-					<Icon name="check" className="shrink-0 text-base text-zinc-800 dark:text-zinc-200" />
+					<Icon
+						name="check"
+						className="shrink-0 text-base text-zinc-800 dark:text-zinc-200"
+					/>
 				) : (
-					<Icon name="copy" className="shrink-0 text-base text-zinc-600 dark:text-zinc-400" />
+					<Icon
+						name="copy"
+						className="shrink-0 text-base text-zinc-600 dark:text-zinc-400"
+					/>
 				)}
 			</button>
 		</div>

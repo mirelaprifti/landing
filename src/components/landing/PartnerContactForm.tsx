@@ -153,7 +153,11 @@ export function PartnerContactForm({
 					className="w-full"
 				>
 					{submitting ? "Sending…" : "Send message"}
-					<Icon name="arrow-up-right" className="text-base" aria-hidden="true" />
+					<Icon
+						name="arrow-up-right"
+						className="text-base"
+						aria-hidden="true"
+					/>
 				</Button>
 			</div>
 		</form>

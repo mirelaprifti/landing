@@ -58,7 +58,11 @@ function VideoWithPosterOverlay() {
 				}`}
 			>
 				<span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/80 text-zinc-900 backdrop-blur-sm transition-transform group-hover:scale-105">
-					<Icon name="play" className="translate-x-0.5 text-3xl" aria-hidden="true" />
+					<Icon
+						name="play"
+						className="translate-x-0.5 text-3xl"
+						aria-hidden="true"
+					/>
 				</span>
 			</button>
 		</div>

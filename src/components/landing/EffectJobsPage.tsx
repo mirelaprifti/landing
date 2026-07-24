@@ -100,7 +100,11 @@ export function EffectJobsPage() {
 						<div className="mt-8 flex flex-wrap items-center gap-3">
 							<Button href={SUBMIT_URLS.postJob} variant="primary" size="lg">
 								Post a job
-								<Icon name="arrow-up-right" className="text-lg" aria-hidden="true" />
+								<Icon
+									name="arrow-up-right"
+									className="text-lg"
+									aria-hidden="true"
+								/>
 							</Button>
 						</div>
 					</div>
@@ -144,7 +148,11 @@ export function EffectJobsPage() {
 														{job.company}
 													</p>
 												</div>
-												<Icon name="arrow-up-right" aria-hidden="true" className="shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300" />
+												<Icon
+													name="arrow-up-right"
+													aria-hidden="true"
+													className="shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
+												/>
 											</div>
 
 											{/* Role (headline) */}
@@ -211,7 +219,11 @@ export function EffectJobsPage() {
 													// Post a job
 												</p>
 											</div>
-											<Icon name="arrow-up-right" aria-hidden="true" className="shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300" />
+											<Icon
+												name="arrow-up-right"
+												aria-hidden="true"
+												className="shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
+											/>
 										</div>
 
 										{/* Headline */}

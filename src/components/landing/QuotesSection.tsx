@@ -334,7 +334,10 @@ export function QuotesGridSection() {
 							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<Icon name="arrow-left" className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
+							<Icon
+								name="arrow-left"
+								className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+							/>
 						</button>
 						<button
 							type="button"
@@ -342,7 +345,10 @@ export function QuotesGridSection() {
 							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<Icon name="arrow-right" className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
+							<Icon
+								name="arrow-right"
+								className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+							/>
 						</button>
 					</div>
 				</div>
@@ -531,7 +537,10 @@ export function QuotesSection() {
 							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all duration-200 hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<Icon name="arrow-left" className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
+							<Icon
+								name="arrow-left"
+								className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+							/>
 						</button>
 						<button
 							type="button"
@@ -539,7 +548,10 @@ export function QuotesSection() {
 							className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-300 bg-zinc-100/50 transition-all duration-200 hover:border-zinc-400 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<Icon name="arrow-right" className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white" />
+							<Icon
+								name="arrow-right"
+								className="text-base text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+							/>
 						</button>
 					</div>
 				</div>

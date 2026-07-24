@@ -98,7 +98,11 @@ export function TestimonialsSection() {
 									className="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white"
 								>
 									Watch the talk
-									<Icon name="arrow-up-right" className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+									<Icon
+										name="arrow-up-right"
+										className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+										aria-hidden="true"
+									/>
 								</a>
 							</div>
 

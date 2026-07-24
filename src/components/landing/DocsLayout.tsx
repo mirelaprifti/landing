@@ -131,7 +131,11 @@ export function DocsLayout({
 											className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 										>
 											<span>{section.title}</span>
-											<Icon name="chevron-down" className={`text-base transition-transform ${ isOpen ? "rotate-180" : "" }`} aria-hidden="true" />
+											<Icon
+												name="chevron-down"
+												className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
+												aria-hidden="true"
+											/>
 										</button>
 										{isOpen && (
 											<ul id={panelId} className="flex flex-col gap-0.5 pb-4">

@@ -188,7 +188,11 @@ export function Navigation({
 									<div
 										className={`search-pill flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "search-pill-inverted border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}
 									>
-										<Icon name="search" className="shrink-0 text-base font-medium" aria-hidden="true" />
+										<Icon
+											name="search"
+											className="shrink-0 text-base font-medium"
+											aria-hidden="true"
+										/>
 										<input
 											type="search"
 											aria-label="Search the docs"
@@ -207,7 +211,11 @@ export function Navigation({
 										aria-label="Open search"
 										className={`flex items-center gap-2 rounded-md border px-2 py-1 text-sm transition-colors ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
 									>
-										<Icon name="search" className="text-base font-medium" aria-hidden="true" />
+										<Icon
+											name="search"
+											className="text-base font-medium"
+											aria-hidden="true"
+										/>
 										<kbd
 											className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
 										>

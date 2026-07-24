@@ -183,7 +183,10 @@ export function SocialProofSection() {
 								<span className="text-sm font-medium text-zinc-400">
 									{useCase.title}
 								</span>
-								<Icon name="arrow-up-right" className="text-zinc-400 transition-colors group-hover:text-zinc-400" />
+								<Icon
+									name="arrow-up-right"
+									className="text-zinc-400 transition-colors group-hover:text-zinc-400"
+								/>
 							</div>
 						</a>
 					))}
@@ -210,7 +213,10 @@ export function SocialProofSection() {
 							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<Icon name="arrow-left" className="text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<Icon
+								name="arrow-left"
+								className="text-base text-zinc-400 transition-colors group-hover:text-white"
+							/>
 						</button>
 						<button
 							type="button"
@@ -218,7 +224,10 @@ export function SocialProofSection() {
 							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<Icon name="arrow-right" className="text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<Icon
+								name="arrow-right"
+								className="text-base text-zinc-400 transition-colors group-hover:text-white"
+							/>
 						</button>
 					</div>
 				</div>

@@ -183,7 +183,10 @@ export function PressKitPage() {
 
 									{/* Download Links */}
 									<div className="flex items-center gap-2">
-										<Icon name="download" className="text-base text-zinc-600 dark:text-zinc-400" />
+										<Icon
+											name="download"
+											className="text-base text-zinc-600 dark:text-zinc-400"
+										/>
 										<span className="text-sm text-zinc-600 dark:text-zinc-400">
 											Download:
 										</span>
@@ -225,7 +228,10 @@ export function PressKitPage() {
 
 									{/* Download Links */}
 									<div className="flex items-center gap-2">
-										<Icon name="download" className="text-base text-zinc-600 dark:text-zinc-400" />
+										<Icon
+											name="download"
+											className="text-base text-zinc-600 dark:text-zinc-400"
+										/>
 										<span className="text-sm text-zinc-600 dark:text-zinc-400">
 											Download:
 										</span>
@@ -349,7 +355,10 @@ export function PressKitPage() {
 												alt="Black logo correct"
 												className="h-20 w-auto"
 											/>
-											<Icon name="circle-check" className="absolute -right-4 -bottom-4 text-lg text-green-500" />
+											<Icon
+												name="circle-check"
+												className="absolute -right-4 -bottom-4 text-lg text-green-500"
+											/>
 										</div>
 										<div className="relative">
 											<img
@@ -363,7 +372,10 @@ export function PressKitPage() {
 														"brightness(0) saturate(100%) invert(45%) sepia(95%) saturate(1000%) hue-rotate(220deg)",
 												}}
 											/>
-											<Icon name="circle-x" className="absolute -right-4 -bottom-4 text-lg text-red-500" />
+											<Icon
+												name="circle-x"
+												className="absolute -right-4 -bottom-4 text-lg text-red-500"
+											/>
 										</div>
 									</div>
 									<span className="text-base text-zinc-600 dark:text-zinc-400">
@@ -382,7 +394,10 @@ export function PressKitPage() {
 												alt="Normal logo"
 												className="h-20 w-auto"
 											/>
-											<Icon name="circle-check" className="absolute -right-4 -bottom-4 text-lg text-green-500" />
+											<Icon
+												name="circle-check"
+												className="absolute -right-4 -bottom-4 text-lg text-green-500"
+											/>
 										</div>
 										<div className="relative">
 											<img
@@ -393,7 +408,10 @@ export function PressKitPage() {
 												className="h-20 w-auto"
 												style={{ transform: "scaleX(1.4)" }}
 											/>
-											<Icon name="circle-x" className="absolute -right-4 -bottom-4 text-lg text-red-500" />
+											<Icon
+												name="circle-x"
+												className="absolute -right-4 -bottom-4 text-lg text-red-500"
+											/>
 										</div>
 										<div className="relative">
 											<img
@@ -404,7 +422,10 @@ export function PressKitPage() {
 												className="h-20 w-auto"
 												style={{ transform: "scaleY(1.4)" }}
 											/>
-											<Icon name="circle-x" className="absolute -right-4 -bottom-4 text-lg text-red-500" />
+											<Icon
+												name="circle-x"
+												className="absolute -right-4 -bottom-4 text-lg text-red-500"
+											/>
 										</div>
 									</div>
 									<span className="text-base text-zinc-600 dark:text-zinc-400">
@@ -424,7 +445,10 @@ export function PressKitPage() {
 												alt="Normal logo"
 												className="h-20 w-auto"
 											/>
-											<Icon name="circle-check" className="absolute -right-4 -bottom-4 text-lg text-green-500" />
+											<Icon
+												name="circle-check"
+												className="absolute -right-4 -bottom-4 text-lg text-green-500"
+											/>
 										</div>
 										<div className="relative">
 											<img
@@ -437,7 +461,10 @@ export function PressKitPage() {
 													filter: "drop-shadow(4px 4px 8px rgba(0,0,0,0.4))",
 												}}
 											/>
-											<Icon name="circle-x" className="absolute -right-4 -bottom-4 text-lg text-red-500" />
+											<Icon
+												name="circle-x"
+												className="absolute -right-4 -bottom-4 text-lg text-red-500"
+											/>
 										</div>
 									</div>
 									<span className="text-base text-zinc-600 dark:text-zinc-400">
@@ -456,7 +483,10 @@ export function PressKitPage() {
 												alt="Normal logo"
 												className="h-20 w-auto"
 											/>
-											<Icon name="circle-check" className="absolute -right-4 -bottom-4 text-lg text-green-500" />
+											<Icon
+												name="circle-check"
+												className="absolute -right-4 -bottom-4 text-lg text-green-500"
+											/>
 										</div>
 										<div className="relative">
 											<img
@@ -467,7 +497,10 @@ export function PressKitPage() {
 												className="h-20 w-auto"
 												style={{ transform: "rotate(15deg)" }}
 											/>
-											<Icon name="circle-x" className="absolute -right-4 -bottom-4 text-lg text-red-500" />
+											<Icon
+												name="circle-x"
+												className="absolute -right-4 -bottom-4 text-lg text-red-500"
+											/>
 										</div>
 									</div>
 									<span className="text-base text-zinc-600 dark:text-zinc-400">

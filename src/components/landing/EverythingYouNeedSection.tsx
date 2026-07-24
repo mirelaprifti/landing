@@ -112,7 +112,10 @@ export function EverythingYouNeedSection() {
 							>
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-2">
-										<Icon name="check" className="shrink-0 text-sm text-emerald-500" />
+										<Icon
+											name="check"
+											className="shrink-0 text-sm text-emerald-500"
+										/>
 										<span className="text-sm text-zinc-400">{item}</span>
 									</div>
 								))}

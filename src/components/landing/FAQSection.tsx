@@ -243,7 +243,10 @@ export function FAQSection() {
 														: "bg-zinc-200/80 text-zinc-600 group-hover:bg-zinc-300 dark:bg-zinc-800/80 dark:text-zinc-400 dark:group-hover:bg-zinc-700"
 												}`}
 											>
-												<Icon name="chevron-down" className={`text-base transition-transform duration-200 ${ isOpen ? "rotate-180" : "" }`} />
+												<Icon
+													name="chevron-down"
+													className={`text-base transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+												/>
 											</div>
 										</button>
 

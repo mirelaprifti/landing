@@ -64,7 +64,10 @@ export function CTASection({
 							size="lg"
 							className="group w-44"
 						>
-							<Icon name="arrow-right" className="text-lg transition-transform group-hover:translate-x-0.5" />
+							<Icon
+								name="arrow-right"
+								className="text-lg transition-transform group-hover:translate-x-0.5"
+							/>
 							Get started
 						</Button>
 						<Button
