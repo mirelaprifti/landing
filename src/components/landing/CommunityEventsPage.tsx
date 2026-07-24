@@ -303,8 +303,8 @@ export function CommunityEventsPage() {
 												key={detail}
 												className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-200"
 											>
-												<span className="text-emerald-400" aria-hidden="true">
-													✓
+												<span className="text-zinc-600" aria-hidden="true">
+													❯
 												</span>
 												{detail}
 											</li>
