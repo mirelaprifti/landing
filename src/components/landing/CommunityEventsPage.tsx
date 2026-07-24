@@ -96,7 +96,7 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 			caption: "// Miami '26",
 		},
 		{
-			src: "/assets/events/sf-24.jpeg",
+			src: "/assets/events/sf-24-web.jpg",
 			alt: "Effect meetup in San Francisco",
 			caption: "// SF '24",
 		},
