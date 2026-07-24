@@ -173,23 +173,27 @@ export function FeaturesSection() {
 				{/* Tab Navigation and Content */}
 				<div className="relative border-r border-zinc-200 shadow-2xl shadow-black/20 before:absolute before:top-0 before:right-4 before:left-4 before:h-px before:bg-zinc-200 dark:border-zinc-800 dark:before:bg-zinc-800">
 					{/* Tab Headers */}
-					<div
-						className="scrollbar-hide relative flex overflow-x-auto bg-white/90 dark:bg-zinc-950/90"
-						style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-					>
-						{TAB_IDS.map((tabId) => (
-							<button
-								key={tabId}
-								onClick={() => setActiveTab(tabId)}
-								className={`flex-1 shrink-0 cursor-pointer px-4 py-3 font-mono text-sm tracking-wide whitespace-nowrap uppercase transition-colors md:px-6 md:text-base ${
-									activeTab === tabId
-										? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-900 dark:text-white"
-										: "leading-relaxed text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								}`}
-							>
-								{TAB_CONFIG[tabId].label}
-							</button>
-						))}
+					<div className="relative">
+						<div
+							className="scrollbar-hide flex overflow-x-auto bg-white/90 dark:bg-zinc-950/90"
+							style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+						>
+							{TAB_IDS.map((tabId) => (
+								<button
+									key={tabId}
+									onClick={() => setActiveTab(tabId)}
+									className={`flex-1 shrink-0 cursor-pointer px-4 py-3 font-mono text-sm tracking-wide whitespace-nowrap uppercase transition-colors md:px-6 md:text-base ${
+										activeTab === tabId
+											? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-900 dark:text-white"
+											: "leading-relaxed text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									}`}
+								>
+									{TAB_CONFIG[tabId].label}
+								</button>
+							))}
+						</div>
+						{/* Mobile scroll hint: fade at the clipped edge */}
+						<div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-white to-transparent md:hidden dark:from-zinc-950" />
 					</div>
 
 					{/* Tab Content */}
@@ -197,28 +201,32 @@ export function FeaturesSection() {
 						{currentTabConfig.subTabs ? (
 							<div className="flex flex-col">
 								{/* Horizontal sub-tab navigation */}
-								<div
-									className="scrollbar-hide flex items-center border-y border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-									style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-								>
-									{currentTabConfig.subTabs.map((subTab) => (
-										<button
-											key={subTab.id}
-											onClick={() => handleSubTabChange(subTab.id)}
-											className={`flex-1 cursor-pointer px-3 py-2 font-mono text-sm whitespace-nowrap transition-colors ${
-												currentActiveSubTab === subTab.id
-													? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-white"
-													: "text-zinc-600 hover:bg-zinc-200/50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"
-											}`}
-										>
-											{subTab.label[0]}
-											{subTab.label[1] && (
-												<span className="ml-1 text-zinc-600 dark:text-zinc-400">
-													({subTab.label[1]})
-												</span>
-											)}
-										</button>
-									))}
+								<div className="relative border-y border-zinc-200 dark:border-zinc-800">
+									<div
+										className="scrollbar-hide flex items-center overflow-x-auto bg-white dark:bg-zinc-950"
+										style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+									>
+										{currentTabConfig.subTabs.map((subTab) => (
+											<button
+												key={subTab.id}
+												onClick={() => handleSubTabChange(subTab.id)}
+												className={`flex-1 shrink-0 cursor-pointer px-3 py-2 font-mono text-sm whitespace-nowrap transition-colors ${
+													currentActiveSubTab === subTab.id
+														? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-white"
+														: "text-zinc-600 hover:bg-zinc-200/50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"
+												}`}
+											>
+												{subTab.label[0]}
+												{subTab.label[1] && (
+													<span className="ml-1 text-zinc-600 dark:text-zinc-400">
+														({subTab.label[1]})
+													</span>
+												)}
+											</button>
+										))}
+									</div>
+									{/* Mobile scroll hint: fade at the clipped edge */}
+									<div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-white to-transparent md:hidden dark:from-zinc-950" />
 								</div>
 								{/* Example component - full width */}
 								<div className="p-4">
