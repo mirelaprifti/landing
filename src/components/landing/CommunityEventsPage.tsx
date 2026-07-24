@@ -283,7 +283,7 @@ export function CommunityEventsPage() {
 									className="flex flex-col border border-zinc-800 bg-[#0C0C0E] p-6 font-mono md:p-8"
 								>
 									{/* Command line — doubles as the card title */}
-									<h3 className="text-base text-zinc-500 md:text-lg">
+									<h3 className="text-base text-zinc-500">
 										<span className="text-emerald-400" aria-hidden="true">
 											${" "}
 										</span>
