@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 const PAIN_POINTS = [
 	{
 		problem: "Try-catch blocks everywhere",
@@ -6,7 +7,7 @@ const PAIN_POINTS = [
 		solution: "Typed Errors",
 		solutionDescription:
 			"Every possible error is tracked in the type system. The compiler tells you what can fail and forces you to handle it.",
-		icon: "ri-error-warning-line",
+		icon: "circle-alert",
 	},
 	{
 		problem: "Dependency injection chaos",
@@ -15,7 +16,7 @@ const PAIN_POINTS = [
 		solution: "Built-in DI",
 		solutionDescription:
 			"Services are declared as types and provided at the edge. No decorators, no reflection, no magic — just types.",
-		icon: "ri-plug-line",
+		icon: "plug",
 	},
 	{
 		problem: "Promise nightmares",
@@ -24,7 +25,7 @@ const PAIN_POINTS = [
 		solution: "Structured Concurrency",
 		solutionDescription:
 			"Fibers with automatic cleanup, cancellation propagation, and proper resource management. Async code that actually makes sense.",
-		icon: "ri-git-branch-line",
+		icon: "git-branch",
 	},
 	{
 		problem: "Untestable code",
@@ -33,7 +34,7 @@ const PAIN_POINTS = [
 		solution: "Testable by Design",
 		solutionDescription:
 			"Swap implementations at test time without mocking libraries. Your code is naturally decoupled and easy to test.",
-		icon: "ri-flask-line",
+		icon: "flask",
 	},
 	{
 		problem: "Zero observability",
@@ -42,7 +43,7 @@ const PAIN_POINTS = [
 		solution: "Built-in Tracing",
 		solutionDescription:
 			"OpenTelemetry-compatible tracing out of the box. See exactly what happened, with full context, without adding instrumentation code.",
-		icon: "ri-line-chart-line",
+		icon: "chart-line",
 	},
 ];
 
@@ -69,7 +70,7 @@ export function PainPointsSection() {
 						>
 							{/* Icon */}
 							<div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-zinc-800/50">
-								<i className={`${item.icon} text-xl text-zinc-400`} />
+								<Icon name={item.icon} className="text-xl text-zinc-400" />
 							</div>
 
 							{/* Problem */}

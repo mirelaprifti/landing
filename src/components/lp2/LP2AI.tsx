@@ -6,25 +6,25 @@ const AI_BENEFITS = [
 		title: "Predictable structure",
 		description:
 			"Every operation follows a declarative pattern — no guesswork for LLMs.",
-		icon: "ri-layout-grid-line",
+		icon: "layout-grid",
 	},
 	{
 		title: "Typed feedback loop",
 		description:
 			"Detailed error traces show what failed, enabling precise self-repair.",
-		icon: "ri-refresh-line",
+		icon: "refresh-cw",
 	},
 	{
 		title: "Built-in reliability",
 		description:
 			"Error handling, supervision, and recovery — production-ready by default.",
-		icon: "ri-shield-check-line",
+		icon: "shield-check",
 	},
 	{
 		title: "Rich toolbox",
 		description:
 			"Schema validation to workflows in a language LLMs easily understand.",
-		icon: "ri-tools-line",
+		icon: "wrench",
 	},
 ];
 
@@ -54,7 +54,7 @@ export function LP2AI() {
 						{AI_BENEFITS.map((benefit, index) => (
 							<div key={index} className="space-y-2">
 								<div className="flex items-center gap-2">
-									<i className={`${benefit.icon} text-lg text-zinc-400`} />
+									<Icon name={benefit.icon} className="text-lg text-zinc-400" />
 									<h3 className="text-base font-semibold text-white">
 										{benefit.title}
 									</h3>

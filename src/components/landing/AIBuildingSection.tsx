@@ -31,12 +31,12 @@ const FEATURES = [
 	{
 		title: "Type-safe data flows",
 		description: "Connect AI outputs to frontend UI without schema mismatches.",
-		icon: "ri-shape-line",
+		icon: "shapes",
 	},
 	{
 		title: "Deterministic concurrency",
 		description: "Runs and scales agent pipelines safely.",
-		icon: "ri-git-branch-line",
+		icon: "git-branch",
 	},
 	{
 		title: "Durable agent execution",
@@ -53,12 +53,12 @@ const FEATURES = [
 				.
 			</>
 		),
-		icon: "ri-history-line",
+		icon: "history",
 	},
 	{
 		title: "Composable infrastructure",
 		description: "Easily integrates LLMs, APIs, queues and vector DBs.",
-		icon: "ri-stack-line",
+		icon: "layers",
 	},
 ];
 
@@ -116,7 +116,7 @@ export function AIBuildingSection() {
 									: ""
 							} ${index === 0 ? "lg:pl-0" : ""} ${index === FEATURES.length - 1 ? "lg:pr-0" : ""}`}
 						>
-							<i className={`${feature.icon} mb-2 text-lg text-zinc-300`} />
+							<Icon name={feature.icon} className="mb-2 text-lg text-zinc-300" />
 							<h3 className="text-base font-semibold text-white">
 								{feature.title}
 							</h3>

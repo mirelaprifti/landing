@@ -525,19 +525,19 @@ const sortedPastEvents = pastEvents
 
 const hostPerks = [
 	{
-		icon: "ri-megaphone-line",
+		icon: "megaphone",
 		title: "Promotional support",
 		description:
 			"We love spreading the word! Every Effect-dedicated event gets shared with our network and community on socials and Discord.",
 	},
 	{
-		icon: "ri-team-line",
+		icon: "users",
 		title: "Direct line to the team",
 		description:
 			"Got questions about running your event? The Effect team is just a message away on Discord.",
 	},
 	{
-		icon: "ri-palette-line",
+		icon: "palette",
 		title: "Banners and assets",
 		description:
 			"Logos, event templates, and branding assets ready to drop into your meetup page or slides.",
@@ -545,7 +545,7 @@ const hostPerks = [
 		linkLabel: "Figma kit",
 	},
 	{
-		icon: "ri-git-repository-line",
+		icon: "folder-git",
 		title: "GitHub repo template",
 		description:
 			"A template for talk submissions as issues, a code of conduct, and organizer checklists.",
@@ -1205,14 +1205,7 @@ export function EventsPage() {
 												"linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
 										}}
 									>
-										<i
-											className={`${perk.icon} text-lg`}
-											style={{
-												background: "linear-gradient(135deg, #34d399, #8b5cf6)",
-												WebkitBackgroundClip: "text",
-												WebkitTextFillColor: "transparent",
-											}}
-										/>
+										<Icon name={perk.icon} className="text-lg" style={{ background: "linear-gradient(135deg, #34d399, #8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", }} />
 									</div>
 									<div>
 										<h3 className="text-base font-semibold text-white">

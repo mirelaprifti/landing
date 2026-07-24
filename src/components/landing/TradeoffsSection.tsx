@@ -1,42 +1,42 @@
 import { Icon } from "@/components/ui/Icon";
 const GOOD_FIT = [
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		text: "Systems that need to be reliable under failure",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		text: "You want typed errors, not just catch (e: unknown)",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		text: "You need observability without bolting on logging libraries",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		text: "Your team values explicit over implicit",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		text: "You're building AI/agentic systems, APIs, or backend services",
 	},
 ];
 
 const MAYBE_NOT = [
 	{
-		icon: "ri-close-circle-line",
+		icon: "circle-x",
 		text: "Simple CRUD apps with minimal error handling",
 	},
 	{
-		icon: "ri-close-circle-line",
+		icon: "circle-x",
 		text: "Your team isn't ready to invest in learning a new paradigm",
 	},
 	{
-		icon: "ri-close-circle-line",
+		icon: "circle-x",
 		text: "You need the absolute smallest possible bundle size",
 	},
 	{
-		icon: "ri-close-circle-line",
+		icon: "circle-x",
 		text: "You prefer implicit magic over explicit composition",
 	},
 ];
@@ -70,9 +70,7 @@ export function TradeoffsSection() {
 						<ul className="space-y-3">
 							{GOOD_FIT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<i
-										className={`${item.icon} mt-0.5 shrink-0 text-emerald-400`}
-									/>
+									<Icon name={item.icon} className="mt-0.5 shrink-0 text-emerald-400" />
 									<span className="text-sm text-zinc-300">{item.text}</span>
 								</li>
 							))}
@@ -88,7 +86,7 @@ export function TradeoffsSection() {
 						<ul className="space-y-3">
 							{MAYBE_NOT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<i className={`${item.icon} mt-0.5 shrink-0 text-zinc-400`} />
+									<Icon name={item.icon} className="mt-0.5 shrink-0 text-zinc-400" />
 									<span className="text-sm text-zinc-400">{item.text}</span>
 								</li>
 							))}

@@ -5,7 +5,7 @@ const FEATURES = [
 	{
 		problem:
 			"Try-catch blocks everywhere but you still don't know how things can fail.",
-		icon: "ri-shield-check-line",
+		icon: "shield-check",
 		title: "Typed Errors",
 		description:
 			"Errors in the type system. The compiler tells you what can fail.",
@@ -17,7 +17,7 @@ const FEATURES = [
 	},
 	{
 		problem: "Another decorator. Another magic string. Another runtime error.",
-		icon: "ri-node-tree",
+		icon: "network",
 		title: "Dependency Injection",
 		description:
 			"Services as types, provided at the edge. No decorators, no magic.",
@@ -30,7 +30,7 @@ const FEATURES = [
 	{
 		problem:
 			"That Promise.all? It's a time bomb. One failure, everything crashes.",
-		icon: "ri-git-branch-line",
+		icon: "git-branch",
 		title: "Structured Concurrency",
 		description: "Fibers with cleanup, cancellation, and resource management.",
 		items: [
@@ -41,14 +41,14 @@ const FEATURES = [
 	},
 	{
 		problem: "Network failed? Try again later. But when? How many times?",
-		icon: "ri-time-line",
+		icon: "clock",
 		title: "Scheduling",
 		description: "Declarative retry, repeat, and timeout policies.",
 		items: ["Cron-like schedules", "Exponential backoff", "Jittered retries"],
 	},
 	{
 		problem: "No observability. Production's on fire. You have no idea why.",
-		icon: "ri-line-chart-line",
+		icon: "chart-line",
 		title: "Built-in Tracing",
 		description: "OpenTelemetry out of the box. Full context, zero setup.",
 		items: [
@@ -60,7 +60,7 @@ const FEATURES = [
 	{
 		problem:
 			"Validation logic is duplicated across every layer of your application.",
-		icon: "ri-file-check-line",
+		icon: "file-check",
 		title: "Unified Schema",
 		description: "One schema for validation, encoding, and documentation.",
 		items: [
@@ -271,9 +271,7 @@ export function ProblemSection() {
 							</div>
 							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-zinc-900 dark:text-white uppercase">
 								<div className="flex h-6 w-6 shrink-0 items-center justify-center bg-zinc-200 dark:bg-zinc-800">
-									<i
-										className={`${feature.icon} text-sm text-zinc-800 dark:text-zinc-200`}
-									/>
+									<Icon name={feature.icon} className="text-sm text-zinc-800 dark:text-zinc-200" />
 								</div>
 								{feature.title}
 							</h3>

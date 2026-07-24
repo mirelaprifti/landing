@@ -1,41 +1,42 @@
+import { Icon } from "@/components/ui/Icon";
 const FEATURES = [
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Typed errors",
 		description: "Errors as values in your type signature",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Dependency injection",
 		description: "Services provided at the edge, no decorators",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Retries & timeouts",
 		description: "Built-in scheduling with exponential backoff",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Structured concurrency",
 		description: "Fibers with cancellation and cleanup",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Resource management",
 		description: "Acquire, use, release — guaranteed",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "OpenTelemetry tracing",
 		description: "Full observability, zero config",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Schema validation",
 		description: "Parse, encode, document — one definition",
 	},
 	{
-		icon: "ri-checkbox-circle-line",
+		icon: "circle-check",
 		title: "Testable by default",
 		description: "Swap implementations without mocks",
 	},
@@ -91,9 +92,7 @@ export function WhatYouGetSection() {
 					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 						{FEATURES.map((feature, index) => (
 							<div key={index} className="flex items-start gap-3">
-								<i
-									className={`${feature.icon} mt-0.5 text-lg text-emerald-500`}
-								/>
+								<Icon name={feature.icon} className="mt-0.5 text-lg text-emerald-500" />
 								<div>
 									<p className="font-medium text-white">{feature.title}</p>
 									<p className="text-sm text-zinc-400">{feature.description}</p>

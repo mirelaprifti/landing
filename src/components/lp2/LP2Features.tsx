@@ -8,7 +8,7 @@ const FEATURES = [
 			"Automatic retry with backoff",
 			"Timeout and interruption",
 		],
-		icon: "ri-shield-check-line",
+		icon: "shield-check",
 	},
 	{
 		category: "Concurrency",
@@ -18,7 +18,7 @@ const FEATURES = [
 			"Race conditions handled correctly",
 			"Automatic resource cleanup",
 		],
-		icon: "ri-git-branch-line",
+		icon: "git-branch",
 	},
 	{
 		category: "Dependency Injection",
@@ -28,7 +28,7 @@ const FEATURES = [
 			"Easy mocking for tests",
 			"No decorators or reflection",
 		],
-		icon: "ri-plug-line",
+		icon: "plug",
 	},
 	{
 		category: "Observability",
@@ -38,7 +38,7 @@ const FEATURES = [
 			"Metrics collection",
 			"Span context propagation",
 		],
-		icon: "ri-line-chart-line",
+		icon: "chart-line",
 	},
 	{
 		category: "Schema & Validation",
@@ -48,7 +48,7 @@ const FEATURES = [
 			"API contract generation",
 			"Form validation support",
 		],
-		icon: "ri-file-check-line",
+		icon: "file-check",
 	},
 	{
 		category: "Scheduling",
@@ -58,7 +58,7 @@ const FEATURES = [
 			"Jittered retries",
 			"Repeat with conditions",
 		],
-		icon: "ri-time-line",
+		icon: "clock",
 	},
 ];
 
@@ -88,7 +88,7 @@ export function LP2Features() {
 							{/* Category header */}
 							<div className="flex items-center gap-3">
 								<div className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-800/50">
-									<i className={`${feature.icon} text-lg text-zinc-400`} />
+									<Icon name={feature.icon} className="text-lg text-zinc-400" />
 								</div>
 								<h3 className="text-base font-semibold text-white">
 									{feature.category}
