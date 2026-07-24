@@ -261,9 +261,6 @@ export function CommunityEventsPage() {
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							What we can help with
 						</h2>
-						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
-							Tell us what you're planning and we'll take it from there.
-						</p>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{SUPPORT_ITEMS.map((item) => (
