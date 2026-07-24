@@ -96,9 +96,9 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 			caption: "// Miami '26",
 		},
 		{
-			src: "/assets/events/miami-dax-web.jpg",
-			alt: "Effect talk in Miami",
-			caption: "// Miami '26",
+			src: "/assets/events/sf-24.jpeg",
+			alt: "Effect meetup in San Francisco",
+			caption: "// SF '24",
 		},
 	],
 ];
