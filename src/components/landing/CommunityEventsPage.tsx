@@ -262,7 +262,6 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
-							No two events are the same, so there's no fixed package.
 							Tell us what you're planning and we'll work out what fits.
 						</p>
 
