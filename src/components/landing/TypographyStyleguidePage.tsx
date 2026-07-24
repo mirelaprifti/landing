@@ -60,6 +60,26 @@ export function TypographyStyleguidePage() {
 							<li>Dependency injection without wiring frameworks</li>
 						</ul>
 
+						<p>A list where every item is a link:</p>
+						<ul>
+							<li>
+								<a href={getAssetPath("/docs/introduction")}>
+									Getting started with Effect
+								</a>
+							</li>
+							<li>
+								<a href={getAssetPath("/docs/two-types-of-errors")}>
+									Two types of errors
+								</a>
+							</li>
+							<li>
+								<a href={getAssetPath("/blog")}>
+									The Effect blog, a longer link label to show how underlined
+									links look when they wrap across lines
+								</a>
+							</li>
+						</ul>
+
 						<h4>Fourth-level heading</h4>
 						<p>
 							An h4 is the smallest heading: 20px, for fine-grained structure.
