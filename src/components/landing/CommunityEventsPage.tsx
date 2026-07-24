@@ -18,7 +18,7 @@ const SUPPORT_ITEMS: {
 		description: "From your first event to a recurring local community.",
 		icon: "ri-group-line",
 		details: [
-			"Help planning and hosting your first event",
+			"Guidance on planning and running your first event",
 			"Connecting you with Effect developers nearby",
 			"Listing your meetup on the Effect events calendar",
 		],
@@ -225,7 +225,7 @@ export function CommunityEventsPage() {
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[50%] lg:max-w-none">
 									Host an Effect meetup, or crash your local TypeScript{" "}
 									<br className="hidden lg:block" />
-									or AI event with an Effect talk. We'll help you prepare,
+									or AI event with an Effect talk. We can help you prepare,
 									promote, and share it with the community.
 								</p>
 								<div className="mt-8">
@@ -260,6 +260,11 @@ export function CommunityEventsPage() {
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							What we can help with
 						</h2>
+						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
+							Every event is different, so we figure out support case by case.
+							Tell us what you're planning and we'll see what makes sense
+							together.
+						</p>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{SUPPORT_ITEMS.map((item) => (
