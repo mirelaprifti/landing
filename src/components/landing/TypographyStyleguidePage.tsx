@@ -116,7 +116,7 @@ Effect.runPromise(program)`}</code>
 								alt="An Effect community meetup in Paris"
 							/>
 							<figcaption>
-								Figures render borderless with rounded corners; captions sit in
+								Figures render full-bleed with square corners; captions sit in
 								small muted text.
 							</figcaption>
 						</figure>
