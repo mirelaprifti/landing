@@ -66,6 +66,11 @@ export function DocsLayout({
 }) {
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+	const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+	const activeLabel = SIDEBAR.flatMap((section) => section.items).find(
+		(item) => item.slug === activeSlug,
+	)?.label;
 
 	const toggleSection = (title: string) => {
 		setOpenSections((prev) => {
@@ -98,6 +103,55 @@ export function DocsLayout({
 		return () => observer.disconnect();
 	}, [tocItems]);
 
+	const renderSections = (idPrefix: string) =>
+		SIDEBAR.map((section) => {
+			const containsActive = section.items.some(
+				(item) => item.slug === activeSlug,
+			);
+			const isOpen = openSections[section.title] ?? containsActive;
+			const panelId = `${idPrefix}-${section.title.toLowerCase().replace(/\s+/g, "-")}`;
+			return (
+				<div key={section.title} className="mb-1 last:mb-0">
+					<button
+						type="button"
+						onClick={() => toggleSection(section.title)}
+						aria-expanded={isOpen}
+						aria-controls={panelId}
+						className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+					>
+						<span>{section.title}</span>
+						<Icon
+							name="chevron-down"
+							className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
+							aria-hidden="true"
+						/>
+					</button>
+					{isOpen && (
+						<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
+							{section.items.map((item) => {
+								const isActive = item.slug === activeSlug;
+								return (
+									<li key={item.slug}>
+										<a
+											href={getAssetPath(`/docs/${item.slug}`)}
+											aria-current={isActive ? "page" : undefined}
+											className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
+												isActive
+													? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+													: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+											}`}
+										>
+											{item.label}
+										</a>
+									</li>
+								);
+							})}
+						</ul>
+					)}
+				</div>
+			);
+		});
+
 	return (
 		<div className="relative min-h-screen bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<a
@@ -108,6 +162,38 @@ export function DocsLayout({
 			</a>
 			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
+				{/* Mobile docs nav: sticky disclosure below the navbar */}
+				<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+					<button
+						type="button"
+						onClick={() => setMobileNavOpen((open) => !open)}
+						aria-expanded={mobileNavOpen}
+						aria-controls="docs-mobile-nav"
+						className="flex w-full items-center gap-2 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
+					>
+						<Icon name="menu" className="text-base" aria-hidden="true" />
+						<span>Docs menu</span>
+						{activeLabel && (
+							<span className="truncate text-zinc-500 dark:text-zinc-400">
+								/ {activeLabel}
+							</span>
+						)}
+						<Icon
+							name="chevron-down"
+							className={`ml-auto text-base transition-transform ${mobileNavOpen ? "rotate-180" : ""}`}
+							aria-hidden="true"
+						/>
+					</button>
+					{mobileNavOpen && (
+						<nav
+							id="docs-mobile-nav"
+							aria-label="Docs navigation"
+							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
+						>
+							{renderSections("docs-mobile-section")}
+						</nav>
+					)}
+				</div>
 				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 lg:grid-cols-[240px_1fr_240px]">
 					{/* Left sidebar */}
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
@@ -115,53 +201,7 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
-							{SIDEBAR.map((section) => {
-								const containsActive = section.items.some(
-									(item) => item.slug === activeSlug,
-								);
-								const isOpen = openSections[section.title] ?? containsActive;
-								const panelId = `docs-section-${section.title.toLowerCase().replace(/\s+/g, "-")}`;
-								return (
-									<div key={section.title} className="mb-1 last:mb-0">
-										<button
-											type="button"
-											onClick={() => toggleSection(section.title)}
-											aria-expanded={isOpen}
-											aria-controls={panelId}
-											className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-										>
-											<span>{section.title}</span>
-											<Icon
-												name="chevron-down"
-												className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
-												aria-hidden="true"
-											/>
-										</button>
-										{isOpen && (
-											<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
-												{section.items.map((item) => {
-													const isActive = item.slug === activeSlug;
-													return (
-														<li key={item.slug}>
-															<a
-																href={getAssetPath(`/docs/${item.slug}`)}
-																aria-current={isActive ? "page" : undefined}
-																className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
-																	isActive
-																		? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																		: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-																}`}
-															>
-																{item.label}
-															</a>
-														</li>
-													);
-												})}
-											</ul>
-										)}
-									</div>
-								);
-							})}
+							{renderSections("docs-section")}
 						</nav>
 					</aside>
 
