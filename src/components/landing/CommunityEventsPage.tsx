@@ -391,6 +391,11 @@ export function CommunityEventsPage() {
 													❯
 												</span>
 												{idea.label}
+												<Icon
+													name="arrow-up-right"
+													className="ml-auto shrink-0 text-zinc-600 transition-colors group-hover:text-white"
+													aria-hidden="true"
+												/>
 											</a>
 										) : (
 											<span className="flex items-start gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
