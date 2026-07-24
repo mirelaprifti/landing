@@ -13,6 +13,7 @@ import { Button } from "../ui/Button";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { PartnerContactForm } from "./PartnerContactForm";
+import { Icon } from "@/components/ui/Icon";
 
 type Service = {
 	icon: LucideIcon;
@@ -166,17 +167,11 @@ export function PartnerZivergePage() {
 										size="md"
 									>
 										Visit ziverge.com
-										<i
-											className="ri-arrow-right-up-line text-base"
-											aria-hidden="true"
-										/>
+										<Icon name="arrow-up-right" className="text-base" aria-hidden="true" />
 									</Button>
 									<Button href="#contact" variant="secondary" size="md">
 										Talk to Ziverge
-										<i
-											className="ri-arrow-right-line text-base"
-											aria-hidden="true"
-										/>
+										<Icon name="arrow-right" className="text-base" aria-hidden="true" />
 									</Button>
 								</div>
 							</div>

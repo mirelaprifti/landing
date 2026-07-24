@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 function VideoWithPosterOverlay() {
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -57,10 +58,7 @@ function VideoWithPosterOverlay() {
 				}`}
 			>
 				<span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/80 text-zinc-900 backdrop-blur-sm transition-transform group-hover:scale-105">
-					<i
-						className="ri-play-fill translate-x-0.5 text-3xl"
-						aria-hidden="true"
-					/>
+					<Icon name="play" className="translate-x-0.5 text-3xl" aria-hidden="true" />
 				</span>
 			</button>
 		</div>
@@ -94,7 +92,7 @@ export function AISection() {
 							className="mt-6 inline-flex items-center gap-2"
 						>
 							Quick start LLM guide
-							<i className="ri-arrow-right-up-line text-base" />
+							<Icon name="arrow-up-right" className="text-base" />
 						</Button>
 					</div>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 
 const CODE_EXAMPLE = `import { Effect, Schedule } from "effect"
 
@@ -92,15 +93,15 @@ export function RealWorldExampleSection() {
 								</span>
 								<div className="flex items-center gap-2 text-xs text-zinc-400">
 									<span className="flex items-center gap-1">
-										<i className="ri-checkbox-circle-line text-emerald-400" />
+										<Icon name="circle-check" className="text-emerald-400" />
 										Typed errors
 									</span>
 									<span className="flex items-center gap-1">
-										<i className="ri-checkbox-circle-line text-emerald-400" />
+										<Icon name="circle-check" className="text-emerald-400" />
 										Retries
 									</span>
 									<span className="flex items-center gap-1">
-										<i className="ri-checkbox-circle-line text-emerald-400" />
+										<Icon name="circle-check" className="text-emerald-400" />
 										Tracing
 									</span>
 								</div>

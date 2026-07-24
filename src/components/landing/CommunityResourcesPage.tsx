@@ -13,6 +13,7 @@ import { GridOverlay } from "../GridOverlay";
 import { Button, Link } from "../ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 // ── Constants ────────────────────────────────────────────────────
 
@@ -67,10 +68,7 @@ function ResourceCard({
 			{/* Title */}
 			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
-				<i
-					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-					aria-hidden="true"
-				/>
+				<Icon name="arrow-up-right" className="ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
 			</h3>
 
 			{/* Description */}
@@ -123,10 +121,7 @@ function FeaturedItemCard({
 					className={`font-semibold leading-snug text-white drop-shadow-sm ${large ? "text-lg" : "text-[15px]"}`}
 				>
 					{item.title}
-					<i
-						className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200"
-						aria-hidden="true"
-					/>
+					<Icon name="arrow-up-right" className="ml-1 text-xs text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200" aria-hidden="true" />
 				</h3>
 			</div>
 		</a>
@@ -179,10 +174,7 @@ function CategorySection({ category }: { category: Category }) {
 					className="group/link flex items-center gap-1 font-medium"
 				>
 					View all
-					<i
-						className="ri-arrow-right-line text-sm transition-transform group-hover/link:translate-x-0.5"
-						aria-hidden="true"
-					/>
+					<Icon name="arrow-right" className="text-sm transition-transform group-hover/link:translate-x-0.5" aria-hidden="true" />
 				</Link>
 			</div>
 
@@ -223,10 +215,7 @@ function SearchResults({
 		return (
 			<div className="flex flex-col items-center justify-center py-16 md:py-24">
 				<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-900/60">
-					<i
-						className="ri-search-line text-2xl text-zinc-400"
-						aria-hidden="true"
-					/>
+					<Icon name="search" className="text-2xl text-zinc-400" aria-hidden="true" />
 				</div>
 				<p className="mt-6 text-base font-medium text-zinc-300">
 					No resources found
@@ -385,10 +374,7 @@ export function CommunityResourcesPage() {
 					{/* ── Search ──────────────────────────── */}
 					<div className="pt-8 pb-2">
 						<div className="relative w-full md:w-1/2 md:pr-4">
-							<i
-								className="ri-search-line pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-base text-zinc-400"
-								aria-hidden="true"
-							/>
+							<Icon name="search" className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-base text-zinc-400" aria-hidden="true" />
 							<input
 								type="text"
 								placeholder="Search resources..."
@@ -404,7 +390,7 @@ export function CommunityResourcesPage() {
 									aria-label="Clear search"
 									className="absolute top-1/2 right-2.5 -translate-y-1/2 rounded p-0.5 text-zinc-400 transition-colors hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500"
 								>
-									<i className="ri-close-line text-base" aria-hidden="true" />
+									<Icon name="x" className="text-base" aria-hidden="true" />
 								</button>
 							)}
 						</div>
@@ -465,10 +451,7 @@ export function CommunityResourcesPage() {
 									Discord
 								</Button>
 								<Button href="#" variant="secondary">
-									<i
-										className="ri-file-list-line text-base"
-										aria-hidden="true"
-									/>
+									<Icon name="clipboard-list" className="text-base" aria-hidden="true" />
 									Submit Form
 								</Button>
 							</div>

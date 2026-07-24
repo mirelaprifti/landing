@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 /**
  * Slim site-wide launch banner. Sits above the fixed navbar.
  * Always visible — not dismissible.
@@ -46,10 +47,7 @@ export function LaunchBanner({
 				<span className="truncate">
 					Effect 4.0 RC is here: faster runtime, 71% smaller bundles
 				</span>
-				<i
-					className="ri-arrow-right-line shrink-0 text-base transition-transform group-hover:translate-x-0.5"
-					aria-hidden="true"
-				/>
+				<Icon name="arrow-right" className="shrink-0 text-base transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
 			</div>
 		</div>
 	);

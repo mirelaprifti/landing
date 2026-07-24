@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 const FEATURES = [
 	{
 		category: "Error Handling",
@@ -111,7 +112,7 @@ export function EverythingYouNeedSection() {
 							>
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-2">
-										<i className="ri-check-line shrink-0 text-sm text-emerald-500" />
+										<Icon name="check" className="shrink-0 text-sm text-emerald-500" />
 										<span className="text-sm text-zinc-400">{item}</span>
 									</div>
 								))}

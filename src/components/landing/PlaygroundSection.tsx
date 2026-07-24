@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 export function PlaygroundSection() {
 	const [hasStarted, setHasStarted] = useState(false);
@@ -62,7 +63,7 @@ export function PlaygroundSection() {
 						className="font-inter flex items-center gap-2 rounded-lg border border-zinc-600 px-4 py-2 text-base font-medium text-white transition-colors hover:border-zinc-300 hover:bg-zinc-900/50"
 					>
 						<span>Play</span>
-						<i className="ri-arrow-right-line text-base"></i>
+						<Icon name="arrow-right" className="text-base" />
 					</a>
 				</div>
 				<div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
@@ -101,7 +102,7 @@ export function PlaygroundSection() {
 								}`}
 								aria-label="Play video"
 							>
-								<i className="ri-play-fill text-5xl text-white" />
+								<Icon name="play" className="text-5xl text-white" />
 							</button>
 						</div>
 					</div>

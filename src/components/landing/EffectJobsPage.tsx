@@ -4,6 +4,7 @@ import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 function linkDisplay(url: string): string {
 	try {
@@ -99,10 +100,7 @@ export function EffectJobsPage() {
 						<div className="mt-8 flex flex-wrap items-center gap-3">
 							<Button href={SUBMIT_URLS.postJob} variant="primary" size="lg">
 								Post a job
-								<i
-									className="ri-arrow-right-up-line text-lg"
-									aria-hidden="true"
-								/>
+								<Icon name="arrow-up-right" className="text-lg" aria-hidden="true" />
 							</Button>
 						</div>
 					</div>
@@ -146,10 +144,7 @@ export function EffectJobsPage() {
 														{job.company}
 													</p>
 												</div>
-												<i
-													aria-hidden="true"
-													className="ri-arrow-right-up-line shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
-												/>
+												<Icon name="arrow-up-right" aria-hidden="true" className="shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300" />
 											</div>
 
 											{/* Role (headline) */}
@@ -210,16 +205,13 @@ export function EffectJobsPage() {
 													aria-hidden="true"
 													className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-dashed border-zinc-400 text-lg text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"
 												>
-													<i className="ri-add-line" />
+													<Icon name="plus" />
 												</span>
 												<p className="truncate font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 													// Post a job
 												</p>
 											</div>
-											<i
-												aria-hidden="true"
-												className="ri-arrow-right-up-line shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300"
-											/>
+											<Icon name="arrow-up-right" aria-hidden="true" className="shrink-0 text-xl text-zinc-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-zinc-300" />
 										</div>
 
 										{/* Headline */}

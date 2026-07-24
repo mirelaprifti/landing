@@ -6,6 +6,7 @@ import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 function ShareButtons({ title }: { title: string }) {
 	const [copied, setCopied] = useState(false);
@@ -59,8 +60,9 @@ function ShareButtons({ title }: { title: string }) {
 					aria-label={copied ? "Link copied" : "Copy link"}
 					className={buttonClass}
 				>
-					<i
-						className={`${copied ? "ri-check-line" : "ri-link"} text-lg`}
+					<Icon
+						name={copied ? "check" : "link"}
+						className="text-lg"
 						aria-hidden="true"
 					/>
 				</button>
@@ -199,7 +201,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					className="group flex flex-col rounded-md border border-zinc-300 px-6 py-5 transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
 				>
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-						<i className="ri-arrow-left-s-line text-base transition-transform duration-200 group-hover:-translate-x-0.5" />
+						<Icon name="chevron-left" className="text-base transition-transform duration-200 group-hover:-translate-x-0.5" />
 						Previous
 					</span>
 					<span className="mt-2 line-clamp-1 text-base font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
@@ -219,7 +221,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 				>
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						Next
-						<i className="ri-arrow-right-s-line text-base transition-transform duration-200 group-hover:translate-x-0.5" />
+						<Icon name="chevron-right" className="text-base transition-transform duration-200 group-hover:translate-x-0.5" />
 					</span>
 					<span className="mt-2 line-clamp-1 text-base font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
 						{nextPost.title}
@@ -242,7 +244,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				<main className="flex min-h-[60vh] items-center justify-center pt-16">
 					<div className="flex flex-col items-center text-center">
 						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900">
-							<i className="ri-article-line text-3xl text-zinc-600 dark:text-zinc-400" />
+							<Icon name="newspaper" className="text-3xl text-zinc-600 dark:text-zinc-400" />
 						</div>
 						<p className="mt-5 text-lg text-zinc-700 dark:text-zinc-300">
 							Post not found.
@@ -251,7 +253,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							href={getAssetPath("/blog")}
 							className="mt-5 inline-flex items-center gap-2 rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-200 hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:hover:text-white"
 						>
-							<i className="ri-arrow-left-s-line" />
+							<Icon name="chevron-left" />
 							Back to blog
 						</a>
 					</div>
@@ -610,10 +612,7 @@ Effect.runPromise(program)`}</code>
 									className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
 								>
 									Join the Discord
-									<i
-										className="ri-arrow-right-line text-base"
-										aria-hidden="true"
-									/>
+									<Icon name="arrow-right" className="text-base" aria-hidden="true" />
 								</a>
 								<a
 									href="https://discord.gg/effect-ts"
@@ -622,7 +621,7 @@ Effect.runPromise(program)`}</code>
 									className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
 								>
 									discord.gg/effect-ts
-									<i className="ri-arrow-right-up-line" aria-hidden="true" />
+									<Icon name="arrow-up-right" aria-hidden="true" />
 								</a>
 							</div>
 						</div>

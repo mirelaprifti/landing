@@ -5,6 +5,7 @@ import { EffectSleepExample } from "@/examples/effect-sleep";
 import { EffectSucceedExample } from "@/examples/effect-succeed";
 import type { ExampleComponentProps } from "@/lib/example-types";
 import { getExampleMeta } from "@/lib/examples-manifest";
+import { Icon } from "@/components/ui/Icon";
 
 const EXAMPLE_COMPONENTS: Record<
 	string,
@@ -51,7 +52,7 @@ export function VisualEffectShowcaseSection() {
 							className="font-inter flex items-center gap-2 rounded-lg border border-zinc-600 px-4 py-2 text-base font-medium text-white transition-colors hover:border-zinc-300 hover:bg-zinc-900/50"
 						>
 							<span>Visualize Effect</span>
-							<i className="ri-arrow-right-up-line text-base"></i>
+							<Icon name="arrow-up-right" className="text-base" />
 						</a>
 					</div>
 

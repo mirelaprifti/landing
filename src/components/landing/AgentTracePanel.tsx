@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 type SpanStatus = "ok" | "retry" | "err";
 
 type Span = {
@@ -73,19 +74,16 @@ const SPANS: Span[] = [
 function StatusGlyph({ status }: { status: SpanStatus }) {
 	if (status === "err") {
 		return (
-			<i className="ri-close-line text-base text-red-400" aria-label="error" />
+			<Icon name="x" className="text-base text-red-400" aria-label="error" />
 		);
 	}
 	if (status === "retry") {
 		return (
-			<i
-				className="ri-refresh-line text-base text-amber-300"
-				aria-label="retried"
-			/>
+			<Icon name="refresh-cw" className="text-base text-amber-300" aria-label="retried" />
 		);
 	}
 	return (
-		<i className="ri-check-line text-base text-emerald-400" aria-label="ok" />
+		<Icon name="check" className="text-base text-emerald-400" aria-label="ok" />
 	);
 }
 
@@ -149,15 +147,15 @@ export function AgentTracePanel() {
 				</div>
 				<div className="flex items-center gap-3 font-mono text-[10px] tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
 					<span className="inline-flex items-center gap-1">
-						<i className="ri-check-line text-xs text-emerald-400" />
+						<Icon name="check" className="text-xs text-emerald-400" />
 						{totalSpans - retried - errors}
 					</span>
 					<span className="inline-flex items-center gap-1">
-						<i className="ri-refresh-line text-xs text-amber-300" />
+						<Icon name="refresh-cw" className="text-xs text-amber-300" />
 						{retried}
 					</span>
 					<span className="inline-flex items-center gap-1">
-						<i className="ri-close-line text-xs text-red-400" />
+						<Icon name="x" className="text-xs text-red-400" />
 						{errors}
 					</span>
 				</div>

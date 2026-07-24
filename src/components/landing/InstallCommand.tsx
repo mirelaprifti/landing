@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getAssetPath } from "@/utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 const INSTALL_COMMANDS: Record<string, string> = {
 	npm: "npm install effect",
@@ -68,9 +69,9 @@ export function InstallCommand() {
 			>
 				<span>{currentCommand}</span>
 				{copyFeedback ? (
-					<i className="ri-check-line text-base text-green-400" />
+					<Icon name="check" className="text-base text-green-400" />
 				) : (
-					<i className="ri-file-copy-line text-base text-zinc-400" />
+					<Icon name="copy" className="text-base text-zinc-400" />
 				)}
 			</button>
 		</div>

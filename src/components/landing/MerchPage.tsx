@@ -4,6 +4,7 @@ import { Button, Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 interface Product {
 	id: string;
@@ -222,14 +223,14 @@ function ProductCard({ product }: { product: Product }) {
 					className="absolute top-1/2 left-0 hidden h-16 w-10 -translate-y-1/2 cursor-pointer items-center justify-center text-zinc-400 opacity-0 transition-all group-hover:opacity-100 hover:text-zinc-600 md:flex"
 					aria-label="Previous image"
 				>
-					<i className="ri-arrow-left-wide-line text-4xl" />
+					<Icon name="chevron-left" className="text-4xl" />
 				</button>
 				<button
 					onClick={nextImage}
 					className="absolute top-1/2 right-0 hidden h-16 w-10 -translate-y-1/2 cursor-pointer items-center justify-center text-zinc-400 opacity-0 transition-all group-hover:opacity-100 hover:text-zinc-600 md:flex"
 					aria-label="Next image"
 				>
-					<i className="ri-arrow-right-wide-line text-4xl" />
+					<Icon name="chevron-right" className="text-4xl" />
 				</button>
 
 				{/* Printful logo */}
@@ -398,7 +399,7 @@ export function MerchPage() {
 										className="group"
 									>
 										View all items
-										<i className="ri-corner-right-down-line" />
+										<Icon name="corner-right-down" />
 									</Button>
 								</div>
 							</div>

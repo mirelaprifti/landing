@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 const useCases = [
 	{
@@ -135,7 +136,7 @@ export function SocialProofSection() {
 						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 					>
 						Cause & Effect Podcast
-						<i className="ri-arrow-right-up-line text-base" />
+						<Icon name="arrow-up-right" className="text-base" />
 					</a>
 					<a
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
@@ -144,7 +145,7 @@ export function SocialProofSection() {
 						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 					>
 						Effect Days 2024
-						<i className="ri-arrow-right-up-line text-base" />
+						<Icon name="arrow-up-right" className="text-base" />
 					</a>
 					<a
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
@@ -153,7 +154,7 @@ export function SocialProofSection() {
 						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 					>
 						Effect Days 2025
-						<i className="ri-arrow-right-up-line text-base" />
+						<Icon name="arrow-up-right" className="text-base" />
 					</a>
 				</div>
 			</div>
@@ -182,7 +183,7 @@ export function SocialProofSection() {
 								<span className="text-sm font-medium text-zinc-400">
 									{useCase.title}
 								</span>
-								<i className="ri-arrow-right-up-line text-zinc-400 transition-colors group-hover:text-zinc-400" />
+								<Icon name="arrow-up-right" className="text-zinc-400 transition-colors group-hover:text-zinc-400" />
 							</div>
 						</a>
 					))}
@@ -209,7 +210,7 @@ export function SocialProofSection() {
 							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll left"
 						>
-							<i className="ri-arrow-left-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<Icon name="arrow-left" className="text-base text-zinc-400 transition-colors group-hover:text-white" />
 						</button>
 						<button
 							type="button"
@@ -217,7 +218,7 @@ export function SocialProofSection() {
 							className="group flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/50 transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							aria-label="Scroll right"
 						>
-							<i className="ri-arrow-right-line text-base text-zinc-400 transition-colors group-hover:text-white" />
+							<Icon name="arrow-right" className="text-base text-zinc-400 transition-colors group-hover:text-white" />
 						</button>
 					</div>
 				</div>

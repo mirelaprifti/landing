@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 
 export function LP2Hero() {
 	return (
@@ -35,7 +36,7 @@ export function LP2Hero() {
 						className="inline-flex items-center gap-2"
 					>
 						Get Started
-						<i className="ri-arrow-right-line text-lg" />
+						<Icon name="arrow-right" className="text-lg" />
 					</Button>
 					<Button
 						href="https://effect.website/docs"

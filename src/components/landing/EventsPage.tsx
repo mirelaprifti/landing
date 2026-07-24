@@ -4,6 +4,7 @@ import { Button, Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 const upcomingEvents: Array<{
 	title: string;
@@ -814,7 +815,7 @@ function EventsTabSection() {
 						{upcomingEvents.length === 0 ? (
 							<div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 bg-zinc-900/30 px-6 py-16 text-center">
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800/60">
-									<i className="ri-calendar-check-line text-xl text-zinc-500 dark:text-zinc-400" />
+									<Icon name="calendar-check" className="text-xl text-zinc-500 dark:text-zinc-400" />
 								</div>
 								<p className="mb-1 text-base font-medium text-zinc-300">
 									No upcoming events right now
@@ -865,7 +866,7 @@ function EventsTabSection() {
 									)}
 									{!event.thumbnail && (
 										<div className="flex w-full items-center justify-center bg-zinc-800/50 py-10 md:w-1/2 md:py-0">
-											<i className="ri-live-line text-4xl text-zinc-600" />
+											<Icon name="radio" className="text-4xl text-zinc-600" />
 										</div>
 									)}
 									<div className="flex flex-1 flex-col justify-center p-5">
@@ -922,7 +923,7 @@ function EventsTabSection() {
 												<TypeBadge type={event.type} />
 												<span className="ml-auto w-5 shrink-0 text-center">
 													{event.href && (
-														<i className="ri-arrow-right-up-line text-lg text-zinc-600 transition-colors group-hover:text-zinc-300" />
+														<Icon name="arrow-up-right" className="text-lg text-zinc-600 transition-colors group-hover:text-zinc-300" />
 													)}
 												</span>
 											</>
@@ -1084,7 +1085,7 @@ export function EventsPage() {
 									</h3>
 									<div className="mt-1.5 flex items-center gap-3 text-sm text-zinc-400">
 										<span className="flex items-center gap-1">
-											<i className="ri-map-pin-line" />
+											<Icon name="map-pin" />
 											Vienna, Austria 🇦🇹
 										</span>
 										<span>·</span>
@@ -1131,7 +1132,7 @@ export function EventsPage() {
 									</h3>
 									<div className="mt-1.5 flex items-center gap-3 text-sm text-zinc-400">
 										<span className="flex items-center gap-1">
-											<i className="ri-map-pin-line" />
+											<Icon name="map-pin" />
 											Livorno, Italy 🇮🇹
 										</span>
 										<span>·</span>
@@ -1182,7 +1183,7 @@ export function EventsPage() {
 									size="lg"
 									className="inline-flex items-center gap-2"
 								>
-									<i className="ri-file-list-3-line" />
+									<Icon name="scroll-text" />
 									Fill out the form
 								</Button>
 							</div>
@@ -1223,7 +1224,7 @@ export function EventsPage() {
 												<span className="underline decoration-zinc-600 underline-offset-4 transition-colors group-hover/link:decoration-white">
 													{perk.linkLabel}
 												</span>
-												<i className="ri-arrow-right-up-line text-xs" />
+												<Icon name="arrow-up-right" className="text-xs" />
 											</Link>
 										)}
 									</div>

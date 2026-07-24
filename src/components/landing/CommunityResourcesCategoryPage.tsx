@@ -12,6 +12,7 @@ import { GridOverlay } from "../GridOverlay";
 import { Button, Link } from "../ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 // ── Resource Card ────────────────────────────────────────────────
 
@@ -62,10 +63,7 @@ function ResourceCard({
 			{/* Title */}
 			<h3 className="relative text-base font-semibold text-white leading-snug">
 				{item.title}
-				<i
-					className="ri-arrow-right-up-line ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-					aria-hidden="true"
-				/>
+				<Icon name="arrow-up-right" className="ml-1 text-xs text-zinc-400 transition-all duration-300 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
 			</h3>
 
 			{/* Description */}
@@ -150,10 +148,7 @@ export function CommunityResourcesCategoryPage({
 								>
 									Community Resources
 								</a>
-								<i
-									className="ri-arrow-right-s-line text-zinc-600"
-									aria-hidden="true"
-								/>
+								<Icon name="chevron-right" className="text-zinc-600" aria-hidden="true" />
 								<div className="flex items-center gap-2">
 									<div
 										className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
@@ -194,7 +189,7 @@ export function CommunityResourcesCategoryPage({
 							variant="subtle"
 							className="group inline-flex items-center gap-2 font-medium"
 						>
-							<i className="ri-arrow-left-line text-sm" aria-hidden="true" />
+							<Icon name="arrow-left" className="text-sm" aria-hidden="true" />
 							Back to Community Resources
 						</Link>
 					</div>
@@ -240,10 +235,7 @@ export function CommunityResourcesCategoryPage({
 									Discord
 								</Button>
 								<Button href="#" variant="secondary">
-									<i
-										className="ri-file-list-line text-base"
-										aria-hidden="true"
-									/>
+									<Icon name="clipboard-list" className="text-base" aria-hidden="true" />
 									Submit Form
 								</Button>
 							</div>

@@ -1,5 +1,6 @@
 import { type FormEvent, useState } from "react";
 import { Button } from "../ui/Button";
+import { Icon } from "@/components/ui/Icon";
 
 interface PartnerContactFormProps {
 	/** Used in the email subject line so submissions are routed to the right partner. */
@@ -152,7 +153,7 @@ export function PartnerContactForm({
 					className="w-full"
 				>
 					{submitting ? "Sending…" : "Send message"}
-					<i className="ri-arrow-right-up-line text-base" aria-hidden="true" />
+					<Icon name="arrow-up-right" className="text-base" aria-hidden="true" />
 				</Button>
 			</div>
 		</form>

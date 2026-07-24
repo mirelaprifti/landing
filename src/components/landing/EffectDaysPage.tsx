@@ -3,6 +3,7 @@ import { Button, Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 const PAST_EDITIONS = [
 	{
@@ -136,7 +137,7 @@ export function EffectDaysPage() {
 										size="lg"
 										className="group"
 									>
-										<i className="ri-coupon-line text-lg" />
+										<Icon name="ticket" className="text-lg" />
 										Get your ticket
 									</Button>
 									<Button
@@ -224,7 +225,7 @@ export function EffectDaysPage() {
 										{/* Top section - Date */}
 										<div className="flex flex-1 items-center px-6">
 											<div className="flex items-center gap-2.5">
-												<i className="ri-calendar-line text-[1.1rem] text-zinc-200" />
+												<Icon name="calendar" className="text-[1.1rem] text-zinc-200" />
 												<p className="font-mono text-[1.1rem] font-medium text-white uppercase">
 													May 6–8, 2026
 												</p>
@@ -233,7 +234,7 @@ export function EffectDaysPage() {
 										{/* Bottom section - Location */}
 										<div className="flex flex-1 items-center px-6">
 											<div className="flex items-center gap-2.5">
-												<i className="ri-map-pin-2-line text-[1.1rem] text-zinc-200" />
+												<Icon name="map-pin" className="text-[1.1rem] text-zinc-200" />
 												<p className="font-mono text-[1.1rem] font-medium text-white uppercase">
 													Málaga, Spain
 												</p>
@@ -293,7 +294,7 @@ export function EffectDaysPage() {
 									variant="secondary"
 									className="text-base"
 								>
-									<i className="ri-mic-line text-lg" />
+									<Icon name="mic" className="text-lg" />
 									Apply to speak
 								</Button>
 							</div>
@@ -423,7 +424,7 @@ export function EffectDaysPage() {
 										<div className="mb-6 space-y-3">
 											<div className="flex items-center gap-3">
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-													<i className="ri-tools-line text-emerald-400" />
+													<Icon name="wrench" className="text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
 													May 6 · Workshop Day
@@ -431,7 +432,7 @@ export function EffectDaysPage() {
 											</div>
 											<div className="flex items-center gap-3">
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-													<i className="ri-mic-line text-emerald-400" />
+													<Icon name="mic" className="text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
 													May 7 · Conference Day
@@ -439,7 +440,7 @@ export function EffectDaysPage() {
 											</div>
 											<div className="flex items-center gap-3">
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-													<i className="ri-group-line text-emerald-400" />
+													<Icon name="users" className="text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
 													May 8 · Community Day
@@ -455,7 +456,7 @@ export function EffectDaysPage() {
 												className="flex w-full items-center justify-between"
 											>
 												<div className="flex items-center gap-2">
-													<i className="ri-user-line text-zinc-600" />
+													<Icon name="user" className="text-zinc-600" />
 													<span className="text-base font-medium text-zinc-950">
 														Individual
 													</span>
@@ -464,7 +465,7 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-zinc-900">
 														$449
 													</span>
-													<i className="ri-arrow-right-up-line text-sm text-zinc-600" />
+													<Icon name="arrow-up-right" className="text-sm text-zinc-600" />
 												</div>
 											</Button>
 											<Button
@@ -473,7 +474,7 @@ export function EffectDaysPage() {
 												className="flex w-full items-center justify-between border-zinc-600 hover:bg-zinc-800/80"
 											>
 												<div className="flex items-center gap-2">
-													<i className="ri-building-line text-zinc-300" />
+													<Icon name="building" className="text-zinc-300" />
 													<span className="text-base font-medium text-white">
 														Business
 													</span>
@@ -482,7 +483,7 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-white">
 														$549
 													</span>
-													<i className="ri-arrow-right-up-line text-sm text-zinc-400" />
+													<Icon name="arrow-up-right" className="text-sm text-zinc-400" />
 												</div>
 											</Button>
 										</div>
@@ -515,7 +516,7 @@ export function EffectDaysPage() {
 										<div className="mb-6 space-y-3">
 											<div className="flex items-center gap-3">
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800">
-													<i className="ri-close-line text-zinc-600" />
+													<Icon name="x" className="text-zinc-600" />
 												</div>
 												<p className="text-sm font-medium text-zinc-400">
 													May 6 · Workshop Day
@@ -523,7 +524,7 @@ export function EffectDaysPage() {
 											</div>
 											<div className="flex items-center gap-3">
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-													<i className="ri-mic-line text-emerald-400" />
+													<Icon name="mic" className="text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
 													May 7 · Conference Day
@@ -531,7 +532,7 @@ export function EffectDaysPage() {
 											</div>
 											<div className="flex items-center gap-3">
 												<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-													<i className="ri-group-line text-emerald-400" />
+													<Icon name="users" className="text-emerald-400" />
 												</div>
 												<p className="text-sm font-medium text-white">
 													May 8 · Community Day
@@ -547,7 +548,7 @@ export function EffectDaysPage() {
 												className="flex w-full items-center justify-between"
 											>
 												<div className="flex items-center gap-2">
-													<i className="ri-user-line text-zinc-600" />
+													<Icon name="user" className="text-zinc-600" />
 													<span className="text-base font-medium text-zinc-950">
 														Individual
 													</span>
@@ -556,7 +557,7 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-zinc-900">
 														$314
 													</span>
-													<i className="ri-arrow-right-up-line text-sm text-zinc-600" />
+													<Icon name="arrow-up-right" className="text-sm text-zinc-600" />
 												</div>
 											</Button>
 											<Button
@@ -565,7 +566,7 @@ export function EffectDaysPage() {
 												className="flex w-full items-center justify-between border-zinc-600 hover:bg-zinc-800/80"
 											>
 												<div className="flex items-center gap-2">
-													<i className="ri-building-line text-zinc-300" />
+													<Icon name="building" className="text-zinc-300" />
 													<span className="text-base font-medium text-white">
 														Business
 													</span>
@@ -574,7 +575,7 @@ export function EffectDaysPage() {
 													<span className="text-lg font-bold text-white">
 														$399
 													</span>
-													<i className="ri-arrow-right-up-line text-sm text-zinc-400" />
+													<Icon name="arrow-up-right" className="text-sm text-zinc-400" />
 												</div>
 											</Button>
 										</div>
@@ -594,7 +595,7 @@ export function EffectDaysPage() {
 									</Link>
 								</p>
 								<p className="flex shrink-0 items-center gap-2 md:text-right">
-									<i className="ri-hand-heart-line text-white" />
+									<Icon name="heart-handshake" className="text-white" />
 									<span>
 										<Link
 											href="mailto:contact@effectful.co?subject=Effect Days 2026 - Sponsorship Inquiry"
@@ -636,7 +637,7 @@ export function EffectDaysPage() {
 									className="inline-flex shrink-0 items-center gap-2 font-medium"
 								>
 									Discover Málaga
-									<i className="ri-arrow-right-line text-xs" />
+									<Icon name="arrow-right" className="text-xs" />
 								</Link>
 							</div>
 
@@ -845,7 +846,7 @@ export function EffectDaysPage() {
 
 											<div className="mt-2 flex items-center gap-3 text-sm text-zinc-400">
 												<span className="flex items-center gap-1">
-													<i className="ri-map-pin-line" />
+													<Icon name="map-pin" />
 													{edition.location}
 												</span>
 												<span>·</span>
@@ -859,11 +860,11 @@ export function EffectDaysPage() {
 											<div className="mt-5 flex items-center gap-4 border-t border-zinc-800 pt-5">
 												<div className="flex items-center gap-5 text-sm text-zinc-400">
 													<span className="flex items-center gap-1.5">
-														<i className="ri-mic-line" />
+														<Icon name="mic" />
 														{edition.talks} talks
 													</span>
 													<span className="flex items-center gap-1.5">
-														<i className="ri-tools-line" />
+														<Icon name="wrench" />
 														{edition.workshops} workshops
 													</span>
 												</div>
@@ -874,7 +875,7 @@ export function EffectDaysPage() {
 												>
 													<i className="ri-youtube-fill text-base" />
 													Full playlist
-													<i className="ri-arrow-right-up-line text-xs" />
+													<Icon name="arrow-up-right" className="text-xs" />
 												</Link>
 											</div>
 										</div>
@@ -925,7 +926,7 @@ export function EffectDaysPage() {
 										size="xl"
 										className="group"
 									>
-										<i className="ri-coupon-line text-lg" />
+										<Icon name="ticket" className="text-lg" />
 										Get your ticket
 									</Button>
 								</div>

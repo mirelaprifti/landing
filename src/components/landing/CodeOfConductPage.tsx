@@ -2,6 +2,7 @@ import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 export function CodeOfConductPage() {
 	return (
@@ -16,7 +17,7 @@ export function CodeOfConductPage() {
 						variant="subtle"
 						className="mb-6 inline-flex items-center gap-2"
 					>
-						<i className="ri-arrow-left-line" />
+						<Icon name="arrow-left" />
 						Back to Effect Days
 					</Link>
 					<h1 className="text-4xl font-bold text-white md:text-5xl">

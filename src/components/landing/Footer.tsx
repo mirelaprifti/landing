@@ -1,5 +1,6 @@
 import { getAssetPath } from "../../utils/assetPath";
 import { Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 
 interface FooterProps {
 	hideCommunityBorder?: boolean;
@@ -57,7 +58,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Workshops
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 								<li>
@@ -67,7 +68,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										LLM Guide
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 							</ul>
@@ -98,7 +99,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect LSP
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 
@@ -109,7 +110,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										VS Code Extension
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 
@@ -120,7 +121,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Linting Rules
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 							</ul>
@@ -143,7 +144,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Events & meetups
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 								<li>
@@ -163,7 +164,7 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Discord
-										<i className="ri-arrow-right-up-line text-sm" />
+										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 								<li>

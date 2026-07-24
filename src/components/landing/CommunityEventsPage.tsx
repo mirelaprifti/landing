@@ -3,6 +3,7 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 const FORM_URL =
 	"https://docs.google.com/forms/d/e/1FAIpQLSdiqkoogZ8a2h10oF2ANRTDE_m9l-huR8cpoedbMpjAd29tNw/viewform";
@@ -141,10 +142,7 @@ function FormButton({
 	return (
 		<Button href={FORM_URL} variant={variant} size="md" className="group">
 			Tell us about your Effect talk
-			<i
-				className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-				aria-hidden="true"
-			/>
+			<Icon name="arrow-up-right" className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
 		</Button>
 	);
 }
@@ -223,10 +221,10 @@ export function CommunityEventsPage() {
 									Bring Effect to your community events
 								</h1>
 								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[50%] lg:max-w-none">
-									Crash your local JavaScript/TypeScript or AI event{" "}
+									Crash your local TypeScript or AI event with an Effect talk,{" "}
 									<br className="hidden lg:block" />
-									with an Effect talk, or host your own Effect meetup. We can
-									help you prepare and promote it with the community.
+									or host your own meetup. We can help you prepare and promote
+									it.
 								</p>
 								<div className="mt-8">
 									<FormButton />

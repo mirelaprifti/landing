@@ -11,6 +11,7 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 const POSTS_PER_PAGE = 12;
 
@@ -106,7 +107,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						</div>
 					) : (
 						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:group-hover:border-white group-hover:text-zinc-900 dark:group-hover:text-white">
-							<i className="ri-arrow-right-line text-lg" />
+							<Icon name="arrow-right" className="text-lg" />
 						</div>
 					)}
 				</div>
@@ -195,7 +196,7 @@ function HorizontalScrollRail({
 							aria-label="Scroll left"
 							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
-							<i className="ri-arrow-left-s-line text-base" />
+							<Icon name="chevron-left" className="text-base" />
 						</button>
 						<button
 							type="button"
@@ -204,7 +205,7 @@ function HorizontalScrollRail({
 							aria-label="Scroll right"
 							className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 						>
-							<i className="ri-arrow-right-s-line text-base" />
+							<Icon name="chevron-right" className="text-base" />
 						</button>
 					</div>
 				</div>
@@ -235,7 +236,7 @@ function HorizontalScrollRail({
 				{canScrollRight && (
 					<div className="pointer-events-none absolute right-2 bottom-4 flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 sm:hidden">
 						<span>Swipe</span>
-						<i className="ri-arrow-right-line text-xs" />
+						<Icon name="arrow-right" className="text-xs" />
 					</div>
 				)}
 			</div>
@@ -311,10 +312,7 @@ function PostCard({ post }: { post: BlogPost }) {
 				<div className="col-span-12 min-w-0 md:col-span-8">
 					<h3 className="relative inline-block text-lg font-semibold text-zinc-900 dark:text-white">
 						<span>{post.title}</span>
-						<i
-							aria-hidden="true"
-							className="ri-arrow-right-line ml-2 align-middle text-base text-zinc-900 dark:text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
-						/>
+						<Icon name="arrow-right" aria-hidden="true" className="ml-2 align-middle text-base text-zinc-900 dark:text-white opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" />
 						<span className="absolute right-0 -bottom-0.5 left-0 h-px origin-left scale-x-0 bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
 					</h3>
 					{/* Excerpt */}
@@ -648,9 +646,7 @@ export function BlogPage() {
 											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 												{activeTag}
 											</span>
-											<i
-												className={`ri-arrow-down-s-line text-sm text-zinc-500 dark:text-zinc-400 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`}
-											/>
+											<Icon name="chevron-down" className={`text-sm text-zinc-500 dark:text-zinc-400 transition-transform group-hover:text-zinc-300 ${catOpen ? "rotate-180" : ""}`} />
 										</button>
 										{catOpen && (
 											<ul
@@ -716,7 +712,7 @@ export function BlogPage() {
 										<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 											{sortBy === "newest" ? "Newest" : "Oldest"}
 										</span>
-										<i className="ri-arrow-up-down-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" />
+										<Icon name="arrow-up-down" className="text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" />
 									</button>
 									{/* RSS feed */}
 									<a
@@ -725,10 +721,7 @@ export function BlogPage() {
 										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-800 dark:text-zinc-200 uppercase transition-colors hover:text-zinc-900 dark:hover:text-white"
 									>
 										<span>RSS</span>
-										<i
-											className="ri-rss-line text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300"
-											aria-hidden="true"
-										/>
+										<Icon name="rss" className="text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-300" aria-hidden="true" />
 									</a>
 								</div>
 							</div>
@@ -760,7 +753,7 @@ export function BlogPage() {
 													aria-label="Previous page"
 													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
-													<i className="ri-arrow-left-s-line text-base" />
+													<Icon name="chevron-left" className="text-base" />
 												</button>
 
 												{(() => {
@@ -825,7 +818,7 @@ export function BlogPage() {
 													aria-label="Next page"
 													className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 transition-colors hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:pointer-events-none disabled:opacity-30"
 												>
-													<i className="ri-arrow-right-s-line text-base" />
+													<Icon name="chevron-right" className="text-base" />
 												</button>
 											</nav>
 										</>
@@ -834,7 +827,7 @@ export function BlogPage() {
 							) : (
 								<div className="flex flex-col items-center justify-center py-24">
 									<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-100/60 dark:bg-zinc-900/60">
-										<i className="ri-file-search-line text-2xl text-zinc-600 dark:text-zinc-400" />
+										<Icon name="file-search" className="text-2xl text-zinc-600 dark:text-zinc-400" />
 									</div>
 									<p className="mt-6 text-base font-medium text-zinc-700 dark:text-zinc-300">
 										No posts found

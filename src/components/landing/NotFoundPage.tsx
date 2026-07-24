@@ -3,6 +3,7 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 const codeLines = [
 	// Line 0: import { Effect } from "effect"
@@ -117,14 +118,14 @@ export function NotFoundPage() {
 										href={getAssetPath("/")}
 										className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
 									>
-										<i className="ri-arrow-left-line text-base" />
+										<Icon name="arrow-left" className="text-base" />
 										Back to home
 									</a>
 									<a
 										href="https://effect.website/docs/"
 										className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-sm font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 									>
-										<i className="ri-book-2-line text-base" />
+										<Icon name="book-open" className="text-base" />
 										Read the docs
 									</a>
 								</div>

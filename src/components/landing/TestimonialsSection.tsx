@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 const featuredCases = [
 	{
@@ -50,7 +51,7 @@ export function TestimonialsSection() {
 						className="inline-flex items-center gap-2"
 					>
 						Cause & Effect Podcast
-						<i className="ri-arrow-right-up-line text-base" />
+						<Icon name="arrow-up-right" className="text-base" />
 					</Button>
 					<Button
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
@@ -58,7 +59,7 @@ export function TestimonialsSection() {
 						className="inline-flex items-center gap-2"
 					>
 						Effect Days 2024
-						<i className="ri-arrow-right-up-line text-base" />
+						<Icon name="arrow-up-right" className="text-base" />
 					</Button>
 					<Button
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
@@ -66,7 +67,7 @@ export function TestimonialsSection() {
 						className="inline-flex items-center gap-2"
 					>
 						Effect Days 2025
-						<i className="ri-arrow-right-up-line text-base" />
+						<Icon name="arrow-up-right" className="text-base" />
 					</Button>
 				</div>
 			</div>
@@ -97,10 +98,7 @@ export function TestimonialsSection() {
 									className="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white"
 								>
 									Watch the talk
-									<i
-										className="ri-arrow-right-up-line text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-										aria-hidden="true"
-									/>
+									<Icon name="arrow-up-right" className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
 								</a>
 							</div>
 

@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 const FEATURES = [
 	{
 		category: "Error Handling",
@@ -101,7 +102,7 @@ export function LP2Features() {
 										key={itemIndex}
 										className="flex items-start gap-2 text-sm text-zinc-400"
 									>
-										<i className="ri-check-line mt-0.5 text-emerald-500/70" />
+										<Icon name="check" className="mt-0.5 text-emerald-500/70" />
 										<span>{item}</span>
 									</li>
 								))}

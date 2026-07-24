@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 
 export function LP2CTA() {
 	return (
@@ -25,7 +26,7 @@ export function LP2CTA() {
 							className="inline-flex items-center gap-2"
 						>
 							Get Started
-							<i className="ri-arrow-right-line text-lg" />
+							<Icon name="arrow-right" className="text-lg" />
 						</Button>
 						<Button
 							href="https://discord.gg/effect-ts"

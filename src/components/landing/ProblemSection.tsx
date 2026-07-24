@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 
 const FEATURES = [
 	{
@@ -262,7 +263,7 @@ export function ProblemSection() {
 							{/* Arrow connector */}
 							<div className="my-4 flex items-center gap-2">
 								<div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
-								<i className="ri-arrow-down-line text-sm text-zinc-900 dark:text-white" />
+								<Icon name="arrow-down" className="text-sm text-zinc-900 dark:text-white" />
 								<div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
 							</div>
 							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-zinc-900 dark:text-white uppercase">
@@ -277,7 +278,7 @@ export function ProblemSection() {
 							<div className="mt-3 flex flex-col gap-1">
 								{feature.items.map((item, itemIndex) => (
 									<div key={itemIndex} className="flex items-start gap-3">
-										<i className="ri-check-line shrink-0 pl-1 text-sm text-emerald-500" />
+										<Icon name="check" className="shrink-0 pl-1 text-sm text-emerald-500" />
 										<span className="text-sm text-zinc-600 dark:text-zinc-400">
 											{item}
 										</span>

@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 
 export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 	const [submitted, setSubmitted] = useState(false);
@@ -20,7 +21,7 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 	if (submitted) {
 		return (
 			<div className="rounded-lg border border-zinc-700 bg-zinc-900/40 p-8 text-center md:p-12">
-				<i className="ri-check-line mb-4 text-4xl text-emerald-400" />
+				<Icon name="check" className="mb-4 text-4xl text-emerald-400" />
 				<h3 className="mb-2 text-xl font-bold text-white">Request received</h3>
 				<p className="text-sm text-zinc-400">
 					We'll review your details and put you in touch with the right

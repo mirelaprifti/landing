@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui";
 import { HeroCommandPanel } from "./HeroCommandPanel";
+import { Icon } from "@/components/ui/Icon";
 
 export function CTASection({
 	v4Stable = false,
@@ -63,7 +64,7 @@ export function CTASection({
 							size="lg"
 							className="group w-44"
 						>
-							<i className="ri-arrow-right-line text-lg transition-transform group-hover:translate-x-0.5" />
+							<Icon name="arrow-right" className="text-lg transition-transform group-hover:translate-x-0.5" />
 							Get started
 						</Button>
 						<Button

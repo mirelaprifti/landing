@@ -5,6 +5,7 @@ import { Button } from "../ui";
 import { ContactForm } from "./ContactForm";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 	return (
@@ -85,10 +86,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 								href={getAssetPath("/adoption-partners")}
 								className="group inline-flex items-center gap-1 font-mono text-sm text-zinc-400 transition-colors hover:text-white"
 							>
-								<i
-									className="ri-arrow-left-line text-lg transition-transform group-hover:-translate-x-1"
-									aria-hidden="true"
-								/>
+								<Icon name="arrow-left" className="text-lg transition-transform group-hover:-translate-x-1" aria-hidden="true" />
 								Back to partners
 							</a>
 						</div>
@@ -111,10 +109,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 											{/* Region */}
 											<div className="flex items-center gap-2 text-sm text-zinc-300">
 												<div className="flex h-7 w-7 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400">
-													<i
-														className="ri-map-pin-2-fill text-sm"
-														aria-hidden="true"
-													/>
+													<Icon name="map-pin" className="text-sm" aria-hidden="true" />
 												</div>
 												<span className="font-medium">{partner.region}</span>
 											</div>
@@ -153,7 +148,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 										className="w-full justify-center"
 									>
 										Visit Website
-										<i className="ri-external-link-line ml-2" />
+										<Icon name="external-link" className="ml-2" />
 									</Button>
 								</div>
 							</div>

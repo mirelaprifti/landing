@@ -2,6 +2,16 @@
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Lucide icons sized like the old Remix icon font: 1em square, inherits
+   color and font-size from text-* utilities, baseline-aligned in prose. */
+.icon-inline {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	vertical-align: -0.125em;
+	flex: none;
+}
+
 @theme {
 	/* Font Sizes */
 	--text-xs: 0.7rem;

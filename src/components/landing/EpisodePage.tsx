@@ -5,6 +5,7 @@ import { formatTimestamp } from "../../utils/srtParser";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 interface TranscriptParagraph {
 	startTime: string;
@@ -118,7 +119,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 										onClick={() => setIsExpanded(false)}
 										className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 									>
-										<i className="ri-collapse-diagonal-line" />
+										<Icon name="minimize" />
 										<span>Collapse video</span>
 									</button>
 								</div>
@@ -317,7 +318,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 											onClick={() => setIsExpanded(true)}
 											className="inline-flex cursor-pointer items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
 										>
-											<i className="ri-expand-diagonal-line" />
+											<Icon name="maximize" />
 											<span>Expand video</span>
 										</button>
 									</div>
@@ -517,7 +518,7 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 							className="mt-6 inline-flex items-center gap-2 rounded-md bg-zinc-900 dark:bg-white px-6 py-3 text-base font-medium text-white dark:text-zinc-900 transition-all hover:bg-zinc-800 dark:hover:bg-zinc-200"
 						>
 							<span>See all episodes</span>
-							<i className="ri-arrow-right-line" />
+							<Icon name="arrow-right" />
 						</a>
 					</div>
 				</section>

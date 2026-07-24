@@ -8,6 +8,7 @@ import {
 } from "./apiReferenceData";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { Icon } from "@/components/ui/Icon";
 
 function packageBySlug(slug: string): ApiPackage {
 	const pkg = API_PACKAGES.find((p) => p.slug === slug);
@@ -151,12 +152,7 @@ export function ApiReferenceLayout({
 												className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 											>
 												<span>{group.title}</span>
-												<i
-													className={`ri-arrow-down-s-line text-base transition-transform ${
-														isOpen ? "rotate-180" : ""
-													}`}
-													aria-hidden="true"
-												/>
+												<Icon name="chevron-down" className={`text-base transition-transform ${ isOpen ? "rotate-180" : "" }`} aria-hidden="true" />
 											</button>
 											{isOpen && (
 												<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
@@ -282,11 +278,10 @@ function ModuleLink({ name, href }: { name: string; href: string }) {
 			<span className="truncate font-mono text-sm text-zinc-800 group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
 				{name}
 			</span>
-			<i
+			<Icon
+				name={isExternal ? "arrow-up-right" : "arrow-right"}
 				className={`shrink-0 text-sm text-zinc-400 transition-opacity dark:text-zinc-500 ${
-					isExternal
-						? "ri-arrow-right-up-line opacity-60"
-						: "ri-arrow-right-line opacity-0 group-hover:opacity-100"
+					isExternal ? "opacity-60" : "opacity-0 group-hover:opacity-100"
 				}`}
 				aria-hidden="true"
 			/>
@@ -306,10 +301,7 @@ function SearchInput({
 }) {
 	return (
 		<div className="search-pill flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition-colors focus-within:border-zinc-500 dark:border-zinc-600 dark:text-zinc-400 dark:focus-within:border-zinc-500">
-			<i
-				className="ri-search-line shrink-0 text-base font-medium"
-				aria-hidden="true"
-			/>
+			<Icon name="search" className="shrink-0 text-base font-medium" aria-hidden="true" />
 			<input
 				type="search"
 				value={value}

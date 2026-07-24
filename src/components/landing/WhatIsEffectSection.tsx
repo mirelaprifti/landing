@@ -1,5 +1,6 @@
 import { Link } from "@/components/ui";
 import { useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 
 export function WhatIsEffectSection() {
 	const [hoveredType, setHoveredType] = useState<
@@ -34,7 +35,7 @@ export function WhatIsEffectSection() {
 
 						<ul className="mt-5 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
 							<li className="flex items-center gap-2">
-								<i className="ri-check-line text-emerald-500" />
+								<Icon name="check" className="text-emerald-500" />
 								<span>
 									No more{" "}
 									<code className="text-zinc-700 dark:text-zinc-300">
@@ -44,11 +45,11 @@ export function WhatIsEffectSection() {
 								</span>
 							</li>
 							<li className="flex items-center gap-2">
-								<i className="ri-check-line text-emerald-500" />
+								<Icon name="check" className="text-emerald-500" />
 								<span>Dependencies are explicit -- nothing is hidden</span>
 							</li>
 							<li className="flex items-center gap-2">
-								<i className="ri-check-line text-emerald-500" />
+								<Icon name="check" className="text-emerald-500" />
 								<span>
 									Async is structured -- no more promise chains you can't follow
 								</span>
@@ -238,7 +239,7 @@ export function WhatIsEffectSection() {
 									className="inline-flex items-center gap-1.5"
 								>
 									Why Effect was designed this way
-									<i className="ri-arrow-right-up-line text-sm" />
+									<Icon name="arrow-up-right" className="text-sm" />
 								</Link>
 							</div>
 						</div>

@@ -1,3 +1,4 @@
+import { Icon } from "@/components/ui/Icon";
 const GOOD_FIT = [
 	{
 		icon: "ri-checkbox-circle-line",
@@ -63,7 +64,7 @@ export function TradeoffsSection() {
 					{/* Good fit */}
 					<div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-6">
 						<h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-emerald-300">
-							<i className="ri-thumb-up-line" />
+							<Icon name="thumbs-up" />
 							Consider Effect when
 						</h3>
 						<ul className="space-y-3">
@@ -81,7 +82,7 @@ export function TradeoffsSection() {
 					{/* Maybe not */}
 					<div className="rounded-lg border border-zinc-700/50 bg-zinc-900/30 p-6">
 						<h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-zinc-300">
-							<i className="ri-thumb-down-line" />
+							<Icon name="thumbs-down" />
 							Maybe skip Effect if
 						</h3>
 						<ul className="space-y-3">

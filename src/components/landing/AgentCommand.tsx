@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 
 const AGENT_PROMPT = `Help me build an Effect app in TypeScript. Start by reading https://effect.website/docs/getting-started and follow it exactly: scaffold a fresh TypeScript project, install \`effect\`, create a \`main.ts\` with a simple \`Effect.gen\` program that logs "hello, world", and run it with \`bun run main.ts\` (or the npm/pnpm/yarn equivalent) so I see it execute. Confirm it runs before moving on.
 
@@ -53,9 +54,9 @@ export function AgentCommand() {
 			>
 				<span className="truncate">{PREVIEW}</span>
 				{copied ? (
-					<i className="ri-check-line shrink-0 text-base text-zinc-200" />
+					<Icon name="check" className="shrink-0 text-base text-zinc-200" />
 				) : (
-					<i className="ri-file-copy-line shrink-0 text-base text-zinc-400" />
+					<Icon name="copy" className="shrink-0 text-base text-zinc-400" />
 				)}
 			</button>
 		</div>

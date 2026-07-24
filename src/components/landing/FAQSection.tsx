@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 
 export function FAQSection() {
 	const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
@@ -242,11 +243,7 @@ export function FAQSection() {
 														: "bg-zinc-200/80 text-zinc-600 group-hover:bg-zinc-300 dark:bg-zinc-800/80 dark:text-zinc-400 dark:group-hover:bg-zinc-700"
 												}`}
 											>
-												<i
-													className={`ri-arrow-down-s-line text-base transition-transform duration-200 ${
-														isOpen ? "rotate-180" : ""
-													}`}
-												/>
+												<Icon name="chevron-down" className={`text-base transition-transform duration-200 ${ isOpen ? "rotate-180" : "" }`} />
 											</div>
 										</button>
 

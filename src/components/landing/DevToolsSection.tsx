@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 const tools = [
 	{
@@ -54,7 +55,7 @@ export function DevToolsSection() {
 								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
 								<span>Read the docs</span>
-								<i className="ri-arrow-right-line text-base transition-transform group-hover:translate-x-0.5" />
+								<Icon name="arrow-right" className="text-base transition-transform group-hover:translate-x-0.5" />
 							</a>
 							<a
 								href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
@@ -71,7 +72,7 @@ export function DevToolsSection() {
 								rel="noopener noreferrer"
 								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 							>
-								<i className="ri-play-circle-line text-base" />
+								<Icon name="circle-play" className="text-base" />
 								<span>Playground</span>
 							</a>
 						</div>

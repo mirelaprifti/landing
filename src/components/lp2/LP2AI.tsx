@@ -1,4 +1,5 @@
 import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 
 const AI_BENEFITS = [
 	{
@@ -100,7 +101,7 @@ export function LP2AI() {
 							</p>
 
 							<span className="mt-4 inline-flex items-center gap-1 text-xs text-zinc-400 group-hover:text-zinc-400">
-								Read the full thread <i className="ri-arrow-right-up-line" />
+								Read the full thread <Icon name="arrow-up-right" />
 							</span>
 						</a>
 					</div>
@@ -115,7 +116,7 @@ export function LP2AI() {
 						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
 					>
 						Quick start LLM guide
-						<i className="ri-arrow-right-up-line" />
+						<Icon name="arrow-up-right" />
 					</a>
 					<a
 						href="https://effect.website/docs/ai/introduction"
@@ -124,7 +125,7 @@ export function LP2AI() {
 						className="inline-flex items-center gap-2 text-base font-medium text-zinc-400 transition-colors hover:text-white"
 					>
 						Effect AI docs
-						<i className="ri-arrow-right-line" />
+						<Icon name="arrow-right" />
 					</a>
 				</div>
 			</div>

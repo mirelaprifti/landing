@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
+import { Icon } from "@/components/ui/Icon";
 
 interface NavigationProps {
 	transparent?: boolean;
@@ -178,7 +179,7 @@ export function Navigation({
 								className="ml-auto flex h-10 w-10 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white md:hidden"
 								aria-label="Open navigation menu"
 							>
-								<i className="ri-menu-2-line text-xl" aria-hidden="true" />
+								<Icon name="menu" className="text-xl" aria-hidden="true" />
 							</button>
 
 							{/* Right side items (desktop) */}
@@ -187,10 +188,7 @@ export function Navigation({
 									<div
 										className={`search-pill flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "search-pill-inverted border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}
 									>
-										<i
-											className="ri-search-line shrink-0 text-base font-medium"
-											aria-hidden="true"
-										/>
+										<Icon name="search" className="shrink-0 text-base font-medium" aria-hidden="true" />
 										<input
 											type="search"
 											aria-label="Search the docs"
@@ -209,10 +207,7 @@ export function Navigation({
 										aria-label="Open search"
 										className={`flex items-center gap-2 rounded-md border px-2 py-1 text-sm transition-colors ${transparent ? "border-white/50 text-white hover:border-white hover:bg-zinc-800" : "border-zinc-300 text-zinc-500 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"}`}
 									>
-										<i
-											className="ri-search-line text-base font-medium"
-											aria-hidden="true"
-										/>
+										<Icon name="search" className="text-base font-medium" aria-hidden="true" />
 										<kbd
 											className={`text-[12px] ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400/80"}`}
 										>
@@ -289,7 +284,7 @@ export function Navigation({
 							aria-label="Close navigation menu"
 							className="flex h-9 w-9 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
 						>
-							<i className="ri-close-line text-xl" aria-hidden="true"></i>
+							<Icon name="x" className="text-xl" aria-hidden="true" />
 						</button>
 					</div>
 					<nav className="flex-1 overflow-y-auto px-6 py-6">
@@ -361,7 +356,7 @@ export function Navigation({
 							aria-label="Open search"
 							className="mt-6 flex w-full items-center gap-3 rounded-md border border-zinc-500 px-3 py-2.5 text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
 						>
-							<i className="ri-search-line text-lg" aria-hidden="true"></i>
+							<Icon name="search" className="text-lg" aria-hidden="true" />
 							<span className="text-sm">Search</span>
 							<kbd className="ml-auto text-xs text-zinc-300">
 								{shortcutHint}
