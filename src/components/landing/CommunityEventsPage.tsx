@@ -262,9 +262,8 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
-							Every event is different, so we figure out support case by case.
-							Tell us what you're planning and we'll see what makes sense
-							together.
+							No two events are the same, so there's no fixed package.
+							Tell us what you're planning and we'll work out what fits.
 						</p>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
