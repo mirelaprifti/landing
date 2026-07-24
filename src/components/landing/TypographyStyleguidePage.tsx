@@ -124,9 +124,9 @@ Effect.runPromise(program)`}</code>
 						<table>
 							<thead>
 								<tr>
-									<th>Function</th>
-									<th>Input</th>
-									<th>Output</th>
+									<th scope="col">Function</th>
+									<th scope="col">Input</th>
+									<th scope="col">Output</th>
 								</tr>
 							</thead>
 							<tbody>
