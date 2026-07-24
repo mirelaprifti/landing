@@ -23,26 +23,26 @@ export function TypographyStyleguidePage() {
 							Blog typography
 						</h1>
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-							Every text element the blog body supports, rendered with the
-							exact styles real posts use.
+							Every text element the blog body supports, rendered with the exact
+							styles real posts use.
 						</p>
 					</header>
 
 					<article className={`${BLOG_PROSE_CLASS} mt-4 max-w-3xl pb-24`}>
 						<p>
-							This paragraph shows the reading defaults: 18px body text with a
-							1.75 line-height. It includes{" "}
+							This paragraph shows the reading defaults: 17px body text with a
+							1.6 line-height. It includes{" "}
 							<a href={getAssetPath("/docs/introduction")}>an inline link</a>,
 							some <strong>bold emphasis</strong>, a touch of{" "}
-							<em>italic text</em>, and inline code like{" "}
-							<code>Effect.gen</code> sitting inside the sentence.
+							<em>italic text</em>, and inline code like <code>Effect.gen</code>{" "}
+							sitting inside the sentence.
 						</p>
 
 						<h2>Second-level heading</h2>
 						<p>
-							An h2 opens a major section: 31px, semibold, tight leading, with
-							clear air above and a snug gap below so it attaches to this
-							paragraph rather than floating between sections.
+							An h2 opens a major section: 24px, semibold, tight leading and
+							tracking, with clear air above and a snug gap below so it attaches
+							to this paragraph rather than floating between sections.
 						</p>
 
 						<h3>Third-level heading</h3>
@@ -82,8 +82,8 @@ export function TypographyStyleguidePage() {
 
 						<h4>Fourth-level heading</h4>
 						<p>
-							An h4 is the smallest heading: 20px, for fine-grained structure.
-							Here is an ordered list:
+							An h4 is the smallest heading: body-sized but semibold, for
+							fine-grained structure. Here is an ordered list:
 						</p>
 						<ol>
 							<li>Model the workflow as data</li>
@@ -93,9 +93,9 @@ export function TypographyStyleguidePage() {
 
 						<blockquote>
 							<p>
-								Blockquotes render as a plain pull with a left border, not
-								italic: one shade dimmer than body text, for quoting people or
-								docs without shouting.
+								Blockquotes render as large semibold statements in the emphasis
+								color, wrapped in typographic quotes, in the style of Linear's
+								blog.
 							</p>
 						</blockquote>
 
@@ -116,8 +116,8 @@ Effect.runPromise(program)`}</code>
 								alt="An Effect community meetup in Paris"
 							/>
 							<figcaption>
-								Figures render borderless with rounded corners; captions sit
-								in small muted text.
+								Figures render borderless with rounded corners; captions sit in
+								small muted text.
 							</figcaption>
 						</figure>
 
