@@ -385,7 +385,7 @@ export function CommunityEventsPage() {
 												className="group flex items-start gap-2 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
 											>
 												<span
-													className="text-zinc-600 transition-colors group-hover:text-emerald-400"
+													className="text-zinc-600 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-400"
 													aria-hidden="true"
 												>
 													❯
