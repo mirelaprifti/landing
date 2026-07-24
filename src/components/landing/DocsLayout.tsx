@@ -194,7 +194,7 @@ export function DocsLayout({
 						</nav>
 					)}
 				</div>
-				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 lg:grid-cols-[240px_1fr_240px]">
+				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 md:grid-cols-[1fr_240px] lg:grid-cols-[240px_1fr_240px]">
 					{/* Left sidebar */}
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
@@ -214,7 +214,7 @@ export function DocsLayout({
 					</main>
 
 					{/* Right TOC */}
-					<aside className="hidden border-l border-zinc-200 lg:block dark:border-zinc-800">
+					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
