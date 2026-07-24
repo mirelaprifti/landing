@@ -283,8 +283,10 @@ export function CommunityEventsPage() {
 									className="flex flex-col border border-zinc-800 bg-[#0C0C0E] p-6 font-mono md:p-8"
 								>
 									{/* Command line — doubles as the card title */}
-									<h3 className="text-sm text-zinc-500">
-										<span aria-hidden="true">$ </span>
+									<h3 className="text-base text-zinc-500 md:text-lg">
+										<span className="text-emerald-400" aria-hidden="true">
+											${" "}
+										</span>
 										effect support{" "}
 										<span className="font-semibold text-white">
 											{item.title.replaceAll(" ", "-").toLowerCase()}
