@@ -86,10 +86,7 @@ export function LaunchLandingPage() {
 			</div>
 
 			{/* Main Content — extra top padding while the banner is visible */}
-			<main
-				id="main-content"
-				className="relative w-full pt-26"
-			>
+			<main id="main-content" className="relative w-full pt-26">
 				<LaunchHeroSection />
 				<FeaturesSection />
 				<SectionDivider />

@@ -16,7 +16,9 @@ function useShortcutHint() {
 	// SSR renders the Mac hint; corrected on mount for other platforms.
 	const [hint, setHint] = useState("\u2318K");
 	useEffect(() => {
-		const isMac = /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent);
+		const isMac = /Mac|iPhone|iPad/i.test(
+			navigator.platform || navigator.userAgent,
+		);
 		if (!isMac) setHint("Ctrl K");
 	}, []);
 	return hint;
@@ -361,7 +363,9 @@ export function Navigation({
 						>
 							<i className="ri-search-line text-lg" aria-hidden="true"></i>
 							<span className="text-sm">Search</span>
-							<kbd className="ml-auto text-xs text-zinc-300">{shortcutHint}</kbd>
+							<kbd className="ml-auto text-xs text-zinc-300">
+								{shortcutHint}
+							</kbd>
 						</button>
 					</nav>
 				</div>

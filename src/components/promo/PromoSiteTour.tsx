@@ -235,7 +235,14 @@ export function PromoSiteTour() {
 						const dist = Math.abs(y - posY.current);
 						if (dist > 4) {
 							const duration = Math.min(1800, Math.max(880, dist * 0.66));
-							await panTo(iframe, iframeScale, posY.current, y, duration, state);
+							await panTo(
+								iframe,
+								iframeScale,
+								posY.current,
+								y,
+								duration,
+								state,
+							);
 							posY.current = y;
 						}
 					}
