@@ -331,7 +331,7 @@ export function CommunityEventsPage() {
 									{column.map((photo) => (
 										<div
 											key={photo.src}
-											className={`relative overflow-hidden border border-zinc-800 ${
+											className={`relative overflow-hidden ${
 												column.length === 1 ? "flex-1" : ""
 											}`}
 										>
