@@ -116,7 +116,7 @@ Effect.runPromise(program)`}</code>
 								alt="An Effect community meetup in Paris"
 							/>
 							<figcaption>
-								Figures get the site's rounded border treatment; captions sit
+								Figures render borderless with rounded corners; captions sit
 								in small muted text.
 							</figcaption>
 						</figure>
