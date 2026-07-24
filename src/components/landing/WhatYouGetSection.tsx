@@ -92,7 +92,10 @@ export function WhatYouGetSection() {
 					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 						{FEATURES.map((feature, index) => (
 							<div key={index} className="flex items-start gap-3">
-								<Icon name={feature.icon} className="mt-0.5 text-lg text-emerald-500" />
+								<Icon
+									name={feature.icon}
+									className="mt-0.5 text-lg text-emerald-500"
+								/>
 								<div>
 									<p className="font-medium text-white">{feature.title}</p>
 									<p className="text-sm text-zinc-400">{feature.description}</p>

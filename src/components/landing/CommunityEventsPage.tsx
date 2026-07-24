@@ -224,7 +224,7 @@ export function CommunityEventsPage() {
 								<h1 className="leading-tighter text-3xl font-bold text-white">
 									Bring Effect to your community events
 								</h1>
-								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[33.333%] lg:max-w-none">
+								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[33.333%] lg:max-w-[66.667%]">
 									Crash your local TypeScript or AI event with an Effect talk,{" "}
 									<br className="hidden lg:block" />
 									or host your own meetup. We can help you prepare and promote

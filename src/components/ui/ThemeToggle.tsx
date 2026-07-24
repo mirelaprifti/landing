@@ -1,6 +1,6 @@
 import { Check, Monitor, Moon, Sun } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Icon } from "@/components/ui/Icon";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
 type Theme = "light" | "dark" | "system";
 
@@ -196,7 +196,7 @@ export function ThemeToggle() {
 		}
 	}, []);
 
-	const options: { value: Theme; icon: string; label: string }[] = [
+	const options: { value: Theme; icon: IconName; label: string }[] = [
 		{ value: "light", icon: "sun", label: "Light" },
 		{ value: "system", icon: "monitor", label: "System" },
 		{ value: "dark", icon: "moon", label: "Dark" },

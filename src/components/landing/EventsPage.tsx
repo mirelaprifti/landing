@@ -1205,7 +1205,15 @@ export function EventsPage() {
 												"linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
 										}}
 									>
-										<Icon name={perk.icon} className="text-lg" style={{ background: "linear-gradient(135deg, #34d399, #8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", }} />
+										<Icon
+											name={perk.icon}
+											className="text-lg"
+											style={{
+												background: "linear-gradient(135deg, #34d399, #8b5cf6)",
+												WebkitBackgroundClip: "text",
+												WebkitTextFillColor: "transparent",
+											}}
+										/>
 									</div>
 									<div>
 										<h3 className="text-base font-semibold text-white">

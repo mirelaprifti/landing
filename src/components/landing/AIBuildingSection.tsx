@@ -116,7 +116,10 @@ export function AIBuildingSection() {
 									: ""
 							} ${index === 0 ? "lg:pl-0" : ""} ${index === FEATURES.length - 1 ? "lg:pr-0" : ""}`}
 						>
-							<Icon name={feature.icon} className="mb-2 text-lg text-zinc-300" />
+							<Icon
+								name={feature.icon}
+								className="mb-2 text-lg text-zinc-300"
+							/>
 							<h3 className="text-base font-semibold text-white">
 								{feature.title}
 							</h3>

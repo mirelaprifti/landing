@@ -70,7 +70,10 @@ export function TradeoffsSection() {
 						<ul className="space-y-3">
 							{GOOD_FIT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<Icon name={item.icon} className="mt-0.5 shrink-0 text-emerald-400" />
+									<Icon
+										name={item.icon}
+										className="mt-0.5 shrink-0 text-emerald-400"
+									/>
 									<span className="text-sm text-zinc-300">{item.text}</span>
 								</li>
 							))}
@@ -86,7 +89,10 @@ export function TradeoffsSection() {
 						<ul className="space-y-3">
 							{MAYBE_NOT.map((item, index) => (
 								<li key={index} className="flex items-start gap-3">
-									<Icon name={item.icon} className="mt-0.5 shrink-0 text-zinc-400" />
+									<Icon
+										name={item.icon}
+										className="mt-0.5 shrink-0 text-zinc-400"
+									/>
 									<span className="text-sm text-zinc-400">{item.text}</span>
 								</li>
 							))}

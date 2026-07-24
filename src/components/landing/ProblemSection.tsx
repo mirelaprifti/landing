@@ -271,7 +271,10 @@ export function ProblemSection() {
 							</div>
 							<h3 className="flex items-center gap-2 font-mono text-base font-medium text-zinc-900 dark:text-white uppercase">
 								<div className="flex h-6 w-6 shrink-0 items-center justify-center bg-zinc-200 dark:bg-zinc-800">
-									<Icon name={feature.icon} className="text-sm text-zinc-800 dark:text-zinc-200" />
+									<Icon
+										name={feature.icon}
+										className="text-sm text-zinc-800 dark:text-zinc-200"
+									/>
 								</div>
 								{feature.title}
 							</h3>
