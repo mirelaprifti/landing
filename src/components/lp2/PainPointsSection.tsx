@@ -7,7 +7,7 @@ const PAIN_POINTS = [
 		solution: "Typed Errors",
 		solutionDescription:
 			"Every possible error is tracked in the type system. The compiler tells you what can fail and forces you to handle it.",
-		icon: "circle-alert",
+		icon: "circle-alert" as const,
 	},
 	{
 		problem: "Dependency injection chaos",
@@ -16,7 +16,7 @@ const PAIN_POINTS = [
 		solution: "Built-in DI",
 		solutionDescription:
 			"Services are declared as types and provided at the edge. No decorators, no reflection, no magic — just types.",
-		icon: "plug",
+		icon: "plug" as const,
 	},
 	{
 		problem: "Promise nightmares",
@@ -25,7 +25,7 @@ const PAIN_POINTS = [
 		solution: "Structured Concurrency",
 		solutionDescription:
 			"Fibers with automatic cleanup, cancellation propagation, and proper resource management. Async code that actually makes sense.",
-		icon: "git-branch",
+		icon: "git-branch" as const,
 	},
 	{
 		problem: "Untestable code",
@@ -34,7 +34,7 @@ const PAIN_POINTS = [
 		solution: "Testable by Design",
 		solutionDescription:
 			"Swap implementations at test time without mocking libraries. Your code is naturally decoupled and easy to test.",
-		icon: "flask",
+		icon: "flask" as const,
 	},
 	{
 		problem: "Zero observability",
@@ -43,7 +43,7 @@ const PAIN_POINTS = [
 		solution: "Built-in Tracing",
 		solutionDescription:
 			"OpenTelemetry-compatible tracing out of the box. See exactly what happened, with full context, without adding instrumentation code.",
-		icon: "chart-line",
+		icon: "chart-line" as const,
 	},
 ];
 

@@ -31,12 +31,12 @@ const FEATURES = [
 	{
 		title: "Type-safe data flows",
 		description: "Connect AI outputs to frontend UI without schema mismatches.",
-		icon: "shapes",
+		icon: "shapes" as const,
 	},
 	{
 		title: "Deterministic concurrency",
 		description: "Runs and scales agent pipelines safely.",
-		icon: "git-branch",
+		icon: "git-branch" as const,
 	},
 	{
 		title: "Durable agent execution",
@@ -53,12 +53,12 @@ const FEATURES = [
 				.
 			</>
 		),
-		icon: "history",
+		icon: "history" as const,
 	},
 	{
 		title: "Composable infrastructure",
 		description: "Easily integrates LLMs, APIs, queues and vector DBs.",
-		icon: "layers",
+		icon: "layers" as const,
 	},
 ];
 

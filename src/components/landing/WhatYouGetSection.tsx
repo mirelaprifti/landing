@@ -1,42 +1,42 @@
 import { Icon } from "@/components/ui/Icon";
 const FEATURES = [
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Typed errors",
 		description: "Errors as values in your type signature",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Dependency injection",
 		description: "Services provided at the edge, no decorators",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Retries & timeouts",
 		description: "Built-in scheduling with exponential backoff",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Structured concurrency",
 		description: "Fibers with cancellation and cleanup",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Resource management",
 		description: "Acquire, use, release — guaranteed",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "OpenTelemetry tracing",
 		description: "Full observability, zero config",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Schema validation",
 		description: "Parse, encode, document — one definition",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		title: "Testable by default",
 		description: "Swap implementations without mocks",
 	},

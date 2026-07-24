@@ -5,7 +5,7 @@ const FEATURES = [
 	{
 		problem:
 			"Try-catch blocks everywhere but you still don't know how things can fail.",
-		icon: "shield-check",
+		icon: "shield-check" as const,
 		title: "Typed Errors",
 		description:
 			"Errors in the type system. The compiler tells you what can fail.",
@@ -17,7 +17,7 @@ const FEATURES = [
 	},
 	{
 		problem: "Another decorator. Another magic string. Another runtime error.",
-		icon: "network",
+		icon: "network" as const,
 		title: "Dependency Injection",
 		description:
 			"Services as types, provided at the edge. No decorators, no magic.",
@@ -30,7 +30,7 @@ const FEATURES = [
 	{
 		problem:
 			"That Promise.all? It's a time bomb. One failure, everything crashes.",
-		icon: "git-branch",
+		icon: "git-branch" as const,
 		title: "Structured Concurrency",
 		description: "Fibers with cleanup, cancellation, and resource management.",
 		items: [
@@ -41,14 +41,14 @@ const FEATURES = [
 	},
 	{
 		problem: "Network failed? Try again later. But when? How many times?",
-		icon: "clock",
+		icon: "clock" as const,
 		title: "Scheduling",
 		description: "Declarative retry, repeat, and timeout policies.",
 		items: ["Cron-like schedules", "Exponential backoff", "Jittered retries"],
 	},
 	{
 		problem: "No observability. Production's on fire. You have no idea why.",
-		icon: "chart-line",
+		icon: "chart-line" as const,
 		title: "Built-in Tracing",
 		description: "OpenTelemetry out of the box. Full context, zero setup.",
 		items: [
@@ -60,7 +60,7 @@ const FEATURES = [
 	{
 		problem:
 			"Validation logic is duplicated across every layer of your application.",
-		icon: "file-check",
+		icon: "file-check" as const,
 		title: "Unified Schema",
 		description: "One schema for validation, encoding, and documentation.",
 		items: [

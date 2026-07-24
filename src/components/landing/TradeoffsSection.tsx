@@ -1,42 +1,42 @@
 import { Icon } from "@/components/ui/Icon";
 const GOOD_FIT = [
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		text: "Systems that need to be reliable under failure",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		text: "You want typed errors, not just catch (e: unknown)",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		text: "You need observability without bolting on logging libraries",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		text: "Your team values explicit over implicit",
 	},
 	{
-		icon: "circle-check",
+		icon: "circle-check" as const,
 		text: "You're building AI/agentic systems, APIs, or backend services",
 	},
 ];
 
 const MAYBE_NOT = [
 	{
-		icon: "circle-x",
+		icon: "circle-x" as const,
 		text: "Simple CRUD apps with minimal error handling",
 	},
 	{
-		icon: "circle-x",
+		icon: "circle-x" as const,
 		text: "Your team isn't ready to invest in learning a new paradigm",
 	},
 	{
-		icon: "circle-x",
+		icon: "circle-x" as const,
 		text: "You need the absolute smallest possible bundle size",
 	},
 	{
-		icon: "circle-x",
+		icon: "circle-x" as const,
 		text: "You prefer implicit magic over explicit composition",
 	},
 ];

@@ -8,7 +8,7 @@ const FEATURES = [
 			"Automatic retry with backoff",
 			"Timeout and interruption",
 		],
-		icon: "shield-check",
+		icon: "shield-check" as const,
 	},
 	{
 		category: "Concurrency",
@@ -18,7 +18,7 @@ const FEATURES = [
 			"Race conditions handled correctly",
 			"Automatic resource cleanup",
 		],
-		icon: "git-branch",
+		icon: "git-branch" as const,
 	},
 	{
 		category: "Dependency Injection",
@@ -28,7 +28,7 @@ const FEATURES = [
 			"Easy mocking for tests",
 			"No decorators or reflection",
 		],
-		icon: "plug",
+		icon: "plug" as const,
 	},
 	{
 		category: "Observability",
@@ -38,7 +38,7 @@ const FEATURES = [
 			"Metrics collection",
 			"Span context propagation",
 		],
-		icon: "chart-line",
+		icon: "chart-line" as const,
 	},
 	{
 		category: "Schema & Validation",
@@ -48,7 +48,7 @@ const FEATURES = [
 			"API contract generation",
 			"Form validation support",
 		],
-		icon: "file-check",
+		icon: "file-check" as const,
 	},
 	{
 		category: "Scheduling",
@@ -58,7 +58,7 @@ const FEATURES = [
 			"Jittered retries",
 			"Repeat with conditions",
 		],
-		icon: "clock",
+		icon: "clock" as const,
 	},
 ];
 

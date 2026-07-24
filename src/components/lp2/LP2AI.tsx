@@ -6,25 +6,25 @@ const AI_BENEFITS = [
 		title: "Predictable structure",
 		description:
 			"Every operation follows a declarative pattern — no guesswork for LLMs.",
-		icon: "layout-grid",
+		icon: "layout-grid" as const,
 	},
 	{
 		title: "Typed feedback loop",
 		description:
 			"Detailed error traces show what failed, enabling precise self-repair.",
-		icon: "refresh-cw",
+		icon: "refresh-cw" as const,
 	},
 	{
 		title: "Built-in reliability",
 		description:
 			"Error handling, supervision, and recovery — production-ready by default.",
-		icon: "shield-check",
+		icon: "shield-check" as const,
 	},
 	{
 		title: "Rich toolbox",
 		description:
 			"Schema validation to workflows in a language LLMs easily understand.",
-		icon: "wrench",
+		icon: "wrench" as const,
 	},
 ];
 

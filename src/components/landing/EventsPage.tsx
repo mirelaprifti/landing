@@ -525,19 +525,19 @@ const sortedPastEvents = pastEvents
 
 const hostPerks = [
 	{
-		icon: "megaphone",
+		icon: "megaphone" as const,
 		title: "Promotional support",
 		description:
 			"We love spreading the word! Every Effect-dedicated event gets shared with our network and community on socials and Discord.",
 	},
 	{
-		icon: "users",
+		icon: "users" as const,
 		title: "Direct line to the team",
 		description:
 			"Got questions about running your event? The Effect team is just a message away on Discord.",
 	},
 	{
-		icon: "palette",
+		icon: "palette" as const,
 		title: "Banners and assets",
 		description:
 			"Logos, event templates, and branding assets ready to drop into your meetup page or slides.",
@@ -545,7 +545,7 @@ const hostPerks = [
 		linkLabel: "Figma kit",
 	},
 	{
-		icon: "folder-git",
+		icon: "folder-git" as const,
 		title: "GitHub repo template",
 		description:
 			"A template for talk submissions as issues, a code of conduct, and organizer checklists.",
