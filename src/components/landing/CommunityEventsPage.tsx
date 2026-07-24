@@ -17,7 +17,7 @@ const SUPPORT_ITEMS: {
 	{
 		title: "Meetups",
 		description: "From your first event to a recurring local community.",
-		icon: "ri-group-line",
+		icon: "users",
 		details: [
 			"Guidance on planning and running your first event",
 			"Connecting you with Effect developers nearby",
@@ -27,7 +27,7 @@ const SUPPORT_ITEMS: {
 	{
 		title: "Speaker kit",
 		description: "Another pair of eyes before you go on stage.",
-		icon: "ri-slideshow-line",
+		icon: "presentation",
 		details: [
 			"Slide templates",
 			"Feedback on your topic or abstract",
@@ -37,7 +37,7 @@ const SUPPORT_ITEMS: {
 	{
 		title: "Promotion",
 		description: "We amplify your talk before and after the event.",
-		icon: "ri-megaphone-line",
+		icon: "megaphone",
 		details: [
 			"Sharing the event with the Effect community",
 			"Reposting recordings, slides, and recaps",
@@ -47,7 +47,7 @@ const SUPPORT_ITEMS: {
 	{
 		title: "Swag",
 		description: "A thank-you for putting Effect on stage.",
-		icon: "ri-t-shirt-line",
+		icon: "shirt",
 		details: [
 			"Mini swag kits for smaller local events",
 			"Larger kits for accepted talks at bigger events",
@@ -220,7 +220,7 @@ export function CommunityEventsPage() {
 								<h1 className="leading-tighter text-3xl font-bold text-white">
 									Bring Effect to your community events
 								</h1>
-								<p className="mt-6 text-lg leading-relaxed text-zinc-400 md:max-w-[50%] lg:max-w-none">
+								<p className="mt-6 max-w-none text-lg leading-relaxed text-zinc-400 md:max-w-2/3 lg:max-w-none">
 									Crash your local TypeScript or AI event with an Effect talk,{" "}
 									<br className="hidden lg:block" />
 									or host your own meetup. We can help you prepare and promote

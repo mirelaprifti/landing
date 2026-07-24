@@ -153,8 +153,9 @@ export function CommunityResourcesCategoryPage({
 									<div
 										className={`flex h-5 w-5 items-center justify-center rounded ${color.bg}`}
 									>
-										<i
-											className={`${icon} text-xs ${color.text}`}
+										<Icon
+											name={icon}
+											className={`text-xs ${color.text}`}
 											aria-hidden="true"
 										/>
 									</div>

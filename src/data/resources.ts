@@ -1,3 +1,4 @@
+import type { IconName } from "@/components/ui/Icon";
 // ── Types ────────────────────────────────────────────────────────
 
 export type Category = "Article" | "Learning" | "Other" | "Tools" | "Video";
@@ -66,13 +67,13 @@ export const CATEGORY_COLORS: Record<
 	},
 };
 
-/** Remixicon icon name for each category */
-export const CATEGORY_ICONS: Record<Category, string> = {
-	Article: "ri-article-line",
-	Learning: "ri-graduation-cap-line",
-	Other: "ri-shapes-line",
-	Tools: "ri-tools-line",
-	Video: "ri-play-circle-line",
+/** Lucide icon name (see src/components/ui/Icon.tsx) for each category */
+export const CATEGORY_ICONS: Record<Category, IconName> = {
+	Article: "newspaper",
+	Learning: "graduation-cap",
+	Other: "shapes",
+	Tools: "wrench",
+	Video: "circle-play",
 };
 
 /** Human-readable display names for each category */

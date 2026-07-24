@@ -160,8 +160,9 @@ function CategorySection({ category }: { category: Category }) {
 					<div
 						className={`flex h-8 w-8 items-center justify-center rounded-lg ${color.bg}`}
 					>
-						<i
-							className={`${icon} text-base ${color.text}`}
+						<Icon
+							name={icon}
+							className={`text-base ${color.text}`}
 							aria-hidden="true"
 						/>
 					</div>

@@ -194,8 +194,9 @@ function PartnerServicesSection({ partner }: { partner: Partner }) {
 							className="flex flex-col border border-zinc-700 bg-zinc-900/40 p-6 md:p-8"
 						>
 							{service.icon && (
-								<i
-									className={`${service.icon} mb-4 text-2xl text-zinc-300`}
+								<Icon
+									name={service.icon}
+									className="mb-4 text-2xl text-zinc-300"
 									aria-hidden="true"
 								/>
 							)}
@@ -252,8 +253,9 @@ function PartnerTrainingSection({ partner }: { partner: Partner }) {
 										}`}
 									>
 										{outcome.icon && (
-											<i
-												className={`${outcome.icon} mb-3 text-2xl text-zinc-300`}
+											<Icon
+												name={outcome.icon}
+												className="mb-3 text-2xl text-zinc-300"
 												aria-hidden="true"
 											/>
 										)}

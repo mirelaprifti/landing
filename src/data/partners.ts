@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/ui/Icon";
+
 export interface PartnerStat {
 	value: string;
 	label: string;
@@ -7,14 +9,14 @@ export interface PartnerService {
 	title: string;
 	description: string;
 	eyebrow?: string;
-	icon?: string;
+	icon?: IconName;
 	cta?: { label: string; href: string };
 }
 
 export interface TrainingOutcome {
 	title: string;
 	detail: string;
-	icon?: string;
+	icon?: IconName;
 }
 
 export interface PartnerTraining {
@@ -117,14 +119,14 @@ export const PARTNERS: Partner[] = [
 				title: "Implementation & Consulting",
 				description:
 					"Hands-on Effect adoption for your production codebase. Ziverge assesses your stack, designs the migration path, and implements with the depth that only comes from building Effect systems for over a decade.",
-				icon: "ri-tools-line",
+				icon: "wrench",
 				cta: { label: "Start a conversation", href: "#contact" },
 			},
 			{
 				title: "Team Extension",
 				description:
 					"Embed Ziverge engineers alongside your team. They work in your repos, participate in your development process, and collaborate on code reviews, accelerating Effect adoption while also helping your engineers build fluency through hands-on experience.",
-				icon: "ri-team-line",
+				icon: "users",
 				cta: { label: "Embed an engineer", href: "#contact" },
 			},
 			{
@@ -132,14 +134,14 @@ export const PARTNERS: Partner[] = [
 				description:
 					"Structured Effect training from foundational concepts to advanced patterns: fibers, typed errors, dependency injection, and agent-native workflows.",
 				eyebrow: "Coming soon",
-				icon: "ri-graduation-cap-line",
+				icon: "graduation-cap",
 				cta: { label: "Get notified", href: "#training" },
 			},
 			{
 				title: "Open-Source & Commercial Support",
 				description:
 					"Ongoing support for teams running Effect in production, from open-source maintenance to commercial support contracts.",
-				icon: "ri-lifebuoy-line",
+				icon: "life-buoy",
 				cta: { label: "Get support", href: "#contact" },
 			},
 		],
@@ -151,22 +153,22 @@ export const PARTNERS: Partner[] = [
 				{
 					title: "Concurrent systems",
 					detail: "Fibers, scheduling, structured concurrency",
-					icon: "ri-git-branch-line",
+					icon: "git-branch",
 				},
 				{
 					title: "Type-safe failure modes",
 					detail: "Typed errors, recovery, observability",
-					icon: "ri-shield-check-line",
+					icon: "shield-check",
 				},
 				{
 					title: "Production reliability",
 					detail: "Resource safety, dependency injection, lifecycle management",
-					icon: "ri-rocket-line",
+					icon: "rocket",
 				},
 				{
 					title: "Agent-native patterns",
 					detail: "AI workflows, deterministic execution",
-					icon: "ri-robot-2-line",
+					icon: "bot",
 				},
 			],
 			cta: { label: "Reserve your seat", href: "#contact" },
