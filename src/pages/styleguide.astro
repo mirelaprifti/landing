@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { TypographyStyleguidePage } from "@/components/landing/TypographyStyleguidePage";
+---
+
+<BaseLayout
+  themeable
+  title="Blog Typography Styleguide - Effect"
+  description="Internal preview of the blog's text element styles in both themes."
+>
+  <TypographyStyleguidePage client:load />
+</BaseLayout>
