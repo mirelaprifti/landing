@@ -262,7 +262,7 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 						<p className="mt-4 max-w-2xl text-lg leading-normal text-zinc-400">
-							Tell us what you're planning and we'll work out what fits.
+							Tell us what you're planning and we'll take it from there.
 						</p>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
