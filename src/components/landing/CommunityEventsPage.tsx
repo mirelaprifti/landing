@@ -226,7 +226,7 @@ export function CommunityEventsPage() {
 									Crash your local JavaScript/TypeScript or AI event{" "}
 									<br className="hidden lg:block" />
 									with an Effect talk, or host your own Effect meetup. We can
-									help you prepare, promote, and share it with the community.
+									help you prepare and promote it with the community.
 								</p>
 								<div className="mt-8">
 									<FormButton />
