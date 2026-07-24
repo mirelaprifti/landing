@@ -112,9 +112,10 @@ export const JOBS: Job[] = [
 	{
 		company: "OpenRouter",
 		role: "Effect Engineers",
+		location: "New York, USA",
 		url: "https://x.com/louis_g_v/status/2067841625418588233",
 		note: "Posted on X",
-		logo: "/assets/images/open-router.svg",
+		logo: "/assets/effect-jobs-logos/openrouter-favicon.svg",
 		description:
 			"Help build the unified interface for LLMs, processing trillions of tokens weekly.",
 	},
