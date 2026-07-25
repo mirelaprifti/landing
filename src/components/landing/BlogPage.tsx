@@ -182,7 +182,7 @@ function HorizontalScrollRail({
 					<button
 						type="button"
 						onClick={onViewAll}
-						className="font-mono text-xs text-zinc-800 dark:text-zinc-200 transition-colors hover:text-zinc-900 dark:hover:text-white"
+						className="font-mono text-sm text-zinc-800 dark:text-zinc-200 transition-colors hover:text-zinc-900 dark:hover:text-white"
 					>
 						View all
 					</button>
@@ -645,7 +645,7 @@ export function BlogPage() {
 											onClick={() => setCatOpen((o) => !o)}
 											aria-haspopup="listbox"
 											aria-expanded={catOpen}
-											className="group inline-flex items-baseline gap-1.5 font-mono text-xs transition-colors"
+											className="group inline-flex items-baseline gap-1.5 font-mono text-sm transition-colors"
 										>
 											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 												{activeTag}
@@ -678,7 +678,7 @@ export function BlogPage() {
 																		handleTagChange(tag);
 																		setCatOpen(false);
 																	}}
-																	className={`group/item relative flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left font-mono text-xs transition-colors ${
+																	className={`group/item relative flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left font-mono text-sm transition-colors ${
 																		isActive
 																			? "text-zinc-900 dark:text-white"
 																			: "text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white"
@@ -714,7 +714,7 @@ export function BlogPage() {
 											setSortBy((s) => (s === "newest" ? "oldest" : "newest"))
 										}
 										aria-label={`Sort: ${sortBy === "newest" ? "Newest" : "Oldest"} first. Click to toggle.`}
-										className="group inline-flex items-baseline gap-1.5 font-mono text-xs transition-colors"
+										className="group inline-flex items-baseline gap-1.5 font-mono text-sm transition-colors"
 									>
 										<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
 											{sortBy === "newest" ? "Newest" : "Oldest"}
@@ -728,7 +728,7 @@ export function BlogPage() {
 									<a
 										href="/rss.xml"
 										aria-label="RSS feed"
-										className="group inline-flex items-baseline gap-1.5 font-mono text-xs tracking-wider text-zinc-800 dark:text-zinc-200 uppercase transition-colors hover:text-zinc-900 dark:hover:text-white"
+										className="group inline-flex items-baseline gap-1.5 font-mono text-sm text-zinc-800 dark:text-zinc-200 transition-colors hover:text-zinc-900 dark:hover:text-white"
 									>
 										<span>RSS</span>
 										<Icon
