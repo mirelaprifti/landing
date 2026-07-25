@@ -182,7 +182,7 @@ function HorizontalScrollRail({
 					<button
 						type="button"
 						onClick={onViewAll}
-						className="font-mono text-xs tracking-wider text-zinc-800 dark:text-zinc-200 uppercase transition-colors hover:text-zinc-900 dark:hover:text-white"
+						className="font-mono text-xs text-zinc-800 dark:text-zinc-200 transition-colors hover:text-zinc-900 dark:hover:text-white"
 					>
 						View all
 					</button>
