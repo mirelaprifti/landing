@@ -122,7 +122,7 @@ export function EffectDaysPage() {
 									yourTicket {"}"} <span className="text-violet-400">from</span>{" "}
 									<span className="text-emerald-400">"effect-days-2026"</span>
 								</p>
-								<h1 className="text-4xl font-bold text-white md:text-6xl lg:text-7xl">
+								<h1 className="text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
 									Effect Days 2026
 								</h1>
 								<p className="mt-6 text-xl font-medium text-white">

@@ -596,7 +596,7 @@ export function BlogPage() {
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 								// Effect Blog
 							</p>
-							<h1 className="max-w-3xl text-3xl font-bold leading-tighter tracking-tight text-zinc-900 dark:text-white">
+							<h1 className="max-w-3xl text-3xl font-bold leading-tighter tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								Releases, write-ups, and notes{" "}
 								<br className="hidden md:block" />
 								from the Effect team

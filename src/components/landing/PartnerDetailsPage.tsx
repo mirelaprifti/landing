@@ -106,7 +106,7 @@ export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 										/>
 									</div>
 									<div>
-										<h1 className="text-3xl font-bold text-white md:text-4xl">
+										<h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
 											{partner.name}
 										</h1>
 										<div className="mt-4 flex flex-wrap items-center gap-4">

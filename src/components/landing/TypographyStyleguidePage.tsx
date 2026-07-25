@@ -19,7 +19,7 @@ export function TypographyStyleguidePage() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Styleguide
 						</p>
-						<h1 className="leading-tighter text-3xl font-bold md:text-4xl">
+						<h1 className="leading-tighter text-3xl font-bold tracking-tight md:text-4xl">
 							Blog typography
 						</h1>
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">

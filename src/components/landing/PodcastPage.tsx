@@ -228,7 +228,7 @@ export function PodcastPage() {
 								<p className="mb-2 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 									// Cause & Effect 🎙️
 								</p>
-								<h1 className="text-3xl font-semibold text-zinc-900 dark:text-white sm:text-4xl md:text-4xl">
+								<h1 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-4xl md:text-4xl">
 									How companies ship with Effect
 								</h1>
 								<p className="mt-2.5 text-base leading-snug text-zinc-600 dark:text-zinc-400 sm:text-lg">

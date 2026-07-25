@@ -150,7 +150,7 @@ export function LaunchHeroSection({
 						/>
 					</a>
 					{/* Headline */}
-					<h1 className="leading-tighter relative text-4xl font-bold text-zinc-900 md:text-5xl md:whitespace-nowrap lg:text-[3.4rem] dark:text-white">
+					<h1 className="leading-tighter relative text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl md:whitespace-nowrap lg:text-[3.4rem] dark:text-white">
 						Reliable TypeScript for the AI era
 						{headlineGlint && (
 							<>

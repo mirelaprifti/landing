@@ -15,7 +15,7 @@ export function PrivacyPolicyPage() {
 					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 						// Legal
 					</p>
-					<h1 className="leading-tighter text-3xl font-bold text-white md:text-4xl">
+					<h1 className="leading-tighter text-3xl font-bold tracking-tight text-white md:text-4xl">
 						Privacy Policy
 					</h1>
 					<p className="mt-4 max-w-2xl text-sm text-zinc-400">

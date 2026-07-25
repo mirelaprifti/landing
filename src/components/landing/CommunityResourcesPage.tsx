@@ -334,7 +334,7 @@ export function CommunityResourcesPage() {
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 								{"// Projects Showcase"}
 							</p>
-							<h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl">
+							<h1 className="max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
 								Community Resources
 							</h1>
 							<p className="mt-4 max-w-3xl text-base text-zinc-400 sm:text-lg">

@@ -107,7 +107,7 @@ export function NotFoundPage() {
 								<p className="mb-3 font-mono text-lg font-semibold tracking-wider text-zinc-400 uppercase">
 									{"// 404"}
 								</p>
-								<h1 className="text-2xl font-semibold text-white md:text-3xl">
+								<h1 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
 									Page not found
 								</h1>
 								<p className="mt-4 text-lg text-zinc-400">

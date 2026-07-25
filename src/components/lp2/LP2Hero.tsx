@@ -11,7 +11,7 @@ export function LP2Hero() {
 				</p>
 
 				{/* Main headline */}
-				<h1 className="max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+				<h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
 					Why Effect?
 				</h1>
 

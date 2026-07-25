@@ -36,7 +36,7 @@ function FeaturedPartnerHero({ partner }: { partner: Partner }) {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Adoption Partner
 						</p>
-						<h1 className="leading-tighter text-3xl font-bold text-white">
+						<h1 className="leading-tighter text-3xl font-bold tracking-tight text-white">
 							Get help adopting Effect with {partner.name}
 						</h1>
 						{partner.tagline && (

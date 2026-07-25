@@ -1018,7 +1018,7 @@ export function EventsPage() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Effect Events
 						</p>
-						<h1 className="mx-auto max-w-2xl text-4xl font-bold text-white md:text-5xl">
+						<h1 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight text-white md:text-5xl">
 							Effect is everywhere
 						</h1>
 						<p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-400">
