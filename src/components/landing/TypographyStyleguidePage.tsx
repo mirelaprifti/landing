@@ -10,7 +10,7 @@ import { Navigation } from "./Navigation";
  */
 export function TypographyStyleguidePage() {
 	return (
-		<div className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-white">
+		<div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white">
 			<Navigation activePath="/blog" />
 
 			<main className="relative w-full pt-16">
