@@ -19,25 +19,12 @@ export interface BlogPost {
 	hasLocalContent?: boolean;
 }
 
-const MONTH_MAP: Record<string, string> = {
-	Jan: "01",
-	Feb: "02",
-	Mar: "03",
-	Apr: "04",
-	May: "05",
-	Jun: "06",
-	Jul: "07",
-	Aug: "08",
-	Sep: "09",
-	Oct: "10",
-	Nov: "11",
-	Dec: "12",
-};
-
 /**
  * Returns the URL for a blog post.
  * - Posts with `hasLocalContent` link to the local route.
- * - "This Week In Effect" posts link to effect.website with date-based paths.
+ * - "This Week In Effect" posts link to effect.website's numbered paths
+ *   (e.g. /blog/this-week-in-effect/128/); the old date-based paths 404
+ *   for new issues.
  * - All other posts link to effect.website using the slug directly.
  */
 export function getPostUrl(post: BlogPost): string {
@@ -45,13 +32,9 @@ export function getPostUrl(post: BlogPost): string {
 		return `/blog/${post.slug}`;
 	}
 
-	if (post.tags.includes("This Week In Effect")) {
-		// Parse date like "Feb 27, 2026" into "/blog/this-week-in-effect/2026/02/27/"
-		const parts = post.date.replace(",", "").split(" ");
-		const month = MONTH_MAP[parts[0]] ?? "01";
-		const day = parts[1].padStart(2, "0");
-		const year = parts[2];
-		return `https://effect.website/blog/this-week-in-effect/${year}/${month}/${day}/`;
+	const issue = post.slug.match(/^this-week-in-effect-(\d+)$/)?.[1];
+	if (issue && post.tags.includes("This Week In Effect")) {
+		return `https://effect.website/blog/this-week-in-effect/${issue}/`;
 	}
 
 	return `https://effect.website/blog/${post.slug}/`;
@@ -141,6 +124,16 @@ export const BLOG_POSTS: BlogPost[] = [
 		featured: true,
 		coverImage: "/assets/images/featured-post.png",
 		hasLocalContent: true,
+	},
+	{
+		slug: "this-week-in-effect-128",
+		title: "This Week in Effect #128",
+		excerpt:
+			"Effect v4 Beta progress: Cron hardening, fiber runtime fixes, and new core APIs. A brand-new website rebuild, and Devin Jameson on Foldkit on the Cause & Effect podcast.",
+		date: "Jul 24, 2026",
+		readingTime: "5 min read",
+		tags: ["This Week In Effect"],
+		authors: [AUTHORS.davide, AUTHORS.mirela],
 	},
 	{
 		slug: "this-week-in-effect-107",
