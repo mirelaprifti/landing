@@ -605,7 +605,7 @@ export function BlogPage() {
 
 						{/* Featured post — first thing after heading */}
 						{featuredPost && (
-							<div className="py-5 md:py-6">
+							<div className="pt-5 pb-4 md:pt-6">
 								<FeaturedPost post={featuredPost} />
 							</div>
 						)}
