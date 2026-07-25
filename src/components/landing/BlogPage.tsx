@@ -592,7 +592,7 @@ export function BlogPage() {
 				<main id="main-content" className="relative w-full pt-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						{/* Page header */}
-						<div className="pt-16 pb-8 md:pt-24 md:pb-12">
+						<div className="pt-16 pb-8 md:pt-24">
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-600 dark:text-zinc-400 uppercase">
 								// Effect Blog
 							</p>
@@ -605,7 +605,7 @@ export function BlogPage() {
 
 						{/* Featured post — first thing after heading */}
 						{featuredPost && (
-							<div className="pt-5 pb-4 md:pt-6">
+							<div className="pb-4">
 								<FeaturedPost post={featuredPost} />
 							</div>
 						)}
