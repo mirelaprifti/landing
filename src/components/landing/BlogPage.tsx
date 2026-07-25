@@ -88,7 +88,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.title}
 					</h2>
 
-					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-700 dark:text-zinc-300">
+					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-700 dark:text-zinc-400">
 						{post.excerpt}
 					</p>
 				</div>
@@ -174,7 +174,7 @@ function HorizontalScrollRail({
 		<section aria-label={ariaLabel} className="pt-16 pb-8 md:pt-20 md:pb-10">
 			{/* Section header */}
 			<div className="mb-6 flex items-center justify-between">
-				<h2 className="text-xl font-semibold text-zinc-900 dark:text-white">
+				<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
 					{title}
 				</h2>
 
@@ -269,7 +269,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 					</time>
 				</div>
 
-				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
@@ -310,7 +310,7 @@ function PostCard({ post }: { post: BlogPost }) {
 		>
 			<div className="grid grid-cols-12 items-baseline gap-4">
 				<div className="col-span-12 min-w-0 md:col-span-8">
-					<h3 className="relative inline-block text-lg font-semibold text-zinc-900 dark:text-white">
+					<h3 className="relative inline-block text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
 						<span>{post.title}</span>
 						<Icon
 							name="arrow-right"
@@ -320,7 +320,7 @@ function PostCard({ post }: { post: BlogPost }) {
 						<span className="absolute right-0 -bottom-0.5 left-0 h-px origin-left scale-x-0 bg-zinc-900 dark:bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
 					</h3>
 					{/* Excerpt */}
-					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 transition-colors group-hover:text-zinc-800 dark:group-hover:text-zinc-200">
+					<p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-700 dark:text-zinc-400 transition-colors group-hover:text-zinc-800 dark:group-hover:text-zinc-200">
 						{post.excerpt}
 					</p>
 				</div>
