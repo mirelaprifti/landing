@@ -200,16 +200,6 @@ export function Footer({
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<Link
-										href={getAssetPath("/adoption-partners")}
-										variant="footer"
-										active={activePath?.startsWith("/adoption-partners")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Adoption Partners
-									</Link>
-								</li>
-								<li>
-									<Link
 										href={getAssetPath("/blog")}
 										variant="footer"
 										active={activePath?.startsWith("/blog")}
@@ -246,6 +236,16 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Logo guidelines
+									</Link>
+								</li>
+								<li>
+									<Link
+										href={getAssetPath("/adoption-partners")}
+										variant="footer"
+										active={activePath?.startsWith("/adoption-partners")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Adoption Partners
 									</Link>
 								</li>
 							</ul>
