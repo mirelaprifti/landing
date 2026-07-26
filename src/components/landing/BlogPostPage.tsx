@@ -86,22 +86,25 @@ function TableOfContents({
 	postTitle?: string;
 	postDate?: string;
 }) {
-	const tocItems = [
-		{
-			id: "faster-runtime",
-			label: "Faster runtime. Leaner bundles.",
-			depth: 0,
-		},
-		{ id: "bundle-size", label: "Bundle size", depth: 1 },
-		{ id: "one-version", label: "One version. One ecosystem.", depth: 0 },
-		{ id: "consolidated-core", label: "A consolidated core", depth: 1 },
-		{ id: "unstable-modules", label: "Unstable modules", depth: 0 },
-		{ id: "beta-phase", label: "The beta phase", depth: 0 },
-		{ id: "migrating", label: "Migrating from Effect v3", depth: 0 },
-		{ id: "try-it-now", label: "Try it now", depth: 0 },
-	];
-
+	// Built from the rendered article headings so it works for any post
+	const [tocItems, setTocItems] = useState<
+		{ id: string; label: string; depth: number }[]
+	>([]);
 	const [activeId, setActiveId] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const els = document.querySelectorAll<HTMLElement>(
+			"article h2[id], article h3[id]",
+		);
+		setTocItems(
+			[...els].map((el) => ({
+				id: el.id,
+				label: el.textContent ?? "",
+				depth: el.tagName === "H2" ? 0 : 1,
+			})),
+		);
+	}, []);
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -124,7 +127,7 @@ function TableOfContents({
 
 		headings.forEach((el) => observer.observe(el));
 		return () => observer.disconnect();
-	}, []);
+	}, [tocItems]);
 
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
@@ -241,6 +244,603 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 				<div />
 			)}
 		</div>
+	);
+}
+
+function EffectV4BetaContent() {
+	return (
+		<>
+			<h2 id="faster-runtime">Faster runtime. Leaner bundles.</h2>
+			<p>
+				The core fiber runtime has been rewritten from scratch to have lower
+				memory overhead, faster execution, and simpler internals. Every Effect
+				application benefits from these optimizations immediately.
+			</p>
+
+			<h3 id="bundle-size">Bundle size</h3>
+			<p>
+				A minimal program using Effect, Stream, and Schema drops from roughly{" "}
+				<strong>70 kB</strong> in v3 to about <strong>20 kB</strong> in v4.
+			</p>
+
+			<pre>
+				<code>{`import { Effect } from "effect"
+
+const program = Effect.gen(function* () {
+  const result = yield* Effect.succeed(42)
+  yield* Effect.log(\`The answer is \${result}\`)
+})
+
+Effect.runPromise(program)`}</code>
+			</pre>
+
+			<div className="not-prose my-8">
+				<div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+					<video autoPlay controls loop muted playsInline width="100%">
+						<source
+							src="https://effect.website/video/bundle-size-viz.mp4"
+							type="video/mp4"
+						/>
+						Your browser does not support the video tag.
+					</video>
+				</div>
+			</div>
+
+			<h2 id="one-version">One version. One ecosystem.</h2>
+
+			<p>
+				All Effect ecosystem packages now share a single version number and are
+				released together. No more debugging version mismatches.
+			</p>
+
+			<h3 id="consolidated-core">A consolidated core</h3>
+			<p>
+				Functionality from <code>@effect/platform</code>,{" "}
+				<code>@effect/rpc</code>, and <code>@effect/cluster</code> now lives
+				directly inside <code>effect</code>.
+			</p>
+
+			<div className="not-prose my-8">
+				<div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+					<video autoPlay controls loop muted playsInline width="100%">
+						<source
+							src="https://effect.website/video/core-package.mp4"
+							type="video/mp4"
+						/>
+						Your browser does not support the video tag.
+					</video>
+				</div>
+			</div>
+
+			<h2 id="unstable-modules">Unstable modules</h2>
+			<p>
+				New capabilities ship via <code>effect/unstable/*</code> import paths
+				without committing to semver stability for evolving APIs.
+			</p>
+
+			<h2 id="beta-phase">The beta phase</h2>
+			<p>
+				This is a beta. APIs will evolve as we incorporate real-world feedback.
+				If you're running Effect in production, v3 remains recommended for now.
+			</p>
+
+			<h2 id="migrating">Migrating from Effect v3</h2>
+			<p>
+				The core programming model is the same. Changes are in package
+				organization, module versioning, and specific API details. See the{" "}
+				<a
+					href="https://github.com/Effect-TS/effect-smol/blob/main/MIGRATION.md"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					migration guide
+				</a>
+				.
+			</p>
+
+			<h2 id="try-it-now">Try it now</h2>
+			<p>
+				Port a project or module and{" "}
+				<a
+					href="https://github.com/Effect-TS/effect-smol/issues"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					file an issue
+				</a>{" "}
+				with what you find. Join the{" "}
+				<a
+					href="https://discord.gg/effect-ts"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Discord
+				</a>{" "}
+				to share your experience.
+			</p>
+		</>
+	);
+}
+
+function Twie128Content() {
+	return (
+		<>
+			<p>Hi Effecters!</p>
+			<p>
+				Welcome back to This Week In Effect (<strong>TWIE</strong>) - your
+				weekly update of the latest developments in the Effect community and
+				ecosystem.
+			</p>
+			<p>
+				Effect is a powerful TypeScript library that helps developers build
+				complex, synchronous, and asynchronous programs. One key feature that
+				sets Effect apart is how it leverages structured concurrency to provide
+				features such as async cancellation and safe resource management,
+				making it easier to build robust, scalable, and efficient programs.
+			</p>
+			<p>
+				To get started, below you'll find links to our documentation and our
+				guide for installing Effect. Enjoy!
+			</p>
+			<ul>
+				<li>
+					<a
+						href="https://effect.website/docs/getting-started/introduction/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Effect Documentation
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://effect.website/docs/getting-started/installation/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Installing Effect
+					</a>
+				</li>
+			</ul>
+			<p>
+				<strong>Recent major updates:</strong>
+			</p>
+			<ul>
+				<li>
+					<a
+						href="https://effect.website/blog/releases/effect/40-beta/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Effect v4 Beta
+					</a>{" "}
+					Release! 🚀
+				</li>
+				<li>
+					<a
+						href="https://github.com/Effect-TS/effect/releases/tag/%40effect%2Fai%400.27.0"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Effect AI SDK
+					</a>{" "}
+					Release.
+				</li>
+				<li>
+					Durable workflows in TypeScript with{" "}
+					<a
+						href="https://github.com/Effect-TS/effect/tree/main/packages/effect/src/unstable/workflow"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<code>@effect/workflow</code>
+					</a>{" "}
+					- currently in alpha.
+				</li>
+				<li>
+					6500+ community members on{" "}
+					<a
+						href="https://discord.gg/effect-ts"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Discord
+					</a>
+					.
+				</li>
+			</ul>
+
+			<h2 id="technology">Technology</h2>
+
+			<h3 id="effect-v4-beta-updates">Effect v4 Beta updates</h3>
+			<p>
+				The first full week on the canonical <code>Effect-TS/effect</code>{" "}
+				repository was packed, with a thorough <code>Cron</code> hardening
+				pass, fiber runtime fixes, new core APIs, and continued AI and HTTP
+				improvements — here are the most notable changes that landed this week.
+			</p>
+			<ul>
+				<li>
+					<strong>Cron hardening</strong>: Validated <code>Cron.make</code>{" "}
+					field restrictions, fixed <code>Cron.prev</code> month day rollover
+					and weekday wrapping, fixed alias normalization, added day and
+					weekday intersection semantics in the inspection representation, and
+					corrected JSDoc examples and documentation accuracy.
+				</li>
+				<li>
+					<strong>Fiber runtime fixes</strong>: Fixed fiber self-interruption
+					from inside a running observer, cleaned up more references on fiber
+					exit, and fixed <code>Fiber.joinAll</code> observers leaking on
+					interruption. Also fixed cache lookup to only interrupt when all
+					awaiters are gone.
+				</li>
+				<li>
+					<strong>New core APIs</strong>: Added <code>Effect.reduce</code> for
+					folding over a collection of effects, and added discriminants to{" "}
+					<code>Schema.toTaggedUnion</code> for more precise tagged union
+					encoding.
+				</li>
+				<li>
+					<strong>Schema improvements</strong>: Simplified the displayed{" "}
+					<code>Type</code>, <code>Encoded</code>, and <code>Iso</code> types
+					of required readonly <code>Schema.Struct</code> fields for cleaner
+					hover types in editors, and preserved nested class construction when
+					applying constructor defaults.
+				</li>
+				<li>
+					<strong>HTTP fixes</strong>: Fixed <code>HttpRouter</code>{" "}
+					middleware context inference, routed multipart errors to HTTP
+					responses, fixed published pre-response handler types, handled
+					aborted HEAD responses during <code>NodeHttpServer</code> disposal,
+					and fixed the OpenAPI generator's handling of recursive schema
+					forward references.
+				</li>
+				<li>
+					<strong>AI</strong>: Fixed OpenRouter dynamic tools sending an empty
+					parameters schema, preserved OpenAI Responses cache write token
+					usage, and restricted nightly AI codegen to Effect-TS repositories.
+				</li>
+				<li>
+					<strong>SQL</strong>: Added <code>disablePreparedStatements</code>{" "}
+					option to <code>@effect/sql-mysql2</code>, and avoided creating a
+					table when it's not needed.
+				</li>
+				<li>
+					<strong>CLI</strong>: Removed the doubled "Expected" prefix from{" "}
+					<code>InvalidValue</code> messages, and preserved chained vitest
+					helpers like <code>it.describe.each</code> through the{" "}
+					<code>it</code> proxy.
+				</li>
+				<li>
+					<strong>MutableList</strong>: Fixed <code>filter</code> empty-state
+					handling to prevent incorrect state after filtering all elements.
+				</li>
+				<li>
+					<strong>Internals</strong>: Ran a dependency audit, moved pnpm
+					config, and upgraded TSTyche.
+				</li>
+			</ul>
+			<p>
+				You can follow the full changelog in the{" "}
+				<a
+					href="https://github.com/Effect-TS/effect/commits/main"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					effect repository
+				</a>
+				.
+			</p>
+			<p>
+				To catch up on more updates, check out{" "}
+				<a
+					href="https://effect.website/blog/tags/effect-v4-beta-recaps/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<strong>Effect v4 Beta updates</strong>
+				</a>
+				.
+			</p>
+			<p>Other technical changes from the past week.</p>
+
+			<h3 id="effect-core">Effect Core</h3>
+			<ul>
+				<li>
+					<a
+						href="https://github.com/Effect-TS/effect/pull/6507"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Suppress unhandled logs from timeout fibers
+					</a>{" "}
+					(Bug Fix)
+				</li>
+			</ul>
+
+			<h2 id="cause-effect-podcast-episode-9">
+				Cause &amp; Effect Podcast | Episode #9
+			</h2>
+			<p>
+				<strong>Foldkit: An Effect-First Frontend Framework</strong>
+			</p>
+			<p>
+				Devin Jameson joined Johannes Schickling on the Cause &amp; Effect
+				podcast to talk about{" "}
+				<a
+					href="https://foldkit.dev/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Foldkit
+				</a>
+				, an Effect-first frontend framework he's been building, inspired by
+				Elm architecture. Devin and Johannes discussed why Foldkit takes a
+				schema-first approach to frontend state, how it differs from React, how
+				commands model side effects, and why this architecture may be
+				especially useful in the age of AI-assisted coding.
+			</p>
+			<p>
+				<a
+					href="https://youtube.com/watch?v=MyKLh5CMpeY"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Watch the episode on YouTube →
+				</a>
+			</p>
+			<p>
+				The Cause &amp; Effect podcast, hosted by Johannes Schickling, features
+				stories from software engineers and companies that use Effect in
+				production and is available on{" "}
+				<a
+					href="https://www.youtube.com/@effect-ts"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					YouTube
+				</a>
+				,{" "}
+				<a
+					href="https://x.com/EffectTS_/status/2079159381988626585"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					X(Twitter)
+				</a>
+				, and audio platforms like{" "}
+				<a
+					href="https://open.spotify.com/episode/0xIquYRLjeHIwu1ZhvbmR9"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Spotify
+				</a>{" "}
+				and{" "}
+				<a
+					href="https://podcasts.apple.com/us/podcast/foldkit-an-effect-first-frontend-framework-9/id1781879869?i=1000777536363"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Apple Podcast
+				</a>
+				.
+			</p>
+
+			<h2 id="effect-website">Effect Website</h2>
+			<p>
+				We redesigned and rebuilt the Effect website!{" "}
+				<a
+					href="https://github.com/Effect-TS/website"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Check out the public repo
+				</a>{" "}
+				and feel free to post issues / pull requests there.
+			</p>
+			<p>
+				The docs are still for Effect v3 for now. This new website gives us the
+				foundation to build a much better documentation experience for Effect
+				v4, which we'll continue developing as we move toward the release.
+			</p>
+			<blockquote>
+				<p>
+					We shipped a brand-new Effect website. Take it for a spin, click
+					everything, and let us know what you think. Bugs, feedback,
+					confusing bits, we want all of it.
+				</p>
+			</blockquote>
+			<p>
+				—{" "}
+				<a
+					href="https://twitter.com/EffectTS_/status/2080653731259920445"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Effect (@EffectTS_) on X
+				</a>
+			</p>
+
+			<h2 id="community-highlights">Community Highlights</h2>
+			<p>WELL WELL WELL LOOK HOW THE TURN TABLES -cit. Dillon Mulroy</p>
+			<blockquote>
+				<p>I am enjoying effect more and more these days</p>
+			</blockquote>
+			<p>
+				—{" "}
+				<a
+					href="https://twitter.com/ThePrimeagen/status/2078203218807640075"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					ThePrimeagen (@ThePrimeagen) on X
+				</a>
+			</p>
+			<p>Effect 🧡 Cloudflare</p>
+			<blockquote>
+				<p>and Cloudflare (deployed another service today using Effect)</p>
+			</blockquote>
+			<p>
+				—{" "}
+				<a
+					href="https://twitter.com/ericclemmons/status/2079736273036607822"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Eric Clemmons (@ericclemmons) on X
+				</a>
+			</p>
+			<p>It's funny because it's true.</p>
+			<blockquote>
+				<p>
+					the funny think about effect is that things that the @EffectTS_ team
+					considers "unstable" are much more stable than most things that
+					other folks consider "stable"
+				</p>
+			</blockquote>
+			<p>
+				—{" "}
+				<a
+					href="https://twitter.com/0xblacklight/status/2080036507558298070"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Kyle Mistele (@0xblacklight) on X
+				</a>
+			</p>
+			<ul>
+				<li>
+					Building Loops for the Real World, by Kyle Mistele (HumanLayer) at
+					AI Engineer World's Fair 2026.{" "}
+					<a
+						href="https://www.youtube.com/live/htM02KMNZnk?t=24389s"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Watch the livestream slot →
+					</a>
+				</li>
+				<li>
+					<strong>
+						Effect.ts + GraphQL | Using Effect RPC to Serve GraphQL
+					</strong>{" "}
+					by Lucas Barake.{" "}
+					<a
+						href="https://youtube.com/watch?v=jgfS7s0XN6E"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Watch on YouTube →
+					</a>
+				</li>
+				<li>
+					Experimental project by Sandro Maglione: testing edge cases for the
+					Machine module in Effect — fully type safe for your agent, fully
+					explicit for you to read and understand.{" "}
+					<a
+						href="https://twitter.com/SandroMaglione/status/2079976425885475060"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						See the thread on X →
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://github.com/mrtdurdenthe2/muster"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						muster
+					</a>{" "}
+					- A keyboard-driven TUI for managing your GitHub issues across
+					repositories, built with Effect. By mrtdurdenthe2.
+				</li>
+			</ul>
+
+			<h2 id="effect-team-content-update">Effect Team Content Update</h2>
+			<ul>
+				<li>
+					Effect v4 RC Prep, CLI Wizard Mode, HTTP API Patterns, Effect Office
+					Hours 38 🔥{" "}
+					<a
+						href="https://youtube.com/watch?v=jgfS7s0XN6E"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Watch on YouTube →
+					</a>
+				</li>
+				<li>
+					Schema.struct vs Schema.class in V4, Schema.opaque vs Plain Struct
+					schemas{" "}
+					<a
+						href="https://youtube.com/watch?v=6mNNOQlvYzI"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Watch on YouTube →
+					</a>
+				</li>
+			</ul>
+
+			<h2 id="effect-job-opportunities">Effect Job Opportunities</h2>
+			<p>
+				Looking for a role where you can work with Effect? We now have a
+				dedicated Effect jobs page with open roles from companies using Effect.
+				We'll keep it updated as new opportunities come in.
+			</p>
+			<p>
+				<a
+					href="https://www.effect.website/effect-jobs"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Explore Effect job opportunities →
+				</a>
+			</p>
+			<p>
+				New this week: <strong>Datapizza</strong> is hiring a Software Engineer
+				in Milan, Italy.
+			</p>
+			<p>
+				Disclaimer: Please note that these job postings are shared for
+				informational purposes, and we encourage applicants to verify details
+				directly with the hiring companies.
+			</p>
+
+			<h2 id="effect-merch-store">Effect Merch Store</h2>
+			<p>
+				The{" "}
+				<a
+					href="https://effect.website/merch"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Effect Merch Store
+				</a>{" "}
+				offers a selection of Effect-branded items designed for the community.
+				All orders are processed and fully managed through{" "}
+				<a
+					href="https://www.printful.com/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Printful
+				</a>
+				.
+			</p>
+
+			<h2 id="closing-notes">Closing Notes</h2>
+			<p>
+				That's all for this week. Thank you for being a vital part of our
+				community. Your feedback is highly valued as we fine-tune this format.
+				Feel free to share your thoughts, and we'll do our best to tailor it to
+				the needs of our community.
+			</p>
+			<p>Effect Community Team</p>
+		</>
 	);
 }
 
@@ -445,134 +1045,11 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 							{/* Article content */}
 							<div className={`${BLOG_PROSE_CLASS} mt-16 max-w-none md:mt-20`}>
-								<h2 id="faster-runtime">Faster runtime. Leaner bundles.</h2>
-								<p>
-									The core fiber runtime has been rewritten from scratch to have
-									lower memory overhead, faster execution, and simpler
-									internals. Every Effect application benefits from these
-									optimizations immediately.
-								</p>
-
-								<h3 id="bundle-size">Bundle size</h3>
-								<p>
-									A minimal program using Effect, Stream, and Schema drops from
-									roughly <strong>70 kB</strong> in v3 to about{" "}
-									<strong>20 kB</strong> in v4.
-								</p>
-
-								<pre>
-									<code>{`import { Effect } from "effect"
-
-const program = Effect.gen(function* () {
-  const result = yield* Effect.succeed(42)
-  yield* Effect.log(\`The answer is \${result}\`)
-})
-
-Effect.runPromise(program)`}</code>
-								</pre>
-
-								<div className="not-prose my-8">
-									<div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
-										<video
-											autoPlay
-											controls
-											loop
-											muted
-											playsInline
-											width="100%"
-										>
-											<source
-												src="https://effect.website/video/bundle-size-viz.mp4"
-												type="video/mp4"
-											/>
-											Your browser does not support the video tag.
-										</video>
-									</div>
-								</div>
-
-								<h2 id="one-version">One version. One ecosystem.</h2>
-
-								<p>
-									All Effect ecosystem packages now share a single version
-									number and are released together. No more debugging version
-									mismatches.
-								</p>
-
-								<h3 id="consolidated-core">A consolidated core</h3>
-								<p>
-									Functionality from <code>@effect/platform</code>,{" "}
-									<code>@effect/rpc</code>, and <code>@effect/cluster</code> now
-									lives directly inside <code>effect</code>.
-								</p>
-
-								<div className="not-prose my-8">
-									<div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
-										<video
-											autoPlay
-											controls
-											loop
-											muted
-											playsInline
-											width="100%"
-										>
-											<source
-												src="https://effect.website/video/core-package.mp4"
-												type="video/mp4"
-											/>
-											Your browser does not support the video tag.
-										</video>
-									</div>
-								</div>
-
-								<h2 id="unstable-modules">Unstable modules</h2>
-								<p>
-									New capabilities ship via <code>effect/unstable/*</code>{" "}
-									import paths without committing to semver stability for
-									evolving APIs.
-								</p>
-
-								<h2 id="beta-phase">The beta phase</h2>
-								<p>
-									This is a beta. APIs will evolve as we incorporate real-world
-									feedback. If you're running Effect in production, v3 remains
-									recommended for now.
-								</p>
-
-								<h2 id="migrating">Migrating from Effect v3</h2>
-								<p>
-									The core programming model is the same. Changes are in package
-									organization, module versioning, and specific API details. See
-									the{" "}
-									<a
-										href="https://github.com/Effect-TS/effect-smol/blob/main/MIGRATION.md"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										migration guide
-									</a>
-									.
-								</p>
-
-								<h2 id="try-it-now">Try it now</h2>
-								<p>
-									Port a project or module and{" "}
-									<a
-										href="https://github.com/Effect-TS/effect-smol/issues"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										file an issue
-									</a>{" "}
-									with what you find. Join the{" "}
-									<a
-										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										Discord
-									</a>{" "}
-									to share your experience.
-								</p>
+								{slug === "this-week-in-effect-128" ? (
+									<Twie128Content />
+								) : (
+									<EffectV4BetaContent />
+								)}
 							</div>
 
 							{/* Mobile-only Share + Last updated */}

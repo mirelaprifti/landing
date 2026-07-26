@@ -134,6 +134,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "5 min read",
 		tags: ["This Week In Effect"],
 		authors: [AUTHORS.davide, AUTHORS.mirela],
+		hasLocalContent: true,
 	},
 	{
 		slug: "this-week-in-effect-107",
