@@ -210,7 +210,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						<Icon
 							name="chevron-left"
-							className="text-base transition-transform duration-200 group-hover:-translate-x-0.5"
+							className="text-sm transition-transform duration-200 group-hover:-translate-x-0.5"
 						/>
 						Previous
 					</span>
@@ -233,7 +233,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 						Next
 						<Icon
 							name="chevron-right"
-							className="text-base transition-transform duration-200 group-hover:translate-x-0.5"
+							className="text-sm transition-transform duration-200 group-hover:translate-x-0.5"
 						/>
 					</span>
 					<span className="mt-1.5 line-clamp-1 text-sm font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
