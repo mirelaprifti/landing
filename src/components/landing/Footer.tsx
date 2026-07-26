@@ -179,12 +179,12 @@ export function Footer({
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/adoption-partners")}
+										href={getAssetPath("/podcast")}
 										variant="footer"
-										active={activePath?.startsWith("/adoption-partners")}
+										active={activePath?.startsWith("/podcast")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Adoption Partners
+										Podcast 🎙️
 									</Link>
 								</li>
 							</ul>
@@ -200,12 +200,12 @@ export function Footer({
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<Link
-										href={getAssetPath("/podcast")}
+										href={getAssetPath("/adoption-partners")}
 										variant="footer"
-										active={activePath?.startsWith("/podcast")}
+										active={activePath?.startsWith("/adoption-partners")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Podcast 🎙️
+										Adoption Partners
 									</Link>
 								</li>
 								<li>
