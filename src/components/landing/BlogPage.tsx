@@ -555,9 +555,9 @@ export function BlogPage() {
 							linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
 							linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 						`,
-						backgroundSize: "196.6px 194px",
-						// y-phase 48px puts a horizontal line on the H1 first-line baseline (y=242 = 48 + 194)
-						backgroundPosition: "calc(50% + 97px) 48px",
+						backgroundSize: "196.6px 178px",
+						// y-phase 64px puts a horizontal line on the H1 first-line baseline (y=242 = 64 + 178)
+						backgroundPosition: "calc(50% + 97px) 64px",
 					}}
 				/>
 

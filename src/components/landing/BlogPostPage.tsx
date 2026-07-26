@@ -917,9 +917,9 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
 								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 							`,
-							backgroundSize: "196.6px 194px",
-							// y-phase -16px puts a horizontal line on the post title's first-line baseline (rel y=178 = -16 + 194)
-							backgroundPosition: "calc(50% + 97px) -16px",
+							backgroundSize: "196.6px 178px",
+							// y-phase 0 puts a horizontal line on the post title's first-line baseline (rel y=178)
+							backgroundPosition: "calc(50% + 97px) 0px",
 						}}
 					/>
 					<div
