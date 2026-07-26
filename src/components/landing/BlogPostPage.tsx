@@ -973,10 +973,10 @@ export function BlogPostPage({ slug }: { slug: string }) {
 					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Title block — col 1-8, row 1 */}
 						<div className="md:col-span-8 md:row-start-1 md:pt-2 md:pb-10">
-							<h1 className="text-3xl leading-tight font-bold tracking-tight text-zinc-900 dark:text-white">
+							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								{post.title}
 							</h1>
-							<p className="mt-4 text-base leading-relaxed text-zinc-700 md:text-lg dark:text-zinc-300">
+							<p className="mt-4 text-base leading-relaxed text-zinc-600 md:text-lg dark:text-zinc-400">
 								{post.excerpt}
 							</p>
 							{/* Mobile-only byline (sidebar version shows on md+) */}
