@@ -139,6 +139,16 @@ export function Footer({
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<Link
+										href={getAssetPath("/podcast")}
+										variant="footer"
+										active={activePath?.startsWith("/podcast")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Podcast 🎙️
+									</Link>
+								</li>
+								<li>
+									<Link
 										href="https://luma.com/effect-community"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -175,16 +185,6 @@ export function Footer({
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect Jobs
-									</Link>
-								</li>
-								<li>
-									<Link
-										href={getAssetPath("/podcast")}
-										variant="footer"
-										active={activePath?.startsWith("/podcast")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Podcast 🎙️
 									</Link>
 								</li>
 							</ul>
