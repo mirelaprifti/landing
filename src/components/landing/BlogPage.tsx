@@ -598,9 +598,7 @@ export function BlogPage() {
 								// Effect Blog
 							</p>
 							<h1 className="max-w-3xl text-3xl font-bold leading-tighter tracking-tight text-zinc-900 md:text-4xl dark:text-white">
-								Releases, write-ups, and notes{" "}
-								<br className="hidden md:block" />
-								from the Effect team
+								Notes from the Effect team
 							</h1>
 						</div>
 
