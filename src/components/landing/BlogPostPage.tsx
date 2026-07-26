@@ -205,7 +205,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					{...(prevIsExternal
 						? { target: "_blank", rel: "noopener noreferrer" }
 						: {})}
-					className="group flex flex-col rounded-md border border-zinc-300 px-6 py-5 transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
+					className="group flex flex-col rounded-md border border-zinc-200 p-4 transition-colors duration-200 hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
 				>
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						<Icon
@@ -214,7 +214,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 						/>
 						Previous
 					</span>
-					<span className="mt-2 line-clamp-1 text-base font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
+					<span className="mt-1.5 line-clamp-1 text-sm font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
 						{prevPost.title}
 					</span>
 				</a>
@@ -227,7 +227,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 					{...(nextIsExternal
 						? { target: "_blank", rel: "noopener noreferrer" }
 						: {})}
-					className="group flex flex-col items-end rounded-md border border-zinc-300 px-6 py-5 text-right transition-colors duration-200 hover:border-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-500"
+					className="group flex flex-col items-end rounded-md border border-zinc-200 p-4 text-right transition-colors duration-200 hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
 				>
 					<span className="flex items-center gap-1.5 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 						Next
@@ -236,7 +236,7 @@ function PostNavigation({ currentSlug }: { currentSlug: string }) {
 							className="text-base transition-transform duration-200 group-hover:translate-x-0.5"
 						/>
 					</span>
-					<span className="mt-2 line-clamp-1 text-base font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
+					<span className="mt-1.5 line-clamp-1 text-sm font-medium text-zinc-800 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white">
 						{nextPost.title}
 					</span>
 				</a>
