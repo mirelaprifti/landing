@@ -32,7 +32,7 @@ function ShareButtons({ title }: { title: string }) {
 	};
 
 	const buttonClass =
-		"inline-flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
+		"inline-flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-white dark:hover:text-white";
 
 	return (
 		<div className="flex items-center gap-3">
@@ -47,7 +47,7 @@ function ShareButtons({ title }: { title: string }) {
 					aria-label="Share on X"
 					className={buttonClass}
 				>
-					<i className="ri-twitter-x-line text-lg" aria-hidden="true" />
+					<i className="ri-twitter-x-line text-base" aria-hidden="true" />
 				</a>
 				<a
 					href={linkedInUrl}
@@ -56,7 +56,7 @@ function ShareButtons({ title }: { title: string }) {
 					aria-label="Share on LinkedIn"
 					className={buttonClass}
 				>
-					<i className="ri-linkedin-fill text-lg" aria-hidden="true" />
+					<i className="ri-linkedin-fill text-base" aria-hidden="true" />
 				</a>
 				<button
 					type="button"
@@ -66,7 +66,7 @@ function ShareButtons({ title }: { title: string }) {
 				>
 					<Icon
 						name={copied ? "check" : "link"}
-						className="text-lg"
+						className="text-base"
 						aria-hidden="true"
 					/>
 				</button>
