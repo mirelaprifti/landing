@@ -84,7 +84,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 							))}
 					</div>
 
-					<h2 className="text-2xl font-semibold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-3xl">
+					<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
 						{post.title}
 					</h2>
 
