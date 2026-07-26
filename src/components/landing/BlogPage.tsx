@@ -88,7 +88,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 						{post.title}
 					</h2>
 
-					<p className="mt-2 line-clamp-3 max-w-xl text-base text-zinc-700 dark:text-zinc-400">
+					<p className="mt-3 line-clamp-3 max-w-xl text-base text-zinc-700 dark:text-zinc-400">
 						{post.excerpt}
 					</p>
 				</div>
