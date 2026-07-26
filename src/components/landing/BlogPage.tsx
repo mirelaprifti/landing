@@ -64,7 +64,7 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			className="group relative block overflow-hidden rounded-md border border-zinc-300 dark:border-zinc-700 bg-[#F7F7F8] dark:bg-[#141315] transition-colors duration-200 hover:border-[#BABAC1] dark:hover:border-zinc-600 hover:bg-[#F4F4F5] dark:hover:bg-[#0F0F11]"
 		>
-			<div className="relative grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:items-center md:gap-10 md:p-6">
+			<div className="relative grid grid-cols-1 gap-4 p-6 md:grid-cols-12 md:items-center md:gap-10 md:p-8">
 				<div className="min-w-0 md:col-span-7">
 					{/* Label + tags */}
 					<div className="mb-3 flex flex-wrap items-center gap-2">
