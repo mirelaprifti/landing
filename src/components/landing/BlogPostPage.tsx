@@ -918,7 +918,8 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 							`,
 							backgroundSize: "196.6px 194px",
-							backgroundPosition: "calc(50% + 97px) -26px",
+							// y-phase -16px puts a horizontal line on the post title's first-line baseline (rel y=178 = -16 + 194)
+							backgroundPosition: "calc(50% + 97px) -16px",
 						}}
 					/>
 					<div
@@ -972,7 +973,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 					{/* Unified 12-col grid: title (col 1-8) + TOC (col 10-12 spanning all rows) + full-width divider + article body */}
 					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Title block — col 1-8, row 1 */}
-						<div className="md:col-span-8 md:row-start-1 md:pt-2 md:pb-10">
+						<div className="pt-3 md:col-span-8 md:row-start-1 md:pb-10">
 							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								{post.title}
 							</h1>
