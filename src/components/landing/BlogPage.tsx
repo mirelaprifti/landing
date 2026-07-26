@@ -171,7 +171,7 @@ function HorizontalScrollRail({
 	if (itemCount === 0) return null;
 
 	return (
-		<section aria-label={ariaLabel} className="pt-16 pb-8 md:pt-20 md:pb-10">
+		<section aria-label={ariaLabel} className="pt-16 pb-2 md:pt-20">
 			{/* Section header */}
 			<div className="mb-6 flex items-center justify-between">
 				<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
@@ -631,7 +631,7 @@ export function BlogPage() {
 							{/* Header row: heading + Category filter + Sort */}
 							<div
 								ref={postListRef}
-								className="mt-10 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 dark:border-zinc-700/80 pb-4 md:mt-12"
+								className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 dark:border-zinc-700/80 pb-4 md:mt-20"
 							>
 								<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
 									{activeTag === "All" ? "Other posts" : activeTag}
