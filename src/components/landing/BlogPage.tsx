@@ -247,14 +247,14 @@ function HorizontalScrollRail({
 // ── TWIE Horizontal Scroll ────────────────────────────────────────
 function TWIECard({ post }: { post: BlogPost }) {
 	const url = getPostUrl(post);
+	const isExternal = url.startsWith("http");
 	// Extract issue number from title (e.g. "This Week in Effect - 2026-02-27" or "#107")
 	const issueMatch = post.title.match(/#(\d+)/);
 	const issueNumber = issueMatch ? `#${issueMatch[1]}` : null;
 	return (
 		<a
-			href={url}
-			target="_blank"
-			rel="noopener noreferrer"
+			href={isExternal ? url : getAssetPath(url)}
+			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-4 pb-5 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
 		>
 			<div>
