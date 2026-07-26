@@ -973,7 +973,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 					{/* Unified 12-col grid: title (col 1-8) + TOC (col 10-12 spanning all rows) + full-width divider + article body */}
 					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Title block — col 1-8, row 1 */}
-						<div className="pt-3 md:col-span-8 md:row-start-1 md:pb-10">
+						<div className="pt-3 pb-4 md:col-span-8 md:row-start-1">
 							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								{post.title}
 							</h1>
@@ -1007,8 +1007,11 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 						</div>
 
+						{/* Full-width divider — row 2 */}
+						<div className="h-px w-full bg-zinc-200 md:col-span-12 md:row-start-2 dark:bg-zinc-800" />
+
 						{/* Sidebar — Author meta + TOC, aligned with article body (row 3) */}
-						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-16 lg:pt-20">
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-20">
 							{/* Byline */}
 							<div className="mb-8">
 								{post.authors.map((author) => (
