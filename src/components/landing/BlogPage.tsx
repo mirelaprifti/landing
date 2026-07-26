@@ -556,7 +556,8 @@ export function BlogPage() {
 							linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 						`,
 						backgroundSize: "196.6px 194px",
-						backgroundPosition: "calc(50% + 97px) calc(50% + 5px)",
+						// y-phase 48px puts a horizontal line on the H1 first-line baseline (y=242 = 48 + 194)
+						backgroundPosition: "calc(50% + 97px) 48px",
 					}}
 				/>
 
