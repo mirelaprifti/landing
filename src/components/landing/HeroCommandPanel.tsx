@@ -152,7 +152,7 @@ export function HeroCommandPanel({
 								src={getAssetPath(PM_ICONS[activePM])}
 								alt=""
 								aria-hidden="true"
-								className={`${activePM === "npm" ? "h-5" : "h-4"} w-auto ${WHITE_PM_ICONS.has(activePM) ? "brightness-0 dark:brightness-100" : ""}`}
+								className={`${activePM === "npm" ? "h-6" : "h-5"} w-auto ${WHITE_PM_ICONS.has(activePM) ? "brightness-0 dark:brightness-100" : ""}`}
 							/>
 							<Icon
 								name="chevron-down"
@@ -185,7 +185,7 @@ export function HeroCommandPanel({
 												src={getAssetPath(PM_ICONS[pm])}
 												alt=""
 												aria-hidden="true"
-												className={`${pm === "npm" ? "h-5" : "h-4"} w-auto shrink-0 ${WHITE_PM_ICONS.has(pm) ? "brightness-0 dark:brightness-100" : ""}`}
+												className={`${pm === "npm" ? "h-6" : "h-5"} w-auto shrink-0 ${WHITE_PM_ICONS.has(pm) ? "brightness-0 dark:brightness-100" : ""}`}
 											/>
 											<span className="flex-1">{pm}</span>
 											{activePM === pm && (
