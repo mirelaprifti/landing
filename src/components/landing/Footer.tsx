@@ -149,6 +149,16 @@ export function Footer({
 								</li>
 								<li>
 									<Link
+										href="https://discord.gg/effect-ts"
+										variant="footer"
+										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Discord
+										<Icon name="arrow-up-right" className="text-sm" />
+									</Link>
+								</li>
+								<li>
+									<Link
 										href="https://luma.com/effect-community"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -165,16 +175,6 @@ export function Footer({
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Spread the Effect
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="https://discord.gg/effect-ts"
-										variant="footer"
-										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Discord
-										<Icon name="arrow-up-right" className="text-sm" />
 									</Link>
 								</li>
 								<li>
