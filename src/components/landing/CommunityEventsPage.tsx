@@ -446,8 +446,8 @@ export function CommunityEventsPage() {
 								Bringing Effect to a developer event?
 							</h2>
 							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
-								Tell us what you're planning. Talks are how local Effect
-								communities get started, and we'd love to see yours grow.
+								Talks are how local Effect communities get started, and we'd
+								love to see yours grow.
 							</p>
 							<div className="mt-10">
 								<FormButton />

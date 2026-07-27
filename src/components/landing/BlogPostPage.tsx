@@ -1007,9 +1007,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 						</div>
 
-						{/* Full-width divider — row 2 */}
-						<div className="h-px w-full bg-zinc-200 md:col-span-12 md:row-start-2 dark:bg-zinc-800" />
-
 						{/* Sidebar — Author meta + TOC, aligned with article body (row 3) */}
 						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-20">
 							{/* Byline */}
