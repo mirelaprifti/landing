@@ -647,7 +647,7 @@ export function BlogPage() {
 											className="group inline-flex items-baseline gap-1.5 font-mono text-sm transition-colors"
 										>
 											<span className="text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white">
-												{activeTag}
+												{activeTag === "All" ? "Category" : activeTag}
 											</span>
 											<Icon
 												name="chevron-down"
