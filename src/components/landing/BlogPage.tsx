@@ -660,11 +660,10 @@ export function BlogPage() {
 												className="absolute right-0 z-20 mt-2 w-64 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 py-2 shadow-lg shadow-black/40"
 											>
 												{[...BLOG_TAGS]
-													.sort((a, b) => {
-														if (a === "All") return -1;
-														if (b === "All") return 1;
-														return (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0);
-													})
+													.filter((tag) => tag !== "All")
+													.sort(
+														(a, b) => (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0),
+													)
 													.map((tag) => {
 														const isActive = activeTag === tag;
 														return (
@@ -703,6 +702,21 @@ export function BlogPage() {
 															</li>
 														);
 													})}
+												{activeTag !== "All" && (
+													<li className="mt-1 border-t border-zinc-200 pt-1 dark:border-zinc-800">
+														<button
+															type="button"
+															onClick={() => {
+																handleTagChange("All");
+																setCatOpen(false);
+															}}
+															className="flex w-full items-center gap-1.5 px-4 py-2 text-left font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+														>
+															<Icon name="x" className="text-sm" />
+															Reset filter
+														</button>
+													</li>
+												)}
 											</ul>
 										)}
 									</div>
