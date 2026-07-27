@@ -165,13 +165,12 @@ export function HeroCommandPanel({
 						{pmOpen && (
 							<ul
 								role="listbox"
-								className="absolute top-full left-0 z-20 mt-2 w-24 overflow-hidden rounded-md border border-zinc-200 bg-zinc-100 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+								className="absolute top-full left-0 z-20 mt-2 w-36 overflow-hidden rounded-md border border-zinc-200 bg-zinc-100 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
 							>
 								{PM_OPTIONS.map((pm) => (
 									<li key={pm} role="option" aria-selected={activePM === pm}>
 										<button
 											type="button"
-											aria-label={pm}
 											onClick={() => {
 												setActivePM(pm);
 												setPmOpen(false);
@@ -188,7 +187,7 @@ export function HeroCommandPanel({
 												aria-hidden="true"
 												className={`${pm === "npm" ? "h-5" : "h-4"} w-auto shrink-0 ${WHITE_PM_ICONS.has(pm) ? "brightness-0 dark:brightness-100" : ""}`}
 											/>
-											<span className="flex-1" />
+											<span className="flex-1">{pm}</span>
 											{activePM === pm && (
 												<Icon
 													name="check"
