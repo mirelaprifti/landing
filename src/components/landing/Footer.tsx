@@ -179,12 +179,12 @@ export function Footer({
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/effect-jobs")}
+										href={getAssetPath("/adoption-partners")}
 										variant="footer"
-										active={activePath?.startsWith("/effect-jobs")}
+										active={activePath?.startsWith("/adoption-partners")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Effect Jobs
+										Adoption Partners
 									</Link>
 								</li>
 							</ul>
@@ -240,12 +240,12 @@ export function Footer({
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/adoption-partners")}
+										href={getAssetPath("/effect-jobs")}
 										variant="footer"
-										active={activePath?.startsWith("/adoption-partners")}
+										active={activePath?.startsWith("/effect-jobs")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Adoption Partners
+										Effect Jobs
 									</Link>
 								</li>
 							</ul>
