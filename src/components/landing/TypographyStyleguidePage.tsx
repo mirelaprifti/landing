@@ -159,7 +159,7 @@ export function TypographyStyleguidePage() {
 								<a
 									key={item.href}
 									href={item.href}
-									className="font-mono text-xs font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									{item.label}
 								</a>
