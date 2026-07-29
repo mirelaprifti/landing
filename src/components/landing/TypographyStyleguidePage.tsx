@@ -146,7 +146,7 @@ export function TypographyStyleguidePage() {
 
 			<main className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<header className="pt-16 md:pt-24">
+					<header className="pt-16 pb-12 md:pt-24 md:pb-16">
 						<p className={text.eyebrow}>// Styleguide</p>
 						<h1 className={text.pageTitleSub}>Website styleguide</h1>
 						<p className={text.lede}>
@@ -170,7 +170,12 @@ export function TypographyStyleguidePage() {
 							))}
 						</nav>
 					</header>
+				</div>
 
+				{/* Full-viewport divider between hero and guide, as on blog posts */}
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="max-w-3xl pb-24">
 						<GuideSection
 							id="foundations"
