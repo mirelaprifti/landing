@@ -911,16 +911,25 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				{/* Hero zone — background clipped to header height, ends at the divider */}
 				<div className="relative overflow-hidden">
 					<div className="pointer-events-none absolute inset-0 z-0">
+					{/* Vertical lines — run the full hero height down to the divider */}
 					<div
 						className="absolute inset-0"
 						style={{
-							backgroundImage: `
-								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
-							`,
-							backgroundSize: "196.6px 178px",
-							// y-phase 0 puts a horizontal line on the post title's first-line baseline (rel y=178)
+							backgroundImage:
+								"linear-gradient(to right, var(--grid-line) 1px, transparent 1px)",
+							backgroundSize: "196.6px 100%",
 							backgroundPosition: "calc(50% + 97px) 0px",
+						}}
+					/>
+					{/* Horizontal lines — capped below the baseline row so no line draws between title and divider.
+					    y-phase 0 puts a line on the post title's first-line baseline (rel y=178). */}
+					<div
+						className="absolute inset-x-0 top-0 h-[356px]"
+						style={{
+							backgroundImage:
+								"linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)",
+							backgroundSize: "100% 178px",
+							backgroundPosition: "0px 0px",
 						}}
 					/>
 					<div
@@ -974,7 +983,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 					{/* Title grid — col 1-8 */}
 					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Title block — col 1-8 */}
-						<div className="pt-3 pb-4 md:col-span-8">
+						<div className="pt-3 pb-24 md:col-span-8">
 							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								{post.title}
 							</h1>
@@ -1018,7 +1027,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				{/* Body grid: article (col 1-8) + sidebar (col 10-12) */}
 				<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Sidebar — Author meta + TOC, aligned with article body */}
-						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:block md:pt-20">
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:block md:pt-24">
 							{/* Byline */}
 							<div className="mb-8 space-y-4">
 								{post.authors.map((author) => (
@@ -1055,7 +1064,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 
 							{/* Article content */}
-							<div className={`${BLOG_PROSE_CLASS} mt-16 max-w-none md:mt-20`}>
+							<div className={`${BLOG_PROSE_CLASS} mt-24 max-w-none`}>
 								{slug === "this-week-in-effect-128" ? (
 									<Twie128Content />
 								) : (
