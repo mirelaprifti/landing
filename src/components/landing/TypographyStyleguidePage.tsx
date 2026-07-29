@@ -136,7 +136,7 @@ const NAV_ITEMS = [
 	{ href: "#links-buttons", label: "Links & buttons" },
 	{ href: "#spacing", label: "Spacing" },
 	{ href: "#rules", label: "Rules" },
-	{ href: "#blog-prose", label: "Blog prose" },
+	{ href: "#blog-prose", label: "Blog" },
 ];
 
 export function TypographyStyleguidePage() {
@@ -567,7 +567,7 @@ export function TypographyStyleguidePage() {
 						<GuideSection
 							id="blog-prose"
 							eyebrow="06"
-							title="Blog prose"
+							title="Blog"
 							lede="Every text element the blog body supports, rendered with BLOG_PROSE_CLASS — the exact styles real posts use. Fixes belong in that class so posts pick them up too."
 						>
 							<article className={BLOG_PROSE_CLASS}>
