@@ -908,8 +908,9 @@ export function BlogPostPage({ slug }: { slug: string }) {
 			</div>
 
 			<main id="main-content" className="relative w-full pt-16">
-				{/* Hero background — absolute overlay, limited height */}
-				<div className="pointer-events-none absolute inset-x-0 top-16 z-0 h-[520px] overflow-hidden">
+				{/* Hero zone — background clipped to header height, ends at the divider */}
+				<div className="relative overflow-hidden">
+					<div className="pointer-events-none absolute inset-0 z-0">
 					<div
 						className="absolute inset-0"
 						style={{
@@ -970,10 +971,10 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						</div>
 					</nav>
 
-					{/* Unified 12-col grid: title (col 1-8) + TOC (col 10-12 spanning all rows) + full-width divider + article body */}
+					{/* Title grid — col 1-8 */}
 					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
-						{/* Title block — col 1-8, row 1 */}
-						<div className="pt-3 pb-4 md:col-span-8 md:row-start-1">
+						{/* Title block — col 1-8 */}
+						<div className="pt-3 pb-4 md:col-span-8">
 							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								{post.title}
 							</h1>
@@ -1006,9 +1007,18 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								))}
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
 
-						{/* Sidebar — Author meta + TOC, aligned with article body (row 3) */}
-						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-3 md:block md:pt-20">
+			{/* Full-viewport divider between hero and body */}
+			<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+			<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
+				{/* Body grid: article (col 1-8) + sidebar (col 10-12) */}
+				<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
+						{/* Sidebar — Author meta + TOC, aligned with article body */}
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:block md:pt-20">
 							{/* Byline */}
 							<div className="mb-8 space-y-4">
 								{post.authors.map((author) => (
@@ -1038,7 +1048,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						</aside>
 
 						{/* Article body — col 1-8, row 3 */}
-						<article className="min-w-0 pb-20 md:col-span-8 md:row-start-3">
+						<article className="min-w-0 pb-20 md:col-span-8 md:row-start-1">
 							{/* Mobile Table of Contents */}
 							<div className="mt-10 mb-10 block md:hidden">
 								<TableOfContents showBackLink={false} className="static" />

@@ -115,8 +115,7 @@ export const BLOG_POSTS: BlogPost[] = [
 	{
 		slug: "effect-v4-beta",
 		title: "Effect v4 Beta",
-		excerpt:
-			"After years of experimentation, community feedback, and iteration, Effect v4 is officially in beta. Rewritten runtime, leaner bundles, unified versioning, and a consolidated core package.",
+		excerpt: "After years of experimentation, community feedback, and iteration.",
 		date: "Feb 18, 2026",
 		readingTime: "8 min read",
 		tags: ["Release", "Effect"],
