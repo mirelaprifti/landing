@@ -1027,7 +1027,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				{/* Body grid: article (col 1-8) + sidebar (col 10-12) */}
 				<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Sidebar — Author meta + TOC, aligned with article body */}
-						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:block md:pt-24">
+						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:block md:pt-20">
 							{/* Byline */}
 							<div className="mb-8 space-y-4">
 								{post.authors.map((author) => (
@@ -1064,7 +1064,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 
 							{/* Article content */}
-							<div className={`${BLOG_PROSE_CLASS} mt-24 max-w-none`}>
+							<div className={`${BLOG_PROSE_CLASS} mt-20 max-w-none`}>
 								{slug === "this-week-in-effect-128" ? (
 									<Twie128Content />
 								) : (
