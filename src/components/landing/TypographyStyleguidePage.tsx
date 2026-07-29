@@ -45,6 +45,10 @@ const text = {
 		"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
 };
 
+/** Labels for this page's own chrome — one step up from text.micro for readability. */
+const rowLabel =
+	"font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
+
 const TYPE_SCALE = [
 	{ name: "text-xs", rem: "0.7rem", px: "11.2px", leading: "1.5" },
 	{ name: "text-sm", rem: "0.875rem", px: "14px", leading: "1.5" },
@@ -71,7 +75,7 @@ const SPACING_STEPS = [
 function ClassBlock({ classes }: { classes: string }) {
 	return (
 		<pre className="mt-5 rounded-md bg-zinc-100 px-4 py-3 whitespace-pre-wrap dark:bg-zinc-900">
-			<code className="font-mono text-xs leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+			<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
 				{classes}
 			</code>
 		</pre>
@@ -91,7 +95,7 @@ function SpecRow({
 }) {
 	return (
 		<div className="border-t border-zinc-200 py-8 first:border-t-0 first:pt-0 dark:border-zinc-800">
-			<p className={text.micro}>{title}</p>
+			<p className={rowLabel}>{title}</p>
 			{note && (
 				<p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 					{note}
@@ -208,7 +212,7 @@ export function TypographyStyleguidePage() {
 											key={step.name}
 											className="flex items-baseline gap-6 border-b border-zinc-100 pb-3 dark:border-zinc-900"
 										>
-											<span className="w-40 shrink-0 font-mono text-xs text-zinc-500 dark:text-zinc-400">
+											<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 												{step.name} · {step.px}
 												<br />
 												leading {step.leading}
@@ -394,7 +398,7 @@ export function TypographyStyleguidePage() {
 								classes="mx-auto w-full max-w-[73.75rem] px-4"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 px-4 py-3 dark:border-zinc-700">
-									<div className="flex h-10 items-center justify-center rounded-sm bg-zinc-100 font-mono text-xs text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+									<div className="flex h-10 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										max-w-[73.75rem] · 1180px
 									</div>
 								</div>
@@ -406,13 +410,13 @@ export function TypographyStyleguidePage() {
 								classes="py-24 md:pt-40 md:pb-24"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 p-4 dark:border-zinc-700">
-									<div className="flex h-8 items-center justify-center bg-zinc-100 font-mono text-[0.7rem] text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+									<div className="flex h-8 items-center justify-center bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										pt-40 (desktop) / pt-24 (mobile)
 									</div>
-									<div className="flex h-14 items-center justify-center font-mono text-[0.7rem] text-zinc-500 dark:text-zinc-400">
+									<div className="flex h-14 items-center justify-center font-mono text-sm text-zinc-500 dark:text-zinc-400">
 										section content
 									</div>
-									<div className="flex h-6 items-center justify-center bg-zinc-100 font-mono text-[0.7rem] text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+									<div className="flex h-6 items-center justify-center bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										pb-24
 									</div>
 								</div>
@@ -429,7 +433,7 @@ export function TypographyStyleguidePage() {
 									<p className={text.lede}>
 										Section lede sits 16px below the title.
 									</p>
-									<div className="mt-12 flex h-10 items-center justify-center rounded-sm bg-zinc-100 font-mono text-xs text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+									<div className="mt-12 flex h-10 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										content · mt-12
 									</div>
 								</div>
@@ -463,7 +467,7 @@ export function TypographyStyleguidePage() {
 								<div className="space-y-3">
 									{SPACING_STEPS.map((step) => (
 										<div key={step.label} className="flex items-center gap-4">
-											<span className="w-28 shrink-0 font-mono text-xs text-zinc-500 dark:text-zinc-400">
+											<span className="w-32 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 												{step.label}
 											</span>
 											<div
@@ -487,29 +491,29 @@ export function TypographyStyleguidePage() {
 						>
 							<div className="grid gap-6 md:grid-cols-2">
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
-									<p className={text.micro}>Do</p>
+									<p className={rowLabel}>Do</p>
 									<ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										<li>
 											Use the type scale and named leading values only —
 											headings always get{" "}
-											<code className="font-mono text-xs">leading-tighter</code>
+											<code className="font-mono text-sm">leading-tighter</code>
 											.
 										</li>
 										<li>
-											h1 is <code className="font-mono text-xs">font-bold</code>
+											h1 is <code className="font-mono text-sm">font-bold</code>
 											; h2, h3, h4 are{" "}
-											<code className="font-mono text-xs">font-semibold</code>.
+											<code className="font-mono text-sm">font-semibold</code>.
 										</li>
 										<li>
 											Write themeable color pairs (
-											<code className="font-mono text-xs">
+											<code className="font-mono text-sm">
 												text-zinc-900 dark:text-white
 											</code>
 											) even on dark-only pages.
 										</li>
 										<li>
-											Use <code className="font-mono text-xs">ui/Button</code>{" "}
-											and <code className="font-mono text-xs">ui/Link</code> for
+											Use <code className="font-mono text-sm">ui/Button</code>{" "}
+											and <code className="font-mono text-sm">ui/Link</code> for
 											every CTA and link.
 										</li>
 										<li>
@@ -518,36 +522,36 @@ export function TypographyStyleguidePage() {
 									</ul>
 								</div>
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
-									<p className={text.micro}>Don't</p>
+									<p className={rowLabel}>Don't</p>
 									<ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										<li>
 											No arbitrary sizes or leadings —{" "}
-											<code className="font-mono text-xs">text-[15px]</code>,{" "}
-											<code className="font-mono text-xs">text-[10px]</code>,{" "}
-											<code className="font-mono text-xs">leading-[1.35]</code>.
+											<code className="font-mono text-sm">text-[15px]</code>,{" "}
+											<code className="font-mono text-sm">text-[10px]</code>,{" "}
+											<code className="font-mono text-sm">leading-[1.35]</code>.
 										</li>
 										<li>
-											No <code className="font-mono text-xs">font-bold</code> on
+											No <code className="font-mono text-sm">font-bold</code> on
 											h2s, no{" "}
-											<code className="font-mono text-xs">font-semibold</code>{" "}
+											<code className="font-mono text-sm">font-semibold</code>{" "}
 											or{" "}
-											<code className="font-mono text-xs">tracking-wide</code>{" "}
+											<code className="font-mono text-sm">tracking-wide</code>{" "}
 											eyebrows.
 										</li>
 										<li>
 											No hand-rolled buttons —{" "}
-											<code className="font-mono text-xs">rounded-lg</code> CTAs
+											<code className="font-mono text-sm">rounded-lg</code> CTAs
 											are off-spec.
 										</li>
 										<li>
-											No <code className="font-mono text-xs">font-inter</code>{" "}
+											No <code className="font-mono text-sm">font-inter</code>{" "}
 											class and no inline{" "}
-											<code className="font-mono text-xs">Roboto Mono</code> —
+											<code className="font-mono text-sm">Roboto Mono</code> —
 											mono is always{" "}
-											<code className="font-mono text-xs">font-mono</code>.
+											<code className="font-mono text-sm">font-mono</code>.
 										</li>
 										<li>
-											No <code className="font-mono text-xs">max-w-295</code> or
+											No <code className="font-mono text-sm">max-w-295</code> or
 											one-off container widths.
 										</li>
 									</ul>
