@@ -983,7 +983,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 					{/* Title grid — col 1-8 */}
 					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Title block — col 1-8 */}
-						<div className="pt-3 pb-24 md:col-span-8">
+						<div className="pt-3 pb-8 md:col-span-8">
 							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 								{post.title}
 							</h1>
