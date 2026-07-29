@@ -93,7 +93,7 @@ function SpecRow({
 		<div className="border-t border-zinc-200 py-8 first:border-t-0 first:pt-0 dark:border-zinc-800">
 			<p className={text.micro}>{title}</p>
 			{note && (
-				<p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-500">
+				<p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 					{note}
 				</p>
 			)}
@@ -138,7 +138,7 @@ const NAV_ITEMS = [
 export function TypographyStyleguidePage() {
 	return (
 		<div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white">
-			<Navigation activePath="/blog" />
+			<Navigation />
 
 			<main className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
@@ -159,7 +159,7 @@ export function TypographyStyleguidePage() {
 								<a
 									key={item.href}
 									href={item.href}
-									className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="font-mono text-xs font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 								>
 									{item.label}
 								</a>
@@ -183,7 +183,7 @@ export function TypographyStyleguidePage() {
 										<p className="text-2xl text-zinc-900 dark:text-white">
 											Inter — production-grade software in TypeScript
 										</p>
-										<p className="mt-1 text-sm text-zinc-500">
+										<p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
 											font-sans · body copy, headings, UI
 										</p>
 									</div>
@@ -191,7 +191,7 @@ export function TypographyStyleguidePage() {
 										<p className="font-mono text-xl text-zinc-900 dark:text-white">
 											JetBrains Mono — Effect.gen(function* () {"{}"})
 										</p>
-										<p className="mt-1 text-sm text-zinc-500">
+										<p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
 											font-mono · code, eyebrows, labels, meta
 										</p>
 									</div>
@@ -409,7 +409,7 @@ export function TypographyStyleguidePage() {
 									<div className="flex h-8 items-center justify-center bg-zinc-100 font-mono text-[0.7rem] text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										pt-40 (desktop) / pt-24 (mobile)
 									</div>
-									<div className="flex h-14 items-center justify-center font-mono text-[0.7rem] text-zinc-400 dark:text-zinc-500">
+									<div className="flex h-14 items-center justify-center font-mono text-[0.7rem] text-zinc-500 dark:text-zinc-400">
 										section content
 									</div>
 									<div className="flex h-6 items-center justify-center bg-zinc-100 font-mono text-[0.7rem] text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
@@ -470,7 +470,7 @@ export function TypographyStyleguidePage() {
 												className="h-4 shrink-0 rounded-xs bg-zinc-300 dark:bg-zinc-700"
 												style={{ width: `${step.px}px` }}
 											/>
-											<span className="text-sm text-zinc-500">
+											<span className="text-sm text-zinc-600 dark:text-zinc-400">
 												{step.px}px · {step.use}
 											</span>
 										</div>
@@ -703,7 +703,7 @@ Effect.runPromise(program)`}</code>
 				</div>
 			</main>
 
-			<Footer activePath="/blog" />
+			<Footer />
 		</div>
 	);
 }
