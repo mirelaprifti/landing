@@ -1090,9 +1090,43 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						</article>
 					</div>
 
-					{/* Community CTA — aligned with body/sidebar columns */}
-					<div className="mt-16 h-px w-full bg-zinc-200 dark:bg-zinc-800" />
-					<div className="grid grid-cols-1 items-center gap-6 py-12 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:py-20">
+				</div>
+
+				{/* Community CTA — full-bleed zone with grid background */}
+				<div className="mt-16 h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+				<div className="relative overflow-hidden">
+					<div className="pointer-events-none absolute inset-0 z-0">
+						{/* Vertical lines — full zone height */}
+						<div
+							className="absolute inset-0"
+							style={{
+								backgroundImage:
+									"linear-gradient(to right, var(--grid-line) 1px, transparent 1px)",
+								backgroundSize: "196.6px 100%",
+								backgroundPosition: "calc(50% + 97px) 0px",
+							}}
+						/>
+						{/* Horizontal lines — y-phase set so a line sits on the CTA heading's first-line baseline */}
+						<div
+							className="absolute inset-0"
+							style={{
+								backgroundImage:
+									"linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)",
+								backgroundSize: "100% 178px",
+								backgroundPosition: "0px 145px",
+							}}
+						/>
+						<div
+							className="absolute inset-0"
+							style={{
+								background:
+									"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 60%, var(--page-fade) 100%)",
+							}}
+						/>
+					</div>
+
+					<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="grid grid-cols-1 items-center gap-6 py-12 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:py-20">
 						{/* Content — cols 1-8 to match body */}
 						<div className="md:col-span-8">
 							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
@@ -1139,6 +1173,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 								</a>
 							</div>
 						</div>
+					</div>
 					</div>
 				</div>
 			</main>
