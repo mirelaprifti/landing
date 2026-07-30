@@ -917,8 +917,9 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						style={{
 							backgroundImage:
 								"linear-gradient(to right, var(--grid-line) 1px, transparent 1px)",
-							backgroundSize: "196.6px 100%",
-							backgroundPosition: "calc(50% + 97px) 0px",
+							// x: 1180/6 so column lines land exactly on the container border lines
+							backgroundSize: "196.667px 100%",
+							backgroundPosition: "calc(50% + 98.333px) 0px",
 						}}
 					/>
 					{/* Horizontal lines — capped below the baseline row so no line draws between title and divider.
@@ -1102,8 +1103,9 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							style={{
 								backgroundImage:
 									"linear-gradient(to right, var(--grid-line) 1px, transparent 1px)",
-								backgroundSize: "196.6px 100%",
-								backgroundPosition: "calc(50% + 97px) 0px",
+								// x: 1180/6 so column lines land exactly on the container border lines
+								backgroundSize: "196.667px 100%",
+								backgroundPosition: "calc(50% + 98.333px) 0px",
 							}}
 						/>
 						{/* Horizontal lines — y-phase set so a line sits on the CTA heading's first-line baseline */}
