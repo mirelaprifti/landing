@@ -89,36 +89,27 @@ function MatchText({ children }: { children: React.ReactNode }) {
 	);
 }
 
-function SourceChip({ source }: { source: SearchResult["source"] }) {
-	// Source is the primary distinction: filled + braces glyph for API,
-	// outlined + document glyph for Docs.
-	if (source === "api") {
-		return (
-			<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
-				<Icon name="braces" className="text-[11px]" aria-hidden="true" />
-				API
-			</span>
-		);
-	}
+function SourceChip({
+	source,
+	version,
+}: {
+	source: SearchResult["source"];
+	version: SearchResult["version"];
+}) {
+	// One tag carries both facts: the source (glyph + label) and the
+	// version, joined inside the filled chip so neither goes unnoticed.
 	return (
 		<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
-			<Icon name="file-text" className="text-[11px]" aria-hidden="true" />
-			Docs
-		</span>
-	);
-}
-
-function VersionChip({ version }: { version: SearchResult["version"] }) {
-	if (version === "v4") {
-		return (
-			<span className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
-				V4
+			<Icon
+				name={source === "api" ? "braces" : "file-text"}
+				className="text-[11px]"
+				aria-hidden="true"
+			/>
+			{source === "api" ? "API" : "Docs"}
+			<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
+				·
 			</span>
-		);
-	}
-	return (
-		<span className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
-			V3
+			{version.toUpperCase()}
 		</span>
 	);
 }
@@ -134,23 +125,22 @@ function ResultCard({ result }: { result: SearchResult }) {
 					: "border-zinc-200 hover:border-zinc-400 hover:bg-zinc-100/60 dark:border-zinc-800 dark:hover:border-zinc-600 dark:hover:bg-zinc-900/60"
 			}`}
 		>
-			{/* Meta row: source + version + path */}
+			{/* Meta row: combined source/version tag + path */}
 			<div className="flex flex-wrap items-center gap-2">
-				<SourceChip source={result.source} />
-				<VersionChip version={result.version} />
-				<span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+				<SourceChip source={result.source} version={result.version} />
+				<span className="font-mono text-xs font-medium text-zinc-600 dark:text-zinc-300">
 					{result.path}
 				</span>
 			</div>
 
-			{/* Title: mono for API symbols, Inter for docs pages */}
+			{/* Title: Module.symbol in mono for API, Inter for docs pages */}
 			<p
 				className={`mt-3 text-base font-semibold text-zinc-900 dark:text-white ${
 					result.source === "api" ? "font-mono" : ""
 				}`}
 			>
 				{result.source === "api" && result.symbol
-					? result.symbol
+					? `${result.title}.${result.symbol}`
 					: result.title}
 			</p>
 
