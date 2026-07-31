@@ -90,23 +90,34 @@ function MatchText({ children }: { children: React.ReactNode }) {
 }
 
 function SourceChip({ source }: { source: SearchResult["source"] }) {
+	// The source is the primary distinction: API is a filled chip, Docs an
+	// outlined one, so the two read differently at a glance.
+	if (source === "api") {
+		return (
+			<span className="inline-flex items-center rounded-md bg-zinc-900 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-white dark:text-zinc-950">
+				API
+			</span>
+		);
+	}
 	return (
-		<span className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
-			{source === "api" ? "API" : "Docs"}
+		<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-600 dark:text-zinc-300">
+			Docs
 		</span>
 	);
 }
 
 function VersionChip({ version }: { version: SearchResult["version"] }) {
+	// Version is secondary metadata: quiet outlines only, V4 a step
+	// stronger than the legacy V3.
 	if (version === "v4") {
 		return (
-			<span className="inline-flex items-center rounded-md bg-zinc-900 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-white dark:text-zinc-950">
+			<span className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
 				V4
 			</span>
 		);
 	}
 	return (
-		<span className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+		<span className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
 			V3
 		</span>
 	);
