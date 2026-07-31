@@ -101,7 +101,7 @@ function SourceChip({ source }: { source: SearchResult["source"] }) {
 		);
 	}
 	return (
-		<span className="inline-flex items-center gap-1.5 rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-600 dark:text-zinc-300">
+		<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 			<Icon name="file-text" className="text-[11px]" aria-hidden="true" />
 			Docs
 		</span>
