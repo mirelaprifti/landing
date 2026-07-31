@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SearchPreviewPage } from "@/components/landing/SearchPreviewPage";
+---
+
+<BaseLayout
+  themeable
+  title="Search UI Preview - Effect"
+  description="Internal design preview of the docs/API search results UI."
+>
+  <SearchPreviewPage client:load />
+</BaseLayout>
