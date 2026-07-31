@@ -3,33 +3,31 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 /**
  * Design preview for the docs/API search modal — not wired to a real
- * search backend. Demonstrates how results distinguish their source
- * (API reference vs docs) and Effect version (v3 vs v4) using the
- * site's typography system instead of accent colors:
+ * search backend. Distinguishes result sources structurally, without
+ * color or per-row badges:
  *
- * - API reference results: mono titles + a code signature panel.
- * - Docs results: Inter titles + a prose snippet.
- * - V4 = solid chip (current), V3 = outlined muted chip (legacy).
+ * - Results are grouped under the site's eyebrow-style section headers
+ *   ("// API Reference", "// Docs").
+ * - API rows read as code: mono titles + a signature line. Docs rows
+ *   read as articles: Inter titles + a prose snippet.
+ * - Version is quiet right-aligned meta; V3 is muted, V4 carries the
+ *   normal text weight.
  */
 
 type SearchResult = {
-	source: "api" | "docs";
 	version: "v3" | "v4";
 	path: string;
 	title: string;
-	symbol?: string;
 	signature?: string;
 	snippet: React.ReactNode;
 	selected?: boolean;
 };
 
-const RESULTS: SearchResult[] = [
+const API_RESULTS: SearchResult[] = [
 	{
-		source: "api",
 		version: "v4",
 		path: "effect / Iterable",
-		title: "Iterable",
-		symbol: "forEach",
+		title: "forEach",
 		signature:
 			"declare const forEach: { <A>(f: (a: A, i: number) => void): (self: Iterable<A>) => void }",
 		snippet: (
@@ -40,11 +38,9 @@ const RESULTS: SearchResult[] = [
 		selected: true,
 	},
 	{
-		source: "api",
 		version: "v4",
 		path: "effect / Array",
-		title: "Array",
-		symbol: "forEach",
+		title: "forEach",
 		signature:
 			"declare const forEach: { <A>(f: (a: A, i: number) => void): (self: ReadonlyArray<A>) => void }",
 		snippet: (
@@ -54,8 +50,10 @@ const RESULTS: SearchResult[] = [
 			</>
 		),
 	},
+];
+
+const DOCS_RESULTS: SearchResult[] = [
 	{
-		source: "docs",
 		version: "v4",
 		path: "Getting started / Control flow",
 		title: "Looping and iteration",
@@ -68,7 +66,6 @@ const RESULTS: SearchResult[] = [
 		),
 	},
 	{
-		source: "docs",
 		version: "v3",
 		path: "Guides / Collections",
 		title: "Working with collections",
@@ -89,84 +86,92 @@ function MatchText({ children }: { children: React.ReactNode }) {
 	);
 }
 
-function SourceChip({ source }: { source: SearchResult["source"] }) {
-	// The source is the primary distinction: API is a filled chip, Docs an
-	// outlined one, so the two read differently at a glance.
-	if (source === "api") {
-		return (
-			<span className="inline-flex items-center rounded-md bg-zinc-900 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-white dark:text-zinc-950">
-				API
-			</span>
-		);
-	}
+function VersionMeta({ version }: { version: SearchResult["version"] }) {
 	return (
-		<span className="inline-flex items-center rounded-md border border-zinc-400 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-600 dark:text-zinc-300">
-			Docs
+		<span
+			className={`shrink-0 font-mono text-xs tabular-nums ${
+				version === "v4"
+					? "text-zinc-700 dark:text-zinc-300"
+					: "text-zinc-400 dark:text-zinc-600"
+			}`}
+		>
+			{version.toUpperCase()}
 		</span>
 	);
 }
 
-function VersionChip({ version }: { version: SearchResult["version"] }) {
-	// Version is secondary metadata: quiet outlines only, V4 a step
-	// stronger than the legacy V3.
-	if (version === "v4") {
-		return (
-			<span className="inline-flex items-center rounded-md border border-zinc-300 px-2 py-0.5 font-mono text-xs text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
-				V4
-			</span>
-		);
-	}
-	return (
-		<span className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
-			V3
-		</span>
-	);
-}
-
-function ResultCard({ result }: { result: SearchResult }) {
+function ResultRow({
+	result,
+	mono,
+}: {
+	result: SearchResult;
+	mono: boolean;
+}) {
 	return (
 		<a
 			href="#result"
 			aria-current={result.selected ? "true" : undefined}
-			className={`group block rounded-md border p-4 transition-colors ${
+			className={`group block rounded-md px-3 py-3 transition-colors ${
 				result.selected
-					? "border-zinc-400 bg-zinc-100/60 dark:border-zinc-500 dark:bg-zinc-900/60"
-					: "border-zinc-200 hover:border-zinc-400 hover:bg-zinc-100/60 dark:border-zinc-800 dark:hover:border-zinc-600 dark:hover:bg-zinc-900/60"
+					? "bg-zinc-100 dark:bg-zinc-900"
+					: "hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 			}`}
 		>
-			{/* Meta row: source + version + path */}
-			<div className="flex flex-wrap items-center gap-2">
-				<SourceChip source={result.source} />
-				<VersionChip version={result.version} />
-				<span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-					{result.path}
-				</span>
+			{/* Title row: title left, version meta right */}
+			<div className="flex items-baseline justify-between gap-4">
+				<p
+					className={`min-w-0 truncate text-base font-semibold text-zinc-900 dark:text-white ${
+						mono ? "font-mono" : ""
+					}`}
+				>
+					{result.title}
+				</p>
+				<VersionMeta version={result.version} />
 			</div>
 
-			{/* Title: mono for API symbols, Inter for docs pages */}
-			<p
-				className={`mt-3 text-base font-semibold text-zinc-900 dark:text-white ${
-					result.source === "api" ? "font-mono" : ""
-				}`}
-			>
-				{result.source === "api" && result.symbol
-					? result.symbol
-					: result.title}
+			<p className="mt-0.5 font-mono text-xs text-zinc-500 dark:text-zinc-400">
+				{result.path}
 			</p>
 
-			{/* API results show the signature in the code-panel style */}
 			{result.signature && (
-				<pre className="mt-2 overflow-x-auto rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900/80">
-					<code className="font-mono text-xs leading-relaxed whitespace-pre text-zinc-700 dark:text-zinc-300">
-						{result.signature}
-					</code>
-				</pre>
+				<p className="mt-2 truncate font-mono text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+					{result.signature}
+				</p>
 			)}
 
-			<p className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 [&_code]:rounded [&_code]:bg-zinc-200/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:text-zinc-800 dark:[&_code]:bg-zinc-800 dark:[&_code]:text-zinc-200">
+			<p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 [&_code]:rounded [&_code]:bg-zinc-200/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:text-zinc-800 dark:[&_code]:bg-zinc-800 dark:[&_code]:text-zinc-200">
 				{result.snippet}
 			</p>
 		</a>
+	);
+}
+
+function ResultGroup({
+	label,
+	results,
+	mono,
+	first,
+}: {
+	label: string;
+	results: SearchResult[];
+	mono: boolean;
+	first?: boolean;
+}) {
+	return (
+		<div className={first ? "" : "mt-2 border-t border-zinc-200 pt-4 dark:border-zinc-800"}>
+			<p className="px-3 pb-2 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+				// {label}
+			</p>
+			<div className="space-y-1">
+				{results.map((result) => (
+					<ResultRow
+						key={`${result.path}-${result.title}`}
+						result={result}
+						mono={mono}
+					/>
+				))}
+			</div>
+		</div>
 	);
 }
 
@@ -180,62 +185,58 @@ function Kbd({ children }: { children: React.ReactNode }) {
 
 function SearchModalDemo() {
 	return (
-			<div
-				role="dialog"
-				aria-label="Search the docs"
-				className="w-full max-w-2xl overflow-hidden rounded-md border border-zinc-200 bg-white shadow-xl shadow-zinc-950/10 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
-			>
-				{/* Input row */}
-				<div className="flex items-center gap-3 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
-					<Icon
-						name="search"
-						className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
-						aria-hidden="true"
-					/>
-					<input
-						type="search"
-						aria-label="Search the docs"
-						defaultValue="forEach"
-						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
-					/>
-					<button
-						type="button"
-						aria-label="Close search"
-						className="flex h-6 w-6 items-center justify-center rounded text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-					>
-						<Icon name="x" className="text-sm" aria-hidden="true" />
-					</button>
-				</div>
+		<div
+			role="dialog"
+			aria-label="Search the docs"
+			className="w-full max-w-2xl overflow-hidden rounded-md border border-zinc-200 bg-white shadow-xl shadow-zinc-950/10 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
+		>
+			{/* Input row */}
+			<div className="flex items-center gap-3 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
+				<Icon
+					name="search"
+					className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
+					aria-hidden="true"
+				/>
+				<input
+					type="search"
+					aria-label="Search the docs"
+					defaultValue="forEach"
+					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
+				/>
+				<button
+					type="button"
+					aria-label="Close search"
+					className="flex h-6 w-6 items-center justify-center rounded text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				>
+					<Icon name="x" className="text-sm" aria-hidden="true" />
+				</button>
+			</div>
 
-				{/* Results */}
-				<div className="max-h-[26rem] space-y-2 overflow-y-auto p-3">
-					{RESULTS.map((result) => (
-						<ResultCard
-							key={`${result.path}-${result.title}`}
-							result={result}
-						/>
-					))}
-				</div>
+			{/* Results */}
+			<div className="max-h-[28rem] overflow-y-auto p-3">
+				<ResultGroup label="API Reference" results={API_RESULTS} mono first />
+				<ResultGroup label="Docs" results={DOCS_RESULTS} mono={false} />
+			</div>
 
-				{/* Footer */}
-				<div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200 px-4 py-2.5 dark:border-zinc-800">
-					<span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-						Search powered by Mixedbread
+			{/* Footer */}
+			<div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200 px-4 py-2.5 dark:border-zinc-800">
+				<span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+					Search powered by Mixedbread
+				</span>
+				<div className="flex items-center gap-4 font-mono text-xs text-zinc-500 dark:text-zinc-400">
+					<span className="flex items-center gap-1.5">
+						<Kbd>↑</Kbd>
+						<Kbd>↓</Kbd> navigate
 					</span>
-					<div className="flex items-center gap-4 font-mono text-xs text-zinc-500 dark:text-zinc-400">
-						<span className="flex items-center gap-1.5">
-							<Kbd>↑</Kbd>
-							<Kbd>↓</Kbd> navigate
-						</span>
-						<span className="flex items-center gap-1.5">
-							<Kbd>↵</Kbd> select
-						</span>
-						<span className="flex items-center gap-1.5">
-							<Kbd>esc</Kbd> close
-						</span>
-					</div>
+					<span className="flex items-center gap-1.5">
+						<Kbd>↵</Kbd> select
+					</span>
+					<span className="flex items-center gap-1.5">
+						<Kbd>esc</Kbd> close
+					</span>
 				</div>
 			</div>
+		</div>
 	);
 }
 
