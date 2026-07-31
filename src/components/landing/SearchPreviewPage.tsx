@@ -102,7 +102,7 @@ function SourceChip({
 		<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 			<Icon
 				name={source === "api" ? "braces" : "file-text"}
-				className="text-[11px]"
+				className="-translate-y-[0.5px] text-[11px]"
 				aria-hidden="true"
 			/>
 			{source === "api" ? "API" : "Docs"}
