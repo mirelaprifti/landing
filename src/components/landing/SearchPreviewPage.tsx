@@ -3,14 +3,21 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 /**
  * Design preview for the docs/API search modal — not wired to a real
- * search backend. Distinguishes results without color:
+ * search backend.
  *
- * - Source tags: API is a filled chip with a braces glyph; Docs is an
- *   outlined chip with a document glyph — different fill, shape and icon.
- * - API rows use mono titles + a signature panel; docs rows use Inter
- *   titles + a prose snippet.
- * - Version tags stay quiet outlines: V4 a step stronger than V3.
+ * - Source tags share one filled-chip shape; the API tag carries the
+ *   site's indigo accent as the single pop of color, Docs stays zinc.
+ * - The version lives inside the tag ("API · V4") so it can't be missed.
+ * - API rows use mono Module.symbol titles + description (no signature);
+ *   docs rows use Inter titles + a prose snippet.
+ * - A page result can nest its matching subheadings as indented child
+ *   rows, preserving page→subheading grouping.
  */
+
+type SearchChild = {
+	title: string;
+	snippet: React.ReactNode;
+};
 
 type SearchResult = {
 	source: "api" | "docs";
@@ -18,8 +25,8 @@ type SearchResult = {
 	path: string;
 	title: string;
 	symbol?: string;
-	signature?: string;
 	snippet: React.ReactNode;
+	children?: SearchChild[];
 	selected?: boolean;
 };
 
@@ -30,8 +37,6 @@ const RESULTS: SearchResult[] = [
 		path: "effect / Iterable",
 		title: "Iterable",
 		symbol: "forEach",
-		signature:
-			"declare const forEach: { <A>(f: (a: A, i: number) => void): (self: Iterable<A>) => void }",
 		snippet: (
 			<>
 				Iterates over the Iterable, applying <code>f</code> to each element.
@@ -45,8 +50,6 @@ const RESULTS: SearchResult[] = [
 		path: "effect / Array",
 		title: "Array",
 		symbol: "forEach",
-		signature:
-			"declare const forEach: { <A>(f: (a: A, i: number) => void): (self: ReadonlyArray<A>) => void }",
 		snippet: (
 			<>
 				Runs a side-effect for each element. The callback receives (element,
@@ -62,10 +65,25 @@ const RESULTS: SearchResult[] = [
 		snippet: (
 			<>
 				Use <MatchText>Effect.forEach</MatchText> to run an effect for every
-				element of a collection, collecting the results with bounded
-				concurrency.
+				element of a collection.
 			</>
 		),
+		children: [
+			{
+				title: "Concurrency options",
+				snippet:
+					"Bound how many effects run at once with the concurrency option.",
+			},
+			{
+				title: "Discarding results",
+				snippet:
+					"Pass discard: true when you only need the effects' side effects.",
+			},
+			{
+				title: "Iterating with index",
+				snippet: "The callback receives the element and its index.",
+			},
+		],
 	},
 	{
 		source: "docs",
@@ -96,16 +114,32 @@ function SourceChip({
 	source: SearchResult["source"];
 	version: SearchResult["version"];
 }) {
-	// One tag carries both facts: the source (glyph + label) and the
-	// version, joined inside the filled chip so neither goes unnoticed.
+	// Same chip shape for both sources; the API tag carries the single
+	// accent color, Docs stays neutral zinc.
+	if (source === "api") {
+		return (
+			<span className="inline-flex items-center gap-1.5 rounded-md bg-indigo-100 px-2 py-0.5 font-mono text-xs font-medium text-indigo-800 dark:bg-indigo-500/15 dark:text-indigo-300">
+				<Icon
+					name="braces"
+					className="-translate-y-[0.5px] text-[11px]"
+					aria-hidden="true"
+				/>
+				API
+				<span aria-hidden="true" className="text-indigo-400 dark:text-indigo-400/60">
+					·
+				</span>
+				{version.toUpperCase()}
+			</span>
+		);
+	}
 	return (
 		<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 			<Icon
-				name={source === "api" ? "braces" : "file-text"}
+				name="file-text"
 				className="-translate-y-[0.5px] text-[11px]"
 				aria-hidden="true"
 			/>
-			{source === "api" ? "API" : "Docs"}
+			Docs
 			<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
 				·
 			</span>
@@ -114,49 +148,65 @@ function SourceChip({
 	);
 }
 
+const snippetClass =
+	"line-clamp-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 [&_code]:rounded [&_code]:bg-zinc-200/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:text-zinc-800 dark:[&_code]:bg-zinc-800 dark:[&_code]:text-zinc-200";
+
 function ResultCard({ result }: { result: SearchResult }) {
 	return (
-		<a
-			href="#result"
-			aria-current={result.selected ? "true" : undefined}
-			className={`group block rounded-md border p-4 transition-colors ${
+		<div
+			className={`rounded-md border transition-colors ${
 				result.selected
 					? "border-zinc-400 bg-zinc-100/60 dark:border-zinc-500 dark:bg-zinc-900/60"
-					: "border-zinc-200 hover:border-zinc-400 hover:bg-zinc-100/60 dark:border-zinc-800 dark:hover:border-zinc-600 dark:hover:bg-zinc-900/60"
+					: "border-zinc-200 hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
 			}`}
 		>
-			{/* Meta row: combined source/version tag + path */}
-			<div className="flex flex-wrap items-center gap-2">
-				<SourceChip source={result.source} version={result.version} />
-				<span className="font-mono text-xs font-medium text-zinc-600 dark:text-zinc-300">
-					{result.path}
-				</span>
-			</div>
-
-			{/* Title: Module.symbol in mono for API, Inter for docs pages */}
-			<p
-				className={`mt-3 text-base font-semibold text-zinc-900 dark:text-white ${
-					result.source === "api" ? "font-mono" : ""
-				}`}
+			<a
+				href="#result"
+				aria-current={result.selected ? "true" : undefined}
+				className="group block rounded-md p-4 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 			>
-				{result.source === "api" && result.symbol
-					? `${result.title}.${result.symbol}`
-					: result.title}
-			</p>
+				{/* Meta row: source/version tag + path */}
+				<div className="flex flex-wrap items-center gap-2">
+					<SourceChip source={result.source} version={result.version} />
+					<span className="font-mono text-xs font-medium text-zinc-600 dark:text-zinc-300">
+						{result.path}
+					</span>
+				</div>
 
-			{/* API results show the signature in the code-panel style */}
-			{result.signature && (
-				<pre className="mt-2 overflow-x-auto rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900/80">
-					<code className="font-mono text-xs leading-relaxed whitespace-pre text-zinc-700 dark:text-zinc-300">
-						{result.signature}
-					</code>
-				</pre>
+				{/* Title: Module.symbol in mono for API, Inter for docs pages */}
+				<p
+					className={`mt-3 text-base font-semibold text-zinc-900 dark:text-white ${
+						result.source === "api" ? "font-mono" : ""
+					}`}
+				>
+					{result.source === "api" && result.symbol
+						? `${result.title}.${result.symbol}`
+						: result.title}
+				</p>
+
+				<p className={`mt-1.5 ${snippetClass}`}>{result.snippet}</p>
+			</a>
+
+			{/* Matching subheadings of the same page, nested under the parent */}
+			{result.children && (
+				<div className="mx-4 mb-3 border-l border-zinc-200 pl-3 dark:border-zinc-800">
+					{result.children.map((child) => (
+						<a
+							key={child.title}
+							href="#result"
+							className="block rounded-md px-2 py-2 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
+						>
+							<p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+								{child.title}
+							</p>
+							<p className="mt-0.5 line-clamp-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
+								{child.snippet}
+							</p>
+						</a>
+					))}
+				</div>
 			)}
-
-			<p className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 [&_code]:rounded [&_code]:bg-zinc-200/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:text-zinc-800 dark:[&_code]:bg-zinc-800 dark:[&_code]:text-zinc-200">
-				{result.snippet}
-			</p>
-		</a>
+		</div>
 	);
 }
 
@@ -198,7 +248,7 @@ function SearchModalDemo() {
 			</div>
 
 			{/* Results */}
-			<div className="max-h-[28rem] space-y-2 overflow-y-auto p-3">
+			<div className="max-h-[30rem] space-y-2 overflow-y-auto p-3">
 				{RESULTS.map((result) => (
 					<ResultCard key={`${result.path}-${result.title}`} result={result} />
 				))}
