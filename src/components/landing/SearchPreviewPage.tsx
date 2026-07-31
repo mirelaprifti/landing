@@ -94,7 +94,7 @@ function SourceChip({ source }: { source: SearchResult["source"] }) {
 	// outlined + document glyph for Docs.
 	if (source === "api") {
 		return (
-			<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-white dark:text-zinc-950">
+			<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 				<Icon name="braces" className="text-[11px]" aria-hidden="true" />
 				API
 			</span>
