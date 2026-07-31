@@ -166,13 +166,12 @@ function Kbd({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export function SearchPreviewPage() {
+function SearchModalDemo() {
 	return (
-		<div className="flex min-h-screen items-start justify-center bg-zinc-100 pt-16 pb-16 dark:bg-zinc-900/80">
 			<div
 				role="dialog"
 				aria-label="Search the docs"
-				className="mt-8 w-full max-w-2xl overflow-hidden rounded-md border border-zinc-200 bg-white shadow-xl shadow-zinc-950/10 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
+				className="w-full max-w-2xl overflow-hidden rounded-md border border-zinc-200 bg-white shadow-xl shadow-zinc-950/10 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
 			>
 				{/* Input row */}
 				<div className="flex items-center gap-3 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
@@ -225,6 +224,30 @@ export function SearchPreviewPage() {
 					</div>
 				</div>
 			</div>
+	);
+}
+
+const previewLabel =
+	"mb-6 font-mono text-sm font-medium tracking-wider uppercase";
+
+export function SearchPreviewPage() {
+	return (
+		<div className="min-h-screen">
+			{/* Light mode */}
+			<section className="flex justify-center bg-zinc-100 px-4 py-16">
+				<div className="w-full max-w-2xl">
+					<p className={`${previewLabel} text-zinc-600`}>// Light mode</p>
+					<SearchModalDemo />
+				</div>
+			</section>
+
+			{/* Dark mode — forced via the class-based dark variant */}
+			<section className="dark flex justify-center bg-zinc-950 px-4 py-16">
+				<div className="w-full max-w-2xl">
+					<p className={`${previewLabel} text-zinc-400`}>// Dark mode</p>
+					<SearchModalDemo />
+				</div>
+			</section>
 		</div>
 	);
 }
