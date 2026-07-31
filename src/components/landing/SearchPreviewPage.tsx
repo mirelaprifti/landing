@@ -1,4 +1,5 @@
 import { Icon } from "@/components/ui/Icon";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 /**
  * Design preview for the docs/API search modal — not wired to a real
@@ -227,27 +228,18 @@ function SearchModalDemo() {
 	);
 }
 
-const previewLabel =
-	"mb-6 font-mono text-sm font-medium tracking-wider uppercase";
-
 export function SearchPreviewPage() {
 	return (
-		<div className="min-h-screen">
-			{/* Light mode */}
-			<section className="flex justify-center bg-zinc-100 px-4 py-16">
-				<div className="w-full max-w-2xl">
-					<p className={`${previewLabel} text-zinc-600`}>// Light mode</p>
-					<SearchModalDemo />
+		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
+			<div className="w-full max-w-2xl">
+				<div className="mb-6 flex items-center justify-between">
+					<p className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+						// Search UI preview
+					</p>
+					<ThemeToggle />
 				</div>
-			</section>
-
-			{/* Dark mode — forced via the class-based dark variant */}
-			<section className="dark flex justify-center bg-zinc-950 px-4 py-16">
-				<div className="w-full max-w-2xl">
-					<p className={`${previewLabel} text-zinc-400`}>// Dark mode</p>
-					<SearchModalDemo />
-				</div>
-			</section>
+				<SearchModalDemo />
+			</div>
 		</div>
 	);
 }

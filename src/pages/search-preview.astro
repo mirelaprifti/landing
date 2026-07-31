@@ -8,10 +8,5 @@ import { SearchPreviewPage } from "@/components/landing/SearchPreviewPage";
   title="Search UI Preview - Effect"
   description="Internal design preview of the docs/API search results UI."
 >
-  <!-- This page shows light AND dark variants side by side, so the root
-       theme is pinned to light; the dark half is forced via a .dark wrapper. -->
-  <script is:inline>
-    document.documentElement.classList.remove("dark");
-  </script>
   <SearchPreviewPage client:load />
 </BaseLayout>
