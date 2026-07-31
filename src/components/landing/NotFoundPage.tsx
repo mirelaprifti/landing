@@ -8,55 +8,55 @@ import { Icon } from "@/components/ui/Icon";
 const codeLines = [
 	// Line 0: import { Effect } from "effect"
 	<>
-		<span className="text-violet-400">import</span>
-		<span className="text-zinc-400">{" { "}</span>
-		<span className="text-white">Effect</span>
-		<span className="text-zinc-400">{" } "}</span>
-		<span className="text-violet-400">from</span>
-		<span className="text-emerald-400">{' "effect"'}</span>
+		<span className="text-violet-600 dark:text-violet-400">import</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{" { "}</span>
+		<span className="text-zinc-900 dark:text-white">Effect</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{" } "}</span>
+		<span className="text-violet-600 dark:text-violet-400">from</span>
+		<span className="text-emerald-600 dark:text-emerald-400">{' "effect"'}</span>
 	</>,
 	// Line 1: (empty line)
 	null,
 	// Line 2: const page = Effect.fail("404: Not Found").pipe(
 	<>
-		<span className="text-violet-400">const</span>
-		<span className="text-zinc-300"> page</span>
-		<span className="text-zinc-400">{" = "}</span>
-		<span className="text-white">Effect</span>
-		<span className="text-zinc-400">.</span>
-		<span className="text-zinc-300">fail</span>
-		<span className="text-zinc-400">{"("}</span>
-		<span className="text-emerald-400">{'"404: Not Found"'}</span>
-		<span className="text-zinc-400">{")."}</span>
-		<span className="text-zinc-300">pipe</span>
-		<span className="text-zinc-400">{"("}</span>
+		<span className="text-violet-600 dark:text-violet-400">const</span>
+		<span className="text-zinc-700 dark:text-zinc-300"> page</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{" = "}</span>
+		<span className="text-zinc-900 dark:text-white">Effect</span>
+		<span className="text-zinc-500 dark:text-zinc-400">.</span>
+		<span className="text-zinc-700 dark:text-zinc-300">fail</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
+		<span className="text-emerald-600 dark:text-emerald-400">{'"404: Not Found"'}</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{")."}</span>
+		<span className="text-zinc-700 dark:text-zinc-300">pipe</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
 	</>,
 	// Line 3:   Effect.catchAll(() => Effect.succeed("/"))
 	<>
-		<span className="text-zinc-400">{"  "}</span>
-		<span className="text-white">Effect</span>
-		<span className="text-zinc-400">.</span>
-		<span className="text-zinc-300">catchAll</span>
-		<span className="text-zinc-400">{"(() => "}</span>
-		<span className="text-white">Effect</span>
-		<span className="text-zinc-400">.</span>
-		<span className="text-zinc-300">succeed</span>
-		<span className="text-zinc-400">{"("}</span>
-		<span className="text-emerald-400">{'"/"'}</span>
-		<span className="text-zinc-400">{"))"}</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{"  "}</span>
+		<span className="text-zinc-900 dark:text-white">Effect</span>
+		<span className="text-zinc-500 dark:text-zinc-400">.</span>
+		<span className="text-zinc-700 dark:text-zinc-300">catchAll</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{"(() => "}</span>
+		<span className="text-zinc-900 dark:text-white">Effect</span>
+		<span className="text-zinc-500 dark:text-zinc-400">.</span>
+		<span className="text-zinc-700 dark:text-zinc-300">succeed</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
+		<span className="text-emerald-600 dark:text-emerald-400">{'"/"'}</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{"))"}</span>
 	</>,
 	// Line 4: )
 	<>
-		<span className="text-zinc-400">{")"}</span>
+		<span className="text-zinc-500 dark:text-zinc-400">{")"}</span>
 	</>,
 ];
 
 export function NotFoundPage() {
 	return (
-		<div className="relative min-h-screen bg-zinc-950 text-white antialiased">
+		<div className="relative min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			{/* Dithered background overlay */}
 			<div
-				className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+				className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.03] dark:block"
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
 					backgroundSize: "4px 4px",
@@ -65,7 +65,7 @@ export function NotFoundPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
+				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-200 px-6 py-4 font-semibold text-zinc-900 no-underline dark:bg-zinc-800 dark:text-white focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -76,8 +76,8 @@ export function NotFoundPage() {
 			{/* Vertical border lines container */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 			</div>
 
@@ -85,7 +85,15 @@ export function NotFoundPage() {
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 dark:hidden"
+						style={{
+							width: "1px",
+							backgroundImage:
+								"repeating-linear-gradient(to bottom, rgb(228 228 231) 0px, rgb(228 228 231) 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
+					<div
+						className="absolute top-0 bottom-0 left-1/2 hidden -translate-x-1/2 dark:block"
 						style={{
 							width: "1px",
 							backgroundImage:
@@ -104,26 +112,26 @@ export function NotFoundPage() {
 						<div className="flex flex-col items-center gap-10">
 							{/* Top: text */}
 							<div className="w-full max-w-4xl text-center">
-								<p className="mb-3 font-mono text-lg font-semibold tracking-wider text-zinc-400 uppercase">
+								<p className="mb-3 font-mono text-lg font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 									{"// 404"}
 								</p>
-								<h1 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+								<h1 className="text-2xl font-semibold tracking-tight text-zinc-900 md:text-3xl dark:text-white">
 									Page not found
 								</h1>
-								<p className="mt-4 text-lg text-zinc-400">
+								<p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
 									This route couldn't be resolved, but we can recover.
 								</p>
 								<div className="mt-8 flex flex-wrap items-center justify-center gap-3">
 									<a
 										href={getAssetPath("/")}
-										className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+										className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
 									>
 										<Icon name="arrow-left" className="text-base" />
 										Back to home
 									</a>
 									<a
 										href="https://effect.website/docs/"
-										className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-sm font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+										className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-white dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
 									>
 										<Icon name="book-open" className="text-base" />
 										Read the docs
@@ -133,8 +141,8 @@ export function NotFoundPage() {
 
 							{/* Bottom: code snippet */}
 							<div className="w-full max-w-2xl">
-								<div className="overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900">
-									<div className="flex items-center gap-1.5 border-b border-zinc-700 px-4 py-2.5">
+								<div className="overflow-hidden rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+									<div className="flex items-center gap-1.5 border-b border-zinc-200 px-4 py-2.5 dark:border-zinc-700">
 										<span
 											className="inline-block h-2.5 w-2.5 rounded-full"
 											style={{ backgroundColor: "#ff5f57" }}
@@ -147,7 +155,7 @@ export function NotFoundPage() {
 											className="inline-block h-2.5 w-2.5 rounded-full"
 											style={{ backgroundColor: "#28c840" }}
 										/>
-										<span className="ml-2 font-mono text-sm text-zinc-400">
+										<span className="ml-2 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											not-found.ts
 										</span>
 									</div>
