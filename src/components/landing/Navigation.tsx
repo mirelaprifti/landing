@@ -171,6 +171,16 @@ export function Navigation({
 								>
 									Play
 								</Link>
+								<Link
+									href={getAssetPath("/community-hub")}
+									variant="nav"
+									active={activePath?.startsWith("/community-hub")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Community
+								</Link>
 							</div>
 
 							{/* Mobile menu button */}
@@ -321,6 +331,12 @@ export function Navigation({
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/play") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Play
+							</a>
+							<a
+								href={getAssetPath("/community-hub")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/community-hub") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+							>
+								Community
 							</a>
 						</div>
 
