@@ -394,7 +394,7 @@ export function CommunityEventsPage() {
 									key={eventId}
 									src={`https://luma.com/embed/event/${eventId}/simple?lt=dark`}
 									title="Upcoming Effect community event"
-									className="h-[450px] w-full rounded-md border border-zinc-800 bg-zinc-950"
+									className="h-[780px] w-full rounded-md border border-zinc-800 bg-zinc-950"
 									allow="fullscreen; payment"
 									loading="lazy"
 								/>
