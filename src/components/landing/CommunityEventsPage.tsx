@@ -478,32 +478,53 @@ export function CommunityEventsPage() {
 					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="flex flex-col items-center text-center">
-							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-								// Get in touch
-							</p>
-							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
-								Bringing Effect to a developer event?
-							</h2>
-							<p className="mt-4 max-w-[40rem] text-lg leading-normal text-zinc-400">
-								Talks are how local Effect communities get started, and we'd
-								love to see yours grow.
-							</p>
-							<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-								<FormButton />
-								<Button
-									href="https://discord.gg/effect-ts"
-									variant="secondary"
-									size="md"
-									className="group"
-								>
-									Join the Effect Discord
-									<Icon
-										name="arrow-up-right"
-										className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-										aria-hidden="true"
-									/>
-								</Button>
+						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
+							{/* Content */}
+							<div className="md:col-span-8">
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Get in touch
+								</p>
+								<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
+									Bringing Effect to a developer event?
+								</h2>
+								<p className="mt-4 max-w-xl text-lg leading-normal text-zinc-400">
+									Talks are how local Effect communities get started, and we'd
+									love to see yours grow.
+								</p>
+							</div>
+
+							{/* CTA — corner-bracket box, mirrors the blog post page */}
+							<div className="md:col-span-4 md:col-start-9">
+								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
+									{/* Corner brackets */}
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-700" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-700" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-700" />
+
+									<a
+										href={FORM_URL}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
+									>
+										Tell us about your event
+										<Icon
+											name="arrow-right"
+											className="text-base"
+											aria-hidden="true"
+										/>
+									</a>
+									<a
+										href="https://discord.gg/effect-ts"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-1 font-mono text-xs text-zinc-400 transition-colors hover:text-zinc-200"
+									>
+										discord.gg/effect-ts
+										<Icon name="arrow-up-right" aria-hidden="true" />
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
