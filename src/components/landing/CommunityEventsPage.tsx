@@ -411,7 +411,7 @@ export function CommunityEventsPage() {
 									Not sure what to talk about?
 								</h2>
 								<p className="mt-4 text-lg leading-normal text-zinc-400">
-									A few Effect-friendly angles to get you started:
+									A few Effect-friendly angles to get you started
 								</p>
 							</div>
 
