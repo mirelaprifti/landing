@@ -488,8 +488,8 @@ export function CommunityEventsPage() {
 									Bringing Effect to a developer event?
 								</h2>
 								<p className="mt-4 max-w-xl text-lg leading-normal text-zinc-400">
-									Talks are how local Effect communities get started, and we'd
-									love to see yours grow.
+									Talks are how local Effect communities get started, and we
+									would love to see yours grow.
 								</p>
 							</div>
 
