@@ -457,16 +457,24 @@ export function CommunityEventsPage() {
 
 				{/* Final CTA */}
 				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-32">
-					{/* Grid background */}
+					{/* Grid background — vertical lines */}
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
-							backgroundImage: `
-								linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px),
-								linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)
-							`,
-							backgroundSize: "196.6px 180px",
+							backgroundImage:
+								"linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
+							backgroundSize: "196.6px 100%",
 							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					{/* Horizontal lines — y-phase set so a line sits on the CTA heading's first-line baseline */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage:
+								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
+							backgroundSize: "100% 180px",
+							backgroundPosition: "0px 11px",
 						}}
 					/>
 					<div
