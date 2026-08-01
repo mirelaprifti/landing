@@ -474,7 +474,7 @@ export function CommunityEventsPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 180px",
-							backgroundPosition: "0px 11px",
+							backgroundPosition: "0px 24px",
 						}}
 					/>
 					<div
