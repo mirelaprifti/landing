@@ -368,12 +368,25 @@ export function CommunityEventsPage() {
 				{/* Upcoming events */}
 				<section className="border-t border-zinc-800 py-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Upcoming events
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Join an upcoming event
-						</h2>
+						<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+							<div>
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Upcoming events
+								</p>
+								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+									Join an upcoming event
+								</h2>
+							</div>
+							<a
+								href="https://luma.com/effect-community"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex shrink-0 items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+							>
+								See all events on the Effect community calendar
+								<Icon name="arrow-up-right" aria-hidden="true" />
+							</a>
+						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{UPCOMING_EVENTS.map((eventId) => (
@@ -381,24 +394,12 @@ export function CommunityEventsPage() {
 									key={eventId}
 									src={`https://luma.com/embed/event/${eventId}/simple?lt=dark`}
 									title="Upcoming Effect community event"
-									className="h-[450px] w-full rounded-md border border-zinc-800 bg-zinc-950"
+									className="h-[600px] w-full rounded-md border border-zinc-800 bg-zinc-950"
 									allow="fullscreen; payment"
 									loading="lazy"
 								/>
 							))}
 						</div>
-
-						<p className="mt-8">
-							<a
-								href="https://luma.com/effect-community"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
-							>
-								See all events on the Effect community calendar
-								<Icon name="arrow-up-right" aria-hidden="true" />
-							</a>
-						</p>
 					</div>
 				</section>
 
