@@ -410,18 +410,8 @@ export function CommunityEventsPage() {
 								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 									Not sure what to talk about?
 								</h2>
-								<p className="mt-4 flex items-center gap-2 text-lg leading-normal text-zinc-400">
-									A few Effect-friendly angles to get you started
-									<Icon
-										name="arrow-down"
-										className="lg:hidden"
-										aria-hidden="true"
-									/>
-									<Icon
-										name="arrow-right"
-										className="hidden lg:inline-block"
-										aria-hidden="true"
-									/>
+								<p className="mt-4 text-lg leading-normal text-zinc-400">
+									A few Effect-friendly angles to get you started:
 								</p>
 							</div>
 
