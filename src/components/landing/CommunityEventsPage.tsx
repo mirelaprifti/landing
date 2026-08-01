@@ -487,7 +487,7 @@ export function CommunityEventsPage() {
 								<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
 									Bringing Effect to a developer event?
 								</h2>
-								<p className="mt-4 max-w-xl text-lg leading-normal text-zinc-400">
+								<p className="mt-4 text-lg leading-normal text-zinc-400 md:max-w-[62.5%]">
 									Talks are how local Effect communities get started, and we
 									would love to see yours grow.
 								</p>
