@@ -467,14 +467,15 @@ export function CommunityEventsPage() {
 							backgroundPosition: "calc(50% + 97px) 0",
 						}}
 					/>
-					{/* Horizontal lines — y-phase set so a line sits on the CTA heading's first-line baseline */}
+					{/* Single horizontal line — sits on the CTA heading's first-line baseline */}
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
-							backgroundSize: "100% 180px",
-							backgroundPosition: "0px 17px",
+							backgroundSize: "100% 1px",
+							backgroundPosition: "0px 197px",
+							backgroundRepeat: "no-repeat",
 						}}
 					/>
 					<div
@@ -502,7 +503,7 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* CTA — corner-bracket box, mirrors the blog post page */}
-							<div className="md:col-span-4 md:col-start-9">
+							<div className="md:col-span-4 md:col-start-9 md:mt-5">
 								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700" />
