@@ -503,7 +503,7 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* CTA — corner-bracket box, mirrors the blog post page */}
-							<div className="md:col-span-4 md:col-start-9 md:mt-5">
+							<div className="md:col-span-4 md:col-start-9 md:mt-[45px] md:self-start">
 								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700" />
