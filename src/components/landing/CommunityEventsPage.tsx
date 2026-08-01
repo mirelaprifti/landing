@@ -488,14 +488,14 @@ export function CommunityEventsPage() {
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
 							{/* Content */}
-							<div className="md:col-span-8">
+							<div className="max-w-lg md:col-span-8">
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Get in touch
 								</p>
-								<h2 className="leading-tighter max-w-2xl text-2xl font-semibold text-white md:text-3xl">
+								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 									Bringing Effect to a developer event?
 								</h2>
-								<p className="mt-4 max-w-lg text-lg leading-normal text-zinc-400">
+								<p className="mt-4 text-lg leading-normal text-zinc-400">
 									Talks are how local Effect communities get started, and we
 									would love to see yours grow.
 								</p>
