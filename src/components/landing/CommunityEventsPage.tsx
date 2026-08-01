@@ -388,13 +388,13 @@ export function CommunityEventsPage() {
 							</a>
 						</div>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{UPCOMING_EVENTS.map((eventId) => (
 								<iframe
 									key={eventId}
 									src={`https://luma.com/embed/event/${eventId}/simple?lt=dark`}
 									title="Upcoming Effect community event"
-									className="h-[600px] w-full rounded-md border border-zinc-800 bg-zinc-950"
+									className="h-[450px] w-full rounded-md border border-zinc-800 bg-zinc-950"
 									allow="fullscreen; payment"
 									loading="lazy"
 								/>
