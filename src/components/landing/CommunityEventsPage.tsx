@@ -34,25 +34,6 @@ const SUPPORT_ITEMS: {
 			"Prep session with the Effect team",
 		],
 	},
-	{
-		title: "Promotion",
-		description: "We amplify your talk before and after the event.",
-		icon: "megaphone",
-		details: [
-			"Sharing the event with the Effect community",
-			"Reposting recordings, slides, and recaps",
-			"Adding videos to our community thread",
-		],
-	},
-	{
-		title: "Swag",
-		description: "A thank-you for putting Effect on stage.",
-		icon: "shirt",
-		details: [
-			"Mini swag kits for smaller local events",
-			"Larger kits for accepted talks at bigger events",
-		],
-	},
 ];
 
 // Hand-balanced columns: heights computed from the photos' natural
@@ -292,22 +273,20 @@ export function CommunityEventsPage() {
 					className="scroll-mt-16 border-t border-zinc-800 py-24"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-							<div>
-								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Upcoming events
-								</p>
-								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-									Join an upcoming event
-								</h2>
-							</div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Upcoming events
+						</p>
+						<div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
+							<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+								Join an upcoming event
+							</h2>
 							<a
 								href="https://luma.com/effect-community"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="inline-flex shrink-0 items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+								className="inline-flex shrink-0 items-center gap-2 font-mono text-sm text-zinc-200 transition-colors hover:text-white"
 							>
-								See all events on the Effect community calendar
+								View all events
 								<Icon name="arrow-up-right" aria-hidden="true" />
 							</a>
 						</div>
