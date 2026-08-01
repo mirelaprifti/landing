@@ -489,7 +489,7 @@ export function CommunityEventsPage() {
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
 							{/* Content */}
-							<div className="max-w-lg md:col-span-8">
+							<div className="md:col-span-6">
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Get in touch
 								</p>
