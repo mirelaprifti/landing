@@ -13,7 +13,9 @@ const codeLines = [
 		<span className="text-zinc-900 dark:text-white">Effect</span>
 		<span className="text-zinc-500 dark:text-zinc-400">{" } "}</span>
 		<span className="text-violet-600 dark:text-violet-400">from</span>
-		<span className="text-emerald-600 dark:text-emerald-400">{' "effect"'}</span>
+		<span className="text-emerald-600 dark:text-emerald-400">
+			{' "effect"'}
+		</span>
 	</>,
 	// Line 1: (empty line)
 	null,
@@ -26,7 +28,9 @@ const codeLines = [
 		<span className="text-zinc-500 dark:text-zinc-400">.</span>
 		<span className="text-zinc-700 dark:text-zinc-300">fail</span>
 		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
-		<span className="text-emerald-600 dark:text-emerald-400">{'"404: Not Found"'}</span>
+		<span className="text-emerald-600 dark:text-emerald-400">
+			{'"404: Not Found"'}
+		</span>
 		<span className="text-zinc-500 dark:text-zinc-400">{")."}</span>
 		<span className="text-zinc-700 dark:text-zinc-300">pipe</span>
 		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>

@@ -134,6 +134,13 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 ];
 
+// Luma event ids for the "Upcoming events" embeds
+const UPCOMING_EVENTS: string[] = [
+	"evt-dD8Ky9OvDPnU2ln",
+	"evt-535bkJt5SOkkL7W",
+	"evt-CIXBbu7ySP61MNP",
+];
+
 function FormButton({
 	variant = "primary",
 }: {
@@ -170,7 +177,7 @@ export function CommunityEventsPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/spread-the-effect" />
+			<Navigation activePath="/community-hub" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
@@ -233,7 +240,7 @@ export function CommunityEventsPage() {
 							{/* Left — copy */}
 							<div>
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Spread the Effect
+									// Community Hub
 								</p>
 								<h1 className="leading-tighter text-3xl font-bold tracking-tight text-white">
 									Bring Effect to your community events
@@ -358,6 +365,43 @@ export function CommunityEventsPage() {
 					</div>
 				</section>
 
+				{/* Upcoming events */}
+				<section className="border-t border-zinc-800 py-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Upcoming events
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Join an upcoming event
+						</h2>
+
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+							{UPCOMING_EVENTS.map((eventId) => (
+								<iframe
+									key={eventId}
+									src={`https://luma.com/embed/event/${eventId}/simple`}
+									title="Upcoming Effect community event"
+									className="h-[450px] w-full rounded-md border border-zinc-800"
+									allow="fullscreen; payment"
+									loading="lazy"
+								/>
+							))}
+						</div>
+
+						<p className="mt-8">
+							<a
+								href="https://luma.com/effect-community"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-white"
+							>
+								See all events on the Effect community calendar
+								<Icon name="arrow-up-right" aria-hidden="true" />
+							</a>
+						</p>
+					</div>
+				</section>
+
 				{/* Talk ideas */}
 				<section id="talk-ideas" className="border-t border-zinc-800 py-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
@@ -457,7 +501,7 @@ export function CommunityEventsPage() {
 				</section>
 			</main>
 
-			<Footer activePath="/spread-the-effect" />
+			<Footer activePath="/community-hub" />
 		</div>
 	);
 }

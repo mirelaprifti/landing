@@ -169,12 +169,12 @@ export function Footer({
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/spread-the-effect")}
+										href={getAssetPath("/community-hub")}
 										variant="footer"
-										active={activePath?.startsWith("/spread-the-effect")}
+										active={activePath?.startsWith("/community-hub")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Spread the Effect
+										Community Hub
 									</Link>
 								</li>
 								<li>

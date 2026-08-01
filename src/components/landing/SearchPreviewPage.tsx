@@ -125,7 +125,10 @@ function SourceChip({
 					aria-hidden="true"
 				/>
 				API
-				<span aria-hidden="true" className="text-indigo-400 dark:text-indigo-400/60">
+				<span
+					aria-hidden="true"
+					className="text-indigo-400 dark:text-indigo-400/60"
+				>
 					·
 				</span>
 				{version.toUpperCase()}

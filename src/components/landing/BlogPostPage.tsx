@@ -375,8 +375,8 @@ function Twie128Content() {
 				Effect is a powerful TypeScript library that helps developers build
 				complex, synchronous, and asynchronous programs. One key feature that
 				sets Effect apart is how it leverages structured concurrency to provide
-				features such as async cancellation and safe resource management,
-				making it easier to build robust, scalable, and efficient programs.
+				features such as async cancellation and safe resource management, making
+				it easier to build robust, scalable, and efficient programs.
 			</p>
 			<p>
 				To get started, below you'll find links to our documentation and our
@@ -455,17 +455,17 @@ function Twie128Content() {
 			<h3 id="effect-v4-beta-updates">Effect v4 Beta updates</h3>
 			<p>
 				The first full week on the canonical <code>Effect-TS/effect</code>{" "}
-				repository was packed, with a thorough <code>Cron</code> hardening
-				pass, fiber runtime fixes, new core APIs, and continued AI and HTTP
+				repository was packed, with a thorough <code>Cron</code> hardening pass,
+				fiber runtime fixes, new core APIs, and continued AI and HTTP
 				improvements — here are the most notable changes that landed this week.
 			</p>
 			<ul>
 				<li>
 					<strong>Cron hardening</strong>: Validated <code>Cron.make</code>{" "}
 					field restrictions, fixed <code>Cron.prev</code> month day rollover
-					and weekday wrapping, fixed alias normalization, added day and
-					weekday intersection semantics in the inspection representation, and
-					corrected JSDoc examples and documentation accuracy.
+					and weekday wrapping, fixed alias normalization, added day and weekday
+					intersection semantics in the inspection representation, and corrected
+					JSDoc examples and documentation accuracy.
 				</li>
 				<li>
 					<strong>Fiber runtime fixes</strong>: Fixed fiber self-interruption
@@ -482,23 +482,22 @@ function Twie128Content() {
 				</li>
 				<li>
 					<strong>Schema improvements</strong>: Simplified the displayed{" "}
-					<code>Type</code>, <code>Encoded</code>, and <code>Iso</code> types
-					of required readonly <code>Schema.Struct</code> fields for cleaner
-					hover types in editors, and preserved nested class construction when
+					<code>Type</code>, <code>Encoded</code>, and <code>Iso</code> types of
+					required readonly <code>Schema.Struct</code> fields for cleaner hover
+					types in editors, and preserved nested class construction when
 					applying constructor defaults.
 				</li>
 				<li>
-					<strong>HTTP fixes</strong>: Fixed <code>HttpRouter</code>{" "}
-					middleware context inference, routed multipart errors to HTTP
-					responses, fixed published pre-response handler types, handled
-					aborted HEAD responses during <code>NodeHttpServer</code> disposal,
-					and fixed the OpenAPI generator's handling of recursive schema
-					forward references.
+					<strong>HTTP fixes</strong>: Fixed <code>HttpRouter</code> middleware
+					context inference, routed multipart errors to HTTP responses, fixed
+					published pre-response handler types, handled aborted HEAD responses
+					during <code>NodeHttpServer</code> disposal, and fixed the OpenAPI
+					generator's handling of recursive schema forward references.
 				</li>
 				<li>
 					<strong>AI</strong>: Fixed OpenRouter dynamic tools sending an empty
-					parameters schema, preserved OpenAI Responses cache write token
-					usage, and restricted nightly AI codegen to Effect-TS repositories.
+					parameters schema, preserved OpenAI Responses cache write token usage,
+					and restricted nightly AI codegen to Effect-TS repositories.
 				</li>
 				<li>
 					<strong>SQL</strong>: Added <code>disablePreparedStatements</code>{" "}
@@ -508,16 +507,16 @@ function Twie128Content() {
 				<li>
 					<strong>CLI</strong>: Removed the doubled "Expected" prefix from{" "}
 					<code>InvalidValue</code> messages, and preserved chained vitest
-					helpers like <code>it.describe.each</code> through the{" "}
-					<code>it</code> proxy.
+					helpers like <code>it.describe.each</code> through the <code>it</code>{" "}
+					proxy.
 				</li>
 				<li>
 					<strong>MutableList</strong>: Fixed <code>filter</code> empty-state
 					handling to prevent incorrect state after filtering all elements.
 				</li>
 				<li>
-					<strong>Internals</strong>: Ran a dependency audit, moved pnpm
-					config, and upgraded TSTyche.
+					<strong>Internals</strong>: Ran a dependency audit, moved pnpm config,
+					and upgraded TSTyche.
 				</li>
 			</ul>
 			<p>
@@ -574,11 +573,11 @@ function Twie128Content() {
 				>
 					Foldkit
 				</a>
-				, an Effect-first frontend framework he's been building, inspired by
-				Elm architecture. Devin and Johannes discussed why Foldkit takes a
+				, an Effect-first frontend framework he's been building, inspired by Elm
+				architecture. Devin and Johannes discussed why Foldkit takes a
 				schema-first approach to frontend state, how it differs from React, how
-				commands model side effects, and why this architecture may be
-				especially useful in the age of AI-assisted coding.
+				commands model side effects, and why this architecture may be especially
+				useful in the age of AI-assisted coding.
 			</p>
 			<p>
 				<a
@@ -647,8 +646,8 @@ function Twie128Content() {
 			<blockquote>
 				<p>
 					We shipped a brand-new Effect website. Take it for a spin, click
-					everything, and let us know what you think. Bugs, feedback,
-					confusing bits, we want all of it.
+					everything, and let us know what you think. Bugs, feedback, confusing
+					bits, we want all of it.
 				</p>
 			</blockquote>
 			<p>
@@ -695,8 +694,8 @@ function Twie128Content() {
 			<blockquote>
 				<p>
 					the funny think about effect is that things that the @EffectTS_ team
-					considers "unstable" are much more stable than most things that
-					other folks consider "stable"
+					considers "unstable" are much more stable than most things that other
+					folks consider "stable"
 				</p>
 			</blockquote>
 			<p>
@@ -711,8 +710,8 @@ function Twie128Content() {
 			</p>
 			<ul>
 				<li>
-					Building Loops for the Real World, by Kyle Mistele (HumanLayer) at
-					AI Engineer World's Fair 2026.{" "}
+					Building Loops for the Real World, by Kyle Mistele (HumanLayer) at AI
+					Engineer World's Fair 2026.{" "}
 					<a
 						href="https://www.youtube.com/live/htM02KMNZnk?t=24389s"
 						target="_blank"
@@ -911,122 +910,122 @@ export function BlogPostPage({ slug }: { slug: string }) {
 				{/* Hero zone — background clipped to header height, ends at the divider */}
 				<div className="relative overflow-hidden">
 					<div className="pointer-events-none absolute inset-0 z-0">
-					{/* Vertical lines — run the full hero height down to the divider */}
-					<div
-						className="absolute inset-0"
-						style={{
-							backgroundImage:
-								"linear-gradient(to right, var(--grid-line) 1px, transparent 1px)",
-							// x: 1180/6 so column lines land exactly on the container border lines
-							backgroundSize: "196.667px 100%",
-							backgroundPosition: "calc(50% + 98.333px) 0px",
-						}}
-					/>
-					{/* Horizontal lines — capped below the baseline row so no line draws between title and divider.
+						{/* Vertical lines — run the full hero height down to the divider */}
+						<div
+							className="absolute inset-0"
+							style={{
+								backgroundImage:
+									"linear-gradient(to right, var(--grid-line) 1px, transparent 1px)",
+								// x: 1180/6 so column lines land exactly on the container border lines
+								backgroundSize: "196.667px 100%",
+								backgroundPosition: "calc(50% + 98.333px) 0px",
+							}}
+						/>
+						{/* Horizontal lines — capped below the baseline row so no line draws between title and divider.
 					    y-phase 0 puts a line on the post title's first-line baseline (rel y=178). */}
-					<div
-						className="absolute inset-x-0 top-0 h-[356px]"
-						style={{
-							backgroundImage:
-								"linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)",
-							backgroundSize: "100% 178px",
-							backgroundPosition: "0px 0px",
-						}}
-					/>
-					<div
-						className="absolute inset-0"
-						style={{
-							background:
-								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 60%, var(--page-fade) 100%)",
-						}}
-					/>
-					<div
-						className="absolute inset-x-0 top-0 h-[400px]"
-						style={{
-							background:
-								"radial-gradient(ellipse 50% 80% at 70% -20%, var(--hero-glow-a) 0%, transparent 50%)",
-						}}
-					/>
-				</div>
+						<div
+							className="absolute inset-x-0 top-0 h-[356px]"
+							style={{
+								backgroundImage:
+									"linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)",
+								backgroundSize: "100% 178px",
+								backgroundPosition: "0px 0px",
+							}}
+						/>
+						<div
+							className="absolute inset-0"
+							style={{
+								background:
+									"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 60%, var(--page-fade) 100%)",
+							}}
+						/>
+						<div
+							className="absolute inset-x-0 top-0 h-[400px]"
+							style={{
+								background:
+									"radial-gradient(ellipse 50% 80% at 70% -20%, var(--hero-glow-a) 0%, transparent 50%)",
+							}}
+						/>
+					</div>
 
-				<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
-					<nav
-						aria-label="Breadcrumb"
-						className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-24"
-					>
-						<a
-							href={getAssetPath("/blog")}
-							className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+					<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
+						<nav
+							aria-label="Breadcrumb"
+							className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-16 pb-1 font-mono text-sm tracking-wider uppercase md:pt-24"
 						>
-							Blog
-						</a>
-						<span
-							className="text-zinc-600 dark:text-zinc-400"
-							aria-hidden="true"
-						>
-							//
-						</span>
-						<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-							{[...post.tags]
-								.sort((a, b) => a.localeCompare(b))
-								.map((tag) => (
-									<a
-										key={tag}
-										href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
-										className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
-									>
-										{tag}
-									</a>
-								))}
-						</div>
-					</nav>
+							<a
+								href={getAssetPath("/blog")}
+								className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								Blog
+							</a>
+							<span
+								className="text-zinc-600 dark:text-zinc-400"
+								aria-hidden="true"
+							>
+								//
+							</span>
+							<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+								{[...post.tags]
+									.sort((a, b) => a.localeCompare(b))
+									.map((tag) => (
+										<a
+											key={tag}
+											href={`${getAssetPath("/blog")}?category=${encodeURIComponent(tag)}`}
+											className="text-zinc-800 transition-colors hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
+										>
+											{tag}
+										</a>
+									))}
+							</div>
+						</nav>
 
-					{/* Title grid — col 1-8 */}
-					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
-						{/* Title block — col 1-8 */}
-						<div className="pt-3 pb-20 md:col-span-8">
-							<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
-								{post.title}
-							</h1>
-							<p className="mt-4 text-base leading-relaxed text-zinc-600 md:text-lg dark:text-zinc-400">
-								{post.excerpt}
-							</p>
-							{/* Mobile-only byline (sidebar version shows on md+) */}
-							<div className="mt-8 flex flex-wrap items-center gap-4 md:hidden">
-								{post.authors.map((author) => (
-									<Link
-										key={author.name}
-										href={author.url}
-										variant="inline"
-										className="group/byline flex items-center gap-3 no-underline"
-									>
-										<img
-											src={getAssetPath(author.avatar)}
-											alt={author.name}
-											className="h-10 w-10 rounded-md object-cover"
-										/>
-										<span className="flex min-w-0 flex-col">
-											<span className="truncate text-base font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
-												{author.name}
+						{/* Title grid — col 1-8 */}
+						<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
+							{/* Title block — col 1-8 */}
+							<div className="pt-3 pb-20 md:col-span-8">
+								<h1 className="leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
+									{post.title}
+								</h1>
+								<p className="mt-4 text-base leading-relaxed text-zinc-600 md:text-lg dark:text-zinc-400">
+									{post.excerpt}
+								</p>
+								{/* Mobile-only byline (sidebar version shows on md+) */}
+								<div className="mt-8 flex flex-wrap items-center gap-4 md:hidden">
+									{post.authors.map((author) => (
+										<Link
+											key={author.name}
+											href={author.url}
+											variant="inline"
+											className="group/byline flex items-center gap-3 no-underline"
+										>
+											<img
+												src={getAssetPath(author.avatar)}
+												alt={author.name}
+												className="h-10 w-10 rounded-md object-cover"
+											/>
+											<span className="flex min-w-0 flex-col">
+												<span className="truncate text-base font-medium text-zinc-800 group-hover/byline:underline dark:text-zinc-200">
+													{author.name}
+												</span>
+												<span className="mt-0.5 truncate text-xs text-zinc-500 dark:text-zinc-400">
+													{author.title}
+												</span>
 											</span>
-											<span className="mt-0.5 truncate text-xs text-zinc-500 dark:text-zinc-400">
-												{author.title}
-											</span>
-										</span>
-									</Link>
-								))}
+										</Link>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			{/* Full-viewport divider between hero and body */}
-			<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+				{/* Full-viewport divider between hero and body */}
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
-			<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
-				{/* Body grid: article (col 1-8) + sidebar (col 10-12) */}
-				<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
+				<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
+					{/* Body grid: article (col 1-8) + sidebar (col 10-12) */}
+					<div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6">
 						{/* Sidebar — Author meta + TOC, aligned with article body */}
 						<aside className="hidden md:col-start-10 md:col-span-3 md:row-start-1 md:block md:pt-8">
 							{/* Byline */}
@@ -1090,7 +1089,6 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							<PostNavigation currentSlug={slug} />
 						</article>
 					</div>
-
 				</div>
 
 				{/* Community CTA — full-bleed zone with grid background */}
@@ -1129,53 +1127,53 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
 					<div className="relative z-10 mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center gap-6 py-12 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:py-20">
-						{/* Content — cols 1-8 to match body */}
-						<div className="md:col-span-8">
-							<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-								// Effect Community
-							</p>
-							<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
-								Join the conversation on Discord
-							</h2>
-							<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-								Meet engineers running Effect in production.
-							</p>
-						</div>
+							{/* Content — cols 1-8 to match body */}
+							<div className="md:col-span-8">
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+									// Effect Community
+								</p>
+								<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
+									Join the conversation on Discord
+								</h2>
+								<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+									Meet engineers running Effect in production.
+								</p>
+							</div>
 
-						{/* CTA — col-start-9 col-span-4 */}
-						<div className="md:col-start-9 md:col-span-4">
-							<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
-								{/* Corner brackets */}
-								<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
-								<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
-								<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
-								<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
+							{/* CTA — col-start-9 col-span-4 */}
+							<div className="md:col-start-9 md:col-span-4">
+								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
+									{/* Corner brackets */}
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
 
-								<a
-									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-								>
-									Join the Discord
-									<Icon
-										name="arrow-right"
-										className="text-base"
-										aria-hidden="true"
-									/>
-								</a>
-								<a
-									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
-								>
-									discord.gg/effect-ts
-									<Icon name="arrow-up-right" aria-hidden="true" />
-								</a>
+									<a
+										href="https://discord.gg/effect-ts"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
+									>
+										Join the Discord
+										<Icon
+											name="arrow-right"
+											className="text-base"
+											aria-hidden="true"
+										/>
+									</a>
+									<a
+										href="https://discord.gg/effect-ts"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+									>
+										discord.gg/effect-ts
+										<Icon name="arrow-up-right" aria-hidden="true" />
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</main>

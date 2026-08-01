@@ -23,7 +23,8 @@ export default defineConfig({
 	},
 	redirects: {
 		"/effect-days": "/events/effect-days",
-		"/effect-talks": "/spread-the-effect",
+		"/effect-talks": "/community-hub",
+		"/spread-the-effect": "/community-hub",
 	},
 	vite: {
 		plugins: [tailwindcss()],
