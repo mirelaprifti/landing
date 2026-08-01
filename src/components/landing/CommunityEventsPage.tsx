@@ -250,8 +250,21 @@ export function CommunityEventsPage() {
 									or host your own meetup. We can help you prepare and promote
 									it.
 								</p>
-								<div className="mt-8">
+								<div className="mt-8 flex flex-wrap items-center gap-4">
 									<FormButton />
+									<Button
+										href="#upcoming-events"
+										variant="secondary"
+										size="md"
+										className="group"
+									>
+										See upcoming events
+										<Icon
+											name="arrow-down"
+											className="text-base transition-transform group-hover:translate-y-0.5"
+											aria-hidden="true"
+										/>
+									</Button>
 								</div>
 							</div>
 
@@ -497,8 +510,21 @@ export function CommunityEventsPage() {
 								Talks are how local Effect communities get started, and we'd
 								love to see yours grow.
 							</p>
-							<div className="mt-10">
+							<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
 								<FormButton />
+								<Button
+									href="https://discord.gg/effect-ts"
+									variant="secondary"
+									size="md"
+									className="group"
+								>
+									Join the Effect Discord
+									<Icon
+										name="arrow-up-right"
+										className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+										aria-hidden="true"
+									/>
+								</Button>
 							</div>
 						</div>
 					</div>
