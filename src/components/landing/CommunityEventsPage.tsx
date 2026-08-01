@@ -527,7 +527,7 @@ export function CommunityEventsPage() {
 										href="https://discord.gg/effect-ts"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center gap-1 font-mono text-xs text-zinc-400 transition-colors hover:text-zinc-200"
+										className="inline-flex items-center gap-1 font-mono text-sm text-zinc-400 transition-colors hover:text-zinc-200"
 									>
 										discord.gg/effect-ts
 										<Icon name="arrow-up-right" aria-hidden="true" />
