@@ -388,7 +388,7 @@ export function CommunityEventsPage() {
 							</a>
 						</div>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
 							{UPCOMING_EVENTS.map((eventId) => (
 								<iframe
 									key={eventId}
