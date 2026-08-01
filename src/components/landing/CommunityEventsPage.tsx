@@ -474,7 +474,7 @@ export function CommunityEventsPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 180px",
-							backgroundPosition: "0px 24px",
+							backgroundPosition: "0px 17px",
 						}}
 					/>
 					<div
@@ -492,7 +492,7 @@ export function CommunityEventsPage() {
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Get in touch
 								</p>
-								<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-white md:text-4xl">
+								<h2 className="leading-tighter max-w-2xl text-2xl font-semibold text-white md:text-3xl">
 									Bringing Effect to a developer event?
 								</h2>
 								<p className="mt-4 max-w-lg text-lg leading-normal text-zinc-400">
