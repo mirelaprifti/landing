@@ -456,7 +456,7 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* Final CTA */}
-				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-32">
+				<section className="relative overflow-hidden border-t border-zinc-800 py-24">
 					{/* Grid background — vertical lines */}
 					<div
 						className="pointer-events-none absolute inset-0"
@@ -474,7 +474,7 @@ export function CommunityEventsPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 197px",
+							backgroundPosition: "0px 165px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
