@@ -497,8 +497,8 @@ export function CommunityEventsPage() {
 									Bringing Effect to a developer event?
 								</h2>
 								<p className="mt-4 text-lg leading-normal text-zinc-400">
-									Talks are how local communities get started, and we'd love
-									to see yours grow.
+									Every local community starts with a first talk — we'd love
+									to help you give yours.
 								</p>
 							</div>
 
