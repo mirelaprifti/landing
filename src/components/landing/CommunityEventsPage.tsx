@@ -474,7 +474,7 @@ export function CommunityEventsPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 165px",
+							backgroundPosition: "0px 158px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
@@ -493,7 +493,7 @@ export function CommunityEventsPage() {
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 									// Get in touch
 								</p>
-								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+								<h2 className="text-xl font-semibold tracking-tight text-white md:text-2xl">
 									Bringing Effect to a developer event?
 								</h2>
 								<p className="mt-4 text-lg leading-normal text-zinc-400">
@@ -503,7 +503,7 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* CTA — corner-bracket box, mirrors the blog post page */}
-							<div className="md:col-span-4 md:col-start-9 md:mt-[45px] md:self-start">
+							<div className="md:col-span-4 md:col-start-9 md:mt-[38px] md:self-start">
 								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-700" />
