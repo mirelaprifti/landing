@@ -344,7 +344,7 @@ export function CommunityEventsPage() {
 						</h2>
 
 						{/* Alternating split panels — one per offering */}
-						<div className="mt-12 flex flex-col">
+						<div className="mt-12 flex flex-col border-y border-zinc-800">
 							{SUPPORT_ITEMS.map((item, index) => (
 								<div
 									key={item.title}
