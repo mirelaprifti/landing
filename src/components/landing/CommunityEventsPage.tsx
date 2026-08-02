@@ -343,7 +343,7 @@ export function CommunityEventsPage() {
 											<span className="text-zinc-500" aria-hidden="true">
 												${" "}
 											</span>
-											effect support{" "}
+											effect{" "}
 											<span className="font-semibold text-white">
 												{item.title.replaceAll(" ", "-").toLowerCase()}
 											</span>
