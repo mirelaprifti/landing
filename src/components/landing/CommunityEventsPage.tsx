@@ -73,6 +73,11 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 			alt: "Effect meetup in Milan",
 			caption: "// Milan '25",
 		},
+		{
+			src: "/assets/events/miami-2026-davidk-web.jpg",
+			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
+		},
 	],
 	[
 		{
@@ -90,22 +95,17 @@ const GALLERY_COLUMNS: { src: string; alt: string; caption: string }[][] = [
 			alt: "Effect meetup in Vienna",
 			caption: "// Vienna '26",
 		},
-	],
-	[
-		{
-			src: "/assets/events/miami-2026-davidk-web.jpg",
-			alt: "Effect meetup in Miami",
-			caption: "// Miami '26",
-		},
-		{
-			src: "/assets/events/dillon-sf-24-web.jpg",
-			alt: "Effect meetup in San Francisco",
-			caption: "// SF '24",
-		},
 		{
 			src: "/assets/events/vienna-23-web.jpg",
 			alt: "Effect meetup in Vienna",
 			caption: "// Vienna '23",
+		},
+	],
+	[
+		{
+			src: "/assets/events/dillon-sf-24-web.jpg",
+			alt: "Effect meetup in San Francisco",
+			caption: "// SF '24",
 		},
 	],
 ];
