@@ -433,9 +433,11 @@ export function CommunityEventsPage() {
 									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
 									key={columnIndex}
 									className={`flex flex-col gap-4 ${
-										columnIndex === 1 || columnIndex === 2
-											? "justify-center"
-											: ""
+										columnIndex === 1
+											? "justify-start"
+											: columnIndex === 2
+												? "justify-end"
+												: ""
 									}`}
 								>
 									{column.map((photo) => (
