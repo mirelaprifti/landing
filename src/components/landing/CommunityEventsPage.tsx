@@ -516,7 +516,9 @@ export function CommunityEventsPage() {
 							backgroundImage:
 								"linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "196.6px 100%",
-							backgroundPosition: "calc(50% + 97px) 0",
+							/* Phased so lines land exactly on the container edges and center,
+							   overlapping the page border lines instead of doubling them */
+							backgroundPosition: "calc(50% + 98.3px) 0",
 						}}
 					/>
 					{/* Single horizontal line — sits on the CTA heading's first-line baseline */}
