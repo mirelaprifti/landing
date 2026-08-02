@@ -221,7 +221,7 @@ export function CommunityEventsPage() {
 							{/* Left — copy */}
 							<div>
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Community Hub
+									// Spread the Effect
 								</p>
 								<h1 className="leading-tighter text-3xl font-bold tracking-tight text-white">
 									Bring Effect to your community events
