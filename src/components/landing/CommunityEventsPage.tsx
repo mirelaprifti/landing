@@ -472,47 +472,42 @@ export function CommunityEventsPage() {
 					className="border-t border-zinc-800 py-24 md:pt-40"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
-							{/* Left — section header, vertically centered against the list */}
-							<div className="lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
-								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-									// Talk ideas
-								</p>
-								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-									Not sure what to talk about?
-								</h2>
-								<p className="mt-4 text-lg leading-normal text-zinc-400">
-									A few Effect-friendly angles to get you started
-								</p>
-							</div>
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Talk ideas
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Not sure what to talk about?
+						</h2>
+						<p className="mt-4 text-lg leading-normal text-zinc-400">
+							A few Effect-friendly angles to get you started
+						</p>
 
-							{/* Right — stacked terminal prompts */}
-							<ul className="flex flex-col gap-3 lg:col-span-6">
-								{TALK_IDEAS.map((idea) => (
-									<li key={idea.label}>
-										{idea.href ? (
-											<a
-												href={idea.href}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="group flex items-center gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
-											>
-												{idea.label}
-												<Icon
-													name="arrow-up-right"
-													className="ml-auto shrink-0 text-zinc-600 transition-colors group-hover:text-white"
-													aria-hidden="true"
-												/>
-											</a>
-										) : (
-											<span className="flex items-center gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
-												{idea.label}
-											</span>
-										)}
-									</li>
-								))}
-							</ul>
-						</div>
+						{/* Terminal prompts — two columns below the header */}
+						<ul className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-2">
+							{TALK_IDEAS.map((idea) => (
+								<li key={idea.label}>
+									{idea.href ? (
+										<a
+											href={idea.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="group flex items-center gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
+										>
+											{idea.label}
+											<Icon
+												name="arrow-up-right"
+												className="ml-auto shrink-0 text-zinc-600 transition-colors group-hover:text-white"
+												aria-hidden="true"
+											/>
+										</a>
+									) : (
+										<span className="flex items-center gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
+											{idea.label}
+										</span>
+									)}
+								</li>
+							))}
+						</ul>
 					</div>
 				</section>
 
