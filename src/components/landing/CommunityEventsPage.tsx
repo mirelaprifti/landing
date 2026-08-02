@@ -323,7 +323,7 @@ export function CommunityEventsPage() {
 				{/* Upcoming events */}
 				<section
 					id="upcoming-events"
-					className="scroll-mt-16 border-t border-zinc-800 py-24"
+					className="scroll-mt-16 border-t border-zinc-800 py-24 md:pt-40"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
@@ -359,7 +359,7 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* How we can help */}
-				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-32">
+				<section className="border-t border-zinc-800 py-24 md:pt-40">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Support
@@ -467,7 +467,10 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* Talk ideas */}
-				<section id="talk-ideas" className="border-t border-zinc-800 py-24">
+				<section
+					id="talk-ideas"
+					className="border-t border-zinc-800 py-24 md:pt-40"
+				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
 							{/* Left — section header, vertically centered against the list */}
@@ -514,7 +517,7 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* Final CTA */}
-				<section className="relative overflow-hidden border-t border-zinc-800 py-24">
+				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:pt-40">
 					{/* Grid background — vertical lines */}
 					<div
 						className="pointer-events-none absolute inset-0"
@@ -532,7 +535,7 @@ export function CommunityEventsPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 169px",
+							backgroundPosition: "0px 233px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
