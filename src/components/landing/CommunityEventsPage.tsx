@@ -429,46 +429,6 @@ export function CommunityEventsPage() {
 					</div>
 				</section>
 
-				{/* Event gallery */}
-				<section className="border-t border-zinc-800 py-16">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-							{GALLERY_COLUMNS.map((column, columnIndex) => (
-								<div
-									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
-									key={columnIndex}
-									className="flex flex-col gap-4"
-								>
-									{column.map((photo) => (
-										<div
-											key={photo.src}
-											className={`relative overflow-hidden ${
-												photo.stretch ? "flex-1" : (photo.aspect ?? "")
-											}`}
-										>
-											<img
-												src={getAssetPath(photo.src)}
-												alt={photo.alt}
-												loading="lazy"
-												className={`w-full saturate-[0.85] ${
-													photo.stretch || photo.aspect
-														? "absolute inset-0 h-full object-cover"
-														: ""
-												}`}
-											/>
-											{/* Scrim — blends the photo into the dark page */}
-											<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
-											<p className="absolute bottom-2.5 left-3 font-mono text-xs tracking-wider text-zinc-300 uppercase">
-												{photo.caption}
-											</p>
-										</div>
-									))}
-								</div>
-							))}
-						</div>
-					</div>
-				</section>
-
 				{/* Talk ideas */}
 				<section
 					id="talk-ideas"
@@ -514,6 +474,45 @@ export function CommunityEventsPage() {
 					</div>
 				</section>
 
+				{/* Event gallery */}
+				<section className="border-t border-zinc-800 py-16">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+							{GALLERY_COLUMNS.map((column, columnIndex) => (
+								<div
+									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
+									key={columnIndex}
+									className="flex flex-col gap-4"
+								>
+									{column.map((photo) => (
+										<div
+											key={photo.src}
+											className={`relative overflow-hidden ${
+												photo.stretch ? "flex-1" : (photo.aspect ?? "")
+											}`}
+										>
+											<img
+												src={getAssetPath(photo.src)}
+												alt={photo.alt}
+												loading="lazy"
+												className={`w-full saturate-[0.85] ${
+													photo.stretch || photo.aspect
+														? "absolute inset-0 h-full object-cover"
+														: ""
+												}`}
+											/>
+											{/* Scrim — blends the photo into the dark page */}
+											<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+											<p className="absolute bottom-2.5 left-3 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+												{photo.caption}
+											</p>
+										</div>
+									))}
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
 				{/* Final CTA */}
 				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:pt-40">
 					{/* Grid background — vertical lines */}
