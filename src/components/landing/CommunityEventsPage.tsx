@@ -25,9 +25,9 @@ const SUPPORT_ITEMS: {
 			"Listing your meetup on the Effect events calendar",
 		],
 		photo: {
-			src: "/assets/events/milan-2025-web.jpg",
-			alt: "Effect meetup in Milan",
-			caption: "// Milan '25",
+			src: "/assets/events/miami-dax-web.jpg",
+			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
 		},
 	},
 	{
@@ -40,9 +40,9 @@ const SUPPORT_ITEMS: {
 			"Prep session with the Effect team",
 		],
 		photo: {
-			src: "/assets/events/miami-dax-web.jpg",
-			alt: "Effect talk in Miami",
-			caption: "// Miami '26",
+			src: "/assets/events/milan-26-leo-web.jpg",
+			alt: "Effect talk in Milan",
+			caption: "// Milan '26",
 		},
 	},
 ];
