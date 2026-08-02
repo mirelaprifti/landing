@@ -332,41 +332,49 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						{/* Two quiet columns on a hairline divider */}
-						<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-0 md:divide-x md:divide-zinc-800">
-							{SUPPORT_ITEMS.map((item, index) => (
-								<div
-									key={item.title}
-									className={`flex flex-col ${index === 0 ? "md:pr-12" : "md:pl-12"}`}
-								>
-									<Icon
-										name={item.icon}
-										className="text-xl text-zinc-500"
-										aria-hidden="true"
-									/>
-									<h3 className="mt-4 text-lg font-semibold text-white">
-										{item.title}
-									</h3>
-									<p className="mt-3 text-sm leading-relaxed text-zinc-400">
-										{item.description}
-									</p>
-									<ul className="mt-6 flex flex-col gap-3 border-t border-zinc-800 pt-6">
-										{item.details.map((detail) => (
-											<li
-												key={detail}
-												className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-200"
-											>
-												<Icon
-													name="check"
-													className="text-zinc-500"
-													aria-hidden="true"
-												/>
-												{detail}
-											</li>
-										))}
-									</ul>
-								</div>
-							))}
+						{/* One terminal window for the whole support story */}
+						<div className="mt-12 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E]">
+							{/* Title bar */}
+							<div className="border-b border-zinc-800 px-6 py-3 md:px-8">
+								<p className="font-mono text-xs text-zinc-500">
+									effect-community — zsh
+								</p>
+							</div>
+							{/* Session — commands run in sequence */}
+							<div className="flex flex-col gap-10 p-6 font-mono md:p-10">
+								{SUPPORT_ITEMS.map((item) => (
+									<div key={item.title} className="flex flex-col">
+										{/* Command line — doubles as the card title */}
+										<h3 className="text-base text-zinc-500">
+											<span className="text-emerald-400" aria-hidden="true">
+												${" "}
+											</span>
+											effect support{" "}
+											<span className="font-semibold text-white">
+												{item.title.replaceAll(" ", "-").toLowerCase()}
+											</span>
+										</h3>
+										{/* Comment line */}
+										<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+											# {item.description}
+										</p>
+										{/* Output */}
+										<ul className="mt-5 flex flex-col gap-3">
+											{item.details.map((detail) => (
+												<li
+													key={detail}
+													className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-200"
+												>
+													<span className="text-emerald-400" aria-hidden="true">
+														✓
+													</span>
+													{detail}
+												</li>
+											))}
+										</ul>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</section>
