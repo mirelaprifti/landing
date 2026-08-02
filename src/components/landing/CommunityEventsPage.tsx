@@ -344,7 +344,7 @@ export function CommunityEventsPage() {
 						</h2>
 
 						{/* Alternating split panels — one per offering */}
-						<div className="mt-12 flex flex-col border-y border-zinc-800">
+						<div className="-mx-4 mt-12 flex flex-col border-y border-zinc-800">
 							{SUPPORT_ITEMS.map((item, index) => (
 								<div
 									key={item.title}
@@ -352,8 +352,8 @@ export function CommunityEventsPage() {
 								>
 									{/* Content — alternates sides on desktop */}
 									<div
-										className={`flex flex-col bg-[#0C0C0E] py-16 ${
-											index % 2 === 1 ? "lg:order-2 lg:pl-14" : "lg:pr-14"
+										className={`flex flex-col bg-[#0C0C0E] px-8 py-16 md:px-14 ${
+											index % 2 === 1 ? "lg:order-2" : ""
 										}`}
 									>
 										<h3 className="text-xl font-semibold tracking-tight text-white md:text-2xl">
