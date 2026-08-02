@@ -149,10 +149,10 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 
 // Luma event ids for the "Upcoming events" embeds
 const UPCOMING_EVENTS: string[] = [
-	"evt-dD8Ky9OvDPnU2ln",
-	"evt-535bkJt5SOkkL7W",
-	"evt-CIXBbu7ySP61MNP",
-	"evt-IpTTFhOGblrQdoK",
+	"evt-dD8Ky9OvDPnU2ln", // Effect Office Hours 40
+	// "evt-535bkJt5SOkkL7W", // Effect NYC #2 — hidden for now
+	// "evt-CIXBbu7ySP61MNP", // Effect San Francisco — hidden for now
+	"evt-IpTTFhOGblrQdoK", // Effect Warsaw #1
 ];
 
 function FormButton({
