@@ -20,10 +20,10 @@ import { Navigation } from "./Navigation";
 const text = {
 	/** Hero page title (h1) — landing/marketing heroes. */
 	pageTitle:
-		"leading-tighter text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl dark:text-white",
+		"leading-[1.1] text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl dark:text-white",
 	/** Subpage title (h1) — blog posts, policies, listings. */
 	pageTitleSub:
-		"leading-tighter text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white",
+		"leading-[1.1] text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white",
 	/** Section eyebrow — the mono label above every section title. */
 	eyebrow:
 		"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400",
@@ -237,7 +237,7 @@ export function TypographyStyleguidePage() {
 							id="text-elements"
 							eyebrow="02"
 							title="Text elements"
-							lede="One spec per role. Headings are bold only at the h1 level; everything below is semibold. All heading levels use leading-tighter and themeable color pairs."
+							lede="One spec per role. Headings are bold only at the h1 level; everything below is semibold. Page titles (h1) use leading-[1.1]; lower heading levels use leading-tighter. All use themeable color pairs."
 						>
 							<SpecRow
 								title="Page title — hero (h1)"
@@ -499,8 +499,10 @@ export function TypographyStyleguidePage() {
 									<p className={rowLabel}>Do</p>
 									<ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										<li>
-											Use the type scale and named leading values only —
-											headings always get{" "}
+											Use the type scale and named leading values only — page
+											titles (h1) get{" "}
+											<code className="font-mono text-sm">leading-[1.1]</code>;
+											lower headings get{" "}
 											<code className="font-mono text-sm">leading-tighter</code>
 											.
 										</li>
