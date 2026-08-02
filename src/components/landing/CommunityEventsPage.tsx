@@ -217,6 +217,21 @@ export function CommunityEventsPage() {
 						}}
 					/>
 
+					{/* Right half — community proof photo (lg+) */}
+					<div className="absolute inset-y-0 right-0 hidden w-1/2 overflow-hidden lg:block">
+						<img
+							src={getAssetPath("/assets/events/speakers.png")}
+							alt="An Effect community meetup"
+							className="h-full w-full object-cover"
+						/>
+						{/* Blend into the dark page */}
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+						{/* Photo caption */}
+						<p className="absolute bottom-3 left-16 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+							// Effect Meetup NYC '25 at Warp's
+						</p>
+					</div>
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
 							{/* Left — copy */}
@@ -251,7 +266,7 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* Right — community proof photo */}
-							<div className="relative overflow-hidden">
+							<div className="relative overflow-hidden lg:hidden">
 								<img
 									src={getAssetPath("/assets/events/speakers.png")}
 									alt="An Effect community meetup"
