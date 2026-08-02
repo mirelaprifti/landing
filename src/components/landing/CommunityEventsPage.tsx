@@ -219,16 +219,24 @@ export function CommunityEventsPage() {
 			<main id="main-content" className="relative z-10 pt-16">
 				{/* Hero */}
 				<section className="relative w-full pt-16 pb-16 md:pt-24 md:pb-24">
-					{/* Grid background */}
+					{/* Grid background — vertical lines, phased to the container edges */}
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
-							backgroundImage: `
-								linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px),
-								linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)
-							`,
-							backgroundSize: "196.6px 171px",
-							backgroundPosition: "calc(50% + 97px) 0",
+							backgroundImage:
+								"linear-gradient(to right, rgba(24, 24, 27, 0.8) 1px, transparent 1px)",
+							backgroundSize: "196.6px 100%",
+							backgroundPosition: "calc(50% + 98.3px) 0",
+						}}
+					/>
+					{/* Horizontal lines — y-phase set so a line sits on the h1's first-line baseline */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage:
+								"linear-gradient(to bottom, rgba(24, 24, 27, 0.8) 1px, transparent 1px)",
+							backgroundSize: "100% 171px",
+							backgroundPosition: "0px 7px",
 						}}
 					/>
 					<div
