@@ -367,9 +367,9 @@ export function CommunityEventsPage() {
 											{item.details.map((detail) => (
 												<li
 													key={detail}
-													className="flex items-baseline gap-2.5 text-base leading-relaxed text-zinc-200"
+													className="flex items-baseline gap-2.5 text-base leading-relaxed text-zinc-400"
 												>
-													<span className="text-zinc-500" aria-hidden="true">
+													<span className="text-zinc-600" aria-hidden="true">
 														✓
 													</span>
 													{detail}
