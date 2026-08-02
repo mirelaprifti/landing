@@ -13,6 +13,7 @@ const SUPPORT_ITEMS: {
 	description: string;
 	icon: IconName;
 	details: string[];
+	photo: { src: string; alt: string; caption: string };
 }[] = [
 	{
 		title: "Meetups",
@@ -23,6 +24,11 @@ const SUPPORT_ITEMS: {
 			"Connecting you with Effect developers nearby",
 			"Listing your meetup on the Effect events calendar",
 		],
+		photo: {
+			src: "/assets/events/milan-2025-web.jpg",
+			alt: "Effect meetup in Milan",
+			caption: "// Milan '25",
+		},
 	},
 	{
 		title: "Speaker kit",
@@ -33,6 +39,11 @@ const SUPPORT_ITEMS: {
 			"Feedback on your topic or abstract",
 			"Prep session with the Effect team",
 		],
+		photo: {
+			src: "/assets/events/miami-dax-web.jpg",
+			alt: "Effect talk in Miami",
+			caption: "// Miami '26",
+		},
 	},
 ];
 
@@ -332,17 +343,22 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						{/* Split panel — support content left, community photo right */}
-						<div className="mt-12 grid grid-cols-1 overflow-hidden rounded-md border border-zinc-800 lg:grid-cols-2">
-							{/* Left — the two commands, in sequence */}
-							<div className="flex flex-col gap-10 bg-[#0C0C0E] p-6 md:p-10">
-								{SUPPORT_ITEMS.map((item) => (
-									<div key={item.title} className="flex flex-col">
+						{/* Alternating split panels — one per offering */}
+						<div className="mt-12 flex flex-col gap-4">
+							{SUPPORT_ITEMS.map((item, index) => (
+								<div
+									key={item.title}
+									className="grid grid-cols-1 overflow-hidden rounded-md border border-zinc-800 lg:grid-cols-2"
+								>
+									{/* Content — alternates sides on desktop */}
+									<div
+										className={`flex flex-col bg-[#0C0C0E] p-6 md:p-10 ${
+											index % 2 === 1 ? "lg:order-2" : ""
+										}`}
+									>
 										{/* Command line — doubles as the title */}
 										<h3 className="font-mono text-lg text-zinc-500">
-											<span className="text-zinc-500" aria-hidden="true">
-												${" "}
-											</span>
+											<span aria-hidden="true">$ </span>
 											effect{" "}
 											<span className="font-semibold text-white">
 												{item.title.replaceAll(" ", "-").toLowerCase()}
@@ -366,21 +382,26 @@ export function CommunityEventsPage() {
 											))}
 										</ul>
 									</div>
-								))}
-							</div>
-							{/* Right — community photo, full bleed */}
-							<div className="relative min-h-64 border-t border-zinc-800 lg:min-h-0 lg:border-t-0 lg:border-l">
-								<img
-									src={getAssetPath("/assets/events/miami-dax-web.jpg")}
-									alt="Effect talk in Miami"
-									className="absolute inset-0 h-full w-full object-cover saturate-[0.85]"
-								/>
-								{/* Scrim — blends the photo into the dark page */}
-								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
-								<p className="absolute bottom-3 left-4 font-mono text-xs tracking-wider text-zinc-300 uppercase">
-									// Miami '26
-								</p>
-							</div>
+									{/* Photo — full bleed on the opposite side */}
+									<div
+										className={`relative min-h-64 border-t border-zinc-800 lg:min-h-0 lg:border-t-0 ${
+											index % 2 === 1 ? "lg:order-1 lg:border-r" : "lg:border-l"
+										}`}
+									>
+										<img
+											src={getAssetPath(item.photo.src)}
+											alt={item.photo.alt}
+											loading="lazy"
+											className="absolute inset-0 h-full w-full object-cover saturate-[0.85]"
+										/>
+										{/* Scrim — blends the photo into the dark page */}
+										<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+										<p className="absolute bottom-3 left-4 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+											{item.photo.caption}
+										</p>
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
