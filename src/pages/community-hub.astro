@@ -3,6 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { CommunityEventsPage } from "@/components/landing/CommunityEventsPage";
 ---
 
-<BaseLayout title="Effect Community Hub" description="Crash your local TypeScript or AI event with an Effect talk, host your own meetup, or join an event near you.">
+<BaseLayout
+  title="Effect Community Hub"
+  description="Crash your local TypeScript or AI event with an Effect talk, host your own meetup, or join an event near you."
+  ogImage="/assets/images/community-og.png"
+>
   <CommunityEventsPage client:load />
 </BaseLayout>
