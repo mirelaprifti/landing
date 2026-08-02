@@ -84,6 +84,7 @@ const GALLERY_COLUMNS: {
 			src: "/assets/events/milan-25-web.jpg",
 			alt: "Effect meetup in Milan",
 			caption: "// Milan '25",
+			stretch: true,
 		},
 	],
 	[
@@ -101,6 +102,7 @@ const GALLERY_COLUMNS: {
 			src: "/assets/events/vienna-23-web.jpg",
 			alt: "Effect meetup in Vienna",
 			caption: "// Vienna '23",
+			stretch: true,
 		},
 	],
 	[
@@ -432,13 +434,7 @@ export function CommunityEventsPage() {
 								<div
 									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
 									key={columnIndex}
-									className={`flex flex-col gap-4 ${
-										columnIndex === 1
-											? "justify-start"
-											: columnIndex === 2
-												? "justify-end"
-												: ""
-									}`}
+									className="flex flex-col gap-4"
 								>
 									{column.map((photo) => (
 										<div
