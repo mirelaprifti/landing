@@ -54,6 +54,8 @@ const GALLERY_COLUMNS: {
 	alt: string;
 	caption: string;
 	stretch?: boolean;
+	/** Tailwind aspect class — crops the photo to a different ratio */
+	aspect?: string;
 }[][] = [
 	[
 		{
@@ -65,6 +67,7 @@ const GALLERY_COLUMNS: {
 			src: "/assets/events/vienna-26-web.jpg",
 			alt: "Effect meetup in Vienna",
 			caption: "// Vienna '26",
+			aspect: "aspect-[4/3]",
 		},
 	],
 	[
@@ -436,7 +439,7 @@ export function CommunityEventsPage() {
 										<div
 											key={photo.src}
 											className={`relative overflow-hidden ${
-												photo.stretch ? "flex-1" : ""
+												photo.stretch ? "flex-1" : (photo.aspect ?? "")
 											}`}
 										>
 											<img
@@ -444,7 +447,7 @@ export function CommunityEventsPage() {
 												alt={photo.alt}
 												loading="lazy"
 												className={`w-full saturate-[0.85] ${
-													photo.stretch
+													photo.stretch || photo.aspect
 														? "absolute inset-0 h-full object-cover"
 														: ""
 												}`}
