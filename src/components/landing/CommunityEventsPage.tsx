@@ -62,9 +62,9 @@ const GALLERY_COLUMNS: {
 			caption: "// Milan '26",
 		},
 		{
-			src: "/assets/events/milan-25-web.jpg",
-			alt: "Effect meetup in Milan",
-			caption: "// Milan '25",
+			src: "/assets/events/vienna-26-web.jpg",
+			alt: "Effect meetup in Vienna",
+			caption: "// Vienna '26",
 		},
 	],
 	[
@@ -79,9 +79,9 @@ const GALLERY_COLUMNS: {
 			caption: "// Miami '26",
 		},
 		{
-			src: "/assets/events/vienna-26-web.jpg",
-			alt: "Effect meetup in Vienna",
-			caption: "// Vienna '26",
+			src: "/assets/events/milan-25-web.jpg",
+			alt: "Effect meetup in Milan",
+			caption: "// Milan '25",
 		},
 	],
 	[
