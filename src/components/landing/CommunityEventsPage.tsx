@@ -338,25 +338,16 @@ export function CommunityEventsPage() {
 							<div className="grid grid-cols-1 divide-y divide-zinc-800 md:grid-cols-2 md:divide-x md:divide-y-0">
 								{SUPPORT_ITEMS.map((item) => (
 									<div key={item.title} className="flex flex-col p-6 md:p-10">
-										{/* Command line — the terminal flavor */}
-										<p className="font-mono text-sm text-zinc-500">
+										{/* Command line — doubles as the title */}
+										<h3 className="font-mono text-base text-zinc-500">
 											<span className="text-emerald-400" aria-hidden="true">
 												${" "}
 											</span>
 											effect support{" "}
-											{item.title.replaceAll(" ", "-").toLowerCase()}
-										</p>
-										{/* Real title — icon + noun first */}
-										<div className="mt-5 flex items-center gap-3">
-											<Icon
-												name={item.icon}
-												className="text-xl text-zinc-500"
-												aria-hidden="true"
-											/>
-											<h3 className="text-lg font-semibold text-white">
-												{item.title}
-											</h3>
-										</div>
+											<span className="font-semibold text-white">
+												{item.title.replaceAll(" ", "-").toLowerCase()}
+											</span>
+										</h3>
 										<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 											{item.description}
 										</p>
