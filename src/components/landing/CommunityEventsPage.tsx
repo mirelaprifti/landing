@@ -47,66 +47,73 @@ const SUPPORT_ITEMS: {
 	},
 ];
 
-// Grid-ordered photos: `tall` photos span two rows (Milan '26 and SF '24
-// anchor the outer columns); the rest are uniform 3:2 cells.
-const GALLERY_PHOTOS: {
+// Masonry columns — photos keep their natural aspect ratios. Milan '26 is a
+// natural portrait; SF '24 stretches (object-cover) to close out its column.
+const GALLERY_COLUMNS: {
 	src: string;
 	alt: string;
 	caption: string;
-	tall?: boolean;
-}[] = [
-	{
-		src: "/assets/events/milan-26-web.jpg",
-		alt: "Effect meetup in Milan",
-		caption: "// Milan '26",
-		tall: true,
-	},
-	{
-		src: "/assets/events/paris-april-4-web.jpg",
-		alt: "Effect meetup in Paris",
-		caption: "// Paris '25",
-	},
-	{
-		src: "/assets/events/hamburg-web.jpg",
-		alt: "Effect meetup in Hamburg",
-		caption: "// Hamburg '25",
-	},
-	{
-		src: "/assets/events/miami-2026-davidk-web.jpg",
-		alt: "Effect meetup in Miami",
-		caption: "// Miami '26",
-	},
-	{
-		src: "/assets/events/miami-ariel-web.jpg",
-		alt: "Effect meetup in Miami",
-		caption: "// Miami '26",
-	},
-	{
-		src: "/assets/events/paris-nov-2-web.jpg",
-		alt: "Effect meetup in Paris",
-		caption: "// Paris '24",
-	},
-	{
-		src: "/assets/events/dillon-sf-24-web.jpg",
-		alt: "Effect meetup in San Francisco",
-		caption: "// SF '24",
-		tall: true,
-	},
-	{
-		src: "/assets/events/milan-25-web.jpg",
-		alt: "Effect meetup in Milan",
-		caption: "// Milan '25",
-	},
-	{
-		src: "/assets/events/vienna-26-web.jpg",
-		alt: "Effect meetup in Vienna",
-		caption: "// Vienna '26",
-	},
-	{
-		src: "/assets/events/vienna-23-web.jpg",
-		alt: "Effect meetup in Vienna",
-		caption: "// Vienna '23",
-	},
+	stretch?: boolean;
+}[][] = [
+	[
+		{
+			src: "/assets/events/milan-26-web.jpg",
+			alt: "Effect meetup in Milan",
+			caption: "// Milan '26",
+		},
+		{
+			src: "/assets/events/milan-25-web.jpg",
+			alt: "Effect meetup in Milan",
+			caption: "// Milan '25",
+		},
+	],
+	[
+		{
+			src: "/assets/events/paris-april-4-web.jpg",
+			alt: "Effect meetup in Paris",
+			caption: "// Paris '25",
+		},
+		{
+			src: "/assets/events/miami-ariel-web.jpg",
+			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
+		},
+		{
+			src: "/assets/events/vienna-26-web.jpg",
+			alt: "Effect meetup in Vienna",
+			caption: "// Vienna '26",
+		},
+	],
+	[
+		{
+			src: "/assets/events/hamburg-web.jpg",
+			alt: "Effect meetup in Hamburg",
+			caption: "// Hamburg '25",
+		},
+		{
+			src: "/assets/events/paris-nov-2-web.jpg",
+			alt: "Effect meetup in Paris",
+			caption: "// Paris '24",
+		},
+		{
+			src: "/assets/events/vienna-23-web.jpg",
+			alt: "Effect meetup in Vienna",
+			caption: "// Vienna '23",
+		},
+	],
+	[
+		{
+			src: "/assets/events/miami-2026-davidk-web.jpg",
+			alt: "Effect meetup in Miami",
+			caption: "// Miami '26",
+		},
+		{
+			src: "/assets/events/dillon-sf-24-web.jpg",
+			alt: "Effect meetup in San Francisco",
+			caption: "// SF '24",
+			stretch: true,
+		},
+	],
 ];
 
 const TALK_IDEAS: { label: string; href?: string }[] = [
@@ -419,24 +426,36 @@ export function CommunityEventsPage() {
 				<section className="border-t border-zinc-800 py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-							{GALLERY_PHOTOS.map((photo) => (
+							{GALLERY_COLUMNS.map((column, columnIndex) => (
 								<div
-									key={photo.src}
-									className={`relative overflow-hidden ${
-										photo.tall ? "row-span-2" : "aspect-[3/2]"
-									}`}
+									// biome-ignore lint/suspicious/noArrayIndexKey: columns are static
+									key={columnIndex}
+									className="flex flex-col gap-4"
 								>
-									<img
-										src={getAssetPath(photo.src)}
-										alt={photo.alt}
-										loading="lazy"
-										className="absolute inset-0 h-full w-full object-cover saturate-[0.85]"
-									/>
-									{/* Scrim — blends the photo into the dark page */}
-									<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
-									<p className="absolute bottom-2.5 left-3 font-mono text-xs tracking-wider text-zinc-300 uppercase">
-										{photo.caption}
-									</p>
+									{column.map((photo) => (
+										<div
+											key={photo.src}
+											className={`relative overflow-hidden ${
+												photo.stretch ? "flex-1" : ""
+											}`}
+										>
+											<img
+												src={getAssetPath(photo.src)}
+												alt={photo.alt}
+												loading="lazy"
+												className={`w-full saturate-[0.85] ${
+													photo.stretch
+														? "absolute inset-0 h-full object-cover"
+														: ""
+												}`}
+											/>
+											{/* Scrim — blends the photo into the dark page */}
+											<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+											<p className="absolute bottom-2.5 left-3 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+												{photo.caption}
+											</p>
+										</div>
+									))}
 								</div>
 							))}
 						</div>
