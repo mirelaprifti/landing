@@ -218,7 +218,7 @@ export function CommunityEventsPage() {
 					/>
 
 					{/* Right half — community proof photo (lg+) */}
-					<div className="absolute inset-y-0 right-0 hidden w-1/2 overflow-hidden lg:block">
+					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
 							src={getAssetPath("/assets/events/speakers.png")}
 							alt="An Effect community meetup"
