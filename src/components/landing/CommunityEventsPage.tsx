@@ -143,7 +143,7 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 	{
 		label: "What's new in Effect v4",
-		href: "https://effect.website/blog/effect-v4-beta",
+		href: "https://effect.website/blog/effect-v4beta-july-recap",
 	},
 ];
 
