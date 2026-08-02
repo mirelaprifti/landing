@@ -332,44 +332,54 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-							{SUPPORT_ITEMS.map((item) => (
-								<div
-									key={item.title}
-									className="flex flex-col border border-zinc-800 bg-[#0C0C0E] p-6 font-mono md:p-8"
-								>
-									{/* Command line — doubles as the card title */}
-									<h3 className="text-base text-zinc-500">
-										<span className="text-emerald-400" aria-hidden="true">
-											${" "}
-										</span>
-										effect support{" "}
-										<span className="font-semibold text-white">
-											{item.title.replaceAll(" ", "-").toLowerCase()}
-										</span>
-									</h3>
-									{/* Comment line */}
-									<p className="mt-3 text-sm leading-relaxed text-zinc-400">
-										# {item.description}
-									</p>
-									{/* Divider between prompt block and output */}
-									<div className="mt-5 border-t border-zinc-800" />
-									{/* Output */}
-									<ul className="mt-5 flex flex-col gap-3">
-										{item.details.map((detail) => (
-											<li
-												key={detail}
-												className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-200"
-											>
-												<span className="text-zinc-600" aria-hidden="true">
-													❯
-												</span>
-												{detail}
-											</li>
-										))}
-									</ul>
+						{/* One terminal window for the whole support story */}
+						<div className="mt-12 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E]">
+							{/* Title bar */}
+							<div className="relative flex items-center border-b border-zinc-800 px-4 py-3">
+								<div className="flex gap-2" aria-hidden="true">
+									<span className="h-3 w-3 rounded-full bg-[#ff5f57]/80" />
+									<span className="h-3 w-3 rounded-full bg-[#febc2e]/80" />
+									<span className="h-3 w-3 rounded-full bg-[#28c840]/80" />
 								</div>
-							))}
+								<p className="absolute inset-x-0 text-center font-mono text-xs text-zinc-500">
+									effect — support
+								</p>
+							</div>
+							{/* Session — one column per command on desktop */}
+							<div className="grid grid-cols-1 gap-10 p-6 font-mono md:grid-cols-2 md:gap-12 md:p-8">
+								{SUPPORT_ITEMS.map((item) => (
+									<div key={item.title} className="flex flex-col">
+										{/* Command line — doubles as the card title */}
+										<h3 className="text-base text-zinc-500">
+											<span className="text-emerald-400" aria-hidden="true">
+												${" "}
+											</span>
+											effect support{" "}
+											<span className="font-semibold text-white">
+												{item.title.replaceAll(" ", "-").toLowerCase()}
+											</span>
+										</h3>
+										{/* Comment line */}
+										<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+											# {item.description}
+										</p>
+										{/* Output */}
+										<ul className="mt-5 flex flex-col gap-3">
+											{item.details.map((detail) => (
+												<li
+													key={detail}
+													className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-200"
+												>
+													<span className="text-emerald-400" aria-hidden="true">
+														✓
+													</span>
+													{detail}
+												</li>
+											))}
+										</ul>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</section>
