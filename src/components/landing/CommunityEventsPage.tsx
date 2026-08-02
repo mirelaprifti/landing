@@ -339,8 +339,8 @@ export function CommunityEventsPage() {
 								{SUPPORT_ITEMS.map((item) => (
 									<div key={item.title} className="flex flex-col p-6 md:p-10">
 										{/* Command line — doubles as the title */}
-										<h3 className="font-mono text-base text-zinc-500">
-											<span className="text-emerald-400" aria-hidden="true">
+										<h3 className="font-mono text-lg text-zinc-500">
+											<span className="text-zinc-500" aria-hidden="true">
 												${" "}
 											</span>
 											effect support{" "}
@@ -348,7 +348,7 @@ export function CommunityEventsPage() {
 												{item.title.replaceAll(" ", "-").toLowerCase()}
 											</span>
 										</h3>
-										<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+										<p className="mt-3 text-base leading-relaxed text-zinc-400">
 											{item.description}
 										</p>
 										{/* Output */}
@@ -356,9 +356,9 @@ export function CommunityEventsPage() {
 											{item.details.map((detail) => (
 												<li
 													key={detail}
-													className="flex items-baseline gap-2.5 text-sm leading-relaxed text-zinc-200"
+													className="flex items-baseline gap-2.5 text-base leading-relaxed text-zinc-200"
 												>
-													<span className="text-emerald-400" aria-hidden="true">
+													<span className="text-zinc-500" aria-hidden="true">
 														✓
 													</span>
 													{detail}
