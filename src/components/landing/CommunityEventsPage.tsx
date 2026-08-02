@@ -337,7 +337,7 @@ export function CommunityEventsPage() {
 							{/* Title bar */}
 							<div className="border-b border-zinc-800 px-6 py-3 md:px-8">
 								<p className="font-mono text-xs text-zinc-500">
-									effect — support
+									effect-community — zsh
 								</p>
 							</div>
 							{/* Session — one column per command on desktop */}
