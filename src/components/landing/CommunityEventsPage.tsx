@@ -332,12 +332,12 @@ export function CommunityEventsPage() {
 							What we can help with
 						</h2>
 
-						{/* One terminal window for the whole support story */}
-						<div className="mt-12 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E]">
-							{/* Two columns on a hairline — command line as kicker, real titles for scanning */}
-							<div className="grid grid-cols-1 divide-y divide-zinc-800 md:grid-cols-2 md:divide-x md:divide-y-0">
+						{/* Split panel — support content left, community photo right */}
+						<div className="mt-12 grid grid-cols-1 overflow-hidden rounded-md border border-zinc-800 lg:grid-cols-2">
+							{/* Left — the two commands, in sequence */}
+							<div className="flex flex-col gap-10 bg-[#0C0C0E] p-6 md:p-10">
 								{SUPPORT_ITEMS.map((item) => (
-									<div key={item.title} className="flex flex-col p-6 md:p-10">
+									<div key={item.title} className="flex flex-col">
 										{/* Command line — doubles as the title */}
 										<h3 className="font-mono text-lg text-zinc-500">
 											<span className="text-zinc-500" aria-hidden="true">
@@ -367,6 +367,19 @@ export function CommunityEventsPage() {
 										</ul>
 									</div>
 								))}
+							</div>
+							{/* Right — community photo, full bleed */}
+							<div className="relative min-h-64 border-t border-zinc-800 lg:min-h-0 lg:border-t-0 lg:border-l">
+								<img
+									src={getAssetPath("/assets/events/miami-dax-web.jpg")}
+									alt="Effect talk in Miami"
+									className="absolute inset-0 h-full w-full object-cover saturate-[0.85]"
+								/>
+								{/* Scrim — blends the photo into the dark page */}
+								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+								<p className="absolute bottom-3 left-4 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+									// Miami '26
+								</p>
 							</div>
 						</div>
 					</div>
