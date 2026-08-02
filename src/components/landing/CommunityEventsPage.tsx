@@ -334,12 +334,6 @@ export function CommunityEventsPage() {
 
 						{/* One terminal window for the whole support story */}
 						<div className="mt-12 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E]">
-							{/* Title bar */}
-							<div className="border-b border-zinc-800 px-6 py-3 md:px-8">
-								<p className="font-mono text-xs text-zinc-500">
-									effect-community — zsh
-								</p>
-							</div>
 							{/* Two columns on a hairline — command line as kicker, real titles for scanning */}
 							<div className="grid grid-cols-1 divide-y divide-zinc-800 md:grid-cols-2 md:divide-x md:divide-y-0">
 								{SUPPORT_ITEMS.map((item) => (
