@@ -293,19 +293,18 @@ export function CommunityEventsPage() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Upcoming events
 						</p>
-						<div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
+						<div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
 							<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 								Join an upcoming event
 							</h2>
-							<a
+							<Button
 								href="https://luma.com/effect-community"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex shrink-0 items-center gap-2 font-mono text-sm text-zinc-200 transition-colors hover:text-white"
+								variant="secondary"
+								className="shrink-0"
 							>
 								View all events
-								<Icon name="arrow-up-right" aria-hidden="true" />
-							</a>
+								<Icon name="arrow-up-right" className="text-base" />
+							</Button>
 						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
