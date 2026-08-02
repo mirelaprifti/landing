@@ -72,10 +72,9 @@ const GALLERY_PHOTOS: {
 		caption: "// Hamburg '25",
 	},
 	{
-		src: "/assets/events/dillon-sf-24-web.jpg",
-		alt: "Effect meetup in San Francisco",
-		caption: "// SF '24",
-		tall: true,
+		src: "/assets/events/miami-2026-davidk-web.jpg",
+		alt: "Effect meetup in Miami",
+		caption: "// Miami '26",
 	},
 	{
 		src: "/assets/events/miami-ariel-web.jpg",
@@ -88,14 +87,15 @@ const GALLERY_PHOTOS: {
 		caption: "// Paris '24",
 	},
 	{
+		src: "/assets/events/dillon-sf-24-web.jpg",
+		alt: "Effect meetup in San Francisco",
+		caption: "// SF '24",
+		tall: true,
+	},
+	{
 		src: "/assets/events/milan-25-web.jpg",
 		alt: "Effect meetup in Milan",
 		caption: "// Milan '25",
-	},
-	{
-		src: "/assets/events/miami-2026-davidk-web.jpg",
-		alt: "Effect meetup in Miami",
-		caption: "// Miami '26",
 	},
 	{
 		src: "/assets/events/vienna-26-web.jpg",
