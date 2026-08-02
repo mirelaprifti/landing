@@ -335,13 +335,8 @@ export function CommunityEventsPage() {
 						{/* One terminal window for the whole support story */}
 						<div className="mt-12 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E]">
 							{/* Title bar */}
-							<div className="relative flex items-center border-b border-zinc-800 px-4 py-3">
-								<div className="flex gap-2" aria-hidden="true">
-									<span className="h-3 w-3 rounded-full bg-[#ff5f57]/80" />
-									<span className="h-3 w-3 rounded-full bg-[#febc2e]/80" />
-									<span className="h-3 w-3 rounded-full bg-[#28c840]/80" />
-								</div>
-								<p className="absolute inset-x-0 text-center font-mono text-xs text-zinc-500">
+							<div className="border-b border-zinc-800 px-6 py-3 md:px-8">
+								<p className="font-mono text-xs text-zinc-500">
 									effect — support
 								</p>
 							</div>
