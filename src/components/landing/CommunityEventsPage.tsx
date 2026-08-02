@@ -352,7 +352,7 @@ export function CommunityEventsPage() {
 								>
 									{/* Content — alternates sides on desktop */}
 									<div
-										className={`flex flex-col bg-[#0C0C0E] p-8 md:p-14 ${
+										className={`flex flex-col bg-[#0C0C0E] px-8 py-12 md:px-14 md:py-20 ${
 											index % 2 === 1 ? "lg:order-2" : ""
 										}`}
 									>
