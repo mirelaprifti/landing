@@ -134,10 +134,6 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 		href: "https://effect.website/docs/error-management/two-error-types",
 	},
 	{
-		label: "Retries, timeouts, and cancellation",
-		href: "https://effect.website/docs/error-management/retrying",
-	},
-	{
 		label: "Building AI agents with Effect",
 		href: "https://effect.website/docs/ai/introduction",
 	},
