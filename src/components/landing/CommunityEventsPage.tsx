@@ -348,7 +348,7 @@ export function CommunityEventsPage() {
 							{SUPPORT_ITEMS.map((item, index) => (
 								<div
 									key={item.title}
-									className="grid grid-cols-1 overflow-hidden border border-zinc-800 not-first:border-t-0 lg:grid-cols-2"
+									className="grid grid-cols-1 overflow-hidden lg:grid-cols-2"
 								>
 									{/* Content — alternates sides on desktop */}
 									<div
@@ -379,8 +379,8 @@ export function CommunityEventsPage() {
 									</div>
 									{/* Photo — full bleed on the opposite side */}
 									<div
-										className={`relative min-h-64 border-t border-zinc-800 lg:min-h-0 lg:border-t-0 ${
-											index % 2 === 1 ? "lg:order-1 lg:border-r" : "lg:border-l"
+										className={`relative min-h-64 lg:min-h-0 ${
+											index % 2 === 1 ? "lg:order-1" : ""
 										}`}
 									>
 										<img
