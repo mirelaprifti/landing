@@ -1,4 +1,5 @@
 import { Button, Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { BLOG_PROSE_CLASS } from "./BlogPostPage";
 import { Footer } from "./Footer";
@@ -386,6 +387,24 @@ export function TypographyStyleguidePage() {
 									</Button>
 									<Button variant="primary" size="lg">
 										Large
+									</Button>
+								</div>
+							</SpecRow>
+
+							<SpecRow
+								title="Section header action"
+								note="A section-level action sits in the header row next to the h2: a secondary Button (default md size) with a trailing arrow icon — arrow-up-right for external links, arrow-right for internal. Never a bare text link, and the row is items-center, not items-baseline."
+								classes="flex flex-wrap items-center justify-between gap-x-6 gap-y-3"
+							>
+								<div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+									<h2 className={text.sectionTitle}>Join an upcoming event</h2>
+									<Button
+										href="https://luma.com/effect-community"
+										variant="secondary"
+										className="shrink-0"
+									>
+										View all events
+										<Icon name="arrow-up-right" className="text-base" />
 									</Button>
 								</div>
 							</SpecRow>
