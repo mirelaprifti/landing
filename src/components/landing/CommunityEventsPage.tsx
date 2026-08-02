@@ -344,15 +344,15 @@ export function CommunityEventsPage() {
 						</h2>
 
 						{/* Alternating split panels — one per offering */}
-						<div className="mt-12 flex flex-col gap-4">
+						<div className="mt-12 flex flex-col">
 							{SUPPORT_ITEMS.map((item, index) => (
 								<div
 									key={item.title}
-									className="grid grid-cols-1 overflow-hidden rounded-md border border-zinc-800 lg:grid-cols-2"
+									className="grid grid-cols-1 overflow-hidden border border-zinc-800 not-first:border-t-0 lg:grid-cols-2"
 								>
 									{/* Content — alternates sides on desktop */}
 									<div
-										className={`flex flex-col bg-[#0C0C0E] p-6 md:p-10 ${
+										className={`flex flex-col bg-[#0C0C0E] p-8 md:p-14 ${
 											index % 2 === 1 ? "lg:order-2" : ""
 										}`}
 									>
