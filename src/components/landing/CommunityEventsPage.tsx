@@ -363,7 +363,7 @@ export function CommunityEventsPage() {
 											{item.description}
 										</p>
 										{/* Output */}
-										<ul className="mt-4 flex flex-col gap-4 border-t border-zinc-700 pt-4">
+										<ul className="mt-4 flex flex-col gap-2 border-t border-zinc-700 pt-4">
 											{item.details.map((detail) => (
 												<li
 													key={detail}
