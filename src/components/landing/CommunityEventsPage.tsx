@@ -356,13 +356,8 @@ export function CommunityEventsPage() {
 											index % 2 === 1 ? "lg:order-2" : ""
 										}`}
 									>
-										{/* Command line — doubles as the title */}
-										<h3 className="font-mono text-lg text-zinc-500">
-											<span aria-hidden="true">$ </span>
-											effect{" "}
-											<span className="font-semibold text-white">
-												{item.title.replaceAll(" ", "-").toLowerCase()}
-											</span>
+										<h3 className="text-xl font-semibold tracking-tight text-white md:text-2xl">
+											{item.title}
 										</h3>
 										<p className="mt-3 text-base leading-relaxed text-zinc-400">
 											{item.description}
