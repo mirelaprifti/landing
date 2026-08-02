@@ -169,6 +169,16 @@ export function Footer({
 								</li>
 								<li>
 									<Link
+										href={getAssetPath("/effect-jobs")}
+										variant="footer"
+										active={activePath?.startsWith("/effect-jobs")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Effect Jobs
+									</Link>
+								</li>
+								<li>
+									<Link
 										href={getAssetPath("/adoption-partners")}
 										variant="footer"
 										active={activePath?.startsWith("/adoption-partners")}
@@ -226,16 +236,6 @@ export function Footer({
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Logo guidelines
-									</Link>
-								</li>
-								<li>
-									<Link
-										href={getAssetPath("/effect-jobs")}
-										variant="footer"
-										active={activePath?.startsWith("/effect-jobs")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Effect Jobs
 									</Link>
 								</li>
 							</ul>
