@@ -120,6 +120,7 @@ const UPCOMING_EVENTS: string[] = [
 	"evt-dD8Ky9OvDPnU2ln",
 	"evt-535bkJt5SOkkL7W",
 	"evt-CIXBbu7ySP61MNP",
+	"evt-IpTTFhOGblrQdoK",
 ];
 
 function FormButton({
