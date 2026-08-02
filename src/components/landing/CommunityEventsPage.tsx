@@ -323,7 +323,7 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* How we can help */}
-				<section className="border-t border-zinc-800 py-24">
+				<section className="border-t border-zinc-800 py-24 md:pt-40 md:pb-32">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
 							// Support
@@ -331,6 +331,10 @@ export function CommunityEventsPage() {
 						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 							What we can help with
 						</h2>
+						<p className="mt-4 max-w-2xl text-lg text-zinc-400">
+							Whether you're hosting your first meetup or stepping on a
+							conference stage, you won't be doing it alone.
+						</p>
 
 						{/* One terminal window for the whole support story */}
 						<div className="mt-12 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E]">
@@ -341,7 +345,7 @@ export function CommunityEventsPage() {
 								</p>
 							</div>
 							{/* Session — one column per command on desktop */}
-							<div className="grid grid-cols-1 gap-10 p-6 font-mono md:grid-cols-2 md:gap-12 md:p-8">
+							<div className="grid grid-cols-1 gap-10 p-6 font-mono md:grid-cols-2 md:gap-16 md:p-12">
 								{SUPPORT_ITEMS.map((item) => (
 									<div key={item.title} className="flex flex-col">
 										{/* Command line — doubles as the card title */}
@@ -374,6 +378,16 @@ export function CommunityEventsPage() {
 										</ul>
 									</div>
 								))}
+								{/* Idle prompt */}
+								<div className="flex items-center gap-2.5 px-6 pb-6 font-mono text-base text-zinc-500 md:px-12 md:pb-10">
+									<span className="text-emerald-400" aria-hidden="true">
+										$
+									</span>
+									<span
+										className="h-4 w-2 animate-pulse bg-zinc-500"
+										aria-hidden="true"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
