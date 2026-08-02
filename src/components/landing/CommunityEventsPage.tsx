@@ -302,7 +302,7 @@ export function CommunityEventsPage() {
 								variant="secondary"
 								className="shrink-0"
 							>
-								View all events
+								View events calendar
 								<Icon name="arrow-up-right" className="text-base" />
 							</Button>
 						</div>
