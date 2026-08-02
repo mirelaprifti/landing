@@ -64,10 +64,9 @@ const GALLERY_COLUMNS: {
 			caption: "// Milan '26",
 		},
 		{
-			src: "/assets/events/vienna-26-web.jpg",
+			src: "/assets/events/vienna-26-2-web.jpg",
 			alt: "Effect meetup in Vienna",
 			caption: "// Vienna '26",
-			aspect: "aspect-[4/3]",
 		},
 	],
 	[
