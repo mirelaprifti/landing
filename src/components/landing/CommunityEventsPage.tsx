@@ -94,14 +94,14 @@ const GALLERY_COLUMNS: {
 			caption: "// Hamburg '25",
 		},
 		{
-			src: "/assets/events/paris-nov-2-web.jpg",
-			alt: "Effect meetup in Paris",
-			caption: "// Paris '24",
-		},
-		{
 			src: "/assets/events/vienna-23-web.jpg",
 			alt: "Effect meetup in Vienna",
 			caption: "// Vienna '23",
+		},
+		{
+			src: "/assets/events/paris-nov-2-web.jpg",
+			alt: "Effect meetup in Paris",
+			caption: "// Paris '24",
 			stretch: true,
 		},
 	],
