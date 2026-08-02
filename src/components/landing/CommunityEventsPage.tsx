@@ -285,8 +285,7 @@ export function CommunityEventsPage() {
 								</h1>
 								<p className="mt-4 text-lg text-zinc-400 md:max-w-[41.667%] lg:max-w-[83.333%]">
 									Join an event near you, crash your local TypeScript or AI
-									event with an Effect talk, or host your own meetup. We can
-									help you prepare and pull it off.
+									event with an Effect talk, or host your own meetup.
 								</p>
 								<div className="mt-8 flex flex-wrap items-stretch gap-4">
 									<FormButton />
