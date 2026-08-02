@@ -248,7 +248,7 @@ export function CommunityEventsPage() {
 									or host your own meetup. We can help you prepare and promote
 									it.
 								</p>
-								<div className="mt-8 flex flex-wrap items-center gap-4">
+								<div className="mt-8 flex flex-wrap items-stretch gap-4">
 									<FormButton />
 									<Button
 										href="#upcoming-events"
