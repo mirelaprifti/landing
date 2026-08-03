@@ -60,9 +60,10 @@ const GALLERY_COLUMNS: {
 }[][] = [
 	[
 		{
-			src: "/assets/events/milan-26-web.jpg",
-			alt: "Effect meetup in Milan",
-			caption: "// Milan '26",
+			src: "/assets/events/dillon-sf-24-web.jpg",
+			alt: "Effect meetup in San Francisco",
+			caption: "// SF '24",
+			stretch: true,
 		},
 		{
 			src: "/assets/events/vienna-26-2-web.jpg",
@@ -113,10 +114,9 @@ const GALLERY_COLUMNS: {
 			caption: "// Miami '26",
 		},
 		{
-			src: "/assets/events/dillon-sf-24-web.jpg",
-			alt: "Effect meetup in San Francisco",
-			caption: "// SF '24",
-			stretch: true,
+			src: "/assets/events/milan-26-web.jpg",
+			alt: "Effect meetup in Milan",
+			caption: "// Milan '26",
 		},
 	],
 ];
