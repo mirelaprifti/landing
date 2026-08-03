@@ -577,7 +577,7 @@ export function CommunityEventsPage() {
 											target="_blank"
 											rel="noopener noreferrer"
 											style={{ "--brand": channel.color } as CSSProperties}
-											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-zinc-600"
+											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-600"
 										>
 											<div
 												className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md"
@@ -596,7 +596,7 @@ export function CommunityEventsPage() {
 												<h3 className="text-base font-semibold text-white">
 													{channel.title}
 												</h3>
-												<p className="mt-1 text-sm leading-relaxed text-zinc-400">
+												<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 													{channel.description}
 												</p>
 											</div>
