@@ -147,6 +147,12 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 ];
 
+// X accounts featured in the "Stay connected" section
+const X_ACCOUNTS: { handle: string; note: string }[] = [
+	{ handle: "EffectTS_", note: "Official" },
+	{ handle: "MichaelArnaldi", note: "Creator of Effect" },
+];
+
 // Luma event ids for the "Upcoming events" embeds
 const UPCOMING_EVENTS: string[] = [
 	"evt-dD8Ky9OvDPnU2ln", // Effect Office Hours 40
@@ -513,6 +519,78 @@ export function CommunityEventsPage() {
 						</div>
 					</div>
 				</section>
+				{/* Stay connected */}
+				<section className="border-t border-zinc-800 py-24 md:pt-40">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+							// Stay connected
+						</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+							Join the conversation
+						</h2>
+
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+							{/* Discord */}
+							<a
+								href="https://discord.gg/effect-ts"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="group flex flex-col rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-600 md:p-8"
+							>
+								<i
+									className="ri-discord-fill text-2xl text-zinc-400"
+									aria-hidden="true"
+								/>
+								<h3 className="mt-4 text-lg font-semibold text-white">
+									A thriving Discord community
+								</h3>
+								<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+									Effect developers sharing questions, patterns, and production
+									stories every day.
+								</p>
+								<span className="mt-6 inline-flex items-center gap-1 font-mono text-sm text-zinc-400 transition-colors group-hover:text-white">
+									discord.gg/effect-ts
+									<Icon name="arrow-up-right" aria-hidden="true" />
+								</span>
+							</a>
+
+							{/* X accounts */}
+							<div className="flex flex-col rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 md:p-8">
+								<i
+									className="ri-twitter-x-fill text-2xl text-zinc-400"
+									aria-hidden="true"
+								/>
+								<h3 className="mt-4 text-lg font-semibold text-white">
+									Who to follow on X
+								</h3>
+								<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+									News, releases, and Effect takes straight from the source.
+								</p>
+								<ul className="mt-6 flex flex-wrap gap-2">
+									{X_ACCOUNTS.map((account) => (
+										<li key={account.handle}>
+											<a
+												href={`https://x.com/${account.handle}`}
+												target="_blank"
+												rel="noopener noreferrer"
+												title={account.note}
+												className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
+											>
+												@{account.handle}
+												<Icon
+													name="arrow-up-right"
+													className="text-zinc-600"
+													aria-hidden="true"
+												/>
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				{/* Final CTA */}
 				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:pt-40">
 					{/* Grid background — vertical lines */}
