@@ -589,7 +589,7 @@ export function CommunityEventsPage() {
 												<h3 className="text-base font-semibold text-white">
 													{channel.title}
 												</h3>
-												<p className="mt-3 text-sm leading-relaxed text-zinc-400">
+												<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 													{channel.description}
 												</p>
 											</div>
