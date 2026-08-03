@@ -40,7 +40,7 @@ const text = {
 	/** Standard body copy. */
 	body: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400",
 	/** Card body copy — sits under a card title with mt-1. */
-	cardBody: "mt-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400",
+	cardBody: "mt-1 text-sm leading-normal text-zinc-600 dark:text-zinc-400",
 	/** Micro label / caption — timestamps, figure captions, meta rows. */
 	micro:
 		"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
