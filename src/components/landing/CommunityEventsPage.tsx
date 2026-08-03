@@ -150,7 +150,6 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 // X accounts featured in the "Stay connected" section
 const X_ACCOUNTS: { handle: string; note: string }[] = [
 	{ handle: "EffectTS_", note: "Official" },
-	{ handle: "MichaelArnaldi", note: "Creator of Effect" },
 ];
 
 // Luma event ids for the "Upcoming events" embeds
@@ -561,7 +560,7 @@ export function CommunityEventsPage() {
 									aria-hidden="true"
 								/>
 								<h3 className="mt-4 text-lg font-semibold text-white">
-									Who to follow on X
+									Follow Effect on X
 								</h3>
 								<p className="mt-3 text-sm leading-relaxed text-zinc-400">
 									News, releases, and Effect takes straight from the source.
