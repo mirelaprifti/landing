@@ -585,7 +585,7 @@ export function CommunityEventsPage() {
 													aria-hidden="true"
 												/>
 											</div>
-											<div className="flex flex-col">
+											<div className="flex flex-col justify-center">
 												<h3 className="text-base font-semibold text-white">
 													{channel.title}
 												</h3>
