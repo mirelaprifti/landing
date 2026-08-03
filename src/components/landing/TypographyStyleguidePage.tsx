@@ -39,8 +39,8 @@ const text = {
 	smallHeading: "text-base font-semibold text-zinc-900 dark:text-white",
 	/** Standard body copy. */
 	body: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400",
-	/** Card body copy — sits under a card title with mt-3. */
-	cardBody: "mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400",
+	/** Card body copy — sits under a card title with mt-2. */
+	cardBody: "mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400",
 	/** Micro label / caption — timestamps, figure captions, meta rows. */
 	micro:
 		"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
@@ -65,7 +65,7 @@ const TYPE_SCALE = [
 
 const SPACING_STEPS = [
 	{ label: "mb-3", px: 12, use: "eyebrow → section title" },
-	{ label: "mt-3", px: 12, use: "card title → card body" },
+	{ label: "mt-2", px: 8, use: "card title → card body" },
 	{ label: "mt-4", px: 16, use: "title → lede / body" },
 	{ label: "p-6 / gap-6", px: 24, use: "card padding, card grids" },
 	{ label: "mb-12", px: 48, use: "section header → content" },
@@ -310,7 +310,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Card body"
-								note="Copy inside cards, one size down, mt-3 below the card title."
+								note="Copy inside cards, one size down, mt-2 below the card title."
 								classes={text.cardBody}
 							>
 								<p className={`${text.cardBody} mt-0!`}>
