@@ -150,6 +150,8 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 // Channels featured in the "Stay connected" section
 const CHANNELS: {
 	icon: string;
+	/** Brand color for the icon tile */
+	color: string;
 	title: string;
 	description: string;
 	href: string;
@@ -157,6 +159,7 @@ const CHANNELS: {
 }[] = [
 	{
 		icon: "ri-discord-fill",
+		color: "#5865F2",
 		title: "A thriving Discord community",
 		description:
 			"Effect developers sharing questions, patterns, and production stories every day.",
@@ -165,6 +168,7 @@ const CHANNELS: {
 	},
 	{
 		icon: "ri-twitter-x-fill",
+		color: "#FFFFFF",
 		title: "Follow Effect on X",
 		description: "News, releases, and Effect takes straight from the source.",
 		href: "https://x.com/EffectTS_",
@@ -172,6 +176,7 @@ const CHANNELS: {
 	},
 	{
 		icon: "ri-youtube-fill",
+		color: "#FF0000",
 		title: "Effect on YouTube",
 		description: "Talks, workshops, and office hours recordings.",
 		href: "https://www.youtube.com/@effect-ts",
@@ -491,7 +496,7 @@ export function CommunityEventsPage() {
 											{idea.label}
 											<Icon
 												name="arrow-up-right"
-												className="ml-auto shrink-0 text-zinc-600 transition-colors group-hover:text-white"
+												className="ml-auto shrink-0 self-center text-zinc-600 transition-colors group-hover:text-white"
 												aria-hidden="true"
 											/>
 										</a>
@@ -570,12 +575,15 @@ export function CommunityEventsPage() {
 											href={channel.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group flex items-start gap-4 rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-zinc-600"
+											className="group flex gap-4 rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-zinc-600"
 										>
-											<i
-												className={`${channel.icon} text-2xl text-zinc-400`}
-												aria-hidden="true"
-											/>
+											<div className="flex w-14 shrink-0 items-center justify-center self-stretch rounded-md bg-zinc-900">
+												<i
+													className={`${channel.icon} text-2xl`}
+													style={{ color: channel.color }}
+													aria-hidden="true"
+												/>
+											</div>
 											<div className="flex flex-col">
 												<h3 className="text-base font-semibold text-white">
 													{channel.title}
