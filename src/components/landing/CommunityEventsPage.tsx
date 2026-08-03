@@ -178,7 +178,7 @@ const CHANNELS: {
 		icon: "ri-youtube-fill",
 		color: "#FF0000",
 		title: "Effect on YouTube",
-		description: "Talks, workshops, and office hours recordings.",
+		description: "Talks, workshops, and office hours livestreams.",
 		href: "https://www.youtube.com/@effect-ts",
 		linkLabel: "youtube.com/@effect-ts",
 	},
