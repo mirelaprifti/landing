@@ -185,12 +185,38 @@ const CHANNELS: {
 	},
 ];
 
-// Luma event ids for the "Upcoming events" embeds
-const UPCOMING_EVENTS: string[] = [
-	"evt-dD8Ky9OvDPnU2ln", // Effect Office Hours 40
-	// "evt-535bkJt5SOkkL7W", // Effect NYC #2 — hidden for now
-	// "evt-CIXBbu7ySP61MNP", // Effect San Francisco — hidden for now
-	"evt-IpTTFhOGblrQdoK", // Effect Warsaw #1
+// Upcoming events — details pulled from Luma (luma.com/effect-community).
+// Native cards instead of Luma embeds: their iframe paints its own opaque
+// background that can't be themed away.
+const UPCOMING_EVENTS: {
+	title: string;
+	date: string;
+	time: string;
+	location: string;
+	cover: string;
+	href: string;
+}[] = [
+	{
+		title: "Effect Office Hours 40 🔥",
+		date: "Wed, Aug 5",
+		time: "16:00 – 17:00 CEST",
+		location: "Online — YouTube",
+		cover:
+			"https://images.lumacdn.com/event-covers/6o/185e6cd4-c01c-4bfc-abb3-123c7eb0e031.png",
+		href: "https://luma.com/mvvriaf8",
+	},
+	{
+		title: "Effect Warsaw #1",
+		date: "Tue, Sep 15",
+		time: "18:00 – 20:30 CEST",
+		location: "Kolektyw3, Warsaw",
+		cover:
+			"https://images.lumacdn.com/uploads/cb/2bc25c67-80d6-407f-8aea-b9064647ef05.png",
+		href: "https://luma.com/29fn6spj",
+	},
+	// Hidden for now:
+	// Effect NYC #2 — Thu, Sep 24, 18:30 ET — 818 Greenwich St, NYC — https://luma.com/2e0qaazh
+	// Effect San Francisco — CodeRabbit, 201 Spear St, SF
 ];
 
 function FormButton({
@@ -385,15 +411,47 @@ export function CommunityEventsPage() {
 						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-							{UPCOMING_EVENTS.map((eventId) => (
-								<iframe
-									key={eventId}
-									src={`https://luma.com/embed/event/${eventId}/simple?lt=dark`}
-									title="Upcoming Effect community event"
-									className="h-[660px] w-full border border-zinc-800 bg-transparent"
-									allow="fullscreen; payment"
-									loading="lazy"
-								/>
+							{UPCOMING_EVENTS.map((event) => (
+								<a
+									key={event.href}
+									href={event.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group flex flex-col overflow-hidden border border-zinc-800 transition-colors hover:border-zinc-600"
+								>
+									{/* Cover */}
+									<div className="relative aspect-video overflow-hidden">
+										<img
+											src={event.cover}
+											alt=""
+											loading="lazy"
+											className="absolute inset-0 h-full w-full object-cover saturate-[0.85]"
+										/>
+										{/* Scrim — blends the cover into the dark page */}
+										<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+									</div>
+									{/* Details */}
+									<div className="flex flex-1 flex-col p-6">
+										<p className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
+											{event.date} · {event.time}
+										</p>
+										<h3 className="mt-3 text-lg font-semibold text-white">
+											{event.title}
+										</h3>
+										<p className="mt-3 flex items-center gap-2 text-sm leading-relaxed text-zinc-400">
+											<Icon name="map-pin" aria-hidden="true" />
+											{event.location}
+										</p>
+										<span className="mt-6 inline-flex items-center gap-2 self-start rounded-md border border-zinc-700 px-5 py-2.5 text-sm font-medium text-white transition-colors group-hover:border-zinc-500 group-hover:bg-zinc-800">
+											Register
+											<Icon
+												name="arrow-up-right"
+												className="text-base"
+												aria-hidden="true"
+											/>
+										</span>
+									</div>
+								</a>
 							))}
 						</div>
 					</div>
