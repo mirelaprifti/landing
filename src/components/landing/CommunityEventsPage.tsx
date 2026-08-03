@@ -147,9 +147,36 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 ];
 
-// X accounts featured in the "Stay connected" section
-const X_ACCOUNTS: { handle: string; note: string }[] = [
-	{ handle: "EffectTS_", note: "Official" },
+// Channels featured in the "Stay connected" section
+const CHANNELS: {
+	icon: string;
+	title: string;
+	description: string;
+	href: string;
+	linkLabel: string;
+}[] = [
+	{
+		icon: "ri-discord-fill",
+		title: "A thriving Discord community",
+		description:
+			"Effect developers sharing questions, patterns, and production stories every day.",
+		href: "https://discord.gg/effect-ts",
+		linkLabel: "discord.gg/effect-ts",
+	},
+	{
+		icon: "ri-twitter-x-fill",
+		title: "Follow Effect on X",
+		description: "News, releases, and Effect takes straight from the source.",
+		href: "https://x.com/EffectTS_",
+		linkLabel: "@EffectTS_",
+	},
+	{
+		icon: "ri-youtube-fill",
+		title: "Effect on YouTube",
+		description: "Talks, workshops, and office hours recordings.",
+		href: "https://www.youtube.com/@effect-ts",
+		linkLabel: "youtube.com/@effect-ts",
+	},
 ];
 
 // Luma event ids for the "Upcoming events" embeds
@@ -521,71 +548,51 @@ export function CommunityEventsPage() {
 				{/* Stay connected */}
 				<section className="border-t border-zinc-800 py-24 md:pt-40">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Stay connected
-						</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-							Join the conversation
-						</h2>
-
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-							{/* Discord */}
-							<a
-								href="https://discord.gg/effect-ts"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group flex flex-col rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-600 md:p-8"
-							>
-								<i
-									className="ri-discord-fill text-2xl text-zinc-400"
-									aria-hidden="true"
-								/>
-								<h3 className="mt-4 text-lg font-semibold text-white">
-									A thriving Discord community
-								</h3>
-								<p className="mt-3 text-sm leading-relaxed text-zinc-400">
-									Effect developers sharing questions, patterns, and production
-									stories every day.
+						<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+							{/* Left — section header, vertically centered against the cards */}
+							<div className="lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Stay connected
 								</p>
-								<span className="mt-6 inline-flex items-center gap-1 font-mono text-sm text-zinc-400 transition-colors group-hover:text-white">
-									discord.gg/effect-ts
-									<Icon name="arrow-up-right" aria-hidden="true" />
-								</span>
-							</a>
-
-							{/* X accounts */}
-							<div className="flex flex-col rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 md:p-8">
-								<i
-									className="ri-twitter-x-fill text-2xl text-zinc-400"
-									aria-hidden="true"
-								/>
-								<h3 className="mt-4 text-lg font-semibold text-white">
-									Follow Effect on X
-								</h3>
-								<p className="mt-3 text-sm leading-relaxed text-zinc-400">
-									News, releases, and Effect takes straight from the source.
+								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+									Join the conversation
+								</h2>
+								<p className="mt-4 text-lg leading-normal text-zinc-400">
+									Where the community hangs out between events
 								</p>
-								<ul className="mt-6 flex flex-wrap gap-2">
-									{X_ACCOUNTS.map((account) => (
-										<li key={account.handle}>
-											<a
-												href={`https://x.com/${account.handle}`}
-												target="_blank"
-												rel="noopener noreferrer"
-												title={account.note}
-												className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
-											>
-												@{account.handle}
-												<Icon
-													name="arrow-up-right"
-													className="text-zinc-600"
-													aria-hidden="true"
-												/>
-											</a>
-										</li>
-									))}
-								</ul>
 							</div>
+
+							{/* Right — channel cards */}
+							<ul className="flex flex-col gap-3 lg:col-span-6">
+								{CHANNELS.map((channel) => (
+									<li key={channel.href}>
+										<a
+											href={channel.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="group flex items-start gap-4 rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-zinc-600"
+										>
+											<i
+												className={`${channel.icon} text-2xl text-zinc-400`}
+												aria-hidden="true"
+											/>
+											<div className="flex flex-col">
+												<h3 className="text-base font-semibold text-white">
+													{channel.title}
+												</h3>
+												<p className="mt-1 text-sm leading-relaxed text-zinc-400">
+													{channel.description}
+												</p>
+											</div>
+											<Icon
+												name="arrow-up-right"
+												className="ml-auto shrink-0 text-zinc-600 transition-colors group-hover:text-white"
+												aria-hidden="true"
+											/>
+										</a>
+									</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				</section>
