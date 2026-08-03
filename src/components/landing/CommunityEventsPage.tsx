@@ -4,6 +4,7 @@ import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import type { CSSProperties } from "react";
 
 const FORM_URL =
 	"https://docs.google.com/forms/d/e/1FAIpQLSdiqkoogZ8a2h10oF2ANRTDE_m9l-huR8cpoedbMpjAd29tNw/viewform";
@@ -575,9 +576,25 @@ export function CommunityEventsPage() {
 											href={channel.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group flex gap-4 rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-zinc-600"
+											style={{ "--brand": channel.color } as CSSProperties}
+											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-(--brand)"
 										>
-											<div className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md bg-zinc-900">
+											{/* Brand glow — breathes in from the icon side on hover */}
+											<div
+												aria-hidden="true"
+												className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+												style={{
+													background:
+														"radial-gradient(120% 140% at 0% 50%, color-mix(in srgb, var(--brand) 10%, transparent) 0%, transparent 60%)",
+												}}
+											/>
+											<div
+												className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md"
+												style={{
+													backgroundColor:
+														"color-mix(in srgb, var(--brand) 12%, transparent)",
+												}}
+											>
 												<i
 													className={`${channel.icon} text-2xl`}
 													style={{ color: channel.color }}
