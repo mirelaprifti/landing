@@ -577,7 +577,7 @@ export function CommunityEventsPage() {
 											rel="noopener noreferrer"
 											className="group flex gap-4 rounded-md border border-zinc-800 bg-[#0C0C0E] p-5 transition-colors hover:border-zinc-600"
 										>
-											<div className="flex w-14 shrink-0 items-center justify-center self-stretch rounded-md bg-zinc-900">
+											<div className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md bg-zinc-900">
 												<i
 													className={`${channel.icon} text-2xl`}
 													style={{ color: channel.color }}
