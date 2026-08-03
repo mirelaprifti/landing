@@ -558,7 +558,7 @@ export function CommunityEventsPage() {
 									Join the conversation
 								</h2>
 								<p className="mt-4 text-lg leading-normal text-zinc-400">
-									Where the community hangs out between events
+									Where the Effect community hangs out online
 								</p>
 							</div>
 
