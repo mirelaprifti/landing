@@ -4,7 +4,6 @@ import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import type { CSSProperties } from "react";
 
 const FORM_URL =
 	"https://docs.google.com/forms/d/e/1FAIpQLSdiqkoogZ8a2h10oF2ANRTDE_m9l-huR8cpoedbMpjAd29tNw/viewform";
@@ -577,16 +576,9 @@ export function CommunityEventsPage() {
 											href={channel.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											style={{ "--brand": channel.color } as CSSProperties}
 											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-600"
 										>
-											<div
-												className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md"
-												style={{
-													backgroundColor:
-														"color-mix(in srgb, var(--brand) 12%, transparent)",
-												}}
-											>
+											<div className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md bg-zinc-800">
 												<i
 													className={`${channel.icon} text-2xl`}
 													style={{ color: channel.color }}
