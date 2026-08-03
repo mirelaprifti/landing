@@ -190,6 +190,7 @@ const CHANNELS: {
 // background that can't be themed away.
 const UPCOMING_EVENTS: {
 	title: string;
+	host: string;
 	date: string;
 	time: string;
 	location: string;
@@ -198,6 +199,7 @@ const UPCOMING_EVENTS: {
 }[] = [
 	{
 		title: "Effect Office Hours 40 🔥",
+		host: "Effect Community",
 		date: "Wed, Aug 5",
 		time: "16:00 – 17:00 CEST",
 		location: "Online — YouTube",
@@ -207,6 +209,7 @@ const UPCOMING_EVENTS: {
 	},
 	{
 		title: "Effect Warsaw #1",
+		host: "Effect Warsaw",
 		date: "Tue, Sep 15",
 		time: "18:00 – 20:30 CEST",
 		location: "Kolektyw3, Warsaw",
@@ -420,7 +423,7 @@ export function CommunityEventsPage() {
 									className="group flex flex-col overflow-hidden border border-zinc-800 transition-colors hover:border-zinc-600"
 								>
 									{/* Cover */}
-									<div className="relative aspect-video overflow-hidden">
+									<div className="relative aspect-square overflow-hidden">
 										<img
 											src={event.cover}
 											alt=""
@@ -433,11 +436,14 @@ export function CommunityEventsPage() {
 									{/* Details */}
 									<div className="flex flex-1 flex-col p-6">
 										<p className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
-											{event.date} · {event.time}
+											{event.date} · {event.time} · Free
 										</p>
 										<h3 className="mt-3 text-lg font-semibold text-white">
 											{event.title}
 										</h3>
+										<p className="mt-1 text-sm text-zinc-500">
+											Hosted by {event.host}
+										</p>
 										<p className="mt-3 flex items-center gap-2 text-sm leading-relaxed text-zinc-400">
 											<Icon name="map-pin" aria-hidden="true" />
 											{event.location}
