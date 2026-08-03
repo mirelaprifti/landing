@@ -195,6 +195,8 @@ const UPCOMING_EVENTS: {
 	time: string;
 	location: string;
 	cover: string;
+	/** True when the event has no banner art and `cover` is just the calendar logo */
+	coverIsLogo?: boolean;
 	href: string;
 }[] = [
 	{
@@ -215,6 +217,7 @@ const UPCOMING_EVENTS: {
 		location: "Kolektyw3, Warsaw",
 		cover:
 			"https://images.lumacdn.com/uploads/cb/2bc25c67-80d6-407f-8aea-b9064647ef05.png",
+		coverIsLogo: true,
 		href: "https://luma.com/29fn6spj",
 	},
 	// Hidden for now:
@@ -423,12 +426,16 @@ export function CommunityEventsPage() {
 									className="group flex flex-col overflow-hidden border border-zinc-800 transition-colors hover:border-zinc-600"
 								>
 									{/* Cover */}
-									<div className="relative aspect-square overflow-hidden">
+									<div className="relative flex aspect-square items-center justify-center overflow-hidden bg-[#0C0C0E]">
 										<img
 											src={event.cover}
 											alt=""
 											loading="lazy"
-											className="absolute inset-0 h-full w-full object-cover saturate-[0.85]"
+											className={
+												event.coverIsLogo
+													? "w-2/5 rounded-2xl"
+													: "absolute inset-0 h-full w-full object-cover saturate-[0.85]"
+											}
 										/>
 										{/* Scrim — blends the cover into the dark page */}
 										<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
