@@ -607,7 +607,7 @@ export function CommunityEventsPage() {
 				</section>
 
 				{/* Final CTA */}
-				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:pt-40">
+				<section className="relative overflow-hidden border-t border-zinc-800 py-24 md:py-32">
 					{/* Grid background — vertical lines */}
 					<div
 						className="pointer-events-none absolute inset-0"
@@ -622,12 +622,12 @@ export function CommunityEventsPage() {
 					/>
 					{/* Single horizontal line — sits on the CTA heading's first-line baseline */}
 					<div
-						className="pointer-events-none absolute inset-0"
+						className="pointer-events-none absolute inset-0 hidden md:block"
 						style={{
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 233px",
+							backgroundPosition: "0px 201px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
