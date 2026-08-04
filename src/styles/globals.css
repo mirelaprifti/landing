@@ -21,10 +21,11 @@
 	color: inherit !important;
 }
 
-/* Code token palette — one scheme for every snippet on the site.
-   Values match Shiki's github-light / github-dark, the themes the API
-   reference renders with, so hand-authored snippets are indistinguishable
-   from real highlighted ones. */
+/* GitHub code color scheme — the one palette for every snippet on the site.
+   Token values are copied from Shiki's github-light / github-dark themes,
+   which the API reference renders with; hand-authored snippets using these
+   tok-* classes are indistinguishable from real Shiki output. If the scheme
+   ever changes, change it here AND the shikiThemes in the API pages. */
 :root {
 	--tok-keyword: #cf222e;
 	--tok-string: #0a3069;

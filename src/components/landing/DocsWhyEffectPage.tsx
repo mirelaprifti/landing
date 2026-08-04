@@ -32,8 +32,9 @@ const TS_KEYWORDS = new Set([
 const TOKEN_PATTERN =
 	/(\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)|\b(\d+(?:\.\d+)?)\b|\b([A-Za-z_$][\w$]*)\b/gm;
 
-/** Minimal TS highlighter emitting the site-wide tok-* palette (globals.css),
- *  so docs snippets match the Shiki github theme used on the API pages. */
+/** Minimal TS highlighter emitting the GitHub color scheme via the tok-*
+ *  classes (globals.css), so docs snippets match the Shiki github-light/dark
+ *  rendering used on the API pages. */
 function highlightTs(code: string): React.ReactNode[] {
 	const out: React.ReactNode[] = [];
 	let last = 0;

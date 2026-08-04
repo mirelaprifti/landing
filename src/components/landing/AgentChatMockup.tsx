@@ -1,4 +1,4 @@
-// Token classes mirror the editorial syntax treatment used in the Playground mock
+// GitHub color scheme — tok-* classes from globals.css (Shiki github-light/dark values).
 const tk = {
 	kw: "tok-keyword",
 	id: "tok-fg",

@@ -33,7 +33,7 @@ const TREE: TreeNode[] = [
 	{ type: "file", name: "tsconfig.json" },
 ];
 
-// Token classes — restrained 2-accent palette (indigo for keywords, emerald for strings)
+// GitHub color scheme — tok-* classes from globals.css (Shiki github-light/dark values).
 const tokenClass = {
 	kw: "tok-keyword", // keywords
 	id: "tok-fg", // identifiers / foreground

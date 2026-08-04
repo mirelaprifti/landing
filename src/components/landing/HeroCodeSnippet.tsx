@@ -1,4 +1,4 @@
-// Restrained 2-accent palette — indigo for keywords, emerald for strings.
+// GitHub color scheme — tok-* classes from globals.css (Shiki github-light/dark values).
 const tk = {
 	kw: "tok-keyword",
 	id: "tok-fg",
