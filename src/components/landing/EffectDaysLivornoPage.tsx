@@ -7,6 +7,8 @@ import { Navigation } from "./Navigation";
 
 /* Canonical text styles copied verbatim from TypographyStyleguidePage (/styleguide). */
 const text = {
+	pageTitle:
+		"leading-[1.1] text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl dark:text-white",
 	eyebrow:
 		"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400",
 	sectionTitle:
@@ -124,63 +126,6 @@ function CornerBrackets({ className = "" }: { className?: string }) {
 	);
 }
 
-function HeroTerminal() {
-	return (
-		<div className="relative w-full max-w-xl overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900/70 shadow-2xl shadow-emerald-500/5 backdrop-blur-sm">
-			{/* Title bar */}
-			<div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-				<span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-				<span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-				<span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-				<span className="ml-3 font-mono text-xs text-zinc-500">
-					effect-days-2026.ts
-				</span>
-			</div>
-			{/* Code */}
-			<pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed md:text-sm">
-				<code>
-					<span className="text-violet-400">import</span>
-					<span className="text-zinc-200">{" { Effect } "}</span>
-					<span className="text-violet-400">from</span>
-					<span className="text-emerald-400"> "effect"</span>
-					{"\n\n"}
-					<span className="text-violet-400">const</span>
-					<span className="text-sky-300"> effectDays</span>
-					<span className="text-zinc-400"> = Effect.</span>
-					<span className="text-zinc-200">gen</span>
-					<span className="text-zinc-400">(</span>
-					<span className="text-violet-400">function*</span>
-					<span className="text-zinc-400"> () {"{"}</span>
-					{"\n  "}
-					<span className="text-violet-400">yield*</span>
-					<span className="text-zinc-200"> Workshop.fullDay</span>
-					<span className="text-zinc-600">{"      // Thu, Dec 10"}</span>
-					{"\n  "}
-					<span className="text-violet-400">yield*</span>
-					<span className="text-zinc-200"> Conference.talks</span>
-					<span className="text-zinc-600">{"      // Fri, Dec 11"}</span>
-					{"\n  "}
-					<span className="text-violet-400">yield*</span>
-					<span className="text-zinc-200"> Community.day</span>
-					<span className="text-zinc-600">{"         // Sat, Dec 12"}</span>
-					{"\n  "}
-					<span className="text-violet-400">return</span>
-					<span className="text-emerald-400"> "see you in Livorno"</span>
-					{"\n"}
-					<span className="text-zinc-400">{"}"})</span>
-					{"\n\n"}
-					<span className="text-zinc-600">{"// status: "}</span>
-					<span className="text-emerald-400">Ready</span>
-					<span className="text-zinc-600">{"<"}</span>
-					<span className="text-zinc-500">Community</span>
-					<span className="text-zinc-600">{">"}</span>
-					<span className="animate-pulse text-zinc-200"> ▊</span>
-				</code>
-			</pre>
-		</div>
-	);
-}
-
 export function EffectDaysLivornoPage() {
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white">
@@ -230,15 +175,13 @@ export function EffectDaysLivornoPage() {
 								<p className={text.eyebrow}>
 									{"// "}3rd edition · non-profit · community-driven
 								</p>
-								<h1 className="leading-[1.05] text-5xl font-bold tracking-tight text-white md:text-7xl">
-									Effect Days
-								</h1>
-								<p className="mt-4 font-mono text-lg font-medium tracking-wide text-zinc-300 md:text-xl">
+								<h1 className={text.pageTitle}>Effect Days</h1>
+								<p className="mt-4 font-mono text-sm font-medium tracking-wider text-zinc-300 uppercase">
 									<span className="text-emerald-400">Livorno, Italy</span>
-									{"  ·  "}
+									{" · "}
 									<span>Dec 10–12, 2026</span>
 								</p>
-								<p className="mt-6 max-w-lg text-lg leading-relaxed text-zinc-400">
+								<p className={text.lede}>
 									The Effect & TypeScript developers conference. Three days of
 									workshops, talks, and community on the Tuscan coast.
 								</p>
@@ -266,9 +209,22 @@ export function EffectDaysLivornoPage() {
 								</div>
 							</div>
 
-							{/* Right side - the conference as a program */}
+							{/* Right side - photo from the Livorno edition */}
 							<div className="w-full flex-1 lg:flex lg:justify-end">
-								<HeroTerminal />
+								<div className="relative w-full max-w-xl p-3">
+									<CornerBrackets />
+									<div className="relative overflow-hidden rounded-lg">
+										<img
+											src={getAssetPath("/assets/images/ed-25-2.png")}
+											alt="The Effect community at Effect Days 2025 in Livorno"
+											className="aspect-4/3 h-full w-full object-cover"
+										/>
+										<div className="absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+										<span className="absolute bottom-3 left-3 border border-white/10 bg-zinc-950/60 px-2.5 py-1 font-mono text-xs font-medium text-white/90 uppercase backdrop-blur-sm">
+											Effect Days 2025 · Livorno
+										</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -507,19 +463,6 @@ export function EffectDaysLivornoPage() {
 									>
 										Learn about available discounts at contact@effectful.co.
 									</Link>
-								</p>
-								<p className="flex shrink-0 items-center gap-2 md:text-right">
-									<i className="ri-discord-fill text-white" />
-									<span>
-										<Link
-											href="https://discord.gg/effect-ts"
-											variant="inline"
-											className="underline-offset-2"
-										>
-											Join the Discord
-										</Link>{" "}
-										to be the first to know when tickets go live.
-									</span>
 								</p>
 							</div>
 						</div>
@@ -845,10 +788,10 @@ export function EffectDaysLivornoPage() {
 							<p className="font-mono text-sm font-medium tracking-[0.25em] text-zinc-500 uppercase">
 								Dec 10–12, 2026 · Livorno, Italy
 							</p>
-							<h2 className="leading-tighter mt-4 text-3xl font-bold text-white md:text-5xl">
-								await effectDays
+							<h2 className={`${text.sectionTitle} mt-4`}>
+								See you in Livorno
 							</h2>
-							<p className="mx-auto mt-4 max-w-2xl text-xl text-zinc-400">
+							<p className={`${text.lede} mx-auto`}>
 								Three days with the Effect community on the Tuscan coast.
 							</p>
 							<div className="mt-8">
