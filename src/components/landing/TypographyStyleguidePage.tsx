@@ -77,7 +77,7 @@ const SPACING_STEPS = [
 function ClassBlock({ classes }: { classes: string }) {
 	return (
 		<pre className="mt-5 rounded-md bg-zinc-100 px-4 py-3 whitespace-pre-wrap dark:bg-zinc-900">
-			<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+			<code className="font-mono text-sm leading-relaxed wrap-break-word text-green-700 dark:text-green-400">
 				{classes}
 			</code>
 		</pre>
@@ -544,6 +544,10 @@ export function TypographyStyleguidePage() {
 										<li>
 											Copy the container and section rhythm strings verbatim.
 										</li>
+										<li>
+											Color belongs to code snippets only — emerald inline
+											chips, green code-block text; all other text stays zinc.
+										</li>
 									</ul>
 								</div>
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
@@ -737,7 +741,7 @@ Effect.runPromise(program)`}</code>
 						>
 							<SpecRow
 								title="Docs article body"
-								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as soft chips; code blocks bordered and soft-filled like the blog."
+								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as emerald chips; code blocks bordered and soft-filled with green code text."
 								classes={DOCS_ARTICLE_CLASS}
 							>
 								<div className={DOCS_ARTICLE_CLASS}>
