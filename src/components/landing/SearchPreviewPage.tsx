@@ -6,13 +6,19 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * Design preview for the docs/API search modal — not wired to a real
  * search backend.
  *
- * Three source-filtering UX options, switchable from the page header:
+ * Five source-filtering UX options, switchable from the page header:
  * - A · Scope tabs: a tab row under the input (All / Docs / API / Blog),
  *   each with a result count; the list is filtered to the active tab.
  * - B · Grouped list: no filtering — results are always grouped under
  *   source section headers so every source stays visible at once.
  * - C · Scope dropdown: a compact "Everywhere ▾" menu inside the input
  *   row; saves vertical space, scope is chosen from a popover.
+ * - D · View all: the federated pattern (GitHub docs, Algolia's
+ *   recommendation) — top 2 per source with a "View all N" drill-in
+ *   per section and an "All results" row to back out.
+ * - E · Scope tokens: Slack/Notion-style — an in:docs token rendered
+ *   as a removable chip in the input scopes the query; composable
+ *   with future filters (version, package).
  *
  * Shared decisions across variants:
  * - Source tags share one filled-chip shape; the API tag carries the
@@ -25,7 +31,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   rows, preserving page→subheading grouping.
  */
 
-type Variant = "tabs" | "grouped" | "dropdown";
+type Variant = "tabs" | "grouped" | "dropdown" | "viewall" | "tokens";
 
 const VARIANTS: { value: Variant; label: string; blurb: string }[] = [
 	{
@@ -45,6 +51,18 @@ const VARIANTS: { value: Variant; label: string; blurb: string }[] = [
 		label: "C · Scope dropdown",
 		blurb:
 			"Compact “Everywhere ▾” menu in the input row; scope picked from a popover, zero extra chrome.",
+	},
+	{
+		value: "viewall",
+		label: "D · View all",
+		blurb:
+			"Federated pattern (GitHub docs, Algolia): top 2 per source, “View all” drills into a scoped list, “All results” backs out.",
+	},
+	{
+		value: "tokens",
+		label: "E · Scope tokens",
+		blurb:
+			"Slack/Notion-style: an in:docs token in the input scopes the query — removable chip, composable with future filters.",
 	},
 ];
 
@@ -439,6 +457,20 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
 					aria-hidden="true"
 				/>
+				{/* E: active scope rendered as a removable token before the query */}
+				{variant === "tokens" && scope !== "all" && (
+					<span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-zinc-200 py-0.5 pr-1 pl-2 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
+						in:{scope}
+						<button
+							type="button"
+							aria-label={`Remove in:${scope} filter`}
+							onClick={() => setScope("all")}
+							className="flex h-4 w-4 items-center justify-center rounded text-zinc-500 transition-colors hover:bg-zinc-300 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-white"
+						>
+							<Icon name="x" className="text-[10px]" aria-hidden="true" />
+						</button>
+					</span>
+				)}
 				<input
 					type="search"
 					aria-label="Search the docs"
@@ -460,6 +492,28 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 			{/* A: scope tabs narrow the list to a single source */}
 			{variant === "tabs" && (
 				<ScopeTabs scope={scope} onScopeChange={setScope} />
+			)}
+
+			{/* E: token suggestions until a scope token is applied */}
+			{variant === "tokens" && scope === "all" && (
+				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
+					<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+						Narrow:
+					</span>
+					{SCOPES.filter((s) => s.value !== "all").map(({ value }) => (
+						<button
+							key={value}
+							type="button"
+							onClick={() => setScope(value)}
+							className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
+						>
+							in:{value}
+							<span className="text-zinc-400 dark:text-zinc-500">
+								{scopeCount(value)}
+							</span>
+						</button>
+					))}
+				</div>
 			)}
 
 			{/* Results */}
@@ -490,8 +544,62 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 							);
 						})}
 					</div>
+				) : variant === "viewall" && scope === "all" ? (
+					// D: federated overview — best hit per source + "View all N"
+					<div className="space-y-4">
+						{GROUPS.map(({ source, label }) => {
+							const grouped = RESULTS.filter((r) => r.source === source);
+							if (grouped.length === 0) return null;
+							return (
+								<section key={source} aria-label={label}>
+									<div className="flex items-center justify-between px-1 pb-2">
+										<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+											{label}
+										</p>
+										{grouped.length > 1 && (
+											<button
+												type="button"
+												onClick={() => setScope(source)}
+												className="inline-flex items-center gap-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											>
+												View all {grouped.length}
+												<Icon
+													name="chevron-right"
+													className="text-[10px]"
+													aria-hidden="true"
+												/>
+											</button>
+										)}
+									</div>
+									<div className="space-y-2">
+										{grouped.slice(0, 1).map((result) => (
+											<ResultCard
+												key={`${result.path}-${result.title}`}
+												result={result}
+											/>
+										))}
+									</div>
+								</section>
+							);
+						})}
+					</div>
 				) : (
 					<div className="space-y-2">
+						{/* D scoped view: back row above the filtered list */}
+						{variant === "viewall" && (
+							<button
+								type="button"
+								onClick={() => setScope("all")}
+								className="inline-flex items-center gap-1 px-1 pb-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								<Icon
+									name="chevron-left"
+									className="text-[10px]"
+									aria-hidden="true"
+								/>
+								All results
+							</button>
+						)}
 						{visible.map((result) => (
 							<ResultCard
 								key={`${result.path}-${result.title}`}
@@ -517,9 +625,19 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						<Kbd>↑</Kbd>
 						<Kbd>↓</Kbd> navigate
 					</span>
-					{variant !== "grouped" && (
+					{(variant === "tabs" || variant === "dropdown") && (
 						<span className="flex items-center gap-1.5">
 							<Kbd>⇥</Kbd> scope
+						</span>
+					)}
+					{variant === "tokens" && scope !== "all" && (
+						<span className="flex items-center gap-1.5">
+							<Kbd>⌫</Kbd> clear scope
+						</span>
+					)}
+					{variant === "viewall" && scope !== "all" && (
+						<span className="flex items-center gap-1.5">
+							<Kbd>⌫</Kbd> back
 						</span>
 					)}
 					<span className="flex items-center gap-1.5">
