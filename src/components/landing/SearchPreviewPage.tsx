@@ -10,14 +10,14 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * (scope-tabs, grouped-list, and scope-dropdown variants were explored
  * and cut — tabs/grouping are subsumed by "View all", and a dropdown
  * hides the filter):
- * - B · View all: the federated pattern (GitHub docs, Algolia's
+ * - A · View all: the federated pattern (GitHub docs, Algolia's
  *   recommendation) — top 2 per source with a "View all N" drill-in
  *   per section and an "All results" row to back out.
- * - C · Scope tokens: Slack/Notion-style — an in:docs token rendered
+ * - B · Scope tokens: Slack/Notion-style — an in:docs token rendered
  *   as a removable chip in the input scopes the query; composable
  *   with future filters (version, package).
- * - D · Merged (B+C): one state model, two entry points — the overview
- *   is B's federated list, but "View all" applies C's in:source token;
+ * - C · Merged (A+B): one state model, two entry points — the overview
+ *   is A's federated list, but "View all" applies B's in:source token;
  *   removing the chip (× or ⌫) returns to the overview with the query
  *   preserved.
  *
@@ -38,9 +38,9 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 type Variant = "viewall" | "tokens" | "merged";
 
 const VARIANTS: { value: Variant; label: string }[] = [
-	{ value: "viewall", label: "B · View all" },
-	{ value: "tokens", label: "C · Scope tokens" },
-	{ value: "merged", label: "D · Merged (B+C)" },
+	{ value: "viewall", label: "A" },
+	{ value: "tokens", label: "B" },
+	{ value: "merged", label: "C" },
 ];
 
 type SearchSource = "api" | "docs" | "blog";
@@ -411,7 +411,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
 					aria-hidden="true"
 				/>
-				{/* C + D: active scope rendered as a removable token before the query */}
+				{/* B + C: active scope rendered as a removable token before the query */}
 				{(variant === "tokens" || variant === "merged") && scope !== "all" && (
 					<span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-zinc-200 py-0.5 pr-1 pl-2 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 						in:{scope}
@@ -440,7 +440,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				</button>
 			</div>
 
-			{/* C: token suggestions until a scope token is applied */}
+			{/* B: token suggestions until a scope token is applied */}
 			{variant === "tokens" && scope === "all" && (
 				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
 					{SCOPES.filter((s) => s.value !== "all").map(({ value }) => (
@@ -483,7 +483,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				</a>
 
 				{(variant === "viewall" || variant === "merged") && scope === "all" ? (
-					// B + D: federated overview — top hits per source + "View all N"
+					// A + C: federated overview — top hits per source + "View all N"
 					<div className="space-y-4">
 						{GROUPS.map(({ source, label }) => {
 							const grouped = RESULTS.filter((r) => r.source === source);
@@ -523,7 +523,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					</div>
 				) : (
 					<div className="space-y-2">
-						{/* B + D scoped view: back row above the filtered list */}
+						{/* A + C scoped view: back row above the filtered list */}
 						{(variant === "viewall" || variant === "merged") && (
 							<button
 								type="button"
