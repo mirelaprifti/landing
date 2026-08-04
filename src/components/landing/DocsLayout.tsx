@@ -5,6 +5,15 @@ import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { Icon } from "@/components/ui/Icon";
 
+/**
+ * Shared prose configuration for docs article bodies (also used by /styleguide).
+ * Mirrors the official effect.website docs: Tailwind Typography at
+ * prose-sm → md:prose-base, semibold tracking-tight headings, sky links,
+ * translucent inline-code chips, and bordered dark code blocks.
+ */
+export const DOCS_PROSE_CLASS =
+	"prose prose-zinc dark:prose-invert prose-sm md:prose-base max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-sky-400 prose-a:no-underline [&_a:hover]:underline prose-code:bg-black/10 prose-code:text-zinc-700 dark:prose-code:bg-white/10 dark:prose-code:text-zinc-200 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-700";
+
 type NavItem = { slug: string; label: string };
 type NavSection = { title: string; items: NavItem[] };
 

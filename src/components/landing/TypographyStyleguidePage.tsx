@@ -2,6 +2,7 @@ import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { BLOG_PROSE_CLASS } from "./BlogPostPage";
+import { DOCS_PROSE_CLASS } from "./DocsLayout";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -138,6 +139,7 @@ const NAV_ITEMS = [
 	{ href: "#spacing", label: "Spacing" },
 	{ href: "#rules", label: "Rules" },
 	{ href: "#blog-prose", label: "Blog" },
+	{ href: "#docs", label: "Docs" },
 ];
 
 export function TypographyStyleguidePage() {
@@ -520,8 +522,8 @@ export function TypographyStyleguidePage() {
 										<li>
 											Use the type scale and named leading values only — page
 											titles (h1) get{" "}
-											<code className="font-mono text-sm">leading-[1.1]</code>;
-											lower headings get{" "}
+											<code className="font-mono text-sm">leading-[1.1]</code>
+											{"; "}lower headings get{" "}
 											<code className="font-mono text-sm">leading-tighter</code>
 											.
 										</li>
@@ -728,6 +730,107 @@ Effect.runPromise(program)`}</code>
 									<code>BLOG_PROSE_CLASS</code> so real posts pick it up too.
 								</p>
 							</article>
+						</GuideSection>
+
+						<GuideSection
+							id="docs"
+							eyebrow="07"
+							title="Docs"
+							lede="Docs pages follow the official effect.website documentation. Article bodies use DOCS_PROSE_CLASS (exported from DocsLayout) — Tailwind Typography with docs-specific overrides."
+						>
+							<SpecRow
+								title="Docs prose"
+								note="prose-sm on mobile (14px), md:prose-base on desktop (16px). Headings semibold with tracking-tight, links in sky-400 with hover underline, inline code as translucent chips, code blocks dark with a zinc-700 border. The page h1 gets mt-0!."
+								classes={DOCS_PROSE_CLASS}
+							>
+								<div className={DOCS_PROSE_CLASS}>
+									<h1 className="mt-0!">Introduction</h1>
+									<p>
+										Effect is a powerful TypeScript library for building
+										complex, synchronous, and asynchronous programs. It includes{" "}
+										<a href={getAssetPath("/docs/introduction")}>
+											inline links
+										</a>{" "}
+										in sky, and inline code like <code>Effect.gen</code> as a
+										translucent chip.
+									</p>
+									<h2>Section heading</h2>
+									<p>
+										An h2 inside docs prose — semibold, tracking-tight, sized by
+										the typography plugin. Lists follow the plugin defaults:
+									</p>
+									<ul>
+										<li>Typed errors surface failure cases in the signature</li>
+										<li>Structured concurrency supervises every fiber</li>
+									</ul>
+									<pre>
+										<code>{`import { Effect } from "effect"
+
+const program = Effect.succeed(42)`}</code>
+									</pre>
+								</div>
+							</SpecRow>
+
+							<SpecRow
+								title="Docs shell"
+								note="A 1408px three-column grid: 240px sidebar, fluid article, 240px table of contents. Sidebars are sticky below the nav and scroll independently; the article column carries the padding."
+								classes="mx-auto grid w-full max-w-352 grid-cols-1 lg:grid-cols-[240px_1fr_240px] · sidebar: sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8 · main: min-w-0 px-6 py-12 lg:px-12 lg:py-16"
+							>
+								<div className="grid grid-cols-[60px_1fr_60px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[240px_1fr_240px] dark:border-zinc-700">
+									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 md:text-sm dark:bg-zinc-900 dark:text-zinc-400">
+										240
+									</div>
+									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+										article · 1fr
+									</div>
+									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+										240
+									</div>
+								</div>
+							</SpecRow>
+
+							<SpecRow
+								title="Sidebar navigation"
+								note="Group labels are mono uppercase (same family as section eyebrows); links are 15px with a rounded hover fill; the active link gets a filled background."
+								classes="group: font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300 · link: block rounded-md px-3 py-2.5 text-[15px] text-zinc-600 dark:text-zinc-300 · active: bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+							>
+								<div className="max-w-60 space-y-1">
+									<p className="py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+										Getting Started
+									</p>
+									<span className="block rounded-md bg-zinc-100 px-3 py-2.5 text-[15px] text-zinc-900 dark:bg-zinc-800 dark:text-white">
+										Introduction
+									</span>
+									<span className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white">
+										Why Effect?
+									</span>
+								</div>
+							</SpecRow>
+
+							<SpecRow
+								title="Table of contents"
+								note="Right-column links are text-sm with a left inset; the active heading gets a filled background and semibold weight."
+								classes="link: block rounded-md py-1.5 pl-3 text-sm text-zinc-700 dark:text-zinc-400 · active: bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+							>
+								<div className="max-w-60 space-y-1">
+									<span className="block rounded-md bg-zinc-200 py-1.5 pl-3 text-sm font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white">
+										How to use these docs
+									</span>
+									<span className="block rounded-md py-1.5 pl-3 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white">
+										Coding with LLMs
+									</span>
+								</div>
+							</SpecRow>
+
+							<SpecRow
+								title="Docs card title"
+								note="Cards on docs index pages use a mono uppercase title instead of the site's sans card title."
+								classes="font-mono text-sm font-semibold text-zinc-900 uppercase dark:text-zinc-100"
+							>
+								<p className="font-mono text-sm font-semibold text-zinc-900 uppercase dark:text-zinc-100">
+									Error Management
+								</p>
+							</SpecRow>
 						</GuideSection>
 					</div>
 				</div>
