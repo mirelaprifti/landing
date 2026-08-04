@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -5,8 +6,12 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * Design preview for the docs/API search modal — not wired to a real
  * search backend.
  *
+ * - A scope tab row under the input lets the user narrow results to
+ *   Docs, API, or Blog (or see everything at once); each tab shows its
+ *   result count so switching is never a guess.
  * - Source tags share one filled-chip shape; the API tag carries the
- *   site's indigo accent as the single pop of color, Docs stays zinc.
+ *   site's indigo accent as the single pop of color, Docs and Blog
+ *   stay zinc.
  * - The version lives inside the tag ("API · V4") so it can't be missed.
  * - API rows use mono Module.symbol titles + description (no signature);
  *   docs rows use Inter titles + a prose snippet.
@@ -14,14 +19,18 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   rows, preserving page→subheading grouping.
  */
 
+type SearchSource = "api" | "docs" | "blog";
+
+type SearchScope = "all" | SearchSource;
+
 type SearchChild = {
 	title: string;
 	snippet: React.ReactNode;
 };
 
 type SearchResult = {
-	source: "api" | "docs";
-	version: "v3" | "v4";
+	source: SearchSource;
+	version?: "v3" | "v4";
 	path: string;
 	title: string;
 	symbol?: string;
@@ -97,6 +106,17 @@ const RESULTS: SearchResult[] = [
 			</>
 		),
 	},
+	{
+		source: "blog",
+		path: "Blog / This Week in Effect",
+		title: "Iterating effectfully: patterns for collections",
+		snippet: (
+			<>
+				A tour of <MatchText>Effect.forEach</MatchText>, its concurrency
+				options, and when to reach for streams instead.
+			</>
+		),
+	},
 ];
 
 function MatchText({ children }: { children: React.ReactNode }) {
@@ -114,8 +134,8 @@ function SourceChip({
 	source: SearchResult["source"];
 	version: SearchResult["version"];
 }) {
-	// Same chip shape for both sources; the API tag carries the single
-	// accent color, Docs stays neutral zinc.
+	// Same chip shape for every source; the API tag carries the single
+	// accent color, Docs and Blog stay neutral zinc.
 	if (source === "api") {
 		return (
 			<span className="inline-flex items-center gap-1.5 rounded-md bg-indigo-100 px-2 py-0.5 font-mono text-xs font-medium text-indigo-800 dark:bg-indigo-500/15 dark:text-indigo-300">
@@ -125,28 +145,36 @@ function SourceChip({
 					aria-hidden="true"
 				/>
 				API
-				<span
-					aria-hidden="true"
-					className="text-indigo-400 dark:text-indigo-400/60"
-				>
-					·
-				</span>
-				{version.toUpperCase()}
+				{version && (
+					<>
+						<span
+							aria-hidden="true"
+							className="text-indigo-400 dark:text-indigo-400/60"
+						>
+							·
+						</span>
+						{version.toUpperCase()}
+					</>
+				)}
 			</span>
 		);
 	}
 	return (
 		<span className="inline-flex items-center gap-1.5 rounded-md bg-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 			<Icon
-				name="file-text"
+				name={source === "blog" ? "newspaper" : "file-text"}
 				className="-translate-y-[0.5px] text-[11px]"
 				aria-hidden="true"
 			/>
-			Docs
-			<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
-				·
-			</span>
-			{version.toUpperCase()}
+			{source === "blog" ? "Blog" : "Docs"}
+			{version && (
+				<>
+					<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
+						·
+					</span>
+					{version.toUpperCase()}
+				</>
+			)}
 		</span>
 	);
 }
@@ -213,6 +241,62 @@ function ResultCard({ result }: { result: SearchResult }) {
 	);
 }
 
+const SCOPES: { value: SearchScope; label: string }[] = [
+	{ value: "all", label: "All" },
+	{ value: "docs", label: "Docs" },
+	{ value: "api", label: "API" },
+	{ value: "blog", label: "Blog" },
+];
+
+function ScopeTabs({
+	scope,
+	onScopeChange,
+}: {
+	scope: SearchScope;
+	onScopeChange: (scope: SearchScope) => void;
+}) {
+	return (
+		<div
+			role="tablist"
+			aria-label="Filter results by source"
+			className="flex items-center gap-1.5 border-b border-zinc-200 px-3 py-2 dark:border-zinc-800"
+		>
+			{SCOPES.map(({ value, label }) => {
+				const count =
+					value === "all"
+						? RESULTS.length
+						: RESULTS.filter((r) => r.source === value).length;
+				const active = scope === value;
+				return (
+					<button
+						key={value}
+						type="button"
+						role="tab"
+						aria-selected={active}
+						onClick={() => onScopeChange(value)}
+						className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 font-mono text-xs font-medium transition-colors ${
+							active
+								? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+								: "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-white"
+						}`}
+					>
+						{label}
+						<span
+							className={
+								active
+									? "text-zinc-500 dark:text-zinc-400"
+									: "text-zinc-400 dark:text-zinc-500"
+							}
+						>
+							{count}
+						</span>
+					</button>
+				);
+			})}
+		</div>
+	);
+}
+
 function Kbd({ children }: { children: React.ReactNode }) {
 	return (
 		<kbd className="inline-flex min-w-5 items-center justify-center rounded border border-zinc-300 px-1.5 py-0.5 font-mono text-[11px] text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
@@ -222,6 +306,11 @@ function Kbd({ children }: { children: React.ReactNode }) {
 }
 
 function SearchModalDemo() {
+	const [scope, setScope] = useState<SearchScope>("all");
+
+	const visible =
+		scope === "all" ? RESULTS : RESULTS.filter((r) => r.source === scope);
+
 	return (
 		<div
 			role="dialog"
@@ -250,11 +339,19 @@ function SearchModalDemo() {
 				</button>
 			</div>
 
+			{/* Scope tabs: narrow results to a single source */}
+			<ScopeTabs scope={scope} onScopeChange={setScope} />
+
 			{/* Results */}
 			<div className="max-h-[30rem] space-y-2 overflow-y-auto p-3">
-				{RESULTS.map((result) => (
+				{visible.map((result) => (
 					<ResultCard key={`${result.path}-${result.title}`} result={result} />
 				))}
+				{visible.length === 0 && (
+					<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+						No {scope === "all" ? "" : `${scope} `}results for “forEach”.
+					</p>
+				)}
 			</div>
 
 			{/* Footer */}
@@ -266,6 +363,9 @@ function SearchModalDemo() {
 					<span className="flex items-center gap-1.5">
 						<Kbd>↑</Kbd>
 						<Kbd>↓</Kbd> navigate
+					</span>
+					<span className="flex items-center gap-1.5">
+						<Kbd>⇥</Kbd> scope
 					</span>
 					<span className="flex items-center gap-1.5">
 						<Kbd>↵</Kbd> select
