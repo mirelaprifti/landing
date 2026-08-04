@@ -6,17 +6,15 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * Design preview for the docs/API search modal — not wired to a real
  * search backend.
  *
- * Five source-filtering UX options, switchable from the page header:
+ * Three source-filtering UX options, switchable from the page header
+ * (a grouped-list and a scope-dropdown variant were explored and cut —
+ * grouping is subsumed by "View all", and a dropdown hides the filter):
  * - A · Scope tabs: a tab row under the input (All / Docs / API / Blog),
  *   each with a result count; the list is filtered to the active tab.
- * - B · Grouped list: no filtering — results are always grouped under
- *   source section headers so every source stays visible at once.
- * - C · Scope dropdown: a compact "Everywhere ▾" menu inside the input
- *   row; saves vertical space, scope is chosen from a popover.
- * - D · View all: the federated pattern (GitHub docs, Algolia's
+ * - B · View all: the federated pattern (GitHub docs, Algolia's
  *   recommendation) — top 2 per source with a "View all N" drill-in
  *   per section and an "All results" row to back out.
- * - E · Scope tokens: Slack/Notion-style — an in:docs token rendered
+ * - C · Scope tokens: Slack/Notion-style — an in:docs token rendered
  *   as a removable chip in the input scopes the query; composable
  *   with future filters (version, package).
  *
@@ -31,7 +29,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   rows, preserving page→subheading grouping.
  */
 
-type Variant = "tabs" | "grouped" | "dropdown" | "viewall" | "tokens";
+type Variant = "tabs" | "viewall" | "tokens";
 
 const VARIANTS: { value: Variant; label: string; blurb: string }[] = [
 	{
@@ -41,26 +39,14 @@ const VARIANTS: { value: Variant; label: string; blurb: string }[] = [
 			"Tab row under the input filters the list; counts show what each source holds.",
 	},
 	{
-		value: "grouped",
-		label: "B · Grouped list",
-		blurb:
-			"No filtering — results stay grouped under source headers so everything is scannable at once.",
-	},
-	{
-		value: "dropdown",
-		label: "C · Scope dropdown",
-		blurb:
-			"Compact “Everywhere ▾” menu in the input row; scope picked from a popover, zero extra chrome.",
-	},
-	{
 		value: "viewall",
-		label: "D · View all",
+		label: "B · View all",
 		blurb:
 			"Federated pattern (GitHub docs, Algolia): top 2 per source, “View all” drills into a scoped list, “All results” backs out.",
 	},
 	{
 		value: "tokens",
-		label: "E · Scope tokens",
+		label: "C · Scope tokens",
 		blurb:
 			"Slack/Notion-style: an in:docs token in the input scopes the query — removable chip, composable with future filters.",
 	},
@@ -453,83 +439,6 @@ function ScopeTabs({
 	);
 }
 
-function ScopeDropdown({
-	scope,
-	onScopeChange,
-}: {
-	scope: SearchScope;
-	onScopeChange: (scope: SearchScope) => void;
-}) {
-	const [open, setOpen] = useState(false);
-	const label =
-		scope === "all"
-			? "Everywhere"
-			: SCOPES.find((s) => s.value === scope)?.label;
-
-	return (
-		<div className="relative shrink-0">
-			<button
-				type="button"
-				aria-haspopup="listbox"
-				aria-expanded={open}
-				aria-label="Filter results by source"
-				onClick={() => setOpen((o) => !o)}
-				className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-2.5 py-1 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
-			>
-				{label}
-				<Icon
-					name="chevron-down"
-					className={`text-[11px] transition-transform ${open ? "rotate-180" : ""}`}
-					aria-hidden="true"
-				/>
-			</button>
-
-			{open && (
-				<div
-					role="listbox"
-					aria-label="Result sources"
-					className="absolute right-0 top-full z-10 mt-2 w-44 overflow-hidden rounded-md border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-950/10 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/40"
-				>
-					{SCOPES.map(({ value, label: optionLabel }) => {
-						const active = scope === value;
-						return (
-							<button
-								key={value}
-								type="button"
-								role="option"
-								aria-selected={active}
-								onClick={() => {
-									onScopeChange(value);
-									setOpen(false);
-								}}
-								className={`flex w-full items-center justify-between px-3 py-1.5 text-left font-mono text-xs transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
-									active
-										? "font-medium text-zinc-900 dark:text-white"
-										: "text-zinc-600 dark:text-zinc-300"
-								}`}
-							>
-								<span className="flex items-center gap-2">
-									{value === "all" ? "Everywhere" : optionLabel}
-									<span className="text-zinc-400 dark:text-zinc-500">
-										{scopeCount(value)}
-									</span>
-								</span>
-								{active && (
-									<Icon
-										name="check"
-										className="text-[11px]"
-										aria-hidden="true"
-									/>
-								)}
-							</button>
-						);
-					})}
-				</div>
-			)}
-		</div>
-	);
-}
-
 function Kbd({ children }: { children: React.ReactNode }) {
 	return (
 		<kbd className="inline-flex min-w-5 items-center justify-center rounded border border-zinc-300 px-1.5 py-0.5 font-mono text-[11px] text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
@@ -577,9 +486,6 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					defaultValue="forEach"
 					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 				/>
-				{variant === "dropdown" && (
-					<ScopeDropdown scope={scope} onScopeChange={setScope} />
-				)}
 				<button
 					type="button"
 					aria-label="Close search"
@@ -594,7 +500,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				<ScopeTabs scope={scope} onScopeChange={setScope} />
 			)}
 
-			{/* E: token suggestions until a scope token is applied */}
+			{/* C: token suggestions until a scope token is applied */}
 			{variant === "tokens" && scope === "all" && (
 				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
 					<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
@@ -618,34 +524,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 
 			{/* Results */}
 			<div className="max-h-[30rem] overflow-y-auto p-3">
-				{variant === "grouped" ? (
-					// B: always show everything, grouped under source headers
-					<div className="space-y-4">
-						{GROUPS.map(({ source, label }) => {
-							const grouped = RESULTS.filter((r) => r.source === source);
-							if (grouped.length === 0) return null;
-							return (
-								<section key={source} aria-label={label}>
-									<p className="px-1 pb-2 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-										{label}
-										<span className="ml-2 text-zinc-400 dark:text-zinc-500">
-											{grouped.length}
-										</span>
-									</p>
-									<div className="space-y-2">
-										{grouped.map((result) => (
-											<ResultCard
-												key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
-												result={result}
-											/>
-										))}
-									</div>
-								</section>
-							);
-						})}
-					</div>
-				) : variant === "viewall" && scope === "all" ? (
-					// D: federated overview — best hit per source + "View all N"
+				{variant === "viewall" && scope === "all" ? (
+					// B: federated overview — top hits per source + "View all N"
 					<div className="space-y-4">
 						{GROUPS.map(({ source, label }) => {
 							const grouped = RESULTS.filter((r) => r.source === source);
@@ -685,7 +565,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					</div>
 				) : (
 					<div className="space-y-2">
-						{/* D scoped view: back row above the filtered list */}
+						{/* B scoped view: back row above the filtered list */}
 						{variant === "viewall" && (
 							<button
 								type="button"
@@ -725,7 +605,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						<Kbd>↑</Kbd>
 						<Kbd>↓</Kbd> navigate
 					</span>
-					{(variant === "tabs" || variant === "dropdown") && (
+					{variant === "tabs" && (
 						<span className="flex items-center gap-1.5">
 							<Kbd>⇥</Kbd> scope
 						</span>
