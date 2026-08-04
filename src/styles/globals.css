@@ -21,6 +21,33 @@
 	color: inherit !important;
 }
 
+/* Code token palette — one scheme for every snippet on the site.
+   Values match Shiki's github-light / github-dark, the themes the API
+   reference renders with, so hand-authored snippets are indistinguishable
+   from real highlighted ones. */
+:root {
+	--tok-keyword: #cf222e;
+	--tok-string: #0a3069;
+	--tok-entity: #8250df;
+	--tok-constant: #0550ae;
+	--tok-comment: #6e7781;
+	--tok-fg: #1f2328;
+}
+.dark {
+	--tok-keyword: #ff7b72;
+	--tok-string: #a5d6ff;
+	--tok-entity: #d2a8ff;
+	--tok-constant: #79c0ff;
+	--tok-comment: #8b949e;
+	--tok-fg: #e6edf3;
+}
+.tok-keyword { color: var(--tok-keyword); }
+.tok-string { color: var(--tok-string); }
+.tok-entity { color: var(--tok-entity); }
+.tok-constant { color: var(--tok-constant); }
+.tok-comment { color: var(--tok-comment); }
+.tok-fg { color: var(--tok-fg); }
+
 @theme {
 	/* Font Sizes */
 	--text-xs: 0.7rem;

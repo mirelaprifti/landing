@@ -160,12 +160,12 @@ export function EffectDaysLivornoPage() {
 			</div>
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
-				{/* Soft emerald glow behind the hero */}
+				{/* Soft white glow behind the hero */}
 				<div
 					className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[42rem]"
 					style={{
 						background:
-							"radial-gradient(ellipse 60% 50% at 70% 20%, rgba(16, 185, 129, 0.07), transparent 70%)",
+							"radial-gradient(ellipse 60% 50% at 70% 20%, rgba(255, 255, 255, 0.05), transparent 70%)",
 					}}
 				/>
 
@@ -180,7 +180,7 @@ export function EffectDaysLivornoPage() {
 								</p>
 								<h1 className={text.pageTitle}>Effect Days</h1>
 								<p className="mt-4 font-mono text-sm font-medium tracking-wider text-zinc-300 uppercase">
-									<span className="text-emerald-400">Livorno, Italy</span>
+									<span className="text-white">Livorno, Italy</span>
 									{" · "}
 									<span>Dec 10–12, 2026</span>
 								</p>
@@ -266,7 +266,7 @@ export function EffectDaysLivornoPage() {
 								{PROGRAM.map((step, index) => (
 									<div key={step.step} className="relative">
 										{/* Node */}
-										<div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center border border-zinc-600 bg-zinc-950 font-mono text-sm font-semibold text-emerald-400">
+										<div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center border border-zinc-600 bg-zinc-950 font-mono text-sm font-semibold text-white">
 											{step.step}
 										</div>
 										<div className="relative border border-zinc-800 bg-zinc-900/30 p-6">
@@ -391,9 +391,7 @@ export function EffectDaysLivornoPage() {
 												>
 													<span
 														className={
-															day.included
-																? "text-emerald-400"
-																: "text-zinc-600"
+															day.included ? "text-white" : "text-zinc-600"
 														}
 													>
 														{day.included ? "[✓]" : "[ ]"}
@@ -475,7 +473,7 @@ export function EffectDaysLivornoPage() {
 									<p className="max-w-2xl text-lg leading-relaxed text-zinc-200">
 										Has Effect played a key role in your project and you'd love
 										to give back to the community?{" "}
-										<span className="text-emerald-400">
+										<span className="text-white">
 											Sponsoring Effect Days is your perfect opportunity!
 										</span>
 									</p>
@@ -500,8 +498,8 @@ export function EffectDaysLivornoPage() {
 									</div>
 									<div className="p-5 font-mono text-sm leading-loose">
 										<p className="text-zinc-400">
-											<span className="text-emerald-400">$</span> effect
-											community <span className="text-zinc-600">--stats</span>
+											<span className="text-white">$</span> effect community{" "}
+											<span className="text-zinc-600">--stats</span>
 										</p>
 										{COMMUNITY_STATS.map((stat) => (
 											<p key={stat.label} className="text-zinc-200">
@@ -547,7 +545,7 @@ export function EffectDaysLivornoPage() {
 												<span
 													className={`h-5 w-5 border ${
 														edition.status === "next"
-															? "border-emerald-400 bg-emerald-500/20"
+															? "border-zinc-300 bg-white/10"
 															: "border-zinc-600 bg-zinc-950"
 													}`}
 												/>
@@ -555,7 +553,7 @@ export function EffectDaysLivornoPage() {
 													Effect Days {edition.year}
 												</h3>
 												{edition.status === "next" && (
-													<span className="border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-medium tracking-wider text-emerald-400 uppercase">
+													<span className="border border-zinc-500 bg-white/5 px-2 py-0.5 font-mono text-xs font-medium tracking-wider text-white uppercase">
 														Next stop
 													</span>
 												)}
@@ -564,7 +562,7 @@ export function EffectDaysLivornoPage() {
 											<div
 												className={`relative flex min-h-[16rem] flex-col overflow-hidden border ${
 													edition.status === "next"
-														? "border-emerald-500/30 bg-emerald-500/[0.03]"
+														? "border-zinc-500 bg-white/[0.02]"
 														: "border-zinc-800 bg-zinc-900/20"
 												}`}
 											>
@@ -578,8 +576,8 @@ export function EffectDaysLivornoPage() {
 														<div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/10 to-transparent" />
 													</div>
 												) : (
-													<div className="flex aspect-21/9 items-center justify-center border-b border-emerald-500/20">
-														<span className="font-mono text-sm text-emerald-400">
+													<div className="flex aspect-21/9 items-center justify-center border-b border-zinc-800">
+														<span className="font-mono text-sm text-white">
 															Dec 10–12, 2026 ▊
 														</span>
 													</div>
@@ -632,9 +630,7 @@ export function EffectDaysLivornoPage() {
 
 							<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										1. What is Effect Days?
-									</h3>
+									<h3 className={text.smallHeading}>1. What is Effect Days?</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Effect Days is a non-profit event dedicated to{" "}
 										<Link
@@ -773,7 +769,7 @@ export function EffectDaysLivornoPage() {
 						className="pointer-events-none absolute inset-0"
 						style={{
 							background:
-								"radial-gradient(ellipse 50% 60% at 50% 100%, rgba(16, 185, 129, 0.06), transparent 70%)",
+								"radial-gradient(ellipse 50% 60% at 50% 100%, rgba(255, 255, 255, 0.04), transparent 70%)",
 						}}
 					/>
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
