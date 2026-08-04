@@ -8,10 +8,86 @@ const TOC = [
 	{ id: "enjoy-building-and-learning", label: "Enjoy Building and Learning" },
 ];
 
-function CodeBlock({ children }: { children: string }) {
+const TS_KEYWORDS = new Set([
+	"import",
+	"from",
+	"export",
+	"const",
+	"let",
+	"var",
+	"function",
+	"return",
+	"if",
+	"else",
+	"throw",
+	"new",
+	"type",
+	"interface",
+	"extends",
+	"async",
+	"await",
+	"yield",
+]);
+
+const TOKEN_PATTERN =
+	/(\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)|\b(\d+(?:\.\d+)?)\b|\b([A-Za-z_$][\w$]*)\b/gm;
+
+/** Minimal TS highlighter emitting the site-wide tok-* palette (globals.css),
+ *  so docs snippets match the Shiki github theme used on the API pages. */
+function highlightTs(code: string): React.ReactNode[] {
+	const out: React.ReactNode[] = [];
+	let last = 0;
+	let key = 0;
+	for (const m of code.matchAll(TOKEN_PATTERN)) {
+		const index = m.index ?? 0;
+		if (index > last) out.push(code.slice(last, index));
+		const [full, comment, str, num, word] = m;
+		if (comment) {
+			out.push(
+				<span key={key++} className="tok-comment">
+					{comment}
+				</span>,
+			);
+		} else if (str) {
+			out.push(
+				<span key={key++} className="tok-string">
+					{str}
+				</span>,
+			);
+		} else if (num) {
+			out.push(
+				<span key={key++} className="tok-constant">
+					{num}
+				</span>,
+			);
+		} else if (word && TS_KEYWORDS.has(word)) {
+			out.push(
+				<span key={key++} className="tok-keyword">
+					{word}
+				</span>,
+			);
+		} else {
+			out.push(full);
+		}
+		last = index + full.length;
+	}
+	if (last < code.length) out.push(code.slice(last));
+	return out;
+}
+
+function CodeBlock({
+	children,
+	plain = false,
+}: {
+	children: string;
+	/** Skip highlighting — for ASCII diagrams and non-code content. */
+	plain?: boolean;
+}) {
 	return (
 		<pre className="my-6 overflow-x-auto rounded-md border border-zinc-200 bg-zinc-50 px-5 py-4 font-mono text-sm leading-relaxed text-zinc-800 dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-200">
-			<code>{children}</code>
+			<code className={plain ? undefined : "tok-fg"}>
+				{plain ? children : highlightTs(children)}
+			</code>
 		</pre>
 	);
 }
@@ -154,7 +230,7 @@ const divide = (
 					</ul>
 				</div>
 
-				<CodeBlock>{`         ┌─── Produces a value of type number
+				<CodeBlock plain>{`         ┌─── Produces a value of type number
          │       ┌─── Fails with an Error
          │       │      ┌─── Requires no dependencies
          ▼       ▼      ▼
