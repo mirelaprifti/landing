@@ -29,16 +29,17 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   back row returns to results with the query preserved.
  *
  * Shared decisions across variants:
- * - v3/v4 handling has its own switcher (1/2), orthogonal to A–D:
- *   1 · Dedupe by identity — one canonical card per symbol/page,
- *   resolved to v4, with the variant folded in as "also in v3";
- *   v3-only content sits in a collapsed "Only in v3" section. No
- *   version control needed — the results are version-bilingual.
- *   2 · Version context — a visible "v4 ▾" switcher filters the
- *   versioned sources, and hidden results surface as a "N more
- *   results in v3" tail row and in the empty state.
- *   Blog is unversioned and passes through in both modes; neither
- *   uses hidden per-user memory.
+ * - One visible version context (the "v4 ▾" switcher in the input row)
+ *   filters the versioned sources (API, Docs); Blog is unversioned and
+ *   passes through. Filtering also dedupes: one context means one card
+ *   per symbol. Results hidden by the context surface as a "N more
+ *   results in v3" tail row and in the empty state, so a wrong version
+ *   guess costs one click, never a dead end. In production the context
+ *   is inherited from versioned pages and defaults to current
+ *   elsewhere — no hidden per-user memory. (A dedupe-by-identity mode
+ *   — canonical v4 cards with per-card "also in v3" links — was
+ *   explored and cut: it forces minority-version users to resolve the
+ *   version on every result instead of once.)
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -56,13 +57,6 @@ const VARIANTS: { value: Variant; label: string }[] = [
 	{ value: "tokens", label: "B" },
 	{ value: "merged", label: "C" },
 	{ value: "askai", label: "D" },
-];
-
-type VersionMode = "dedupe" | "switcher";
-
-const VERSION_MODES: { value: VersionMode; label: string }[] = [
-	{ value: "dedupe", label: "1" },
-	{ value: "switcher", label: "2" },
 ];
 
 type SearchSource = "api" | "docs" | "blog";
@@ -83,8 +77,6 @@ type SearchResult = {
 	snippet: React.ReactNode;
 	children?: SearchChild[];
 	selected?: boolean;
-	/** Dedupe mode: this card also exists in the named version. */
-	alsoIn?: "v3" | "v4";
 };
 
 const RESULTS: SearchResult[] = [
@@ -350,14 +342,6 @@ function ResultCard({ result }: { result: SearchResult }) {
 					<span className="font-mono text-xs font-medium text-zinc-600 dark:text-zinc-300">
 						{result.path}
 					</span>
-					{result.alsoIn && (
-						<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
-							also in{" "}
-							<span className="underline decoration-zinc-300 underline-offset-2 dark:decoration-zinc-600">
-								{result.alsoIn}
-							</span>
-						</span>
-					)}
 				</div>
 
 				{/* Title: Module.symbol in mono for API, Inter for docs pages */}
@@ -573,13 +557,7 @@ function AskAiConversation({ onBack }: { onBack: () => void }) {
 	);
 }
 
-function SearchModalDemo({
-	variant,
-	versionMode,
-}: {
-	variant: Variant;
-	versionMode: VersionMode;
-}) {
+function SearchModalDemo({ variant }: { variant: Variant }) {
 	const [scope, setScope] = useState<SearchScope>("all");
 
 	// D only: the Ask AI row swaps the modal into a conversation view.
@@ -588,54 +566,18 @@ function SearchModalDemo({
 	// D is C plus the Ask AI row — everything else behaves identically.
 	const merged = variant === "merged" || variant === "askai";
 
-	// Mode 2: one visible version context; Blog passes through.
+	// One visible version context; unversioned sources (Blog) pass through.
 	const [version, setVersion] = useState<DocsVersion>("v4");
 	const otherVersion: DocsVersion = version === "v4" ? "v3" : "v4";
 
-	// Mode 1: collapsed "Only in v3" section open/closed.
-	const [exclusivesOpen, setExclusivesOpen] = useState(false);
-
-	// Mode 1 (dedupe): one canonical card per symbol/page, resolved to
-	// v4 with the other version folded in ("also in v3"); v3-only
-	// content is split out instead of mixing into the list.
-	const identity = (r: SearchResult) =>
-		`${r.source}|${r.path}|${r.symbol ?? r.title}`;
-	const primaries: SearchResult[] = [];
-	const exclusives: SearchResult[] = [];
-	const seenIdentities = new Set<string>();
-	for (const r of RESULTS) {
-		if (!r.version) {
-			primaries.push(r);
-			continue;
-		}
-		const key = identity(r);
-		if (seenIdentities.has(key)) continue;
-		seenIdentities.add(key);
-		const versions = RESULTS.filter((o) => o.version && identity(o) === key);
-		const canonical = versions.find((v) => v.version === "v4");
-		if (canonical) {
-			primaries.push(
-				versions.length > 1 ? { ...canonical, alsoIn: "v3" } : canonical,
-			);
-		} else {
-			exclusives.push(r);
-		}
-	}
-
-	const pool =
-		versionMode === "dedupe"
-			? primaries
-			: RESULTS.filter((r) => !r.version || r.version === version);
+	const pool = RESULTS.filter((r) => !r.version || r.version === version);
 	const visible =
 		scope === "all" ? pool : pool.filter((r) => r.source === scope);
-	// Mode 2: what the version context is hiding, within the current scope
+	// What the version context is hiding, within the current scope
 	const otherCount = RESULTS.filter(
 		(r) =>
 			r.version === otherVersion && (scope === "all" || r.source === scope),
 	).length;
-	// Mode 1: v3-only content, within the current scope
-	const exclusiveVisible =
-		scope === "all" ? exclusives : exclusives.filter((r) => r.source === scope);
 
 	return (
 		<div
@@ -674,7 +616,7 @@ function SearchModalDemo({
 					placeholder={askAiOpen ? "Ask a follow-up…" : undefined}
 					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 				/>
-				{!askAiOpen && versionMode === "switcher" && (
+				{!askAiOpen && (
 					<VersionSwitcher version={version} onVersionChange={setVersion} />
 				)}
 				<button
@@ -795,44 +737,15 @@ function SearchModalDemo({
 								))}
 								{visible.length === 0 && (
 									<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
-										No {versionMode === "switcher" ? `${version} ` : ""}
-										{scope === "all" ? "" : `${scope} `}results for “forEach”.
+										No {version} {scope === "all" ? "" : `${scope} `}results for
+										“forEach”.
 									</p>
 								)}
 							</div>
 						)}
 
-						{/* Mode 1: version-exclusive leftovers, collapsed */}
-						{versionMode === "dedupe" && exclusiveVisible.length > 0 && (
-							<div className="mt-2">
-								<button
-									type="button"
-									aria-expanded={exclusivesOpen}
-									onClick={() => setExclusivesOpen((o) => !o)}
-									className="flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 font-mono text-xs font-medium text-zinc-500 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-								>
-									<Icon
-										name={exclusivesOpen ? "chevron-down" : "chevron-right"}
-										className="text-[10px]"
-										aria-hidden="true"
-									/>
-									Only in v3 · {exclusiveVisible.length}
-								</button>
-								{exclusivesOpen && (
-									<div className="mt-1 space-y-2">
-										{exclusiveVisible.map((result) => (
-											<ResultCard
-												key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
-												result={result}
-											/>
-										))}
-									</div>
-								)}
-							</div>
-						)}
-
-						{/* Mode 2 cross-version escape hatch: what the context hides */}
-						{versionMode === "switcher" && otherCount > 0 && (
+						{/* Cross-version escape hatch: what the context is hiding */}
+						{otherCount > 0 && (
 							<button
 								type="button"
 								onClick={() => setVersion(otherVersion)}
@@ -898,7 +811,6 @@ function SearchModalDemo({
 
 export function SearchPreviewPage() {
 	const [variant, setVariant] = useState<Variant>("viewall");
-	const [versionMode, setVersionMode] = useState<VersionMode>("dedupe");
 
 	return (
 		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
@@ -911,69 +823,36 @@ export function SearchPreviewPage() {
 				</div>
 
 				<div className="relative">
-					{/* Switcher rails beside the modal (rows on mobile):
-					    A–D = scope UX, 1–2 = version handling */}
-					<div className="mb-4 flex gap-3 sm:absolute sm:top-0 sm:left-full sm:mb-0 sm:ml-4 sm:flex-col">
-						<div
-							role="tablist"
-							aria-label="Search UX variant"
-							aria-orientation="vertical"
-							className="inline-flex gap-1 self-start rounded-md border border-zinc-200 bg-white p-1 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
-						>
-							{VARIANTS.map(({ value, label }) => {
-								const active = variant === value;
-								return (
-									<button
-										key={value}
-										type="button"
-										role="tab"
-										aria-selected={active}
-										onClick={() => setVariant(value)}
-										className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
-											active
-												? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
-												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-										}`}
-									>
-										{label}
-									</button>
-								);
-							})}
-						</div>
-						<div
-							role="tablist"
-							aria-label="Version handling"
-							aria-orientation="vertical"
-							className="inline-flex gap-1 self-start rounded-md border border-zinc-200 bg-white p-1 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
-						>
-							{VERSION_MODES.map(({ value, label }) => {
-								const active = versionMode === value;
-								return (
-									<button
-										key={value}
-										type="button"
-										role="tab"
-										aria-selected={active}
-										onClick={() => setVersionMode(value)}
-										className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
-											active
-												? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
-												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-										}`}
-									>
-										{label}
-									</button>
-								);
-							})}
-						</div>
+					{/* Variant switcher: vertical rail beside the modal (row on mobile) */}
+					<div
+						role="tablist"
+						aria-label="Search UX variant"
+						aria-orientation="vertical"
+						className="mb-4 inline-flex gap-1 rounded-md border border-zinc-200 bg-white p-1 sm:absolute sm:top-0 sm:left-full sm:mb-0 sm:ml-4 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
+					>
+						{VARIANTS.map(({ value, label }) => {
+							const active = variant === value;
+							return (
+								<button
+									key={value}
+									type="button"
+									role="tab"
+									aria-selected={active}
+									onClick={() => setVariant(value)}
+									className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
+										active
+											? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+											: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									}`}
+								>
+									{label}
+								</button>
+							);
+						})}
 					</div>
 
-					{/* key resets the modal's state when switching variants/modes */}
-					<SearchModalDemo
-						key={`${variant}-${versionMode}`}
-						variant={variant}
-						versionMode={versionMode}
-					/>
+					{/* key resets the modal's scope state when switching variants */}
+					<SearchModalDemo key={variant} variant={variant} />
 				</div>
 			</div>
 		</div>
