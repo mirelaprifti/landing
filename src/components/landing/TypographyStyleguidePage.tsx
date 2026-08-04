@@ -822,6 +822,80 @@ Effect.runPromise(program)`}</code>
 							lede="Docs share the blog's reading language — quiet hairlines, muted underlines, mono micro labels — tuned for reference content. Article bodies use DOCS_ARTICLE_CLASS, exported from DocsLayout."
 						>
 							<SpecRow
+								title="Docs heading hierarchy"
+								note="The reading scale, one step smaller than the site ladder. h1 is the page title at 28px — never the marketing scale. h2 opens sections and names API entries (mono, with a kind badge). h3 handles named subsections. Repeated scaffold labels — When to use, Details, See, Signature — are not styled as headings at all: they render as mono micro labels so the entry name and content dominate instead of four identical bold lines competing."
+								classes="h1: text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] · h2: text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] · h2 api: font-mono text-[1.375rem] font-semibold tracking-tight + badge: rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400 · h3: text-[1.125rem] leading-[1.4] font-semibold · scaffold label: mt-6 mb-2 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+							>
+								<div className="space-y-6">
+									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+											h1 · page
+											<br />
+											<span className="text-zinc-400 dark:text-zinc-500">
+												one per docs page
+											</span>
+										</span>
+										<span className="min-w-0 text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
+											Models
+										</span>
+									</div>
+									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+											h2 · section
+											<br />
+											<span className="text-zinc-400 dark:text-zinc-500">
+												guide sections
+											</span>
+										</span>
+										<span className="min-w-0 text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
+											Running Effects
+										</span>
+									</div>
+									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+											h2 · api entry
+											<br />
+											<span className="text-zinc-400 dark:text-zinc-500">
+												mono + kind badge
+											</span>
+										</span>
+										<span className="flex min-w-0 items-center gap-3">
+											<span className="font-mono text-[1.375rem] leading-[1.35] font-semibold tracking-tight text-zinc-900 dark:text-white">
+												LayerRef
+											</span>
+											<span className="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400">
+												Interface
+											</span>
+										</span>
+									</div>
+									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+											h3 · subsection
+											<br />
+											<span className="text-zinc-400 dark:text-zinc-500">
+												named subsections
+											</span>
+										</span>
+										<span className="min-w-0 text-[1.125rem] leading-[1.4] font-semibold text-zinc-900 dark:text-white">
+											Layer caching semantics
+										</span>
+									</div>
+									<div className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-6">
+										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+											scaffold label
+											<br />
+											<span className="text-zinc-400 dark:text-zinc-500">
+												repeated per entry
+											</span>
+										</span>
+										<span className="min-w-0 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+											When to use · Details · See · Signature
+										</span>
+									</div>
+								</div>
+							</SpecRow>
+
+							<SpecRow
 								title="Docs article body"
 								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as neutral chips; code blocks always dark with the syntax tokens from Foundations."
 								classes={DOCS_ARTICLE_CLASS}
