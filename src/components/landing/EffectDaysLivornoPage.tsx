@@ -15,6 +15,9 @@ const text = {
 		"leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white",
 	lede: "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
 	cardTitle: "text-lg font-semibold text-zinc-900 dark:text-white",
+	smallHeading: "text-base font-semibold text-zinc-900 dark:text-white",
+	body: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400",
+	cardBody: "mt-1 text-sm leading-normal text-zinc-600 dark:text-zinc-400",
 };
 
 const PROGRAM = [
@@ -272,12 +275,8 @@ export function EffectDaysLivornoPage() {
 												<span>{step.day}</span>
 												<span>{step.date}</span>
 											</div>
-											<h3 className="mt-3 text-lg font-semibold text-white">
-												{step.title}
-											</h3>
-											<p className="mt-1 text-sm leading-normal text-zinc-400">
-												{step.description}
-											</p>
+											<h3 className={`${text.cardTitle} mt-3`}>{step.title}</h3>
+											<p className={text.cardBody}>{step.description}</p>
 										</div>
 										{index < PROGRAM.length - 1 && (
 											<div className="mt-6 flex justify-center md:hidden">
@@ -289,7 +288,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 						</div>
 
-						<p className="mt-10 text-center font-mono text-sm text-zinc-500">
+						<p className={`${text.body} mx-auto mt-10 max-w-2xl text-center`}>
 							A community-driven, non-profit event celebrating the Effect
 							ecosystem and our growing community building production-grade
 							applications in TypeScript.
@@ -380,14 +379,8 @@ export function EffectDaysLivornoPage() {
 										<CornerBrackets
 											className={pass.featured ? "" : "opacity-40"}
 										/>
-										<div className="flex items-baseline justify-between gap-4">
-											<h3 className="font-mono text-base font-semibold tracking-wide text-white uppercase">
-												{pass.name}
-											</h3>
-										</div>
-										<p className="mt-2 text-sm leading-normal text-zinc-400">
-											{pass.description}
-										</p>
+										<h3 className={text.cardTitle}>{pass.name}</h3>
+										<p className={text.cardBody}>{pass.description}</p>
 
 										{/* Day checklist, mono style */}
 										<div className="mt-6 space-y-2 font-mono text-sm">
@@ -479,7 +472,7 @@ export function EffectDaysLivornoPage() {
 							<div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
 								{/* Pitch */}
 								<div>
-									<p className="text-xl leading-relaxed font-medium text-white md:text-2xl">
+									<p className="max-w-2xl text-lg leading-relaxed text-zinc-200">
 										Has Effect played a key role in your project and you'd love
 										to give back to the community?{" "}
 										<span className="text-emerald-400">
@@ -558,9 +551,9 @@ export function EffectDaysLivornoPage() {
 															: "border-zinc-600 bg-zinc-950"
 													}`}
 												/>
-												<span className="font-mono text-sm font-semibold tracking-wider text-white uppercase">
-													{edition.year}
-												</span>
+												<h3 className={text.cardTitle}>
+													Effect Days {edition.year}
+												</h3>
 												{edition.status === "next" && (
 													<span className="border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-medium tracking-wider text-emerald-400 uppercase">
 														Next stop
@@ -639,7 +632,7 @@ export function EffectDaysLivornoPage() {
 
 							<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										1. What is Effect Days?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -658,7 +651,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										2. When and where is Effect Days taking place?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -668,7 +661,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										3. What is the schedule of the conference?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -678,7 +671,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										4. Will the Effect Days conference be recorded?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -712,7 +705,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										5. What is the Community Day?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -724,7 +717,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										6. Can I get a refund for my ticket?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -741,7 +734,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										7. How do I get to Livorno?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
@@ -753,7 +746,7 @@ export function EffectDaysLivornoPage() {
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className="text-[15px] font-semibold text-white">
+									<h3 className={text.smallHeading}>
 										8. Is there a Code of Conduct?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
