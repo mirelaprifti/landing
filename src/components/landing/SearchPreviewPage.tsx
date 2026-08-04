@@ -549,8 +549,10 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				</button>
 			</div>
 
-			{/* B: token suggestions until a scope token is applied */}
-			{variant === "tokens" && scope === "all" && (
+			{/* B + C + D: token suggestions until a scope token is applied —
+			    shown in the merged variants too so the in: vocabulary is
+			    introduced before "View all" applies it */}
+			{(variant === "tokens" || merged) && scope === "all" && (
 				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
 					{SCOPES.filter((s) => s.value !== "all").map(({ value }) => (
 						<button
