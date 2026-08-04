@@ -988,7 +988,13 @@ Effect.runPromise(program)`}</code>
 							<SpecRow
 								title="Docs article body"
 								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as neutral chips; code blocks always dark with the syntax tokens from Foundations."
-								classes={DOCS_ARTICLE_CLASS}
+								classes={[
+									{
+										label: "usage",
+										value:
+											'import { DOCS_ARTICLE_CLASS } from "@/components/landing/DocsLayout" and apply it to the article wrapper — never copy the string itself. Element styles live in that one constant; fix them there so every docs page picks the change up.',
+									},
+								]}
 							>
 								<div className={DOCS_ARTICLE_CLASS}>
 									<h1>Introduction</h1>
