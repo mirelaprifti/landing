@@ -824,7 +824,7 @@ Effect.runPromise(program)`}</code>
 							<SpecRow
 								title="Docs heading hierarchy"
 								note="The reading scale, one step smaller than the site ladder. h1 is the page title at 28px — never the marketing scale. h2 opens sections and names API entries (mono, with a kind badge). h3 handles named subsections. Repeated scaffold labels — When to use, Details, See, Signature — are not styled as headings at all: they render as mono micro labels so the entry name and content dominate instead of four identical bold lines competing."
-								classes="h1: text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] · h2: text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] · h2 api: font-mono text-[1.375rem] font-semibold tracking-tight + badge: rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400 · h3: text-[1.125rem] leading-[1.4] font-semibold · scaffold label: mt-6 mb-2 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+								classes="h1: text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] · h2: text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] · h2 api: font-mono text-[1.375rem] font-semibold tracking-tight + badge: rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400 · h3: text-[1.125rem] leading-[1.4] font-semibold · scaffold label: mt-6 mb-2 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
 							>
 								<div className="space-y-6">
 									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
@@ -888,7 +888,7 @@ Effect.runPromise(program)`}</code>
 												repeated per entry
 											</span>
 										</span>
-										<span className="min-w-0 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+										<span className="min-w-0 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 											When to use · Details · See · Signature
 										</span>
 									</div>
