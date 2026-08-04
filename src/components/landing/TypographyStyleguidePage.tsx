@@ -152,10 +152,6 @@ export function TypographyStyleguidePage() {
 					<header className="pt-16 pb-12 md:pt-24 md:pb-16">
 						<p className={text.eyebrow}>// Styleguide</p>
 						<h1 className={text.pageTitleSub}>Website styleguide</h1>
-						<p className={text.lede}>
-							Text elements and spacing for every surface of the site. Copy the
-							class strings verbatim.
-						</p>
 					</header>
 				</div>
 
