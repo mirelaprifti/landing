@@ -262,7 +262,7 @@ export function TypographyStyleguidePage() {
 									{
 										label: "tokens",
 										value:
-											"keyword/operator: text-rose-400 · call/binding: text-blue-400 · string: text-sky-300 · comment: text-zinc-500",
+											"live docs highlight via Shiki (github-light / github-dark). Hand-built demos approximate with — keyword/operator: text-rose-400 · call/binding: text-blue-400 · string: text-sky-300 · comment: text-zinc-500",
 									},
 								]}
 							>
@@ -862,56 +862,55 @@ Effect.runPromise(program)`}</code>
 							id="docs"
 							eyebrow="07"
 							title="Docs"
-							lede="Docs share the blog's reading language — quiet hairlines, muted underlines, mono micro labels — tuned for reference content. Article bodies use DOCS_ARTICLE_CLASS, exported from DocsLayout."
+							lede="Matched to the live v4 API reference on effect.website — mono for everything that names code, neutral zinc chrome, Shiki-highlighted code blocks. Article bodies use DOCS_ARTICLE_CLASS, exported from DocsLayout."
 						>
 							<SpecRow
 								title="Docs heading hierarchy"
-								note="The reading scale, one step smaller than the site ladder. h1 is the page title at 28px — never the marketing scale. h2 opens sections and names API entries (mono, with a kind badge). h3 handles named subsections. Repeated scaffold labels — When to use, Details, See, Signature — are not styled as headings at all: they render as mono labels so the entry name and content dominate."
+								note="Extracted from the live v4 reference. The page h1 is mono — module pages are named after code. Categories (Layers, Models, Transforming) are sans h2s. Each API entry is a mono h3 with its kind badge alongside. Scaffold labels — When to use, Details, See, Signature — repeat per entry and render as mono labels, never as competing bold headings."
 							>
 								<div className="space-y-8">
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
 										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
-											h1 · page
+											h1 · module page
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
-												one per docs page
+												mono — named after code
 											</span>
 										</span>
 										<div className="min-w-0 flex-1">
-											<p className="text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
+											<p className="truncate font-mono text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+												NodeRuntime
+											</p>
+											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													mb-4! font-mono md:mb-6! — size comes from the
+													article's prose heading scale
+												</code>
+											</pre>
+										</div>
+									</div>
+									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+											h2 · category
+											<br />
+											<span className="text-zinc-400 dark:text-zinc-500">
+												sans — Layers, Models…
+											</span>
+										</span>
+										<div className="min-w-0 flex-1">
+											<p className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
 												Models
 											</p>
 											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
 												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													text-[1.75rem] leading-[1.2] font-semibold
-													tracking-[-0.012em]
+													mb-0 text-3xl font-semibold tracking-tight
 												</code>
 											</pre>
 										</div>
 									</div>
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
 										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
-											h2 · section
-											<br />
-											<span className="text-zinc-400 dark:text-zinc-500">
-												guide sections
-											</span>
-										</span>
-										<div className="min-w-0 flex-1">
-											<p className="text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
-												Running Effects
-											</p>
-											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													text-[1.375rem] leading-[1.35] font-semibold
-													tracking-[-0.012em]
-												</code>
-											</pre>
-										</div>
-									</div>
-									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
-										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
-											h2 · api entry
+											h3 · api entry
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
 												mono + kind badge
@@ -919,7 +918,7 @@ Effect.runPromise(program)`}</code>
 										</span>
 										<div className="min-w-0 flex-1">
 											<p className="flex min-w-0 items-center gap-3">
-												<span className="font-mono text-[1.375rem] leading-[1.35] font-semibold tracking-tight text-zinc-900 dark:text-white">
+												<span className="font-mono text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
 													LayerRef
 												</span>
 												<span className="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400">
@@ -928,7 +927,7 @@ Effect.runPromise(program)`}</code>
 											</p>
 											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
 												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													font-mono text-[1.375rem] leading-[1.35]
+													m-0! flex items-center gap-3 font-mono text-xl!
 													font-semibold tracking-tight
 												</code>
 											</pre>
@@ -938,25 +937,6 @@ Effect.runPromise(program)`}</code>
 													py-0.5 font-mono text-xs font-medium tracking-wider
 													text-zinc-500 uppercase dark:border-zinc-700
 													dark:text-zinc-400
-												</code>
-											</pre>
-										</div>
-									</div>
-									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
-										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
-											h3 · subsection
-											<br />
-											<span className="text-zinc-400 dark:text-zinc-500">
-												named subsections
-											</span>
-										</span>
-										<div className="min-w-0 flex-1">
-											<p className="text-[1.125rem] leading-[1.4] font-semibold text-zinc-900 dark:text-white">
-												Layer caching semantics
-											</p>
-											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													text-[1.125rem] leading-[1.4] font-semibold
 												</code>
 											</pre>
 										</div>
@@ -987,7 +967,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Docs article body"
-								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as neutral chips; code blocks always dark with the syntax tokens from Foundations."
+								note="The live reference's article styles: prose-sm on mobile, prose-base from md up, 15px paragraphs on a 24px line, tight heading rhythm, neutral code chips, and dark bordered code blocks. Shiki (github-light / github-dark) supplies token colors on the live site."
 								classes={[
 									{
 										label: "usage",
@@ -1037,30 +1017,31 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Docs shell"
-								note="The site container split into three columns: 220px sidebar, reading column, 240px table of contents. Side columns are sticky below the nav and scroll independently; the article is capped at max-w-2xl so lines stay readable."
+								note="A 1408px grid: 240px sidebar from lg up, article column, 240px table of contents from xl up. Side columns carry hairline borders and hold sticky, independently scrolling navs; the article is capped at max-w-4xl."
 								classes={[
 									{
 										label: "shell",
 										value:
-											"mx-auto grid w-full max-w-[73.75rem] px-4 lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10",
+											"mx-auto grid w-full max-w-352 grid-cols-1 lg:grid-cols-[240px_1fr] xl:grid-cols-[240px_1fr_240px]",
 									},
 									{
 										label: "aside",
 										value:
-											"sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-12",
+											"border-r border-zinc-200 dark:border-zinc-800 (left · border-l on the right) — nav inside: sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8",
 									},
 									{
-										label: "article",
-										value: "min-w-0 max-w-2xl py-12 lg:py-16",
+										label: "main",
+										value: "min-w-0 px-6 pt-6 pb-12 lg:px-12 lg:py-16",
 									},
+									{ label: "article", value: "max-w-4xl" },
 								]}
 							>
-								<div className="grid grid-cols-[56px_1fr_56px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[220px_1fr_240px] dark:border-zinc-700">
+								<div className="grid grid-cols-[56px_1fr_56px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[240px_1fr_240px] dark:border-zinc-700">
 									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-										220
+										240
 									</div>
 									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-										article · max-w-2xl
+										article · max-w-4xl
 									</div>
 									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										240
@@ -1069,77 +1050,128 @@ Effect.runPromise(program)`}</code>
 							</SpecRow>
 
 							<SpecRow
-								title="Sidebar navigation"
-								note="Quiet text, no fills. Group labels are the site micro label; links are text-sm zinc-600 that darken on hover; the active page is simply medium weight in the emphasis color."
+								title="Breadcrumb"
+								note="Every reference page opens with a mono uppercase trail above the h1; links darken on hover, separated by plain slashes."
 								classes={[
 									{
-										label: "group label",
+										label: "trail",
 										value:
-											"mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
+											"mb-5 flex flex-wrap items-center gap-3 font-mono text-xs tracking-wider text-zinc-600 uppercase lg:mb-8 dark:text-zinc-400",
 									},
 									{
 										label: "link",
 										value:
-											"block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
-									},
-									{
-										label: "active",
-										value: "font-medium text-zinc-900 dark:text-white",
+											"text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 									},
 								]}
 							>
-								<div className="max-w-60">
-									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-										Getting Started
+								<p className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+									<span className="transition-colors hover:text-zinc-900 dark:hover:text-white">
+										API Reference
+									</span>
+									<span aria-hidden="true">/</span>
+									<span className="transition-colors hover:text-zinc-900 dark:hover:text-white">
+										v4
+									</span>
+									<span aria-hidden="true">/</span>
+									<span className="transition-colors hover:text-zinc-900 dark:hover:text-white">
+										platform-node-shared
+									</span>
+								</p>
+							</SpecRow>
+
+							<SpecRow
+								title="Sidebar navigation"
+								note="Everything mono — sidebar entries are code symbols. The module label is small caps; links get a rounded soft fill on hover; the active entry is a filled pill, semibold."
+								classes={[
+									{
+										label: "module label",
+										value:
+											"mb-4 block font-mono text-sm font-semibold tracking-widest text-zinc-900 uppercase dark:text-white",
+									},
+									{
+										label: "link",
+										value:
+											"block truncate rounded-md py-1 pl-3 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white",
+									},
+									{
+										label: "active",
+										value:
+											"bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white",
+									},
+								]}
+							>
+								<div className="max-w-72">
+									<p className="mb-4 font-mono text-sm font-semibold tracking-widest text-zinc-900 uppercase dark:text-white">
+										Core
 									</p>
-									<span className="block py-1.5 text-sm font-medium text-zinc-900 dark:text-white">
-										Introduction
+									<span className="block truncate rounded-md bg-zinc-200 py-1 pl-3 font-mono text-sm font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white">
+										NodeChildProcessSpawner
 									</span>
-									<span className="block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-										Why Effect?
+									<span className="block truncate rounded-md py-1 pl-3 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white">
+										NodeClusterSocket
 									</span>
-									<span className="block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-										Installation
+									<span className="block truncate rounded-md py-1 pl-3 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white">
+										NodeCrypto
 									</span>
 								</div>
 							</SpecRow>
 
 							<SpecRow
 								title="Table of contents"
-								note="Identical to the blog's — a soft bordered panel with a mono label and hairline; links darken on hover, and the active heading is underlined with the site offset."
+								note="Right column from xl up: a mono small-caps label over a hairline, sans semibold category links, and mono entries indented beneath each category — no panel box."
 								classes={[
 									{
-										label: "panel",
+										label: "label",
 										value:
-											"rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40",
+											"mb-4 font-mono text-sm font-semibold tracking-[0.14em] uppercase — hairline below: mb-5 h-px bg-zinc-200 dark:bg-zinc-800",
 									},
 									{
-										label: "link",
+										label: "category link",
 										value:
-											"block text-sm leading-snug text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+											"block text-sm font-semibold transition-colors hover:text-zinc-950 dark:hover:text-white",
 									},
 									{
-										label: "active",
+										label: "entry link",
 										value:
-											"text-zinc-900 underline underline-offset-4 dark:text-white",
+											"flex min-w-0 items-baseline gap-1 font-mono text-xs text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white — nested in: mt-2 space-y-2 pl-3",
 									},
 								]}
 							>
-								<div className="max-w-60 rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
-									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+								<div className="max-w-60">
+									<p className="mb-4 font-mono text-sm font-semibold tracking-[0.14em] text-zinc-900 uppercase dark:text-white">
 										On this page
 									</p>
-									<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
-									<ul className="space-y-2">
+									<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
+									<ul className="space-y-5">
 										<li>
-											<span className="block text-sm leading-snug text-zinc-900 underline underline-offset-4 dark:text-white">
-												How to use these docs
+											<span className="block text-sm font-semibold text-zinc-900 dark:text-white">
+												Layers
 											</span>
+											<ul className="mt-2 space-y-2 pl-3">
+												<li>
+													<span className="flex min-w-0 items-baseline gap-1 font-mono text-xs text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white">
+														layer
+													</span>
+												</li>
+											</ul>
 										</li>
 										<li>
-											<span className="block text-sm leading-snug text-zinc-600 transition-colors hover:text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-400 dark:hover:text-white">
-												Coding with LLMs
+											<span className="block text-sm font-semibold text-zinc-900 dark:text-white">
+												Models
 											</span>
+											<ul className="mt-2 space-y-2 pl-3">
+												<li>
+													<span className="flex min-w-0 items-baseline gap-1 font-mono text-xs text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white">
+														<span className="truncate">
+															FlattenedPipeline
+														</span>
+														<span className="shrink-0 text-zinc-400 dark:text-zinc-500">
+															(interface)
+														</span>
+													</span>
+												</li>
+											</ul>
 										</li>
 									</ul>
 								</div>
