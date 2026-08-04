@@ -866,104 +866,121 @@ Effect.runPromise(program)`}</code>
 						>
 							<SpecRow
 								title="Docs heading hierarchy"
-								note="The reading scale, one step smaller than the site ladder. h1 is the page title at 28px — never the marketing scale. h2 opens sections and names API entries (mono, with a kind badge). h3 handles named subsections. Repeated scaffold labels — When to use, Details, See, Signature — are not styled as headings at all: they render as mono micro labels so the entry name and content dominate instead of four identical bold lines competing."
-								classes={[
-									{
-										label: "h1 · page",
-										value:
-											"text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em]",
-									},
-									{
-										label: "h2 · section",
-										value:
-											"text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em]",
-									},
-									{
-										label: "h2 · api entry",
-										value:
-											"font-mono text-[1.375rem] leading-[1.35] font-semibold tracking-tight",
-									},
-									{
-										label: "kind badge",
-										value:
-											"rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400",
-									},
-									{
-										label: "h3 · subsection",
-										value: "text-[1.125rem] leading-[1.4] font-semibold",
-									},
-									{
-										label: "scaffold label",
-										value:
-											"mt-6 mb-2 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
-									},
-								]}
+								note="The reading scale, one step smaller than the site ladder. h1 is the page title at 28px — never the marketing scale. h2 opens sections and names API entries (mono, with a kind badge). h3 handles named subsections. Repeated scaffold labels — When to use, Details, See, Signature — are not styled as headings at all: they render as mono labels so the entry name and content dominate."
 							>
-								<div className="space-y-6">
-									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
-										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+								<div className="space-y-8">
+									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h1 · page
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
 												one per docs page
 											</span>
 										</span>
-										<span className="min-w-0 text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
-											Models
-										</span>
+										<div className="min-w-0 flex-1">
+											<p className="text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
+												Models
+											</p>
+											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													text-[1.75rem] leading-[1.2] font-semibold
+													tracking-[-0.012em]
+												</code>
+											</pre>
+										</div>
 									</div>
-									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
-										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h2 · section
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
 												guide sections
 											</span>
 										</span>
-										<span className="min-w-0 text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
-											Running Effects
-										</span>
+										<div className="min-w-0 flex-1">
+											<p className="text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] text-zinc-900 dark:text-white">
+												Running Effects
+											</p>
+											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													text-[1.375rem] leading-[1.35] font-semibold
+													tracking-[-0.012em]
+												</code>
+											</pre>
+										</div>
 									</div>
-									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
-										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h2 · api entry
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
 												mono + kind badge
 											</span>
 										</span>
-										<span className="flex min-w-0 items-center gap-3">
-											<span className="font-mono text-[1.375rem] leading-[1.35] font-semibold tracking-tight text-zinc-900 dark:text-white">
-												LayerRef
-											</span>
-											<span className="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400">
-												Interface
-											</span>
-										</span>
+										<div className="min-w-0 flex-1">
+											<p className="flex min-w-0 items-center gap-3">
+												<span className="font-mono text-[1.375rem] leading-[1.35] font-semibold tracking-tight text-zinc-900 dark:text-white">
+													LayerRef
+												</span>
+												<span className="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400">
+													Interface
+												</span>
+											</p>
+											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													font-mono text-[1.375rem] leading-[1.35]
+													font-semibold tracking-tight
+												</code>
+											</pre>
+											<pre className="mt-2 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													badge: rounded-full border border-zinc-300 px-2.5
+													py-0.5 font-mono text-xs font-medium tracking-wider
+													text-zinc-500 uppercase dark:border-zinc-700
+													dark:text-zinc-400
+												</code>
+											</pre>
+										</div>
 									</div>
-									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
-										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
+										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h3 · subsection
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
 												named subsections
 											</span>
 										</span>
-										<span className="min-w-0 text-[1.125rem] leading-[1.4] font-semibold text-zinc-900 dark:text-white">
-											Layer caching semantics
-										</span>
+										<div className="min-w-0 flex-1">
+											<p className="text-[1.125rem] leading-[1.4] font-semibold text-zinc-900 dark:text-white">
+												Layer caching semantics
+											</p>
+											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													text-[1.125rem] leading-[1.4] font-semibold
+												</code>
+											</pre>
+										</div>
 									</div>
-									<div className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-6">
-										<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+									<div className="flex flex-col gap-2 md:flex-row md:gap-6">
+										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											scaffold label
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
 												repeated per entry
 											</span>
 										</span>
-										<span className="min-w-0 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-											When to use · Details · See · Signature
-										</span>
+										<div className="min-w-0 flex-1">
+											<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+												When to use · Details · See · Signature
+											</p>
+											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+													mt-6 mb-2 font-mono text-sm font-medium
+													tracking-wider text-zinc-500 uppercase
+													dark:text-zinc-400
+												</code>
+											</pre>
+										</div>
 									</div>
 								</div>
 							</SpecRow>
