@@ -8,50 +8,46 @@ import { Icon } from "@/components/ui/Icon";
 const codeLines = [
 	// Line 0: import { Effect } from "effect"
 	<>
-		<span className="text-violet-600 dark:text-violet-400">import</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{" { "}</span>
-		<span className="text-zinc-900 dark:text-white">Effect</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{" } "}</span>
-		<span className="text-violet-600 dark:text-violet-400">from</span>
-		<span className="text-emerald-600 dark:text-emerald-400">
-			{' "effect"'}
-		</span>
+		<span className="tok-keyword">import</span>
+		<span className="tok-fg">{" { "}</span>
+		<span className="tok-fg">Effect</span>
+		<span className="tok-fg">{" } "}</span>
+		<span className="tok-keyword">from</span>
+		<span className="tok-string">{' "effect"'}</span>
 	</>,
 	// Line 1: (empty line)
 	null,
 	// Line 2: const page = Effect.fail("404: Not Found").pipe(
 	<>
-		<span className="text-violet-600 dark:text-violet-400">const</span>
-		<span className="text-zinc-700 dark:text-zinc-300"> page</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{" = "}</span>
-		<span className="text-zinc-900 dark:text-white">Effect</span>
-		<span className="text-zinc-500 dark:text-zinc-400">.</span>
-		<span className="text-zinc-700 dark:text-zinc-300">fail</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
-		<span className="text-emerald-600 dark:text-emerald-400">
-			{'"404: Not Found"'}
-		</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{")."}</span>
-		<span className="text-zinc-700 dark:text-zinc-300">pipe</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
+		<span className="tok-keyword">const</span>
+		<span className="tok-constant"> page</span>
+		<span className="tok-fg">{" = "}</span>
+		<span className="tok-fg">Effect</span>
+		<span className="tok-fg">.</span>
+		<span className="tok-constant">fail</span>
+		<span className="tok-fg">{"("}</span>
+		<span className="tok-string">{'"404: Not Found"'}</span>
+		<span className="tok-fg">{")."}</span>
+		<span className="tok-constant">pipe</span>
+		<span className="tok-fg">{"("}</span>
 	</>,
 	// Line 3:   Effect.catchAll(() => Effect.succeed("/"))
 	<>
-		<span className="text-zinc-500 dark:text-zinc-400">{"  "}</span>
-		<span className="text-zinc-900 dark:text-white">Effect</span>
-		<span className="text-zinc-500 dark:text-zinc-400">.</span>
-		<span className="text-zinc-700 dark:text-zinc-300">catchAll</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{"(() => "}</span>
-		<span className="text-zinc-900 dark:text-white">Effect</span>
-		<span className="text-zinc-500 dark:text-zinc-400">.</span>
-		<span className="text-zinc-700 dark:text-zinc-300">succeed</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{"("}</span>
-		<span className="text-emerald-600 dark:text-emerald-400">{'"/"'}</span>
-		<span className="text-zinc-500 dark:text-zinc-400">{"))"}</span>
+		<span className="tok-fg">{"  "}</span>
+		<span className="tok-fg">Effect</span>
+		<span className="tok-fg">.</span>
+		<span className="tok-constant">catchAll</span>
+		<span className="tok-fg">{"(() => "}</span>
+		<span className="tok-fg">Effect</span>
+		<span className="tok-fg">.</span>
+		<span className="tok-constant">succeed</span>
+		<span className="tok-fg">{"("}</span>
+		<span className="tok-string">{'"/"'}</span>
+		<span className="tok-fg">{"))"}</span>
 	</>,
 	// Line 4: )
 	<>
-		<span className="text-zinc-500 dark:text-zinc-400">{")"}</span>
+		<span className="tok-fg">{")"}</span>
 	</>,
 ];
 

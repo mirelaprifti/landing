@@ -41,12 +41,24 @@
 	--tok-comment: #8b949e;
 	--tok-fg: #e6edf3;
 }
-.tok-keyword { color: var(--tok-keyword); }
-.tok-string { color: var(--tok-string); }
-.tok-entity { color: var(--tok-entity); }
-.tok-constant { color: var(--tok-constant); }
-.tok-comment { color: var(--tok-comment); }
-.tok-fg { color: var(--tok-fg); }
+.tok-keyword {
+	color: var(--tok-keyword);
+}
+.tok-string {
+	color: var(--tok-string);
+}
+.tok-entity {
+	color: var(--tok-entity);
+}
+.tok-constant {
+	color: var(--tok-constant);
+}
+.tok-comment {
+	color: var(--tok-comment);
+}
+.tok-fg {
+	color: var(--tok-fg);
+}
 
 @theme {
 	/* Font Sizes */

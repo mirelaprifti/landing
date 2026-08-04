@@ -1,10 +1,10 @@
 // Token classes mirror the editorial syntax treatment used in the Playground mock
 const tk = {
-	kw: "font-semibold text-indigo-300",
-	id: "text-zinc-300",
-	str: "text-emerald-400",
-	cmt: "italic text-zinc-500",
-	punct: "text-zinc-500",
+	kw: "tok-keyword",
+	id: "tok-fg",
+	str: "tok-string",
+	cmt: "tok-comment",
+	punct: "tok-fg",
 };
 
 function T({

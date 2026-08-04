@@ -955,9 +955,8 @@ Effect.runPromise(program)`}</code>
 											</p>
 											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
 												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													mt-6 mb-2 font-mono text-sm font-medium
-													tracking-wider text-zinc-500 uppercase
-													dark:text-zinc-400
+													mt-6 mb-2 font-mono text-sm font-medium tracking-wider
+													text-zinc-500 uppercase dark:text-zinc-400
 												</code>
 											</pre>
 										</div>
@@ -1163,9 +1162,7 @@ Effect.runPromise(program)`}</code>
 											<ul className="mt-2 space-y-2 pl-3">
 												<li>
 													<span className="flex min-w-0 items-baseline gap-1 font-mono text-xs text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white">
-														<span className="truncate">
-															FlattenedPipeline
-														</span>
+														<span className="truncate">FlattenedPipeline</span>
 														<span className="shrink-0 text-zinc-400 dark:text-zinc-500">
 															(interface)
 														</span>

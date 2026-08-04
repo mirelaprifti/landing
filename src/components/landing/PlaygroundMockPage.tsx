@@ -35,12 +35,12 @@ const TREE: TreeNode[] = [
 
 // Token classes — restrained 2-accent palette (indigo for keywords, emerald for strings)
 const tokenClass = {
-	kw: "font-semibold text-indigo-700 dark:text-indigo-300", // keywords
-	id: "text-zinc-700 dark:text-zinc-300", // identifiers / foreground
-	str: "text-emerald-700 dark:text-emerald-400", // strings
-	cmt: "text-zinc-500 dark:text-zinc-400 italic", // comments
-	num: "text-zinc-700 dark:text-zinc-300", // numbers
-	punct: "text-zinc-500 dark:text-zinc-400", // punctuation
+	kw: "tok-keyword", // keywords
+	id: "tok-fg", // identifiers / foreground
+	str: "tok-string", // strings
+	cmt: "tok-comment", // comments
+	num: "tok-constant", // numbers
+	punct: "tok-fg", // punctuation
 };
 
 function Token({

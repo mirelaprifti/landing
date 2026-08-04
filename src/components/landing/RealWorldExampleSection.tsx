@@ -191,7 +191,7 @@ function highlightLine(line: string): React.ReactNode {
 			segment.startsWith("`")
 		) {
 			parts.push(
-				<span key={i} className="text-emerald-400">
+				<span key={i} className="tok-string">
 					{segment}
 				</span>,
 			);
@@ -217,7 +217,7 @@ function highlightLine(line: string): React.ReactNode {
 				const kwMatch = seg.match(/<<<KW_([^>]+)>>>/);
 				if (kwMatch) {
 					parts.push(
-						<span key={`${i}-${j}`} className="text-violet-400">
+						<span key={`${i}-${j}`} className="tok-keyword">
 							{kwMatch[1]}
 						</span>,
 					);
