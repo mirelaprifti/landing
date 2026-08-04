@@ -425,7 +425,7 @@ function VersionSwitcher({
 				<div
 					role="listbox"
 					aria-label="Docs and API version"
-					className="absolute top-full right-0 z-10 mt-2 w-36 overflow-hidden rounded-md border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-950/10 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/40"
+					className="absolute top-full right-0 z-10 mt-1 w-20 overflow-hidden rounded-md border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-950/10 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/40"
 				>
 					{(["v4", "v3"] as const).map((v) => (
 						<button
@@ -437,7 +437,7 @@ function VersionSwitcher({
 								onVersionChange(v);
 								setOpen(false);
 							}}
-							className={`flex w-full items-center justify-between px-3 py-1.5 text-left font-mono text-xs transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+							className={`flex w-full items-center justify-between px-2.5 py-1.5 text-left font-mono text-xs transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
 								version === v
 									? "font-medium text-zinc-900 dark:text-white"
 									: "text-zinc-600 dark:text-zinc-300"
