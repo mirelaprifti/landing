@@ -18,44 +18,30 @@ const text = {
 	body: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400",
 };
 
-const PAST_EDITIONS = [
+const DAY_CARDS = [
 	{
-		year: "2024",
-		location: "Vienna, Austria 🇦🇹",
-		dates: "Feb 22-24, 2024",
-		badge: "Inaugural Edition",
-		description:
-			"Where the Effect community gathered for the first time to share from early experiments to production systems.",
-		playlistUrl:
-			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B_XZ8k3gD8R1k4-LBz8JmHP",
-		image: "/assets/images/ed-24-2.png",
+		day: "Thu",
+		date: "Dec 10",
+		title: "Effect Workshop",
+		description: "Full-day sessions led by Effect experts.",
 	},
 	{
-		year: "2025",
-		location: "Livorno, Italy 🇮🇹",
-		dates: "Mar 19-21, 2025",
-		badge: "Past Edition",
-		description:
-			"A more in-depth event spotlighting advanced use cases and real production stories, showing the evolution of Effect.",
-		playlistUrl:
-			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
-		image: "/assets/images/ed-25-2.png",
+		day: "Fri",
+		date: "Dec 11",
+		title: "Effect Conference",
+		description: "Engaging talks, afterparty & swags!",
 	},
 	{
-		year: "2026",
-		location: "Málaga, Spain 🇪🇸",
-		dates: "May 6-8, 2026",
-		badge: "Past Edition",
-		description:
-			"Three days on the Costa del Sol — workshops, conference talks, and a full day of community sessions.",
-		playlistUrl: "https://www.youtube.com/@effect-ts",
-		image: "/assets/images/malaga-6.png",
+		day: "Sat",
+		date: "Dec 12",
+		title: "Community Day",
+		description: "More learning, networking, and fun!",
 	},
 ];
 
 const STATS = [
 	{
-		value: "4th",
+		value: "3rd",
 		label: "Edition",
 		icon: "/assets/icons-svgs/edition-graphic.svg",
 	},
@@ -71,11 +57,65 @@ const STATS = [
 	},
 ];
 
-const DAYS = [
-	{ icon: "wrench", label: "Dec 10 · Workshop Day" },
-	{ icon: "mic", label: "Dec 11 · Conference Day" },
-	{ icon: "users", label: "Dec 12 · Community Day" },
+const COMMUNITY_STATS = [
+	{ value: "15,100+", label: "GitHub Stars", icon: "ri-github-fill" },
+	{ value: "6,500+", label: "Community Members", icon: "ri-discord-fill" },
+	{ value: "7,400+", label: "YouTube Subscribers", icon: "ri-youtube-fill" },
+];
+
+const PASSES = [
+	{
+		name: "Workshop & Conference Pass",
+		description:
+			"Includes a full-day Effect workshop and all in Conference Pass.",
+		days: [
+			{ icon: "wrench", label: "Dec 10 · Workshop Day", included: true },
+			{ icon: "mic", label: "Dec 11 · Conference Day", included: true },
+			{ icon: "users", label: "Dec 12 · Community Day", included: true },
+		],
+		featured: true,
+	},
+	{
+		name: "Conference Pass",
+		description:
+			"In-person ticket including food, drinks, swags, and afterparty!",
+		days: [
+			{ icon: "x", label: "Dec 10 · Workshop Day", included: false },
+			{ icon: "mic", label: "Dec 11 · Conference Day", included: true },
+			{ icon: "users", label: "Dec 12 · Community Day", included: true },
+		],
+		featured: false,
+	},
 ] as const;
+
+const PAST_EDITIONS = [
+	{
+		year: "2024",
+		location: "Vienna, Austria 🇦🇹",
+		dates: "Feb 22-24, 2024",
+		talks: 15,
+		workshops: 2,
+		badge: "Inaugural Edition",
+		description:
+			"Where the Effect community gathered for the first time to share from early experiments to production systems.",
+		playlistUrl:
+			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B_XZ8k3gD8R1k4-LBz8JmHP",
+		image: "/assets/images/ed-24-2.png",
+	},
+	{
+		year: "2025",
+		location: "Livorno, Italy 🇮🇹",
+		dates: "Mar 19-21, 2025",
+		talks: 19,
+		workshops: 2,
+		badge: "Past Edition",
+		description:
+			"A more in-depth event spotlighting advanced use cases and real production stories, showing the evolution of Effect.",
+		playlistUrl:
+			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
+		image: "/assets/images/ed-25-2.png",
+	},
+];
 
 export function EffectDaysLivornoPage() {
 	return (
@@ -135,22 +175,22 @@ export function EffectDaysLivornoPage() {
 				/>
 
 				{/* Hero Section */}
-				<section className="relative w-full pt-20 pb-16 md:pt-24 md:pb-32">
+				<section className="relative w-full pt-20 pb-16 md:pt-24 md:pb-24">
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="flex flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12">
 							{/* Left side - Main content */}
 							<div className="flex-1">
-								<p className="mb-4 font-mono text-base font-semibold tracking-wide text-zinc-100">
-									<span className="text-violet-400">import</span> {"{"}{" "}
-									yourTicket {"}"} <span className="text-violet-400">from</span>{" "}
-									<span className="text-emerald-400">
-										"effect-days-livorno"
-									</span>
+								<p className="mb-6 font-mono text-base font-semibold tracking-wide text-zinc-100">
+									<span className="text-violet-400">import</span> {"{"} Effect{" "}
+									{"}"} <span className="text-violet-400">from</span>{" "}
+									<span className="text-emerald-400">"effect"</span>
 								</p>
-								<h1 className={text.pageTitle}>Effect Days Livorno</h1>
-								<p className="mt-6 text-xl font-medium text-white">
-									Workshop Day · Conference Day · Community Day
-								</p>
+								<h1 className={text.pageTitle}>
+									<span className="rounded-xl bg-zinc-800/90 px-3 py-0.5 font-mono">
+										Effect
+									</span>{" "}
+									& TypeScript developers conference
+								</h1>
 
 								{/* CTA Buttons */}
 								<div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
@@ -161,7 +201,7 @@ export function EffectDaysLivornoPage() {
 										className="group"
 									>
 										<Icon name="ticket" className="text-lg" />
-										Get your ticket
+										Get tickets
 									</Button>
 									<Button
 										href="https://discord.gg/effect-ts"
@@ -271,14 +311,37 @@ export function EffectDaysLivornoPage() {
 								</div>
 							</div>
 						</div>
+
+						{/* Day cards */}
+						<div className="mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-3">
+							{DAY_CARDS.map((card) => (
+								<div key={card.date}>
+									<div className="flex items-center justify-between border-b border-zinc-500 pb-2 font-mono text-sm font-medium tracking-wider text-zinc-300 uppercase">
+										<span>{card.day}</span>
+										<span>{card.date}</span>
+									</div>
+									<h3 className="mt-4 text-lg font-semibold text-white">
+										{card.title}
+									</h3>
+									<p className="mt-1 text-sm leading-normal text-zinc-400">
+										{card.description}
+									</p>
+								</div>
+							))}
+						</div>
 					</div>
 				</section>
 
 				{/* Stats Section */}
 				<section className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="border-t border-zinc-700 pt-24">
-							<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+						<div className="border-t border-zinc-700 pt-16">
+							<p className="mx-auto max-w-2xl text-center text-lg text-zinc-400">
+								A community-driven, non-profit event celebrating the Effect
+								ecosystem and our growing community building production-grade
+								applications in TypeScript.
+							</p>
+							<div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
 								{STATS.map((stat) => (
 									<div
 										key={stat.label}
@@ -346,96 +409,181 @@ export function EffectDaysLivornoPage() {
 				<section id="tickets" className="scroll-mt-16 py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>{"// "}Effect Days Tickets</p>
-							<h2 className={text.sectionTitle}>Three days, one pass</h2>
+							<p className={text.eyebrow}>{"// "}Get Tickets</p>
+							<h2 className={text.sectionTitle}>Choose your pass</h2>
 
 							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-								{/* Days overview card */}
-								<div className="relative flex flex-col overflow-hidden border border-zinc-600 bg-zinc-900/50">
-									<div className="p-6">
-										<div className="mb-6">
-											<div className="flex items-baseline justify-between gap-4">
-												<h3 className={text.cardTitle}>Full Pass</h3>
-												<p className="text-sm text-zinc-400">
-													The complete Effect Days experience
+								{PASSES.map((pass) => (
+									<div
+										key={pass.name}
+										className={`relative flex flex-col overflow-hidden border ${
+											pass.featured
+												? "border-zinc-600 bg-zinc-900/50"
+												: "border-zinc-800 bg-zinc-900/30"
+										}`}
+									>
+										<div className="flex flex-1 flex-col p-6">
+											<div className="mb-6">
+												<div className="flex items-baseline justify-between gap-4">
+													<h3 className={text.cardTitle}>{pass.name}</h3>
+												</div>
+												<p className="mt-1 text-sm leading-normal text-zinc-400">
+													{pass.description}
+												</p>
+												<div
+													className="mt-4 h-px w-full"
+													style={{
+														backgroundImage:
+															"repeating-linear-gradient(to right, rgb(82 82 91) 0px, rgb(82 82 91) 2px, transparent 2px, transparent 4px)",
+													}}
+												/>
+											</div>
+
+											{/* Days included */}
+											<div className="mb-6 space-y-3">
+												{pass.days.map((day) => (
+													<div
+														key={day.label}
+														className="flex items-center gap-3"
+													>
+														<div
+															className={`flex h-8 w-8 items-center justify-center rounded-md border ${
+																day.included
+																	? "border-emerald-500/20 bg-emerald-500/10"
+																	: "border-zinc-700 bg-zinc-800"
+															}`}
+														>
+															<Icon
+																name={day.icon}
+																className={
+																	day.included
+																		? "text-emerald-400"
+																		: "text-zinc-600"
+																}
+															/>
+														</div>
+														<p
+															className={`text-sm font-medium ${
+																day.included ? "text-white" : "text-zinc-400"
+															}`}
+														>
+															{day.label}
+														</p>
+													</div>
+												))}
+											</div>
+
+											{/* CTAs */}
+											<div className="mt-auto space-y-3">
+												<div className="flex w-full items-center justify-between border border-zinc-700 bg-zinc-800/50 px-4 py-2.5">
+													<div className="flex items-center gap-2">
+														<Icon name="user" className="text-zinc-400" />
+														<span className="text-base font-medium text-zinc-300">
+															Self-pay
+														</span>
+													</div>
+													<span className="font-mono text-sm tracking-wide text-zinc-400 uppercase">
+														Coming soon
+													</span>
+												</div>
+												<div className="flex w-full items-center justify-between border border-zinc-700 bg-zinc-800/50 px-4 py-2.5">
+													<div className="flex items-center gap-2">
+														<Icon name="building" className="text-zinc-400" />
+														<span className="text-base font-medium text-zinc-300">
+															Business-pay*
+														</span>
+													</div>
+													<span className="font-mono text-sm tracking-wide text-zinc-400 uppercase">
+														Coming soon
+													</span>
+												</div>
+												<p className="text-center text-xs text-zinc-500">
+													*Suitable for invoicing
 												</p>
 											</div>
-											<div
-												className="mt-4 h-px w-full"
-												style={{
-													backgroundImage:
-														"repeating-linear-gradient(to right, rgb(82 82 91) 0px, rgb(82 82 91) 2px, transparent 2px, transparent 4px)",
-												}}
-											/>
-										</div>
-
-										<div className="space-y-3">
-											{DAYS.map((day) => (
-												<div
-													key={day.label}
-													className="flex items-center gap-3"
-												>
-													<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-														<Icon
-															name={day.icon}
-															className="text-emerald-400"
-														/>
-													</div>
-													<p className="text-sm font-medium text-white">
-														{day.label}
-													</p>
-												</div>
-											))}
 										</div>
 									</div>
-								</div>
-
-								{/* Coming soon card */}
-								<div className="relative flex flex-col justify-center overflow-hidden border border-dashed border-zinc-700 bg-zinc-900/30">
-									<div className="p-6">
-										<h3 className={text.cardTitle}>Ticket sales open soon</h3>
-										<p className="mt-1 text-sm leading-normal text-zinc-400">
-											Pricing and registration will be announced shortly. Join
-											the Discord to be the first to know when tickets go live.
-										</p>
-										<div className="mt-6">
-											<Button
-												href="https://discord.gg/effect-ts"
-												variant="secondary"
-												className="border-zinc-600 hover:bg-zinc-800/80"
-											>
-												<i className="ri-discord-fill text-lg" />
-												Get notified on Discord
-											</Button>
-										</div>
-									</div>
-								</div>
+								))}
 							</div>
 
 							<div className="mt-8 flex flex-col gap-4 text-sm text-zinc-400 md:flex-row md:justify-between">
 								<p>
-									Planning to bring your team?{" "}
+									Are you a group of more than 3 people interested in business
+									tickets?{" "}
 									<Link
 										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
 										variant="inline"
 										className="underline-offset-2"
 									>
-										Contact us for group discounts.
+										Learn about available discounts at contact@effectful.co.
 									</Link>
 								</p>
 								<p className="flex shrink-0 items-center gap-2 md:text-right">
-									<Icon name="heart-handshake" className="text-white" />
+									<i className="ri-discord-fill text-white" />
 									<span>
 										<Link
-											href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship Inquiry"
+											href="https://discord.gg/effect-ts"
 											variant="inline"
 											className="underline-offset-2"
 										>
-											Sponsor Effect Days
+											Join the Discord
 										</Link>{" "}
-										and get tickets included.
+										to be the first to know when tickets go live.
 									</span>
 								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Sponsoring Section */}
+				<section className="py-16">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<div className="border-t border-zinc-800 pt-12">
+							<p className={text.eyebrow}>{"// "}Sponsoring Effect Days</p>
+							<h2 className={text.sectionTitle}>Give back to the community</h2>
+
+							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+								{/* Pitch */}
+								<div className="flex flex-col justify-center border border-zinc-800 bg-zinc-900/30 p-8">
+									<p className="text-xl leading-relaxed font-medium text-white">
+										Has Effect played a key role in your project and you'd love
+										to give back to the community?
+									</p>
+									<p className="mt-4 text-xl leading-relaxed font-medium text-emerald-400">
+										Sponsoring Effect Days is your perfect opportunity!
+									</p>
+									<div className="mt-8">
+										<Button
+											href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship Inquiry"
+											variant="primary"
+											size="lg"
+										>
+											<Icon name="heart-handshake" className="text-lg" />I want
+											to sponsor
+										</Button>
+									</div>
+								</div>
+
+								{/* Community stats */}
+								<div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1">
+									{COMMUNITY_STATS.map((stat) => (
+										<div
+											key={stat.label}
+											className="flex items-center gap-4 border border-zinc-800 bg-zinc-900/30 px-6 py-5"
+										>
+											<i className={`${stat.icon} text-2xl text-zinc-300`} />
+											<div>
+												<div className="text-2xl font-bold text-white">
+													{stat.value}
+												</div>
+												<div className="mt-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
+													{stat.label}
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -462,14 +610,25 @@ export function EffectDaysLivornoPage() {
 										>
 											Effect
 										</Link>
-										, an open-source software library for building
-										production-grade applications in TypeScript.
+										, an open-source software library that offers an ecosystem
+										of tools for building production-grade applications in
+										TypeScript.
 									</p>
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
 									<h3 className="text-[15px] font-semibold text-white">
-										2. What is the schedule of the conference?
+										2. When and where is Effect Days taking place?
+									</h3>
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
+										Effect Days will take place on December 10-12, 2026 in
+										Livorno, Tuscany, Italy. The venue will be announced soon.
+									</p>
+								</div>
+
+								<div className="border-b border-zinc-800/50 py-5">
+									<h3 className="text-[15px] font-semibold text-white">
+										3. What is the schedule of the conference?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The conference schedule will be shared as we get closer to
@@ -479,7 +638,7 @@ export function EffectDaysLivornoPage() {
 
 								<div className="border-b border-zinc-800/50 py-5">
 									<h3 className="text-[15px] font-semibold text-white">
-										3. Will the Effect Days conference be recorded?
+										4. Will the Effect Days conference be recorded?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The conference talks will be recorded and published on the{" "}
@@ -490,23 +649,59 @@ export function EffectDaysLivornoPage() {
 										>
 											Effect YouTube channel
 										</Link>{" "}
-										a few weeks later.
+										a few weeks later. In the meantime you can subscribe to our
+										YouTube, follow{" "}
+										<Link
+											href="https://x.com/EffectTS_"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+										>
+											Effect on X (Twitter)
+										</Link>
+										, or{" "}
+										<Link
+											href="https://discord.gg/effect-ts"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+										>
+											join the community
+										</Link>{" "}
+										to stay updated.
 									</p>
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
 									<h3 className="text-[15px] font-semibold text-white">
-										4. What is the Community Day?
+										5. What is the Community Day?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										The Community Day on December 12th is a full day dedicated
-										to deeper discussions, networking, and community activities.
+										Effect Days isn't just about talks — it's about real
+										connections. The Community Day on December 12th is a full
+										day dedicated to deeper discussions, networking, and
+										community activities.
 									</p>
 								</div>
 
 								<div className="border-b border-zinc-800/50 py-5">
 									<h3 className="text-[15px] font-semibold text-white">
-										5. How do I get to Livorno?
+										6. Can I get a refund for my ticket?
+									</h3>
+									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
+										Please refer to our{" "}
+										<Link
+											href="#"
+											variant="inline"
+											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
+										>
+											Refund Policy
+										</Link>{" "}
+										for more details.
+									</p>
+								</div>
+
+								<div className="border-b border-zinc-800/50 py-5">
+									<h3 className="text-[15px] font-semibold text-white">
+										7. How do I get to Livorno?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										The closest airport is Pisa (PSA), about 30 minutes away by
@@ -518,7 +713,7 @@ export function EffectDaysLivornoPage() {
 
 								<div className="border-b border-zinc-800/50 py-5">
 									<h3 className="text-[15px] font-semibold text-white">
-										6. Is there a Code of Conduct?
+										8. Is there a Code of Conduct?
 									</h3>
 									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
 										Yes. Effect Days is dedicated to providing a harassment-free
@@ -543,9 +738,9 @@ export function EffectDaysLivornoPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>{"// "}Relive Effect Days</p>
-							<h2 className={text.sectionTitle}>Three editions and counting</h2>
+							<h2 className={text.sectionTitle}>Past editions</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
 								{PAST_EDITIONS.map((edition) => (
 									<div
 										key={edition.year}
@@ -585,14 +780,24 @@ export function EffectDaysLivornoPage() {
 												{edition.description}
 											</p>
 
-											<div className="mt-auto flex items-center border-t border-zinc-800 pt-5">
+											<div className="mt-5 flex items-center gap-4 border-t border-zinc-800 pt-5">
+												<div className="flex items-center gap-5 text-sm text-zinc-400">
+													<span className="flex items-center gap-1.5">
+														<Icon name="mic" />
+														{edition.talks} talks
+													</span>
+													<span className="flex items-center gap-1.5">
+														<Icon name="wrench" />
+														{edition.workshops} workshops
+													</span>
+												</div>
 												<Link
 													href={edition.playlistUrl}
 													variant="subtle"
-													className="mt-5 inline-flex items-center gap-1.5 font-medium"
+													className="ml-auto inline-flex items-center gap-1.5 font-medium"
 												>
 													<i className="ri-youtube-fill text-base" />
-													Watch the talks
+													Full playlist
 													<Icon name="arrow-up-right" className="text-xs" />
 												</Link>
 											</div>
@@ -645,7 +850,7 @@ export function EffectDaysLivornoPage() {
 										className="group"
 									>
 										<Icon name="ticket" className="text-lg" />
-										Get your ticket
+										Get tickets
 									</Button>
 								</div>
 							</div>
