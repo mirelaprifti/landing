@@ -77,7 +77,7 @@ const SPACING_STEPS = [
 function ClassBlock({ classes }: { classes: string }) {
 	return (
 		<pre className="mt-5 rounded-md bg-zinc-100 px-4 py-3 whitespace-pre-wrap dark:bg-zinc-900">
-			<code className="font-mono text-sm leading-relaxed wrap-break-word text-green-700 dark:text-green-400">
+			<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
 				{classes}
 			</code>
 		</pre>
@@ -230,6 +230,31 @@ export function TypographyStyleguidePage() {
 									))}
 								</div>
 							</SpecRow>
+
+							<SpecRow
+								title="Code snippets"
+								note="Code blocks stay dark in both themes: zinc-950 panel, zinc-800 hairline, zinc-200 plain text. Tokens use rose for keywords and operators, blue for calls and bindings, sky for strings, muted zinc for comments. Inline code chips stay neutral zinc — no color."
+								classes="block: rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-sm leading-[1.6] text-zinc-200 · keyword/operator: text-rose-400 · call/binding: text-blue-400 · string: text-sky-300 · comment: text-zinc-500"
+							>
+								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.6] text-zinc-200">
+									<code>
+										<span className="text-rose-400">import</span>
+										{" { Array } "}
+										<span className="text-rose-400">from</span>{" "}
+										<span className="text-sky-300">"effect"</span>
+										{"\n\n"}
+										<span className="text-rose-400">const</span>{" "}
+										<span className="text-blue-400">result</span>{" "}
+										<span className="text-rose-400">=</span>
+										{" Array."}
+										<span className="text-blue-400">append</span>
+										{"([1, 2, 3], 4)\nconsole."}
+										<span className="text-blue-400">log</span>
+										{"(result) "}
+										<span className="text-zinc-500">{"// [1, 2, 3, 4]"}</span>
+									</code>
+								</pre>
+							</SpecRow>
 						</GuideSection>
 
 						<GuideSection
@@ -238,6 +263,62 @@ export function TypographyStyleguidePage() {
 							title="Text elements"
 							lede="One spec per role. Headings are bold only at the h1 level; everything below is semibold. Page titles (h1) use leading-[1.1]; lower heading levels use leading-tighter. All use themeable color pairs."
 						>
+							<SpecRow
+								title="Heading hierarchy"
+								note="Five levels, one job each: h1 opens the page (hero scale on landing pages, subpage scale everywhere else — never both), h2 opens a section, h3 titles a card or subsection, h4 handles fine structure. Never skip a level and never restyle a lower level to look like a higher one. The eyebrow is a label, not a heading — it renders as a p and takes no heading slot."
+							>
+								<div className="space-y-6">
+									{[
+										{
+											label: "h1 · hero",
+											detail: "one per landing page",
+											cls: text.pageTitle,
+											sample: "Ship reliable software",
+										},
+										{
+											label: "h1 · subpage",
+											detail: "one per subpage",
+											cls: text.pageTitleSub,
+											sample: "Effect 4.0 enters beta",
+										},
+										{
+											label: "h2 · section",
+											detail: "opens every section",
+											cls: text.sectionTitle,
+											sample: "Everything you need",
+										},
+										{
+											label: "h3 · card",
+											detail: "cards, subsections",
+											cls: text.cardTitle,
+											sample: "Typed errors",
+										},
+										{
+											label: "h4 · small",
+											detail: "fine structure",
+											cls: text.smallHeading,
+											sample: "Retry policies",
+										},
+									].map((level) => (
+										<div
+											key={level.label}
+											className="flex flex-col gap-1 border-b border-zinc-100 pb-5 last:border-b-0 last:pb-0 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900"
+										>
+											<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+												{level.label}
+												<br />
+												<span className="text-zinc-400 dark:text-zinc-500">
+													{level.detail}
+												</span>
+											</span>
+											<span className={`${level.cls} min-w-0`}>
+												{level.sample}
+											</span>
+										</div>
+									))}
+								</div>
+							</SpecRow>
+
 							<SpecRow
 								title="Page title — hero (h1)"
 								note="Landing and marketing heroes. The only place font-bold is used."
@@ -545,8 +626,9 @@ export function TypographyStyleguidePage() {
 											Copy the container and section rhythm strings verbatim.
 										</li>
 										<li>
-											Color belongs to code snippets only — emerald inline
-											chips, green code-block text; all other text stays zinc.
+											Color belongs to syntax tokens only — rose keywords, blue
+											calls, sky strings inside dark code blocks; chips and all
+											other text stay zinc.
 										</li>
 									</ul>
 								</div>
@@ -741,7 +823,7 @@ Effect.runPromise(program)`}</code>
 						>
 							<SpecRow
 								title="Docs article body"
-								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as emerald chips; code blocks bordered and soft-filled with green code text."
+								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as neutral chips; code blocks always dark with the syntax tokens from Foundations."
 								classes={DOCS_ARTICLE_CLASS}
 							>
 								<div className={DOCS_ARTICLE_CLASS}>
@@ -766,9 +848,19 @@ Effect.runPromise(program)`}</code>
 										<li>Structured concurrency supervises every fiber</li>
 									</ul>
 									<pre>
-										<code>{`import { Effect } from "effect"
-
-const program = Effect.succeed(42)`}</code>
+										<code>
+											<span className="text-rose-400">import</span>
+											{" { Effect } "}
+											<span className="text-rose-400">from</span>{" "}
+											<span className="text-sky-300">"effect"</span>
+											{"\n\n"}
+											<span className="text-rose-400">const</span>{" "}
+											<span className="text-blue-400">program</span>{" "}
+											<span className="text-rose-400">=</span>
+											{" Effect."}
+											<span className="text-blue-400">succeed</span>
+											{"(42)"}
+										</code>
 									</pre>
 								</div>
 							</SpecRow>
