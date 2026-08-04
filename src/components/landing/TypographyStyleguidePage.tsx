@@ -74,13 +74,32 @@ const SPACING_STEPS = [
 	{ label: "md:pt-40", px: 160, use: "section top (desktop)" },
 ];
 
-function ClassBlock({ classes }: { classes: string }) {
+/** A single class string, or one labeled entry per role for multi-part specs. */
+type SpecClasses = string | { label: string; value: string }[];
+
+function ClassBlock({ classes }: { classes: SpecClasses }) {
+	const entries =
+		typeof classes === "string" ? [{ label: "", value: classes }] : classes;
 	return (
-		<pre className="mt-5 rounded-md bg-zinc-100 px-4 py-3 whitespace-pre-wrap dark:bg-zinc-900">
-			<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-				{classes}
-			</code>
-		</pre>
+		<div className="mt-5 space-y-2">
+			{entries.map((entry) => (
+				<div
+					key={entry.label + entry.value}
+					className="rounded-md bg-zinc-100 px-4 py-3 dark:bg-zinc-900"
+				>
+					{entry.label && (
+						<p className="mb-1.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+							{entry.label}
+						</p>
+					)}
+					<pre className="whitespace-pre-wrap">
+						<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+							{entry.value}
+						</code>
+					</pre>
+				</div>
+			))}
+		</div>
 	);
 }
 
@@ -92,7 +111,7 @@ function SpecRow({
 }: {
 	title: string;
 	note?: string;
-	classes?: string;
+	classes?: SpecClasses;
 	children: React.ReactNode;
 }) {
 	return (
@@ -234,7 +253,18 @@ export function TypographyStyleguidePage() {
 							<SpecRow
 								title="Code snippets"
 								note="Code blocks stay dark in both themes: zinc-950 panel, zinc-800 hairline, zinc-200 plain text. Tokens use rose for keywords and operators, blue for calls and bindings, sky for strings, muted zinc for comments. Inline code chips stay neutral zinc — no color."
-								classes="block: rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-sm leading-[1.6] text-zinc-200 · keyword/operator: text-rose-400 · call/binding: text-blue-400 · string: text-sky-300 · comment: text-zinc-500"
+								classes={[
+									{
+										label: "block",
+										value:
+											"rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-sm leading-[1.6] text-zinc-200",
+									},
+									{
+										label: "tokens",
+										value:
+											"keyword/operator: text-rose-400 · call/binding: text-blue-400 · string: text-sky-300 · comment: text-zinc-500",
+									},
+								]}
 							>
 								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.6] text-zinc-200">
 									<code>
@@ -416,7 +446,13 @@ export function TypographyStyleguidePage() {
 							<SpecRow
 								title="Links — ui/Link"
 								note="Variants: inline (body copy), nav (header), footer, subtle (breadcrumbs, attributions), icon. Inline links carry a muted underline with underline-offset-4 that fades out on hover over 200ms — never a full-strength underline or a dimming text color."
-								classes="inline: text-zinc-900 underline decoration-zinc-300 underline-offset-4 duration-200 hover:decoration-transparent dark:text-zinc-200 dark:decoration-zinc-400"
+								classes={[
+									{
+										label: "inline",
+										value:
+											"text-zinc-900 underline decoration-zinc-300 underline-offset-4 duration-200 hover:decoration-transparent dark:text-zinc-200 dark:decoration-zinc-400",
+									},
+								]}
 							>
 								<div className="flex flex-wrap items-center gap-x-8 gap-y-4">
 									<span className={text.body}>
@@ -546,7 +582,14 @@ export function TypographyStyleguidePage() {
 							<SpecRow
 								title="Cards & grids"
 								note="Cards use p-6 padding and rounded-md with a zinc border; card grids use gap-6. Airy feature grids (no card chrome) may use gap-12 md:gap-16."
-								classes="rounded-md border border-zinc-200 p-6 dark:border-zinc-800 · grid gap-6"
+								classes={[
+									{
+										label: "card",
+										value:
+											"rounded-md border border-zinc-200 p-6 dark:border-zinc-800",
+									},
+									{ label: "grid", value: "grid gap-6" },
+								]}
 							>
 								<div className="grid gap-6 md:grid-cols-2">
 									{["Typed errors", "Structured concurrency"].map((title) => (
@@ -824,7 +867,37 @@ Effect.runPromise(program)`}</code>
 							<SpecRow
 								title="Docs heading hierarchy"
 								note="The reading scale, one step smaller than the site ladder. h1 is the page title at 28px — never the marketing scale. h2 opens sections and names API entries (mono, with a kind badge). h3 handles named subsections. Repeated scaffold labels — When to use, Details, See, Signature — are not styled as headings at all: they render as mono micro labels so the entry name and content dominate instead of four identical bold lines competing."
-								classes="h1: text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em] · h2: text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em] · h2 api: font-mono text-[1.375rem] font-semibold tracking-tight + badge: rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400 · h3: text-[1.125rem] leading-[1.4] font-semibold · scaffold label: mt-6 mb-2 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+								classes={[
+									{
+										label: "h1 · page",
+										value:
+											"text-[1.75rem] leading-[1.2] font-semibold tracking-[-0.012em]",
+									},
+									{
+										label: "h2 · section",
+										value:
+											"text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.012em]",
+									},
+									{
+										label: "h2 · api entry",
+										value:
+											"font-mono text-[1.375rem] leading-[1.35] font-semibold tracking-tight",
+									},
+									{
+										label: "kind badge",
+										value:
+											"rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400",
+									},
+									{
+										label: "h3 · subsection",
+										value: "text-[1.125rem] leading-[1.4] font-semibold",
+									},
+									{
+										label: "scaffold label",
+										value:
+											"mt-6 mb-2 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
+									},
+								]}
 							>
 								<div className="space-y-6">
 									<div className="flex flex-col gap-1 border-b border-zinc-100 pb-5 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900">
@@ -942,7 +1015,22 @@ Effect.runPromise(program)`}</code>
 							<SpecRow
 								title="Docs shell"
 								note="The site container split into three columns: 220px sidebar, reading column, 240px table of contents. Side columns are sticky below the nav and scroll independently; the article is capped at max-w-2xl so lines stay readable."
-								classes="shell: mx-auto grid w-full max-w-[73.75rem] px-4 lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10 · aside: sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-12 · article: min-w-0 max-w-2xl py-12 lg:py-16"
+								classes={[
+									{
+										label: "shell",
+										value:
+											"mx-auto grid w-full max-w-[73.75rem] px-4 lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10",
+									},
+									{
+										label: "aside",
+										value:
+											"sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-12",
+									},
+									{
+										label: "article",
+										value: "min-w-0 max-w-2xl py-12 lg:py-16",
+									},
+								]}
 							>
 								<div className="grid grid-cols-[56px_1fr_56px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[220px_1fr_240px] dark:border-zinc-700">
 									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
@@ -960,7 +1048,22 @@ Effect.runPromise(program)`}</code>
 							<SpecRow
 								title="Sidebar navigation"
 								note="Quiet text, no fills. Group labels are the site micro label; links are text-sm zinc-600 that darken on hover; the active page is simply medium weight in the emphasis color."
-								classes="group: mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400 · link: block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white · active: font-medium text-zinc-900 dark:text-white"
+								classes={[
+									{
+										label: "group label",
+										value:
+											"mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
+									},
+									{
+										label: "link",
+										value:
+											"block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+									},
+									{
+										label: "active",
+										value: "font-medium text-zinc-900 dark:text-white",
+									},
+								]}
 							>
 								<div className="max-w-60">
 									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
@@ -981,7 +1084,23 @@ Effect.runPromise(program)`}</code>
 							<SpecRow
 								title="Table of contents"
 								note="Identical to the blog's — a soft bordered panel with a mono label and hairline; links darken on hover, and the active heading is underlined with the site offset."
-								classes="panel: rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40 · link: block text-sm leading-snug text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white · active: text-zinc-900 underline underline-offset-4 dark:text-white"
+								classes={[
+									{
+										label: "panel",
+										value:
+											"rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40",
+									},
+									{
+										label: "link",
+										value:
+											"block text-sm leading-snug text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+									},
+									{
+										label: "active",
+										value:
+											"text-zinc-900 underline underline-offset-4 dark:text-white",
+									},
+								]}
 							>
 								<div className="max-w-60 rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
 									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
