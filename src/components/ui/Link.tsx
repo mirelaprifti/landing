@@ -58,7 +58,7 @@ function Link({
 	const isExternal = href.startsWith("http");
 	const activeClass = active
 		? {
-				nav: "border-zinc-900 text-zinc-900 dark:border-white dark:text-white",
+				nav: "text-zinc-900 dark:text-white",
 				footer: "border-transparent text-zinc-900 dark:text-white",
 				inline: "",
 				subtle: "text-zinc-900 dark:text-white",
