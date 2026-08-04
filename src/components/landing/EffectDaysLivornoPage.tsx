@@ -141,9 +141,11 @@ export function EffectDaysLivornoPage() {
 							{/* Left side - Main content */}
 							<div className="flex-1">
 								<p className="mb-4 font-mono text-base font-semibold tracking-wide text-zinc-100">
-									<span className="text-violet-400">import</span> {"{"} yourTicket{" "}
-									{"}"} <span className="text-violet-400">from</span>{" "}
-									<span className="text-emerald-400">"effect-days-livorno"</span>
+									<span className="text-violet-400">import</span> {"{"}{" "}
+									yourTicket {"}"} <span className="text-violet-400">from</span>{" "}
+									<span className="text-emerald-400">
+										"effect-days-livorno"
+									</span>
 								</p>
 								<h1 className={text.pageTitle}>Effect Days Livorno</h1>
 								<p className="mt-6 text-xl font-medium text-white">
@@ -368,9 +370,15 @@ export function EffectDaysLivornoPage() {
 
 										<div className="space-y-3">
 											{DAYS.map((day) => (
-												<div key={day.label} className="flex items-center gap-3">
+												<div
+													key={day.label}
+													className="flex items-center gap-3"
+												>
 													<div className="flex h-8 w-8 items-center justify-center rounded-md border border-emerald-500/20 bg-emerald-500/10">
-														<Icon name={day.icon} className="text-emerald-400" />
+														<Icon
+															name={day.icon}
+															className="text-emerald-400"
+														/>
 													</div>
 													<p className="text-sm font-medium text-white">
 														{day.label}
@@ -437,9 +445,7 @@ export function EffectDaysLivornoPage() {
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>// FAQ</p>
-							<h2 className={text.sectionTitle}>
-								Frequently Asked Questions
-							</h2>
+							<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
 
 							<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
 								<div className="border-b border-zinc-800/50 py-5">

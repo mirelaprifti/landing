@@ -123,7 +123,7 @@ function GuideSection({
 	children: React.ReactNode;
 }) {
 	return (
-		<section id={id} className="scroll-mt-24 pt-20 md:pt-28">
+		<section id={id} className="scroll-mt-32 pt-20 md:pt-28">
 			<p className={text.eyebrow}>// {eyebrow}</p>
 			<h2 className={text.sectionTitle}>{title}</h2>
 			{lede && <p className={text.lede}>{lede}</p>}
@@ -158,25 +158,27 @@ export function TypographyStyleguidePage() {
 							strings verbatim; when a style needs to change, change it here
 							first.
 						</p>
-						<nav
-							aria-label="Styleguide sections"
-							className="mt-8 flex flex-wrap gap-x-6 gap-y-2"
-						>
-							{NAV_ITEMS.map((item) => (
-								<a
-									key={item.href}
-									href={item.href}
-									className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								>
-									{item.label}
-								</a>
-							))}
-						</nav>
 					</header>
 				</div>
 
-				{/* Full-viewport divider between hero and guide, as on blog posts */}
-				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+				{/* Sticky section nav — pins below the site nav and doubles as the
+				    divider between hero and guide */}
+				<nav
+					aria-label="Styleguide sections"
+					className="sticky top-16 z-40 border-y border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95"
+				>
+					<div className="mx-auto flex w-full max-w-[73.75rem] flex-wrap gap-x-6 gap-y-2 px-4 py-4">
+						{NAV_ITEMS.map((item) => (
+							<a
+								key={item.href}
+								href={item.href}
+								className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								{item.label}
+							</a>
+						))}
+					</div>
+				</nav>
 
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="max-w-3xl pb-24">
