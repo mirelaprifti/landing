@@ -471,13 +471,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400"
 						aria-hidden="true"
 					/>
-					<span className="truncate text-sm text-zinc-600 dark:text-zinc-300">
-						<span className="font-medium text-zinc-900 dark:text-white">
-							Ask AI about “forEach”
-						</span>{" "}
-						<span className="text-zinc-500 dark:text-zinc-400">
-							— synthesized from docs, API, and blog
-						</span>
+					<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
+						Ask AI about “forEach”
 					</span>
 				</a>
 
