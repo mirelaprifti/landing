@@ -29,6 +29,13 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   back row returns to results with the query preserved.
  *
  * Shared decisions across variants:
+ * - One visible version context (the "v4 ▾" switcher in the input row)
+ *   filters the versioned sources (API, Docs); Blog is unversioned and
+ *   passes through. Results hidden by the context surface as a
+ *   "N more results in v3" tail row and in the empty state, so a wrong
+ *   version guess costs one click, never a dead end. In production the
+ *   context is inherited from versioned pages and defaults to current
+ *   elsewhere — no hidden per-user memory.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -383,10 +390,72 @@ const GROUPS: { source: SearchSource; label: string }[] = [
 	{ source: "blog", label: "Blog" },
 ];
 
-function scopeCount(scope: SearchScope) {
-	return scope === "all"
-		? RESULTS.length
-		: RESULTS.filter((r) => r.source === scope).length;
+type DocsVersion = "v3" | "v4";
+
+function VersionSwitcher({
+	version,
+	onVersionChange,
+}: {
+	version: DocsVersion;
+	onVersionChange: (version: DocsVersion) => void;
+}) {
+	const [open, setOpen] = useState(false);
+	return (
+		<div className="relative shrink-0">
+			<button
+				type="button"
+				aria-haspopup="listbox"
+				aria-expanded={open}
+				aria-label="Docs and API version"
+				onClick={() => setOpen((o) => !o)}
+				className="inline-flex items-center gap-1 rounded-md border border-zinc-200 px-2 py-1 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
+			>
+				{version}
+				<Icon
+					name="chevron-down"
+					className={`text-[10px] transition-transform ${open ? "rotate-180" : ""}`}
+					aria-hidden="true"
+				/>
+			</button>
+			{open && (
+				<div
+					role="listbox"
+					aria-label="Docs and API version"
+					className="absolute top-full right-0 z-10 mt-2 w-36 overflow-hidden rounded-md border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-950/10 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/40"
+				>
+					{(["v4", "v3"] as const).map((v) => (
+						<button
+							key={v}
+							type="button"
+							role="option"
+							aria-selected={version === v}
+							onClick={() => {
+								onVersionChange(v);
+								setOpen(false);
+							}}
+							className={`flex w-full items-center justify-between px-3 py-1.5 text-left font-mono text-xs transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+								version === v
+									? "font-medium text-zinc-900 dark:text-white"
+									: "text-zinc-600 dark:text-zinc-300"
+							}`}
+						>
+							<span>
+								{v}
+								{v === "v4" && (
+									<span className="ml-1.5 text-zinc-400 dark:text-zinc-500">
+										current
+									</span>
+								)}
+							</span>
+							{version === v && (
+								<Icon name="check" className="text-[11px]" aria-hidden="true" />
+							)}
+						</button>
+					))}
+				</div>
+			)}
+		</div>
+	);
 }
 
 function Kbd({ children }: { children: React.ReactNode }) {
@@ -500,8 +569,18 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 	// D is C plus the Ask AI row — everything else behaves identically.
 	const merged = variant === "merged" || variant === "askai";
 
+	// One visible version context; unversioned sources (Blog) pass through.
+	const [version, setVersion] = useState<DocsVersion>("v4");
+	const otherVersion: DocsVersion = version === "v4" ? "v3" : "v4";
+
+	const pool = RESULTS.filter((r) => !r.version || r.version === version);
 	const visible =
-		scope === "all" ? RESULTS : RESULTS.filter((r) => r.source === scope);
+		scope === "all" ? pool : pool.filter((r) => r.source === scope);
+	// What the version context is hiding, within the current scope
+	const otherCount = RESULTS.filter(
+		(r) =>
+			r.version === otherVersion && (scope === "all" || r.source === scope),
+	).length;
 
 	return (
 		<div
@@ -540,6 +619,9 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					placeholder={askAiOpen ? "Ask a follow-up…" : undefined}
 					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 				/>
+				{!askAiOpen && (
+					<VersionSwitcher version={version} onVersionChange={setVersion} />
+				)}
 				<button
 					type="button"
 					aria-label="Close search"
@@ -563,7 +645,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						>
 							in:{value}
 							<span className="text-zinc-400 dark:text-zinc-500">
-								{scopeCount(value)}
+								{pool.filter((r) => r.source === value).length}
 							</span>
 						</button>
 					))}
@@ -598,7 +680,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 							// A + C + D: federated overview — top hits per source + "View all N"
 							<div className="space-y-4">
 								{GROUPS.map(({ source, label }) => {
-									const grouped = RESULTS.filter((r) => r.source === source);
+									const grouped = pool.filter((r) => r.source === source);
 									if (grouped.length === 0) return null;
 									return (
 										<section key={source} aria-label={label}>
@@ -658,11 +740,28 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 								))}
 								{visible.length === 0 && (
 									<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
-										No {scope === "all" ? "" : `${scope} `}results for
+										No {version} {scope === "all" ? "" : `${scope} `}results for
 										“forEach”.
 									</p>
 								)}
 							</div>
+						)}
+
+						{/* Cross-version escape hatch: what the context is hiding */}
+						{otherCount > 0 && (
+							<button
+								type="button"
+								onClick={() => setVersion(otherVersion)}
+								className="mt-2 flex w-full items-center justify-center gap-1 rounded-md px-2 py-1.5 font-mono text-xs font-medium text-zinc-500 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+							>
+								{otherCount} more result{otherCount === 1 ? "" : "s"} in{" "}
+								{otherVersion}
+								<Icon
+									name="chevron-right"
+									className="text-[10px]"
+									aria-hidden="true"
+								/>
+							</button>
 						)}
 					</>
 				)}
