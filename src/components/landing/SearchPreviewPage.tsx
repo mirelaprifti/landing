@@ -22,7 +22,11 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   preserved.
  * - D · Merged + Ask AI: C plus a pinned "Ask AI" row above results in
  *   every scope (the Stripe/Supabase/Mintlify pattern) — it absorbs
- *   the exploratory queries that scope filters serve worst.
+ *   the exploratory queries that scope filters serve worst. Clicking
+ *   it transforms the modal in place into a conversation view: the
+ *   query becomes the first message, the answer streams with source
+ *   citations, the input becomes the follow-up prompt, and Esc / the
+ *   back row returns to results with the query preserved.
  *
  * Shared decisions across variants:
  * - Source tags share one filled-chip shape; the API tag carries the
@@ -393,8 +397,105 @@ function Kbd({ children }: { children: React.ReactNode }) {
 	);
 }
 
+/**
+ * Static mock of D's conversation mode: the query became the first
+ * message, the answer "streamed" in with source citations, and the
+ * back row (or Esc in the real implementation) returns to results.
+ */
+function AskAiConversation({ onBack }: { onBack: () => void }) {
+	return (
+		<div className="space-y-4">
+			<button
+				type="button"
+				onClick={onBack}
+				className="inline-flex items-center gap-1 px-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+			>
+				<Icon name="chevron-left" className="text-[10px]" aria-hidden="true" />
+				Back to results
+			</button>
+
+			{/* The search query, replayed as the user's first message */}
+			<div className="flex justify-end px-1">
+				<p className="rounded-md bg-zinc-200 px-3 py-1.5 font-mono text-sm text-zinc-900 dark:bg-zinc-800 dark:text-white">
+					forEach
+				</p>
+			</div>
+
+			<div className="space-y-3 px-1">
+				{/* Retrieval cue — shown while sources load, kept as provenance */}
+				<p className="flex items-center gap-2 font-mono text-xs text-zinc-400 dark:text-zinc-500">
+					<Icon name="sparkles" className="text-[11px]" aria-hidden="true" />
+					Read: Effect.forEach · Looping and iteration
+				</p>
+
+				<div className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 [&_code]:rounded [&_code]:bg-zinc-200/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:text-zinc-800 dark:[&_code]:bg-zinc-800 dark:[&_code]:text-zinc-200">
+					<p>
+						<code>Effect.forEach</code> runs an effectful callback for every
+						element of an <code>Iterable</code> and collects the results. It
+						executes sequentially by default — pass{" "}
+						<code>{"{ concurrency: n }"}</code> to run up to <code>n</code>{" "}
+						effects at once, or <code>{"{ discard: true }"}</code> when you only
+						need the side effects.
+					</p>
+					<p className="mt-2">
+						For streaming data, reach for <code>Stream.runForEach</code>{" "}
+						instead, which consumes elements as they arrive.
+					</p>
+				</div>
+
+				{/* Citations reuse the result cards' source chips */}
+				<div className="space-y-1.5">
+					<a
+						href="#result"
+						className="flex items-center gap-2 rounded-md border border-zinc-200 px-2.5 py-1.5 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+					>
+						<SourceChip source="api" version="v4" />
+						<span className="truncate font-mono text-xs font-medium text-zinc-700 dark:text-zinc-200">
+							Effect.forEach
+						</span>
+					</a>
+					<a
+						href="#result"
+						className="flex items-center gap-2 rounded-md border border-zinc-200 px-2.5 py-1.5 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+					>
+						<SourceChip source="docs" version="v4" />
+						<span className="truncate text-xs font-medium text-zinc-700 dark:text-zinc-200">
+							Looping and iteration
+						</span>
+					</a>
+				</div>
+
+				<div className="flex items-center justify-between">
+					<p className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+						AI-generated — may contain mistakes
+					</p>
+					<div className="flex items-center gap-1">
+						<button
+							type="button"
+							aria-label="Good answer"
+							className="flex h-6 w-6 items-center justify-center rounded text-zinc-400 transition-colors hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white"
+						>
+							<Icon name="thumbs-up" className="text-xs" aria-hidden="true" />
+						</button>
+						<button
+							type="button"
+							aria-label="Bad answer"
+							className="flex h-6 w-6 items-center justify-center rounded text-zinc-400 transition-colors hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white"
+						>
+							<Icon name="thumbs-down" className="text-xs" aria-hidden="true" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
 function SearchModalDemo({ variant }: { variant: Variant }) {
 	const [scope, setScope] = useState<SearchScope>("all");
+
+	// D only: the Ask AI row swaps the modal into a conversation view.
+	const [askAiOpen, setAskAiOpen] = useState(false);
 
 	// D is C plus the Ask AI row — everything else behaves identically.
 	const merged = variant === "merged" || variant === "askai";
@@ -430,9 +531,13 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					</span>
 				)}
 				<input
+					key={askAiOpen ? "chat" : "search"}
 					type="search"
-					aria-label="Search the docs"
-					defaultValue="forEach"
+					aria-label={
+						askAiOpen ? "Ask a follow-up question" : "Search the docs"
+					}
+					defaultValue={askAiOpen ? "" : "forEach"}
+					placeholder={askAiOpen ? "Ask a follow-up…" : undefined}
 					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 				/>
 				<button
@@ -463,93 +568,101 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				</div>
 			)}
 
-			{/* Results */}
+			{/* Results — or, in D's chat mode, the conversation */}
 			<div className="max-h-[30rem] overflow-y-auto p-3">
-				{/* D: pinned AI escape hatch, kept in every scope */}
-				{variant === "askai" && (
-					<a
-						href="#ask-ai"
-						className="mb-2 flex items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
-					>
-						<Icon
-							name="sparkles"
-							className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400"
-							aria-hidden="true"
-						/>
-						<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
-							Ask AI
-						</span>
-					</a>
-				)}
-
-				{(variant === "viewall" || merged) && scope === "all" ? (
-					// A + C + D: federated overview — top hits per source + "View all N"
-					<div className="space-y-4">
-						{GROUPS.map(({ source, label }) => {
-							const grouped = RESULTS.filter((r) => r.source === source);
-							if (grouped.length === 0) return null;
-							return (
-								<section key={source} aria-label={label}>
-									<div className="flex items-center justify-between px-1 pb-2">
-										<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-											{label}
-										</p>
-										{grouped.length > 2 && (
-											<button
-												type="button"
-												onClick={() => setScope(source)}
-												className="inline-flex items-center gap-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-											>
-												View all {grouped.length}
-												<Icon
-													name="chevron-right"
-													className="text-[10px]"
-													aria-hidden="true"
-												/>
-											</button>
-										)}
-									</div>
-									<div className="space-y-2">
-										{grouped.slice(0, 2).map((result) => (
-											<ResultCard
-												key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
-												result={result}
-											/>
-										))}
-									</div>
-								</section>
-							);
-						})}
-					</div>
+				{askAiOpen ? (
+					<AskAiConversation onBack={() => setAskAiOpen(false)} />
 				) : (
-					<div className="space-y-2">
-						{/* A + C + D scoped view: back row above the filtered list */}
-						{(variant === "viewall" || merged) && (
+					<>
+						{/* D: pinned AI escape hatch, kept in every scope */}
+						{variant === "askai" && (
 							<button
 								type="button"
-								onClick={() => setScope("all")}
-								className="inline-flex items-center gap-1 px-1 pb-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								onClick={() => setAskAiOpen(true)}
+								className="mb-2 flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 							>
 								<Icon
-									name="chevron-left"
-									className="text-[10px]"
+									name="sparkles"
+									className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400"
 									aria-hidden="true"
 								/>
-								All results
+								<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
+									Ask AI
+								</span>
 							</button>
 						)}
-						{visible.map((result) => (
-							<ResultCard
-								key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
-								result={result}
-							/>
-						))}
-						{visible.length === 0 && (
-							<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
-								No {scope === "all" ? "" : `${scope} `}results for “forEach”.
-							</p>
+
+						{(variant === "viewall" || merged) && scope === "all" ? (
+							// A + C + D: federated overview — top hits per source + "View all N"
+							<div className="space-y-4">
+								{GROUPS.map(({ source, label }) => {
+									const grouped = RESULTS.filter((r) => r.source === source);
+									if (grouped.length === 0) return null;
+									return (
+										<section key={source} aria-label={label}>
+											<div className="flex items-center justify-between px-1 pb-2">
+												<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+													{label}
+												</p>
+												{grouped.length > 2 && (
+													<button
+														type="button"
+														onClick={() => setScope(source)}
+														className="inline-flex items-center gap-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+													>
+														View all {grouped.length}
+														<Icon
+															name="chevron-right"
+															className="text-[10px]"
+															aria-hidden="true"
+														/>
+													</button>
+												)}
+											</div>
+											<div className="space-y-2">
+												{grouped.slice(0, 2).map((result) => (
+													<ResultCard
+														key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
+														result={result}
+													/>
+												))}
+											</div>
+										</section>
+									);
+								})}
+							</div>
+						) : (
+							<div className="space-y-2">
+								{/* A + C + D scoped view: back row above the filtered list */}
+								{(variant === "viewall" || merged) && (
+									<button
+										type="button"
+										onClick={() => setScope("all")}
+										className="inline-flex items-center gap-1 px-1 pb-1 font-mono text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										<Icon
+											name="chevron-left"
+											className="text-[10px]"
+											aria-hidden="true"
+										/>
+										All results
+									</button>
+								)}
+								{visible.map((result) => (
+									<ResultCard
+										key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
+										result={result}
+									/>
+								))}
+								{visible.length === 0 && (
+									<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+										No {scope === "all" ? "" : `${scope} `}results for
+										“forEach”.
+									</p>
+								)}
+							</div>
 						)}
-					</div>
+					</>
 				)}
 			</div>
 
@@ -559,26 +672,39 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					Search powered by Mixedbread
 				</span>
 				<div className="flex items-center gap-4 font-mono text-xs text-zinc-500 dark:text-zinc-400">
-					<span className="flex items-center gap-1.5">
-						<Kbd>↑</Kbd>
-						<Kbd>↓</Kbd> navigate
-					</span>
-					{(variant === "tokens" || merged) && scope !== "all" && (
-						<span className="flex items-center gap-1.5">
-							<Kbd>⌫</Kbd> clear scope
-						</span>
+					{askAiOpen ? (
+						<>
+							<span className="flex items-center gap-1.5">
+								<Kbd>↵</Kbd> send
+							</span>
+							<span className="flex items-center gap-1.5">
+								<Kbd>esc</Kbd> back
+							</span>
+						</>
+					) : (
+						<>
+							<span className="flex items-center gap-1.5">
+								<Kbd>↑</Kbd>
+								<Kbd>↓</Kbd> navigate
+							</span>
+							{(variant === "tokens" || merged) && scope !== "all" && (
+								<span className="flex items-center gap-1.5">
+									<Kbd>⌫</Kbd> clear scope
+								</span>
+							)}
+							{variant === "viewall" && scope !== "all" && (
+								<span className="flex items-center gap-1.5">
+									<Kbd>⌫</Kbd> back
+								</span>
+							)}
+							<span className="flex items-center gap-1.5">
+								<Kbd>↵</Kbd> select
+							</span>
+							<span className="flex items-center gap-1.5">
+								<Kbd>esc</Kbd> close
+							</span>
+						</>
 					)}
-					{variant === "viewall" && scope !== "all" && (
-						<span className="flex items-center gap-1.5">
-							<Kbd>⌫</Kbd> back
-						</span>
-					)}
-					<span className="flex items-center gap-1.5">
-						<Kbd>↵</Kbd> select
-					</span>
-					<span className="flex items-center gap-1.5">
-						<Kbd>esc</Kbd> close
-					</span>
 				</div>
 			</div>
 		</div>
