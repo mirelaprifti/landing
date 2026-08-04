@@ -439,14 +439,7 @@ function VersionSwitcher({
 									: "text-zinc-600 dark:text-zinc-300"
 							}`}
 						>
-							<span>
-								{v}
-								{v === "v4" && (
-									<span className="ml-1.5 text-zinc-400 dark:text-zinc-500">
-										current
-									</span>
-								)}
-							</span>
+							<span>{v}</span>
 							{version === v && (
 								<Icon name="check" className="text-[11px]" aria-hidden="true" />
 							)}
