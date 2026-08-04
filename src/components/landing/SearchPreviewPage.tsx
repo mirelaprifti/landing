@@ -604,7 +604,7 @@ export function SearchPreviewPage() {
 						role="tablist"
 						aria-label="Search UX variant"
 						aria-orientation="vertical"
-						className="mb-4 inline-flex gap-1 rounded-md border border-zinc-200 bg-white p-1 sm:absolute sm:top-0 sm:right-full sm:mr-4 sm:mb-0 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
+						className="mb-4 inline-flex gap-1 rounded-md border border-zinc-200 bg-white p-1 sm:absolute sm:top-0 sm:left-full sm:ml-4 sm:mb-0 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
 					>
 						{VARIANTS.map(({ value, label }) => {
 							const active = variant === value;
