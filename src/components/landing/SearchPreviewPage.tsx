@@ -40,6 +40,10 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   — canonical v4 cards with per-card "also in v3" links — was
  *   explored and cut: it forces minority-version users to resolve the
  *   version on every result instead of once.)
+ * - The version control's form has its own switcher (1/2): 1 · compact
+ *   dropdown ("v4 ▾"), which scales past two versions; 2 · segmented
+ *   toggle ("v4 | v3"), both worlds always visible with one-click
+ *   switching — the better fit while exactly two versions exist.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -57,6 +61,13 @@ const VARIANTS: { value: Variant; label: string }[] = [
 	{ value: "tokens", label: "B" },
 	{ value: "merged", label: "C" },
 	{ value: "askai", label: "D" },
+];
+
+type VersionControl = "dropdown" | "toggle";
+
+const VERSION_CONTROLS: { value: VersionControl; label: string }[] = [
+	{ value: "dropdown", label: "1" },
+	{ value: "toggle", label: "2" },
 ];
 
 type SearchSource = "api" | "docs" | "blog";
@@ -396,6 +407,39 @@ const GROUPS: { source: SearchSource; label: string }[] = [
 
 type DocsVersion = "v3" | "v4";
 
+function VersionToggle({
+	version,
+	onVersionChange,
+}: {
+	version: DocsVersion;
+	onVersionChange: (version: DocsVersion) => void;
+}) {
+	return (
+		<div
+			role="radiogroup"
+			aria-label="Docs and API version"
+			className="flex shrink-0 rounded-md border border-zinc-200 p-0.5 dark:border-zinc-800"
+		>
+			{(["v4", "v3"] as const).map((v) => (
+				<button
+					key={v}
+					type="button"
+					role="radio"
+					aria-checked={version === v}
+					onClick={() => onVersionChange(v)}
+					className={`rounded px-2 py-0.5 font-mono text-xs font-medium transition-colors ${
+						version === v
+							? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+							: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+					}`}
+				>
+					{v}
+				</button>
+			))}
+		</div>
+	);
+}
+
 function VersionSwitcher({
 	version,
 	onVersionChange,
@@ -557,7 +601,13 @@ function AskAiConversation({ onBack }: { onBack: () => void }) {
 	);
 }
 
-function SearchModalDemo({ variant }: { variant: Variant }) {
+function SearchModalDemo({
+	variant,
+	versionControl,
+}: {
+	variant: Variant;
+	versionControl: VersionControl;
+}) {
 	const [scope, setScope] = useState<SearchScope>("all");
 
 	// D only: the Ask AI row swaps the modal into a conversation view.
@@ -616,9 +666,12 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					placeholder={askAiOpen ? "Ask a follow-up…" : undefined}
 					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 				/>
-				{!askAiOpen && (
-					<VersionSwitcher version={version} onVersionChange={setVersion} />
-				)}
+				{!askAiOpen &&
+					(versionControl === "toggle" ? (
+						<VersionToggle version={version} onVersionChange={setVersion} />
+					) : (
+						<VersionSwitcher version={version} onVersionChange={setVersion} />
+					))}
 				<button
 					type="button"
 					aria-label="Close search"
@@ -811,6 +864,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 
 export function SearchPreviewPage() {
 	const [variant, setVariant] = useState<Variant>("viewall");
+	const [versionControl, setVersionControl] =
+		useState<VersionControl>("dropdown");
 
 	return (
 		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
@@ -823,36 +878,69 @@ export function SearchPreviewPage() {
 				</div>
 
 				<div className="relative">
-					{/* Variant switcher: vertical rail beside the modal (row on mobile) */}
-					<div
-						role="tablist"
-						aria-label="Search UX variant"
-						aria-orientation="vertical"
-						className="mb-4 inline-flex gap-1 rounded-md border border-zinc-200 bg-white p-1 sm:absolute sm:top-0 sm:left-full sm:mb-0 sm:ml-4 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
-					>
-						{VARIANTS.map(({ value, label }) => {
-							const active = variant === value;
-							return (
-								<button
-									key={value}
-									type="button"
-									role="tab"
-									aria-selected={active}
-									onClick={() => setVariant(value)}
-									className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
-										active
-											? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
-											: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									}`}
-								>
-									{label}
-								</button>
-							);
-						})}
+					{/* Switcher rails beside the modal (rows on mobile):
+					    A–D = scope UX, 1–2 = version control form */}
+					<div className="mb-4 flex gap-3 sm:absolute sm:top-0 sm:left-full sm:mb-0 sm:ml-4 sm:flex-col">
+						<div
+							role="tablist"
+							aria-label="Search UX variant"
+							aria-orientation="vertical"
+							className="inline-flex gap-1 self-start rounded-md border border-zinc-200 bg-white p-1 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
+						>
+							{VARIANTS.map(({ value, label }) => {
+								const active = variant === value;
+								return (
+									<button
+										key={value}
+										type="button"
+										role="tab"
+										aria-selected={active}
+										onClick={() => setVariant(value)}
+										className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
+											active
+												? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										}`}
+									>
+										{label}
+									</button>
+								);
+							})}
+						</div>
+						<div
+							role="tablist"
+							aria-label="Version control form"
+							aria-orientation="vertical"
+							className="inline-flex gap-1 self-start rounded-md border border-zinc-200 bg-white p-1 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
+						>
+							{VERSION_CONTROLS.map(({ value, label }) => {
+								const active = versionControl === value;
+								return (
+									<button
+										key={value}
+										type="button"
+										role="tab"
+										aria-selected={active}
+										onClick={() => setVersionControl(value)}
+										className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
+											active
+												? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										}`}
+									>
+										{label}
+									</button>
+								);
+							})}
+						</div>
 					</div>
 
-					{/* key resets the modal's scope state when switching variants */}
-					<SearchModalDemo key={variant} variant={variant} />
+					{/* key resets the modal's state when switching variants/controls */}
+					<SearchModalDemo
+						key={`${variant}-${versionControl}`}
+						variant={variant}
+						versionControl={versionControl}
+					/>
 				</div>
 			</div>
 		</div>
