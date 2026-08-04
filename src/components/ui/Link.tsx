@@ -23,7 +23,7 @@ const linkVariants = cva("transition-colors", {
 	variants: {
 		variant: {
 			inline:
-				"text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600 dark:text-zinc-200 dark:decoration-zinc-400 dark:hover:decoration-zinc-300",
+				"text-zinc-900 underline decoration-zinc-300 underline-offset-4 duration-200 hover:decoration-transparent dark:text-zinc-200 dark:decoration-zinc-400",
 			nav: "border-b border-transparent text-sm font-medium text-zinc-700 hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
 			footer:
 				"border-b border-transparent text-sm font-medium leading-relaxed text-zinc-700 hover:border-current hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",

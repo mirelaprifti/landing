@@ -334,8 +334,8 @@ export function TypographyStyleguidePage() {
 						>
 							<SpecRow
 								title="Links — ui/Link"
-								note="Variants: inline (body copy), nav (header), footer, subtle (breadcrumbs, attributions), icon. Inline links use the blog treatment: a muted underline with underline-offset-4 that darkens on hover — never a full-strength underline or a dimming text color."
-								classes="inline: text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-600 dark:text-zinc-200 dark:decoration-zinc-400 dark:hover:decoration-zinc-300"
+								note="Variants: inline (body copy), nav (header), footer, subtle (breadcrumbs, attributions), icon. Inline links carry a muted underline with underline-offset-4 that fades out on hover over 200ms — never a full-strength underline or a dimming text color."
+								classes="inline: text-zinc-900 underline decoration-zinc-300 underline-offset-4 duration-200 hover:decoration-transparent dark:text-zinc-200 dark:decoration-zinc-400"
 							>
 								<div className="flex flex-wrap items-center gap-x-8 gap-y-4">
 									<span className={text.body}>
