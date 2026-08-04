@@ -464,20 +464,19 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				{/* Pinned AI escape hatch — kept in every variant and scope */}
 				<a
 					href="#ask-ai"
-					className="mb-3 flex items-center gap-3 rounded-md border border-dashed border-zinc-300 p-3.5 transition-colors hover:border-zinc-500 hover:bg-zinc-100/60 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-900/60"
+					className="mb-2 flex items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 				>
 					<Icon
 						name="sparkles"
-						className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
+						className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400"
 						aria-hidden="true"
 					/>
-					<span className="min-w-0">
-						<span className="block text-sm font-semibold text-zinc-900 dark:text-white">
+					<span className="truncate text-sm text-zinc-600 dark:text-zinc-300">
+						<span className="font-medium text-zinc-900 dark:text-white">
 							Ask AI about “forEach”
-						</span>
-						<span className="mt-0.5 block truncate text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
-							Synthesizes an answer from the docs, API reference, and blog —
-							with citations.
+						</span>{" "}
+						<span className="text-zinc-500 dark:text-zinc-400">
+							— synthesized from docs, API, and blog
 						</span>
 					</span>
 				</a>
