@@ -34,7 +34,7 @@ export function Navigation({
 }: NavigationProps) {
 	const shortcutHint = useShortcutHint();
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
-	const showThemeToggle = ["/blog", "/play", "/docs"].some((p) =>
+	const showThemeToggle = ["/blog", "/play", "/docs", "/styleguide"].some((p) =>
 		activePath?.startsWith(p),
 	);
 

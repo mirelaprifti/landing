@@ -145,7 +145,7 @@ const NAV_ITEMS = [
 export function TypographyStyleguidePage() {
 	return (
 		<div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white">
-			<Navigation />
+			<Navigation activePath="/styleguide" />
 
 			<main className="relative w-full pt-16">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
