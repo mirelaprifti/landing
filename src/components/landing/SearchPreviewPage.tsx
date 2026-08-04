@@ -90,28 +90,17 @@ const RESULTS: SearchResult[] = [
 	{
 		source: "api",
 		version: "v4",
-		path: "effect / Iterable",
-		title: "Iterable",
+		path: "effect / Effect",
+		title: "Effect",
 		symbol: "forEach",
 		snippet: (
 			<>
-				Iterates over the Iterable, applying <code>f</code> to each element.
+				Executes an effectful operation for each element of an{" "}
+				<code>Iterable</code>; concurrency is configurable via{" "}
+				<code>options</code>.
 			</>
 		),
 		selected: true,
-	},
-	{
-		source: "api",
-		version: "v4",
-		path: "effect / Array",
-		title: "Array",
-		symbol: "forEach",
-		snippet: (
-			<>
-				Runs a side-effect for each element. The callback receives (element,
-				index).
-			</>
-		),
 	},
 	{
 		source: "docs",
@@ -142,6 +131,92 @@ const RESULTS: SearchResult[] = [
 		],
 	},
 	{
+		source: "api",
+		version: "v4",
+		path: "effect / Iterable",
+		title: "Iterable",
+		symbol: "forEach",
+		snippet: (
+			<>
+				Iterates over the Iterable, applying <code>f</code> to each element.
+			</>
+		),
+	},
+	{
+		source: "api",
+		version: "v4",
+		path: "effect / Array",
+		title: "Array",
+		symbol: "forEach",
+		snippet: (
+			<>
+				Runs a side-effect for each element. The callback receives (element,
+				index).
+			</>
+		),
+	},
+	{
+		source: "api",
+		version: "v4",
+		path: "effect / Stream",
+		title: "Stream",
+		symbol: "runForEach",
+		snippet: (
+			<>
+				Consumes the stream, running an effectful callback for every emitted
+				element.
+			</>
+		),
+	},
+	{
+		source: "docs",
+		version: "v4",
+		path: "Concurrency / Basic concurrency",
+		title: "Controlling concurrency",
+		snippet: (
+			<>
+				<MatchText>Effect.forEach</MatchText> runs sequentially by default —
+				pass <code>{"{ concurrency: 10 }"}</code> to fan out with a bound.
+			</>
+		),
+	},
+	{
+		source: "blog",
+		path: "Blog / This Week in Effect",
+		title: "Iterating effectfully: patterns for collections",
+		snippet: (
+			<>
+				A tour of <MatchText>Effect.forEach</MatchText>, its concurrency
+				options, and when to reach for streams instead.
+			</>
+		),
+	},
+	{
+		source: "api",
+		version: "v4",
+		path: "effect / Chunk",
+		title: "Chunk",
+		symbol: "forEach",
+		snippet: (
+			<>
+				Applies <code>f</code> to each element of the Chunk, purely for its side
+				effects.
+			</>
+		),
+	},
+	{
+		source: "docs",
+		version: "v4",
+		path: "Streams / Consuming streams",
+		title: "Consuming streams",
+		snippet: (
+			<>
+				Use <MatchText>Stream.runForEach</MatchText> to process elements as they
+				arrive, without collecting them into memory.
+			</>
+		),
+	},
+	{
 		source: "docs",
 		version: "v3",
 		path: "Guides / Collections",
@@ -154,13 +229,38 @@ const RESULTS: SearchResult[] = [
 		),
 	},
 	{
-		source: "blog",
-		path: "Blog / This Week in Effect",
-		title: "Iterating effectfully: patterns for collections",
+		source: "api",
+		version: "v3",
+		path: "effect / Effect",
+		title: "Effect",
+		symbol: "forEach",
 		snippet: (
 			<>
-				A tour of <MatchText>Effect.forEach</MatchText>, its concurrency
-				options, and when to reach for streams instead.
+				Iterates over an Iterable with an effectful callback — the v3 signature
+				takes <code>options</code> as the second argument.
+			</>
+		),
+	},
+	{
+		source: "blog",
+		path: "Blog / Engineering",
+		title: "Batching and concurrency, from first principles",
+		snippet: (
+			<>
+				Why unbounded <MatchText>forEach</MatchText> melts your API quota, and
+				how Effect's structured concurrency keeps it in check.
+			</>
+		),
+	},
+	{
+		source: "api",
+		version: "v4",
+		path: "effect / HashMap",
+		title: "HashMap",
+		symbol: "forEach",
+		snippet: (
+			<>
+				Applies <code>f</code> to every key/value entry of the HashMap.
 			</>
 		),
 	},
@@ -535,7 +635,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 									<div className="space-y-2">
 										{grouped.map((result) => (
 											<ResultCard
-												key={`${result.path}-${result.title}`}
+												key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
 												result={result}
 											/>
 										))}
@@ -556,7 +656,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 										<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 											{label}
 										</p>
-										{grouped.length > 1 && (
+										{grouped.length > 2 && (
 											<button
 												type="button"
 												onClick={() => setScope(source)}
@@ -572,9 +672,9 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 										)}
 									</div>
 									<div className="space-y-2">
-										{grouped.slice(0, 1).map((result) => (
+										{grouped.slice(0, 2).map((result) => (
 											<ResultCard
-												key={`${result.path}-${result.title}`}
+												key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
 												result={result}
 											/>
 										))}
@@ -602,7 +702,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						)}
 						{visible.map((result) => (
 							<ResultCard
-								key={`${result.path}-${result.title}`}
+								key={`${result.path}-${result.title}-${result.version ?? "latest"}`}
 								result={result}
 							/>
 						))}
