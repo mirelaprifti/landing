@@ -74,6 +74,75 @@ const SPACING_STEPS = [
 	{ label: "md:pt-40", px: 160, use: "section top (desktop)" },
 ];
 
+const ELEMENT_SPECS: {
+	label: string;
+	use: string;
+	cls: string;
+	sample: string;
+}[] = [
+	{
+		label: "h1 · hero",
+		use: "landing heroes · only font-bold",
+		cls: text.pageTitle,
+		sample: "Ship reliable software",
+	},
+	{
+		label: "h1 · subpage",
+		use: "blog, policies, listings",
+		cls: text.pageTitleSub,
+		sample: "Effect 4.0 enters beta",
+	},
+	{
+		label: "eyebrow",
+		use: "mono label above titles",
+		cls: text.eyebrow,
+		sample: "// Why Effect",
+	},
+	{
+		label: "h2 · section",
+		use: "opens every section",
+		cls: text.sectionTitle,
+		sample: "Everything you need",
+	},
+	{
+		label: "lede",
+		use: "under a title · max-w-2xl",
+		cls: text.lede,
+		sample: "Typed errors, concurrency, and DI out of the box.",
+	},
+	{
+		label: "h3 · card",
+		use: "cards, subsections",
+		cls: text.cardTitle,
+		sample: "Typed errors",
+	},
+	{
+		label: "h4 · small",
+		use: "fine structure",
+		cls: text.smallHeading,
+		sample: "Retry policies",
+	},
+	{
+		label: "body",
+		use: "paragraphs · stack with mt-4",
+		cls: text.body,
+		sample:
+			"Fibers are supervised and cleaned up when their parent scope closes.",
+	},
+	{
+		label: "card body",
+		use: "inside cards · mt-1",
+		cls: text.cardBody,
+		sample: "Failure cases show up in the signature.",
+	},
+	{
+		label: "micro",
+		use: "captions, timestamps, meta",
+		cls: text.micro,
+		sample: "Last updated · Jul 29, 2026",
+	},
+];
+
 /** A single class string, or one labeled entry per role for multi-part specs. */
 type SpecClasses = string | { label: string; value: string }[];
 
@@ -199,11 +268,11 @@ export function TypographyStyleguidePage() {
 							id="foundations"
 							eyebrow="01"
 							title="Foundations"
-							lede="Two typefaces and one type scale. Everything on the site is set in Inter, with JetBrains Mono for code, eyebrows, and micro labels."
+							lede="Inter for everything, JetBrains Mono for code and labels, one 1.25-ratio scale."
 						>
 							<SpecRow
 								title="Font families"
-								note="Inter is the body default — never write font-inter, and never inline another mono font. font-mono resolves to JetBrains Mono globally."
+								note="font-sans is the default. font-mono resolves to JetBrains Mono; never font-inter."
 							>
 								<div className="space-y-4">
 									<div>
@@ -227,7 +296,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Type scale"
-								note="A 1.25-ratio scale defined in globals.css. Use these steps only — no arbitrary text-[15px] / text-[10px] sizes."
+								note="Only these steps — no arbitrary sizes."
 							>
 								<div className="space-y-3">
 									{TYPE_SCALE.map((step) => (
@@ -252,36 +321,31 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Code snippets"
-								note="Code blocks stay dark in both themes: zinc-950 panel, zinc-800 hairline, zinc-200 plain text. Tokens use rose for keywords and operators, blue for calls and bindings, sky for strings, muted zinc for comments. Inline code chips stay neutral zinc — no color."
+								note="One scheme site-wide: the GitHub palette. Shiki github-light/dark on API pages; tok-* classes (globals.css) everywhere else."
 								classes={[
-									{
-										label: "block",
-										value:
-											"rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-sm leading-[1.6] text-zinc-200",
-									},
 									{
 										label: "tokens",
 										value:
-											"live docs highlight via Shiki (github-light / github-dark). Hand-built demos approximate with — keyword/operator: text-rose-400 · call/binding: text-blue-400 · string: text-sky-300 · comment: text-zinc-500",
+											"tok-keyword · tok-string · tok-constant · tok-entity · tok-comment · tok-fg",
 									},
 								]}
 							>
-								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.6] text-zinc-200">
-									<code>
-										<span className="text-rose-400">import</span>
+								<pre className="overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-4 font-mono text-sm leading-[1.6] dark:border-zinc-800 dark:bg-zinc-950">
+									<code className="tok-fg">
+										<span className="tok-keyword">import</span>
 										{" { Array } "}
-										<span className="text-rose-400">from</span>{" "}
-										<span className="text-sky-300">"effect"</span>
+										<span className="tok-keyword">from</span>{" "}
+										<span className="tok-string">"effect"</span>
 										{"\n\n"}
-										<span className="text-rose-400">const</span>{" "}
-										<span className="text-blue-400">result</span>{" "}
-										<span className="text-rose-400">=</span>
+										<span className="tok-keyword">const</span>
+										{" result "}
+										<span className="tok-keyword">=</span>
 										{" Array."}
-										<span className="text-blue-400">append</span>
+										<span className="tok-constant">append</span>
 										{"([1, 2, 3], 4)\nconsole."}
-										<span className="text-blue-400">log</span>
+										<span className="tok-constant">log</span>
 										{"(result) "}
-										<span className="text-zinc-500">{"// [1, 2, 3, 4]"}</span>
+										<span className="tok-comment">{"// [1, 2, 3, 4]"}</span>
 									</code>
 								</pre>
 							</SpecRow>
@@ -291,161 +355,54 @@ export function TypographyStyleguidePage() {
 							id="text-elements"
 							eyebrow="02"
 							title="Text elements"
-							lede="One spec per role. Headings are bold only at the h1 level; everything below is semibold. Page titles (h1) use leading-[1.1]; lower heading levels use leading-tighter. All use themeable color pairs."
+							lede="One spec per role: sample on the right, class string one click away."
 						>
-							<SpecRow
-								title="Heading hierarchy"
-								note="Five levels, one job each: h1 opens the page (hero scale on landing pages, subpage scale everywhere else — never both), h2 opens a section, h3 titles a card or subsection, h4 handles fine structure. Never skip a level and never restyle a lower level to look like a higher one. The eyebrow is a label, not a heading — it renders as a p and takes no heading slot."
-							>
-								<div className="space-y-6">
-									{[
-										{
-											label: "h1 · hero",
-											detail: "one per landing page",
-											cls: text.pageTitle,
-											sample: "Ship reliable software",
-										},
-										{
-											label: "h1 · subpage",
-											detail: "one per subpage",
-											cls: text.pageTitleSub,
-											sample: "Effect 4.0 enters beta",
-										},
-										{
-											label: "h2 · section",
-											detail: "opens every section",
-											cls: text.sectionTitle,
-											sample: "Everything you need",
-										},
-										{
-											label: "h3 · card",
-											detail: "cards, subsections",
-											cls: text.cardTitle,
-											sample: "Typed errors",
-										},
-										{
-											label: "h4 · small",
-											detail: "fine structure",
-											cls: text.smallHeading,
-											sample: "Retry policies",
-										},
-									].map((level) => (
-										<div
-											key={level.label}
-											className="flex flex-col gap-1 border-b border-zinc-100 pb-5 last:border-b-0 last:pb-0 md:flex-row md:items-baseline md:gap-6 dark:border-zinc-900"
-										>
+							<div>
+								{ELEMENT_SPECS.map((el) => (
+									<div
+										key={el.label}
+										className="border-b border-zinc-100 py-5 first:pt-0 last:border-b-0 dark:border-zinc-900"
+									>
+										<div className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-6">
 											<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
-												{level.label}
+												{el.label}
 												<br />
 												<span className="text-zinc-400 dark:text-zinc-500">
-													{level.detail}
+													{el.use}
 												</span>
 											</span>
-											<span className={`${level.cls} min-w-0`}>
-												{level.sample}
-											</span>
+											<div className="min-w-0 flex-1">
+												<p className={`${el.cls} mt-0! mb-0!`}>{el.sample}</p>
+												<details className="mt-2">
+													<summary className="cursor-pointer font-mono text-xs tracking-wider text-zinc-400 uppercase select-none dark:text-zinc-500">
+														Class
+													</summary>
+													<pre className="mt-2 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
+														<code className="font-mono text-xs leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+															{el.cls}
+														</code>
+													</pre>
+												</details>
+											</div>
 										</div>
-									))}
-								</div>
-							</SpecRow>
-
-							<SpecRow
-								title="Page title — hero (h1)"
-								note="Landing and marketing heroes. The only place font-bold is used."
-								classes={text.pageTitle}
-							>
-								<h1 className={text.pageTitle}>
-									Build production-grade software
-								</h1>
-							</SpecRow>
-
-							<SpecRow
-								title="Page title — subpage (h1)"
-								note="Blog posts, policies, listings — one step down from the hero."
-								classes={text.pageTitleSub}
-							>
-								<p className={text.pageTitleSub}>Effect 4.0 enters beta</p>
-							</SpecRow>
-
-							<SpecRow
-								title="Section eyebrow"
-								note="The mono label above every section title. Always font-medium, tracking-wider, mb-3 — not font-semibold, not tracking-wide."
-								classes={text.eyebrow}
-							>
-								<p className={`${text.eyebrow} mb-0!`}>// Why Effect</p>
-							</SpecRow>
-
-							<SpecRow
-								title="Section title (h2)"
-								note="Semibold, never bold. Steps text-2xl → md:text-3xl — no bigger jumps."
-								classes={text.sectionTitle}
-							>
-								<p className={text.sectionTitle}>
-									Everything you need to ship reliably
-								</p>
-							</SpecRow>
-
-							<SpecRow
-								title="Section lede"
-								note="The paragraph directly under a page or section title. Capped at max-w-2xl."
-								classes={text.lede}
-							>
-								<p className={`${text.lede} mt-0!`}>
-									Effect gives you typed errors, structured concurrency, and
-									dependency injection out of the box, so failure cases show up
-									in the signature instead of in production.
-								</p>
-							</SpecRow>
-
-							<SpecRow title="Card title (h3)" classes={text.cardTitle}>
-								<p className={text.cardTitle}>Typed errors</p>
-							</SpecRow>
-
-							<SpecRow title="Small heading (h4)" classes={text.smallHeading}>
-								<p className={text.smallHeading}>Retry policies</p>
-							</SpecRow>
-
-							<SpecRow
-								title="Body copy"
-								note="Standard paragraph text outside the blog. Stack paragraphs with mt-4."
-								classes={text.body}
-							>
-								<p className={text.body}>
-									Structured concurrency means fibers are supervised, cancelled,
-									and cleaned up automatically when their parent scope closes,
-									even when things fail halfway through.
-								</p>
-							</SpecRow>
-
-							<SpecRow
-								title="Card body"
-								note="Copy inside cards, one size down, mt-1 below the card title."
-								classes={text.cardBody}
-							>
-								<p className={`${text.cardBody} mt-0!`}>
-									Every failure case is tracked in the type signature, so the
-									compiler tells you what can go wrong before your users do.
-								</p>
-							</SpecRow>
-
-							<SpecRow
-								title="Micro label / caption"
-								note="Timestamps, figure captions, meta rows, terminal chrome."
-								classes={text.micro}
-							>
-								<p className={text.micro}>Last updated · Jul 29, 2026</p>
-							</SpecRow>
+									</div>
+								))}
+							</div>
+							<p className="mt-5 text-sm text-zinc-500 dark:text-zinc-400">
+								Never skip a heading level. The eyebrow is a label (renders as a
+								p), not a heading.
+							</p>
 						</GuideSection>
 
 						<GuideSection
 							id="links-buttons"
 							eyebrow="03"
 							title="Links & buttons"
-							lede="Always use the ui/Link and ui/Button components — never hand-roll these. Buttons are rounded-md, font-medium; there is no rounded-lg button."
+							lede="Always ui/Link and ui/Button — never hand-rolled."
 						>
 							<SpecRow
 								title="Links — ui/Link"
-								note="Variants: inline (body copy), nav (header), footer, subtle (breadcrumbs, attributions), icon. Inline links carry a muted underline with underline-offset-4 that fades out on hover over 200ms — never a full-strength underline or a dimming text color."
+								note="Variants: inline, nav, footer, subtle, icon. Inline = muted underline that fades on hover."
 								classes={[
 									{
 										label: "inline",
@@ -473,7 +430,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Buttons — ui/Button"
-								note="Variants: primary (main CTA), secondary (default), ghost, discord. Sizes: sm, md (default), lg, xl."
+								note="Variants: primary, secondary, ghost, discord. Sizes: sm, md, lg, xl."
 							>
 								<div className="flex flex-wrap items-center gap-4">
 									<Button
@@ -509,7 +466,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Section header action"
-								note="A section-level action sits in the header row next to the h2: a secondary Button (default md size) with a trailing arrow icon — arrow-up-right for external links, arrow-right for internal. Never a bare text link, and the row is items-center, not items-baseline."
+								note="Secondary md Button beside the h2, trailing arrow (up-right = external). Row is items-center."
 								classes="flex flex-wrap items-center justify-between gap-x-6 gap-y-3"
 							>
 								<div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
@@ -530,11 +487,11 @@ export function TypographyStyleguidePage() {
 							id="spacing"
 							eyebrow="04"
 							title="Spacing"
-							lede="One container, one section rhythm, one text stack. Spacing is where the site drifts most — these are the only values to use."
+							lede="One container, one section rhythm, one text stack."
 						>
 							<SpecRow
 								title="Container"
-								note="1180px, centered, 16px gutters. Use this literal string — not max-w-295, not a custom width."
+								note="Use this literal string."
 								classes="mx-auto w-full max-w-[73.75rem] px-4"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 px-4 py-3 dark:border-zinc-700">
@@ -546,7 +503,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Section rhythm"
-								note="Every landing section: 96px vertical on mobile, 160px top / 96px bottom on desktop. The larger desktop top padding is what separates sections visually."
+								note="96px mobile · 160px top / 96px bottom desktop."
 								classes="py-24 md:pt-40 md:pb-24"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 p-4 dark:border-zinc-700">
@@ -564,7 +521,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Section header stack"
-								note="Eyebrow, title, lede, content — with fixed gaps. This exact stack opens every section; GuideSection on this page is a live example."
+								note="This exact stack opens every section."
 								classes="eyebrow mb-3 → h2 → lede mt-4 → content mt-12"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 p-6 dark:border-zinc-700">
@@ -581,7 +538,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Cards & grids"
-								note="Cards use p-6 padding and rounded-md with a zinc border; card grids use gap-6. Airy feature grids (no card chrome) may use gap-12 md:gap-16."
+								note="p-6 cards, gap-6 grids. Airy chrome-less grids: gap-12 md:gap-16."
 								classes={[
 									{
 										label: "card",
@@ -609,7 +566,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Spacing steps"
-								note="The full set of vertical spacing values in use. If a gap is not on this list, round to the nearest step."
+								note="Not on the list? Round to the nearest step."
 							>
 								<div className="space-y-3">
 									{SPACING_STEPS.map((step) => (
@@ -634,80 +591,31 @@ export function TypographyStyleguidePage() {
 							id="rules"
 							eyebrow="05"
 							title="Rules"
-							lede="The short version — the drift these rules exist to prevent is real and currently on the site."
+							lede="The short version."
 						>
 							<div className="grid gap-6 md:grid-cols-2">
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
 									<p className={rowLabel}>Do</p>
-									<ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-										<li>
-											Use the type scale and named leading values only — page
-											titles (h1) get{" "}
-											<code className="font-mono text-sm">leading-[1.1]</code>
-											{"; "}lower headings get{" "}
-											<code className="font-mono text-sm">leading-tighter</code>
-											.
-										</li>
-										<li>
-											h1 is <code className="font-mono text-sm">font-bold</code>
-											; h2, h3, h4 are{" "}
-											<code className="font-mono text-sm">font-semibold</code>.
-										</li>
-										<li>
-											Write themeable color pairs (
-											<code className="font-mono text-sm">
-												text-zinc-900 dark:text-white
-											</code>
-											) even on dark-only pages.
-										</li>
-										<li>
-											Use <code className="font-mono text-sm">ui/Button</code>{" "}
-											and <code className="font-mono text-sm">ui/Link</code> for
-											every CTA and link.
-										</li>
-										<li>
-											Copy the container and section rhythm strings verbatim.
-										</li>
-										<li>
-											Color belongs to syntax tokens only — rose keywords, blue
-											calls, sky strings inside dark code blocks; chips and all
-											other text stay zinc.
-										</li>
+									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+										<li>Type scale + named leadings only</li>
+										<li>h1 font-bold · h2–h4 font-semibold</li>
+										<li>Themeable color pairs, even on dark-only pages</li>
+										<li>ui/Button and ui/Link for every CTA and link</li>
+										<li>Container and section-rhythm strings verbatim</li>
+										<li>Code color via tok-* tokens only; chips stay zinc</li>
 									</ul>
 								</div>
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
 									<p className={rowLabel}>Don't</p>
-									<ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										<li>
-											No arbitrary sizes or leadings —{" "}
-											<code className="font-mono text-sm">text-[15px]</code>,{" "}
-											<code className="font-mono text-sm">text-[10px]</code>,{" "}
-											<code className="font-mono text-sm">leading-[1.35]</code>.
+											No arbitrary sizes or leadings (text-[15px],
+											leading-[1.35])
 										</li>
-										<li>
-											No <code className="font-mono text-sm">font-bold</code> on
-											h2s, no{" "}
-											<code className="font-mono text-sm">font-semibold</code>{" "}
-											or{" "}
-											<code className="font-mono text-sm">tracking-wide</code>{" "}
-											eyebrows.
-										</li>
-										<li>
-											No hand-rolled buttons —{" "}
-											<code className="font-mono text-sm">rounded-lg</code> CTAs
-											are off-spec.
-										</li>
-										<li>
-											No <code className="font-mono text-sm">font-inter</code>{" "}
-											class and no inline{" "}
-											<code className="font-mono text-sm">Roboto Mono</code> —
-											mono is always{" "}
-											<code className="font-mono text-sm">font-mono</code>.
-										</li>
-										<li>
-											No <code className="font-mono text-sm">max-w-295</code> or
-											one-off container widths.
-										</li>
+										<li>No font-bold h2s, no tracking-wide eyebrows</li>
+										<li>No hand-rolled or rounded-lg buttons</li>
+										<li>No font-inter, no inline Roboto Mono</li>
+										<li>No max-w-295 or one-off containers</li>
 									</ul>
 								</div>
 							</div>
@@ -717,7 +625,7 @@ export function TypographyStyleguidePage() {
 							id="blog"
 							eyebrow="06"
 							title="Blog"
-							lede="Every text element the blog body supports, rendered with BLOG_ARTICLE_CLASS — the exact styles real posts use. Fixes belong in that class so posts pick them up too."
+							lede="Every element the blog body supports, rendered with BLOG_ARTICLE_CLASS. Fix styles there, not per-post."
 						>
 							<article className={BLOG_ARTICLE_CLASS}>
 								<p>
