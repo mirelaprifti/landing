@@ -7,16 +7,19 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * search backend.
  *
  * Three source-filtering UX options, switchable from the page header
- * (a grouped-list and a scope-dropdown variant were explored and cut —
- * grouping is subsumed by "View all", and a dropdown hides the filter):
- * - A · Scope tabs: a tab row under the input (All / Docs / API / Blog),
- *   each with a result count; the list is filtered to the active tab.
+ * (scope-tabs, grouped-list, and scope-dropdown variants were explored
+ * and cut — tabs/grouping are subsumed by "View all", and a dropdown
+ * hides the filter):
  * - B · View all: the federated pattern (GitHub docs, Algolia's
  *   recommendation) — top 2 per source with a "View all N" drill-in
  *   per section and an "All results" row to back out.
  * - C · Scope tokens: Slack/Notion-style — an in:docs token rendered
  *   as a removable chip in the input scopes the query; composable
  *   with future filters (version, package).
+ * - D · Merged (B+C): one state model, two entry points — the overview
+ *   is B's federated list, but "View all" applies C's in:source token;
+ *   removing the chip (× or ⌫) returns to the overview with the query
+ *   preserved.
  *
  * Shared decisions across variants:
  * - Source tags share one filled-chip shape; the API tag carries the
@@ -29,12 +32,12 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   rows, preserving page→subheading grouping.
  */
 
-type Variant = "tabs" | "viewall" | "tokens";
+type Variant = "viewall" | "tokens" | "merged";
 
 const VARIANTS: { value: Variant; label: string }[] = [
-	{ value: "tabs", label: "A · Scope tabs" },
 	{ value: "viewall", label: "B · View all" },
 	{ value: "tokens", label: "C · Scope tokens" },
+	{ value: "merged", label: "D · Merged (B+C)" },
 ];
 
 type SearchSource = "api" | "docs" | "blog";
@@ -378,52 +381,6 @@ function scopeCount(scope: SearchScope) {
 		: RESULTS.filter((r) => r.source === scope).length;
 }
 
-function ScopeTabs({
-	scope,
-	onScopeChange,
-}: {
-	scope: SearchScope;
-	onScopeChange: (scope: SearchScope) => void;
-}) {
-	return (
-		<div
-			role="tablist"
-			aria-label="Filter results by source"
-			className="flex items-center gap-1.5 border-b border-zinc-200 px-3 py-2 dark:border-zinc-800"
-		>
-			{SCOPES.map(({ value, label }) => {
-				const count = scopeCount(value);
-				const active = scope === value;
-				return (
-					<button
-						key={value}
-						type="button"
-						role="tab"
-						aria-selected={active}
-						onClick={() => onScopeChange(value)}
-						className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 font-mono text-xs font-medium transition-colors ${
-							active
-								? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
-								: "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-white"
-						}`}
-					>
-						{label}
-						<span
-							className={
-								active
-									? "text-zinc-500 dark:text-zinc-400"
-									: "text-zinc-400 dark:text-zinc-500"
-							}
-						>
-							{count}
-						</span>
-					</button>
-				);
-			})}
-		</div>
-	);
-}
-
 function Kbd({ children }: { children: React.ReactNode }) {
 	return (
 		<kbd className="inline-flex min-w-5 items-center justify-center rounded border border-zinc-300 px-1.5 py-0.5 font-mono text-[11px] text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
@@ -451,8 +408,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
 					aria-hidden="true"
 				/>
-				{/* E: active scope rendered as a removable token before the query */}
-				{variant === "tokens" && scope !== "all" && (
+				{/* C + D: active scope rendered as a removable token before the query */}
+				{(variant === "tokens" || variant === "merged") && scope !== "all" && (
 					<span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-zinc-200 py-0.5 pr-1 pl-2 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 						in:{scope}
 						<button
@@ -480,11 +437,6 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 				</button>
 			</div>
 
-			{/* A: scope tabs narrow the list to a single source */}
-			{variant === "tabs" && (
-				<ScopeTabs scope={scope} onScopeChange={setScope} />
-			)}
-
 			{/* C: token suggestions until a scope token is applied */}
 			{variant === "tokens" && scope === "all" && (
 				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
@@ -509,8 +461,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 
 			{/* Results */}
 			<div className="max-h-[30rem] overflow-y-auto p-3">
-				{variant === "viewall" && scope === "all" ? (
-					// B: federated overview — top hits per source + "View all N"
+				{(variant === "viewall" || variant === "merged") && scope === "all" ? (
+					// B + D: federated overview — top hits per source + "View all N"
 					<div className="space-y-4">
 						{GROUPS.map(({ source, label }) => {
 							const grouped = RESULTS.filter((r) => r.source === source);
@@ -550,8 +502,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					</div>
 				) : (
 					<div className="space-y-2">
-						{/* B scoped view: back row above the filtered list */}
-						{variant === "viewall" && (
+						{/* B + D scoped view: back row above the filtered list */}
+						{(variant === "viewall" || variant === "merged") && (
 							<button
 								type="button"
 								onClick={() => setScope("all")}
@@ -590,16 +542,12 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						<Kbd>↑</Kbd>
 						<Kbd>↓</Kbd> navigate
 					</span>
-					{variant === "tabs" && (
-						<span className="flex items-center gap-1.5">
-							<Kbd>⇥</Kbd> scope
-						</span>
-					)}
-					{variant === "tokens" && scope !== "all" && (
-						<span className="flex items-center gap-1.5">
-							<Kbd>⌫</Kbd> clear scope
-						</span>
-					)}
+					{(variant === "tokens" || variant === "merged") &&
+						scope !== "all" && (
+							<span className="flex items-center gap-1.5">
+								<Kbd>⌫</Kbd> clear scope
+							</span>
+						)}
 					{variant === "viewall" && scope !== "all" && (
 						<span className="flex items-center gap-1.5">
 							<Kbd>⌫</Kbd> back
@@ -618,7 +566,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 }
 
 export function SearchPreviewPage() {
-	const [variant, setVariant] = useState<Variant>("tabs");
+	const [variant, setVariant] = useState<Variant>("merged");
 
 	return (
 		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
