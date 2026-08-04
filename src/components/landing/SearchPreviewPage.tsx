@@ -31,25 +31,10 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 type Variant = "tabs" | "viewall" | "tokens";
 
-const VARIANTS: { value: Variant; label: string; blurb: string }[] = [
-	{
-		value: "tabs",
-		label: "A · Scope tabs",
-		blurb:
-			"Tab row under the input filters the list; counts show what each source holds.",
-	},
-	{
-		value: "viewall",
-		label: "B · View all",
-		blurb:
-			"Federated pattern (GitHub docs, Algolia): top 2 per source, “View all” drills into a scoped list, “All results” backs out.",
-	},
-	{
-		value: "tokens",
-		label: "C · Scope tokens",
-		blurb:
-			"Slack/Notion-style: an in:docs token in the input scopes the query — removable chip, composable with future filters.",
-	},
+const VARIANTS: { value: Variant; label: string }[] = [
+	{ value: "tabs", label: "A · Scope tabs" },
+	{ value: "viewall", label: "B · View all" },
+	{ value: "tokens", label: "C · Scope tokens" },
 ];
 
 type SearchSource = "api" | "docs" | "blog";
@@ -634,7 +619,6 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 
 export function SearchPreviewPage() {
 	const [variant, setVariant] = useState<Variant>("tabs");
-	const activeVariant = VARIANTS.find((v) => v.value === variant);
 
 	return (
 		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
@@ -673,11 +657,6 @@ export function SearchPreviewPage() {
 							);
 						})}
 					</div>
-					{activeVariant && (
-						<p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-							{activeVariant.blurb}
-						</p>
-					)}
 				</div>
 
 				{/* key resets the modal's scope state when switching variants */}
