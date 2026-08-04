@@ -7,12 +7,13 @@ import { Icon } from "@/components/ui/Icon";
 
 /**
  * Shared article styles for docs page bodies (also used by /styleguide).
- * Mirrors the official effect.website docs: Tailwind Typography at
- * prose-sm → md:prose-base, semibold tracking-tight headings, sky links,
- * translucent inline-code chips, and bordered dark code blocks.
+ * Same reading language as the blog (BLOG_ARTICLE_CLASS), tuned for
+ * reference content: 16px body on a slightly tighter rhythm, headings
+ * semibold with tight tracking, links with the site's muted underline,
+ * and soft bordered code blocks.
  */
 export const DOCS_ARTICLE_CLASS =
-	"prose prose-zinc dark:prose-invert prose-sm md:prose-base max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-sky-400 prose-a:no-underline [&_a:hover]:underline prose-code:bg-black/10 prose-code:text-zinc-700 dark:prose-code:bg-white/10 dark:prose-code:text-zinc-200 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-700";
+	"prose prose-zinc [&>:first-child]:mt-0! prose-headings:font-semibold prose-h1:mb-4 prose-h1:text-[1.75rem] prose-h1:leading-[1.2] prose-h1:tracking-[-0.012em] prose-h2:mt-12 prose-h2:mb-3 prose-h2:text-[1.375rem] prose-h2:leading-[1.35] prose-h2:tracking-[-0.012em] prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-[1.125rem] prose-h3:leading-[1.4] prose-h4:mt-6 prose-h4:mb-2 prose-h4:text-base prose-h4:leading-[1.4] prose-p:my-4 prose-p:text-base prose-p:leading-[1.65] prose-p:text-zinc-700 prose-a:text-zinc-900 prose-a:underline prose-a:decoration-zinc-300 prose-a:underline-offset-4 prose-a:transition-colors hover:prose-a:decoration-zinc-600 prose-strong:text-zinc-900 prose-code:rounded-md prose-code:bg-zinc-200/60 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none prose-pre:my-6 prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-200 prose-pre:bg-zinc-50 prose-pre:text-sm prose-pre:leading-[1.6] [&_pre_code]:rounded-none [&_pre_code]:bg-transparent [&_pre_code]:p-0 prose-ul:my-4 prose-ol:my-4 prose-li:my-1.5 prose-li:text-base prose-li:leading-[1.65] prose-li:text-zinc-700 prose-li:marker:text-zinc-400 prose-hr:my-10 prose-hr:border-zinc-200 dark:prose-invert dark:prose-p:text-zinc-400 dark:prose-a:text-zinc-200 dark:prose-a:decoration-zinc-400 dark:hover:prose-a:decoration-zinc-300 dark:prose-strong:text-zinc-200 dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200 dark:prose-pre:border-zinc-800 dark:prose-pre:bg-zinc-900/80 dark:prose-li:text-zinc-400 dark:prose-li:marker:text-zinc-500 dark:prose-hr:border-zinc-800";
 
 type NavItem = { slug: string; label: string };
 type NavSection = { title: string; items: NavItem[] };

@@ -733,28 +733,29 @@ Effect.runPromise(program)`}</code>
 							id="docs"
 							eyebrow="07"
 							title="Docs"
-							lede="Docs pages follow the official effect.website documentation. Article bodies use DOCS_ARTICLE_CLASS (exported from DocsLayout) — Tailwind Typography with docs-specific overrides."
+							lede="Docs share the blog's reading language — quiet hairlines, muted underlines, mono micro labels — tuned for reference content. Article bodies use DOCS_ARTICLE_CLASS, exported from DocsLayout."
 						>
 							<SpecRow
 								title="Docs article body"
-								note="prose-sm on mobile (14px), md:prose-base on desktop (16px). Headings semibold with tracking-tight, links in sky-400 with hover underline, inline code as translucent chips, code blocks dark with a zinc-700 border. The page h1 gets mt-0!."
+								note="16px body on a 1.65 line-height, one step down from the blog's 17px. Headings semibold with tight tracking; links use the site's muted underline; inline code as soft chips; code blocks bordered and soft-filled like the blog."
 								classes={DOCS_ARTICLE_CLASS}
 							>
 								<div className={DOCS_ARTICLE_CLASS}>
-									<h1 className="mt-0!">Introduction</h1>
+									<h1>Introduction</h1>
 									<p>
 										Effect is a powerful TypeScript library for building
 										complex, synchronous, and asynchronous programs. It includes{" "}
 										<a href={getAssetPath("/docs/introduction")}>
 											inline links
 										</a>{" "}
-										in sky, and inline code like <code>Effect.gen</code> as a
-										translucent chip.
+										with the site underline, and inline code like{" "}
+										<code>Effect.gen</code> as a soft chip.
 									</p>
 									<h2>Section heading</h2>
 									<p>
-										An h2 inside a docs article — semibold, tracking-tight, sized by
-										the typography plugin. Lists follow the plugin defaults:
+										An h2 inside a docs article — 22px, semibold, tight leading
+										and tracking, with clear air above so sections separate
+										without rules:
 									</p>
 									<ul>
 										<li>Typed errors surface failure cases in the signature</li>
@@ -770,15 +771,15 @@ const program = Effect.succeed(42)`}</code>
 
 							<SpecRow
 								title="Docs shell"
-								note="A 1408px three-column grid: 240px sidebar, fluid article, 240px table of contents. Sidebars are sticky below the nav and scroll independently; the article column carries the padding."
-								classes="mx-auto grid w-full max-w-352 grid-cols-1 lg:grid-cols-[240px_1fr_240px] · sidebar: sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8 · main: min-w-0 px-6 py-12 lg:px-12 lg:py-16"
+								note="The site container split into three columns: 220px sidebar, reading column, 240px table of contents. Side columns are sticky below the nav and scroll independently; the article is capped at max-w-2xl so lines stay readable."
+								classes="shell: mx-auto grid w-full max-w-[73.75rem] px-4 lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10 · aside: sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-12 · article: min-w-0 max-w-2xl py-12 lg:py-16"
 							>
-								<div className="grid grid-cols-[60px_1fr_60px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[240px_1fr_240px] dark:border-zinc-700">
-									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 md:text-sm dark:bg-zinc-900 dark:text-zinc-400">
-										240
+								<div className="grid grid-cols-[56px_1fr_56px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[220px_1fr_240px] dark:border-zinc-700">
+									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+										220
 									</div>
 									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-										article · 1fr
+										article · max-w-2xl
 									</div>
 									<div className="flex h-24 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										240
@@ -788,45 +789,48 @@ const program = Effect.succeed(42)`}</code>
 
 							<SpecRow
 								title="Sidebar navigation"
-								note="Group labels are mono uppercase (same family as section eyebrows); links are 15px with a rounded hover fill; the active link gets a filled background."
-								classes="group: font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300 · link: block rounded-md px-3 py-2.5 text-[15px] text-zinc-600 dark:text-zinc-300 · active: bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+								note="Quiet text, no fills. Group labels are the site micro label; links are text-sm zinc-600 that darken on hover; the active page is simply medium weight in the emphasis color."
+								classes="group: mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400 · link: block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white · active: font-medium text-zinc-900 dark:text-white"
 							>
-								<div className="max-w-60 space-y-1">
-									<p className="py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+								<div className="max-w-60">
+									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 										Getting Started
 									</p>
-									<span className="block rounded-md bg-zinc-100 px-3 py-2.5 text-[15px] text-zinc-900 dark:bg-zinc-800 dark:text-white">
+									<span className="block py-1.5 text-sm font-medium text-zinc-900 dark:text-white">
 										Introduction
 									</span>
-									<span className="block rounded-md px-3 py-2.5 text-[15px] text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white">
+									<span className="block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
 										Why Effect?
+									</span>
+									<span className="block py-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
+										Installation
 									</span>
 								</div>
 							</SpecRow>
 
 							<SpecRow
 								title="Table of contents"
-								note="Right-column links are text-sm with a left inset; the active heading gets a filled background and semibold weight."
-								classes="link: block rounded-md py-1.5 pl-3 text-sm text-zinc-700 dark:text-zinc-400 · active: bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+								note="Identical to the blog's — a soft bordered panel with a mono label and hairline; links darken on hover, and the active heading is underlined with the site offset."
+								classes="panel: rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40 · link: block text-sm leading-snug text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white · active: text-zinc-900 underline underline-offset-4 dark:text-white"
 							>
-								<div className="max-w-60 space-y-1">
-									<span className="block rounded-md bg-zinc-200 py-1.5 pl-3 text-sm font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white">
-										How to use these docs
-									</span>
-									<span className="block rounded-md py-1.5 pl-3 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white">
-										Coding with LLMs
-									</span>
+								<div className="max-w-60 rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
+									<p className="mb-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+										On this page
+									</p>
+									<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />
+									<ul className="space-y-2">
+										<li>
+											<span className="block text-sm leading-snug text-zinc-900 underline underline-offset-4 dark:text-white">
+												How to use these docs
+											</span>
+										</li>
+										<li>
+											<span className="block text-sm leading-snug text-zinc-600 transition-colors hover:text-zinc-900 hover:underline hover:underline-offset-4 dark:text-zinc-400 dark:hover:text-white">
+												Coding with LLMs
+											</span>
+										</li>
+									</ul>
 								</div>
-							</SpecRow>
-
-							<SpecRow
-								title="Docs card title"
-								note="Cards on docs index pages use a mono uppercase title instead of the site's sans card title."
-								classes="font-mono text-sm font-semibold text-zinc-900 uppercase dark:text-zinc-100"
-							>
-								<p className="font-mono text-sm font-semibold text-zinc-900 uppercase dark:text-zinc-100">
-									Error Management
-								</p>
 							</SpecRow>
 						</GuideSection>
 					</div>
