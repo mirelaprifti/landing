@@ -22,6 +22,9 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   preserved.
  *
  * Shared decisions across variants:
+ * - A pinned "Ask AI" row sits above results in every variant and scope
+ *   (the Stripe/Supabase/Mintlify pattern) — it absorbs the exploratory
+ *   queries that scope filters serve worst.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -458,6 +461,27 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 
 			{/* Results */}
 			<div className="max-h-[30rem] overflow-y-auto p-3">
+				{/* Pinned AI escape hatch — kept in every variant and scope */}
+				<a
+					href="#ask-ai"
+					className="mb-3 flex items-center gap-3 rounded-md border border-dashed border-zinc-300 p-3.5 transition-colors hover:border-zinc-500 hover:bg-zinc-100/60 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-900/60"
+				>
+					<Icon
+						name="sparkles"
+						className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
+						aria-hidden="true"
+					/>
+					<span className="min-w-0">
+						<span className="block text-sm font-semibold text-zinc-900 dark:text-white">
+							Ask AI about “forEach”
+						</span>
+						<span className="mt-0.5 block truncate text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
+							Synthesizes an answer from the docs, API reference, and blog —
+							with citations.
+						</span>
+					</span>
+				</a>
+
 				{(variant === "viewall" || variant === "merged") && scope === "all" ? (
 					// B + D: federated overview — top hits per source + "View all N"
 					<div className="space-y-4">
