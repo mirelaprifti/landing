@@ -204,6 +204,7 @@ export function EffectDaysLivornoPage() {
 										className="absolute inset-0 h-full w-full"
 										viewBox="0 0 280 120"
 										fill="none"
+										aria-hidden="true"
 									>
 										<path
 											d="M 0.5,51.5 V 0.5 H 279.5 V 51.5"
@@ -308,7 +309,7 @@ export function EffectDaysLivornoPage() {
 							{/* Header */}
 							<div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 								<div>
-									<p className={text.eyebrow}>// Why Livorno</p>
+									<p className={text.eyebrow}>{"// "}Why Livorno</p>
 									<h2 className={text.sectionTitle}>
 										Back to the Tuscan coast
 									</h2>
@@ -345,7 +346,7 @@ export function EffectDaysLivornoPage() {
 				<section id="tickets" className="scroll-mt-16 py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>// Effect Days Tickets</p>
+							<p className={text.eyebrow}>{"// "}Effect Days Tickets</p>
 							<h2 className={text.sectionTitle}>Three days, one pass</h2>
 
 							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -444,7 +445,7 @@ export function EffectDaysLivornoPage() {
 				<section className="py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>// FAQ</p>
+							<p className={text.eyebrow}>{"// "}FAQ</p>
 							<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
 
 							<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
@@ -541,7 +542,7 @@ export function EffectDaysLivornoPage() {
 				<section id="past-editions" className="py-16">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>// Relive Effect Days</p>
+							<p className={text.eyebrow}>{"// "}Relive Effect Days</p>
 							<h2 className={text.sectionTitle}>Three editions and counting</h2>
 
 							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

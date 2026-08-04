@@ -153,10 +153,8 @@ export function TypographyStyleguidePage() {
 						<p className={text.eyebrow}>// Styleguide</p>
 						<h1 className={text.pageTitleSub}>Website styleguide</h1>
 						<p className={text.lede}>
-							Canonical text elements and spacing for every surface of the site,
-							rendered with the exact classes pages should use. Copy the class
-							strings verbatim; when a style needs to change, change it here
-							first.
+							Text elements and spacing for every surface of the site. Copy the
+							class strings verbatim.
 						</p>
 					</header>
 				</div>
