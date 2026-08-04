@@ -6,9 +6,15 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * Design preview for the docs/API search modal — not wired to a real
  * search backend.
  *
- * - A scope tab row under the input lets the user narrow results to
- *   Docs, API, or Blog (or see everything at once); each tab shows its
- *   result count so switching is never a guess.
+ * Three source-filtering UX options, switchable from the page header:
+ * - A · Scope tabs: a tab row under the input (All / Docs / API / Blog),
+ *   each with a result count; the list is filtered to the active tab.
+ * - B · Grouped list: no filtering — results are always grouped under
+ *   source section headers so every source stays visible at once.
+ * - C · Scope dropdown: a compact "Everywhere ▾" menu inside the input
+ *   row; saves vertical space, scope is chosen from a popover.
+ *
+ * Shared decisions across variants:
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -18,6 +24,29 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * - A page result can nest its matching subheadings as indented child
  *   rows, preserving page→subheading grouping.
  */
+
+type Variant = "tabs" | "grouped" | "dropdown";
+
+const VARIANTS: { value: Variant; label: string; blurb: string }[] = [
+	{
+		value: "tabs",
+		label: "A · Scope tabs",
+		blurb:
+			"Tab row under the input filters the list; counts show what each source holds.",
+	},
+	{
+		value: "grouped",
+		label: "B · Grouped list",
+		blurb:
+			"No filtering — results stay grouped under source headers so everything is scannable at once.",
+	},
+	{
+		value: "dropdown",
+		label: "C · Scope dropdown",
+		blurb:
+			"Compact “Everywhere ▾” menu in the input row; scope picked from a popover, zero extra chrome.",
+	},
+];
 
 type SearchSource = "api" | "docs" | "blog";
 
@@ -248,6 +277,18 @@ const SCOPES: { value: SearchScope; label: string }[] = [
 	{ value: "blog", label: "Blog" },
 ];
 
+const GROUPS: { source: SearchSource; label: string }[] = [
+	{ source: "api", label: "API Reference" },
+	{ source: "docs", label: "Documentation" },
+	{ source: "blog", label: "Blog" },
+];
+
+function scopeCount(scope: SearchScope) {
+	return scope === "all"
+		? RESULTS.length
+		: RESULTS.filter((r) => r.source === scope).length;
+}
+
 function ScopeTabs({
 	scope,
 	onScopeChange,
@@ -262,10 +303,7 @@ function ScopeTabs({
 			className="flex items-center gap-1.5 border-b border-zinc-200 px-3 py-2 dark:border-zinc-800"
 		>
 			{SCOPES.map(({ value, label }) => {
-				const count =
-					value === "all"
-						? RESULTS.length
-						: RESULTS.filter((r) => r.source === value).length;
+				const count = scopeCount(value);
 				const active = scope === value;
 				return (
 					<button
@@ -297,6 +335,83 @@ function ScopeTabs({
 	);
 }
 
+function ScopeDropdown({
+	scope,
+	onScopeChange,
+}: {
+	scope: SearchScope;
+	onScopeChange: (scope: SearchScope) => void;
+}) {
+	const [open, setOpen] = useState(false);
+	const label =
+		scope === "all"
+			? "Everywhere"
+			: SCOPES.find((s) => s.value === scope)?.label;
+
+	return (
+		<div className="relative shrink-0">
+			<button
+				type="button"
+				aria-haspopup="listbox"
+				aria-expanded={open}
+				aria-label="Filter results by source"
+				onClick={() => setOpen((o) => !o)}
+				className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-2.5 py-1 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
+			>
+				{label}
+				<Icon
+					name="chevron-down"
+					className={`text-[11px] transition-transform ${open ? "rotate-180" : ""}`}
+					aria-hidden="true"
+				/>
+			</button>
+
+			{open && (
+				<div
+					role="listbox"
+					aria-label="Result sources"
+					className="absolute right-0 top-full z-10 mt-2 w-44 overflow-hidden rounded-md border border-zinc-200 bg-white py-1 shadow-lg shadow-zinc-950/10 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/40"
+				>
+					{SCOPES.map(({ value, label: optionLabel }) => {
+						const active = scope === value;
+						return (
+							<button
+								key={value}
+								type="button"
+								role="option"
+								aria-selected={active}
+								onClick={() => {
+									onScopeChange(value);
+									setOpen(false);
+								}}
+								className={`flex w-full items-center justify-between px-3 py-1.5 text-left font-mono text-xs transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+									active
+										? "font-medium text-zinc-900 dark:text-white"
+										: "text-zinc-600 dark:text-zinc-300"
+								}`}
+							>
+								<span className="flex items-center gap-2">
+									{value === "all" ? "Everywhere" : optionLabel}
+									<span className="text-zinc-400 dark:text-zinc-500">
+										{scopeCount(value)}
+									</span>
+								</span>
+								{active && (
+									<Icon
+										name="check"
+										className="text-[11px]"
+										aria-hidden="true"
+									/>
+								)}
+							</button>
+						);
+					})}
+				</div>
+			)}
+		</div>
+	);
+}
+
 function Kbd({ children }: { children: React.ReactNode }) {
 	return (
 		<kbd className="inline-flex min-w-5 items-center justify-center rounded border border-zinc-300 px-1.5 py-0.5 font-mono text-[11px] text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
@@ -305,7 +420,7 @@ function Kbd({ children }: { children: React.ReactNode }) {
 	);
 }
 
-function SearchModalDemo() {
+function SearchModalDemo({ variant }: { variant: Variant }) {
 	const [scope, setScope] = useState<SearchScope>("all");
 
 	const visible =
@@ -330,6 +445,9 @@ function SearchModalDemo() {
 					defaultValue="forEach"
 					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 				/>
+				{variant === "dropdown" && (
+					<ScopeDropdown scope={scope} onScopeChange={setScope} />
+				)}
 				<button
 					type="button"
 					aria-label="Close search"
@@ -339,18 +457,53 @@ function SearchModalDemo() {
 				</button>
 			</div>
 
-			{/* Scope tabs: narrow results to a single source */}
-			<ScopeTabs scope={scope} onScopeChange={setScope} />
+			{/* A: scope tabs narrow the list to a single source */}
+			{variant === "tabs" && (
+				<ScopeTabs scope={scope} onScopeChange={setScope} />
+			)}
 
 			{/* Results */}
-			<div className="max-h-[30rem] space-y-2 overflow-y-auto p-3">
-				{visible.map((result) => (
-					<ResultCard key={`${result.path}-${result.title}`} result={result} />
-				))}
-				{visible.length === 0 && (
-					<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
-						No {scope === "all" ? "" : `${scope} `}results for “forEach”.
-					</p>
+			<div className="max-h-[30rem] overflow-y-auto p-3">
+				{variant === "grouped" ? (
+					// B: always show everything, grouped under source headers
+					<div className="space-y-4">
+						{GROUPS.map(({ source, label }) => {
+							const grouped = RESULTS.filter((r) => r.source === source);
+							if (grouped.length === 0) return null;
+							return (
+								<section key={source} aria-label={label}>
+									<p className="px-1 pb-2 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+										{label}
+										<span className="ml-2 text-zinc-400 dark:text-zinc-500">
+											{grouped.length}
+										</span>
+									</p>
+									<div className="space-y-2">
+										{grouped.map((result) => (
+											<ResultCard
+												key={`${result.path}-${result.title}`}
+												result={result}
+											/>
+										))}
+									</div>
+								</section>
+							);
+						})}
+					</div>
+				) : (
+					<div className="space-y-2">
+						{visible.map((result) => (
+							<ResultCard
+								key={`${result.path}-${result.title}`}
+								result={result}
+							/>
+						))}
+						{visible.length === 0 && (
+							<p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+								No {scope === "all" ? "" : `${scope} `}results for “forEach”.
+							</p>
+						)}
+					</div>
 				)}
 			</div>
 
@@ -364,9 +517,11 @@ function SearchModalDemo() {
 						<Kbd>↑</Kbd>
 						<Kbd>↓</Kbd> navigate
 					</span>
-					<span className="flex items-center gap-1.5">
-						<Kbd>⇥</Kbd> scope
-					</span>
+					{variant !== "grouped" && (
+						<span className="flex items-center gap-1.5">
+							<Kbd>⇥</Kbd> scope
+						</span>
+					)}
 					<span className="flex items-center gap-1.5">
 						<Kbd>↵</Kbd> select
 					</span>
@@ -380,6 +535,9 @@ function SearchModalDemo() {
 }
 
 export function SearchPreviewPage() {
+	const [variant, setVariant] = useState<Variant>("tabs");
+	const activeVariant = VARIANTS.find((v) => v.value === variant);
+
 	return (
 		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
 			<div className="w-full max-w-2xl">
@@ -389,7 +547,43 @@ export function SearchPreviewPage() {
 					</p>
 					<ThemeToggle />
 				</div>
-				<SearchModalDemo />
+
+				{/* Variant switcher: compare the three filtering options */}
+				<div className="mb-6">
+					<div
+						role="tablist"
+						aria-label="Search UX variant"
+						className="inline-flex rounded-md border border-zinc-200 bg-white p-1 dark:border-zinc-800 dark:bg-zinc-950"
+					>
+						{VARIANTS.map(({ value, label }) => {
+							const active = variant === value;
+							return (
+								<button
+									key={value}
+									type="button"
+									role="tab"
+									aria-selected={active}
+									onClick={() => setVariant(value)}
+									className={`rounded px-3 py-1.5 font-mono text-xs font-medium transition-colors ${
+										active
+											? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+											: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									}`}
+								>
+									{label}
+								</button>
+							);
+						})}
+					</div>
+					{activeVariant && (
+						<p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+							{activeVariant.blurb}
+						</p>
+					)}
+				</div>
+
+				{/* key resets the modal's scope state when switching variants */}
+				<SearchModalDemo key={variant} variant={variant} />
 			</div>
 		</div>
 	);
