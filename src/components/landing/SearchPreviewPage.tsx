@@ -20,11 +20,11 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   is A's federated list, but "View all" applies B's in:source token;
  *   removing the chip (× or ⌫) returns to the overview with the query
  *   preserved.
+ * - D · Merged + Ask AI: C plus a pinned "Ask AI" row above results in
+ *   every scope (the Stripe/Supabase/Mintlify pattern) — it absorbs
+ *   the exploratory queries that scope filters serve worst.
  *
  * Shared decisions across variants:
- * - A pinned "Ask AI" row sits above results in every variant and scope
- *   (the Stripe/Supabase/Mintlify pattern) — it absorbs the exploratory
- *   queries that scope filters serve worst.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -35,12 +35,13 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   rows, preserving page→subheading grouping.
  */
 
-type Variant = "viewall" | "tokens" | "merged";
+type Variant = "viewall" | "tokens" | "merged" | "askai";
 
 const VARIANTS: { value: Variant; label: string }[] = [
 	{ value: "viewall", label: "A" },
 	{ value: "tokens", label: "B" },
 	{ value: "merged", label: "C" },
+	{ value: "askai", label: "D" },
 ];
 
 type SearchSource = "api" | "docs" | "blog";
@@ -395,6 +396,9 @@ function Kbd({ children }: { children: React.ReactNode }) {
 function SearchModalDemo({ variant }: { variant: Variant }) {
 	const [scope, setScope] = useState<SearchScope>("all");
 
+	// D is C plus the Ask AI row — everything else behaves identically.
+	const merged = variant === "merged" || variant === "askai";
+
 	const visible =
 		scope === "all" ? RESULTS : RESULTS.filter((r) => r.source === scope);
 
@@ -411,8 +415,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
 					aria-hidden="true"
 				/>
-				{/* B + C: active scope rendered as a removable token before the query */}
-				{(variant === "tokens" || variant === "merged") && scope !== "all" && (
+				{/* B + C + D: active scope rendered as a removable token before the query */}
+				{(variant === "tokens" || merged) && scope !== "all" && (
 					<span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-zinc-200 py-0.5 pr-1 pl-2 font-mono text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
 						in:{scope}
 						<button
@@ -461,23 +465,25 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 
 			{/* Results */}
 			<div className="max-h-[30rem] overflow-y-auto p-3">
-				{/* Pinned AI escape hatch — kept in every variant and scope */}
-				<a
-					href="#ask-ai"
-					className="mb-2 flex items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
-				>
-					<Icon
-						name="sparkles"
-						className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400"
-						aria-hidden="true"
-					/>
-					<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
-						Ask AI about “forEach”
-					</span>
-				</a>
+				{/* D: pinned AI escape hatch, kept in every scope */}
+				{variant === "askai" && (
+					<a
+						href="#ask-ai"
+						className="mb-2 flex items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
+					>
+						<Icon
+							name="sparkles"
+							className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400"
+							aria-hidden="true"
+						/>
+						<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
+							Ask AI
+						</span>
+					</a>
+				)}
 
-				{(variant === "viewall" || variant === "merged") && scope === "all" ? (
-					// A + C: federated overview — top hits per source + "View all N"
+				{(variant === "viewall" || merged) && scope === "all" ? (
+					// A + C + D: federated overview — top hits per source + "View all N"
 					<div className="space-y-4">
 						{GROUPS.map(({ source, label }) => {
 							const grouped = RESULTS.filter((r) => r.source === source);
@@ -517,8 +523,8 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 					</div>
 				) : (
 					<div className="space-y-2">
-						{/* A + C scoped view: back row above the filtered list */}
-						{(variant === "viewall" || variant === "merged") && (
+						{/* A + C + D scoped view: back row above the filtered list */}
+						{(variant === "viewall" || merged) && (
 							<button
 								type="button"
 								onClick={() => setScope("all")}
@@ -557,12 +563,11 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 						<Kbd>↑</Kbd>
 						<Kbd>↓</Kbd> navigate
 					</span>
-					{(variant === "tokens" || variant === "merged") &&
-						scope !== "all" && (
-							<span className="flex items-center gap-1.5">
-								<Kbd>⌫</Kbd> clear scope
-							</span>
-						)}
+					{(variant === "tokens" || merged) && scope !== "all" && (
+						<span className="flex items-center gap-1.5">
+							<Kbd>⌫</Kbd> clear scope
+						</span>
+					)}
 					{variant === "viewall" && scope !== "all" && (
 						<span className="flex items-center gap-1.5">
 							<Kbd>⌫</Kbd> back
@@ -593,12 +598,13 @@ export function SearchPreviewPage() {
 					<ThemeToggle />
 				</div>
 
-				{/* Variant switcher: compare the three filtering options */}
-				<div className="mb-6">
+				<div className="relative">
+					{/* Variant switcher: vertical rail beside the modal (row on mobile) */}
 					<div
 						role="tablist"
 						aria-label="Search UX variant"
-						className="inline-flex rounded-md border border-zinc-200 bg-white p-1 dark:border-zinc-800 dark:bg-zinc-950"
+						aria-orientation="vertical"
+						className="mb-4 inline-flex gap-1 rounded-md border border-zinc-200 bg-white p-1 sm:absolute sm:top-0 sm:right-full sm:mr-4 sm:mb-0 sm:flex-col dark:border-zinc-800 dark:bg-zinc-950"
 					>
 						{VARIANTS.map(({ value, label }) => {
 							const active = variant === value;
@@ -609,7 +615,7 @@ export function SearchPreviewPage() {
 									role="tab"
 									aria-selected={active}
 									onClick={() => setVariant(value)}
-									className={`rounded px-3 py-1.5 font-mono text-xs font-medium transition-colors ${
+									className={`rounded px-3 py-1.5 text-center font-mono text-xs font-medium transition-colors ${
 										active
 											? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
 											: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -620,10 +626,10 @@ export function SearchPreviewPage() {
 							);
 						})}
 					</div>
-				</div>
 
-				{/* key resets the modal's scope state when switching variants */}
-				<SearchModalDemo key={variant} variant={variant} />
+					{/* key resets the modal's scope state when switching variants */}
+					<SearchModalDemo key={variant} variant={variant} />
+				</div>
 			</div>
 		</div>
 	);
