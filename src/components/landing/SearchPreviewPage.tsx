@@ -712,7 +712,7 @@ function SearchModalDemo({ variant }: { variant: Variant }) {
 }
 
 export function SearchPreviewPage() {
-	const [variant, setVariant] = useState<Variant>("merged");
+	const [variant, setVariant] = useState<Variant>("viewall");
 
 	return (
 		<div className="flex min-h-screen justify-center bg-zinc-100 px-4 py-16 dark:bg-zinc-900/80">
