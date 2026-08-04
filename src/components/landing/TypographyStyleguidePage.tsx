@@ -1,14 +1,14 @@
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
-import { BLOG_PROSE_CLASS } from "./BlogPostPage";
-import { DOCS_PROSE_CLASS } from "./DocsLayout";
+import { BLOG_ARTICLE_CLASS } from "./BlogPostPage";
+import { DOCS_ARTICLE_CLASS } from "./DocsLayout";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
 /**
  * Internal styleguide for the entire website: canonical text elements and
- * spacing, plus the blog prose styles (BLOG_PROSE_CLASS) rendered with the
+ * spacing, plus the blog article styles (BLOG_ARTICLE_CLASS) rendered with the
  * exact class lists real pages use. Visit with the theme toggle to check
  * both modes. When a style needs to change, change it here first, then
  * roll it out to the pages that drift from it.
@@ -138,7 +138,7 @@ const NAV_ITEMS = [
 	{ href: "#links-buttons", label: "Links & buttons" },
 	{ href: "#spacing", label: "Spacing" },
 	{ href: "#rules", label: "Rules" },
-	{ href: "#blog-prose", label: "Blog" },
+	{ href: "#blog", label: "Blog" },
 	{ href: "#docs", label: "Docs" },
 ];
 
@@ -589,12 +589,12 @@ export function TypographyStyleguidePage() {
 						</GuideSection>
 
 						<GuideSection
-							id="blog-prose"
+							id="blog"
 							eyebrow="06"
 							title="Blog"
-							lede="Every text element the blog body supports, rendered with BLOG_PROSE_CLASS — the exact styles real posts use. Fixes belong in that class so posts pick them up too."
+							lede="Every text element the blog body supports, rendered with BLOG_ARTICLE_CLASS — the exact styles real posts use. Fixes belong in that class so posts pick them up too."
 						>
-							<article className={BLOG_PROSE_CLASS}>
+							<article className={BLOG_ARTICLE_CLASS}>
 								<p>
 									This paragraph shows the reading defaults: 17px body text with
 									a 1.6 line-height. It includes{" "}
@@ -728,7 +728,7 @@ Effect.runPromise(program)`}</code>
 								<p>
 									After a horizontal rule, the closing paragraph. If any element
 									above looks off in either theme, the fix belongs in{" "}
-									<code>BLOG_PROSE_CLASS</code> so real posts pick it up too.
+									<code>BLOG_ARTICLE_CLASS</code> so real posts pick it up too.
 								</p>
 							</article>
 						</GuideSection>
@@ -737,14 +737,14 @@ Effect.runPromise(program)`}</code>
 							id="docs"
 							eyebrow="07"
 							title="Docs"
-							lede="Docs pages follow the official effect.website documentation. Article bodies use DOCS_PROSE_CLASS (exported from DocsLayout) — Tailwind Typography with docs-specific overrides."
+							lede="Docs pages follow the official effect.website documentation. Article bodies use DOCS_ARTICLE_CLASS (exported from DocsLayout) — Tailwind Typography with docs-specific overrides."
 						>
 							<SpecRow
-								title="Docs prose"
+								title="Docs article body"
 								note="prose-sm on mobile (14px), md:prose-base on desktop (16px). Headings semibold with tracking-tight, links in sky-400 with hover underline, inline code as translucent chips, code blocks dark with a zinc-700 border. The page h1 gets mt-0!."
-								classes={DOCS_PROSE_CLASS}
+								classes={DOCS_ARTICLE_CLASS}
 							>
-								<div className={DOCS_PROSE_CLASS}>
+								<div className={DOCS_ARTICLE_CLASS}>
 									<h1 className="mt-0!">Introduction</h1>
 									<p>
 										Effect is a powerful TypeScript library for building
@@ -757,7 +757,7 @@ Effect.runPromise(program)`}</code>
 									</p>
 									<h2>Section heading</h2>
 									<p>
-										An h2 inside docs prose — semibold, tracking-tight, sized by
+										An h2 inside a docs article — semibold, tracking-tight, sized by
 										the typography plugin. Lists follow the plugin defaults:
 									</p>
 									<ul>

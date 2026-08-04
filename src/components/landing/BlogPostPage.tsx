@@ -8,8 +8,8 @@ import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { Icon } from "@/components/ui/Icon";
 
-/** Shared prose configuration for blog article bodies (also used by /styleguide). */
-export const BLOG_PROSE_CLASS =
+/** Shared article styles for blog post bodies (also used by /styleguide). */
+export const BLOG_ARTICLE_CLASS =
 	"prose prose-zinc [&>:first-child]:!mt-0 prose-headings:font-semibold prose-h2:mt-14 prose-h2:mb-3 prose-h2:text-[1.5rem] prose-h2:leading-[1.33] prose-h2:tracking-[-0.012em] prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-[1.25rem] prose-h3:leading-[1.4] prose-h4:mt-7 prose-h4:mb-2.5 prose-h4:text-[1.0625rem] prose-h4:leading-[1.4] prose-p:my-5 prose-p:text-[1.0625rem] prose-p:leading-[1.6] prose-p:text-zinc-700 prose-a:text-zinc-900 prose-a:underline prose-a:decoration-zinc-300 prose-a:underline-offset-4 prose-a:transition-colors hover:prose-a:decoration-zinc-600 prose-strong:text-zinc-900 prose-code:rounded-md prose-code:bg-zinc-200/60 prose-code:px-2 prose-code:py-1 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none prose-pre:my-8 prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-200 prose-pre:bg-zinc-50 prose-pre:text-sm prose-pre:leading-[1.6] [&_pre_code]:rounded-none [&_pre_code]:bg-transparent [&_pre_code]:p-0 prose-ul:my-5 prose-ol:my-5 prose-li:my-2 prose-li:text-[1.0625rem] prose-li:leading-[1.6] prose-li:text-zinc-700 prose-li:marker:text-zinc-400 prose-blockquote:my-10 prose-blockquote:border-none prose-blockquote:p-0 prose-blockquote:not-italic prose-blockquote:font-semibold prose-blockquote:text-[1.5rem] prose-blockquote:leading-[1.33] prose-blockquote:tracking-[-0.012em] prose-blockquote:text-zinc-900 [&>img]:my-12 prose-figure:my-12 prose-figcaption:mt-2 prose-figcaption:text-sm prose-figcaption:text-zinc-500 prose-table:my-8 prose-table:text-base prose-th:text-left prose-th:font-semibold prose-th:text-zinc-900 prose-td:text-zinc-700 prose-hr:my-12 prose-hr:border-zinc-200 dark:prose-invert dark:prose-p:text-zinc-400 dark:prose-a:text-zinc-200 dark:prose-a:decoration-zinc-400 dark:hover:prose-a:decoration-zinc-300 dark:prose-strong:text-zinc-200 dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200 dark:prose-pre:border-zinc-800 dark:prose-pre:bg-zinc-900/80 dark:prose-li:text-zinc-400 dark:prose-li:marker:text-zinc-500 dark:prose-blockquote:text-zinc-200 dark:prose-figcaption:text-zinc-400 dark:prose-th:text-zinc-200 dark:prose-td:text-zinc-400 dark:prose-hr:border-zinc-800";
 
 function ShareButtons({ title }: { title: string }) {
@@ -1064,7 +1064,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 							</div>
 
 							{/* Article content */}
-							<div className={`${BLOG_PROSE_CLASS} mt-8 max-w-none`}>
+							<div className={`${BLOG_ARTICLE_CLASS} mt-8 max-w-none`}>
 								{slug === "this-week-in-effect-128" ? (
 									<Twie128Content />
 								) : (
