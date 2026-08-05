@@ -56,8 +56,9 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   no-results ("forEach" and its prefixes return the mock results).
  * - Pre-typing state: no oversized icon + "Search the docs" copy —
  *   the placeholder names the full scope ("Search Docs, API, Blog")
- *   and the body is useful immediately: Recent searches and Browse
- *   links into each source.
+ *   and the body is just Recent searches plus the in: filter pills
+ *   (token variants). Emptying the query always resets the scope, so
+ *   no token arrives pre-selected.
  * - No-results state: recovery, not a dead end — spelling hint,
  *   "Search everywhere" when a scope token is active, Ask AI handoff
  *   echoing the query (D), and Browse links as the last resort.
@@ -533,20 +534,17 @@ const emptyStateIconClass = "shrink-0 text-sm text-zinc-400 dark:text-zinc-500";
 
 /**
  * Pre-typing state: immediately useful instead of an oversized icon —
- * recent searches, in: filter pills (token variants), and browse
- * links per source. Pills filter and stay in the modal; Browse rows
- * (marked ↗) navigate out — two verbs, two visual forms.
+ * recent searches plus in: filter pills (token variants). Deliberately
+ * minimal: no browse links, and no token pre-selected.
  */
 function SearchEmptyState({
 	onPick,
 	onScope,
 	sourceCounts,
-	showBrowse = true,
 }: {
 	onPick: (query: string) => void;
 	onScope?: (source: SearchSource) => void;
 	sourceCounts?: Record<SearchSource, number>;
-	showBrowse?: boolean;
 }) {
 	return (
 		<div>
@@ -584,34 +582,6 @@ function SearchEmptyState({
 							</button>
 						))}
 					</div>
-				</>
-			)}
-			{showBrowse && (
-				<>
-					<p className={emptyStateLabelClass}>Browse</p>
-					{/* Navigation, not filters (that's the in: pills' job): these
-					    close the modal and go to the section's index page. */}
-					{(
-						[
-							{ href: "#docs", icon: "file-text", label: "Documentation" },
-							{ href: "#api", icon: "braces", label: "API Reference" },
-							{ href: "#blog", icon: "newspaper", label: "Blog" },
-						] as const
-					).map(({ href, icon, label }) => (
-						<a key={href} href={href} className={`group ${emptyStateRowClass}`}>
-							<Icon
-								name={icon}
-								className={emptyStateIconClass}
-								aria-hidden="true"
-							/>
-							{label}
-							<Icon
-								name="arrow-up-right"
-								className="ml-auto text-xs text-zinc-300 transition-colors group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-400"
-								aria-hidden="true"
-							/>
-						</a>
-					))}
 				</>
 			)}
 		</div>
@@ -864,7 +834,12 @@ function SearchModalDemo({
 							type="search"
 							aria-label="Search docs, API, and blog"
 							value={query}
-							onChange={(e) => setQuery(e.target.value)}
+							onChange={(e) => {
+								setQuery(e.target.value);
+								// Emptying the query lands on the pre-typing state
+								// with no token pre-selected.
+								if (e.target.value.trim() === "") setScope("all");
+							}}
 							placeholder="Search Docs, API, Blog"
 							className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400 [&::-webkit-search-cancel-button]:hidden"
 						/>
@@ -872,7 +847,10 @@ function SearchModalDemo({
 							<button
 								type="button"
 								aria-label="Clear search"
-								onClick={() => setQuery("")}
+								onClick={() => {
+									setQuery("");
+									setScope("all");
+								}}
 								className="flex h-5 w-5 shrink-0 items-center justify-center rounded text-zinc-400 transition-colors hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white"
 							>
 								<Icon name="x" className="text-xs" aria-hidden="true" />
@@ -990,7 +968,6 @@ function SearchModalDemo({
 									api: pool.filter((r) => r.source === "api").length,
 									blog: pool.filter((r) => r.source === "blog").length,
 								}}
-								showBrowse={variant !== "merged" && variant !== "askai"}
 							/>
 						) : noResults ? (
 							<SearchNoResults
