@@ -60,8 +60,10 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   (token variants). Emptying the query always resets the scope, so
  *   no token arrives pre-selected.
  * - No-results state: recovery, not a dead end — spelling hint,
- *   "Search everywhere" when a scope token is active, Ask AI handoff
- *   echoing the query (D), and Browse links as the last resort.
+ *   "Search everywhere" when a scope token is active, and the Ask AI
+ *   handoff echoing the query (D). No browse links (esc + site nav
+ *   already cover leaving) and no token suggestions (filters can only
+ *   narrow zero); E's persistent pills show query-scoped zero counts.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -632,29 +634,6 @@ function SearchNoResults({
 					</button>
 				)}
 			</div>
-			<p className="mt-6 font-mono text-xs text-zinc-400 dark:text-zinc-500">
-				Browse:{" "}
-				<a
-					href="#docs"
-					className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-				>
-					Documentation
-				</a>{" "}
-				·{" "}
-				<a
-					href="#api"
-					className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-				>
-					API Reference
-				</a>{" "}
-				·{" "}
-				<a
-					href="#blog"
-					className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-				>
-					Blog
-				</a>
-			</p>
 		</div>
 	);
 }
@@ -900,7 +879,10 @@ function SearchModalDemo({
 											: "text-zinc-400 dark:text-zinc-500"
 									}
 								>
-									{pool.filter((r) => r.source === value).length}
+									{/* Counts are query-scoped: zero when nothing matches */}
+									{noResults
+										? 0
+										: pool.filter((r) => r.source === value).length}
 								</span>
 							</button>
 						);
@@ -912,23 +894,26 @@ function SearchModalDemo({
 			    shown in the merged variants too so the in: vocabulary is
 			    introduced before "View all" applies it. Hidden while the
 			    pre-typing state shows the same pills in its Filter section. */}
-			{(variant === "tokens" || merged) && scope === "all" && hasQuery && (
-				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
-					{SCOPES.filter((s) => s.value !== "all").map(({ value }) => (
-						<button
-							key={value}
-							type="button"
-							onClick={() => setScope(value)}
-							className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
-						>
-							in:{value}
-							<span className="text-zinc-400 dark:text-zinc-500">
-								{pool.filter((r) => r.source === value).length}
-							</span>
-						</button>
-					))}
-				</div>
-			)}
+			{(variant === "tokens" || merged) &&
+				scope === "all" &&
+				hasQuery &&
+				matchesQuery && (
+					<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
+						{SCOPES.filter((s) => s.value !== "all").map(({ value }) => (
+							<button
+								key={value}
+								type="button"
+								onClick={() => setScope(value)}
+								className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
+							>
+								in:{value}
+								<span className="text-zinc-400 dark:text-zinc-500">
+									{pool.filter((r) => r.source === value).length}
+								</span>
+							</button>
+						))}
+					</div>
+				)}
 
 			{/* Results — or, in D's chat mode, the conversation */}
 			<div className="max-h-[30rem] overflow-y-auto p-3">
