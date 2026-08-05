@@ -525,9 +525,19 @@ const emptyStateIconClass = "shrink-0 text-sm text-zinc-400 dark:text-zinc-500";
 
 /**
  * Pre-typing state: immediately useful instead of an oversized icon —
- * recent searches, popular queries, and browse links per source.
+ * recent searches, in: filter pills (token variants), and browse
+ * links per source. Pills filter and stay in the modal; Browse rows
+ * (marked ↗) navigate out — two verbs, two visual forms.
  */
-function SearchEmptyState({ onPick }: { onPick: (query: string) => void }) {
+function SearchEmptyState({
+	onPick,
+	onScope,
+	sourceCounts,
+}: {
+	onPick: (query: string) => void;
+	onScope?: (source: SearchSource) => void;
+	sourceCounts?: Record<SearchSource, number>;
+}) {
 	return (
 		<div>
 			<p className={emptyStateLabelClass}>Recent</p>
@@ -546,6 +556,26 @@ function SearchEmptyState({ onPick }: { onPick: (query: string) => void }) {
 					{q}
 				</button>
 			))}
+			{onScope && sourceCounts && (
+				<>
+					<p className={emptyStateLabelClass}>Filter</p>
+					<div className="flex flex-wrap gap-2 px-2 py-1.5">
+						{(["docs", "api", "blog"] as const).map((source) => (
+							<button
+								key={source}
+								type="button"
+								onClick={() => onScope(source)}
+								className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-2 py-0.5 font-mono text-xs font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
+							>
+								in:{source}
+								<span className="text-zinc-400 dark:text-zinc-500">
+									{sourceCounts[source]}
+								</span>
+							</button>
+						))}
+					</div>
+				</>
+			)}
 			<p className={emptyStateLabelClass}>Browse</p>
 			{/* Navigation, not filters (that's the in: pills' job): these
 			    close the modal and go to the section's index page. */}
@@ -853,8 +883,9 @@ function SearchModalDemo({
 
 			{/* B + C + D: token suggestions until a scope token is applied —
 			    shown in the merged variants too so the in: vocabulary is
-			    introduced before "View all" applies it */}
-			{(variant === "tokens" || merged) && scope === "all" && (
+			    introduced before "View all" applies it. Hidden while the
+			    pre-typing state shows the same pills in its Filter section. */}
+			{(variant === "tokens" || merged) && scope === "all" && hasQuery && (
 				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
 					{SCOPES.filter((s) => s.value !== "all").map(({ value }) => (
 						<button
@@ -898,7 +929,19 @@ function SearchModalDemo({
 						)}
 
 						{!hasQuery ? (
-							<SearchEmptyState onPick={setQuery} />
+							<SearchEmptyState
+								onPick={setQuery}
+								onScope={
+									(variant === "tokens" || merged) && scope === "all"
+										? setScope
+										: undefined
+								}
+								sourceCounts={{
+									docs: pool.filter((r) => r.source === "docs").length,
+									api: pool.filter((r) => r.source === "api").length,
+									blog: pool.filter((r) => r.source === "blog").length,
+								}}
+							/>
 						) : noResults ? (
 							<SearchNoResults
 								query={trimmedQuery}
