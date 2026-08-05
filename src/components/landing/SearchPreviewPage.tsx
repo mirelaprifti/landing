@@ -44,6 +44,16 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   dropdown ("v4 ▾"), which scales past two versions; 2 · segmented
  *   toggle ("v4 | v3"), both worlds always visible with one-click
  *   switching — the better fit while exactly two versions exist.
+ * - The input is live in the demo, so all three states are reachable:
+ *   clear it for the pre-typing state, type anything un-matching for
+ *   no-results ("forEach" and its prefixes return the mock results).
+ * - Pre-typing state: no oversized icon + "Search the docs" copy —
+ *   the placeholder names the full scope ("Search docs, API & blog…")
+ *   and the body is useful immediately: Recent searches, Popular
+ *   queries, and Browse links into each source.
+ * - No-results state: recovery, not a dead end — spelling hint,
+ *   "Search everywhere" when a scope token is active, Ask AI handoff
+ *   echoing the query (D), and Browse links as the last resort.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -507,6 +517,151 @@ function Kbd({ children }: { children: React.ReactNode }) {
 	);
 }
 
+const emptyStateRowClass =
+	"flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100/60 dark:text-zinc-300 dark:hover:bg-zinc-900/60";
+const emptyStateLabelClass =
+	"px-2 pt-4 pb-1 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase first:pt-1 dark:text-zinc-400";
+const emptyStateIconClass = "shrink-0 text-sm text-zinc-400 dark:text-zinc-500";
+
+/**
+ * Pre-typing state: immediately useful instead of an oversized icon —
+ * recent searches, popular queries, and browse links per source.
+ */
+function SearchEmptyState({ onPick }: { onPick: (query: string) => void }) {
+	return (
+		<div>
+			<p className={emptyStateLabelClass}>Recent</p>
+			{["retry with backoff", "Layer.provide"].map((q) => (
+				<button
+					key={q}
+					type="button"
+					onClick={() => onPick(q)}
+					className={emptyStateRowClass}
+				>
+					<Icon
+						name="history"
+						className={emptyStateIconClass}
+						aria-hidden="true"
+					/>
+					{q}
+				</button>
+			))}
+			<p className={emptyStateLabelClass}>Popular</p>
+			{["forEach", "Effect.gen", "error handling", "concurrency"].map((q) => (
+				<button
+					key={q}
+					type="button"
+					onClick={() => onPick(q)}
+					className={emptyStateRowClass}
+				>
+					<Icon
+						name="search"
+						className={emptyStateIconClass}
+						aria-hidden="true"
+					/>
+					{q}
+				</button>
+			))}
+			<p className={emptyStateLabelClass}>Browse</p>
+			<a href="#docs" className={emptyStateRowClass}>
+				<Icon
+					name="file-text"
+					className={emptyStateIconClass}
+					aria-hidden="true"
+				/>
+				Documentation
+			</a>
+			<a href="#api" className={emptyStateRowClass}>
+				<Icon
+					name="braces"
+					className={emptyStateIconClass}
+					aria-hidden="true"
+				/>
+				API Reference
+			</a>
+			<a href="#blog" className={emptyStateRowClass}>
+				<Icon
+					name="newspaper"
+					className={emptyStateIconClass}
+					aria-hidden="true"
+				/>
+				Blog
+			</a>
+		</div>
+	);
+}
+
+/**
+ * No-results state: recovery instead of a dead end — spelling hint,
+ * scope escape, AI handoff echoing the query, and browse links.
+ */
+function SearchNoResults({
+	query,
+	scope,
+	onClearScope,
+	showAskAi,
+	onAskAi,
+}: {
+	query: string;
+	scope: SearchScope;
+	onClearScope: () => void;
+	showAskAi: boolean;
+	onAskAi: () => void;
+}) {
+	const pillClass =
+		"inline-flex items-center gap-1.5 rounded-md border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white";
+	return (
+		<div className="px-2 py-10 text-center">
+			<p className="text-sm font-medium text-zinc-900 dark:text-white">
+				No results for “{query}”
+			</p>
+			<p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+				Check the spelling, or try a broader term.
+			</p>
+			<div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+				{scope !== "all" && (
+					<button type="button" onClick={onClearScope} className={pillClass}>
+						Search everywhere
+					</button>
+				)}
+				{showAskAi && (
+					<button type="button" onClick={onAskAi} className={pillClass}>
+						<Icon
+							name="sparkles"
+							className="text-sm text-zinc-500 dark:text-zinc-400"
+							aria-hidden="true"
+						/>
+						Ask AI about “{query}”
+					</button>
+				)}
+			</div>
+			<p className="mt-6 font-mono text-xs text-zinc-400 dark:text-zinc-500">
+				Browse:{" "}
+				<a
+					href="#docs"
+					className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				>
+					Documentation
+				</a>{" "}
+				·{" "}
+				<a
+					href="#api"
+					className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				>
+					API Reference
+				</a>{" "}
+				·{" "}
+				<a
+					href="#blog"
+					className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				>
+					Blog
+				</a>
+			</p>
+		</div>
+	);
+}
+
 /**
  * Static mock of D's conversation mode: the query became the first
  * message, the answer "streamed" in with source citations, and the
@@ -616,6 +771,16 @@ function SearchModalDemo({
 	// D is C plus the Ask AI row — everything else behaves identically.
 	const merged = variant === "merged" || variant === "askai";
 
+	// Live query so all three states are demoable: results ("forEach"
+	// and its prefixes), pre-typing (cleared), and no-results (anything
+	// else).
+	const [query, setQuery] = useState("forEach");
+	const trimmedQuery = query.trim();
+	const hasQuery = trimmedQuery.length > 0;
+	const matchesQuery =
+		hasQuery && "foreach".startsWith(trimmedQuery.toLowerCase());
+	const noResults = hasQuery && !matchesQuery;
+
 	// One visible version context; unversioned sources (Blog) pass through.
 	const [version, setVersion] = useState<DocsVersion>("v4");
 	const otherVersion: DocsVersion = version === "v4" ? "v3" : "v4";
@@ -656,16 +821,26 @@ function SearchModalDemo({
 						</button>
 					</span>
 				)}
-				<input
-					key={askAiOpen ? "chat" : "search"}
-					type="search"
-					aria-label={
-						askAiOpen ? "Ask a follow-up question" : "Search the docs"
-					}
-					defaultValue={askAiOpen ? "" : "forEach"}
-					placeholder={askAiOpen ? "Ask a follow-up…" : undefined}
-					className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
-				/>
+				{askAiOpen ? (
+					<input
+						key="chat"
+						type="search"
+						aria-label="Ask a follow-up question"
+						defaultValue=""
+						placeholder="Ask a follow-up…"
+						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
+					/>
+				) : (
+					<input
+						key="search"
+						type="search"
+						aria-label="Search docs, API, and blog"
+						value={query}
+						onChange={(e) => setQuery(e.target.value)}
+						placeholder="Search docs, API & blog…"
+						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
+					/>
+				)}
 				{!askAiOpen &&
 					(versionControl === "toggle" ? (
 						<VersionToggle version={version} onVersionChange={setVersion} />
@@ -708,8 +883,9 @@ function SearchModalDemo({
 					<AskAiConversation onBack={() => setAskAiOpen(false)} />
 				) : (
 					<>
-						{/* D: pinned AI escape hatch, kept in every scope */}
-						{variant === "askai" && (
+						{/* D: pinned AI escape hatch — suppressed in no-results,
+						    where the body CTA echoes the query instead */}
+						{variant === "askai" && !noResults && (
 							<button
 								type="button"
 								onClick={() => setAskAiOpen(true)}
@@ -726,7 +902,17 @@ function SearchModalDemo({
 							</button>
 						)}
 
-						{(variant === "viewall" || merged) && scope === "all" ? (
+						{!hasQuery ? (
+							<SearchEmptyState onPick={setQuery} />
+						) : noResults ? (
+							<SearchNoResults
+								query={trimmedQuery}
+								scope={scope}
+								onClearScope={() => setScope("all")}
+								showAskAi={variant === "askai"}
+								onAskAi={() => setAskAiOpen(true)}
+							/>
+						) : (variant === "viewall" || merged) && scope === "all" ? (
 							// A + C + D: federated overview — top hits per source + "View all N"
 							<div className="space-y-4">
 								{GROUPS.map(({ source, label }) => {
@@ -798,7 +984,7 @@ function SearchModalDemo({
 						)}
 
 						{/* Cross-version escape hatch: what the context is hiding */}
-						{otherCount > 0 && (
+						{matchesQuery && otherCount > 0 && (
 							<button
 								type="button"
 								onClick={() => setVersion(otherVersion)}
