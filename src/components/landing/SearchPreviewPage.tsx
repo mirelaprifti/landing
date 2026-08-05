@@ -533,10 +533,12 @@ function SearchEmptyState({
 	onPick,
 	onScope,
 	sourceCounts,
+	showBrowse = true,
 }: {
 	onPick: (query: string) => void;
 	onScope?: (source: SearchSource) => void;
 	sourceCounts?: Record<SearchSource, number>;
+	showBrowse?: boolean;
 }) {
 	return (
 		<div>
@@ -576,30 +578,34 @@ function SearchEmptyState({
 					</div>
 				</>
 			)}
-			<p className={emptyStateLabelClass}>Browse</p>
-			{/* Navigation, not filters (that's the in: pills' job): these
-			    close the modal and go to the section's index page. */}
-			{(
-				[
-					{ href: "#docs", icon: "file-text", label: "Documentation" },
-					{ href: "#api", icon: "braces", label: "API Reference" },
-					{ href: "#blog", icon: "newspaper", label: "Blog" },
-				] as const
-			).map(({ href, icon, label }) => (
-				<a key={href} href={href} className={`group ${emptyStateRowClass}`}>
-					<Icon
-						name={icon}
-						className={emptyStateIconClass}
-						aria-hidden="true"
-					/>
-					{label}
-					<Icon
-						name="arrow-up-right"
-						className="ml-auto text-xs text-zinc-300 transition-colors group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-400"
-						aria-hidden="true"
-					/>
-				</a>
-			))}
+			{showBrowse && (
+				<>
+					<p className={emptyStateLabelClass}>Browse</p>
+					{/* Navigation, not filters (that's the in: pills' job): these
+					    close the modal and go to the section's index page. */}
+					{(
+						[
+							{ href: "#docs", icon: "file-text", label: "Documentation" },
+							{ href: "#api", icon: "braces", label: "API Reference" },
+							{ href: "#blog", icon: "newspaper", label: "Blog" },
+						] as const
+					).map(({ href, icon, label }) => (
+						<a key={href} href={href} className={`group ${emptyStateRowClass}`}>
+							<Icon
+								name={icon}
+								className={emptyStateIconClass}
+								aria-hidden="true"
+							/>
+							{label}
+							<Icon
+								name="arrow-up-right"
+								className="ml-auto text-xs text-zinc-300 transition-colors group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-400"
+								aria-hidden="true"
+							/>
+						</a>
+					))}
+				</>
+			)}
 		</div>
 	);
 }
@@ -941,6 +947,7 @@ function SearchModalDemo({
 									api: pool.filter((r) => r.source === "api").length,
 									blog: pool.filter((r) => r.source === "blog").length,
 								}}
+								showBrowse={variant !== "merged"}
 							/>
 						) : noResults ? (
 							<SearchNoResults
