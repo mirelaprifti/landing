@@ -27,6 +27,13 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   query becomes the first message, the answer streams with source
  *   citations, the input becomes the follow-up prompt, and Esc / the
  *   back row returns to results with the query preserved.
+ * - E · Persistent pills: the deployed site's pattern — the in: pills
+ *   stay in a row under the input and the active one gets a selected
+ *   state; clicking toggles it (click again to clear). Selected style
+ *   is the system's soft zinc fill + stronger border, not the deployed
+ *   white fill, which over-weights a secondary control. Same state
+ *   model as C, but the scope lives in the pill row instead of a chip
+ *   in the input.
  *
  * Shared decisions across variants:
  * - One visible version context (the "v4 ▾" switcher in the input row)
@@ -64,13 +71,14 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   rows, preserving page→subheading grouping.
  */
 
-type Variant = "viewall" | "tokens" | "merged" | "askai";
+type Variant = "viewall" | "tokens" | "merged" | "askai" | "pills";
 
 const VARIANTS: { value: Variant; label: string }[] = [
 	{ value: "viewall", label: "A" },
 	{ value: "tokens", label: "B" },
 	{ value: "merged", label: "C" },
 	{ value: "askai", label: "D" },
+	{ value: "pills", label: "E" },
 ];
 
 type VersionControl = "dropdown" | "toggle";
@@ -887,6 +895,41 @@ function SearchModalDemo({
 				</button>
 			</div>
 
+			{/* E: persistent pill row — the scope lives here, not in the
+			    input. Selected = soft zinc fill (not the deployed white),
+			    click the active pill again to clear. */}
+			{variant === "pills" && (
+				<div className="flex flex-wrap items-center gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
+					{SCOPES.filter((s) => s.value !== "all").map(({ value }) => {
+						const active = scope === value;
+						return (
+							<button
+								key={value}
+								type="button"
+								aria-pressed={active}
+								onClick={() => setScope(active ? "all" : value)}
+								className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 font-mono text-xs font-medium transition-colors ${
+									active
+										? "border-zinc-400 bg-zinc-200 text-zinc-900 dark:border-zinc-500 dark:bg-zinc-800 dark:text-white"
+										: "border-zinc-200 text-zinc-600 hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:text-white"
+								}`}
+							>
+								in:{value}
+								<span
+									className={
+										active
+											? "text-zinc-500 dark:text-zinc-400"
+											: "text-zinc-400 dark:text-zinc-500"
+									}
+								>
+									{pool.filter((r) => r.source === value).length}
+								</span>
+							</button>
+						);
+					})}
+				</div>
+			)}
+
 			{/* B + C + D: token suggestions until a scope token is applied —
 			    shown in the merged variants too so the in: vocabulary is
 			    introduced before "View all" applies it. Hidden while the
@@ -957,7 +1000,8 @@ function SearchModalDemo({
 								showAskAi={variant === "askai"}
 								onAskAi={() => setAskAiOpen(true)}
 							/>
-						) : (variant === "viewall" || merged) && scope === "all" ? (
+						) : (variant === "viewall" || merged || variant === "pills") &&
+							scope === "all" ? (
 							// A + C + D: federated overview — top hits per source + "View all N"
 							<div className="space-y-4">
 								{GROUPS.map(({ source, label }) => {
