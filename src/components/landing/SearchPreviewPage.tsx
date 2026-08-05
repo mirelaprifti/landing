@@ -10,14 +10,18 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * (scope-tabs, grouped-list, and scope-dropdown variants were explored
  * and cut — tabs/grouping are subsumed by "View all", and a dropdown
  * hides the filter):
- * - A · View all: the federated pattern (GitHub docs, Algolia's
- *   recommendation) — top 2 per source with a "View all N" drill-in
- *   per section and an "All results" row to back out.
+ * - A · Persistent pills: the deployed site's pattern — the in: pills
+ *   stay in a row under the input and the active one gets a selected
+ *   state; clicking toggles it (click again to clear). Selected style
+ *   is the system's soft zinc fill + stronger border, not the deployed
+ *   white fill, which over-weights a secondary control. Same state
+ *   model as C, but the scope lives in the pill row instead of a chip
+ *   in the input.
  * - B · Scope tokens: Slack/Notion-style — an in:docs token rendered
  *   as a removable chip in the input scopes the query; composable
  *   with future filters (version, package).
- * - C · Merged (A+B): one state model, two entry points — the overview
- *   is A's federated list, but "View all" applies B's in:source token;
+ * - C · Merged (B+E): one state model, two entry points — the overview
+ *   is E's federated list, but "View all" applies B's in:source token;
  *   removing the chip (× or ⌫) returns to the overview with the query
  *   preserved.
  * - D · Merged + Ask AI: C plus a pinned "Ask AI" row above results in
@@ -27,13 +31,9 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   query becomes the first message, the answer streams with source
  *   citations, the input becomes the follow-up prompt, and Esc / the
  *   back row returns to results with the query preserved.
- * - E · Persistent pills: the deployed site's pattern — the in: pills
- *   stay in a row under the input and the active one gets a selected
- *   state; clicking toggles it (click again to clear). Selected style
- *   is the system's soft zinc fill + stronger border, not the deployed
- *   white fill, which over-weights a secondary control. Same state
- *   model as C, but the scope lives in the pill row instead of a chip
- *   in the input.
+ * - E · View all: the federated pattern (GitHub docs, Algolia's
+ *   recommendation) — top 2 per source with a "View all N" drill-in
+ *   per section and an "All results" row to back out.
  *
  * Shared decisions across variants:
  * - One visible version context (the "v4 ▾" switcher in the input row)
@@ -63,7 +63,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   "Search everywhere" when a scope token is active, and the Ask AI
  *   handoff echoing the query (D). No browse links (esc + site nav
  *   already cover leaving) and no token suggestions (filters can only
- *   narrow zero); E's persistent pills show query-scoped zero counts.
+ *   narrow zero); A's persistent pills show query-scoped zero counts.
  * - Source tags share one filled-chip shape; the API tag carries the
  *   site's indigo accent as the single pop of color, Docs and Blog
  *   stay zinc.
@@ -77,11 +77,11 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 type Variant = "viewall" | "tokens" | "merged" | "askai" | "pills";
 
 const VARIANTS: { value: Variant; label: string }[] = [
-	{ value: "viewall", label: "A" },
+	{ value: "pills", label: "A" },
 	{ value: "tokens", label: "B" },
 	{ value: "merged", label: "C" },
 	{ value: "askai", label: "D" },
-	{ value: "pills", label: "E" },
+	{ value: "viewall", label: "E" },
 ];
 
 type VersionControl = "dropdown" | "toggle";
@@ -852,7 +852,7 @@ function SearchModalDemo({
 				</button>
 			</div>
 
-			{/* E: persistent pill row — the scope lives here, not in the
+			{/* A: persistent pill row — the scope lives here, not in the
 			    input. Selected = soft zinc fill (not the deployed white),
 			    click the active pill again to clear. */}
 			{variant === "pills" && (
@@ -964,7 +964,7 @@ function SearchModalDemo({
 							/>
 						) : (variant === "viewall" || merged || variant === "pills") &&
 							scope === "all" ? (
-							// A + C + D: federated overview — top hits per source + "View all N"
+							// A + C + D + E: federated overview — top hits per source + "View all N"
 							<div className="space-y-4">
 								{GROUPS.map(({ source, label }) => {
 									const grouped = pool.filter((r) => r.source === source);
@@ -1004,7 +1004,7 @@ function SearchModalDemo({
 							</div>
 						) : (
 							<div className="space-y-2">
-								{/* A + C + D scoped view: back row above the filtered list */}
+								{/* C + D + E scoped view: back row above the filtered list */}
 								{(variant === "viewall" || merged) && (
 									<button
 										type="button"
@@ -1100,7 +1100,7 @@ function SearchModalDemo({
 }
 
 export function SearchPreviewPage() {
-	const [variant, setVariant] = useState<Variant>("viewall");
+	const [variant, setVariant] = useState<Variant>("pills");
 	const [versionControl, setVersionControl] =
 		useState<VersionControl>("dropdown");
 
