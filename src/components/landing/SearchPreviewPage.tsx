@@ -57,8 +57,9 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  * - Pre-typing state: no oversized icon + "Search the docs" copy —
  *   the placeholder names the full scope ("Search Docs, API, Blog")
  *   and the body is just Recent searches plus the in: filter pills
- *   (token variants). Emptying the query always resets the scope, so
- *   no token arrives pre-selected.
+ *   (token variants); with no history, a curated Suggested list fills
+ *   the Recent slot — never an empty header. Emptying the query always
+ *   resets the scope, so no token arrives pre-selected.
  * - No-results state: recovery, not a dead end — spelling hint,
  *   "Search everywhere" when a scope token is active, and the Ask AI
  *   handoff echoing the query (D). No browse links (esc + site nav
@@ -534,24 +535,47 @@ const emptyStateLabelClass =
 	"px-2 pt-4 pb-1 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase first:pt-1 dark:text-zinc-400";
 const emptyStateIconClass = "shrink-0 text-sm text-zinc-400 dark:text-zinc-500";
 
+/** Cold start: curated queries shown until the user has a history. */
+const SUGGESTED_QUERIES = ["Getting started", "Effect.gen", "error handling"];
+
 /**
  * Pre-typing state: immediately useful instead of an oversized icon —
  * recent searches plus in: filter pills (token variants). Deliberately
- * minimal: no browse links, and no token pre-selected.
+ * minimal: no browse links, and no token pre-selected. With no history
+ * (first visit, or after Clear) the Recent slot is replaced — never an
+ * empty header — by a curated Suggested list in the same layout.
  */
 function SearchEmptyState({
 	onPick,
 	onScope,
 	sourceCounts,
+	recent,
+	onClearRecent,
 }: {
 	onPick: (query: string) => void;
 	onScope?: (source: SearchSource) => void;
 	sourceCounts?: Record<SearchSource, number>;
+	recent: string[];
+	onClearRecent: () => void;
 }) {
+	const hasRecent = recent.length > 0;
 	return (
 		<div>
-			<p className={emptyStateLabelClass}>Recent</p>
-			{["retry with backoff", "Layer.provide"].map((q) => (
+			{hasRecent ? (
+				<div className="flex items-baseline justify-between pr-2">
+					<p className={emptyStateLabelClass}>Recent</p>
+					<button
+						type="button"
+						onClick={onClearRecent}
+						className="font-mono text-xs text-zinc-400 transition-colors hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white"
+					>
+						Clear
+					</button>
+				</div>
+			) : (
+				<p className={emptyStateLabelClass}>Suggested</p>
+			)}
+			{(hasRecent ? recent : SUGGESTED_QUERIES).map((q) => (
 				<button
 					key={q}
 					type="button"
@@ -559,7 +583,7 @@ function SearchEmptyState({
 					className={emptyStateRowClass}
 				>
 					<Icon
-						name="history"
+						name={hasRecent ? "history" : "search"}
 						className={emptyStateIconClass}
 						aria-hidden="true"
 					/>
@@ -751,6 +775,12 @@ function SearchModalDemo({
 	// and its prefixes), pre-typing (cleared), and no-results (anything
 	// else).
 	const [query, setQuery] = useState("forEach");
+
+	// Mock search history; Clear demos the cold-start (Suggested) state.
+	const [recent, setRecent] = useState<string[]>([
+		"retry with backoff",
+		"Layer.provide",
+	]);
 	const trimmedQuery = query.trim();
 	const hasQuery = trimmedQuery.length > 0;
 	const matchesQuery =
@@ -953,6 +983,8 @@ function SearchModalDemo({
 									api: pool.filter((r) => r.source === "api").length,
 									blog: pool.filter((r) => r.source === "blog").length,
 								}}
+								recent={recent}
+								onClearRecent={() => setRecent([])}
 							/>
 						) : noResults ? (
 							<SearchNoResults
