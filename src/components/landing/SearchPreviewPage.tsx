@@ -48,7 +48,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   clear it for the pre-typing state, type anything un-matching for
  *   no-results ("forEach" and its prefixes return the mock results).
  * - Pre-typing state: no oversized icon + "Search the docs" copy —
- *   the placeholder names the full scope ("Search docs, API & blog…")
+ *   the placeholder names the full scope ("Search Docs, API, Blog")
  *   and the body is useful immediately: Recent searches and Browse
  *   links into each source.
  * - No-results state: recovery, not a dead end — spelling hint,
@@ -821,7 +821,7 @@ function SearchModalDemo({
 						aria-label="Search docs, API, and blog"
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
-						placeholder="Search docs, API & blog…"
+						placeholder="Search Docs, API, Blog"
 						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
 					/>
 				)}
