@@ -990,7 +990,7 @@ function SearchModalDemo({
 									api: pool.filter((r) => r.source === "api").length,
 									blog: pool.filter((r) => r.source === "blog").length,
 								}}
-								showBrowse={variant !== "merged"}
+								showBrowse={variant !== "merged" && variant !== "askai"}
 							/>
 						) : noResults ? (
 							<SearchNoResults
