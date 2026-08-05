@@ -547,30 +547,29 @@ function SearchEmptyState({ onPick }: { onPick: (query: string) => void }) {
 				</button>
 			))}
 			<p className={emptyStateLabelClass}>Browse</p>
-			<a href="#docs" className={emptyStateRowClass}>
-				<Icon
-					name="file-text"
-					className={emptyStateIconClass}
-					aria-hidden="true"
-				/>
-				Documentation
-			</a>
-			<a href="#api" className={emptyStateRowClass}>
-				<Icon
-					name="braces"
-					className={emptyStateIconClass}
-					aria-hidden="true"
-				/>
-				API Reference
-			</a>
-			<a href="#blog" className={emptyStateRowClass}>
-				<Icon
-					name="newspaper"
-					className={emptyStateIconClass}
-					aria-hidden="true"
-				/>
-				Blog
-			</a>
+			{/* Navigation, not filters (that's the in: pills' job): these
+			    close the modal and go to the section's index page. */}
+			{(
+				[
+					{ href: "#docs", icon: "file-text", label: "Documentation" },
+					{ href: "#api", icon: "braces", label: "API Reference" },
+					{ href: "#blog", icon: "newspaper", label: "Blog" },
+				] as const
+			).map(({ href, icon, label }) => (
+				<a key={href} href={href} className={`group ${emptyStateRowClass}`}>
+					<Icon
+						name={icon}
+						className={emptyStateIconClass}
+						aria-hidden="true"
+					/>
+					{label}
+					<Icon
+						name="arrow-up-right"
+						className="ml-auto text-xs text-zinc-300 transition-colors group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-400"
+						aria-hidden="true"
+					/>
+				</a>
+			))}
 		</div>
 	);
 }
