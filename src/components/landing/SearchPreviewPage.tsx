@@ -49,8 +49,8 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
  *   no-results ("forEach" and its prefixes return the mock results).
  * - Pre-typing state: no oversized icon + "Search the docs" copy —
  *   the placeholder names the full scope ("Search docs, API & blog…")
- *   and the body is useful immediately: Recent searches, Popular
- *   queries, and Browse links into each source.
+ *   and the body is useful immediately: Recent searches and Browse
+ *   links into each source.
  * - No-results state: recovery, not a dead end — spelling hint,
  *   "Search everywhere" when a scope token is active, Ask AI handoff
  *   echoing the query (D), and Browse links as the last resort.
@@ -540,22 +540,6 @@ function SearchEmptyState({ onPick }: { onPick: (query: string) => void }) {
 				>
 					<Icon
 						name="history"
-						className={emptyStateIconClass}
-						aria-hidden="true"
-					/>
-					{q}
-				</button>
-			))}
-			<p className={emptyStateLabelClass}>Popular</p>
-			{["forEach", "Effect.gen", "error handling", "concurrency"].map((q) => (
-				<button
-					key={q}
-					type="button"
-					onClick={() => onPick(q)}
-					className={emptyStateRowClass}
-				>
-					<Icon
-						name="search"
 						className={emptyStateIconClass}
 						aria-hidden="true"
 					/>
