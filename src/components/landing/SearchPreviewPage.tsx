@@ -812,18 +812,30 @@ function SearchModalDemo({
 						aria-label="Ask a follow-up question"
 						defaultValue=""
 						placeholder="Ask a follow-up…"
-						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
+						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400 [&::-webkit-search-cancel-button]:hidden"
 					/>
 				) : (
-					<input
-						key="search"
-						type="search"
-						aria-label="Search docs, API, and blog"
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-						placeholder="Search Docs, API, Blog"
-						className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400"
-					/>
+					<>
+						<input
+							key="search"
+							type="search"
+							aria-label="Search docs, API, and blog"
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+							placeholder="Search Docs, API, Blog"
+							className="min-w-0 flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-white dark:placeholder:text-zinc-400 [&::-webkit-search-cancel-button]:hidden"
+						/>
+						{query.length > 0 && (
+							<button
+								type="button"
+								aria-label="Clear search"
+								onClick={() => setQuery("")}
+								className="flex h-5 w-5 shrink-0 items-center justify-center rounded text-zinc-400 transition-colors hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white"
+							>
+								<Icon name="x" className="text-xs" aria-hidden="true" />
+							</button>
+						)}
+					</>
 				)}
 				{!askAiOpen &&
 					(versionControl === "toggle" ? (
