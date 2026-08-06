@@ -25,7 +25,7 @@ type NavSection = { title: string; items: NavItem[] };
  * reference, and the wider educational/community content all live under
  * one docs shell.
  */
-export type DocsSectionKey = "guide" | "learn" | "reference" | "ecosystem";
+export type DocsSectionKey = "tutorials" | "guides" | "cookbooks" | "api";
 
 const SECTIONS: {
 	key: DocsSectionKey;
@@ -33,24 +33,34 @@ const SECTIONS: {
 	icon: IconName;
 	href: string;
 }[] = [
-	{ key: "guide", label: "Guide", icon: "book-open", href: "/docs/introduction" },
-	{ key: "learn", label: "Learn", icon: "graduation-cap", href: "/play" },
 	{
-		key: "reference",
-		label: "Reference",
-		icon: "scroll-text",
-		href: "/docs/api/v3",
+		key: "tutorials",
+		label: "Tutorials",
+		icon: "graduation-cap",
+		href: "/play",
 	},
 	{
-		key: "ecosystem",
-		label: "Ecosystem",
-		icon: "layout-grid",
-		href: "/community-hub",
+		key: "guides",
+		label: "Guides",
+		icon: "book-open",
+		href: "/docs/introduction",
+	},
+	{
+		key: "cookbooks",
+		label: "Cookbooks",
+		icon: "clipboard-list",
+		href: "/community-resources/articles",
+	},
+	{
+		key: "api",
+		label: "API Reference",
+		icon: "scroll-text",
+		href: "/docs/api/v3",
 	},
 ];
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
-	guide: [
+	guides: [
 		{
 			title: "Getting Started",
 			items: [
@@ -92,7 +102,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	learn: [
+	tutorials: [
 		{
 			title: "Hands-on",
 			items: [
@@ -115,10 +125,38 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{ slug: "podcast", label: "Podcast", href: "/podcast" },
 			],
 		},
+	],
+	// Cookbook recipe pages don't exist yet — items link to the community
+	// articles category as a stand-in so nothing 404s in the prototype.
+	cookbooks: [
 		{
-			title: "Read",
+			title: "Recipes",
 			items: [
-				{ slug: "blog", label: "Blog", href: "/blog" },
+				{
+					slug: "http-apis",
+					label: "HTTP & APIs",
+					href: "/community-resources/articles",
+				},
+				{
+					slug: "data-schema",
+					label: "Data & Schema",
+					href: "/community-resources/articles",
+				},
+				{
+					slug: "concurrency-patterns",
+					label: "Concurrency Patterns",
+					href: "/community-resources/articles",
+				},
+				{
+					slug: "testing",
+					label: "Testing",
+					href: "/community-resources/articles",
+				},
+			],
+		},
+		{
+			title: "Community",
+			items: [
 				{
 					slug: "articles",
 					label: "Community Articles",
@@ -127,7 +165,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	reference: [
+	api: [
 		{
 			title: "API Reference",
 			items: [
@@ -136,35 +174,11 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	ecosystem: [
-		{
-			title: "Community",
-			items: [
-				{ slug: "community-hub", label: "Community Hub", href: "/community-hub" },
-				{
-					slug: "resources",
-					label: "All Resources",
-					href: "/community-resources",
-				},
-				{ slug: "events", label: "Events", href: "/events" },
-			],
-		},
-		{
-			title: "Tooling",
-			items: [
-				{
-					slug: "tools",
-					label: "Community Tools",
-					href: "/community-resources/tools",
-				},
-			],
-		},
-	],
 };
 
 export function DocsLayout({
 	activeSlug,
-	section = "guide",
+	section = "guides",
 	tocItems,
 	children,
 }: {
