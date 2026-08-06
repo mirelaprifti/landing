@@ -100,7 +100,7 @@ export function DocsSectionTabs({
 				<ul className="flex items-center gap-8 overflow-x-auto px-6">
 					{SECTIONS.map((s) => {
 						const isActive = s.key === section;
-						const itemClass = `relative flex h-12 items-center font-mono text-sm font-medium tracking-wider whitespace-nowrap uppercase transition-colors ${
+						const itemClass = `relative flex h-10 items-center font-mono text-sm font-medium tracking-wider whitespace-nowrap uppercase transition-colors ${
 							isActive
 								? "text-zinc-900 dark:text-white"
 								: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -428,7 +428,7 @@ export function DocsLayout({
 			<div className="relative w-full pt-16">
 				<DocsSectionTabs section={activeSection} onSelect={selectSection} />
 				{/* Mobile docs nav: sticky disclosure below the section tabs */}
-				<div className="sticky top-28 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+				<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
 					<button
 						type="button"
 						onClick={() => setMobileNavOpen((open) => !open)}
@@ -464,7 +464,7 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto px-6 py-8"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-8"
 						>
 							{renderSections("docs-section")}
 						</nav>
@@ -482,7 +482,7 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto px-6 py-10"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-10"
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page
