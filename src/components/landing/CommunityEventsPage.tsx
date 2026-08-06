@@ -134,8 +134,8 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 		href: "https://www.youtube.com/watch?v=XaNHyZbFUBY",
 	},
 	{
-		label: "Building AI agents with Effect",
-		href: "https://effect.website/docs/ai/introduction",
+		label: "Effect Schema V4",
+		href: "https://www.youtube.com/watch?v=0naAPm0-0Wg",
 	},
 	{
 		label: "Production-grade TypeScript for the AI era",
