@@ -1,70 +1,17 @@
-import { useRef, useState } from "react";
 import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
 
-function VideoWithPosterOverlay() {
-	const videoRef = useRef<HTMLVideoElement>(null);
-	const [showOverlay, setShowOverlay] = useState(true);
-
-	const startPlayback = () => {
-		setShowOverlay(false);
-		videoRef.current?.play();
-	};
-
-	const handlePlay = () => setShowOverlay(false);
-	const handlePause = () => setShowOverlay(true);
-	const handleEnded = () => {
-		if (videoRef.current) {
-			videoRef.current.currentTime = 0;
-		}
-		setShowOverlay(true);
-	};
-
+/** Static placeholder — the talk video was removed from the bundle.
+ *  Swap back to a <video> (or an external embed) when a hosted URL exists. */
+function VideoPlaceholder() {
 	return (
-		<div className="relative aspect-video w-full overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 bg-black">
-			<video
-				ref={videoRef}
-				src={getAssetPath("/videos/ben-davis-video.mp4")}
-				poster={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
-				controls={!showOverlay}
-				playsInline
-				preload="metadata"
-				onPlay={handlePlay}
-				onPause={handlePause}
-				onEnded={handleEnded}
-				className="h-full w-full object-contain"
-			>
-				<track kind="captions" />
-			</video>
-
-			{/* Thumbnail + play-button overlay — fades in/out on play/pause */}
+		<div className="relative aspect-video w-full overflow-hidden rounded-lg border border-zinc-200 bg-black dark:border-zinc-800">
 			<img
 				src={getAssetPath("/assets/images/ben-davis-thumbnail.png")}
-				alt=""
-				aria-hidden="true"
-				className={`pointer-events-none absolute inset-0 h-full w-full bg-black object-contain transition-opacity duration-300 ease-out ${
-					showOverlay ? "opacity-100" : "opacity-0"
-				}`}
+				alt="Ben Davis talks about writing Effect code with AI"
+				className="h-full w-full object-contain"
 			/>
-			<button
-				type="button"
-				onClick={startPlayback}
-				aria-label="Play video"
-				tabIndex={showOverlay ? 0 : -1}
-				aria-hidden={!showOverlay}
-				className={`group absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 ease-out hover:bg-black/40 ${
-					showOverlay ? "opacity-100" : "pointer-events-none opacity-0"
-				}`}
-			>
-				<span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/80 text-zinc-900 backdrop-blur-sm transition-transform group-hover:scale-105">
-					<Icon
-						name="play"
-						className="translate-x-0.5 text-3xl"
-						aria-hidden="true"
-					/>
-				</span>
-			</button>
 		</div>
 	);
 }
@@ -101,7 +48,7 @@ export function AISection() {
 					</div>
 
 					{/* Right column - Video */}
-					<VideoWithPosterOverlay />
+					<VideoPlaceholder />
 				</div>
 
 				{/* Features - 1x4 grid */}
