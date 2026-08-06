@@ -123,11 +123,11 @@ const GALLERY_COLUMNS: {
 const TALK_IDEAS: { label: string; href?: string }[] = [
 	{
 		label: "Reliable TypeScript for production systems",
-		href: "https://effect.website/docs/getting-started/why-effect/",
+		href: "https://youtu.be/upXJJ9maWPc",
 	},
 	{
 		label: "Stop agent slop with Effect",
-		href: "https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/",
+		href: "https://youtu.be/b8ULm238DHg",
 	},
 	{
 		label: "Typed errors in TypeScript",
@@ -139,7 +139,7 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 	{
 		label: "Production-grade TypeScript for the AI era",
-		href: "https://www.youtube.com/watch?v=PxIBWjiv3og",
+		href: "https://www.youtube.com/watch?v=XaNHyZbFUBY",
 	},
 	{
 		label: "What's new in Effect v4",
