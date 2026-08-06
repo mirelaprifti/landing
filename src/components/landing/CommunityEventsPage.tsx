@@ -492,17 +492,17 @@ export function CommunityEventsPage() {
 											href={idea.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group flex items-center gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
+											className="group flex items-center gap-1.5 rounded-md border border-zinc-700 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white"
 										>
 											{idea.label}
 											<Icon
 												name="arrow-up-right"
-												className="ml-auto shrink-0 self-center text-zinc-600 transition-colors group-hover:text-white"
+												className="ml-auto shrink-0 self-center text-base text-zinc-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"
 												aria-hidden="true"
 											/>
 										</a>
 									) : (
-										<span className="flex items-center gap-1.5 rounded-md border border-zinc-800 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
+										<span className="flex items-center gap-1.5 rounded-md border border-zinc-700 bg-[#0C0C0E] px-4 py-3 font-mono text-sm text-zinc-300">
 											{idea.label}
 										</span>
 									)}
@@ -576,7 +576,7 @@ export function CommunityEventsPage() {
 											href={channel.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-800 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-600"
+											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-700 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-500"
 										>
 											<div className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md bg-zinc-800">
 												<i
