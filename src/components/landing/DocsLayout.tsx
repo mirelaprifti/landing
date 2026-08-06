@@ -249,7 +249,7 @@ export function DocsLayout({
 								aria-current={isActive ? "true" : undefined}
 								className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ${
 									isActive
-										? "bg-white font-semibold text-zinc-900 shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-800 dark:text-white dark:ring-zinc-700"
+										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
 										: "text-zinc-600 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
 								}`}
 							>
