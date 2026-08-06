@@ -142,8 +142,8 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 		href: "https://www.youtube.com/watch?v=XaNHyZbFUBY",
 	},
 	{
-		label: "What's new in Effect v4",
-		href: "https://effect.website/blog/effect-v4beta-july-recap",
+		label: "Incremental adoption of Effect",
+		href: "https://www.youtube.com/watch?v=tfhxR8Z-w6E",
 	},
 ];
 
