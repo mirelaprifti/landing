@@ -98,7 +98,7 @@ export function DocsSectionSwitcher({
 	return (
 		<nav
 			aria-label="Docs sections"
-			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-800 dark:bg-zinc-900"
+			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-700 dark:bg-zinc-900"
 		>
 			<ul className="flex flex-col gap-0.5">
 				{SECTIONS.map((s) => {
