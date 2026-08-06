@@ -37,6 +37,9 @@ export function Navigation({
 	const showThemeToggle = ["/blog", "/play", "/docs", "/styleguide"].some((p) =>
 		activePath?.startsWith(p),
 	);
+	// Docs pages carry a "Docs" mark next to the logo (Stripe-docs-style
+	// surface label); the mark replaces the Docs item in the nav links.
+	const showDocsMark = activePath?.startsWith("/docs") ?? false;
 
 	useEffect(() => {
 		let isMenuAnimating = false;
@@ -128,19 +131,29 @@ export function Navigation({
 									className="hidden h-[1.75rem] w-auto dark:block"
 								/>
 							</a>
+							{showDocsMark && (
+								<a
+									href={getAssetPath("/docs/introduction")}
+									className="ml-4 font-mono text-sm font-semibold tracking-widest text-zinc-500 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								>
+									Docs
+								</a>
+							)}
 
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
-								<Link
-									href={getAssetPath("/docs/introduction")}
-									variant="nav"
-									active={activePath?.startsWith("/docs")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Docs
-								</Link>
+								{!showDocsMark && (
+									<Link
+										href={getAssetPath("/docs/introduction")}
+										variant="nav"
+										active={activePath?.startsWith("/docs")}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
+									>
+										Docs
+									</Link>
+								)}
 								<Link
 									href={getAssetPath("/blog")}
 									variant="nav"
