@@ -25,7 +25,12 @@ type NavSection = { title: string; items: NavItem[] };
  * reference, and the wider educational/community content all live under
  * one docs shell.
  */
-export type DocsSectionKey = "tutorials" | "guides" | "cookbooks" | "api";
+export type DocsSectionKey =
+	| "docs"
+	| "tutorials"
+	| "guides"
+	| "cookbooks"
+	| "api";
 
 const SECTIONS: {
 	key: DocsSectionKey;
@@ -33,10 +38,17 @@ const SECTIONS: {
 	icon: IconName;
 	href: string;
 }[] = [
-	// Tutorials/Cookbooks pages don't exist yet — every tab except API
-	// Reference routes to Introduction as a stand-in for the prototype.
-	// The ?section= param preserves the selection when arriving from a
-	// page outside DocsLayout (e.g. the API reference).
+	// Docs holds the narrative documentation; Tutorials/Guides/Cookbooks
+	// pages don't exist yet — every tab except API Reference routes to
+	// Introduction as a stand-in for the prototype. The ?section= param
+	// preserves the selection when arriving from a page outside
+	// DocsLayout (e.g. the API reference).
+	{
+		key: "docs",
+		label: "Docs",
+		icon: "book-open",
+		href: "/docs/introduction",
+	},
 	{
 		key: "tutorials",
 		label: "Tutorials",
@@ -46,8 +58,8 @@ const SECTIONS: {
 	{
 		key: "guides",
 		label: "Guides",
-		icon: "book-open",
-		href: "/docs/introduction",
+		icon: "map-pin",
+		href: "/docs/introduction?section=guides",
 	},
 	{
 		key: "cookbooks",
@@ -139,7 +151,7 @@ export function DocsSectionSwitcher({
 }
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
-	guides: [
+	docs: [
 		{
 			title: "Getting Started",
 			items: [
@@ -181,8 +193,8 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	// Tutorials/Cookbooks content doesn't exist yet — every item routes to
-	// Introduction as a stand-in for the prototype.
+	// Tutorials/Guides/Cookbooks content doesn't exist yet — every item
+	// routes to Introduction as a stand-in for the prototype.
 	tutorials: [
 		{
 			title: "Hands-on",
@@ -204,6 +216,33 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 					href: "/docs/introduction",
 				},
 				{ slug: "podcast", label: "Podcast", href: "/docs/introduction" },
+			],
+		},
+	],
+	guides: [
+		{
+			title: "How-to Guides",
+			items: [
+				{
+					slug: "project-setup",
+					label: "Project Setup",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "dependency-injection",
+					label: "Dependency Injection",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "observability",
+					label: "Observability",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "migrating",
+					label: "Migrating to Effect",
+					href: "/docs/introduction",
+				},
 			],
 		},
 	],
@@ -257,7 +296,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 
 export function DocsLayout({
 	activeSlug,
-	section = "guides",
+	section = "docs",
 	tocItems,
 	children,
 }: {
