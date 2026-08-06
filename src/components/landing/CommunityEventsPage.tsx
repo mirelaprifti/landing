@@ -130,8 +130,8 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 		href: "https://youtu.be/b8ULm238DHg",
 	},
 	{
-		label: "Typed errors in TypeScript",
-		href: "https://effect.website/docs/error-management/two-error-types",
+		label: "AI 🤍 Effect",
+		href: "https://www.youtube.com/watch?v=XaNHyZbFUBY",
 	},
 	{
 		label: "Building AI agents with Effect",
@@ -139,7 +139,7 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 	},
 	{
 		label: "Production-grade TypeScript for the AI era",
-		href: "https://www.youtube.com/watch?v=XaNHyZbFUBY",
+		href: "https://www.youtube.com/watch?v=hY279-A2fC4",
 	},
 	{
 		label: "Incremental adoption of Effect",
