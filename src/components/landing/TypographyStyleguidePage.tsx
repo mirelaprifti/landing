@@ -820,11 +820,11 @@ Effect.runPromise(program)`}</code>
 							id="docs"
 							eyebrow="07"
 							title="Docs"
-							lede="Matched to the live v4 API reference on effect.website — mono for everything that names code, neutral zinc chrome, Shiki-highlighted code blocks. Article bodies use DOCS_ARTICLE_CLASS, exported from DocsLayout."
+							lede="Matched to the live v4 API reference. Mono names code; article bodies use DOCS_ARTICLE_CLASS."
 						>
 							<SpecRow
 								title="Docs heading hierarchy"
-								note="The corrected hierarchy — the live page inverts h1/h2 sizes and emits 450+ h4 scaffold headings. Rules: mono h1 is the largest heading on the page; sans h2 categories one step below; mono h3 entries with a kind badge; scaffold labels are paragraphs."
+								note="Mono h1 — always the largest · sans h2 category · mono h3 entry · scaffold labels as paragraphs."
 							>
 								<div className="space-y-8">
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
@@ -917,7 +917,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Document outline"
-								note="One h1, first in the document. TOC builds from h2 + h3 only. Chrome (sidebar labels, footer) never gets heading tags. Scaffold labels are paragraphs — a 140-entry module yields ~170 outline nodes instead of the live page's 622."
+								note="One h1, first. TOC from h2 + h3 only; chrome and scaffold stay out — ~170 outline nodes, not the live page's 622."
 							>
 								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.9] text-zinc-200">
 									<code>
@@ -946,7 +946,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Docs article body"
-								note="The live reference's article styles: prose-sm on mobile, prose-base from md up, 15px paragraphs on a 24px line, tight heading rhythm, neutral code chips, and dark bordered code blocks. Shiki (github-light / github-dark) supplies token colors on the live site."
+								note="prose-sm → md:prose-base · 15px/24px body · Shiki tokens on code."
 								classes={[
 									{
 										label: "usage",
@@ -997,7 +997,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Docs shell"
-								note="A 1408px grid: 240px sidebar from lg up, article column, 240px table of contents from xl up. Side columns carry hairline borders and hold sticky, independently scrolling navs; the article is capped at max-w-4xl."
+								note="1408px · sidebar from lg, TOC from xl · sticky bordered asides."
 								classes={[
 									{
 										label: "shell",
@@ -1036,7 +1036,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Breadcrumb"
-								note="Every reference page opens with a mono uppercase trail above the h1; links darken on hover, separated by plain slashes."
+								note="Above the h1 on every reference page."
 								classes={[
 									{
 										label: "trail",
@@ -1067,7 +1067,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Sidebar navigation"
-								note="Everything mono — sidebar entries are code symbols. The module label is small caps; links get a rounded soft fill on hover; the active entry is a filled pill, semibold."
+								note="Mono — entries are symbols. Active = filled pill."
 								classes={[
 									{
 										label: "module label",
@@ -1104,7 +1104,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Table of contents"
-								note="Right column from xl up: a mono small-caps label over a hairline, sans semibold category links, and mono entries indented beneath each category — no panel box."
+								note="From xl up. Sans categories, mono entries — no panel box."
 								classes={[
 									{
 										label: "label",
