@@ -6,6 +6,7 @@ import {
 	API_PACKAGES,
 	type ApiPackage,
 } from "./apiReferenceData";
+import { DocsSectionSwitcher } from "./DocsLayout";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { Icon } from "@/components/ui/Icon";
@@ -101,6 +102,7 @@ export function ApiReferenceLayout({
 							aria-label="API packages"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
+							<DocsSectionSwitcher section="api" />
 							<a
 								href={getAssetPath(`/docs/api/${version}`)}
 								aria-current={activeSlug === undefined ? "page" : undefined}

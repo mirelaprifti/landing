@@ -33,11 +33,13 @@ const SECTIONS: {
 	icon: IconName;
 	href: string;
 }[] = [
+	// Tutorials/Cookbooks pages don't exist yet — every tab except API
+	// Reference routes to Introduction as a stand-in for the prototype.
 	{
 		key: "tutorials",
 		label: "Tutorials",
 		icon: "graduation-cap",
-		href: "/play",
+		href: "/docs/introduction",
 	},
 	{
 		key: "guides",
@@ -49,7 +51,7 @@ const SECTIONS: {
 		key: "cookbooks",
 		label: "Cookbooks",
 		icon: "clipboard-list",
-		href: "/community-resources/articles",
+		href: "/docs/introduction",
 	},
 	{
 		key: "api",
@@ -58,6 +60,53 @@ const SECTIONS: {
 		href: "/docs/api/v3",
 	},
 ];
+
+/**
+ * Section switcher (Astro-docs-style): a soft inset panel at the top of
+ * the sidebar; the active section is a filled pill, siblings are quiet
+ * icon+label rows. Switching sections swaps the whole nav tree below.
+ * Shared by DocsLayout and ApiReferenceLayout. The dark active pill is
+ * zinc-700 (one step lighter than the tree's zinc-800 pill) so it keeps
+ * the same relative contrast against the zinc-900 panel behind it.
+ */
+export function DocsSectionSwitcher({ section }: { section: DocsSectionKey }) {
+	return (
+		<nav
+			aria-label="Docs sections"
+			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-800 dark:bg-zinc-900"
+		>
+			<ul className="flex flex-col gap-0.5">
+				{SECTIONS.map((s) => {
+					const isActive = s.key === section;
+					return (
+						<li key={s.key}>
+							<a
+								href={getAssetPath(s.href)}
+								aria-current={isActive ? "true" : undefined}
+								className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
+									isActive
+										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
+										: "text-zinc-700 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
+								}`}
+							>
+								<Icon
+									name={s.icon}
+									className={`text-base ${
+										isActive
+											? "text-zinc-900 dark:text-white"
+											: "text-zinc-500 dark:text-zinc-500"
+									}`}
+									aria-hidden="true"
+								/>
+								<span>{s.label}</span>
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</nav>
+	);
+}
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 	guides: [
@@ -102,15 +151,17 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
+	// Tutorials/Cookbooks content doesn't exist yet — every item routes to
+	// Introduction as a stand-in for the prototype.
 	tutorials: [
 		{
 			title: "Hands-on",
 			items: [
-				{ slug: "play", label: "Playground", href: "/play" },
+				{ slug: "play", label: "Playground", href: "/docs/introduction" },
 				{
 					slug: "courses",
 					label: "Courses & Workshops",
-					href: "/community-resources/learning",
+					href: "/docs/introduction",
 				},
 			],
 		},
@@ -120,14 +171,12 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{
 					slug: "videos",
 					label: "Videos & Talks",
-					href: "/community-resources/videos",
+					href: "/docs/introduction",
 				},
-				{ slug: "podcast", label: "Podcast", href: "/podcast" },
+				{ slug: "podcast", label: "Podcast", href: "/docs/introduction" },
 			],
 		},
 	],
-	// Cookbook recipe pages don't exist yet — items link to the community
-	// articles category as a stand-in so nothing 404s in the prototype.
 	cookbooks: [
 		{
 			title: "Recipes",
@@ -135,22 +184,22 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{
 					slug: "http-apis",
 					label: "HTTP & APIs",
-					href: "/community-resources/articles",
+					href: "/docs/introduction",
 				},
 				{
 					slug: "data-schema",
 					label: "Data & Schema",
-					href: "/community-resources/articles",
+					href: "/docs/introduction",
 				},
 				{
 					slug: "concurrency-patterns",
 					label: "Concurrency Patterns",
-					href: "/community-resources/articles",
+					href: "/docs/introduction",
 				},
 				{
 					slug: "testing",
 					label: "Testing",
-					href: "/community-resources/articles",
+					href: "/docs/introduction",
 				},
 			],
 		},
@@ -160,7 +209,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{
 					slug: "articles",
 					label: "Community Articles",
-					href: "/community-resources/articles",
+					href: "/docs/introduction",
 				},
 			],
 		},
@@ -227,49 +276,6 @@ export function DocsLayout({
 		for (const el of headings) observer.observe(el);
 		return () => observer.disconnect();
 	}, [tocItems]);
-
-	/**
-	 * Section switcher (Astro-docs-style): a soft inset panel at the top of
-	 * the sidebar; the active section is a raised card, siblings are quiet
-	 * icon+label rows. Switching sections swaps the whole nav tree below.
-	 */
-	const renderSectionSwitcher = (idPrefix: string) => (
-		<nav
-			aria-label="Docs sections"
-			id={`${idPrefix}-switcher`}
-			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-800 dark:bg-zinc-900/50"
-		>
-			<ul className="flex flex-col gap-0.5">
-				{SECTIONS.map((s) => {
-					const isActive = s.key === section;
-					return (
-						<li key={s.key}>
-							<a
-								href={getAssetPath(s.href)}
-								aria-current={isActive ? "true" : undefined}
-								className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
-									isActive
-										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-										: "text-zinc-700 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
-								}`}
-							>
-								<Icon
-									name={s.icon}
-									className={`text-base ${
-										isActive
-											? "text-zinc-900 dark:text-white"
-											: "text-zinc-500 dark:text-zinc-500"
-									}`}
-									aria-hidden="true"
-								/>
-								<span>{s.label}</span>
-							</a>
-						</li>
-					);
-				})}
-			</ul>
-		</nav>
-	);
 
 	const renderSections = (idPrefix: string) =>
 		sidebar.map((navSection) => {
@@ -358,7 +364,7 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
 						>
-							{renderSectionSwitcher("docs-mobile")}
+							<DocsSectionSwitcher section={section} />
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -370,7 +376,7 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
-							{renderSectionSwitcher("docs-desktop")}
+							<DocsSectionSwitcher section={section} />
 							{renderSections("docs-section")}
 						</nav>
 					</aside>
