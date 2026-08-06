@@ -774,7 +774,7 @@ Effect.runPromise(program)`}</code>
 						>
 							<SpecRow
 								title="Docs heading hierarchy"
-								note="Extracted from the live v4 reference. The page h1 is mono — module pages are named after code. Categories (Layers, Models, Transforming) are sans h2s. Each API entry is a mono h3 with its kind badge alongside. Scaffold labels — When to use, Details, See, Signature — repeat per entry and render as mono labels, never as competing bold headings."
+								note="The corrected hierarchy — the live v4 reference gets this wrong in two ways: its h1 renders smaller than its h2 categories (inverted), and its scaffold labels are 450+ h4s per page in two different styles. The rules: the mono h1 is the largest heading on the page; sans h2 categories sit one step below it; each API entry is a mono h3 with its kind badge; scaffold labels are styled paragraphs, not headings."
 							>
 								<div className="space-y-8">
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
@@ -787,12 +787,14 @@ Effect.runPromise(program)`}</code>
 										</span>
 										<div className="min-w-0 flex-1">
 											<p className="truncate font-mono text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-												NodeRuntime
+												Array
 											</p>
 											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
 												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													mb-4! font-mono md:mb-6! — size comes from the
-													article's prose heading scale
+													mb-4 font-mono text-4xl font-semibold
+													tracking-tight md:mb-6 — must stay the largest
+													heading on the page (the live page renders it
+													smaller than its h2s; don't copy that)
 												</code>
 											</pre>
 										</div>
@@ -806,12 +808,13 @@ Effect.runPromise(program)`}</code>
 											</span>
 										</span>
 										<div className="min-w-0 flex-1">
-											<p className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-												Models
+											<p className="text-2xl font-semibold tracking-tight text-zinc-900 md:text-3xl dark:text-white">
+												Combining
 											</p>
 											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
 												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													mb-0 text-3xl font-semibold tracking-tight
+													mb-0 text-2xl font-semibold tracking-tight
+													md:text-3xl — one step below the h1, never larger
 												</code>
 											</pre>
 										</div>
@@ -854,7 +857,7 @@ Effect.runPromise(program)`}</code>
 											scaffold label
 											<br />
 											<span className="text-zinc-400 dark:text-zinc-500">
-												repeated per entry
+												a p — never a heading
 											</span>
 										</span>
 										<div className="min-w-0 flex-1">
@@ -863,13 +866,45 @@ Effect.runPromise(program)`}</code>
 											</p>
 											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
 												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													mt-6 mb-2 font-mono text-sm font-medium tracking-wider
-													text-zinc-500 uppercase dark:text-zinc-400
+													element: p — mt-6 mb-2 font-mono text-sm font-medium
+													tracking-wider text-zinc-500 uppercase
+													dark:text-zinc-400. One style for all four labels —
+													the live page mixes unstyled h4s with a one-off
+													Signature style.
 												</code>
 											</pre>
 										</div>
 									</div>
 								</div>
+							</SpecRow>
+
+							<SpecRow
+								title="Document outline"
+								note="What the markup must produce, technically: exactly one h1, first heading in the document; the TOC builds from h2 categories and h3 entries only; sidebar and footer chrome are never headings (the live page leaks its package label in as an h2 before the h1); scaffold labels are paragraphs. Done right, a 140-entry module contributes ~170 outline nodes instead of the live page's 622."
+							>
+								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.9] text-zinc-200">
+									<code>
+										{"<h1>Array</h1>"}
+										<span className="text-zinc-500">
+											{"          // one per page, first — mono, largest"}
+										</span>
+										{"\n<h2>Combining</h2>"}
+										<span className="text-zinc-500">
+											{"      // category — TOC group"}
+										</span>
+										{"\n  <h3>append</h3>"}
+										<span className="text-zinc-500">
+											{"       // entry — mono + kind badge, TOC item"}
+										</span>
+										{"\n    <p>When to use</p>"}
+										<span className="text-zinc-500">
+											{" // scaffold label — styled, no outline slot"}
+										</span>
+										{"\n    <p>Signature</p>"}
+										{"\n  <h3>appendAll</h3>"}
+										{"\n<h2>Constructors</h2>"}
+									</code>
+								</pre>
 							</SpecRow>
 
 							<SpecRow
