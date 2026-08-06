@@ -631,19 +631,14 @@ a:focus-visible {
 }
 
 /* API reference module pages: Shiki dual-theme code blocks follow the .dark toggle */
-.astro-code {
-	background-color: transparent !important;
+/* API reference code blocks — tok-* class highlighting (GitHub scheme) */
+.tok-code {
+	background-color: transparent;
+	font-family: var(--font-mono, monospace);
 	font-size: 0.8125rem;
 	line-height: 1.6;
 	overflow-x: auto;
-}
-
-.dark .astro-code,
-.dark .astro-code span {
-	color: var(--shiki-dark) !important;
-	font-style: var(--shiki-dark-font-style) !important;
-	font-weight: var(--shiki-dark-font-weight) !important;
-	text-decoration: var(--shiki-dark-text-decoration) !important;
+	color: var(--tok-fg);
 }
 
 /* API reference module pages: prose fragments parsed from docgen output */

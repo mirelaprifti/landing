@@ -1,5 +1,4 @@
 ---
-import { Code } from "astro:components";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
@@ -7,6 +6,7 @@ import {
 	type ApiTocItem,
 } from "@/components/landing/ApiReferencePage";
 import { API_PACKAGES } from "@/components/landing/apiReferenceData";
+import { highlightTokHtml } from "@/lib/highlightTok";
 import { getAssetPath } from "@/utils/assetPath";
 import BaseLayout from "../../../../../layouts/BaseLayout.astro";
 
@@ -74,8 +74,6 @@ const tocItems: ApiTocItem[] = mod.categories.flatMap((c) => [
 		depth: e.level - 1,
 	})),
 ]);
-
-const shikiThemes = { light: "github-light", dark: "github-dark" };
 ---
 
 <BaseLayout
@@ -189,11 +187,7 @@ const shikiThemes = { light: "github-light", dark: "github-dark" };
 													{exp.description.map((block) =>
 														block.code ? (
 															<div class="mt-3 overflow-hidden rounded-md border border-zinc-200 bg-white px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900/40">
-																<Code
-																	code={block.code.code}
-																	lang="ts"
-																	themes={shikiThemes}
-																/>
+																<pre class="tok-code"><code set:html={highlightTokHtml(block.code.code)} /></pre>
 															</div>
 														) : (
 															<Fragment set:html={block.html} />
@@ -203,11 +197,7 @@ const shikiThemes = { light: "github-light", dark: "github-dark" };
 											)}
 											{exp.signature && (
 												<div class="mt-3 overflow-hidden rounded-md border border-zinc-200 bg-white px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900/40">
-													<Code
-														code={exp.signature.code}
-														lang="ts"
-														themes={shikiThemes}
-													/>
+													<pre class="tok-code"><code set:html={highlightTokHtml(exp.signature.code)} /></pre>
 												</div>
 											)}
 											{exp.examples.map((example) => (
@@ -216,11 +206,7 @@ const shikiThemes = { light: "github-light", dark: "github-dark" };
 														Example
 													</p>
 													<div class="overflow-hidden rounded-md border border-zinc-200 bg-white px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900/40">
-														<Code
-															code={example.code}
-															lang="ts"
-															themes={shikiThemes}
-														/>
+														<pre class="tok-code"><code set:html={highlightTokHtml(example.code)} /></pre>
 													</div>
 												</div>
 											))}
