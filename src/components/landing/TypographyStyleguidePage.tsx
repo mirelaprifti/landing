@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
@@ -143,8 +144,71 @@ const ELEMENT_SPECS: {
 	},
 ];
 
-/** A single class string, or one labeled entry per role for multi-part specs. */
-type SpecClasses = string | { label: string; value: string }[];
+/**
+ * A single class string, or one labeled entry per role for multi-part specs.
+ * `value` must stay a pure, paste-ready class string — context goes in `hint`.
+ */
+type SpecClasses =
+	| string
+	| { label: string; value: string; hint?: string }[];
+
+function CopyButton({ text }: { text: string }) {
+	const [copied, setCopied] = useState(false);
+	return (
+		<button
+			type="button"
+			onClick={async () => {
+				try {
+					await navigator.clipboard.writeText(text);
+					setCopied(true);
+					setTimeout(() => setCopied(false), 1500);
+				} catch {
+					// noop
+				}
+			}}
+			aria-label={copied ? "Copied" : "Copy classes"}
+			className="absolute top-2 right-2 rounded-md border border-zinc-200 bg-white/90 px-2 py-0.5 font-mono text-xs text-zinc-500 opacity-0 transition-opacity group-hover/chip:opacity-100 hover:text-zinc-900 focus-visible:opacity-100 dark:border-zinc-700 dark:bg-zinc-950/90 dark:text-zinc-400 dark:hover:text-white"
+		>
+			{copied ? "copied" : "copy"}
+		</button>
+	);
+}
+
+/** Copyable class-string chip: mono value, optional role label and hint. */
+function ClassChip({
+	label,
+	value,
+	hint,
+	className,
+}: {
+	label?: string;
+	value: string;
+	hint?: string;
+	className?: string;
+}) {
+	return (
+		<div
+			className={`group/chip relative rounded-md bg-zinc-100 px-4 py-3 dark:bg-zinc-900 ${className ?? ""}`}
+		>
+			{label && (
+				<p className="mb-1.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+					{label}
+				</p>
+			)}
+			<pre className="whitespace-pre-wrap">
+				<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
+					{value}
+				</code>
+			</pre>
+			{hint && (
+				<p className="mt-1.5 text-sm text-zinc-500 dark:text-zinc-400">
+					{hint}
+				</p>
+			)}
+			<CopyButton text={value} />
+		</div>
+	);
+}
 
 function ClassBlock({ classes }: { classes: SpecClasses }) {
 	const entries =
@@ -152,21 +216,7 @@ function ClassBlock({ classes }: { classes: SpecClasses }) {
 	return (
 		<div className="mt-5 space-y-2">
 			{entries.map((entry) => (
-				<div
-					key={entry.label + entry.value}
-					className="rounded-md bg-zinc-100 px-4 py-3 dark:bg-zinc-900"
-				>
-					{entry.label && (
-						<p className="mb-1.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-							{entry.label}
-						</p>
-					)}
-					<pre className="whitespace-pre-wrap">
-						<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-							{entry.value}
-						</code>
-					</pre>
-				</div>
+				<ClassChip key={entry.label + entry.value} {...entry} />
 			))}
 		</div>
 	);
@@ -774,7 +824,7 @@ Effect.runPromise(program)`}</code>
 						>
 							<SpecRow
 								title="Docs heading hierarchy"
-								note="The corrected hierarchy — the live v4 reference gets this wrong in two ways: its h1 renders smaller than its h2 categories (inverted), and its scaffold labels are 450+ h4s per page in two different styles. The rules: the mono h1 is the largest heading on the page; sans h2 categories sit one step below it; each API entry is a mono h3 with its kind badge; scaffold labels are styled paragraphs, not headings."
+								note="The corrected hierarchy — the live page inverts h1/h2 sizes and emits 450+ h4 scaffold headings. Rules: mono h1 is the largest heading on the page; sans h2 categories one step below; mono h3 entries with a kind badge; scaffold labels are paragraphs."
 							>
 								<div className="space-y-8">
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
@@ -789,14 +839,11 @@ Effect.runPromise(program)`}</code>
 											<p className="truncate font-mono text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">
 												Array
 											</p>
-											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													mb-4 font-mono text-4xl font-semibold
-													tracking-tight md:mb-6 — must stay the largest
-													heading on the page (the live page renders it
-													smaller than its h2s; don't copy that)
-												</code>
-											</pre>
+											<ClassChip
+												className="mt-3"
+												value="mb-4 font-mono text-4xl font-semibold tracking-tight md:mb-6"
+												hint="Must stay the largest heading on the page — the live page renders it smaller than its h2s; don't copy that."
+											/>
 										</div>
 									</div>
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
@@ -811,12 +858,11 @@ Effect.runPromise(program)`}</code>
 											<p className="text-2xl font-semibold tracking-tight text-zinc-900 md:text-3xl dark:text-white">
 												Combining
 											</p>
-											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													mb-0 text-2xl font-semibold tracking-tight
-													md:text-3xl — one step below the h1, never larger
-												</code>
-											</pre>
+											<ClassChip
+												className="mt-3"
+												value="mb-0 text-2xl font-semibold tracking-tight md:text-3xl"
+												hint="One step below the h1, never larger."
+											/>
 										</div>
 									</div>
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
@@ -836,20 +882,15 @@ Effect.runPromise(program)`}</code>
 													Interface
 												</span>
 											</p>
-											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													m-0! flex items-center gap-3 font-mono text-xl!
-													font-semibold tracking-tight
-												</code>
-											</pre>
-											<pre className="mt-2 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													badge: rounded-full border border-zinc-300 px-2.5
-													py-0.5 font-mono text-xs font-medium tracking-wider
-													text-zinc-500 uppercase dark:border-zinc-700
-													dark:text-zinc-400
-												</code>
-											</pre>
+											<ClassChip
+												className="mt-3"
+												value="m-0! flex items-center gap-3 font-mono text-xl! font-semibold tracking-tight"
+											/>
+											<ClassChip
+												className="mt-2"
+												label="kind badge"
+												value="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400"
+											/>
 										</div>
 									</div>
 									<div className="flex flex-col gap-2 md:flex-row md:gap-6">
@@ -864,15 +905,11 @@ Effect.runPromise(program)`}</code>
 											<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 												When to use · Details · See · Signature
 											</p>
-											<pre className="mt-3 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-												<code className="font-mono text-sm leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-													element: p — mt-6 mb-2 font-mono text-sm font-medium
-													tracking-wider text-zinc-500 uppercase
-													dark:text-zinc-400. One style for all four labels —
-													the live page mixes unstyled h4s with a one-off
-													Signature style.
-												</code>
-											</pre>
+											<ClassChip
+												className="mt-3"
+												value="mt-6 mb-2 font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+												hint="Rendered as a p element. One style for all four labels — the live page mixes unstyled h4s with a one-off Signature style."
+											/>
 										</div>
 									</div>
 								</div>
@@ -880,7 +917,7 @@ Effect.runPromise(program)`}</code>
 
 							<SpecRow
 								title="Document outline"
-								note="What the markup must produce, technically: exactly one h1, first heading in the document; the TOC builds from h2 categories and h3 entries only; sidebar and footer chrome are never headings (the live page leaks its package label in as an h2 before the h1); scaffold labels are paragraphs. Done right, a 140-entry module contributes ~170 outline nodes instead of the live page's 622."
+								note="One h1, first in the document. TOC builds from h2 + h3 only. Chrome (sidebar labels, footer) never gets heading tags. Scaffold labels are paragraphs — a 140-entry module yields ~170 outline nodes instead of the live page's 622."
 							>
 								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.9] text-zinc-200">
 									<code>
@@ -914,7 +951,8 @@ Effect.runPromise(program)`}</code>
 									{
 										label: "usage",
 										value:
-											'import { DOCS_ARTICLE_CLASS } from "@/components/landing/DocsLayout" and apply it to the article wrapper — never copy the string itself. Element styles live in that one constant; fix them there so every docs page picks the change up.',
+											'import { DOCS_ARTICLE_CLASS } from "@/components/landing/DocsLayout"',
+										hint: "Apply to the article wrapper. Never copy the class string itself — fix styles in the constant so every docs page picks them up.",
 									},
 								]}
 							>
@@ -968,8 +1006,13 @@ Effect.runPromise(program)`}</code>
 									},
 									{
 										label: "aside",
+										value: "border-r border-zinc-200 dark:border-zinc-800",
+										hint: "Left column; the right column mirrors it with border-l.",
+									},
+									{
+										label: "aside nav",
 										value:
-											"border-r border-zinc-200 dark:border-zinc-800 (left · border-l on the right) — nav inside: sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8",
+											"sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8",
 									},
 									{
 										label: "main",
@@ -1066,7 +1109,11 @@ Effect.runPromise(program)`}</code>
 									{
 										label: "label",
 										value:
-											"mb-4 font-mono text-sm font-semibold tracking-[0.14em] uppercase — hairline below: mb-5 h-px bg-zinc-200 dark:bg-zinc-800",
+											"mb-4 font-mono text-sm font-semibold tracking-[0.14em] uppercase",
+									},
+									{
+										label: "hairline",
+										value: "mb-5 h-px bg-zinc-200 dark:bg-zinc-800",
 									},
 									{
 										label: "category link",
@@ -1076,7 +1123,8 @@ Effect.runPromise(program)`}</code>
 									{
 										label: "entry link",
 										value:
-											"flex min-w-0 items-baseline gap-1 font-mono text-xs text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white — nested in: mt-2 space-y-2 pl-3",
+											"flex min-w-0 items-baseline gap-1 font-mono text-xs text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white",
+										hint: "Entry list nests under its category: mt-2 space-y-2 pl-3.",
 									},
 								]}
 							>
