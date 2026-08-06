@@ -134,7 +134,7 @@ export function Navigation({
 							{showDocsMark && (
 								<a
 									href={getAssetPath("/docs/introduction")}
-									className="ml-4 font-mono text-sm font-semibold tracking-widest text-zinc-500 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									className="ml-3 text-[1.4rem] leading-none font-semibold tracking-tight text-zinc-400 transition-colors hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
 								>
 									Docs
 								</a>
