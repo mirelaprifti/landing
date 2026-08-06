@@ -89,7 +89,7 @@ export function ApiReferenceLayout({
 			</a>
 			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section="reference" />
+				<DocsSectionTabs section="api" />
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
 						tocItems

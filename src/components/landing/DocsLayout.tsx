@@ -25,18 +25,25 @@ type NavSection = { title: string; items: NavItem[] };
  * educational content and the API reference all live under one docs
  * shell. Cookbooks / Guides to follow.
  */
-export type DocsSectionKey = "introduction" | "tutorials" | "reference";
+export type DocsSectionKey =
+	| "docs"
+	| "tutorials"
+	| "guides"
+	| "cookbooks"
+	| "api";
 
 const SECTIONS: {
 	key: DocsSectionKey;
 	label: string;
 	href: string;
 }[] = [
-	// The ?section= param preserves the selection when arriving from a
-	// page outside DocsLayout (e.g. the API reference).
+	// Docs holds the narrative documentation; Tutorials/Guides/Cookbooks
+	// pages don't exist yet and route to Introduction as a stand-in. The
+	// ?section= param preserves the selection when arriving from a page
+	// outside DocsLayout (e.g. the API reference).
 	{
-		key: "introduction",
-		label: "Introduction",
+		key: "docs",
+		label: "Docs",
 		href: "/docs/introduction",
 	},
 	{
@@ -45,8 +52,18 @@ const SECTIONS: {
 		href: "/docs/introduction?section=tutorials",
 	},
 	{
-		key: "reference",
-		label: "Reference",
+		key: "guides",
+		label: "Guides",
+		href: "/docs/introduction?section=guides",
+	},
+	{
+		key: "cookbooks",
+		label: "Cookbooks",
+		href: "/docs/introduction?section=cookbooks",
+	},
+	{
+		key: "api",
+		label: "API Reference",
 		href: "/docs/api/v3",
 	},
 ];
@@ -71,8 +88,8 @@ export function DocsSectionTabs({
 }: {
 	section: DocsSectionKey;
 	/**
-	 * When provided, sections other than Reference become in-place
-	 * selections (buttons) instead of navigations; Reference always
+	 * When provided, sections other than API Reference become in-place
+	 * selections (buttons) instead of navigations; API Reference always
 	 * navigates since it lives in a different layout.
 	 */
 	onSelect?: (key: DocsSectionKey) => void;
@@ -101,7 +118,7 @@ export function DocsSectionTabs({
 						);
 						return (
 							<li key={s.key}>
-								{onSelect && s.key !== "reference" ? (
+								{onSelect && s.key !== "api" ? (
 									<button
 										type="button"
 										onClick={() => onSelect(s.key)}
@@ -129,24 +146,15 @@ export function DocsSectionTabs({
 }
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
-	// Introduction: the conceptual "why and what" pages from the old
-	// Getting Started group. Tutorials: the hands-on walkthrough docs.
-	introduction: [
+	docs: [
 		{
-			title: "Introduction",
+			title: "Getting Started",
 			items: [
 				{ slug: "introduction", label: "Introduction" },
 				{ slug: "why-effect", label: "Why Effect?" },
 				{ slug: "installation", label: "Installation" },
 				{ slug: "devtools", label: "Devtools" },
 				{ slug: "importing-effect", label: "Importing Effect" },
-			],
-		},
-	],
-	tutorials: [
-		{
-			title: "Fundamentals",
-			items: [
 				{ slug: "the-effect-type", label: "The Effect Type" },
 				{ slug: "creating-effects", label: "Creating Effects" },
 				{ slug: "running-effects", label: "Running Effects" },
@@ -180,7 +188,97 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	reference: [
+	// Tutorials/Guides/Cookbooks content doesn't exist yet — every item
+	// routes to Introduction as a stand-in for the prototype.
+	tutorials: [
+		{
+			title: "Hands-on",
+			items: [
+				{ slug: "play", label: "Playground", href: "/docs/introduction" },
+				{
+					slug: "courses",
+					label: "Courses & Workshops",
+					href: "/docs/introduction",
+				},
+			],
+		},
+		{
+			title: "Watch & Listen",
+			items: [
+				{
+					slug: "videos",
+					label: "Videos & Talks",
+					href: "/docs/introduction",
+				},
+				{ slug: "podcast", label: "Podcast", href: "/docs/introduction" },
+			],
+		},
+	],
+	guides: [
+		{
+			title: "How-to Guides",
+			items: [
+				{
+					slug: "project-setup",
+					label: "Project Setup",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "dependency-injection",
+					label: "Dependency Injection",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "observability",
+					label: "Observability",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "migrating",
+					label: "Migrating to Effect",
+					href: "/docs/introduction",
+				},
+			],
+		},
+	],
+	cookbooks: [
+		{
+			title: "Recipes",
+			items: [
+				{
+					slug: "http-apis",
+					label: "HTTP & APIs",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "data-schema",
+					label: "Data & Schema",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "concurrency-patterns",
+					label: "Concurrency Patterns",
+					href: "/docs/introduction",
+				},
+				{
+					slug: "testing",
+					label: "Testing",
+					href: "/docs/introduction",
+				},
+			],
+		},
+		{
+			title: "Community",
+			items: [
+				{
+					slug: "articles",
+					label: "Community Articles",
+					href: "/docs/introduction",
+				},
+			],
+		},
+	],
+	api: [
 		{
 			title: "API Reference",
 			items: [
@@ -193,7 +291,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 
 export function DocsLayout({
 	activeSlug,
-	section = "introduction",
+	section = "docs",
 	tocItems,
 	children,
 }: {
