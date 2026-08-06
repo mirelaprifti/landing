@@ -35,11 +35,13 @@ const SECTIONS: {
 }[] = [
 	// Tutorials/Cookbooks pages don't exist yet — every tab except API
 	// Reference routes to Introduction as a stand-in for the prototype.
+	// The ?section= param preserves the selection when arriving from a
+	// page outside DocsLayout (e.g. the API reference).
 	{
 		key: "tutorials",
 		label: "Tutorials",
 		icon: "graduation-cap",
-		href: "/docs/introduction",
+		href: "/docs/introduction?section=tutorials",
 	},
 	{
 		key: "guides",
@@ -51,7 +53,7 @@ const SECTIONS: {
 		key: "cookbooks",
 		label: "Cookbooks",
 		icon: "clipboard-list",
-		href: "/docs/introduction",
+		href: "/docs/introduction?section=cookbooks",
 	},
 	{
 		key: "api",
@@ -69,7 +71,18 @@ const SECTIONS: {
  * zinc-700 (one step lighter than the tree's zinc-800 pill) so it keeps
  * the same relative contrast against the zinc-900 panel behind it.
  */
-export function DocsSectionSwitcher({ section }: { section: DocsSectionKey }) {
+export function DocsSectionSwitcher({
+	section,
+	onSelect,
+}: {
+	section: DocsSectionKey;
+	/**
+	 * When provided, sections other than API Reference become in-place
+	 * selections (buttons) instead of navigations; API Reference always
+	 * navigates since it lives in a different layout.
+	 */
+	onSelect?: (key: DocsSectionKey) => void;
+}) {
 	return (
 		<nav
 			aria-label="Docs sections"
@@ -78,28 +91,45 @@ export function DocsSectionSwitcher({ section }: { section: DocsSectionKey }) {
 			<ul className="flex flex-col gap-0.5">
 				{SECTIONS.map((s) => {
 					const isActive = s.key === section;
+					const itemClass = `flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
+						isActive
+							? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
+							: "text-zinc-700 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
+					}`;
+					const inner = (
+						<>
+							<Icon
+								name={s.icon}
+								className={`text-base ${
+									isActive
+										? "text-zinc-900 dark:text-white"
+										: "text-zinc-500 dark:text-zinc-500"
+								}`}
+								aria-hidden="true"
+							/>
+							<span>{s.label}</span>
+						</>
+					);
 					return (
 						<li key={s.key}>
-							<a
-								href={getAssetPath(s.href)}
-								aria-current={isActive ? "true" : undefined}
-								className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
-									isActive
-										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
-										: "text-zinc-700 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
-								}`}
-							>
-								<Icon
-									name={s.icon}
-									className={`text-base ${
-										isActive
-											? "text-zinc-900 dark:text-white"
-											: "text-zinc-500 dark:text-zinc-500"
-									}`}
-									aria-hidden="true"
-								/>
-								<span>{s.label}</span>
-							</a>
+							{onSelect && s.key !== "api" ? (
+								<button
+									type="button"
+									onClick={() => onSelect(s.key)}
+									aria-current={isActive ? "true" : undefined}
+									className={`cursor-pointer ${itemClass}`}
+								>
+									{inner}
+								</button>
+							) : (
+								<a
+									href={getAssetPath(s.href)}
+									aria-current={isActive ? "true" : undefined}
+									className={itemClass}
+								>
+									{inner}
+								</a>
+							)}
 						</li>
 					);
 				})}
@@ -239,8 +269,26 @@ export function DocsLayout({
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
+	const [activeSection, setActiveSection] = useState<DocsSectionKey>(section);
 
-	const sidebar = SIDEBARS[section];
+	// Allow ?section=tutorials|cookbooks to preselect a section when
+	// arriving from outside DocsLayout (e.g. the API reference switcher).
+	useEffect(() => {
+		const param = new URLSearchParams(window.location.search).get("section");
+		if (param && SECTIONS.some((s) => s.key === param)) {
+			setActiveSection(param as DocsSectionKey);
+		}
+	}, []);
+
+	const selectSection = (key: DocsSectionKey) => {
+		setActiveSection(key);
+		const url = new URL(window.location.href);
+		if (key === section) url.searchParams.delete("section");
+		else url.searchParams.set("section", key);
+		window.history.replaceState(null, "", url);
+	};
+
+	const sidebar = SIDEBARS[activeSection];
 
 	const activeLabel = sidebar
 		.flatMap((navSection) => navSection.items)
@@ -364,7 +412,10 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
 						>
-							<DocsSectionSwitcher section={section} />
+							<DocsSectionSwitcher
+								section={activeSection}
+								onSelect={selectSection}
+							/>
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -376,7 +427,10 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
-							<DocsSectionSwitcher section={section} />
+							<DocsSectionSwitcher
+								section={activeSection}
+								onSelect={selectSection}
+							/>
 							{renderSections("docs-section")}
 						</nav>
 					</aside>
