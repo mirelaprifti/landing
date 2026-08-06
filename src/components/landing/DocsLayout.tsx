@@ -3,7 +3,7 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
 /**
  * Shared article styles for docs page bodies (also used by /styleguide).
@@ -16,62 +16,160 @@ import { Icon } from "@/components/ui/Icon";
 export const DOCS_ARTICLE_CLASS =
 	"prose prose-zinc dark:prose-invert prose-sm md:prose-base max-w-4xl prose-headings:font-semibold prose-headings:tracking-tight prose-headings:mt-6 prose-headings:mb-3 prose-p:my-3 prose-p:text-[0.9375rem] prose-p:leading-6 prose-a:transition-colors prose-a:duration-200 hover:prose-a:decoration-transparent prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-code:rounded prose-code:bg-zinc-200 prose-code:px-1 prose-code:py-0.5 prose-code:text-sm prose-code:text-zinc-700 prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:border-zinc-700 prose-pre:bg-zinc-900 dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200";
 
-type NavItem = { slug: string; label: string };
+type NavItem = { slug: string; label: string; href?: string };
 type NavSection = { title: string; items: NavItem[] };
 
-const SIDEBAR: NavSection[] = [
+/**
+ * Top-level docs sections (Astro-docs-style switcher at the top of the
+ * sidebar). Each section swaps in its own nav tree below, so guides, API
+ * reference, and the wider educational/community content all live under
+ * one docs shell.
+ */
+export type DocsSectionKey = "guide" | "learn" | "reference" | "ecosystem";
+
+const SECTIONS: {
+	key: DocsSectionKey;
+	label: string;
+	icon: IconName;
+	href: string;
+}[] = [
+	{ key: "guide", label: "Guide", icon: "book-open", href: "/docs/introduction" },
+	{ key: "learn", label: "Learn", icon: "graduation-cap", href: "/play" },
 	{
-		title: "Getting Started",
-		items: [
-			{ slug: "introduction", label: "Introduction" },
-			{ slug: "why-effect", label: "Why Effect?" },
-			{ slug: "installation", label: "Installation" },
-			{ slug: "devtools", label: "Devtools" },
-			{ slug: "importing-effect", label: "Importing Effect" },
-			{ slug: "the-effect-type", label: "The Effect Type" },
-			{ slug: "creating-effects", label: "Creating Effects" },
-			{ slug: "running-effects", label: "Running Effects" },
-			{ slug: "using-generators", label: "Using Generators" },
-			{ slug: "building-pipelines", label: "Building Pipelines" },
-			{ slug: "control-flow", label: "Control Flow Operators" },
-		],
+		key: "reference",
+		label: "Reference",
+		icon: "scroll-text",
+		href: "/docs/api/v3",
 	},
 	{
-		title: "Error Management",
-		items: [
-			{ slug: "two-types-of-errors", label: "Two Types of Errors" },
-			{ slug: "expected-errors", label: "Expected Errors" },
-			{ slug: "unexpected-errors", label: "Unexpected Errors" },
-			{ slug: "fallback", label: "Fallback" },
-			{ slug: "matching", label: "Matching" },
-			{ slug: "retrying", label: "Retrying" },
-			{ slug: "timing-out", label: "Timing Out" },
-			{ slug: "sandboxing", label: "Sandboxing" },
-			{ slug: "error-accumulation", label: "Error Accumulation" },
-		],
-	},
-	{
-		title: "Concurrency",
-		items: [
-			{ slug: "basic-concurrency", label: "Basic Concurrency" },
-			{ slug: "fibers", label: "Fibers" },
-			{ slug: "deferred", label: "Deferred" },
-			{ slug: "queue", label: "Queue" },
-			{ slug: "pubsub", label: "PubSub" },
-		],
-	},
-	{
-		title: "Reference",
-		items: [{ slug: "api/v3", label: "API Reference" }],
+		key: "ecosystem",
+		label: "Ecosystem",
+		icon: "layout-grid",
+		href: "/community-hub",
 	},
 ];
 
+const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
+	guide: [
+		{
+			title: "Getting Started",
+			items: [
+				{ slug: "introduction", label: "Introduction" },
+				{ slug: "why-effect", label: "Why Effect?" },
+				{ slug: "installation", label: "Installation" },
+				{ slug: "devtools", label: "Devtools" },
+				{ slug: "importing-effect", label: "Importing Effect" },
+				{ slug: "the-effect-type", label: "The Effect Type" },
+				{ slug: "creating-effects", label: "Creating Effects" },
+				{ slug: "running-effects", label: "Running Effects" },
+				{ slug: "using-generators", label: "Using Generators" },
+				{ slug: "building-pipelines", label: "Building Pipelines" },
+				{ slug: "control-flow", label: "Control Flow Operators" },
+			],
+		},
+		{
+			title: "Error Management",
+			items: [
+				{ slug: "two-types-of-errors", label: "Two Types of Errors" },
+				{ slug: "expected-errors", label: "Expected Errors" },
+				{ slug: "unexpected-errors", label: "Unexpected Errors" },
+				{ slug: "fallback", label: "Fallback" },
+				{ slug: "matching", label: "Matching" },
+				{ slug: "retrying", label: "Retrying" },
+				{ slug: "timing-out", label: "Timing Out" },
+				{ slug: "sandboxing", label: "Sandboxing" },
+				{ slug: "error-accumulation", label: "Error Accumulation" },
+			],
+		},
+		{
+			title: "Concurrency",
+			items: [
+				{ slug: "basic-concurrency", label: "Basic Concurrency" },
+				{ slug: "fibers", label: "Fibers" },
+				{ slug: "deferred", label: "Deferred" },
+				{ slug: "queue", label: "Queue" },
+				{ slug: "pubsub", label: "PubSub" },
+			],
+		},
+	],
+	learn: [
+		{
+			title: "Hands-on",
+			items: [
+				{ slug: "play", label: "Playground", href: "/play" },
+				{
+					slug: "courses",
+					label: "Courses & Workshops",
+					href: "/community-resources/learning",
+				},
+			],
+		},
+		{
+			title: "Watch & Listen",
+			items: [
+				{
+					slug: "videos",
+					label: "Videos & Talks",
+					href: "/community-resources/videos",
+				},
+				{ slug: "podcast", label: "Podcast", href: "/podcast" },
+			],
+		},
+		{
+			title: "Read",
+			items: [
+				{ slug: "blog", label: "Blog", href: "/blog" },
+				{
+					slug: "articles",
+					label: "Community Articles",
+					href: "/community-resources/articles",
+				},
+			],
+		},
+	],
+	reference: [
+		{
+			title: "API Reference",
+			items: [
+				{ slug: "api/v3", label: "API Reference (v3)" },
+				{ slug: "api", label: "API Reference (v4)" },
+			],
+		},
+	],
+	ecosystem: [
+		{
+			title: "Community",
+			items: [
+				{ slug: "community-hub", label: "Community Hub", href: "/community-hub" },
+				{
+					slug: "resources",
+					label: "All Resources",
+					href: "/community-resources",
+				},
+				{ slug: "events", label: "Events", href: "/events" },
+			],
+		},
+		{
+			title: "Tooling",
+			items: [
+				{
+					slug: "tools",
+					label: "Community Tools",
+					href: "/community-resources/tools",
+				},
+			],
+		},
+	],
+};
+
 export function DocsLayout({
 	activeSlug,
+	section = "guide",
 	tocItems,
 	children,
 }: {
 	activeSlug: string;
+	section?: DocsSectionKey;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -79,15 +177,17 @@ export function DocsLayout({
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-	const activeLabel = SIDEBAR.flatMap((section) => section.items).find(
-		(item) => item.slug === activeSlug,
-	)?.label;
+	const sidebar = SIDEBARS[section];
+
+	const activeLabel = sidebar
+		.flatMap((navSection) => navSection.items)
+		.find((item) => item.slug === activeSlug)?.label;
 
 	const toggleSection = (title: string) => {
 		setOpenSections((prev) => {
-			const containsActive = SIDEBAR.find((s) => s.title === title)?.items.some(
-				(item) => item.slug === activeSlug,
-			);
+			const containsActive = sidebar
+				.find((s) => s.title === title)
+				?.items.some((item) => item.slug === activeSlug);
 			const currentlyOpen = prev[title] ?? containsActive ?? false;
 			return { ...prev, [title]: !currentlyOpen };
 		});
@@ -114,23 +214,66 @@ export function DocsLayout({
 		return () => observer.disconnect();
 	}, [tocItems]);
 
+	/**
+	 * Section switcher (Astro-docs-style): a soft inset panel at the top of
+	 * the sidebar; the active section is a raised card, siblings are quiet
+	 * icon+label rows. Switching sections swaps the whole nav tree below.
+	 */
+	const renderSectionSwitcher = (idPrefix: string) => (
+		<nav
+			aria-label="Docs sections"
+			id={`${idPrefix}-switcher`}
+			className="mb-6 rounded-xl border border-zinc-200 bg-zinc-100 p-1.5 dark:border-zinc-800 dark:bg-zinc-900"
+		>
+			<ul className="flex flex-col gap-0.5">
+				{SECTIONS.map((s) => {
+					const isActive = s.key === section;
+					return (
+						<li key={s.key}>
+							<a
+								href={getAssetPath(s.href)}
+								aria-current={isActive ? "true" : undefined}
+								className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ${
+									isActive
+										? "bg-white font-semibold text-zinc-900 shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-800 dark:text-white dark:ring-zinc-700"
+										: "text-zinc-600 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
+								}`}
+							>
+								<Icon
+									name={s.icon}
+									className={`text-base ${
+										isActive
+											? "text-zinc-900 dark:text-white"
+											: "text-zinc-500 dark:text-zinc-500"
+									}`}
+									aria-hidden="true"
+								/>
+								<span>{s.label}</span>
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</nav>
+	);
+
 	const renderSections = (idPrefix: string) =>
-		SIDEBAR.map((section) => {
-			const containsActive = section.items.some(
+		sidebar.map((navSection) => {
+			const containsActive = navSection.items.some(
 				(item) => item.slug === activeSlug,
 			);
-			const isOpen = openSections[section.title] ?? containsActive;
-			const panelId = `${idPrefix}-${section.title.toLowerCase().replace(/\s+/g, "-")}`;
+			const isOpen = openSections[navSection.title] ?? containsActive;
+			const panelId = `${idPrefix}-${navSection.title.toLowerCase().replace(/\s+/g, "-")}`;
 			return (
-				<div key={section.title} className="mb-1 last:mb-0">
+				<div key={navSection.title} className="mb-1 last:mb-0">
 					<button
 						type="button"
-						onClick={() => toggleSection(section.title)}
+						onClick={() => toggleSection(navSection.title)}
 						aria-expanded={isOpen}
 						aria-controls={panelId}
 						className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 					>
-						<span>{section.title}</span>
+						<span>{navSection.title}</span>
 						<Icon
 							name="chevron-down"
 							className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
@@ -139,12 +282,12 @@ export function DocsLayout({
 					</button>
 					{isOpen && (
 						<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
-							{section.items.map((item) => {
+							{navSection.items.map((item) => {
 								const isActive = item.slug === activeSlug;
 								return (
 									<li key={item.slug}>
 										<a
-											href={getAssetPath(`/docs/${item.slug}`)}
+											href={getAssetPath(item.href ?? `/docs/${item.slug}`)}
 											aria-current={isActive ? "page" : undefined}
 											className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
 												isActive
@@ -201,6 +344,7 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
 						>
+							{renderSectionSwitcher("docs-mobile")}
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -212,6 +356,7 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
+							{renderSectionSwitcher("docs-desktop")}
 							{renderSections("docs-section")}
 						</nav>
 					</aside>
