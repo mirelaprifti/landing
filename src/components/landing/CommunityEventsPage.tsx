@@ -138,7 +138,7 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 		href: "https://www.youtube.com/watch?v=0naAPm0-0Wg",
 	},
 	{
-		label: "Production TypeScript",
+		label: "Production TypeScript for the AI Era",
 		href: "https://www.youtube.com/watch?v=hY279-A2fC4",
 	},
 	{
