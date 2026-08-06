@@ -3,7 +3,7 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon, type IconName } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon";
 
 /**
  * Shared article styles for docs page bodies (also used by /styleguide).
@@ -20,57 +20,33 @@ type NavItem = { slug: string; label: string; href?: string };
 type NavSection = { title: string; items: NavItem[] };
 
 /**
- * Top-level docs sections (Astro-docs-style switcher at the top of the
- * sidebar). Each section swaps in its own nav tree below, so guides, API
- * reference, and the wider educational/community content all live under
- * one docs shell.
+ * Top-level docs sections, shown as a horizontal sub-nav directly below
+ * the site navbar. Each section swaps in its own sidebar tree, so the
+ * educational content and the API reference all live under one docs
+ * shell. Cookbooks / Guides to follow.
  */
-export type DocsSectionKey =
-	| "docs"
-	| "tutorials"
-	| "guides"
-	| "cookbooks"
-	| "api";
+export type DocsSectionKey = "introduction" | "tutorials" | "reference";
 
 const SECTIONS: {
 	key: DocsSectionKey;
 	label: string;
-	icon: IconName;
 	href: string;
 }[] = [
-	// Docs holds the narrative documentation; Tutorials/Guides/Cookbooks
-	// pages don't exist yet — every tab except API Reference routes to
-	// Introduction as a stand-in for the prototype. The ?section= param
-	// preserves the selection when arriving from a page outside
-	// DocsLayout (e.g. the API reference).
+	// The ?section= param preserves the selection when arriving from a
+	// page outside DocsLayout (e.g. the API reference).
 	{
-		key: "docs",
-		label: "Docs",
-		icon: "book-open",
+		key: "introduction",
+		label: "Introduction",
 		href: "/docs/introduction",
 	},
 	{
 		key: "tutorials",
 		label: "Tutorials",
-		icon: "graduation-cap",
 		href: "/docs/introduction?section=tutorials",
 	},
 	{
-		key: "guides",
-		label: "Guides",
-		icon: "map-pin",
-		href: "/docs/introduction?section=guides",
-	},
-	{
-		key: "cookbooks",
-		label: "Cookbooks",
-		icon: "clipboard-list",
-		href: "/docs/introduction?section=cookbooks",
-	},
-	{
-		key: "api",
-		label: "API Reference",
-		icon: "scroll-text",
+		key: "reference",
+		label: "Reference",
 		href: "/docs/api/v3",
 	},
 ];
@@ -83,83 +59,94 @@ const SECTIONS: {
  * zinc-700 (one step lighter than the tree's zinc-800 pill) so it keeps
  * the same relative contrast against the zinc-900 panel behind it.
  */
-export function DocsSectionSwitcher({
+/**
+ * Horizontal docs section tabs: a slim sticky bar directly below the
+ * navbar, shared by DocsLayout and ApiReferenceLayout. Mono uppercase
+ * labels (the site's wayfinding voice — breadcrumbs, sidebar group
+ * headers) with a 2px underline indicator sitting on the bar's hairline.
+ */
+export function DocsSectionTabs({
 	section,
 	onSelect,
 }: {
 	section: DocsSectionKey;
 	/**
-	 * When provided, sections other than API Reference become in-place
-	 * selections (buttons) instead of navigations; API Reference always
+	 * When provided, sections other than Reference become in-place
+	 * selections (buttons) instead of navigations; Reference always
 	 * navigates since it lives in a different layout.
 	 */
 	onSelect?: (key: DocsSectionKey) => void;
 }) {
 	return (
-		<nav
-			aria-label="Docs sections"
-			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-700 dark:bg-zinc-900"
-		>
-			<ul className="flex flex-col gap-0.5">
-				{SECTIONS.map((s) => {
-					const isActive = s.key === section;
-					const itemClass = `flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
-						isActive
-							? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
-							: "text-zinc-700 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
-					}`;
-					const inner = (
-						<>
-							<Icon
-								name={s.icon}
-								className={`text-base ${
-									isActive
-										? "text-zinc-900 dark:text-white"
-										: "text-zinc-500 dark:text-zinc-500"
-								}`}
-								aria-hidden="true"
-							/>
-							<span>{s.label}</span>
-						</>
-					);
-					return (
-						<li key={s.key}>
-							{onSelect && s.key !== "api" ? (
-								<button
-									type="button"
-									onClick={() => onSelect(s.key)}
-									aria-current={isActive ? "true" : undefined}
-									className={`cursor-pointer ${itemClass}`}
-								>
-									{inner}
-								</button>
-							) : (
-								<a
-									href={getAssetPath(s.href)}
-									aria-current={isActive ? "true" : undefined}
-									className={itemClass}
-								>
-									{inner}
-								</a>
-							)}
-						</li>
-					);
-				})}
-			</ul>
-		</nav>
+		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
+			<nav aria-label="Docs sections" className="mx-auto w-full max-w-[88rem]">
+				<ul className="flex items-center gap-8 overflow-x-auto px-6">
+					{SECTIONS.map((s) => {
+						const isActive = s.key === section;
+						const itemClass = `relative flex h-12 items-center font-mono text-sm font-medium tracking-wider whitespace-nowrap uppercase transition-colors ${
+							isActive
+								? "text-zinc-900 dark:text-white"
+								: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+						}`;
+						const inner = (
+							<>
+								<span>{s.label}</span>
+								{isActive && (
+									<span
+										className="absolute inset-x-0 bottom-0 h-0.5 bg-zinc-900 dark:bg-white"
+										aria-hidden="true"
+									/>
+								)}
+							</>
+						);
+						return (
+							<li key={s.key}>
+								{onSelect && s.key !== "reference" ? (
+									<button
+										type="button"
+										onClick={() => onSelect(s.key)}
+										aria-current={isActive ? "true" : undefined}
+										className={`cursor-pointer ${itemClass}`}
+									>
+										{inner}
+									</button>
+								) : (
+									<a
+										href={getAssetPath(s.href)}
+										aria-current={isActive ? "true" : undefined}
+										className={itemClass}
+									>
+										{inner}
+									</a>
+								)}
+							</li>
+						);
+					})}
+				</ul>
+			</nav>
+		</div>
 	);
 }
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
-	docs: [
+	// Introduction: the conceptual "why and what" pages from the old
+	// Getting Started group. Tutorials: the hands-on walkthrough docs.
+	introduction: [
 		{
-			title: "Getting Started",
+			title: "Introduction",
 			items: [
 				{ slug: "introduction", label: "Introduction" },
 				{ slug: "why-effect", label: "Why Effect?" },
 				{ slug: "installation", label: "Installation" },
 				{ slug: "devtools", label: "Devtools" },
 				{ slug: "importing-effect", label: "Importing Effect" },
+			],
+		},
+	],
+	tutorials: [
+		{
+			title: "Fundamentals",
+			items: [
 				{ slug: "the-effect-type", label: "The Effect Type" },
 				{ slug: "creating-effects", label: "Creating Effects" },
 				{ slug: "running-effects", label: "Running Effects" },
@@ -193,97 +180,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	// Tutorials/Guides/Cookbooks content doesn't exist yet — every item
-	// routes to Introduction as a stand-in for the prototype.
-	tutorials: [
-		{
-			title: "Hands-on",
-			items: [
-				{ slug: "play", label: "Playground", href: "/docs/introduction" },
-				{
-					slug: "courses",
-					label: "Courses & Workshops",
-					href: "/docs/introduction",
-				},
-			],
-		},
-		{
-			title: "Watch & Listen",
-			items: [
-				{
-					slug: "videos",
-					label: "Videos & Talks",
-					href: "/docs/introduction",
-				},
-				{ slug: "podcast", label: "Podcast", href: "/docs/introduction" },
-			],
-		},
-	],
-	guides: [
-		{
-			title: "How-to Guides",
-			items: [
-				{
-					slug: "project-setup",
-					label: "Project Setup",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "dependency-injection",
-					label: "Dependency Injection",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "observability",
-					label: "Observability",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "migrating",
-					label: "Migrating to Effect",
-					href: "/docs/introduction",
-				},
-			],
-		},
-	],
-	cookbooks: [
-		{
-			title: "Recipes",
-			items: [
-				{
-					slug: "http-apis",
-					label: "HTTP & APIs",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "data-schema",
-					label: "Data & Schema",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "concurrency-patterns",
-					label: "Concurrency Patterns",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "testing",
-					label: "Testing",
-					href: "/docs/introduction",
-				},
-			],
-		},
-		{
-			title: "Community",
-			items: [
-				{
-					slug: "articles",
-					label: "Community Articles",
-					href: "/docs/introduction",
-				},
-			],
-		},
-	],
-	api: [
+	reference: [
 		{
 			title: "API Reference",
 			items: [
@@ -296,7 +193,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 
 export function DocsLayout({
 	activeSlug,
-	section = "docs",
+	section = "introduction",
 	tocItems,
 	children,
 }: {
@@ -364,12 +261,20 @@ export function DocsLayout({
 		return () => observer.disconnect();
 	}, [tocItems]);
 
+	// When the current page isn't in the selected section's tree (e.g.
+	// previewing Tutorials while reading an Introduction page), open all
+	// groups so the tree isn't a wall of collapsed headers.
+	const treeHasActive = sidebar.some((navSection) =>
+		navSection.items.some((item) => item.slug === activeSlug),
+	);
+
 	const renderSections = (idPrefix: string) =>
 		sidebar.map((navSection) => {
 			const containsActive = navSection.items.some(
 				(item) => item.slug === activeSlug,
 			);
-			const isOpen = openSections[navSection.title] ?? containsActive;
+			const isOpen =
+				openSections[navSection.title] ?? (containsActive || !treeHasActive);
 			const panelId = `${idPrefix}-${navSection.title.toLowerCase().replace(/\s+/g, "-")}`;
 			return (
 				<div key={navSection.title} className="mb-1 last:mb-0">
@@ -423,8 +328,9 @@ export function DocsLayout({
 			</a>
 			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
-				{/* Mobile docs nav: sticky disclosure below the navbar */}
-				<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+				<DocsSectionTabs section={activeSection} onSelect={selectSection} />
+				{/* Mobile docs nav: sticky disclosure below the section tabs */}
+				<div className="sticky top-28 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
 					<button
 						type="button"
 						onClick={() => setMobileNavOpen((open) => !open)}
@@ -451,10 +357,6 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
 						>
-							<DocsSectionSwitcher
-								section={activeSection}
-								onSelect={selectSection}
-							/>
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -464,12 +366,8 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
+							className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto px-6 py-8"
 						>
-							<DocsSectionSwitcher
-								section={activeSection}
-								onSelect={selectSection}
-							/>
 							{renderSections("docs-section")}
 						</nav>
 					</aside>
@@ -486,7 +384,7 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
+							className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto px-6 py-10"
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page

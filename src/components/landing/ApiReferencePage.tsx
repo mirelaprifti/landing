@@ -6,7 +6,7 @@ import {
 	API_PACKAGES,
 	type ApiPackage,
 } from "./apiReferenceData";
-import { DocsSectionSwitcher } from "./DocsLayout";
+import { DocsSectionTabs } from "./DocsLayout";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { Icon } from "@/components/ui/Icon";
@@ -89,6 +89,7 @@ export function ApiReferenceLayout({
 			</a>
 			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
+				<DocsSectionTabs section="reference" />
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
 						tocItems
@@ -100,9 +101,8 @@ export function ApiReferenceLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="API packages"
-							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
+							className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto px-6 py-8"
 						>
-							<DocsSectionSwitcher section="api" />
 							<a
 								href={getAssetPath(`/docs/api/${version}`)}
 								aria-current={activeSlug === undefined ? "page" : undefined}
@@ -234,7 +234,7 @@ export function ApiReferenceLayout({
 						<aside className="hidden border-l border-zinc-200 lg:block dark:border-zinc-800">
 							<nav
 								aria-label="On this page"
-								className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
+								className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto px-6 py-10"
 							>
 								<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 									On this page
