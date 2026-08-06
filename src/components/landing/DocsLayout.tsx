@@ -237,7 +237,7 @@ export function DocsLayout({
 		<nav
 			aria-label="Docs sections"
 			id={`${idPrefix}-switcher`}
-			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1.5 dark:border-zinc-800 dark:bg-zinc-900"
+			className="mb-6 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-800 dark:bg-zinc-900/50"
 		>
 			<ul className="flex flex-col gap-0.5">
 				{SECTIONS.map((s) => {
@@ -250,7 +250,7 @@ export function DocsLayout({
 								className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
 									isActive
 										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-										: "text-zinc-600 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
+										: "text-zinc-700 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
 								}`}
 							>
 								<Icon
