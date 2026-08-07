@@ -31,7 +31,7 @@ const text = {
 		"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400",
 	/** Section title (h2). */
 	sectionTitle:
-		"leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white",
+		"leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white",
 	/** Section lede — the paragraph directly under a page/section title. */
 	lede: "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
 	/** Card / subsection title (h3). */
@@ -82,7 +82,7 @@ const ELEMENT_SPECS: {
 }[] = [
 	{
 		label: "h1 · hero",
-		use: "landing heroes · only font-bold",
+		use: "landing heroes",
 		cls: text.pageTitle,
 		sample: "Ship reliable software",
 	},
@@ -615,7 +615,7 @@ export function TypographyStyleguidePage() {
 									<p className={rowLabel}>Do</p>
 									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										<li>Type scale + named leadings only</li>
-										<li>h1 font-bold · h2–h4 font-semibold</li>
+										<li>h1 + h2 font-bold · h3–h4 font-semibold</li>
 										<li>Themeable color pairs, even on dark-only pages</li>
 										<li>ui/Button and ui/Link for every CTA and link</li>
 										<li>Container and section-rhythm strings verbatim</li>
@@ -628,7 +628,7 @@ export function TypographyStyleguidePage() {
 											No arbitrary sizes or leadings (text-[15px],
 											leading-[1.35])
 										</li>
-										<li>No font-bold h2s, no tracking-wide eyebrows</li>
+										<li>No font-bold below h2, no tracking-wide eyebrows</li>
 										<li>No hand-rolled or rounded-lg buttons</li>
 										<li>No font-inter, no inline Roboto Mono</li>
 										<li>No max-w-295 or one-off containers</li>
