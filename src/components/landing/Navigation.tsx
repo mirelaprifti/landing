@@ -139,15 +139,16 @@ export function Navigation({
 							</a>
 							{logoSuffix && (
 								// Sized to the wordmark: caps match the logo "e" (13.7px
-								// x-height, baseline 23.4px from the logo top); JetBrains
-								// Mono caps are 0.730em → 18.75px, nudged 2.7px onto the
-								// same baseline. Ink matches the wordmark (white in dark,
-								// black in light), with symmetric 16px around the slash.
+								// x-height, baseline 23.4px from the logo top), nudged
+								// 2.7px onto the same baseline. Mono slash at 18.75px
+								// (0.730em caps), Inter label at 18.8px (0.7275em caps).
+								// Ink matches the wordmark (white in dark, black in
+								// light), with symmetric 16px around the slash.
 								<span
 									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide uppercase ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
 								>
 									<span>/</span>
-									<span>{logoSuffix}</span>
+									<span className="font-sans text-[18.8px]">{logoSuffix}</span>
 								</span>
 							)}
 
