@@ -38,7 +38,7 @@ const SECTIONS: {
 	// DocsLayout (e.g. the API reference).
 	{
 		key: "docs",
-		label: "Docs",
+		label: "Onboarding",
 		href: "/docs/introduction",
 	},
 	{
@@ -48,7 +48,7 @@ const SECTIONS: {
 	},
 	{
 		key: "api",
-		label: "API Reference",
+		label: "References",
 		href: "/docs/api/v3",
 	},
 ];
