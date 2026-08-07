@@ -148,7 +148,9 @@ export function Navigation({
 									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
 								>
 									<span>/</span>
-									<span className="font-sans text-[18.8px]">{logoSuffix}</span>
+									<span className="font-sans text-[18.8px] font-semibold">
+										{logoSuffix}
+									</span>
 								</span>
 							)}
 
