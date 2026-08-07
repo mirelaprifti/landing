@@ -189,7 +189,7 @@ export function DocsOnboardingPage() {
 							   two columns from sm up, ecosystem as a full-width
 							   closing row. */}
 							<div className="overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800">
-								<div className="border-b border-zinc-200 bg-zinc-50 px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:border-zinc-800 dark:bg-zinc-900/40">
+								<div className="border-b border-zinc-200 bg-zinc-50 px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-300">
 									Out of the box
 								</div>
 								<dl className="grid grid-cols-1 sm:grid-cols-2">
