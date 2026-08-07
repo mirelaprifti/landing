@@ -97,7 +97,7 @@ Each section is self-contained with its own styles and logic.
 - Uses `@tailwindcss/vite` plugin (NOT PostCSS approach)
 - Config in `astro.config.mjs` → `vite.plugins`
 - Dark mode: zinc-950 background, zinc color palette
-- Custom fonts: Inter (body), Roboto Mono (code)
+- Custom fonts: Inter (body), JetBrains Mono (code/mono — `--font-mono` in globals.css)
 
 **Color scheme:**
 - Background: `bg-zinc-950` (nearly black)
