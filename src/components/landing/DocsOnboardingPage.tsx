@@ -343,8 +343,8 @@ export function DocsOnboardingPage() {
 								<span className="sr-only">(opens in new tab) </span>
 								Discord
 							</a>
-							: the core team and experienced users are there daily, and most
-							questions get answered within minutes.
+							: the core team and experienced users are there daily, and no
+							question goes unanswered.
 						</p>
 					</section>
 				</main>
