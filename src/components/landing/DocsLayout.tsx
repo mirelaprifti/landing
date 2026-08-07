@@ -82,11 +82,11 @@ const SECTIONS: {
  * the same relative contrast against the zinc-900 panel behind it.
  */
 /**
- * Horizontal docs section tabs: a slim sticky bar directly below the
- * navbar, shared by DocsLayout and ApiReferenceLayout. Inter labels with
- * a 2px underline indicator sitting on the bar's hairline.
+ * Docs section links rendered inline in the top navbar (via Navigation's
+ * links slot), shared by DocsLayout and the API reference. Same voice as
+ * the site's default navbar links.
  */
-export function DocsSectionTabs({
+export function DocsSectionLinks({
 	section,
 	onSelect,
 }: {
@@ -99,53 +99,37 @@ export function DocsSectionTabs({
 	onSelect?: (key: DocsSectionKey) => void;
 }) {
 	return (
-		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
-			<nav aria-label="Docs sections" className="mx-auto w-full max-w-[88rem]">
-				<ul className="flex items-center gap-8 overflow-x-auto px-6">
-					{SECTIONS.map((s) => {
-						const isActive = s.key === section;
-						const itemClass = `relative flex h-10 items-center text-sm font-medium whitespace-nowrap transition-colors ${
-							isActive
-								? "text-zinc-900 dark:text-white"
-								: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-						}`;
-						const inner = (
-							<>
-								<span>{s.label}</span>
-								{isActive && (
-									<span
-										className="absolute inset-x-0 bottom-0 h-0.5 bg-zinc-900 dark:bg-white"
-										aria-hidden="true"
-									/>
-								)}
-							</>
-						);
-						return (
-							<li key={s.key}>
-								{onSelect && s.key !== "api" && s.key !== "play" ? (
-									<button
-										type="button"
-										onClick={() => onSelect(s.key)}
-										aria-current={isActive ? "true" : undefined}
-										className={`cursor-pointer ${itemClass}`}
-									>
-										{inner}
-									</button>
-								) : (
-									<a
-										href={getAssetPath(s.href)}
-										aria-current={isActive ? "true" : undefined}
-										className={itemClass}
-									>
-										{inner}
-									</a>
-								)}
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-		</div>
+		<>
+			{SECTIONS.map((s) => {
+				const key = s.key;
+				const isActive = key === section;
+				const itemClass = `border-b border-transparent text-sm font-medium whitespace-nowrap transition-colors hover:border-current ${
+					isActive
+						? "text-zinc-900 dark:text-white"
+						: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				}`;
+				return onSelect && key !== "api" && key !== "play" ? (
+					<button
+						key={key}
+						type="button"
+						onClick={() => onSelect(key)}
+						aria-current={isActive ? "true" : undefined}
+						className={`cursor-pointer ${itemClass}`}
+					>
+						{s.label}
+					</button>
+				) : (
+					<a
+						key={key}
+						href={getAssetPath(s.href)}
+						aria-current={isActive ? "true" : undefined}
+						className={itemClass}
+					>
+						{s.label}
+					</a>
+				);
+			})}
+		</>
 	);
 }
 
@@ -428,11 +412,12 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide hideLinks />
+			<Navigation activePath="/docs" wide logoSuffix="Docs">
+				<DocsSectionLinks section={activeSection} onSelect={selectSection} />
+			</Navigation>
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section={activeSection} onSelect={selectSection} />
-				{/* Mobile docs nav: sticky disclosure below the section tabs */}
-				<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+				{/* Mobile docs nav: sticky disclosure below the navbar */}
+				<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
 					<button
 						type="button"
 						onClick={() => setMobileNavOpen((open) => !open)}
@@ -468,7 +453,7 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-8"
+							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-8"
 						>
 							{renderSections("docs-section")}
 						</nav>
@@ -486,7 +471,7 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-10"
+							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-6 py-10"
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page
