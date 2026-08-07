@@ -184,36 +184,31 @@ export function DocsOnboardingPage() {
 								concurrency, resource handling, and tracing are operators you
 								apply, not architectures you rebuild.
 							</p>
-							{/* Features table, verbatim treatment from the docs
-							   Introduction page */}
+							{/* Capability grid in the docs table language: bordered
+							   container, mono-uppercase header bar, hairline rows;
+							   two columns from sm up, ecosystem as a full-width
+							   closing row. */}
 							<div className="overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800">
-								<table className="w-full border-collapse text-left">
-									<thead>
-										<tr className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
-											<th className="px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
-												Out of the box
-											</th>
-											<th className="px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
-												Description
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										{CAPABILITIES.map((c) => (
-											<tr
-												key={c.name}
-												className="border-b border-zinc-200 last:border-b-0 dark:border-zinc-800"
-											>
-												<td className="px-4 py-3 align-top text-sm font-semibold text-zinc-900 dark:text-white">
-													{c.name}
-												</td>
-												<td className="px-4 py-3 align-top text-sm text-zinc-700 dark:text-zinc-300">
-													{c.desc}
-												</td>
-											</tr>
-										))}
-									</tbody>
-								</table>
+								<div className="border-b border-zinc-200 bg-zinc-50 px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:border-zinc-800 dark:bg-zinc-900/40">
+									Out of the box
+								</div>
+								<dl className="grid grid-cols-1 sm:grid-cols-2">
+									{CAPABILITIES.map((c, i) => (
+										<div
+											key={c.name}
+											className={`border-b border-zinc-200 px-4 py-3 last:border-b-0 dark:border-zinc-800 ${
+												i === CAPABILITIES.length - 1 ? "sm:col-span-2" : ""
+											} ${i % 2 === 1 ? "sm:border-l" : ""}`}
+										>
+											<dt className="text-sm font-semibold text-zinc-900 dark:text-white">
+												{c.name}
+											</dt>
+											<dd className="mt-1 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+												{c.desc}
+											</dd>
+										</div>
+									))}
+								</dl>
 							</div>
 							<p>
 								The AI era raises the stakes. When coding agents write a growing
