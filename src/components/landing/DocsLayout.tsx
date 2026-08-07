@@ -54,30 +54,20 @@ const SECTIONS: {
 ];
 
 /**
- * Section switcher (Astro-docs-style): a soft inset panel at the top of
- * the sidebar; the active section is a filled pill, siblings are quiet
- * icon+label rows. Switching sections swaps the whole nav tree below.
- * Shared by DocsLayout and ApiReferenceLayout. The dark active pill is
- * zinc-700 (one step lighter than the tree's zinc-800 pill) so it keeps
- * the same relative contrast against the zinc-900 panel behind it.
- */
-/**
  * Horizontal docs section tabs: a slim sticky bar directly below the
  * navbar. Inter labels with a 2px underline indicator sitting on the
- * bar's hairline; API Reference always navigates, the rest switch in
- * place when onSelect is provided. The right end carries the v3/v4
- * switch for the versioned API area (segmented control per the
- * EventsPage tabs idiom); v3 is selected by default.
+ * bar's hairline; every tab navigates to its section's landing page.
+ * The bar opens with the v3/v4 switch for the versioned API area
+ * (segmented control per the EventsPage tabs idiom); v3 is selected by
+ * default.
  */
 export function DocsSectionTabs({
 	section,
 	version = "v3",
-	onSelect,
 }: {
 	section: DocsSectionKey;
 	/** Active API reference version; defaults to v3 (the current stable). */
 	version?: "v3" | "v4";
-	onSelect?: (key: DocsSectionKey) => void;
 }) {
 	return (
 		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
@@ -135,24 +125,13 @@ export function DocsSectionTabs({
 						);
 						return (
 							<li key={key}>
-								{onSelect && key !== "api" ? (
-									<button
-										type="button"
-										onClick={() => onSelect(key)}
-										aria-current={isActive ? "true" : undefined}
-										className={`cursor-pointer ${itemClass}`}
-									>
-										{inner}
-									</button>
-								) : (
-									<a
-										href={getAssetPath(s.href)}
-										aria-current={isActive ? "true" : undefined}
-										className={itemClass}
-									>
-										{inner}
-									</a>
-								)}
+								<a
+									href={getAssetPath(s.href)}
+									aria-current={isActive ? "true" : undefined}
+									className={itemClass}
+								>
+									{inner}
+								</a>
 							</li>
 						);
 					})}
@@ -251,26 +230,8 @@ export function DocsLayout({
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
-	const [activeSection, setActiveSection] = useState<DocsSectionKey>(section);
 
-	// Allow ?section=tutorials|cookbooks to preselect a section when
-	// arriving from outside DocsLayout (e.g. the API reference switcher).
-	useEffect(() => {
-		const param = new URLSearchParams(window.location.search).get("section");
-		if (param && param in SIDEBARS) {
-			setActiveSection(param as DocsSectionKey);
-		}
-	}, []);
-
-	const selectSection = (key: DocsSectionKey) => {
-		setActiveSection(key);
-		const url = new URL(window.location.href);
-		if (key === section) url.searchParams.delete("section");
-		else url.searchParams.set("section", key);
-		window.history.replaceState(null, "", url);
-	};
-
-	const sidebar = SIDEBARS[activeSection];
+	const sidebar = SIDEBARS[section];
 
 	const activeLabel = sidebar
 		.flatMap((navSection) => navSection.items)
@@ -307,9 +268,8 @@ export function DocsLayout({
 		return () => observer.disconnect();
 	}, [tocItems]);
 
-	// When the current page isn't in the selected section's tree (e.g.
-	// previewing Tutorials while reading an Introduction page), open all
-	// groups so the tree isn't a wall of collapsed headers.
+	// When the current page isn't in the section's tree, open all groups
+	// so the tree isn't a wall of collapsed headers.
 	const treeHasActive = sidebar.some((navSection) =>
 		navSection.items.some((item) => item.slug === activeSlug),
 	);
@@ -374,7 +334,7 @@ export function DocsLayout({
 			</a>
 			<Navigation activePath="/docs" wide compactSearch />
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section={activeSection} onSelect={selectSection} />
+				<DocsSectionTabs section={section} />
 				{/* Mobile docs nav: sticky disclosure below the section tabs */}
 				<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
 					<button
