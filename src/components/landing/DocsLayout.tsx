@@ -68,7 +68,7 @@ const SECTIONS: {
 	},
 	{
 		key: "play",
-		label: "Playground",
+		label: "Play",
 		href: "/play",
 	},
 ];
@@ -412,7 +412,7 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide logoSuffix="Docs">
+			<Navigation activePath="/docs" wide compactSearch logoSuffix="Docs">
 				<DocsSectionLinks section={activeSection} onSelect={selectSection} />
 			</Navigation>
 			<div className="relative w-full pt-16">

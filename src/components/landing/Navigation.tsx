@@ -13,6 +13,8 @@ interface NavigationProps {
 	fullWidth?: boolean;
 	/** Wayfinding label rendered after the logo as "/ LABEL" (e.g. "Docs"). */
 	logoSuffix?: string;
+	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
+	compactSearch?: boolean;
 	/** Replaces the default desktop links (Docs/Blog/…) — used by the docs shell for its section links. */
 	children?: ReactNode;
 }
@@ -36,6 +38,7 @@ export function Navigation({
 	fullWidth = false,
 	belowBanner = false,
 	logoSuffix,
+	compactSearch = false,
 	children,
 }: NavigationProps) {
 	const shortcutHint = useShortcutHint();
@@ -216,7 +219,7 @@ export function Navigation({
 
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
-								{wide ? (
+								{wide && !compactSearch ? (
 									<div
 										className={`search-pill flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "search-pill-inverted border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}
 									>
