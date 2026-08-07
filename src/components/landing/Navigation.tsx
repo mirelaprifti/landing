@@ -140,9 +140,10 @@ export function Navigation({
 								// its top. JetBrains Mono caps are 0.730em → 18.75px, and
 								// the 2.7px nudge drops the text onto that same baseline.
 								<span
-									className={`ml-2.5 translate-y-[2.7px] font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide uppercase ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400"}`}
+									className={`ml-2.5 flex translate-y-[2.7px] gap-2.5 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide uppercase ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400"}`}
 								>
-									/ {logoSuffix}
+									<span>/</span>
+									<span>{logoSuffix}</span>
 								</span>
 							)}
 
