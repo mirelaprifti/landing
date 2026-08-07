@@ -143,7 +143,17 @@ export function DocsOnboardingPage() {
 								success value, its possible errors, and its requirements.
 								Because programs are values, they compose: retries, timeouts,
 								concurrency, resource handling, and tracing are operators you
-								apply, not architectures you rebuild. Read the full case in{" "}
+								apply, not architectures you rebuild.
+							</p>
+							<p>
+								The AI era raises the stakes. When coding agents write a growing
+								share of your software, the bottleneck moves from writing code
+								to trusting it. Effect makes a program&apos;s failure modes,
+								dependencies, and lifecycle visible to the compiler, turning
+								runtime surprises into precise feedback an agent can act on. And
+								when the thing you are building is itself an AI application,
+								flaky providers, retries, streaming, and rate limits are exactly
+								the problems Effect solves out of the box. Read the full case in{" "}
 								<a
 									href={getAssetPath("/docs/why-effect")}
 									className={linkClass}
