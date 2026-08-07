@@ -4,8 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { BLOG_ARTICLE_CLASS } from "./BlogPostPage";
 import { DOCS_ARTICLE_CLASS } from "./DocsLayout";
-import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
+import { ThemeToggleButton } from "@/components/ui/ThemeToggle";
 
 /**
  * Internal styleguide for the entire website: canonical text elements and
@@ -261,7 +260,7 @@ function GuideSection({
 	children: React.ReactNode;
 }) {
 	return (
-		<section id={id} className="scroll-mt-32 pt-20 md:pt-28">
+		<section id={id} className="scroll-mt-16 pt-20 md:pt-28">
 			<p className={text.eyebrow}>// {eyebrow}</p>
 			<h2 className={text.sectionTitle}>{title}</h2>
 			{lede && <p className={text.lede}>{lede}</p>}
@@ -283,32 +282,33 @@ const NAV_ITEMS = [
 export function TypographyStyleguidePage() {
 	return (
 		<div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white">
-			<Navigation activePath="/styleguide" />
-
-			<main className="relative w-full pt-16">
+			<main className="relative w-full">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<header className="pt-16 pb-12 md:pt-24 md:pb-16">
+					<header className="pt-12 pb-12 md:pt-16 md:pb-16">
 						<p className={text.eyebrow}>// Styleguide</p>
 						<h1 className={text.pageTitleSub}>Website styleguide</h1>
 					</header>
 				</div>
 
-				{/* Sticky section nav — pins below the site nav and doubles as the
-				    divider between hero and guide */}
+				{/* Sticky section nav — the page's only chrome; carries the theme
+				    toggle and doubles as the divider between hero and guide */}
 				<nav
 					aria-label="Styleguide sections"
-					className="sticky top-16 z-40 border-y border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95"
+					className="sticky top-0 z-40 border-y border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95"
 				>
-					<div className="mx-auto flex w-full max-w-[73.75rem] flex-wrap gap-x-6 gap-y-2 px-4 py-4">
-						{NAV_ITEMS.map((item) => (
-							<a
-								key={item.href}
-								href={item.href}
-								className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-							>
-								{item.label}
-							</a>
-						))}
+					<div className="mx-auto flex w-full max-w-[73.75rem] items-center justify-between gap-6 px-4 py-3">
+						<div className="flex flex-wrap gap-x-6 gap-y-2">
+							{NAV_ITEMS.map((item) => (
+								<a
+									key={item.href}
+									href={item.href}
+									className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								>
+									{item.label}
+								</a>
+							))}
+						</div>
+						<ThemeToggleButton />
 					</div>
 				</nav>
 
@@ -1168,8 +1168,6 @@ Effect.runPromise(program)`}</code>
 					</div>
 				</div>
 			</main>
-
-			<Footer />
 		</div>
 	);
 }
