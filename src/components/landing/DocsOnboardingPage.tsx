@@ -343,11 +343,8 @@ export function DocsOnboardingPage() {
 								<span className="sr-only">(opens in new tab) </span>
 								Discord
 							</a>
-							. It is where the core team and experienced users answer
-							questions, usually within minutes, so you learn directly from the
-							people who build and run Effect in production. Ask beginner
-							questions in the help channels, share what you are building, and
-							follow new releases as they happen.
+							: the core team and experienced users are there daily, and most
+							questions get answered within minutes.
 						</p>
 					</section>
 				</main>
