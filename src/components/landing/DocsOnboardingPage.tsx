@@ -103,6 +103,10 @@ const CAPABILITIES = [
 		desc: "Parse and transform data with types that match reality.",
 	},
 	{
+		name: "Configuration",
+		desc: "Typed config from the environment, validated at startup, secrets redacted.",
+	},
+	{
 		name: "A consistent ecosystem",
 		desc: "HTTP, SQL, CLI, AI, and platform packages built on the same core.",
 	},
@@ -182,9 +186,9 @@ export function DocsOnboardingPage() {
 									{CAPABILITIES.map((c, i) => (
 										<div
 											key={c.name}
-											className={`border-b border-zinc-200 px-4 py-3 last:border-b-0 dark:border-zinc-800 ${
-												i === CAPABILITIES.length - 1 ? "sm:col-span-2" : ""
-											} ${i % 2 === 1 ? "sm:border-l" : ""}`}
+											className={`border-b border-zinc-200 px-4 py-3 last:border-b-0 sm:nth-last-2:border-b-0 dark:border-zinc-800 ${
+												i % 2 === 1 ? "sm:border-l" : ""
+											}`}
 										>
 											<dt className="text-sm font-semibold text-zinc-900 dark:text-white">
 												{c.name}
