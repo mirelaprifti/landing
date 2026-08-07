@@ -184,22 +184,36 @@ export function DocsOnboardingPage() {
 								concurrency, resource handling, and tracing are operators you
 								apply, not architectures you rebuild.
 							</p>
-							<div>
-								<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-									Out of the box
-								</p>
-								<ul className="mt-4 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2">
-									{CAPABILITIES.map((c) => (
-										<li key={c.name} className="text-sm leading-relaxed">
-											<span className="font-semibold text-zinc-900 dark:text-white">
-												{c.name}.
-											</span>{" "}
-											<span className="text-zinc-700 dark:text-zinc-300">
-												{c.desc}
-											</span>
-										</li>
-									))}
-								</ul>
+							{/* Features table, verbatim treatment from the docs
+							   Introduction page */}
+							<div className="overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800">
+								<table className="w-full border-collapse text-left">
+									<thead>
+										<tr className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+											<th className="px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+												Out of the box
+											</th>
+											<th className="px-4 py-3 font-mono text-xs font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
+												Description
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{CAPABILITIES.map((c) => (
+											<tr
+												key={c.name}
+												className="border-b border-zinc-200 last:border-b-0 dark:border-zinc-800"
+											>
+												<td className="px-4 py-3 align-top text-sm font-semibold text-zinc-900 dark:text-white">
+													{c.name}
+												</td>
+												<td className="px-4 py-3 align-top text-sm text-zinc-700 dark:text-zinc-300">
+													{c.desc}
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
 							</div>
 							<p>
 								The AI era raises the stakes. When coding agents write a growing
