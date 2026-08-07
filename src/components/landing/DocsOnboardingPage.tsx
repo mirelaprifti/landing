@@ -170,21 +170,21 @@ export function DocsOnboardingPage() {
 							before it. Following this spine takes most developers a few
 							focused days; everything else branches off from it.
 						</p>
-						<ol className="mt-10 space-y-4">
+						<ol className="mt-6 divide-y divide-zinc-200 dark:divide-zinc-800">
 							{LEARNING_PATH.map((item) => (
 								<li key={item.step}>
 									<a
 										href={getAssetPath(item.href)}
-										className="group flex items-start gap-6 rounded-lg border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-300 md:items-center dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700"
+										className="group flex items-baseline gap-6 py-5"
 									>
 										<span
-											className="font-mono text-2xl font-medium text-zinc-300 dark:text-zinc-700"
+											className="font-mono text-sm font-medium text-zinc-400 dark:text-zinc-500"
 											aria-hidden="true"
 										>
 											{item.step}
 										</span>
 										<span className="flex-1">
-											<span className="block text-base font-semibold text-zinc-900 dark:text-white">
+											<span className="text-base font-semibold text-zinc-900 underline-offset-4 group-hover:underline dark:text-white">
 												{item.title}
 											</span>
 											<span className="mt-1 block text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
