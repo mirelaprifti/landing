@@ -219,11 +219,14 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 export function DocsLayout({
 	activeSlug,
 	section = "docs",
+	sectionTabs = true,
 	tocItems,
 	children,
 }: {
 	activeSlug: string;
 	section?: DocsSectionKey;
+	/** Hide the sticky section-tabs bar (e.g. on the Onboarding entry page, whose sidebar already links onward). */
+	sectionTabs?: boolean;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -232,6 +235,12 @@ export function DocsLayout({
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
 	const sidebar = SIDEBARS[section];
+	// Sticky elements sit below navbar (top-16) plus the tabs bar (top-26)
+	// when it's shown.
+	const stickyTop = sectionTabs ? "top-26" : "top-16";
+	const stickyMaxH = sectionTabs
+		? "max-h-[calc(100vh-6.5rem)]"
+		: "max-h-[calc(100vh-4rem)]";
 
 	const activeLabel = sidebar
 		.flatMap((navSection) => navSection.items)
@@ -334,9 +343,11 @@ export function DocsLayout({
 			</a>
 			<Navigation activePath="/docs" wide compactSearch />
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section={section} />
+				{sectionTabs && <DocsSectionTabs section={section} />}
 				{/* Mobile docs nav: sticky disclosure below the section tabs */}
-				<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+				<div
+					className={`sticky ${stickyTop} z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95`}
+				>
 					<button
 						type="button"
 						onClick={() => setMobileNavOpen((open) => !open)}
@@ -372,7 +383,7 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-8"
+							className={`sticky ${stickyTop} ${stickyMaxH} overflow-y-auto px-6 py-8`}
 						>
 							{renderSections("docs-section")}
 						</nav>
@@ -390,7 +401,7 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-10"
+							className={`sticky ${stickyTop} ${stickyMaxH} overflow-y-auto px-6 py-10`}
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page
