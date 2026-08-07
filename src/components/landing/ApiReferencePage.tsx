@@ -89,7 +89,7 @@ export function ApiReferenceLayout({
 			</a>
 			<Navigation activePath="/docs/api" wide compactSearch />
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section="api" />
+				<DocsSectionTabs section="api" version={version} />
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
 						tocItems
@@ -114,27 +114,6 @@ export function ApiReferenceLayout({
 							>
 								API Reference
 							</a>
-							{/* Version switcher */}
-							<div
-								role="group"
-								aria-label="API reference version"
-								className="mb-4 grid grid-cols-2 gap-1 rounded-md border border-zinc-200 p-1 dark:border-zinc-800"
-							>
-								{(["v3", "v4"] as const).map((v) => (
-									<a
-										key={v}
-										href={getAssetPath(`/docs/api/${v}`)}
-										aria-current={version === v ? "page" : undefined}
-										className={`rounded px-2 py-1 text-center font-mono text-xs transition-colors ${
-											version === v
-												? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-												: "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-										}`}
-									>
-										{v}
-									</a>
-								))}
-							</div>
 							{version === "v4" && (
 								<p className="px-1 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
 									The v4 reference is coming soon.

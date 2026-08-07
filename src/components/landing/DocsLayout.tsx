@@ -85,19 +85,28 @@ const SECTIONS: {
  * Horizontal docs section tabs: a slim sticky bar directly below the
  * navbar. Inter labels with a 2px underline indicator sitting on the
  * bar's hairline; API Reference always navigates, the rest switch in
- * place when onSelect is provided.
+ * place when onSelect is provided. The right end carries the v3/v4
+ * switch for the versioned API area (segmented control per the
+ * EventsPage tabs idiom); on unversioned narrative pages neither
+ * version is highlighted.
  */
 export function DocsSectionTabs({
 	section,
+	version,
 	onSelect,
 }: {
 	section: DocsSectionKey;
+	/** Active API reference version; omit on unversioned (narrative) pages. */
+	version?: "v3" | "v4";
 	onSelect?: (key: DocsSectionKey) => void;
 }) {
 	return (
 		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
-			<nav aria-label="Docs sections" className="mx-auto w-full max-w-[88rem]">
-				<ul className="flex items-center gap-8 overflow-x-auto px-6">
+			<nav
+				aria-label="Docs sections"
+				className="mx-auto flex w-full max-w-[88rem] items-center justify-between gap-6 px-6"
+			>
+				<ul className="flex items-center gap-8 overflow-x-auto">
 					{SECTIONS.filter((s) => s.key !== "play").map((s) => {
 						const key = s.key;
 						const isActive = key === section;
@@ -142,6 +151,26 @@ export function DocsSectionTabs({
 						);
 					})}
 				</ul>
+				<div
+					role="group"
+					aria-label="API reference version"
+					className="inline-flex shrink-0 gap-1 rounded-lg border border-zinc-200 bg-zinc-100/50 p-0.5 dark:border-zinc-800 dark:bg-zinc-900/50"
+				>
+					{(["v3", "v4"] as const).map((v) => (
+						<a
+							key={v}
+							href={getAssetPath(`/docs/api/${v}`)}
+							aria-current={version === v ? "page" : undefined}
+							className={`rounded-md px-2.5 py-0.5 text-center font-mono text-xs transition-all duration-200 ${
+								version === v
+									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+									: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+							}`}
+						>
+							{v}
+						</a>
+					))}
+				</div>
 			</nav>
 		</div>
 	);
