@@ -142,8 +142,8 @@ export function DocsSectionTabs({
 }
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
-	// Onboarding: a guided path into Effect — why, setup, first program,
-	// then pointers into the deeper sections.
+	// Onboarding: a guided path into Effect — why, setup, first steps —
+	// all getting-started material lives here, not under Guides.
 	docs: [
 		{
 			title: "Start Here",
@@ -151,6 +151,19 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{ slug: "onboarding", label: "Welcome" },
 				{ slug: "why-effect", label: "Why Effect?" },
 				{ slug: "installation", label: "Installation" },
+			],
+		},
+		{
+			title: "Getting Started",
+			items: [
+				{ slug: "devtools", label: "Devtools" },
+				{ slug: "importing-effect", label: "Importing Effect" },
+				{ slug: "the-effect-type", label: "The Effect Type" },
+				{ slug: "creating-effects", label: "Creating Effects" },
+				{ slug: "running-effects", label: "Running Effects" },
+				{ slug: "using-generators", label: "Using Generators" },
+				{ slug: "building-pipelines", label: "Building Pipelines" },
+				{ slug: "control-flow", label: "Control Flow Operators" },
 			],
 		},
 		{
@@ -162,23 +175,12 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	// Guides: the in-depth documentation (previously the Docs section).
+	// Guides: the in-depth documentation; getting-started material lives
+	// under Onboarding.
 	guides: [
 		{
-			title: "Getting Started",
-			items: [
-				{ slug: "introduction", label: "Introduction" },
-				{ slug: "why-effect", label: "Why Effect?" },
-				{ slug: "installation", label: "Installation" },
-				{ slug: "devtools", label: "Devtools" },
-				{ slug: "importing-effect", label: "Importing Effect" },
-				{ slug: "the-effect-type", label: "The Effect Type" },
-				{ slug: "creating-effects", label: "Creating Effects" },
-				{ slug: "running-effects", label: "Running Effects" },
-				{ slug: "using-generators", label: "Using Generators" },
-				{ slug: "building-pipelines", label: "Building Pipelines" },
-				{ slug: "control-flow", label: "Control Flow Operators" },
-			],
+			title: "Overview",
+			items: [{ slug: "introduction", label: "Introduction" }],
 		},
 		{
 			title: "Error Management",
