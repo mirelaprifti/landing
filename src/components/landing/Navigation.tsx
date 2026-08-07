@@ -137,7 +137,7 @@ export function Navigation({
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								<Link
-									href={getAssetPath("/docs/introduction")}
+									href={getAssetPath("/docs/onboarding")}
 									variant="nav"
 									active={activePath?.startsWith("/docs")}
 									className={
@@ -319,7 +319,7 @@ export function Navigation({
 						{/* Primary navigation */}
 						<div className="space-y-1">
 							<a
-								href={getAssetPath("/docs/introduction")}
+								href={getAssetPath("/docs/onboarding")}
 								className={`block rounded-lg px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Docs
