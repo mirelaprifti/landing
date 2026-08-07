@@ -105,6 +105,33 @@ export function DocsSectionTabs({
 				aria-label="Docs sections"
 				className="mx-auto flex w-full max-w-[88rem] items-center gap-6 px-6"
 			>
+				{/* Dark active pill is zinc-700 — one step lighter than the
+				    zinc-900 container — mirroring the sidebar-pill contrast
+				    precedent. */}
+				<div
+					role="group"
+					aria-label="API reference version"
+					className="inline-flex shrink-0 gap-1 rounded-lg border border-zinc-300 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-900"
+				>
+					{(["v3", "v4"] as const).map((v) => (
+						<a
+							key={v}
+							href={getAssetPath(`/docs/api/${v}`)}
+							aria-current={version === v ? "page" : undefined}
+							className={`rounded-md px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
+								version === v
+									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
+									: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+							}`}
+						>
+							{v}
+						</a>
+					))}
+				</div>
+				<div
+					className="h-4.5 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800"
+					aria-hidden="true"
+				/>
 				<ul className="flex items-center gap-8 overflow-x-auto">
 					{SECTIONS.filter((s) => s.key !== "play").map((s) => {
 						const key = s.key;
@@ -150,33 +177,6 @@ export function DocsSectionTabs({
 						);
 					})}
 				</ul>
-				<div
-					className="h-4.5 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800"
-					aria-hidden="true"
-				/>
-				{/* Dark active pill is zinc-700 — one step lighter than the
-				    zinc-900 container — mirroring the sidebar-pill contrast
-				    precedent. */}
-				<div
-					role="group"
-					aria-label="API reference version"
-					className="inline-flex shrink-0 gap-1 rounded-lg border border-zinc-300 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-900"
-				>
-					{(["v3", "v4"] as const).map((v) => (
-						<a
-							key={v}
-							href={getAssetPath(`/docs/api/${v}`)}
-							aria-current={version === v ? "page" : undefined}
-							className={`rounded-md px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
-								version === v
-									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
-									: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-							}`}
-						>
-							{v}
-						</a>
-					))}
-				</div>
 			</nav>
 		</div>
 	);
