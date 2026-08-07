@@ -165,7 +165,7 @@ export function DocsSectionTabs({
 							aria-current={version === v ? "page" : undefined}
 							className={`rounded-md px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
 								version === v
-									? "bg-zinc-900 font-semibold text-white dark:bg-zinc-700"
+									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
 									: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 							}`}
 						>
