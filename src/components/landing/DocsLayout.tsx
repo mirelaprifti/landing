@@ -493,7 +493,7 @@ export function DocsLayout({
 					<DocsSectionLinks section={activeSection} onSelect={selectSection} />
 				</Navigation>
 			) : (
-				<Navigation activePath="/docs" wide hideLinks />
+				<Navigation activePath="/docs" wide compactSearch hideLinks />
 			)}
 			<div className="relative w-full pt-16">
 				{nav === "tabs" && (
