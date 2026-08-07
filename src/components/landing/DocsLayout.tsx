@@ -219,14 +219,14 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 export function DocsLayout({
 	activeSlug,
 	section = "docs",
-	sectionTabs = true,
+	showSidebar = true,
 	tocItems,
 	children,
 }: {
 	activeSlug: string;
 	section?: DocsSectionKey;
-	/** Hide the sticky section-tabs bar (e.g. on the Onboarding entry page, whose sidebar already links onward). */
-	sectionTabs?: boolean;
+	/** Hide the left sidebar tree (e.g. on the Onboarding entry page, whose content already covers its few items). */
+	showSidebar?: boolean;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -235,12 +235,6 @@ export function DocsLayout({
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
 	const sidebar = SIDEBARS[section];
-	// Sticky elements sit below navbar (top-16) plus the tabs bar (top-26)
-	// when it's shown.
-	const stickyTop = sectionTabs ? "top-26" : "top-16";
-	const stickyMaxH = sectionTabs
-		? "max-h-[calc(100vh-6.5rem)]"
-		: "max-h-[calc(100vh-4rem)]";
 
 	const activeLabel = sidebar
 		.flatMap((navSection) => navSection.items)
@@ -343,65 +337,75 @@ export function DocsLayout({
 			</a>
 			<Navigation activePath="/docs" wide compactSearch />
 			<div className="relative w-full pt-16">
-				{sectionTabs && <DocsSectionTabs section={section} />}
+				<DocsSectionTabs section={section} />
 				{/* Mobile docs nav: sticky disclosure below the section tabs */}
-				<div
-					className={`sticky ${stickyTop} z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95`}
-				>
-					<button
-						type="button"
-						onClick={() => setMobileNavOpen((open) => !open)}
-						aria-expanded={mobileNavOpen}
-						aria-controls="docs-mobile-nav"
-						className="flex w-full items-center gap-2 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
-					>
-						<Icon name="menu" className="text-base" aria-hidden="true" />
-						<span>Docs menu</span>
-						{activeLabel && (
-							<span className="truncate text-zinc-500 dark:text-zinc-400">
-								/ {activeLabel}
-							</span>
+				{showSidebar && (
+					<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+						<button
+							type="button"
+							onClick={() => setMobileNavOpen((open) => !open)}
+							aria-expanded={mobileNavOpen}
+							aria-controls="docs-mobile-nav"
+							className="flex w-full items-center gap-2 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
+						>
+							<Icon name="menu" className="text-base" aria-hidden="true" />
+							<span>Docs menu</span>
+							{activeLabel && (
+								<span className="truncate text-zinc-500 dark:text-zinc-400">
+									/ {activeLabel}
+								</span>
+							)}
+							<Icon
+								name="chevron-down"
+								className={`ml-auto text-base transition-transform ${mobileNavOpen ? "rotate-180" : ""}`}
+								aria-hidden="true"
+							/>
+						</button>
+						{mobileNavOpen && (
+							<nav
+								id="docs-mobile-nav"
+								aria-label="Docs navigation"
+								className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
+							>
+								{renderSections("docs-mobile-section")}
+							</nav>
 						)}
-						<Icon
-							name="chevron-down"
-							className={`ml-auto text-base transition-transform ${mobileNavOpen ? "rotate-180" : ""}`}
-							aria-hidden="true"
-						/>
-					</button>
-					{mobileNavOpen && (
-						<nav
-							id="docs-mobile-nav"
-							aria-label="Docs navigation"
-							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
-						>
-							{renderSections("docs-mobile-section")}
-						</nav>
-					)}
-				</div>
-				<div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 md:grid-cols-[1fr_240px] lg:grid-cols-[240px_1fr_240px]">
+					</div>
+				)}
+				<div
+					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 md:grid-cols-[1fr_240px] ${
+						showSidebar
+							? "lg:grid-cols-[240px_1fr_240px]"
+							: "lg:grid-cols-[1fr_240px]"
+					}`}
+				>
 					{/* Left sidebar */}
-					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
-						<nav
-							aria-label="Docs navigation"
-							className={`sticky ${stickyTop} ${stickyMaxH} overflow-y-auto px-6 py-8`}
-						>
-							{renderSections("docs-section")}
-						</nav>
-					</aside>
+					{showSidebar && (
+						<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
+							<nav
+								aria-label="Docs navigation"
+								className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-8"
+							>
+								{renderSections("docs-section")}
+							</nav>
+						</aside>
+					)}
 
 					{/* Main content */}
 					<main
 						id="main-content"
 						className="min-w-0 px-6 py-12 lg:px-12 lg:py-16"
 					>
-						{children}
+						<div className={showSidebar ? undefined : "mx-auto max-w-3xl"}>
+							{children}
+						</div>
 					</main>
 
 					{/* Right TOC */}
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className={`sticky ${stickyTop} ${stickyMaxH} overflow-y-auto px-6 py-10`}
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-10"
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page

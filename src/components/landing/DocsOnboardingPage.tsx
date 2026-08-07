@@ -61,7 +61,7 @@ const linkClass =
 
 export function DocsOnboardingPage() {
 	return (
-		<DocsLayout activeSlug="onboarding" sectionTabs={false} tocItems={TOC}>
+		<DocsLayout activeSlug="onboarding" showSidebar={false} tocItems={TOC}>
 			<article className="max-w-3xl">
 				<h1
 					id="overview"
