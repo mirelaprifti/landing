@@ -48,7 +48,7 @@ const SECTIONS: {
 	},
 	{
 		key: "api",
-		label: "References",
+		label: "Reference",
 		href: "/docs/api/v3",
 	},
 ];

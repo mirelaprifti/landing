@@ -63,7 +63,7 @@ const NEXT_STEPS = [
 		href: "/docs/introduction",
 	},
 	{
-		title: "References",
+		title: "Reference",
 		desc: "The complete API reference for every Effect module, versioned per release.",
 		href: "/docs/api/v3",
 	},
