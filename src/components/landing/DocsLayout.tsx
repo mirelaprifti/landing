@@ -25,31 +25,21 @@ type NavSection = { title: string; items: NavItem[] };
  * educational content and the API reference all live under one docs
  * shell. Cookbooks / Guides to follow.
  */
-export type DocsSectionKey =
-	| "docs"
-	| "tutorials"
-	| "guides"
-	| "cookbooks"
-	| "api";
+export type DocsSectionKey = "docs" | "guides" | "api";
 
 const SECTIONS: {
-	key: DocsSectionKey | "play";
+	key: DocsSectionKey;
 	label: string;
 	href: string;
 }[] = [
-	// Docs holds the narrative documentation; Tutorials/Guides/Cookbooks
-	// pages don't exist yet and route to Introduction as a stand-in. The
-	// ?section= param preserves the selection when arriving from a page
-	// outside DocsLayout (e.g. the API reference).
+	// Docs holds the narrative documentation; Guides pages don't exist
+	// yet and route to Introduction as a stand-in. The ?section= param
+	// preserves the selection when arriving from a page outside
+	// DocsLayout (e.g. the API reference).
 	{
 		key: "docs",
 		label: "Docs",
 		href: "/docs/introduction",
-	},
-	{
-		key: "tutorials",
-		label: "Tutorials",
-		href: "/docs/introduction?section=tutorials",
 	},
 	{
 		key: "guides",
@@ -57,19 +47,9 @@ const SECTIONS: {
 		href: "/docs/introduction?section=guides",
 	},
 	{
-		key: "cookbooks",
-		label: "Cookbooks",
-		href: "/docs/introduction?section=cookbooks",
-	},
-	{
 		key: "api",
 		label: "API Reference",
 		href: "/docs/api/v3",
-	},
-	{
-		key: "play",
-		label: "Play",
-		href: "/play",
 	},
 ];
 
@@ -133,7 +113,7 @@ export function DocsSectionTabs({
 					aria-hidden="true"
 				/>
 				<ul className="flex items-center gap-8 overflow-x-auto">
-					{SECTIONS.filter((s) => s.key !== "play").map((s) => {
+					{SECTIONS.map((s) => {
 						const key = s.key;
 						const isActive = key === section;
 						const label = s.label;
@@ -155,7 +135,7 @@ export function DocsSectionTabs({
 						);
 						return (
 							<li key={key}>
-								{onSelect && key !== "api" && key !== "play" ? (
+								{onSelect && key !== "api" ? (
 									<button
 										type="button"
 										onClick={() => onSelect(key)}
@@ -225,32 +205,8 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			],
 		},
 	],
-	// Tutorials/Guides/Cookbooks content doesn't exist yet — every item
-	// routes to Introduction as a stand-in for the prototype.
-	tutorials: [
-		{
-			title: "Hands-on",
-			items: [
-				{ slug: "play", label: "Playground", href: "/docs/introduction" },
-				{
-					slug: "courses",
-					label: "Courses & Workshops",
-					href: "/docs/introduction",
-				},
-			],
-		},
-		{
-			title: "Watch & Listen",
-			items: [
-				{
-					slug: "videos",
-					label: "Videos & Talks",
-					href: "/docs/introduction",
-				},
-				{ slug: "podcast", label: "Podcast", href: "/docs/introduction" },
-			],
-		},
-	],
+	// Guides content doesn't exist yet — every item routes to
+	// Introduction as a stand-in for the prototype.
 	guides: [
 		{
 			title: "How-to Guides",
@@ -273,43 +229,6 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{
 					slug: "migrating",
 					label: "Migrating to Effect",
-					href: "/docs/introduction",
-				},
-			],
-		},
-	],
-	cookbooks: [
-		{
-			title: "Recipes",
-			items: [
-				{
-					slug: "http-apis",
-					label: "HTTP & APIs",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "data-schema",
-					label: "Data & Schema",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "concurrency-patterns",
-					label: "Concurrency Patterns",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "testing",
-					label: "Testing",
-					href: "/docs/introduction",
-				},
-			],
-		},
-		{
-			title: "Community",
-			items: [
-				{
-					slug: "articles",
-					label: "Community Articles",
 					href: "/docs/introduction",
 				},
 			],
