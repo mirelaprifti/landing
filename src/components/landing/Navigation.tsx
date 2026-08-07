@@ -11,6 +11,8 @@ interface NavigationProps {
 	belowBanner?: boolean;
 	wide?: boolean;
 	fullWidth?: boolean;
+	/** Render a "/" separator after the logo (docs shell wayfinding). */
+	logoSlash?: boolean;
 	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
 	compactSearch?: boolean;
 	/** Replaces the default desktop links (Docs/Blog/…) — used by the docs shell for its section links. */
@@ -35,6 +37,7 @@ export function Navigation({
 	wide = false,
 	fullWidth = false,
 	belowBanner = false,
+	logoSlash = false,
 	compactSearch = false,
 	children,
 }: NavigationProps) {
@@ -134,6 +137,19 @@ export function Navigation({
 									className="hidden h-[1.75rem] w-auto dark:block"
 								/>
 							</a>
+							{logoSlash && (
+								// Sized to the wordmark: caps/slash metrics match the logo
+								// "e" (13.7px x-height, baseline 23.4px from the logo top);
+								// JetBrains Mono caps are 0.730em → 18.75px, nudged 2.7px
+								// onto the same baseline. White like the wordmark (dark ink
+								// in light theme, where the logo itself is black).
+								<span
+									className={`ml-2.5 translate-y-[2.7px] font-mono text-[18.75px] leading-[13.7px] font-medium ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
+								>
+									/
+								</span>
+							)}
+
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								{children ?? (

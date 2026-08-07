@@ -412,7 +412,7 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide compactSearch>
+			<Navigation activePath="/docs" wide compactSearch logoSlash>
 				<DocsSectionLinks section={activeSection} onSelect={selectSection} />
 			</Navigation>
 			<div className="relative w-full pt-16">

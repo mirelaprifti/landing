@@ -87,7 +87,7 @@ export function ApiReferenceLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide compactSearch>
+			<Navigation activePath="/docs" wide compactSearch logoSlash>
 				<DocsSectionLinks section="api" />
 			</Navigation>
 			<div className="relative w-full pt-16">
