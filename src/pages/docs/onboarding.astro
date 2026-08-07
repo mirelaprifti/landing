@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { DocsOnboardingPage } from "@/components/landing/DocsOnboardingPage";
+---
+
+<BaseLayout
+  themeable
+  title="Welcome to Effect — Effect Docs"
+  description="Start here: why Effect exists, how to set it up, and the shortest path from zero to productive with Effect."
+>
+  <DocsOnboardingPage client:load />
+</BaseLayout>

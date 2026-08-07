@@ -39,12 +39,12 @@ const SECTIONS: {
 	{
 		key: "docs",
 		label: "Onboarding",
-		href: "/docs/introduction",
+		href: "/docs/onboarding",
 	},
 	{
 		key: "guides",
 		label: "Guides",
-		href: "/docs/introduction?section=guides",
+		href: "/docs/introduction",
 	},
 	{
 		key: "api",
@@ -163,7 +163,28 @@ export function DocsSectionTabs({
 }
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
+	// Onboarding: a guided path into Effect — why, setup, first program,
+	// then pointers into the deeper sections.
 	docs: [
+		{
+			title: "Start Here",
+			items: [
+				{ slug: "onboarding", label: "Welcome" },
+				{ slug: "why-effect", label: "Why Effect?" },
+				{ slug: "installation", label: "Installation" },
+			],
+		},
+		{
+			title: "Next Steps",
+			items: [
+				{ slug: "guides", label: "Guides", href: "/docs/introduction" },
+				{ slug: "api", label: "API Reference", href: "/docs/api/v3" },
+				{ slug: "play", label: "Playground", href: "/play" },
+			],
+		},
+	],
+	// Guides: the in-depth documentation (previously the Docs section).
+	guides: [
 		{
 			title: "Getting Started",
 			items: [
@@ -202,35 +223,6 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 				{ slug: "deferred", label: "Deferred" },
 				{ slug: "queue", label: "Queue" },
 				{ slug: "pubsub", label: "PubSub" },
-			],
-		},
-	],
-	// Guides content doesn't exist yet — every item routes to
-	// Introduction as a stand-in for the prototype.
-	guides: [
-		{
-			title: "How-to Guides",
-			items: [
-				{
-					slug: "project-setup",
-					label: "Project Setup",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "dependency-injection",
-					label: "Dependency Injection",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "observability",
-					label: "Observability",
-					href: "/docs/introduction",
-				},
-				{
-					slug: "migrating",
-					label: "Migrating to Effect",
-					href: "/docs/introduction",
-				},
 			],
 		},
 	],

@@ -40,7 +40,7 @@ const FEATURES = [
 
 export function DocsIntroductionPage() {
 	return (
-		<DocsLayout activeSlug="introduction" tocItems={TOC}>
+		<DocsLayout activeSlug="introduction" section="guides" tocItems={TOC}>
 			<article className="max-w-3xl">
 				<h1
 					id="overview"
