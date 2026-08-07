@@ -87,16 +87,15 @@ const SECTIONS: {
  * bar's hairline; API Reference always navigates, the rest switch in
  * place when onSelect is provided. The right end carries the v3/v4
  * switch for the versioned API area (segmented control per the
- * EventsPage tabs idiom); on unversioned narrative pages neither
- * version is highlighted.
+ * EventsPage tabs idiom); v3 is selected by default.
  */
 export function DocsSectionTabs({
 	section,
-	version,
+	version = "v3",
 	onSelect,
 }: {
 	section: DocsSectionKey;
-	/** Active API reference version; omit on unversioned (narrative) pages. */
+	/** Active API reference version; defaults to v3 (the current stable). */
 	version?: "v3" | "v4";
 	onSelect?: (key: DocsSectionKey) => void;
 }) {
