@@ -153,7 +153,7 @@ export function DocsOnboardingPage() {
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Why Effect?
 						</h2>
-						<div className="mt-5 space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+						<div className="mt-6 space-y-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 							<p>
 								TypeScript is excellent at describing your data, but it says
 								almost nothing about your programs: a function&apos;s signature
@@ -223,7 +223,7 @@ export function DocsOnboardingPage() {
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Your Learning Path
 						</h2>
-						<p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+						<p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 							Effect rewards learning in order: each step builds on the one
 							before it. Following this spine takes most developers a few
 							focused days; everything else branches off from it.
@@ -316,7 +316,7 @@ export function DocsOnboardingPage() {
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Join our Community
 						</h2>
-						<p className="mt-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+						<p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 							Effect has an active, friendly community where most questions get
 							answered within minutes. Join us on{" "}
 							<a
