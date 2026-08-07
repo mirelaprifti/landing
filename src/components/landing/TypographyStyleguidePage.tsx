@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
+import { ThemeToggleButton } from "@/components/ui/ThemeToggle";
 import { getAssetPath } from "../../utils/assetPath";
 import { BLOG_ARTICLE_CLASS } from "./BlogPostPage";
 import { DOCS_ARTICLE_CLASS } from "./DocsLayout";
-import { ThemeToggleButton } from "@/components/ui/ThemeToggle";
 
 /**
  * Internal styleguide for the entire website: canonical text elements and
@@ -147,9 +147,7 @@ const ELEMENT_SPECS: {
  * A single class string, or one labeled entry per role for multi-part specs.
  * `value` must stay a pure, paste-ready class string — context goes in `hint`.
  */
-type SpecClasses =
-	| string
-	| { label: string; value: string; hint?: string }[];
+type SpecClasses = string | { label: string; value: string; hint?: string }[];
 
 function CopyButton({ text }: { text: string }) {
 	const [copied, setCopied] = useState(false);
@@ -367,37 +365,6 @@ export function TypographyStyleguidePage() {
 										</div>
 									))}
 								</div>
-							</SpecRow>
-
-							<SpecRow
-								title="Code snippets"
-								note="One scheme site-wide: the GitHub palette. Shiki github-light/dark on API pages; tok-* classes (globals.css) everywhere else."
-								classes={[
-									{
-										label: "tokens",
-										value:
-											"tok-keyword · tok-string · tok-constant · tok-entity · tok-comment · tok-fg",
-									},
-								]}
-							>
-								<pre className="overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-4 font-mono text-sm leading-[1.6] dark:border-zinc-800 dark:bg-zinc-950">
-									<code className="tok-fg">
-										<span className="tok-keyword">import</span>
-										{" { Array } "}
-										<span className="tok-keyword">from</span>{" "}
-										<span className="tok-string">"effect"</span>
-										{"\n\n"}
-										<span className="tok-keyword">const</span>
-										{" result "}
-										<span className="tok-keyword">=</span>
-										{" Array."}
-										<span className="tok-constant">append</span>
-										{"([1, 2, 3], 4)\nconsole."}
-										<span className="tok-constant">log</span>
-										{"(result) "}
-										<span className="tok-comment">{"// [1, 2, 3, 4]"}</span>
-									</code>
-								</pre>
 							</SpecRow>
 						</GuideSection>
 
@@ -652,7 +619,6 @@ export function TypographyStyleguidePage() {
 										<li>Themeable color pairs, even on dark-only pages</li>
 										<li>ui/Button and ui/Link for every CTA and link</li>
 										<li>Container and section-rhythm strings verbatim</li>
-										<li>Code color via tok-* tokens only; chips stay zinc</li>
 									</ul>
 								</div>
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
@@ -750,17 +716,6 @@ export function TypographyStyleguidePage() {
 										of Linear's blog.
 									</p>
 								</blockquote>
-
-								<pre>
-									<code>{`import { Effect } from "effect"
-
-const program = Effect.gen(function* () {
-  const result = yield* Effect.succeed(42)
-  yield* Effect.log(\`The answer is \${result}\`)
-})
-
-Effect.runPromise(program)`}</code>
-								</pre>
 
 								<figure>
 									<img
@@ -977,21 +932,6 @@ Effect.runPromise(program)`}</code>
 										<li>Typed errors surface failure cases in the signature</li>
 										<li>Structured concurrency supervises every fiber</li>
 									</ul>
-									<pre>
-										<code>
-											<span className="text-rose-400">import</span>
-											{" { Effect } "}
-											<span className="text-rose-400">from</span>{" "}
-											<span className="text-sky-300">"effect"</span>
-											{"\n\n"}
-											<span className="text-rose-400">const</span>{" "}
-											<span className="text-blue-400">program</span>{" "}
-											<span className="text-rose-400">=</span>
-											{" Effect."}
-											<span className="text-blue-400">succeed</span>
-											{"(42)"}
-										</code>
-									</pre>
 								</div>
 							</SpecRow>
 
