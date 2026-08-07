@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
@@ -11,12 +11,8 @@ interface NavigationProps {
 	belowBanner?: boolean;
 	wide?: boolean;
 	fullWidth?: boolean;
-	/** Wayfinding label rendered after the logo as "/ LABEL" (docs shell). */
-	logoSuffix?: string;
 	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
 	compactSearch?: boolean;
-	/** Replaces the default desktop links (Docs/Blog/…) — used by the docs shell for its section links. */
-	children?: ReactNode;
 }
 
 function useShortcutHint() {
@@ -37,9 +33,7 @@ export function Navigation({
 	wide = false,
 	fullWidth = false,
 	belowBanner = false,
-	logoSuffix,
 	compactSearch = false,
-	children,
 }: NavigationProps) {
 	const shortcutHint = useShortcutHint();
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
@@ -137,103 +131,72 @@ export function Navigation({
 									className="hidden h-[1.75rem] w-auto dark:block"
 								/>
 							</a>
-							{logoSuffix && (
-								// Brand lockup ("Effect / Learn" as one mark): caps match
-								// the logo "e" (13.7px x-height, baseline 23.4px from the
-								// logo top), nudged 2.7px onto the same baseline; mono
-								// slash at 18.75px (0.730em caps), Inter label at 18.8px
-								// (0.7275em caps). The bold label carries the wordmark's
-								// ink and weight; the slash is a muted separator with
-								// symmetric 16px around it.
-								<span
-									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
-								>
-									<span
-										className={
-											transparent
-												? "text-white/60"
-												: "text-zinc-400 dark:text-zinc-500"
-										}
-									>
-										/
-									</span>
-									<span className="font-sans text-[18.8px] font-bold">
-										{logoSuffix}
-									</span>
-								</span>
-							)}
 
 							{/* Navigation links next to logo */}
-							<div
-								className={`${logoSuffix ? "ml-12" : "ml-8"} hidden items-center gap-6 md:flex`}
-							>
-								{children ?? (
-									<>
-										<Link
-											href={getAssetPath("/docs/introduction")}
-											variant="nav"
-											active={
-												activePath?.startsWith("/docs") &&
-												!activePath?.startsWith("/docs/api")
-											}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											Docs
-										</Link>
-										<Link
-											href={getAssetPath("/docs/api/v3")}
-											variant="nav"
-											active={activePath?.startsWith("/docs/api")}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											API
-										</Link>
-										<Link
-											href={getAssetPath("/play")}
-											variant="nav"
-											active={activePath?.startsWith("/play")}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											Play
-										</Link>
-										<Link
-											href={getAssetPath("/blog")}
-											variant="nav"
-											active={activePath?.startsWith("/blog")}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											Blog
-										</Link>
-										<Link
-											href={getAssetPath("/podcast")}
-											variant="nav"
-											active={activePath?.startsWith("/podcast")}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											Podcast
-										</Link>
-										<Link
-											href={getAssetPath("/community-hub")}
-											variant="nav"
-											active={activePath?.startsWith("/community-hub")}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											Community
-										</Link>
-									</>
-								)}
+							<div className="ml-8 hidden items-center gap-6 md:flex">
+								<Link
+									href={getAssetPath("/docs/introduction")}
+									variant="nav"
+									active={
+										activePath?.startsWith("/docs") &&
+										!activePath?.startsWith("/docs/api")
+									}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Docs
+								</Link>
+								<Link
+									href={getAssetPath("/docs/api/v3")}
+									variant="nav"
+									active={activePath?.startsWith("/docs/api")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									API
+								</Link>
+								<Link
+									href={getAssetPath("/play")}
+									variant="nav"
+									active={activePath?.startsWith("/play")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Play
+								</Link>
+								<Link
+									href={getAssetPath("/blog")}
+									variant="nav"
+									active={activePath?.startsWith("/blog")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Blog
+								</Link>
+								<Link
+									href={getAssetPath("/podcast")}
+									variant="nav"
+									active={activePath?.startsWith("/podcast")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Podcast
+								</Link>
+								<Link
+									href={getAssetPath("/community-hub")}
+									variant="nav"
+									active={activePath?.startsWith("/community-hub")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Community
+								</Link>
 							</div>
 
 							{/* Mobile menu button */}

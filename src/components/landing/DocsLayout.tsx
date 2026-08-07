@@ -82,63 +82,10 @@ const SECTIONS: {
  * the same relative contrast against the zinc-900 panel behind it.
  */
 /**
- * Docs section links rendered inline in the top navbar (via Navigation's
- * links slot), shared by DocsLayout and the API reference. Same voice as
- * the site's default navbar links.
- */
-export function DocsSectionLinks({
-	section,
-	onSelect,
-}: {
-	section: DocsSectionKey;
-	/**
-	 * When provided, sections other than API Reference and Playground
-	 * become in-place selections (buttons) instead of navigations; those
-	 * two always navigate since they live in different layouts.
-	 */
-	onSelect?: (key: DocsSectionKey) => void;
-}) {
-	return (
-		<>
-			{SECTIONS.map((s) => {
-				const key = s.key;
-				const isActive = key === section;
-				const itemClass = `border-b border-transparent text-sm font-medium whitespace-nowrap transition-colors hover:border-current ${
-					isActive
-						? "text-zinc-900 dark:text-white"
-						: "text-zinc-700 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-				}`;
-				return onSelect && key !== "api" && key !== "play" ? (
-					<button
-						key={key}
-						type="button"
-						onClick={() => onSelect(key)}
-						aria-current={isActive ? "true" : undefined}
-						className={`cursor-pointer ${itemClass}`}
-					>
-						{s.label}
-					</button>
-				) : (
-					<a
-						key={key}
-						href={getAssetPath(s.href)}
-						aria-current={isActive ? "true" : undefined}
-						className={itemClass}
-					>
-						{s.label}
-					</a>
-				);
-			})}
-		</>
-	);
-}
-
-/**
  * Horizontal docs section tabs: a slim sticky bar directly below the
- * navbar (the docs shell's original nav treatment, used by the "tabs"
- * variant). Inter labels with a 2px underline indicator sitting on the
- * bar's hairline; API Reference and Playground always navigate, the
- * rest switch in place when onSelect is provided.
+ * navbar. Inter labels with a 2px underline indicator sitting on the
+ * bar's hairline; API Reference always navigates, the rest switch in
+ * place when onSelect is provided.
  */
 export function DocsSectionTabs({
 	section,
@@ -199,13 +146,6 @@ export function DocsSectionTabs({
 		</div>
 	);
 }
-
-/**
- * Docs navbar treatments: "tabs" is the original shell (plain navbar,
- * sticky section-tabs bar below); "lockup" folds the section links into
- * the navbar next to an "Effect / Learn" brand lockup.
- */
-export type DocsNavVariant = "tabs" | "lockup";
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 	docs: [
@@ -354,13 +294,11 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 export function DocsLayout({
 	activeSlug,
 	section = "docs",
-	nav = "tabs",
 	tocItems,
 	children,
 }: {
 	activeSlug: string;
 	section?: DocsSectionKey;
-	nav?: DocsNavVariant;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -488,21 +426,11 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			{nav === "lockup" ? (
-				<Navigation activePath="/docs" wide compactSearch logoSuffix="Learn">
-					<DocsSectionLinks section={activeSection} onSelect={selectSection} />
-				</Navigation>
-			) : (
-				<Navigation activePath="/docs" wide compactSearch />
-			)}
+			<Navigation activePath="/docs" wide compactSearch />
 			<div className="relative w-full pt-16">
-				{nav === "tabs" && (
-					<DocsSectionTabs section={activeSection} onSelect={selectSection} />
-				)}
-				{/* Mobile docs nav: sticky disclosure below the navbar/tabs */}
-				<div
-					className={`sticky ${nav === "tabs" ? "top-26" : "top-16"} z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95`}
-				>
+				<DocsSectionTabs section={activeSection} onSelect={selectSection} />
+				{/* Mobile docs nav: sticky disclosure below the section tabs */}
+				<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
 					<button
 						type="button"
 						onClick={() => setMobileNavOpen((open) => !open)}
@@ -538,7 +466,7 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className={`sticky overflow-y-auto px-6 py-8 ${nav === "tabs" ? "top-26 max-h-[calc(100vh-6.5rem)]" : "top-16 max-h-[calc(100vh-4rem)]"}`}
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-8"
 						>
 							{renderSections("docs-section")}
 						</nav>
@@ -556,7 +484,7 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className={`sticky overflow-y-auto px-6 py-10 ${nav === "tabs" ? "top-26 max-h-[calc(100vh-6.5rem)]" : "top-16 max-h-[calc(100vh-4rem)]"}`}
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-10"
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page
