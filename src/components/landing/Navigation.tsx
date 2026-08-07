@@ -138,24 +138,35 @@ export function Navigation({
 								/>
 							</a>
 							{logoSuffix && (
-								// Sized to the wordmark: caps match the logo "e" (13.7px
-								// x-height, baseline 23.4px from the logo top), nudged
-								// 2.7px onto the same baseline. Mono slash at 18.75px
-								// (0.730em caps), Inter label at 18.8px (0.7275em caps).
-								// Ink matches the wordmark (white in dark, black in
-								// light), with symmetric 16px around the slash.
+								// Brand lockup ("Effect / Learn" as one mark): caps match
+								// the logo "e" (13.7px x-height, baseline 23.4px from the
+								// logo top), nudged 2.7px onto the same baseline; mono
+								// slash at 18.75px (0.730em caps), Inter label at 18.8px
+								// (0.7275em caps). The bold label carries the wordmark's
+								// ink and weight; the slash is a muted separator with
+								// symmetric 16px around it.
 								<span
 									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
 								>
-									<span>/</span>
-									<span className="font-sans text-[18.8px] font-semibold">
+									<span
+										className={
+											transparent
+												? "text-white/60"
+												: "text-zinc-400 dark:text-zinc-500"
+										}
+									>
+										/
+									</span>
+									<span className="font-sans text-[18.8px] font-bold">
 										{logoSuffix}
 									</span>
 								</span>
 							)}
 
 							{/* Navigation links next to logo */}
-							<div className="ml-8 hidden items-center gap-6 md:flex">
+							<div
+								className={`${logoSuffix ? "ml-12" : "ml-8"} hidden items-center gap-6 md:flex`}
+							>
 								{children ?? (
 									<>
 										<Link
