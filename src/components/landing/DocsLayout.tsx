@@ -73,7 +73,7 @@ export function DocsSectionTabs({
 		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
 			<nav
 				aria-label="Docs sections"
-				className="mx-auto flex w-full max-w-[88rem] items-center gap-6 px-6"
+				className="mx-auto flex w-full max-w-[88rem] items-center gap-6 px-4"
 			>
 				{/* Dark active pill is zinc-700 — one step lighter than the
 				    zinc-900 container — mirroring the sidebar-pill contrast
@@ -342,7 +342,7 @@ export function DocsLayout({
 						onClick={() => setMobileNavOpen((open) => !open)}
 						aria-expanded={mobileNavOpen}
 						aria-controls="docs-mobile-nav"
-						className="flex w-full items-center gap-2 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
+						className="flex w-full items-center gap-2 px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
 					>
 						<Icon name="menu" className="text-base" aria-hidden="true" />
 						<span>Docs menu</span>
@@ -361,7 +361,7 @@ export function DocsLayout({
 						<nav
 							id="docs-mobile-nav"
 							aria-label="Docs navigation"
-							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-6 py-4 dark:border-zinc-800"
+							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-4 py-4 dark:border-zinc-800"
 						>
 							{renderSections("docs-mobile-section")}
 						</nav>
@@ -372,7 +372,7 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-8"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-8"
 						>
 							{renderSections("docs-section")}
 						</nav>
@@ -390,7 +390,7 @@ export function DocsLayout({
 					<aside className="hidden border-l border-zinc-200 md:block dark:border-zinc-800">
 						<nav
 							aria-label="On this page"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-6 py-10"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-10"
 						>
 							<p className="mb-4 font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
 								On this page

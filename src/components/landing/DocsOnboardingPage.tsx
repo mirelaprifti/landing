@@ -86,7 +86,7 @@ export function DocsOnboardingPage() {
 				<DocsSectionTabs section="docs" />
 				<main
 					id="main-content"
-					className="mx-auto w-full max-w-[88rem] px-6 py-16 lg:py-24"
+					className="mx-auto w-full max-w-[88rem] px-4 py-16 lg:py-24"
 				>
 					{/* Hero */}
 					<section className="max-w-3xl">
