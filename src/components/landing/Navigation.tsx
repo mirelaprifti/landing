@@ -135,8 +135,12 @@ export function Navigation({
 								/>
 							</a>
 							{logoSuffix && (
+								// Caps sized to the wordmark's x-height: the logo "e" is
+								// 78.2/160 of the 28px logo (13.7px), baseline 23.4px from
+								// its top. Roboto Mono caps are 0.711em → 19.25px, and the
+								// 2px nudge drops the text onto that same baseline.
 								<span
-									className={`ml-3 font-mono text-sm font-medium tracking-wider uppercase ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400"}`}
+									className={`ml-3 translate-y-0.5 font-mono text-[19.25px] leading-[13.7px] font-medium tracking-wider uppercase ${transparent ? "text-white/80" : "text-zinc-500 dark:text-zinc-400"}`}
 								>
 									/ {logoSuffix}
 								</span>
