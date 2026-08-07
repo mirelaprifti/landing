@@ -144,14 +144,16 @@ export function Navigation({
 								// onto the same baseline. White like the wordmark (dark ink
 								// in light theme, where the logo itself is black).
 								<span
-									className={`ml-2.5 translate-y-[2.7px] font-mono text-[18.75px] leading-[13.7px] font-medium ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
+									className={`ml-4 translate-y-[2.7px] font-mono text-[18.75px] leading-[13.7px] font-medium ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
 								>
 									/
 								</span>
 							)}
 
 							{/* Navigation links next to logo */}
-							<div className="ml-8 hidden items-center gap-6 md:flex">
+							<div
+								className={`${logoSlash ? "ml-4" : "ml-8"} hidden items-center gap-6 md:flex`}
+							>
 								{children ?? (
 									<>
 										<Link
