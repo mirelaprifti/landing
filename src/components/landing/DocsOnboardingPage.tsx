@@ -153,14 +153,7 @@ export function DocsOnboardingPage() {
 								runtime surprises into precise feedback an agent can act on. And
 								when the thing you are building is itself an AI application,
 								flaky providers, retries, streaming, and rate limits are exactly
-								the problems Effect solves out of the box. Read the full case in{" "}
-								<a
-									href={getAssetPath("/docs/why-effect")}
-									className={linkClass}
-								>
-									Why Effect?
-								</a>
-								.
+								the problems Effect solves out of the box.
 							</p>
 						</div>
 					</section>
