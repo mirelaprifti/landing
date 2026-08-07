@@ -83,9 +83,8 @@ const SECTIONS: {
  */
 /**
  * Horizontal docs section tabs: a slim sticky bar directly below the
- * navbar, shared by DocsLayout and ApiReferenceLayout. Mono uppercase
- * labels (the site's wayfinding voice — breadcrumbs, sidebar group
- * headers) with a 2px underline indicator sitting on the bar's hairline.
+ * navbar, shared by DocsLayout and ApiReferenceLayout. Inter labels with
+ * a 2px underline indicator sitting on the bar's hairline.
  */
 export function DocsSectionTabs({
 	section,
@@ -105,7 +104,7 @@ export function DocsSectionTabs({
 				<ul className="flex items-center gap-8 overflow-x-auto px-6">
 					{SECTIONS.map((s) => {
 						const isActive = s.key === section;
-						const itemClass = `relative flex h-10 items-center font-mono text-sm font-medium tracking-wider whitespace-nowrap uppercase transition-colors ${
+						const itemClass = `relative flex h-10 items-center text-sm font-medium whitespace-nowrap transition-colors ${
 							isActive
 								? "text-zinc-900 dark:text-white"
 								: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
