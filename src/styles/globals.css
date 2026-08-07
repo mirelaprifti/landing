@@ -95,7 +95,6 @@
 	/* Font Families */
 	--font-sans: Inter, sans-serif;
 	--font-mono: "JetBrains Mono", monospace;
-	--font-display: "Cal Sans", Inter, sans-serif;
 
 	/* Border Radius */
 	--radius: 8px;
@@ -158,10 +157,6 @@ code,
 pre,
 .font-mono {
 	font-family: "JetBrains Mono", monospace !important;
-}
-
-.font-display {
-	font-family: "Cal Sans", Inter, sans-serif !important;
 }
 
 /* Toggle Switch Styles */
