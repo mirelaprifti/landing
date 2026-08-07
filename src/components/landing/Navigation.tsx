@@ -284,7 +284,12 @@ export function Navigation({
 									>
 										<i className="ri-discord-fill text-xl" aria-hidden="true" />
 									</Link>
-									{showThemeToggle && (
+								</div>
+								{showThemeToggle && (
+									<>
+										<div
+											className={`h-4.5 w-px ${transparent ? "bg-white/50" : "bg-zinc-200 dark:bg-zinc-700"}`}
+										/>
 										<ThemeToggleButton
 											className={
 												transparent
@@ -292,8 +297,8 @@ export function Navigation({
 													: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 											}
 										/>
-									)}
-								</div>
+									</>
+								)}
 							</div>
 						</nav>
 					</header>
