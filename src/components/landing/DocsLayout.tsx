@@ -151,10 +151,10 @@ export function DocsSectionTabs({
 		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
 			<nav aria-label="Docs sections" className="mx-auto w-full max-w-[88rem]">
 				<ul className="flex items-center gap-8 overflow-x-auto px-6">
-					{SECTIONS.map((s) => {
+					{SECTIONS.filter((s) => s.key !== "play").map((s) => {
 						const key = s.key;
 						const isActive = key === section;
-						const label = key === "play" ? "Playground" : s.label;
+						const label = s.label;
 						const itemClass = `relative flex h-10 items-center text-sm font-medium whitespace-nowrap transition-colors ${
 							isActive
 								? "text-zinc-900 dark:text-white"
