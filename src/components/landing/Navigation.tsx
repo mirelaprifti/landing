@@ -145,7 +145,7 @@ export function Navigation({
 								// Ink matches the wordmark (white in dark, black in
 								// light), with symmetric 16px around the slash.
 								<span
-									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide uppercase ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
+									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
 								>
 									<span>/</span>
 									<span className="font-sans text-[18.8px]">{logoSuffix}</span>
