@@ -139,6 +139,16 @@ export const JOBS: Job[] = [
 			"Fintech using Effect as part of the stack — looking for strong engineers with a solid functional-programming background.",
 	},
 	{
+		company: "Satispay",
+		role: "Frontend Software Engineer III",
+		location: "Milan · Hybrid",
+		url: "https://jobs.ashbyhq.com/satispay/8bed4693-6d80-421c-8d64-5fd6bfc02096?utm_source=effect",
+		logo: "/assets/effect-jobs-logos/satispay.png",
+		payRange: "€45K – €53K",
+		description:
+			"Contribute to the development of a highly scalable, and performant core frontend for a financial platform.",
+	},
+	{
 		company: "Solid",
 		role: "Early engineering team",
 		location: "Bay Area",
