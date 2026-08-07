@@ -139,25 +139,12 @@ export function Navigation({
 								<Link
 									href={getAssetPath("/docs/introduction")}
 									variant="nav"
-									active={
-										activePath?.startsWith("/docs") &&
-										!activePath?.startsWith("/docs/api")
-									}
+									active={activePath?.startsWith("/docs")}
 									className={
 										transparent ? "text-white hover:text-white/80" : ""
 									}
 								>
 									Docs
-								</Link>
-								<Link
-									href={getAssetPath("/docs/api/v3")}
-									variant="nav"
-									active={activePath?.startsWith("/docs/api")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									API
 								</Link>
 								<Link
 									href={getAssetPath("/play")}
@@ -333,15 +320,9 @@ export function Navigation({
 						<div className="space-y-1">
 							<a
 								href={getAssetPath("/docs/introduction")}
-								className={`block rounded-lg px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs") && !activePath?.startsWith("/docs/api") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+								className={`block rounded-lg px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Docs
-							</a>
-							<a
-								href={getAssetPath("/docs/api/v3")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs/api") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								API
 							</a>
 							<a
 								href={getAssetPath("/play")}
