@@ -141,10 +141,11 @@ export function Navigation({
 								// Brand lockup ("Effect / Learn" as one mark): caps match
 								// the logo "e" (13.7px x-height, baseline 23.4px from the
 								// logo top), nudged 2.7px onto the same baseline; mono
-								// slash at 18.75px (0.730em caps), Inter label at 18.8px
-								// (0.7275em caps). The bold label carries the wordmark's
-								// ink and weight; the slash is a muted separator with
-								// symmetric 16px around it.
+								// slash at 18.75px (0.730em caps), Cal Sans label at
+								// 18.8px (0.7275em caps, single native weight — don't
+								// request bold or the browser fake-bolds it). The label
+								// carries the wordmark's ink; the slash is a muted
+								// separator with symmetric 16px around it.
 								<span
 									className={`ml-4 flex translate-y-[2.7px] gap-4 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide ${transparent ? "text-white" : "text-zinc-900 dark:text-white"}`}
 								>
@@ -157,7 +158,7 @@ export function Navigation({
 									>
 										/
 									</span>
-									<span className="font-sans text-[18.8px] font-bold">
+									<span className="font-display text-[18.8px] font-normal">
 										{logoSuffix}
 									</span>
 								</span>
