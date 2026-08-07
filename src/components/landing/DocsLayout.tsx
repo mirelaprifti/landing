@@ -43,7 +43,7 @@ const SECTIONS: {
 	// outside DocsLayout (e.g. the API reference).
 	{
 		key: "docs",
-		label: "Docs",
+		label: "Learn",
 		href: "/docs/introduction",
 	},
 	{
