@@ -110,6 +110,15 @@ export const JOBS: Job[] = [
 		description: "AI-native platform for commercial real estate operators.",
 	},
 	{
+		company: "Medblocks",
+		role: "Senior Software Engineer",
+		location: "Bangalore, India",
+		url: "https://medblocks.com/jobs/full-stack-developer",
+		logo: "/assets/effect-jobs-logos/medblocks_logo.jpeg",
+		description:
+			"Help grow our developer community, enhance education and learning resources, and maintain core open-source codebases for a Healthcare IT company.",
+	},
+	{
 		company: "OpenRouter",
 		role: "Effect Engineers",
 		location: "New York, USA",
