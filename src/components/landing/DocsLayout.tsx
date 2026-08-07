@@ -103,7 +103,7 @@ export function DocsSectionTabs({
 		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
 			<nav
 				aria-label="Docs sections"
-				className="mx-auto flex w-full max-w-[88rem] items-center justify-between gap-6 px-6"
+				className="mx-auto flex w-full max-w-[88rem] items-center gap-6 px-6"
 			>
 				<ul className="flex items-center gap-8 overflow-x-auto">
 					{SECTIONS.filter((s) => s.key !== "play").map((s) => {
@@ -150,6 +150,10 @@ export function DocsSectionTabs({
 						);
 					})}
 				</ul>
+				<div
+					className="h-4.5 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800"
+					aria-hidden="true"
+				/>
 				{/* Dark active pill is zinc-700 — one step lighter than the
 				    zinc-900 container — mirroring the sidebar-pill contrast
 				    precedent. */}
