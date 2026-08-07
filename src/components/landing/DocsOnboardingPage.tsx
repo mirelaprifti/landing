@@ -69,6 +69,45 @@ const NEXT_STEPS = [
 	},
 ];
 
+const CAPABILITIES = [
+	{
+		name: "Typed errors",
+		desc: "Failures live in the signature and are handled like data.",
+	},
+	{
+		name: "Retries and scheduling",
+		desc: "Backoff policies you compose instead of loops you write.",
+	},
+	{
+		name: "Structured concurrency",
+		desc: "Bounded parallel work that cleans up after itself.",
+	},
+	{
+		name: "Resource safety",
+		desc: "Acquisition and release are guaranteed, even when things fail.",
+	},
+	{
+		name: "Dependency injection",
+		desc: "Services wired through the type system, trivial to swap in tests.",
+	},
+	{
+		name: "Observability",
+		desc: "Tracing, metrics, and structured logging built into the runtime.",
+	},
+	{
+		name: "Streaming",
+		desc: "Backpressured streams that use the same operators as everything else.",
+	},
+	{
+		name: "Schema validation",
+		desc: "Parse and transform data with types that match reality.",
+	},
+	{
+		name: "A consistent ecosystem",
+		desc: "HTTP, SQL, CLI, AI, and platform packages built on the same core.",
+	},
+];
+
 const linkClass =
 	"text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300";
 
@@ -145,6 +184,23 @@ export function DocsOnboardingPage() {
 								concurrency, resource handling, and tracing are operators you
 								apply, not architectures you rebuild.
 							</p>
+							<div>
+								<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+									Out of the box
+								</p>
+								<ul className="mt-4 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2">
+									{CAPABILITIES.map((c) => (
+										<li key={c.name} className="text-sm leading-relaxed">
+											<span className="font-semibold text-zinc-900 dark:text-white">
+												{c.name}.
+											</span>{" "}
+											<span className="text-zinc-700 dark:text-zinc-300">
+												{c.desc}
+											</span>
+										</li>
+									))}
+								</ul>
+							</div>
 							<p>
 								The AI era raises the stakes. When coding agents write a growing
 								share of your software, the bottleneck moves from writing code
