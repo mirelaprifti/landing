@@ -193,6 +193,16 @@ export function Navigation({
 											API
 										</Link>
 										<Link
+											href={getAssetPath("/play")}
+											variant="nav"
+											active={activePath?.startsWith("/play")}
+											className={
+												transparent ? "text-white hover:text-white/80" : ""
+											}
+										>
+											Play
+										</Link>
+										<Link
 											href={getAssetPath("/blog")}
 											variant="nav"
 											active={activePath?.startsWith("/blog")}
@@ -211,16 +221,6 @@ export function Navigation({
 											}
 										>
 											Podcast
-										</Link>
-										<Link
-											href={getAssetPath("/play")}
-											variant="nav"
-											active={activePath?.startsWith("/play")}
-											className={
-												transparent ? "text-white hover:text-white/80" : ""
-											}
-										>
-											Play
 										</Link>
 										<Link
 											href={getAssetPath("/community-hub")}
@@ -379,6 +379,12 @@ export function Navigation({
 								API
 							</a>
 							<a
+								href={getAssetPath("/play")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/play") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+							>
+								Play
+							</a>
+							<a
 								href={getAssetPath("/blog")}
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/blog") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
@@ -389,12 +395,6 @@ export function Navigation({
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/podcast") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Podcast
-							</a>
-							<a
-								href={getAssetPath("/play")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/play") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								Play
 							</a>
 							<a
 								href={getAssetPath("/community-hub")}
