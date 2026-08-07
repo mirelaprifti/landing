@@ -11,8 +11,6 @@ interface NavigationProps {
 	belowBanner?: boolean;
 	wide?: boolean;
 	fullWidth?: boolean;
-	/** Wayfinding label rendered after the logo as "/ LABEL" (e.g. "Docs"). */
-	logoSuffix?: string;
 	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
 	compactSearch?: boolean;
 	/** Replaces the default desktop links (Docs/Blog/…) — used by the docs shell for its section links. */
@@ -37,7 +35,6 @@ export function Navigation({
 	wide = false,
 	fullWidth = false,
 	belowBanner = false,
-	logoSuffix,
 	compactSearch = false,
 	children,
 }: NavigationProps) {
@@ -137,19 +134,6 @@ export function Navigation({
 									className="hidden h-[1.75rem] w-auto dark:block"
 								/>
 							</a>
-							{logoSuffix && (
-								// Caps sized to the wordmark's x-height: the logo "e" is
-								// 78.2/160 of the 28px logo (13.7px), baseline 23.4px from
-								// its top. JetBrains Mono caps are 0.730em → 18.75px, and
-								// the 2.7px nudge drops the text onto that same baseline.
-								<span
-									className={`ml-2.5 flex translate-y-[2.7px] gap-2.5 font-mono text-[18.75px] leading-[13.7px] font-medium tracking-wide uppercase ${transparent ? "text-white/80" : "text-zinc-400 dark:text-zinc-500"}`}
-								>
-									<span>/</span>
-									<span>{logoSuffix}</span>
-								</span>
-							)}
-
 							{/* Navigation links next to logo */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								{children ?? (
