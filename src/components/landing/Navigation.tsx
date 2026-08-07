@@ -110,8 +110,10 @@ export function Navigation({
 				className={`fixed ${belowBanner ? "top-10" : "top-0"} right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-200 bg-zinc-50/85 dark:border-zinc-800 dark:bg-zinc-950/85"}`}
 			>
 				<div className="w-full">
+					{/* One header width site-wide (88rem) so the fixed chrome never
+					    jumps between pages; page content keeps its own measure. */}
 					<header
-						className={`relative mx-auto w-full px-4 ${fullWidth ? "" : wide ? "max-w-[88rem]" : "max-w-[73.75rem]"}`}
+						className={`relative mx-auto w-full px-4 ${fullWidth ? "" : "max-w-[88rem]"}`}
 					>
 						<nav className="flex h-16 items-center">
 							<a href="/" className="flex items-center">
