@@ -17,7 +17,7 @@ const LEARNING_PATH = [
 	{
 		step: "01",
 		title: "Understand the core idea",
-		desc: "An Effect is a value that describes a program — what it produces, how it can fail, and what it needs to run. Everything else builds on this one type.",
+		desc: "An Effect is a value that describes a program: what it produces, how it can fail, and what it needs to run. Everything else builds on this one type.",
 		linkLabel: "The Effect Type",
 		href: "/docs/the-effect-type",
 	},
@@ -64,7 +64,7 @@ const NEXT_STEPS = [
 	},
 	{
 		title: "Playground",
-		desc: "Run Effect in your browser with a full editor — no local setup needed. Ideal as a second tab while you learn.",
+		desc: "Run Effect in your browser with a full editor, no local setup needed. Ideal as a second tab while you learn.",
 		href: "/play",
 	},
 ];
@@ -95,7 +95,7 @@ export function DocsOnboardingPage() {
 						</h1>
 						<p className="mt-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
 							Effect is a TypeScript library for building production-grade
-							software — typed error handling, structured concurrency, resource
+							software: typed error handling, structured concurrency, resource
 							safety, and observability, all from one composable core.
 						</p>
 						<div className="mt-8 flex flex-wrap items-center gap-4">
@@ -114,8 +114,13 @@ export function DocsOnboardingPage() {
 						</div>
 					</section>
 
+					<div
+						className="mt-12 h-px bg-zinc-200 dark:bg-zinc-800"
+						aria-hidden="true"
+					/>
+
 					{/* Why Effect */}
-					<section className="mt-24 max-w-3xl">
+					<section className="mt-12 max-w-3xl">
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Why Effect?
 						</h2>
@@ -134,7 +139,7 @@ export function DocsOnboardingPage() {
 								<code className="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100">
 									Effect
 								</code>{" "}
-								type — a value that fully describes a program, including its
+								type, a value that fully describes a program, including its
 								success value, its possible errors, and its requirements.
 								Because programs are values, they compose: retries, timeouts,
 								concurrency, resource handling, and tracing are operators you
@@ -150,13 +155,18 @@ export function DocsOnboardingPage() {
 						</div>
 					</section>
 
+					<div
+						className="mt-12 h-px bg-zinc-200 dark:bg-zinc-800"
+						aria-hidden="true"
+					/>
+
 					{/* Learning path */}
-					<section id="learning-path" className="mt-24 max-w-4xl">
+					<section id="learning-path" className="mt-12 max-w-4xl">
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Your Learning Path
 						</h2>
 						<p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-							Effect rewards learning in order — each step builds on the one
+							Effect rewards learning in order: each step builds on the one
 							before it. Following this spine takes most developers a few
 							focused days; everything else branches off from it.
 						</p>
@@ -204,8 +214,13 @@ export function DocsOnboardingPage() {
 						</div>
 					</section>
 
+					<div
+						className="mt-12 h-px bg-zinc-200 dark:bg-zinc-800"
+						aria-hidden="true"
+					/>
+
 					{/* Next steps */}
-					<section className="mt-24 max-w-5xl">
+					<section className="mt-12 max-w-5xl">
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Keep Going
 						</h2>
@@ -233,13 +248,18 @@ export function DocsOnboardingPage() {
 						</div>
 					</section>
 
+					<div
+						className="mt-12 h-px bg-zinc-200 dark:bg-zinc-800"
+						aria-hidden="true"
+					/>
+
 					{/* Community */}
-					<section className="mt-24 max-w-2xl">
+					<section className="mt-12 max-w-2xl">
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Join our Community
 						</h2>
 						<p className="mt-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-							Effect has an active, friendly community — most questions get
+							Effect has an active, friendly community where most questions get
 							answered within minutes. Join us on{" "}
 							<a
 								href="https://discord.gg/effect-ts"
