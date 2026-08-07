@@ -154,26 +154,36 @@ export function DocsOnboardingPage() {
 							Why Effect?
 						</h2>
 						<div className="mt-6 space-y-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-							<p>
-								TypeScript is excellent at describing your data, but it says
-								almost nothing about your programs: a function&apos;s signature
-								doesn&apos;t tell you what can fail, what dependencies it needs,
-								or whether it can be safely retried, timed out, or interrupted.
-								As applications grow, teams end up hand-rolling those guarantees
-								with ad-hoc try/catch, unstructured promises, and libraries that
-								don&apos;t compose.
-							</p>
-							<p>
-								Effect closes that gap with a single building block: the{" "}
-								<code className="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100">
-									Effect
-								</code>{" "}
-								type, a value that fully describes a program, including its
-								success value, its possible errors, and its requirements.
-								Because programs are values, they compose: retries, timeouts,
-								concurrency, resource handling, and tracing are operators you
-								apply, not architectures you rebuild.
-							</p>
+							<div>
+								<h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+									Typed data, untyped programs
+								</h3>
+								<p className="mt-2">
+									TypeScript is excellent at describing your data, but it says
+									almost nothing about your programs: a function&apos;s
+									signature doesn&apos;t tell you what can fail, what
+									dependencies it needs, or whether it can be safely retried,
+									timed out, or interrupted. As applications grow, teams end up
+									hand-rolling those guarantees with ad-hoc try/catch,
+									unstructured promises, and libraries that don&apos;t compose.
+								</p>
+							</div>
+							<div>
+								<h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+									Programs as values
+								</h3>
+								<p className="mt-2">
+									Effect closes that gap with a single building block: the{" "}
+									<code className="rounded-md bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-900 dark:bg-zinc-700/60 dark:text-zinc-100">
+										Effect
+									</code>{" "}
+									type, a value that fully describes a program, including its
+									success value, its possible errors, and its requirements.
+									Because programs are values, they compose: retries, timeouts,
+									concurrency, resource handling, and tracing are operators you
+									apply, not architectures you rebuild.
+								</p>
+							</div>
 							{/* Capability grid in the docs table language: bordered
 							   container, mono-uppercase header bar, hairline rows;
 							   two columns from sm up, ecosystem as a full-width
@@ -200,16 +210,22 @@ export function DocsOnboardingPage() {
 									))}
 								</dl>
 							</div>
-							<p>
-								The AI era raises the stakes. When coding agents write a growing
-								share of your software, the bottleneck moves from writing code
-								to trusting it. Effect makes a program&apos;s failure modes,
-								dependencies, and lifecycle visible to the compiler, turning
-								runtime surprises into precise feedback an agent can act on. And
-								when the thing you are building is itself an AI application,
-								flaky providers, retries, streaming, and rate limits are exactly
-								the problems Effect solves out of the box.
-							</p>
+							<div>
+								<h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+									Built for the AI era
+								</h3>
+								<p className="mt-2">
+									The AI era raises the stakes. When coding agents write a
+									growing share of your software, the bottleneck moves from
+									writing code to trusting it. Effect makes a program&apos;s
+									failure modes, dependencies, and lifecycle visible to the
+									compiler, turning runtime surprises into precise feedback an
+									agent can act on. And when the thing you are building is
+									itself an AI application, flaky providers, retries, streaming,
+									and rate limits are exactly the problems Effect solves out of
+									the box.
+								</p>
+							</div>
 						</div>
 					</section>
 
