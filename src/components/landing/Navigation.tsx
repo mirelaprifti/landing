@@ -13,6 +13,8 @@ interface NavigationProps {
 	fullWidth?: boolean;
 	/** Wayfinding label rendered after the logo as "/ LABEL" (docs shell). */
 	logoSuffix?: string;
+	/** Hide the primary desktop links entirely (docs tabs variant, which carries its own section bar below). */
+	hideLinks?: boolean;
 	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
 	compactSearch?: boolean;
 	/** Replaces the default desktop links (Docs/Blog/…) — used by the docs shell for its section links. */
@@ -38,6 +40,7 @@ export function Navigation({
 	fullWidth = false,
 	belowBanner = false,
 	logoSuffix,
+	hideLinks = false,
 	compactSearch = false,
 	children,
 }: NavigationProps) {
@@ -165,7 +168,7 @@ export function Navigation({
 
 							{/* Navigation links next to logo */}
 							<div
-								className={`${logoSuffix ? "ml-12" : "ml-8"} hidden items-center gap-6 md:flex`}
+								className={`${logoSuffix ? "ml-12" : "ml-8"} hidden items-center gap-6 ${hideLinks ? "" : "md:flex"}`}
 							>
 								{children ?? (
 									<>

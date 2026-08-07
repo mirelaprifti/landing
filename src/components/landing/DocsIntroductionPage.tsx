@@ -1,4 +1,4 @@
-import { DocsLayout } from "./DocsLayout";
+import { DocsLayout, type DocsNavVariant } from "./DocsLayout";
 
 const TOC = [
 	{ id: "overview", label: "Overview" },
@@ -38,9 +38,9 @@ const FEATURES = [
 	},
 ];
 
-export function DocsIntroductionPage() {
+export function DocsIntroductionPage({ nav }: { nav?: DocsNavVariant }) {
 	return (
-		<DocsLayout activeSlug="introduction" tocItems={TOC}>
+		<DocsLayout activeSlug="introduction" nav={nav} tocItems={TOC}>
 			<article className="max-w-3xl">
 				<h1
 					id="overview"
