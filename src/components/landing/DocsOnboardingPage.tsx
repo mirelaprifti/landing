@@ -333,8 +333,7 @@ export function DocsOnboardingPage() {
 							Join our Community
 						</h2>
 						<p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-							Effect has an active, friendly community where most questions get
-							answered within minutes. Join us on{" "}
+							The Effect community lives on{" "}
 							<a
 								href="https://discord.gg/effect-ts"
 								target="_blank"
@@ -344,11 +343,11 @@ export function DocsOnboardingPage() {
 								<span className="sr-only">(opens in new tab) </span>
 								Discord
 							</a>
-							, and explore community projects, articles, and events in the{" "}
-							<a href={getAssetPath("/community-hub")} className={linkClass}>
-								Community Hub
-							</a>
-							.
+							. It is where the core team and experienced users answer
+							questions, usually within minutes, so you learn directly from the
+							people who build and run Effect in production. Ask beginner
+							questions in the help channels, share what you are building, and
+							follow new releases as they happen.
 						</p>
 					</section>
 				</main>
