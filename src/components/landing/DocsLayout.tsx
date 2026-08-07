@@ -43,7 +43,7 @@ const SECTIONS: {
 	// outside DocsLayout (e.g. the API reference).
 	{
 		key: "docs",
-		label: "Learn",
+		label: "Docs",
 		href: "/docs/introduction",
 	},
 	{
@@ -412,7 +412,7 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide compactSearch logoSuffix="Docs">
+			<Navigation activePath="/docs" wide compactSearch logoSuffix="Learn">
 				<DocsSectionLinks section={activeSection} onSelect={selectSection} />
 			</Navigation>
 			<div className="relative w-full pt-16">
