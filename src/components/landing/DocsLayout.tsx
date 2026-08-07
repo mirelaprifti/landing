@@ -151,20 +151,23 @@ export function DocsSectionTabs({
 						);
 					})}
 				</ul>
+				{/* Dark active pill is zinc-700 — one step lighter than the
+				    zinc-900 container — mirroring the sidebar-pill contrast
+				    precedent. */}
 				<div
 					role="group"
 					aria-label="API reference version"
-					className="inline-flex shrink-0 gap-1 rounded-lg border border-zinc-200 bg-zinc-100/50 p-0.5 dark:border-zinc-800 dark:bg-zinc-900/50"
+					className="inline-flex shrink-0 gap-1 rounded-lg border border-zinc-300 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-900"
 				>
 					{(["v3", "v4"] as const).map((v) => (
 						<a
 							key={v}
 							href={getAssetPath(`/docs/api/${v}`)}
 							aria-current={version === v ? "page" : undefined}
-							className={`rounded-md px-2.5 py-0.5 text-center font-mono text-xs transition-all duration-200 ${
+							className={`rounded-md px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
 								version === v
-									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-									: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+									? "bg-zinc-900 font-semibold text-white dark:bg-zinc-700"
+									: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 							}`}
 						>
 							{v}
