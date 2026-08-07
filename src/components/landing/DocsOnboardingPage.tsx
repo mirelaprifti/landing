@@ -294,7 +294,7 @@ export function DocsOnboardingPage() {
 					/>
 
 					{/* Next steps */}
-					<section className="mt-12 max-w-5xl">
+					<section className="mt-12 max-w-4xl">
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Keep Going
 						</h2>
@@ -328,7 +328,7 @@ export function DocsOnboardingPage() {
 					/>
 
 					{/* Community */}
-					<section className="mt-12 max-w-2xl">
+					<section className="mt-12 max-w-3xl">
 						<h2 className="text-2xl font-semibold tracking-tight">
 							Join our Community
 						</h2>
