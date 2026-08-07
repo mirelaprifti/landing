@@ -11,6 +11,8 @@ interface NavigationProps {
 	belowBanner?: boolean;
 	wide?: boolean;
 	fullWidth?: boolean;
+	/** Hide the primary desktop links (Docs/Blog/…) — used by the docs shell, which has its own section tabs. */
+	hideLinks?: boolean;
 }
 
 function useShortcutHint() {
@@ -31,6 +33,7 @@ export function Navigation({
 	wide = false,
 	fullWidth = false,
 	belowBanner = false,
+	hideLinks = false,
 }: NavigationProps) {
 	const shortcutHint = useShortcutHint();
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
@@ -130,58 +133,60 @@ export function Navigation({
 							</a>
 
 							{/* Navigation links next to logo */}
-							<div className="ml-8 hidden items-center gap-6 md:flex">
-								<Link
-									href={getAssetPath("/docs/introduction")}
-									variant="nav"
-									active={activePath?.startsWith("/docs")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Docs
-								</Link>
-								<Link
-									href={getAssetPath("/blog")}
-									variant="nav"
-									active={activePath?.startsWith("/blog")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Blog
-								</Link>
-								<Link
-									href={getAssetPath("/podcast")}
-									variant="nav"
-									active={activePath?.startsWith("/podcast")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Podcast
-								</Link>
-								<Link
-									href={getAssetPath("/play")}
-									variant="nav"
-									active={activePath?.startsWith("/play")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Play
-								</Link>
-								<Link
-									href={getAssetPath("/community-hub")}
-									variant="nav"
-									active={activePath?.startsWith("/community-hub")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Community
-								</Link>
-							</div>
+							{!hideLinks && (
+								<div className="ml-8 hidden items-center gap-6 md:flex">
+									<Link
+										href={getAssetPath("/docs/introduction")}
+										variant="nav"
+										active={activePath?.startsWith("/docs")}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
+									>
+										Docs
+									</Link>
+									<Link
+										href={getAssetPath("/blog")}
+										variant="nav"
+										active={activePath?.startsWith("/blog")}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
+									>
+										Blog
+									</Link>
+									<Link
+										href={getAssetPath("/podcast")}
+										variant="nav"
+										active={activePath?.startsWith("/podcast")}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
+									>
+										Podcast
+									</Link>
+									<Link
+										href={getAssetPath("/play")}
+										variant="nav"
+										active={activePath?.startsWith("/play")}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
+									>
+										Play
+									</Link>
+									<Link
+										href={getAssetPath("/community-hub")}
+										variant="nav"
+										active={activePath?.startsWith("/community-hub")}
+										className={
+											transparent ? "text-white hover:text-white/80" : ""
+										}
+									>
+										Community
+									</Link>
+								</div>
+							)}
 
 							{/* Mobile menu button */}
 							<button

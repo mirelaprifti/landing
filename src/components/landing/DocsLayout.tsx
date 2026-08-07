@@ -33,7 +33,7 @@ export type DocsSectionKey =
 	| "api";
 
 const SECTIONS: {
-	key: DocsSectionKey;
+	key: DocsSectionKey | "play";
 	label: string;
 	href: string;
 }[] = [
@@ -66,6 +66,11 @@ const SECTIONS: {
 		label: "API Reference",
 		href: "/docs/api/v3",
 	},
+	{
+		key: "play",
+		label: "Playground",
+		href: "/play",
+	},
 ];
 
 /**
@@ -88,9 +93,9 @@ export function DocsSectionTabs({
 }: {
 	section: DocsSectionKey;
 	/**
-	 * When provided, sections other than API Reference become in-place
-	 * selections (buttons) instead of navigations; API Reference always
-	 * navigates since it lives in a different layout.
+	 * When provided, sections other than API Reference and Playground
+	 * become in-place selections (buttons) instead of navigations; those
+	 * two always navigate since they live in different layouts.
 	 */
 	onSelect?: (key: DocsSectionKey) => void;
 }) {
@@ -118,7 +123,7 @@ export function DocsSectionTabs({
 						);
 						return (
 							<li key={s.key}>
-								{onSelect && s.key !== "api" ? (
+								{onSelect && s.key !== "api" && s.key !== "play" ? (
 									<button
 										type="button"
 										onClick={() => onSelect(s.key)}
@@ -309,7 +314,7 @@ export function DocsLayout({
 	// arriving from outside DocsLayout (e.g. the API reference switcher).
 	useEffect(() => {
 		const param = new URLSearchParams(window.location.search).get("section");
-		if (param && SECTIONS.some((s) => s.key === param)) {
+		if (param && param in SIDEBARS) {
 			setActiveSection(param as DocsSectionKey);
 		}
 	}, []);
@@ -424,7 +429,7 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide />
+			<Navigation activePath="/docs" wide hideLinks />
 			<div className="relative w-full pt-16">
 				<DocsSectionTabs section={activeSection} onSelect={selectSection} />
 				{/* Mobile docs nav: sticky disclosure below the section tabs */}

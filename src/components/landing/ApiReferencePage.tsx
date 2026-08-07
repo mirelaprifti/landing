@@ -87,7 +87,7 @@ export function ApiReferenceLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide />
+			<Navigation activePath="/docs" wide hideLinks />
 			<div className="relative w-full pt-16">
 				<DocsSectionTabs section="api" />
 				<div
