@@ -137,20 +137,6 @@ export function DocsOnboardingPage() {
 							software: typed error handling, structured concurrency, resource
 							safety, and observability, all from one composable core.
 						</p>
-						<div className="mt-8 flex flex-wrap items-center gap-4">
-							<a
-								href="#learning-path"
-								className="rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
-							>
-								Start the path
-							</a>
-							<a
-								href={getAssetPath("/play")}
-								className="rounded-md border border-zinc-300 px-5 py-2.5 text-sm font-semibold text-zinc-700 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-white"
-							>
-								Open the Playground
-							</a>
-						</div>
 					</section>
 
 					<div
