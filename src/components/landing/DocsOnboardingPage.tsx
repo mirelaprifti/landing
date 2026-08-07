@@ -133,7 +133,7 @@ export function DocsOnboardingPage() {
 				>
 					{/* Hero */}
 					<section className="max-w-3xl">
-						<h1 className="text-4xl leading-tight font-bold tracking-tight md:text-5xl">
+						<h1 className="text-3xl leading-[1.1] font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 							Welcome to Effect
 						</h1>
 						<p className="mt-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
