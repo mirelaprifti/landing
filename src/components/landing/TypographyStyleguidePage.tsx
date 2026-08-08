@@ -399,7 +399,7 @@ export function TypographyStyleguidePage() {
 						>
 							<SpecRow
 								title="Links — ui/Link"
-								note="Variants: inline, nav, footer, subtle, icon. Inline = muted underline that fades on hover."
+								note="Variants: inline, nav, footer, subtle, icon. Inline = muted underline that fades on hover; subtle always takes an arrow (below)."
 								classes={[
 									{
 										label: "inline",
@@ -418,9 +418,6 @@ export function TypographyStyleguidePage() {
 									</span>
 									<Link href={getAssetPath("/blog")} variant="nav">
 										Nav link
-									</Link>
-									<Link href={getAssetPath("/blog")} variant="subtle">
-										Subtle link
 									</Link>
 								</div>
 							</SpecRow>
