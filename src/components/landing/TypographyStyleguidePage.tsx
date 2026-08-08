@@ -426,6 +426,46 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 
 							<SpecRow
+								title="Subtle link with arrow"
+								note="Arrow direction carries the meaning: left = back, right = forward, up-right = leaves the page."
+								classes={[
+									{
+										label: "link",
+										value: "inline-flex items-center gap-1.5 font-medium",
+										hint: 'On top of variant="subtle".',
+									},
+									{ label: "icon", value: "text-xs" },
+								]}
+							>
+								<div className="flex flex-col items-start gap-3">
+									<Link
+										href={getAssetPath("/blog")}
+										variant="subtle"
+										className="inline-flex items-center gap-1.5 font-medium"
+									>
+										<Icon name="arrow-left" className="text-xs" />
+										Back to blog
+									</Link>
+									<Link
+										href={getAssetPath("/blog")}
+										variant="subtle"
+										className="inline-flex items-center gap-1.5 font-medium"
+									>
+										View all posts
+										<Icon name="arrow-right" className="text-xs" />
+									</Link>
+									<Link
+										href="https://github.com/Effect-TS/effect"
+										variant="subtle"
+										className="inline-flex items-center gap-1.5 font-medium"
+									>
+										Effect on GitHub
+										<Icon name="arrow-up-right" className="text-xs" />
+									</Link>
+								</div>
+							</SpecRow>
+
+							<SpecRow
 								title="Buttons — ui/Button"
 								note="Variants: primary, secondary, ghost, discord. Sizes: sm, md, lg, xl."
 							>
