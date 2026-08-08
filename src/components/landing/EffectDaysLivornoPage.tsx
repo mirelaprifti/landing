@@ -268,8 +268,8 @@ export function EffectDaysLivornoPage() {
 									<span>Dec 10–12, 2026</span>
 								</p>
 								<p className={text.subtitle}>
-									The conference for Effect and TypeScript engineers. Three
-									days of workshops, talks, and community.
+									The conference for Effect and TypeScript engineers. Three days
+									of workshops, talks, and community.
 								</p>
 
 								{/* CTA Buttons */}
@@ -514,8 +514,8 @@ export function EffectDaysLivornoPage() {
 							{/* Pitch */}
 							<div>
 								<p className="max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-200">
-									Has Effect played a key role in your project and you'd love
-									to give back to the community?{" "}
+									Has Effect played a key role in your project and you'd love to
+									give back to the community?{" "}
 									<span className="font-medium text-zinc-900 dark:text-white">
 										Sponsoring Effect Days is your perfect opportunity!
 									</span>
@@ -526,8 +526,8 @@ export function EffectDaysLivornoPage() {
 										variant="primary"
 										size="lg"
 									>
-										<Icon name="heart-handshake" className="text-lg" />I want
-										to sponsor
+										<Icon name="heart-handshake" className="text-lg" />I want to
+										sponsor
 									</Button>
 								</div>
 							</div>
@@ -602,7 +602,9 @@ export function EffectDaysLivornoPage() {
 												Effect Days {edition.year}
 											</h3>
 											{edition.status === "next" && (
-												<span className={`${text.micro} rounded-sm border border-zinc-300 px-2 py-0.5 dark:border-zinc-600`}>
+												<span
+													className={`${text.micro} rounded-sm border border-zinc-300 px-2 py-0.5 dark:border-zinc-600`}
+												>
 													Next stop
 												</span>
 											)}
@@ -636,7 +638,9 @@ export function EffectDaysLivornoPage() {
 													<span className={text.micro}>{edition.location}</span>
 													<span className={text.micro}>{edition.dates}</span>
 												</div>
-												<p className={`${text.cardBody} mt-4`}>{edition.note}</p>
+												<p className={`${text.cardBody} mt-4`}>
+													{edition.note}
+												</p>
 												{edition.playlistUrl ? (
 													<Link
 														href={edition.playlistUrl}
