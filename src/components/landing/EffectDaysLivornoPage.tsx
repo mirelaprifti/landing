@@ -178,9 +178,9 @@ export function EffectDaysLivornoPage() {
 							alt="The Effect community at Effect Days 2025 in Livorno"
 							className="h-full w-full object-cover"
 						/>
-						{/* Blurred left edge, fading out toward the right */}
+						{/* Subtle blurred left edge, fading out toward the right */}
 						<div
-							className="pointer-events-none absolute inset-y-0 left-0 w-1/2 backdrop-blur-md"
+							className="pointer-events-none absolute inset-y-0 left-0 w-24 backdrop-blur-[2px]"
 							style={{
 								maskImage:
 									"linear-gradient(to right, black 0%, transparent 100%)",
