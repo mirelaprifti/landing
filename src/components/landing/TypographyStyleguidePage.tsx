@@ -432,7 +432,7 @@ export function TypographyStyleguidePage() {
 									{
 										label: "link",
 										value: "inline-flex items-center gap-1.5 font-medium",
-										hint: 'On top of variant="subtle".',
+										hint: 'Passed as className — variant="subtle" still supplies color, size, and hover.',
 									},
 									{ label: "icon", value: "text-xs" },
 								]}
