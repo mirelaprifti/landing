@@ -398,7 +398,7 @@ export function TypographyStyleguidePage() {
 							title="Links & buttons"
 						>
 							<SpecRow
-								title="Links — ui/Link"
+								title="Links"
 								note="Variants: inline, nav, footer, subtle, icon. Inline = muted underline that fades on hover; subtle always takes an arrow (below)."
 								classes={[
 									{
@@ -462,7 +462,7 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 
 							<SpecRow
-								title="Buttons — ui/Button"
+								title="Buttons"
 								note="Variants: primary, secondary, ghost, discord. Sizes: sm, md, lg, xl."
 							>
 								<div className="flex flex-wrap items-center gap-4">
