@@ -487,36 +487,32 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Buttons"
-								note="Variants: primary, secondary, ghost, discord. Sizes: sm, md, lg, xl."
+								note="Variants: secondary (default), primary, ghost. Sizes: sm, md (default), lg, xl. secondary md is the site's workhorse; primary lg is the hero CTA."
 							>
 								<div className="flex flex-wrap items-center gap-4">
+									<Button href={getAssetPath("/blog")} variant="secondary">
+										Read the blog
+									</Button>
 									<Button
 										href={getAssetPath("/docs/introduction")}
 										variant="primary"
-										size="lg"
 									>
 										Get started
 									</Button>
-									<Button
-										href={getAssetPath("/blog")}
-										variant="secondary"
-										size="lg"
-									>
-										Read the blog
-									</Button>
-									<Button variant="ghost" size="lg">
-										Ghost
-									</Button>
+									<Button variant="ghost">Ghost</Button>
 								</div>
 								<div className="mt-5 flex flex-wrap items-center gap-4">
-									<Button variant="primary" size="sm">
+									<Button variant="secondary" size="sm">
 										Small
 									</Button>
-									<Button variant="primary" size="md">
+									<Button variant="secondary" size="md">
 										Medium
 									</Button>
-									<Button variant="primary" size="lg">
+									<Button variant="secondary" size="lg">
 										Large
+									</Button>
+									<Button variant="secondary" size="xl">
+										XL
 									</Button>
 								</div>
 							</SpecRow>

@@ -15,7 +15,6 @@ import { cn } from "@/lib/utils";
  * | primary     | Main CTA — white bg, dark text                   |
  * | secondary   | Bordered ghost — dark bg, zinc border, white text |
  * | ghost       | No border/bg — text only with hover bg            |
- * | discord     | Discord-branded CTA                               |
  *
  * | size | padding          | text   |
  * |------|------------------|--------|
@@ -25,7 +24,7 @@ import { cn } from "@/lib/utils";
  * | xl   | px-6 py-4        | text-lg |
  */
 const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:pointer-events-none disabled:opacity-50",
+	"inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:outline-white",
 	{
 		variants: {
 			variant: {
@@ -35,8 +34,6 @@ const buttonVariants = cva(
 					"border border-zinc-300 bg-white/50 text-zinc-900 hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-white dark:hover:border-zinc-500 dark:hover:bg-zinc-800",
 				ghost:
 					"border border-transparent text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white",
-				discord:
-					"border border-transparent bg-[#5865F2] text-white hover:bg-[#4752C4]",
 			},
 			size: {
 				sm: "px-4 py-2 text-sm",
