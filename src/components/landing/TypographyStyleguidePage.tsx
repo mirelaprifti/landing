@@ -67,6 +67,7 @@ const SPACING_STEPS = [
 	{ label: "mb-3", px: 12, use: "eyebrow → section title" },
 	{ label: "mt-1", px: 4, use: "card title → card body" },
 	{ label: "mt-4", px: 16, use: "title → subtitle / body" },
+	{ label: "px-4", px: 16, use: "container side gutter" },
 	{ label: "p-6 / gap-6", px: 24, use: "card padding, card grids" },
 	{ label: "mb-12", px: 48, use: "section header → content" },
 	{ label: "py-24", px: 96, use: "section rhythm (mobile)" },
@@ -511,12 +512,20 @@ export function TypographyStyleguidePage() {
 						<GuideSection id="spacing" eyebrow="04" title="Spacing">
 							<SpecRow
 								title="Container"
-								note="Use this literal string."
+								note="1180px max width, centred, with a 16px gutter on each side at every breakpoint."
 								classes="mx-auto w-full max-w-[73.75rem] px-4"
 							>
-								<div className="rounded-md border border-dashed border-zinc-300 px-4 py-3 dark:border-zinc-700">
-									<div className="flex h-10 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-										max-w-[73.75rem] · 1180px
+								<div className="rounded-md border border-dashed border-zinc-300 py-3 dark:border-zinc-700">
+									<div className="flex items-stretch gap-1">
+										<div className="w-4 shrink-0 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
+										<div className="flex h-10 flex-1 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
+											max-w-[73.75rem] · 1180px
+										</div>
+										<div className="w-4 shrink-0 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
+									</div>
+									<div className="mt-2 flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
+										<span>px-4 · 16px</span>
+										<span>px-4 · 16px</span>
 									</div>
 								</div>
 							</SpecRow>

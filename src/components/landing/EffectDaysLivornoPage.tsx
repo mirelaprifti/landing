@@ -30,22 +30,22 @@ const card = "rounded-md border border-zinc-200 p-6 dark:border-zinc-800";
 const PROGRAM = [
 	{
 		step: "01",
-		day: "Thu",
-		date: "Dec 10",
+		day: "Wed",
+		date: "Dec 9",
 		title: "Effect Workshop",
 		description: "Full-day sessions led by Effect experts.",
 	},
 	{
 		step: "02",
-		day: "Fri",
-		date: "Dec 11",
+		day: "Thu",
+		date: "Dec 10",
 		title: "Effect Conference",
 		description: "Engaging talks, afterparty & swags!",
 	},
 	{
 		step: "03",
-		day: "Sat",
-		date: "Dec 12",
+		day: "Fri",
+		date: "Dec 11",
 		title: "Community Day",
 		description: "More learning, networking, and fun!",
 	},
@@ -72,9 +72,9 @@ const PASSES = [
 		description:
 			"Includes a full-day Effect workshop and all in Conference Pass.",
 		days: [
-			{ label: "Dec 10 · Workshop Day", included: true },
-			{ label: "Dec 11 · Conference Day", included: true },
-			{ label: "Dec 12 · Community Day", included: true },
+			{ label: "Dec 9 · Workshop Day", included: true },
+			{ label: "Dec 10 · Conference Day", included: true },
+			{ label: "Dec 11 · Community Day", included: true },
 		],
 		featured: true,
 	},
@@ -83,9 +83,9 @@ const PASSES = [
 		description:
 			"In-person ticket including food, drinks, swags, and afterparty!",
 		days: [
-			{ label: "Dec 10 · Workshop Day", included: false },
-			{ label: "Dec 11 · Conference Day", included: true },
-			{ label: "Dec 12 · Community Day", included: true },
+			{ label: "Dec 9 · Workshop Day", included: false },
+			{ label: "Dec 10 · Conference Day", included: true },
+			{ label: "Dec 11 · Community Day", included: true },
 		],
 		featured: false,
 	},
@@ -115,7 +115,7 @@ const EDITIONS = [
 	{
 		year: "2026",
 		location: "Livorno, Italy",
-		dates: "Dec 10-12",
+		dates: "Dec 9-11",
 		status: "next",
 		note: "The 3rd edition. Back to the Tuscan coast — and you're invited.",
 		playlistUrl: null,
@@ -140,7 +140,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	{
 		question: "2. When and where is Effect Days taking place?",
 		answer:
-			"Effect Days will take place on December 10-12, 2026 in Livorno, Tuscany, Italy. The venue will be announced soon.",
+			"Effect Days will take place on December 9-11, 2026 in Livorno, Tuscany, Italy. The venue will be announced soon.",
 	},
 	{
 		question: "3. What is the schedule of the conference?",
@@ -171,7 +171,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	{
 		question: "5. What is the Community Day?",
 		answer:
-			"Effect Days isn't just about talks — it's about real connections. The Community Day on December 12th is a full day dedicated to deeper discussions, networking, and community activities.",
+			"Effect Days isn't just about talks — it's about real connections. The Community Day on December 11th is a full day dedicated to deeper discussions, networking, and community activities.",
 	},
 	{
 		question: "6. Can I get a refund for my ticket?",
@@ -265,7 +265,7 @@ export function EffectDaysLivornoPage() {
 										Livorno, Italy
 									</span>
 									{" · "}
-									<span>Dec 10–12, 2026</span>
+									<span>Dec 9–11, 2026</span>
 								</p>
 								<p className={`${text.subtitle} max-w-md`}>
 									For Effect and TypeScript engineers: three days of workshops,
@@ -296,7 +296,7 @@ export function EffectDaysLivornoPage() {
 				<div className="overflow-hidden border-y border-zinc-200 py-3 dark:border-zinc-800">
 					<p className={`${text.micro} whitespace-nowrap`}>
 						{Array.from({ length: 6 })
-							.map(() => "Effect Days · Livorno · Dec 10–12, 2026 · ")
+							.map(() => "Effect Days · Livorno · Dec 9–11, 2026 · ")
 							.join("")}
 					</p>
 				</div>
@@ -629,7 +629,7 @@ export function EffectDaysLivornoPage() {
 											) : (
 												<div className="flex aspect-21/9 items-center justify-center border-b border-zinc-200 dark:border-zinc-800">
 													<span className="font-mono text-sm text-zinc-700 dark:text-zinc-200">
-														Dec 10–12, 2026 ▊
+														Dec 9–11, 2026 ▊
 													</span>
 												</div>
 											)}
@@ -695,7 +695,7 @@ export function EffectDaysLivornoPage() {
 					<div className={container}>
 						<div className="text-center">
 							<p className={text.eyebrow}>
-								{"// "}Dec 10–12, 2026 · Livorno, Italy
+								{"// "}Dec 9–11, 2026 · Livorno, Italy
 							</p>
 							<h2 className={text.sectionTitle}>See you in Livorno</h2>
 							<p className={`${text.subtitle} mx-auto max-w-2xl`}>
