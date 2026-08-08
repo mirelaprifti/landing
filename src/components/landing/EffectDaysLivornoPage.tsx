@@ -171,10 +171,26 @@ export function EffectDaysLivornoPage() {
 
 				{/* Hero Section */}
 				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-28">
+					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
+					<div className="absolute inset-y-0 right-0 z-10 hidden w-[53%] overflow-hidden lg:block">
+						<img
+							src={getAssetPath("/assets/images/ed-25-2.png")}
+							alt="The Effect community at Effect Days 2025 in Livorno"
+							className="h-full w-full object-cover"
+						/>
+						{/* Blend into the dark page */}
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+						{/* Photo caption */}
+						<p className="absolute bottom-3 left-16 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+							{"// "}Effect Days 2025 · Livorno
+						</p>
+					</div>
+
 					<div className="relative mx-auto w-full max-w-295 px-4">
-						<div className="flex flex-col items-start gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
-							{/* Left side - Main content */}
-							<div className="flex-1">
+						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
+							{/* Left — copy */}
+							<div>
 								<p className={text.eyebrow}>
 									{"// "}3rd edition · non-profit · community-driven
 								</p>
@@ -211,39 +227,21 @@ export function EffectDaysLivornoPage() {
 									</Button>
 								</div>
 							</div>
-
-							{/* Right side - photo from the Livorno edition */}
-							<div className="w-full flex-1 lg:flex lg:justify-end">
-								<div className="relative w-full max-w-xl p-3">
-									<CornerBrackets />
-									<div className="relative overflow-hidden rounded-lg">
-										<img
-											src={getAssetPath("/assets/images/ed-25-2.png")}
-											alt="The Effect community at Effect Days 2025 in Livorno"
-											className="aspect-4/3 h-full w-full object-cover"
-										/>
-										<div className="absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
-										<span className="absolute bottom-3 left-3 border border-white/10 bg-zinc-950/60 px-2.5 py-1 font-mono text-xs font-medium text-white/90 uppercase backdrop-blur-sm">
-											Effect Days 2025 · Livorno
-										</span>
-									</div>
-								</div>
-							</div>
 						</div>
-					</div>
-
-					{/* Mono ticker strip */}
-					<div className="mt-16 overflow-hidden border-y border-zinc-800 py-3 md:mt-24">
-						<p className="whitespace-nowrap font-mono text-xs font-medium tracking-[0.25em] text-zinc-600 uppercase">
-							{Array.from({ length: 6 })
-								.map(() => "Effect Days · Livorno · Dec 10–12, 2026 · ")
-								.join("")}
-						</p>
 					</div>
 				</section>
 
+				{/* Mono ticker strip */}
+				<div className="overflow-hidden border-y border-zinc-800 py-3">
+					<p className="whitespace-nowrap font-mono text-xs font-medium tracking-[0.25em] text-zinc-600 uppercase">
+						{Array.from({ length: 6 })
+							.map(() => "Effect Days · Livorno · Dec 10–12, 2026 · ")
+							.join("")}
+					</p>
+				</div>
+
 				{/* The Program - pipeline */}
-				<section className="pb-24">
+				<section className="pt-16 pb-24 md:pt-24">
 					<div className="mx-auto w-full max-w-295 px-4">
 						<p className={text.eyebrow}>{"// "}The Program</p>
 						<h2 className={text.sectionTitle}>Three days, one pipeline</h2>
