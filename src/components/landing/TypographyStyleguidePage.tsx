@@ -285,11 +285,11 @@ function GuideSection({
 }
 
 const NAV_ITEMS = [
+	{ href: "#rules", label: "Rules" },
 	{ href: "#foundations", label: "Foundations" },
 	{ href: "#text-elements", label: "Text elements" },
 	{ href: "#links-buttons", label: "Links & buttons" },
 	{ href: "#spacing", label: "Spacing" },
-	{ href: "#rules", label: "Rules" },
 	{ href: "#blog", label: "Blog" },
 	{ href: "#docs", label: "Docs" },
 ];
@@ -326,7 +326,35 @@ export function TypographyStyleguidePage() {
 
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="pb-24">
-						<GuideSection id="foundations" eyebrow="01" title="Foundations">
+						<GuideSection id="rules" eyebrow="01" title="Rules">
+							<div className="grid gap-6 md:grid-cols-2">
+								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
+									<p className={rowLabel}>Do</p>
+									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+										<li>Type scale + named leadings only</li>
+										<li>h1 + h2 font-bold · h3–h4 font-semibold</li>
+										<li>Themeable color pairs, even on dark-only pages</li>
+										<li>ui/Button and ui/Link for every CTA and link</li>
+										<li>Container and section-rhythm strings verbatim</li>
+									</ul>
+								</div>
+								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
+									<p className={rowLabel}>Don't</p>
+									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+										<li>
+											No arbitrary sizes or leadings (text-[15px],
+											leading-[1.35])
+										</li>
+										<li>No font-bold below h2, no tracking-wide eyebrows</li>
+										<li>No hand-rolled or rounded-lg buttons</li>
+										<li>No font-inter, no inline Roboto Mono</li>
+										<li>No max-w-295 or one-off containers</li>
+									</ul>
+								</div>
+							</div>
+						</GuideSection>
+
+						<GuideSection id="foundations" eyebrow="02" title="Foundations">
 							<SpecRow
 								title="Font families"
 								note="font-sans is the default. font-mono resolves to JetBrains Mono; never font-inter."
@@ -378,7 +406,7 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 						</GuideSection>
 
-						<GuideSection id="text-elements" eyebrow="02" title="Text elements">
+						<GuideSection id="text-elements" eyebrow="03" title="Text elements">
 							<div>
 								{ELEMENT_SPECS.map((el) => (
 									<div
@@ -409,7 +437,7 @@ export function TypographyStyleguidePage() {
 
 						<GuideSection
 							id="links-buttons"
-							eyebrow="03"
+							eyebrow="04"
 							title="Links & buttons"
 						>
 							<SpecRow
@@ -509,7 +537,7 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 						</GuideSection>
 
-						<GuideSection id="spacing" eyebrow="04" title="Spacing">
+						<GuideSection id="spacing" eyebrow="05" title="Spacing">
 							<SpecRow
 								title="Container"
 								note="1180px max width, centred, with a 16px gutter on each side at every breakpoint."
@@ -587,34 +615,6 @@ export function TypographyStyleguidePage() {
 									))}
 								</div>
 							</SpecRow>
-						</GuideSection>
-
-						<GuideSection id="rules" eyebrow="05" title="Rules">
-							<div className="grid gap-6 md:grid-cols-2">
-								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
-									<p className={rowLabel}>Do</p>
-									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-										<li>Type scale + named leadings only</li>
-										<li>h1 + h2 font-bold · h3–h4 font-semibold</li>
-										<li>Themeable color pairs, even on dark-only pages</li>
-										<li>ui/Button and ui/Link for every CTA and link</li>
-										<li>Container and section-rhythm strings verbatim</li>
-									</ul>
-								</div>
-								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
-									<p className={rowLabel}>Don't</p>
-									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-										<li>
-											No arbitrary sizes or leadings (text-[15px],
-											leading-[1.35])
-										</li>
-										<li>No font-bold below h2, no tracking-wide eyebrows</li>
-										<li>No hand-rolled or rounded-lg buttons</li>
-										<li>No font-inter, no inline Roboto Mono</li>
-										<li>No max-w-295 or one-off containers</li>
-									</ul>
-								</div>
-							</div>
 						</GuideSection>
 
 						<GuideSection id="blog" eyebrow="06" title="Blog">

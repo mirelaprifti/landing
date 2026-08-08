@@ -237,7 +237,7 @@ export function EffectDaysLivornoPage() {
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Hero Section */}
-				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-28">
+				<section className="relative w-full pt-16 pb-20 md:pt-32 md:pb-32">
 					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
 					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
