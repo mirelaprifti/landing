@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getAssetPath } from "@/utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "@/utils/assetPath";
 
 const INSTALL_COMMANDS: Record<string, string> = {
 	npm: "npm install effect",

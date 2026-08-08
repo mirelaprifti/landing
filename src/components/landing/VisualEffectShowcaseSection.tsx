@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { EffectDieExample } from "@/examples/effect-die";
 import { EffectFailExample } from "@/examples/effect-fail";
 import { EffectOrElseExample } from "@/examples/effect-orelse";
@@ -6,7 +7,6 @@ import { EffectSleepExample } from "@/examples/effect-sleep";
 import { EffectSucceedExample } from "@/examples/effect-succeed";
 import type { ExampleComponentProps } from "@/lib/example-types";
 import { getExampleMeta } from "@/lib/examples-manifest";
-import { Icon } from "@/components/ui/Icon";
 
 const EXAMPLE_COMPONENTS: Record<
 	string,
@@ -46,7 +46,11 @@ export function VisualEffectShowcaseSection() {
 						<p className="text-lg text-zinc-400">
 							Tap an icon to run, interrupt, or reset an Effect.
 						</p>
-						<Button href="https://effect.kitlangton.com/" variant="secondary" size="lg">
+						<Button
+							href="https://effect.kitlangton.com/"
+							variant="secondary"
+							size="lg"
+						>
 							<span>Visualize Effect</span>
 							<Icon name="arrow-up-right" className="text-base" />
 						</Button>

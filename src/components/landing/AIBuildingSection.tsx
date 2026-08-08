@@ -1,6 +1,6 @@
 import { Button, Link } from "@/components/ui";
-import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 const AI_CASE_STUDIES = [
 	{

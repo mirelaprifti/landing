@@ -1,4 +1,5 @@
 import { Icon } from "@/components/ui/Icon";
+
 const GOOD_FIT = [
 	{
 		icon: "circle-check" as const,

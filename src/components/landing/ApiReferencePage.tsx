@@ -1,4 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import {
@@ -9,7 +10,6 @@ import {
 import { DocsSectionTabs } from "./DocsLayout";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 function packageBySlug(slug: string): ApiPackage {
 	const pkg = API_PACKAGES.find((p) => p.slug === slug);

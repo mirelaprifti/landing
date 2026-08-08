@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 import {
 	BLOG_POSTS,
 	BLOG_TAGS,
@@ -11,7 +12,6 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 const POSTS_PER_PAGE = 12;
 

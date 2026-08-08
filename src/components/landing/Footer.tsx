@@ -1,6 +1,6 @@
-import { getAssetPath } from "../../utils/assetPath";
 import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 interface FooterProps {
 	hideCommunityBorder?: boolean;

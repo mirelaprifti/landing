@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
-import { Icon } from "@/components/ui/Icon";
 
 /** Split-flap style version counter: rolls 3.9 -> 4.0 on mount. */
 function FlipVersion() {

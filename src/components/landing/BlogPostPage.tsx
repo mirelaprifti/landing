@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
+import { Button, Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import { BLOG_POSTS, getPostUrl } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
-import { Link } from "@/components/ui";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 /** Shared article styles for blog post bodies (also used by /styleguide). */
 export const BLOG_ARTICLE_CLASS =
@@ -861,13 +861,15 @@ export function BlogPostPage({ slug }: { slug: string }) {
 						<p className="mt-5 text-lg text-zinc-700 dark:text-zinc-300">
 							Post not found.
 						</p>
-						<a
+						<Button
 							href={getAssetPath("/blog")}
-							className="mt-5 inline-flex items-center gap-2 rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-200 hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:hover:text-white"
+							variant="secondary"
+							size="sm"
+							className="mt-5"
 						>
 							<Icon name="chevron-left" />
 							Back to blog
-						</a>
+						</Button>
 					</div>
 				</main>
 				<Footer activePath="/blog" />
@@ -1149,11 +1151,11 @@ export function BlogPostPage({ slug }: { slug: string }) {
 									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
 									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
 
-									<a
+									<Button
 										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
+										variant="primary"
+										size="md"
+										className="w-full"
 									>
 										Join the Discord
 										<Icon
@@ -1161,7 +1163,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
 											className="text-base"
 											aria-hidden="true"
 										/>
-									</a>
+									</Button>
 									<a
 										href="https://discord.gg/effect-ts"
 										target="_blank"

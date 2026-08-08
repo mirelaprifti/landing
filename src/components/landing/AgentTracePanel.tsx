@@ -1,4 +1,5 @@
 import { Icon } from "@/components/ui/Icon";
+
 type SpanStatus = "ok" | "retry" | "err";
 
 type Span = {

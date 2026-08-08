@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
-import { HeroCommandPanel } from "./HeroCommandPanel";
 import { Icon } from "@/components/ui/Icon";
+import { HeroCommandPanel } from "./HeroCommandPanel";
 
 export function CTASection({
 	v4Stable = false,

@@ -1,5 +1,5 @@
-import { Link } from "@/components/ui";
 import { useState } from "react";
+import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 
 export function WhatIsEffectSection() {

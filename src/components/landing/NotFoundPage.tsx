@@ -1,9 +1,10 @@
 import { motion } from "motion/react";
+import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 const codeLines = [
 	// Line 0: import { Effect } from "effect"
@@ -126,7 +127,11 @@ export function NotFoundPage() {
 										<Icon name="arrow-left" className="text-base" />
 										Back to home
 									</Button>
-									<Button href="https://effect.website/docs/" variant="secondary" size="md">
+									<Button
+										href="https://effect.website/docs/"
+										variant="secondary"
+										size="md"
+									>
 										<Icon name="book-open" className="text-base" />
 										Read the docs
 									</Button>

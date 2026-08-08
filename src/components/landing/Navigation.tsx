@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
-import { Icon } from "@/components/ui/Icon";
 
 interface NavigationProps {
 	transparent?: boolean;

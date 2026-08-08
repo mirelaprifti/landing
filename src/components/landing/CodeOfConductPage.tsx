@@ -1,8 +1,8 @@
 import { Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 export function CodeOfConductPage() {
 	return (

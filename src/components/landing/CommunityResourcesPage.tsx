@@ -1,19 +1,19 @@
 import { useMemo, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 import {
 	CATEGORIES,
 	CATEGORY_COLORS,
 	CATEGORY_DISPLAY_NAMES,
 	CATEGORY_ICONS,
 	CATEGORY_SLUGS,
-	COMMUNITY_ITEMS,
 	type Category,
+	COMMUNITY_ITEMS,
 	type CommunityItem,
 } from "../../data/resources";
 import { GridOverlay } from "../GridOverlay";
 import { Button, Link } from "../ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 // ── Constants ────────────────────────────────────────────────────
 
@@ -240,13 +240,15 @@ function SearchResults({
 				<p className="mt-2 max-w-sm text-center text-sm leading-relaxed text-zinc-400">
 					Nothing matched &ldquo;{query}&rdquo;. Try a different search term.
 				</p>
-				<button
+				<Button
 					type="button"
 					onClick={onClear}
-					className="mt-4 rounded-lg px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-900/60 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500"
+					variant="ghost"
+					size="sm"
+					className="mt-4"
 				>
 					Clear search
-				</button>
+				</Button>
 			</div>
 		);
 	}

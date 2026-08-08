@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getAssetPath } from "../../utils/assetPath";
 import { Button, Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 const upcomingEvents: Array<{
 	title: string;
@@ -827,7 +827,11 @@ function EventsTabSection() {
 									Join the Discord to be the first to know when new events are
 									announced.
 								</p>
-								<Button href="https://discord.gg/effect-ts" variant="secondary" size="sm">
+								<Button
+									href="https://discord.gg/effect-ts"
+									variant="secondary"
+									size="sm"
+								>
 									<i className="ri-discord-fill text-base" />
 									Join Discord
 								</Button>

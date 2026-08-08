@@ -1,11 +1,11 @@
-import { getAssetPath } from "../../utils/assetPath";
+import { Icon } from "@/components/ui/Icon";
 import type { Partner } from "../../data/partners";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui";
 import { ContactForm } from "./ContactForm";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 export function PartnerDetailsPage({ partner }: { partner: Partner }) {
 	return (

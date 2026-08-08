@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
-import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 const AI_BENEFITS = [
 	{
@@ -110,7 +110,11 @@ export function LP2AI() {
 
 				{/* Bottom links */}
 				<div className="mt-12 flex flex-wrap gap-4">
-					<Button href="https://www.effect.solutions/" variant="secondary" size="lg">
+					<Button
+						href="https://www.effect.solutions/"
+						variant="secondary"
+						size="lg"
+					>
 						Quick start LLM guide
 						<Icon name="arrow-up-right" />
 					</Button>

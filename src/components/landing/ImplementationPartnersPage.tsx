@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { PARTNERS, type Partner } from "../../data/partners";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 /* Hero — partner identity, tagline, CTAs */
 function FeaturedPartnerHero({ partner }: { partner: Partner }) {

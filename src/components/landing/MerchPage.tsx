@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { getAssetPath } from "../../utils/assetPath";
 import { Button, Link } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 interface Product {
 	id: string;

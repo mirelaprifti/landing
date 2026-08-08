@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui";
 import { useRef } from "react";
-import { getAssetPath } from "../../utils/assetPath";
+import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 const useCases = [
 	{
@@ -130,15 +130,27 @@ export function SocialProofSection() {
 				</h2>
 				{/* Resource links */}
 				<div className="mt-8 flex flex-wrap items-center gap-3">
-					<Button href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE" variant="secondary" size="lg">
+					<Button
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
+						variant="secondary"
+						size="lg"
+					>
 						Cause & Effect Podcast
 						<Icon name="arrow-up-right" className="text-base" />
 					</Button>
-					<Button href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO" variant="secondary" size="lg">
+					<Button
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
+						variant="secondary"
+						size="lg"
+					>
 						Effect Days 2024
 						<Icon name="arrow-up-right" className="text-base" />
 					</Button>
-					<Button href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP" variant="secondary" size="lg">
+					<Button
+						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
+						variant="secondary"
+						size="lg"
+					>
 						Effect Days 2025
 						<Icon name="arrow-up-right" className="text-base" />
 					</Button>

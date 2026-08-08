@@ -1,16 +1,16 @@
-import { Navigation } from "./Navigation";
-import { HeroSection } from "./HeroSection";
-import { ProblemSection } from "./ProblemSection";
-import { FeaturesSection } from "./FeaturesSection";
+import { GridOverlay } from "../GridOverlay";
 import { AIBuildingSection } from "./AIBuildingSection";
 import { AISection } from "./AISection";
+import { CTASection } from "./CTASection";
+import { FAQSection } from "./FAQSection";
+import { FeaturesSection } from "./FeaturesSection";
+import { Footer } from "./Footer";
+import { HeroSection } from "./HeroSection";
+import { Navigation } from "./Navigation";
+import { ProblemSection } from "./ProblemSection";
+import { QuotesGridSection } from "./QuotesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { WhatIsEffectSection } from "./WhatIsEffectSection";
-import { QuotesGridSection } from "./QuotesSection";
-import { FAQSection } from "./FAQSection";
-import { CTASection } from "./CTASection";
-import { Footer } from "./Footer";
-import { GridOverlay } from "../GridOverlay";
 
 function SectionDivider() {
 	return <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />;

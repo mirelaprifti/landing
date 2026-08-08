@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
-import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 /** Static placeholder — the talk video was removed from the bundle.
  *  Swap back to a <video> (or an external embed) when a hosted URL exists. */

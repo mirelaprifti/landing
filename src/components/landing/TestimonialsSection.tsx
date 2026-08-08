@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
-import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 const featuredCases = [
 	{

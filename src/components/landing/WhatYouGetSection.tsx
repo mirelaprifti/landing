@@ -1,4 +1,5 @@
 import { Icon } from "@/components/ui/Icon";
+
 const FEATURES = [
 	{
 		icon: "circle-check" as const,

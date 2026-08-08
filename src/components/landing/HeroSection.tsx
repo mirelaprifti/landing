@@ -1,6 +1,6 @@
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "@/utils/assetPath";
 import { HeroCommandPanel } from "./HeroCommandPanel";
-import { Icon } from "@/components/ui/Icon";
 
 const HERO_LOGOS: {
 	name: string;

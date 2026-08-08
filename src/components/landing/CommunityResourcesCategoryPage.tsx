@@ -1,18 +1,18 @@
 import { useMemo } from "react";
+import { Icon } from "@/components/ui/Icon";
 import {
 	CATEGORY_COLORS,
 	CATEGORY_DISPLAY_NAMES,
 	CATEGORY_ICONS,
 	CATEGORY_SLUGS,
-	COMMUNITY_ITEMS,
 	type Category,
+	COMMUNITY_ITEMS,
 	type CommunityItem,
 } from "../../data/resources";
 import { GridOverlay } from "../GridOverlay";
 import { Button, Link } from "../ui";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 // ── Resource Card ────────────────────────────────────────────────
 

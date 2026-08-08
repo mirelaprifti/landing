@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 function QuoteCard({
 	text,

@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import type { Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
 import { formatTimestamp } from "../../utils/srtParser";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 interface TranscriptParagraph {
 	startTime: string;
@@ -513,7 +514,12 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 							How teams like Vercel, MasterClass, and others build in
 							production.
 						</p>
-						<Button href={getAssetPath("/podcast")} variant="primary" size="lg" className="mt-6">
+						<Button
+							href={getAssetPath("/podcast")}
+							variant="primary"
+							size="lg"
+							className="mt-6"
+						>
 							<span>See all episodes</span>
 							<Icon name="arrow-right" />
 						</Button>

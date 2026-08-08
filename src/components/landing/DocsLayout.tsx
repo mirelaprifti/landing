@@ -1,9 +1,9 @@
 import { type ReactNode, useEffect, useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon } from "@/components/ui/Icon";
 
 /**
  * Shared article styles for docs page bodies (also used by /styleguide).

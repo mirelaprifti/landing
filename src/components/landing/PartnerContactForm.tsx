@@ -1,6 +1,6 @@
 import { type FormEvent, useState } from "react";
-import { Button } from "../ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { Button } from "../ui/Button";
 
 interface PartnerContactFormProps {
 	/** Used in the email subject line so submissions are routed to the right partner. */

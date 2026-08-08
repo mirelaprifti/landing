@@ -7,13 +7,13 @@ import {
 	Sparkles,
 	Workflow,
 } from "lucide-react";
+import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { PartnerContactForm } from "./PartnerContactForm";
-import { Icon } from "@/components/ui/Icon";
 
 type Service = {
 	icon: LucideIcon;

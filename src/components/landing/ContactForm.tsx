@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from "react";
+import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 
 export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
@@ -103,12 +104,14 @@ export function ContactForm({ defaultPartner }: { defaultPartner?: string }) {
 				</div>
 			</div>
 			<div className="mt-6">
-				<button
+				<Button
 					type="submit"
-					className="cursor-pointer rounded-md bg-white px-6 py-2.5 text-sm font-medium text-zinc-950 transition-shadow hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+					variant="primary"
+					size="md"
+					className="cursor-pointer"
 				>
 					Get in touch
-				</button>
+				</Button>
 			</div>
 		</form>
 	);

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui";
 import { useRef, useState } from "react";
-import { getAssetPath } from "../../utils/assetPath";
+import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 
 export function PlaygroundSection() {
 	const [hasStarted, setHasStarted] = useState(false);
@@ -57,7 +57,11 @@ export function PlaygroundSection() {
 					<h2 className="font-inter leading-tighter text-2xl font-semibold text-white">
 						Effect Playground
 					</h2>
-					<Button href="https://effect.website/play/" variant="secondary" size="lg">
+					<Button
+						href="https://effect.website/play/"
+						variant="secondary"
+						size="lg"
+					>
 						<span>Play</span>
 						<Icon name="arrow-right" className="text-base" />
 					</Button>

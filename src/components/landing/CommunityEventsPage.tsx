@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { Icon, type IconName } from "@/components/ui/Icon";
 
 const FORM_URL =
 	"https://docs.google.com/forms/d/e/1FAIpQLSdiqkoogZ8a2h10oF2ANRTDE_m9l-huR8cpoedbMpjAd29tNw/viewform";
@@ -664,11 +664,11 @@ export function CommunityEventsPage() {
 									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-700" />
 									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-700" />
 
-									<a
+									<Button
 										href={FORM_URL}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
+										variant="primary"
+										size="md"
+										className="w-full"
 									>
 										Tell us about your event
 										<Icon
@@ -676,7 +676,7 @@ export function CommunityEventsPage() {
 											className="text-base"
 											aria-hidden="true"
 										/>
-									</a>
+									</Button>
 									<a
 										href="https://discord.gg/effect-ts"
 										target="_blank"
