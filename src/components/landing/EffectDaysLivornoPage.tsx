@@ -151,8 +151,8 @@ export function EffectDaysLivornoPage() {
 			<Navigation activePath="/events" />
 			<GridOverlay />
 
-			{/* Vertical border lines container */}
-			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-60 hidden lg:block">
+			{/* Vertical border lines container — behind content, so full-bleed images cover them */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-295">
 					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
 					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />

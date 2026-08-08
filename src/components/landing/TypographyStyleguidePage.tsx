@@ -325,12 +325,7 @@ export function TypographyStyleguidePage() {
 
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="pb-24">
-						<GuideSection
-							id="foundations"
-							eyebrow="01"
-							title="Foundations"
-							subtitle="Inter for everything, JetBrains Mono for code and labels, one 1.25-ratio scale."
-						>
+						<GuideSection id="foundations" eyebrow="01" title="Foundations">
 							<SpecRow
 								title="Font families"
 								note="font-sans is the default. font-mono resolves to JetBrains Mono; never font-inter."
@@ -382,12 +377,7 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 						</GuideSection>
 
-						<GuideSection
-							id="text-elements"
-							eyebrow="02"
-							title="Text elements"
-							subtitle="One spec per role, shown in both themes."
-						>
+						<GuideSection id="text-elements" eyebrow="02" title="Text elements">
 							<div>
 								{ELEMENT_SPECS.map((el) => (
 									<div
@@ -536,12 +526,7 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 						</GuideSection>
 
-						<GuideSection
-							id="spacing"
-							eyebrow="04"
-							title="Spacing"
-							subtitle="One container, one section rhythm, one text stack."
-						>
+						<GuideSection id="spacing" eyebrow="04" title="Spacing">
 							<SpecRow
 								title="Container"
 								note="Use this literal string."
@@ -641,12 +626,7 @@ export function TypographyStyleguidePage() {
 							</SpecRow>
 						</GuideSection>
 
-						<GuideSection
-							id="rules"
-							eyebrow="05"
-							title="Rules"
-							subtitle="The short version."
-						>
+						<GuideSection id="rules" eyebrow="05" title="Rules">
 							<div className="grid gap-6 md:grid-cols-2">
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
 									<p className={rowLabel}>Do</p>
@@ -674,12 +654,7 @@ export function TypographyStyleguidePage() {
 							</div>
 						</GuideSection>
 
-						<GuideSection
-							id="blog"
-							eyebrow="06"
-							title="Blog"
-							subtitle="Every element the blog body supports, rendered with BLOG_ARTICLE_CLASS. Fix styles there, not per-post."
-						>
+						<GuideSection id="blog" eyebrow="06" title="Blog">
 							<article className={BLOG_ARTICLE_CLASS}>
 								<p>
 									This paragraph shows the reading defaults: 17px body text with
@@ -808,12 +783,7 @@ export function TypographyStyleguidePage() {
 							</article>
 						</GuideSection>
 
-						<GuideSection
-							id="docs"
-							eyebrow="07"
-							title="Docs"
-							subtitle="Matched to the live v4 API reference. Mono names code; article bodies use DOCS_ARTICLE_CLASS."
-						>
+						<GuideSection id="docs" eyebrow="07" title="Docs">
 							<SpecRow
 								title="Docs heading hierarchy"
 								note="Mono h1 — always the largest · sans h2 category · mono h3 entry · scaffold labels as paragraphs."
