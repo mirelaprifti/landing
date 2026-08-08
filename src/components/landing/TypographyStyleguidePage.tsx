@@ -519,8 +519,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Section header stack"
-								note="This exact stack opens every section."
-								classes="eyebrow mb-3 → h2 → subtitle mt-4 → content mt-12"
+								note="This exact stack opens every section: eyebrow mb-3 → h2 → subtitle mt-4 → content mt-12."
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 p-6 dark:border-zinc-700">
 									<p className={text.eyebrow}>// Eyebrow</p>
@@ -923,7 +922,11 @@ export function TypographyStyleguidePage() {
 										label: "main",
 										value: "min-w-0 px-6 pt-6 pb-12 lg:px-12 lg:py-16",
 									},
-									{ label: "article", value: "max-w-4xl" },
+									{
+										label: "article",
+										value: "max-w-4xl",
+										hint: "Already included in DOCS_ARTICLE_CLASS — don't set it twice.",
+									},
 								]}
 							>
 								<div className="grid grid-cols-[56px_1fr_56px] gap-2 rounded-md border border-dashed border-zinc-300 p-4 md:grid-cols-[240px_1fr_240px] dark:border-zinc-700">
