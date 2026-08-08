@@ -396,7 +396,6 @@ export function TypographyStyleguidePage() {
 							id="links-buttons"
 							eyebrow="03"
 							title="Links & buttons"
-							subtitle="Always ui/Link and ui/Button — never hand-rolled."
 						>
 							<SpecRow
 								title="Links — ui/Link"
