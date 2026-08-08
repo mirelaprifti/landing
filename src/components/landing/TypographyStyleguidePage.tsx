@@ -69,7 +69,7 @@ const SPACING_STEPS = [
 	{ label: "mt-4", px: 16, use: "title → subtitle / body" },
 	{ label: "px-4", px: 16, use: "container side gutter" },
 	{ label: "p-6 / gap-6", px: 24, use: "card padding, card grids" },
-	{ label: "mb-12", px: 48, use: "section header → content" },
+	{ label: "mt-12", px: 48, use: "section header → content" },
 	{ label: "py-24", px: 96, use: "section rhythm (mobile)" },
 	{ label: "md:pt-40", px: 160, use: "section top (desktop)" },
 ];
@@ -534,7 +534,7 @@ export function TypographyStyleguidePage() {
 								title="Section rhythm"
 								pair={false}
 								note="96px mobile · 160px top / 96px bottom desktop."
-								classes="py-24 md:pt-40 md:pb-24"
+								classes="py-24 md:pt-40"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 p-4 dark:border-zinc-700">
 									<div className="flex h-8 items-center justify-center bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
@@ -544,7 +544,7 @@ export function TypographyStyleguidePage() {
 										section content
 									</div>
 									<div className="flex h-6 items-center justify-center bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-										pb-24
+										py-24 (both) / 96px
 									</div>
 								</div>
 							</SpecRow>
