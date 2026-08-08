@@ -324,7 +324,7 @@ export function TypographyStyleguidePage() {
 				</nav>
 
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
-					<div className="max-w-3xl pb-24">
+					<div className="pb-24">
 						<GuideSection
 							id="foundations"
 							eyebrow="01"
