@@ -32,8 +32,8 @@ const text = {
 	/** Section title (h2). */
 	sectionTitle:
 		"leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white",
-	/** Intro — the paragraph directly under a page/section title. */
-	intro: "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
+	/** Subtitle — the paragraph directly under a page/section title. */
+	subtitle: "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
 	/** Card / subsection title (h3). */
 	cardTitle: "text-lg font-semibold text-zinc-900 dark:text-white",
 	/** Small heading (h4) — fine-grained structure inside cards. */
@@ -67,7 +67,7 @@ const TYPE_SCALE = [
 const SPACING_STEPS = [
 	{ label: "mb-3", px: 12, use: "eyebrow → section title" },
 	{ label: "mt-1", px: 4, use: "card title → card body" },
-	{ label: "mt-4", px: 16, use: "title → intro / body" },
+	{ label: "mt-4", px: 16, use: "title → subtitle / body" },
 	{ label: "p-6 / gap-6", px: 24, use: "card padding, card grids" },
 	{ label: "mb-12", px: 48, use: "section header → content" },
 	{ label: "py-24", px: 96, use: "section rhythm (mobile)" },
@@ -105,9 +105,9 @@ const ELEMENT_SPECS: {
 		sample: "Everything you need",
 	},
 	{
-		label: "intro",
+		label: "subtitle",
 		use: "under a title · max-w-2xl",
-		cls: text.intro,
+		cls: text.subtitle,
 		sample: "Typed errors, concurrency, and DI out of the box.",
 	},
 	{
@@ -248,20 +248,20 @@ function GuideSection({
 	id,
 	eyebrow,
 	title,
-	intro,
+	subtitle,
 	children,
 }: {
 	id: string;
 	eyebrow: string;
 	title: string;
-	intro?: string;
+	subtitle?: string;
 	children: React.ReactNode;
 }) {
 	return (
 		<section id={id} className="scroll-mt-16 pt-20 md:pt-28">
 			<p className={text.eyebrow}>// {eyebrow}</p>
 			<h2 className={text.sectionTitle}>{title}</h2>
-			{intro && <p className={text.intro}>{intro}</p>}
+			{subtitle && <p className={text.subtitle}>{subtitle}</p>}
 			<div className="mt-12">{children}</div>
 		</section>
 	);
@@ -316,7 +316,7 @@ export function TypographyStyleguidePage() {
 							id="foundations"
 							eyebrow="01"
 							title="Foundations"
-							intro="Inter for everything, JetBrains Mono for code and labels, one 1.25-ratio scale."
+							subtitle="Inter for everything, JetBrains Mono for code and labels, one 1.25-ratio scale."
 						>
 							<SpecRow
 								title="Font families"
@@ -372,7 +372,7 @@ export function TypographyStyleguidePage() {
 							id="text-elements"
 							eyebrow="02"
 							title="Text elements"
-							intro="One spec per role: sample on the right, class string one click away."
+							subtitle="One spec per role: sample on the right, class string one click away."
 						>
 							<div>
 								{ELEMENT_SPECS.map((el) => (
@@ -415,7 +415,7 @@ export function TypographyStyleguidePage() {
 							id="links-buttons"
 							eyebrow="03"
 							title="Links & buttons"
-							intro="Always ui/Link and ui/Button — never hand-rolled."
+							subtitle="Always ui/Link and ui/Button — never hand-rolled."
 						>
 							<SpecRow
 								title="Links — ui/Link"
@@ -504,7 +504,7 @@ export function TypographyStyleguidePage() {
 							id="spacing"
 							eyebrow="04"
 							title="Spacing"
-							intro="One container, one section rhythm, one text stack."
+							subtitle="One container, one section rhythm, one text stack."
 						>
 							<SpecRow
 								title="Container"
@@ -539,13 +539,13 @@ export function TypographyStyleguidePage() {
 							<SpecRow
 								title="Section header stack"
 								note="This exact stack opens every section."
-								classes="eyebrow mb-3 → h2 → intro mt-4 → content mt-12"
+								classes="eyebrow mb-3 → h2 → subtitle mt-4 → content mt-12"
 							>
 								<div className="rounded-md border border-dashed border-zinc-300 p-6 dark:border-zinc-700">
 									<p className={text.eyebrow}>// Eyebrow</p>
 									<p className={text.sectionTitle}>Section title</p>
-									<p className={text.intro}>
-										Intro sits 16px below the title.
+									<p className={text.subtitle}>
+										Subtitle sits 16px below the title.
 									</p>
 									<div className="mt-12 flex h-10 items-center justify-center rounded-sm bg-zinc-100 font-mono text-sm text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
 										content · mt-12
@@ -608,7 +608,7 @@ export function TypographyStyleguidePage() {
 							id="rules"
 							eyebrow="05"
 							title="Rules"
-							intro="The short version."
+							subtitle="The short version."
 						>
 							<div className="grid gap-6 md:grid-cols-2">
 								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
@@ -641,7 +641,7 @@ export function TypographyStyleguidePage() {
 							id="blog"
 							eyebrow="06"
 							title="Blog"
-							intro="Every element the blog body supports, rendered with BLOG_ARTICLE_CLASS. Fix styles there, not per-post."
+							subtitle="Every element the blog body supports, rendered with BLOG_ARTICLE_CLASS. Fix styles there, not per-post."
 						>
 							<article className={BLOG_ARTICLE_CLASS}>
 								<p>
@@ -775,7 +775,7 @@ export function TypographyStyleguidePage() {
 							id="docs"
 							eyebrow="07"
 							title="Docs"
-							intro="Matched to the live v4 API reference. Mono names code; article bodies use DOCS_ARTICLE_CLASS."
+							subtitle="Matched to the live v4 API reference. Mono names code; article bodies use DOCS_ARTICLE_CLASS."
 						>
 							<SpecRow
 								title="Docs heading hierarchy"
