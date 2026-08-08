@@ -567,27 +567,37 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Cards & grids"
-								note="p-6 cards, gap-6 grids. Airy chrome-less grids: gap-12 md:gap-16."
+								note="A card is a bordered box with p-6 padding; its title and body use the h3 · card and card body specs. Lay cards out on a grid with gap-6."
 								classes={[
 									{
 										label: "card",
 										value:
 											"rounded-md border border-zinc-200 p-6 dark:border-zinc-800",
 									},
-									{ label: "grid", value: "grid gap-6" },
+									{
+										label: "grid",
+										value: "grid gap-6 md:grid-cols-2",
+										hint: "Use md:grid-cols-3 for three-up rows.",
+									},
 								]}
 							>
 								<div className="grid gap-6 md:grid-cols-2">
-									{["Typed errors", "Structured concurrency"].map((title) => (
+									{[
+										{
+											title: "Typed errors",
+											body: "Every failure case is tracked in the signature.",
+										},
+										{
+											title: "Structured concurrency",
+											body: "Fibers are supervised and cleaned up with their scope.",
+										},
+									].map((card) => (
 										<div
-											key={title}
+											key={card.title}
 											className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800"
 										>
-											<p className={text.cardTitle}>{title}</p>
-											<p className={text.cardBody}>
-												Card body copy sits 12px below the title, one size down
-												from standard body copy.
-											</p>
+											<p className={text.cardTitle}>{card.title}</p>
+											<p className={text.cardBody}>{card.body}</p>
 										</div>
 									))}
 								</div>
