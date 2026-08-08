@@ -160,15 +160,6 @@ export function EffectDaysLivornoPage() {
 			</div>
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
-				{/* Soft white glow behind the hero */}
-				<div
-					className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-168"
-					style={{
-						background:
-							"radial-gradient(ellipse 60% 50% at 70% 20%, rgba(255, 255, 255, 0.05), transparent 70%)",
-					}}
-				/>
-
 				{/* Hero Section */}
 				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-28">
 					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
