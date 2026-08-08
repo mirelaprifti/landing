@@ -8,6 +8,8 @@ interface Props {
 	/** Pages with a theme switch (blog, playground, docs) resolve light/dark from
 	 * the stored/system preference. All other pages are always dark. */
 	themeable?: boolean;
+	/** Always-light pages (styleguide) — renders dark examples inline instead. */
+	light?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
 	description = "Interactive Effect examples",
 	ogImage,
 	themeable = false,
+	light = false,
 } = Astro.props;
 
 const base = import.meta.env.PROD ? "/landing" : "";
@@ -38,7 +41,7 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class={light ? undefined : "dark"}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />

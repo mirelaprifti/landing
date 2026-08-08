@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
-import { ThemeToggleButton } from "@/components/ui/ThemeToggle";
 import { getAssetPath } from "../../utils/assetPath";
 import { BLOG_ARTICLE_CLASS } from "./BlogPostPage";
 import { DOCS_ARTICLE_CLASS } from "./DocsLayout";
@@ -208,15 +207,41 @@ function ClassBlock({ classes }: { classes: SpecClasses }) {
 	);
 }
 
+/**
+ * Renders the same example twice — once on a light surface, once on a dark
+ * one. The dark panel carries the `dark` class, and the site's dark variant
+ * (`&:where(.dark, .dark *)`) makes every `dark:` utility inside it apply,
+ * so both themes are visible at once without a page-level switch.
+ */
+function ThemePair({ children }: { children: React.ReactNode }) {
+	const panelLabel =
+		"mb-4 font-mono text-xs font-medium tracking-wider uppercase";
+	return (
+		<div className="grid gap-3 lg:grid-cols-2">
+			<div className="min-w-0 rounded-md border border-zinc-200 bg-white p-5">
+				<p className={`${panelLabel} text-zinc-400`}>Light</p>
+				{children}
+			</div>
+			<div className="dark min-w-0 rounded-md border border-zinc-800 bg-zinc-950 p-5">
+				<p className={`${panelLabel} text-zinc-500`}>Dark</p>
+				{children}
+			</div>
+		</div>
+	);
+}
+
 function SpecRow({
 	title,
 	note,
 	classes,
+	pair = true,
 	children,
 }: {
 	title: string;
 	note?: string;
 	classes?: SpecClasses;
+	/** Set false for rows where a second theme adds nothing (scale tables). */
+	pair?: boolean;
 	children: React.ReactNode;
 }) {
 	return (
@@ -227,7 +252,9 @@ function SpecRow({
 					{note}
 				</p>
 			)}
-			<div className="mt-5">{children}</div>
+			<div className="mt-5">
+				{pair ? <ThemePair>{children}</ThemePair> : children}
+			</div>
 			{classes && <ClassBlock classes={classes} />}
 		</div>
 	);
@@ -268,7 +295,7 @@ const NAV_ITEMS = [
 
 export function TypographyStyleguidePage() {
 	return (
-		<div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white">
+		<div className="min-h-screen bg-white text-zinc-900">
 			<main className="relative w-full">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<header className="pt-12 pb-12 md:pt-16 md:pb-16">
@@ -277,25 +304,22 @@ export function TypographyStyleguidePage() {
 					</header>
 				</div>
 
-				{/* Sticky section nav — the page's only chrome; carries the theme
-				    toggle and doubles as the divider between hero and guide */}
+				{/* Sticky section nav — the page's only chrome; doubles as the
+				    divider between hero and guide */}
 				<nav
 					aria-label="Styleguide sections"
-					className="sticky top-0 z-40 border-y border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95"
+					className="sticky top-0 z-40 border-y border-zinc-200 bg-white/95 backdrop-blur-sm"
 				>
-					<div className="mx-auto flex w-full max-w-[73.75rem] items-center justify-between gap-6 px-4 py-3">
-						<div className="flex flex-wrap gap-x-6 gap-y-2">
-							{NAV_ITEMS.map((item) => (
-								<a
-									key={item.href}
-									href={item.href}
-									className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-								>
-									{item.label}
-								</a>
-							))}
-						</div>
-						<ThemeToggleButton />
+					<div className="mx-auto flex w-full max-w-[73.75rem] flex-wrap gap-x-6 gap-y-2 px-4 py-3">
+						{NAV_ITEMS.map((item) => (
+							<a
+								key={item.href}
+								href={item.href}
+								className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900"
+							>
+								{item.label}
+							</a>
+						))}
 					</div>
 				</nav>
 
@@ -333,6 +357,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Type scale"
+								pair={false}
 								note="Only these steps — no arbitrary sizes."
 							>
 								<div className="space-y-3">
@@ -361,32 +386,31 @@ export function TypographyStyleguidePage() {
 							id="text-elements"
 							eyebrow="02"
 							title="Text elements"
-							subtitle="One spec per role: sample on the right, class string one click away."
+							subtitle="One spec per role, shown in both themes."
 						>
 							<div>
 								{ELEMENT_SPECS.map((el) => (
 									<div
 										key={el.label}
-										className="border-b border-zinc-100 py-5 first:pt-0 last:border-b-0 dark:border-zinc-900"
+										className="border-b border-zinc-100 py-5 first:pt-0 last:border-b-0"
 									>
-										<div className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-6">
-											<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
-												{el.label}
-											</span>
-											<div className="min-w-0 flex-1">
+										<span className="font-mono text-sm text-zinc-500">
+											{el.label}
+										</span>
+										<div className="mt-3 grid gap-3 lg:grid-cols-2">
+											<div className="min-w-0 rounded-md border border-zinc-200 bg-white p-4">
 												<p className={`${el.cls} mt-0! mb-0!`}>{el.sample}</p>
-												<details className="mt-2">
-													<summary className="cursor-pointer font-mono text-xs tracking-wider text-zinc-400 uppercase select-none dark:text-zinc-500">
-														Class
-													</summary>
-													<pre className="mt-2 rounded-md bg-zinc-100 px-3 py-2 whitespace-pre-wrap dark:bg-zinc-900">
-														<code className="font-mono text-xs leading-relaxed wrap-break-word text-zinc-700 dark:text-zinc-300">
-															{el.cls}
-														</code>
-													</pre>
-												</details>
+											</div>
+											<div className="dark min-w-0 rounded-md border border-zinc-800 bg-zinc-950 p-4">
+												<p className={`${el.cls} mt-0! mb-0!`}>{el.sample}</p>
 											</div>
 										</div>
+										<details className="mt-2">
+											<summary className="cursor-pointer font-mono text-xs tracking-wider text-zinc-400 uppercase select-none">
+												Class
+											</summary>
+											<ClassChip className="mt-2" value={el.cls} />
+										</details>
 									</div>
 								))}
 							</div>
@@ -536,6 +560,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Section rhythm"
+								pair={false}
 								note="96px mobile · 160px top / 96px bottom desktop."
 								classes="py-24 md:pt-40 md:pb-24"
 							>
@@ -598,6 +623,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Spacing steps"
+								pair={false}
 								note="Not on the list? Round to the nearest step."
 							>
 								<div className="space-y-3">
@@ -871,6 +897,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Document outline"
+								pair={false}
 								note="One h1, first. TOC from h2 + h3 only; chrome and scaffold stay out — ~170 outline nodes, not the live page's 622."
 							>
 								<pre className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-4 font-mono text-sm leading-[1.9] text-zinc-200">
