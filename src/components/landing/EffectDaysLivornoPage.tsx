@@ -191,9 +191,7 @@ export function EffectDaysLivornoPage() {
 						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
 							{/* Left — copy */}
 							<div>
-								<p className={text.eyebrow}>
-									{"// "}3rd edition · non-profit · community-driven
-								</p>
+								<p className={text.eyebrow}>{"// "}3rd edition</p>
 								<h1 className={text.pageTitle}>Effect Days</h1>
 								<p className="mt-4 font-mono text-sm font-medium tracking-wider text-zinc-300 uppercase">
 									<span className="text-white">Livorno, Italy</span>
