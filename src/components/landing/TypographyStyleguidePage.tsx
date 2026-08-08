@@ -506,24 +506,6 @@ export function TypographyStyleguidePage() {
 									</Button>
 								</div>
 							</SpecRow>
-
-							<SpecRow
-								title="Section header action"
-								note="Secondary md Button beside the h2, trailing arrow (up-right = external). Row is items-center."
-								classes="flex flex-wrap items-center justify-between gap-x-6 gap-y-3"
-							>
-								<div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-									<h2 className={text.sectionTitle}>Join an upcoming event</h2>
-									<Button
-										href="https://luma.com/effect-community"
-										variant="secondary"
-										className="shrink-0"
-									>
-										View events calendar
-										<Icon name="arrow-up-right" className="text-base" />
-									</Button>
-								</div>
-							</SpecRow>
 						</GuideSection>
 
 						<GuideSection id="spacing" eyebrow="04" title="Spacing">
