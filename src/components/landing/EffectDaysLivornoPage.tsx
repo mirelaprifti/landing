@@ -292,6 +292,9 @@ export function EffectDaysLivornoPage() {
 					</div>
 				</section>
 
+				{/* Divider between hero and content */}
+				<div className="border-t border-zinc-200 dark:border-zinc-800" />
+
 				{/* The Program - pipeline */}
 				<section className={sectionRhythm}>
 					<div className={container}>
