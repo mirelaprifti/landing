@@ -390,10 +390,6 @@ export function TypographyStyleguidePage() {
 									</div>
 								))}
 							</div>
-							<p className="mt-5 text-sm text-zinc-500 dark:text-zinc-400">
-								Never skip a heading level. The eyebrow is a label (renders as a
-								p), not a heading.
-							</p>
 						</GuideSection>
 
 						<GuideSection
