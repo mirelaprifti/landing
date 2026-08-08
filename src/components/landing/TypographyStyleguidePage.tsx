@@ -231,6 +231,57 @@ function ThemePair({ children }: { children: React.ReactNode }) {
 	);
 }
 
+/**
+ * A rule stated as a side-by-side comparison: the wrong rendering next to the
+ * right one, each labelled with the class that causes it. Both panels are
+ * light so the two renderings are directly comparable.
+ */
+function RuleRow({
+	title,
+	bad,
+	badClass,
+	good,
+	goodClass,
+	note,
+}: {
+	title: string;
+	bad: React.ReactNode;
+	badClass: string;
+	good: React.ReactNode;
+	goodClass: string;
+	note?: string;
+}) {
+	const panel =
+		"min-w-0 rounded-md border border-zinc-200 bg-white p-5 flex flex-col gap-3";
+	const tag = "font-mono text-xs font-medium tracking-wider uppercase";
+	return (
+		<div className="border-b border-zinc-100 pb-8 last:border-b-0 last:pb-0">
+			<p className={rowLabel}>{title}</p>
+			{note && (
+				<p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-600">
+					{note}
+				</p>
+			)}
+			<div className="mt-4 grid gap-3 lg:grid-cols-2">
+				<div className={panel}>
+					<span className={`${tag} text-red-600`}>✗ Don't</span>
+					<div className="min-w-0">{bad}</div>
+					<code className="font-mono text-xs wrap-break-word text-zinc-500">
+						{badClass}
+					</code>
+				</div>
+				<div className={panel}>
+					<span className={`${tag} text-emerald-600`}>✓ Do</span>
+					<div className="min-w-0">{good}</div>
+					<code className="font-mono text-xs wrap-break-word text-zinc-500">
+						{goodClass}
+					</code>
+				</div>
+			</div>
+		</div>
+	);
+}
+
 function SpecRow({
 	title,
 	note,
@@ -327,30 +378,105 @@ export function TypographyStyleguidePage() {
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="pb-24">
 						<GuideSection id="rules" eyebrow="01" title="Rules">
-							<div className="grid gap-6 md:grid-cols-2">
-								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
-									<p className={rowLabel}>Do</p>
-									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-										<li>Type scale + named leadings only</li>
-										<li>h1 + h2 font-bold · h3–h4 font-semibold</li>
-										<li>Themeable color pairs, even on dark-only pages</li>
-										<li>ui/Button and ui/Link for every CTA and link</li>
-										<li>Container and section-rhythm strings verbatim</li>
-									</ul>
-								</div>
-								<div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800">
-									<p className={rowLabel}>Don't</p>
-									<ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-										<li>
-											No arbitrary sizes or leadings (text-[15px],
-											leading-[1.35])
-										</li>
-										<li>No font-bold below h2, no tracking-wide eyebrows</li>
-										<li>No hand-rolled or rounded-lg buttons</li>
-										<li>No font-inter, no inline Roboto Mono</li>
-										<li>No max-w-295 or one-off containers</li>
-									</ul>
-								</div>
+							<div className="space-y-8">
+								<RuleRow
+									title="Type scale"
+									badClass="text-[15px]"
+									bad={
+										<p className="text-[15px] text-zinc-900">
+											Fibers are supervised automatically.
+										</p>
+									}
+									goodClass="text-base"
+									good={
+										<p className="text-base text-zinc-900">
+											Fibers are supervised automatically.
+										</p>
+									}
+									note="Arbitrary sizes are off-scale. Arbitrary values are fine only where a spec already defines one (page titles use leading-[1.1])."
+								/>
+								<RuleRow
+									title="Heading weight"
+									badClass="text-2xl font-semibold"
+									bad={
+										<p className="text-2xl font-semibold text-zinc-900">
+											Everything you need
+										</p>
+									}
+									goodClass="text-2xl font-bold"
+									good={
+										<p className="text-2xl font-bold text-zinc-900">
+											Everything you need
+										</p>
+									}
+									note="h1 and h2 are bold; h3 and h4 are semibold."
+								/>
+								<RuleRow
+									title="Eyebrow"
+									badClass="font-semibold tracking-wide"
+									bad={
+										<p className="font-mono text-sm font-semibold tracking-wide text-zinc-600 uppercase">
+											Why Effect
+										</p>
+									}
+									goodClass="font-medium tracking-wider"
+									good={
+										<p className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase">
+											Why Effect
+										</p>
+									}
+								/>
+								<RuleRow
+									title="Themeable colors"
+									badClass="text-white"
+									bad={
+										<p className="text-base text-white">
+											Invisible on a light background.
+										</p>
+									}
+									goodClass="text-zinc-900 dark:text-white"
+									good={
+										<p className="text-base text-zinc-900 dark:text-white">
+											Readable in both themes.
+										</p>
+									}
+									note="Always write the pair, even on pages that are dark today."
+								/>
+								<RuleRow
+									title="Buttons"
+									badClass="hand-rolled · rounded-lg"
+									bad={
+										<span className="inline-flex items-center rounded-lg border border-zinc-600 px-4 py-2 text-base font-medium text-zinc-900">
+											Get started
+										</span>
+									}
+									goodClass='ui/Button variant="primary"'
+									good={
+										<Button variant="primary" size="md">
+											Get started
+										</Button>
+									}
+									note="Never hand-roll a CTA — ui/Button and ui/Link cover every case."
+								/>
+								<RuleRow
+									title="Typeface"
+									badClass="font-inter · inline Roboto Mono"
+									bad={
+										<p
+											className="text-base text-zinc-900"
+											style={{ fontFamily: "Roboto Mono, monospace" }}
+										>
+											Effect.gen
+										</p>
+									}
+									goodClass="font-mono"
+									good={
+										<p className="font-mono text-base text-zinc-900">
+											Effect.gen
+										</p>
+									}
+									note="Inter is the default — never restate it. font-mono is the only mono."
+								/>
 							</div>
 						</GuideSection>
 
