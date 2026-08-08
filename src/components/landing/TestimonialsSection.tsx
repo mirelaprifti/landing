@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui";
+import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 
@@ -44,31 +44,31 @@ export function TestimonialsSection() {
 				<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 dark:text-white md:text-3xl">
 					Real-world production systems
 				</h2>
-				<div className="mt-8 flex flex-wrap items-center gap-3">
-					<Button
+				<div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+					<Link
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
-						variant="secondary"
-						className="inline-flex items-center gap-2"
+						variant="subtle"
+						className="inline-flex items-center gap-1.5 font-medium"
 					>
 						Cause & Effect Podcast
-						<Icon name="arrow-up-right" className="text-base" />
-					</Button>
-					<Button
+						<Icon name="arrow-up-right" className="text-xs" />
+					</Link>
+					<Link
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
-						variant="secondary"
-						className="inline-flex items-center gap-2"
+						variant="subtle"
+						className="inline-flex items-center gap-1.5 font-medium"
 					>
 						Effect Days 2024
-						<Icon name="arrow-up-right" className="text-base" />
-					</Button>
-					<Button
+						<Icon name="arrow-up-right" className="text-xs" />
+					</Link>
+					<Link
 						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
-						variant="secondary"
-						className="inline-flex items-center gap-2"
+						variant="subtle"
+						className="inline-flex items-center gap-1.5 font-medium"
 					>
 						Effect Days 2025
-						<Icon name="arrow-up-right" className="text-base" />
-					</Button>
+						<Icon name="arrow-up-right" className="text-xs" />
+					</Link>
 				</div>
 			</div>
 

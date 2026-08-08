@@ -267,8 +267,9 @@ export function EffectDaysLivornoPage() {
 									{" · "}
 									<span>Dec 10–12, 2026</span>
 								</p>
-								<p className={text.subtitle}>
-									The conference for Effect and TypeScript engineers.
+								<p className={`${text.subtitle} max-w-md`}>
+									The conference for Effect and TypeScript engineers. Three days
+									of workshops, talks, and community.
 								</p>
 
 								{/* CTA Buttons */}
