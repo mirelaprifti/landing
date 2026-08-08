@@ -12,13 +12,20 @@ const text = {
 	eyebrow:
 		"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400",
 	sectionTitle:
-		"leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white",
-	lede: "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
+		"leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white",
+	subtitle: "mt-4 text-lg text-zinc-600 dark:text-zinc-400",
 	cardTitle: "text-lg font-semibold text-zinc-900 dark:text-white",
 	smallHeading: "text-base font-semibold text-zinc-900 dark:text-white",
 	body: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400",
 	cardBody: "mt-1 text-sm leading-normal text-zinc-600 dark:text-zinc-400",
+	micro:
+		"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
 };
+
+/* Styleguide chrome strings — copy verbatim. */
+const container = "mx-auto w-full max-w-[73.75rem] px-4";
+const sectionRhythm = "py-24 md:pt-40 md:pb-24";
+const card = "rounded-md border border-zinc-200 p-6 dark:border-zinc-800";
 
 const PROGRAM = [
 	{
@@ -116,18 +123,87 @@ const EDITIONS = [
 	},
 ];
 
-/* Corner brackets that frame a card — the visual signature of this page. */
-function CornerBrackets({ className = "" }: { className?: string }) {
-	const corner = "absolute h-4 w-4 border-zinc-500";
-	return (
-		<div className={`pointer-events-none absolute inset-0 ${className}`}>
-			<span className={`${corner} top-0 left-0 border-t border-l`} />
-			<span className={`${corner} top-0 right-0 border-t border-r`} />
-			<span className={`${corner} bottom-0 left-0 border-b border-l`} />
-			<span className={`${corner} right-0 bottom-0 border-r border-b`} />
-		</div>
-	);
-}
+const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
+	{
+		question: "1. What is Effect Days?",
+		answer: (
+			<>
+				Effect Days is a non-profit event dedicated to{" "}
+				<Link href="https://effect.website" variant="inline">
+					Effect
+				</Link>
+				, an open-source software library that offers an ecosystem of tools for
+				building production-grade applications in TypeScript.
+			</>
+		),
+	},
+	{
+		question: "2. When and where is Effect Days taking place?",
+		answer:
+			"Effect Days will take place on December 10-12, 2026 in Livorno, Tuscany, Italy. The venue will be announced soon.",
+	},
+	{
+		question: "3. What is the schedule of the conference?",
+		answer:
+			"The conference schedule will be shared as we get closer to the event.",
+	},
+	{
+		question: "4. Will the Effect Days conference be recorded?",
+		answer: (
+			<>
+				The conference talks will be recorded and published on the{" "}
+				<Link href="https://www.youtube.com/@effect-ts" variant="inline">
+					Effect YouTube channel
+				</Link>{" "}
+				a few weeks later. In the meantime you can subscribe to our YouTube,
+				follow{" "}
+				<Link href="https://x.com/EffectTS_" variant="inline">
+					Effect on X (Twitter)
+				</Link>
+				, or{" "}
+				<Link href="https://discord.gg/effect-ts" variant="inline">
+					join the community
+				</Link>{" "}
+				to stay updated.
+			</>
+		),
+	},
+	{
+		question: "5. What is the Community Day?",
+		answer:
+			"Effect Days isn't just about talks — it's about real connections. The Community Day on December 12th is a full day dedicated to deeper discussions, networking, and community activities.",
+	},
+	{
+		question: "6. Can I get a refund for my ticket?",
+		answer: (
+			<>
+				Please refer to our{" "}
+				<Link href="#" variant="inline">
+					Refund Policy
+				</Link>{" "}
+				for more details.
+			</>
+		),
+	},
+	{
+		question: "7. How do I get to Livorno?",
+		answer:
+			"The closest airport is Pisa (PSA), about 30 minutes away by train or car. Florence (FLR) is roughly 90 minutes away. Livorno Centrale station has direct rail connections to both.",
+	},
+	{
+		question: "8. Is there a Code of Conduct?",
+		answer: (
+			<>
+				Yes. Effect Days is dedicated to providing a harassment-free experience
+				for everyone. Please read our{" "}
+				<Link href="/events/code-of-conduct" variant="inline">
+					Code of Conduct
+				</Link>
+				.
+			</>
+		),
+	},
+];
 
 export function EffectDaysLivornoPage() {
 	return (
@@ -143,7 +219,7 @@ export function EffectDaysLivornoPage() {
 			{/* Skip Navigation Link */}
 			<a
 				href="#main-content"
-				className="text-whiteno-underline absolute -left-[9999px] z-999 rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold focus:top-0 focus:left-0"
+				className="absolute -left-[9999px] z-999 rounded-br-lg bg-zinc-800 px-6 py-4 font-semibold text-white no-underline focus:top-0 focus:left-0"
 			>
 				Skip to main content
 			</a>
@@ -153,7 +229,7 @@ export function EffectDaysLivornoPage() {
 
 			{/* Vertical border lines container — behind content, so full-bleed images cover them */}
 			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden lg:block">
-				<div className="relative mx-auto h-full w-full max-w-295">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
 					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
 				</div>
@@ -173,35 +249,32 @@ export function EffectDaysLivornoPage() {
 						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
 						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
 						{/* Photo caption */}
-						<p className="absolute bottom-3 left-16 font-mono text-xs tracking-wider text-zinc-300 uppercase">
+						<p className="absolute bottom-3 left-16 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
 							{"// "}Effect Days 2025 · Livorno
 						</p>
 					</div>
 
-					<div className="relative mx-auto w-full max-w-295 px-4">
+					<div className={`relative ${container}`}>
 						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
 							{/* Left — copy */}
 							<div>
 								<p className={text.eyebrow}>{"// "}3rd edition</p>
 								<h1 className={text.pageTitle}>Effect Days</h1>
-								<p className="mt-4 font-mono text-sm font-medium tracking-wider text-zinc-300 uppercase">
-									<span className="text-white">Livorno, Italy</span>
+								<p className="mt-4 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-300">
+									<span className="text-zinc-900 dark:text-white">
+										Livorno, Italy
+									</span>
 									{" · "}
 									<span>Dec 10–12, 2026</span>
 								</p>
-								<p className={text.lede}>
+								<p className={text.subtitle}>
 									The conference for Effect and TypeScript engineers. Three
 									days of workshops, talks, and community.
 								</p>
 
 								{/* CTA Buttons */}
-								<div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
-									<Button
-										href="#tickets"
-										variant="primary"
-										size="lg"
-										className="group"
-									>
+								<div className="mt-12 flex flex-col items-start gap-4 sm:flex-row">
+									<Button href="#tickets" variant="primary" size="lg">
 										<Icon name="ticket" className="text-lg" />
 										Get tickets
 									</Button>
@@ -209,7 +282,6 @@ export function EffectDaysLivornoPage() {
 										href="https://discord.gg/effect-ts"
 										variant="secondary"
 										size="lg"
-										className="border-zinc-300 bg-zinc-400/5 backdrop-blur-[3px] hover:border-zinc-400 hover:bg-zinc-700/10"
 									>
 										<i className="ri-discord-fill text-lg" />
 										Join the community
@@ -221,8 +293,8 @@ export function EffectDaysLivornoPage() {
 				</section>
 
 				{/* Mono ticker strip */}
-				<div className="overflow-hidden border-y border-zinc-800 py-3">
-					<p className="whitespace-nowrap font-mono text-xs font-medium tracking-[0.25em] text-zinc-600 uppercase">
+				<div className="overflow-hidden border-y border-zinc-200 py-3 dark:border-zinc-800">
+					<p className={`${text.micro} whitespace-nowrap`}>
 						{Array.from({ length: 6 })
 							.map(() => "Effect Days · Livorno · Dec 10–12, 2026 · ")
 							.join("")}
@@ -230,11 +302,11 @@ export function EffectDaysLivornoPage() {
 				</div>
 
 				{/* The Program - pipeline */}
-				<section className="pt-16 pb-24 md:pt-24">
-					<div className="mx-auto w-full max-w-295 px-4">
+				<section className={sectionRhythm}>
+					<div className={container}>
 						<p className={text.eyebrow}>{"// "}The Program</p>
 						<h2 className={text.sectionTitle}>Three days, one pipeline</h2>
-						<p className={text.lede}>
+						<p className={text.subtitle}>
 							Like every good Effect program, the conference is composed of
 							three steps that run in sequence.
 						</p>
@@ -242,32 +314,34 @@ export function EffectDaysLivornoPage() {
 						<div className="relative mt-12">
 							{/* Connecting dashed line (desktop) */}
 							<div
-								className="absolute top-6 right-8 left-8 hidden md:block"
+								className="absolute top-6 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
 								style={{
 									height: "1px",
 									backgroundImage:
-										"repeating-linear-gradient(to right, rgb(63 63 70) 0px, rgb(63 63 70) 4px, transparent 4px, transparent 8px)",
+										"repeating-linear-gradient(to right, currentColor 0px, currentColor 4px, transparent 4px, transparent 8px)",
 								}}
 							/>
 							<div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
 								{PROGRAM.map((step, index) => (
 									<div key={step.step} className="relative">
 										{/* Node */}
-										<div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center border border-zinc-600 bg-zinc-950 font-mono text-sm font-semibold text-white">
+										<div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-md border border-zinc-300 bg-white font-mono text-sm font-medium text-zinc-900 dark:border-zinc-600 dark:bg-zinc-950 dark:text-white">
 											{step.step}
 										</div>
-										<div className="relative border border-zinc-800 bg-zinc-900/30 p-6">
-											<CornerBrackets />
-											<div className="flex items-baseline justify-between font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
-												<span>{step.day}</span>
-												<span>{step.date}</span>
+										<div className={card}>
+											<div className="flex items-baseline justify-between">
+												<span className={text.micro}>{step.day}</span>
+												<span className={text.micro}>{step.date}</span>
 											</div>
-											<h3 className={`${text.cardTitle} mt-3`}>{step.title}</h3>
+											<h3 className={`${text.cardTitle} mt-4`}>{step.title}</h3>
 											<p className={text.cardBody}>{step.description}</p>
 										</div>
 										{index < PROGRAM.length - 1 && (
 											<div className="mt-6 flex justify-center md:hidden">
-												<Icon name="arrow-down" className="text-zinc-600" />
+												<Icon
+													name="arrow-down"
+													className="text-zinc-400 dark:text-zinc-600"
+												/>
 											</div>
 										)}
 									</div>
@@ -275,7 +349,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 						</div>
 
-						<p className={`${text.body} mx-auto mt-10 max-w-2xl text-center`}>
+						<p className={`${text.body} mx-auto mt-12 max-w-2xl text-center`}>
 							A community-driven, non-profit event celebrating the Effect
 							ecosystem and our growing community building production-grade
 							applications in TypeScript.
@@ -284,62 +358,56 @@ export function EffectDaysLivornoPage() {
 				</section>
 
 				{/* Location dossier */}
-				<section className="py-16">
-					<div className="mx-auto w-full max-w-295 px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>{"// "}Location</p>
-							<h2 className={text.sectionTitle}>
-								Livorno — back to the Tuscan coast
-							</h2>
-							<p className={text.lede}>
-								Effect Days returns to the seaside port city that hosted the
-								2025 edition. Canals, seafood, and the Terrazza Mascagni — a
-								short hop from Pisa and Florence.
-							</p>
+				<section className={sectionRhythm}>
+					<div className={container}>
+						<p className={text.eyebrow}>{"// "}Location</p>
+						<h2 className={text.sectionTitle}>
+							Livorno — back to the Tuscan coast
+						</h2>
+						<p className={`${text.subtitle} max-w-2xl`}>
+							Effect Days returns to the seaside port city that hosted the 2025
+							edition. Canals, seafood, and the Terrazza Mascagni — a short hop
+							from Pisa and Florence.
+						</p>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-5">
-								{/* Dossier facts */}
-								<div className="relative border border-zinc-800 bg-zinc-900/30 p-6 lg:col-span-2">
-									<CornerBrackets />
-									<p className="font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
-										livorno.json
+						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-5">
+							{/* Dossier facts */}
+							<div className={`${card} lg:col-span-2`}>
+								<p className={text.micro}>livorno.json</p>
+								<dl className="mt-4">
+									{LIVORNO_FACTS.map((fact) => (
+										<div
+											key={fact.key}
+											className="flex items-baseline justify-between gap-4 border-b border-dashed border-zinc-200 py-3 last:border-b-0 dark:border-zinc-800"
+										>
+											<dt className={`${text.micro} shrink-0`}>{fact.key}</dt>
+											<dd className="text-right font-mono text-sm text-zinc-700 dark:text-zinc-200">
+												{fact.value}
+											</dd>
+										</div>
+									))}
+								</dl>
+							</div>
+
+							{/* Photos from the 2025 edition */}
+							<div className="grid grid-cols-1 gap-6 lg:col-span-3">
+								<div className="relative overflow-hidden rounded-md">
+									<img
+										src={getAssetPath("/assets/images/ed-25-2.png")}
+										alt="The Effect community at Effect Days 2025, Livorno"
+										className="aspect-21/9 h-full w-full object-cover"
+									/>
+									<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/60 via-transparent to-transparent" />
+									<p className="absolute bottom-3 left-3 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+										{"// "}Effect Days 2025 · Livorno
 									</p>
-									<dl className="mt-5">
-										{LIVORNO_FACTS.map((fact) => (
-											<div
-												key={fact.key}
-												className="flex items-baseline justify-between gap-4 border-b border-dashed border-zinc-800 py-3 last:border-b-0"
-											>
-												<dt className="shrink-0 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
-													{fact.key}
-												</dt>
-												<dd className="text-right font-mono text-sm text-zinc-200">
-													{fact.value}
-												</dd>
-											</div>
-										))}
-									</dl>
 								</div>
-
-								{/* Photos from the 2025 edition */}
-								<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:col-span-3">
-									<div className="relative overflow-hidden rounded-lg sm:col-span-2">
-										<img
-											src={getAssetPath("/assets/images/ed-25-2.png")}
-											alt="The Effect community at Effect Days 2025, Livorno"
-											className="aspect-21/9 h-full w-full object-cover"
-										/>
-										<span className="absolute bottom-3 left-3 border border-white/10 bg-zinc-950/60 px-2.5 py-1 font-mono text-xs font-medium text-white/90 uppercase backdrop-blur-sm">
-											Effect Days 2025 · Livorno
-										</span>
-									</div>
-									<div className="overflow-hidden rounded-lg sm:col-span-2">
-										<img
-											src={getAssetPath("/assets/images/ed-25.png")}
-											alt="Effect Days 2025 in Livorno"
-											className="aspect-21/9 h-full w-full object-cover"
-										/>
-									</div>
+								<div className="overflow-hidden rounded-md">
+									<img
+										src={getAssetPath("/assets/images/ed-25.png")}
+										alt="Effect Days 2025 in Livorno"
+										className="aspect-21/9 h-full w-full object-cover"
+									/>
 								</div>
 							</div>
 						</div>
@@ -347,160 +415,155 @@ export function EffectDaysLivornoPage() {
 				</section>
 
 				{/* Tickets Section */}
-				<section id="tickets" className="scroll-mt-16 py-16">
-					<div className="mx-auto w-full max-w-295 px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>{"// "}Get Tickets</p>
-							<h2 className={text.sectionTitle}>Choose your pass</h2>
+				<section id="tickets" className={`scroll-mt-16 ${sectionRhythm}`}>
+					<div className={container}>
+						<p className={text.eyebrow}>{"// "}Get Tickets</p>
+						<h2 className={text.sectionTitle}>Choose your pass</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-								{PASSES.map((pass) => (
-									<div
-										key={pass.name}
-										className={`relative flex flex-col p-6 ${
-											pass.featured
-												? "border border-zinc-600 bg-zinc-900/50"
-												: "border border-zinc-800 bg-zinc-900/30"
-										}`}
-									>
-										<CornerBrackets
-											className={pass.featured ? "" : "opacity-40"}
-										/>
-										<h3 className={text.cardTitle}>{pass.name}</h3>
-										<p className={text.cardBody}>{pass.description}</p>
+						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+							{PASSES.map((pass) => (
+								<div
+									key={pass.name}
+									className={
+										pass.featured
+											? "flex flex-col rounded-md border border-zinc-400 p-6 dark:border-zinc-600"
+											: `flex flex-col ${card}`
+									}
+								>
+									<h3 className={text.cardTitle}>{pass.name}</h3>
+									<p className={text.cardBody}>{pass.description}</p>
 
-										{/* Day checklist, mono style */}
-										<div className="mt-6 space-y-2 font-mono text-sm">
-											{pass.days.map((day) => (
-												<div
-													key={day.label}
-													className="flex items-center gap-3"
+									{/* Day checklist, mono style */}
+									<div className="mt-6 space-y-3 font-mono text-sm">
+										{pass.days.map((day) => (
+											<div key={day.label} className="flex items-center gap-3">
+												<span
+													className={
+														day.included
+															? "text-zinc-900 dark:text-white"
+															: "text-zinc-400 dark:text-zinc-600"
+													}
 												>
-													<span
-														className={
-															day.included ? "text-white" : "text-zinc-600"
-														}
-													>
-														{day.included ? "[✓]" : "[ ]"}
-													</span>
-													<span
-														className={
-															day.included ? "text-zinc-200" : "text-zinc-500"
-														}
-													>
-														{day.label}
-													</span>
-												</div>
-											))}
-										</div>
-
-										<div
-											className="mt-6 h-px w-full"
-											style={{
-												backgroundImage:
-													"repeating-linear-gradient(to right, rgb(82 82 91) 0px, rgb(82 82 91) 2px, transparent 2px, transparent 4px)",
-											}}
-										/>
-
-										{/* Purchase rows */}
-										<div className="mt-6 space-y-3">
-											<div className="flex w-full items-center justify-between border border-zinc-700 bg-zinc-800/50 px-4 py-2.5">
-												<span className="flex items-center gap-2 text-base font-medium text-zinc-300">
-													<Icon name="user" className="text-zinc-400" />
-													Self-pay
+													{day.included ? "[✓]" : "[ ]"}
 												</span>
-												<span className="font-mono text-sm tracking-wide text-zinc-400 uppercase">
-													Coming soon
+												<span
+													className={
+														day.included
+															? "text-zinc-700 dark:text-zinc-200"
+															: "text-zinc-500 dark:text-zinc-500"
+													}
+												>
+													{day.label}
 												</span>
 											</div>
-											<div className="flex w-full items-center justify-between border border-zinc-700 bg-zinc-800/50 px-4 py-2.5">
-												<span className="flex items-center gap-2 text-base font-medium text-zinc-300">
-													<Icon name="building" className="text-zinc-400" />
-													Business-pay*
-												</span>
-												<span className="font-mono text-sm tracking-wide text-zinc-400 uppercase">
-													Coming soon
-												</span>
-											</div>
-											<p className="text-center text-xs text-zinc-500">
-												*Suitable for invoicing
-											</p>
-										</div>
+										))}
 									</div>
-								))}
-							</div>
 
-							<div className="mt-8 flex flex-col gap-4 text-sm text-zinc-400 md:flex-row md:justify-between">
-								<p>
-									Are you a group of more than 3 people interested in business
-									tickets?{" "}
-									<Link
-										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
-										variant="inline"
-										className="underline-offset-2"
-									>
-										Learn about available discounts at contact@effectful.co.
-									</Link>
-								</p>
-							</div>
+									<div className="mt-6 border-t border-dashed border-zinc-200 dark:border-zinc-700" />
+
+									{/* Purchase rows */}
+									<div className="mt-6 space-y-3">
+										<div className="flex w-full items-center justify-between rounded-md border border-zinc-200 px-4 py-3 dark:border-zinc-700">
+											<span className="flex items-center gap-2 text-base font-medium text-zinc-700 dark:text-zinc-300">
+												<Icon
+													name="user"
+													className="text-zinc-500 dark:text-zinc-400"
+												/>
+												Self-pay
+											</span>
+											<span className={text.micro}>Coming soon</span>
+										</div>
+										<div className="flex w-full items-center justify-between rounded-md border border-zinc-200 px-4 py-3 dark:border-zinc-700">
+											<span className="flex items-center gap-2 text-base font-medium text-zinc-700 dark:text-zinc-300">
+												<Icon
+													name="building"
+													className="text-zinc-500 dark:text-zinc-400"
+												/>
+												Business-pay*
+											</span>
+											<span className={text.micro}>Coming soon</span>
+										</div>
+										<p className="text-center text-xs text-zinc-500 dark:text-zinc-500">
+											*Suitable for invoicing
+										</p>
+									</div>
+								</div>
+							))}
 						</div>
+
+						<p className={`${text.body} mt-12`}>
+							Are you a group of more than 3 people interested in business
+							tickets?{" "}
+							<Link
+								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
+								variant="inline"
+							>
+								Learn about available discounts at contact@effectful.co.
+							</Link>
+						</p>
 					</div>
 				</section>
 
 				{/* Sponsoring Section */}
-				<section className="py-16">
-					<div className="mx-auto w-full max-w-295 px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>{"// "}Sponsoring Effect Days</p>
-							<h2 className={text.sectionTitle}>Give back to the community</h2>
+				<section className={sectionRhythm}>
+					<div className={container}>
+						<p className={text.eyebrow}>{"// "}Sponsoring Effect Days</p>
+						<h2 className={text.sectionTitle}>Give back to the community</h2>
 
-							<div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-								{/* Pitch */}
-								<div>
-									<p className="max-w-2xl text-lg leading-relaxed text-zinc-200">
-										Has Effect played a key role in your project and you'd love
-										to give back to the community?{" "}
-										<span className="text-white">
-											Sponsoring Effect Days is your perfect opportunity!
+						<div className="mt-12 grid grid-cols-1 items-center gap-6 lg:grid-cols-2">
+							{/* Pitch */}
+							<div>
+								<p className="max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-200">
+									Has Effect played a key role in your project and you'd love
+									to give back to the community?{" "}
+									<span className="font-medium text-zinc-900 dark:text-white">
+										Sponsoring Effect Days is your perfect opportunity!
+									</span>
+								</p>
+								<div className="mt-12">
+									<Button
+										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship Inquiry"
+										variant="primary"
+										size="lg"
+									>
+										<Icon name="heart-handshake" className="text-lg" />I want
+										to sponsor
+									</Button>
+								</div>
+							</div>
+
+							{/* Community stats as terminal output */}
+							<div className="overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800">
+								<div className="flex items-center gap-2 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
+									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+								</div>
+								<div className="p-6 font-mono text-sm leading-loose">
+									<p className="text-zinc-600 dark:text-zinc-400">
+										<span className="text-zinc-900 dark:text-white">$</span>{" "}
+										effect community{" "}
+										<span className="text-zinc-400 dark:text-zinc-600">
+											--stats
 										</span>
 									</p>
-									<div className="mt-8">
-										<Button
-											href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship Inquiry"
-											variant="primary"
-											size="lg"
-										>
-											<Icon name="heart-handshake" className="text-lg" />I want
-											to sponsor
-										</Button>
-									</div>
-								</div>
-
-								{/* Community stats as terminal output */}
-								<div className="relative overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900/70">
-									<div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-										<span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-										<span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-										<span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-									</div>
-									<div className="p-5 font-mono text-sm leading-loose">
-										<p className="text-zinc-400">
-											<span className="text-white">$</span> effect community{" "}
-											<span className="text-zinc-600">--stats</span>
+									{COMMUNITY_STATS.map((stat) => (
+										<p key={stat.label}>
+											<span className="text-zinc-400 dark:text-zinc-600">
+												{"→ "}
+											</span>
+											<span className="font-medium text-zinc-900 dark:text-white">
+												{stat.value}
+											</span>
+											<span className="text-zinc-500 dark:text-zinc-500">
+												{" "}
+												{stat.label}
+											</span>
 										</p>
-										{COMMUNITY_STATS.map((stat) => (
-											<p key={stat.label} className="text-zinc-200">
-												<span className="text-zinc-600">→ </span>
-												<span className="font-semibold text-white">
-													{stat.value}
-												</span>
-												<span className="text-zinc-500"> {stat.label}</span>
-											</p>
-										))}
-										<p className="text-zinc-600">
-											…and counting<span className="animate-pulse"> ▊</span>
-										</p>
-									</div>
+									))}
+									<p className="text-zinc-400 dark:text-zinc-600">
+										…and counting<span className="animate-pulse"> ▊</span>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -508,275 +571,134 @@ export function EffectDaysLivornoPage() {
 				</section>
 
 				{/* Editions timeline */}
-				<section id="past-editions" className="py-16">
-					<div className="mx-auto w-full max-w-295 px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>{"// "}The Journey</p>
-							<h2 className={text.sectionTitle}>Three editions and counting</h2>
+				<section id="past-editions" className={sectionRhythm}>
+					<div className={container}>
+						<p className={text.eyebrow}>{"// "}The Journey</p>
+						<h2 className={text.sectionTitle}>Three editions and counting</h2>
 
-							<div className="relative mt-12">
-								{/* Timeline line (desktop) */}
-								<div
-									className="absolute top-2.5 right-8 left-8 hidden md:block"
-									style={{
-										height: "1px",
-										backgroundImage:
-											"repeating-linear-gradient(to right, rgb(63 63 70) 0px, rgb(63 63 70) 4px, transparent 4px, transparent 8px)",
-									}}
-								/>
-								<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
-									{EDITIONS.map((edition) => (
-										<div key={edition.year} className="relative">
-											{/* Timeline node */}
-											<div className="relative z-10 mb-6 flex items-center gap-3">
-												<span
-													className={`h-5 w-5 border ${
-														edition.status === "next"
-															? "border-zinc-300 bg-white/10"
-															: "border-zinc-600 bg-zinc-950"
-													}`}
-												/>
-												<h3 className={text.cardTitle}>
-													Effect Days {edition.year}
-												</h3>
-												{edition.status === "next" && (
-													<span className="border border-zinc-500 bg-white/5 px-2 py-0.5 font-mono text-xs font-medium tracking-wider text-white uppercase">
-														Next stop
-													</span>
-												)}
-											</div>
-
-											<div
-												className={`relative flex min-h-64 flex-col overflow-hidden border ${
+						<div className="relative mt-12">
+							{/* Timeline line (desktop) */}
+							<div
+								className="absolute top-2.5 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
+								style={{
+									height: "1px",
+									backgroundImage:
+										"repeating-linear-gradient(to right, currentColor 0px, currentColor 4px, transparent 4px, transparent 8px)",
+								}}
+							/>
+							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
+								{EDITIONS.map((edition) => (
+									<div key={edition.year} className="relative">
+										{/* Timeline node */}
+										<div className="relative z-10 mb-6 flex items-center gap-3">
+											<span
+												className={`h-5 w-5 rounded-sm border ${
 													edition.status === "next"
-														? "border-zinc-500 bg-white/2"
-														: "border-zinc-800 bg-zinc-900/20"
+														? "border-zinc-900 bg-zinc-200 dark:border-zinc-300 dark:bg-zinc-700"
+														: "border-zinc-300 bg-white dark:border-zinc-600 dark:bg-zinc-950"
 												}`}
-											>
-												{edition.image ? (
-													<div className="relative aspect-21/9 overflow-hidden">
-														<img
-															src={getAssetPath(edition.image)}
-															alt={`Effect Days ${edition.year}`}
-															className="h-full w-full object-cover"
-														/>
-														<div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/10 to-transparent" />
-													</div>
-												) : (
-													<div className="flex aspect-21/9 items-center justify-center border-b border-zinc-800">
-														<span className="font-mono text-sm text-white">
-															Dec 10–12, 2026 ▊
-														</span>
-													</div>
-												)}
-												<div className="flex flex-1 flex-col p-5">
-													<div className="flex items-baseline justify-between gap-3 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
-														<span>{edition.location}</span>
-														<span>{edition.dates}</span>
-													</div>
-													<p className="mt-3 text-sm leading-relaxed text-zinc-400">
-														{edition.note}
-													</p>
-													{edition.playlistUrl ? (
-														<Link
-															href={edition.playlistUrl}
-															variant="subtle"
-															className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-medium"
-														>
-															<i className="ri-youtube-fill text-base" />
-															Full playlist
-															<Icon name="arrow-up-right" className="text-xs" />
-														</Link>
-													) : (
-														<Link
-															href="#tickets"
-															variant="subtle"
-															className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-medium"
-														>
-															<Icon name="ticket" className="text-base" />
-															Be part of it
-															<Icon name="arrow-right" className="text-xs" />
-														</Link>
-													)}
+											/>
+											<h3 className={text.cardTitle}>
+												Effect Days {edition.year}
+											</h3>
+											{edition.status === "next" && (
+												<span className={`${text.micro} rounded-sm border border-zinc-300 px-2 py-0.5 dark:border-zinc-600`}>
+													Next stop
+												</span>
+											)}
+										</div>
+
+										<div
+											className={`flex flex-col overflow-hidden rounded-md border ${
+												edition.status === "next"
+													? "border-zinc-400 dark:border-zinc-600"
+													: "border-zinc-200 dark:border-zinc-800"
+											}`}
+										>
+											{edition.image ? (
+												<div className="relative aspect-21/9 overflow-hidden">
+													<img
+														src={getAssetPath(edition.image)}
+														alt={`Effect Days ${edition.year}`}
+														className="h-full w-full object-cover"
+													/>
+													<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/10 to-transparent" />
 												</div>
+											) : (
+												<div className="flex aspect-21/9 items-center justify-center border-b border-zinc-200 dark:border-zinc-800">
+													<span className="font-mono text-sm text-zinc-700 dark:text-zinc-200">
+														Dec 10–12, 2026 ▊
+													</span>
+												</div>
+											)}
+											<div className="flex flex-1 flex-col p-6">
+												<div className="flex items-baseline justify-between gap-3">
+													<span className={text.micro}>{edition.location}</span>
+													<span className={text.micro}>{edition.dates}</span>
+												</div>
+												<p className={`${text.cardBody} mt-4`}>{edition.note}</p>
+												{edition.playlistUrl ? (
+													<Link
+														href={edition.playlistUrl}
+														variant="subtle"
+														className="mt-4 inline-flex items-center gap-1.5 font-medium"
+													>
+														<i className="ri-youtube-fill text-base" />
+														Full playlist
+														<Icon name="arrow-up-right" className="text-xs" />
+													</Link>
+												) : (
+													<Link
+														href="#tickets"
+														variant="subtle"
+														className="mt-4 inline-flex items-center gap-1.5 font-medium"
+													>
+														Be part of it
+														<Icon name="arrow-right" className="text-xs" />
+													</Link>
+												)}
 											</div>
 										</div>
-									))}
-								</div>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
 				</section>
 
 				{/* FAQ Section */}
-				<section className="py-16">
-					<div className="mx-auto w-full max-w-295 px-4">
-						<div className="border-t border-zinc-800 pt-12">
-							<p className={text.eyebrow}>{"// "}FAQ</p>
-							<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
+				<section className={sectionRhythm}>
+					<div className={container}>
+						<p className={text.eyebrow}>{"// "}FAQ</p>
+						<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>1. What is Effect Days?</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										Effect Days is a non-profit event dedicated to{" "}
-										<Link
-											href="https://effect.website"
-											variant="inline"
-											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
-										>
-											Effect
-										</Link>
-										, an open-source software library that offers an ecosystem
-										of tools for building production-grade applications in
-										TypeScript.
-									</p>
+						<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
+							{FAQS.map((faq) => (
+								<div
+									key={faq.question}
+									className="border-b border-zinc-200/50 py-6 dark:border-zinc-800/50"
+								>
+									<h3 className={text.smallHeading}>{faq.question}</h3>
+									<p className={text.cardBody}>{faq.answer}</p>
 								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										2. When and where is Effect Days taking place?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										Effect Days will take place on December 10-12, 2026 in
-										Livorno, Tuscany, Italy. The venue will be announced soon.
-									</p>
-								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										3. What is the schedule of the conference?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										The conference schedule will be shared as we get closer to
-										the event.
-									</p>
-								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										4. Will the Effect Days conference be recorded?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										The conference talks will be recorded and published on the{" "}
-										<Link
-											href="https://www.youtube.com/@effect-ts"
-											variant="inline"
-											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
-										>
-											Effect YouTube channel
-										</Link>{" "}
-										a few weeks later. In the meantime you can subscribe to our
-										YouTube, follow{" "}
-										<Link
-											href="https://x.com/EffectTS_"
-											variant="inline"
-											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
-										>
-											Effect on X (Twitter)
-										</Link>
-										, or{" "}
-										<Link
-											href="https://discord.gg/effect-ts"
-											variant="inline"
-											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
-										>
-											join the community
-										</Link>{" "}
-										to stay updated.
-									</p>
-								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										5. What is the Community Day?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										Effect Days isn't just about talks — it's about real
-										connections. The Community Day on December 12th is a full
-										day dedicated to deeper discussions, networking, and
-										community activities.
-									</p>
-								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										6. Can I get a refund for my ticket?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										Please refer to our{" "}
-										<Link
-											href="#"
-											variant="inline"
-											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
-										>
-											Refund Policy
-										</Link>{" "}
-										for more details.
-									</p>
-								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										7. How do I get to Livorno?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										The closest airport is Pisa (PSA), about 30 minutes away by
-										train or car. Florence (FLR) is roughly 90 minutes away.
-										Livorno Centrale station has direct rail connections to
-										both.
-									</p>
-								</div>
-
-								<div className="border-b border-zinc-800/50 py-5">
-									<h3 className={text.smallHeading}>
-										8. Is there a Code of Conduct?
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-400">
-										Yes. Effect Days is dedicated to providing a harassment-free
-										experience for everyone. Please read our{" "}
-										<Link
-											href="/events/code-of-conduct"
-											variant="inline"
-											className="decoration-zinc-600 underline-offset-2 hover:decoration-zinc-400"
-										>
-											Code of Conduct
-										</Link>
-										.
-									</p>
-								</div>
-							</div>
+							))}
 						</div>
 					</div>
 				</section>
 
 				{/* Final CTA */}
-				<section className="relative overflow-hidden">
-					<div
-						className="pointer-events-none absolute inset-0"
-						style={{
-							background:
-								"radial-gradient(ellipse 50% 60% at 50% 100%, rgba(255, 255, 255, 0.04), transparent 70%)",
-						}}
-					/>
-					<div className="relative mx-auto w-full max-w-295 px-4">
-						<div className="border-t border-zinc-800 py-28 text-center">
-							<p className="font-mono text-sm font-medium tracking-[0.25em] text-zinc-500 uppercase">
-								Dec 10–12, 2026 · Livorno, Italy
+				<section className={sectionRhythm}>
+					<div className={container}>
+						<div className="text-center">
+							<p className={text.eyebrow}>
+								{"// "}Dec 10–12, 2026 · Livorno, Italy
 							</p>
-							<h2 className={`${text.sectionTitle} mt-4`}>
-								See you in Livorno
-							</h2>
-							<p className={`${text.lede} mx-auto`}>
+							<h2 className={text.sectionTitle}>See you in Livorno</h2>
+							<p className={`${text.subtitle} mx-auto max-w-2xl`}>
 								Three days with the Effect community on the Tuscan coast.
 							</p>
-							<div className="mt-8">
-								<Button
-									href="#tickets"
-									variant="primary"
-									size="xl"
-									className="group"
-								>
+							<div className="mt-12">
+								<Button href="#tickets" variant="primary" size="xl">
 									<Icon name="ticket" className="text-lg" />
 									Get tickets
 								</Button>
