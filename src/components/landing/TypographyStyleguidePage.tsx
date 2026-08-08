@@ -33,7 +33,7 @@ const text = {
 	sectionTitle:
 		"leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white",
 	/** Subtitle — the paragraph directly under a page/section title. */
-	subtitle: "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
+	subtitle: "mt-4 text-lg text-zinc-600 dark:text-zinc-400",
 	/** Card / subsection title (h3). */
 	cardTitle: "text-lg font-semibold text-zinc-900 dark:text-white",
 	/** Small heading (h4) — fine-grained structure inside cards. */
@@ -106,7 +106,7 @@ const ELEMENT_SPECS: {
 	},
 	{
 		label: "subtitle",
-		use: "under a title · max-w-2xl",
+		use: "under a title",
 		cls: text.subtitle,
 		sample: "Typed errors, concurrency, and DI out of the box.",
 	},
