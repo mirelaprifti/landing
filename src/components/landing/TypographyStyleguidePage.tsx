@@ -76,68 +76,57 @@ const SPACING_STEPS = [
 
 const ELEMENT_SPECS: {
 	label: string;
-	use: string;
 	cls: string;
 	sample: string;
 }[] = [
 	{
 		label: "h1 · hero",
-		use: "landing heroes",
 		cls: text.pageTitle,
 		sample: "Ship reliable software",
 	},
 	{
 		label: "h1 · subpage",
-		use: "blog, policies, listings",
 		cls: text.pageTitleSub,
 		sample: "Effect 4.0 enters beta",
 	},
 	{
 		label: "eyebrow",
-		use: "mono label above titles",
 		cls: text.eyebrow,
 		sample: "// Why Effect",
 	},
 	{
 		label: "h2 · section",
-		use: "opens every section",
 		cls: text.sectionTitle,
 		sample: "Everything you need",
 	},
 	{
 		label: "subtitle",
-		use: "under a title",
 		cls: text.subtitle,
 		sample: "Typed errors, concurrency, and DI out of the box.",
 	},
 	{
 		label: "h3 · card",
-		use: "cards, subsections",
 		cls: text.cardTitle,
 		sample: "Typed errors",
 	},
 	{
 		label: "h4 · small",
-		use: "fine structure",
 		cls: text.smallHeading,
 		sample: "Retry policies",
 	},
 	{
 		label: "body",
-		use: "paragraphs · stack with mt-4",
 		cls: text.body,
 		sample:
 			"Fibers are supervised and cleaned up when their parent scope closes.",
 	},
 	{
 		label: "card body",
-		use: "inside cards · mt-1",
 		cls: text.cardBody,
 		sample: "Failure cases show up in the signature.",
 	},
 	{
 		label: "micro",
-		use: "captions, timestamps, meta",
 		cls: text.micro,
 		sample: "Last updated · Jul 29, 2026",
 	},
@@ -383,10 +372,6 @@ export function TypographyStyleguidePage() {
 										<div className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-6">
 											<span className="w-44 shrink-0 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 												{el.label}
-												<br />
-												<span className="text-zinc-400 dark:text-zinc-500">
-													{el.use}
-												</span>
 											</span>
 											<div className="min-w-0 flex-1">
 												<p className={`${el.cls} mt-0! mb-0!`}>{el.sample}</p>
@@ -785,10 +770,6 @@ export function TypographyStyleguidePage() {
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
 										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h1 · module page
-											<br />
-											<span className="text-zinc-400 dark:text-zinc-500">
-												mono — named after code
-											</span>
 										</span>
 										<div className="min-w-0 flex-1">
 											<p className="truncate font-mono text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">
@@ -804,10 +785,6 @@ export function TypographyStyleguidePage() {
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
 										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h2 · category
-											<br />
-											<span className="text-zinc-400 dark:text-zinc-500">
-												sans — Layers, Models…
-											</span>
 										</span>
 										<div className="min-w-0 flex-1">
 											<p className="text-2xl font-semibold tracking-tight text-zinc-900 md:text-3xl dark:text-white">
@@ -823,10 +800,6 @@ export function TypographyStyleguidePage() {
 									<div className="flex flex-col gap-2 border-b border-zinc-100 pb-6 md:flex-row md:gap-6 dark:border-zinc-900">
 										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											h3 · api entry
-											<br />
-											<span className="text-zinc-400 dark:text-zinc-500">
-												mono + kind badge
-											</span>
 										</span>
 										<div className="min-w-0 flex-1">
 											<p className="flex min-w-0 items-center gap-3">
@@ -851,10 +824,6 @@ export function TypographyStyleguidePage() {
 									<div className="flex flex-col gap-2 md:flex-row md:gap-6">
 										<span className="w-44 shrink-0 pt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
 											scaffold label
-											<br />
-											<span className="text-zinc-400 dark:text-zinc-500">
-												a p — never a heading
-											</span>
 										</span>
 										<div className="min-w-0 flex-1">
 											<p className="font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
