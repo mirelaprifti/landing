@@ -60,7 +60,7 @@ export function CTASection({
 					<div className="mt-6 flex flex-row items-center justify-center gap-3">
 						<Button
 							href="https://effect.website/docs/"
-							variant="secondary"
+							variant="primary"
 							size="lg"
 							className="group w-44"
 						>
