@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { useRef } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
@@ -129,33 +130,18 @@ export function SocialProofSection() {
 				</h2>
 				{/* Resource links */}
 				<div className="mt-8 flex flex-wrap items-center gap-3">
-					<a
-						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
-					>
+					<Button href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE" variant="secondary" size="lg">
 						Cause & Effect Podcast
 						<Icon name="arrow-up-right" className="text-base" />
-					</a>
-					<a
-						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
-					>
+					</Button>
+					<Button href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lY8cjMh4dmq3eFSGJVwPBPO" variant="secondary" size="lg">
 						Effect Days 2024
 						<Icon name="arrow-up-right" className="text-base" />
-					</a>
-					<a
-						href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
-					>
+					</Button>
+					<Button href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lZoJQ7BVtIbKs2P8i-xVmhP" variant="secondary" size="lg">
 						Effect Days 2025
 						<Icon name="arrow-up-right" className="text-base" />
-					</a>
+					</Button>
 				</div>
 			</div>
 

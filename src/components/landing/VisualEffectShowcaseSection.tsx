@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { EffectDieExample } from "@/examples/effect-die";
 import { EffectFailExample } from "@/examples/effect-fail";
 import { EffectOrElseExample } from "@/examples/effect-orelse";
@@ -45,15 +46,10 @@ export function VisualEffectShowcaseSection() {
 						<p className="text-lg text-zinc-400">
 							Tap an icon to run, interrupt, or reset an Effect.
 						</p>
-						<a
-							href="https://effect.kitlangton.com/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="font-inter flex items-center gap-2 rounded-lg border border-zinc-600 px-4 py-2 text-base font-medium text-white transition-colors hover:border-zinc-300 hover:bg-zinc-900/50"
-						>
+						<Button href="https://effect.kitlangton.com/" variant="secondary" size="lg">
 							<span>Visualize Effect</span>
 							<Icon name="arrow-up-right" className="text-base" />
-						</a>
+						</Button>
 					</div>
 
 					{/* Grid Layout for Examples */}

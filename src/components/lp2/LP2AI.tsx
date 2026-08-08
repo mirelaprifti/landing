@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
 
@@ -109,15 +110,10 @@ export function LP2AI() {
 
 				{/* Bottom links */}
 				<div className="mt-12 flex flex-wrap gap-4">
-					<a
-						href="https://www.effect.solutions/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
-					>
+					<Button href="https://www.effect.solutions/" variant="secondary" size="lg">
 						Quick start LLM guide
 						<Icon name="arrow-up-right" />
-					</a>
+					</Button>
 					<a
 						href="https://effect.website/docs/ai/introduction"
 						target="_blank"

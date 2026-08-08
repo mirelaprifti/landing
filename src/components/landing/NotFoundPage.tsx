@@ -122,20 +122,14 @@ export function NotFoundPage() {
 									This route couldn't be resolved, but we can recover.
 								</p>
 								<div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-									<a
-										href={getAssetPath("/")}
-										className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-									>
+									<Button href={getAssetPath("/")} variant="primary" size="md">
 										<Icon name="arrow-left" className="text-base" />
 										Back to home
-									</a>
-									<a
-										href="https://effect.website/docs/"
-										className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-white dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
-									>
+									</Button>
+									<Button href="https://effect.website/docs/" variant="secondary" size="md">
 										<Icon name="book-open" className="text-base" />
 										Read the docs
-									</a>
+									</Button>
 								</div>
 							</div>
 

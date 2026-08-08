@@ -827,15 +827,10 @@ function EventsTabSection() {
 									Join the Discord to be the first to know when new events are
 									announced.
 								</p>
-								<a
-									href="https://discord.gg/effect-ts"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-800/80 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-800 hover:text-white"
-								>
+								<Button href="https://discord.gg/effect-ts" variant="secondary" size="sm">
 									<i className="ri-discord-fill text-base" />
 									Join Discord
-								</a>
+								</Button>
 							</div>
 						) : (
 							upcomingEvents.map((event) => (

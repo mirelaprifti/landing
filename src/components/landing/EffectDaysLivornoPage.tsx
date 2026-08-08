@@ -152,10 +152,10 @@ export function EffectDaysLivornoPage() {
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
-			<div className="pointer-events-none fixed top-0 right-0 bottom-0 left-0 z-101 hidden lg:block">
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-60 hidden lg:block">
 				<div className="relative mx-auto h-full w-full max-w-295">
-					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-600/50" />
-					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-600/50" />
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-800" />
 				</div>
 			</div>
 

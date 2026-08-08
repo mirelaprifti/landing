@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { useRef, useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
@@ -56,15 +57,10 @@ export function PlaygroundSection() {
 					<h2 className="font-inter leading-tighter text-2xl font-semibold text-white">
 						Effect Playground
 					</h2>
-					<a
-						href="https://effect.website/play/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="font-inter flex items-center gap-2 rounded-lg border border-zinc-600 px-4 py-2 text-base font-medium text-white transition-colors hover:border-zinc-300 hover:bg-zinc-900/50"
-					>
+					<Button href="https://effect.website/play/" variant="secondary" size="lg">
 						<span>Play</span>
 						<Icon name="arrow-right" className="text-base" />
-					</a>
+					</Button>
 				</div>
 				<div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
 					{/* Left Column: Video */}

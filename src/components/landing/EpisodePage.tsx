@@ -513,13 +513,10 @@ export function EpisodePage({ episode, transcript = [] }: EpisodePageProps) {
 							How teams like Vercel, MasterClass, and others build in
 							production.
 						</p>
-						<a
-							href={getAssetPath("/podcast")}
-							className="mt-6 inline-flex items-center gap-2 rounded-md bg-zinc-900 dark:bg-white px-6 py-3 text-base font-medium text-white dark:text-zinc-900 transition-all hover:bg-zinc-800 dark:hover:bg-zinc-200"
-						>
+						<Button href={getAssetPath("/podcast")} variant="primary" size="lg" className="mt-6">
 							<span>See all episodes</span>
 							<Icon name="arrow-right" />
-						</a>
+						</Button>
 					</div>
 				</section>
 			</main>

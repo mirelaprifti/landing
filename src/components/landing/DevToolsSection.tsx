@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import { useState } from "react";
 import { getAssetPath } from "../../utils/assetPath";
 import { Icon } from "@/components/ui/Icon";
@@ -48,36 +49,36 @@ export function DevToolsSection() {
 
 						{/* Links */}
 						<div className="mt-6 flex flex-wrap gap-3">
-							<a
+							<Button
 								href="https://effect.website/docs/getting-started/devtools/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+								variant="secondary"
+								size="lg"
+								className="group"
 							>
 								<span>Read the docs</span>
 								<Icon
 									name="arrow-right"
 									className="text-base transition-transform group-hover:translate-x-0.5"
 								/>
-							</a>
-							<a
+							</Button>
+							<Button
 								href="https://marketplace.visualstudio.com/items?itemName=effectful-tech.effect-vscode"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+								variant="secondary"
+								size="lg"
+								className="group"
 							>
 								<i className="ri-vscode-line text-base" />
 								<span>VSCode Extension</span>
-							</a>
-							<a
+							</Button>
+							<Button
 								href="https://effect.website/play/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-zinc-900/50 px-5 py-2.5 text-base font-medium text-white transition-all hover:border-zinc-500 hover:bg-zinc-800"
+								variant="secondary"
+								size="lg"
+								className="group"
 							>
 								<Icon name="circle-play" className="text-base" />
 								<span>Playground</span>
-							</a>
+							</Button>
 						</div>
 					</div>
 				</div>
