@@ -172,7 +172,7 @@ export function EffectDaysLivornoPage() {
 				{/* Hero Section */}
 				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-28">
 					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
-					<div className="absolute inset-y-0 right-0 z-10 hidden w-[53%] overflow-hidden lg:block">
+					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
 							src={getAssetPath("/assets/images/ed-25-2.png")}
 							alt="The Effect community at Effect Days 2025 in Livorno"
