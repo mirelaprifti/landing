@@ -292,15 +292,6 @@ export function EffectDaysLivornoPage() {
 					</div>
 				</section>
 
-				{/* Mono ticker strip */}
-				<div className="overflow-hidden border-y border-zinc-200 py-3 dark:border-zinc-800">
-					<p className={`${text.micro} whitespace-nowrap`}>
-						{Array.from({ length: 6 })
-							.map(() => "Effect Days · Livorno · Dec 9–11, 2026 · ")
-							.join("")}
-					</p>
-				</div>
-
 				{/* The Program - pipeline */}
 				<section className={sectionRhythm}>
 					<div className={container}>
