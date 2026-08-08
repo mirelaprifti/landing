@@ -190,8 +190,8 @@ export function EffectDaysLivornoPage() {
 									<span>Dec 10–12, 2026</span>
 								</p>
 								<p className={text.lede}>
-									The Effect & TypeScript developers conference. Three days of
-									workshops, talks, and community on the Tuscan coast.
+									The conference for Effect and TypeScript engineers. Three
+									days of workshops, talks, and community.
 								</p>
 
 								{/* CTA Buttons */}
