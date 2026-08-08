@@ -148,12 +148,12 @@ export function EffectDaysLivornoPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/events" transparent />
+			<Navigation activePath="/events" />
 			<GridOverlay />
 
 			{/* Vertical border lines container */}
 			<div className="pointer-events-none fixed top-0 right-0 bottom-0 left-0 z-101 hidden lg:block">
-				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+				<div className="relative mx-auto h-full w-full max-w-295">
 					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-600/50" />
 					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-600/50" />
 				</div>
@@ -162,7 +162,7 @@ export function EffectDaysLivornoPage() {
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Soft white glow behind the hero */}
 				<div
-					className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[42rem]"
+					className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-168"
 					style={{
 						background:
 							"radial-gradient(ellipse 60% 50% at 70% 20%, rgba(255, 255, 255, 0.05), transparent 70%)",
@@ -171,7 +171,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* Hero Section */}
 				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-28">
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="relative mx-auto w-full max-w-295 px-4">
 						<div className="flex flex-col items-start gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
 							{/* Left side - Main content */}
 							<div className="flex-1">
@@ -244,7 +244,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* The Program - pipeline */}
 				<section className="pb-24">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="mx-auto w-full max-w-295 px-4">
 						<p className={text.eyebrow}>{"// "}The Program</p>
 						<h2 className={text.sectionTitle}>Three days, one pipeline</h2>
 						<p className={text.lede}>
@@ -298,7 +298,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* Location dossier */}
 				<section className="py-16">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="mx-auto w-full max-w-295 px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>{"// "}Location</p>
 							<h2 className={text.sectionTitle}>
@@ -361,7 +361,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* Tickets Section */}
 				<section id="tickets" className="scroll-mt-16 py-16">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="mx-auto w-full max-w-295 px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>{"// "}Get Tickets</p>
 							<h2 className={text.sectionTitle}>Choose your pass</h2>
@@ -462,7 +462,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* Sponsoring Section */}
 				<section className="py-16">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="mx-auto w-full max-w-295 px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>{"// "}Sponsoring Effect Days</p>
 							<h2 className={text.sectionTitle}>Give back to the community</h2>
@@ -522,7 +522,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* Editions timeline */}
 				<section id="past-editions" className="py-16">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="mx-auto w-full max-w-295 px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>{"// "}The Journey</p>
 							<h2 className={text.sectionTitle}>Three editions and counting</h2>
@@ -560,9 +560,9 @@ export function EffectDaysLivornoPage() {
 											</div>
 
 											<div
-												className={`relative flex min-h-[16rem] flex-col overflow-hidden border ${
+												className={`relative flex min-h-64 flex-col overflow-hidden border ${
 													edition.status === "next"
-														? "border-zinc-500 bg-white/[0.02]"
+														? "border-zinc-500 bg-white/2"
 														: "border-zinc-800 bg-zinc-900/20"
 												}`}
 											>
@@ -623,7 +623,7 @@ export function EffectDaysLivornoPage() {
 
 				{/* FAQ Section */}
 				<section className="py-16">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="mx-auto w-full max-w-295 px-4">
 						<div className="border-t border-zinc-800 pt-12">
 							<p className={text.eyebrow}>{"// "}FAQ</p>
 							<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
@@ -772,7 +772,7 @@ export function EffectDaysLivornoPage() {
 								"radial-gradient(ellipse 50% 60% at 50% 100%, rgba(255, 255, 255, 0.04), transparent 70%)",
 						}}
 					/>
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4">
+					<div className="relative mx-auto w-full max-w-295 px-4">
 						<div className="border-t border-zinc-800 py-28 text-center">
 							<p className="font-mono text-sm font-medium tracking-[0.25em] text-zinc-500 uppercase">
 								Dec 10–12, 2026 · Livorno, Italy
