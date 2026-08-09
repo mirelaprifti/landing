@@ -240,20 +240,6 @@ export function AboutLivornoPage() {
 				</div>
 			</div>
 
-			{/* Center vertical line - dashed, behind content */}
-			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden lg:block">
-				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
-					<div
-						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 text-zinc-200 dark:text-zinc-800"
-						style={{
-							width: "1px",
-							backgroundImage:
-								"repeating-linear-gradient(to bottom, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
-						}}
-					/>
-				</div>
-			</div>
-
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Hero */}
 				<section className="relative w-full pt-16 pb-16 md:pt-24 md:pb-24">
@@ -307,262 +293,278 @@ export function AboutLivornoPage() {
 					</div>
 				</section>
 
-				<SectionDivider />
+				{/* Post-hero content — center dashed deco line scoped to this area */}
+				<div className="relative">
+					<div className="pointer-events-none absolute inset-0 z-0 hidden lg:block">
+						<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+							<div
+								className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 text-zinc-200 dark:text-zinc-800"
+								style={{
+									width: "1px",
+									backgroundImage:
+										"repeating-linear-gradient(to bottom, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
+								}}
+							/>
+						</div>
+					</div>
 
-				{/* Nearest airports */}
-				<section id="airports" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Getting Here</p>
-						<h2 className={text.sectionTitle}>The nearest airports</h2>
+					<SectionDivider />
 
-						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-							{[AIRPORTS.slice(0, 2), AIRPORTS.slice(2)].map((pair) => (
-								<div
-									key={pair[0].name}
-									className="grid grid-cols-1 gap-4 md:grid-cols-2"
-								>
-									{pair.map((airport) => (
-										<div key={airport.name} className={card}>
-											<p className={text.micro}>{airport.distance}</p>
-											{/* Distance track — marker position on a scale shared by all cards */}
-											<div className="relative mt-3 h-2" aria-hidden="true">
-												<div
-													className="absolute top-1/2 right-0 left-0 -translate-y-1/2 text-zinc-300 dark:text-zinc-700"
-													style={{
-														height: "1px",
-														backgroundImage:
-															"repeating-linear-gradient(to right, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
-													}}
-												/>
-												<div className="absolute top-1/2 left-0 h-2 w-px -translate-y-1/2 bg-zinc-400 dark:bg-zinc-600" />
-												<div
-													className="absolute top-1/2 h-2 w-2 -translate-y-1/2 bg-zinc-900 dark:bg-white"
-													style={{
-														left: `calc(${(airport.km / DISTANCE_SCALE_KM) * 100}% - 4px)`,
-													}}
-												/>
-											</div>
-											<h3 className={`${text.cardTitle} mt-4`}>
-												{airport.name}
-											</h3>
-											<p className={text.cardBody}>{airport.intro}</p>
-											<div className="mt-6 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
-												<h4 className={text.smallHeading}>By train</h4>
-												<p className={text.cardBody}>{airport.train}</p>
-											</div>
-											<div className="mt-4">
-												<h4 className={text.smallHeading}>By car</h4>
-												<p className={text.cardBody}>{airport.car}</p>
-											</div>
-											{airport.bus && (
-												<div className="mt-4">
-													<h4 className={text.smallHeading}>By bus</h4>
-													<p className={text.cardBody}>{airport.bus}</p>
+					{/* Nearest airports */}
+					<section id="airports" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}Getting Here</p>
+							<h2 className={text.sectionTitle}>The nearest airports</h2>
+
+							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+								{[AIRPORTS.slice(0, 2), AIRPORTS.slice(2)].map((pair) => (
+									<div
+										key={pair[0].name}
+										className="grid grid-cols-1 gap-4 md:grid-cols-2"
+									>
+										{pair.map((airport) => (
+											<div key={airport.name} className={card}>
+												<p className={text.micro}>{airport.distance}</p>
+												{/* Distance track — marker position on a scale shared by all cards */}
+												<div className="relative mt-3 h-2" aria-hidden="true">
+													<div
+														className="absolute top-1/2 right-0 left-0 -translate-y-1/2 text-zinc-300 dark:text-zinc-700"
+														style={{
+															height: "1px",
+															backgroundImage:
+																"repeating-linear-gradient(to right, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
+														}}
+													/>
+													<div className="absolute top-1/2 left-0 h-2 w-px -translate-y-1/2 bg-zinc-400 dark:bg-zinc-600" />
+													<div
+														className="absolute top-1/2 h-2 w-2 -translate-y-1/2 bg-zinc-900 dark:bg-white"
+														style={{
+															left: `calc(${(airport.km / DISTANCE_SCALE_KM) * 100}% - 4px)`,
+														}}
+													/>
 												</div>
-											)}
-										</div>
-									))}
-								</div>
-							))}
+												<h3 className={`${text.cardTitle} mt-4`}>
+													{airport.name}
+												</h3>
+												<p className={text.cardBody}>{airport.intro}</p>
+												<div className="mt-6 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
+													<h4 className={text.smallHeading}>By train</h4>
+													<p className={text.cardBody}>{airport.train}</p>
+												</div>
+												<div className="mt-4">
+													<h4 className={text.smallHeading}>By car</h4>
+													<p className={text.cardBody}>{airport.car}</p>
+												</div>
+												{airport.bus && (
+													<div className="mt-4">
+														<h4 className={text.smallHeading}>By bus</h4>
+														<p className={text.cardBody}>{airport.bus}</p>
+													</div>
+												)}
+											</div>
+										))}
+									</div>
+								))}
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
 
-				<SectionDivider />
+					<SectionDivider />
 
-				{/* Local transportation */}
-				<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Local Transportation</p>
-						<h2 className={text.sectionTitle}>Moving around Livorno</h2>
+					{/* Local transportation */}
+					<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}Local Transportation</p>
+							<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-							<div className={card}>
-								<h3 className={text.cardTitle}>By taxi</h3>
-								<p className={text.cardBody}>
-									A taxi ride from the station to the seaside or Palazzo
-									Pancaldi takes ~10-15 minutes and ~€12. Uber is not available
-									in Italy.
-								</p>
-								<div className="mt-6 space-y-2 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+								<div className={card}>
+									<h3 className={text.cardTitle}>By taxi</h3>
 									<p className={text.cardBody}>
-										Taxi Livorno Consortium (CoTaLi):{" "}
-										<Link href="tel:+390586883377" variant="inline">
-											+39 586 88 33 77
-										</Link>
+										A taxi ride from the station to the seaside or Palazzo
+										Pancaldi takes ~10-15 minutes and ~€12. Uber is not
+										available in Italy.
 									</p>
-									<p className={text.cardBody}>
-										Taxi Labronica Association (AsTaLa):{" "}
-										<Link href="tel:+390586882020" variant="inline">
-											+39 586 88 20 20
-										</Link>
-									</p>
+									<div className="mt-6 space-y-2 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
+										<p className={text.cardBody}>
+											Taxi Livorno Consortium (CoTaLi):{" "}
+											<Link href="tel:+390586883377" variant="inline">
+												+39 586 88 33 77
+											</Link>
+										</p>
+										<p className={text.cardBody}>
+											Taxi Labronica Association (AsTaLa):{" "}
+											<Link href="tel:+390586882020" variant="inline">
+												+39 586 88 20 20
+											</Link>
+										</p>
+									</div>
 								</div>
-							</div>
-							<div className={card}>
-								<h3 className={text.cardTitle}>By bus</h3>
-								<p className={text.cardBody}>
-									Local buses (lines 1+, 2+, or 8N) run from Livorno Centrale
-									Station to Viale Italia, close to Palazzo Pancaldi. The bus
-									ride takes around 20 minutes. Check the{" "}
-									<Link
-										href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
-										variant="inline"
-									>
-										local bus schedule
-									</Link>{" "}
-									for exact timings.
-								</p>
-							</div>
-							<div className={card}>
-								<h3 className={text.cardTitle}>Bike rentals</h3>
-								<p className={text.cardBody}>
-									Livorno is a bike-friendly city with several cycling paths
-									along the seafront and through the city center. The relatively
-									flat terrain makes it ideal for cycling. You can rent bikes
-									from several locations around the city.
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<SectionDivider />
-
-				{/* Practical tips */}
-				<section id="tips" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Practical Tips</p>
-						<h2 className={text.sectionTitle}>Before you travel</h2>
-
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-							<div className={card}>
-								<h3 className={text.cardTitle}>Check train schedules</h3>
-								<p className={text.cardBody}>
-									Use the{" "}
-									<Link
-										href="https://www.trenitalia.com/en.html"
-										variant="inline"
-									>
-										Trenitalia website
-									</Link>{" "}
-									or app to check train schedules and book tickets. Make sure to
-									check in before boarding the train.
-								</p>
-							</div>
-							<div className={card}>
-								<h3 className={text.cardTitle}>Local transport apps</h3>
-								<p className={text.cardBody}>
-									Consider downloading apps like{" "}
-									<Link href="https://www.at-bus.it/en" variant="inline">
-										at bus
-									</Link>{" "}
-									or{" "}
-									<Link href="https://www.tabnet.it/" variant="inline">
-										Tabnet
-									</Link>{" "}
-									for real-time updates on local public transport and easy
-									ticket purchasing.
-								</p>
-							</div>
-							<div className={card}>
-								<h3 className={text.cardTitle}>Still have questions?</h3>
-								<p className={text.cardBody}>
-									If you need further assistance or help, reach out to us on{" "}
-									<Link href="https://discord.gg/effect-ts" variant="inline">
-										Discord
-									</Link>
-									!
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<SectionDivider />
-
-				{/* What to see */}
-				<section id="see" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}What to See</p>
-						<h2 className={text.sectionTitle}>Sights worth your time</h2>
-
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-							{SIGHTS.map((sight) => (
-								<div
-									key={sight.title}
-									className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
-								>
-									<img
-										src={getAssetPath(sight.image)}
-										alt={sight.title}
-										className="aspect-3/2 w-full object-cover"
-									/>
-									<div className="flex flex-1 flex-col p-6">
-										<h3 className={text.cardTitle}>{sight.title}</h3>
-										<p className={text.cardBody}>{sight.description}</p>
+								<div className={card}>
+									<h3 className={text.cardTitle}>By bus</h3>
+									<p className={text.cardBody}>
+										Local buses (lines 1+, 2+, or 8N) run from Livorno Centrale
+										Station to Viale Italia, close to Palazzo Pancaldi. The bus
+										ride takes around 20 minutes. Check the{" "}
 										<Link
-											href={`https://www.google.com/maps/search/?api=1&query=${sight.mapQuery}`}
-											variant="subtle"
-											className="mt-4 inline-flex items-center gap-1.5 pt-2 font-medium"
+											href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
+											variant="inline"
 										>
-											View on map
-											<Icon name="arrow-up-right" className="text-xs" />
+											local bus schedule
+										</Link>{" "}
+										for exact timings.
+									</p>
+								</div>
+								<div className={card}>
+									<h3 className={text.cardTitle}>Bike rentals</h3>
+									<p className={text.cardBody}>
+										Livorno is a bike-friendly city with several cycling paths
+										along the seafront and through the city center. The
+										relatively flat terrain makes it ideal for cycling. You can
+										rent bikes from several locations around the city.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<SectionDivider />
+
+					{/* Practical tips */}
+					<section id="tips" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}Practical Tips</p>
+							<h2 className={text.sectionTitle}>Before you travel</h2>
+
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+								<div className={card}>
+									<h3 className={text.cardTitle}>Check train schedules</h3>
+									<p className={text.cardBody}>
+										Use the{" "}
+										<Link
+											href="https://www.trenitalia.com/en.html"
+											variant="inline"
+										>
+											Trenitalia website
+										</Link>{" "}
+										or app to check train schedules and book tickets. Make sure
+										to check in before boarding the train.
+									</p>
+								</div>
+								<div className={card}>
+									<h3 className={text.cardTitle}>Local transport apps</h3>
+									<p className={text.cardBody}>
+										Consider downloading apps like{" "}
+										<Link href="https://www.at-bus.it/en" variant="inline">
+											at bus
+										</Link>{" "}
+										or{" "}
+										<Link href="https://www.tabnet.it/" variant="inline">
+											Tabnet
+										</Link>{" "}
+										for real-time updates on local public transport and easy
+										ticket purchasing.
+									</p>
+								</div>
+								<div className={card}>
+									<h3 className={text.cardTitle}>Still have questions?</h3>
+									<p className={text.cardBody}>
+										If you need further assistance or help, reach out to us on{" "}
+										<Link href="https://discord.gg/effect-ts" variant="inline">
+											Discord
 										</Link>
+										!
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<SectionDivider />
+
+					{/* What to see */}
+					<section id="see" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}What to See</p>
+							<h2 className={text.sectionTitle}>Sights worth your time</h2>
+
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+								{SIGHTS.map((sight) => (
+									<div
+										key={sight.title}
+										className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
+									>
+										<img
+											src={getAssetPath(sight.image)}
+											alt={sight.title}
+											className="aspect-3/2 w-full object-cover"
+										/>
+										<div className="flex flex-1 flex-col p-6">
+											<h3 className={text.cardTitle}>{sight.title}</h3>
+											<p className={text.cardBody}>{sight.description}</p>
+											<Link
+												href={`https://www.google.com/maps/search/?api=1&query=${sight.mapQuery}`}
+												variant="subtle"
+												className="mt-4 inline-flex items-center gap-1.5 pt-2 font-medium"
+											>
+												View on map
+												<Icon name="arrow-up-right" className="text-xs" />
+											</Link>
+										</div>
 									</div>
-								</div>
-							))}
+								))}
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
 
-				<SectionDivider />
+					<SectionDivider />
 
-				{/* What to eat */}
-				<section id="eat" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}What to Eat</p>
-						<h2 className={text.sectionTitle}>Taste of Livorno</h2>
+					{/* What to eat */}
+					<section id="eat" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}What to Eat</p>
+							<h2 className={text.sectionTitle}>Taste of Livorno</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-							{FOOD.map((dish) => (
-								<div
-									key={dish.title}
-									className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
-								>
-									<img
-										src={getAssetPath(dish.image)}
-										alt={dish.title}
-										className="aspect-3/2 w-full object-cover"
-									/>
-									<div className="flex flex-1 flex-col p-6">
-										<h3 className={text.cardTitle}>{dish.title}</h3>
-										<p className={text.cardBody}>{dish.description}</p>
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+								{FOOD.map((dish) => (
+									<div
+										key={dish.title}
+										className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
+									>
+										<img
+											src={getAssetPath(dish.image)}
+											alt={dish.title}
+											className="aspect-3/2 w-full object-cover"
+										/>
+										<div className="flex flex-1 flex-col p-6">
+											<h3 className={text.cardTitle}>{dish.title}</h3>
+											<p className={text.cardBody}>{dish.description}</p>
+										</div>
 									</div>
-								</div>
-							))}
+								))}
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
 
-				<SectionDivider />
+					<SectionDivider />
 
-				{/* Things to do */}
-				<section id="do" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Things to Do</p>
-						<h2 className={text.sectionTitle}>Make a trip of it</h2>
+					{/* Things to do */}
+					<section id="do" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}Things to Do</p>
+							<h2 className={text.sectionTitle}>Make a trip of it</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-							{ACTIVITIES.map((activity) => (
-								<div key={activity.title} className={card}>
-									<h3 className={text.cardTitle}>{activity.title}</h3>
-									<p className={text.cardBody}>{activity.description}</p>
-								</div>
-							))}
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+								{ACTIVITIES.map((activity) => (
+									<div key={activity.title} className={card}>
+										<h3 className={text.cardTitle}>{activity.title}</h3>
+										<p className={text.cardBody}>{activity.description}</p>
+									</div>
+								))}
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+				</div>
 			</main>
 
 			<Footer activePath="/events" hideCommunityBorder />
