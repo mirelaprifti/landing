@@ -25,7 +25,8 @@ const text = {
 /* Styleguide chrome strings — copy verbatim. */
 const container = "mx-auto w-full max-w-[73.75rem] px-4";
 const sectionRhythm = "py-24 md:pt-40 md:pb-24";
-const card = "border border-zinc-200 p-6 dark:border-zinc-800";
+const card =
+	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
 
 const NAV_ANCHORS = [
 	{ href: "#airports", label: "Nearest airports" },
@@ -528,7 +529,7 @@ export function AboutLivornoPage() {
 									{SIGHTS.map((sight) => (
 										<div
 											key={sight.title}
-											className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
+											className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 										>
 											<img
 												src={getAssetPath(sight.image)}
@@ -596,7 +597,7 @@ export function AboutLivornoPage() {
 									{FOOD.map((dish) => (
 										<div
 											key={dish.title}
-											className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
+											className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 										>
 											<img
 												src={getAssetPath(dish.image)}

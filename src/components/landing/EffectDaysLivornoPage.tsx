@@ -25,7 +25,8 @@ const text = {
 /* Styleguide chrome strings — copy verbatim. */
 const container = "mx-auto w-full max-w-[73.75rem] px-4";
 const sectionRhythm = "py-24 md:pt-40 md:pb-24";
-const card = "border border-zinc-200 p-6 dark:border-zinc-800";
+const card =
+	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
 
 const PROGRAM = [
 	{
@@ -430,7 +431,7 @@ export function EffectDaysLivornoPage() {
 									key={pass.name}
 									className={
 										pass.featured
-											? "flex flex-col border border-zinc-400 p-6 dark:border-zinc-600"
+											? "flex flex-col border border-zinc-400 bg-white p-6 dark:border-zinc-600 dark:bg-zinc-950"
 											: `flex flex-col ${card}`
 									}
 								>
@@ -546,7 +547,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 
 							{/* Community stats as terminal output */}
-							<div className="overflow-hidden border border-zinc-200 dark:border-zinc-800">
+							<div className="overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
 								<div className="flex items-center gap-2 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
 									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
 									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
@@ -626,7 +627,7 @@ export function EffectDaysLivornoPage() {
 										</div>
 
 										<div
-											className={`flex flex-col overflow-hidden border ${
+											className={`flex flex-col overflow-hidden border bg-white dark:bg-zinc-950 ${
 												edition.status === "next"
 													? "border-zinc-400 dark:border-zinc-600"
 													: "border-zinc-200 dark:border-zinc-800"
