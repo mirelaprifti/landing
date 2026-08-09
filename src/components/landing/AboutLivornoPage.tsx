@@ -51,17 +51,6 @@ const AIRPORTS: Array<{
 		train:
 			"Take the Pisamover shuttle from Pisa Airport to Pisa Centrale, then a direct train to Livorno Centrale. The journey takes 30-40 minutes.",
 		car: "Taxis and car rentals are available at Pisa Airport, taking around 20-25 minutes.",
-		bus: (
-			<>
-				<Link
-					href="https://www.flixbus.com/bus-routes/bus-pisa-livorno"
-					variant="inline"
-				>
-					FlixBus
-				</Link>{" "}
-				runs direct buses from the airport to Livorno in about 30 minutes.
-			</>
-		),
 	},
 	{
 		name: "Florence · FLR",
