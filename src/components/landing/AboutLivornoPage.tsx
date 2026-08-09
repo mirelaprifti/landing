@@ -49,8 +49,8 @@ const AIRPORTS: Array<{
 		distance: "~20 km from Livorno",
 		intro: "The closest airport.",
 		train:
-			"Take the Pisamover shuttle from Pisa Airport to Pisa Centrale, then a direct train to Livorno Centrale. The journey takes 30-40 minutes.",
-		car: "Taxis and car rentals are available at Pisa Airport, taking around 20-25 minutes.",
+			"Take the Pisamover shuttle from Pisa Airport to Pisa Centrale, then a direct train to Livorno Centrale.",
+		car: "Around 20-25 minutes by taxi or private car.",
 	},
 	{
 		name: "Florence · FLR",
@@ -66,7 +66,7 @@ const AIRPORTS: Array<{
 		intro: "Well-connected to major European cities.",
 		train:
 			"The Marconi Express takes you to Bologna Centrale, then a train to Florence SMN, then a train to Livorno Centrale. All in ~2.5 hours.",
-		car: "Driving takes around 2 hours, with car rentals available at the airport.",
+		car: "Around 2 hours by taxi or private car.",
 	},
 	{
 		name: "Rome · FCO",
@@ -74,7 +74,7 @@ const AIRPORTS: Array<{
 		intro: "Widest choice of international flights.",
 		train:
 			"Take the Leonardo Express to Roma Termini, then a direct train to Livorno Centrale along the coast. Total journey time is about 3.5 hours.",
-		car: "Around 3 hours by car on the A12, with rentals available at the airport.",
+		car: "Around 3.5 hours by taxi or private car.",
 		bus: (
 			<>
 				<Link
