@@ -1,4 +1,4 @@
-import { Link } from "@/components/ui";
+import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
@@ -289,18 +289,17 @@ export function AboutLivornoPage() {
 									Welcome to Livorno!
 								</h1>
 
-								{/* Section anchors */}
-								<div className="mt-12 flex flex-wrap gap-x-8 gap-y-4">
+								{/* Section anchors — 3 per row */}
+								<div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3">
 									{NAV_ANCHORS.map((anchor) => (
-										<Link
+										<Button
 											key={anchor.href}
 											href={anchor.href}
-											variant="subtle"
-											className="inline-flex items-center gap-1.5 font-medium"
+											variant="secondary"
+											size="sm"
 										>
 											{anchor.label}
-											<Icon name="arrow-down" className="text-xs" />
-										</Link>
+										</Button>
 									))}
 								</div>
 							</div>
