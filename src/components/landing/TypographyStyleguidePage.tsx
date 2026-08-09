@@ -483,7 +483,7 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Buttons"
-								note="Variants: secondary (default), primary, ghost. Sizes: sm, md (default), lg, xl. secondary md is the site's workhorse; primary lg is the hero CTA. Never hand-roll a CTA."
+								note="Variants: secondary (default), primary, ghost. Sizes: sm, md (default), lg, xl. secondary md is the site's workhorse; primary lg is the hero CTA. Never hand-roll a CTA. All variants share a 1px border (transparent on primary/ghost) and icons are normalized to leading-none, so buttons in a row always match heights, whether icons are svg or icon-font glyphs."
 							>
 								<div className="flex flex-wrap items-center gap-4">
 									<Button href={getAssetPath("/blog")} variant="secondary">
@@ -496,6 +496,16 @@ export function TypographyStyleguidePage() {
 										Get started
 									</Button>
 									<Button variant="ghost">Ghost</Button>
+								</div>
+								<div className="mt-5 flex flex-wrap items-center gap-4">
+									<Button variant="primary" size="lg">
+										<Icon name="ticket" className="text-lg" />
+										svg icon
+									</Button>
+									<Button variant="secondary" size="lg">
+										<i className="ri-discord-fill text-lg" />
+										icon-font glyph
+									</Button>
 								</div>
 								<div className="mt-5 flex flex-wrap items-center gap-4">
 									<Button variant="secondary" size="sm">

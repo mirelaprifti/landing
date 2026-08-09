@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
  * | xl   | px-6 py-4        | text-lg |
  */
 const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:outline-white",
+	"inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:pointer-events-none disabled:opacity-50 [&_i]:leading-none [&_svg]:shrink-0 dark:focus-visible:outline-white",
 	{
 		variants: {
 			variant: {
