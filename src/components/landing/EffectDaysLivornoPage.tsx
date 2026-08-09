@@ -721,7 +721,7 @@ export function EffectDaysLivornoPage() {
 										"linear-gradient(to right, #000 0%, #000 93%, transparent 100%)",
 								}}
 							/>
-							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
+							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-4">
 								{EDITIONS.map((edition) => (
 									<div key={edition.year} className="relative">
 										{/* Timeline node — labels carry an opaque background so the
