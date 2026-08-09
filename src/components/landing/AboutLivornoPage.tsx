@@ -257,32 +257,55 @@ export function AboutLivornoPage() {
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Hero */}
 				<section className="relative w-full pt-16 pb-16 md:pt-24 md:pb-24">
-					<div className={container}>
-						<Link
-							href="/events/effect-days"
-							variant="subtle"
-							className="inline-flex items-center gap-1.5 font-medium"
-						>
-							<Icon name="arrow-left" className="text-xs" />
-							Back to Effect Days
-						</Link>
-						<h1 className={`${text.pageTitleSub} mt-6`}>Welcome to Livorno!</h1>
-						<p className={text.subtitle}>
-							Everything you need to plan your trip to Effect Days: getting
-							here, moving around, and what to see, eat, and do in Livorno.
+					{/* Right half — Livorno photo (lg+), full-bleed */}
+					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
+						<img
+							src={getAssetPath("/assets/images/livorno-6.avif")}
+							alt="Canal-side buildings and boats in Livorno's Venezia Nuova district"
+							className="h-full w-full object-cover"
+						/>
+						{/* Blend into the dark page */}
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+						{/* Photo caption */}
+						<p className="absolute bottom-3 left-16 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+							{"// "}Venezia Nuova · Livorno
 						</p>
+					</div>
 
-						{/* Section anchors */}
-						<div className="mt-12 flex flex-wrap gap-x-6 gap-y-3">
-							{NAV_ANCHORS.map((anchor) => (
-								<a
-									key={anchor.href}
-									href={anchor.href}
-									className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+					<div className={`relative ${container}`}>
+						<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+							{/* Left — copy */}
+							<div>
+								<Link
+									href="/events/effect-days"
+									variant="subtle"
+									className="inline-flex items-center gap-1.5 font-medium"
 								>
-									{anchor.label}
-								</a>
-							))}
+									<Icon name="arrow-left" className="text-xs" />
+									Back to Effect Days
+								</Link>
+								<h1 className={`${text.pageTitleSub} mt-6`}>
+									Welcome to Livorno!
+								</h1>
+								<p className={text.subtitle}>
+									Everything you need to plan your trip to Effect Days: getting
+									here, moving around, and what to see, eat, and do in Livorno.
+								</p>
+
+								{/* Section anchors */}
+								<div className="mt-12 flex flex-wrap gap-x-6 gap-y-3">
+									{NAV_ANCHORS.map((anchor) => (
+										<a
+											key={anchor.href}
+											href={anchor.href}
+											className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										>
+											{anchor.label}
+										</a>
+									))}
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>
