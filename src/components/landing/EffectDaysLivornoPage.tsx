@@ -790,15 +790,15 @@ export function EffectDaysLivornoPage() {
 					<div className={`relative ${container}`}>
 						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
 							{/* Content */}
-							<div className="md:col-span-8 md:mt-2">
+							<div className="md:col-span-6 md:mt-2 md:pr-4">
 								<p className={text.eyebrow}>
 									{"// "}Dec 9–11, 2026 · Livorno, Italy
 								</p>
 								<h2 className={text.sectionTitle}>
 									Enjoy Effect Days experience
 								</h2>
-								<p className={`${text.subtitle} max-w-xl`}>
-									Three days with the people building Effect — and the people
+								<p className={text.subtitle}>
+									Three days with the people building Effect and the people
 									building with it.
 								</p>
 							</div>
