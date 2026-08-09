@@ -493,6 +493,9 @@ export function EffectDaysLivornoPage() {
 
 						<div className="mt-12 space-y-2">
 							<p className={text.body}>
+								Selecting a pass takes you to Stripe to complete your purchase.
+							</p>
+							<p className={text.body}>
 								Are you a group of more than 3 people interested in business
 								tickets?{" "}
 								<Link
