@@ -509,7 +509,6 @@ export function AboutLivornoPage() {
 											variant="subtle"
 											className="mt-4 inline-flex items-center gap-1.5 pt-2 font-medium"
 										>
-											<Icon name="map-pin" className="text-base" />
 											View on map
 											<Icon name="arrow-up-right" className="text-xs" />
 										</Link>

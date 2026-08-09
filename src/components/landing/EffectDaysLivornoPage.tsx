@@ -377,7 +377,6 @@ export function EffectDaysLivornoPage() {
 									variant="subtle"
 									className="inline-flex items-center gap-1.5 font-medium"
 								>
-									<Icon name="map-pin" className="text-base" />
 									View on map
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
@@ -492,24 +491,24 @@ export function EffectDaysLivornoPage() {
 											</span>
 											<span className={text.micro}>Coming soon</span>
 										</div>
-										<p className="text-center text-xs text-zinc-500 dark:text-zinc-500">
-											*Suitable for invoicing
-										</p>
 									</div>
 								</div>
 							))}
 						</div>
 
-						<p className={`${text.body} mt-12`}>
-							Are you a group of more than 3 people interested in business
-							tickets?{" "}
-							<Link
-								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
-								variant="inline"
-							>
-								Learn about available discounts at contact@effectful.co.
-							</Link>
-						</p>
+						<div className="mt-12 space-y-2">
+							<p className={text.body}>
+								Are you a group of more than 3 people interested in business
+								tickets?{" "}
+								<Link
+									href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
+									variant="inline"
+								>
+									Learn about available discounts at contact@effectful.co.
+								</Link>
+							</p>
+							<p className={text.body}>*Suitable for invoicing.</p>
+						</div>
 					</div>
 				</section>
 
