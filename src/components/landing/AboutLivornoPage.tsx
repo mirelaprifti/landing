@@ -392,8 +392,10 @@ export function AboutLivornoPage() {
 										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 										<div className="mt-12 flex-1 overflow-hidden">
 											<img
-												src={getAssetPath("/assets/images/livorno-1.avif")}
-												alt="Boats on a canal in Livorno"
+												src={getAssetPath(
+													"/assets/images/livorno-battelli.webp",
+												)}
+												alt="A tour boat passing under a bridge in Livorno's canals"
 												className="h-full min-h-64 w-full object-cover"
 											/>
 										</div>
