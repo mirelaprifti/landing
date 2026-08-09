@@ -97,7 +97,7 @@ const EDITIONS = [
 		location: "Vienna, Austria",
 		dates: "Feb 22-24",
 		status: "past",
-		note: "Where the Effect community gathered for the first time — 15 talks, 2 workshops.",
+		note: "Where the Effect community gathered for the first time: 15 talks, 2 workshops.",
 		playlistUrl:
 			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B_XZ8k3gD8R1k4-LBz8JmHP",
 		image: "/assets/images/ed-24-2.png",
@@ -107,7 +107,7 @@ const EDITIONS = [
 		location: "Livorno, Italy",
 		dates: "Mar 19-21",
 		status: "past",
-		note: "Advanced use cases and real production stories — 19 talks, 2 workshops.",
+		note: "Advanced use cases and real production stories: 19 talks, 2 workshops.",
 		playlistUrl:
 			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
 		image: "/assets/images/ed-25-2.png",
@@ -117,7 +117,7 @@ const EDITIONS = [
 		location: "Livorno, Italy",
 		dates: "Dec 9-11",
 		status: "next",
-		note: "The 3rd edition. Back to the Tuscan coast — and you're invited.",
+		note: "The 3rd edition. Back to the Tuscan coast, and you're invited.",
 		playlistUrl: null,
 		image: null,
 	},
@@ -171,7 +171,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	{
 		question: "5. What is the Community Day?",
 		answer:
-			"Effect Days isn't just about talks — it's about real connections. The Community Day on December 11th is a full day dedicated to deeper discussions, networking, and community activities.",
+			"Effect Days isn't just about talks, it's about real connections. The Community Day on December 11th is a full day dedicated to deeper discussions, networking, and community activities.",
 	},
 	{
 		question: "6. Can I get a refund for my ticket?",
@@ -354,11 +354,11 @@ export function EffectDaysLivornoPage() {
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}Location</p>
 						<h2 className={text.sectionTitle}>
-							Livorno — back to the Tuscan coast
+							Livorno, back to the Tuscan coast
 						</h2>
 						<p className={`${text.subtitle} max-w-2xl`}>
 							Effect Days returns to the seaside port city that hosted the 2025
-							edition. Canals, seafood, and the Terrazza Mascagni — a short hop
+							edition. Canals, seafood, and the Terrazza Mascagni, a short hop
 							from Pisa and Florence.
 						</p>
 
