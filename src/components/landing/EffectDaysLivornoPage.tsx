@@ -204,6 +204,9 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	},
 ];
 
+/* FAQs are split down the middle so each column opens independently. */
+const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
+
 /* Full-width divider between sections. */
 function SectionDivider() {
 	return <div className="border-t border-zinc-200 dark:border-zinc-800" />;
@@ -222,6 +225,43 @@ export function EffectDaysLivornoPage() {
 			}
 			return next;
 		});
+	};
+
+	const renderFaq = (faq: (typeof FAQS)[number], index: number) => {
+		const isOpen = openFaqs.has(index);
+		return (
+			<div
+				key={faq.question}
+				className="border-b border-zinc-200/50 dark:border-zinc-800/50"
+			>
+				<h3>
+					<button
+						type="button"
+						onClick={() => toggleFaq(index)}
+						aria-expanded={isOpen}
+						className="group flex w-full cursor-pointer items-center justify-between gap-4 py-6 text-left"
+					>
+						<span className={text.smallHeading}>{faq.question}</span>
+						<Icon
+							name="chevron-down"
+							className={`shrink-0 text-base text-zinc-500 transition-transform duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white ${
+								isOpen ? "rotate-180" : ""
+							}`}
+						/>
+					</button>
+				</h3>
+
+				<div
+					className={`grid transition-all duration-300 ease-out ${
+						isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+					}`}
+				>
+					<div className="overflow-hidden">
+						<p className={`${text.cardBody} pb-6`}>{faq.answer}</p>
+					</div>
+				</div>
+			</div>
+		);
 	};
 
 	return (
@@ -709,47 +749,16 @@ export function EffectDaysLivornoPage() {
 						<p className={text.eyebrow}>{"// "}FAQ</p>
 						<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
 
-						<div className="mt-12 grid grid-cols-1 items-start gap-x-12 gap-y-0 md:grid-cols-2">
-							{FAQS.map((faq, index) => {
-								const isOpen = openFaqs.has(index);
-								return (
-									<div
-										key={faq.question}
-										className="border-b border-zinc-200/50 dark:border-zinc-800/50"
-									>
-										<h3>
-											<button
-												type="button"
-												onClick={() => toggleFaq(index)}
-												aria-expanded={isOpen}
-												className="group flex w-full cursor-pointer items-center justify-between gap-4 py-6 text-left"
-											>
-												<span className={text.smallHeading}>
-													{faq.question}
-												</span>
-												<Icon
-													name="chevron-down"
-													className={`shrink-0 text-base text-zinc-500 transition-transform duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white ${
-														isOpen ? "rotate-180" : ""
-													}`}
-												/>
-											</button>
-										</h3>
-
-										<div
-											className={`grid transition-all duration-300 ease-out ${
-												isOpen
-													? "grid-rows-[1fr] opacity-100"
-													: "grid-rows-[0fr] opacity-0"
-											}`}
-										>
-											<div className="overflow-hidden">
-												<p className={`${text.cardBody} pb-6`}>{faq.answer}</p>
-											</div>
-										</div>
-									</div>
-								);
-							})}
+						{/* Two independent columns — opening one never reflows the other */}
+						<div className="mt-12 grid grid-cols-1 items-start gap-x-12 md:grid-cols-2">
+							<div>
+								{FAQS.slice(0, FAQ_SPLIT).map((faq, i) => renderFaq(faq, i))}
+							</div>
+							<div>
+								{FAQS.slice(FAQ_SPLIT).map((faq, i) =>
+									renderFaq(faq, FAQ_SPLIT + i),
+								)}
+							</div>
 						</div>
 					</div>
 				</section>
