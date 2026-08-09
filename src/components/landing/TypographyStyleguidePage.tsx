@@ -716,13 +716,6 @@ export function TypographyStyleguidePage() {
 									</table>
 
 									<hr />
-
-									<p>
-										After a horizontal rule, the closing paragraph. If any
-										element above looks off in either theme, the fix belongs in{" "}
-										<code>BLOG_ARTICLE_CLASS</code> so real posts pick it up
-										too.
-									</p>
 								</article>
 							</ThemePair>
 						</GuideSection>
