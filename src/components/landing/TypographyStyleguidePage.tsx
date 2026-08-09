@@ -438,13 +438,19 @@ export function TypographyStyleguidePage() {
 
 							<SpecRow
 								title="Subtle link with arrow"
-								note="Arrow direction carries the meaning: left = back, right = forward, up-right = leaves the page."
+								note="Arrow direction carries the meaning: left = back, right = forward, up-right = leaves the page. Hover darkens label and arrow together — no underline, no arrow motion."
 								classes={[
 									{
 										label: "link",
 										value: "inline-flex items-center gap-1.5 font-medium",
 									},
 									{ label: "icon", value: "text-xs" },
+									{
+										label: "hover",
+										value:
+											"transition-colors hover:text-zinc-900 dark:hover:text-white",
+										hint: 'Comes from variant="subtle" — the arrow inherits currentColor, so it darkens with the label.',
+									},
 								]}
 							>
 								<div className="flex flex-col items-start gap-3">
