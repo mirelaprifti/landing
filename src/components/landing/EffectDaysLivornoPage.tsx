@@ -768,19 +768,6 @@ export function EffectDaysLivornoPage() {
 				{/* Final CTA — split layout with corner-bracket box, mirrors the blog post
 				    and community pages */}
 				<section className="relative overflow-hidden py-24 md:py-32">
-					{/* Grid background — a single vertical line, positioned on the same
-					    196.6px column rhythm the other CTA sections tile across */}
-					<div
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage:
-								"linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
-							backgroundSize: "1px 100%",
-							backgroundRepeat: "no-repeat",
-							/* Single line on the original 196.6px rhythm — the rightmost column */
-							backgroundPosition: "calc(50% + 491.5px) 0",
-						}}
-					/>
 					{/* Single horizontal line — sits on the CTA heading's first-line baseline */}
 					<div
 						className="pointer-events-none absolute inset-0 hidden md:block"
@@ -808,11 +795,11 @@ export function EffectDaysLivornoPage() {
 									{"// "}Dec 9–11, 2026 · Livorno, Italy
 								</p>
 								<h2 className={text.sectionTitle}>
-									Join the Effect Days experience
+									Enjoy Effect Days experience
 								</h2>
 								<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-									Three days of workshops, talks, and real conversations with
-									the people building Effect — on the Tuscan coast.
+									Three days with the people building Effect and building with
+									Effect.
 								</p>
 							</div>
 
@@ -838,15 +825,6 @@ export function EffectDaysLivornoPage() {
 											aria-hidden="true"
 										/>
 									</Button>
-									<a
-										href="https://discord.gg/effect-ts"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
-									>
-										discord.gg/effect-ts
-										<Icon name="arrow-up-right" aria-hidden="true" />
-									</a>
 								</div>
 							</div>
 						</div>
