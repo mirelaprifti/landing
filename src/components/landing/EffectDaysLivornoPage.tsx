@@ -314,9 +314,10 @@ export function EffectDaysLivornoPage() {
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}The Program</p>
 						<h2 className={text.sectionTitle}>Three days of Effect</h2>
-						<p className={`${text.subtitle} max-w-2xl`}>
-							A community-driven, non-profit event celebrating the Effect
-							ecosystem.
+						<p className={text.subtitle}>
+							A community-driven, non-profit event celebrating{" "}
+							<br className="hidden md:inline" />
+							the Effect ecosystem.
 						</p>
 
 						<div className="relative mt-12">
