@@ -400,12 +400,7 @@ export function TypographyStyleguidePage() {
 												<p className={`${el.cls} mt-0! mb-0!`}>{el.sample}</p>
 											</div>
 										</div>
-										<details className="mt-2">
-											<summary className="cursor-pointer font-mono text-xs tracking-wider text-zinc-400 uppercase select-none">
-												Class
-											</summary>
-											<ClassChip className="mt-2" value={el.cls} />
-										</details>
+										<ClassChip className="mt-3" value={el.cls} />
 									</div>
 								))}
 							</div>
