@@ -221,8 +221,8 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 /* FAQs are split down the middle so each column opens independently. */
 const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
 
-/* Purchase row — styled as a link throughout; becomes a real anchor once the
-   Stripe checkout URL is filled in on the pass. */
+/* Purchase row — a full-width Button; renders as an anchor once the Stripe
+   checkout URL is filled in on the pass, and as a <button> until then. */
 function PurchaseRow({
 	icon,
 	label,
@@ -232,12 +232,9 @@ function PurchaseRow({
 	label: string;
 	price: { earlyBird: string; regular: string; url: string | null };
 }) {
-	const rowClass =
-		"group flex w-full items-center justify-between border border-zinc-200 px-4 py-3 transition-colors hover:border-zinc-400 hover:bg-zinc-100/50 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-900/50";
-
 	const content = (
 		<>
-			<span className="flex items-center gap-2 text-base font-medium text-zinc-700 transition-colors group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white">
+			<span className="flex items-center gap-2">
 				<Icon name={icon} className="text-zinc-500 dark:text-zinc-400" />
 				{label}
 			</span>
@@ -245,29 +242,28 @@ function PurchaseRow({
 				<span className="text-sm text-zinc-500 line-through dark:text-zinc-400">
 					{price.regular}
 				</span>
-				<span className="text-base font-semibold text-zinc-900 dark:text-white">
-					{price.earlyBird}
-				</span>
-				<Icon
-					name="arrow-up-right"
-					className="self-center text-sm text-zinc-400 transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white"
-					aria-hidden="true"
-				/>
+				<span className="text-base font-semibold">{price.earlyBird}</span>
 			</span>
 		</>
 	);
 
+	const shared = {
+		variant: "secondary" as const,
+		size: "lg" as const,
+		className: "w-full justify-between",
+	};
+
 	return price.url ? (
-		<a
+		<Button
 			href={price.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={rowClass}
+			{...shared}
 		>
 			{content}
-		</a>
+		</Button>
 	) : (
-		<div className={rowClass}>{content}</div>
+		<Button {...shared}>{content}</Button>
 	);
 }
 
@@ -611,10 +607,6 @@ export function EffectDaysLivornoPage() {
 								<p className={text.body}>
 									Selecting a pass takes you to Stripe to complete your
 									purchase.
-								</p>
-								<p className={text.body}>
-									Early bird prices apply until they sell out. Regular prices
-									are shown struck through.
 								</p>
 							</div>
 							<div className="space-y-1">
