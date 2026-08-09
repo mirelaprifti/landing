@@ -300,9 +300,10 @@ export function EffectDaysLivornoPage() {
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}The Program</p>
 						<h2 className={text.sectionTitle}>Three days, one pipeline</h2>
-						<p className={text.subtitle}>
-							Like every good Effect program, the conference is composed of
-							three steps that run in sequence.
+						<p className={`${text.subtitle} max-w-2xl`}>
+							A community-driven, non-profit event celebrating the Effect
+							ecosystem and the engineers building production-grade applications
+							in TypeScript.
 						</p>
 
 						<div className="relative mt-12">
@@ -342,12 +343,6 @@ export function EffectDaysLivornoPage() {
 								))}
 							</div>
 						</div>
-
-						<p className={`${text.body} mx-auto mt-12 max-w-2xl text-center`}>
-							A community-driven, non-profit event celebrating the Effect
-							ecosystem and our growing community building production-grade
-							applications in TypeScript.
-						</p>
 					</div>
 				</section>
 
