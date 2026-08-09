@@ -363,7 +363,7 @@ export function EffectDaysLivornoPage() {
 									can enjoy good food and the coastal views.
 								</p>
 							</div>
-							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
+							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end lg:pb-1">
 								<Link
 									href="/events/effect-days/about-livorno"
 									variant="subtle"
