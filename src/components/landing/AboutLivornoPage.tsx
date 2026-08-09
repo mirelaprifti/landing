@@ -288,10 +288,6 @@ export function AboutLivornoPage() {
 								<h1 className={`${text.pageTitleSub} mt-6`}>
 									Welcome to Livorno!
 								</h1>
-								<p className={text.subtitle}>
-									Everything you need to plan your trip to Effect Days: getting
-									here, moving around, and what to see, eat, and do in Livorno.
-								</p>
 
 								{/* Section anchors */}
 								<div className="mt-12 flex flex-wrap gap-x-6 gap-y-3">
