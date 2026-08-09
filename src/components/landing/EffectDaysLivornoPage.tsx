@@ -797,9 +797,9 @@ export function EffectDaysLivornoPage() {
 								<h2 className={text.sectionTitle}>
 									Enjoy Effect Days experience
 								</h2>
-								<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-									Three days with the people building Effect and building with
-									Effect.
+								<p className={`${text.subtitle} max-w-xl`}>
+									Three days with the people building Effect — and the people
+									building with it.
 								</p>
 							</div>
 
@@ -820,7 +820,7 @@ export function EffectDaysLivornoPage() {
 									>
 										Get tickets
 										<Icon
-											name="arrow-right"
+											name="arrow-up"
 											className="text-base"
 											aria-hidden="true"
 										/>
