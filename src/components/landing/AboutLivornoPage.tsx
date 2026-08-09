@@ -290,15 +290,17 @@ export function AboutLivornoPage() {
 								</h1>
 
 								{/* Section anchors */}
-								<div className="mt-12 flex flex-wrap gap-x-6 gap-y-3">
+								<div className="mt-12 flex flex-wrap gap-x-8 gap-y-4">
 									{NAV_ANCHORS.map((anchor) => (
-										<a
+										<Link
 											key={anchor.href}
 											href={anchor.href}
-											className="font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											variant="subtle"
+											className="inline-flex items-center gap-1.5 font-medium"
 										>
 											{anchor.label}
-										</a>
+											<Icon name="arrow-down" className="text-xs" />
+										</Link>
 									))}
 								</div>
 							</div>
