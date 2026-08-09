@@ -313,7 +313,7 @@ export function EffectDaysLivornoPage() {
 				<section className={sectionRhythm}>
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}The Program</p>
-						<h2 className={text.sectionTitle}>Three days, one pipeline</h2>
+						<h2 className={text.sectionTitle}>Three days of Effect</h2>
 						<p className={`${text.subtitle} max-w-2xl`}>
 							A community-driven, non-profit event celebrating the Effect
 							ecosystem.
