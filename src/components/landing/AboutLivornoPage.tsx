@@ -116,7 +116,7 @@ const SIGHTS = [
 	{
 		title: "The New Venice District",
 		description:
-			"Livorno's picturesque canal district, often compared to Venice, is lined with charming bridges, historic buildings, and inviting cafes. A boat tour through the canals is a great way to take in the sights.",
+			"Livorno's picturesque canal district, often compared to Venice, is lined with charming bridges, historic buildings, and inviting cafes.",
 		image: "/assets/images/livorno-venezia-nuova.avif",
 		mapQuery: "Venezia+Nuova+Livorno",
 	},
