@@ -36,7 +36,14 @@ const NAV_ANCHORS = [
 	{ href: "#do", label: "Things to do" },
 ];
 
-const AIRPORTS = [
+const AIRPORTS: Array<{
+	name: string;
+	distance: string;
+	intro: string;
+	train: string;
+	car: string;
+	bus?: React.ReactNode;
+}> = [
 	{
 		name: "Pisa · PSA",
 		distance: "~20 km from Livorno",
@@ -69,6 +76,18 @@ const AIRPORTS = [
 		train:
 			"Take the Leonardo Express to Roma Termini, then a direct train to Livorno Centrale along the coast. Total journey time is about 3.5 hours.",
 		car: "Around 3 hours by car on the A12, with rentals available at the airport.",
+		bus: (
+			<>
+				<Link
+					href="https://www.flixbus.com/bus-routes/bus-rome-fiumicino-airport-livorno"
+					variant="inline"
+				>
+					FlixBus
+				</Link>{" "}
+				runs direct buses from the airport (Terminal 3) to Livorno in about 4
+				hours, a budget-friendly option.
+			</>
+		),
 	},
 ];
 
@@ -283,6 +302,12 @@ export function AboutLivornoPage() {
 										<h4 className={text.smallHeading}>By car</h4>
 										<p className={text.cardBody}>{airport.car}</p>
 									</div>
+									{airport.bus && (
+										<div className="mt-4">
+											<h4 className={text.smallHeading}>By bus</h4>
+											<p className={text.cardBody}>{airport.bus}</p>
+										</div>
+									)}
 								</div>
 							))}
 						</div>
