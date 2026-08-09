@@ -61,6 +61,15 @@ const AIRPORTS = [
 			"The Marconi Express takes you to Bologna Centrale, then a train to Florence SMN, then a train to Livorno Centrale. All in ~2.5 hours.",
 		car: "Driving takes around 2 hours, with car rentals available at the airport.",
 	},
+	{
+		name: "Rome · FCO",
+		distance: "~300 km from Livorno",
+		intro:
+			"Italy's biggest hub with the widest choice of international flights.",
+		train:
+			"Take the Leonardo Express to Roma Termini, then a direct train to Livorno Centrale along the coast. Total journey time is about 3.5 hours.",
+		car: "Around 3 hours by car on the A12, with rentals available at the airport.",
+	},
 ];
 
 const SIGHTS = [
@@ -260,7 +269,7 @@ export function AboutLivornoPage() {
 						<p className={text.eyebrow}>{"// "}Nearest Airports</p>
 						<h2 className={text.sectionTitle}>Getting here</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 							{AIRPORTS.map((airport) => (
 								<div key={airport.name} className={card}>
 									<p className={text.micro}>{airport.distance}</p>
