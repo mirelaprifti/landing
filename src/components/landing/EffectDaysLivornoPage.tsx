@@ -257,7 +257,7 @@ export function EffectDaysLivornoPage() {
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Hero Section */}
-				<section className="relative w-full pt-16 pb-20 md:pt-35 md:pb-35">
+				<section className="relative w-full pt-16 pb-20 md:pt-40 md:pb-40">
 					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
 					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
@@ -269,7 +269,7 @@ export function EffectDaysLivornoPage() {
 						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
 						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
 						{/* Photo caption */}
-						<p className="absolute bottom-3 left-3 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+						<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
 							{"// "}Effect Days 2025 · Livorno
 						</p>
 					</div>
