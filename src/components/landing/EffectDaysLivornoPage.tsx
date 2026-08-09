@@ -53,12 +53,6 @@ const PROGRAM = [
 	},
 ];
 
-const COMMUNITY_STATS = [
-	{ value: "15,100+", label: "github stars" },
-	{ value: "6,500+", label: "discord members" },
-	{ value: "7,400+", label: "youtube subscribers" },
-];
-
 /* Early bird sells first; the regular price is shown struck through beside it. */
 const PASSES = [
 	{
@@ -620,77 +614,6 @@ export function EffectDaysLivornoPage() {
 									</Link>
 									.
 								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<SectionDivider />
-
-				{/* Sponsoring Section */}
-				<section className={sectionRhythm}>
-					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Sponsoring Effect Days</p>
-						<h2 className={text.sectionTitle}>Give back to the community</h2>
-
-						<div className="mt-12 grid grid-cols-1 items-center gap-6 lg:grid-cols-2">
-							{/* Pitch */}
-							<div>
-								<p className="max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-200">
-									Has Effect played a key role in your project and you'd love to
-									give back to the community?{" "}
-									<span className="font-medium text-zinc-900 dark:text-white">
-										Sponsoring Effect Days is your perfect opportunity!
-									</span>
-								</p>
-								<div className="mt-12">
-									<Button
-										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship Inquiry"
-										variant="primary"
-										size="lg"
-									>
-										<Icon name="heart-handshake" className="text-lg" />I want to
-										sponsor
-									</Button>
-								</div>
-							</div>
-
-							{/* Community stats as terminal output */}
-							<div className="overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-								<div className="flex items-center gap-2 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
-									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-									<span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-								</div>
-								<div className="p-6 font-mono text-sm leading-loose">
-									<p className="text-zinc-600 dark:text-zinc-400">
-										<span className="text-zinc-900 dark:text-white">$</span>{" "}
-										effect community{" "}
-										<span className="text-zinc-400 dark:text-zinc-600">
-											--stats
-										</span>
-									</p>
-									{COMMUNITY_STATS.map((stat) => (
-										<p key={stat.label}>
-											<span className="text-zinc-400 dark:text-zinc-600">
-												{"→ "}
-											</span>
-											<span className="font-medium text-zinc-900 dark:text-white">
-												{stat.value}
-											</span>
-											<span className="text-zinc-500 dark:text-zinc-500">
-												{" "}
-												{stat.label}
-											</span>
-										</p>
-									))}
-									<p className="text-zinc-400 dark:text-zinc-600">
-										…and counting
-										<span className="animate-[terminal-blink_1s_step-end_infinite]">
-											{" ▊"}
-										</span>
-									</p>
-								</div>
 							</div>
 						</div>
 					</div>
