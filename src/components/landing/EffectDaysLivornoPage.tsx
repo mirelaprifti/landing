@@ -493,14 +493,14 @@ export function EffectDaysLivornoPage() {
 						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-							<div className="space-y-2">
+							<div className="space-y-1">
 								<p className={text.body}>*Suitable for invoicing.</p>
 								<p className={text.body}>
 									Selecting a pass takes you to Stripe to complete your
 									purchase.
 								</p>
 							</div>
-							<div className="space-y-2">
+							<div className="space-y-1">
 								<p className={text.body}>
 									Group of more than 3?{" "}
 									<Link
