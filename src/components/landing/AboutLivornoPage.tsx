@@ -384,44 +384,52 @@ export function AboutLivornoPage() {
 						{/* Local transportation */}
 						<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
 							<div className={container}>
-								<p className={text.eyebrow}>{"// "}Local Transportation</p>
-								<h2 className={text.sectionTitle}>Moving around Livorno</h2>
+								{/* Split section — header left, divided list right */}
+								<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+									<div>
+										<p className={text.eyebrow}>{"// "}Local Transportation</p>
+										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
+										<p className={`${text.subtitle} max-w-md`}>
+											Getting from Livorno Centrale to the seafront and Palazzo
+											Pancaldi is quick, whichever way you go.
+										</p>
+									</div>
 
-								{/* Airy chrome-less columns (homepage feature-grid idiom), not cards */}
-								<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-16">
-									<div>
-										<h3 className={text.cardTitle}>By taxi</h3>
-										<p className={`${text.body} mt-2 text-sm`}>
-											Uber is not available in Italy. Call CoTaLi at{" "}
-											<Link href="tel:+390586883377" variant="inline">
-												+39 586 88 33 77
-											</Link>{" "}
-											or AsTaLa at{" "}
-											<Link href="tel:+390586882020" variant="inline">
-												+39 586 88 20 20
-											</Link>
-											.
-										</p>
-									</div>
-									<div>
-										<h3 className={text.cardTitle}>By bus</h3>
-										<p className={`${text.body} mt-2 text-sm`}>
-											Check the{" "}
-											<Link
-												href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
-												variant="inline"
-											>
-												local bus schedule
-											</Link>{" "}
-											for exact timings.
-										</p>
-									</div>
-									<div>
-										<h3 className={text.cardTitle}>Bike rentals</h3>
-										<p className={`${text.body} mt-2 text-sm`}>
-											Livorno is a bike-friendly city, with rentals and cycling
-											paths along the seafront and city center.
-										</p>
+									<div className="divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
+										<div className="py-6 first:pt-0">
+											<h3 className={text.cardTitle}>By taxi</h3>
+											<p className={text.cardBody}>
+												Uber is not available in Italy. Call CoTaLi at{" "}
+												<Link href="tel:+390586883377" variant="inline">
+													+39 586 88 33 77
+												</Link>{" "}
+												or AsTaLa at{" "}
+												<Link href="tel:+390586882020" variant="inline">
+													+39 586 88 20 20
+												</Link>
+												.
+											</p>
+										</div>
+										<div className="py-6">
+											<h3 className={text.cardTitle}>By bus</h3>
+											<p className={text.cardBody}>
+												Check the{" "}
+												<Link
+													href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
+													variant="inline"
+												>
+													local bus schedule
+												</Link>{" "}
+												for exact timings.
+											</p>
+										</div>
+										<div className="py-6 last:pb-0">
+											<h3 className={text.cardTitle}>Bike rentals</h3>
+											<p className={text.cardBody}>
+												Livorno is a bike-friendly city, with rentals and
+												cycling paths along the seafront and city center.
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
