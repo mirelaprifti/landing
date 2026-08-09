@@ -427,6 +427,9 @@ export function EffectDaysLivornoPage() {
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}Get Tickets</p>
 						<h2 className={text.sectionTitle}>Choose your pass</h2>
+						<p className={text.subtitle}>
+							Only 100 tickets are on sale for this edition.
+						</p>
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
 							{PASSES.map((pass) => (

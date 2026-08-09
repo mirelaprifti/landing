@@ -385,65 +385,52 @@ export function AboutLivornoPage() {
 							<p className={text.eyebrow}>{"// "}Local Transportation</p>
 							<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 
-							{/* Divided list rows — the site's events-list idiom, not cards */}
-							<div className="mt-12 divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
-								<div className="flex flex-col gap-2 py-6 first:pt-0 sm:flex-row sm:gap-6">
-									<span className={`${text.micro} w-44 shrink-0 sm:pt-1`}>
-										~15 min · ~€12
-									</span>
-									<div>
-										<h3 className={text.smallHeading}>By taxi</h3>
-										<p className={text.cardBody}>
-											A taxi ride from the station to the seaside or Palazzo
-											Pancaldi takes ~10-15 minutes and ~€12. Uber is not
-											available in Italy. Call CoTaLi at{" "}
-											<Link href="tel:+390586883377" variant="inline">
-												+39 586 88 33 77
-											</Link>{" "}
-											or AsTaLa at{" "}
-											<Link href="tel:+390586882020" variant="inline">
-												+39 586 88 20 20
-											</Link>
-											.
-										</p>
-									</div>
+							{/* Airy chrome-less columns (homepage feature-grid idiom), not cards */}
+							<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-16">
+								<div>
+									<p className={text.micro}>~15 min · ~€12</p>
+									<h3 className={`${text.cardTitle} mt-3`}>By taxi</h3>
+									<p className={`${text.body} mt-2 text-sm`}>
+										A taxi ride from the station to the seaside or Palazzo
+										Pancaldi takes ~10-15 minutes and ~€12. Uber is not
+										available in Italy. Call CoTaLi at{" "}
+										<Link href="tel:+390586883377" variant="inline">
+											+39 586 88 33 77
+										</Link>{" "}
+										or AsTaLa at{" "}
+										<Link href="tel:+390586882020" variant="inline">
+											+39 586 88 20 20
+										</Link>
+										.
+									</p>
 								</div>
-								<div className="flex flex-col gap-2 py-6 sm:flex-row sm:gap-6">
-									<span className={`${text.micro} w-44 shrink-0 sm:pt-1`}>
-										~20 min · lines 1+ 2+ 8N
-									</span>
-									<div>
-										<h3 className={text.smallHeading}>By bus</h3>
-										<p className={text.cardBody}>
-											Local buses run from Livorno Centrale Station to Viale
-											Italia, close to Palazzo Pancaldi. The bus ride takes
-											around 20 minutes. Check the{" "}
-											<Link
-												href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
-												variant="inline"
-											>
-												local bus schedule
-											</Link>{" "}
-											for exact timings.
-										</p>
-									</div>
+								<div>
+									<p className={text.micro}>~20 min · lines 1+ 2+ 8N</p>
+									<h3 className={`${text.cardTitle} mt-3`}>By bus</h3>
+									<p className={`${text.body} mt-2 text-sm`}>
+										Local buses run from Livorno Centrale Station to Viale
+										Italia, close to Palazzo Pancaldi. The bus ride takes
+										around 20 minutes. Check the{" "}
+										<Link
+											href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
+											variant="inline"
+										>
+											local bus schedule
+										</Link>{" "}
+										for exact timings.
+									</p>
 								</div>
-								<div className="flex flex-col gap-2 py-6 last:pb-0 sm:flex-row sm:gap-6">
-									<span className={`${text.micro} w-44 shrink-0 sm:pt-1`}>
-										Flat & seaside
-									</span>
-									<div>
-										<h3 className={text.smallHeading}>Bike rentals</h3>
-										<p className={text.cardBody}>
-											Livorno is a bike-friendly city with several cycling paths
-											along the seafront and through the city center. The
-											relatively flat terrain makes it ideal for cycling. You
-											can rent bikes from several locations around the city.
-										</p>
-									</div>
+								<div>
+									<p className={text.micro}>Flat & seaside</p>
+									<h3 className={`${text.cardTitle} mt-3`}>Bike rentals</h3>
+									<p className={`${text.body} mt-2 text-sm`}>
+										Livorno is a bike-friendly city with several cycling paths
+										along the seafront and through the city center. The
+										relatively flat terrain makes it ideal for cycling. You
+										can rent bikes from several locations around the city.
+									</p>
 								</div>
 							</div>
-						</div>
 					</section>
 
 					<SectionDivider />
