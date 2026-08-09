@@ -389,10 +389,6 @@ export function AboutLivornoPage() {
 									<div>
 										<p className={text.eyebrow}>{"// "}Local Transportation</p>
 										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
-										<p className={`${text.subtitle} max-w-md`}>
-											Getting from Livorno Centrale to the seafront and Palazzo
-											Pancaldi is quick, whichever way you go.
-										</p>
 									</div>
 
 									<div className="divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
