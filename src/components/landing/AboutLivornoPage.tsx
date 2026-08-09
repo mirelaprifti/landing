@@ -444,7 +444,7 @@ export function AboutLivornoPage() {
 							<p className={text.eyebrow}>{"// "}Practical Tips</p>
 							<h2 className={text.sectionTitle}>Before you travel</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
 								<div className={card}>
 									{/* Header row — icon chip and meta tag share one line */}
 									<div className="flex items-center justify-between">
@@ -512,24 +512,6 @@ export function AboutLivornoPage() {
 										</Link>{" "}
 										for real-time updates on local public transport and easy
 										ticket purchasing.
-									</p>
-								</div>
-								<div className={card}>
-									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
-											<i className="ri-discord-fill text-base leading-none text-zinc-700 dark:text-zinc-200" />
-										</div>
-										<span className={text.micro}>Discord</span>
-									</div>
-									<h3 className={`${text.cardTitle} mt-6`}>
-										Still have questions?
-									</h3>
-									<p className={text.cardBody}>
-										If you need further assistance or help, reach out to us on{" "}
-										<Link href="https://discord.gg/effect-ts" variant="inline">
-											Discord
-										</Link>
-										!
 									</p>
 								</div>
 							</div>
