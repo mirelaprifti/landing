@@ -235,6 +235,20 @@ export function EffectDaysLivornoPage() {
 				</div>
 			</div>
 
+			{/* Center vertical line - dashed, behind content */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 text-zinc-200 dark:text-zinc-800"
+						style={{
+							width: "1px",
+							backgroundImage:
+								"repeating-linear-gradient(to bottom, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
+				</div>
+			</div>
+
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Hero Section */}
 				<section className="relative w-full pt-16 pb-20 md:pt-32 md:pb-32">
