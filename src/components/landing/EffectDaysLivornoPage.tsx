@@ -650,7 +650,7 @@ export function EffectDaysLivornoPage() {
 						<div className="relative mt-12">
 							{/* Timeline line (desktop) */}
 							<div
-								className="absolute top-2.5 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
+								className="absolute top-3.5 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
 								style={{
 									height: "1px",
 									backgroundImage:
@@ -660,21 +660,25 @@ export function EffectDaysLivornoPage() {
 							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
 								{EDITIONS.map((edition) => (
 									<div key={edition.year} className="relative">
-										{/* Timeline node */}
-										<div className="relative z-10 mb-6 flex items-center gap-3">
+										{/* Timeline node — labels carry an opaque background so the
+										    dashed line reads as a connector between nodes, not a
+										    rule struck through the text */}
+										<div className="relative z-10 mb-6 flex items-center">
 											<span
-												className={`h-5 w-5 border ${
+												className={`h-5 w-5 shrink-0 border ${
 													edition.status === "next"
 														? "border-zinc-900 bg-zinc-200 dark:border-zinc-300 dark:bg-zinc-700"
 														: "border-zinc-300 bg-white dark:border-zinc-600 dark:bg-zinc-950"
 												}`}
 											/>
-											<h3 className={text.cardTitle}>
+											<h3
+												className={`${text.cardTitle} bg-white px-3 dark:bg-zinc-950`}
+											>
 												Effect Days {edition.year}
 											</h3>
 											{edition.status === "next" && (
 												<span
-													className={`${text.micro} border border-zinc-300 px-2 py-0.5 dark:border-zinc-600`}
+													className={`${text.micro} border border-zinc-300 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950`}
 												>
 													Next stop
 												</span>
@@ -700,7 +704,8 @@ export function EffectDaysLivornoPage() {
 											) : (
 												<div className="flex aspect-21/9 items-center justify-center border-b border-zinc-200 dark:border-zinc-800">
 													<span className="font-mono text-sm text-zinc-700 dark:text-zinc-200">
-														Dec 9–11, 2026 ▊
+														Dec 9–11, 2026
+														<span className="animate-pulse"> ▊</span>
 													</span>
 												</div>
 											)}
