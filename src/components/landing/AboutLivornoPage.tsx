@@ -316,301 +316,308 @@ export function AboutLivornoPage() {
 						</div>
 					</div>
 
-					<SectionDivider />
+					{/* Content layer — positioned above the deco line */}
+					<div className="relative z-10">
+						<SectionDivider />
 
-					{/* Nearest airports */}
-					<section id="airports" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}Getting Here</p>
-							<h2 className={text.sectionTitle}>The nearest airports</h2>
+						{/* Nearest airports */}
+						<section id="airports" className={`scroll-mt-16 ${sectionRhythm}`}>
+							<div className={container}>
+								<p className={text.eyebrow}>{"// "}Getting Here</p>
+								<h2 className={text.sectionTitle}>The nearest airports</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-								{[AIRPORTS.slice(0, 2), AIRPORTS.slice(2)].map((pair) => (
-									<div
-										key={pair[0].name}
-										className="grid grid-cols-1 gap-4 md:grid-cols-2"
-									>
-										{pair.map((airport) => (
-											<div key={airport.name} className={card}>
-												<p className={text.micro}>{airport.distance}</p>
-												{/* Distance track — marker position on a scale shared by all cards */}
-												<div className="relative mt-3 h-2" aria-hidden="true">
-													<div
-														className="absolute top-1/2 right-0 left-0 -translate-y-1/2 text-zinc-300 dark:text-zinc-700"
-														style={{
-															height: "1px",
-															backgroundImage:
-																"repeating-linear-gradient(to right, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
-														}}
-													/>
-													<div className="absolute top-1/2 left-0 h-2 w-px -translate-y-1/2 bg-zinc-400 dark:bg-zinc-600" />
-													<div
-														className="absolute top-1/2 h-2 w-2 -translate-y-1/2 bg-zinc-900 dark:bg-white"
-														style={{
-															left: `calc(${(airport.km / DISTANCE_SCALE_KM) * 100}% - 4px)`,
-														}}
-													/>
-												</div>
-												<h3 className={`${text.cardTitle} mt-4`}>
-													{airport.name}
-												</h3>
-												<p className={text.cardBody}>{airport.intro}</p>
-												<div className="mt-6 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
-													<h4 className={text.smallHeading}>By train</h4>
-													<p className={text.cardBody}>{airport.train}</p>
-												</div>
-												<div className="mt-4">
-													<h4 className={text.smallHeading}>By car</h4>
-													<p className={text.cardBody}>{airport.car}</p>
-												</div>
-												{airport.bus && (
-													<div className="mt-4">
-														<h4 className={text.smallHeading}>By bus</h4>
-														<p className={text.cardBody}>{airport.bus}</p>
+								<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+									{[AIRPORTS.slice(0, 2), AIRPORTS.slice(2)].map((pair) => (
+										<div
+											key={pair[0].name}
+											className="grid grid-cols-1 gap-4 md:grid-cols-2"
+										>
+											{pair.map((airport) => (
+												<div key={airport.name} className={card}>
+													<p className={text.micro}>{airport.distance}</p>
+													{/* Distance track — marker position on a scale shared by all cards */}
+													<div className="relative mt-3 h-2" aria-hidden="true">
+														<div
+															className="absolute top-1/2 right-0 left-0 -translate-y-1/2 text-zinc-300 dark:text-zinc-700"
+															style={{
+																height: "1px",
+																backgroundImage:
+																	"repeating-linear-gradient(to right, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
+															}}
+														/>
+														<div className="absolute top-1/2 left-0 h-2 w-px -translate-y-1/2 bg-zinc-400 dark:bg-zinc-600" />
+														<div
+															className="absolute top-1/2 h-2 w-2 -translate-y-1/2 bg-zinc-900 dark:bg-white"
+															style={{
+																left: `calc(${(airport.km / DISTANCE_SCALE_KM) * 100}% - 4px)`,
+															}}
+														/>
 													</div>
-												)}
-											</div>
-										))}
-									</div>
-								))}
-							</div>
-						</div>
-					</section>
-
-					<SectionDivider />
-
-					{/* Local transportation */}
-					<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}Local Transportation</p>
-							<h2 className={text.sectionTitle}>Moving around Livorno</h2>
-
-							{/* Airy chrome-less columns (homepage feature-grid idiom), not cards */}
-							<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-16">
-								<div>
-									<p className={text.micro}>~15 min · ~€12</p>
-									<h3 className={`${text.cardTitle} mt-3`}>By taxi</h3>
-									<p className={`${text.body} mt-2 text-sm`}>
-										A taxi ride from the station to the seaside or Palazzo
-										Pancaldi takes ~10-15 minutes and ~€12. Uber is not
-										available in Italy. Call CoTaLi at{" "}
-										<Link href="tel:+390586883377" variant="inline">
-											+39 586 88 33 77
-										</Link>{" "}
-										or AsTaLa at{" "}
-										<Link href="tel:+390586882020" variant="inline">
-											+39 586 88 20 20
-										</Link>
-										.
-									</p>
-								</div>
-								<div>
-									<p className={text.micro}>~20 min · lines 1+ 2+ 8N</p>
-									<h3 className={`${text.cardTitle} mt-3`}>By bus</h3>
-									<p className={`${text.body} mt-2 text-sm`}>
-										Local buses run from Livorno Centrale Station to Viale
-										Italia, close to Palazzo Pancaldi. The bus ride takes
-										around 20 minutes. Check the{" "}
-										<Link
-											href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
-											variant="inline"
-										>
-											local bus schedule
-										</Link>{" "}
-										for exact timings.
-									</p>
-								</div>
-								<div>
-									<p className={text.micro}>Flat & seaside</p>
-									<h3 className={`${text.cardTitle} mt-3`}>Bike rentals</h3>
-									<p className={`${text.body} mt-2 text-sm`}>
-										Livorno is a bike-friendly city with several cycling paths
-										along the seafront and through the city center. The
-										relatively flat terrain makes it ideal for cycling. You
-										can rent bikes from several locations around the city.
-									</p>
+													<h3 className={`${text.cardTitle} mt-4`}>
+														{airport.name}
+													</h3>
+													<p className={text.cardBody}>{airport.intro}</p>
+													<div className="mt-6 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
+														<h4 className={text.smallHeading}>By train</h4>
+														<p className={text.cardBody}>{airport.train}</p>
+													</div>
+													<div className="mt-4">
+														<h4 className={text.smallHeading}>By car</h4>
+														<p className={text.cardBody}>{airport.car}</p>
+													</div>
+													{airport.bus && (
+														<div className="mt-4">
+															<h4 className={text.smallHeading}>By bus</h4>
+															<p className={text.cardBody}>{airport.bus}</p>
+														</div>
+													)}
+												</div>
+											))}
+										</div>
+									))}
 								</div>
 							</div>
-					</section>
+						</section>
 
-					<SectionDivider />
+						<SectionDivider />
 
-					{/* Practical tips */}
-					<section id="tips" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}Practical Tips</p>
-							<h2 className={text.sectionTitle}>Before you travel</h2>
+						{/* Local transportation */}
+						<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
+							<div className={container}>
+								<p className={text.eyebrow}>{"// "}Local Transportation</p>
+								<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-								<div className={card}>
-									{/* Header row — icon chip and meta tag share one line */}
-									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
-											<Icon
-												name="sun"
-												className="text-zinc-700 dark:text-zinc-200"
-											/>
-										</div>
-										<span className={text.micro}>10-13°C</span>
-									</div>
-									<h3 className={`${text.cardTitle} mt-6`}>December weather</h3>
-									<p className={text.cardBody}>
-										Livorno winters are mild: daytime temperatures around
-										10-13°C (50-55°F), with sunny spells between occasional rain
-										showers. A warm jacket and an umbrella are all you need.
-									</p>
-								</div>
-								<div className={card}>
-									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
-											<Icon
-												name="clock"
-												className="text-zinc-700 dark:text-zinc-200"
-											/>
-										</div>
-										<span className={text.micro}>Trenitalia</span>
-									</div>
-									<h3 className={`${text.cardTitle} mt-6`}>
-										Check train schedules
-									</h3>
-									<p className={text.cardBody}>
-										Use the{" "}
-										<Link
-											href="https://www.trenitalia.com/en.html"
-											variant="inline"
-										>
-											Trenitalia website
-										</Link>{" "}
-										or app to check train schedules and book tickets. Make sure
-										to check in before boarding the train.
-									</p>
-								</div>
-								<div className={card}>
-									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
-											<Icon
-												name="download"
-												className="text-zinc-700 dark:text-zinc-200"
-											/>
-										</div>
-										<span className={text.micro}>at bus · Tabnet</span>
-									</div>
-									<h3 className={`${text.cardTitle} mt-6`}>
-										Local transport apps
-									</h3>
-									<p className={text.cardBody}>
-										Consider downloading apps like{" "}
-										<Link href="https://www.at-bus.it/en" variant="inline">
-											at bus
-										</Link>{" "}
-										or{" "}
-										<Link href="https://www.tabnet.it/" variant="inline">
-											Tabnet
-										</Link>{" "}
-										for real-time updates on local public transport and easy
-										ticket purchasing.
-									</p>
-								</div>
-							</div>
-						</div>
-					</section>
-
-					<SectionDivider />
-
-					{/* What to see */}
-					<section id="see" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}What to See</p>
-							<h2 className={text.sectionTitle}>Sights worth your time</h2>
-
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-								{SIGHTS.map((sight) => (
-									<div
-										key={sight.title}
-										className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
-									>
-										<img
-											src={getAssetPath(sight.image)}
-											alt={sight.title}
-											className="aspect-3/2 w-full object-cover"
-										/>
-										<div className="flex flex-1 flex-col p-6">
-											<h3 className={text.cardTitle}>{sight.title}</h3>
-											<p className={text.cardBody}>{sight.description}</p>
-											<Link
-												href={`https://www.google.com/maps/search/?api=1&query=${sight.mapQuery}`}
-												variant="subtle"
-												className="mt-4 inline-flex items-center gap-1.5 pt-2 font-medium"
-											>
-												View on map
-												<Icon name="arrow-up-right" className="text-xs" />
+								{/* Airy chrome-less columns (homepage feature-grid idiom), not cards */}
+								<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-16">
+									<div>
+										<p className={text.micro}>~15 min · ~€12</p>
+										<h3 className={`${text.cardTitle} mt-3`}>By taxi</h3>
+										<p className={`${text.body} mt-2 text-sm`}>
+											A taxi ride from the station to the seaside or Palazzo
+											Pancaldi takes ~10-15 minutes and ~€12. Uber is not
+											available in Italy. Call CoTaLi at{" "}
+											<Link href="tel:+390586883377" variant="inline">
+												+39 586 88 33 77
+											</Link>{" "}
+											or AsTaLa at{" "}
+											<Link href="tel:+390586882020" variant="inline">
+												+39 586 88 20 20
 											</Link>
-										</div>
+											.
+										</p>
 									</div>
-								))}
+									<div>
+										<p className={text.micro}>~20 min · lines 1+ 2+ 8N</p>
+										<h3 className={`${text.cardTitle} mt-3`}>By bus</h3>
+										<p className={`${text.body} mt-2 text-sm`}>
+											Local buses run from Livorno Centrale Station to Viale
+											Italia, close to Palazzo Pancaldi. The bus ride takes
+											around 20 minutes. Check the{" "}
+											<Link
+												href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
+												variant="inline"
+											>
+												local bus schedule
+											</Link>{" "}
+											for exact timings.
+										</p>
+									</div>
+									<div>
+										<p className={text.micro}>Flat & seaside</p>
+										<h3 className={`${text.cardTitle} mt-3`}>Bike rentals</h3>
+										<p className={`${text.body} mt-2 text-sm`}>
+											Livorno is a bike-friendly city with several cycling paths
+											along the seafront and through the city center. The
+											relatively flat terrain makes it ideal for cycling. You
+											can rent bikes from several locations around the city.
+										</p>
+									</div>
+								</div>
 							</div>
-						</div>
-					</section>
+						</section>
 
-					<SectionDivider />
+						<SectionDivider />
 
-					{/* Things to do */}
-					<section id="do" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}Things to Do</p>
-							<h2 className={text.sectionTitle}>Make a trip of it</h2>
+						{/* Practical tips */}
+						<section id="tips" className={`scroll-mt-16 ${sectionRhythm}`}>
+							<div className={container}>
+								<p className={text.eyebrow}>{"// "}Practical Tips</p>
+								<h2 className={text.sectionTitle}>Before you travel</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-								{ACTIVITIES.map((activity) => (
-									<div key={activity.title} className={card}>
+								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+									<div className={card}>
 										{/* Header row — icon chip and meta tag share one line */}
 										<div className="flex items-center justify-between">
 											<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
 												<Icon
-													name={activity.icon}
+													name="sun"
 													className="text-zinc-700 dark:text-zinc-200"
 												/>
 											</div>
-											<span className={text.micro}>{activity.tag}</span>
+											<span className={text.micro}>10-13°C</span>
 										</div>
 										<h3 className={`${text.cardTitle} mt-6`}>
-											{activity.title}
+											December weather
 										</h3>
-										<p className={text.cardBody}>{activity.description}</p>
+										<p className={text.cardBody}>
+											Livorno winters are mild: daytime temperatures around
+											10-13°C (50-55°F), with sunny spells between occasional
+											rain showers. A warm jacket and an umbrella are all you
+											need.
+										</p>
 									</div>
-								))}
-							</div>
-						</div>
-					</section>
-
-					<SectionDivider />
-
-					{/* What to eat */}
-					<section id="eat" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}What to Eat</p>
-							<h2 className={text.sectionTitle}>Taste of Livorno</h2>
-
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-								{FOOD.map((dish) => (
-									<div
-										key={dish.title}
-										className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
-									>
-										<img
-											src={getAssetPath(dish.image)}
-											alt={dish.title}
-											className="aspect-3/2 w-full object-cover"
-										/>
-										<div className="flex flex-1 flex-col p-6">
-											<h3 className={text.cardTitle}>{dish.title}</h3>
-											<p className={text.cardBody}>{dish.description}</p>
+									<div className={card}>
+										<div className="flex items-center justify-between">
+											<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
+												<Icon
+													name="clock"
+													className="text-zinc-700 dark:text-zinc-200"
+												/>
+											</div>
+											<span className={text.micro}>Trenitalia</span>
 										</div>
+										<h3 className={`${text.cardTitle} mt-6`}>
+											Check train schedules
+										</h3>
+										<p className={text.cardBody}>
+											Use the{" "}
+											<Link
+												href="https://www.trenitalia.com/en.html"
+												variant="inline"
+											>
+												Trenitalia website
+											</Link>{" "}
+											or app to check train schedules and book tickets. Make
+											sure to check in before boarding the train.
+										</p>
 									</div>
-								))}
+									<div className={card}>
+										<div className="flex items-center justify-between">
+											<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
+												<Icon
+													name="download"
+													className="text-zinc-700 dark:text-zinc-200"
+												/>
+											</div>
+											<span className={text.micro}>at bus · Tabnet</span>
+										</div>
+										<h3 className={`${text.cardTitle} mt-6`}>
+											Local transport apps
+										</h3>
+										<p className={text.cardBody}>
+											Consider downloading apps like{" "}
+											<Link href="https://www.at-bus.it/en" variant="inline">
+												at bus
+											</Link>{" "}
+											or{" "}
+											<Link href="https://www.tabnet.it/" variant="inline">
+												Tabnet
+											</Link>{" "}
+											for real-time updates on local public transport and easy
+											ticket purchasing.
+										</p>
+									</div>
+								</div>
 							</div>
-						</div>
-					</section>
+						</section>
+
+						<SectionDivider />
+
+						{/* What to see */}
+						<section id="see" className={`scroll-mt-16 ${sectionRhythm}`}>
+							<div className={container}>
+								<p className={text.eyebrow}>{"// "}What to See</p>
+								<h2 className={text.sectionTitle}>Sights worth your time</h2>
+
+								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+									{SIGHTS.map((sight) => (
+										<div
+											key={sight.title}
+											className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
+										>
+											<img
+												src={getAssetPath(sight.image)}
+												alt={sight.title}
+												className="aspect-3/2 w-full object-cover"
+											/>
+											<div className="flex flex-1 flex-col p-6">
+												<h3 className={text.cardTitle}>{sight.title}</h3>
+												<p className={text.cardBody}>{sight.description}</p>
+												<Link
+													href={`https://www.google.com/maps/search/?api=1&query=${sight.mapQuery}`}
+													variant="subtle"
+													className="mt-4 inline-flex items-center gap-1.5 pt-2 font-medium"
+												>
+													View on map
+													<Icon name="arrow-up-right" className="text-xs" />
+												</Link>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						</section>
+
+						<SectionDivider />
+
+						{/* Things to do */}
+						<section id="do" className={`scroll-mt-16 ${sectionRhythm}`}>
+							<div className={container}>
+								<p className={text.eyebrow}>{"// "}Things to Do</p>
+								<h2 className={text.sectionTitle}>Make a trip of it</h2>
+
+								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+									{ACTIVITIES.map((activity) => (
+										<div key={activity.title} className={card}>
+											{/* Header row — icon chip and meta tag share one line */}
+											<div className="flex items-center justify-between">
+												<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
+													<Icon
+														name={activity.icon}
+														className="text-zinc-700 dark:text-zinc-200"
+													/>
+												</div>
+												<span className={text.micro}>{activity.tag}</span>
+											</div>
+											<h3 className={`${text.cardTitle} mt-6`}>
+												{activity.title}
+											</h3>
+											<p className={text.cardBody}>{activity.description}</p>
+										</div>
+									))}
+								</div>
+							</div>
+						</section>
+
+						<SectionDivider />
+
+						{/* What to eat */}
+						<section id="eat" className={`scroll-mt-16 ${sectionRhythm}`}>
+							<div className={container}>
+								<p className={text.eyebrow}>{"// "}What to Eat</p>
+								<h2 className={text.sectionTitle}>Taste of Livorno</h2>
+
+								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+									{FOOD.map((dish) => (
+										<div
+											key={dish.title}
+											className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
+										>
+											<img
+												src={getAssetPath(dish.image)}
+												alt={dish.title}
+												className="aspect-3/2 w-full object-cover"
+											/>
+											<div className="flex flex-1 flex-col p-6">
+												<h3 className={text.cardTitle}>{dish.title}</h3>
+												<p className={text.cardBody}>{dish.description}</p>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						</section>
+					</div>
 				</div>
 			</main>
 
