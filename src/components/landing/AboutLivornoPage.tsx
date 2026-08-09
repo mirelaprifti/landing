@@ -385,11 +385,18 @@ export function AboutLivornoPage() {
 						{/* Local transportation */}
 						<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
 							<div className={container}>
-								{/* Split section — header left, divided list right */}
+								{/* Split section — header and photo left, divided list right */}
 								<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-									<div>
+									<div className="flex flex-col">
 										<p className={text.eyebrow}>{"// "}Local Transportation</p>
 										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
+										<div className="mt-12 flex-1 overflow-hidden">
+											<img
+												src={getAssetPath("/assets/images/livorno-1.avif")}
+												alt="Boats on a canal in Livorno"
+												className="h-full min-h-64 w-full object-cover"
+											/>
+										</div>
 									</div>
 
 									<div className="divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
