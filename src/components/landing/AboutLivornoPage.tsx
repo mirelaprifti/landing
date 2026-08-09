@@ -396,7 +396,7 @@ export function AboutLivornoPage() {
 										<div className="py-6 first:pt-0">
 											<h3 className={text.cardTitle}>By taxi</h3>
 											<p className={text.cardBody}>
-												Uber is not available in Italy. Call CoTaLi at{" "}
+												Call CoTaLi at{" "}
 												<Link href="tel:+390586883377" variant="inline">
 													+39 586 88 33 77
 												</Link>{" "}
@@ -404,7 +404,7 @@ export function AboutLivornoPage() {
 												<Link href="tel:+390586882020" variant="inline">
 													+39 586 88 20 20
 												</Link>
-												.
+												. Uber is not available in Italy.
 											</p>
 										</div>
 										<div className="py-6">
