@@ -185,25 +185,33 @@ const FOOD = [
 const ACTIVITIES = [
 	{
 		title: "Boat tour",
+		icon: "life-buoy",
+		tag: "On the water",
 		description:
 			"Take a boat tour through the Venezia Nuova district's canals. A relaxing way to see the city's landmarks.",
 	},
 	{
 		title: "Beach day",
+		icon: "sun",
+		tag: "By the sea",
 		description:
 			"Enjoy a day by the sea at one of Livorno's beaches. Relax and soak up the Mediterranean sun.",
 	},
 	{
 		title: "Arts & museums",
+		icon: "palette",
+		tag: "In the city",
 		description:
 			"The Museo Civico Giovanni Fattori hosts works from the Macchiaioli movement, alongside smaller galleries and cultural centers worth exploring.",
 	},
 	{
 		title: "Day trips",
+		icon: "map-pin",
+		tag: "Beyond Livorno",
 		description:
 			"Pisa & Florence are perfect for day trips. If you have more time, you can visit Elba Island, known for its crystal-clear waters and picturesque villages.",
 	},
-];
+] as const;
 
 /* Full-width divider between sections. */
 function SectionDivider() {
@@ -528,7 +536,19 @@ export function AboutLivornoPage() {
 							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 								{ACTIVITIES.map((activity) => (
 									<div key={activity.title} className={card}>
-										<h3 className={text.cardTitle}>{activity.title}</h3>
+										{/* Header row — icon chip and meta tag share one line */}
+										<div className="flex items-center justify-between">
+											<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+												<Icon
+													name={activity.icon}
+													className="text-zinc-700 dark:text-zinc-200"
+												/>
+											</div>
+											<span className={text.micro}>{activity.tag}</span>
+										</div>
+										<h3 className={`${text.cardTitle} mt-6`}>
+											{activity.title}
+										</h3>
 										<p className={text.cardBody}>{activity.description}</p>
 									</div>
 								))}
