@@ -514,30 +514,22 @@ export function EffectDaysLivornoPage() {
 							{/* Venue and city tiles */}
 							<div className="grid grid-cols-2 gap-4">
 								<img
-									src={getAssetPath(
-										"/assets/effect-days/pancaldi-hall.avif",
-									)}
+									src={getAssetPath("/assets/effect-days/pancaldi-hall.avif")}
 									alt="The conference hall at Palazzo Pancaldi"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath(
-										"/assets/effect-days/livorno-7.avif",
-									)}
+									src={getAssetPath("/assets/effect-days/livorno-7.avif")}
 									alt="Livorno's harborfront seen from the water"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath(
-										"/assets/effect-days/livorno-1.avif",
-									)}
+									src={getAssetPath("/assets/effect-days/livorno-1.avif")}
 									alt="Boats on a canal in Livorno's Venezia Nuova district"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath(
-										"/assets/effect-days/livorno-6.avif",
-									)}
+									src={getAssetPath("/assets/effect-days/livorno-6.avif")}
 									alt="Canal-side buildings and boats in Livorno"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
