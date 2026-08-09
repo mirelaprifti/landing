@@ -324,21 +324,23 @@ export function EffectDaysLivornoPage() {
 							the Effect ecosystem.
 						</p>
 
-						<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
+						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
 							{PROGRAM.map((step) => (
-								<div key={step.step} className="pt-6">
-									<div className="relative rounded-md border border-zinc-200 bg-white p-6 pt-10 dark:border-zinc-800 dark:bg-zinc-950">
-										{/* Number chip bridging the card's top border */}
-										<div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-md border border-zinc-300 bg-white font-mono text-sm font-medium text-zinc-900 dark:border-zinc-600 dark:bg-zinc-950 dark:text-white">
+								<div
+									key={step.step}
+									className="rounded-md border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									{/* Header row — number chip and day/date share one line */}
+									<div className="flex items-center justify-between">
+										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 font-mono text-sm font-medium text-zinc-900 dark:border-zinc-600 dark:text-white">
 											{step.step}
 										</div>
-										<div className="flex items-baseline justify-between">
-											<span className={text.micro}>{step.day}</span>
-											<span className={text.micro}>{step.date}</span>
-										</div>
-										<h3 className={`${text.cardTitle} mt-4`}>{step.title}</h3>
-										<p className={text.cardBody}>{step.description}</p>
+										<span className={text.micro}>
+											{step.day} · {step.date}
+										</span>
 									</div>
+									<h3 className={`${text.cardTitle} mt-6`}>{step.title}</h3>
+									<p className={text.cardBody}>{step.description}</p>
 								</div>
 							))}
 						</div>
