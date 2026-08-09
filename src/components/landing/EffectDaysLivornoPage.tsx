@@ -99,8 +99,9 @@ const EDITIONS = [
 		playlistUrl:
 			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B_XZ8k3gD8R1k4-LBz8JmHP",
 		image: "/assets/effect-days/ed-24-2.png",
-		/* Duotone is already baked into this file. */
-		tint: false,
+		/* Greyscale strips the tint baked into this file, so the CSS duotone below
+		   is the single source of the effect on every edition photo. */
+		tint: true,
 	},
 	{
 		year: "2025",
@@ -111,7 +112,6 @@ const EDITIONS = [
 		playlistUrl:
 			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
 		image: "/assets/effect-days/ed-25-3.png",
-		/* Full-colour source, so the duotone is applied in CSS to match the others. */
 		tint: true,
 	},
 	{
