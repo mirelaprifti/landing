@@ -446,7 +446,17 @@ export function AboutLivornoPage() {
 
 							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 								<div className={card}>
-									<h3 className={text.cardTitle}>December weather</h3>
+									{/* Header row — icon chip and meta tag share one line */}
+									<div className="flex items-center justify-between">
+										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+											<Icon
+												name="sun"
+												className="text-zinc-700 dark:text-zinc-200"
+											/>
+										</div>
+										<span className={text.micro}>10-13°C</span>
+									</div>
+									<h3 className={`${text.cardTitle} mt-6`}>December weather</h3>
 									<p className={text.cardBody}>
 										Livorno winters are mild: daytime temperatures around
 										10-13°C (50-55°F), with sunny spells between occasional rain
@@ -454,7 +464,18 @@ export function AboutLivornoPage() {
 									</p>
 								</div>
 								<div className={card}>
-									<h3 className={text.cardTitle}>Check train schedules</h3>
+									<div className="flex items-center justify-between">
+										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+											<Icon
+												name="clock"
+												className="text-zinc-700 dark:text-zinc-200"
+											/>
+										</div>
+										<span className={text.micro}>Trenitalia</span>
+									</div>
+									<h3 className={`${text.cardTitle} mt-6`}>
+										Check train schedules
+									</h3>
 									<p className={text.cardBody}>
 										Use the{" "}
 										<Link
@@ -468,7 +489,18 @@ export function AboutLivornoPage() {
 									</p>
 								</div>
 								<div className={card}>
-									<h3 className={text.cardTitle}>Local transport apps</h3>
+									<div className="flex items-center justify-between">
+										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+											<Icon
+												name="download"
+												className="text-zinc-700 dark:text-zinc-200"
+											/>
+										</div>
+										<span className={text.micro}>at bus · Tabnet</span>
+									</div>
+									<h3 className={`${text.cardTitle} mt-6`}>
+										Local transport apps
+									</h3>
 									<p className={text.cardBody}>
 										Consider downloading apps like{" "}
 										<Link href="https://www.at-bus.it/en" variant="inline">
@@ -483,7 +515,15 @@ export function AboutLivornoPage() {
 									</p>
 								</div>
 								<div className={card}>
-									<h3 className={text.cardTitle}>Still have questions?</h3>
+									<div className="flex items-center justify-between">
+										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+											<i className="ri-discord-fill text-base leading-none text-zinc-700 dark:text-zinc-200" />
+										</div>
+										<span className={text.micro}>Discord</span>
+									</div>
+									<h3 className={`${text.cardTitle} mt-6`}>
+										Still have questions?
+									</h3>
 									<p className={text.cardBody}>
 										If you need further assistance or help, reach out to us on{" "}
 										<Link href="https://discord.gg/effect-ts" variant="inline">
