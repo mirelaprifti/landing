@@ -51,15 +51,6 @@ const PROGRAM = [
 	},
 ];
 
-const LIVORNO_FACTS = [
-	{ key: "Coordinates", value: "43.55° N, 10.31° E" },
-	{ key: "Region", value: "Tuscany, Italy 🇮🇹" },
-	{ key: "Nearest airport", value: "Pisa (PSA) · ~30 min" },
-	{ key: "Also nearby", value: "Florence (FLR) · ~90 min" },
-	{ key: "Known for", value: "Canals, seafood, Terrazza Mascagni" },
-	{ key: "Effect Days editions", value: "2025 · 2026" },
-];
-
 const COMMUNITY_STATS = [
 	{ value: "15,100+", label: "github stars" },
 	{ value: "6,500+", label: "discord members" },
@@ -139,8 +130,18 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	},
 	{
 		question: "2. When and where is Effect Days taking place?",
-		answer:
-			"Effect Days will take place on December 9-11, 2026 in Livorno, Tuscany, Italy. The venue will be announced soon.",
+		answer: (
+			<>
+				Effect Days will take place on December 9-11, 2026 at{" "}
+				<Link
+					href="https://www.google.com/maps/search/?api=1&query=Palazzo+Pancaldi+Livorno"
+					variant="inline"
+				>
+					Palazzo Pancaldi
+				</Link>
+				, Viale Italia, 56, 57127 Livorno LI, Italy.
+			</>
+		),
 	},
 	{
 		question: "3. What is the schedule of the conference?",
@@ -349,59 +350,69 @@ export function EffectDaysLivornoPage() {
 
 				<SectionDivider />
 
-				{/* Location dossier */}
+				{/* The Venue */}
 				<section className={sectionRhythm}>
 					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Location</p>
-						<h2 className={text.sectionTitle}>
-							Livorno, back to the Tuscan coast
-						</h2>
+						<p className={text.eyebrow}>{"// "}The Venue</p>
+						<h2 className={text.sectionTitle}>Palazzo Pancaldi, Livorno</h2>
 						<p className={`${text.subtitle} max-w-2xl`}>
-							Effect Days returns to the seaside port city that hosted the 2025
-							edition. Canals, seafood, and the Terrazza Mascagni, a short hop
-							from Pisa and Florence.
+							A beautiful seaside location in the Tuscan riviera, where you can
+							enjoy good food and the coastal views.
 						</p>
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-							{/* Dossier facts */}
-							<div className={card}>
-								<p className={text.micro}>livorno.json</p>
-								<dl className="mt-4">
-									{LIVORNO_FACTS.map((fact) => (
-										<div
-											key={fact.key}
-											className="flex items-baseline justify-between gap-4 border-b border-dashed border-zinc-200 py-3 last:border-b-0 dark:border-zinc-800"
-										>
-											<dt className={`${text.micro} shrink-0`}>{fact.key}</dt>
-											<dd className="text-right font-mono text-sm text-zinc-700 dark:text-zinc-200">
-												{fact.value}
-											</dd>
-										</div>
-									))}
-								</dl>
+							{/* Featured photo, full column height */}
+							<div className="overflow-hidden rounded-md">
+								<img
+									src={getAssetPath("/assets/images/pancaldi-exterior.avif")}
+									alt="Palazzo Pancaldi on the Livorno seafront"
+									className="aspect-4/3 h-full w-full object-cover lg:aspect-auto"
+								/>
 							</div>
 
-							{/* Photos from the 2025 edition */}
-							<div className="grid grid-cols-1 gap-6">
-								<div className="relative overflow-hidden rounded-md">
+							{/* Venue and city tiles */}
+							<div className="grid grid-cols-2 gap-6">
+								<div className="overflow-hidden rounded-md">
 									<img
-										src={getAssetPath("/assets/images/ed-25-2.png")}
-										alt="The Effect community at Effect Days 2025, Livorno"
-										className="aspect-21/9 h-full w-full object-cover"
+										src={getAssetPath("/assets/images/pancaldi-hall.avif")}
+										alt="The conference hall at Palazzo Pancaldi"
+										className="aspect-4/3 h-full w-full object-cover"
 									/>
-									<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/60 via-transparent to-transparent" />
-									<p className="absolute bottom-3 left-3 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
-										{"// "}Effect Days 2025 · Livorno
-									</p>
 								</div>
 								<div className="overflow-hidden rounded-md">
 									<img
-										src={getAssetPath("/assets/images/ed-25.png")}
-										alt="Effect Days 2025 in Livorno"
-										className="aspect-21/9 h-full w-full object-cover"
+										src={getAssetPath("/assets/images/livorno-7.avif")}
+										alt="Livorno's harborfront seen from the water"
+										className="aspect-4/3 h-full w-full object-cover"
+									/>
+								</div>
+								<div className="overflow-hidden rounded-md">
+									<img
+										src={getAssetPath("/assets/images/livorno-1.avif")}
+										alt="Boats on a canal in Livorno's Venezia Nuova district"
+										className="aspect-4/3 h-full w-full object-cover"
+									/>
+								</div>
+								<div className="overflow-hidden rounded-md">
+									<img
+										src={getAssetPath("/assets/images/livorno-6.avif")}
+										alt="Canal-side buildings and boats in Livorno"
+										className="aspect-4/3 h-full w-full object-cover"
 									/>
 								</div>
 							</div>
+						</div>
+
+						<div className="mt-12">
+							<Link
+								href="https://www.google.com/maps/search/?api=1&query=Palazzo+Pancaldi+Livorno"
+								variant="subtle"
+								className="inline-flex items-center gap-1.5 font-medium"
+							>
+								<Icon name="map-pin" className="text-base" />
+								View on map
+								<Icon name="arrow-up-right" className="text-xs" />
+							</Link>
 						</div>
 					</div>
 				</section>
