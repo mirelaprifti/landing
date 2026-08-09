@@ -491,21 +491,26 @@ export function EffectDaysLivornoPage() {
 							))}
 						</div>
 
-						<div className="mt-12 space-y-2">
-							<p className={text.body}>
-								Selecting a pass takes you to Stripe to complete your purchase.
-							</p>
-							<p className={text.body}>
-								Group of more than 3?{" "}
-								<Link
-									href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
-									variant="inline"
-								>
-									Ask about business discounts
-								</Link>
-								.
-							</p>
-							<p className={text.body}>*Suitable for invoicing.</p>
+						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+							<div className="space-y-2">
+								<p className={text.body}>
+									Selecting a pass takes you to Stripe to complete your
+									purchase.
+								</p>
+								<p className={text.body}>*Suitable for invoicing.</p>
+							</div>
+							<div className="space-y-2">
+								<p className={text.body}>
+									Group of more than 3?{" "}
+									<Link
+										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
+										variant="inline"
+									>
+										Ask about business discounts
+									</Link>
+									.
+								</p>
+							</div>
 						</div>
 					</div>
 				</section>
