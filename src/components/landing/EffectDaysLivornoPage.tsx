@@ -439,7 +439,7 @@ export function EffectDaysLivornoPage() {
 							{/* Featured photo, full column height */}
 							<div className="overflow-hidden">
 								<img
-									src={getAssetPath("/assets/images/pancaldi-exterior.avif")}
+									src={getAssetPath("/assets/images/effect-days/pancaldi-exterior.avif")}
 									alt="Palazzo Pancaldi on the Livorno seafront"
 									className="aspect-4/3 h-full w-full object-cover lg:aspect-auto"
 								/>
@@ -448,22 +448,22 @@ export function EffectDaysLivornoPage() {
 							{/* Venue and city tiles */}
 							<div className="grid grid-cols-2 gap-4">
 								<img
-									src={getAssetPath("/assets/images/pancaldi-hall.avif")}
+									src={getAssetPath("/assets/images/effect-days/pancaldi-hall.avif")}
 									alt="The conference hall at Palazzo Pancaldi"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath("/assets/images/livorno-7.avif")}
+									src={getAssetPath("/assets/images/effect-days/livorno-7.avif")}
 									alt="Livorno's harborfront seen from the water"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath("/assets/images/livorno-1.avif")}
+									src={getAssetPath("/assets/images/effect-days/livorno-1.avif")}
 									alt="Boats on a canal in Livorno's Venezia Nuova district"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath("/assets/images/livorno-6.avif")}
+									src={getAssetPath("/assets/images/effect-days/livorno-6.avif")}
 									alt="Canal-side buildings and boats in Livorno"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
@@ -631,7 +631,10 @@ export function EffectDaysLivornoPage() {
 										</p>
 									))}
 									<p className="text-zinc-400 dark:text-zinc-600">
-										…and counting<span className="animate-pulse"> ▊</span>
+										…and counting
+										<span className="animate-[terminal-blink_1s_step-end_infinite]">
+											{" ▊"}
+										</span>
 									</p>
 								</div>
 							</div>
@@ -705,7 +708,9 @@ export function EffectDaysLivornoPage() {
 												<div className="flex aspect-21/9 items-center justify-center border-b border-zinc-200 dark:border-zinc-800">
 													<span className="font-mono text-sm text-zinc-700 dark:text-zinc-200">
 														Dec 9–11, 2026
-														<span className="animate-pulse"> ▊</span>
+														<span className="animate-[terminal-blink_1s_step-end_infinite]">
+															{" ▊"}
+														</span>
 													</span>
 												</div>
 											)}

@@ -573,6 +573,13 @@ a:focus-visible {
 	}
 }
 
+/* Terminal cursor — hard on/off with step-end, never a smooth fade */
+@keyframes terminal-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
 /* Blog post grid content transition */
 @keyframes blogFadeIn {
 	from {

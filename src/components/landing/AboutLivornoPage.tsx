@@ -104,42 +104,42 @@ const SIGHTS = [
 		title: "Terrazza Mascagni",
 		description:
 			"One of the most iconic spots in Livorno, Terrazza Mascagni is a beautiful seafront promenade offering breathtaking views of the Tyrrhenian Sea. A perfect place for a leisurely stroll, especially at sunset.",
-		image: "/assets/images/livorno-terrazza.avif",
+		image: "/assets/images/effect-days/livorno-terrazza.avif",
 		mapQuery: "Terrazza+Mascagni+Livorno",
 	},
 	{
 		title: "Old & New Fortress",
 		description:
 			"Explore Livorno's history at the Old Fortress, a massive fortification dating back to the 16th century. The fortress offers panoramic views of the city and the harbor.",
-		image: "/assets/images/livorno-fortezza.avif",
+		image: "/assets/images/effect-days/livorno-fortezza.avif",
 		mapQuery: "Fortezza+Vecchia+Livorno",
 	},
 	{
 		title: "The New Venice District",
 		description:
 			"Livorno's picturesque canal district, often compared to Venice, is lined with charming bridges, historic buildings, and inviting cafes.",
-		image: "/assets/images/livorno-venezia-nuova.avif",
+		image: "/assets/images/effect-days/livorno-venezia-nuova.avif",
 		mapQuery: "Venezia+Nuova+Livorno",
 	},
 	{
 		title: "Mercato Centrale",
 		description:
 			"One of the largest indoor markets in Europe. Here you can find fresh produce, seafood, meats, and local specialties. A great place to experience the local culture and cuisine.",
-		image: "/assets/images/livorno-mercato.avif",
+		image: "/assets/images/effect-days/livorno-mercato.avif",
 		mapQuery: "Mercato+delle+Vettovaglie+Livorno",
 	},
 	{
 		title: "Livorno Aquarium",
 		description:
 			"A family-friendly destination featuring a wide variety of marine species, including sharks, sea turtles, and jellyfish. An educational and enjoyable experience for all ages.",
-		image: "/assets/images/livorno-acquario.avif",
+		image: "/assets/images/effect-days/livorno-acquario.avif",
 		mapQuery: "Acquario+di+Livorno",
 	},
 	{
 		title: "Lungomare",
 		description:
 			"Perfect for a relaxing walk or bike ride, the Lungomare offers access points to various beaches, rocky coves, and natural rock pools.",
-		image: "/assets/images/livorno-lungomare.avif",
+		image: "/assets/images/effect-days/livorno-lungomare.avif",
 		mapQuery: "Lungomare+di+Livorno",
 	},
 ];
@@ -149,37 +149,37 @@ const FOOD = [
 		title: "Cacciucco",
 		description:
 			"Livorno's signature dish, Cacciucco, is a hearty fish stew made with a variety of seafood, tomatoes, garlic, and red wine. A must-try for seafood lovers!",
-		image: "/assets/images/eat-cacciucco.avif",
+		image: "/assets/images/effect-days/eat-cacciucco.avif",
 	},
 	{
 		title: "Cecina",
 		description:
 			"This savory chickpea flatbread is a popular street food in Livorno. Enjoy it on its own or inside a sandwich with fillings like grilled eggplant.",
-		image: "/assets/images/eat-cecina.webp",
+		image: "/assets/images/effect-days/eat-cecina.webp",
 	},
 	{
 		title: "Ponce alla Livornese",
 		description:
 			"A strong coffee-based drink with rum and lemon zest, Ponce Livornese is perfect for warming up after a day of exploring. A traditional Livornese beverage with a unique kick.",
-		image: "/assets/images/eat-ponce.avif",
+		image: "/assets/images/effect-days/eat-ponce.avif",
 	},
 	{
 		title: "Frati Fritti",
 		description:
 			"A type of sweet, deep-fried doughnut, Frati Fritti are soft and fluffy, often sprinkled with sugar. A local favorite for breakfast or as a sweet treat throughout the day.",
-		image: "/assets/images/eat-frati-fritti.avif",
+		image: "/assets/images/effect-days/eat-frati-fritti.avif",
 	},
 	{
 		title: "Livorno street food",
 		description:
 			'A reflection of its coastal charm and diverse cultural influences, the street markets offer an authentic taste of Tuscan flavors such as the "5 e 5" sandwich and seafood delicacies like fried calamari and baccalà.',
-		image: "/assets/images/eat-cinque-e-cinque.avif",
+		image: "/assets/images/effect-days/eat-cinque-e-cinque.avif",
 	},
 	{
 		title: "Fresh seafood",
 		description:
 			"From red mullet fish (triglie alla livornese) to calamari and mussels, you'll find a wide range of delicious options at local restaurants and trattorias.",
-		image: "/assets/images/eat-triglie.avif",
+		image: "/assets/images/effect-days/eat-triglie.avif",
 	},
 ];
 
@@ -255,7 +255,7 @@ export function AboutLivornoPage() {
 					{/* Right half — Livorno photo (lg+), full-bleed */}
 					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
-							src={getAssetPath("/assets/images/livorno-6.avif")}
+							src={getAssetPath("/assets/images/effect-days/livorno-6.avif")}
 							alt="Canal-side buildings and boats in Livorno's Venezia Nuova district"
 							className="h-full w-full object-cover"
 						/>
@@ -431,7 +431,7 @@ export function AboutLivornoPage() {
 
 									<div className="overflow-hidden">
 										<img
-											src={getAssetPath("/assets/images/livorno-1.avif")}
+											src={getAssetPath("/assets/images/effect-days/livorno-1.avif")}
 											alt="Boats on a canal in Livorno's Venezia Nuova district"
 											className="h-full min-h-64 w-full object-cover"
 										/>
