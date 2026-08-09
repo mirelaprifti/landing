@@ -268,7 +268,7 @@ export function AboutLivornoPage() {
 						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
 						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
 						{/* Photo caption */}
-						<p className="absolute bottom-3 left-16 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+						<p className="absolute bottom-3 left-3 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
 							{"// "}Venezia Nuova · Livorno
 						</p>
 					</div>
