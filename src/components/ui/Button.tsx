@@ -13,8 +13,12 @@ import { cn } from "@/lib/utils";
  * | variant     | use case                                         |
  * |-------------|--------------------------------------------------|
  * | primary     | Main CTA — white bg, dark text                   |
- * | secondary   | Bordered ghost — dark bg, zinc border, white text |
- * | ghost       | No border/bg — text only with hover bg            |
+ * | secondary   | Inset-ring outline — quiet bg, zinc ring          |
+ * | ghost       | No ring/bg — text only with hover bg              |
+ *
+ * Outlines use `inset-ring` (an inset box-shadow), not `border`, so every
+ * variant is exactly the same height — a real border would add 2px to the
+ * outlined ones. Never add a `border-*` class at a call site.
  *
  * | size | padding          | text   |
  * |------|------------------|--------|
