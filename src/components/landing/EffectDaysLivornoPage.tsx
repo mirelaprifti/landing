@@ -205,6 +205,11 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	},
 ];
 
+/* Full-width divider between sections. */
+function SectionDivider() {
+	return <div className="border-t border-zinc-200 dark:border-zinc-800" />;
+}
+
 export function EffectDaysLivornoPage() {
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white">
@@ -306,8 +311,7 @@ export function EffectDaysLivornoPage() {
 					</div>
 				</section>
 
-				{/* Divider between hero and content */}
-				<div className="border-t border-zinc-200 dark:border-zinc-800" />
+				<SectionDivider />
 
 				{/* The Program - pipeline */}
 				<section className={sectionRhythm}>
@@ -359,6 +363,8 @@ export function EffectDaysLivornoPage() {
 						</div>
 					</div>
 				</section>
+
+				<SectionDivider />
 
 				{/* Location dossier */}
 				<section className={sectionRhythm}>
@@ -416,6 +422,8 @@ export function EffectDaysLivornoPage() {
 						</div>
 					</div>
 				</section>
+
+				<SectionDivider />
 
 				{/* Tickets Section */}
 				<section id="tickets" className={`scroll-mt-16 ${sectionRhythm}`}>
@@ -507,6 +515,8 @@ export function EffectDaysLivornoPage() {
 					</div>
 				</section>
 
+				<SectionDivider />
+
 				{/* Sponsoring Section */}
 				<section className={sectionRhythm}>
 					<div className={container}>
@@ -572,6 +582,8 @@ export function EffectDaysLivornoPage() {
 						</div>
 					</div>
 				</section>
+
+				<SectionDivider />
 
 				{/* Editions timeline */}
 				<section id="past-editions" className={sectionRhythm}>
@@ -673,6 +685,8 @@ export function EffectDaysLivornoPage() {
 					</div>
 				</section>
 
+				<SectionDivider />
+
 				{/* FAQ Section */}
 				<section className={sectionRhythm}>
 					<div className={container}>
@@ -692,6 +706,8 @@ export function EffectDaysLivornoPage() {
 						</div>
 					</div>
 				</section>
+
+				<SectionDivider />
 
 				{/* Final CTA */}
 				<section className={sectionRhythm}>
