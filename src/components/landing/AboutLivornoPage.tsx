@@ -460,7 +460,7 @@ export function AboutLivornoPage() {
 									<p className={text.cardBody}>
 										Livorno winters are mild: daytime temperatures around
 										10-13°C (50-55°F), with sunny spells between occasional rain
-										showers. A warm jacket and a rain layer are all you need.
+										showers. A warm jacket and an umbrella are all you need.
 									</p>
 								</div>
 								<div className={card}>
