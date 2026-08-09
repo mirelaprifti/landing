@@ -59,6 +59,7 @@ const COMMUNITY_STATS = [
 	{ value: "7,400+", label: "youtube subscribers" },
 ];
 
+/* Early bird sells first; the regular price is shown struck through beside it. */
 const PASSES = [
 	{
 		name: "Workshop, Conference & Community Pass",
@@ -68,6 +69,10 @@ const PASSES = [
 			{ label: "Dec 11 · Community Day", included: true },
 		],
 		featured: true,
+		pricing: {
+			self: { earlyBird: "€349", regular: "€449" },
+			business: { earlyBird: "€499", regular: "€599" },
+		},
 	},
 	{
 		name: "Conference & Community Pass",
@@ -77,6 +82,10 @@ const PASSES = [
 			{ label: "Dec 11 · Community Day", included: true },
 		],
 		featured: false,
+		pricing: {
+			self: { earlyBird: "€249", regular: "€299" },
+			business: { earlyBird: "€349", regular: "€399" },
+		},
 	},
 ];
 
@@ -487,7 +496,9 @@ export function EffectDaysLivornoPage() {
 				{/* Tickets Section */}
 				<section id="tickets" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Only 100 tickets</p>
+						<p className={text.eyebrow}>
+							{"// "}Only 100 tickets · Early bird on sale
+						</p>
 						<h2 className={text.sectionTitle}>Choose your pass</h2>
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -540,7 +551,16 @@ export function EffectDaysLivornoPage() {
 												/>
 												Self-pay
 											</span>
-											<span className={text.micro}>Coming soon</span>
+											<span className="flex items-baseline gap-2">
+												<span
+													className={`${text.micro} text-zinc-400 line-through dark:text-zinc-600`}
+												>
+													{pass.pricing.self.regular}
+												</span>
+												<span className="text-base font-semibold text-zinc-900 dark:text-white">
+													{pass.pricing.self.earlyBird}
+												</span>
+											</span>
 										</div>
 										<div className="flex w-full items-center justify-between border border-zinc-200 px-4 py-3 dark:border-zinc-700">
 											<span className="flex items-center gap-2 text-base font-medium text-zinc-700 dark:text-zinc-300">
@@ -550,7 +570,16 @@ export function EffectDaysLivornoPage() {
 												/>
 												Business-pay*
 											</span>
-											<span className={text.micro}>Coming soon</span>
+											<span className="flex items-baseline gap-2">
+												<span
+													className={`${text.micro} text-zinc-400 line-through dark:text-zinc-600`}
+												>
+													{pass.pricing.business.regular}
+												</span>
+												<span className="text-base font-semibold text-zinc-900 dark:text-white">
+													{pass.pricing.business.earlyBird}
+												</span>
+											</span>
 										</div>
 									</div>
 								</div>
@@ -563,6 +592,10 @@ export function EffectDaysLivornoPage() {
 								<p className={text.body}>
 									Selecting a pass takes you to Stripe to complete your
 									purchase.
+								</p>
+								<p className={text.body}>
+									Early bird prices apply until they sell out. Regular prices
+									are shown struck through.
 								</p>
 							</div>
 							<div className="space-y-1">
