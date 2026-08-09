@@ -83,8 +83,7 @@ const AIRPORTS: Array<{
 				>
 					FlixBus
 				</Link>{" "}
-				runs direct buses from the airport (Terminal 3) to Livorno in about 4
-				hours, a budget-friendly option.
+				runs direct buses to Livorno in about 4 hours.
 			</>
 		),
 	},
