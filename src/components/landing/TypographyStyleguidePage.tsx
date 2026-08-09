@@ -187,7 +187,7 @@ function ClassChip({
 				</code>
 			</pre>
 			{hint && (
-				<p className="mt-1.5 text-sm text-zinc-500 dark:text-zinc-400">
+				<p className="mt-1.5 max-w-1/2 text-sm text-zinc-500 dark:text-zinc-400">
 					{hint}
 				</p>
 			)}
@@ -249,7 +249,7 @@ function SpecRow({
 		<div className="border-t border-zinc-200 py-8 first:border-t-0 first:pt-0 dark:border-zinc-800">
 			<p className={rowLabel}>{title}</p>
 			{note && (
-				<p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+				<p className="mt-1.5 max-w-1/2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 					{note}
 				</p>
 			)}
@@ -278,7 +278,7 @@ function GuideSection({
 		<section id={id} className="scroll-mt-16 pt-20 md:pt-28">
 			<p className={text.eyebrow}>// {eyebrow}</p>
 			<h2 className={text.sectionTitle}>{title}</h2>
-			{subtitle && <p className={text.subtitle}>{subtitle}</p>}
+			{subtitle && <p className={`${text.subtitle} max-w-1/2`}>{subtitle}</p>}
 			<div className="mt-12">{children}</div>
 		</section>
 	);
