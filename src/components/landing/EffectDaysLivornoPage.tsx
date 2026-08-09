@@ -502,7 +502,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 							<div className="space-y-1">
 								<p className={text.body}>
-									Group of more than 3?{" "}
+									Group of 4+?{" "}
 									<Link
 										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
 										variant="inline"
