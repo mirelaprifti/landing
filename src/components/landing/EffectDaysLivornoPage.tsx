@@ -664,15 +664,17 @@ export function EffectDaysLivornoPage() {
 							{/* Timeline line (desktop) — fades out past the last node, so the
 							    trailing run reads as "and counting" rather than an unterminated rule */}
 							<div
-								className="absolute top-3.5 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
+								className="absolute top-3.5 right-0 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
 								style={{
 									height: "1px",
 									backgroundImage:
 										"repeating-linear-gradient(to right, currentColor 0px, currentColor 4px, transparent 4px, transparent 8px)",
+									/* Full strength through the last node, then fading across the
+									   run that follows it — the dashes thin out instead of stopping */
 									maskImage:
-										"linear-gradient(to right, #000 0%, #000 80%, transparent 100%)",
+										"linear-gradient(to right, #000 0%, #000 93%, transparent 100%)",
 									WebkitMaskImage:
-										"linear-gradient(to right, #000 0%, #000 80%, transparent 100%)",
+										"linear-gradient(to right, #000 0%, #000 93%, transparent 100%)",
 								}}
 							/>
 							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
