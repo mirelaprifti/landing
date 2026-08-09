@@ -385,42 +385,36 @@ export function AboutLivornoPage() {
 							<p className={text.eyebrow}>{"// "}Local Transportation</p>
 							<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 
-							{/* Row list — deliberately not cards, to break the card rhythm */}
-							<div className="mt-12">
-								<div className="grid grid-cols-1 gap-4 border-t border-zinc-200 py-8 first:border-t-0 first:pt-0 md:grid-cols-3 md:gap-6 dark:border-zinc-800">
+							{/* Divided list rows — the site's events-list idiom, not cards */}
+							<div className="mt-12 divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
+								<div className="flex flex-col gap-2 py-6 first:pt-0 sm:flex-row sm:gap-6">
+									<span className={`${text.micro} w-44 shrink-0 sm:pt-1`}>
+										~15 min · ~€12
+									</span>
 									<div>
-										<p className={text.micro}>~15 min · ~€12</p>
-										<h3 className={`${text.cardTitle} mt-2`}>By taxi</h3>
-									</div>
-									<div className="md:col-span-2">
-										<p className={text.body}>
+										<h3 className={text.smallHeading}>By taxi</h3>
+										<p className={text.cardBody}>
 											A taxi ride from the station to the seaside or Palazzo
 											Pancaldi takes ~10-15 minutes and ~€12. Uber is not
-											available in Italy.
+											available in Italy. Call CoTaLi at{" "}
+											<Link href="tel:+390586883377" variant="inline">
+												+39 586 88 33 77
+											</Link>{" "}
+											or AsTaLa at{" "}
+											<Link href="tel:+390586882020" variant="inline">
+												+39 586 88 20 20
+											</Link>
+											.
 										</p>
-										<div className="mt-4 flex flex-col gap-2 font-mono text-sm text-zinc-700 sm:flex-row sm:gap-8 dark:text-zinc-300">
-											<span>
-												CoTaLi{" · "}
-												<Link href="tel:+390586883377" variant="inline">
-													+39 586 88 33 77
-												</Link>
-											</span>
-											<span>
-												AsTaLa{" · "}
-												<Link href="tel:+390586882020" variant="inline">
-													+39 586 88 20 20
-												</Link>
-											</span>
-										</div>
 									</div>
 								</div>
-								<div className="grid grid-cols-1 gap-4 border-t border-zinc-200 py-8 md:grid-cols-3 md:gap-6 dark:border-zinc-800">
+								<div className="flex flex-col gap-2 py-6 sm:flex-row sm:gap-6">
+									<span className={`${text.micro} w-44 shrink-0 sm:pt-1`}>
+										~20 min · lines 1+ 2+ 8N
+									</span>
 									<div>
-										<p className={text.micro}>~20 min · lines 1+ 2+ 8N</p>
-										<h3 className={`${text.cardTitle} mt-2`}>By bus</h3>
-									</div>
-									<div className="md:col-span-2">
-										<p className={text.body}>
+										<h3 className={text.smallHeading}>By bus</h3>
+										<p className={text.cardBody}>
 											Local buses run from Livorno Centrale Station to Viale
 											Italia, close to Palazzo Pancaldi. The bus ride takes
 											around 20 minutes. Check the{" "}
@@ -434,13 +428,13 @@ export function AboutLivornoPage() {
 										</p>
 									</div>
 								</div>
-								<div className="grid grid-cols-1 gap-4 border-t border-zinc-200 py-8 pb-0 md:grid-cols-3 md:gap-6 dark:border-zinc-800">
+								<div className="flex flex-col gap-2 py-6 last:pb-0 sm:flex-row sm:gap-6">
+									<span className={`${text.micro} w-44 shrink-0 sm:pt-1`}>
+										Flat & seaside
+									</span>
 									<div>
-										<p className={text.micro}>Flat & seaside</p>
-										<h3 className={`${text.cardTitle} mt-2`}>Bike rentals</h3>
-									</div>
-									<div className="md:col-span-2">
-										<p className={text.body}>
+										<h3 className={text.smallHeading}>Bike rentals</h3>
+										<p className={text.cardBody}>
 											Livorno is a bike-friendly city with several cycling paths
 											along the seafront and through the city center. The
 											relatively flat terrain makes it ideal for cycling. You
