@@ -493,11 +493,11 @@ export function EffectDaysLivornoPage() {
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
 							<div className="space-y-2">
+								<p className={text.body}>*Suitable for invoicing.</p>
 								<p className={text.body}>
 									Selecting a pass takes you to Stripe to complete your
 									purchase.
 								</p>
-								<p className={text.body}>*Suitable for invoicing.</p>
 							</div>
 							<div className="space-y-2">
 								<p className={text.body}>
