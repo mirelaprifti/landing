@@ -444,7 +444,15 @@ export function AboutLivornoPage() {
 							<p className={text.eyebrow}>{"// "}Practical Tips</p>
 							<h2 className={text.sectionTitle}>Before you travel</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+								<div className={card}>
+									<h3 className={text.cardTitle}>December weather</h3>
+									<p className={text.cardBody}>
+										Livorno winters are mild: daytime temperatures around
+										10-13°C (50-55°F), with sunny spells between occasional rain
+										showers. A warm jacket and a rain layer are all you need.
+									</p>
+								</div>
 								<div className={card}>
 									<h3 className={text.cardTitle}>Check train schedules</h3>
 									<p className={text.cardBody}>
