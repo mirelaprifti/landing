@@ -419,9 +419,8 @@ export function AboutLivornoPage() {
 									<div>
 										<h3 className={text.cardTitle}>Bike rentals</h3>
 										<p className={`${text.body} mt-2 text-sm`}>
-											Livorno is a bike-friendly city with several cycling paths
-											along the seafront and through the city center. You can
-											rent bikes from several locations around the city.
+											Livorno is a bike-friendly city, with rentals and cycling
+											paths along the seafront and city center.
 										</p>
 									</div>
 								</div>

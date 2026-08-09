@@ -60,8 +60,6 @@ const COMMUNITY_STATS = [
 const PASSES = [
 	{
 		name: "Workshop, Conference & Community Pass",
-		description:
-			"Includes a full-day Effect workshop and everything in the Conference & Community Pass.",
 		days: [
 			{ label: "Dec 9 · Workshop Day", included: true },
 			{ label: "Dec 10 · Conference Day", included: true },
@@ -71,8 +69,6 @@ const PASSES = [
 	},
 	{
 		name: "Conference & Community Pass",
-		description:
-			"In-person ticket including food, drinks, swags, and afterparty!",
 		days: [
 			{ label: "Dec 9 · Workshop Day", included: false },
 			{ label: "Dec 10 · Conference Day", included: true },
@@ -439,7 +435,6 @@ export function EffectDaysLivornoPage() {
 									}
 								>
 									<h3 className={text.cardTitle}>{pass.name}</h3>
-									<p className={text.cardBody}>{pass.description}</p>
 
 									{/* Day checklist, mono style */}
 									<div className="mt-6 space-y-3 font-mono text-sm">
