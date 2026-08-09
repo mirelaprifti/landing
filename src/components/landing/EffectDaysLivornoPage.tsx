@@ -59,9 +59,9 @@ const COMMUNITY_STATS = [
 
 const PASSES = [
 	{
-		name: "Workshop & Conference Pass",
+		name: "Workshop, Conference & Community Pass",
 		description:
-			"Includes a full-day Effect workshop and all in Conference Pass.",
+			"Includes a full-day Effect workshop and everything in the Conference & Community Pass.",
 		days: [
 			{ label: "Dec 9 · Workshop Day", included: true },
 			{ label: "Dec 10 · Conference Day", included: true },
@@ -70,7 +70,7 @@ const PASSES = [
 		featured: true,
 	},
 	{
-		name: "Conference Pass",
+		name: "Conference & Community Pass",
 		description:
 			"In-person ticket including food, drinks, swags, and afterparty!",
 		days: [
