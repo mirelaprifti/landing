@@ -32,8 +32,8 @@ const NAV_ANCHORS = [
 	{ href: "#transport", label: "Local transport" },
 	{ href: "#tips", label: "Practical tips" },
 	{ href: "#see", label: "What to see" },
-	{ href: "#eat", label: "What to eat" },
 	{ href: "#do", label: "Things to do" },
+	{ href: "#eat", label: "What to eat" },
 ];
 
 /* Shared scale for the distance tracks, slightly past Rome so its marker
@@ -519,6 +519,25 @@ export function AboutLivornoPage() {
 
 					<SectionDivider />
 
+					{/* Things to do */}
+					<section id="do" className={`scroll-mt-16 ${sectionRhythm}`}>
+						<div className={container}>
+							<p className={text.eyebrow}>{"// "}Things to Do</p>
+							<h2 className={text.sectionTitle}>Make a trip of it</h2>
+
+							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+								{ACTIVITIES.map((activity) => (
+									<div key={activity.title} className={card}>
+										<h3 className={text.cardTitle}>{activity.title}</h3>
+										<p className={text.cardBody}>{activity.description}</p>
+									</div>
+								))}
+							</div>
+						</div>
+					</section>
+
+					<SectionDivider />
+
 					{/* What to eat */}
 					<section id="eat" className={`scroll-mt-16 ${sectionRhythm}`}>
 						<div className={container}>
@@ -540,25 +559,6 @@ export function AboutLivornoPage() {
 											<h3 className={text.cardTitle}>{dish.title}</h3>
 											<p className={text.cardBody}>{dish.description}</p>
 										</div>
-									</div>
-								))}
-							</div>
-						</div>
-					</section>
-
-					<SectionDivider />
-
-					{/* Things to do */}
-					<section id="do" className={`scroll-mt-16 ${sectionRhythm}`}>
-						<div className={container}>
-							<p className={text.eyebrow}>{"// "}Things to Do</p>
-							<h2 className={text.sectionTitle}>Make a trip of it</h2>
-
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-								{ACTIVITIES.map((activity) => (
-									<div key={activity.title} className={card}>
-										<h3 className={text.cardTitle}>{activity.title}</h3>
-										<p className={text.cardBody}>{activity.description}</p>
 									</div>
 								))}
 							</div>
