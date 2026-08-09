@@ -393,9 +393,9 @@ export function AboutLivornoPage() {
 										<div className="mt-12 flex-1 overflow-hidden">
 											<img
 												src={getAssetPath(
-													"/assets/images/livorno-battelli.webp",
+													"/assets/images/Livorno_history_blog_2_.webp",
 												)}
-												alt="A tour boat passing under a bridge in Livorno's canals"
+												alt="Aerial view of Livorno's New Fortress and the surrounding canals"
 												className="h-full min-h-64 w-full object-cover"
 											/>
 										</div>

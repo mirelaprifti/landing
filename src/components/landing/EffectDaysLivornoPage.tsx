@@ -767,11 +767,42 @@ export function EffectDaysLivornoPage() {
 
 				{/* Final CTA — split layout with corner-bracket box, mirrors the blog post
 				    and community pages */}
-				<section className={sectionRhythm}>
-					<div className={container}>
+				<section className="relative overflow-hidden py-24 md:py-32">
+					{/* Grid background — vertical lines */}
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage:
+								"linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
+							backgroundSize: "196.6px 100%",
+							/* Phased so lines land exactly on the container edges and center,
+							   overlapping the page border lines instead of doubling them */
+							backgroundPosition: "calc(50% + 98.3px) 0",
+						}}
+					/>
+					{/* Single horizontal line — sits on the CTA heading's first-line baseline */}
+					<div
+						className="pointer-events-none absolute inset-0 hidden md:block"
+						style={{
+							backgroundImage:
+								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
+							backgroundSize: "100% 1px",
+							backgroundPosition: "0px 201px",
+							backgroundRepeat: "no-repeat",
+						}}
+					/>
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, #09090b 0%, transparent 25%, transparent 75%, #09090b 100%)",
+						}}
+					/>
+
+					<div className={`relative ${container}`}>
 						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
 							{/* Content */}
-							<div className="md:col-span-8">
+							<div className="md:col-span-8 md:mt-2">
 								<p className={text.eyebrow}>
 									{"// "}Dec 9–11, 2026 · Livorno, Italy
 								</p>
@@ -784,7 +815,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 
 							{/* CTA — col-start-9 col-span-4 */}
-							<div className="md:col-span-4 md:col-start-9">
+							<div className="md:col-span-4 md:col-start-9 md:mt-[9px] md:self-start">
 								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
