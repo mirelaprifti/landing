@@ -302,8 +302,7 @@ export function EffectDaysLivornoPage() {
 						<h2 className={text.sectionTitle}>Three days, one pipeline</h2>
 						<p className={`${text.subtitle} max-w-2xl`}>
 							A community-driven, non-profit event celebrating the Effect
-							ecosystem and the engineers building production-grade applications
-							in TypeScript.
+							ecosystem.
 						</p>
 
 						<div className="relative mt-12">
