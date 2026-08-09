@@ -14,7 +14,7 @@ import { Navigation } from "./Navigation";
  * live site). Links keep the site's fade-out underline.
  */
 export const DOCS_ARTICLE_CLASS =
-	"prose prose-zinc dark:prose-invert prose-sm md:prose-base max-w-4xl prose-headings:font-semibold prose-headings:tracking-tight prose-headings:mt-6 prose-headings:mb-3 prose-p:my-3 prose-p:text-[0.9375rem] prose-p:leading-6 prose-a:transition-colors prose-a:duration-200 hover:prose-a:decoration-transparent prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-code:rounded prose-code:bg-zinc-200 prose-code:px-1 prose-code:py-0.5 prose-code:text-sm prose-code:text-zinc-700 prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:border-zinc-700 prose-pre:bg-zinc-900 dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200";
+	"prose prose-zinc dark:prose-invert prose-sm md:prose-base max-w-4xl prose-headings:font-semibold prose-headings:tracking-tight prose-headings:mt-6 prose-headings:mb-3 prose-p:my-3 prose-p:text-[0.9375rem] prose-p:leading-6 prose-a:transition-colors prose-a:duration-200 prose-a:hover:decoration-transparent prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-code:rounded prose-code:bg-zinc-200 prose-code:px-1 prose-code:py-0.5 prose-code:text-sm prose-code:text-zinc-700 prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:border-zinc-700 prose-pre:bg-zinc-900 dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200";
 
 type NavItem = { slug: string; label: string; href?: string };
 type NavSection = { title: string; items: NavItem[] };
