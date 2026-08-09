@@ -439,7 +439,9 @@ export function EffectDaysLivornoPage() {
 							{/* Featured photo, full column height */}
 							<div className="overflow-hidden">
 								<img
-									src={getAssetPath("/assets/images/effect-days/pancaldi-exterior.avif")}
+									src={getAssetPath(
+										"/assets/images/effect-days/pancaldi-exterior.avif",
+									)}
 									alt="Palazzo Pancaldi on the Livorno seafront"
 									className="aspect-4/3 h-full w-full object-cover lg:aspect-auto"
 								/>
@@ -448,22 +450,30 @@ export function EffectDaysLivornoPage() {
 							{/* Venue and city tiles */}
 							<div className="grid grid-cols-2 gap-4">
 								<img
-									src={getAssetPath("/assets/images/effect-days/pancaldi-hall.avif")}
+									src={getAssetPath(
+										"/assets/images/effect-days/pancaldi-hall.avif",
+									)}
 									alt="The conference hall at Palazzo Pancaldi"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath("/assets/images/effect-days/livorno-7.avif")}
+									src={getAssetPath(
+										"/assets/images/effect-days/livorno-7.avif",
+									)}
 									alt="Livorno's harborfront seen from the water"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath("/assets/images/effect-days/livorno-1.avif")}
+									src={getAssetPath(
+										"/assets/images/effect-days/livorno-1.avif",
+									)}
 									alt="Boats on a canal in Livorno's Venezia Nuova district"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
-									src={getAssetPath("/assets/images/effect-days/livorno-6.avif")}
+									src={getAssetPath(
+										"/assets/images/effect-days/livorno-6.avif",
+									)}
 									alt="Canal-side buildings and boats in Livorno"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
@@ -651,13 +661,18 @@ export function EffectDaysLivornoPage() {
 						<h2 className={text.sectionTitle}>Three editions and counting</h2>
 
 						<div className="relative mt-12">
-							{/* Timeline line (desktop) */}
+							{/* Timeline line (desktop) — fades out past the last node, so the
+							    trailing run reads as "and counting" rather than an unterminated rule */}
 							<div
 								className="absolute top-3.5 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
 								style={{
 									height: "1px",
 									backgroundImage:
 										"repeating-linear-gradient(to right, currentColor 0px, currentColor 4px, transparent 4px, transparent 8px)",
+									maskImage:
+										"linear-gradient(to right, #000 0%, #000 80%, transparent 100%)",
+									WebkitMaskImage:
+										"linear-gradient(to right, #000 0%, #000 80%, transparent 100%)",
 								}}
 							/>
 							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
@@ -739,7 +754,7 @@ export function EffectDaysLivornoPage() {
 														className="mt-4 inline-flex items-center gap-1.5 font-medium"
 													>
 														Be part of it
-														<Icon name="arrow-right" className="text-xs" />
+														<Icon name="arrow-up" className="text-xs" />
 													</Link>
 												)}
 											</div>
