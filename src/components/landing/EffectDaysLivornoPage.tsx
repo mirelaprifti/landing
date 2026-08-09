@@ -70,8 +70,8 @@ const PASSES = [
 		],
 		featured: true,
 		pricing: {
-			self: { earlyBird: "€349", regular: "€449" },
-			business: { earlyBird: "€499", regular: "€599" },
+			self: { earlyBird: "€349", regular: "€449", url: null },
+			business: { earlyBird: "€499", regular: "€599", url: null },
 		},
 	},
 	{
@@ -83,8 +83,8 @@ const PASSES = [
 		],
 		featured: false,
 		pricing: {
-			self: { earlyBird: "€249", regular: "€299" },
-			business: { earlyBird: "€349", regular: "€399" },
+			self: { earlyBird: "€249", regular: "€299", url: null },
+			business: { earlyBird: "€349", regular: "€399", url: null },
 		},
 	},
 ];
@@ -215,6 +215,56 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 
 /* FAQs are split down the middle so each column opens independently. */
 const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
+
+/* Purchase row — styled as a link throughout; becomes a real anchor once the
+   Stripe checkout URL is filled in on the pass. */
+function PurchaseRow({
+	icon,
+	label,
+	price,
+}: {
+	icon: "user" | "building";
+	label: string;
+	price: { earlyBird: string; regular: string; url: string | null };
+}) {
+	const rowClass =
+		"group flex w-full items-center justify-between border border-zinc-200 px-4 py-3 transition-colors hover:border-zinc-400 hover:bg-zinc-100/50 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-900/50";
+
+	const content = (
+		<>
+			<span className="flex items-center gap-2 text-base font-medium text-zinc-700 transition-colors group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white">
+				<Icon name={icon} className="text-zinc-500 dark:text-zinc-400" />
+				{label}
+			</span>
+			<span className="flex items-baseline gap-2">
+				<span className="text-sm text-zinc-500 line-through dark:text-zinc-400">
+					{price.regular}
+				</span>
+				<span className="text-base font-semibold text-zinc-900 dark:text-white">
+					{price.earlyBird}
+				</span>
+				<Icon
+					name="arrow-up-right"
+					className="self-center text-sm text-zinc-400 transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white"
+					aria-hidden="true"
+				/>
+			</span>
+		</>
+	);
+
+	return price.url ? (
+		<a
+			href={price.url}
+			target="_blank"
+			rel="noopener noreferrer"
+			className={rowClass}
+		>
+			{content}
+		</a>
+	) : (
+		<div className={rowClass}>{content}</div>
+	);
+}
 
 /* Full-width divider between sections. */
 function SectionDivider() {
@@ -543,44 +593,16 @@ export function EffectDaysLivornoPage() {
 
 									{/* Purchase rows */}
 									<div className="mt-6 space-y-3">
-										<div className="flex w-full items-center justify-between border border-zinc-200 px-4 py-3 dark:border-zinc-700">
-											<span className="flex items-center gap-2 text-base font-medium text-zinc-700 dark:text-zinc-300">
-												<Icon
-													name="user"
-													className="text-zinc-500 dark:text-zinc-400"
-												/>
-												Self-pay
-											</span>
-											<span className="flex items-baseline gap-2">
-												<span
-													className={`${text.micro} text-zinc-400 line-through dark:text-zinc-600`}
-												>
-													{pass.pricing.self.regular}
-												</span>
-												<span className="text-base font-semibold text-zinc-900 dark:text-white">
-													{pass.pricing.self.earlyBird}
-												</span>
-											</span>
-										</div>
-										<div className="flex w-full items-center justify-between border border-zinc-200 px-4 py-3 dark:border-zinc-700">
-											<span className="flex items-center gap-2 text-base font-medium text-zinc-700 dark:text-zinc-300">
-												<Icon
-													name="building"
-													className="text-zinc-500 dark:text-zinc-400"
-												/>
-												Business-pay*
-											</span>
-											<span className="flex items-baseline gap-2">
-												<span
-													className={`${text.micro} text-zinc-400 line-through dark:text-zinc-600`}
-												>
-													{pass.pricing.business.regular}
-												</span>
-												<span className="text-base font-semibold text-zinc-900 dark:text-white">
-													{pass.pricing.business.earlyBird}
-												</span>
-											</span>
-										</div>
+										<PurchaseRow
+											icon="user"
+											label="Self-pay"
+											price={pass.pricing.self}
+										/>
+										<PurchaseRow
+											icon="building"
+											label="Business-pay*"
+											price={pass.pricing.business}
+										/>
 									</div>
 								</div>
 							))}
