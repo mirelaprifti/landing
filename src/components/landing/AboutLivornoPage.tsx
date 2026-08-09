@@ -25,7 +25,7 @@ const text = {
 /* Styleguide chrome strings — copy verbatim. */
 const container = "mx-auto w-full max-w-[73.75rem] px-4";
 const sectionRhythm = "py-24 md:pt-40 md:pb-24";
-const card = "rounded-md border border-zinc-200 p-6 dark:border-zinc-800";
+const card = "border border-zinc-200 p-6 dark:border-zinc-800";
 
 const NAV_ANCHORS = [
 	{ href: "#airports", label: "Nearest airports" },
@@ -385,52 +385,68 @@ export function AboutLivornoPage() {
 							<p className={text.eyebrow}>{"// "}Local Transportation</p>
 							<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 
-							<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-								<div className={card}>
-									<h3 className={text.cardTitle}>By taxi</h3>
-									<p className={text.cardBody}>
-										A taxi ride from the station to the seaside or Palazzo
-										Pancaldi takes ~10-15 minutes and ~€12. Uber is not
-										available in Italy.
-									</p>
-									<div className="mt-6 space-y-2 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
-										<p className={text.cardBody}>
-											Taxi Livorno Consortium (CoTaLi):{" "}
-											<Link href="tel:+390586883377" variant="inline">
-												+39 586 88 33 77
-											</Link>
+							{/* Row list — deliberately not cards, to break the card rhythm */}
+							<div className="mt-12">
+								<div className="grid grid-cols-1 gap-4 border-t border-zinc-200 py-8 first:border-t-0 first:pt-0 md:grid-cols-3 md:gap-6 dark:border-zinc-800">
+									<div>
+										<p className={text.micro}>~15 min · ~€12</p>
+										<h3 className={`${text.cardTitle} mt-2`}>By taxi</h3>
+									</div>
+									<div className="md:col-span-2">
+										<p className={text.body}>
+											A taxi ride from the station to the seaside or Palazzo
+											Pancaldi takes ~10-15 minutes and ~€12. Uber is not
+											available in Italy.
 										</p>
-										<p className={text.cardBody}>
-											Taxi Labronica Association (AsTaLa):{" "}
-											<Link href="tel:+390586882020" variant="inline">
-												+39 586 88 20 20
-											</Link>
+										<div className="mt-4 flex flex-col gap-2 font-mono text-sm text-zinc-700 sm:flex-row sm:gap-8 dark:text-zinc-300">
+											<span>
+												CoTaLi{" · "}
+												<Link href="tel:+390586883377" variant="inline">
+													+39 586 88 33 77
+												</Link>
+											</span>
+											<span>
+												AsTaLa{" · "}
+												<Link href="tel:+390586882020" variant="inline">
+													+39 586 88 20 20
+												</Link>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div className="grid grid-cols-1 gap-4 border-t border-zinc-200 py-8 md:grid-cols-3 md:gap-6 dark:border-zinc-800">
+									<div>
+										<p className={text.micro}>~20 min · lines 1+ 2+ 8N</p>
+										<h3 className={`${text.cardTitle} mt-2`}>By bus</h3>
+									</div>
+									<div className="md:col-span-2">
+										<p className={text.body}>
+											Local buses run from Livorno Centrale Station to Viale
+											Italia, close to Palazzo Pancaldi. The bus ride takes
+											around 20 minutes. Check the{" "}
+											<Link
+												href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
+												variant="inline"
+											>
+												local bus schedule
+											</Link>{" "}
+											for exact timings.
 										</p>
 									</div>
 								</div>
-								<div className={card}>
-									<h3 className={text.cardTitle}>By bus</h3>
-									<p className={text.cardBody}>
-										Local buses (lines 1+, 2+, or 8N) run from Livorno Centrale
-										Station to Viale Italia, close to Palazzo Pancaldi. The bus
-										ride takes around 20 minutes. Check the{" "}
-										<Link
-											href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
-											variant="inline"
-										>
-											local bus schedule
-										</Link>{" "}
-										for exact timings.
-									</p>
-								</div>
-								<div className={card}>
-									<h3 className={text.cardTitle}>Bike rentals</h3>
-									<p className={text.cardBody}>
-										Livorno is a bike-friendly city with several cycling paths
-										along the seafront and through the city center. The
-										relatively flat terrain makes it ideal for cycling. You can
-										rent bikes from several locations around the city.
-									</p>
+								<div className="grid grid-cols-1 gap-4 border-t border-zinc-200 py-8 pb-0 md:grid-cols-3 md:gap-6 dark:border-zinc-800">
+									<div>
+										<p className={text.micro}>Flat & seaside</p>
+										<h3 className={`${text.cardTitle} mt-2`}>Bike rentals</h3>
+									</div>
+									<div className="md:col-span-2">
+										<p className={text.body}>
+											Livorno is a bike-friendly city with several cycling paths
+											along the seafront and through the city center. The
+											relatively flat terrain makes it ideal for cycling. You
+											can rent bikes from several locations around the city.
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -448,7 +464,7 @@ export function AboutLivornoPage() {
 								<div className={card}>
 									{/* Header row — icon chip and meta tag share one line */}
 									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+										<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
 											<Icon
 												name="sun"
 												className="text-zinc-700 dark:text-zinc-200"
@@ -465,7 +481,7 @@ export function AboutLivornoPage() {
 								</div>
 								<div className={card}>
 									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+										<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
 											<Icon
 												name="clock"
 												className="text-zinc-700 dark:text-zinc-200"
@@ -490,7 +506,7 @@ export function AboutLivornoPage() {
 								</div>
 								<div className={card}>
 									<div className="flex items-center justify-between">
-										<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+										<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
 											<Icon
 												name="download"
 												className="text-zinc-700 dark:text-zinc-200"
@@ -530,7 +546,7 @@ export function AboutLivornoPage() {
 								{SIGHTS.map((sight) => (
 									<div
 										key={sight.title}
-										className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
+										className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
 									>
 										<img
 											src={getAssetPath(sight.image)}
@@ -568,7 +584,7 @@ export function AboutLivornoPage() {
 									<div key={activity.title} className={card}>
 										{/* Header row — icon chip and meta tag share one line */}
 										<div className="flex items-center justify-between">
-											<div className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-600">
+											<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
 												<Icon
 													name={activity.icon}
 													className="text-zinc-700 dark:text-zinc-200"
@@ -598,7 +614,7 @@ export function AboutLivornoPage() {
 								{FOOD.map((dish) => (
 									<div
 										key={dish.title}
-										className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
+										className="flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800"
 									>
 										<img
 											src={getAssetPath(dish.image)}
