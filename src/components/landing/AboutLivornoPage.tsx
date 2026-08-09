@@ -51,6 +51,17 @@ const AIRPORTS: Array<{
 		train:
 			"Take the Pisamover shuttle from Pisa Airport to Pisa Centrale, then a direct train to Livorno Centrale. The journey takes 30-40 minutes.",
 		car: "Taxis and car rentals are available at Pisa Airport, taking around 20-25 minutes.",
+		bus: (
+			<>
+				<Link
+					href="https://www.flixbus.com/bus-routes/bus-pisa-livorno"
+					variant="inline"
+				>
+					FlixBus
+				</Link>{" "}
+				runs direct buses from the airport to Livorno in about 30 minutes.
+			</>
+		),
 	},
 	{
 		name: "Florence · FLR",
@@ -288,26 +299,35 @@ export function AboutLivornoPage() {
 						<p className={text.eyebrow}>{"// "}Nearest Airports</p>
 						<h2 className={text.sectionTitle}>Getting here</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-							{AIRPORTS.map((airport) => (
-								<div key={airport.name} className={card}>
-									<p className={text.micro}>{airport.distance}</p>
-									<h3 className={`${text.cardTitle} mt-4`}>{airport.name}</h3>
-									<p className={text.cardBody}>{airport.intro}</p>
-									<div className="mt-6 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
-										<h4 className={text.smallHeading}>By train</h4>
-										<p className={text.cardBody}>{airport.train}</p>
-									</div>
-									<div className="mt-4">
-										<h4 className={text.smallHeading}>By car</h4>
-										<p className={text.cardBody}>{airport.car}</p>
-									</div>
-									{airport.bus && (
-										<div className="mt-4">
-											<h4 className={text.smallHeading}>By bus</h4>
-											<p className={text.cardBody}>{airport.bus}</p>
+						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+							{[AIRPORTS.slice(0, 2), AIRPORTS.slice(2)].map((pair) => (
+								<div
+									key={pair[0].name}
+									className="grid grid-cols-1 gap-4 md:grid-cols-2"
+								>
+									{pair.map((airport) => (
+										<div key={airport.name} className={card}>
+											<p className={text.micro}>{airport.distance}</p>
+											<h3 className={`${text.cardTitle} mt-4`}>
+												{airport.name}
+											</h3>
+											<p className={text.cardBody}>{airport.intro}</p>
+											<div className="mt-6 border-t border-dashed border-zinc-200 pt-4 dark:border-zinc-800">
+												<h4 className={text.smallHeading}>By train</h4>
+												<p className={text.cardBody}>{airport.train}</p>
+											</div>
+											<div className="mt-4">
+												<h4 className={text.smallHeading}>By car</h4>
+												<p className={text.cardBody}>{airport.car}</p>
+											</div>
+											{airport.bus && (
+												<div className="mt-4">
+													<h4 className={text.smallHeading}>By bus</h4>
+													<p className={text.cardBody}>{airport.bus}</p>
+												</div>
+											)}
 										</div>
-									)}
+									))}
 								</div>
 							))}
 						</div>
