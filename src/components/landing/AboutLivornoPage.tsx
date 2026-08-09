@@ -292,8 +292,8 @@ export function AboutLivornoPage() {
 				{/* Nearest airports */}
 				<section id="airports" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<p className={text.eyebrow}>{"// "}Nearest Airports</p>
-						<h2 className={text.sectionTitle}>Getting here</h2>
+						<p className={text.eyebrow}>{"// "}Getting Here</p>
+						<h2 className={text.sectionTitle}>The nearest airports</h2>
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
 							{[AIRPORTS.slice(0, 2), AIRPORTS.slice(2)].map((pair) => (
