@@ -595,132 +595,136 @@ export function TypographyStyleguidePage() {
 						</GuideSection>
 
 						<GuideSection id="blog" eyebrow="05" title="Blog">
-							<article className={BLOG_ARTICLE_CLASS}>
-								<p>
-									This paragraph shows the reading defaults: 17px body text with
-									a 1.6 line-height. It includes{" "}
-									<a href={getAssetPath("/docs/introduction")}>
-										an inline link
-									</a>
-									, some <strong>bold emphasis</strong>, a touch of{" "}
-									<em>italic text</em>, and inline code like{" "}
-									<code>Effect.gen</code> sitting inside the sentence.
-								</p>
-
-								<h2>Second-level heading</h2>
-								<p>
-									An h2 opens a major section: 24px, semibold, tight leading and
-									tracking, with clear air above and a snug gap below so it
-									attaches to this paragraph rather than floating between
-									sections.
-								</p>
-
-								<h3>Third-level heading</h3>
-								<p>
-									An h3 subdivides a section. Below is an unordered list with a
-									deliberately long item to show wrapped lines and marker color:
-								</p>
-								<ul>
-									<li>Typed errors surface failure cases in the signature</li>
-									<li>
-										Structured concurrency means fibers are supervised,
-										cancelled, and cleaned up automatically when their parent
-										scope closes, even when things fail halfway through
-									</li>
-									<li>Dependency injection without wiring frameworks</li>
-								</ul>
-
-								<p>A list where every item is a link:</p>
-								<ul>
-									<li>
-										<a href={getAssetPath("/docs/introduction")}>
-											Getting started with Effect
-										</a>
-									</li>
-									<li>
-										<a href={getAssetPath("/docs/two-types-of-errors")}>
-											Two types of errors
-										</a>
-									</li>
-									<li>
-										<a href={getAssetPath("/blog")}>
-											The Effect blog, a longer link label to show how
-											underlined links look when they wrap across lines
-										</a>
-									</li>
-								</ul>
-
-								<h4>Fourth-level heading</h4>
-								<p>
-									An h4 is the smallest heading: body-sized but semibold, for
-									fine-grained structure. Here is an ordered list:
-								</p>
-								<ol>
-									<li>Model the workflow as data</li>
-									<li>Compose the pieces with pipes or generators</li>
-									<li>Run it at the edge of your program</li>
-								</ol>
-
-								<blockquote>
+							<ThemePair>
+								<article className={BLOG_ARTICLE_CLASS}>
 									<p>
-										Blockquotes render as large semibold statements in the
-										emphasis color, wrapped in typographic quotes, in the style
-										of Linear's blog.
+										This paragraph shows the reading defaults: 17px body text
+										with a 1.6 line-height. It includes{" "}
+										<a href={getAssetPath("/docs/introduction")}>
+											an inline link
+										</a>
+										, some <strong>bold emphasis</strong>, a touch of{" "}
+										<em>italic text</em>, and inline code like{" "}
+										<code>Effect.gen</code> sitting inside the sentence.
 									</p>
-								</blockquote>
 
-								<figure>
-									<img
-										src={getAssetPath("/assets/events/paris-april-4-web.jpg")}
-										alt="An Effect community meetup in Paris"
-									/>
-									<figcaption>
-										Figures render full-bleed with square corners; captions sit
-										in small muted text.
-									</figcaption>
-								</figure>
+									<h2>Second-level heading</h2>
+									<p>
+										An h2 opens a major section: 24px, semibold, tight leading
+										and tracking, with clear air above and a snug gap below so
+										it attaches to this paragraph rather than floating between
+										sections.
+									</p>
 
-								<table>
-									<thead>
-										<tr>
-											<th scope="col">Function</th>
-											<th scope="col">Input</th>
-											<th scope="col">Output</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<code>Effect.runSync</code>
-											</td>
-											<td>Synchronous effect</td>
-											<td>Value or thrown error</td>
-										</tr>
-										<tr>
-											<td>
-												<code>Effect.runPromise</code>
-											</td>
-											<td>Any effect</td>
-											<td>Promise of the value</td>
-										</tr>
-										<tr>
-											<td>
-												<code>Effect.runFork</code>
-											</td>
-											<td>Any effect</td>
-											<td>Running fiber</td>
-										</tr>
-									</tbody>
-								</table>
+									<h3>Third-level heading</h3>
+									<p>
+										An h3 subdivides a section. Below is an unordered list with
+										a deliberately long item to show wrapped lines and marker
+										color:
+									</p>
+									<ul>
+										<li>Typed errors surface failure cases in the signature</li>
+										<li>
+											Structured concurrency means fibers are supervised,
+											cancelled, and cleaned up automatically when their parent
+											scope closes, even when things fail halfway through
+										</li>
+										<li>Dependency injection without wiring frameworks</li>
+									</ul>
 
-								<hr />
+									<p>A list where every item is a link:</p>
+									<ul>
+										<li>
+											<a href={getAssetPath("/docs/introduction")}>
+												Getting started with Effect
+											</a>
+										</li>
+										<li>
+											<a href={getAssetPath("/docs/two-types-of-errors")}>
+												Two types of errors
+											</a>
+										</li>
+										<li>
+											<a href={getAssetPath("/blog")}>
+												The Effect blog, a longer link label to show how
+												underlined links look when they wrap across lines
+											</a>
+										</li>
+									</ul>
 
-								<p>
-									After a horizontal rule, the closing paragraph. If any element
-									above looks off in either theme, the fix belongs in{" "}
-									<code>BLOG_ARTICLE_CLASS</code> so real posts pick it up too.
-								</p>
-							</article>
+									<h4>Fourth-level heading</h4>
+									<p>
+										An h4 is the smallest heading: body-sized but semibold, for
+										fine-grained structure. Here is an ordered list:
+									</p>
+									<ol>
+										<li>Model the workflow as data</li>
+										<li>Compose the pieces with pipes or generators</li>
+										<li>Run it at the edge of your program</li>
+									</ol>
+
+									<blockquote>
+										<p>
+											Blockquotes render as large semibold statements in the
+											emphasis color, wrapped in typographic quotes, in the
+											style of Linear's blog.
+										</p>
+									</blockquote>
+
+									<figure>
+										<img
+											src={getAssetPath("/assets/events/paris-april-4-web.jpg")}
+											alt="An Effect community meetup in Paris"
+										/>
+										<figcaption>
+											Figures render full-bleed with square corners; captions
+											sit in small muted text.
+										</figcaption>
+									</figure>
+
+									<table>
+										<thead>
+											<tr>
+												<th scope="col">Function</th>
+												<th scope="col">Input</th>
+												<th scope="col">Output</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<code>Effect.runSync</code>
+												</td>
+												<td>Synchronous effect</td>
+												<td>Value or thrown error</td>
+											</tr>
+											<tr>
+												<td>
+													<code>Effect.runPromise</code>
+												</td>
+												<td>Any effect</td>
+												<td>Promise of the value</td>
+											</tr>
+											<tr>
+												<td>
+													<code>Effect.runFork</code>
+												</td>
+												<td>Any effect</td>
+												<td>Running fiber</td>
+											</tr>
+										</tbody>
+									</table>
+
+									<hr />
+
+									<p>
+										After a horizontal rule, the closing paragraph. If any
+										element above looks off in either theme, the fix belongs in{" "}
+										<code>BLOG_ARTICLE_CLASS</code> so real posts pick it up
+										too.
+									</p>
+								</article>
+							</ThemePair>
 						</GuideSection>
 
 						<GuideSection id="docs" eyebrow="06" title="Docs">
