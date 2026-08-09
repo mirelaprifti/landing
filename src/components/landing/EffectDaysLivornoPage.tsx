@@ -765,22 +765,56 @@ export function EffectDaysLivornoPage() {
 
 				<SectionDivider />
 
-				{/* Final CTA */}
+				{/* Final CTA — split layout with corner-bracket box, mirrors the blog post
+				    and community pages */}
 				<section className={sectionRhythm}>
 					<div className={container}>
-						<div className="text-center">
-							<p className={text.eyebrow}>
-								{"// "}Dec 9–11, 2026 · Livorno, Italy
-							</p>
-							<h2 className={text.sectionTitle}>See you in Livorno</h2>
-							<p className={`${text.subtitle} mx-auto max-w-2xl`}>
-								Three days with the Effect community on the Tuscan coast.
-							</p>
-							<div className="mt-12">
-								<Button href="#tickets" variant="primary" size="xl">
-									<Icon name="ticket" className="text-lg" />
-									Get tickets
-								</Button>
+						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
+							{/* Content */}
+							<div className="md:col-span-8">
+								<p className={text.eyebrow}>
+									{"// "}Dec 9–11, 2026 · Livorno, Italy
+								</p>
+								<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
+									See you in Livorno
+								</h2>
+								<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+									Three days with the Effect community on the Tuscan coast.
+								</p>
+							</div>
+
+							{/* CTA — col-start-9 col-span-4 */}
+							<div className="md:col-span-4 md:col-start-9">
+								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
+									{/* Corner brackets */}
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
+
+									<Button
+										href="#tickets"
+										variant="primary"
+										size="md"
+										className="w-full"
+									>
+										Get tickets
+										<Icon
+											name="arrow-right"
+											className="text-base"
+											aria-hidden="true"
+										/>
+									</Button>
+									<a
+										href="https://discord.gg/effect-ts"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+									>
+										discord.gg/effect-ts
+										<Icon name="arrow-up-right" aria-hidden="true" />
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
