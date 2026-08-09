@@ -496,14 +496,14 @@ export function EffectDaysLivornoPage() {
 								Selecting a pass takes you to Stripe to complete your purchase.
 							</p>
 							<p className={text.body}>
-								Are you a group of more than 3 people interested in business
-								tickets?{" "}
+								Group of more than 3?{" "}
 								<Link
 									href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
 									variant="inline"
 								>
-									Learn about available discounts at contact@effectful.co.
+									Ask about business discounts
 								</Link>
+								.
 							</p>
 							<p className={text.body}>*Suitable for invoicing.</p>
 						</div>
