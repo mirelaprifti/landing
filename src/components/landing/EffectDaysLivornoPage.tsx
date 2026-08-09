@@ -324,42 +324,23 @@ export function EffectDaysLivornoPage() {
 							the Effect ecosystem.
 						</p>
 
-						<div className="relative mt-12">
-							{/* Connecting dashed line (desktop) */}
-							<div
-								className="absolute top-6 right-8 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
-								style={{
-									height: "1px",
-									backgroundImage:
-										"repeating-linear-gradient(to right, currentColor 0px, currentColor 4px, transparent 4px, transparent 8px)",
-								}}
-							/>
-							<div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
-								{PROGRAM.map((step, index) => (
-									<div key={step.step} className="relative">
-										{/* Node */}
-										<div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-md border border-zinc-300 bg-white font-mono text-sm font-medium text-zinc-900 dark:border-zinc-600 dark:bg-zinc-950 dark:text-white">
+						<div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
+							{PROGRAM.map((step) => (
+								<div key={step.step} className="pt-6">
+									<div className="relative rounded-md border border-zinc-200 bg-white p-6 pt-10 dark:border-zinc-800 dark:bg-zinc-950">
+										{/* Number chip bridging the card's top border */}
+										<div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-md border border-zinc-300 bg-white font-mono text-sm font-medium text-zinc-900 dark:border-zinc-600 dark:bg-zinc-950 dark:text-white">
 											{step.step}
 										</div>
-										<div className={card}>
-											<div className="flex items-baseline justify-between">
-												<span className={text.micro}>{step.day}</span>
-												<span className={text.micro}>{step.date}</span>
-											</div>
-											<h3 className={`${text.cardTitle} mt-4`}>{step.title}</h3>
-											<p className={text.cardBody}>{step.description}</p>
+										<div className="flex items-baseline justify-between">
+											<span className={text.micro}>{step.day}</span>
+											<span className={text.micro}>{step.date}</span>
 										</div>
-										{index < PROGRAM.length - 1 && (
-											<div className="mt-6 flex justify-center md:hidden">
-												<Icon
-													name="arrow-down"
-													className="text-zinc-400 dark:text-zinc-600"
-												/>
-											</div>
-										)}
+										<h3 className={`${text.cardTitle} mt-4`}>{step.title}</h3>
+										<p className={text.cardBody}>{step.description}</p>
 									</div>
-								))}
-							</div>
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
