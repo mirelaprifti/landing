@@ -362,9 +362,9 @@ export function EffectDaysLivornoPage() {
 							from Pisa and Florence.
 						</p>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-5">
+						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
 							{/* Dossier facts */}
-							<div className={`${card} lg:col-span-2`}>
+							<div className={card}>
 								<p className={text.micro}>livorno.json</p>
 								<dl className="mt-4">
 									{LIVORNO_FACTS.map((fact) => (
@@ -382,7 +382,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 
 							{/* Photos from the 2025 edition */}
-							<div className="grid grid-cols-1 gap-6 lg:col-span-3">
+							<div className="grid grid-cols-1 gap-6">
 								<div className="relative overflow-hidden rounded-md">
 									<img
 										src={getAssetPath("/assets/images/ed-25-2.png")}
