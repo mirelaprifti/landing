@@ -431,10 +431,8 @@ export function AboutLivornoPage() {
 
 									<div className="overflow-hidden">
 										<img
-											src={getAssetPath(
-												"/assets/images/Livorno_history_blog_2_.webp",
-											)}
-											alt="Aerial view of Livorno's New Fortress and the surrounding canals"
+											src={getAssetPath("/assets/images/livorno-1.avif")}
+											alt="Boats on a canal in Livorno's Venezia Nuova district"
 											className="h-full min-h-64 w-full object-cover"
 										/>
 									</div>
