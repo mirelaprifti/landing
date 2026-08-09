@@ -354,7 +354,7 @@ export function EffectDaysLivornoPage() {
 				<section className={sectionRhythm}>
 					<div className={container}>
 						{/* Header — copy in the left half, links in the right half */}
-						<div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-end">
+						<div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-baseline-last">
 							<div>
 								<p className={text.eyebrow}>{"// "}The Venue</p>
 								<h2 className={text.sectionTitle}>Palazzo Pancaldi, Livorno</h2>
@@ -363,7 +363,7 @@ export function EffectDaysLivornoPage() {
 									can enjoy good food and the coastal views.
 								</p>
 							</div>
-							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end lg:pb-1">
+							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
 								<Link
 									href="/events/effect-days/about-livorno"
 									variant="subtle"
@@ -395,7 +395,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 
 							{/* Venue and city tiles */}
-							<div className="grid grid-cols-2 gap-6">
+							<div className="grid grid-cols-2 gap-4">
 								<img
 									src={getAssetPath("/assets/images/pancaldi-hall.avif")}
 									alt="The conference hall at Palazzo Pancaldi"
