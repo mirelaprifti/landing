@@ -385,57 +385,58 @@ export function AboutLivornoPage() {
 						{/* Local transportation */}
 						<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
 							<div className={container}>
-								{/* Split section — header and photo left, divided list right */}
+								{/* Split section — text left, photo right */}
 								<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-									<div className="flex flex-col">
+									<div>
 										<p className={text.eyebrow}>{"// "}Local Transportation</p>
 										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
-										<div className="mt-12 flex-1 overflow-hidden">
-											<img
-												src={getAssetPath(
-													"/assets/images/Livorno_history_blog_2_.webp",
-												)}
-												alt="Aerial view of Livorno's New Fortress and the surrounding canals"
-												className="h-full min-h-64 w-full object-cover"
-											/>
+
+										<div className="mt-12 divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
+											<div className="py-6 first:pt-0">
+												<h3 className={text.cardTitle}>By taxi</h3>
+												<p className={text.cardBody}>
+													Call CoTaLi at{" "}
+													<Link href="tel:+390586883377" variant="inline">
+														+39 586 88 33 77
+													</Link>{" "}
+													or AsTaLa at{" "}
+													<Link href="tel:+390586882020" variant="inline">
+														+39 586 88 20 20
+													</Link>
+													. Uber is not available in Italy.
+												</p>
+											</div>
+											<div className="py-6">
+												<h3 className={text.cardTitle}>By bus</h3>
+												<p className={text.cardBody}>
+													Check the{" "}
+													<Link
+														href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
+														variant="inline"
+													>
+														local bus schedule
+													</Link>{" "}
+													for exact timings.
+												</p>
+											</div>
+											<div className="py-6 last:pb-0">
+												<h3 className={text.cardTitle}>Bike rentals</h3>
+												<p className={text.cardBody}>
+													Livorno is a bike-friendly city, with rentals and
+													cycling paths along the seafront and city center.
+												</p>
+											</div>
 										</div>
 									</div>
 
-									<div className="divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
-										<div className="py-6 first:pt-0">
-											<h3 className={text.cardTitle}>By taxi</h3>
-											<p className={text.cardBody}>
-												Call CoTaLi at{" "}
-												<Link href="tel:+390586883377" variant="inline">
-													+39 586 88 33 77
-												</Link>{" "}
-												or AsTaLa at{" "}
-												<Link href="tel:+390586882020" variant="inline">
-													+39 586 88 20 20
-												</Link>
-												. Uber is not available in Italy.
-											</p>
-										</div>
-										<div className="py-6">
-											<h3 className={text.cardTitle}>By bus</h3>
-											<p className={text.cardBody}>
-												Check the{" "}
-												<Link
-													href="https://www.at-bus.it/en/travel/lines-and-timetables/livorno"
-													variant="inline"
-												>
-													local bus schedule
-												</Link>{" "}
-												for exact timings.
-											</p>
-										</div>
-										<div className="py-6 last:pb-0">
-											<h3 className={text.cardTitle}>Bike rentals</h3>
-											<p className={text.cardBody}>
-												Livorno is a bike-friendly city, with rentals and
-												cycling paths along the seafront and city center.
-											</p>
-										</div>
+									<div className="overflow-hidden">
+										<img
+											src={getAssetPath(
+												"/assets/images/Livorno_history_blog_2_.webp",
+											)}
+											alt="Aerial view of Livorno's New Fortress and the surrounding canals"
+											className="h-full min-h-64 w-full object-cover"
+										/>
 									</div>
 								</div>
 							</div>

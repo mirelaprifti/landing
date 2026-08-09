@@ -787,7 +787,7 @@ export function EffectDaysLivornoPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 201px",
+							backgroundPosition: "0px 204px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
@@ -806,11 +806,12 @@ export function EffectDaysLivornoPage() {
 								<p className={text.eyebrow}>
 									{"// "}Dec 9–11, 2026 · Livorno, Italy
 								</p>
-								<h2 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
-									See you in Livorno
+								<h2 className={text.sectionTitle}>
+									Join the Effect Days experience
 								</h2>
 								<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-									Three days with the Effect community on the Tuscan coast.
+									Three days of workshops, talks, and real conversations with
+									the people building Effect — on the Tuscan coast.
 								</p>
 							</div>
 
