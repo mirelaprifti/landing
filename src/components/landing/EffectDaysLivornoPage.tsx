@@ -768,26 +768,17 @@ export function EffectDaysLivornoPage() {
 				{/* Final CTA — split layout with corner-bracket box, mirrors the blog post
 				    and community pages */}
 				<section className="relative overflow-hidden py-24 md:py-32">
-					{/* Grid background — vertical lines drawn individually (rather than as one
-					    repeating gradient) so the two leftmost columns can be omitted */}
+					{/* Grid background — a single vertical line, positioned on the same
+					    196.6px column rhythm the other CTA sections tile across */}
 					<div
 						className="pointer-events-none absolute inset-0"
 						style={{
-							backgroundImage: Array(4)
-								.fill(
-									"linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
-								)
-								.join(", "),
+							backgroundImage:
+								"linear-gradient(to right, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "1px 100%",
 							backgroundRepeat: "no-repeat",
-							/* Same 196.6px rhythm, phased by half a column as before — but starting
-							   at -98.3px, so the -491.5px and -294.9px lines are gone */
-							backgroundPosition: [
-								"calc(50% - 98.3px) 0",
-								"calc(50% + 98.3px) 0",
-								"calc(50% + 294.9px) 0",
-								"calc(50% + 491.5px) 0",
-							].join(", "),
+							/* Single line on the original 196.6px rhythm — the rightmost column */
+							backgroundPosition: "calc(50% + 491.5px) 0",
 						}}
 					/>
 					{/* Single horizontal line — sits on the CTA heading's first-line baseline */}
