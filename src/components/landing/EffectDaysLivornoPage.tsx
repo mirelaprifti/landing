@@ -353,16 +353,40 @@ export function EffectDaysLivornoPage() {
 				{/* The Venue */}
 				<section className={sectionRhythm}>
 					<div className={container}>
-						<p className={text.eyebrow}>{"// "}The Venue</p>
-						<h2 className={text.sectionTitle}>Palazzo Pancaldi, Livorno</h2>
-						<p className={`${text.subtitle} max-w-2xl`}>
-							A beautiful seaside location in the Tuscan riviera, where you can
-							enjoy good food and the coastal views.
-						</p>
+						{/* Header — copy in the left half, links in the right half */}
+						<div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-end">
+							<div>
+								<p className={text.eyebrow}>{"// "}The Venue</p>
+								<h2 className={text.sectionTitle}>Palazzo Pancaldi, Livorno</h2>
+								<p className={text.subtitle}>
+									A beautiful seaside location in the Tuscan riviera, where you
+									can enjoy good food and the coastal views.
+								</p>
+							</div>
+							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
+								<Link
+									href="/events/effect-days/about-livorno"
+									variant="subtle"
+									className="inline-flex items-center gap-1.5 font-medium"
+								>
+									About Livorno
+									<Icon name="arrow-right" className="text-xs" />
+								</Link>
+								<Link
+									href="https://www.google.com/maps/search/?api=1&query=Palazzo+Pancaldi+Livorno"
+									variant="subtle"
+									className="inline-flex items-center gap-1.5 font-medium"
+								>
+									<Icon name="map-pin" className="text-base" />
+									View on map
+									<Icon name="arrow-up-right" className="text-xs" />
+								</Link>
+							</div>
+						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
 							{/* Featured photo, full column height */}
-							<div className="overflow-hidden rounded-md">
+							<div className="overflow-hidden">
 								<img
 									src={getAssetPath("/assets/images/pancaldi-exterior.avif")}
 									alt="Palazzo Pancaldi on the Livorno seafront"
@@ -372,47 +396,27 @@ export function EffectDaysLivornoPage() {
 
 							{/* Venue and city tiles */}
 							<div className="grid grid-cols-2 gap-6">
-								<div className="overflow-hidden rounded-md">
-									<img
-										src={getAssetPath("/assets/images/pancaldi-hall.avif")}
-										alt="The conference hall at Palazzo Pancaldi"
-										className="aspect-4/3 h-full w-full object-cover"
-									/>
-								</div>
-								<div className="overflow-hidden rounded-md">
-									<img
-										src={getAssetPath("/assets/images/livorno-7.avif")}
-										alt="Livorno's harborfront seen from the water"
-										className="aspect-4/3 h-full w-full object-cover"
-									/>
-								</div>
-								<div className="overflow-hidden rounded-md">
-									<img
-										src={getAssetPath("/assets/images/livorno-1.avif")}
-										alt="Boats on a canal in Livorno's Venezia Nuova district"
-										className="aspect-4/3 h-full w-full object-cover"
-									/>
-								</div>
-								<div className="overflow-hidden rounded-md">
-									<img
-										src={getAssetPath("/assets/images/livorno-6.avif")}
-										alt="Canal-side buildings and boats in Livorno"
-										className="aspect-4/3 h-full w-full object-cover"
-									/>
-								</div>
+								<img
+									src={getAssetPath("/assets/images/pancaldi-hall.avif")}
+									alt="The conference hall at Palazzo Pancaldi"
+									className="aspect-4/3 h-full w-full object-cover"
+								/>
+								<img
+									src={getAssetPath("/assets/images/livorno-7.avif")}
+									alt="Livorno's harborfront seen from the water"
+									className="aspect-4/3 h-full w-full object-cover"
+								/>
+								<img
+									src={getAssetPath("/assets/images/livorno-1.avif")}
+									alt="Boats on a canal in Livorno's Venezia Nuova district"
+									className="aspect-4/3 h-full w-full object-cover"
+								/>
+								<img
+									src={getAssetPath("/assets/images/livorno-6.avif")}
+									alt="Canal-side buildings and boats in Livorno"
+									className="aspect-4/3 h-full w-full object-cover"
+								/>
 							</div>
-						</div>
-
-						<div className="mt-12">
-							<Link
-								href="https://www.google.com/maps/search/?api=1&query=Palazzo+Pancaldi+Livorno"
-								variant="subtle"
-								className="inline-flex items-center gap-1.5 font-medium"
-							>
-								<Icon name="map-pin" className="text-base" />
-								View on map
-								<Icon name="arrow-up-right" className="text-xs" />
-							</Link>
 						</div>
 					</div>
 				</section>
