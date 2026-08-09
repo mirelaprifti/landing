@@ -1066,7 +1066,7 @@ export function EventsPage() {
 							>
 								<div className="relative aspect-video overflow-hidden">
 									<img
-										src={getAssetPath("/assets/images/ed-24-2.png")}
+										src={getAssetPath("/assets/effect-days/ed-24-2.png")}
 										alt="Effect Days 2024 — Vienna"
 										className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
 									/>
@@ -1113,7 +1113,7 @@ export function EventsPage() {
 							>
 								<div className="relative aspect-video overflow-hidden">
 									<img
-										src={getAssetPath("/assets/images/ed-25-2.png")}
+										src={getAssetPath("/assets/effect-days/ed-25-2.png")}
 										alt="Effect Days 2025 — Livorno"
 										className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
 									/>

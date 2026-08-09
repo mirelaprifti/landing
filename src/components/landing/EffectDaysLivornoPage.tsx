@@ -98,7 +98,9 @@ const EDITIONS = [
 		note: "Where the Effect community gathered for the first time: 15 talks, 2 workshops.",
 		playlistUrl:
 			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B_XZ8k3gD8R1k4-LBz8JmHP",
-		image: "/assets/images/ed-24-2.png",
+		image: "/assets/effect-days/ed-24-2.png",
+		/* Duotone is already baked into this file. */
+		tint: false,
 	},
 	{
 		year: "2025",
@@ -108,7 +110,9 @@ const EDITIONS = [
 		note: "Advanced use cases and real production stories: 19 talks, 2 workshops.",
 		playlistUrl:
 			"https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
-		image: "/assets/images/ed-25-2.png",
+		image: "/assets/effect-days/ed-25-3.png",
+		/* Full-colour source, so the duotone is applied in CSS to match the others. */
+		tint: true,
 	},
 	{
 		year: "2026",
@@ -118,6 +122,7 @@ const EDITIONS = [
 		note: "The 3rd edition. Back to the Tuscan coast, and you're invited.",
 		playlistUrl: null,
 		image: null,
+		tint: false,
 	},
 ];
 
@@ -372,7 +377,7 @@ export function EffectDaysLivornoPage() {
 					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
 					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
-							src={getAssetPath("/assets/images/ed-25-2.png")}
+							src={getAssetPath("/assets/effect-days/ed-25-2.png")}
 							alt="The Effect community at Effect Days 2025 in Livorno"
 							className="h-full w-full object-cover"
 						/>
@@ -499,7 +504,7 @@ export function EffectDaysLivornoPage() {
 							<div className="overflow-hidden">
 								<img
 									src={getAssetPath(
-										"/assets/images/effect-days/pancaldi-exterior.avif",
+										"/assets/effect-days/pancaldi-exterior.avif",
 									)}
 									alt="Palazzo Pancaldi on the Livorno seafront"
 									className="aspect-4/3 h-full w-full object-cover lg:aspect-auto"
@@ -510,28 +515,28 @@ export function EffectDaysLivornoPage() {
 							<div className="grid grid-cols-2 gap-4">
 								<img
 									src={getAssetPath(
-										"/assets/images/effect-days/pancaldi-hall.avif",
+										"/assets/effect-days/pancaldi-hall.avif",
 									)}
 									alt="The conference hall at Palazzo Pancaldi"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
 									src={getAssetPath(
-										"/assets/images/effect-days/livorno-7.avif",
+										"/assets/effect-days/livorno-7.avif",
 									)}
 									alt="Livorno's harborfront seen from the water"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
 									src={getAssetPath(
-										"/assets/images/effect-days/livorno-1.avif",
+										"/assets/effect-days/livorno-1.avif",
 									)}
 									alt="Boats on a canal in Livorno's Venezia Nuova district"
 									className="aspect-4/3 h-full w-full object-cover"
 								/>
 								<img
 									src={getAssetPath(
-										"/assets/images/effect-days/livorno-6.avif",
+										"/assets/effect-days/livorno-6.avif",
 									)}
 									alt="Canal-side buildings and boats in Livorno"
 									className="aspect-4/3 h-full w-full object-cover"
@@ -768,12 +773,19 @@ export function EffectDaysLivornoPage() {
 											}`}
 										>
 											{edition.image ? (
-												<div className="relative aspect-21/9 overflow-hidden">
+												<div className="relative isolate aspect-21/9 overflow-hidden">
 													<img
 														src={getAssetPath(edition.image)}
 														alt={`Effect Days ${edition.year}`}
-														className="h-full w-full object-cover"
+														className={`h-full w-full object-cover ${
+															edition.tint ? "grayscale" : ""
+														}`}
 													/>
+													{/* Duotone — grayscale underneath, hue and saturation
+													    from this layer, matching the pre-tinted photos */}
+													{edition.tint && (
+														<div className="pointer-events-none absolute inset-0 bg-[#5b5fc7] mix-blend-color" />
+													)}
 													<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/10 to-transparent" />
 												</div>
 											) : (
