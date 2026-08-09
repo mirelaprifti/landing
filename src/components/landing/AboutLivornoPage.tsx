@@ -36,9 +36,14 @@ const NAV_ANCHORS = [
 	{ href: "#do", label: "Things to do" },
 ];
 
+/* Shared scale for the distance tracks, slightly past Rome so its marker
+   stays inside the card. */
+const DISTANCE_SCALE_KM = 320;
+
 const AIRPORTS: Array<{
 	name: string;
 	distance: string;
+	km: number;
 	intro: string;
 	train: string;
 	car: string;
@@ -47,6 +52,7 @@ const AIRPORTS: Array<{
 	{
 		name: "Pisa · PSA",
 		distance: "~20 km from Livorno",
+		km: 20,
 		intro: "The closest airport.",
 		train:
 			"Take the Pisamover shuttle from Pisa Airport to Pisa Centrale, then a direct train to Livorno Centrale.",
@@ -55,6 +61,7 @@ const AIRPORTS: Array<{
 	{
 		name: "Florence · FLR",
 		distance: "~90 km from Livorno",
+		km: 90,
 		intro: "A good range of European flights.",
 		train:
 			"Take the shuttle bus or tram to Florence SMN Station, then a train to Livorno Centrale. Total journey time is about 2 hours.",
@@ -63,6 +70,7 @@ const AIRPORTS: Array<{
 	{
 		name: "Bologna · BLQ",
 		distance: "~180 km from Livorno",
+		km: 180,
 		intro: "Well-connected to major European cities.",
 		train:
 			"The Marconi Express takes you to Bologna Centrale, then a train to Florence SMN, then a train to Livorno Centrale. All in ~2.5 hours.",
@@ -71,6 +79,7 @@ const AIRPORTS: Array<{
 	{
 		name: "Rome · FCO",
 		distance: "~300 km from Livorno",
+		km: 300,
 		intro: "Widest choice of international flights.",
 		train:
 			"Take the Leonardo Express to Roma Termini, then a direct train to Livorno Centrale along the coast. Total journey time is about 3.5 hours.",
@@ -295,6 +304,24 @@ export function AboutLivornoPage() {
 									{pair.map((airport) => (
 										<div key={airport.name} className={card}>
 											<p className={text.micro}>{airport.distance}</p>
+											{/* Distance track — marker position on a scale shared by all cards */}
+											<div className="relative mt-3 h-2" aria-hidden="true">
+												<div
+													className="absolute top-1/2 right-0 left-0 -translate-y-1/2 text-zinc-300 dark:text-zinc-700"
+													style={{
+														height: "1px",
+														backgroundImage:
+															"repeating-linear-gradient(to right, currentColor 0px, currentColor 2px, transparent 2px, transparent 4px)",
+													}}
+												/>
+												<div className="absolute top-1/2 left-0 h-2 w-px -translate-y-1/2 bg-zinc-400 dark:bg-zinc-600" />
+												<div
+													className="absolute top-1/2 h-2 w-2 -translate-y-1/2 bg-zinc-900 dark:bg-white"
+													style={{
+														left: `calc(${(airport.km / DISTANCE_SCALE_KM) * 100}% - 4px)`,
+													}}
+												/>
+											</div>
 											<h3 className={`${text.cardTitle} mt-4`}>
 												{airport.name}
 											</h3>
