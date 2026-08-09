@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
@@ -209,6 +210,20 @@ function SectionDivider() {
 }
 
 export function EffectDaysLivornoPage() {
+	const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
+
+	const toggleFaq = (index: number) => {
+		setOpenFaqs((prev) => {
+			const next = new Set(prev);
+			if (next.has(index)) {
+				next.delete(index);
+			} else {
+				next.add(index);
+			}
+			return next;
+		});
+	};
+
 	return (
 		<div className="relative min-h-screen bg-zinc-950 text-white">
 			{/* Dithered background overlay */}
@@ -694,16 +709,47 @@ export function EffectDaysLivornoPage() {
 						<p className={text.eyebrow}>{"// "}FAQ</p>
 						<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-0 md:grid-cols-2">
-							{FAQS.map((faq) => (
-								<div
-									key={faq.question}
-									className="border-b border-zinc-200/50 py-6 dark:border-zinc-800/50"
-								>
-									<h3 className={text.smallHeading}>{faq.question}</h3>
-									<p className={text.cardBody}>{faq.answer}</p>
-								</div>
-							))}
+						<div className="mt-12 grid grid-cols-1 items-start gap-x-12 gap-y-0 md:grid-cols-2">
+							{FAQS.map((faq, index) => {
+								const isOpen = openFaqs.has(index);
+								return (
+									<div
+										key={faq.question}
+										className="border-b border-zinc-200/50 dark:border-zinc-800/50"
+									>
+										<h3>
+											<button
+												type="button"
+												onClick={() => toggleFaq(index)}
+												aria-expanded={isOpen}
+												className="group flex w-full cursor-pointer items-center justify-between gap-4 py-6 text-left"
+											>
+												<span className={text.smallHeading}>
+													{faq.question}
+												</span>
+												<Icon
+													name="chevron-down"
+													className={`shrink-0 text-base text-zinc-500 transition-transform duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white ${
+														isOpen ? "rotate-180" : ""
+													}`}
+												/>
+											</button>
+										</h3>
+
+										<div
+											className={`grid transition-all duration-300 ease-out ${
+												isOpen
+													? "grid-rows-[1fr] opacity-100"
+													: "grid-rows-[0fr] opacity-0"
+											}`}
+										>
+											<div className="overflow-hidden">
+												<p className={`${text.cardBody} pb-6`}>{faq.answer}</p>
+											</div>
+										</div>
+									</div>
+								);
+							})}
 						</div>
 					</div>
 				</section>
