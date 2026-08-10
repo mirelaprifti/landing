@@ -186,6 +186,16 @@ export function Navigation({
 								>
 									Community
 								</Link>
+								<Link
+									href={getAssetPath("/effect-days")}
+									variant="nav"
+									active={activePath?.startsWith("/effect-days")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Effect Days
+								</Link>
 							</div>
 
 							{/* Mobile menu button */}
@@ -347,6 +357,12 @@ export function Navigation({
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/community-hub") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Community
+							</a>
+							<a
+								href={getAssetPath("/effect-days")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/effect-days") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+							>
+								Effect Days
 							</a>
 						</div>
 

@@ -101,23 +101,13 @@ export function HeroCommandPanel({
 
 	return (
 		<div className="rounded-md bg-zinc-100/50 p-1 ring-1 ring-zinc-300 ring-inset dark:bg-zinc-900/50 dark:ring-zinc-700">
-			{/* Command row — same height for INSTALL and PROMPT modes */}
-			<button
-				type="button"
-				onClick={copy}
-				className="flex min-h-11 w-full cursor-pointer items-center gap-3 px-4 py-1 text-left font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-200/40 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/30 dark:hover:text-white"
-				aria-label={
-					mode === "install"
-						? "Copy install command"
-						: "Copy prompt for AI agents"
-				}
-			>
+			{/* Command row — same height for INSTALL and PROMPT modes.
+			    Must stay a plain element: the PM chip and its popover are buttons,
+			    and nesting a button inside a button is invalid HTML — the parser
+			    closes the outer one and spills the rest of the row out of the panel. */}
+			<div className="flex min-h-11 w-full items-center gap-3 px-4 py-1 font-mono text-sm">
 				{mode === "install" && (
-					<div
-						ref={pmRef}
-						className="relative shrink-0"
-						onClick={(e) => e.stopPropagation()}
-					>
+					<div ref={pmRef} className="relative shrink-0">
 						{/* Active PM chip */}
 						<button
 							type="button"
@@ -183,22 +173,33 @@ export function HeroCommandPanel({
 					</div>
 				)}
 
-				<span className="flex-1 truncate">
-					{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
-				</span>
+				<button
+					type="button"
+					onClick={copy}
+					className="flex min-w-0 flex-1 cursor-pointer items-center gap-3 rounded-sm text-left text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+					aria-label={
+						mode === "install"
+							? "Copy install command"
+							: "Copy prompt for AI agents"
+					}
+				>
+					<span className="flex-1 truncate">
+						{mode === "install" ? INSTALL_COMMANDS[activePM] : AGENT_PREVIEW}
+					</span>
 
-				{copied ? (
-					<Icon
-						name="check"
-						className="shrink-0 text-base text-zinc-800 dark:text-zinc-200"
-					/>
-				) : (
-					<Icon
-						name="copy"
-						className="shrink-0 text-base text-zinc-600 dark:text-zinc-400"
-					/>
-				)}
-			</button>
+					{copied ? (
+						<Icon
+							name="check"
+							className="shrink-0 text-base text-zinc-800 dark:text-zinc-200"
+						/>
+					) : (
+						<Icon
+							name="copy"
+							className="shrink-0 text-base text-zinc-600 dark:text-zinc-400"
+						/>
+					)}
+				</button>
+			</div>
 		</div>
 	);
 }
