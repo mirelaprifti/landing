@@ -601,7 +601,7 @@ a:focus-visible {
 		transform: scaleX(0);
 		opacity: 0;
 	}
-	40% {
+	45% {
 		opacity: 1;
 	}
 	100% {
@@ -611,7 +611,9 @@ a:focus-visible {
 }
 
 [data-announcement]:has(a:hover) .announcement-sweep {
-	animation: announcement-sweep 700ms ease-out;
+	/* ease-in-out, not ease-out: the glow eases away from the centre instead of
+	   leaping out of it, which is what made the shorter timing feel abrupt. */
+	animation: announcement-sweep 1600ms ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {

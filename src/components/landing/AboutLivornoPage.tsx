@@ -641,7 +641,7 @@ export function AboutLivornoPage() {
 									backgroundImage:
 										"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 									backgroundSize: "100% 1px",
-									backgroundPosition: "0px 204px",
+									backgroundPosition: "0px 205px",
 									backgroundRepeat: "no-repeat",
 								}}
 							/>
@@ -660,10 +660,11 @@ export function AboutLivornoPage() {
 											{"// "}Dec 9–11, 2026 · Livorno, Italy
 										</p>
 										<h2 className={text.sectionTitle}>Enjoy Effect Days</h2>
-										<p className={text.subtitle}>
-											Three days with the people building Effect and the people
-											building with it.
-										</p>
+									<p className={`${text.subtitle} max-w-md`}>
+										Three days with the people building Effect{" "}
+										<br className="hidden lg:inline" />
+										and the people building with it.
+									</p>
 									</div>
 
 									<div className="md:col-span-4 md:col-start-9 md:mt-[9px] md:self-start">
