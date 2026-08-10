@@ -3,10 +3,8 @@ import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 
 /**
- * Dedicated navbar for the Effect Days pages. Replaces the main site
- * navigation with event-scoped links and a single ticket CTA, following
- * the conference-site pattern (Vercel Ship, GitHub Universe): the wordmark
- * returns to the event home, and one link escapes back to the main site.
+ * Dedicated navbar for the Effect Days pages. Same chrome and logo as the
+ * main site navigation, but with event-scoped links and a single ticket CTA.
  */
 
 const EVENT_LINKS = [
@@ -21,29 +19,22 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 		<div className="fixed top-0 right-0 left-0 z-100 w-full border-b border-zinc-200 bg-zinc-50/85 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/85">
 			<header className="relative mx-auto w-full max-w-[88rem] px-4">
 				<nav className="flex h-16 items-center">
-					{/* Wordmark — returns to the event home */}
-					<a
-						href={getAssetPath("/effect-days")}
-						className="flex items-center gap-3"
-					>
+					<a href="/" className="flex items-center">
 						<img
 							src={getAssetPath(
-								"/assets/effect-logo/Logo symbol/SVG/effect-logomark-black.svg",
+								"/assets/effect-logo/Combination mark/SVG/effect-logo-black.svg",
 							)}
 							alt="Effect"
-							className="h-7 w-auto dark:hidden"
+							className="h-[1.75rem] w-auto dark:hidden"
 						/>
 						<img
 							src={getAssetPath(
-								"/assets/effect-logo/Logo symbol/SVG/effect-logomark-white.svg",
+								"/assets/effect-logo/Combination mark/SVG/effect-logo-white.svg",
 							)}
 							alt=""
 							aria-hidden="true"
-							className="hidden h-7 w-auto dark:block"
+							className="hidden h-[1.75rem] w-auto dark:block"
 						/>
-						<span className="font-mono text-sm font-semibold tracking-wider text-zinc-900 uppercase dark:text-white">
-							Effect Days
-						</span>
 					</a>
 
 					{/* Event links */}
@@ -62,15 +53,8 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 						))}
 					</div>
 
-					{/* Back to the main site + ticket CTA */}
-					<div className="ml-auto flex items-center gap-6">
-						<Link
-							href={getAssetPath("/")}
-							variant="nav"
-							className="hidden sm:block"
-						>
-							effect.website
-						</Link>
+					{/* Ticket CTA */}
+					<div className="ml-auto flex items-center">
 						<Button
 							href={getAssetPath("/effect-days#tickets")}
 							variant="primary"
