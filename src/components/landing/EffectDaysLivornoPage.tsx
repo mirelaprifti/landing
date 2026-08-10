@@ -378,35 +378,31 @@ export function EffectDaysLivornoPage() {
 				{/* Hero Section — copy and CTAs on one row, photo beneath, inside the grid */}
 				<section className="relative w-full pt-24 pb-4">
 					<div className={`relative ${container}`}>
-						<div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-							{/* Copy and CTAs */}
-							<div>
-								<p className={text.eyebrow}>
-									{"// "}Livorno, Italy · Dec 9–11, 2026
-								</p>
-								<h1 className={text.pageTitle}>Effect Days</h1>
-
-								<div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
-									<Button href="#tickets" variant="primary" size="lg">
-										<Icon name="ticket" className="text-lg" />
-										Get tickets
-									</Button>
-									<Button
-										href="https://discord.gg/effect-ts"
-										variant="secondary"
-										size="lg"
-									>
-										<i className="ri-discord-fill text-lg" />
-										Join the community
-									</Button>
-								</div>
-							</div>
-
-							{/* Pitch — sits opposite the copy from lg up */}
-							<p className={`${text.subtitle} max-w-md lg:shrink-0`}>
+						{/* One reading path: eyebrow, title, pitch, then the CTAs */}
+						<div>
+							<p className={text.eyebrow}>
+								{"// "}Livorno, Italy · Dec 9–11, 2026
+							</p>
+							<h1 className={text.pageTitle}>Effect Days</h1>
+							<p className={`${text.subtitle} max-w-md`}>
 								For Effect and TypeScript engineers: three days of workshops,
 								talks, and community.
 							</p>
+
+							<div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+								<Button href="#tickets" variant="primary" size="lg">
+									<Icon name="ticket" className="text-lg" />
+									Get tickets
+								</Button>
+								<Button
+									href="https://discord.gg/effect-ts"
+									variant="secondary"
+									size="lg"
+								>
+									<i className="ri-discord-fill text-lg" />
+									Join the community
+								</Button>
+							</div>
 						</div>
 
 						{/* Photo sits inside the container, aligned to the grid */}
