@@ -83,7 +83,7 @@ export function SaveToCalendar() {
 	}, [open]);
 
 	const itemClass =
-		"flex w-full items-center gap-2.5 px-3 py-2.5 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white";
+		"flex w-full items-center gap-2.5 px-3 py-1.5 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white";
 
 	return (
 		<div ref={ref} className="relative inline-block">
