@@ -53,6 +53,10 @@ const PROGRAM = [
 	},
 ];
 
+/* Early bird runs first. Set to false once regular pricing starts, which also
+   restores the group-discount note under the passes. */
+const EARLY_BIRD_ON_SALE = true;
+
 /* Early bird sells first; the regular price is shown struck through beside it. */
 const PASSES = [
 	{
@@ -612,18 +616,22 @@ export function EffectDaysLivornoPage() {
 									purchase.
 								</p>
 							</div>
-							<div className="space-y-1">
-								<p className={text.body}>
-									Group of 4+?{" "}
-									<Link
-										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
-										variant="inline"
-									>
-										Ask about business discounts
-									</Link>
-									.
-								</p>
-							</div>
+							{/* Group discounts are off the page while early bird is on sale —
+							    flip EARLY_BIRD_ON_SALE to bring this back. */}
+							{!EARLY_BIRD_ON_SALE && (
+								<div className="space-y-1">
+									<p className={text.body}>
+										Group of 4+?{" "}
+										<Link
+											href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
+											variant="inline"
+										>
+											Ask about business discounts
+										</Link>
+										.
+									</p>
+								</div>
+							)}
 						</div>
 					</div>
 				</section>
