@@ -375,27 +375,11 @@ export function EffectDaysLivornoPage() {
 			</div>
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
-				{/* Hero Section */}
-				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-24 lg:pt-40 lg:pb-40">
-					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
-					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
-						<img
-							src={getAssetPath("/assets/effect-days/ed-25-2.png")}
-							alt="The Effect community at Effect Days 2025 in Livorno"
-							className="h-full w-full object-cover"
-						/>
-						{/* Blend into the dark page */}
-						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
-						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
-						{/* Photo caption */}
-						<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
-							{"// "}Effect Days 2025 · Livorno
-						</p>
-					</div>
-
+				{/* Hero Section — copy and CTAs on one row, full-bleed photo beneath */}
+				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-24 lg:pt-40 lg:pb-24">
 					<div className={`relative ${container}`}>
-						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-							{/* Left — copy */}
+						<div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+							{/* Copy */}
 							<div>
 								<p className={text.eyebrow}>{"// "}3rd edition</p>
 								<h1 className={text.pageTitle}>Effect Days</h1>
@@ -410,38 +394,39 @@ export function EffectDaysLivornoPage() {
 									For Effect and TypeScript engineers: three days of workshops,
 									talks, and community.
 								</p>
-
-								{/* CTA Buttons */}
-								<div className="mt-12 flex flex-col items-start gap-4 sm:flex-row">
-									<Button href="#tickets" variant="primary" size="lg">
-										<Icon name="ticket" className="text-lg" />
-										Get tickets
-									</Button>
-									<Button
-										href="https://discord.gg/effect-ts"
-										variant="secondary"
-										size="lg"
-									>
-										<i className="ri-discord-fill text-lg" />
-										Join the community
-									</Button>
-								</div>
 							</div>
 
-							{/* Below lg the absolute half-width photo above can't apply, so
-							    the same image runs in flow here instead of vanishing */}
-							<div className="relative overflow-hidden lg:hidden">
-								<img
-									src={getAssetPath("/assets/effect-days/ed-25-2.png")}
-									alt="The Effect community at Effect Days 2025 in Livorno"
-									className="aspect-16/9 w-full object-cover"
-								/>
-								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
-								<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
-									{"// "}Effect Days 2025 · Livorno
-								</p>
+							{/* CTAs — right-aligned beside the copy from lg up */}
+							<div className="flex flex-col items-start gap-4 sm:flex-row lg:shrink-0">
+								<Button href="#tickets" variant="primary" size="lg">
+									<Icon name="ticket" className="text-lg" />
+									Get tickets
+								</Button>
+								<Button
+									href="https://discord.gg/effect-ts"
+									variant="secondary"
+									size="lg"
+								>
+									<i className="ri-discord-fill text-lg" />
+									Join the community
+								</Button>
 							</div>
 						</div>
+					</div>
+
+					{/* Full-bleed photo, edge to edge beneath the copy */}
+					<div className="relative mt-12 w-full overflow-hidden md:mt-16">
+						<img
+							src={getAssetPath("/assets/effect-days/ed-25-2.png")}
+							alt="The Effect community at Effect Days 2025 in Livorno"
+							className="aspect-16/9 w-full object-cover md:aspect-21/9"
+						/>
+						{/* Blend the edges into the dark page */}
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950/60 via-transparent to-zinc-950/60" />
+						<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+							{"// "}Effect Days 2025 · Livorno
+						</p>
 					</div>
 				</section>
 
