@@ -458,7 +458,7 @@ export function EffectDaysLivornoPage() {
 							the Effect ecosystem.
 						</p>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
 							{PROGRAM.map((step) => (
 								<div
 									key={step.step}
@@ -565,7 +565,7 @@ export function EffectDaysLivornoPage() {
 						</p>
 						<h2 className={text.sectionTitle}>Choose your pass</h2>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
 							{PASSES.map((pass) => (
 								<div
 									key={pass.name}
@@ -784,7 +784,7 @@ export function EffectDaysLivornoPage() {
 						<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>
 
 						{/* Two independent columns — opening one never reflows the other */}
-						<div className="mt-12 grid grid-cols-1 items-start gap-x-4 md:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 items-start gap-x-4 md:grid-cols-2 md:gap-x-8">
 							<div>
 								{FAQS.slice(0, FAQ_SPLIT).map((faq, i) => renderFaq(faq, i))}
 							</div>
