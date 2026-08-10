@@ -19,7 +19,10 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
-		<div className="fixed top-0 right-0 left-0 z-100 w-full border-b border-zinc-200 bg-zinc-50/85 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/85">
+		<div
+			data-site-nav
+			className="fixed top-0 right-0 left-0 z-100 w-full border-b border-zinc-200 bg-zinc-50/85 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/85"
+		>
 			<header className="relative mx-auto w-full max-w-[88rem] px-4">
 				<nav className="flex h-16 items-center">
 					<a href="/" className="flex items-center">
