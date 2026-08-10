@@ -570,23 +570,32 @@ export function AboutLivornoPage() {
 								<p className={text.eyebrow}>{"// "}Things to Do</p>
 								<h2 className={text.sectionTitle}>Make a trip of it</h2>
 
-								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-									{ACTIVITIES.map((activity) => (
-										<div key={activity.title} className={card}>
-											{/* Header row — icon chip and meta tag share one line */}
-											<div className="flex items-center justify-between">
-												<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
-													<Icon
-														name={activity.icon}
-														className="text-zinc-700 dark:text-zinc-200"
-													/>
+								<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+									{[ACTIVITIES.slice(0, 2), ACTIVITIES.slice(2)].map((pair) => (
+										<div
+											key={pair[0].title}
+											className="grid grid-cols-1 gap-2 md:grid-cols-2"
+										>
+											{pair.map((activity) => (
+												<div key={activity.title} className={card}>
+													{/* Header row — icon chip and meta tag share one line */}
+													<div className="flex items-center justify-between">
+														<div className="flex h-10 w-10 items-center justify-center border border-zinc-300 dark:border-zinc-600">
+															<Icon
+																name={activity.icon}
+																className="text-zinc-700 dark:text-zinc-200"
+															/>
+														</div>
+														<span className={text.micro}>{activity.tag}</span>
+													</div>
+													<h3 className={`${text.cardTitle} mt-6`}>
+														{activity.title}
+													</h3>
+													<p className={text.cardBody}>
+														{activity.description}
+													</p>
 												</div>
-												<span className={text.micro}>{activity.tag}</span>
-											</div>
-											<h3 className={`${text.cardTitle} mt-6`}>
-												{activity.title}
-											</h3>
-											<p className={text.cardBody}>{activity.description}</p>
+											))}
 										</div>
 									))}
 								</div>
