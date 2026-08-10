@@ -655,7 +655,7 @@ export function AboutLivornoPage() {
 
 							<div className={`relative ${container}`}>
 								<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
-									<div className="md:col-span-6 md:mt-2 md:pr-4">
+									<div className="text-center md:col-span-6 md:mt-2 md:pr-4 md:text-left">
 										<p className={text.eyebrow}>
 											{"// "}Dec 9–11, 2026 · Livorno, Italy
 										</p>

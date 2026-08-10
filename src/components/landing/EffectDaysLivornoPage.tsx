@@ -458,7 +458,7 @@ export function EffectDaysLivornoPage() {
 							the Effect ecosystem.
 						</p>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
 							{PROGRAM.map((step) => (
 								<div
 									key={step.step}
@@ -487,7 +487,7 @@ export function EffectDaysLivornoPage() {
 				<section id="venue" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						{/* Header — copy in the left half, links in the right half */}
-						<div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-baseline-last">
+						<div className="grid grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2 lg:items-baseline-last">
 							<div>
 								<p className={text.eyebrow}>{"// "}The Venue</p>
 								<h2 className={text.sectionTitle}>Palazzo Pancaldi, Livorno</h2>
@@ -824,7 +824,7 @@ export function EffectDaysLivornoPage() {
 					<div className={`relative ${container}`}>
 						<div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-x-6 md:gap-y-8">
 							{/* Content */}
-							<div className="md:col-span-6 md:mt-2 md:pr-4">
+							<div className="text-center md:col-span-6 md:mt-2 md:pr-4 md:text-left">
 								<p className={text.eyebrow}>
 									{"// "}Dec 9–11, 2026 · Livorno, Italy
 								</p>
