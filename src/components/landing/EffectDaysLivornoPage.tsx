@@ -436,19 +436,6 @@ export function EffectDaysLivornoPage() {
 										<Icon name="ticket" className="text-lg" />
 										Get tickets
 									</Button>
-									<Button
-										href="https://discord.gg/effect-ts"
-										variant="secondary"
-										size="lg"
-									>
-										<i className="ri-discord-fill text-lg" />
-										Join the community
-									</Button>
-								</div>
-
-								{/* Deliberately quieter than the CTAs above: saving the date is
-								    for people who aren't ready to buy yet. */}
-								<div className="mt-5">
 									<SaveToCalendar />
 								</div>
 							</div>

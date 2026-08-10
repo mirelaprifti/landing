@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "@/utils/assetPath";
 
@@ -57,21 +58,22 @@ export function SaveToCalendar() {
 
 	return (
 		<div ref={ref} className="relative inline-block">
-			<button
-				type="button"
+			<Button
+				variant="secondary"
+				size="lg"
 				onClick={() => setOpen((v) => !v)}
 				aria-haspopup="menu"
 				aria-expanded={open}
-				className="flex cursor-pointer items-center gap-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				className="cursor-pointer"
 			>
-				<Icon name="calendar" className="text-base" aria-hidden="true" />
+				<Icon name="calendar" className="text-lg" aria-hidden="true" />
 				Save to calendar
 				<Icon
 					name="chevron-down"
 					className={`text-base text-zinc-500 transition-transform ${open ? "rotate-180" : ""}`}
 					aria-hidden="true"
 				/>
-			</button>
+			</Button>
 
 			{open && (
 				<div
