@@ -58,8 +58,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 					    while the label beside it returns to the event home — otherwise
 					    /effect-days/* pages have no way back to it. Below sm it gives way
 					    to the mobile menu, which carries the same link. */}
-					<div className="ml-3 hidden items-center gap-3 sm:flex">
-						<div className="h-4.5 w-px bg-zinc-200 dark:bg-zinc-700" />
+					<div className="ml-4 hidden items-center gap-4 sm:flex">
 						<Link
 							href={getAssetPath(EVENT_HOME.href)}
 							variant="nav"
@@ -67,10 +66,13 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 						>
 							{EVENT_HOME.label}
 						</Link>
+						{/* Divider separates the lockup from the section links, so it goes
+						    only where those links do — below md it would trail off alone. */}
+						<div className="hidden h-4.5 w-px bg-zinc-200 md:block dark:bg-zinc-700" />
 					</div>
 
 					{/* Event links (desktop) */}
-					<div className="ml-8 hidden items-center gap-6 md:flex">
+					<div className="ml-4 hidden items-center gap-6 md:flex">
 						{EVENT_LINKS.map((link) => (
 							<Link
 								key={link.href}
