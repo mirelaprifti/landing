@@ -436,7 +436,7 @@ export function EffectDaysLivornoPage() {
 				<section className={sectionRhythm}>
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}The Program</p>
-						<h2 className={text.sectionTitle}>Three days of Effect</h2>
+						<h2 className={text.sectionTitle}>The Effect Days experience</h2>
 						<p className={text.subtitle}>
 							A community-driven, non-profit event celebrating{" "}
 							<br className="hidden md:inline" />
