@@ -853,12 +853,7 @@ export function EffectDaysLivornoPage() {
 									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
 									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
 
-									<Button
-										href="#tickets"
-										variant="primary"
-										size="md"
-										className="w-full"
-									>
+									<Button href="#tickets" variant="primary" size="md">
 										Get tickets
 										<Icon
 											name="arrow-up"

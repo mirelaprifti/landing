@@ -107,6 +107,7 @@ export function Navigation({
 	return (
 		<>
 			<div
+				data-site-nav
 				className={`fixed ${belowBanner ? "top-10" : "top-0"} right-0 left-0 z-100 w-full backdrop-blur-sm ${transparent ? "" : "border-b border-zinc-200 bg-zinc-50/85 dark:border-zinc-800 dark:bg-zinc-950/85"}`}
 			>
 				<div className="w-full">

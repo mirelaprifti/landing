@@ -573,6 +573,26 @@ a:focus-visible {
 	}
 }
 
+/* Site-wide announcement banner.
+   Hidden by default; the inline script in BaseLayout adds `has-announcement`
+   to <html> before first paint when it has not been dismissed, so there is no
+   flash for returning visitors and the fixed navbar never jumps. */
+[data-announcement] {
+	display: none;
+}
+
+:root.has-announcement [data-announcement] {
+	display: flex;
+}
+
+:root.has-announcement [data-site-nav] {
+	top: 2.5rem;
+}
+
+:root.has-announcement body {
+	padding-top: 2.5rem;
+}
+
 /* Terminal cursor — hard on/off with step-end, never a smooth fade */
 @keyframes terminal-blink {
 	50% {

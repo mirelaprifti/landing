@@ -1,5 +1,6 @@
 ---
 import "../styles/globals.css";
+import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
 
 interface Props {
 	title?: string;
@@ -102,8 +103,20 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
+    <!-- Announcement banner: decide visibility before first paint so a
+         dismissed banner never flashes and the fixed navbar never jumps -->
+    <script is:inline>
+      try {
+        if (!localStorage.getItem("effect-days-2026-banner-dismissed")) {
+          document.documentElement.classList.add("has-announcement");
+        }
+      } catch (_) {
+        document.documentElement.classList.add("has-announcement");
+      }
+    </script>
   </head>
   <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
+    <AnnouncementBanner client:load />
     <slot />
   </body>
 </html>
