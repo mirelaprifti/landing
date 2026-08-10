@@ -58,7 +58,9 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 					    while the label beside it returns to the event home — otherwise
 					    /effect-days/* pages have no way back to it. Below sm it gives way
 					    to the mobile menu, which carries the same link. */}
-					<div className="ml-4 hidden items-center gap-4 sm:flex">
+					{/* ml-8 matches the logo→Docs gap in the main site nav, so the two
+					    navbars start their links at the same place. */}
+					<div className="ml-8 hidden items-center gap-4 sm:flex">
 						<Link
 							href={getAssetPath(EVENT_HOME.href)}
 							variant="nav"
