@@ -570,7 +570,7 @@ export function AboutLivornoPage() {
 								<p className={text.eyebrow}>{"// "}Things to Do</p>
 								<h2 className={text.sectionTitle}>Make a trip of it</h2>
 
-								<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+								<div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
 									{[ACTIVITIES.slice(0, 2), ACTIVITIES.slice(2)].map((pair) => (
 										<div
 											key={pair[0].title}
