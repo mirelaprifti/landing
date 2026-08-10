@@ -386,7 +386,7 @@ export function AboutLivornoPage() {
 						<section id="transport" className={`scroll-mt-16 ${sectionRhythm}`}>
 							<div className={container}>
 								{/* Split section — text left, photo right */}
-								<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+								<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
 									<div>
 										<p className={text.eyebrow}>{"// "}Local Transportation</p>
 										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
@@ -429,7 +429,7 @@ export function AboutLivornoPage() {
 										</div>
 									</div>
 
-									<div className="overflow-hidden pl-4">
+									<div className="overflow-hidden">
 										<img
 											src={getAssetPath("/assets/effect-days/livorno-1.avif")}
 											alt="Boats on a canal in Livorno's Venezia Nuova district"
