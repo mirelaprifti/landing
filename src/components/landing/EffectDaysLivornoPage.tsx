@@ -427,6 +427,20 @@ export function EffectDaysLivornoPage() {
 									</Button>
 								</div>
 							</div>
+
+							{/* Below lg the absolute half-width photo above can't apply, so
+							    the same image runs in flow here instead of vanishing */}
+							<div className="relative overflow-hidden lg:hidden">
+								<img
+									src={getAssetPath("/assets/effect-days/ed-25-2.png")}
+									alt="The Effect community at Effect Days 2025 in Livorno"
+									className="aspect-16/9 w-full object-cover"
+								/>
+								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
+								<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+									{"// "}Effect Days 2025 · Livorno
+								</p>
+							</div>
 						</div>
 					</div>
 				</section>
