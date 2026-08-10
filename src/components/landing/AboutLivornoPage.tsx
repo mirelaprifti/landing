@@ -391,7 +391,7 @@ export function AboutLivornoPage() {
 										<p className={text.eyebrow}>{"// "}Local Transportation</p>
 										<h2 className={text.sectionTitle}>Moving around Livorno</h2>
 
-										<div className="mt-12 divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
+										<div className="mt-12 max-w-lg divide-y divide-zinc-200/50 dark:divide-zinc-800/50">
 											<div className="py-6 first:pt-0">
 												<h3 className={text.cardTitle}>By taxi</h3>
 												<p className={text.cardBody}>
@@ -429,7 +429,7 @@ export function AboutLivornoPage() {
 										</div>
 									</div>
 
-									<div className="overflow-hidden">
+									<div className="overflow-hidden pl-4">
 										<img
 											src={getAssetPath("/assets/effect-days/livorno-1.avif")}
 											alt="Boats on a canal in Livorno's Venezia Nuova district"
