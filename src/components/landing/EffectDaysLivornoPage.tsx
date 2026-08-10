@@ -194,8 +194,20 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 	},
 	{
 		question: "7. How do I get to Livorno?",
-		answer:
-			"The closest airport is Pisa (PSA), about 30 minutes away by train or car. Florence (FLR) is roughly 90 minutes away. Livorno Centrale station has direct rail connections to both.",
+		answer: (
+			<>
+				The closest airport is Pisa (PSA), about 30 minutes away by train or
+				car. Florence (FLR) is roughly 90 minutes away. Livorno Centrale station
+				has direct rail connections to both. See{" "}
+				<Link
+					href="/events/effect-days/about-livorno#airports"
+					variant="inline"
+				>
+					the nearest airports
+				</Link>{" "}
+				for details.
+			</>
+		),
 	},
 	{
 		question: "8. Is there a Code of Conduct?",
