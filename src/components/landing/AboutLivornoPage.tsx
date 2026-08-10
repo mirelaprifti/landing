@@ -2,8 +2,8 @@ import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import { EffectDaysNavigation } from "./EffectDaysNavigation";
 import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
 
 /* Canonical text styles copied verbatim from TypographyStyleguidePage (/styleguide). */
 const text = {
@@ -238,7 +238,7 @@ export function AboutLivornoPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/events" />
+			<EffectDaysNavigation activePath="/effect-days/about-livorno" />
 			<GridOverlay />
 
 			{/* Vertical border lines container — behind content, so full-bleed images cover them */}
@@ -273,7 +273,7 @@ export function AboutLivornoPage() {
 							{/* Left — copy */}
 							<div>
 								<Link
-									href="/events/effect-days"
+									href="/effect-days"
 									variant="subtle"
 									className="inline-flex items-center gap-1.5 font-medium"
 								>

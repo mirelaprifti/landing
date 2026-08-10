@@ -139,9 +139,9 @@ export function Footer({
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<Link
-										href={getAssetPath("/events/effect-days")}
+										href={getAssetPath("/effect-days")}
 										variant="footer"
-										active={activePath?.startsWith("/events")}
+										active={activePath?.startsWith("/effect-days")}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Effect Days

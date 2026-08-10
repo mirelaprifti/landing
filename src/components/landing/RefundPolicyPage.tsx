@@ -1,20 +1,20 @@
 import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
+import { EffectDaysNavigation } from "./EffectDaysNavigation";
 import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
 
 const LAST_UPDATED = "August 30, 2024";
 
 export function RefundPolicyPage() {
 	return (
 		<div className="min-h-screen bg-zinc-950 text-white">
-			<Navigation activePath="/events" />
+			<EffectDaysNavigation />
 
 			{/* Hero Section */}
 			<section className="relative pt-32 pb-16 md:pt-40 md:pb-20">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<Link
-						href="/events/effect-days"
+						href="/effect-days"
 						variant="subtle"
 						className="mb-6 inline-flex items-center gap-2"
 					>

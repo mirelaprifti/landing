@@ -38,7 +38,7 @@ const ogPages: OgPageDefinition[] = [
 		description: "Effect community events and conferences",
 	},
 	{
-		slug: "events/effect-days",
+		slug: "effect-days",
 		title: "Effect Days - Conference for TypeScript Engineers",
 		description: "The conference for TypeScript engineers building with Effect",
 	},

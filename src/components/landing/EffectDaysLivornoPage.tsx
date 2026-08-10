@@ -3,8 +3,8 @@ import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import { EffectDaysNavigation } from "./EffectDaysNavigation";
 import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
 
 /* Canonical text styles copied verbatim from TypographyStyleguidePage (/styleguide). */
 const text = {
@@ -185,7 +185,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 		answer: (
 			<>
 				Please refer to our{" "}
-				<Link href="/events/effect-days/refund-policy" variant="inline">
+				<Link href="/effect-days/refund-policy" variant="inline">
 					Refund Policy
 				</Link>{" "}
 				for more details.
@@ -199,10 +199,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 				The closest airport is Pisa (PSA), about 30 minutes away by train or
 				car. Florence (FLR) is roughly 90 minutes away. Livorno Centrale station
 				has direct rail connections to both. See{" "}
-				<Link
-					href="/events/effect-days/about-livorno#airports"
-					variant="inline"
-				>
+				<Link href="/effect-days/about-livorno#airports" variant="inline">
 					the nearest airports
 				</Link>{" "}
 				for details.
@@ -348,7 +345,7 @@ export function EffectDaysLivornoPage() {
 				Skip to main content
 			</a>
 
-			<Navigation activePath="/events" />
+			<EffectDaysNavigation />
 			<GridOverlay />
 
 			{/* Vertical border lines container — behind content, so full-bleed images cover them */}
@@ -433,7 +430,7 @@ export function EffectDaysLivornoPage() {
 				<SectionDivider />
 
 				{/* The Program - pipeline */}
-				<section className={sectionRhythm}>
+				<section id="program" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}The Program</p>
 						<h2 className={text.sectionTitle}>The Effect Days experience</h2>
@@ -469,7 +466,7 @@ export function EffectDaysLivornoPage() {
 				<SectionDivider />
 
 				{/* The Venue */}
-				<section className={sectionRhythm}>
+				<section id="venue" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						{/* Header — copy in the left half, links in the right half */}
 						<div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-baseline-last">
@@ -483,7 +480,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
 								<Link
-									href="/events/effect-days/about-livorno"
+									href="/effect-days/about-livorno"
 									variant="subtle"
 									className="inline-flex items-center gap-1.5 font-medium"
 								>
@@ -757,7 +754,7 @@ export function EffectDaysLivornoPage() {
 				<SectionDivider />
 
 				{/* FAQ Section */}
-				<section className={sectionRhythm}>
+				<section id="faq" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}FAQ</p>
 						<h2 className={text.sectionTitle}>Frequently Asked Questions</h2>

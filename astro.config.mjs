@@ -22,7 +22,9 @@ export default defineConfig({
 		],
 	},
 	redirects: {
-		"/effect-days": "/events/effect-days",
+		"/events/effect-days": "/effect-days",
+		"/events/effect-days/about-livorno": "/effect-days/about-livorno",
+		"/events/effect-days/refund-policy": "/effect-days/refund-policy",
 		"/effect-talks": "/community-hub",
 		"/spread-the-effect": "/community-hub",
 	},
