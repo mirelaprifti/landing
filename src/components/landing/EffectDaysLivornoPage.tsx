@@ -374,7 +374,7 @@ export function EffectDaysLivornoPage() {
 				Skip to main content
 			</a>
 
-			<EffectDaysNavigation />
+			<EffectDaysNavigation activePath="/effect-days" />
 			<GridOverlay />
 
 			{/* Vertical border lines container — behind content, so full-bleed images cover them */}

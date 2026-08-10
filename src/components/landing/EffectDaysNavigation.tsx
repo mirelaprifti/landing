@@ -15,8 +15,19 @@ const EVENT_LINKS = [
 	{ href: "/effect-days#faq", label: "FAQ" },
 ];
 
+/** The event home, offered on its own so `/effect-days/*` pages have a way back. */
+const EVENT_HOME = { href: "/effect-days", label: "Effect Days" };
+
 export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 	const [menuOpen, setMenuOpen] = useState(false);
+
+	// Anchors never mark active; the event home matches exactly so it does not
+	// light up on every /effect-days/* child page.
+	const isActive = (href: string) => {
+		if (href.includes("#")) return false;
+		if (href === EVENT_HOME.href) return activePath === EVENT_HOME.href;
+		return Boolean(activePath?.startsWith(href));
+	};
 
 	return (
 		<div
@@ -31,7 +42,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 								"/assets/effect-logo/Combination mark/SVG/effect-logo-black.svg",
 							)}
 							alt="Effect"
-							className="h-[1.75rem] w-auto dark:hidden"
+							className="h-[1.5rem] w-auto dark:hidden"
 						/>
 						<img
 							src={getAssetPath(
@@ -39,9 +50,24 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 							)}
 							alt=""
 							aria-hidden="true"
-							className="hidden h-[1.75rem] w-auto dark:block"
+							className="hidden h-[1.5rem] w-auto dark:block"
 						/>
 					</a>
+
+					{/* Sub-site lockup: the logo still returns to the main Effect site,
+					    while the label beside it returns to the event home — otherwise
+					    /effect-days/* pages have no way back to it. Below sm it gives way
+					    to the mobile menu, which carries the same link. */}
+					<div className="ml-3 hidden items-center gap-3 sm:flex">
+						<div className="h-4.5 w-px bg-zinc-200 dark:bg-zinc-700" />
+						<Link
+							href={getAssetPath(EVENT_HOME.href)}
+							variant="nav"
+							className="text-zinc-900 dark:text-white"
+						>
+							{EVENT_HOME.label}
+						</Link>
+					</div>
 
 					{/* Event links (desktop) */}
 					<div className="ml-8 hidden items-center gap-6 md:flex">
@@ -50,9 +76,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 								key={link.href}
 								href={getAssetPath(link.href)}
 								variant="nav"
-								active={
-									!link.href.includes("#") && activePath?.startsWith(link.href)
-								}
+								active={isActive(link.href)}
 							>
 								{link.label}
 							</Link>
@@ -107,15 +131,14 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 					className="border-t border-zinc-200 bg-zinc-50 md:hidden dark:border-zinc-800 dark:bg-zinc-950"
 				>
 					<ul className="mx-auto w-full max-w-[88rem] px-4 py-3">
-						{EVENT_LINKS.map((link) => (
+						{/* Event home leads the list — on small screens the header lockup is
+						    hidden, so this is the only route back to it. */}
+						{[EVENT_HOME, ...EVENT_LINKS].map((link) => (
 							<li key={link.href}>
 								<Link
 									href={getAssetPath(link.href)}
 									variant="nav"
-									active={
-										!link.href.includes("#") &&
-										activePath?.startsWith(link.href)
-									}
+									active={isActive(link.href)}
 									className="block py-3"
 									onClick={() => setMenuOpen(false)}
 								>
