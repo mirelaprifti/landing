@@ -624,17 +624,19 @@ export function EffectDaysLivornoPage() {
 
 						<div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
 							<div className="space-y-1">
-								<p className={text.body}>*Suitable for invoicing.</p>
+								<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+									*Suitable for invoicing.
+								</p>
 							</div>
 							<div className="space-y-1">
-								<p className={text.body}>
+								<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 									Selecting a pass takes you to Stripe to complete your
 									purchase.
 								</p>
 								{/* Group discounts are off the page while early bird is on sale —
 								    flip EARLY_BIRD_ON_SALE to bring this back. */}
 								{!EARLY_BIRD_ON_SALE && (
-									<p className={text.body}>
+									<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 										Group of 4+?{" "}
 										<Link
 											href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
