@@ -95,10 +95,12 @@ export function SaveToCalendar() {
 						/>
 						Google Calendar
 					</a>
+					{/* No `download` attribute on purpose: it forces a file save, whereas
+					    plain navigation lets Safari and iOS hand text/calendar straight to
+					    the Calendar app. Chrome downloads it either way. */}
 					<a
 						role="menuitem"
 						href={getAssetPath("/effect-days-2026.ics")}
-						download="effect-days-2026.ics"
 						onClick={() => setOpen(false)}
 						className={itemClass}
 					>
