@@ -448,7 +448,7 @@ export function AboutLivornoPage() {
 								<p className={text.eyebrow}>{"// "}Practical Tips</p>
 								<h2 className={text.sectionTitle}>Before you travel</h2>
 
-								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+								<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
 									<div className={card}>
 										{/* Header row — icon chip and meta tag share one line */}
 										<div className="flex items-center justify-between">
@@ -601,7 +601,7 @@ export function AboutLivornoPage() {
 								<p className={text.eyebrow}>{"// "}What to Eat</p>
 								<h2 className={text.sectionTitle}>Taste of Livorno</h2>
 
-								<div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+								<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 									{FOOD.map((dish) => (
 										<div
 											key={dish.title}
