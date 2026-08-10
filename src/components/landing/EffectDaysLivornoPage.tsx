@@ -375,47 +375,65 @@ export function EffectDaysLivornoPage() {
 			</div>
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
-				{/* Hero Section — copy and CTAs on one row, photo beneath, inside the grid */}
-				<section className="relative w-full pt-24 pb-4">
+				{/* Hero Section — copy left, photo bleeding off the right edge (lg+) */}
+				<section className="relative w-full pt-24 pb-20 md:pb-24 lg:pt-40 lg:pb-40">
+					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
+					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
+						<img
+							src={getAssetPath("/assets/effect-days/ed-25-2.png")}
+							alt="The Effect community at Effect Days 2025 in Livorno"
+							className="h-full w-full object-cover"
+						/>
+						{/* Blend into the dark page */}
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950 via-transparent to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950/70 via-transparent to-transparent" />
+						<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+							{"// "}Effect Days 2025 · Livorno
+						</p>
+					</div>
+
 					<div className={`relative ${container}`}>
-						{/* One reading path: eyebrow, title, pitch, then the CTAs */}
-						<div>
-							<p className={text.eyebrow}>
-								{"// "}Livorno, Italy · Dec 9–11, 2026
-							</p>
-							<h1 className={text.pageTitle}>Effect Days</h1>
-							<p className={`${text.subtitle} max-w-md`}>
-								For Effect and TypeScript engineers: three days of workshops,
-								talks, and community.
-							</p>
+						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
+							{/* Left — copy */}
+							<div>
+								<p className={text.eyebrow}>
+									{"// "}Livorno, Italy · Dec 9–11, 2026
+								</p>
+								<h1 className={text.pageTitle}>Effect Days</h1>
+								<p className={`${text.subtitle} max-w-md`}>
+									For Effect and TypeScript engineers: three days of workshops,
+									talks, and community.
+								</p>
 
-							<div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
-								<Button href="#tickets" variant="primary" size="lg">
-									<Icon name="ticket" className="text-lg" />
-									Get tickets
-								</Button>
-								<Button
-									href="https://discord.gg/effect-ts"
-									variant="secondary"
-									size="lg"
-								>
-									<i className="ri-discord-fill text-lg" />
-									Join the community
-								</Button>
+								<div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+									<Button href="#tickets" variant="primary" size="lg">
+										<Icon name="ticket" className="text-lg" />
+										Get tickets
+									</Button>
+									<Button
+										href="https://discord.gg/effect-ts"
+										variant="secondary"
+										size="lg"
+									>
+										<i className="ri-discord-fill text-lg" />
+										Join the community
+									</Button>
+								</div>
 							</div>
-						</div>
 
-						{/* Photo sits inside the container, aligned to the grid */}
-						<div className="relative mt-8 overflow-hidden">
-							<img
-								src={getAssetPath("/assets/effect-days/ed-25-2.png")}
-								alt="The Effect community at Effect Days 2025 in Livorno"
-								className="aspect-16/9 w-full object-cover md:aspect-21/9"
-							/>
-							<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
-							<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
-								{"// "}Effect Days 2025 · Livorno
-							</p>
+							{/* Below lg the absolute panel can't apply, so the same image runs
+							    in flow here instead of vanishing */}
+							<div className="relative overflow-hidden lg:hidden">
+								<img
+									src={getAssetPath("/assets/effect-days/ed-25-2.png")}
+									alt="The Effect community at Effect Days 2025 in Livorno"
+									className="aspect-16/9 w-full object-cover"
+								/>
+								<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
+								<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+									{"// "}Effect Days 2025 · Livorno
+								</p>
+							</div>
 						</div>
 					</div>
 				</section>
