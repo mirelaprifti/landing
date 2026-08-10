@@ -42,7 +42,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 								"/assets/effect-logo/Combination mark/SVG/effect-logo-black.svg",
 							)}
 							alt="Effect"
-							className="h-[1.5rem] w-auto dark:hidden"
+							className="h-[1.75rem] w-auto dark:hidden"
 						/>
 						<img
 							src={getAssetPath(
@@ -50,7 +50,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 							)}
 							alt=""
 							aria-hidden="true"
-							className="hidden h-[1.5rem] w-auto dark:block"
+							className="hidden h-[1.75rem] w-auto dark:block"
 						/>
 					</a>
 
