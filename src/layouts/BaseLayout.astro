@@ -38,6 +38,13 @@ function getOgImagePath(): string {
 const ogImagePath = getOgImagePath();
 const ogImageUrl = `${siteUrl}${base}${ogImagePath}`;
 const pagePathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+// On the Effect Days page itself the banner should jump to the tickets
+// section; everywhere else it should take you to the page.
+const onEffectDaysPage = pagePathname.replace(/^\/landing/, "") === "/effect-days";
+const announcementHref = onEffectDaysPage
+  ? "/effect-days#tickets"
+  : "/effect-days";
 const canonicalUrl = `${siteUrl}${pagePathname}`;
 ---
 
@@ -116,7 +123,7 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
     </script>
   </head>
   <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
-    <AnnouncementBanner client:load />
+    <AnnouncementBanner href={announcementHref} client:load />
     <slot />
   </body>
 </html>

@@ -11,7 +11,13 @@ import { getAssetPath } from "../../utils/assetPath";
  */
 export const ANNOUNCEMENT_STORAGE_KEY = "effect-days-2026-banner-dismissed";
 
-export function AnnouncementBanner() {
+export function AnnouncementBanner({
+	href = "/effect-days",
+}: {
+	/** Where the banner points. BaseLayout passes the tickets anchor when the
+	 *  visitor is already on the Effect Days page. */
+	href?: string;
+}) {
 	const dismiss = () => {
 		document.documentElement.classList.remove("has-announcement");
 		try {
@@ -36,7 +42,7 @@ export function AnnouncementBanner() {
 
 			{/* Whole-banner click target, sat behind the close button */}
 			<a
-				href={getAssetPath("/effect-days")}
+				href={getAssetPath(href)}
 				aria-label="Effect Days 2026, December 9–11: get early bird tickets"
 				className="absolute inset-0"
 			/>
