@@ -295,7 +295,7 @@ export function EffectDaysLivornoPage() {
 		return (
 			<div
 				key={faq.question}
-				className="border-b border-zinc-200/50 dark:border-zinc-800/50"
+				className="border-b border-zinc-200 dark:border-zinc-800"
 			>
 				<h3>
 					<button
