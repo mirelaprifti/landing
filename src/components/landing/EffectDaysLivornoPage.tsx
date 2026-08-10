@@ -375,21 +375,16 @@ export function EffectDaysLivornoPage() {
 			</div>
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
-				{/* Hero Section — copy and CTAs on one row, full-bleed photo beneath */}
-				<section className="relative w-full pt-16 pb-20 md:pt-24 md:pb-24 lg:pt-40 lg:pb-24">
+				{/* Hero Section — copy and CTAs on one row, photo beneath, inside the grid */}
+				<section className="relative w-full pt-24 pb-4">
 					<div className={`relative ${container}`}>
 						<div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
 							{/* Copy */}
 							<div>
-								<p className={text.eyebrow}>{"// "}3rd edition</p>
-								<h1 className={text.pageTitle}>Effect Days</h1>
-								<p className="mt-4 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-300">
-									<span className="text-zinc-900 dark:text-white">
-										Livorno, Italy
-									</span>
-									{" · "}
-									<span>Dec 9–11, 2026</span>
+								<p className={text.eyebrow}>
+									{"// "}Livorno, Italy · Dec 9–11, 2026
 								</p>
+								<h1 className={text.pageTitle}>Effect Days</h1>
 								<p className={`${text.subtitle} max-w-md`}>
 									For Effect and TypeScript engineers: three days of workshops,
 									talks, and community.
@@ -412,21 +407,19 @@ export function EffectDaysLivornoPage() {
 								</Button>
 							</div>
 						</div>
-					</div>
 
-					{/* Full-bleed photo, edge to edge beneath the copy */}
-					<div className="relative mt-12 w-full overflow-hidden md:mt-16">
-						<img
-							src={getAssetPath("/assets/effect-days/ed-25-2.png")}
-							alt="The Effect community at Effect Days 2025 in Livorno"
-							className="aspect-16/9 w-full object-cover md:aspect-21/9"
-						/>
-						{/* Blend the edges into the dark page */}
-						<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
-						<div className="pointer-events-none absolute inset-0 bg-linear-to-r from-zinc-950/60 via-transparent to-zinc-950/60" />
-						<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
-							{"// "}Effect Days 2025 · Livorno
-						</p>
+						{/* Photo sits inside the container, aligned to the grid */}
+						<div className="relative mt-12 overflow-hidden md:mt-16">
+							<img
+								src={getAssetPath("/assets/effect-days/ed-25-2.png")}
+								alt="The Effect community at Effect Days 2025 in Livorno"
+								className="aspect-16/9 w-full object-cover md:aspect-21/9"
+							/>
+							<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
+							<p className="absolute bottom-3 left-4 font-mono text-xs font-medium tracking-wider text-zinc-300 uppercase">
+								{"// "}Effect Days 2025 · Livorno
+							</p>
+						</div>
 					</div>
 				</section>
 
