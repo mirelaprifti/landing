@@ -68,8 +68,16 @@ const PASSES = [
 		],
 		featured: true,
 		pricing: {
-			self: { earlyBird: "€349", regular: "€449", url: null },
-			business: { earlyBird: "€549", regular: "€649", url: null },
+			self: {
+				earlyBird: "€349",
+				regular: "€449",
+				url: "https://book.stripe.com/9B6bJ14Zo6A3gHbfAZ9oc0J",
+			},
+			business: {
+				earlyBird: "€549",
+				regular: "€649",
+				url: "https://book.stripe.com/9B68wPgI6bUnbmRagF9oc0N",
+			},
 		},
 	},
 	{
@@ -81,8 +89,16 @@ const PASSES = [
 		],
 		featured: false,
 		pricing: {
-			self: { earlyBird: "€249", regular: "€299", url: null },
-			business: { earlyBird: "€399", regular: "€449", url: null },
+			self: {
+				earlyBird: "€249",
+				regular: "€299",
+				url: "https://book.stripe.com/7sY00j77wbUnfD760p9oc0K",
+			},
+			business: {
+				earlyBird: "€399",
+				regular: "€449",
+				url: "https://book.stripe.com/bJedR94ZobUnduZ3Sh9oc0O",
+			},
 		},
 	},
 ];
