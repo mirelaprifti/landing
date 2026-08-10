@@ -697,12 +697,21 @@ export function EffectDaysLivornoPage() {
 										    rule struck through the text */}
 										<div className="relative z-10 mb-6 flex items-center">
 											<span
-												className={`h-4 w-4 shrink-0 border ${
+												className={`flex h-4 w-4 shrink-0 items-center justify-center border ${
 													edition.status === "next"
 														? "border-zinc-900 bg-zinc-200 dark:border-zinc-300 dark:bg-zinc-700"
 														: "border-zinc-300 bg-white dark:border-zinc-600 dark:bg-zinc-950"
 												}`}
-											/>
+											>
+												{/* Past editions are ticked off; the next one stays an empty marker */}
+												{edition.status === "past" && (
+													<Icon
+														name="check"
+														className="text-[0.65rem] text-zinc-500 dark:text-zinc-400"
+														aria-hidden="true"
+													/>
+												)}
+											</span>
 											<h3
 												className={`${text.cardTitle} bg-white px-3 dark:bg-zinc-950`}
 											>

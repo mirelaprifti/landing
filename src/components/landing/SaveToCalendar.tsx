@@ -93,7 +93,10 @@ export function SaveToCalendar() {
 				onClick={() => setOpen((v) => !v)}
 				aria-haspopup="menu"
 				aria-expanded={open}
-				className="cursor-pointer"
+				// text-sm to match the menu labels; py-3.5 puts the 4px that the
+				// smaller line-height gives up back into the padding, so the button
+				// stays 48px tall and level with "Get tickets" beside it.
+				className="cursor-pointer py-3.5 text-sm"
 			>
 				<Icon name="calendar" className="text-lg" aria-hidden="true" />
 				Save to calendar
