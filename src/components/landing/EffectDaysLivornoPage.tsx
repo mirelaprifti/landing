@@ -622,7 +622,7 @@ export function EffectDaysLivornoPage() {
 							))}
 						</div>
 
-						<div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+						<div className="mt-4 grid grid-cols-1 gap-1 lg:grid-cols-2 lg:gap-6">
 							<div className="space-y-1">
 								<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 									*Suitable for invoicing.
