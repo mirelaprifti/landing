@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
@@ -15,6 +16,8 @@ const EVENT_LINKS = [
 ];
 
 export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
+	const [menuOpen, setMenuOpen] = useState(false);
+
 	return (
 		<div className="fixed top-0 right-0 left-0 z-100 w-full border-b border-zinc-200 bg-zinc-50/85 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/85">
 			<header className="relative mx-auto w-full max-w-[88rem] px-4">
@@ -37,7 +40,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 						/>
 					</a>
 
-					{/* Event links */}
+					{/* Event links (desktop) */}
 					<div className="ml-8 hidden items-center gap-6 md:flex">
 						{EVENT_LINKS.map((link) => (
 							<Link
@@ -53,8 +56,8 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 						))}
 					</div>
 
-					{/* Ticket CTA */}
-					<div className="ml-auto flex items-center">
+					{/* Ticket CTA + mobile menu toggle */}
+					<div className="ml-auto flex items-center gap-4">
 						<Button
 							href={getAssetPath("/effect-days#tickets")}
 							variant="primary"
@@ -63,9 +66,46 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 							<Icon name="ticket" className="text-base" />
 							Get tickets
 						</Button>
+						<button
+							type="button"
+							className="flex h-10 w-10 items-center justify-center text-zinc-700 md:hidden dark:text-zinc-300"
+							aria-label={menuOpen ? "Close menu" : "Open menu"}
+							aria-expanded={menuOpen}
+							aria-controls="effect-days-mobile-menu"
+							onClick={() => setMenuOpen((open) => !open)}
+						>
+							<Icon name={menuOpen ? "x" : "menu"} className="text-xl" />
+						</button>
 					</div>
 				</nav>
 			</header>
+
+			{/* Mobile menu */}
+			{menuOpen && (
+				<div
+					id="effect-days-mobile-menu"
+					className="border-t border-zinc-200 bg-zinc-50 md:hidden dark:border-zinc-800 dark:bg-zinc-950"
+				>
+					<ul className="mx-auto w-full max-w-[88rem] px-4 py-3">
+						{EVENT_LINKS.map((link) => (
+							<li key={link.href}>
+								<Link
+									href={getAssetPath(link.href)}
+									variant="nav"
+									active={
+										!link.href.includes("#") &&
+										activePath?.startsWith(link.href)
+									}
+									className="block py-3"
+									onClick={() => setMenuOpen(false)}
+								>
+									{link.label}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</div>
+			)}
 		</div>
 	);
 }
