@@ -818,7 +818,7 @@ export function EffectDaysLivornoPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 204px",
+							backgroundPosition: "0px 205px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
@@ -845,7 +845,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 
 							{/* CTA — col-start-9 col-span-4 */}
-							<div className="md:col-span-4 md:col-start-9 md:mt-[9px] md:self-start">
+							<div className="md:col-span-4 md:col-start-9 md:mt-[13px] md:self-start">
 								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
