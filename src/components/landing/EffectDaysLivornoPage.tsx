@@ -69,7 +69,7 @@ const PASSES = [
 		featured: true,
 		pricing: {
 			self: { earlyBird: "€349", regular: "€449", url: null },
-			business: { earlyBird: "€499", regular: "€599", url: null },
+			business: { earlyBird: "€549", regular: "€649", url: null },
 		},
 	},
 	{
@@ -82,7 +82,7 @@ const PASSES = [
 		featured: false,
 		pricing: {
 			self: { earlyBird: "€249", regular: "€299", url: null },
-			business: { earlyBird: "€349", regular: "€399", url: null },
+			business: { earlyBird: "€399", regular: "€449", url: null },
 		},
 	},
 ];
