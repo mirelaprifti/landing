@@ -1,6 +1,5 @@
 import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
-import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -20,13 +19,12 @@ export function CodeOfConductPage() {
 						<Icon name="arrow-left" />
 						Back to Effect Days
 					</Link>
-					<h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+						// Legal
+					</p>
+					<h1 className="leading-tighter text-3xl font-bold tracking-tight text-white md:text-4xl">
 						Code of Conduct
 					</h1>
-					<p className="mt-4 max-w-2xl text-lg text-zinc-400">
-						Effect Days is dedicated to providing a safe, inclusive, and
-						welcoming environment for all participants.
-					</p>
 				</div>
 			</section>
 
@@ -36,6 +34,10 @@ export function CodeOfConductPage() {
 					<div className="max-w-3xl space-y-12">
 						{/* Introduction */}
 						<div className="space-y-4">
+							<p className="text-base leading-relaxed text-zinc-300">
+								Effect Days is dedicated to providing a safe, inclusive, and
+								welcoming environment for all participants.
+							</p>
 							<p className="text-base leading-relaxed text-zinc-300">
 								We are committed to creating a conference experience that
 								promotes learning, collaboration, and the open exchange of
@@ -189,22 +191,16 @@ export function CodeOfConductPage() {
 						</div>
 
 						{/* Attribution */}
-						<div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-6">
-							<p className="text-sm text-zinc-400">
-								<span className="font-medium text-zinc-400">Attribution:</span>{" "}
+						<div className="space-y-3">
+							<p className="text-base leading-relaxed text-zinc-400">
 								This Code of Conduct is inspired by{" "}
-								<Link
-									href="https://config.figma.com/coc"
-									variant="inline"
-									className="text-zinc-300 hover:text-white"
-								>
+								<Link href="https://config.figma.com/coc" variant="inline">
 									Config by Figma
 								</Link>{" "}
 								and{" "}
 								<Link
 									href="https://www.reason-conf.com/code-of-conduct"
 									variant="inline"
-									className="text-zinc-300 hover:text-white"
 								>
 									ReasonConf by Nikolaus Graf
 								</Link>
@@ -216,7 +212,6 @@ export function CodeOfConductPage() {
 			</section>
 
 			<Footer activePath="/events" />
-			<GridOverlay />
 		</div>
 	);
 }

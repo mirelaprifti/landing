@@ -1,8 +1,9 @@
 import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
-import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+
+const LAST_UPDATED = "August 30, 2024";
 
 export function RefundPolicyPage() {
 	return (
@@ -20,14 +21,14 @@ export function RefundPolicyPage() {
 						<Icon name="arrow-left" />
 						Back to Effect Days
 					</Link>
-					<h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+						// Legal
+					</p>
+					<h1 className="leading-tighter text-3xl font-bold tracking-tight text-white md:text-4xl">
 						Ticket Refund Policy
 					</h1>
-					<p className="mt-4 max-w-2xl text-lg text-zinc-400">
-						How refunds are handled for Effect Days Conference tickets.
-					</p>
-					<p className="mt-4 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase">
-						Last updated: August 30, 2024
+					<p className="mt-4 max-w-2xl text-sm text-zinc-400">
+						Last updated: {LAST_UPDATED}
 					</p>
 				</div>
 			</section>
@@ -36,6 +37,13 @@ export function RefundPolicyPage() {
 			<section className="pb-24 md:pb-32">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<div className="max-w-3xl space-y-12">
+						<div className="space-y-4">
+							<p className="text-base leading-relaxed text-zinc-300">
+								This policy explains how refunds are handled for Effect Days
+								Conference tickets, sold by Effectful Technologies Inc.
+							</p>
+						</div>
+
 						{/* Section 1 */}
 						<div className="space-y-3">
 							<h2 className="leading-tighter text-xl font-semibold text-white">
@@ -113,19 +121,14 @@ export function RefundPolicyPage() {
 							</p>
 						</div>
 
-						{/* Closing */}
-						<div className="space-y-4 border-t border-zinc-800 pt-12">
-							<p className="text-base leading-relaxed text-zinc-300">
+						<div className="space-y-3">
+							<h2 className="leading-tighter text-xl font-semibold text-white">
+								7. Changes to this policy
+							</h2>
+							<p className="text-base leading-relaxed text-zinc-400">
 								This policy may change. The current version is always the one
-								published on this page and shown during purchase. If you have
-								questions before buying, reach us at{" "}
-								<Link
-									href="mailto:contact@effectful.co?subject=Effect Days - Refund Policy"
-									variant="inline"
-								>
-									contact@effectful.co
-								</Link>
-								.
+								published on this page and shown during purchase, along with the
+								date at the top.
 							</p>
 						</div>
 					</div>
@@ -133,7 +136,6 @@ export function RefundPolicyPage() {
 			</section>
 
 			<Footer activePath="/events" />
-			<GridOverlay />
 		</div>
 	);
 }
