@@ -62,7 +62,9 @@ export function HeroCommandPanel({
 		"VERSION_NOTE",
 		v4Stable ? VERSION_NOTES.stable : VERSION_NOTES.beta,
 	);
-	const [mode, setMode] = useState<Mode>("install");
+	// Single-mode panel today; the prompt copy below is kept for when the
+	// "Prompt for AI agents" tab comes back.
+	const mode: Mode = "install";
 	const [activePM, setActivePM] = useState<string>("bun");
 	const [copied, setCopied] = useState(false);
 	const [pmOpen, setPmOpen] = useState(false);
@@ -99,29 +101,6 @@ export function HeroCommandPanel({
 
 	return (
 		<div className="rounded-md bg-zinc-100/50 p-1 ring-1 ring-zinc-300 ring-inset dark:bg-zinc-900/50 dark:ring-zinc-700">
-			{/* Mode tabs: Install | Prompt for AI agents */}
-			<div
-				role="tablist"
-				className="flex border-b border-zinc-200 dark:border-zinc-800"
-			>
-				<button
-					type="button"
-					role="tab"
-					aria-selected={mode === "install"}
-					onClick={() => setMode("install")}
-					className={`group relative flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase transition-colors ${
-						mode === "install"
-							? "text-zinc-900 dark:text-white"
-							: "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
-					}`}
-				>
-					Install
-					{mode === "install" && (
-						<span className="absolute right-0 bottom-0 left-0 h-px bg-zinc-900 dark:bg-white" />
-					)}
-				</button>
-			</div>
-
 			{/* Command row — same height for INSTALL and PROMPT modes */}
 			<button
 				type="button"
@@ -152,8 +131,9 @@ export function HeroCommandPanel({
 								src={getAssetPath(PM_ICONS[activePM])}
 								alt=""
 								aria-hidden="true"
-								className={`${activePM === "npm" ? "h-6" : "h-5"} w-auto ${WHITE_PM_ICONS.has(activePM) ? "brightness-0 dark:brightness-100" : ""}`}
+								className={`${activePM === "npm" ? "h-5" : "h-4"} w-auto ${WHITE_PM_ICONS.has(activePM) ? "brightness-0 dark:brightness-100" : ""}`}
 							/>
+							<span>{activePM}</span>
 							<Icon
 								name="chevron-down"
 								className={`text-base text-zinc-500 transition-transform ${pmOpen ? "rotate-180" : ""}`}
@@ -185,7 +165,7 @@ export function HeroCommandPanel({
 												src={getAssetPath(PM_ICONS[pm])}
 												alt=""
 												aria-hidden="true"
-												className={`${pm === "npm" ? "h-6" : "h-5"} w-auto shrink-0 ${WHITE_PM_ICONS.has(pm) ? "brightness-0 dark:brightness-100" : ""}`}
+												className={`${pm === "npm" ? "h-5" : "h-4"} w-auto shrink-0 ${WHITE_PM_ICONS.has(pm) ? "brightness-0 dark:brightness-100" : ""}`}
 											/>
 											<span className="flex-1">{pm}</span>
 											{activePM === pm && (
