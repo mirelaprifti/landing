@@ -845,9 +845,9 @@ export function EffectDaysLivornoPage() {
 								</p>
 							</div>
 
-							{/* CTA — col-start-9 col-span-4 */}
-							<div className="md:col-span-4 md:col-start-9 md:mt-[13px] md:self-start">
-								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
+							{/* CTA — bracket box centred in the right half (cols 7-12) */}
+							<div className="md:col-span-6 md:col-start-7 md:mt-[13px] md:self-start">
+								<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-[23rem]">
 									{/* Corner brackets */}
 									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
 									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
