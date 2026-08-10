@@ -40,15 +40,22 @@ export function AnnouncementBanner() {
 				aria-label="Effect Days 2026, December 9–11: get early bird tickets"
 				className="absolute inset-0"
 			/>
-			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm font-medium">
+			{/* Three beats — event, date, action — told apart by weight and colour
+			    rather than by punctuation, so the line reads in one pass. */}
+			<div className="pointer-events-none flex min-w-0 items-center gap-3 text-sm">
 				<span className="truncate">
-					Effect Days 2026 · Dec 9–11 · Get early bird tickets
+					<span className="font-medium text-zinc-100">Effect Days 2026</span>
+					<span className="px-2 text-zinc-600">·</span>
+					<span className="text-zinc-400">Dec 9–11</span>
 				</span>
-				<Icon
-					name="arrow-right"
-					className="shrink-0 text-base transition-transform group-hover:translate-x-0.5"
-					aria-hidden="true"
-				/>
+				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
+					Early bird tickets
+					<Icon
+						name="arrow-right"
+						className="text-base transition-transform group-hover:translate-x-0.5"
+						aria-hidden="true"
+					/>
+				</span>
 			</div>
 
 			<button
