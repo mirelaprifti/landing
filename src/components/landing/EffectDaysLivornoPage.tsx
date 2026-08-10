@@ -678,7 +678,7 @@ export function EffectDaysLivornoPage() {
 										    rule struck through the text */}
 										<div className="relative z-10 mb-6 flex items-center">
 											<span
-												className={`h-5 w-5 shrink-0 border ${
+												className={`h-4 w-4 shrink-0 border ${
 													edition.status === "next"
 														? "border-zinc-900 bg-zinc-200 dark:border-zinc-300 dark:bg-zinc-700"
 														: "border-zinc-300 bg-white dark:border-zinc-600 dark:bg-zinc-950"
