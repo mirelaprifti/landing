@@ -660,15 +660,15 @@ export function AboutLivornoPage() {
 											{"// "}Dec 9–11, 2026 · Livorno, Italy
 										</p>
 										<h2 className={text.sectionTitle}>Enjoy Effect Days</h2>
-									<p className={`${text.subtitle} max-w-md`}>
-										Three days with the people building Effect{" "}
-										<br className="hidden lg:inline" />
-										and the people building with it.
-									</p>
+										<p className={`${text.subtitle} max-w-md`}>
+											Three days with the people building Effect{" "}
+											<br className="hidden lg:inline" />
+											and the people building with it.
+										</p>
 									</div>
 
-									<div className="md:col-span-4 md:col-start-9 md:mt-[9px] md:self-start">
-										<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-none">
+									<div className="md:col-span-6 md:col-start-7 md:mt-[13px] md:self-start">
+										<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-[23rem]">
 											<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
 											<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
 											<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
