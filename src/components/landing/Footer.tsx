@@ -139,6 +139,16 @@ export function Footer({
 							<ul className="flex flex-col items-start gap-2">
 								<li>
 									<Link
+										href={getAssetPath("/events/effect-days")}
+										variant="footer"
+										active={activePath?.startsWith("/events")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Effect Days
+									</Link>
+								</li>
+								<li>
+									<Link
 										href={getAssetPath("/podcast")}
 										variant="footer"
 										active={activePath?.startsWith("/podcast")}
@@ -165,16 +175,6 @@ export function Footer({
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Community Hub
-									</Link>
-								</li>
-								<li>
-									<Link
-										href={getAssetPath("/effect-jobs")}
-										variant="footer"
-										active={activePath?.startsWith("/effect-jobs")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Effect Jobs
 									</Link>
 								</li>
 								<li>
@@ -206,6 +206,16 @@ export function Footer({
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Blog
+									</Link>
+								</li>
+								<li>
+									<Link
+										href={getAssetPath("/effect-jobs")}
+										variant="footer"
+										active={activePath?.startsWith("/effect-jobs")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Effect Jobs
 									</Link>
 								</li>
 								<li>
