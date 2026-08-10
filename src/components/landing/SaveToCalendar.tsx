@@ -110,7 +110,9 @@ export function SaveToCalendar() {
 			{open && (
 				<div
 					role="menu"
-					className="absolute top-full left-0 z-20 mt-2 w-56 overflow-hidden rounded-md border border-zinc-200 bg-zinc-50 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+					// w-full resolves against the relative wrapper, which is sized by the
+					// button — so the menu tracks the button's width automatically.
+					className="absolute top-full left-0 z-20 mt-2 w-full overflow-hidden rounded-md border border-zinc-200 bg-zinc-50 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
 				>
 					{MENU.map((item) => (
 						<a

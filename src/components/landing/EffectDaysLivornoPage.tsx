@@ -707,7 +707,7 @@ export function EffectDaysLivornoPage() {
 												{edition.status === "past" && (
 													<Icon
 														name="check"
-														className="text-[0.65rem] text-zinc-500 dark:text-zinc-400"
+														className="text-[0.65rem] text-zinc-900 dark:text-white"
 														aria-hidden="true"
 													/>
 												)}
