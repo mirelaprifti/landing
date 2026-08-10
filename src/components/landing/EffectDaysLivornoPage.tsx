@@ -409,7 +409,7 @@ export function EffectDaysLivornoPage() {
 						</div>
 
 						{/* Photo sits inside the container, aligned to the grid */}
-						<div className="relative mt-12 overflow-hidden md:mt-16">
+						<div className="relative mt-8 overflow-hidden">
 							<img
 								src={getAssetPath("/assets/effect-days/ed-25-2.png")}
 								alt="The Effect community at Effect Days 2025 in Livorno"
