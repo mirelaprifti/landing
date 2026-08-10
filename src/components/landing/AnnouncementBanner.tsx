@@ -24,8 +24,16 @@ export function AnnouncementBanner() {
 	return (
 		<div
 			data-announcement
-			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 pr-12 pl-4 text-zinc-100 transition-colors has-[a:hover]:bg-zinc-800"
+			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 pr-12 pl-4 text-zinc-100"
 		>
+			{/* Hover flourish: a white glow that grows out of the middle of the bottom
+			    border and dissolves as it reaches the edges. Animation lives in
+			    globals.css so it can key off `:has(a:hover)` and reduced motion. */}
+			<span
+				aria-hidden="true"
+				className="announcement-sweep pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)] opacity-0"
+			/>
+
 			{/* Whole-banner click target, sat behind the close button */}
 			<a
 				href={getAssetPath("/effect-days")}

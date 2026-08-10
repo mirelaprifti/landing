@@ -838,9 +838,10 @@ export function EffectDaysLivornoPage() {
 									{"// "}Dec 9–11, 2026 · Livorno, Italy
 								</p>
 								<h2 className={text.sectionTitle}>Enjoy Effect Days</h2>
-								<p className={text.subtitle}>
-									Three days with the people building Effect and the people
-									building with it.
+								<p className={`${text.subtitle} max-w-md`}>
+									Three days with the people building Effect{" "}
+									<br className="hidden lg:inline" />
+									and the people building with it.
 								</p>
 							</div>
 
