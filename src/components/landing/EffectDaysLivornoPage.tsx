@@ -232,7 +232,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 			<>
 				Yes. Effect Days is dedicated to providing a harassment-free experience
 				for everyone. Please read our{" "}
-				<Link href="/events/code-of-conduct" variant="inline">
+				<Link href="/effect-days/code-of-conduct" variant="inline">
 					Code of Conduct
 				</Link>
 				.

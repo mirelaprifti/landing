@@ -28,9 +28,12 @@ export function AnnouncementBanner({
 	};
 
 	return (
+		/* Padding is symmetric so the message centres on the full banner width;
+		   3rem a side clears the absolutely-placed dismiss button, which sits
+		   outside the flow and so reserves no space of its own. */
 		<div
 			data-announcement
-			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-4 text-zinc-100"
+			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-12 text-zinc-100"
 		>
 			{/* Hover flourish: a white glow that grows out of the middle of the bottom
 			    border and dissolves as it reaches the edges. Animation lives in

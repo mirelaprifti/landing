@@ -1,6 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { generateOgImage, generateHomepageOgImage } from "../../og/og-image";
 import { EPISODES } from "../../data/episodes";
+import { generateHomepageOgImage, generateOgImage } from "../../og/og-image";
 
 interface OgPageDefinition {
 	slug: string;
@@ -43,7 +43,7 @@ const ogPages: OgPageDefinition[] = [
 		description: "The conference for TypeScript engineers building with Effect",
 	},
 	{
-		slug: "events/code-of-conduct",
+		slug: "effect-days/code-of-conduct",
 		title: "Code of Conduct - Effect Days",
 		description: "Effect Days code of conduct",
 	},
