@@ -5,6 +5,7 @@ import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { EffectDaysNavigation } from "./EffectDaysNavigation";
 import { Footer } from "./Footer";
+import { SaveToCalendar } from "./SaveToCalendar";
 
 /* Canonical text styles copied verbatim from TypographyStyleguidePage (/styleguide). */
 const text = {
@@ -443,6 +444,12 @@ export function EffectDaysLivornoPage() {
 										<i className="ri-discord-fill text-lg" />
 										Join the community
 									</Button>
+								</div>
+
+								{/* Deliberately quieter than the CTAs above: saving the date is
+								    for people who aren't ready to buy yet. */}
+								<div className="mt-5">
+									<SaveToCalendar />
 								</div>
 							</div>
 
