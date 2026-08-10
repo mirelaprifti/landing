@@ -574,7 +574,7 @@ export function AboutLivornoPage() {
 									{[ACTIVITIES.slice(0, 2), ACTIVITIES.slice(2)].map((pair) => (
 										<div
 											key={pair[0].title}
-											className="grid grid-cols-1 gap-2 md:grid-cols-2"
+											className="grid grid-cols-1 gap-4 md:grid-cols-2"
 										>
 											{pair.map((activity) => (
 												<div key={activity.title} className={card}>
