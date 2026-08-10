@@ -185,10 +185,7 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 		answer: (
 			<>
 				Please refer to our{" "}
-				<Link
-					href="https://effect-ts.webflow.io/events/effect-days/refund-policy"
-					variant="inline"
-				>
+				<Link href="/events/effect-days/refund-policy" variant="inline">
 					Refund Policy
 				</Link>{" "}
 				for more details.
