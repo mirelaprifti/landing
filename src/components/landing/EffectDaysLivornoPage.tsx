@@ -311,7 +311,7 @@ export function EffectDaysLivornoPage() {
 					}`}
 				>
 					<div className="overflow-hidden">
-						<p className={`${text.cardBody} pb-6`}>{faq.answer}</p>
+						<p className={`${text.body} pb-6`}>{faq.answer}</p>
 					</div>
 				</div>
 			</div>
