@@ -25,7 +25,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 		>
 			<header className="relative mx-auto w-full max-w-[88rem] px-4">
 				<nav className="flex h-16 items-center">
-					<a href="/" className="flex items-center">
+					<a href={getAssetPath("/")} className="flex items-center">
 						<img
 							src={getAssetPath(
 								"/assets/effect-logo/Combination mark/SVG/effect-logo-black.svg",

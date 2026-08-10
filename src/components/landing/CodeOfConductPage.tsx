@@ -1,5 +1,6 @@
 import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
+import { getAssetPath } from "../../utils/assetPath";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -12,7 +13,7 @@ export function CodeOfConductPage() {
 			<section className="relative pt-32 pb-16 md:pt-40 md:pb-20">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					<Link
-						href="/effect-days"
+						href={getAssetPath("/effect-days")}
 						variant="subtle"
 						className="mb-6 inline-flex items-center gap-2"
 					>

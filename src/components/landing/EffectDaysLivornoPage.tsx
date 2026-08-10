@@ -205,7 +205,10 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 		answer: (
 			<>
 				Please refer to our{" "}
-				<Link href="/effect-days/refund-policy" variant="inline">
+				<Link
+					href={getAssetPath("/effect-days/refund-policy")}
+					variant="inline"
+				>
 					Refund Policy
 				</Link>{" "}
 				for more details.
@@ -219,7 +222,10 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 				The closest airport is Pisa (PSA), about 30 minutes away by train or
 				car. Florence (FLR) is roughly 90 minutes away. Livorno Centrale station
 				has direct rail connections to both. See{" "}
-				<Link href="/effect-days/about-livorno#airports" variant="inline">
+				<Link
+					href={getAssetPath("/effect-days/about-livorno#airports")}
+					variant="inline"
+				>
 					the nearest airports
 				</Link>{" "}
 				for details.
@@ -232,7 +238,10 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 			<>
 				Yes. Effect Days is dedicated to providing a harassment-free experience
 				for everyone. Please read our{" "}
-				<Link href="/effect-days/code-of-conduct" variant="inline">
+				<Link
+					href={getAssetPath("/effect-days/code-of-conduct")}
+					variant="inline"
+				>
 					Code of Conduct
 				</Link>
 				.
@@ -507,7 +516,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
 								<Link
-									href="/effect-days/about-livorno"
+									href={getAssetPath("/effect-days/about-livorno")}
 									variant="subtle"
 									className="inline-flex items-center gap-1.5 font-medium"
 								>

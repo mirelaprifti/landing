@@ -273,7 +273,7 @@ export function AboutLivornoPage() {
 							{/* Left — copy */}
 							<div>
 								<Link
-									href="/effect-days"
+									href={getAssetPath("/effect-days")}
 									variant="subtle"
 									className="inline-flex items-center gap-1.5 font-medium"
 								>
