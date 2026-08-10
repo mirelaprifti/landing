@@ -29,13 +29,12 @@ export function AnnouncementBanner() {
 			{/* Whole-banner click target, sat behind the close button */}
 			<a
 				href={getAssetPath("/effect-days")}
-				aria-label="Effect Days 2026 in Livorno: early bird tickets on sale"
+				aria-label="Effect Days 2026: early bird tickets on sale"
 				className="absolute inset-0"
 			/>
 			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm font-medium">
 				<span className="truncate">
-					Effect Days returns to Livorno, Dec 9–11 2026 · Early bird tickets on
-					sale
+					Effect Days returns, Dec 9–11 2026 · Early bird tickets on sale
 				</span>
 				<Icon
 					name="arrow-right"
