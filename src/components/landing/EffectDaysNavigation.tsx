@@ -58,6 +58,15 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 
 					{/* Social icons + ticket CTA + mobile menu toggle */}
 					<div className="ml-auto flex items-center gap-4">
+						<Button
+							href={getAssetPath("/effect-days#tickets")}
+							variant="primary"
+							size="sm"
+						>
+							<Icon name="ticket" className="text-base" />
+							Get tickets
+						</Button>
+						<div className="hidden h-4.5 w-px bg-zinc-200 sm:block dark:bg-zinc-700" />
 						<div className="hidden items-center gap-4 sm:flex">
 							<Link
 								href="https://github.com/Effect-TS/effect"
@@ -74,15 +83,6 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 								<i className="ri-discord-fill text-xl" aria-hidden="true" />
 							</Link>
 						</div>
-						<div className="hidden h-4.5 w-px bg-zinc-200 sm:block dark:bg-zinc-700" />
-						<Button
-							href={getAssetPath("/effect-days#tickets")}
-							variant="primary"
-							size="sm"
-						>
-							<Icon name="ticket" className="text-base" />
-							Get tickets
-						</Button>
 						<button
 							type="button"
 							className="flex h-10 w-10 items-center justify-center text-zinc-700 md:hidden dark:text-zinc-300"
