@@ -667,7 +667,7 @@ export function AboutLivornoPage() {
 										</p>
 									</div>
 
-									<div className="md:col-span-6 md:col-start-7 md:mt-[13px] md:self-start">
+									<div className="md:col-span-6 md:col-start-7 md:mt-[9px] md:self-start">
 										<div className="relative mx-auto flex max-w-xs flex-col items-center gap-3 px-6 py-6 md:max-w-[23rem]">
 											<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 dark:border-zinc-700" />
 											<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 dark:border-zinc-700" />
@@ -677,7 +677,7 @@ export function AboutLivornoPage() {
 											<Button
 												href={getAssetPath("/effect-days#tickets")}
 												variant="primary"
-												size="md"
+												size="lg"
 												className="w-full"
 											>
 												Get tickets

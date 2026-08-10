@@ -45,8 +45,10 @@ export function AnnouncementBanner() {
 			<div className="pointer-events-none flex min-w-0 items-center gap-3 text-sm">
 				<span className="truncate">
 					<span className="font-medium text-zinc-100">Effect Days 2026</span>
-					<span className="px-2 text-zinc-600">·</span>
-					<span className="text-zinc-400">Dec 9–11</span>
+					{/* Date is the first thing to go on narrow screens — a truncated
+					    "Dec …" is worse than no date at all. */}
+					<span className="hidden px-2 text-zinc-600 sm:inline">·</span>
+					<span className="hidden text-zinc-400 sm:inline">Dec 9–11</span>
 				</span>
 				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
 					Early bird tickets
