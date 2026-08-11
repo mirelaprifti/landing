@@ -75,7 +75,7 @@ const PASSES = [
 			self: {
 				earlyBird: "€349",
 				regular: "€449",
-				url: "https://book.stripe.com/9B6bJ14Zo6A3gHbfAZ9oc0J",
+				url: "https://book.stripe.com/dRm6oH1Ncf6z9eJgF39oc0P",
 			},
 			business: {
 				earlyBird: "€549",
