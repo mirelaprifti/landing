@@ -685,12 +685,15 @@ export function EffectDaysLivornoPage() {
 				{/* Editions timeline */}
 				<section id="past-editions" className={sectionRhythm}>
 					<div className={container}>
-						<p className={text.eyebrow}>{"// "}The Journey</p>
-						<h2 className={text.sectionTitle}>Three editions and counting</h2>
+						<p className={text.eyebrow}>{"// "}3rd Edition</p>
+						<h2 className={text.sectionTitle}>
+							The Effect Days journey continues
+						</h2>
 
 						<div className="relative mt-12">
 							{/* Timeline line (desktop) — fades out past the last node, so the
-							    trailing run reads as "and counting" rather than an unterminated rule */}
+							    trailing run reads as the journey continuing rather than an
+							    unterminated rule */}
 							<div
 								className="absolute top-3.5 right-0 left-8 hidden text-zinc-300 md:block dark:text-zinc-700"
 								style={{
