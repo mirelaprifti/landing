@@ -573,11 +573,7 @@ export function EffectDaysLivornoPage() {
 				{/* Tickets Section */}
 				<section id="tickets" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<p className={text.eyebrow}>
-							{"// "}Only 100 tickets
-							<span className="px-1 text-zinc-400 dark:text-zinc-600">·</span>
-							Early bird on sale
-						</p>
+						<p className={text.eyebrow}>{"// "}Only 100 tickets</p>
 						<div className="flex flex-wrap items-center gap-3">
 							<h2 className={text.sectionTitle}>Choose your pass</h2>
 							{/* Same chip as the timeline's "Next stop" — the prices below are the
