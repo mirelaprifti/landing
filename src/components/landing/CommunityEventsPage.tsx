@@ -363,7 +363,7 @@ export function CommunityEventsPage() {
 				{/* Upcoming events */}
 				<section
 					id="upcoming-events"
-					className="scroll-mt-16 border-t border-zinc-800 py-24 md:pt-40"
+					className="scroll-mt-16 border-t border-zinc-800 py-24"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
