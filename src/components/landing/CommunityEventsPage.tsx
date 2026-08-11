@@ -186,10 +186,10 @@ const CHANNELS: {
 
 // Luma event ids for the "Upcoming events" embeds
 const UPCOMING_EVENTS: string[] = [
-	"evt-dD8Ky9OvDPnU2ln", // Effect Office Hours 40
+	// "evt-dD8Ky9OvDPnU2ln", // Effect Office Hours 40 — hidden for now
 	// "evt-535bkJt5SOkkL7W", // Effect NYC #2 — hidden for now
 	// "evt-CIXBbu7ySP61MNP", // Effect San Francisco — hidden for now
-	"evt-IpTTFhOGblrQdoK", // Effect Warsaw #1
+	// "evt-IpTTFhOGblrQdoK", // Effect Warsaw #1 — hidden for now
 ];
 
 function FormButton({
@@ -383,22 +383,24 @@ export function CommunityEventsPage() {
 							</Button>
 						</div>
 
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-							{UPCOMING_EVENTS.map((eventId) => (
-								<iframe
-									key={eventId}
-									src={`https://luma.com/embed/event/${eventId}/simple?lt=dark`}
-									title="Upcoming Effect community event"
-									scrolling="no"
-									className="h-[720px] w-full rounded-md border border-zinc-800 bg-[#131517]"
-									allow="fullscreen; payment"
-									loading="lazy"
-								/>
-							))}
-						</div>
+						{UPCOMING_EVENTS.length > 0 && (
+							<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+								{UPCOMING_EVENTS.map((eventId) => (
+									<iframe
+										key={eventId}
+										src={`https://luma.com/embed/event/${eventId}/simple?lt=dark`}
+										title="Upcoming Effect community event"
+										scrolling="no"
+										className="h-[720px] w-full rounded-md border border-zinc-800 bg-[#131517]"
+										allow="fullscreen; payment"
+										loading="lazy"
+									/>
+								))}
+							</div>
+						)}
 
 						{/* Full community events calendar */}
-						<div className="mt-4">
+						<div className="mt-12">
 							<iframe
 								src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
 								title="Effect community events calendar"
