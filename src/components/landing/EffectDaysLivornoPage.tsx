@@ -405,7 +405,7 @@ export function EffectDaysLivornoPage() {
 
 			<main id="main-content" className="relative z-10 w-full pt-16">
 				{/* Hero Section — copy left, photo bleeding off the right edge (lg+) */}
-				<section className="relative w-full pt-24 pb-16 md:pb-24 lg:pt-40 lg:pb-40">
+				<section className="relative w-full pt-20 pb-16 md:pt-24 md:pb-24 lg:pt-40 lg:pb-40">
 					{/* Right half — photo from the Livorno edition (lg+), full-bleed */}
 					<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 overflow-hidden lg:block">
 						<img
