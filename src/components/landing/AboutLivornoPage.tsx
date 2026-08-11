@@ -25,10 +25,10 @@ const text = {
 
 /* Styleguide chrome strings — copy verbatim. */
 const container = "mx-auto w-full max-w-[73.75rem] px-4";
-/* Mobile rhythm is tighter than the styleguide's py-24: 64 top / 16 bottom, so
-   consecutive sections sit 80px apart instead of 192px. Kept in step with the
-   Effect Days page — the two read as one sub-site. Desktop is unchanged. */
-const sectionRhythm = "pt-16 pb-4 md:pt-40 md:pb-24";
+/* Mobile top is tighter than the styleguide's py-24 — 64 instead of 96 — while
+   the bottom keeps the styleguide's 96. Kept in step with the Effect Days page:
+   the two read as one sub-site. Desktop is unchanged. */
+const sectionRhythm = "pt-16 pb-24 md:pt-40";
 const card =
 	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
 
