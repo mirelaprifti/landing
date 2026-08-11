@@ -60,7 +60,12 @@ const MENU = [
 	},
 ] as const;
 
-export function SaveToCalendar() {
+export function SaveToCalendar({
+	fullWidth = false,
+}: {
+	/** Stretch to the container, for stacked CTA boxes. Default sizes to the label. */
+	fullWidth?: boolean;
+} = {}) {
 	const [open, setOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -86,7 +91,10 @@ export function SaveToCalendar() {
 		"flex w-full items-center gap-2.5 px-3 py-1.5 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white";
 
 	return (
-		<div ref={ref} className="relative inline-block">
+		<div
+			ref={ref}
+			className={`relative ${fullWidth ? "block w-full" : "inline-block"}`}
+		>
 			<Button
 				variant="secondary"
 				size="lg"
@@ -96,7 +104,7 @@ export function SaveToCalendar() {
 				// text-sm to match the menu labels; py-3.5 puts the 4px that the
 				// smaller line-height gives up back into the padding, so the button
 				// stays 48px tall and level with "Get tickets" beside it.
-				className="cursor-pointer py-3.5 text-sm"
+				className={`cursor-pointer py-3.5 text-sm ${fullWidth ? "w-full" : ""}`}
 			>
 				<Icon name="calendar" className="text-lg" aria-hidden="true" />
 				Save to calendar

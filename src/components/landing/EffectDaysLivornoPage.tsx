@@ -887,6 +887,9 @@ export function EffectDaysLivornoPage() {
 											aria-hidden="true"
 										/>
 									</Button>
+									{/* Fallback for anyone who reached the end of the page without
+									    buying — the date is the next best thing to take away. */}
+									<SaveToCalendar fullWidth />
 								</div>
 							</div>
 						</div>
