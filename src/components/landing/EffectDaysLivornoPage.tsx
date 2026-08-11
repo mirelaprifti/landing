@@ -27,9 +27,9 @@ const text = {
 
 /* Styleguide chrome strings — copy verbatim. */
 const container = "mx-auto w-full max-w-[73.75rem] px-4";
-/* Mobile top is tighter than the styleguide's py-24 — 64 instead of 96 — while
-   the bottom keeps the styleguide's 96. Desktop is unchanged. */
-const sectionRhythm = "pt-16 pb-24 md:pt-40";
+/* Mobile rhythm is tighter than the styleguide's py-24: 64 top and bottom, so
+   consecutive sections sit 128px apart instead of 192px. Desktop is unchanged. */
+const sectionRhythm = "pt-16 pb-16 md:pt-40 md:pb-24";
 const card =
 	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
 
