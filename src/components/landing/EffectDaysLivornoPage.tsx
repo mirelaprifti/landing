@@ -686,9 +686,7 @@ export function EffectDaysLivornoPage() {
 				<section id="past-editions" className={sectionRhythm}>
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}3rd Edition</p>
-						<h2 className={text.sectionTitle}>
-							The Effect Days journey continues
-						</h2>
+						<h2 className={text.sectionTitle}>The journey continues</h2>
 
 						<div className="relative mt-12">
 							{/* Timeline line (desktop) — fades out past the last node, so the
