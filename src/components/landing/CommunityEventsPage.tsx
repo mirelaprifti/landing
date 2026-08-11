@@ -376,7 +376,7 @@ export function CommunityEventsPage() {
 									Join an upcoming event
 								</h2>
 								<p className="mt-4 text-lg text-zinc-400">
-									Office hours every Wednesday, plus meetups and conferences
+									Office Hours every Wednesday, plus meetups and conferences
 									hosted by the community worldwide.
 								</p>
 								<div className="mt-8 flex flex-wrap items-stretch gap-4">
