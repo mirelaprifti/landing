@@ -531,7 +531,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 						</div>
 
-						<div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
 							{/* Featured photo, full column height */}
 							<div className="overflow-hidden">
 								<img
