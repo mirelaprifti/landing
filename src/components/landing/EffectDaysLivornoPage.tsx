@@ -271,9 +271,10 @@ function PurchaseRow({
 	const content = (
 		<>
 			<span className="flex items-baseline gap-2">
+				{/* Same mute as the dot separator — the label and price carry the row */}
 				<Icon
 					name={icon}
-					className="self-center text-zinc-500 dark:text-zinc-400"
+					className="self-center text-zinc-400 dark:text-zinc-600"
 				/>
 				{label}
 				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
