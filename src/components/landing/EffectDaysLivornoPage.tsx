@@ -578,7 +578,16 @@ export function EffectDaysLivornoPage() {
 							<span className="px-1 text-zinc-400 dark:text-zinc-600">·</span>
 							Early bird on sale
 						</p>
-						<h2 className={text.sectionTitle}>Choose your pass</h2>
+						<div className="flex flex-wrap items-center gap-3">
+							<h2 className={text.sectionTitle}>Choose your pass</h2>
+							{/* Same chip as the timeline's "Next stop" — the prices below are the
+							    early bird tier, not the regular one */}
+							<span
+								className={`${text.micro} border border-zinc-400 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950`}
+							>
+								Early bird
+							</span>
+						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
 							{PASSES.map((pass) => (
