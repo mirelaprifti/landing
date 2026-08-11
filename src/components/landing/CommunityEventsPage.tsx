@@ -366,21 +366,39 @@ export function CommunityEventsPage() {
 					className="scroll-mt-16 border-t border-zinc-800 py-24 md:pt-40"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
-							// Upcoming events
-						</p>
-						<div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-							<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
-								Join an upcoming event
-							</h2>
-							<Button
-								href="https://luma.com/effect-community"
-								variant="secondary"
-								className="shrink-0"
-							>
-								View events calendar
-								<Icon name="arrow-up-right" className="text-base" />
-							</Button>
+						<div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
+							{/* Left — copy */}
+							<div>
+								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
+									// Upcoming events
+								</p>
+								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
+									Join an upcoming event
+								</h2>
+								<div className="mt-8 flex flex-wrap items-stretch gap-4">
+									<Button
+										href="https://luma.com/effect-community"
+										variant="secondary"
+										className="shrink-0"
+									>
+										View events calendar
+										<Icon name="arrow-up-right" className="text-base" />
+									</Button>
+								</div>
+							</div>
+
+							{/* Right — full community events calendar */}
+							<div>
+								<iframe
+									src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
+									title="Effect community events calendar"
+									className="h-[450px] w-full rounded-md border border-zinc-800 bg-[#131517]"
+									allow="fullscreen"
+									loading="lazy"
+									aria-hidden="false"
+									tabIndex={0}
+								/>
+							</div>
 						</div>
 
 						{UPCOMING_EVENTS.length > 0 && (
@@ -398,19 +416,6 @@ export function CommunityEventsPage() {
 								))}
 							</div>
 						)}
-
-						{/* Full community events calendar */}
-						<div className="mt-12">
-							<iframe
-								src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
-								title="Effect community events calendar"
-								className="h-[450px] w-full rounded-md border border-zinc-800 bg-[#131517]"
-								allow="fullscreen"
-								loading="lazy"
-								aria-hidden="false"
-								tabIndex={0}
-							/>
-						</div>
 					</div>
 				</section>
 
