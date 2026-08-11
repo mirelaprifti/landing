@@ -392,7 +392,7 @@ export function CommunityEventsPage() {
 								<iframe
 									src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
 									title="Effect community events calendar"
-									className="h-[440px] w-full border border-zinc-800 bg-[#131517]"
+									className="h-[480px] w-full border border-zinc-800 bg-[#131517]"
 									allow="fullscreen"
 									loading="lazy"
 									aria-hidden="false"
