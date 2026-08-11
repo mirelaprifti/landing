@@ -283,10 +283,15 @@ function PurchaseRow({
 		</>
 	);
 
+	/* The secondary variant's fill is translucent, which vanishes against this
+	   card's own surface and leaves the row reading as a table row rather than a
+	   control. Opaque fill + a stronger ring gives it back its edges — it matters
+	   most on touch, where there is no hover to reveal it. */
 	const shared = {
 		variant: "secondary" as const,
 		size: "lg" as const,
-		className: "w-full justify-between",
+		className:
+			"w-full cursor-pointer justify-between bg-zinc-100 inset-ring-zinc-300 hover:bg-zinc-200 dark:bg-zinc-800 dark:inset-ring-zinc-600 dark:hover:bg-zinc-700",
 	};
 
 	return price.url ? (
