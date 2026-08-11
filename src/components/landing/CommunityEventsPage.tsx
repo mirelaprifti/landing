@@ -392,7 +392,7 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* Right — full community events calendar */}
-							<div className="relative border border-zinc-800 bg-[#131517]">
+							<div className="relative bg-[#131517]">
 								<iframe
 									src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
 									title="Effect community events calendar"
