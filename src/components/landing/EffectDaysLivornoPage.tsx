@@ -598,13 +598,9 @@ export function EffectDaysLivornoPage() {
 									<div className="mt-6 space-y-3 font-mono text-sm">
 										{pass.days.map((day) => (
 											<div key={day.date} className="flex items-center gap-3">
-												<span
-													className={`flex h-4 w-4 shrink-0 items-center justify-center border ${
-														day.included
-															? "border-zinc-300 dark:border-zinc-600"
-															: "border-zinc-200 dark:border-zinc-700"
-													}`}
-												>
+												{/* Same muted tone as the · separator, so the checklist chrome sits
+										    at one weight and only the marks distinguish the rows */}
+												<span className="flex h-4 w-4 shrink-0 items-center justify-center border border-zinc-400 dark:border-zinc-600">
 													{day.included && (
 														<Icon
 															name="check"
