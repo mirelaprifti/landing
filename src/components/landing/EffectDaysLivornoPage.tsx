@@ -64,9 +64,9 @@ const PASSES = [
 	{
 		name: "Workshop, Conference & Community Pass",
 		days: [
-			{ label: "Dec 9 · Workshop Day", included: true },
-			{ label: "Dec 10 · Conference Day", included: true },
-			{ label: "Dec 11 · Community Day", included: true },
+			{ date: "Dec 9", name: "Workshop Day", included: true },
+			{ date: "Dec 10", name: "Conference Day", included: true },
+			{ date: "Dec 11", name: "Community Day", included: true },
 		],
 		featured: true,
 		pricing: {
@@ -85,9 +85,9 @@ const PASSES = [
 	{
 		name: "Conference & Community Pass",
 		days: [
-			{ label: "Dec 9 · Workshop Day", included: false },
-			{ label: "Dec 10 · Conference Day", included: true },
-			{ label: "Dec 11 · Community Day", included: true },
+			{ date: "Dec 9", name: "Workshop Day", included: false },
+			{ date: "Dec 10", name: "Conference Day", included: true },
+			{ date: "Dec 11", name: "Community Day", included: true },
 		],
 		featured: false,
 		pricing: {
@@ -574,7 +574,9 @@ export function EffectDaysLivornoPage() {
 				<section id="tickets" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						<p className={text.eyebrow}>
-							{"// "}Only 100 tickets · Early bird on sale
+							{"// "}Only 100 tickets
+							<span className="px-1 text-zinc-400 dark:text-zinc-600">·</span>
+							Early bird on sale
 						</p>
 						<h2 className={text.sectionTitle}>Choose your pass</h2>
 
@@ -595,7 +597,7 @@ export function EffectDaysLivornoPage() {
 									    exists there to mask the connector line. */}
 									<div className="mt-6 space-y-3 font-mono text-sm">
 										{pass.days.map((day) => (
-											<div key={day.label} className="flex items-center gap-3">
+											<div key={day.date} className="flex items-center gap-3">
 												<span
 													className={`flex h-4 w-4 shrink-0 items-center justify-center border ${
 														day.included
@@ -618,7 +620,11 @@ export function EffectDaysLivornoPage() {
 															: "text-zinc-500 dark:text-zinc-500"
 													}
 												>
-													{day.label}
+													{day.date}
+													<span className="px-1.5 text-zinc-400 dark:text-zinc-600">
+														·
+													</span>
+													{day.name}
 												</span>
 											</div>
 										))}
