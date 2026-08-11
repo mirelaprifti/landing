@@ -260,22 +260,15 @@ const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
 /* Purchase row — a full-width Button; renders as an anchor once the Stripe
    checkout URL is filled in on the pass, and as a <button> until then. */
 function PurchaseRow({
-	icon,
 	label,
 	price,
 }: {
-	icon: "user" | "building";
 	label: string;
 	price: { earlyBird: string; regular: string; url: string | null };
 }) {
 	const content = (
 		<>
 			<span className="flex items-baseline gap-2">
-				{/* Same mute as the dot separator — the label and price carry the row */}
-				<Icon
-					name={icon}
-					className="self-center text-zinc-400 dark:text-zinc-600"
-				/>
 				{label}
 				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
 					·
@@ -657,13 +650,8 @@ export function EffectDaysLivornoPage() {
 
 									{/* Purchase rows */}
 									<div className="mt-6 space-y-3">
+										<PurchaseRow label="Self-pay" price={pass.pricing.self} />
 										<PurchaseRow
-											icon="user"
-											label="Self-pay"
-											price={pass.pricing.self}
-										/>
-										<PurchaseRow
-											icon="building"
 											label="Business-pay*"
 											price={pass.pricing.business}
 										/>
