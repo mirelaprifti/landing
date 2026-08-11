@@ -366,7 +366,7 @@ export function CommunityEventsPage() {
 					className="scroll-mt-16 border-t border-zinc-800 py-24 md:pt-40"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
+						<div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
 							{/* Left — copy */}
 							<div>
 								<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-400 uppercase">
@@ -375,6 +375,10 @@ export function CommunityEventsPage() {
 								<h2 className="leading-tighter text-2xl font-semibold text-white md:text-3xl">
 									Join an upcoming event
 								</h2>
+								<p className="mt-4 text-lg text-zinc-400">
+									Office hours every Wednesday, plus meetups and conferences
+									hosted by the community worldwide.
+								</p>
 								<div className="mt-8 flex flex-wrap items-stretch gap-4">
 									<Button
 										href="https://luma.com/effect-community"
@@ -388,16 +392,18 @@ export function CommunityEventsPage() {
 							</div>
 
 							{/* Right — full community events calendar */}
-							<div>
+							<div className="relative border border-zinc-800 bg-[#131517]">
 								<iframe
 									src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
 									title="Effect community events calendar"
-									className="h-[500px] w-full border border-zinc-800 bg-[#131517]"
+									className="block h-[560px] w-full"
 									allow="fullscreen"
 									loading="lazy"
 									aria-hidden="false"
 									tabIndex={0}
 								/>
+								{/* Fade the clipped last row so the cut reads as scrollable */}
+								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-[#131517] to-transparent" />
 							</div>
 						</div>
 
