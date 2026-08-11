@@ -276,6 +276,9 @@ function PurchaseRow({
 					className="self-center text-zinc-500 dark:text-zinc-400"
 				/>
 				{label}
+				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
+					·
+				</span>
 				<span className="text-sm text-zinc-500 line-through dark:text-zinc-400">
 					{price.regular}
 				</span>
@@ -291,10 +294,13 @@ function PurchaseRow({
 		</>
 	);
 
+	/* Tighter horizontal padding below md: at 390px the longest label
+	   ("Business-pay*") plus both prices needs the room, or it wraps to two
+	   lines and the row grows. */
 	const shared = {
 		variant: "secondary" as const,
 		size: "lg" as const,
-		className: "w-full justify-between",
+		className: "w-full justify-between px-4 md:px-6",
 	};
 
 	return price.url ? (
