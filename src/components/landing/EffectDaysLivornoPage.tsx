@@ -838,7 +838,10 @@ export function EffectDaysLivornoPage() {
 							backgroundImage:
 								"linear-gradient(to bottom, rgba(39, 39, 42, 0.8) 1px, transparent 1px)",
 							backgroundSize: "100% 1px",
-							backgroundPosition: "0px 205px",
+							/* Tracks the heading's first-line baseline. The grid is
+							   items-center, so anything that changes either column's height
+							   moves the heading and this needs re-measuring. */
+							backgroundPosition: "0px 210px",
 							backgroundRepeat: "no-repeat",
 						}}
 					/>
