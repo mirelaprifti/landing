@@ -589,18 +589,26 @@ export function EffectDaysLivornoPage() {
 								>
 									<h3 className={text.cardTitle}>{pass.name}</h3>
 
-									{/* Day checklist, mono style */}
+									{/* Day checklist, mono style. The marker is the same ticked box
+									    the editions timeline uses, minus the opaque fill that only
+									    exists there to mask the connector line. */}
 									<div className="mt-6 space-y-3 font-mono text-sm">
 										{pass.days.map((day) => (
 											<div key={day.label} className="flex items-center gap-3">
 												<span
-													className={
+													className={`flex h-4 w-4 shrink-0 items-center justify-center border ${
 														day.included
-															? "text-zinc-900 dark:text-white"
-															: "text-zinc-400 dark:text-zinc-600"
-													}
+															? "border-zinc-300 dark:border-zinc-600"
+															: "border-zinc-200 dark:border-zinc-700"
+													}`}
 												>
-													{day.included ? "[✓]" : "[ ]"}
+													{day.included && (
+														<Icon
+															name="check"
+															className="text-[0.65rem] text-zinc-900 dark:text-white"
+															aria-hidden="true"
+														/>
+													)}
 												</span>
 												<span
 													className={
