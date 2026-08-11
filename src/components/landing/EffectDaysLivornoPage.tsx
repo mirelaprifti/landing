@@ -270,28 +270,31 @@ function PurchaseRow({
 }) {
 	const content = (
 		<>
-			<span className="flex items-center gap-2">
-				<Icon name={icon} className="text-zinc-500 dark:text-zinc-400" />
-				{label}
-			</span>
 			<span className="flex items-baseline gap-2">
+				<Icon
+					name={icon}
+					className="self-center text-zinc-500 dark:text-zinc-400"
+				/>
+				{label}
 				<span className="text-sm text-zinc-500 line-through dark:text-zinc-400">
 					{price.regular}
 				</span>
 				<span className="text-base font-semibold">{price.earlyBird}</span>
 			</span>
+			{/* Trailing arrow marks the row as something that goes somewhere —
+			    the affordance a touch device can't get from hover. */}
+			<Icon
+				name="arrow-up-right"
+				className="shrink-0 text-zinc-500 dark:text-zinc-400"
+				aria-hidden="true"
+			/>
 		</>
 	);
 
-	/* The secondary variant's fill is translucent, which vanishes against this
-	   card's own surface and leaves the row reading as a table row rather than a
-	   control. Opaque fill + a stronger ring gives it back its edges — it matters
-	   most on touch, where there is no hover to reveal it. */
 	const shared = {
 		variant: "secondary" as const,
 		size: "lg" as const,
-		className:
-			"w-full cursor-pointer justify-between bg-zinc-100 inset-ring-zinc-300 hover:bg-zinc-200 dark:bg-zinc-800 dark:inset-ring-zinc-600 dark:hover:bg-zinc-700",
+		className: "w-full justify-between",
 	};
 
 	return price.url ? (
