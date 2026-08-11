@@ -396,6 +396,19 @@ export function CommunityEventsPage() {
 								/>
 							))}
 						</div>
+
+						{/* Full community events calendar */}
+						<div className="mt-4">
+							<iframe
+								src="https://luma.com/embed/calendar/cal-6pnQFi64vfu2qlO/events"
+								title="Effect community events calendar"
+								className="h-[450px] w-full rounded-md border border-zinc-800 bg-[#131517]"
+								allow="fullscreen"
+								loading="lazy"
+								aria-hidden="false"
+								tabIndex={0}
+							/>
+						</div>
 					</div>
 				</section>
 
