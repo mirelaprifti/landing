@@ -434,8 +434,13 @@ export function EffectDaysLivornoPage() {
 									talks, and community.
 								</p>
 
-								<div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
-									<Button href="#tickets" variant="primary" size="lg">
+								<div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-start">
+									<Button
+										href="#tickets"
+										variant="primary"
+										size="lg"
+										className="w-full sm:w-auto"
+									>
 										<Icon name="ticket" className="text-lg" />
 										Get tickets
 									</Button>

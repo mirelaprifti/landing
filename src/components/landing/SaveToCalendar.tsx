@@ -93,7 +93,7 @@ export function SaveToCalendar({
 	return (
 		<div
 			ref={ref}
-			className={`relative ${fullWidth ? "block w-full" : "inline-block"}`}
+			className={`relative ${fullWidth ? "block w-full" : "block w-full sm:inline-block sm:w-auto"}`}
 		>
 			<Button
 				variant="secondary"
@@ -104,7 +104,7 @@ export function SaveToCalendar({
 				// text-sm to match the menu labels; py-3.5 puts the 4px that the
 				// smaller line-height gives up back into the padding, so the button
 				// stays 48px tall and level with "Get tickets" beside it.
-				className={`cursor-pointer py-3.5 text-sm ${fullWidth ? "w-full" : ""}`}
+				className={`cursor-pointer py-3.5 text-sm ${fullWidth ? "w-full" : "w-full sm:w-auto"}`}
 			>
 				<Icon name="calendar" className="text-lg" aria-hidden="true" />
 				Save to calendar
