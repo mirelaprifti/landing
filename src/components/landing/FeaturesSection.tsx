@@ -270,12 +270,8 @@ export function FeaturesSection() {
 				</div>
 
 				{/* Attribution */}
-				<p className="mt-3 px-4 text-right font-mono text-xs text-zinc-500 dark:text-zinc-400">
-					<Link
-						href="https://github.com/kitlangton/visual-effect"
-						variant="subtle"
-						className="text-xs"
-					>
+				<p className="mt-4 px-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+					<Link href="https://github.com/kitlangton/visual-effect">
 						Visual Effect
 					</Link>{" "}
 					by Kit Langton
