@@ -489,7 +489,7 @@ export function PlaygroundMockPage() {
 					variant="ghost"
 					size="sm"
 					onClick={() => setResetConfirmOpen(true)}
-					className="inset-ring inset-ring-zinc-300 h-7.5 bg-zinc-50 px-3 py-0 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+					className="inset-ring inset-ring-zinc-300 h-7.5 bg-zinc-50 px-3 py-0 text-xs text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 				>
 					Reset
 				</Button>
@@ -501,7 +501,7 @@ export function PlaygroundMockPage() {
 					onClick={() => setShareOpen((open) => !open)}
 					aria-haspopup="dialog"
 					aria-expanded={shareOpen}
-					className="inset-ring inset-ring-zinc-300 h-7.5 bg-zinc-50 px-3 py-0 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+					className="inset-ring inset-ring-zinc-300 h-7.5 bg-zinc-50 px-3 py-0 text-xs text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 				>
 					Share
 				</Button>
