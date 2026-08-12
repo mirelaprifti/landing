@@ -13,11 +13,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
-import {
-	type EffectVersion,
-	VERSION_LABELS,
-	VersionSwitch,
-} from "../ui/VersionSwitch";
+import { type EffectVersion, VersionSwitch } from "../ui/VersionSwitch";
 import { Navigation } from "./Navigation";
 
 /**
@@ -53,8 +49,11 @@ import { Navigation } from "./Navigation";
  * - The target label carries its `(rc)` qualifier. "v4" alone understates that
  *   you are pointing an experiment at a release candidate.
  * - Switching is a rebuild, not a filter: it rewrites package.json, reinstalls
- *   in the webcontainer and reboots the dev server. The mock replays the real
- *   boot sequence on every switch so the cost is visible in the comparison.
+ *   in the webcontainer and reboots the dev server. The mock switches instantly
+ *   anyway — replaying the boot overlay on every click made the study tedious
+ *   to click through, and the cost belongs in the real thing, shown inline
+ *   (a quiet state on the row, the terminal streaming the install) rather than
+ *   as a full-screen takeover.
  * - Switching keeps the buffer. The playground is for trying things, and Reset
  *   is already a separate confirmed action — a switch that silently discarded
  *   edits would be a second, unlabelled reset. In the real playground this
@@ -367,28 +366,16 @@ const BOOT_STEPS = [
 	"Starting dev server",
 ];
 
-/** Steps replayed when the version switch rebuilds the sandbox. */
-function rebuildSteps(version: EffectVersion): string[] {
-	return [
-		"Rewriting package.json",
-		`Installing effect@${VERSION_DEPS[version].effect}`,
-		"Restarting dev server",
-	];
-}
-
 /**
  * Boot loader overlay in the editorial design system — mock version of the
- * playground's real loading screen, simulating the boot sequence on mount and
- * replayed (with `steps` describing the reinstall) on every version switch.
+ * playground's real loading screen, simulating the boot sequence on mount.
  */
 function PlaygroundLoader({
 	steps = BOOT_STEPS,
 	title = "Loading Playground",
-	onDone,
 }: {
 	steps?: string[];
 	title?: string;
-	onDone?: () => void;
 }) {
 	const [doneCount, setDoneCount] = useState(0);
 	const [hidden, setHidden] = useState(false);
@@ -398,12 +385,9 @@ function PlaygroundLoader({
 			const timer = setTimeout(() => setDoneCount((n) => n + 1), 400);
 			return () => clearTimeout(timer);
 		}
-		const timer = setTimeout(() => {
-			setHidden(true);
-			onDone?.();
-		}, 300);
+		const timer = setTimeout(() => setHidden(true), 300);
 		return () => clearTimeout(timer);
-	}, [doneCount, steps.length, onDone]);
+	}, [doneCount, steps.length]);
 
 	const visibleSteps = steps.slice(0, Math.min(doneCount + 1, steps.length));
 
@@ -473,23 +457,13 @@ export function PlaygroundMockPage() {
 	const [placement, setPlacement] = useState<Placement>("bar");
 
 	const [version, setVersion] = useState<EffectVersion>("v3");
-	// Non-null while the sandbox is reinstalling after a switch.
-	const [rebuildingTo, setRebuildingTo] = useState<EffectVersion | null>(null);
 
 	const SHARE_URL = "https://effect.website/play#cb512fbe0b7a";
-
-	// A switch is a rebuild: the version flips immediately (so the control never
-	// lags the pointer), and the sandbox reinstalls behind the boot overlay.
-	const switchVersion = (next: EffectVersion) => {
-		if (next === version) return;
-		setVersion(next);
-		setRebuildingTo(next);
-	};
 
 	const versionSwitch = (
 		<VersionSwitch
 			value={version}
-			onChange={switchVersion}
+			onChange={setVersion}
 			aria-label="Effect version for this playground"
 		/>
 	);
@@ -622,16 +596,7 @@ export function PlaygroundMockPage() {
 	return (
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<Navigation activePath="/play" fullWidth />
-			{rebuildingTo ? (
-				<PlaygroundLoader
-					key={rebuildingTo}
-					steps={rebuildSteps(rebuildingTo)}
-					title={`Switching to ${VERSION_LABELS[rebuildingTo]}`}
-					onDone={() => setRebuildingTo(null)}
-				/>
-			) : (
-				<PlaygroundLoader />
-			)}
+			<PlaygroundLoader />
 
 			{/* Placement · navbar — preview shim. The switch belongs in the shared
 			    Navigation's link row (where the docs navbar carries it); this stands
@@ -652,7 +617,7 @@ export function PlaygroundMockPage() {
 						<div className="mb-4">
 							<VersionSwitch
 								value={version}
-								onChange={switchVersion}
+								onChange={setVersion}
 								block
 								aria-label="Effect version for this playground"
 							/>
