@@ -881,7 +881,7 @@ export function EffectDaysLivornoPage() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={`${sponsor.name} — visit website`}
-									className={`${card} group flex items-center justify-between gap-4 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600`}
+									className={`${card} group flex items-center justify-between gap-4`}
 								>
 									{/* Fixed logo box, so marks of differing heights sit on the
 									    same baseline across the two cards */}
@@ -905,7 +905,7 @@ export function EffectDaysLivornoPage() {
 
 									<Icon
 										name="arrow-up-right"
-										className="shrink-0 text-xs text-zinc-400 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white"
+										className="shrink-0 text-xs text-zinc-500 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
 										aria-hidden="true"
 									/>
 								</a>
