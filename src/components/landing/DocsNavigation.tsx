@@ -25,7 +25,7 @@ export function DocsNavigation({
 	version = "v3",
 }: {
 	section: DocsSectionKey;
-	/** Active API reference version; only shown while in the Reference section. */
+	/** Active API reference version; defaults to v3 (the current stable). */
 	version?: "v3" | "v4";
 }) {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -66,7 +66,7 @@ export function DocsNavigation({
 						>
 							{DOCS_HOME.label}
 						</Link>
-						<div className="hidden h-4.5 w-px bg-zinc-200 md:block dark:bg-zinc-700" />
+						<div className="hidden h-4.5 w-px bg-zinc-300 md:block dark:bg-zinc-700" />
 					</div>
 
 					{/* Section links */}
@@ -119,7 +119,7 @@ export function DocsNavigation({
 								⌘K
 							</kbd>
 						</button>
-						<div className="hidden h-4.5 w-px bg-zinc-200 sm:block dark:bg-zinc-700" />
+						<div className="hidden h-4.5 w-px bg-zinc-300 sm:block dark:bg-zinc-700" />
 						<div className="hidden items-center gap-4 sm:flex">
 							<Link
 								href="https://github.com/Effect-TS/effect"
@@ -136,7 +136,7 @@ export function DocsNavigation({
 								<i className="ri-discord-fill text-xl" aria-hidden="true" />
 							</Link>
 						</div>
-						<div className="hidden h-4.5 w-px sm:block dark:bg-zinc-700" />
+						<div className="hidden h-4.5 w-px bg-zinc-300 sm:block dark:bg-zinc-700" />
 						<ThemeToggleButton className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" />
 						<button
 							type="button"
