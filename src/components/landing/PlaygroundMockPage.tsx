@@ -28,12 +28,16 @@ import { Navigation } from "./Navigation";
  * the other two and the rail.
  *
  * - toolbar · beside Reset / Share. Groups the switch with the other two
- *   consequential actions, and survives below md.
+ *   consequential actions, and the only one of the three still on screen below
+ *   md — though at 390px the cluster already overhangs the code, so shipping
+ *   this means giving the whole cluster a narrow-width treatment, not just the
+ *   switch.
  * - sidebar · above the file tree, as in the reference shot. Reads as project
  *   config, sits near package.json — but the sidebar is `hidden md:flex`, so
- *   this placement has no mobile home at all.
+ *   this placement has no mobile home at all (measured: 0 controls at 390px).
  * - navbar · the docs navbar's slot, one shape site-wide. Cheapest to learn,
- *   but in docs each half is a link; here it rebuilds the sandbox.
+ *   but in docs each half is a link; here it rebuilds the sandbox. Hidden below
+ *   md too, exactly as the docs control is.
  *
  * Decisions that hold whichever placement wins:
  * - Segmented, not dropdown, while exactly two versions exist — both visible,
