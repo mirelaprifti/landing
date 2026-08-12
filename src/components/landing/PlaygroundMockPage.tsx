@@ -23,15 +23,22 @@ import { Navigation } from "./Navigation";
 /**
  * v3 / v4 switcher — placement study.
  *
- * Three candidate placements, switchable from the rail in the bottom-left, so
+ * Five candidate placements, switchable from the rail in the bottom-left, so
  * they can be compared in place rather than argued about. Pick one, then delete
- * the other two and the rail.
+ * the others and the rail.
  *
- * - toolbar · beside Reset / Share. Groups the switch with the other two
- *   consequential actions, and the only one of the three still on screen below
- *   md — though at 390px the cluster already overhangs the code, so shipping
- *   this means giving the whole cluster a narrow-width treatment, not just the
- *   switch.
+ * - bar · leading candidate. A real toolbar row in flow above the code, holding
+ *   the filename, the switch and the actions together. The other four all park
+ *   the switch somewhere that fails at one width or another; this one is the
+ *   only placement that never covers code, keeps the same order and position at
+ *   every width, and gives the Share popover somewhere to open without landing
+ *   on the version control. It also frames the switch as belonging to the file
+ *   in view rather than to the site chrome, which is what it actually describes.
+ * - toolbar · beside Reset / Share, floating. Groups the switch with the other
+ *   two consequential actions, but at 390px the cluster overhangs the code.
+ * - stacked · a second floating row under Reset / Share. Relieves the lateral
+ *   crowding on desktop, but doubles the obstruction on mobile, and the Share
+ *   popover opens straight over the switch.
  * - sidebar · above the file tree, as in the reference shot. Reads as project
  *   config, sits near package.json — but the sidebar is `hidden md:flex`, so
  *   this placement has no mobile home at all (measured: 0 controls at 390px).
@@ -60,9 +67,9 @@ import { Navigation } from "./Navigation";
 type Placement = "toolbar" | "stacked" | "bar" | "sidebar" | "navbar";
 
 const PLACEMENTS: { value: Placement; label: string }[] = [
+	{ value: "bar", label: "bar" },
 	{ value: "toolbar", label: "toolbar" },
 	{ value: "stacked", label: "stacked" },
-	{ value: "bar", label: "bar" },
 	{ value: "sidebar", label: "sidebar" },
 	{ value: "navbar", label: "navbar" },
 ];
@@ -463,7 +470,7 @@ export function PlaygroundMockPage() {
 	const shareRef = useRef<HTMLDivElement>(null);
 
 	// Placement study — see the header comment. Delete with the losing variants.
-	const [placement, setPlacement] = useState<Placement>("toolbar");
+	const [placement, setPlacement] = useState<Placement>("bar");
 
 	const [version, setVersion] = useState<EffectVersion>("v3");
 	// Non-null while the sandbox is reinstalling after a switch.
