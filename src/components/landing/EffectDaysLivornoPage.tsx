@@ -861,14 +861,18 @@ export function EffectDaysLivornoPage() {
 								</p>
 							</div>
 							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
-								<Link
+								<Button
 									href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-									variant="subtle"
-									className="inline-flex items-center gap-1.5 font-medium"
+									variant="secondary"
+									size="md"
 								>
 									Become a sponsor
-									<Icon name="arrow-right" className="text-xs" />
-								</Link>
+									<Icon
+										name="arrow-right"
+										className="text-base"
+										aria-hidden="true"
+									/>
+								</Button>
 							</div>
 						</div>
 

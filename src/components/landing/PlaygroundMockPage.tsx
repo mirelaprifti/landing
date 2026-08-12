@@ -196,7 +196,9 @@ function packageJsonLines(version: EffectVersion): React.ReactNode[] {
 		</>
 	);
 	return [
-		<Token kind="punct">{"{"}</Token>,
+		<>
+			<Token kind="punct">{"{"}</Token>
+		</>,
 		<>
 			{"  "}
 			<Token kind="str">"name"</Token>
@@ -474,6 +476,11 @@ export function PlaygroundMockPage() {
 		/>
 	);
 
+	// package.json is the one file whose contents the switch actually rewrites;
+	// every other file shows the sample either way.
+	const fileLines =
+		activeFile === "package.json" ? packageJsonLines(version) : LINES;
+
 	// Close share popover on outside click or Escape
 	useEffect(() => {
 		if (!shareOpen) return;
@@ -653,7 +660,7 @@ export function PlaygroundMockPage() {
 							aria-hidden="true"
 							className="sticky left-0 shrink-0 select-none border-r border-zinc-200 bg-white px-4 py-4 text-right text-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-600"
 						>
-							{LINES.map((_, i) => (
+							{fileLines.map((_, i) => (
 								<div key={i} className="tabular-nums">
 									{i + 1}
 								</div>
@@ -661,7 +668,7 @@ export function PlaygroundMockPage() {
 						</div>
 						{/* Code */}
 						<code className="block flex-1 px-4 py-4">
-							{LINES.map((line, i) => (
+							{fileLines.map((line, i) => (
 								<div key={i} className="min-h-6 whitespace-pre">
 									{line}
 								</div>
@@ -706,7 +713,7 @@ export function PlaygroundMockPage() {
 				<div className="flex-1 overflow-auto bg-zinc-100 px-4 py-4 font-mono text-sm leading-6 dark:bg-zinc-900">
 					{activeTab === "terminal" ? (
 						<div className="space-y-1">
-							{TERMINAL_LINES.map((line, i) => (
+							{terminalLines(version).map((line, i) => (
 								<div key={i} className="flex gap-3">
 									<span className="shrink-0 text-zinc-500 dark:text-zinc-400 tabular-nums">
 										{line.time}
@@ -728,6 +735,35 @@ export function PlaygroundMockPage() {
 							// Trace view goes here. Mockup only.
 						</p>
 					)}
+				</div>
+			</div>
+
+			{/* Placement rail — study affordance, not part of the design. Delete it
+			    along with the two losing placements once one is chosen. */}
+			<div className="fixed bottom-4 left-4 z-50 flex flex-col gap-1 rounded-md border border-zinc-200 bg-white p-1 shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
+				<p className="px-2 pt-1 pb-0.5 font-mono text-[10px] tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
+					// placement
+				</p>
+				<div role="tablist" aria-label="Version switch placement">
+					{PLACEMENTS.map(({ value, label }) => {
+						const active = placement === value;
+						return (
+							<button
+								key={value}
+								type="button"
+								role="tab"
+								aria-selected={active}
+								onClick={() => setPlacement(value)}
+								className={`block w-full rounded px-3 py-1.5 text-left font-mono text-xs font-medium transition-colors ${
+									active
+										? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+										: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+								}`}
+							>
+								{label}
+							</button>
+						);
+					})}
 				</div>
 			</div>
 

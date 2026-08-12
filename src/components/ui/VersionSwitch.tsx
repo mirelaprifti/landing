@@ -53,7 +53,7 @@ export function VersionSwitch({
 }) {
 	return (
 		<div
-			role="radiogroup"
+			role="group"
 			aria-label={ariaLabel}
 			className={`${block ? "flex w-full" : "inline-flex"} ${CONTAINER} ${className}`}
 		>
@@ -63,8 +63,7 @@ export function VersionSwitch({
 					<button
 						key={version}
 						type="button"
-						role="radio"
-						aria-checked={active}
+						aria-pressed={active}
 						onClick={() => onChange(version)}
 						className={`${block ? "flex-1" : ""} ${ITEM} ${active ? ITEM_ACTIVE : ITEM_IDLE}`}
 					>
