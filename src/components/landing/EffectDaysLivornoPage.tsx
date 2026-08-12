@@ -879,7 +879,7 @@ export function EffectDaysLivornoPage() {
 
 						{/* Corner-bracket tiles, the same frame the closing CTA and the
 						    merch previews use — the logo is the link, nothing else in it */}
-						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
 							{SPONSORS.map((sponsor) => (
 								<a
 									key={sponsor.name}

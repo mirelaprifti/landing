@@ -27,8 +27,10 @@ export const VERSION_LABELS: Record<EffectVersion, string> = {
 const CONTAINER =
 	"shrink-0 gap-1 rounded-md border border-zinc-300 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-900";
 
+// leading-4 pins the pill to 24px so the control lands on exactly 28px total
+// (1px ring + 2px padding each side) — the same height as the Reset/Share pair.
 const ITEM =
-	"rounded-sm px-3 py-1 text-center font-mono text-xs transition-all duration-200";
+	"rounded-sm px-3 py-1 text-center font-mono text-xs leading-4 transition-all duration-200";
 
 const ITEM_ACTIVE =
 	"bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white";

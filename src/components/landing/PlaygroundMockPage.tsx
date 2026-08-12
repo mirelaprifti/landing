@@ -508,7 +508,7 @@ export function PlaygroundMockPage() {
 					variant="ghost"
 					size="sm"
 					onClick={() => setResetConfirmOpen(true)}
-					className="inset-ring inset-ring-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+					className="inset-ring inset-ring-zinc-300 h-7.5 bg-zinc-50 px-3 py-0 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 				>
 					Reset
 				</Button>
@@ -520,7 +520,7 @@ export function PlaygroundMockPage() {
 					onClick={() => setShareOpen((open) => !open)}
 					aria-haspopup="dialog"
 					aria-expanded={shareOpen}
-					className="inset-ring inset-ring-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+					className="inset-ring inset-ring-zinc-300 h-7.5 bg-zinc-50 px-3 py-0 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
 				>
 					Share
 				</Button>
@@ -639,7 +639,7 @@ export function PlaygroundMockPage() {
 			{/* Main playground shell — sidebar + editor row, then full-width bottom panel */}
 			<div className="flex flex-1 overflow-hidden pt-16">
 				{/* Sidebar — file tree */}
-				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-4 md:flex dark:border-zinc-800 dark:bg-zinc-950">
+				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-3 md:flex dark:border-zinc-800 dark:bg-zinc-950">
 					{/* Placement · sidebar — above the tree, stretched to the column */}
 					{placement === "sidebar" && (
 						<div className="mb-4">
