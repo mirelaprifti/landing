@@ -199,14 +199,25 @@ export function Navigation({
 								</Link>
 							</div>
 
-							{/* Mobile menu button */}
-							<button
-								type="button"
-								className="ml-auto flex h-10 w-10 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white md:hidden"
-								aria-label="Open navigation menu"
-							>
-								<Icon name="menu" className="text-xl" aria-hidden="true" />
-							</button>
+							{/* Theme toggle + mobile menu button (below md) */}
+							<div className="ml-auto flex items-center gap-1 md:hidden">
+								{showThemeToggle && (
+									<ThemeToggleButton
+										className={`h-10 w-10 ${
+											transparent
+												? "text-white hover:text-white/80"
+												: "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+										}`}
+									/>
+								)}
+								<button
+									type="button"
+									className="flex h-10 w-10 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white md:hidden"
+									aria-label="Open navigation menu"
+								>
+									<Icon name="menu" className="text-xl" aria-hidden="true" />
+								</button>
+							</div>
 
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
