@@ -271,11 +271,10 @@ export function FeaturesSection() {
 
 				{/* Attribution */}
 				<p className="mt-4 px-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
-					Interactive examples from{" "}
+					Inspired by Kit Langton's{" "}
 					<Link href="https://github.com/kitlangton/visual-effect">
 						Visual Effect
-					</Link>{" "}
-					by Kit Langton
+					</Link>
 				</p>
 			</div>
 		</section>
