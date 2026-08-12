@@ -7,9 +7,8 @@ import {
 	API_PACKAGES,
 	type ApiPackage,
 } from "./apiReferenceData";
-import { DocsSectionTabs } from "./DocsLayout";
+import { DocsNavigation } from "./DocsNavigation";
 import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
 
 function packageBySlug(slug: string): ApiPackage {
 	const pkg = API_PACKAGES.find((p) => p.slug === slug);
@@ -87,9 +86,8 @@ export function ApiReferenceLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs/api" wide compactSearch />
+			<DocsNavigation section="api" version={version} />
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section="api" version={version} />
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
 						tocItems

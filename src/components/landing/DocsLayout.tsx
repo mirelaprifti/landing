@@ -2,8 +2,8 @@ import { type ReactNode, useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import { DocsNavigation } from "./DocsNavigation";
 import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
 
 /**
  * Shared article styles for docs page bodies (also used by /styleguide).
@@ -19,127 +19,8 @@ export const DOCS_ARTICLE_CLASS =
 type NavItem = { slug: string; label: string; href?: string };
 type NavSection = { title: string; items: NavItem[] };
 
-/**
- * Top-level docs sections, shown as a horizontal sub-nav directly below
- * the site navbar. Each section swaps in its own sidebar tree, so the
- * educational content and the API reference all live under one docs
- * shell. Cookbooks / Guides to follow.
- */
+/** Top-level docs sections; the nav owns the link list (DocsNavigation). */
 export type DocsSectionKey = "docs" | "guides" | "api";
-
-const SECTIONS: {
-	key: DocsSectionKey;
-	label: string;
-	href: string;
-}[] = [
-	// Docs holds the narrative documentation; Guides pages don't exist
-	// yet and route to Introduction as a stand-in. The ?section= param
-	// preserves the selection when arriving from a page outside
-	// DocsLayout (e.g. the API reference).
-	{
-		key: "docs",
-		label: "Onboarding",
-		href: "/docs/onboarding",
-	},
-	{
-		key: "guides",
-		label: "Guides",
-		href: "/docs/introduction",
-	},
-	{
-		key: "api",
-		label: "Reference",
-		href: "/docs/api/v3",
-	},
-];
-
-/**
- * Horizontal docs section tabs: a slim sticky bar directly below the
- * navbar. Inter labels with a 2px underline indicator sitting on the
- * bar's hairline; every tab navigates to its section's landing page.
- * The bar opens with the v3/v4 switch for the versioned API area
- * (segmented control per the EventsPage tabs idiom); v3 is selected by
- * default.
- */
-export function DocsSectionTabs({
-	section,
-	version = "v3",
-}: {
-	section: DocsSectionKey;
-	/** Active API reference version; defaults to v3 (the current stable). */
-	version?: "v3" | "v4";
-}) {
-	return (
-		<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95">
-			<nav
-				aria-label="Docs sections"
-				className="mx-auto flex w-full max-w-[88rem] items-center gap-6 px-4"
-			>
-				{/* Dark active pill is zinc-700 — one step lighter than the
-				    zinc-900 container — mirroring the sidebar-pill contrast
-				    precedent. */}
-				<div
-					role="group"
-					aria-label="API reference version"
-					className="inline-flex shrink-0 gap-1 rounded-md border border-zinc-300 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-900"
-				>
-					{(["v3", "v4"] as const).map((v) => (
-						<a
-							key={v}
-							href={getAssetPath(`/docs/api/${v}`)}
-							aria-current={version === v ? "page" : undefined}
-							className={`rounded-sm px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
-								version === v
-									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
-									: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-							}`}
-						>
-							{v}
-						</a>
-					))}
-				</div>
-				<div
-					className="h-4.5 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800"
-					aria-hidden="true"
-				/>
-				<ul className="flex items-center gap-8 overflow-x-auto">
-					{SECTIONS.map((s) => {
-						const key = s.key;
-						const isActive = key === section;
-						const label = s.label;
-						const itemClass = `relative flex h-10 items-center text-sm font-medium whitespace-nowrap transition-colors ${
-							isActive
-								? "text-zinc-900 dark:text-white"
-								: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-						}`;
-						const inner = (
-							<>
-								<span>{label}</span>
-								{isActive && (
-									<span
-										className="absolute inset-x-0 bottom-0 h-0.5 bg-zinc-900 dark:bg-white"
-										aria-hidden="true"
-									/>
-								)}
-							</>
-						);
-						return (
-							<li key={key}>
-								<a
-									href={getAssetPath(s.href)}
-									aria-current={isActive ? "true" : undefined}
-									className={itemClass}
-								>
-									{inner}
-								</a>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-		</div>
-	);
-}
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 	// Onboarding: a guided path into Effect — why, setup, first steps —
@@ -334,11 +215,10 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide compactSearch />
+			<DocsNavigation section={section} />
 			<div className="relative w-full pt-16">
-				<DocsSectionTabs section={section} />
-				{/* Mobile docs nav: sticky disclosure below the section tabs */}
-				<div className="sticky top-26 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+				{/* Mobile docs nav: sticky disclosure below the navbar */}
+				<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
 					<button
 						type="button"
 						onClick={() => setMobileNavOpen((open) => !open)}
