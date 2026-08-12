@@ -107,6 +107,32 @@ const PASSES = [
 	},
 ];
 
+/* Main sponsors. `logoDark` is only set where the mark needs a second file to
+   stay legible on the dark page; single-colour marks reuse `logo` for both. */
+const SPONSORS = [
+	{
+		name: "Effectful",
+		logo: "/assets/effect-days/Effectful-black.svg",
+		logoDark: "/assets/effect-days/Effectful-white.svg",
+		/* Effectful's wordmark is short and heavy, so it carries a taller box than
+		   Ziverge's wider lockup for the two to read at the same size. */
+		logoHeight: "h-8",
+		description:
+			"Steward of the Effect ecosystem, offering support, training, and consulting to teams building with Effect.",
+		websiteUrl: "https://effectful.co/",
+		websiteLabel: "effectful.co",
+	},
+	{
+		name: "Ziverge",
+		logo: "/assets/effect-days/ziverge.svg",
+		logoHeight: "h-6",
+		description:
+			"Technology services firm specializing in distributed systems, AI/ML, and cloud-native solutions.",
+		websiteUrl: "https://www.ziverge.com/",
+		websiteLabel: "ziverge.com",
+	},
+];
+
 const EDITIONS = [
 	{
 		year: "2024",
@@ -819,6 +845,75 @@ export function EffectDaysLivornoPage() {
 									</div>
 								))}
 							</div>
+						</div>
+					</div>
+				</section>
+
+				<SectionDivider />
+
+				{/* Sponsors */}
+				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
+					<div className={container}>
+						{/* Header — copy in the left half, sponsorship contact in the right */}
+						<div className="grid grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2 lg:items-baseline-last">
+							<div>
+								<p className={text.eyebrow}>{"// "}Sponsors</p>
+								<h2 className={text.sectionTitle}>Made possible by</h2>
+								<p className={text.subtitle}>
+									Effect Days is a non-profit event, run with the support of the
+									companies backing the ecosystem.
+								</p>
+							</div>
+							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
+								<Link
+									href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
+									variant="subtle"
+									className="inline-flex items-center gap-1.5 font-medium"
+								>
+									Become a sponsor
+									<Icon name="arrow-right" className="text-xs" />
+								</Link>
+							</div>
+						</div>
+
+						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+							{SPONSORS.map((sponsor) => (
+								<div key={sponsor.name} className={`${card} flex flex-col`}>
+									<span className={text.micro}>Main sponsor</span>
+
+									{/* Fixed logo box, so marks of differing heights sit on the
+									    same baseline across the two cards */}
+									<div className="mt-6 flex h-12 items-center">
+										<img
+											src={getAssetPath(sponsor.logo)}
+											alt={sponsor.name}
+											className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+												sponsor.logoDark ? "dark:hidden" : ""
+											}`}
+										/>
+										{sponsor.logoDark && (
+											<img
+												src={getAssetPath(sponsor.logoDark)}
+												alt=""
+												aria-hidden="true"
+												className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+											/>
+										)}
+									</div>
+
+									<p className={`${text.cardBody} mt-6 flex-1`}>
+										{sponsor.description}
+									</p>
+									<Link
+										href={sponsor.websiteUrl}
+										variant="subtle"
+										className="mt-4 inline-flex items-center gap-1.5 self-start font-medium"
+									>
+										{sponsor.websiteLabel}
+										<Icon name="arrow-up-right" className="text-xs" />
+									</Link>
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
