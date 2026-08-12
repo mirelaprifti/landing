@@ -107,13 +107,13 @@ const PASSES = [
 	},
 ];
 
-/* Sponsors, grouped by tier. `logoDark` is only set where the mark needs a
-   second file to stay legible on the dark page; single-colour marks reuse
-   `logo` for both. */
+/* Both sponsors are main sponsors, so the cards carry no tier label — add one
+   back here and in the card once a second tier exists. `logoDark` is only set
+   where the mark needs a second file to stay legible on the dark page;
+   single-colour marks reuse `logo` for both. */
 const SPONSORS = [
 	{
 		name: "Effectful",
-		type: "Main sponsor",
 		logo: "/assets/effect-days/Effectful-black.svg",
 		logoDark: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it carries a taller box than
@@ -123,7 +123,6 @@ const SPONSORS = [
 	},
 	{
 		name: "Ziverge",
-		type: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-6",
 		websiteUrl: "https://www.ziverge.com/",
@@ -882,20 +881,11 @@ export function EffectDaysLivornoPage() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={`${sponsor.name} — visit website`}
-									className={`${card} group flex flex-col transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600`}
+									className={`${card} group flex items-center justify-between gap-4 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600`}
 								>
-									<div className="flex items-start justify-between gap-4">
-										<span className={text.micro}>{sponsor.type}</span>
-										<Icon
-											name="arrow-up-right"
-											className="text-xs text-zinc-400 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white"
-											aria-hidden="true"
-										/>
-									</div>
-
 									{/* Fixed logo box, so marks of differing heights sit on the
 									    same baseline across the two cards */}
-									<div className="mt-6 flex h-12 items-center">
+									<div className="flex h-12 items-center">
 										<img
 											src={getAssetPath(sponsor.logo)}
 											alt={sponsor.name}
@@ -912,6 +902,12 @@ export function EffectDaysLivornoPage() {
 											/>
 										)}
 									</div>
+
+									<Icon
+										name="arrow-up-right"
+										className="shrink-0 text-xs text-zinc-400 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white"
+										aria-hidden="true"
+									/>
 								</a>
 							))}
 						</div>
