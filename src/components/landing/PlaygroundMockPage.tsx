@@ -57,11 +57,12 @@ import { Navigation } from "./Navigation";
  *   open it under either version and the dependency matches.
  */
 
-type Placement = "toolbar" | "stacked" | "sidebar" | "navbar";
+type Placement = "toolbar" | "stacked" | "bar" | "sidebar" | "navbar";
 
 const PLACEMENTS: { value: Placement; label: string }[] = [
 	{ value: "toolbar", label: "toolbar" },
 	{ value: "stacked", label: "stacked" },
+	{ value: "bar", label: "bar" },
 	{ value: "sidebar", label: "sidebar" },
 	{ value: "navbar", label: "navbar" },
 ];
@@ -491,6 +492,96 @@ export function PlaygroundMockPage() {
 	const fileLines =
 		activeFile === "package.json" ? packageJsonLines(version) : LINES;
 
+	const copyShareUrl = () => {
+		navigator.clipboard.writeText(SHARE_URL).then(() => {
+			setShareCopied(true);
+			setTimeout(() => setShareCopied(false), 1500);
+		});
+	};
+
+	// Reset + Share travel together, floating over the code in most placements
+	// and sitting in the toolbar row in the `bar` one.
+	const actionButtons = (
+		<>
+			<div className="pointer-events-auto">
+				<Button
+					variant="ghost"
+					size="sm"
+					onClick={() => setResetConfirmOpen(true)}
+					className="inset-ring inset-ring-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+				>
+					Reset
+				</Button>
+			</div>
+			<div ref={shareRef} className="pointer-events-auto relative">
+				<Button
+					variant="ghost"
+					size="sm"
+					onClick={() => setShareOpen((open) => !open)}
+					aria-haspopup="dialog"
+					aria-expanded={shareOpen}
+					className="inset-ring inset-ring-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+				>
+					Share
+				</Button>
+
+				{/* Share popover */}
+				{shareOpen && (
+					<div
+						role="dialog"
+						aria-label="Share this playground"
+						className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] rounded-md border border-zinc-300 bg-white p-5 font-sans shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
+					>
+						<h2 className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white">
+							Share
+						</h2>
+						<p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+							Use the link to share this playground with others.
+						</p>
+
+						{/* Link row */}
+						<div className="mt-4 flex items-center gap-2">
+							<input
+								type="text"
+								readOnly
+								value={SHARE_URL}
+								aria-label="Share link"
+								onFocus={(e) => e.currentTarget.select()}
+								className="min-w-0 flex-1 rounded-md border border-zinc-300 bg-zinc-50 px-3 py-2 font-mono text-sm text-zinc-900 outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
+							/>
+							<button
+								type="button"
+								onClick={copyShareUrl}
+								aria-label="Copy share link"
+								className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+							>
+								{shareCopied ? (
+									<Check size={16} aria-hidden="true" />
+								) : (
+									<Copy size={16} aria-hidden="true" />
+								)}
+							</button>
+						</div>
+
+						{/* Download row */}
+						<div className="mt-4 flex items-center justify-between gap-2">
+							<p className="text-sm text-zinc-600 dark:text-zinc-400">
+								Or download the files locally
+							</p>
+							<button
+								type="button"
+								aria-label="Download playground files"
+								className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
+							>
+								<Download size={16} aria-hidden="true" />
+							</button>
+						</div>
+					</div>
+				)}
+			</div>
+		</>
+	);
+
 	// Close share popover on outside click or Escape
 	useEffect(() => {
 		if (!shareOpen) return;
@@ -509,13 +600,6 @@ export function PlaygroundMockPage() {
 			document.removeEventListener("keydown", handleKey);
 		};
 	}, [shareOpen]);
-
-	const copyShareUrl = () => {
-		navigator.clipboard.writeText(SHARE_URL).then(() => {
-			setShareCopied(true);
-			setTimeout(() => setShareCopied(false), 1500);
-		});
-	};
 
 	const toggleFolder = (name: string) =>
 		setOpenFolders((prev) => {
@@ -581,101 +665,40 @@ export function PlaygroundMockPage() {
 
 				{/* Editor surface */}
 				<div className="relative min-w-0 flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
-					{/* Floating actions — top-right of the editor */}
-					<div
-						className={`pointer-events-none absolute top-2 right-3 z-10 flex ${
-							placement === "stacked"
-								? "flex-col items-end gap-2"
-								: "items-center gap-2"
-						}`}
-					>
-						{/* Placement · toolbar — leading the consequence cluster */}
-						{placement === "toolbar" && (
-							<div className="pointer-events-auto mr-1">{versionSwitch}</div>
-						)}
-						<div className="flex items-center gap-2">
-							<div className="pointer-events-auto">
-								<Button
-									variant="ghost"
-									size="sm"
-									onClick={() => setResetConfirmOpen(true)}
-									className="inset-ring inset-ring-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
-								>
-									Reset
-								</Button>
-							</div>
-							<div ref={shareRef} className="pointer-events-auto relative">
-								<Button
-									variant="ghost"
-									size="sm"
-									onClick={() => setShareOpen((open) => !open)}
-									aria-haspopup="dialog"
-									aria-expanded={shareOpen}
-									className="inset-ring inset-ring-zinc-300 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:inset-ring-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
-								>
-									Share
-								</Button>
-
-								{/* Share popover */}
-								{shareOpen && (
-									<div
-										role="dialog"
-										aria-label="Share this playground"
-										className="absolute top-full right-0 z-20 mt-2 w-96 animate-[dialogIn_0.25s_ease-out] rounded-md border border-zinc-300 bg-white p-5 font-sans shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
-									>
-										<h2 className="leading-tighter text-lg font-semibold text-zinc-900 dark:text-white">
-											Share
-										</h2>
-										<p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-											Use the link to share this playground with others.
-										</p>
-
-										{/* Link row */}
-										<div className="mt-4 flex items-center gap-2">
-											<input
-												type="text"
-												readOnly
-												value={SHARE_URL}
-												aria-label="Share link"
-												onFocus={(e) => e.currentTarget.select()}
-												className="min-w-0 flex-1 rounded-md border border-zinc-300 bg-zinc-50 px-3 py-2 font-mono text-sm text-zinc-900 outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
-											/>
-											<button
-												type="button"
-												onClick={copyShareUrl}
-												aria-label="Copy share link"
-												className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
-											>
-												{shareCopied ? (
-													<Check size={16} aria-hidden="true" />
-												) : (
-													<Copy size={16} aria-hidden="true" />
-												)}
-											</button>
-										</div>
-
-										{/* Download row */}
-										<div className="mt-4 flex items-center justify-between gap-2">
-											<p className="text-sm text-zinc-600 dark:text-zinc-400">
-												Or download the files locally
-											</p>
-											<button
-												type="button"
-												aria-label="Download playground files"
-												className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
-											>
-												<Download size={16} aria-hidden="true" />
-											</button>
-										</div>
-									</div>
-								)}
+					{/* Placement · bar — a real toolbar row in flow above the code,
+					    carrying the filename, the switch and the actions together */}
+					{placement === "bar" && (
+						<div className="sticky top-0 z-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-zinc-200 bg-white px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900">
+							<span className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+								{activeFile}
+							</span>
+							<div className="ml-auto flex items-center gap-2">
+								{versionSwitch}
+								{actionButtons}
 							</div>
 						</div>
-						{/* Placement · stacked — a second row beneath the action cluster */}
-						{placement === "stacked" && (
-							<div className="pointer-events-auto">{versionSwitch}</div>
-						)}
-					</div>
+					)}
+
+					{/* Floating actions — top-right of the editor */}
+					{placement !== "bar" && (
+						<div
+							className={`pointer-events-none absolute top-2 right-3 z-10 flex ${
+								placement === "stacked"
+									? "flex-col items-end gap-2"
+									: "items-center gap-2"
+							}`}
+						>
+							{/* Placement · toolbar — leading the consequence cluster */}
+							{placement === "toolbar" && (
+								<div className="pointer-events-auto mr-1">{versionSwitch}</div>
+							)}
+							<div className="flex items-center gap-2">{actionButtons}</div>
+							{/* Placement · stacked — a second row beneath the action cluster */}
+							{placement === "stacked" && (
+								<div className="pointer-events-auto">{versionSwitch}</div>
+							)}
+						</div>
+					)}
 					<pre className="m-0 flex">
 						{/* Gutter */}
 						<div

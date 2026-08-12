@@ -118,13 +118,13 @@ const SPONSORS = [
 		logoDark: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
 		   wider lockup for the two to read at the same size. */
-		logoHeight: "h-12",
+		logoHeight: "h-16",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
 		name: "Ziverge",
 		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-9",
+		logoHeight: "h-10",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 ];
