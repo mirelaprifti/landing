@@ -95,7 +95,7 @@ export function HeroSection() {
 						<span className="text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-400">
 							//
 						</span>
-						<span>Effect 4.0 — Now in RC</span>
+						<span>Effect 4.0 — Release Candidate</span>
 						<Icon
 							name="arrow-right"
 							className="text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300"
