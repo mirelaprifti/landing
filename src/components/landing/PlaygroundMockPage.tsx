@@ -13,7 +13,60 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { GridOverlay } from "../GridOverlay";
 import { Button } from "../ui/Button";
+import {
+	type EffectVersion,
+	VERSION_LABELS,
+	VersionSwitch,
+} from "../ui/VersionSwitch";
 import { Navigation } from "./Navigation";
+
+/**
+ * v3 / v4 switcher — placement study.
+ *
+ * Three candidate placements, switchable from the rail in the bottom-left, so
+ * they can be compared in place rather than argued about. Pick one, then delete
+ * the other two and the rail.
+ *
+ * - toolbar · beside Reset / Share. Groups the switch with the other two
+ *   consequential actions, and survives below md.
+ * - sidebar · above the file tree, as in the reference shot. Reads as project
+ *   config, sits near package.json — but the sidebar is `hidden md:flex`, so
+ *   this placement has no mobile home at all.
+ * - navbar · the docs navbar's slot, one shape site-wide. Cheapest to learn,
+ *   but in docs each half is a link; here it rebuilds the sandbox.
+ *
+ * Decisions that hold whichever placement wins:
+ * - Segmented, not dropdown, while exactly two versions exist — both visible,
+ *   one click. (Same reasoning logged in SearchPreviewPage; a third version
+ *   flips it to a dropdown.)
+ * - The target label carries its `(rc)` qualifier. "v4" alone understates that
+ *   you are pointing an experiment at a release candidate.
+ * - Switching is a rebuild, not a filter: it rewrites package.json, reinstalls
+ *   in the webcontainer and reboots the dev server. The mock replays the real
+ *   boot sequence on every switch so the cost is visible in the comparison.
+ * - Switching keeps the buffer. The playground is for trying things, and Reset
+ *   is already a separate confirmed action — a switch that silently discarded
+ *   edits would be a second, unlabelled reset. In the real playground this
+ *   needs a confirm only when the buffer is dirty; the mock has no editing, so
+ *   it switches straight away.
+ * - package.json is in the file tree, so it has to agree with the control —
+ *   open it under either version and the dependency matches.
+ */
+
+type Placement = "toolbar" | "sidebar" | "navbar";
+
+const PLACEMENTS: { value: Placement; label: string }[] = [
+	{ value: "toolbar", label: "toolbar" },
+	{ value: "sidebar", label: "sidebar" },
+	{ value: "navbar", label: "navbar" },
+];
+
+/** Dependency pinned per version — what package.json shows under each. */
+const VERSION_DEPS: Record<EffectVersion, { effect: string; platform: string }> =
+	{
+		v3: { effect: "^3.19.0", platform: "^0.96.0" },
+		v4: { effect: "4.0.0-rc.5", platform: "1.0.0-rc.3" },
+	};
 
 type TreeNode =
 	| { type: "folder"; name: string; children: TreeNode[] }
@@ -128,14 +181,67 @@ const LINES: React.ReactNode[] = [
 	</>,
 ];
 
-const TERMINAL_LINES: { time: string; text: string; tone?: "ok" | "err" }[] = [
-	{ time: "18:00:09", text: "Starting compilation in watch mode..." },
-	{
-		time: "18:00:10",
-		text: "Found 0 errors. Watching for file changes.",
-		tone: "ok",
-	},
-];
+/**
+ * package.json, rendered from the same pinned deps the switch writes — so the
+ * file in the tree can never disagree with the control.
+ */
+function packageJsonLines(version: EffectVersion): React.ReactNode[] {
+	const deps = VERSION_DEPS[version];
+	const entry = (key: string, value: string, comma = true) => (
+		<>
+			{"    "}
+			<Token kind="str">"{key}"</Token>
+			<Token kind="punct">:</Token> <Token kind="str">"{value}"</Token>
+			{comma ? <Token kind="punct">,</Token> : null}
+		</>
+	);
+	return [
+		<Token kind="punct">{"{"}</Token>,
+		<>
+			{"  "}
+			<Token kind="str">"name"</Token>
+			<Token kind="punct">:</Token> <Token kind="str">"effect-playground"</Token>
+			<Token kind="punct">,</Token>
+		</>,
+		<>
+			{"  "}
+			<Token kind="str">"type"</Token>
+			<Token kind="punct">:</Token> <Token kind="str">"module"</Token>
+			<Token kind="punct">,</Token>
+		</>,
+		<>
+			{"  "}
+			<Token kind="str">"dependencies"</Token>
+			<Token kind="punct">: {"{"}</Token>
+		</>,
+		entry("@effect/platform-node", deps.platform),
+		entry("effect", deps.effect, false),
+		<>
+			{"  "}
+			<Token kind="punct">{"}"}</Token>
+		</>,
+		<Token kind="punct">{"}"}</Token>,
+	];
+}
+
+/**
+ * Terminal transcript per version. Switching replays the install, so the cost
+ * of the switch is legible in the panel rather than implied.
+ */
+function terminalLines(
+	version: EffectVersion,
+): { time: string; text: string; tone?: "ok" | "err" }[] {
+	const deps = VERSION_DEPS[version];
+	return [
+		{ time: "18:00:04", text: `Installing effect@${deps.effect}` },
+		{ time: "18:00:09", text: "Starting compilation in watch mode..." },
+		{
+			time: "18:00:10",
+			text: "Found 0 errors. Watching for file changes.",
+			tone: "ok",
+		},
+	];
+}
 
 function Tree({
 	nodes,
@@ -241,27 +347,45 @@ const BOOT_STEPS = [
 	"Starting dev server",
 ];
 
+/** Steps replayed when the version switch rebuilds the sandbox. */
+function rebuildSteps(version: EffectVersion): string[] {
+	return [
+		"Rewriting package.json",
+		`Installing effect@${VERSION_DEPS[version].effect}`,
+		"Restarting dev server",
+	];
+}
+
 /**
  * Boot loader overlay in the editorial design system — mock version of the
- * playground's real loading screen, simulating the boot sequence on mount.
+ * playground's real loading screen, simulating the boot sequence on mount and
+ * replayed (with `steps` describing the reinstall) on every version switch.
  */
-function PlaygroundLoader() {
+function PlaygroundLoader({
+	steps = BOOT_STEPS,
+	title = "Loading Playground",
+	onDone,
+}: {
+	steps?: string[];
+	title?: string;
+	onDone?: () => void;
+}) {
 	const [doneCount, setDoneCount] = useState(0);
 	const [hidden, setHidden] = useState(false);
 
 	useEffect(() => {
-		if (doneCount < BOOT_STEPS.length) {
+		if (doneCount < steps.length) {
 			const timer = setTimeout(() => setDoneCount((n) => n + 1), 400);
 			return () => clearTimeout(timer);
 		}
-		const timer = setTimeout(() => setHidden(true), 300);
+		const timer = setTimeout(() => {
+			setHidden(true);
+			onDone?.();
+		}, 300);
 		return () => clearTimeout(timer);
-	}, [doneCount]);
+	}, [doneCount, steps.length, onDone]);
 
-	const visibleSteps = BOOT_STEPS.slice(
-		0,
-		Math.min(doneCount + 1, BOOT_STEPS.length),
-	);
+	const visibleSteps = steps.slice(0, Math.min(doneCount + 1, steps.length));
 
 	return (
 		<AnimatePresence initial={false}>
@@ -274,7 +398,7 @@ function PlaygroundLoader() {
 				>
 					<div className="w-full max-w-sm rounded-md border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900/40">
 						<p className="font-mono text-sm font-medium tracking-wider text-zinc-700 uppercase dark:text-zinc-300">
-							Loading Playground
+							{title}
 						</p>
 						<div className="mt-4 mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
 						<div className="flex flex-col space-y-3">
@@ -325,7 +449,30 @@ export function PlaygroundMockPage() {
 	const [shareCopied, setShareCopied] = useState(false);
 	const shareRef = useRef<HTMLDivElement>(null);
 
+	// Placement study — see the header comment. Delete with the losing variants.
+	const [placement, setPlacement] = useState<Placement>("toolbar");
+
+	const [version, setVersion] = useState<EffectVersion>("v3");
+	// Non-null while the sandbox is reinstalling after a switch.
+	const [rebuildingTo, setRebuildingTo] = useState<EffectVersion | null>(null);
+
 	const SHARE_URL = "https://effect.website/play#cb512fbe0b7a";
+
+	// A switch is a rebuild: the version flips immediately (so the control never
+	// lags the pointer), and the sandbox reinstalls behind the boot overlay.
+	const switchVersion = (next: EffectVersion) => {
+		if (next === version) return;
+		setVersion(next);
+		setRebuildingTo(next);
+	};
+
+	const versionSwitch = (
+		<VersionSwitch
+			value={version}
+			onChange={switchVersion}
+			aria-label="Effect version for this playground"
+		/>
+	);
 
 	// Close share popover on outside click or Escape
 	useEffect(() => {
@@ -367,12 +514,42 @@ export function PlaygroundMockPage() {
 	return (
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
 			<Navigation activePath="/play" fullWidth />
-			<PlaygroundLoader />
+			{rebuildingTo ? (
+				<PlaygroundLoader
+					key={rebuildingTo}
+					steps={rebuildSteps(rebuildingTo)}
+					title={`Switching to ${VERSION_LABELS[rebuildingTo]}`}
+					onDone={() => setRebuildingTo(null)}
+				/>
+			) : (
+				<PlaygroundLoader />
+			)}
+
+			{/* Placement · navbar — preview shim. The switch belongs in the shared
+			    Navigation's link row (where the docs navbar carries it); this stands
+			    it in that row without touching the shared component, so the study
+			    stays contained. If navbar wins, it moves into Navigation properly. */}
+			{placement === "navbar" && (
+				<div className="fixed top-0 right-60 z-101 hidden h-16 items-center md:flex">
+					{versionSwitch}
+				</div>
+			)}
 
 			{/* Main playground shell — sidebar + editor row, then full-width bottom panel */}
 			<div className="flex flex-1 overflow-hidden pt-16">
 				{/* Sidebar — file tree */}
 				<aside className="hidden w-60 shrink-0 flex-col overflow-y-auto border-r border-zinc-200 bg-zinc-50 px-3 py-4 md:flex dark:border-zinc-800 dark:bg-zinc-950">
+					{/* Placement · sidebar — above the tree, stretched to the column */}
+					{placement === "sidebar" && (
+						<div className="mb-4">
+							<VersionSwitch
+								value={version}
+								onChange={switchVersion}
+								block
+								aria-label="Effect version for this playground"
+							/>
+						</div>
+					)}
 					<nav>
 						<Tree
 							nodes={TREE}
@@ -389,6 +566,10 @@ export function PlaygroundMockPage() {
 				<div className="relative min-w-0 flex-1 overflow-auto bg-white font-mono text-sm leading-6 dark:bg-zinc-900">
 					{/* Floating actions — top-right of the editor */}
 					<div className="pointer-events-none absolute top-2 right-3 z-10 flex items-center gap-2">
+						{/* Placement · toolbar — leading the consequence cluster */}
+						{placement === "toolbar" && (
+							<div className="pointer-events-auto mr-1">{versionSwitch}</div>
+						)}
 						<div className="pointer-events-auto">
 							<Button
 								variant="ghost"

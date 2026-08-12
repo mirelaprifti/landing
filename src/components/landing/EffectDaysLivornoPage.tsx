@@ -116,15 +116,15 @@ const SPONSORS = [
 		name: "Effectful",
 		logo: "/assets/effect-days/Effectful-black.svg",
 		logoDark: "/assets/effect-days/Effectful-white.svg",
-		/* Effectful's wordmark is short and heavy, so it carries a taller box than
-		   Ziverge's wider lockup for the two to read at the same size. */
-		logoHeight: "h-8",
+		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
+		   wider lockup for the two to read at the same size. */
+		logoHeight: "h-12",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
 		name: "Ziverge",
 		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-6",
+		logoHeight: "h-9",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 ];
@@ -872,7 +872,8 @@ export function EffectDaysLivornoPage() {
 							</div>
 						</div>
 
-						{/* The logo is the link — no blurb, no text link under it */}
+						{/* Corner-bracket tiles, the same frame the closing CTA and the
+						    merch previews use — the logo is the link, nothing else in it */}
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{SPONSORS.map((sponsor) => (
 								<a
@@ -881,33 +882,30 @@ export function EffectDaysLivornoPage() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={`${sponsor.name} — visit website`}
-									className={`${card} group flex items-center justify-between gap-4`}
+									className="group relative flex items-center justify-center px-6 py-12"
 								>
-									{/* Fixed logo box, so marks of differing heights sit on the
-									    same baseline across the two cards */}
-									<div className="flex h-12 items-center">
-										<img
-											src={getAssetPath(sponsor.logo)}
-											alt={sponsor.name}
-											className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-												sponsor.logoDark ? "dark:hidden" : ""
-											}`}
-										/>
-										{sponsor.logoDark && (
-											<img
-												src={getAssetPath(sponsor.logoDark)}
-												alt=""
-												aria-hidden="true"
-												className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
-											/>
-										)}
-									</div>
+									{/* Corner brackets — brighten together on hover, so the whole
+									    tile reads as the hit area */}
+									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
+									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
+									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
+									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
 
-									<Icon
-										name="arrow-up-right"
-										className="shrink-0 text-xs text-zinc-500 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
-										aria-hidden="true"
+									<img
+										src={getAssetPath(sponsor.logo)}
+										alt={sponsor.name}
+										className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+											sponsor.logoDark ? "dark:hidden" : ""
+										}`}
 									/>
+									{sponsor.logoDark && (
+										<img
+											src={getAssetPath(sponsor.logoDark)}
+											alt=""
+											aria-hidden="true"
+											className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+										/>
+									)}
 								</a>
 							))}
 						</div>
