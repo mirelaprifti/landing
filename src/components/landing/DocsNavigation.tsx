@@ -83,26 +83,25 @@ export function DocsNavigation({
 						))}
 					</div>
 
-					{/* Version switch — Reference only, since it scopes that section */}
-					{section === "api" && (
-						<div className="ml-6 hidden shrink-0 gap-1 rounded-md border border-zinc-300 bg-zinc-100 p-0.5 md:inline-flex dark:border-zinc-700 dark:bg-zinc-900">
-							{(["v3", "v4"] as const).map((v) => (
-								<a
-									key={v}
-									href={getAssetPath(`/docs/api/${v}`)}
-									aria-label={`API reference ${v}`}
-									aria-current={version === v ? "page" : undefined}
-									className={`rounded-sm px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
-										version === v
-											? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
-											: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-									}`}
-								>
-									{v}
-								</a>
-							))}
-						</div>
-					)}
+					{/* Version switch — always present, so the docs version is visible
+					    and switchable from any section, not just Reference */}
+					<div className="ml-6 hidden shrink-0 gap-1 rounded-md border border-zinc-300 bg-zinc-100 p-0.5 md:inline-flex dark:border-zinc-700 dark:bg-zinc-900">
+						{(["v3", "v4"] as const).map((v) => (
+							<a
+								key={v}
+								href={getAssetPath(`/docs/api/${v}`)}
+								aria-label={`API reference ${v}`}
+								aria-current={version === v ? "page" : undefined}
+								className={`rounded-sm px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
+									version === v
+										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
+										: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+								}`}
+							>
+								{v}
+							</a>
+						))}
+					</div>
 
 					{/* Search + socials + theme toggle + mobile menu toggle */}
 					<div className="ml-auto flex items-center gap-4">
