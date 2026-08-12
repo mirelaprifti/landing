@@ -881,7 +881,7 @@ export function EffectDaysLivornoPage() {
 						    merch previews use — the logo is the link, nothing else in it */}
 						{/* Side by side from sm up, which keeps the two marks on one row in
 						    mobile landscape; only portrait phones stack them. */}
-						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8">
+						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
 							{SPONSORS.map((sponsor) => (
 								<a
 									key={sponsor.name}
