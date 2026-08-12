@@ -107,29 +107,26 @@ const PASSES = [
 	},
 ];
 
-/* Main sponsors. `logoDark` is only set where the mark needs a second file to
-   stay legible on the dark page; single-colour marks reuse `logo` for both. */
+/* Sponsors, grouped by tier. `logoDark` is only set where the mark needs a
+   second file to stay legible on the dark page; single-colour marks reuse
+   `logo` for both. */
 const SPONSORS = [
 	{
 		name: "Effectful",
+		type: "Main sponsor",
 		logo: "/assets/effect-days/Effectful-black.svg",
 		logoDark: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it carries a taller box than
 		   Ziverge's wider lockup for the two to read at the same size. */
 		logoHeight: "h-8",
-		description:
-			"Steward of the Effect ecosystem, offering support, training, and consulting to teams building with Effect.",
 		websiteUrl: "https://effectful.co/",
-		websiteLabel: "effectful.co",
 	},
 	{
 		name: "Ziverge",
+		type: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-6",
-		description:
-			"Technology services firm specializing in distributed systems, AI/ML, and cloud-native solutions.",
 		websiteUrl: "https://www.ziverge.com/",
-		websiteLabel: "ziverge.com",
 	},
 ];
 
@@ -876,10 +873,25 @@ export function EffectDaysLivornoPage() {
 							</div>
 						</div>
 
+						{/* The logo is the link — no blurb, no text link under it */}
 						<div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
 							{SPONSORS.map((sponsor) => (
-								<div key={sponsor.name} className={`${card} flex flex-col`}>
-									<span className={text.micro}>Main sponsor</span>
+								<a
+									key={sponsor.name}
+									href={sponsor.websiteUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${sponsor.name} — visit website`}
+									className={`${card} group flex flex-col transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600`}
+								>
+									<div className="flex items-start justify-between gap-4">
+										<span className={text.micro}>{sponsor.type}</span>
+										<Icon
+											name="arrow-up-right"
+											className="text-xs text-zinc-400 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white"
+											aria-hidden="true"
+										/>
+									</div>
 
 									{/* Fixed logo box, so marks of differing heights sit on the
 									    same baseline across the two cards */}
@@ -900,19 +912,7 @@ export function EffectDaysLivornoPage() {
 											/>
 										)}
 									</div>
-
-									<p className={`${text.cardBody} mt-6 flex-1`}>
-										{sponsor.description}
-									</p>
-									<Link
-										href={sponsor.websiteUrl}
-										variant="subtle"
-										className="mt-4 inline-flex items-center gap-1.5 self-start font-medium"
-									>
-										{sponsor.websiteLabel}
-										<Icon name="arrow-up-right" className="text-xs" />
-									</Link>
-								</div>
+								</a>
 							))}
 						</div>
 					</div>
