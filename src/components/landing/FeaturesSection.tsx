@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "@/components/ui";
 import { EffectAcquireReleaseExample } from "@/examples/effect-acquire-release";
 import { EffectFinalizerExample } from "@/examples/effect-add-finalizer";
 import { EffectAllExample } from "@/examples/effect-all";
@@ -267,6 +268,15 @@ export function FeaturesSection() {
 						)}
 					</div>
 				</div>
+
+				{/* Attribution */}
+				<p className="mt-4 px-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+					Interactive examples from{" "}
+					<Link href="https://github.com/kitlangton/visual-effect">
+						Visual Effect
+					</Link>{" "}
+					by Kit Langton
+				</p>
 			</div>
 		</section>
 	);
