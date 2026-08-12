@@ -15,7 +15,8 @@
 
 export type EffectVersion = "v3" | "v4";
 
-export const VERSIONS: readonly EffectVersion[] = ["v3", "v4"] as const;
+/** v4 leads: it is where the library is going, so it reads first. */
+export const VERSIONS: readonly EffectVersion[] = ["v4", "v3"] as const;
 
 /** v4 carries its `(rc)` qualifier everywhere it is offered as a target. */
 export const VERSION_LABELS: Record<EffectVersion, string> = {
