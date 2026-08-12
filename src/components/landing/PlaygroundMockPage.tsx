@@ -62,11 +62,13 @@ const PLACEMENTS: { value: Placement; label: string }[] = [
 ];
 
 /** Dependency pinned per version — what package.json shows under each. */
-const VERSION_DEPS: Record<EffectVersion, { effect: string; platform: string }> =
-	{
-		v3: { effect: "^3.19.0", platform: "^0.96.0" },
-		v4: { effect: "4.0.0-rc.5", platform: "1.0.0-rc.3" },
-	};
+const VERSION_DEPS: Record<
+	EffectVersion,
+	{ effect: string; platform: string }
+> = {
+	v3: { effect: "^3.19.0", platform: "^0.96.0" },
+	v4: { effect: "4.0.0-rc.5", platform: "1.0.0-rc.3" },
+};
 
 type TreeNode =
 	| { type: "folder"; name: string; children: TreeNode[] }
@@ -196,13 +198,14 @@ function packageJsonLines(version: EffectVersion): React.ReactNode[] {
 		</>
 	);
 	return [
-		<>
-			<Token kind="punct">{"{"}</Token>
-		</>,
+		<Token key="open" kind="punct">
+			{"{"}
+		</Token>,
 		<>
 			{"  "}
 			<Token kind="str">"name"</Token>
-			<Token kind="punct">:</Token> <Token kind="str">"effect-playground"</Token>
+			<Token kind="punct">:</Token>{" "}
+			<Token kind="str">"effect-playground"</Token>
 			<Token kind="punct">,</Token>
 		</>,
 		<>
@@ -222,7 +225,9 @@ function packageJsonLines(version: EffectVersion): React.ReactNode[] {
 			{"  "}
 			<Token kind="punct">{"}"}</Token>
 		</>,
-		<Token kind="punct">{"}"}</Token>,
+		<Token key="close" kind="punct">
+			{"}"}
+		</Token>,
 	];
 }
 
@@ -537,7 +542,7 @@ export function PlaygroundMockPage() {
 			    it in that row without touching the shared component, so the study
 			    stays contained. If navbar wins, it moves into Navigation properly. */}
 			{placement === "navbar" && (
-				<div className="fixed top-0 right-60 z-101 hidden h-16 items-center md:flex">
+				<div className="fixed top-0 right-66 z-101 hidden h-16 items-center in-[.has-announcement]:top-10 md:flex">
 					{versionSwitch}
 				</div>
 			)}
@@ -661,6 +666,7 @@ export function PlaygroundMockPage() {
 							className="sticky left-0 shrink-0 select-none border-r border-zinc-200 bg-white px-4 py-4 text-right text-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-600"
 						>
 							{fileLines.map((_, i) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: the index is the line number, and the buffer is regenerated wholesale when the file or version changes
 								<div key={i} className="tabular-nums">
 									{i + 1}
 								</div>
@@ -669,6 +675,7 @@ export function PlaygroundMockPage() {
 						{/* Code */}
 						<code className="block flex-1 px-4 py-4">
 							{fileLines.map((line, i) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: the index is the line number, and the buffer is regenerated wholesale when the file or version changes
 								<div key={i} className="min-h-6 whitespace-pre">
 									{line}
 								</div>
@@ -713,8 +720,8 @@ export function PlaygroundMockPage() {
 				<div className="flex-1 overflow-auto bg-zinc-100 px-4 py-4 font-mono text-sm leading-6 dark:bg-zinc-900">
 					{activeTab === "terminal" ? (
 						<div className="space-y-1">
-							{terminalLines(version).map((line, i) => (
-								<div key={i} className="flex gap-3">
+							{terminalLines(version).map((line) => (
+								<div key={`${line.time}-${line.text}`} className="flex gap-3">
 									<span className="shrink-0 text-zinc-500 dark:text-zinc-400 tabular-nums">
 										{line.time}
 									</span>
@@ -742,7 +749,7 @@ export function PlaygroundMockPage() {
 			    along with the two losing placements once one is chosen. */}
 			<div className="fixed bottom-4 left-4 z-50 flex flex-col gap-1 rounded-md border border-zinc-200 bg-white p-1 shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
 				<p className="px-2 pt-1 pb-0.5 font-mono text-[10px] tracking-wider text-zinc-500 uppercase dark:text-zinc-500">
-					// placement
+					{"// placement"}
 				</p>
 				<div role="tablist" aria-label="Version switch placement">
 					{PLACEMENTS.map(({ value, label }) => {

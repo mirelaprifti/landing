@@ -867,8 +867,9 @@ export function EffectDaysLivornoPage() {
 									size="md"
 								>
 									Become a sponsor
+									{/* Leaves the page — mailto, so up-right rather than arrow-right */}
 									<Icon
-										name="arrow-right"
+										name="arrow-up-right"
 										className="text-base"
 										aria-hidden="true"
 									/>

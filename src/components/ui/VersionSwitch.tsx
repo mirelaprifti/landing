@@ -52,11 +52,10 @@ export function VersionSwitch({
 	"aria-label"?: string;
 }) {
 	return (
-		<div
-			role="group"
-			aria-label={ariaLabel}
+		<fieldset
 			className={`${block ? "flex w-full" : "inline-flex"} ${CONTAINER} ${className}`}
 		>
+			<legend className="sr-only">{ariaLabel}</legend>
 			{VERSIONS.map((version) => {
 				const active = value === version;
 				return (
@@ -71,6 +70,6 @@ export function VersionSwitch({
 					</button>
 				);
 			})}
-		</div>
+		</fieldset>
 	);
 }
