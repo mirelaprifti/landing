@@ -733,32 +733,30 @@ export function EffectDaysLivornoPage() {
 							))}
 						</div>
 
-						<div className="mt-4 grid grid-cols-1 gap-1 lg:grid-cols-2 lg:gap-8">
-							<div className="space-y-1">
+						{/* One stacked run rather than two columns — the asterisk note used
+						    to sit under the left card only, which read as belonging to that
+						    pass even though both cards carry the marker. */}
+						<div className="mt-4 space-y-1">
+							<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+								*Suitable for invoicing.
+							</p>
+							<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+								Selecting a pass takes you to Stripe to complete your purchase.
+							</p>
+							{/* Group discounts are off the page while early bird is on sale —
+							    flip EARLY_BIRD_ON_SALE to bring this back. */}
+							{!EARLY_BIRD_ON_SALE && (
 								<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-									*Suitable for invoicing.
+									Group of 4+?{" "}
+									<Link
+										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
+										variant="inline"
+									>
+										Ask about business discounts
+									</Link>
+									.
 								</p>
-							</div>
-							<div className="space-y-1">
-								<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-									Selecting a pass takes you to Stripe to complete your
-									purchase.
-								</p>
-								{/* Group discounts are off the page while early bird is on sale —
-								    flip EARLY_BIRD_ON_SALE to bring this back. */}
-								{!EARLY_BIRD_ON_SALE && (
-									<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-										Group of 4+?{" "}
-										<Link
-											href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
-											variant="inline"
-										>
-											Ask about business discounts
-										</Link>
-										.
-									</p>
-								)}
-							</div>
+							)}
 						</div>
 					</div>
 				</section>
