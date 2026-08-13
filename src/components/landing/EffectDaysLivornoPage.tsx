@@ -736,7 +736,7 @@ export function EffectDaysLivornoPage() {
 						{/* One stacked run rather than two columns — the asterisk note used
 						    to sit under the left card only, which read as belonging to that
 						    pass even though both cards carry the marker. */}
-						<div className="mt-4 space-y-1">
+						<div className="mt-4">
 							<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 								*Suitable for invoicing.
 							</p>
