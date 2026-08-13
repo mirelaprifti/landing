@@ -322,8 +322,10 @@ function PurchaseRow({
 	const shared = {
 		variant: "secondary" as const,
 		size: "xl" as const,
+		/* xl is here for its padding, not its type — the label stays text-base so
+		   it does not outweigh the price beside it. */
 		className:
-			"w-full justify-between px-4 text-base inset-ring-zinc-400 hover:inset-ring-zinc-500 md:px-6 md:text-lg dark:inset-ring-zinc-500 dark:hover:inset-ring-zinc-300",
+			"w-full justify-between px-4 text-base inset-ring-zinc-400 hover:inset-ring-zinc-500 md:px-6 dark:inset-ring-zinc-500 dark:hover:inset-ring-zinc-300",
 	};
 
 	return price.url ? (
