@@ -877,7 +877,7 @@ export function EffectDaysLivornoPage() {
 						    the columns close up to gap-0, so the subtitle's own mt-4 sets the
 						    spacing instead of the grid. The sponsorship CTA is the last tile
 						    in the grid below rather than a link sitting up here. */}
-						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-8">
+						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:items-baseline-last md:gap-8">
 							<div>
 								<p className={text.eyebrow}>{"// "}Sponsors</p>
 								<h2 className={text.sectionTitle}>Made possible by</h2>
