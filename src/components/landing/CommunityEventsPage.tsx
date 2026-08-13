@@ -510,7 +510,7 @@ export function CommunityEventsPage() {
 						</p>
 
 						{/* Terminal prompts — two columns below the header */}
-						<ul className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-8">
+						<ul className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-x-8">
 							{TALK_IDEAS.map((idea) => (
 								<li key={idea.label}>
 									{idea.href ? (
