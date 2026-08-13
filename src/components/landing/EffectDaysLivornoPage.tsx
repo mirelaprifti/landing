@@ -338,6 +338,29 @@ function SectionDivider() {
 	return <div className="border-t border-zinc-200 dark:border-zinc-800" />;
 }
 
+/**
+ * The corner brackets the closing CTA and the merch previews frame things with.
+ * Needs a `relative` parent; brightens with the parent's `group` on hover.
+ *
+ * `dim` marks the open sponsorship slot, so the filled tiles read louder than
+ * the one inviting a logo.
+ */
+function TileBrackets({ dim = false }: { dim?: boolean }) {
+	const edge = `absolute h-3 w-3 transition-colors duration-200 group-hover:border-zinc-900 dark:group-hover:border-white ${
+		dim
+			? "border-zinc-200 dark:border-zinc-800"
+			: "border-zinc-300 dark:border-zinc-700"
+	}`;
+	return (
+		<>
+			<span className={`${edge} top-0 left-0 border-t border-l`} />
+			<span className={`${edge} top-0 right-0 border-t border-r`} />
+			<span className={`${edge} bottom-0 left-0 border-b border-l`} />
+			<span className={`${edge} right-0 bottom-0 border-r border-b`} />
+		</>
+	);
+}
+
 export function EffectDaysLivornoPage() {
 	const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
 
@@ -850,38 +873,20 @@ export function EffectDaysLivornoPage() {
 				{/* Sponsors */}
 				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Header — copy in the left half, sponsorship contact in the right */}
-						<div className="grid grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2 lg:items-baseline-last">
-							<div>
-								<p className={text.eyebrow}>{"// "}Sponsors</p>
-								<h2 className={text.sectionTitle}>Made possible by</h2>
-								<p className={text.subtitle}>
-									Effect Days is a non-profit event, run with the support of the
-									companies backing the ecosystem.
-								</p>
-							</div>
-							<div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:justify-end">
-								<Button
-									href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-									variant="secondary"
-									size="md"
-								>
-									Become a sponsor
-									{/* Leaves the page — mailto, so up-right rather than arrow-right */}
-									<Icon
-										name="arrow-up-right"
-										className="text-base"
-										aria-hidden="true"
-									/>
-								</Button>
-							</div>
-						</div>
+						{/* Header runs full width — the sponsorship CTA is the last tile in
+						    the grid below rather than a link sitting up here. */}
+						<p className={text.eyebrow}>{"// "}Sponsors</p>
+						<h2 className={text.sectionTitle}>Made possible by</h2>
+						<p className={`${text.subtitle} max-w-xl`}>
+							Effect Days is a non-profit event, run with the support of the
+							companies backing the ecosystem.
+						</p>
 
-						{/* Corner-bracket tiles, the same frame the closing CTA and the
-						    merch previews use — the logo is the link, nothing else in it */}
-						{/* Side by side from sm up, which keeps the two marks on one row in
-						    mobile landscape; only portrait phones stack them. */}
-						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
+						{/* Corner-bracket tiles — the logo is the link, and the open slot
+						    closes the row so the grid reads full rather than short two
+						    sponsors. Two across from sm (mobile landscape keeps the marks on
+						    one row), three once there is desktop width for the slot. */}
+						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
 							{SPONSORS.map((sponsor) => (
 								<a
 									key={sponsor.name}
@@ -889,14 +894,11 @@ export function EffectDaysLivornoPage() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={`${sponsor.name} — visit website`}
-									className="group relative flex items-center justify-center px-6 py-12"
+									/* Opaque so the page's centre dashed line stops behind the
+									   tile rather than running across the logo. */
+									className="group relative flex items-center justify-center bg-white px-6 py-12 dark:bg-zinc-950"
 								>
-									{/* Corner brackets — brighten together on hover, so the whole
-									    tile reads as the hit area */}
-									<span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
-									<span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
-									<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
-									<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 transition-colors duration-200 group-hover:border-zinc-900 dark:border-zinc-700 dark:group-hover:border-white" />
+									<TileBrackets />
 
 									<img
 										src={getAssetPath(sponsor.logo)}
@@ -915,6 +917,32 @@ export function EffectDaysLivornoPage() {
 									)}
 								</a>
 							))}
+
+							{/* Open slot. At sm there are two columns and three tiles, so it
+							    spans the full second row instead of leaving a hole. */}
+							<a
+								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
+								className="group relative flex flex-col items-center justify-center gap-2 bg-white px-6 py-12 sm:col-span-2 lg:col-span-1 dark:bg-zinc-950"
+							>
+								<TileBrackets dim />
+
+								{/* An empty logo slot, sized to the marks beside it, with the
+								    caret from the 2026 edition card blinking inside — it reads as
+								    waiting for a name to be typed in. */}
+								<span className="flex h-12 w-48 items-center justify-center border border-dashed border-zinc-300 transition-colors duration-200 group-hover:border-zinc-400 dark:border-zinc-700 dark:group-hover:border-zinc-500">
+									<span className={`${text.micro} mb-0`}>
+										Your logo here
+										<span className="animate-[terminal-blink_1s_step-end_infinite]">
+											{" ▊"}
+										</span>
+									</span>
+								</span>
+								<span className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+									Become a sponsor
+									{/* mailto — leaves the page, so up-right */}
+									<Icon name="arrow-up-right" className="text-xs" />
+								</span>
+							</a>
 						</div>
 					</div>
 				</section>
