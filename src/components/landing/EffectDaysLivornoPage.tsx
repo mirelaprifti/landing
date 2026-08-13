@@ -873,14 +873,20 @@ export function EffectDaysLivornoPage() {
 				{/* Sponsors */}
 				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Header runs full width — the sponsorship CTA is the last tile in
-						    the grid below rather than a link sitting up here. */}
-						<p className={text.eyebrow}>{"// "}Sponsors</p>
-						<h2 className={text.sectionTitle}>Made possible by</h2>
-						<p className={`${text.subtitle} max-w-xl`}>
-							Effect Days is a non-profit event, run with the support of the
-							companies backing the ecosystem.
-						</p>
+						{/* Title in the left half, the blurb in the right. Stacked on mobile
+						    the columns close up to gap-0, so the subtitle's own mt-4 sets the
+						    spacing instead of the grid. The sponsorship CTA is the last tile
+						    in the grid below rather than a link sitting up here. */}
+						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-8">
+							<div>
+								<p className={text.eyebrow}>{"// "}Sponsors</p>
+								<h2 className={text.sectionTitle}>Made possible by</h2>
+							</div>
+							<p className={`${text.subtitle} md:mt-0`}>
+								Effect Days is a non-profit event, run with the support of the
+								companies backing the ecosystem.
+							</p>
+						</div>
 
 						{/* Corner-bracket tiles — the logo is the link, and the open slot
 						    closes the row so the grid reads full rather than short two
