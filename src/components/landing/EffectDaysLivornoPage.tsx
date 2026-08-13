@@ -766,7 +766,15 @@ export function EffectDaysLivornoPage() {
 							    md where the dashed timeline connects them. */}
 							<div className="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-4 md:grid-cols-3">
 								{EDITIONS.map((edition) => (
-									<div key={edition.year} className="relative">
+									<div
+										key={edition.year}
+										/* The next edition starts row two on its own in the sm
+										   two-column layout, so it takes the full row rather than
+										   leaving the cell beside it empty. */
+										className={`relative ${
+											edition.status === "next" ? "sm:col-span-2 md:col-span-1" : ""
+										}`}
+									>
 										{/* Timeline node — labels carry an opaque background so the
 										    dashed line reads as a connector between nodes, not a
 										    rule struck through the text */}
