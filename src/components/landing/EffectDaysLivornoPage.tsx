@@ -285,11 +285,23 @@ const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
    checkout URL is filled in on the pass, and as a <button> until then. */
 function PurchaseRow({
 	label,
+	passName,
 	price,
 }: {
 	label: string;
+	/** Named in the accessible label — without it the four buttons on this
+	 *  section announce as "Buy self-pay / Buy business" twice over, with
+	 *  nothing to say which pass they belong to. */
+	passName: string;
 	price: { earlyBird: string; regular: string; url: string | null };
 }) {
+	/* Spoken form of the row: the pass it buys, the payment route without its
+	   footnote marker, and the struck-through price named as the old one rather
+	   than read out as a second live price. */
+	const ariaLabel = `Buy the ${passName}, ${label.replace(/\*$/, "")}, ${
+		price.earlyBird
+	} early bird, reduced from ${price.regular}`;
+
 	const content = (
 		<>
 			<span className="flex items-baseline gap-2">
@@ -313,19 +325,19 @@ function PurchaseRow({
 		</>
 	);
 
-	/* Tighter horizontal padding below md, and xl's larger type only from md up:
-	   at 390px the longest label ("Business-pay*") plus both prices needs the
-	   room, and at text-lg it wraps to two lines and the row grows. */
-	/* Brighter outline than the secondary default (zinc-300/700) so the purchase
-	   rows hold the eye. Button draws its outline with inset-ring, never a
-	   border, so overriding the ring colour is the supported way to do this. */
+	/* Three call-site overrides on the button:
+	   - px-4 below md, or "Buy business*" plus both prices wraps at 390px;
+	   - text-base against xl's text-lg, which is here for the padding only —
+	     at 20px the label outweighs the pass title above it;
+	   - a brighter inset-ring than secondary's zinc-300/700, so the purchase
+	     rows hold the eye. Button never uses a border for its outline, so the
+	     ring colour is the supported way to strengthen it. */
 	const shared = {
 		variant: "secondary" as const,
 		size: "xl" as const,
-		/* xl is here for its padding, not its type — the label stays text-base so
-		   it does not outweigh the price beside it. */
 		className:
 			"w-full justify-between px-4 text-base inset-ring-zinc-400 hover:inset-ring-zinc-500 md:px-6 dark:inset-ring-zinc-500 dark:hover:inset-ring-zinc-300",
+		"aria-label": ariaLabel,
 	};
 
 	return price.url ? (
@@ -707,11 +719,16 @@ export function EffectDaysLivornoPage() {
 
 									{/* Purchase rows */}
 									<div className="mt-6 space-y-3">
-										<PurchaseRow label="self-pay" price={pass.pricing.self} />
+										<PurchaseRow
+											label="self-pay"
+											passName={pass.name}
+											price={pass.pricing.self}
+										/>
 										{/* Keeps the asterisk so the invoicing note below still has
 										    something to point at. */}
 										<PurchaseRow
 											label="business*"
+											passName={pass.name}
 											price={pass.pricing.business}
 										/>
 									</div>
