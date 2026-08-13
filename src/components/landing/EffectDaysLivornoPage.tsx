@@ -33,12 +33,9 @@ const sectionRhythm = "pt-16 pb-16 md:pt-40 md:pb-24";
 const card =
 	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
 /* Boxed mono label — the "Early bird" and per-pass tags in the tickets section,
-   matching the timeline's "Next stop" chip. The filled variant marks the
-   featured pass, the same way the events tabs mark the active one. */
+   matching the timeline's "Next stop" chip. */
 const chip =
 	"border border-zinc-400 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950";
-const chipFilled =
-	"border border-zinc-900 bg-zinc-900 px-2 py-0.5 text-white dark:border-zinc-200 dark:bg-zinc-200 dark:text-zinc-900";
 
 const PROGRAM = [
 	{
@@ -298,6 +295,12 @@ function PurchaseRow({
 	const content = (
 		<>
 			<span className="flex items-baseline gap-2">
+				{/* Separators sit back from the words they divide, both here and
+				    before the prices. */}
+				Buy
+				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
+					·
+				</span>
 				{label}
 				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
 					·
@@ -320,10 +323,14 @@ function PurchaseRow({
 	/* Tighter horizontal padding below md, and xl's larger type only from md up:
 	   at 390px the longest label ("Business-pay*") plus both prices needs the
 	   room, and at text-lg it wraps to two lines and the row grows. */
+	/* Brighter outline than the secondary default (zinc-300/700) so the purchase
+	   rows hold the eye. Button draws its outline with inset-ring, never a
+	   border, so overriding the ring colour is the supported way to do this. */
 	const shared = {
 		variant: "secondary" as const,
 		size: "xl" as const,
-		className: "w-full justify-between px-4 text-base md:px-6 md:text-lg",
+		className:
+			"w-full justify-between px-4 text-base inset-ring-zinc-400 hover:inset-ring-zinc-500 md:px-6 md:text-lg dark:inset-ring-zinc-500 dark:hover:inset-ring-zinc-300",
 	};
 
 	return price.url ? (
@@ -659,13 +666,8 @@ export function EffectDaysLivornoPage() {
 									}
 								>
 									{/* Counted from the pass itself, so it stays true if a day is
-								    ever added or dropped. The featured pass fills its chip, which
-								    is the only claim-free way to point at it. */}
-								<span
-									className={`${text.micro} ${
-										pass.featured ? chipFilled : chip
-									} self-start`}
-								>
+								    ever added or dropped. */}
+								<span className={`${text.micro} ${chip} self-start`}>
 									{pass.days.filter((day) => day.included).length}-day pass
 								</span>
 								<h3 className={`${text.cardTitle} mt-4`}>{pass.name}</h3>
@@ -708,14 +710,11 @@ export function EffectDaysLivornoPage() {
 
 									{/* Purchase rows */}
 									<div className="mt-6 space-y-3">
-										<PurchaseRow
-											label="Buy · self-pay"
-											price={pass.pricing.self}
-										/>
+										<PurchaseRow label="self-pay" price={pass.pricing.self} />
 										{/* Keeps the asterisk so the invoicing note below still has
 										    something to point at. */}
 										<PurchaseRow
-											label="Buy · business*"
+											label="business*"
 											price={pass.pricing.business}
 										/>
 									</div>
