@@ -737,10 +737,10 @@ export function EffectDaysLivornoPage() {
 						    to sit under the left card only, which read as belonging to that
 						    pass even though both cards carry the marker. */}
 						<div className="mt-4">
-							<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+							<p className="text-sm leading-normal text-zinc-600 dark:text-zinc-400">
 								*Suitable for invoicing.
 							</p>
-							<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+							<p className="text-sm leading-normal text-zinc-600 dark:text-zinc-400">
 								Selecting a pass takes you to Stripe to complete your purchase.
 							</p>
 							{/* Group discounts are off the page while early bird is on sale —
