@@ -761,7 +761,10 @@ export function EffectDaysLivornoPage() {
 										"linear-gradient(to right, #000 0%, #000 93%, transparent 100%)",
 								}}
 							/>
-							<div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-4">
+							{/* Two across in mobile landscape (2024 beside 2025, 2026 starting
+							    the next row), one column in portrait, all three in a row from
+							    md where the dashed timeline connects them. */}
+							<div className="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-4 md:grid-cols-3">
 								{EDITIONS.map((edition) => (
 									<div key={edition.year} className="relative">
 										{/* Timeline node — labels carry an opaque background so the
