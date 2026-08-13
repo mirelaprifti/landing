@@ -784,14 +784,18 @@ export function EffectDaysLivornoPage() {
 													/>
 												)}
 											</span>
+											{/* Never wraps — a second line here would push the next
+											    edition's card below the other two. */}
 											<h3
-												className={`${text.cardTitle} bg-white px-3 dark:bg-zinc-950`}
+												className={`${text.cardTitle} bg-white px-3 whitespace-nowrap dark:bg-zinc-950`}
 											>
 												Effect Days {edition.year}
 											</h3>
+											{/* Title plus badge does not fit a third of the md grid, so
+											    the badge waits for lg rather than wrapping the row. */}
 											{edition.status === "next" && (
 												<span
-													className={`${text.micro} border border-zinc-300 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950`}
+													className={`${text.micro} hidden shrink-0 border border-zinc-300 bg-white px-2 py-0.5 whitespace-nowrap lg:inline-block dark:border-zinc-600 dark:bg-zinc-950`}
 												>
 													Next stop
 												</span>
