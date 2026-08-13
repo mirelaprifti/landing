@@ -314,13 +314,13 @@ function PurchaseRow({
 		</>
 	);
 
-	/* Tighter horizontal padding below md: at 390px the longest label
-	   ("Business-pay*") plus both prices needs the room, or it wraps to two
-	   lines and the row grows. */
+	/* Tighter horizontal padding below md, and xl's larger type only from md up:
+	   at 390px the longest label ("Business-pay*") plus both prices needs the
+	   room, and at text-lg it wraps to two lines and the row grows. */
 	const shared = {
 		variant: "secondary" as const,
-		size: "lg" as const,
-		className: "w-full justify-between px-4 md:px-6",
+		size: "xl" as const,
+		className: "w-full justify-between px-4 text-base md:px-6 md:text-lg",
 	};
 
 	return price.url ? (
