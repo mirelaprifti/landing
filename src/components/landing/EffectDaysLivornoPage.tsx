@@ -655,12 +655,7 @@ export function EffectDaysLivornoPage() {
 				<section id="tickets" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						<p className={text.eyebrow}>{"// "}Only 100 tickets</p>
-						<div className="flex flex-wrap items-center gap-3">
-							<h2 className={text.sectionTitle}>Choose your pass</h2>
-							{/* Same chip as the timeline's "Next stop" — the prices below are the
-							    early bird tier, not the regular one */}
-							<span className={`${text.micro} ${chip}`}>Early bird</span>
-						</div>
+						<h2 className={text.sectionTitle}>Choose your pass</h2>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
 							{PASSES.map((pass) => (
@@ -674,9 +669,11 @@ export function EffectDaysLivornoPage() {
 											: "border-zinc-200 dark:border-zinc-800"
 									}`}
 								>
-									{/* Counted from the pass itself, so it stays true if a day is
-								    ever added or dropped. */}
+									{/* Day count comes from the pass itself, so it stays true if a
+								    day is ever added or dropped. The tier rides in the same chip
+								    and drops out with the early bird, leaving just "3-day pass". */}
 								<span className={`${text.micro} ${chip} self-start`}>
+									{EARLY_BIRD_ON_SALE ? "Early bird " : ""}
 									{pass.days.filter((day) => day.included).length}-day pass
 								</span>
 								<h3 className={`${text.cardTitle} mt-4`}>{pass.name}</h3>
