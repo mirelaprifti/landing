@@ -30,8 +30,6 @@ const container = "mx-auto w-full max-w-[73.75rem] px-4";
 /* Mobile rhythm is tighter than the styleguide's py-24: 64 top and bottom, so
    consecutive sections sit 128px apart instead of 192px. Desktop is unchanged. */
 const sectionRhythm = "pt-16 pb-16 md:pt-40 md:pb-24";
-const card =
-	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
 /* Boxed mono label — the "Early bird" and per-pass tags in the tickets section,
    matching the timeline's "Next stop" chip. */
 const chip =
@@ -295,13 +293,8 @@ function PurchaseRow({
 	const content = (
 		<>
 			<span className="flex items-baseline gap-2">
-				{/* Separators sit back from the words they divide, both here and
-				    before the prices. */}
-				Buy
-				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
-					·
-				</span>
-				{label}
+				Buy {label}
+				{/* The separator sits back from the words it divides. */}
 				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
 					·
 				</span>
@@ -659,11 +652,13 @@ export function EffectDaysLivornoPage() {
 							{PASSES.map((pass) => (
 								<div
 									key={pass.name}
-									className={
+									/* p-8 rather than the styleguide card's p-6 — these hold the
+									   most content of any card on the page. */
+									className={`flex flex-col border bg-white p-8 dark:bg-zinc-950 ${
 										pass.featured
-											? "flex flex-col border border-zinc-400 bg-white p-6 dark:border-zinc-600 dark:bg-zinc-950"
-											: `flex flex-col ${card}`
-									}
+											? "border-zinc-400 dark:border-zinc-600"
+											: "border-zinc-200 dark:border-zinc-800"
+									}`}
 								>
 									{/* Counted from the pass itself, so it stays true if a day is
 								    ever added or dropped. */}
