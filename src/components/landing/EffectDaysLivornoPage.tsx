@@ -124,7 +124,7 @@ const SPONSORS = [
 	{
 		name: "Ziverge",
 		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-10",
+		logoHeight: "h-9",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 ];
