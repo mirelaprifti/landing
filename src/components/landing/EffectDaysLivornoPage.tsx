@@ -32,6 +32,10 @@ const container = "mx-auto w-full max-w-[73.75rem] px-4";
 const sectionRhythm = "pt-16 pb-16 md:pt-40 md:pb-24";
 const card =
 	"border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950";
+/* Boxed mono label — the "Early bird" and per-pass tags in the tickets section,
+   matching the timeline's "Next stop" chip. */
+const chip =
+	"border border-zinc-400 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950";
 
 const PROGRAM = [
 	{
@@ -638,11 +642,7 @@ export function EffectDaysLivornoPage() {
 							<h2 className={text.sectionTitle}>Choose your pass</h2>
 							{/* Same chip as the timeline's "Next stop" — the prices below are the
 							    early bird tier, not the regular one */}
-							<span
-								className={`${text.micro} border border-zinc-400 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950`}
-							>
-								Early bird
-							</span>
+							<span className={`${text.micro} ${chip}`}>Early bird</span>
 						</div>
 
 						<div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
@@ -655,7 +655,12 @@ export function EffectDaysLivornoPage() {
 											: `flex flex-col ${card}`
 									}
 								>
-									<h3 className={text.cardTitle}>{pass.name}</h3>
+									{/* Counted from the pass itself, so it stays true if a day is
+								    ever added or dropped. */}
+								<span className={`${text.micro} ${chip} self-start`}>
+									{pass.days.filter((day) => day.included).length}-day pass
+								</span>
+								<h3 className={`${text.cardTitle} mt-4`}>{pass.name}</h3>
 
 									{/* Day checklist, mono style. The marker is the same ticked box
 									    the editions timeline uses, minus the opaque fill that only
