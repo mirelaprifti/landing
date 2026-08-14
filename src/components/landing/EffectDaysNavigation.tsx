@@ -64,7 +64,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 						<Link
 							href={getAssetPath(EVENT_HOME.href)}
 							variant="nav"
-							className="text-zinc-900 dark:text-white"
+							className="whitespace-nowrap text-zinc-900 dark:text-white"
 						>
 							{EVENT_HOME.label}
 						</Link>
