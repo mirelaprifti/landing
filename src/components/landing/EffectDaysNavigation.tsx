@@ -10,6 +10,7 @@ import { getAssetPath } from "../../utils/assetPath";
 
 const EVENT_LINKS = [
 	{ href: "/effect-days#program", label: "Program" },
+	{ href: "/effect-days#speakers", label: "Speakers" },
 	{ href: "/effect-days#venue", label: "Venue" },
 	{ href: "/effect-days/about-livorno", label: "About Livorno" },
 	{ href: "/effect-days#faq", label: "FAQ" },

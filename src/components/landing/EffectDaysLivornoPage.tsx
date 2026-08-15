@@ -59,6 +59,26 @@ const PROGRAM = [
 	},
 ];
 
+/* Confirmed speakers, in announcement order. Portraits are not in yet, so every
+   card falls back to the initials placeholder below — drop a `photo` path in as
+   each headshot lands and that card switches over on its own. Four across on
+   desktop, so the grid stays full at counts of four. */
+const SPEAKERS: {
+	name: string;
+	role: string;
+	company: string;
+	photo?: string;
+}[] = [
+	{ name: "Dillon Mulroy", role: "Principal Engineer", company: "Cloudflare" },
+	{ name: "Kit Langton", role: "Over 9,000x Developer", company: "OpenCode" },
+	{ name: "Rhys Sullivan", role: "Founder", company: "Executor" },
+	{ name: "Leonie", role: "Founder", company: "Novelcrafter" },
+	{ name: "Kyle", role: "CTO", company: "HumanLayer" },
+	{ name: "Sam Goodwin", role: "Founder", company: "Alchemy" },
+	{ name: "Adam Rankin", role: "CTO", company: "Warp" },
+	{ name: "John De Goes", role: "Founder", company: "Ziverge" },
+];
+
 /* Early bird runs first. Set to false once regular pricing starts, which also
    restores the group-discount note under the passes. */
 const EARLY_BIRD_ON_SALE = true;
@@ -382,6 +402,26 @@ function TileBrackets({ dim = false }: { dim?: boolean }) {
 	);
 }
 
+/**
+ * Stand-in for a speaker portrait: the dashed empty slot the sponsors section
+ * uses for its open spot, holding the speaker's initials. Reads as a frame
+ * waiting for a photo rather than a broken image.
+ */
+function SpeakerPlaceholder({ name }: { name: string }) {
+	const initials = name
+		.split(" ")
+		.map((part) => part[0])
+		.join("")
+		.slice(0, 2);
+	return (
+		<div className="flex aspect-4/5 items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+			<span className="flex h-16 w-16 items-center justify-center border border-dashed border-zinc-300 font-mono text-lg font-medium tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
+				{initials}
+			</span>
+		</div>
+	);
+}
+
 export function EffectDaysLivornoPage() {
 	const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
 
@@ -569,6 +609,62 @@ export function EffectDaysLivornoPage() {
 									</div>
 									<h3 className={`${text.cardTitle} mt-6`}>{step.title}</h3>
 									<p className={text.cardBody}>{step.description}</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				<SectionDivider />
+
+				{/* Speakers — sits between the program and the venue, so the page
+				    answers "who will I hear" before it asks for a ticket. */}
+				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
+					<div className={container}>
+						{/* Title in the left half, the blurb in the right — the same split
+						    header the sponsors section uses. */}
+						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:items-baseline-last md:gap-8">
+							<div>
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							</div>
+							<p className={`${text.subtitle} md:mt-0`}>
+								Engineers building on Effect in production, from the teams behind
+								the tools you use. More speakers to be announced.
+							</p>
+						</div>
+
+						{/* Two across from sm, four once there is desktop width — eight
+						    speakers fill two clean rows, and each further group of four
+						    adds another. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+							{SPEAKERS.map((speaker) => (
+								<div
+									key={speaker.name}
+									/* Opaque, so the page's centre dashed line stops behind the
+									   card rather than running across a portrait. */
+									className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									{speaker.photo ? (
+										<img
+											src={getAssetPath(speaker.photo)}
+											alt={speaker.name}
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
+										/>
+									) : (
+										<SpeakerPlaceholder name={speaker.name} />
+									)}
+									{/* p-5 rather than the styleguide card's p-6 — four across
+									    leaves each card narrow, and the tighter inset keeps the
+									    role on one line more often. */}
+									<div className="flex flex-1 flex-col p-5">
+										<h3 className={text.cardTitle}>{speaker.name}</h3>
+										<p className={text.cardBody}>
+											{speaker.role}
+											{" · "}
+											{speaker.company}
+										</p>
+									</div>
 								</div>
 							))}
 						</div>
