@@ -91,7 +91,7 @@ const SPEAKERS: {
 		name: "Leonie Gräßel",
 		role: "Founder",
 		company: "Novelcrafter",
-		photo: "/assets/effect-days/leonie.png",
+		photo: "/assets/effect-days/leonie-2.png",
 	},
 	{
 		name: "Kyle Mistele",
@@ -694,9 +694,10 @@ export function EffectDaysLivornoPage() {
 									className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 								>
 									{speaker.photo ? (
-										/* Sources are square, so covering this taller frame crops
-										   the sides rather than the top and bottom — centred is
-										   right for that. A source taller than 4:5 would crop
+										/* Most sources are square, and covering this taller frame
+										   crops their sides rather than the top and bottom —
+										   centred is right for that. One is already 4:5 and so
+										   sits uncropped; a source taller than 4:5 would crop
 										   vertically instead and may want a per-card
 										   object-position. */
 										<img
