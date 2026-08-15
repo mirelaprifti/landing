@@ -68,36 +68,29 @@ const SPEAKERS: {
 	role: string;
 	company: string;
 	photo?: string;
+	/** X handle, without the @. The card shows the icon only where one is set. */
+	x?: string;
 }[] = [
 	{
 		name: "Dillon Mulroy",
 		role: "Principal Engineer",
 		company: "Cloudflare",
 		photo: "/assets/effect-days/dillon-mulroy.png",
+		x: "dillon_mulroy",
 	},
 	{
 		name: "Kit Langton",
 		role: "+9,000x Developer",
 		company: "OpenCode",
 		photo: "/assets/effect-days/kit-langton.png",
+		x: "kitlangton",
 	},
 	{
 		name: "Rhys Sullivan",
 		role: "Founder",
 		company: "Executor",
 		photo: "/assets/effect-days/rhys-sullivan.png",
-	},
-	{
-		name: "Leonie Gräßel",
-		role: "Founder",
-		company: "Novelcrafter",
-		photo: "/assets/effect-days/leonie-2.png",
-	},
-	{
-		name: "Kyle Mistele",
-		role: "CTO",
-		company: "HumanLayer",
-		photo: "/assets/effect-days/kyle-mistele.png",
+		x: "RhysSullivan",
 	},
 	{
 		name: "Adam Rankin",
@@ -106,16 +99,30 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/adam-rankin.png",
 	},
 	{
+		name: "Kyle Mistele",
+		role: "CTO",
+		company: "HumanLayer",
+		photo: "/assets/effect-days/kyle-mistele.png",
+	},
+	{
+		name: "Leonie Gräßel",
+		role: "Founder",
+		company: "Novelcrafter",
+		photo: "/assets/effect-days/leonie-2.png",
+	},
+	{
 		name: "Sam Goodwin",
 		role: "Founder",
 		company: "Alchemy",
 		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
 	},
 	{
 		name: "John A De Goes",
 		role: "Founder",
 		company: "Ziverge",
 		photo: "/assets/effect-days/john-degoes.png",
+		x: "jdegoes",
 	},
 ];
 
@@ -713,11 +720,29 @@ export function EffectDaysLivornoPage() {
 									    role on one line more often. */}
 									<div className="flex flex-1 flex-col p-4">
 										<h3 className={text.cardTitle}>{speaker.name}</h3>
-										<p className={text.cardBody}>
-											{speaker.role}
-											{" · "}
-											{speaker.company}
-										</p>
+										{/* The X icon rides on the role line rather than the name:
+										    that line is always one line deep, so the icon keeps a
+										    fixed position even where a longer name wraps. */}
+										<div className="flex items-center justify-between gap-2">
+											<p className={text.cardBody}>
+												{speaker.role}
+												{" · "}
+												{speaker.company}
+											</p>
+											{speaker.x && (
+												<Link
+													href={`https://x.com/${speaker.x}`}
+													variant="icon"
+													aria-label={`${speaker.name} on X`}
+													className="mt-1 shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+												>
+													<i
+														className="ri-twitter-x-fill text-base"
+														aria-hidden="true"
+													/>
+												</Link>
+											)}
+										</div>
 									</div>
 								</div>
 							))}
