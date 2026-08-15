@@ -691,7 +691,7 @@ export function EffectDaysLivornoPage() {
 									key={speaker.name}
 									/* Opaque, so the page's centre dashed line stops behind the
 									   card rather than running across a portrait. */
-									className="group flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+									className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 								>
 									{speaker.photo ? (
 										/* Most sources are square, and covering this taller frame
@@ -706,9 +706,8 @@ export function EffectDaysLivornoPage() {
 											/* The headshots come from every source imaginable — studio
 											   grey, stage lighting, low outdoor sun — so saturation
 											   is pulled back to calm the colour casts against each
-											   other. Enough remains for skin to read as skin; full
-											   colour returns on hover. */
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover saturate-[0.6] transition-[filter] duration-300 ease-out group-hover:saturate-100 dark:border-zinc-800"
+											   other. Enough remains for skin to read as skin. */
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover saturate-[0.6] dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
