@@ -236,8 +236,8 @@ const SPONSORS: {
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
 		mono: true,
-		logoHeight: "h-7",
-		logoBox: "h-7",
+		logoHeight: "h-10",
+		logoBox: "h-10",
 		tileClass: "py-7 gap-4",
 		websiteUrl: "https://betalyra.com/",
 	},
@@ -246,10 +246,8 @@ const SPONSORS: {
 		tier: "Community",
 		logo: "/assets/effect-days/novelcrafter.svg",
 		mono: true,
-		/* Novelcrafter's lockup is nearly five times as wide as it is tall, so it
-		   caps shorter than Betalyra's to end up the smaller mark. */
-		logoHeight: "h-5",
-		logoBox: "h-7",
+		logoHeight: "h-10",
+		logoBox: "h-10",
 		tileClass: "py-7 gap-4",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
