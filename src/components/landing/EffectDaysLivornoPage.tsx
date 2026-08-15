@@ -1168,7 +1168,7 @@ export function EffectDaysLivornoPage() {
 						    Each row stretches its tiles to a common height. Keeping the tiers
 						    on separate grids is what makes that safe — the size step lives
 						    between the two grids, so no row can flatten it. */}
-						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
 							{SPONSORS.filter((sponsor) => sponsor.top).map((sponsor) => (
 								<a
 									key={sponsor.name}
