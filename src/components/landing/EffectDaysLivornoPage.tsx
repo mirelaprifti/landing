@@ -102,7 +102,7 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/adam-rankin.png",
 	},
 	{
-		name: "John De Goes",
+		name: "John A De Goes",
 		role: "Founder",
 		company: "Ziverge",
 		photo: "/assets/effect-days/john-degoes.png",
