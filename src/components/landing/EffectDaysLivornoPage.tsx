@@ -664,10 +664,18 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Two across from sm, four once there is desktop width — eight
-						    speakers fill two clean rows, and each further group of four
-						    adds another. */}
-						<div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+						{/* Two across in mobile portrait, three from mobile landscape
+						    through tablet, four once there is desktop width.
+
+						    On desktop the four cards read as two pairs: 16px inside each
+						    pair and 32px down the middle, so the page's centre dashed line
+						    has room to show through. That is one zero-width spacer track
+						    between the pairs — with a uniform 16px gap either side of it,
+						    the middle reads as 32. Each card is explicitly placed so
+						    nothing auto-flows into the spacer, and keeping it a single grid
+						    (rather than two half-grids) is what holds the card widths equal
+						    and the row bottoms aligned across the centre. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:[&>*:nth-child(4n+1)]:col-start-1 lg:[&>*:nth-child(4n+2)]:col-start-2 lg:[&>*:nth-child(4n+3)]:col-start-4 lg:[&>*:nth-child(4n)]:col-start-5">
 							{SPEAKERS.map((speaker) => (
 								<div
 									key={speaker.name}
