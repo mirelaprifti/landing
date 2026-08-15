@@ -69,13 +69,28 @@ const SPEAKERS: {
 	company: string;
 	photo?: string;
 }[] = [
-	{ name: "Dillon Mulroy", role: "Principal Engineer", company: "Cloudflare" },
-	{ name: "Kit Langton", role: "Over 9,000x Developer", company: "OpenCode" },
+	{
+		name: "Dillon Mulroy",
+		role: "Principal Engineer",
+		company: "Cloudflare",
+		photo: "/assets/effect-days/dillon-mulroy.png",
+	},
+	{
+		name: "Kit Langton",
+		role: "Over 9,000x Developer",
+		company: "OpenCode",
+		photo: "/assets/effect-days/kit-langton.png",
+	},
 	{ name: "Rhys Sullivan", role: "Founder", company: "Executor" },
 	{ name: "Leonie", role: "Founder", company: "Novelcrafter" },
 	{ name: "Kyle Mistele", role: "CTO", company: "HumanLayer" },
 	{ name: "Sam Goodwin", role: "Founder", company: "Alchemy" },
-	{ name: "Adam Rankin", role: "CTO", company: "Warp" },
+	{
+		name: "Adam Rankin",
+		role: "CTO",
+		company: "Warp",
+		photo: "/assets/effect-days/adam-rankin.png",
+	},
 	{ name: "John De Goes", role: "Founder", company: "Ziverge" },
 ];
 
@@ -646,14 +661,15 @@ export function EffectDaysLivornoPage() {
 									className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 								>
 									{speaker.photo ? (
-										/* Square headshots are the common case, so the crop into
-										   this taller frame is biased upward — it takes most of
-										   the overflow off the bottom and keeps the head whole
-										   rather than trimming forehead and chin evenly. */
+										/* Sources are square, so covering this taller frame crops
+										   the sides rather than the top and bottom — centred is
+										   right for that. A source taller than 4:5 would crop
+										   vertically instead and may want a per-card
+										   object-position. */
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover object-[center_25%] dark:border-zinc-800"
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
