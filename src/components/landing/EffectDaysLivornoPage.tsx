@@ -1216,7 +1216,7 @@ export function EffectDaysLivornoPage() {
 						{/* Supporting tiers, three across — the two lower-tier marks and the
 						    open slot, which sits with them because it is the same size step
 						    and closes the row at three rather than leaving a hole. */}
-						<div className="mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-3 lg:mt-8 lg:gap-8">
+						<div className="mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-3 lg:gap-8">
 							{SPONSORS.filter((sponsor) => !sponsor.top).map((sponsor) => (
 								<a
 									key={sponsor.name}
