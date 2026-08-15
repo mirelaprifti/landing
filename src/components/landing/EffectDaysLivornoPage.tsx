@@ -691,7 +691,7 @@ export function EffectDaysLivornoPage() {
 									key={speaker.name}
 									/* Opaque, so the page's centre dashed line stops behind the
 									   card rather than running across a portrait. */
-									className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+									className="group flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 								>
 									{speaker.photo ? (
 										/* Most sources are square, and covering this taller frame
@@ -703,7 +703,12 @@ export function EffectDaysLivornoPage() {
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
+											/* The headshots come from every source imaginable — studio
+											   grey, stage lighting, low outdoor sun — so they are
+											   desaturated to one tone, the same treatment the 2024
+											   edition card uses. Colour returns on hover, which also
+											   keeps the original photo one gesture away. */
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover grayscale transition-[filter] duration-300 ease-out group-hover:grayscale-0 dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
