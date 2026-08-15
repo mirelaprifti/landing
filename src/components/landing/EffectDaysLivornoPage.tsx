@@ -87,7 +87,12 @@ const SPEAKERS: {
 		company: "Executor",
 		photo: "/assets/effect-days/rhys-sullivan.png",
 	},
-	{ name: "Leonie Gräßel", role: "Founder", company: "Novelcrafter" },
+	{
+		name: "Leonie Gräßel",
+		role: "Founder",
+		company: "Novelcrafter",
+		photo: "/assets/effect-days/leonie.png",
+	},
 	{
 		name: "Kyle Mistele",
 		role: "CTO",
