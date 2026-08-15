@@ -713,7 +713,7 @@ export function EffectDaysLivornoPage() {
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-90 dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
