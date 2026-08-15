@@ -1256,7 +1256,7 @@ export function EffectDaysLivornoPage() {
 								{/* An empty logo slot, sized to the marks beside it, with the
 								    caret from the 2026 edition card blinking inside — it reads as
 								    waiting for a name to be typed in. */}
-								<span className="flex h-7 w-44 max-w-full items-center justify-center border border-dashed border-zinc-300 transition-colors duration-200 group-hover:border-zinc-400 dark:border-zinc-700 dark:group-hover:border-zinc-500">
+								<span className="flex h-7 w-44 max-w-full items-center justify-center">
 									<span className={`${text.micro} mb-0`}>
 										Your logo here
 										<span className="animate-[terminal-blink_1s_step-end_infinite]">
