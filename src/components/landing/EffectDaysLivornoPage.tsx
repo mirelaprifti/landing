@@ -1249,7 +1249,7 @@ export function EffectDaysLivornoPage() {
 							{/* Open slot — offered for any tier, so it carries no chip. */}
 							<a
 								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-								className="group relative flex flex-col items-center justify-center gap-4 bg-white px-6 py-7 dark:bg-zinc-950"
+								className="group relative flex flex-col items-center justify-center bg-white px-6 py-7 dark:bg-zinc-950"
 							>
 								<TileBrackets dim />
 
@@ -1264,7 +1264,7 @@ export function EffectDaysLivornoPage() {
 										</span>
 									</span>
 								</span>
-								<span className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+								<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
 									Become a sponsor
 									{/* mailto — leaves the page, so up-right */}
 									<Icon name="arrow-up-right" className="text-xs" />
