@@ -73,7 +73,7 @@ const SPEAKERS: {
 	{ name: "Kit Langton", role: "Over 9,000x Developer", company: "OpenCode" },
 	{ name: "Rhys Sullivan", role: "Founder", company: "Executor" },
 	{ name: "Leonie", role: "Founder", company: "Novelcrafter" },
-	{ name: "Kyle", role: "CTO", company: "HumanLayer" },
+	{ name: "Kyle Mistele", role: "CTO", company: "HumanLayer" },
 	{ name: "Sam Goodwin", role: "Founder", company: "Alchemy" },
 	{ name: "Adam Rankin", role: "CTO", company: "Warp" },
 	{ name: "John De Goes", role: "Founder", company: "Ziverge" },
