@@ -703,11 +703,7 @@ export function EffectDaysLivornoPage() {
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											/* The headshots come from every source imaginable — studio
-											   grey, stage lighting, low outdoor sun — so saturation
-											   is pulled back to calm the colour casts against each
-											   other. Enough remains for skin to read as skin. */
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover saturate-[0.6] dark:border-zinc-800"
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
