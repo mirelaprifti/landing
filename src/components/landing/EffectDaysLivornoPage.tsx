@@ -689,10 +689,10 @@ export function EffectDaysLivornoPage() {
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
 									)}
-									{/* p-5 rather than the styleguide card's p-6 — four across
+									{/* p-4 rather than the styleguide card's p-6 — four across
 									    leaves each card narrow, and the tighter inset keeps the
 									    role on one line more often. */}
-									<div className="flex flex-1 flex-col p-5">
+									<div className="flex flex-1 flex-col p-4">
 										<h3 className={text.cardTitle}>{speaker.name}</h3>
 										<p className={text.cardBody}>
 											{speaker.role}
