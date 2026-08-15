@@ -219,7 +219,7 @@ const SPONSORS: {
 		   wider lockup for the two to read at the same size. */
 		logoHeight: "h-12",
 		logoBox: "h-12",
-		tileClass: "py-12 gap-6",
+		tileClass: "py-12 gap-4",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
@@ -229,7 +229,7 @@ const SPONSORS: {
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-8",
 		logoBox: "h-12",
-		tileClass: "py-12 gap-6",
+		tileClass: "py-12 gap-4",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
@@ -1166,30 +1166,6 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Preview control — not part of the design. Same segmented control
-						    the events page uses for its Upcoming/Past tabs. */}
-						<div className="mt-8 flex justify-center">
-							<div className="inline-flex gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 p-1">
-								{[
-									{ label: "With Novelcrafter", value: true },
-									{ label: "Without", value: false },
-								].map((option) => (
-									<button
-										key={option.label}
-										type="button"
-										onClick={() => setWithCommunityTier(option.value)}
-										className={`relative w-44 cursor-pointer rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
-											withCommunityTier === option.value
-												? "bg-zinc-800 font-bold text-white shadow-sm shadow-black/20"
-												: "text-zinc-400 hover:text-zinc-300"
-										}`}
-									>
-										{option.label}
-									</button>
-								))}
-							</div>
-						</div>
-
 						{/* Two rows, each on its own grid: the main tier runs two across at
 						    full tile height, the supporting tiers three across and shorter.
 						    The chip names the rank and the tile height carries its weight.
@@ -1319,6 +1295,30 @@ export function EffectDaysLivornoPage() {
 									<Icon name="arrow-up-right" className="text-xs" />
 								</span>
 							</a>
+						</div>
+
+						{/* Preview control — not part of the design, and deliberately quiet:
+						    small mono text tucked under the right edge of the grid so it
+						    reads as scaffolding rather than section chrome. Remove it, and
+						    the state behind it, once the layout is chosen. */}
+						<div className="mt-3 flex justify-end gap-3 font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-600">
+							{[
+								{ label: "With Novelcrafter", value: true },
+								{ label: "Without", value: false },
+							].map((option) => (
+								<button
+									key={option.label}
+									type="button"
+									onClick={() => setWithCommunityTier(option.value)}
+									className={`cursor-pointer transition-colors duration-200 hover:text-zinc-900 dark:hover:text-zinc-300 ${
+										withCommunityTier === option.value
+											? "text-zinc-900 underline underline-offset-4 dark:text-zinc-400"
+											: ""
+									}`}
+								>
+									{option.label}
+								</button>
+							))}
 						</div>
 					</div>
 				</section>
