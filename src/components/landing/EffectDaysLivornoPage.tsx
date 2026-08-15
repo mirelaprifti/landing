@@ -100,16 +100,16 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kyle-mistele.png",
 	},
 	{
-		name: "Sam Goodwin",
-		role: "Founder",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-	},
-	{
 		name: "Adam Rankin",
 		role: "CTO",
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
+	},
+	{
+		name: "Sam Goodwin",
+		role: "Founder",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
 	},
 	{
 		name: "John A De Goes",
