@@ -1163,8 +1163,12 @@ export function EffectDaysLivornoPage() {
 
 						{/* Two rows, each on its own grid: the main tier runs two across at
 						    full tile height, the supporting tiers three across and shorter.
-						    The chip names the rank and the tile height carries its weight. */}
-						<div className="mt-12 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:gap-8">
+						    The chip names the rank and the tile height carries its weight.
+
+						    Each row stretches its tiles to a common height. Keeping the tiers
+						    on separate grids is what makes that safe — the size step lives
+						    between the two grids, so no row can flatten it. */}
+						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
 							{SPONSORS.filter((sponsor) => sponsor.top).map((sponsor) => (
 								<a
 									key={sponsor.name}
@@ -1216,7 +1220,7 @@ export function EffectDaysLivornoPage() {
 						{/* Supporting tiers, three across — the two lower-tier marks and the
 						    open slot, which sits with them because it is the same size step
 						    and closes the row at three rather than leaving a hole. */}
-						<div className="mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-3 lg:gap-8">
+						<div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-8">
 							{SPONSORS.filter((sponsor) => !sponsor.top).map((sponsor) => (
 								<a
 									key={sponsor.name}
