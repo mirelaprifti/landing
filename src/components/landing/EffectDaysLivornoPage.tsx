@@ -414,7 +414,7 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 		.join("")
 		.slice(0, 2);
 	return (
-		<div className="flex aspect-4/5 items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+		<div className="flex aspect-square items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
 			<span className="flex h-16 w-16 items-center justify-center border border-dashed border-zinc-300 font-mono text-lg font-medium tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
 				{initials}
 			</span>
@@ -649,7 +649,7 @@ export function EffectDaysLivornoPage() {
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
+											className="aspect-square w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
