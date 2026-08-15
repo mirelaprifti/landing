@@ -99,7 +99,12 @@ const SPEAKERS: {
 		company: "HumanLayer",
 		photo: "/assets/effect-days/kyle-mistele.png",
 	},
-	{ name: "Sam Goodwin", role: "Founder", company: "Alchemy" },
+	{
+		name: "Sam Goodwin",
+		role: "Founder",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+	},
 	{
 		name: "Adam Rankin",
 		role: "CTO",
