@@ -190,6 +190,14 @@ const PASSES = [
    The second tier has no sponsor yet and is deliberately absent: an empty
    labelled band mid-ladder advertises the vacancy and weakens the tier above
    it. The open slot at the foot of the section covers every tier at once. */
+
+/* Design switch for the supporting row, to compare the two layouts.
+
+   true  — Betalyra, Novelcrafter and the open slot, three across on desktop
+           and paired on mobile portrait with the slot spanning beneath them.
+   false — Novelcrafter dropped, leaving Betalyra and the open slot two across
+           on desktop and stacked on mobile portrait. */
+const WITH_COMMUNITY_TIER = true;
 const SPONSORS: {
 	name: string;
 	/** Tier, shown as a chip on the tile. */
@@ -1220,8 +1228,18 @@ export function EffectDaysLivornoPage() {
 						{/* Supporting tiers, three across — the two lower-tier marks and the
 						    open slot, which sits with them because it is the same size step
 						    and closes the row at three rather than leaving a hole. */}
-						<div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-							{SPONSORS.filter((sponsor) => !sponsor.top).map((sponsor) => (
+						<div
+							className={`mt-4 grid gap-4 ${
+								WITH_COMMUNITY_TIER
+									? "grid-cols-2 sm:grid-cols-3"
+									: "grid-cols-1 sm:grid-cols-2 lg:gap-8"
+							}`}
+						>
+							{SPONSORS.filter(
+								(sponsor) =>
+									!sponsor.top &&
+									(WITH_COMMUNITY_TIER || sponsor.tier !== "Community"),
+							).map((sponsor) => (
 								<a
 									key={sponsor.name}
 									href={sponsor.websiteUrl}
@@ -1253,10 +1271,13 @@ export function EffectDaysLivornoPage() {
 							{/* Open slot — offered for any tier, so it carries no chip. */}
 							<a
 								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-								/* Mobile portrait keeps the two marks paired on the first row, so
-								   the slot takes the whole row beneath them rather than sitting
-								   alone in a half. */
-								className="group relative col-span-2 flex flex-col items-center justify-center bg-white px-6 py-7 sm:col-span-1 dark:bg-zinc-950"
+								/* With the community tier in, mobile portrait keeps the two marks
+								   paired on the first row and the slot takes the whole row
+								   beneath them rather than sitting alone in a half. Without it,
+								   the row is already one column there and needs no span. */
+								className={`group relative flex flex-col items-center justify-center bg-white px-6 py-7 dark:bg-zinc-950 ${
+									WITH_COMMUNITY_TIER ? "col-span-2 sm:col-span-1" : ""
+								}`}
 							>
 								<TileBrackets dim />
 
