@@ -70,12 +70,12 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 							{EVENT_HOME.label}
 						</Link>
 						{/* Divider separates the lockup from the section links, so it goes
-						    only where those links do — below md it would trail off alone. */}
-						<div className="hidden h-4.5 w-px bg-zinc-200 md:block dark:bg-zinc-700" />
+						    only where those links do — below lg it would trail off alone. */}
+						<div className="hidden h-4.5 w-px bg-zinc-200 lg:block dark:bg-zinc-700" />
 					</div>
 
 					{/* Event links (desktop) */}
-					<div className="ml-4 hidden items-center gap-6 md:flex">
+					<div className="ml-4 hidden items-center gap-6 lg:flex">
 						{EVENT_LINKS.map((link) => (
 							<Link
 								key={link.href}
@@ -117,7 +117,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 						</div>
 						<button
 							type="button"
-							className="flex h-10 w-10 items-center justify-center text-zinc-700 md:hidden dark:text-zinc-300"
+							className="flex h-10 w-10 items-center justify-center text-zinc-700 lg:hidden dark:text-zinc-300"
 							aria-label={menuOpen ? "Close menu" : "Open menu"}
 							aria-expanded={menuOpen}
 							aria-controls="effect-days-mobile-menu"
@@ -133,7 +133,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 			{menuOpen && (
 				<div
 					id="effect-days-mobile-menu"
-					className="border-t border-zinc-200 bg-zinc-50 md:hidden dark:border-zinc-800 dark:bg-zinc-950"
+					className="border-t border-zinc-200 bg-zinc-50 lg:hidden dark:border-zinc-800 dark:bg-zinc-950"
 				>
 					<ul className="mx-auto w-full max-w-[88rem] px-4 py-3">
 						{/* Event home leads the list — on small screens the header lockup is
