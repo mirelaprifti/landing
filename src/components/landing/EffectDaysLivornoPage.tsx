@@ -191,13 +191,6 @@ const PASSES = [
    labelled band mid-ladder advertises the vacancy and weakens the tier above
    it. The open slot at the foot of the section covers every tier at once. */
 
-/* Design switch for the supporting row, to compare the two layouts.
-
-   true  — Betalyra, Novelcrafter and the open slot, three across on desktop
-           and paired on mobile portrait with the slot spanning beneath them.
-   false — Novelcrafter dropped, leaving Betalyra and the open slot two across
-           on desktop and stacked on mobile portrait. */
-const WITH_COMMUNITY_TIER = true;
 const SPONSORS: {
 	name: string;
 	/** Tier, shown as a chip on the tile. */
@@ -536,6 +529,10 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 
 export function EffectDaysLivornoPage() {
 	const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
+	/* Preview toggle for the supporting sponsor row — lets the two layouts be
+	   compared in the browser. Remove it, and the control below, once the
+	   design is settled. */
+	const [withCommunityTier, setWithCommunityTier] = useState(true);
 
 	const toggleFaq = (index: number) => {
 		setOpenFaqs((prev) => {
@@ -1169,6 +1166,30 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
+						{/* Preview control — not part of the design. Same segmented control
+						    the events page uses for its Upcoming/Past tabs. */}
+						<div className="mt-8 flex justify-center">
+							<div className="inline-flex gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 p-1">
+								{[
+									{ label: "With Novelcrafter", value: true },
+									{ label: "Without", value: false },
+								].map((option) => (
+									<button
+										key={option.label}
+										type="button"
+										onClick={() => setWithCommunityTier(option.value)}
+										className={`relative w-44 cursor-pointer rounded-md py-2 text-center font-mono text-sm tracking-wider uppercase transition-all duration-200 ${
+											withCommunityTier === option.value
+												? "bg-zinc-800 font-bold text-white shadow-sm shadow-black/20"
+												: "text-zinc-400 hover:text-zinc-300"
+										}`}
+									>
+										{option.label}
+									</button>
+								))}
+							</div>
+						</div>
+
 						{/* Two rows, each on its own grid: the main tier runs two across at
 						    full tile height, the supporting tiers three across and shorter.
 						    The chip names the rank and the tile height carries its weight.
@@ -1230,7 +1251,7 @@ export function EffectDaysLivornoPage() {
 						    and closes the row at three rather than leaving a hole. */}
 						<div
 							className={`mt-4 grid gap-4 ${
-								WITH_COMMUNITY_TIER
+								withCommunityTier
 									? "grid-cols-2 sm:grid-cols-3"
 									: "grid-cols-1 sm:grid-cols-2 lg:gap-8"
 							}`}
@@ -1238,7 +1259,7 @@ export function EffectDaysLivornoPage() {
 							{SPONSORS.filter(
 								(sponsor) =>
 									!sponsor.top &&
-									(WITH_COMMUNITY_TIER || sponsor.tier !== "Community"),
+									(withCommunityTier || sponsor.tier !== "Community"),
 							).map((sponsor) => (
 								<a
 									key={sponsor.name}
@@ -1276,7 +1297,7 @@ export function EffectDaysLivornoPage() {
 								   beneath them rather than sitting alone in a half. Without it,
 								   the row is already one column there and needs no span. */
 								className={`group relative flex flex-col items-center justify-center bg-white px-6 py-7 dark:bg-zinc-950 ${
-									WITH_COMMUNITY_TIER ? "col-span-2 sm:col-span-1" : ""
+									withCommunityTier ? "col-span-2 sm:col-span-1" : ""
 								}`}
 							>
 								<TileBrackets dim />
