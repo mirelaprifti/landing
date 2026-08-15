@@ -81,9 +81,19 @@ const SPEAKERS: {
 		company: "OpenCode",
 		photo: "/assets/effect-days/kit-langton.png",
 	},
-	{ name: "Rhys Sullivan", role: "Founder", company: "Executor" },
+	{
+		name: "Rhys Sullivan",
+		role: "Founder",
+		company: "Executor",
+		photo: "/assets/effect-days/rhys-sullivan.png",
+	},
 	{ name: "Leonie", role: "Founder", company: "Novelcrafter" },
-	{ name: "Kyle Mistele", role: "CTO", company: "HumanLayer" },
+	{
+		name: "Kyle Mistele",
+		role: "CTO",
+		company: "HumanLayer",
+		photo: "/assets/effect-days/kyle-mistele.png",
+	},
 	{ name: "Sam Goodwin", role: "Founder", company: "Alchemy" },
 	{
 		name: "Adam Rankin",
@@ -91,7 +101,12 @@ const SPEAKERS: {
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
 	},
-	{ name: "John De Goes", role: "Founder", company: "Ziverge" },
+	{
+		name: "John De Goes",
+		role: "Founder",
+		company: "Ziverge",
+		photo: "/assets/effect-days/john-degoes.png",
+	},
 ];
 
 /* Early bird runs first. Set to false once regular pricing starts, which also
