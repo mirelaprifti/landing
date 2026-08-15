@@ -97,18 +97,21 @@ const SPEAKERS: {
 		role: "Founder",
 		company: "Novelcrafter",
 		photo: "/assets/effect-days/leonie-2.png",
+		x: "spaceemotion",
 	},
 	{
 		name: "Kyle Mistele",
 		role: "CTO",
 		company: "HumanLayer",
 		photo: "/assets/effect-days/kyle-mistele.png",
+		x: "0xblacklight",
 	},
 	{
 		name: "Adam Rankin",
 		role: "CTO",
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
+		x: "rankintweets",
 	},
 	{
 		name: "Sam Goodwin",
