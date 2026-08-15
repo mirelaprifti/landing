@@ -199,6 +199,8 @@ const SPONSORS: {
 	/** Mark ships pure white; inverted to black for the light tile. */
 	mono?: boolean;
 	logoHeight: string;
+	/** Tile padding and logo-to-chip gap — the size step between tiers. */
+	tileClass: string;
 	websiteUrl: string;
 }[] = [
 	{
@@ -209,6 +211,7 @@ const SPONSORS: {
 		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
 		   wider lockup for the two to read at the same size. */
 		logoHeight: "h-12",
+		tileClass: "py-12 gap-6",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
@@ -216,6 +219,7 @@ const SPONSORS: {
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-8",
+		tileClass: "py-12 gap-6",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
@@ -223,7 +227,8 @@ const SPONSORS: {
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
 		mono: true,
-		logoHeight: "h-8",
+		logoHeight: "h-7",
+		tileClass: "py-7 gap-4",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
@@ -233,7 +238,8 @@ const SPONSORS: {
 		mono: true,
 		/* Novelcrafter's lockup is nearly five times as wide as it is tall, so it
 		   caps shorter than Betalyra's to end up the smaller mark. */
-		logoHeight: "h-6",
+		logoHeight: "h-5",
+		tileClass: "py-7 gap-4",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
 ];
@@ -1144,11 +1150,12 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* One grid of equal tiles, each carrying its tier as a chip — rank
-						    is stated on the tile rather than built out of the layout. Two
-						    across from sm, and the open slot spans the full width to close
-						    the section. */}
-						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
+						{/* One grid, two across from sm, with the chip naming the tier and
+						    the tile height carrying its weight — the top tier runs about
+						    40% taller than the two below it. Rows happen to hold one tier
+						    each today; a second-tier sponsor would sit beside a main one, at
+						    which point `items-start` keeps it from stretching to match. */}
+						<div className="mt-12 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:gap-8">
 							{SPONSORS.map((sponsor) => (
 								<a
 									key={sponsor.name}
@@ -1158,7 +1165,7 @@ export function EffectDaysLivornoPage() {
 									aria-label={`${sponsor.name} — visit website`}
 									/* Opaque so the page's centre dashed line stops behind the
 									   tile rather than running across the logo. */
-									className="group relative flex flex-col items-center justify-center gap-5 bg-white px-6 py-10 dark:bg-zinc-950"
+									className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${sponsor.tileClass}`}
 								>
 									<TileBrackets />
 
