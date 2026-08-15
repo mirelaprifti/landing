@@ -236,8 +236,8 @@ const SPONSORS: {
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
 		mono: true,
-		logoHeight: "h-10",
-		logoBox: "h-10",
+		logoHeight: "h-12",
+		logoBox: "h-12",
 		tileClass: "py-7 gap-4",
 		websiteUrl: "https://betalyra.com/",
 	},
@@ -249,7 +249,7 @@ const SPONSORS: {
 		/* Its lockup is nearly five times as wide as it is tall, so it caps
 		   shorter than Betalyra's to sit at the same optical size. */
 		logoHeight: "h-8",
-		logoBox: "h-10",
+		logoBox: "h-12",
 		tileClass: "py-7 gap-4",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
