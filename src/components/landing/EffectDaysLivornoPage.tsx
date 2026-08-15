@@ -1220,7 +1220,7 @@ export function EffectDaysLivornoPage() {
 						{/* Supporting tiers, three across — the two lower-tier marks and the
 						    open slot, which sits with them because it is the same size step
 						    and closes the row at three rather than leaving a hole. */}
-						<div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+						<div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
 							{SPONSORS.filter((sponsor) => !sponsor.top).map((sponsor) => (
 								<a
 									key={sponsor.name}
@@ -1253,7 +1253,10 @@ export function EffectDaysLivornoPage() {
 							{/* Open slot — offered for any tier, so it carries no chip. */}
 							<a
 								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-								className="group relative flex flex-col items-center justify-center bg-white px-6 py-7 dark:bg-zinc-950"
+								/* Mobile portrait keeps the two marks paired on the first row, so
+								   the slot takes the whole row beneath them rather than sitting
+								   alone in a half. */
+								className="group relative col-span-2 flex flex-col items-center justify-center bg-white px-6 py-7 sm:col-span-1 dark:bg-zinc-950"
 							>
 								<TileBrackets dim />
 
