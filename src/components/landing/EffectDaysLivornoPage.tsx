@@ -77,7 +77,7 @@ const SPEAKERS: {
 	},
 	{
 		name: "Kit Langton",
-		role: "Over 9,000x Developer",
+		role: "+9,000x Developer",
 		company: "OpenCode",
 		photo: "/assets/effect-days/kit-langton.png",
 	},
