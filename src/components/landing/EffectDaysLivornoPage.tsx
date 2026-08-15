@@ -199,6 +199,9 @@ const SPONSORS: {
 	/** Mark ships pure white; inverted to black for the light tile. */
 	mono?: boolean;
 	logoHeight: string;
+	/** Fixed logo slot, one per tier, so tiles in a tier match in height
+	 *  however tall each individual mark is set. */
+	logoBox: string;
 	/** Tile padding and logo-to-chip gap — the size step between tiers. */
 	tileClass: string;
 	websiteUrl: string;
@@ -211,6 +214,7 @@ const SPONSORS: {
 		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
 		   wider lockup for the two to read at the same size. */
 		logoHeight: "h-12",
+		logoBox: "h-12",
 		tileClass: "py-12 gap-6",
 		websiteUrl: "https://effectful.co/",
 	},
@@ -219,6 +223,7 @@ const SPONSORS: {
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-8",
+		logoBox: "h-12",
 		tileClass: "py-12 gap-6",
 		websiteUrl: "https://www.ziverge.com/",
 	},
@@ -228,6 +233,7 @@ const SPONSORS: {
 		logo: "/assets/effect-days/betalyra-dark.svg",
 		mono: true,
 		logoHeight: "h-7",
+		logoBox: "h-7",
 		tileClass: "py-7 gap-4",
 		websiteUrl: "https://betalyra.com/",
 	},
@@ -239,6 +245,7 @@ const SPONSORS: {
 		/* Novelcrafter's lockup is nearly five times as wide as it is tall, so it
 		   caps shorter than Betalyra's to end up the smaller mark. */
 		logoHeight: "h-5",
+		logoBox: "h-7",
 		tileClass: "py-7 gap-4",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
@@ -1169,25 +1176,33 @@ export function EffectDaysLivornoPage() {
 								>
 									<TileBrackets />
 
-									<img
-										src={getAssetPath(sponsor.logo)}
-										alt={sponsor.name}
-										className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-											sponsor.logoDark ? "dark:hidden" : ""
-										} ${
-											/* Ships white, so it is inverted to black for the light
-											   tile and left alone on the dark one. */
-											sponsor.mono ? "invert dark:invert-0" : ""
-										}`}
-									/>
-									{sponsor.logoDark && (
+									{/* Fixed-height slot: marks are set to different heights so they
+									    read at the same optical size, which would otherwise make
+									    their tiles different heights now that the grid no longer
+									    stretches them. */}
+									<span
+										className={`flex ${sponsor.logoBox} items-center justify-center`}
+									>
 										<img
-											src={getAssetPath(sponsor.logoDark)}
-											alt=""
-											aria-hidden="true"
-											className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+											src={getAssetPath(sponsor.logo)}
+											alt={sponsor.name}
+											className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+												sponsor.logoDark ? "dark:hidden" : ""
+											} ${
+												/* Ships white, so it is inverted to black for the light
+												   tile and left alone on the dark one. */
+												sponsor.mono ? "invert dark:invert-0" : ""
+											}`}
 										/>
-									)}
+										{sponsor.logoDark && (
+											<img
+												src={getAssetPath(sponsor.logoDark)}
+												alt=""
+												aria-hidden="true"
+												className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+											/>
+										)}
+									</span>
 
 									<span className={`${text.micro} ${chip} mb-0`}>
 										{sponsor.tier}
