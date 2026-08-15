@@ -194,6 +194,8 @@ const SPONSORS: {
 	name: string;
 	/** Tier, shown as a chip on the tile. */
 	tier: string;
+	/** Top tier — rendered in the two-up row above the supporting tiers. */
+	top?: boolean;
 	logo: string;
 	logoDark?: string;
 	/** Mark ships pure white; inverted to black for the light tile. */
@@ -209,6 +211,7 @@ const SPONSORS: {
 	{
 		name: "Effectful",
 		tier: "Main sponsor",
+		top: true,
 		logo: "/assets/effect-days/Effectful-black.svg",
 		logoDark: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
@@ -221,6 +224,7 @@ const SPONSORS: {
 	{
 		name: "Ziverge",
 		tier: "Main sponsor",
+		top: true,
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-8",
 		logoBox: "h-12",
@@ -1157,13 +1161,11 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* One grid, two across from sm, with the chip naming the tier and
-						    the tile height carrying its weight — the top tier runs about
-						    40% taller than the two below it. Rows happen to hold one tier
-						    each today; a second-tier sponsor would sit beside a main one, at
-						    which point `items-start` keeps it from stretching to match. */}
+						{/* Two rows, each on its own grid: the main tier runs two across at
+						    full tile height, the supporting tiers three across and shorter.
+						    The chip names the rank and the tile height carries its weight. */}
 						<div className="mt-12 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:gap-8">
-							{SPONSORS.map((sponsor) => (
+							{SPONSORS.filter((sponsor) => sponsor.top).map((sponsor) => (
 								<a
 									key={sponsor.name}
 									href={sponsor.websiteUrl}
@@ -1209,19 +1211,52 @@ export function EffectDaysLivornoPage() {
 									</span>
 								</a>
 							))}
+						</div>
 
-							{/* Open slot — offered for any tier, so it carries no chip and
-							    spans the row to close the section. */}
+						{/* Supporting tiers, three across — the two lower-tier marks and the
+						    open slot, which sits with them because it is the same size step
+						    and closes the row at three rather than leaving a hole. */}
+						<div className="mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-3 lg:mt-8 lg:gap-8">
+							{SPONSORS.filter((sponsor) => !sponsor.top).map((sponsor) => (
+								<a
+									key={sponsor.name}
+									href={sponsor.websiteUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${sponsor.name} — visit website`}
+									className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${sponsor.tileClass}`}
+								>
+									<TileBrackets />
+
+									<span
+										className={`flex ${sponsor.logoBox} items-center justify-center`}
+									>
+										<img
+											src={getAssetPath(sponsor.logo)}
+											alt={sponsor.name}
+											className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+												sponsor.mono ? "invert dark:invert-0" : ""
+											}`}
+										/>
+									</span>
+
+									<span className={`${text.micro} ${chip} mb-0`}>
+										{sponsor.tier}
+									</span>
+								</a>
+							))}
+
+							{/* Open slot — offered for any tier, so it carries no chip. */}
 							<a
 								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-								className="group relative flex flex-col items-center justify-center gap-2 bg-white px-6 py-10 sm:col-span-2 dark:bg-zinc-950"
+								className="group relative flex flex-col items-center justify-center gap-4 bg-white px-6 py-7 dark:bg-zinc-950"
 							>
 								<TileBrackets dim />
 
 								{/* An empty logo slot, sized to the marks beside it, with the
 								    caret from the 2026 edition card blinking inside — it reads as
 								    waiting for a name to be typed in. */}
-								<span className="flex h-12 w-48 items-center justify-center border border-dashed border-zinc-300 transition-colors duration-200 group-hover:border-zinc-400 dark:border-zinc-700 dark:group-hover:border-zinc-500">
+								<span className="flex h-7 w-44 max-w-full items-center justify-center border border-dashed border-zinc-300 transition-colors duration-200 group-hover:border-zinc-400 dark:border-zinc-700 dark:group-hover:border-zinc-500">
 									<span className={`${text.micro} mb-0`}>
 										Your logo here
 										<span className="animate-[terminal-blink_1s_step-end_infinite]">
