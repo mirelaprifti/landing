@@ -93,10 +93,10 @@ const SPEAKERS: {
 		x: "RhysSullivan",
 	},
 	{
-		name: "Adam Rankin",
-		role: "CTO",
-		company: "Warp",
-		photo: "/assets/effect-days/adam-rankin.png",
+		name: "Leonie Gräßel",
+		role: "Founder",
+		company: "Novelcrafter",
+		photo: "/assets/effect-days/leonie-2.png",
 	},
 	{
 		name: "Kyle Mistele",
@@ -105,10 +105,10 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kyle-mistele.png",
 	},
 	{
-		name: "Leonie Gräßel",
-		role: "Founder",
-		company: "Novelcrafter",
-		photo: "/assets/effect-days/leonie-2.png",
+		name: "Adam Rankin",
+		role: "CTO",
+		company: "Warp",
+		photo: "/assets/effect-days/adam-rankin.png",
 	},
 	{
 		name: "Sam Goodwin",
