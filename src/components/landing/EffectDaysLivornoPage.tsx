@@ -190,68 +190,51 @@ const PASSES = [
    The second tier has no sponsor yet and is deliberately absent: an empty
    labelled band mid-ladder advertises the vacancy and weakens the tier above
    it. The open slot at the foot of the section covers every tier at once. */
-const SPONSOR_TIERS: {
-	label: string;
-	tileClass: string;
-	sponsors: {
-		name: string;
-		logo: string;
-		logoDark?: string;
-		/** Mark ships pure white; inverted to black for the light tile. */
-		mono?: boolean;
-		logoHeight: string;
-		websiteUrl: string;
-	}[];
+const SPONSORS: {
+	name: string;
+	/** Tier, shown as a chip on the tile. */
+	tier: string;
+	logo: string;
+	logoDark?: string;
+	/** Mark ships pure white; inverted to black for the light tile. */
+	mono?: boolean;
+	logoHeight: string;
+	websiteUrl: string;
 }[] = [
 	{
-		label: "Main sponsors",
-		/* The top tier carries the most presence: full-height tiles, largest cap. */
-		tileClass: "py-12",
-		sponsors: [
-			{
-				name: "Effectful",
-				logo: "/assets/effect-days/Effectful-black.svg",
-				logoDark: "/assets/effect-days/Effectful-white.svg",
-				/* Effectful's wordmark is short and heavy, so it runs taller than
-				   Ziverge's wider lockup for the two to read at the same size. */
-				logoHeight: "h-12",
-				websiteUrl: "https://effectful.co/",
-			},
-			{
-				name: "Ziverge",
-				logo: "/assets/effect-days/ziverge.svg",
-				logoHeight: "h-8",
-				websiteUrl: "https://www.ziverge.com/",
-			},
-		],
+		name: "Effectful",
+		tier: "Main sponsor",
+		logo: "/assets/effect-days/Effectful-black.svg",
+		logoDark: "/assets/effect-days/Effectful-white.svg",
+		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
+		   wider lockup for the two to read at the same size. */
+		logoHeight: "h-12",
+		websiteUrl: "https://effectful.co/",
 	},
 	{
-		label: "Partner",
-		tileClass: "py-8",
-		sponsors: [
-			{
-				name: "Betalyra",
-				logo: "/assets/effect-days/betalyra-dark.svg",
-				mono: true,
-				logoHeight: "h-8",
-				websiteUrl: "https://betalyra.com/",
-			},
-		],
+		name: "Ziverge",
+		tier: "Main sponsor",
+		logo: "/assets/effect-days/ziverge.svg",
+		logoHeight: "h-8",
+		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
-		label: "Community",
-		tileClass: "py-8",
-		sponsors: [
-			{
-				name: "Novelcrafter",
-				logo: "/assets/effect-days/novelcrafter.svg",
-				mono: true,
-				/* Novelcrafter's lockup is nearly five times as wide as it is tall,
-				   so it caps shorter than Betalyra's to end up the smaller mark. */
-				logoHeight: "h-6",
-				websiteUrl: "https://www.novelcrafter.com/",
-			},
-		],
+		name: "Betalyra",
+		tier: "Partner",
+		logo: "/assets/effect-days/betalyra-dark.svg",
+		mono: true,
+		logoHeight: "h-8",
+		websiteUrl: "https://betalyra.com/",
+	},
+	{
+		name: "Novelcrafter",
+		tier: "Community",
+		logo: "/assets/effect-days/novelcrafter.svg",
+		mono: true,
+		/* Novelcrafter's lockup is nearly five times as wide as it is tall, so it
+		   caps shorter than Betalyra's to end up the smaller mark. */
+		logoHeight: "h-6",
+		websiteUrl: "https://www.novelcrafter.com/",
 	},
 ];
 
@@ -1161,62 +1144,55 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* One band per tier, each labelled on the left. The label is what
-						    lets a band holding a single sponsor read as a rank rather than a
-						    short row — the tiles keep the same two-column measure throughout,
-						    so a lone mark sits at the width of a main-tier tile and steps
-						    down only in height. */}
-						<div className="mt-12 space-y-4 lg:space-y-8">
-							{SPONSOR_TIERS.map((tier) => (
-								<div
-									key={tier.label}
-									className="grid grid-cols-1 gap-3 lg:grid-cols-[8rem_1fr] lg:items-center lg:gap-8"
+						{/* One grid of equal tiles, each carrying its tier as a chip — rank
+						    is stated on the tile rather than built out of the layout. Two
+						    across from sm, and the open slot spans the full width to close
+						    the section. */}
+						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
+							{SPONSORS.map((sponsor) => (
+								<a
+									key={sponsor.name}
+									href={sponsor.websiteUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${sponsor.name} — visit website`}
+									/* Opaque so the page's centre dashed line stops behind the
+									   tile rather than running across the logo. */
+									className="group relative flex flex-col items-center justify-center gap-5 bg-white px-6 py-10 dark:bg-zinc-950"
 								>
-									<p className={`${text.micro} mb-0`}>{tier.label}</p>
-									<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
-										{tier.sponsors.map((sponsor) => (
-											<a
-												key={sponsor.name}
-												href={sponsor.websiteUrl}
-												target="_blank"
-												rel="noopener noreferrer"
-												aria-label={`${sponsor.name} — visit website`}
-												/* Opaque so the page's centre dashed line stops behind
-												   the tile rather than running across the logo. */
-												className={`group relative flex items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
-											>
-												<TileBrackets />
+									<TileBrackets />
 
-												<img
-													src={getAssetPath(sponsor.logo)}
-													alt={sponsor.name}
-													className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-														sponsor.logoDark ? "dark:hidden" : ""
-													} ${
-														/* Ships white, so it is inverted to black for the
-														   light tile and left alone on the dark one. */
-														sponsor.mono ? "invert dark:invert-0" : ""
-													}`}
-												/>
-												{sponsor.logoDark && (
-													<img
-														src={getAssetPath(sponsor.logoDark)}
-														alt=""
-														aria-hidden="true"
-														className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
-													/>
-												)}
-											</a>
-										))}
-									</div>
-								</div>
+									<img
+										src={getAssetPath(sponsor.logo)}
+										alt={sponsor.name}
+										className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+											sponsor.logoDark ? "dark:hidden" : ""
+										} ${
+											/* Ships white, so it is inverted to black for the light
+											   tile and left alone on the dark one. */
+											sponsor.mono ? "invert dark:invert-0" : ""
+										}`}
+									/>
+									{sponsor.logoDark && (
+										<img
+											src={getAssetPath(sponsor.logoDark)}
+											alt=""
+											aria-hidden="true"
+											className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+										/>
+									)}
+
+									<span className={`${text.micro} ${chip} mb-0`}>
+										{sponsor.tier}
+									</span>
+								</a>
 							))}
 
-							{/* Open slot — the foot of the ladder, offered for any tier, so it
-							    carries no tier label and runs the full width. */}
+							{/* Open slot — offered for any tier, so it carries no chip and
+							    spans the row to close the section. */}
 							<a
 								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-								className="group relative flex flex-col items-center justify-center gap-2 bg-white px-6 py-8 dark:bg-zinc-950"
+								className="group relative flex flex-col items-center justify-center gap-2 bg-white px-6 py-10 sm:col-span-2 dark:bg-zinc-950"
 							>
 								<TileBrackets dim />
 
