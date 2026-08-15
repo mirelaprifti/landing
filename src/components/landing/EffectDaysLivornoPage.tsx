@@ -704,11 +704,11 @@ export function EffectDaysLivornoPage() {
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
 											/* The headshots come from every source imaginable — studio
-											   grey, stage lighting, low outdoor sun — so they are
-											   desaturated to one tone, the same treatment the 2024
-											   edition card uses. Colour returns on hover, which also
-											   keeps the original photo one gesture away. */
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover grayscale transition-[filter] duration-300 ease-out group-hover:grayscale-0 dark:border-zinc-800"
+											   grey, stage lighting, low outdoor sun — so saturation
+											   is pulled back to calm the colour casts against each
+											   other. Enough remains for skin to read as skin; full
+											   colour returns on hover. */
+											className="aspect-4/5 w-full border-b border-zinc-200 object-cover saturate-[0.6] transition-[filter] duration-300 ease-out group-hover:saturate-100 dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
