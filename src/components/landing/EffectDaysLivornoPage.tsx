@@ -121,11 +121,11 @@ const SPEAKERS: {
 		x: "samgoodwin89",
 	},
 	{
-		name: "John A De Goes",
-		role: "Founder",
-		company: "Ziverge",
-		photo: "/assets/effect-days/john-degoes.png",
-		x: "jdegoes",
+		name: "Devin Jameson",
+		role: "Creator",
+		company: "Foldkit",
+		photo: "/assets/effect-days/devin-jameson.jpg",
+		x: "devinjameson",
 	},
 ];
 
