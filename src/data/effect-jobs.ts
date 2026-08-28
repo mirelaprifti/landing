@@ -173,7 +173,8 @@ export const JOBS: Job[] = [
 		role: "Software Engineer",
 		location: "US-based preferred",
 		type: "Full-time",
-		url: "https://springbird.app/",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1542265726218403861",
+		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/springbird.svg",
 		description:
 			"Own real pieces of the early-career and employee experience space.",
