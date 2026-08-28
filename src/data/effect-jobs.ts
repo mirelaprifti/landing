@@ -43,6 +43,16 @@ export const JOBS: Job[] = [
 		description: "Join the first AI Deployment company in Italy.",
 	},
 	{
+		company: "Evalucar",
+		role: "Tech Lead",
+		location: "Remote · France-based preferred",
+		type: "Full-time",
+		url: "https://discord.com/channels/795981131316985866/796153351372275743/1541849283391787109",
+		note: "Posted on Discord #job-board",
+		logo: "/assets/effect-jobs-logos/evalucar.svg",
+		description: "Be the one bringing Effect into production.",
+	},
+	{
 		company: "Expand.ai",
 		role: "Founding Engineer",
 		location: "San Francisco, USA",
