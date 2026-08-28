@@ -169,6 +169,16 @@ export const JOBS: Job[] = [
 			"Building a code-first framework — all focused on enabling non-technical users to ship production-quality code.",
 	},
 	{
+		company: "Springbird",
+		role: "Software Engineer",
+		location: "US-based preferred",
+		type: "Full-time",
+		url: "https://springbird.app/",
+		logo: "/assets/effect-jobs-logos/springbird.svg",
+		description:
+			"Own real pieces of the early-career and employee experience space.",
+	},
+	{
 		company: "Supermemory",
 		role: "Founding Backend / Infrastructure Engineer",
 		location: "San Francisco, CA · Hybrid",
