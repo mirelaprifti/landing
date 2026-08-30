@@ -100,7 +100,7 @@ export function ApiReferenceLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="API packages"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-10"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-8"
 						>
 							{/* The version switch heads the sidebar: it scopes everything
 							    below it, so it reads before the package tree. */}
