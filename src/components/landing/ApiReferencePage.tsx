@@ -139,7 +139,7 @@ export function ApiReferenceLayout({
 												onClick={() => toggleSection(group.title)}
 												aria-expanded={isOpen}
 												aria-controls={panelId}
-												className="flex w-full items-center justify-between py-2.5 text-sm font-semibold text-zinc-900 transition-colors hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+												className="flex w-full items-center justify-between py-2.5 text-sm font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
 											>
 												<span>{group.title}</span>
 												<Icon
