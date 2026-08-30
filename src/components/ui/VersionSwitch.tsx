@@ -4,13 +4,14 @@
  * Two versions means a segmented toggle, not a dropdown — both worlds visible,
  * one click to switch. (Same call logged in SearchPreviewPage: a dropdown wins
  * once a third version exists.) The class lists are copied verbatim from the
- * docs navbar's version switch (DocsNavigation.tsx) so the control reads as one
+ * docs sidebar's version switch (DocsLayout.tsx) so the control reads as one
  * shape site-wide; the styleguide has no segmented-control spec to defer to.
  *
  * Two modes, because the same shape carries two different consequences:
- * - `links`: each half navigates (docs, API reference). Cheap and reversible.
- * - `buttons`: each half mutates state (playground — rewrites package.json and
- *   rebuilds the sandbox). Callers own the confirm/rebuild.
+ * - `VersionSwitchLinks`: each half navigates (docs sidebar, API reference).
+ *   Cheap and reversible.
+ * - `VersionSwitch`: each half mutates state (playground — rewrites
+ *   package.json and rebuilds the sandbox). Callers own the confirm/rebuild.
  */
 
 export type EffectVersion = "v3" | "v4";
@@ -74,5 +75,48 @@ export function VersionSwitch({
 				);
 			})}
 		</fieldset>
+	);
+}
+
+/**
+ * Navigating twin of {@link VersionSwitch}: same shape, but each half is a link
+ * to that version's docs rather than a state mutation. Used at the top of the
+ * docs and API-reference sidebars.
+ */
+export function VersionSwitchLinks({
+	value,
+	href,
+	/** Stretch to the container width, halves sharing it evenly. */
+	block = false,
+	labels = VERSION_LABELS,
+	className = "",
+	"aria-label": ariaLabel = "Effect version",
+}: {
+	value: EffectVersion;
+	href: (version: EffectVersion) => string;
+	block?: boolean;
+	labels?: Record<EffectVersion, string>;
+	className?: string;
+	"aria-label"?: string;
+}) {
+	return (
+		<nav
+			aria-label={ariaLabel}
+			className={`${block ? "flex w-full" : "inline-flex"} ${CONTAINER} ${className}`}
+		>
+			{VERSIONS.map((version) => {
+				const active = value === version;
+				return (
+					<a
+						key={version}
+						href={href(version)}
+						aria-current={active ? "page" : undefined}
+						className={`${block ? "flex-1" : ""} ${ITEM} ${active ? ITEM_ACTIVE : ITEM_IDLE}`}
+					>
+						{labels[version]}
+					</a>
+				);
+			})}
+		</nav>
 	);
 }

@@ -1,5 +1,6 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
+import { VersionSwitchLinks } from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import {
@@ -86,7 +87,7 @@ export function ApiReferenceLayout({
 			>
 				Skip to main content
 			</a>
-			<DocsNavigation section="api" version={version} />
+			<DocsNavigation section="api" />
 			<div className="relative w-full pt-16">
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
@@ -99,8 +100,18 @@ export function ApiReferenceLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="API packages"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-8"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-10"
 						>
+							{/* The version switch heads the sidebar: it scopes everything
+							    below it, so it reads before the package tree. */}
+							<div className="mb-5">
+								<VersionSwitchLinks
+									value={version}
+									href={(v) => getAssetPath(`/docs/api/${v}`)}
+									block
+									aria-label="API reference version"
+								/>
+							</div>
 							<a
 								href={getAssetPath(`/docs/api/${version}`)}
 								aria-current={activeSlug === undefined ? "page" : undefined}

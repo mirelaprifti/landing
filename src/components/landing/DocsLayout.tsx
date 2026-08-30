@@ -1,5 +1,9 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
+import {
+	type EffectVersion,
+	VersionSwitchLinks,
+} from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { DocsNavigation } from "./DocsNavigation";
@@ -102,11 +106,14 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 export function DocsLayout({
 	activeSlug,
 	section = "docs",
+	version = "v3",
 	tocItems,
 	children,
 }: {
 	activeSlug: string;
 	section?: DocsSectionKey;
+	/** Active docs version; defaults to v3 (the current stable). */
+	version?: EffectVersion;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -155,6 +162,17 @@ export function DocsLayout({
 	// so the tree isn't a wall of collapsed headers.
 	const treeHasActive = sidebar.some((navSection) =>
 		navSection.items.some((item) => item.slug === activeSlug),
+	);
+
+	/* The version switch heads the sidebar: it scopes everything below it,
+	   so it reads before the tree rather than off in the navbar. */
+	const versionSwitch = (
+		<VersionSwitchLinks
+			value={version}
+			href={(v) => getAssetPath(`/docs/api/${v}`)}
+			block
+			aria-label="Docs version"
+		/>
 	);
 
 	const renderSections = (idPrefix: string) =>
@@ -245,6 +263,7 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-4 py-4 dark:border-zinc-800"
 						>
+							<div className="mb-4">{versionSwitch}</div>
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -254,8 +273,9 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-8"
+							className="sticky top-26 max-h-[calc(100vh-6.5rem)] overflow-y-auto px-4 py-10"
 						>
+							<div className="mb-5">{versionSwitch}</div>
 							{renderSections("docs-section")}
 						</nav>
 					</aside>

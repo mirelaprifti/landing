@@ -9,7 +9,8 @@ import type { DocsSectionKey } from "./DocsLayout";
  * Dedicated navbar for the docs pages, following the Effect Days pattern:
  * one bar instead of navbar + section tabs. Same chrome and logo as the main
  * site nav, with the "Docs" lockup returning to the docs home and the section
- * links (Onboarding / Guides / Reference) sitting inline beside it.
+ * links (Onboarding / Guides / Reference) sitting inline beside it. The version
+ * switch lives at the top of the docs sidebar, not here.
  */
 
 const DOCS_HOME = { href: "/docs/onboarding", label: "Docs" };
@@ -20,14 +21,7 @@ const SECTION_LINKS: { key: DocsSectionKey; label: string; href: string }[] = [
 	{ key: "api", label: "Reference", href: "/docs/api/v3" },
 ];
 
-export function DocsNavigation({
-	section,
-	version = "v3",
-}: {
-	section: DocsSectionKey;
-	/** Active API reference version; defaults to v3 (the current stable). */
-	version?: "v3" | "v4";
-}) {
+export function DocsNavigation({ section }: { section: DocsSectionKey }) {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
@@ -80,26 +74,6 @@ export function DocsNavigation({
 							>
 								{link.label}
 							</Link>
-						))}
-					</div>
-
-					{/* Version switch — always present, so the docs version is visible
-					    and switchable from any section, not just Reference */}
-					<div className="ml-6 hidden shrink-0 gap-1 rounded-md border border-zinc-300 bg-zinc-100 p-0.5 md:inline-flex dark:border-zinc-700 dark:bg-zinc-900">
-						{(["v3", "v4"] as const).map((v) => (
-							<a
-								key={v}
-								href={getAssetPath(`/docs/api/${v}`)}
-								aria-label={`API reference ${v}`}
-								aria-current={version === v ? "page" : undefined}
-								className={`rounded-sm px-3 py-1 text-center font-mono text-xs transition-all duration-200 ${
-									version === v
-										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-700 dark:text-white"
-										: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-								}`}
-							>
-								{v}
-							</a>
 						))}
 					</div>
 
