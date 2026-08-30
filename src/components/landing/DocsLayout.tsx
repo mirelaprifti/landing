@@ -190,7 +190,7 @@ export function DocsLayout({
 						onClick={() => toggleSection(navSection.title)}
 						aria-expanded={isOpen}
 						aria-controls={panelId}
-						className="flex w-full items-center justify-between py-2.5 text-sm font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
+						className="flex w-full items-center justify-between py-2.5 text-[15px] font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
 					>
 						<span>{navSection.title}</span>
 						<Icon
@@ -208,7 +208,7 @@ export function DocsLayout({
 										<a
 											href={getAssetPath(item.href ?? `/docs/${item.slug}`)}
 											aria-current={isActive ? "page" : undefined}
-											className={`block rounded-md py-1.5 pl-3 text-sm transition-colors ${
+											className={`block rounded-md py-1.5 pl-3 text-[15px] transition-colors ${
 												isActive
 													? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
 													: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"

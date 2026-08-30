@@ -115,7 +115,7 @@ export function ApiReferenceLayout({
 							<a
 								href={getAssetPath(`/docs/api/${version}`)}
 								aria-current={activeSlug === undefined ? "page" : undefined}
-								className={`mb-3 block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+								className={`mb-3 block rounded-md px-3 py-2 text-[15px] font-medium transition-colors ${
 									activeSlug === undefined
 										? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
 										: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900/60 dark:hover:text-white"
@@ -139,7 +139,7 @@ export function ApiReferenceLayout({
 												onClick={() => toggleSection(group.title)}
 												aria-expanded={isOpen}
 												aria-controls={panelId}
-												className="flex w-full items-center justify-between py-2.5 text-sm font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
+												className="flex w-full items-center justify-between py-2.5 text-[15px] font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
 											>
 												<span>{group.title}</span>
 												<Icon
