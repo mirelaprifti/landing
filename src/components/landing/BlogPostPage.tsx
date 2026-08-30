@@ -132,7 +132,7 @@ function TableOfContents({
 	return (
 		<nav className={cn("sticky top-[5.5rem]", className)}>
 			<div className="rounded-md border border-zinc-200 bg-zinc-50/40 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
-				<p className="mb-3 font-mono text-xs font-medium text-zinc-500 dark:text-zinc-400">
+				<p className="mb-3 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
 					On this page
 				</p>
 				<div className="mb-3 h-px bg-zinc-200 dark:bg-zinc-800" />

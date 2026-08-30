@@ -190,7 +190,7 @@ export function DocsLayout({
 						onClick={() => toggleSection(navSection.title)}
 						aria-expanded={isOpen}
 						aria-controls={panelId}
-						className="flex w-full items-center justify-between py-2.5 font-mono text-sm font-medium text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+						className="flex w-full items-center justify-between py-2.5 text-[13px] font-semibold text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 					>
 						<span>{navSection.title}</span>
 						<Icon
@@ -294,7 +294,7 @@ export function DocsLayout({
 							aria-label="On this page"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
 						>
-							<p className="mb-4 font-mono text-sm font-medium text-zinc-700 dark:text-zinc-300">
+							<p className="mb-4 text-[13px] font-semibold text-zinc-700 dark:text-zinc-300">
 								On this page
 							</p>
 							<div className="mb-5 h-px bg-zinc-200 dark:bg-zinc-800" />
