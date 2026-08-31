@@ -179,14 +179,15 @@ const PASSES = [
 	},
 ];
 
-/* Sponsors, grouped by tier. Rank is carried by how much of the row a tile
-   takes and by its height — a main sponsor gets a half, the partner a half
-   beside the open slot, a community mark a third — so the ladder reads at a
-   glance and a tier can be added without a new visual device.
+/* Sponsors, grouped by tier. Rank is carried by how much of the row a frame
+   takes and by how tall it stands — a main sponsor gets a half, the partner a
+   half, the whole community tier one full-width frame — so the ladder reads at
+   a glance and a tier can be added without a new visual device.
 
-   `logoDark` is only set where the mark needs a second file to stay legible on
-   the dark page. `mono` marks ship as pure white and so are inverted to black
-   for the light tile instead, which saves a second file. */
+   Every mark renders in a single ink (see SponsorLogo). A sponsor's own colour
+   would rank it by palette rather than by tier: the loudest brand in the list
+   would read as the biggest backer whatever row it sat in. That also means one
+   file per sponsor — no light/dark pair, since the ink follows the theme. */
 
 const SPONSOR_TIERS: {
 	tier: string;
@@ -230,18 +231,19 @@ const SPONSORS: {
 	name: string;
 	/** Tier, shown as a chip on the tile; keys the row it lands in. */
 	tier: string;
+	/** Any colour: it is flattened to the wall's ink. Marks with a knockout
+	 *  need the cut-out to be transparent rather than a light fill, or it
+	 *  flattens shut along with everything else. */
 	logo: string;
-	logoDark?: string;
-	/** Mark ships pure white; inverted to black for the light tile. */
-	mono?: boolean;
+	/** Capped per mark, by eye, so marks set at different proportions read at
+	 *  the same optical size. */
 	logoHeight: string;
 	websiteUrl: string;
 }[] = [
 	{
 		name: "Effectful",
 		tier: "Main sponsor",
-		logo: "/assets/effect-days/Effectful-black.svg",
-		logoDark: "/assets/effect-days/Effectful-white.svg",
+		logo: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
 		   wider lockup for the two to read at the same size. */
 		logoHeight: "h-12",
@@ -258,7 +260,6 @@ const SPONSORS: {
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		mono: true,
 		logoHeight: "h-12",
 		websiteUrl: "https://betalyra.com/",
 	},
@@ -266,7 +267,6 @@ const SPONSORS: {
 		name: "Novelcrafter",
 		tier: "Community",
 		logo: "/assets/effect-days/novelcrafter.svg",
-		mono: true,
 		/* Its lockup is nearly five times as wide as it is tall, so it caps
 		   shorter than Betalyra's to sit at the same optical size. */
 		logoHeight: "h-8",
@@ -275,20 +275,17 @@ const SPONSORS: {
 	{
 		name: "Executor",
 		tier: "Community",
-		/* Neither this mark nor August's is a single flat colour — the disc has a
-		   glyph knocked out of it, August's ring is brand blue — so the `mono`
-		   invert the other two use would wreck them. Both ship a second file with
-		   only the wordmark recoloured, leaving the icon on its own colours. */
-		logo: "/assets/effect-days/executor-light.png",
-		logoDark: "/assets/effect-days/executor-dark.png",
+		/* Its own file ships the disc solid with a light glyph on top, which the
+		   ink flattens shut. This one cuts the glyph out of the disc instead, so
+		   the tile shows through it in either theme. */
+		logo: "/assets/effect-days/executor-mono.png",
 		logoHeight: "h-8",
 		websiteUrl: "https://executor.sh/",
 	},
 	{
 		name: "August",
 		tier: "Community",
-		logo: "/assets/effect-days/august-light.png",
-		logoDark: "/assets/effect-days/august.png",
+		logo: "/assets/effect-days/august.png",
 		/* Serif caps and no icon-side padding make it read large, so it caps a
 		   step shorter than the two marks beside it. */
 		logoHeight: "h-7",
@@ -548,34 +545,22 @@ function TileBrackets({ dim = false }: { dim?: boolean }) {
 }
 
 /**
- * A sponsor's mark, in whichever of its light/dark pair the theme calls for.
- * Sits in the fixed logo slot its tier sets rather than shrinking to fit, so
- * marks capped at different heights to read at the same optical size still
- * line up with each other.
+ * A sponsor's mark, flattened to the wall's single ink: `brightness-0` drops
+ * whatever colour the file carries to black, and the dark tile inverts that
+ * back to white. Alpha survives both, so a mark keeps its shape and any
+ * knocked-out counters.
+ *
+ * One ink for every sponsor is what keeps the tier ladder legible — otherwise
+ * the most saturated logo in the list reads as the biggest backer, whichever
+ * row it is standing in.
  */
 function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
 	return (
-		<>
-			<img
-				src={getAssetPath(sponsor.logo)}
-				alt={sponsor.name}
-				className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-					sponsor.logoDark ? "dark:hidden" : ""
-				} ${
-					/* Ships white, so it is inverted to black for the light tile and
-					   left alone on the dark one. */
-					sponsor.mono ? "invert dark:invert-0" : ""
-				}`}
-			/>
-			{sponsor.logoDark && (
-				<img
-					src={getAssetPath(sponsor.logoDark)}
-					alt=""
-					aria-hidden="true"
-					className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
-				/>
-			)}
-		</>
+		<img
+			src={getAssetPath(sponsor.logo)}
+			alt={sponsor.name}
+			className={`${sponsor.logoHeight} w-auto max-w-full object-contain brightness-0 dark:invert`}
+		/>
 	);
 }
 
@@ -657,35 +642,21 @@ function GroupedSponsorTile({
 }
 
 /**
- * The open sponsorship slot, sized to the tier it sits in. Offered for every
- * tier, so it carries no chip.
+ * The invitation to sponsor. It sits under the wall as a line of text rather
+ * than in it as a tile: unsold inventory framed like a sponsor gives an empty
+ * slot the same weight as a company that paid for one. The "your logo here"
+ * caret went with the tile — it was the frame that made the phrase mean
+ * anything.
  */
-function OpenSponsorSlot({ tier }: { tier: (typeof SPONSOR_TIERS)[number] }) {
+function OpenSponsorSlot() {
 	return (
 		<a
 			href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
+			className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 		>
-			<TileBrackets dim />
-
-			{/* An empty logo slot, sized to the marks beside it, with the caret from
-			    the 2026 edition card blinking inside — it reads as waiting for a name
-			    to be typed in. */}
-			<span
-				className={`flex ${tier.logoBox} w-44 max-w-full items-center justify-center`}
-			>
-				<span className={`${text.micro} mb-0`}>
-					Your logo here
-					<span className="animate-[terminal-blink_1s_step-end_infinite]">
-						{" ▊"}
-					</span>
-				</span>
-			</span>
-			<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-				Become a sponsor
-				{/* mailto — leaves the page, so up-right */}
-				<Icon name="arrow-up-right" className="text-xs" />
-			</span>
+			Become a sponsor
+			{/* mailto — leaves the page, so up-right */}
+			<Icon name="arrow-up-right" className="text-xs" />
 		</a>
 	);
 }
@@ -1371,11 +1342,6 @@ export function EffectDaysLivornoPage() {
 								);
 							}
 
-							/* The open slot rides in the partner row. It is offered for any
-							   tier, so it carries no chip, and pairing it with the single
-							   partner mark fills that row's second half instead of leaving a
-							   hole there. */
-							const withOpenSlot = tier.tier === "Partner";
 							return (
 								<div
 									key={tier.tier}
@@ -1388,10 +1354,11 @@ export function EffectDaysLivornoPage() {
 											tier={tier}
 										/>
 									))}
-									{withOpenSlot && <OpenSponsorSlot tier={tier} />}
 								</div>
 							);
 						})}
+
+						<OpenSponsorSlot />
 					</div>
 				</section>
 
