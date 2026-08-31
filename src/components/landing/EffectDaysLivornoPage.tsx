@@ -190,36 +190,38 @@ const PASSES = [
 
 const SPONSOR_TIERS: {
 	tier: string;
-	/** Columns the row splits into — the width step between tiers. */
-	cols: string;
-	/** Column count `cols` sets below `sm`, so a lone tile in the last mobile
-	 *  row can be told to take the whole width. */
-	mobileCols: number;
+	/** Columns the row splits into — the width step between tiers. Unset on a
+	 *  grouped tier, which is a single tile however many marks it holds. */
+	cols?: string;
+	/** Whole tier in one tile, sharing a frame and a chip, rather than a tile
+	 *  per sponsor. */
+	grouped?: boolean;
 	/** Tile padding and logo-to-chip gap — the height step between tiers. */
 	tileClass: string;
-	/** Fixed logo slot, one per tier, so tiles in a tier match in height
-	 *  however tall each individual mark is set. */
+	/** Fixed logo slot, one per tier, so marks in a tier line up however tall
+	 *  each one is set. */
 	logoBox: string;
 }[] = [
 	{
 		tier: "Main sponsor",
 		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
-		mobileCols: 1,
 		tileClass: "py-12 gap-4",
 		logoBox: "h-12",
 	},
 	{
 		tier: "Partner",
 		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
-		mobileCols: 1,
 		tileClass: "py-9 gap-4",
 		logoBox: "h-12",
 	},
 	{
+		/* A community mark does not carry a frame of its own: the tier shares one,
+		   under one chip. That keeps the ladder honest as the tier grows — five
+		   small tiles would out-weigh the two above them by sheer count, where one
+		   box holding five marks still reads as the bottom rung. */
 		tier: "Community",
-		cols: "grid-cols-2 sm:grid-cols-3",
-		mobileCols: 2,
-		tileClass: "py-7 gap-4",
+		grouped: true,
+		tileClass: "py-7 gap-5",
 		logoBox: "h-12",
 	},
 ];
@@ -546,21 +548,47 @@ function TileBrackets({ dim = false }: { dim?: boolean }) {
 }
 
 /**
- * One sponsor tile. The tier supplies the size — padding and the fixed logo
- * slot — so every tile in a row matches however tall its own mark is set.
- *
- * The logo slot is fixed rather than shrink-to-fit because marks are capped at
- * different heights to read at the same optical size, which would otherwise
- * leave tiles in a row at different heights.
+ * A sponsor's mark, in whichever of its light/dark pair the theme calls for.
+ * Sits in the fixed logo slot its tier sets rather than shrinking to fit, so
+ * marks capped at different heights to read at the same optical size still
+ * line up with each other.
+ */
+function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
+	return (
+		<>
+			<img
+				src={getAssetPath(sponsor.logo)}
+				alt={sponsor.name}
+				className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+					sponsor.logoDark ? "dark:hidden" : ""
+				} ${
+					/* Ships white, so it is inverted to black for the light tile and
+					   left alone on the dark one. */
+					sponsor.mono ? "invert dark:invert-0" : ""
+				}`}
+			/>
+			{sponsor.logoDark && (
+				<img
+					src={getAssetPath(sponsor.logoDark)}
+					alt=""
+					aria-hidden="true"
+					className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+				/>
+			)}
+		</>
+	);
+}
+
+/**
+ * One sponsor, one tile. The tier supplies the size — padding and the fixed
+ * logo slot — so every tile in a row matches.
  */
 function SponsorTile({
 	sponsor,
 	tier,
-	className = "",
 }: {
 	sponsor: (typeof SPONSORS)[number];
 	tier: (typeof SPONSOR_TIERS)[number];
-	className?: string;
 }) {
 	return (
 		<a
@@ -570,34 +598,61 @@ function SponsorTile({
 			aria-label={`${sponsor.name} — visit website`}
 			/* Opaque so the page's centre dashed line stops behind the tile rather
 			   than running across the logo. */
-			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass} ${className}`}
+			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
 		>
 			<TileBrackets />
 
 			<span className={`flex ${tier.logoBox} items-center justify-center`}>
-				<img
-					src={getAssetPath(sponsor.logo)}
-					alt={sponsor.name}
-					className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-						sponsor.logoDark ? "dark:hidden" : ""
-					} ${
-						/* Ships white, so it is inverted to black for the light tile and
-						   left alone on the dark one. */
-						sponsor.mono ? "invert dark:invert-0" : ""
-					}`}
-				/>
-				{sponsor.logoDark && (
-					<img
-						src={getAssetPath(sponsor.logoDark)}
-						alt=""
-						aria-hidden="true"
-						className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
-					/>
-				)}
+				<SponsorLogo sponsor={sponsor} />
 			</span>
 
 			<span className={`${text.micro} ${chip} mb-0`}>{sponsor.tier}</span>
 		</a>
+	);
+}
+
+/**
+ * A whole tier in one tile: the marks share a frame and a single chip. The
+ * frame is the tier, so each mark is only a link inside it.
+ */
+function GroupedSponsorTile({
+	sponsors,
+	tier,
+	className = "",
+}: {
+	sponsors: (typeof SPONSORS)[number][];
+	tier: (typeof SPONSOR_TIERS)[number];
+	className?: string;
+}) {
+	return (
+		<div
+			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass} ${className}`}
+		>
+			<TileBrackets />
+
+			{/* Spread across the frame on a wide screen, stacked on a phone. Left to
+			    wrap on their own the marks break unevenly — a wide one takes a line
+			    to itself and the rest crowd the next — so below `sm` each takes its
+			    own line and stays centred. */}
+			<div className="flex w-full flex-wrap items-center justify-evenly gap-x-10 gap-y-5">
+				{sponsors.map((sponsor) => (
+					<a
+						key={sponsor.name}
+						href={sponsor.websiteUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`${sponsor.name} — visit website`}
+						/* The frame's own hover covers the whole tile, so each mark
+						   answers for itself to show it is separately clickable. */
+						className={`flex w-full sm:w-auto ${tier.logoBox} items-center justify-center transition-opacity duration-200 hover:opacity-60`}
+					>
+						<SponsorLogo sponsor={sponsor} />
+					</a>
+				))}
+			</div>
+
+			<span className={`${text.micro} ${chip} mb-0`}>{tier.tier}</span>
+		</div>
 	);
 }
 
@@ -1291,43 +1346,46 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* One row per tier, each on its own grid. Column count and tile
-						    height carry the rank together: a half of the row each for the
-						    main sponsors, a half for the partner beside the open slot, a
-						    third each for the community marks.
+						{/* One row per tier. How much of the row a frame takes, and how
+						    tall it stands, carry the rank together: a half each for the
+						    main sponsors, a half for the partner beside the open slot, and
+						    a single full-width frame holding the community marks.
 
-						    Keeping the tiers on separate grids is what makes the size step
-						    safe — it lives between the grids, so no row can stretch its
+						    Keeping the tiers on separate rows is what makes the size step
+						    safe — it lives between the rows, so no row can stretch its
 						    tiles into the tier above. */}
 						{SPONSOR_TIERS.map((tier, tierIndex) => {
-							const tiles = SPONSORS.filter(
+							const marks = SPONSORS.filter(
 								(sponsor) => sponsor.tier === tier.tier,
 							);
+							const spacing = tierIndex === 0 ? "mt-12" : "mt-4";
+
+							if (tier.grouped) {
+								return (
+									<GroupedSponsorTile
+										key={tier.tier}
+										sponsors={marks}
+										tier={tier}
+										className={spacing}
+									/>
+								);
+							}
+
 							/* The open slot rides in the partner row. It is offered for any
 							   tier, so it carries no chip, and pairing it with the single
 							   partner mark fills that row's second half instead of leaving a
-							   hole there or padding the community row out to four. */
+							   hole there. */
 							const withOpenSlot = tier.tier === "Partner";
 							return (
 								<div
 									key={tier.tier}
-									className={`grid gap-4 ${tierIndex === 0 ? "mt-12" : "mt-4"} ${tier.cols}`}
+									className={`grid gap-4 ${spacing} ${tier.cols}`}
 								>
-									{tiles.map((sponsor, index) => (
+									{marks.map((sponsor) => (
 										<SponsorTile
 											key={sponsor.name}
 											sponsor={sponsor}
 											tier={tier}
-											/* An odd count leaves the last tile alone in the final
-											   mobile row; it takes the whole row rather than sitting
-											   in a half with a gap beside it. */
-											className={
-												tier.mobileCols > 1 &&
-												index === tiles.length - 1 &&
-												tiles.length % tier.mobileCols === 1
-													? "col-span-2 sm:col-span-1"
-													: ""
-											}
 										/>
 									))}
 									{withOpenSlot && <OpenSponsorSlot tier={tier} />}
