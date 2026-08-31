@@ -275,9 +275,8 @@ const SPONSORS: {
 		tier: "Community",
 		/* Neither this mark nor August's is a single flat colour — the disc has a
 		   glyph knocked out of it, August's ring is brand blue — so the `mono`
-		   invert the other two use would wreck them. Both ship a light file with
-		   the wordmark recoloured instead; the disc also flips, since a black one
-		   disappears into the dark tile. */
+		   invert the other two use would wreck them. Both ship a second file with
+		   only the wordmark recoloured, leaving the icon on its own colours. */
 		logo: "/assets/effect-days/executor-light.png",
 		logoDark: "/assets/effect-days/executor-dark.png",
 		logoHeight: "h-8",
