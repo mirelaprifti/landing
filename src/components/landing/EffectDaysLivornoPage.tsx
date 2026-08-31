@@ -179,57 +179,77 @@ const PASSES = [
 	},
 ];
 
-/* Sponsors, grouped by tier. Rank is carried by tile height and logo cap
-   rather than by colour or border, so the ladder reads at a glance and a tier
-   can be added without a new visual device.
+/* Sponsors, grouped by tier. Rank is carried by how much of the row a tile
+   takes and by its height — a main sponsor gets a half, the partner a half
+   beside the open slot, a community mark a third — so the ladder reads at a
+   glance and a tier can be added without a new visual device.
 
    `logoDark` is only set where the mark needs a second file to stay legible on
    the dark page. `mono` marks ship as pure white and so are inverted to black
-   for the light tile instead, which saves a second file.
+   for the light tile instead, which saves a second file. */
 
-   The second tier has no sponsor yet and is deliberately absent: an empty
-   labelled band mid-ladder advertises the vacancy and weakens the tier above
-   it. The open slot at the foot of the section covers every tier at once. */
+const SPONSOR_TIERS: {
+	tier: string;
+	/** Columns the row splits into — the width step between tiers. */
+	cols: string;
+	/** Column count `cols` sets below `sm`, so a lone tile in the last mobile
+	 *  row can be told to take the whole width. */
+	mobileCols: number;
+	/** Tile padding and logo-to-chip gap — the height step between tiers. */
+	tileClass: string;
+	/** Fixed logo slot, one per tier, so tiles in a tier match in height
+	 *  however tall each individual mark is set. */
+	logoBox: string;
+}[] = [
+	{
+		tier: "Main sponsor",
+		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
+		mobileCols: 1,
+		tileClass: "py-12 gap-4",
+		logoBox: "h-12",
+	},
+	{
+		tier: "Partner",
+		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
+		mobileCols: 1,
+		tileClass: "py-9 gap-4",
+		logoBox: "h-12",
+	},
+	{
+		tier: "Community",
+		cols: "grid-cols-2 sm:grid-cols-3",
+		mobileCols: 2,
+		tileClass: "py-7 gap-4",
+		logoBox: "h-12",
+	},
+];
 
 const SPONSORS: {
 	name: string;
-	/** Tier, shown as a chip on the tile. */
+	/** Tier, shown as a chip on the tile; keys the row it lands in. */
 	tier: string;
-	/** Top tier — rendered in the two-up row above the supporting tiers. */
-	top?: boolean;
 	logo: string;
 	logoDark?: string;
 	/** Mark ships pure white; inverted to black for the light tile. */
 	mono?: boolean;
 	logoHeight: string;
-	/** Fixed logo slot, one per tier, so tiles in a tier match in height
-	 *  however tall each individual mark is set. */
-	logoBox: string;
-	/** Tile padding and logo-to-chip gap — the size step between tiers. */
-	tileClass: string;
 	websiteUrl: string;
 }[] = [
 	{
 		name: "Effectful",
 		tier: "Main sponsor",
-		top: true,
 		logo: "/assets/effect-days/Effectful-black.svg",
 		logoDark: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
 		   wider lockup for the two to read at the same size. */
 		logoHeight: "h-12",
-		logoBox: "h-12",
-		tileClass: "py-12 gap-4",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
 		name: "Ziverge",
 		tier: "Main sponsor",
-		top: true,
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-8",
-		logoBox: "h-12",
-		tileClass: "py-12 gap-4",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
@@ -238,8 +258,6 @@ const SPONSORS: {
 		logo: "/assets/effect-days/betalyra-dark.svg",
 		mono: true,
 		logoHeight: "h-12",
-		logoBox: "h-12",
-		tileClass: "py-7 gap-4",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
@@ -250,9 +268,30 @@ const SPONSORS: {
 		/* Its lockup is nearly five times as wide as it is tall, so it caps
 		   shorter than Betalyra's to sit at the same optical size. */
 		logoHeight: "h-8",
-		logoBox: "h-12",
-		tileClass: "py-7 gap-4",
 		websiteUrl: "https://www.novelcrafter.com/",
+	},
+	{
+		name: "Executor",
+		tier: "Community",
+		/* Neither this mark nor August's is a single flat colour — the disc has a
+		   glyph knocked out of it, August's ring is brand blue — so the `mono`
+		   invert the other two use would wreck them. Both ship a light file with
+		   the wordmark recoloured instead; the disc also flips, since a black one
+		   disappears into the dark tile. */
+		logo: "/assets/effect-days/executor-light.png",
+		logoDark: "/assets/effect-days/executor-dark.png",
+		logoHeight: "h-8",
+		websiteUrl: "https://executor.sh/",
+	},
+	{
+		name: "August",
+		tier: "Community",
+		logo: "/assets/effect-days/august-light.png",
+		logoDark: "/assets/effect-days/august.png",
+		/* Serif caps and no icon-side padding make it read large, so it caps a
+		   step shorter than the two marks beside it. */
+		logoHeight: "h-7",
+		websiteUrl: "https://www.augusthealth.com/",
 	},
 ];
 
@@ -508,6 +547,96 @@ function TileBrackets({ dim = false }: { dim?: boolean }) {
 }
 
 /**
+ * One sponsor tile. The tier supplies the size — padding and the fixed logo
+ * slot — so every tile in a row matches however tall its own mark is set.
+ *
+ * The logo slot is fixed rather than shrink-to-fit because marks are capped at
+ * different heights to read at the same optical size, which would otherwise
+ * leave tiles in a row at different heights.
+ */
+function SponsorTile({
+	sponsor,
+	tier,
+	className = "",
+}: {
+	sponsor: (typeof SPONSORS)[number];
+	tier: (typeof SPONSOR_TIERS)[number];
+	className?: string;
+}) {
+	return (
+		<a
+			href={sponsor.websiteUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={`${sponsor.name} — visit website`}
+			/* Opaque so the page's centre dashed line stops behind the tile rather
+			   than running across the logo. */
+			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass} ${className}`}
+		>
+			<TileBrackets />
+
+			<span className={`flex ${tier.logoBox} items-center justify-center`}>
+				<img
+					src={getAssetPath(sponsor.logo)}
+					alt={sponsor.name}
+					className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
+						sponsor.logoDark ? "dark:hidden" : ""
+					} ${
+						/* Ships white, so it is inverted to black for the light tile and
+						   left alone on the dark one. */
+						sponsor.mono ? "invert dark:invert-0" : ""
+					}`}
+				/>
+				{sponsor.logoDark && (
+					<img
+						src={getAssetPath(sponsor.logoDark)}
+						alt=""
+						aria-hidden="true"
+						className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
+					/>
+				)}
+			</span>
+
+			<span className={`${text.micro} ${chip} mb-0`}>{sponsor.tier}</span>
+		</a>
+	);
+}
+
+/**
+ * The open sponsorship slot, sized to the tier it sits in. Offered for every
+ * tier, so it carries no chip.
+ */
+function OpenSponsorSlot({ tier }: { tier: (typeof SPONSOR_TIERS)[number] }) {
+	return (
+		<a
+			href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
+			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
+		>
+			<TileBrackets dim />
+
+			{/* An empty logo slot, sized to the marks beside it, with the caret from
+			    the 2026 edition card blinking inside — it reads as waiting for a name
+			    to be typed in. */}
+			<span
+				className={`flex ${tier.logoBox} w-44 max-w-full items-center justify-center`}
+			>
+				<span className={`${text.micro} mb-0`}>
+					Your logo here
+					<span className="animate-[terminal-blink_1s_step-end_infinite]">
+						{" ▊"}
+					</span>
+				</span>
+			</span>
+			<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+				Become a sponsor
+				{/* mailto — leaves the page, so up-right */}
+				<Icon name="arrow-up-right" className="text-xs" />
+			</span>
+		</a>
+	);
+}
+
+/**
  * Stand-in for a speaker portrait: the dashed empty slot the sponsors section
  * uses for its open spot, holding the speaker's initials. Reads as a frame
  * waiting for a photo rather than a broken image.
@@ -529,11 +658,6 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 
 export function EffectDaysLivornoPage() {
 	const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
-	/* Preview toggle for the supporting sponsor row — lets the two layouts be
-	   compared in the browser. Remove it, and the control below, once the
-	   design is settled. */
-	const [withCommunityTier, setWithCommunityTier] = useState(true);
-
 	const toggleFaq = (index: number) => {
 		setOpenFaqs((prev) => {
 			const next = new Set(prev);
@@ -738,8 +862,8 @@ export function EffectDaysLivornoPage() {
 								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
 							</div>
 							<p className={`${text.subtitle} md:mt-0`}>
-								Engineers building on Effect in production, from the teams behind
-								the tools you use. More speakers to be announced.
+								Engineers building on Effect in production, from the teams
+								behind the tools you use. More speakers to be announced.
 							</p>
 						</div>
 
@@ -909,11 +1033,11 @@ export function EffectDaysLivornoPage() {
 									{/* Day count comes from the pass itself, so it stays true if a
 								    day is ever added or dropped. The tier rides in the same chip
 								    and drops out with the early bird, leaving just "3-day pass". */}
-								<span className={`${text.micro} ${chip} self-start`}>
-									{EARLY_BIRD_ON_SALE ? "Early bird " : ""}
-									{pass.days.filter((day) => day.included).length}-day pass
-								</span>
-								<h3 className={`${text.cardTitle} mt-4`}>{pass.name}</h3>
+									<span className={`${text.micro} ${chip} self-start`}>
+										{EARLY_BIRD_ON_SALE ? "Early bird " : ""}
+										{pass.days.filter((day) => day.included).length}-day pass
+									</span>
+									<h3 className={`${text.cardTitle} mt-4`}>{pass.name}</h3>
 
 									{/* Day checklist, mono style. The marker is the same ticked box
 									    the editions timeline uses, minus the opaque fill that only
@@ -1035,7 +1159,9 @@ export function EffectDaysLivornoPage() {
 										   two-column layout, so it takes the full row rather than
 										   leaving the cell beside it empty. */
 										className={`relative ${
-											edition.status === "next" ? "sm:col-span-2 md:col-span-1" : ""
+											edition.status === "next"
+												? "sm:col-span-2 md:col-span-1"
+												: ""
 										}`}
 									>
 										{/* Timeline node — labels carry an opaque background so the
@@ -1166,160 +1292,49 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Two rows, each on its own grid: the main tier runs two across at
-						    full tile height, the supporting tiers three across and shorter.
-						    The chip names the rank and the tile height carries its weight.
+						{/* One row per tier, each on its own grid. Column count and tile
+						    height carry the rank together: a half of the row each for the
+						    main sponsors, a half for the partner beside the open slot, a
+						    third each for the community marks.
 
-						    Each row stretches its tiles to a common height. Keeping the tiers
-						    on separate grids is what makes that safe — the size step lives
-						    between the two grids, so no row can flatten it. */}
-						<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
-							{SPONSORS.filter((sponsor) => sponsor.top).map((sponsor) => (
-								<a
-									key={sponsor.name}
-									href={sponsor.websiteUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`${sponsor.name} — visit website`}
-									/* Opaque so the page's centre dashed line stops behind the
-									   tile rather than running across the logo. */
-									className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${sponsor.tileClass}`}
+						    Keeping the tiers on separate grids is what makes the size step
+						    safe — it lives between the grids, so no row can stretch its
+						    tiles into the tier above. */}
+						{SPONSOR_TIERS.map((tier, tierIndex) => {
+							const tiles = SPONSORS.filter(
+								(sponsor) => sponsor.tier === tier.tier,
+							);
+							/* The open slot rides in the partner row. It is offered for any
+							   tier, so it carries no chip, and pairing it with the single
+							   partner mark fills that row's second half instead of leaving a
+							   hole there or padding the community row out to four. */
+							const withOpenSlot = tier.tier === "Partner";
+							return (
+								<div
+									key={tier.tier}
+									className={`grid gap-4 ${tierIndex === 0 ? "mt-12" : "mt-4"} ${tier.cols}`}
 								>
-									<TileBrackets />
-
-									{/* Fixed-height slot: marks are set to different heights so they
-									    read at the same optical size, which would otherwise make
-									    their tiles different heights now that the grid no longer
-									    stretches them. */}
-									<span
-										className={`flex ${sponsor.logoBox} items-center justify-center`}
-									>
-										<img
-											src={getAssetPath(sponsor.logo)}
-											alt={sponsor.name}
-											className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-												sponsor.logoDark ? "dark:hidden" : ""
-											} ${
-												/* Ships white, so it is inverted to black for the light
-												   tile and left alone on the dark one. */
-												sponsor.mono ? "invert dark:invert-0" : ""
-											}`}
+									{tiles.map((sponsor, index) => (
+										<SponsorTile
+											key={sponsor.name}
+											sponsor={sponsor}
+											tier={tier}
+											/* An odd count leaves the last tile alone in the final
+											   mobile row; it takes the whole row rather than sitting
+											   in a half with a gap beside it. */
+											className={
+												tier.mobileCols > 1 &&
+												index === tiles.length - 1 &&
+												tiles.length % tier.mobileCols === 1
+													? "col-span-2 sm:col-span-1"
+													: ""
+											}
 										/>
-										{sponsor.logoDark && (
-											<img
-												src={getAssetPath(sponsor.logoDark)}
-												alt=""
-												aria-hidden="true"
-												className={`hidden ${sponsor.logoHeight} w-auto max-w-full object-contain dark:block`}
-											/>
-										)}
-									</span>
-
-									<span className={`${text.micro} ${chip} mb-0`}>
-										{sponsor.tier}
-									</span>
-								</a>
-							))}
-						</div>
-
-						{/* Supporting tiers, three across — the two lower-tier marks and the
-						    open slot, which sits with them because it is the same size step
-						    and closes the row at three rather than leaving a hole. */}
-						<div
-							className={`mt-4 grid gap-4 ${
-								withCommunityTier
-									? "grid-cols-2 sm:grid-cols-3"
-									: "grid-cols-1 sm:grid-cols-2 lg:gap-8"
-							}`}
-						>
-							{SPONSORS.filter(
-								(sponsor) =>
-									!sponsor.top &&
-									(withCommunityTier || sponsor.tier !== "Community"),
-							).map((sponsor) => (
-								<a
-									key={sponsor.name}
-									href={sponsor.websiteUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`${sponsor.name} — visit website`}
-									className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${sponsor.tileClass}`}
-								>
-									<TileBrackets />
-
-									<span
-										className={`flex ${sponsor.logoBox} items-center justify-center`}
-									>
-										<img
-											src={getAssetPath(sponsor.logo)}
-											alt={sponsor.name}
-											className={`${sponsor.logoHeight} w-auto max-w-full object-contain ${
-												sponsor.mono ? "invert dark:invert-0" : ""
-											}`}
-										/>
-									</span>
-
-									<span className={`${text.micro} ${chip} mb-0`}>
-										{sponsor.tier}
-									</span>
-								</a>
-							))}
-
-							{/* Open slot — offered for any tier, so it carries no chip. */}
-							<a
-								href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-								/* With the community tier in, mobile portrait keeps the two marks
-								   paired on the first row and the slot takes the whole row
-								   beneath them rather than sitting alone in a half. Without it,
-								   the row is already one column there and needs no span. */
-								className={`group relative flex flex-col items-center justify-center bg-white px-6 py-7 dark:bg-zinc-950 ${
-									withCommunityTier ? "col-span-2 sm:col-span-1" : ""
-								}`}
-							>
-								<TileBrackets dim />
-
-								{/* An empty logo slot, sized to the marks beside it, with the
-								    caret from the 2026 edition card blinking inside — it reads as
-								    waiting for a name to be typed in. */}
-								<span className="flex h-7 w-44 max-w-full items-center justify-center">
-									<span className={`${text.micro} mb-0`}>
-										Your logo here
-										<span className="animate-[terminal-blink_1s_step-end_infinite]">
-											{" ▊"}
-										</span>
-									</span>
-								</span>
-								<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-									Become a sponsor
-									{/* mailto — leaves the page, so up-right */}
-									<Icon name="arrow-up-right" className="text-xs" />
-								</span>
-							</a>
-						</div>
-
-						{/* Preview control — not part of the design, and deliberately quiet:
-						    small mono text tucked under the right edge of the grid so it
-						    reads as scaffolding rather than section chrome. Remove it, and
-						    the state behind it, once the layout is chosen. */}
-						<div className="mt-3 flex justify-end gap-3 font-mono text-[0.7rem] tracking-wider text-zinc-700 uppercase dark:text-zinc-600">
-							{[
-								{ label: "With Novelcrafter", value: true },
-								{ label: "Without", value: false },
-							].map((option) => (
-								<button
-									key={option.label}
-									type="button"
-									onClick={() => setWithCommunityTier(option.value)}
-									className={`cursor-pointer transition-colors duration-200 hover:text-zinc-900 dark:hover:text-zinc-300 ${
-										withCommunityTier === option.value
-											? "text-zinc-900 underline underline-offset-4 dark:text-zinc-400"
-											: ""
-									}`}
-								>
-									{option.label}
-								</button>
-							))}
-						</div>
+									))}
+									{withOpenSlot && <OpenSponsorSlot tier={tier} />}
+								</div>
+							);
+						})}
 					</div>
 				</section>
 
