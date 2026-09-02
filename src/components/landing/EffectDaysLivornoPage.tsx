@@ -59,10 +59,10 @@ const PROGRAM = [
 	},
 ];
 
-/* Confirmed speakers, in announcement order. Portraits are not in yet, so every
-   card falls back to the initials placeholder below — drop a `photo` path in as
-   each headshot lands and that card switches over on its own. Four across on
-   desktop, so the grid stays full at counts of four. */
+/* Confirmed speakers, in announcement order. A card with no `photo` yet falls
+   back to the initials placeholder below and switches over on its own once a
+   path is dropped in. Four across on desktop, so the last row runs short at any
+   count that is not a multiple of four. */
 const SPEAKERS: {
 	name: string;
 	role: string;
@@ -126,6 +126,20 @@ const SPEAKERS: {
 		company: "Foldkit",
 		photo: "/assets/effect-days/devin-jameson.jpg",
 		x: "devinjameson",
+	},
+	{
+		name: "John A. De Goes",
+		role: "Founder",
+		company: "Ziverge",
+		photo: "/assets/effect-days/jdg.png",
+		x: "jdegoes",
+	},
+	{
+		name: "Michael Arnaldi",
+		role: "Creator",
+		company: "Effect",
+		photo: "/assets/effect-days/mike-race.png",
+		x: "MichaelArnaldi",
 	},
 ];
 

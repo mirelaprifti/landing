@@ -2,14 +2,15 @@ import { motion, useReducedMotion } from "motion/react";
 import { useId } from "react";
 
 /**
- * Stacked-layers mark with a heart-eyed face, animated into a little dance:
- * the whole stack sways side to side while the plates bob out of phase, so the
- * pile whips and settles like jelly. Hearts beat on the offbeat.
+ * Stacked-layers mark with a heart-eyed face, animated into a slow waltz:
+ * the stack traces a figure-eight while a travelling wave undulates down
+ * through the plates. Every channel is a sampled sine, so nothing ever
+ * stops at an extreme — the motion is continuous end to end.
  */
 
 // Geometry — an isometric diamond plate (rounded corners) with two plates
 // peeking out below it. Corner radius is 7 units, edge direction is
-// (0.836, ±0.550) so every tick and chevron stays parallel to the plate edges.
+// (0.836, ±0.550) so every hook and chevron stays parallel to the plate edges.
 const PLATE =
 	"M23.15 30.3 L44.15 16.5 Q50 12.65 55.85 16.5 L76.85 30.3 Q82.7 34.15 76.85 38 L55.85 51.8 Q50 55.65 44.15 51.8 L23.15 38 Q17.3 34.15 23.15 30.3 Z";
 const LAYER_MID = "M23.57 44.22 L17.3 48.35 L50 69.85 L82.7 48.35 L76.43 44.22";
@@ -24,9 +25,20 @@ const MOUTH = "M44.1 43.9 A6.9 6.9 0 0 0 57.9 43.9 Z";
 const EYE_LEFT = { x: 40.6, y: 34.05 };
 const EYE_RIGHT = { x: 61.3, y: 34.05 };
 
-// One sway cycle; the bob runs at double time so it reads as a two-step.
-const SWAY = 1.5;
-const BOB = SWAY / 2;
+const CYCLE = 4;
+const STEPS = 32;
+
+/**
+ * A closed loop of keyframes sampled from a sine. Interpolating these
+ * linearly gives smooth perpetual motion, where a [-a, a, -a] keyframe list
+ * would visibly hesitate at each end. `phase` lags one channel behind
+ * another, which is what reads as follow-through.
+ */
+const wave = (amp: number, phase = 0, harmonic = 1, base = 0) =>
+	Array.from({ length: STEPS + 1 }, (_, i) => {
+		const t = (i / STEPS) * Math.PI * 2;
+		return Number((base + amp * Math.sin(harmonic * t + phase)).toFixed(3));
+	});
 
 const origin = (x: number, y: number) =>
 	({ transformBox: "view-box", transformOrigin: `${x}px ${y}px` }) as const;
@@ -51,17 +63,15 @@ export function DancingStack({
 	const reduced = useReducedMotion();
 	const frozen = still || reduced;
 
-	// With the dance off, every `animate` collapses to its resting value.
-	const dance = <T,>(keyframes: T[], rest: T) => (frozen ? rest : keyframes);
-	const loop = (duration: number, delay = 0) =>
-		frozen
-			? { duration: 0 }
-			: ({
-					duration,
-					delay,
-					repeat: Number.POSITIVE_INFINITY,
-					ease: "easeInOut",
-				} as const);
+	// Every channel shares one transition, so the whole figure stays phase-locked.
+	const drift = frozen
+		? { duration: 0 }
+		: ({
+				duration: CYCLE,
+				repeat: Number.POSITIVE_INFINITY,
+				ease: "linear",
+			} as const);
+	const at = (keyframes: number[], rest: number) => (frozen ? rest : keyframes);
 
 	return (
 		<svg
@@ -86,8 +96,8 @@ export function DancingStack({
 					<path d={PLATE} fill="#fff" />
 					<g fill="#000" stroke="#000">
 						<motion.g
-							animate={{ y: dance([0, -0.9, 0], 0) }}
-							transition={loop(BOB, 0.1)}
+							animate={{ y: at(wave(0.45, -0.3), 0) }}
+							transition={drift}
 						>
 							<path
 								d={BROW_LEFT}
@@ -102,63 +112,73 @@ export function DancingStack({
 								strokeLinecap="round"
 							/>
 						</motion.g>
-						<Heart cx={EYE_LEFT.x} cy={EYE_LEFT.y} tilt={-8} frozen={frozen} />
-						<Heart cx={EYE_RIGHT.x} cy={EYE_RIGHT.y} tilt={8} frozen={frozen} />
+						{/* Eyes breathe rather than thump, and the right one trails
+						    the left so the pair never pulses as one block. */}
+						<Heart
+							cx={EYE_LEFT.x}
+							cy={EYE_LEFT.y}
+							tilt={-8}
+							scale={at(wave(0.06, 0, 2, 1), 1)}
+							transition={drift}
+						/>
+						<Heart
+							cx={EYE_RIGHT.x}
+							cy={EYE_RIGHT.y}
+							tilt={8}
+							scale={at(wave(0.06, 0.35, 2, 1), 1)}
+							transition={drift}
+						/>
 						<motion.path
 							d={MOUTH}
 							stroke="none"
 							style={origin(51, 43.9)}
-							animate={{ scale: dance([1, 1.14, 1], 1) }}
-							transition={loop(BOB, 0.04)}
+							animate={{ scale: at(wave(0.035, -0.2, 2, 1), 1) }}
+							transition={drift}
 						/>
 					</g>
 				</mask>
 			</defs>
 
-			{/* Sway: the whole stack rocks around its base. */}
+			{/* The stack traces a figure-eight — x on the fundamental, y on the
+			    second harmonic — while the tilt lags a quarter turn behind it. */}
 			<motion.g
 				style={origin(50, 86)}
 				animate={{
-					rotate: dance([-7, 7, -7], 0),
-					x: dance([-1.5, 1.5, -1.5], 0),
+					x: at(wave(2), 0),
+					y: at(wave(1.5, 0, 2), 0),
+					rotate: at(wave(4.5, -0.5), 0),
 				}}
-				transition={loop(SWAY)}
+				transition={drift}
 			>
-				{/* Bob: a two-step hop under the sway. */}
-				<motion.g
-					animate={{ y: dance([0, -4.5, 0], 0) }}
-					transition={loop(BOB)}
+				<g
+					fill="none"
+					stroke={color}
+					strokeWidth={5.4}
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				>
-					<g
-						fill="none"
-						stroke={color}
-						strokeWidth={5.4}
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					>
-						{/* Back and middle plates lag behind the top one, so the
-						    stack stretches open and snaps shut as it hops. */}
-						<motion.path
-							d={LAYER_BACK}
-							animate={{ y: dance([0, -0.5, 0], 0) }}
-							transition={loop(BOB, 0.2)}
-						/>
-						<motion.path
-							d={LAYER_MID}
-							animate={{ y: dance([0, -1.8, 0], 0) }}
-							transition={loop(BOB, 0.13)}
-						/>
-					</g>
-					<motion.g
-						style={origin(50, 34.15)}
-						animate={{
-							y: dance([0, -3, 0], 0),
-							rotate: dance([1.2, -1.2, 1.2], 0),
-						}}
-						transition={loop(BOB, 0.06)}
-					>
-						<path d={PLATE} fill={color} mask={`url(#${maskId})`} />
-					</motion.g>
+					{/* A wave travels down the stack: each plate lags the one above
+					    and swings less, so the pile undulates instead of bouncing. */}
+					<motion.path
+						d={LAYER_BACK}
+						animate={{ y: at(wave(0.9, -1.1), 0) }}
+						transition={drift}
+					/>
+					<motion.path
+						d={LAYER_MID}
+						animate={{ y: at(wave(1.5, -0.55), 0) }}
+						transition={drift}
+					/>
+				</g>
+				<motion.g
+					style={origin(50, 34.15)}
+					animate={{
+						y: at(wave(2.2), 0),
+						rotate: at(wave(1.2, -1), 0),
+					}}
+					transition={drift}
+				>
+					<path d={PLATE} fill={color} mask={`url(#${maskId})`} />
 				</motion.g>
 			</motion.g>
 		</svg>
@@ -169,27 +189,20 @@ function Heart({
 	cx,
 	cy,
 	tilt,
-	frozen,
+	scale,
+	transition,
 }: {
 	cx: number;
 	cy: number;
 	tilt: number;
-	frozen: boolean | null;
+	scale: number | number[];
+	transition: object;
 }) {
 	return (
 		<motion.g
-			style={{ transformBox: "view-box", transformOrigin: `${cx}px ${cy}px` }}
-			animate={frozen ? { scale: 1 } : { scale: [1, 1.28, 1, 1.22, 1, 1, 1] }}
-			transition={
-				frozen
-					? { duration: 0 }
-					: {
-							duration: SWAY,
-							times: [0, 0.09, 0.2, 0.29, 0.4, 0.7, 1],
-							repeat: Number.POSITIVE_INFINITY,
-							ease: "easeOut",
-						}
-			}
+			style={origin(cx, cy)}
+			animate={{ scale }}
+			transition={transition}
 		>
 			<g transform={`translate(${cx} ${cy}) rotate(${tilt})`}>
 				<path d={HEART} stroke="none" />
