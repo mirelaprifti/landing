@@ -1,0 +1,43 @@
+---
+import { DancingStack } from "@/components/ui/DancingStack";
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dancing Stack</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #09090b;
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 40px;
+    }
+    .row { display: flex; align-items: flex-end; gap: 64px; flex-wrap: wrap; justify-content: center; }
+    .cell { display: grid; gap: 16px; justify-items: center; }
+    .label { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #71717a; }
+    .tile { display: grid; place-items: center; width: 320px; height: 320px; background: #000; border: 1px solid #27272a; border-radius: 16px; }
+    .tile.sm { width: 160px; height: 160px; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell">
+      <div class="tile"><DancingStack client:only="react" size={220} /></div>
+      <span class="label">220px</span>
+    </div>
+    <div class="cell">
+      <div class="tile sm"><DancingStack client:only="react" size={96} /></div>
+      <span class="label">96px</span>
+    </div>
+    <div class="cell">
+      <div class="tile sm"><DancingStack client:only="react" size={96} still /></div>
+      <span class="label">Still</span>
+    </div>
+  </div>
+</body>
+</html>
