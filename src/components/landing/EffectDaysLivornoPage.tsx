@@ -129,7 +129,7 @@ const SPEAKERS: {
 	},
 	{
 		name: "John A. De Goes",
-		role: "Founder",
+		role: "CEO",
 		company: "Ziverge",
 		photo: "/assets/effect-days/jdg.png",
 		x: "jdegoes",
