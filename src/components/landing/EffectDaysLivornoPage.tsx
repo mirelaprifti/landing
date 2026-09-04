@@ -148,7 +148,20 @@ const SPEAKERS: {
 const EARLY_BIRD_ON_SALE = true;
 
 /* Early bird sells first; the regular price is shown struck through beside it. */
-const PASSES = [
+const PASSES: {
+	name: string;
+	days: { date: string; name: string; included: boolean }[];
+	/** Brighter border — marks the pass to buy. It moves when one sells out,
+	 *  rather than drawing the eye to something nobody can take. */
+	featured: boolean;
+	/** Gone. The chip says so and the purchase rows give way to an inert one;
+	 *  the day list stays, since what the pass covered is still worth reading. */
+	soldOut?: boolean;
+	pricing: {
+		self: { earlyBird: string; regular: string; url: string };
+		business: { earlyBird: string; regular: string; url: string };
+	};
+}[] = [
 	{
 		name: "Workshop, Conference & Community Pass",
 		days: [
@@ -156,7 +169,8 @@ const PASSES = [
 			{ date: "Dec 10", name: "Conference Day", included: true },
 			{ date: "Dec 11", name: "Community Day", included: true },
 		],
-		featured: true,
+		featured: false,
+		soldOut: true,
 		pricing: {
 			self: {
 				earlyBird: "€349",
@@ -177,7 +191,7 @@ const PASSES = [
 			{ date: "Dec 10", name: "Conference Day", included: true },
 			{ date: "Dec 11", name: "Community Day", included: true },
 		],
-		featured: false,
+		featured: true,
 		pricing: {
 			self: {
 				earlyBird: "€249",
@@ -456,6 +470,18 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 
 /* FAQs are split down the middle so each column opens independently. */
 const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
+
+/* Stands in for the purchase rows once a pass is gone. Built to the same width
+   and vertical size as a purchase row so the two cards still meet at the foot,
+   but a dashed outline and muted text rather than the buttons' ring — nothing
+   here is clickable and none of it should look like it is. */
+function SoldOutRow() {
+	return (
+		<p className="flex w-full items-center justify-center border border-dashed border-zinc-300 px-4 py-4 text-base font-medium text-zinc-500 md:px-6 dark:border-zinc-700 dark:text-zinc-400">
+			Sold out
+		</p>
+	);
+}
 
 /* Purchase row — a full-width Button; renders as an anchor once the Stripe
    checkout URL is filled in on the pass, and as a <button> until then. */
@@ -1071,10 +1097,20 @@ export function EffectDaysLivornoPage() {
 								>
 									{/* Day count comes from the pass itself, so it stays true if a
 								    day is ever added or dropped. The tier rides in the same chip
-								    and drops out with the early bird, leaving just "3-day pass". */}
+								    and drops out with the early bird, leaving just "3-day pass".
+								    A sold-out pass gives the chip over to saying so — it is the
+								    one fact worth reading first, and the day list below still
+								    carries the count. */}
 									<span className={`${text.micro} ${chip} self-start`}>
-										{EARLY_BIRD_ON_SALE ? "Early bird " : ""}
-										{pass.days.filter((day) => day.included).length}-day pass
+										{pass.soldOut ? (
+											"Sold out"
+										) : (
+											<>
+												{EARLY_BIRD_ON_SALE ? "Early bird " : ""}
+												{pass.days.filter((day) => day.included).length}-day
+												pass
+											</>
+										)}
 									</span>
 									<h3 className={`${text.cardTitle} mt-4`}>{pass.name}</h3>
 
@@ -1114,20 +1150,30 @@ export function EffectDaysLivornoPage() {
 
 									<div className="mt-6 border-t border-dashed border-zinc-200 dark:border-zinc-700" />
 
-									{/* Purchase rows */}
-									<div className="mt-6 space-y-3">
-										<PurchaseRow
-											label="self-pay"
-											passName={pass.name}
-											price={pass.pricing.self}
-										/>
-										{/* Keeps the asterisk so the invoicing note below still has
-										    something to point at. */}
-										<PurchaseRow
-											label="business*"
-											passName={pass.name}
-											price={pass.pricing.business}
-										/>
+									{/* Purchase rows, pinned to the foot: a sold-out pass carries
+									    one row where a live one carries two, and the pair should
+									    still meet along the bottom. The rule above stays put under
+									    the day list so it lines up across the pair — the slack
+									    belongs under it, not over. */}
+									<div className="mt-auto space-y-3 pt-6">
+										{pass.soldOut ? (
+											<SoldOutRow />
+										) : (
+											<>
+												<PurchaseRow
+													label="self-pay"
+													passName={pass.name}
+													price={pass.pricing.self}
+												/>
+												{/* Keeps the asterisk so the invoicing note below still
+													    has something to point at. */}
+												<PurchaseRow
+													label="business*"
+													passName={pass.name}
+													price={pass.pricing.business}
+												/>
+											</>
+										)}
 									</div>
 								</div>
 							))}
