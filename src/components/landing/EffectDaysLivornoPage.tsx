@@ -143,11 +143,10 @@ const SPEAKERS: {
 	},
 ];
 
-/* Early bird runs first. False once regular pricing starts, which drops the
-   tag from the pass chips, prices the purchase rows at the regular figure with
-   no strike-through, and restores the group-discount note under the passes.
-   The early-bird figures stay on the passes below so the period can be run
-   again for a future edition without re-entering them. */
+/* Early bird runs first. False once regular pricing starts, which drops the tag
+   from the pass chips and prices the purchase rows at the regular figure with
+   no strike-through. The early-bird figures stay on the passes below so the
+   period can be run again for a future edition without re-entering them. */
 const EARLY_BIRD_ON_SALE = false;
 
 /* Prices carry both figures; which one is live is EARLY_BIRD_ON_SALE's call. */
@@ -1201,20 +1200,6 @@ export function EffectDaysLivornoPage() {
 							<p className="text-sm leading-normal text-zinc-600 dark:text-zinc-400">
 								Selecting a pass takes you to Stripe to complete your purchase.
 							</p>
-							{/* Group discounts are off the page while early bird is on sale —
-							    flip EARLY_BIRD_ON_SALE to bring this back. */}
-							{!EARLY_BIRD_ON_SALE && (
-								<p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-									Group of 4+?{" "}
-									<Link
-										href="mailto:contact@effectful.co?subject=Effect Days Livorno - Group Tickets"
-										variant="inline"
-									>
-										Ask about business discounts
-									</Link>
-									.
-								</p>
-							)}
 						</div>
 					</div>
 				</section>
