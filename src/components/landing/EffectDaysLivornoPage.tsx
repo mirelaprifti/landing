@@ -143,11 +143,14 @@ const SPEAKERS: {
 	},
 ];
 
-/* Early bird runs first. Set to false once regular pricing starts, which also
-   restores the group-discount note under the passes. */
-const EARLY_BIRD_ON_SALE = true;
+/* Early bird runs first. False once regular pricing starts, which drops the
+   tag from the pass chips, prices the purchase rows at the regular figure with
+   no strike-through, and restores the group-discount note under the passes.
+   The early-bird figures stay on the passes below so the period can be run
+   again for a future edition without re-entering them. */
+const EARLY_BIRD_ON_SALE = false;
 
-/* Early bird sells first; the regular price is shown struck through beside it. */
+/* Prices carry both figures; which one is live is EARLY_BIRD_ON_SALE's call. */
 const PASSES: {
 	name: string;
 	days: { date: string; name: string; included: boolean }[];
@@ -471,13 +474,14 @@ const FAQS: Array<{ question: string; answer: React.ReactNode }> = [
 /* FAQs are split down the middle so each column opens independently. */
 const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
 
-/* Stands in for the purchase rows once a pass is gone. Built to the same width
-   and vertical size as a purchase row so the two cards still meet at the foot,
-   but a dashed outline and muted text rather than the buttons' ring — nothing
-   here is clickable and none of it should look like it is. */
+/* Stands in for the purchase rows once a pass is gone. It grows to fill the
+   block, so it covers exactly the ground the purchase rows opposite it cover
+   and the two cards read as a matched pair. Dashed outline and muted text
+   rather than the buttons' ring — nothing here is clickable and none of it
+   should look like it is. */
 function SoldOutRow() {
 	return (
-		<p className="flex w-full items-center justify-center border border-dashed border-zinc-300 px-4 py-4 text-base font-medium text-zinc-500 md:px-6 dark:border-zinc-700 dark:text-zinc-400">
+		<p className="flex w-full flex-1 items-center justify-center border border-dashed border-zinc-300 px-4 py-4 text-base font-medium text-zinc-500 md:px-6 dark:border-zinc-700 dark:text-zinc-400">
 			Sold out
 		</p>
 	);
@@ -498,11 +502,12 @@ function PurchaseRow({
 	price: { earlyBird: string; regular: string; url: string | null };
 }) {
 	/* Spoken form of the row: the pass it buys, the payment route without its
-	   footnote marker, and the struck-through price named as the old one rather
-	   than read out as a second live price. */
-	const ariaLabel = `Buy the ${passName}, ${label.replace(/\*$/, "")}, ${
-		price.earlyBird
-	} early bird, reduced from ${price.regular}`;
+	   footnote marker, and — while early bird runs — the struck-through price
+	   named as the old one rather than read out as a second live price. */
+	const route = label.replace(/\*$/, "");
+	const ariaLabel = EARLY_BIRD_ON_SALE
+		? `Buy the ${passName}, ${route}, ${price.earlyBird} early bird, reduced from ${price.regular}`
+		: `Buy the ${passName}, ${route}, ${price.regular}`;
 
 	const content = (
 		<>
@@ -512,10 +517,16 @@ function PurchaseRow({
 				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
 					·
 				</span>
-				<span className="text-sm text-zinc-500 line-through dark:text-zinc-400">
-					{price.regular}
+				{/* Off early bird there is no old price to strike, so the regular
+				    figure is simply the price. */}
+				{EARLY_BIRD_ON_SALE && (
+					<span className="text-sm text-zinc-500 line-through dark:text-zinc-400">
+						{price.regular}
+					</span>
+				)}
+				<span className="text-base font-semibold">
+					{EARLY_BIRD_ON_SALE ? price.earlyBird : price.regular}
 				</span>
-				<span className="text-base font-semibold">{price.earlyBird}</span>
 			</span>
 			{/* Trailing arrow marks the row as something that goes somewhere —
 			    the affordance a touch device can't get from hover. */}
@@ -1150,12 +1161,13 @@ export function EffectDaysLivornoPage() {
 
 									<div className="mt-6 border-t border-dashed border-zinc-200 dark:border-zinc-700" />
 
-									{/* Purchase rows, pinned to the foot: a sold-out pass carries
-									    one row where a live one carries two, and the pair should
-									    still meet along the bottom. The rule above stays put under
-									    the day list so it lines up across the pair — the slack
-									    belongs under it, not over. */}
-									<div className="mt-auto space-y-3 pt-6">
+									{/* Purchase rows take the rest of the card. Everything above
+									    this block is the same height on both cards and the grid
+									    stretches the pair level, so the space left here is
+									    identical too — which lets the single sold-out row grow to
+									    exactly the height the two purchase rows opposite it make,
+									    without either measurement being written down. */}
+									<div className="mt-6 flex flex-1 flex-col gap-3">
 										{pass.soldOut ? (
 											<SoldOutRow />
 										) : (
