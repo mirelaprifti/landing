@@ -136,17 +136,14 @@ export function DocsNavigation({ section }: { section: DocsSectionKey }) {
 				>
 					<div className="mx-auto w-full max-w-[88rem] px-4 py-3">
 						<ul>
-							{/* Docs leads the list, mirroring the desktop bar: the lockup,
-							    then the section links beside it. */}
-							<li>
-								<Link
-									href={getAssetPath(DOCS_HOME.href)}
-									variant="nav"
-									className="block py-3 text-zinc-900 dark:text-white"
-									onClick={() => setMenuOpen(false)}
-								>
+							{/* Docs heads the panel as a label, not a link — it names the
+							    section you're inside, and every page here is already the
+							    docs. The rule beneath it does the divider's job from the
+							    desktop bar, separating the lockup from the links. */}
+							<li className="border-b border-zinc-200 dark:border-zinc-800">
+								<p className="py-3 text-sm font-medium text-zinc-900 dark:text-white">
 									{DOCS_HOME.label}
-								</Link>
+								</p>
 							</li>
 							{SECTION_LINKS.map((link) => {
 								const isCurrent = link.key === section;
