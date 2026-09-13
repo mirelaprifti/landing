@@ -141,7 +141,9 @@ export function DocsNavigation({ section }: { section: DocsSectionKey }) {
 							    docs. The rule beneath it does the divider's job from the
 							    desktop bar, separating the lockup from the links. */}
 							<li className="border-b border-zinc-200 dark:border-zinc-800">
-								<p className="py-3 text-sm font-medium text-zinc-900 dark:text-white">
+								{/* White in both themes — it is the panel's title, not a
+								    link, so it takes no theme-muted treatment. */}
+								<p className="py-3 text-sm font-medium text-white">
 									{DOCS_HOME.label}
 								</p>
 							</li>
