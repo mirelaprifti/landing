@@ -140,7 +140,10 @@ export function DocsNavigation({ section }: { section: DocsSectionKey }) {
 							    section you're inside, and every page here is already the
 							    docs. The rule beneath it does the divider's job from the
 							    desktop bar, separating the lockup from the links. */}
-							<li className="border-b border-zinc-200 dark:border-zinc-800">
+							{/* mb-2 gives the rule air on both sides — without it the
+							    divider sits flush against the first link while the heading
+							    floats above it. */}
+							<li className="mb-2 border-b border-zinc-200 dark:border-zinc-800">
 								{/* The panel's title, treated as selected: the nav's own
 								    strong color in each theme. */}
 								<p className="py-3 text-sm font-medium text-zinc-900 dark:text-white">
