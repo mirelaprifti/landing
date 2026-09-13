@@ -126,27 +126,55 @@ export function DocsNavigation({ section }: { section: DocsSectionKey }) {
 				</nav>
 			</header>
 
-			{/* Mobile menu — the lockup is hidden below sm, so Docs leads the list */}
+			{/* Mobile menu — carries the section identity the collapsed bar loses:
+			    the inline links are hidden below md, and the "Docs" lockup below
+			    sm, so without a heading the panel reads as an unmarked list. */}
 			{menuOpen && (
 				<div
 					id="docs-mobile-menu"
 					className="border-t border-zinc-200 bg-zinc-50 md:hidden dark:border-zinc-800 dark:bg-zinc-950"
 				>
-					<ul className="mx-auto w-full max-w-[88rem] px-4 py-3">
-						{SECTION_LINKS.map((link) => (
-							<li key={link.key}>
+					<div className="mx-auto w-full max-w-[88rem] px-4 py-3">
+						<ul>
+							{/* Docs leads the list, mirroring the desktop bar: the lockup,
+							    then the section links beside it. */}
+							<li>
 								<Link
-									href={getAssetPath(link.href)}
+									href={getAssetPath(DOCS_HOME.href)}
 									variant="nav"
-									active={link.key === section}
-									className="block py-3"
+									className="block py-3 text-zinc-900 dark:text-white"
 									onClick={() => setMenuOpen(false)}
 								>
-									{link.label}
+									{DOCS_HOME.label}
 								</Link>
 							</li>
-						))}
-					</ul>
+							{SECTION_LINKS.map((link) => {
+								const isCurrent = link.key === section;
+								return (
+									<li key={link.key}>
+										<Link
+											href={getAssetPath(link.href)}
+											variant="nav"
+											/* The current section takes the same strong treatment the
+											   desktop active link gets, and drops the hover underline —
+											   following it goes nowhere new. */
+											className={`block py-3 ${
+												isCurrent
+													? "cursor-default text-zinc-900 hover:border-transparent dark:text-white"
+													: ""
+											}`}
+											onClick={() => setMenuOpen(false)}
+										>
+											{link.label}
+											{isCurrent && (
+												<span className="sr-only"> (current section)</span>
+											)}
+										</Link>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
 				</div>
 			)}
 		</div>
