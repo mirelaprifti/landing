@@ -254,12 +254,15 @@ export function DocsOnboardingPage() {
 										<span className="mt-1 block text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
 											{item.desc}
 										</span>
-									</span>
-									<span
-										className="hidden shrink-0 text-sm font-medium text-zinc-500 transition-colors group-hover:text-zinc-900 md:block dark:text-zinc-400 dark:group-hover:text-white"
-										aria-hidden="true"
-									>
-										{item.linkLabel} →
+										{/* The destination sits with the content, not floated to the
+										    far edge: a row this wide makes a right-aligned label read as
+										    detached, and the link is the step's natural conclusion. */}
+										<span
+											className="mt-2 block text-sm font-medium text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+											aria-hidden="true"
+										>
+											{item.linkLabel} →
+										</span>
 									</span>
 								</a>
 							</li>
