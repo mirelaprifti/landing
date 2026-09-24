@@ -244,9 +244,12 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Main sponsor",
 		label: "Main sponsors",
-		cols: "grid-cols-1 sm:grid-cols-3",
-		tileClass: "py-10",
-		logoBox: "h-9",
+		/* Two across, so the tiles run half-width and the tier reads as the
+		   largest thing on the wall. With three main sponsors the row takes
+		   the first two side by side and the third full-width beneath. */
+		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
+		tileClass: "py-12",
+		logoBox: "h-10",
 	},
 	{
 		tier: "Partner",
