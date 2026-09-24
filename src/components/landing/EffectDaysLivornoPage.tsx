@@ -219,47 +219,33 @@ const PASSES: {
    would read as the biggest backer whatever row it sat in. That also means one
    file per sponsor — no light/dark pair, since the ink follows the theme. */
 
+/* Sponsors, Stripe-style: every mark in the same frame, one quiet label per
+   row, rank carried by row order alone. No chips on the tiles and no size
+   ladder — the wall reads as one group of companies rather than a price
+   table, and a new sponsor is one entry here, not a layout problem.
+
+   Every mark renders in a single ink (see SponsorLogo). A sponsor's own colour
+   would rank it by palette rather than by tier: the loudest brand in the list
+   would read as the biggest backer whatever row it sat in. That also means one
+   file per sponsor — no light/dark pair, since the ink follows the theme. */
+
 const SPONSOR_TIERS: {
 	tier: string;
-	/** Columns the row splits into — the width step between tiers. Unset on a
-	 *  grouped tier, which is a single tile however many marks it holds. */
-	cols?: string;
-	/** Whole tier in one tile, sharing a frame and a chip, rather than a tile
-	 *  per sponsor. */
-	grouped?: boolean;
-	/** Tile padding and logo-to-chip gap — the height step between tiers. */
-	tileClass: string;
-	/** Fixed logo slot, one per tier, so marks in a tier line up however tall
-	 *  each one is set. */
-	logoBox: string;
+	/** Label shown over the row, in the page's mono micro style. */
+	label: string;
+	/** Columns the row splits into. */
+	cols: string;
 }[] = [
-	{
-		tier: "Main sponsor",
-		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
-		tileClass: "py-12 gap-4",
-		logoBox: "h-12",
-	},
-	{
-		tier: "Partner",
-		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
-		tileClass: "py-9 gap-4",
-		logoBox: "h-12",
-	},
-	{
-		/* A community mark does not carry a frame of its own: the tier shares one,
-		   under one chip. That keeps the ladder honest as the tier grows — five
-		   small tiles would out-weigh the two above them by sheer count, where one
-		   box holding five marks still reads as the bottom rung. */
-		tier: "Community",
-		grouped: true,
-		tileClass: "py-7 gap-5",
-		logoBox: "h-12",
-	},
+	{ tier: "Main sponsor", label: "Main sponsors", cols: "grid-cols-1 sm:grid-cols-3" },
+	{ tier: "Partner", label: "Partners", cols: "grid-cols-1 sm:grid-cols-3" },
+	/* Community marks share a row at the same tile size; with one sponsor it
+	   simply leaves two cells empty rather than shrinking the tile. */
+	{ tier: "Community", label: "Community", cols: "grid-cols-2 sm:grid-cols-3" },
 ];
 
 const SPONSORS: {
 	name: string;
-	/** Tier, shown as a chip on the tile; keys the row it lands in. */
+	/** Tier — keys the row it lands in. */
 	tier: string;
 	/** Any colour: it is flattened to the wall's ink. Marks with a knockout
 	 *  need the cut-out to be transparent rather than a light fill, or it
@@ -274,23 +260,44 @@ const SPONSORS: {
 		name: "Effectful",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/Effectful-white.svg",
-		/* Effectful's wordmark is short and heavy, so it runs taller than Ziverge's
-		   wider lockup for the two to read at the same size. */
-		logoHeight: "h-12",
+		/* Effectful's wordmark is short and heavy, so it runs taller than the
+		   wider lockups for the three to read at the same size. */
+		logoHeight: "h-9",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
 		name: "Ziverge",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-8",
+		logoHeight: "h-6",
 		websiteUrl: "https://www.ziverge.com/",
+	},
+	{
+		name: "Warp",
+		tier: "Main sponsor",
+		logo: "/assets/effect-days/warp.svg",
+		logoHeight: "h-6",
+		websiteUrl: "https://www.warp.dev/",
+	},
+	{
+		name: "Cloudflare",
+		tier: "Partner",
+		logo: "/assets/effect-days/cloudflare.svg",
+		logoHeight: "h-6",
+		websiteUrl: "https://www.cloudflare.com/",
+	},
+	{
+		name: "Inato",
+		tier: "Partner",
+		logo: "/assets/effect-days/inato.png",
+		logoHeight: "h-6",
+		websiteUrl: "https://www.inato.com/",
 	},
 	{
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-12",
+		logoHeight: "h-7",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
@@ -298,28 +305,9 @@ const SPONSORS: {
 		tier: "Community",
 		logo: "/assets/effect-days/novelcrafter.svg",
 		/* Its lockup is nearly five times as wide as it is tall, so it caps
-		   shorter than Betalyra's to sit at the same optical size. */
-		logoHeight: "h-8",
+		   shorter than the wordmarks beside it to sit at the same optical size. */
+		logoHeight: "h-5",
 		websiteUrl: "https://www.novelcrafter.com/",
-	},
-	{
-		name: "Executor",
-		tier: "Community",
-		/* Its own file ships the disc solid with a light glyph on top, which the
-		   ink flattens shut. This one cuts the glyph out of the disc instead, so
-		   the tile shows through it in either theme. */
-		logo: "/assets/effect-days/executor-mono.png",
-		logoHeight: "h-8",
-		websiteUrl: "https://executor.sh/",
-	},
-	{
-		name: "August",
-		tier: "Community",
-		logo: "/assets/effect-days/august.png",
-		/* Serif caps and no icon-side padding make it read large, so it caps a
-		   step shorter than the two marks beside it. */
-		logoHeight: "h-7",
-		websiteUrl: "https://www.augusthealth.com/",
 	},
 ];
 
@@ -615,15 +603,14 @@ function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
 }
 
 /**
- * One sponsor, one tile. The tier supplies the size — padding and the fixed
- * logo slot — so every tile in a row matches.
+ * One sponsor, one tile. Every tile is the same size — the tier is named by
+ * the row's label, not by the frame — and the logo slot is fixed so marks in a
+ * row line up however tall each one is set.
  */
 function SponsorTile({
 	sponsor,
-	tier,
 }: {
 	sponsor: (typeof SPONSORS)[number];
-	tier: (typeof SPONSOR_TIERS)[number];
 }) {
 	return (
 		<a
@@ -633,61 +620,14 @@ function SponsorTile({
 			aria-label={`${sponsor.name} — visit website`}
 			/* Opaque so the page's centre dashed line stops behind the tile rather
 			   than running across the logo. */
-			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
+			className="group relative flex items-center justify-center bg-white px-6 py-8 dark:bg-zinc-950"
 		>
 			<TileBrackets />
 
-			<span className={`flex ${tier.logoBox} items-center justify-center`}>
+			<span className="flex h-9 items-center justify-center">
 				<SponsorLogo sponsor={sponsor} />
 			</span>
-
-			<span className={`${text.micro} ${chip} mb-0`}>{sponsor.tier}</span>
 		</a>
-	);
-}
-
-/**
- * A whole tier in one tile: the marks share a frame and a single chip. The
- * frame is the tier, so each mark is only a link inside it.
- */
-function GroupedSponsorTile({
-	sponsors,
-	tier,
-	className = "",
-}: {
-	sponsors: (typeof SPONSORS)[number][];
-	tier: (typeof SPONSOR_TIERS)[number];
-	className?: string;
-}) {
-	return (
-		<div
-			className={`group relative flex flex-col items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass} ${className}`}
-		>
-			<TileBrackets />
-
-			{/* Spread across the frame on a wide screen, stacked on a phone. Left to
-			    wrap on their own the marks break unevenly — a wide one takes a line
-			    to itself and the rest crowd the next — so below `sm` each takes its
-			    own line and stays centred. */}
-			<div className="flex w-full flex-wrap items-center justify-evenly gap-x-10 gap-y-5">
-				{sponsors.map((sponsor) => (
-					<a
-						key={sponsor.name}
-						href={sponsor.websiteUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label={`${sponsor.name} — visit website`}
-						/* The frame's own hover covers the whole tile, so each mark
-						   answers for itself to show it is separately clickable. */
-						className={`flex w-full sm:w-auto ${tier.logoBox} items-center justify-center transition-opacity duration-200 hover:opacity-60`}
-					>
-						<SponsorLogo sponsor={sponsor} />
-					</a>
-				))}
-			</div>
-
-			<span className={`${text.micro} ${chip} mb-0`}>{tier.tier}</span>
-		</div>
 	);
 }
 
@@ -1374,43 +1314,22 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* One row per tier. How much of the row a frame takes, and how
-						    tall it stands, carry the rank together: a half each for the
-						    main sponsors, a half for the partner beside the open slot, and
-						    a single full-width frame holding the community marks.
-
-						    Keeping the tiers on separate rows is what makes the size step
-						    safe — it lives between the rows, so no row can stretch its
-						    tiles into the tier above. */}
+						{/* Stripe-style: one labelled row per tier, every tile the same
+						    size. Rank is carried by order alone — no chips, no ladder of
+						    heights — so the wall reads as one group of backers. */}
 						{SPONSOR_TIERS.map((tier, tierIndex) => {
 							const marks = SPONSORS.filter(
 								(sponsor) => sponsor.tier === tier.tier,
 							);
-							const spacing = tierIndex === 0 ? "mt-12" : "mt-4";
-
-							if (tier.grouped) {
-								return (
-									<GroupedSponsorTile
-										key={tier.tier}
-										sponsors={marks}
-										tier={tier}
-										className={spacing}
-									/>
-								);
-							}
-
+							if (marks.length === 0) return null;
 							return (
-								<div
-									key={tier.tier}
-									className={`grid gap-4 ${spacing} ${tier.cols}`}
-								>
-									{marks.map((sponsor) => (
-										<SponsorTile
-											key={sponsor.name}
-											sponsor={sponsor}
-											tier={tier}
-										/>
-									))}
+								<div key={tier.tier} className={tierIndex === 0 ? "mt-12" : "mt-10"}>
+									<p className={text.eyebrow}>{"// "}{tier.label}</p>
+									<div className={`mt-4 grid gap-4 ${tier.cols}`}>
+										{marks.map((sponsor) => (
+											<SponsorTile key={sponsor.name} sponsor={sponsor} />
+										))}
+									</div>
 								</div>
 							);
 						})}
