@@ -235,12 +235,33 @@ const SPONSOR_TIERS: {
 	label: string;
 	/** Columns the row splits into. */
 	cols: string;
+	/** Tile padding — the height step between tiers. */
+	tileClass: string;
+	/** Fixed logo slot per tier, so marks in a row line up however tall each
+	 *  one is set. */
+	logoBox: string;
 }[] = [
-	{ tier: "Main sponsor", label: "Main sponsors", cols: "grid-cols-1 sm:grid-cols-3" },
-	{ tier: "Partner", label: "Partners", cols: "grid-cols-1 sm:grid-cols-3" },
-	/* Community marks share a row at the same tile size; with one sponsor it
-	   simply leaves two cells empty rather than shrinking the tile. */
-	{ tier: "Community", label: "Community", cols: "grid-cols-2 sm:grid-cols-3" },
+	{
+		tier: "Main sponsor",
+		label: "Main sponsors",
+		cols: "grid-cols-1 sm:grid-cols-3",
+		tileClass: "py-10",
+		logoBox: "h-9",
+	},
+	{
+		tier: "Partner",
+		label: "Partners",
+		cols: "grid-cols-1 sm:grid-cols-3",
+		tileClass: "py-7",
+		logoBox: "h-7",
+	},
+	{
+		tier: "Community",
+		label: "Community",
+		cols: "grid-cols-2 sm:grid-cols-4",
+		tileClass: "py-5",
+		logoBox: "h-6",
+	},
 ];
 
 const SPONSORS: {
@@ -262,49 +283,49 @@ const SPONSORS: {
 		logo: "/assets/effect-days/Effectful-white.svg",
 		/* Effectful's wordmark is short and heavy, so it runs taller than the
 		   wider lockups for the three to read at the same size. */
-		logoHeight: "h-9",
+		logoHeight: "h-8",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
 		name: "Ziverge",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-6",
+		logoHeight: "h-5",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
 		name: "Warp",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/warp.svg",
-		logoHeight: "h-6",
+		logoHeight: "h-5",
 		websiteUrl: "https://www.warp.dev/",
 	},
 	{
 		name: "Cloudflare",
 		tier: "Partner",
 		logo: "/assets/effect-days/cloudflare.svg",
-		logoHeight: "h-6",
+		logoHeight: "h-4",
 		websiteUrl: "https://www.cloudflare.com/",
 	},
 	{
 		name: "Inato",
 		tier: "Partner",
 		logo: "/assets/effect-days/inato.png",
-		logoHeight: "h-6",
+		logoHeight: "h-4",
 		websiteUrl: "https://www.inato.com/",
 	},
 	{
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-7",
+		logoHeight: "h-5",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
 		name: "August",
 		tier: "Community",
 		logo: "/assets/effect-days/august.png",
-		logoHeight: "h-6",
+		logoHeight: "h-4",
 		websiteUrl: "https://www.august.computer/",
 	},
 	{
@@ -313,7 +334,7 @@ const SPONSORS: {
 		logo: "/assets/effect-days/novelcrafter.svg",
 		/* Its lockup is nearly five times as wide as it is tall, so it caps
 		   shorter than the wordmarks beside it to sit at the same optical size. */
-		logoHeight: "h-5",
+		logoHeight: "h-3.5",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
 ];
@@ -616,8 +637,10 @@ function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
  */
 function SponsorTile({
 	sponsor,
+	tier,
 }: {
 	sponsor: (typeof SPONSORS)[number];
+	tier: (typeof SPONSOR_TIERS)[number];
 }) {
 	return (
 		<a
@@ -627,11 +650,11 @@ function SponsorTile({
 			aria-label={`${sponsor.name} — visit website`}
 			/* Opaque so the page's centre dashed line stops behind the tile rather
 			   than running across the logo. */
-			className="group relative flex items-center justify-center bg-white px-6 py-8 dark:bg-zinc-950"
+			className={`group relative flex items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
 		>
 			<TileBrackets />
 
-			<span className="flex h-9 items-center justify-center">
+			<span className={`flex ${tier.logoBox} items-center justify-center`}>
 				<SponsorLogo sponsor={sponsor} />
 			</span>
 		</a>
@@ -1334,7 +1357,11 @@ export function EffectDaysLivornoPage() {
 									<p className={text.eyebrow}>{"// "}{tier.label}</p>
 									<div className={`mt-4 grid gap-4 ${tier.cols}`}>
 										{marks.map((sponsor) => (
-											<SponsorTile key={sponsor.name} sponsor={sponsor} />
+											<SponsorTile
+												key={sponsor.name}
+												sponsor={sponsor}
+												tier={tier}
+											/>
 										))}
 									</div>
 								</div>
