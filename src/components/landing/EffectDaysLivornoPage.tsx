@@ -1336,7 +1336,7 @@ export function EffectDaysLivornoPage() {
 						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:items-baseline-last md:gap-8">
 							<div>
 								<p className={text.eyebrow}>{"// "}Effect Days sponsors</p>
-								<h2 className={text.sectionTitle}>Made possible by</h2>
+								<h2 className={text.sectionTitle}>A non-profit event, made possible by</h2>
 							</div>
 							<p className={`${text.subtitle} md:mt-0`}>
 								Run with the support of the companies backing the ecosystem.
