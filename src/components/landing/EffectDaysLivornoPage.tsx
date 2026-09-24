@@ -301,6 +301,13 @@ const SPONSORS: {
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
+		name: "August",
+		tier: "Community",
+		logo: "/assets/effect-days/august.png",
+		logoHeight: "h-6",
+		websiteUrl: "https://www.august.computer/",
+	},
+	{
 		name: "Novelcrafter",
 		tier: "Community",
 		logo: "/assets/effect-days/novelcrafter.svg",
