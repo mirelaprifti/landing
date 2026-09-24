@@ -1333,14 +1333,9 @@ export function EffectDaysLivornoPage() {
 						    the columns close up to gap-0, so the subtitle's own mt-4 sets the
 						    spacing instead of the grid. The sponsorship CTA is the last tile
 						    in the grid below rather than a link sitting up here. */}
-						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:items-baseline-last md:gap-8">
-							<div>
-								<p className={text.eyebrow}>{"// "}Effect Days sponsors</p>
-								<h2 className={text.sectionTitle}>A non-profit event, made possible by</h2>
-							</div>
-							<p className={`${text.subtitle} md:mt-0`}>
-								Run with the support of the companies backing the ecosystem.
-							</p>
+						<div>
+							<p className={text.eyebrow}>{"// "}Effect Days sponsors</p>
+							<h2 className={text.sectionTitle}>A non-profit event, made possible by</h2>
 						</div>
 
 						{/* Stripe-style: one labelled row per tier, every tile the same
