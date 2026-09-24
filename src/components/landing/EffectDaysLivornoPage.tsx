@@ -322,6 +322,16 @@ const SPONSORS: {
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
+		name: "Executor",
+		tier: "Community",
+		/* The dark file ships the disc solid with a light glyph, which the ink
+		   flattening closes up; the mono file cuts the glyph out of the disc,
+		   so the tile shows through it in either theme. */
+		logo: "/assets/effect-days/executor-mono.png",
+		logoHeight: "h-5",
+		websiteUrl: "https://www.executor.sh/",
+	},
+	{
 		name: "August",
 		tier: "Community",
 		logo: "/assets/effect-days/august.png",
