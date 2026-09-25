@@ -244,9 +244,9 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Main sponsor",
 		label: "Main sponsors",
-		/* Two across, so the tiles run half-width and the tier reads as the
-		   largest thing on the wall. With three main sponsors the row takes
-		   the first two side by side and the third full-width beneath. */
+		/* The label sits beside the tier rather than above it: on the left,
+		   with the first mark full-height to its right and the remaining two
+		   in halves beneath — so the tier reads as one unit. */
 		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
 		tileClass: "py-12",
 		logoBox: "h-10",
@@ -651,9 +651,11 @@ function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
 function SponsorTile({
 	sponsor,
 	tier,
+	className = "",
 }: {
 	sponsor: (typeof SPONSORS)[number];
 	tier: (typeof SPONSOR_TIERS)[number];
+	className?: string;
 }) {
 	return (
 		<a
@@ -663,7 +665,7 @@ function SponsorTile({
 			aria-label={`${sponsor.name} — visit website`}
 			/* Opaque so the page's centre dashed line stops behind the tile rather
 			   than running across the logo. */
-			className={`group relative flex items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass}`}
+			className={`group relative flex items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass} ${className}`}
 		>
 			<TileBrackets />
 
@@ -1359,8 +1361,37 @@ export function EffectDaysLivornoPage() {
 								(sponsor) => sponsor.tier === tier.tier,
 							);
 							if (marks.length === 0) return null;
+
+							/* Main tier: the label leads on the left, the first mark takes
+							   the full height beside it, and the rest run in halves
+							   beneath — the tile layout does the ranking, so the label
+							   never hangs over a lone wide tile. */
+							if (tierIndex === 0) {
+								return (
+									<div
+										key={tier.tier}
+										className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[10rem_1fr_1fr] lg:gap-8"
+									>
+										<p className={`${text.eyebrow} self-start`}>
+											{"// "}
+											{tier.label}
+										</p>
+										<div className="lg:row-span-2">
+											<SponsorTile sponsor={marks[0]} tier={tier} className="h-full" />
+										</div>
+										{marks.slice(1).map((sponsor) => (
+											<SponsorTile
+												key={sponsor.name}
+												sponsor={sponsor}
+												tier={tier}
+											/>
+										))}
+									</div>
+								);
+							}
+
 							return (
-								<div key={tier.tier} className={tierIndex === 0 ? "mt-12" : "mt-10"}>
+								<div key={tier.tier} className="mt-10">
 									<p className={text.eyebrow}>{"// "}{tier.label}</p>
 									<div className={`mt-4 grid gap-4 ${tier.cols}`}>
 										{marks.map((sponsor) => (
