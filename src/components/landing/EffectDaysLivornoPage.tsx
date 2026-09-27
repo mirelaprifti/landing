@@ -253,7 +253,9 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Partner",
 		label: "Partners",
-		cols: "grid-cols-1 sm:grid-cols-3",
+		/* Two marks, so halves — thirds would leave an empty cell at the end
+		   of the row. Back to grid-cols-3 when a third partner lands. */
+		cols: "grid-cols-1 sm:grid-cols-2",
 		tileClass: "py-7",
 		logoBox: "h-7",
 	},
@@ -301,13 +303,6 @@ const SPONSORS: {
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-5",
 		websiteUrl: "https://www.ziverge.com/",
-	},
-	{
-		name: "Cloudflare",
-		tier: "Partner",
-		logo: "/assets/effect-days/cloudflare.svg",
-		logoHeight: "h-4",
-		websiteUrl: "https://www.cloudflare.com/",
 	},
 	{
 		name: "Inato",
