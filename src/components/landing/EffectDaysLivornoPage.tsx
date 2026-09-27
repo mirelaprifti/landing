@@ -244,9 +244,8 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Main sponsor",
 		label: "Main sponsors",
-		/* The label sits beside the tier rather than above it: on the left,
-		   with the first mark full-height to its right and the remaining two
-		   in halves beneath — so the tier reads as one unit. */
+		/* The label takes the first quadrant of the 2×2 and the marks fill the
+		   rest, so the tier reads as one block with its name inside it. */
 		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
 		tileClass: "py-12",
 		logoBox: "h-10",
@@ -290,18 +289,18 @@ const SPONSORS: {
 		websiteUrl: "https://effectful.co/",
 	},
 	{
-		name: "Ziverge",
-		tier: "Main sponsor",
-		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-5",
-		websiteUrl: "https://www.ziverge.com/",
-	},
-	{
 		name: "Warp",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/warp.svg",
 		logoHeight: "h-5",
 		websiteUrl: "https://www.warp.dev/",
+	},
+	{
+		name: "Ziverge",
+		tier: "Main sponsor",
+		logo: "/assets/effect-days/ziverge.svg",
+		logoHeight: "h-5",
+		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
 		name: "Cloudflare",
@@ -1350,7 +1349,9 @@ export function EffectDaysLivornoPage() {
 						    in the grid below rather than a link sitting up here. */}
 						<div>
 							<p className={text.eyebrow}>{"// "}Effect Days sponsors</p>
-							<h2 className={text.sectionTitle}>A non-profit event, made possible by</h2>
+							<h2 className={text.sectionTitle}>
+								A non-profit event, made possible by
+							</h2>
 						</div>
 
 						{/* Stripe-style: one labelled row per tier, every tile the same
@@ -1362,24 +1363,22 @@ export function EffectDaysLivornoPage() {
 							);
 							if (marks.length === 0) return null;
 
-							/* Main tier: the label leads on the left, the first mark takes
-							   the full height beside it, and the rest run in halves
-							   beneath — the tile layout does the ranking, so the label
-							   never hangs over a lone wide tile. */
+							/* Main tier: a flat 2×2 at half-width cells. The label holds the
+							   top-left quadrant, the marks fill the rest in order — Effectful
+							   beside it, Warp below it, Ziverge closing the block. */
 							if (tierIndex === 0) {
 								return (
 									<div
 										key={tier.tier}
-										className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[10rem_1fr_1fr] lg:gap-8"
+										className={`mt-12 grid gap-4 ${tier.cols}`}
 									>
-										<p className={`${text.eyebrow} self-start`}>
+										{/* Centred in its quadrant like the logos across from it —
+										    top-aligned it read as a caption hung over a void. */}
+										<p className={`${text.eyebrow} self-center`}>
 											{"// "}
 											{tier.label}
 										</p>
-										<div className="lg:row-span-2">
-											<SponsorTile sponsor={marks[0]} tier={tier} className="h-full" />
-										</div>
-										{marks.slice(1).map((sponsor) => (
+										{marks.map((sponsor) => (
 											<SponsorTile
 												key={sponsor.name}
 												sponsor={sponsor}
@@ -1392,7 +1391,10 @@ export function EffectDaysLivornoPage() {
 
 							return (
 								<div key={tier.tier} className="mt-10">
-									<p className={text.eyebrow}>{"// "}{tier.label}</p>
+									<p className={text.eyebrow}>
+										{"// "}
+										{tier.label}
+									</p>
 									<div className={`mt-4 grid gap-4 ${tier.cols}`}>
 										{marks.map((sponsor) => (
 											<SponsorTile
