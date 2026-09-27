@@ -1,3 +1,7 @@
+import { useId } from "react";
+import { Icon } from "@/components/ui/Icon";
+import { Link } from "@/components/ui/Link";
+
 /**
  * The v3 / v4 segmented control.
  *
@@ -12,6 +16,16 @@
  *   Cheap and reversible.
  * - `VersionSwitch`: each half mutates state (playground — rewrites
  *   package.json and rebuilds the sandbox). Callers own the confirm/rebuild.
+ *
+ * `VersionSwitchLinks` also covers the dead-end case: when the current page
+ * has no equivalent in the other version (`href` returns `null`), that half
+ * renders inert — dimmed, no hover, `cursor-not-allowed`, not a link — and a
+ * persistent note under the switch says why. Persistent, not a tooltip: it
+ * works on touch, is reachable by screen readers (`aria-disabled` +
+ * `aria-describedby`), and matches the sidebar-note idiom already used under
+ * this switch ("The v4 reference is coming soon."). An optional `fallback`
+ * link offers the escape hatch into the other version's world (its index),
+ * so the switch never dead-ends the reader.
  */
 
 export type EffectVersion = "v3" | "v4";
@@ -38,6 +52,10 @@ const ITEM_ACTIVE =
 
 const ITEM_IDLE =
 	"text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white";
+
+// Unavailable = no page on the other side: two steps quieter than idle, no
+// hover, the cursor says the rest. Rendered as a span, so nothing to focus.
+const ITEM_DISABLED = "cursor-not-allowed text-zinc-400 dark:text-zinc-600";
 
 export function VersionSwitch({
 	value,
@@ -82,6 +100,11 @@ export function VersionSwitch({
  * Navigating twin of {@link VersionSwitch}: same shape, but each half is a link
  * to that version's docs rather than a state mutation. Used at the top of the
  * docs and API-reference sidebars.
+ *
+ * When `href` returns `null` for the *other* version, that half renders as an
+ * inert span (dimmed, `cursor-not-allowed`, `aria-disabled`) and a note under
+ * the switch explains the page doesn't exist there. `fallback` adds a subtle
+ * arrow link below the note — the escape hatch into that version's world.
  */
 export function VersionSwitchLinks({
 	value,
@@ -89,34 +112,96 @@ export function VersionSwitchLinks({
 	/** Stretch to the container width, halves sharing it evenly. */
 	block = false,
 	labels = VERSION_LABELS,
+	fallback,
+	unavailableNote,
 	className = "",
 	"aria-label": ariaLabel = "Effect version",
 }: {
 	value: EffectVersion;
-	href: (version: EffectVersion) => string;
+	/**
+	 * Target per version. Return `null` when this page has no equivalent in
+	 * that version — that half of the switch renders inert with a note.
+	 */
+	href: (version: EffectVersion) => string | null;
 	block?: boolean;
 	labels?: Record<EffectVersion, string>;
+	/**
+	 * Escape hatch shown under the unavailable note — usually the other
+	 * version's index, so the reader can still enter that world.
+	 */
+	fallback?: (version: EffectVersion) => { href: string; label: string };
+	/** Note copy override. */
+	unavailableNote?: (version: EffectVersion) => string;
 	className?: string;
 	"aria-label"?: string;
 }) {
+	const noteId = useId();
+	const note =
+		unavailableNote ??
+		((version: EffectVersion) =>
+			`This page doesn't exist in ${labels[version]}${version === "v4" ? " yet" : ""}.`);
+	const unavailable = VERSIONS.filter((v) => v !== value && href(v) === null);
+
 	return (
-		<nav
-			aria-label={ariaLabel}
-			className={`${block ? "flex w-full" : "inline-flex"} ${CONTAINER} ${className}`}
-		>
-			{VERSIONS.map((version) => {
-				const active = value === version;
+		<div className={block ? "w-full" : "inline-block"}>
+			<nav
+				aria-label={ariaLabel}
+				className={`${block ? "flex w-full" : "inline-flex"} ${CONTAINER} ${className}`}
+			>
+				{VERSIONS.map((version) => {
+					const active = value === version;
+					const target = href(version);
+					if (target === null) {
+						return (
+							<span
+								key={version}
+								aria-disabled="true"
+								aria-describedby={active ? undefined : `${noteId}-${version}`}
+								className={`${block ? "flex-1" : ""} ${ITEM} ${active ? ITEM_ACTIVE : ITEM_DISABLED}`}
+							>
+								{labels[version]}
+							</span>
+						);
+					}
+					return (
+						<a
+							key={version}
+							href={target}
+							aria-current={active ? "page" : undefined}
+							className={`${block ? "flex-1" : ""} ${ITEM} ${active ? ITEM_ACTIVE : ITEM_IDLE}`}
+						>
+							{labels[version]}
+						</a>
+					);
+				})}
+			</nav>
+			{unavailable.map((version) => {
+				const exit = fallback?.(version);
 				return (
-					<a
-						key={version}
-						href={href(version)}
-						aria-current={active ? "page" : undefined}
-						className={`${block ? "flex-1" : ""} ${ITEM} ${active ? ITEM_ACTIVE : ITEM_IDLE}`}
-					>
-						{labels[version]}
-					</a>
+					<div key={version} className="mt-2 px-1">
+						<p
+							id={`${noteId}-${version}`}
+							className="text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400"
+						>
+							{note(version)}
+						</p>
+						{exit && (
+							<Link
+								variant="subtle"
+								href={exit.href}
+								className="mt-1 inline-flex items-center gap-1.5 text-[13px] font-medium"
+							>
+								{exit.label}
+								<Icon
+									name="arrow-right"
+									className="text-xs"
+									aria-hidden="true"
+								/>
+							</Link>
+						)}
+					</div>
 				);
 			})}
-		</nav>
+		</div>
 	);
 }

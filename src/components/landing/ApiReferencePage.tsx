@@ -107,7 +107,18 @@ export function ApiReferenceLayout({
 							<div className="mb-5">
 								<VersionSwitchLinks
 									value={version}
-									href={(v) => getAssetPath(`/docs/api/${v}`)}
+									href={(v) =>
+										// v4 ships only an index for now: a v3 package or module
+										// page has no v4 twin, so that half of the switch is
+										// inert there. The v3 index maps to the v4 index as usual.
+										v === "v4" && version === "v3" && activeSlug !== undefined
+											? null
+											: getAssetPath(`/docs/api/${v}`)
+									}
+									fallback={(v) => ({
+										href: getAssetPath(`/docs/api/${v}`),
+										label: `Browse the ${v} API reference`,
+									})}
 									block
 									aria-label="API reference version"
 								/>

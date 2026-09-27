@@ -107,6 +107,7 @@ export function DocsLayout({
 	activeSlug,
 	section = "docs",
 	version = "v3",
+	versionHrefs,
 	tocItems,
 	children,
 }: {
@@ -114,6 +115,12 @@ export function DocsLayout({
 	section?: DocsSectionKey;
 	/** Active docs version; defaults to v3 (the current stable). */
 	version?: EffectVersion;
+	/**
+	 * This page's equivalent in each version. `null` = the page doesn't exist
+	 * in that version: that half of the switch renders inert with a note.
+	 * Omitted versions keep the default (that version's API index).
+	 */
+	versionHrefs?: Partial<Record<EffectVersion, string | null>>;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -169,7 +176,15 @@ export function DocsLayout({
 	const versionSwitch = (
 		<VersionSwitchLinks
 			value={version}
-			href={(v) => getAssetPath(`/docs/api/${v}`)}
+			href={(v) => {
+				const explicit = versionHrefs?.[v];
+				if (explicit === null) return null;
+				return getAssetPath(explicit ?? `/docs/api/${v}`);
+			}}
+			fallback={(v) => ({
+				href: getAssetPath(`/docs/api/${v}`),
+				label: `Browse the ${v} API reference`,
+			})}
 			block
 			aria-label="Docs version"
 		/>
