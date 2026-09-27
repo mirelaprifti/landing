@@ -1353,12 +1353,16 @@ export function EffectDaysLivornoPage() {
 							if (tierIndex === 0) {
 								return (
 									<div key={tier.tier} className={`grid gap-4 ${tier.cols}`}>
-										{/* Centred in its quadrant like the logos across from it —
-										    top-aligned it read as a caption hung over a void. */}
-										<p className={`${text.eyebrow} self-center`}>
-											{"// "}
-											{tier.label}
-										</p>
+										{/* Label and title share the quadrant, centred like the logos
+									    across from them — top-aligned the pair read as a caption
+									    hung over a void. */}
+										<div className="self-center">
+											<p className={text.eyebrow}>
+												{"// "}
+												{tier.label}
+											</p>
+											<h2 className={text.sectionTitle}>Made possible by</h2>
+										</div>
 										{marks.map((sponsor) => (
 											<SponsorTile
 												key={sponsor.name}
