@@ -1,6 +1,4 @@
 import { useId, useState } from "react";
-import { Icon } from "@/components/ui/Icon";
-import { Link } from "@/components/ui/Link";
 
 /**
  * The v3 / v4 segmented control.
@@ -20,15 +18,19 @@ import { Link } from "@/components/ui/Link";
  * `VersionSwitchLinks` also covers the dead-end case: when the current page
  * has no equivalent in the other version (`href` returns `null`), that half
  * can't navigate — so instead of a link it's a button that expands an
- * explanation under the switch on demand, with an optional `fallback` link
- * into the other version's world (its index). On demand, not persistent:
- * the sidebar stays compact by default, the dimmed half stays visible so the
+ * explanation under the switch on demand. On demand, not persistent: the
+ * sidebar stays compact by default, the dimmed half stays visible so the
  * two-version model stays visible, and the interaction is the same expand/
  * collapse idiom the docs sidebar already uses for its nav groups — no
  * overlay, no clipping, works identically in every container the switch
  * appears in (docs sidebar, API sidebar, mobile panel). The button carries
  * `aria-disabled` so screen readers hear it's unavailable while staying
  * operable — activating it is exactly how you learn why.
+ *
+ * The note is just the explanation, nothing more: the reader wanted *this
+ * page* in the other version, and a "browse that version instead" link
+ * can't deliver it — the other world's index is reachable through the nav
+ * for anyone who wants it.
  */
 
 export type EffectVersion = "v3" | "v4";
@@ -108,10 +110,9 @@ export function VersionSwitch({
  *
  * When `href` returns `null` for the *other* version, that half can't
  * navigate: it renders dimmed as a button, and activating it expands a note
- * under the switch explaining the page doesn't exist there. `fallback` adds
- * a subtle arrow link below the note — the escape hatch into that version's
- * world. The note expands in flow (pushing content down, like the sidebar's
- * own nav groups), never as an overlay.
+ * under the switch explaining the page doesn't exist there. The note expands
+ * in flow (pushing content down, like the sidebar's own nav groups), never
+ * as an overlay.
  */
 export function VersionSwitchLinks({
 	value,
@@ -119,7 +120,6 @@ export function VersionSwitchLinks({
 	/** Stretch to the container width, halves sharing it evenly. */
 	block = false,
 	labels = VERSION_LABELS,
-	fallback,
 	unavailableNote,
 	className = "",
 	"aria-label": ariaLabel = "Effect version",
@@ -132,11 +132,6 @@ export function VersionSwitchLinks({
 	href: (version: EffectVersion) => string | null;
 	block?: boolean;
 	labels?: Record<EffectVersion, string>;
-	/**
-	 * Escape hatch shown in the expanded note — usually the other version's
-	 * index, so the reader can still enter that world.
-	 */
-	fallback?: (version: EffectVersion) => { href: string; label: string };
 	/** Note copy override. */
 	unavailableNote?: (version: EffectVersion) => string;
 	className?: string;
@@ -147,7 +142,7 @@ export function VersionSwitchLinks({
 	const note =
 		unavailableNote ??
 		((version: EffectVersion) =>
-			`This page doesn't exist in ${labels[version]}${version === "v4" ? " yet" : ""}.`);
+			`This page does not exist in ${labels[version]}${version === "v4" ? " yet" : ""}.`);
 	const unavailable = VERSIONS.filter((v) => v !== value && href(v) === null);
 
 	return (
@@ -201,26 +196,11 @@ export function VersionSwitchLinks({
 			</nav>
 			{unavailable.map((version) => {
 				if (openVersion !== version) return null;
-				const exit = fallback?.(version);
 				return (
 					<div key={version} id={`${noteId}-${version}`} className="mt-2 px-1">
 						<p className="text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
 							{note(version)}
 						</p>
-						{exit && (
-							<Link
-								variant="subtle"
-								href={exit.href}
-								className="mt-1 inline-flex items-center gap-1.5 text-[13px] font-medium"
-							>
-								{exit.label}
-								<Icon
-									name="arrow-right"
-									className="text-xs"
-									aria-hidden="true"
-								/>
-							</Link>
-						)}
 					</div>
 				);
 			})}

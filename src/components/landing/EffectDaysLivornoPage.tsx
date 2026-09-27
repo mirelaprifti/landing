@@ -294,7 +294,7 @@ const SPONSORS: {
 		name: "Warp",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/warp.svg",
-		logoHeight: "h-5",
+		logoHeight: "h-6",
 		websiteUrl: "https://www.warp.dev/",
 	},
 	{
@@ -308,14 +308,14 @@ const SPONSORS: {
 		name: "Inato",
 		tier: "Partner",
 		logo: "/assets/effect-days/inato.png",
-		logoHeight: "h-4",
+		logoHeight: "h-6",
 		websiteUrl: "https://www.inato.com/",
 	},
 	{
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-5",
+		logoHeight: "h-7",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{

@@ -115,10 +115,6 @@ export function ApiReferenceLayout({
 											? null
 											: getAssetPath(`/docs/api/${v}`)
 									}
-									fallback={(v) => ({
-										href: getAssetPath(`/docs/api/${v}`),
-										label: `Browse the ${v} API reference`,
-									})}
 									block
 									aria-label="API reference version"
 								/>

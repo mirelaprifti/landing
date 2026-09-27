@@ -181,10 +181,6 @@ export function DocsLayout({
 				if (explicit === null) return null;
 				return getAssetPath(explicit ?? `/docs/api/${v}`);
 			}}
-			fallback={(v) => ({
-				href: getAssetPath(`/docs/api/${v}`),
-				label: `Browse the ${v} API reference`,
-			})}
 			block
 			aria-label="Docs version"
 		/>
