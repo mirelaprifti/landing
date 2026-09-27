@@ -1338,17 +1338,6 @@ export function EffectDaysLivornoPage() {
 				{/* Sponsors */}
 				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Title in the left half, the blurb in the right. Stacked on mobile
-						    the columns close up to gap-0, so the subtitle's own mt-4 sets the
-						    spacing instead of the grid. The sponsorship CTA is the last tile
-						    in the grid below rather than a link sitting up here. */}
-						<div>
-							<p className={text.eyebrow}>{"// "}Effect Days sponsors</p>
-							<h2 className={text.sectionTitle}>
-								A non-profit event, made possible by
-							</h2>
-						</div>
-
 						{/* Stripe-style: one labelled row per tier, every tile the same
 						    size. Rank is carried by order alone — no chips, no ladder of
 						    heights — so the wall reads as one group of backers. */}
@@ -1363,10 +1352,7 @@ export function EffectDaysLivornoPage() {
 							   beside it, Warp below it, Ziverge closing the block. */
 							if (tierIndex === 0) {
 								return (
-									<div
-										key={tier.tier}
-										className={`mt-12 grid gap-4 ${tier.cols}`}
-									>
+									<div key={tier.tier} className={`grid gap-4 ${tier.cols}`}>
 										{/* Centred in its quadrant like the logos across from it —
 										    top-aligned it read as a caption hung over a void. */}
 										<p className={`${text.eyebrow} self-center`}>
