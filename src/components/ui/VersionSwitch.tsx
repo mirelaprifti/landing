@@ -19,13 +19,16 @@ import { Link } from "@/components/ui/Link";
  *
  * `VersionSwitchLinks` also covers the dead-end case: when the current page
  * has no equivalent in the other version (`href` returns `null`), that half
- * renders inert — dimmed, no hover, `cursor-not-allowed`, not a link — and a
- * persistent note under the switch says why. Persistent, not a tooltip: it
- * works on touch, is reachable by screen readers (`aria-disabled` +
- * `aria-describedby`), and matches the sidebar-note idiom already used under
- * this switch ("The v4 reference is coming soon."). An optional `fallback`
- * link offers the escape hatch into the other version's world (its index),
- * so the switch never dead-ends the reader.
+ * can't navigate — so instead of a link it's a button that expands an
+ * explanation under the switch on demand, with an optional `fallback` link
+ * into the other version's world (its index). On demand, not persistent:
+ * the sidebar stays compact by default, the dimmed half stays visible so the
+ * two-version model stays visible, and the interaction is the same expand/
+ * collapse idiom the docs sidebar already uses for its nav groups — no
+ * overlay, no clipping, works identically in every container the switch
+ * appears in (docs sidebar, API sidebar, mobile panel). The button carries
+ * `aria-disabled` so screen readers hear it's unavailable while staying
+ * operable — activating it is exactly how you learn why.
  */
 
 export type EffectVersion = "v3" | "v4";
@@ -53,9 +56,11 @@ const ITEM_ACTIVE =
 const ITEM_IDLE =
 	"text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white";
 
-// Unavailable = no page on the other side: two steps quieter than idle, no
-// hover, the cursor says the rest. Rendered as a span, so nothing to focus.
-const ITEM_DISABLED = "cursor-not-allowed text-zinc-400 dark:text-zinc-600";
+// Unavailable = no page on the other side: two steps quieter than idle and no
+// pill — but still a button. Hover brightens a step to signal it's operable;
+// clicking expands the explanation under the switch instead of navigating.
+const ITEM_DISABLED =
+	"cursor-pointer text-zinc-400 hover:text-zinc-600 dark:text-zinc-600 dark:hover:text-zinc-400";
 
 export function VersionSwitch({
 	value,
@@ -101,10 +106,12 @@ export function VersionSwitch({
  * to that version's docs rather than a state mutation. Used at the top of the
  * docs and API-reference sidebars.
  *
- * When `href` returns `null` for the *other* version, that half renders as an
- * inert span (dimmed, `cursor-not-allowed`, `aria-disabled`) and a note under
- * the switch explains the page doesn't exist there. `fallback` adds a subtle
- * arrow link below the note — the escape hatch into that version's world.
+ * When `href` returns `null` for the *other* version, that half can't
+ * navigate: it renders dimmed as a button, and activating it expands a note
+ * under the switch explaining the page doesn't exist there. `fallback` adds
+ * a subtle arrow link below the note — the escape hatch into that version's
+ * world. The note expands in flow (pushing content down, like the sidebar's
+ * own nav groups), never as an overlay.
  */
 export function VersionSwitchLinks({
 	value,
@@ -120,14 +127,14 @@ export function VersionSwitchLinks({
 	value: EffectVersion;
 	/**
 	 * Target per version. Return `null` when this page has no equivalent in
-	 * that version — that half of the switch renders inert with a note.
+	 * that version — that half of the switch turns into an explainer toggle.
 	 */
 	href: (version: EffectVersion) => string | null;
 	block?: boolean;
 	labels?: Record<EffectVersion, string>;
 	/**
-	 * Escape hatch shown under the unavailable note — usually the other
-	 * version's index, so the reader can still enter that world.
+	 * Escape hatch shown in the expanded note — usually the other version's
+	 * index, so the reader can still enter that world.
 	 */
 	fallback?: (version: EffectVersion) => { href: string; label: string };
 	/** Note copy override. */
@@ -136,6 +143,7 @@ export function VersionSwitchLinks({
 	"aria-label"?: string;
 }) {
 	const noteId = useId();
+	const [openVersion, setOpenVersion] = useState<EffectVersion | null>(null);
 	const note =
 		unavailableNote ??
 		((version: EffectVersion) =>
@@ -151,13 +159,29 @@ export function VersionSwitchLinks({
 				{VERSIONS.map((version) => {
 					const active = value === version;
 					const target = href(version);
+					if (target === null && !active) {
+						const open = openVersion === version;
+						return (
+							<button
+								key={version}
+								type="button"
+								aria-disabled="true"
+								aria-expanded={open}
+								aria-controls={`${noteId}-${version}`}
+								onClick={() => setOpenVersion(open ? null : version)}
+								className={`${block ? "flex-1" : ""} ${ITEM} ${ITEM_DISABLED}`}
+							>
+								{labels[version]}
+							</button>
+						);
+					}
 					if (target === null) {
+						// Active version with no self-link (shouldn't happen — the
+						// reader is on this page). Keep the pill, inert.
 						return (
 							<span
 								key={version}
-								aria-disabled="true"
-								aria-describedby={active ? undefined : `${noteId}-${version}`}
-								className={`${block ? "flex-1" : ""} ${ITEM} ${active ? ITEM_ACTIVE : ITEM_DISABLED}`}
+								className={`${block ? "flex-1" : ""} ${ITEM} ${ITEM_ACTIVE}`}
 							>
 								{labels[version]}
 							</span>
@@ -176,13 +200,11 @@ export function VersionSwitchLinks({
 				})}
 			</nav>
 			{unavailable.map((version) => {
+				if (openVersion !== version) return null;
 				const exit = fallback?.(version);
 				return (
-					<div key={version} className="mt-2 px-1">
-						<p
-							id={`${noteId}-${version}`}
-							className="text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400"
-						>
+					<div key={version} id={`${noteId}-${version}`} className="mt-2 px-1">
+						<p className="text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
 							{note(version)}
 						</p>
 						{exit && (
