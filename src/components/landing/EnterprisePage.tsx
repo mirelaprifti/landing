@@ -278,7 +278,7 @@ function SupportFlow() {
 				<FlowNode
 					title="Adoption partners"
 					logo={<img src={LOGO.ziverge} alt="Ziverge" className="h-5 w-auto" />}
-					items={["Implementation", "Training"]}
+					items={["Implementation", "Consulting", "Team extension", "Training"]}
 				/>
 			</div>
 		</div>
@@ -364,13 +364,33 @@ function StatusPill({ status }: { status: ReleaseRow["status"] }) {
 	);
 }
 
-const AGREEMENT_TERMS = [
-	"Coverage",
-	"Support hours",
-	"Severity levels",
-	"Response times",
-	"Escalation",
-	"Mutual NDA",
+const SUPPORT_OPTIONS: {
+	icon: Parameters<typeof Icon>[0]["name"];
+	title: string;
+	body: string[];
+}[] = [
+	{
+		icon: "file-search",
+		title: "Talk through adoption",
+		body: [
+			"Bring us your technical questions and plans for using Effect. We can discuss a starting point, the requirements your team needs to validate, and the help available as you adopt it.",
+		],
+	},
+	{
+		icon: "life-buoy",
+		title: "Establish a support relationship",
+		body: [
+			"For companies using Effect, we can discuss an enterprise support agreement tailored to the work. Agreements can include a mutual NDA, service levels, and an escalation process, with the coverage and terms agreed with your team.",
+			"Companies using Effect can also arrange a private Slack Connect or Discord channel with us for ongoing communication. The commitments in a support agreement are defined separately from access to a private channel.",
+		],
+	},
+	{
+		icon: "graduation-cap",
+		title: "Get hands-on help",
+		body: [
+			"Need implementation, consulting, team extension, or training? Start with the Effect team. We can introduce you to an adoption partner, including Ziverge, and explain who will deliver and contract for the work.",
+		],
+	},
 ];
 
 const SECURITY_LINKS: {
@@ -546,19 +566,34 @@ export function EnterprisePage() {
 							<p className={text.eyebrow}>// Enterprise</p>
 							<h1 className={text.pageTitle}>Effect for enterprise</h1>
 							<p className={`${text.subtitle} max-w-xl`}>
-								Evaluate Effect with your team, plan your adoption, and get help
+								Evaluate Effect with your team. Plan for production. Get help
 								from the people building it.
+							</p>
+							<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+								Whether you are considering Effect for a new project or adopting
+								it across an existing codebase, talk to us about technical
+								questions, release planning, and the support your team needs.
 							</p>
 
 							<div className="mt-8 flex flex-wrap items-center gap-3">
-								<Button href="#contact" variant="primary" size="lg">
+								<Button
+									href={`mailto:${CONTACT_EMAIL}`}
+									variant="primary"
+									size="lg"
+								>
 									Talk to the Effect team
-									<Icon name="arrow-down" className="text-lg" />
 								</Button>
+								{/* TODO: point at the release policy URL once published */}
 								<Button href="#releases" variant="secondary" size="lg">
 									Review releases and support
 								</Button>
 							</div>
+
+							<p className="mt-6 text-sm text-zinc-600 dark:text-zinc-400">
+								Learning Effect or looking for general help?{" "}
+								<Link href={DISCORD_URL}>Join the public Discord</Link>.
+								Everyone is welcome.
+							</p>
 						</div>
 
 						{/* What this page answers — doubles as an index a reviewer can skim */}
@@ -617,7 +652,7 @@ export function EnterprisePage() {
 					id="releases"
 					eyebrow="Releases & support"
 					title="Plan your adoption and upgrades"
-					subtitle="Versioning rules and support windows your team can plan around."
+					subtitle="Your team needs to know what changes, what stays stable, and how long a release will be maintained. Review Effect's versioning rules, release status, maintenance commitments, and migration guidance before you choose a version for production."
 				>
 					{/* Desktop table */}
 					<div className="hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
@@ -717,7 +752,7 @@ export function EnterprisePage() {
 					<div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
 						<div className="flex flex-wrap items-center gap-x-6 gap-y-3">
 							<Link href="#releases" variant="subtle" className={subtleLink}>
-								Full release policy
+								Release and support policy
 								<Icon name="arrow-right" className="text-xs" />
 							</Link>
 							<Link
@@ -726,6 +761,14 @@ export function EnterprisePage() {
 								className={subtleLink}
 							>
 								Changelogs
+								<Icon name="arrow-up-right" className="text-xs" />
+							</Link>
+							<Link
+								href="https://effect.website/blog/releases/effect/40-rc/"
+								variant="subtle"
+								className={subtleLink}
+							>
+								Migration guides
 								<Icon name="arrow-up-right" className="text-xs" />
 							</Link>
 						</div>
@@ -737,27 +780,31 @@ export function EnterprisePage() {
 				<Section
 					id="support"
 					eyebrow="Support"
-					title="One conversation, the whole ecosystem"
-					subtitle="Start with Effectful. We handle support ourselves and bring in the right people for the rest."
+					title="Support for your company"
 				>
-					<SupportFlow />
-
-					<div className="mt-12 flex flex-col gap-4 border-t border-zinc-200 pt-6 md:flex-row md:items-center md:justify-between dark:border-zinc-800">
-						<div className="flex flex-wrap items-center gap-3">
-							<span className="text-sm font-medium text-zinc-900 dark:text-white">
-								Every support agreement sets
-							</span>
-							<ul className="flex flex-wrap gap-2">
-								{AGREEMENT_TERMS.map((t) => (
-									<li key={t} className={badge}>
-										{t}
-									</li>
+					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+						{SUPPORT_OPTIONS.map((o) => (
+							<li
+								key={o.title}
+								className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950"
+							>
+								<Icon
+									name={o.icon}
+									className="text-2xl text-zinc-500 dark:text-zinc-400"
+								/>
+								<h3 className={`${text.cardTitle} mt-6`}>{o.title}</h3>
+								{o.body.map((para) => (
+									<p key={para} className={`${text.cardBody} mt-3`}>
+										{para}
+									</p>
 								))}
-							</ul>
-						</div>
-						<p className="shrink-0 text-sm text-zinc-500 dark:text-zinc-400">
-							A private channel alone isn't an SLA.
-						</p>
+							</li>
+						))}
+					</ul>
+
+					<h3 className={`${text.cardTitle} mt-20`}>Who does what</h3>
+					<div className="mt-6">
+						<SupportFlow />
 					</div>
 				</Section>
 
