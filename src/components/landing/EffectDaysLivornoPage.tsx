@@ -245,7 +245,10 @@ const SPONSOR_TIERS: {
 		label: "Partners",
 		/* Two marks, so halves. Back to thirds when a third partner lands. */
 		cols: "grid-cols-2",
-		cellClass: "h-24 md:h-36",
+		/* Halves are half again as wide as the main row's thirds, so the row
+		   runs shorter to keep each partner cell smaller in area than a main
+		   one. */
+		cellClass: "h-24 md:h-28",
 		logoBox: "h-10",
 	},
 	{
@@ -1332,16 +1335,20 @@ export function EffectDaysLivornoPage() {
 							<div>
 								<p className={text.eyebrow}>{"// Sponsors"}</p>
 								<h2 className={text.sectionTitle}>Made possible by</h2>
+								<p className={text.subtitle}>
+									The companies helping bring Effect Days to Livorno.
+								</p>
 							</div>
 							<BecomeSponsorLink />
 						</div>
 
-						{/* The ledger: one frame of brackets around the whole wall, and
-						    hairlines between every cell — the grid's background showing
-						    through a 1px gap. */}
-						<div className="relative mt-10 p-2 md:mt-12">
+						{/* The ledger: hairlines between every cell — the grid's
+						    background showing through a 1px gap — and no outer rule. The
+						    corner brackets are the only frame, sitting on the table's own
+						    corners. */}
+						<div className="relative mt-10 md:mt-12">
 							<TileBrackets />
-							<div className="grid gap-px border border-zinc-200 bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800">
+							<div className="grid gap-px bg-zinc-200 dark:bg-zinc-800">
 								{SPONSOR_TIERS.map((tier) => {
 									const marks = SPONSORS.filter(
 										(sponsor) => sponsor.tier === tier.tier,
