@@ -257,7 +257,7 @@ const SPONSOR_TIERS: {
 		   of the row. Back to grid-cols-3 when a third partner lands. */
 		cols: "grid-cols-1 sm:grid-cols-2",
 		tileClass: "py-7",
-		logoBox: "h-7",
+		logoBox: "h-8",
 	},
 	{
 		tier: "Community",
@@ -305,18 +305,18 @@ const SPONSORS: {
 		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
+		name: "Betalyra",
+		tier: "Partner",
+		logo: "/assets/effect-days/betalyra-dark.svg",
+		logoHeight: "h-8",
+		websiteUrl: "https://betalyra.com/",
+	},
+	{
 		name: "Inato",
 		tier: "Partner",
 		logo: "/assets/effect-days/inato.png",
 		logoHeight: "h-6",
 		websiteUrl: "https://www.inato.com/",
-	},
-	{
-		name: "Betalyra",
-		tier: "Partner",
-		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-7",
-		websiteUrl: "https://betalyra.com/",
 	},
 	{
 		name: "Executor",
