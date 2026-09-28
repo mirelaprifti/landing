@@ -245,8 +245,8 @@ const SPONSOR_TIERS: {
 		label: "Partners",
 		/* Two marks, so halves. Back to thirds when a third partner lands. */
 		cols: "grid-cols-2",
-		cellClass: "h-24 md:h-32",
-		logoBox: "h-8",
+		cellClass: "h-24 md:h-36",
+		logoBox: "h-10",
 	},
 	{
 		tier: "Community",
@@ -297,14 +297,14 @@ const SPONSORS: {
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-7",
+		logoHeight: "h-9",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
 		name: "Inato",
 		tier: "Partner",
 		logo: "/assets/effect-days/inato.png",
-		logoHeight: "h-5",
+		logoHeight: "h-7",
 		websiteUrl: "https://www.inato.com/",
 	},
 	{
@@ -629,8 +629,8 @@ function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
 /**
  * One sponsor, one cell of the ledger. The cell is opaque so the table's
  * hairlines (the grid's background showing through a 1px gap) stay crisp, and
- * so the page's centre dashed line stops behind it. At rest the mark sits a
- * shade under full ink; hover lifts it, washes the cell and shows the arrow.
+ * so the page's centre dashed line stops behind it. Marks sit in full
+ * white; hover washes the cell and shows the arrow.
  */
 function SponsorCell({
 	sponsor,
@@ -648,7 +648,7 @@ function SponsorCell({
 			className={`group relative flex items-center justify-center bg-white px-3 transition-colors duration-200 hover:bg-zinc-50 focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-zinc-900 md:px-8 dark:bg-zinc-950 dark:hover:bg-zinc-900 dark:focus-visible:outline-white ${tier.cellClass}`}
 		>
 			<span
-				className={`flex ${tier.logoBox} max-w-full items-center justify-center opacity-75 transition-opacity duration-200 group-hover:opacity-100`}
+				className={`flex ${tier.logoBox} max-w-full items-center justify-center`}
 			>
 				<SponsorLogo sponsor={sponsor} />
 			</span>
