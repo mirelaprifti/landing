@@ -283,7 +283,7 @@ const SPONSORS: {
 		name: "Warp",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/warp.svg",
-		logoHeight: "h-6",
+		logoHeight: "h-7",
 		websiteUrl: "https://www.warp.dev/",
 	},
 	{
