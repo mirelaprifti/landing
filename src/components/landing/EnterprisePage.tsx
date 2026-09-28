@@ -145,126 +145,6 @@ function CopyEmail() {
 /* Visuals                                                             */
 /* ------------------------------------------------------------------ */
 
-/**
- * Illustrative private channel — a fictional customer, so the offer reads
- * at a glance instead of as a paragraph.
- */
-function ChannelMockup() {
-	const messages = [
-		{
-			who: "Sam",
-			org: "Acme",
-			avatar: <span className="text-sm font-semibold">S</span>,
-			body: "We're moving our billing service to v4 next sprint. Anything we should watch for?",
-		},
-		{
-			who: "Effect team",
-			org: "Effectful",
-			avatar: (
-				<ThemedLogo
-					light={LOGO.effectMark}
-					dark={LOGO.effectMarkDark}
-					alt=""
-					className="h-4 w-4"
-				/>
-			),
-			body: "Good timing. The migration guide covers what changed, and we're happy to review the PR with you.",
-		},
-		{
-			who: "Sam",
-			org: "Acme",
-			avatar: <span className="text-sm font-semibold">S</span>,
-			body: "Perfect, sending it over now.",
-		},
-	];
-
-	return (
-		<figure
-			aria-label="Illustration of a private company channel"
-			className="border border-zinc-300 bg-white shadow-2xl shadow-black/5 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
-		>
-			<div className="flex items-center justify-between gap-4 border-b border-zinc-200 px-5 py-4 dark:border-zinc-800">
-				<p className="font-mono text-sm font-semibold text-zinc-900 dark:text-white">
-					# acme-effect
-				</p>
-				<p className={text.micro}>Shared · Acme ⇄ Effectful</p>
-			</div>
-			<ul className="space-y-5 px-5 py-6">
-				{messages.map((m) => (
-					<li key={m.body} className="flex gap-3">
-						<span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-zinc-200 bg-zinc-100 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
-							{m.avatar}
-						</span>
-						<div className="min-w-0">
-							<p className="text-sm">
-								<span className="font-semibold text-zinc-900 dark:text-white">
-									{m.who}
-								</span>{" "}
-								<span className="text-zinc-500">{m.org}</span>
-							</p>
-							<p className="mt-0.5 text-sm leading-normal text-zinc-700 dark:text-zinc-300">
-								{m.body}
-							</p>
-						</div>
-					</li>
-				))}
-			</ul>
-			<div className="border-t border-zinc-200 px-5 py-4 dark:border-zinc-800">
-				<div className="rounded-md border border-zinc-200 px-3 py-2 text-sm text-zinc-400 dark:border-zinc-800 dark:text-zinc-500">
-					Message #acme-effect
-				</div>
-			</div>
-		</figure>
-	);
-}
-
-/**
- * A version number with the digits that may break highlighted — the
- * versioning rule as a picture.
- */
-function VersionGraphic({ breaksAt }: { breaksAt: "major" | "minor" }) {
-	const parts = [
-		{ digit: "4", label: "major" },
-		{ digit: "2", label: "minor" },
-		{ digit: "1", label: "patch" },
-	];
-	const breaks = (label: string) =>
-		label === "major" || (breaksAt === "minor" && label === "minor");
-	return (
-		<div className="flex items-end gap-1 font-mono">
-			{parts.map((p, i) => (
-				<div key={p.label} className="flex items-end gap-1">
-					{i > 0 && (
-						<span className="pb-7 text-4xl text-zinc-300 dark:text-zinc-700">
-							.
-						</span>
-					)}
-					<div className="flex flex-col items-center gap-2">
-						<span
-							className={`flex h-16 w-14 items-center justify-center border text-4xl font-semibold ${
-								breaks(p.label)
-									? "border-zinc-900 text-zinc-900 dark:border-white dark:text-white"
-									: "border-zinc-200 text-zinc-400 dark:border-zinc-800 dark:text-zinc-600"
-							}`}
-						>
-							{p.digit}
-						</span>
-						<span
-							className={`text-xs tracking-wider uppercase ${
-								breaks(p.label)
-									? "text-zinc-900 dark:text-white"
-									: "text-zinc-400 dark:text-zinc-600"
-							}`}
-						>
-							{p.label}
-						</span>
-					</div>
-				</div>
-			))}
-		</div>
-	);
-}
-
 type NodeProps = {
 	logo?: ReactNode;
 	title: string;
@@ -408,6 +288,15 @@ function SupportFlow() {
 /* ------------------------------------------------------------------ */
 /* Content                                                             */
 /* ------------------------------------------------------------------ */
+
+const PAGE_QUESTIONS = [
+	{ href: "#support", label: "Who can help us adopt and operate it?" },
+	{ href: "#security", label: "What happens with a security issue?" },
+	{
+		href: "#adoption-guide",
+		label: "What do we send to our architecture review?",
+	},
+];
 
 const FACTS = [
 	{ label: "License", value: "MIT" },
@@ -593,67 +482,6 @@ const FAQS = [
 			</p>
 		),
 	},
-	{
-		question: "Can we speak with someone before adopting Effect?",
-		answer: (
-			<p>
-				Yes. Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with
-				your questions. You don't need to know which service you want first.
-			</p>
-		),
-	},
-	{
-		question: "Can our company have a private Slack or Discord channel?",
-		answer: (
-			<p>
-				Yes. We offer private Slack Connect or Discord channels for companies
-				using Effect. Contact the Effect team to discuss your company's needs.
-				Everyone is also welcome in our public Discord for learning, questions,
-				and community conversation.
-			</p>
-		),
-	},
-	{
-		question: "Do you offer mutual NDAs and SLAs?",
-		answer: (
-			<p>
-				Enterprise support agreements can include a mutual NDA and SLAs, with
-				terms agreed for each engagement. A private channel on its own doesn't
-				establish an SLA.
-			</p>
-		),
-	},
-	{
-		question: "Who can help us implement Effect or train our team?",
-		answer: (
-			<p>
-				Start with us. We'll introduce an adoption partner suited to the work.
-				Our first partner is{" "}
-				<Link href={getAssetPath("/adoption-partners/ziverge")}>Ziverge</Link>.
-			</p>
-		),
-	},
-	{
-		question: "Where should individual developers ask for help?",
-		answer: (
-			<p>
-				In the <Link href={DISCORD_URL}>public Discord</Link>. Everyone is
-				welcome, whether or not their company has a support agreement. The{" "}
-				<Link href={COMMUNITY_HUB}>Community Hub</Link> has events and resources
-				too.
-			</p>
-		),
-	},
-	{
-		question: "How can we hire engineers or support Effect's development?",
-		answer: (
-			<p>
-				Post a role on the{" "}
-				<Link href={getAssetPath("/effect-jobs")}>Effect job board</Link>, or
-				email us about hiring or sponsorship.
-			</p>
-		),
-	},
 ];
 
 /* ------------------------------------------------------------------ */
@@ -714,7 +542,7 @@ export function EnterprisePage() {
 					</div>
 
 					<div className="relative z-10 mx-auto grid w-full max-w-[73.75rem] grid-cols-1 items-center gap-12 px-4 pt-16 pb-20 md:pt-24 md:pb-24 lg:grid-cols-12">
-						<div className="lg:col-span-6">
+						<div className="lg:col-span-7">
 							<p className={text.eyebrow}>// Enterprise</p>
 							<h1 className={text.pageTitle}>Effect for enterprise</h1>
 							<p className={`${text.subtitle} max-w-xl`}>
@@ -733,9 +561,35 @@ export function EnterprisePage() {
 							</div>
 						</div>
 
-						<div className="lg:col-span-5 lg:col-start-8">
-							<ChannelMockup />
-						</div>
+						{/* What this page answers — doubles as an index a reviewer can skim */}
+						<nav
+							aria-label="On this page"
+							className="lg:col-span-4 lg:col-start-9"
+						>
+							<p className={text.micro}>This page answers</p>
+							<ol className="mt-4 border-t border-zinc-200 dark:border-zinc-800">
+								{PAGE_QUESTIONS.map((q, i) => (
+									<li
+										key={q.href}
+										className="border-b border-zinc-200 dark:border-zinc-800"
+									>
+										<a
+											href={q.href}
+											className="group flex items-baseline gap-4 py-3 text-sm text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+										>
+											<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+												{String(i + 1).padStart(2, "0")}
+											</span>
+											<span className="flex-1">{q.label}</span>
+											<Icon
+												name="arrow-down"
+												className="shrink-0 text-sm text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+											/>
+										</a>
+									</li>
+								))}
+							</ol>
+						</nav>
 					</div>
 				</section>
 
@@ -765,28 +619,8 @@ export function EnterprisePage() {
 					title="Plan your adoption and upgrades"
 					subtitle="Versioning rules and support windows your team can plan around."
 				>
-					{/* Versioning rule, drawn */}
-					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-						<div className="bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
-							<VersionGraphic breaksAt="major" />
-							<h3 className={`${text.smallHeading} mt-8`}>Stable modules</h3>
-							<p className={text.cardBody}>
-								Breaking changes only in a new major version.
-							</p>
-						</div>
-						<div className="bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
-							<VersionGraphic breaksAt="minor" />
-							<h3 className={`${text.smallHeading} mt-8 font-mono`}>
-								effect/unstable/*
-							</h3>
-							<p className={text.cardBody}>
-								Can change in a minor release until it becomes stable.
-							</p>
-						</div>
-					</div>
-
 					{/* Desktop table */}
-					<div className="mt-12 hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
+					<div className="hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
 						<table className="w-full text-left text-sm">
 							<thead className="bg-zinc-100 dark:bg-zinc-900">
 								<tr>
@@ -835,7 +669,7 @@ export function EnterprisePage() {
 					</div>
 
 					{/* Mobile: one card per release line */}
-					<div className="mt-12 space-y-4 md:hidden">
+					<div className="space-y-4 md:hidden">
 						{RELEASES.map((row) => (
 							<dl
 								key={row.line}
