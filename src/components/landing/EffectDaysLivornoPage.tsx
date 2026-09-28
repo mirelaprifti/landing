@@ -237,7 +237,7 @@ const SPONSOR_TIERS: {
 		tier: "Main sponsor",
 		label: "Main",
 		cols: "grid-cols-1 sm:grid-cols-3",
-		cellClass: "h-24 md:h-44",
+		cellClass: "h-24 sm:h-28 lg:h-44",
 		logoBox: "h-10",
 	},
 	{
@@ -248,7 +248,7 @@ const SPONSOR_TIERS: {
 		/* Halves are half again as wide as the main row's thirds, so the row
 		   runs shorter to keep each partner cell smaller in area than a main
 		   one. */
-		cellClass: "h-24 md:h-28",
+		cellClass: "h-24 lg:h-28",
 		logoBox: "h-10",
 	},
 	{
@@ -257,7 +257,7 @@ const SPONSOR_TIERS: {
 		/* Stacked below 360px: in thirds of a 320 screen the marks shrink
 		   under legibility. */
 		cols: "grid-cols-1 min-[22.5rem]:grid-cols-3",
-		cellClass: "h-20 md:h-24",
+		cellClass: "h-20 lg:h-24",
 		logoBox: "h-6",
 	},
 ];
@@ -1330,13 +1330,14 @@ export function EffectDaysLivornoPage() {
 									return (
 										<div
 											key={tier.tier}
-											className="grid lg:grid-cols-[9.5rem_1fr] lg:gap-px"
+											className="grid gap-px lg:grid-cols-[9.5rem_1fr]"
 										>
 											{/* Rail: tier name, centred on the marks it names so every
-											    row reads label-then-logos at the same distance. On
-											    phones and tablets it heads its block with no rule under it, so the
-											    strip can't pass for an empty sponsor cell. */}
-											<div className="flex items-center bg-white px-4 pt-4 pb-1 lg:px-5 lg:py-0 dark:bg-zinc-950">
+											    row reads label-then-logos at the same distance. Below lg
+											    it heads its block as a ruled, tinted strip — a table's
+											    header row — so the cell dividers start from a line and
+											    the strip can't pass for an empty sponsor cell. */}
+											<div className="flex items-center bg-zinc-50 px-4 py-2.5 lg:bg-white lg:px-5 lg:py-0 dark:bg-zinc-900 lg:dark:bg-zinc-950">
 												<p className={text.micro}>{tier.label}</p>
 											</div>
 											<div className={`grid gap-px ${tier.cols}`}>
