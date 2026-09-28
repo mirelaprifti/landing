@@ -156,6 +156,8 @@ const CHANNELS: {
 	description: string;
 	href: string;
 	linkLabel: string;
+	/** On-site link: same tab, straight arrow */
+	internal?: boolean;
 }[] = [
 	{
 		icon: "ri-discord-fill",
@@ -181,6 +183,15 @@ const CHANNELS: {
 		description: "Talks, workshops, and office hours livestreams.",
 		href: "https://www.youtube.com/@effect-ts",
 		linkLabel: "youtube.com/@effect-ts",
+	},
+	{
+		icon: "ri-briefcase-4-fill",
+		color: "#FFFFFF",
+		title: "Find an Effect job",
+		description: "Open roles at companies building with Effect.",
+		href: getAssetPath("/effect-jobs"),
+		linkLabel: "Effect Jobs",
+		internal: true,
 	},
 ];
 
@@ -600,8 +611,9 @@ export function CommunityEventsPage() {
 									<li key={channel.href}>
 										<a
 											href={channel.href}
-											target="_blank"
-											rel="noopener noreferrer"
+											{...(channel.internal
+												? {}
+												: { target: "_blank", rel: "noopener noreferrer" })}
 											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-700 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-500"
 										>
 											<div className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md bg-zinc-800">
@@ -620,7 +632,9 @@ export function CommunityEventsPage() {
 												</p>
 											</div>
 											<Icon
-												name="arrow-up-right"
+												name={
+													channel.internal ? "arrow-right" : "arrow-up-right"
+												}
 												className="ml-auto shrink-0 text-zinc-600 transition-colors group-hover:text-white"
 												aria-hidden="true"
 											/>
