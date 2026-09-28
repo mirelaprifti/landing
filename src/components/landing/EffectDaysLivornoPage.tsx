@@ -274,9 +274,10 @@ const SPONSORS: {
 		name: "Effectful",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/Effectful-white.svg",
-		/* Effectful's wordmark is short and heavy, so it runs taller than the
-		   wider lockups for the three to read at the same size. */
-		logoHeight: "h-8",
+		/* The hexagon stands taller than the wordmark beside it, so the
+		   lockup sets a step under h-8 to span the same width as Warp and
+		   Ziverge rather than outrunning them. */
+		logoHeight: "h-7",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
@@ -297,14 +298,14 @@ const SPONSORS: {
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-9",
+		logoHeight: "h-10",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
 		name: "Inato",
 		tier: "Partner",
 		logo: "/assets/effect-days/inato.png",
-		logoHeight: "h-7",
+		logoHeight: "h-8",
 		websiteUrl: "https://www.inato.com/",
 	},
 	{

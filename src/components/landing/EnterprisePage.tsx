@@ -6,7 +6,6 @@ import { GridOverlay } from "../GridOverlay";
 import { FAQList } from "./FAQList";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
-import { featuredCases } from "./TestimonialsSection";
 
 /** Canonical text styles — copied verbatim from TypographyStyleguidePage. */
 const text = {
@@ -127,7 +126,6 @@ const PAGE_QUESTIONS = [
 	{ href: "#releases", label: "Can we plan around Effect's releases?" },
 	{ href: "#support", label: "Who can help us adopt and operate it?" },
 	{ href: "#security", label: "What happens with a security issue?" },
-	{ href: "#production", label: "Who uses Effect in production?" },
 	{
 		href: "#adoption-guide",
 		label: "What do we send to our architecture review?",
@@ -221,31 +219,6 @@ const VERSIONING = [
 				latest patch to receive support. <Tbd />
 			</>
 		),
-	},
-];
-
-const STORIES = [
-	{
-		company: "OpenCode",
-		useCase: "An open-source AI coding agent",
-		where: "Migrating a large existing TypeScript codebase to Effect.",
-		speaker: "Kit Langton",
-		talk: featuredCases.find((c) => c.alt === "opencode"),
-	},
-	{
-		company: "MasterClass",
-		useCase: "Cortex, real-time voice AI",
-		where:
-			"The orchestration layer behind personalized voice conversations with instructors.",
-		speaker: "David Golightly",
-		talk: featuredCases.find((c) => c.alt === "MasterClass"),
-	},
-	{
-		company: "OpenRouter",
-		useCase: "Internal tooling and infrastructure",
-		where: "The internal tools and infrastructure the team runs day to day.",
-		speaker: "Louis Vichy",
-		talk: featuredCases.find((c) => c.alt === "OpenRouter"),
 	},
 ];
 
@@ -514,6 +487,14 @@ export function EnterprisePage() {
 
 			<Navigation activePath="/enterprise" />
 
+			{/* Vertical border lines */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-[60] hidden lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+				</div>
+			</div>
+
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Hero */}
 				<section className="relative overflow-hidden">
@@ -597,7 +578,7 @@ export function EnterprisePage() {
 											className="group flex items-baseline gap-4 py-3 text-sm text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
 										>
 											<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
-												0{i + 1}
+												{String(i + 1).padStart(2, "0")}
 											</span>
 											<span className="flex-1">{q.label}</span>
 											<Icon
@@ -654,7 +635,7 @@ export function EnterprisePage() {
 					</div>
 
 					{/* Desktop table */}
-					<div className="mt-6 hidden overflow-x-auto rounded-md border border-zinc-200 md:block dark:border-zinc-800">
+					<div className="mt-6 hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
 						<table className="w-full text-left text-sm">
 							<thead className="bg-zinc-100 dark:bg-zinc-900">
 								<tr>
@@ -708,7 +689,7 @@ export function EnterprisePage() {
 						{RELEASES.map((row) => (
 							<dl
 								key={row.line}
-								className="divide-y divide-zinc-200 rounded-md border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800"
+								className="divide-y divide-zinc-200 border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800"
 							>
 								<div className="flex items-center justify-between px-4 py-3">
 									<dt className="font-mono text-base font-semibold text-zinc-900 dark:text-white">
@@ -774,7 +755,7 @@ export function EnterprisePage() {
 					</div>
 
 					<h3 className={`${text.cardTitle} mt-20`}>How versioning works</h3>
-					<ul className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
 						{VERSIONING.map((v) => (
 							<li key={v.title} className="bg-zinc-50 p-6 dark:bg-zinc-950">
 								<h4
@@ -795,7 +776,7 @@ export function EnterprisePage() {
 					title="Support and adoption help"
 					subtitle="Every company inquiry starts with the Effect team, so you don't have to pick a service or provider before asking a question."
 				>
-					<ul className="grid grid-cols-1 gap-px overflow-hidden rounded-md border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 						{SERVICES.map((s) => (
 							<li
 								key={s.title}
@@ -821,7 +802,7 @@ export function EnterprisePage() {
 								This page summarizes the offer. Your agreement carries the
 								commitments.
 							</p>
-							<div className="mt-6 rounded-md border border-zinc-200 bg-zinc-100 p-4 text-sm leading-normal text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
+							<div className="mt-6 border border-zinc-200 bg-zinc-100 p-4 text-sm leading-normal text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
 								A private channel is a way to talk to us. Service levels come
 								from a support agreement, not from the channel.
 							</div>
@@ -842,60 +823,6 @@ export function EnterprisePage() {
 					</div>
 				</Section>
 
-				{/* 3. Production */}
-				<Section
-					id="production"
-					eyebrow="In production"
-					title="How teams use Effect in production"
-					subtitle="Short written summaries, so a reviewer can follow each example without watching the full talk."
-				>
-					<ul className="grid grid-cols-1 gap-6 md:grid-cols-3">
-						{STORIES.map((s) => (
-							<li
-								key={s.company}
-								className="flex flex-col overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800"
-							>
-								{s.talk && (
-									<img
-										src={s.talk.thumbnail}
-										alt=""
-										className="aspect-video w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
-									/>
-								)}
-								<div className="flex flex-1 flex-col p-6">
-									<p className={text.micro}>{s.company}</p>
-									<h3 className={`${text.cardTitle} mt-2`}>{s.useCase}</h3>
-
-									<h4 className={`${text.smallHeading} mt-6 text-sm`}>
-										Where Effect is used
-									</h4>
-									<p className={text.cardBody}>{s.where}</p>
-
-									<h4 className={`${text.smallHeading} mt-5 text-sm`}>
-										In their words
-									</h4>
-									<div className="mt-2">
-										<Tbd>Quote from {s.speaker}</Tbd>
-									</div>
-
-									{s.talk && (
-										<div className="mt-auto pt-6">
-											<Link
-												href={s.talk.href}
-												variant="subtle"
-												className={subtleLink}
-											>
-												Watch the talk
-												<Icon name="arrow-up-right" className="text-xs" />
-											</Link>
-										</div>
-									)}
-								</div>
-							</li>
-						))}
-					</ul>
-				</Section>
-
 				{/* 4. Security & stewardship */}
 				<Section
 					id="security"
@@ -903,7 +830,7 @@ export function EnterprisePage() {
 					title="Security and project stewardship"
 					subtitle="Review Effect's security advisories, report a vulnerability privately, and find the source code and license."
 				>
-					<ul className="grid grid-cols-1 gap-px overflow-hidden rounded-md border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 						{SECURITY_LINKS.map((l) => (
 							<li key={l.title} className="bg-zinc-50 dark:bg-zinc-950">
 								<a
@@ -931,7 +858,7 @@ export function EnterprisePage() {
 							<li key={s.name} className="relative">
 								<div className="flex items-center gap-3">
 									<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
-										0{i + 1}
+										{String(i + 1).padStart(2, "0")}
 									</span>
 									<span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
 								</div>
@@ -968,7 +895,7 @@ export function EnterprisePage() {
 								{GUIDE_TOPICS.map((t) => (
 									<li
 										key={t}
-										className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300"
+										className="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400"
 									>
 										{t}
 									</li>
@@ -1054,7 +981,7 @@ export function EnterprisePage() {
 				>
 					<div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
 						{/* Company contact */}
-						<div className="rounded-md border border-zinc-300 bg-white p-6 md:p-8 lg:col-span-7 dark:border-zinc-700 dark:bg-zinc-900/50">
+						<div className="border border-zinc-300 bg-white p-6 md:p-8 lg:col-span-7 dark:border-zinc-700 dark:bg-zinc-900/50">
 							<p className={text.micro}>For companies</p>
 							<h3 className={`${text.cardTitle} mt-2`}>
 								Email the Effect team
@@ -1087,7 +1014,7 @@ export function EnterprisePage() {
 						</div>
 
 						{/* Community */}
-						<div className="flex flex-col rounded-md border border-zinc-200 p-6 md:p-8 lg:col-span-5 dark:border-zinc-800">
+						<div className="flex flex-col border border-zinc-200 p-6 md:p-8 lg:col-span-5 dark:border-zinc-800">
 							<p className={text.micro}>For everyone</p>
 							<h3 className={`${text.cardTitle} mt-2`}>
 								Join the Effect community
@@ -1119,10 +1046,10 @@ export function EnterprisePage() {
 						{CONTACT_STEPS.map((step, i) => (
 							<li key={step}>
 								<div className="flex items-center gap-3">
-									<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-zinc-300 font-mono text-xs text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">
-										{i + 1}
+									<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+										{String(i + 1).padStart(2, "0")}
 									</span>
-									<span className="hidden h-px flex-1 bg-zinc-200 lg:block dark:bg-zinc-800" />
+									<span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
 								</div>
 								<p className="mt-4 text-sm leading-normal text-zinc-700 dark:text-zinc-300">
 									{step}
