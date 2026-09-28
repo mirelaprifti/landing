@@ -235,7 +235,7 @@ const SPONSOR_TIERS: {
 }[] = [
 	{
 		tier: "Main sponsor",
-		label: "Main sponsors",
+		label: "Main",
 		cols: "grid-cols-1 sm:grid-cols-3",
 		cellClass: "h-24 md:h-44",
 		logoBox: "h-10",
@@ -1350,10 +1350,13 @@ export function EffectDaysLivornoPage() {
 									return (
 										<div
 											key={tier.tier}
-											className="grid gap-px md:grid-cols-[12rem_1fr]"
+											className="grid md:grid-cols-[9.5rem_1fr] md:gap-px"
 										>
-											{/* Rail: tier name, top-aligned like a table's row header. */}
-											<div className="bg-white px-4 py-3 md:px-5 md:py-5 dark:bg-zinc-950">
+											{/* Rail: tier name, centred on the marks it names so every
+											    row reads label-then-logos at the same distance. On
+											    phones it heads its block with no rule under it, so the
+											    strip can't pass for an empty sponsor cell. */}
+											<div className="flex items-center bg-white px-4 pt-4 pb-1 md:px-5 md:py-0 dark:bg-zinc-950">
 												<p className={text.micro}>{tier.label}</p>
 											</div>
 											<div className={`grid gap-px ${tier.cols}`}>
