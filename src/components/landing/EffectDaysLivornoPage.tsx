@@ -1328,7 +1328,7 @@ export function EffectDaysLivornoPage() {
 				{/* Sponsors */}
 				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+						<div className="flex flex-col gap-4 sm:flex-row sm:items-baseline-last sm:justify-between">
 							<div>
 								<p className={text.eyebrow}>{"// Sponsors"}</p>
 								<h2 className={text.sectionTitle}>Made possible by</h2>
