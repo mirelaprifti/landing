@@ -274,10 +274,9 @@ const SPONSORS: {
 		name: "Effectful",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/Effectful-white.svg",
-		/* The hexagon stands taller than the wordmark beside it, so the
-		   lockup sets a step under h-8 to span the same width as Warp and
-		   Ziverge rather than outrunning them. */
-		logoHeight: "h-7",
+		/* Light strokes beside Warp's and Ziverge's heavy ones, so the lockup
+		   runs wider than theirs to carry the same weight. */
+		logoHeight: "h-9",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
