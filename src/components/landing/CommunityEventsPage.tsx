@@ -165,8 +165,7 @@ const CHANNELS: {
 		icon: "ri-discord-fill",
 		color: "#5865F2",
 		title: "A thriving Discord community",
-		description:
-			"Effect developers sharing questions, patterns, and production stories every day.",
+		description: "Questions, patterns, and production stories, every day.",
 		href: "https://discord.gg/effect-ts",
 		linkLabel: "discord.gg/effect-ts",
 	},
