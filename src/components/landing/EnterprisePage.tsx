@@ -343,23 +343,20 @@ const SUPPORT_OPTIONS: {
 	{
 		icon: "file-search",
 		title: "Talk through adoption",
-		body: [
-			"Bring us your technical questions and plans for using Effect. We can discuss a starting point, the requirements your team needs to validate, and the help available as you adopt it.",
-		],
+		body: ["Bring us your technical questions and plans for using Effect."],
 	},
 	{
 		icon: "life-buoy",
 		title: "Establish a support relationship",
 		body: [
-			"For companies using Effect, we can discuss an enterprise support agreement tailored to the work. Agreements can include a mutual NDA, service levels, and an escalation process, with the coverage and terms agreed with your team.",
-			"Companies using Effect can also arrange a private Slack Connect or Discord channel with us for ongoing communication. The commitments in a support agreement are defined separately from access to a private channel.",
+			"A support agreement with a mutual NDA, service levels, and escalation. Private channels are arranged separately.",
 		],
 	},
 	{
 		icon: "graduation-cap",
 		title: "Get hands-on help",
 		body: [
-			"Need implementation, consulting, team extension, or training? Start with the Effect team. We can introduce you to an adoption partner, including Ziverge, and explain who will deliver and contract for the work.",
+			"Implementation, consulting, or training through an adoption partner like Ziverge.",
 		],
 	},
 ];
