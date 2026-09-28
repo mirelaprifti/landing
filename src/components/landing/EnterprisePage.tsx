@@ -643,7 +643,9 @@ export function EnterprisePage() {
 							<span className="text-zinc-900 dark:text-white">
 								Plain text = commitment
 							</span>
-							<Target>Dashed = target</Target>
+							<span className="underline decoration-zinc-400 decoration-dashed underline-offset-4 dark:decoration-zinc-500">
+								Dashed = target
+							</span>
 							<span className="inline-flex items-center gap-2">
 								<Tbd /> = not yet defined
 							</span>
@@ -689,7 +691,7 @@ export function EnterprisePage() {
 											<Link
 												href={row.upgrade.href}
 												variant="subtle"
-												className={subtleLink}
+												className={`${subtleLink} whitespace-nowrap`}
 											>
 												{row.upgrade.label}
 												<Icon name="arrow-up-right" className="text-xs" />
