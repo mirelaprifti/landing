@@ -254,7 +254,9 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Community",
 		label: "Community",
-		cols: "grid-cols-3",
+		/* Stacked below 360px: in thirds of a 320 screen the marks shrink
+		   under legibility. */
+		cols: "grid-cols-1 min-[22.5rem]:grid-cols-3",
 		cellClass: "h-20 md:h-24",
 		logoBox: "h-6",
 	},
@@ -1312,9 +1314,6 @@ export function EffectDaysLivornoPage() {
 							<div>
 								<p className={text.eyebrow}>{"// Sponsors"}</p>
 								<h2 className={text.sectionTitle}>Made possible by</h2>
-								<p className={text.subtitle}>
-									The companies helping bring Effect Days to Livorno.
-								</p>
 							</div>
 							<BecomeSponsorLink />
 						</div>
@@ -1331,13 +1330,13 @@ export function EffectDaysLivornoPage() {
 									return (
 										<div
 											key={tier.tier}
-											className="grid md:grid-cols-[9.5rem_1fr] md:gap-px"
+											className="grid lg:grid-cols-[9.5rem_1fr] lg:gap-px"
 										>
 											{/* Rail: tier name, centred on the marks it names so every
 											    row reads label-then-logos at the same distance. On
-											    phones it heads its block with no rule under it, so the
+											    phones and tablets it heads its block with no rule under it, so the
 											    strip can't pass for an empty sponsor cell. */}
-											<div className="flex items-center bg-white px-4 pt-4 pb-1 md:px-5 md:py-0 dark:bg-zinc-950">
+											<div className="flex items-center bg-white px-4 pt-4 pb-1 lg:px-5 lg:py-0 dark:bg-zinc-950">
 												<p className={text.micro}>{tier.label}</p>
 											</div>
 											<div className={`grid gap-px ${tier.cols}`}>
