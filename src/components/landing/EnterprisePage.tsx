@@ -306,21 +306,36 @@ const SECURITY_LINKS = [
 	},
 ];
 
-const STEWARDSHIP = [
+const RESPONSIBILITIES: { job: string; who: string; note: ReactNode }[] = [
 	{
-		name: "Effect",
-		role: "Open-source project",
-		body: "MIT-licensed and developed in public on GitHub by its maintainers. Free to use, with or without a commercial relationship.",
+		job: "Source code and releases",
+		who: "Effect maintainers",
+		note: "Open source under the MIT license, developed in public on GitHub",
 	},
 	{
-		name: "Effectful",
-		role: "The company behind Effect",
-		body: "Receives every enterprise inquiry, provides enterprise support, and introduces adoption partners.",
+		job: "Security fixes and advisories",
+		who: "Effect maintainers",
+		note: "Reported privately, published as GitHub advisories",
 	},
 	{
-		name: "Adoption partners",
-		role: "Implementation and training",
-		body: "Independent companies that deliver hands-on work. Ziverge is the first partner in the network.",
+		job: "Enterprise inquiries",
+		who: "Effectful",
+		note: "The company behind Effect. Every company conversation starts here",
+	},
+	{
+		job: "Support agreements",
+		who: "Effectful",
+		note: <Tbd>Signing entity</Tbd>,
+	},
+	{
+		job: "Private company channels",
+		who: "Effectful",
+		note: "Slack Connect or Discord, arranged with the team",
+	},
+	{
+		job: "Implementation and training",
+		who: "Adoption partners",
+		note: "Ziverge to start, introduced by Effectful",
 	},
 ];
 
@@ -583,7 +598,7 @@ export function EnterprisePage() {
 											<span className="flex-1">{q.label}</span>
 											<Icon
 												name="arrow-down"
-												className="text-xs text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+												className="shrink-0 text-sm text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
 											/>
 										</a>
 									</li>
@@ -843,7 +858,7 @@ export function EnterprisePage() {
 										<span className={text.smallHeading}>{l.title}</span>
 										<Icon
 											name="arrow-up-right"
-											className="mt-1 text-xs text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+											className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
 										/>
 									</span>
 									<span className={text.cardBody}>{l.body}</span>
@@ -852,22 +867,33 @@ export function EnterprisePage() {
 						))}
 					</ul>
 
-					<h3 className={`${text.cardTitle} mt-20`}>Who you're working with</h3>
-					<ol className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-						{STEWARDSHIP.map((s, i) => (
-							<li key={s.name} className="relative">
-								<div className="flex items-center gap-3">
-									<span className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
-										{String(i + 1).padStart(2, "0")}
-									</span>
-									<span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+					<div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-12">
+						<div className="lg:col-span-4">
+							<h3 className={text.cardTitle}>Who's responsible for what</h3>
+							<p className={`${text.cardBody} mt-4`}>
+								Effect is open source and free to use. Commercial work runs
+								through Effectful, so you always know who you're talking to.
+							</p>
+						</div>
+						<dl className="border-t border-zinc-200 lg:col-span-8 dark:border-zinc-800">
+							{RESPONSIBILITIES.map((r) => (
+								<div
+									key={r.job}
+									className="grid grid-cols-1 gap-1 border-b border-zinc-200 py-4 sm:grid-cols-2 sm:gap-6 dark:border-zinc-800"
+								>
+									<dt className={text.smallHeading}>{r.job}</dt>
+									<dd>
+										<p className="text-sm font-medium text-zinc-900 dark:text-white">
+											{r.who}
+										</p>
+										<p className="mt-1 text-sm leading-normal text-zinc-600 dark:text-zinc-400">
+											{r.note}
+										</p>
+									</dd>
 								</div>
-								<p className={`${text.micro} mt-4`}>{s.role}</p>
-								<h4 className={`${text.cardTitle} mt-1`}>{s.name}</h4>
-								<p className={text.cardBody}>{s.body}</p>
-							</li>
-						))}
-					</ol>
+							))}
+						</dl>
+					</div>
 				</Section>
 
 				{/* 5. Adoption guide */}
