@@ -6,6 +6,7 @@ import { GridOverlay } from "../GridOverlay";
 import { FAQList } from "./FAQList";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { featuredCases } from "./TestimonialsSection";
 
 /** Canonical text styles — copied verbatim from TypographyStyleguidePage. */
 const text = {
@@ -273,6 +274,30 @@ const PAGE_QUESTIONS = [
 	},
 ];
 
+const talkHref = (alt: string) =>
+	featuredCases.find((c) => c.alt === alt)?.href ?? "#";
+
+const PRODUCTION = [
+	{
+		company: "OpenCode",
+		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
+		useCase: "Migrating a large TypeScript codebase to Effect",
+		href: talkHref("opencode"),
+	},
+	{
+		company: "MasterClass",
+		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
+		useCase: "Real-time voice AI orchestration",
+		href: talkHref("MasterClass"),
+	},
+	{
+		company: "OpenRouter",
+		logo: getAssetPath("/assets/images/open-router.svg"),
+		useCase: "Internal tooling and infrastructure",
+		href: talkHref("OpenRouter"),
+	},
+];
+
 const FACTS = [
 	{ label: "License", value: "MIT" },
 	{ label: "Current release", value: "v4 stable" },
@@ -284,7 +309,7 @@ type ReleaseRow = {
 	line: string;
 	status: { label: string; tone: "active" | "maintenance" };
 	stable: ReactNode;
-	active: ReactNode;
+	maintained: { active: ReactNode; security: ReactNode };
 	upgrade: { label: string; href: string };
 };
 
@@ -292,8 +317,8 @@ const RELEASES: ReleaseRow[] = [
 	{
 		line: "4.x",
 		status: { label: "Current, LTS", tone: "active" },
-		stable: <Tbd>Date</Tbd>,
-		active: <Tbd />,
+		stable: "Oct 2026",
+		maintained: { active: <Tbd />, security: <Tbd /> },
 		upgrade: {
 			label: "Migrating from 3.x",
 			href: "https://effect.website/blog/releases/effect/40-rc/",
@@ -303,7 +328,7 @@ const RELEASES: ReleaseRow[] = [
 		line: "3.x",
 		status: { label: "Maintenance", tone: "maintenance" },
 		stable: "Apr 2024",
-		active: <Tbd />,
+		maintained: { active: <Tbd />, security: <Tbd /> },
 		upgrade: {
 			label: "Changelog",
 			href: "https://github.com/Effect-TS/effect/releases",
@@ -315,9 +340,21 @@ const RELEASE_COLUMNS = [
 	"Release",
 	"Status",
 	"Stable since",
-	"Active maintenance",
+	"Maintained through",
 	"Upgrade guide",
 ] as const;
+
+/** Active and security end dates, stacked in one cell. */
+function MaintenanceDates({ dates }: { dates: ReleaseRow["maintained"] }) {
+	return (
+		<dl className="grid grid-cols-[auto_auto] items-center justify-start gap-x-3 gap-y-1.5 text-sm">
+			<dt className="text-zinc-500 dark:text-zinc-400">Active</dt>
+			<dd className="text-zinc-900 dark:text-zinc-200">{dates.active}</dd>
+			<dt className="text-zinc-500 dark:text-zinc-400">Security</dt>
+			<dd className="text-zinc-900 dark:text-zinc-200">{dates.security}</dd>
+		</dl>
+	);
+}
 
 function StatusPill({ status }: { status: ReleaseRow["status"] }) {
 	return (
@@ -647,7 +684,9 @@ export function EnterprisePage() {
 										<td className="px-4 py-4 text-zinc-900 dark:text-zinc-200">
 											{row.stable}
 										</td>
-										<td className="px-4 py-4">{row.active}</td>
+										<td className="px-4 py-4">
+											<MaintenanceDates dates={row.maintained} />
+										</td>
 										<td className="px-4 py-4">
 											<Link
 												href={row.upgrade.href}
@@ -682,7 +721,10 @@ export function EnterprisePage() {
 								{(
 									[
 										["Stable since", row.stable],
-										["Active maintenance", row.active],
+										[
+											"Maintained through",
+											<MaintenanceDates dates={row.maintained} />,
+										],
 									] as const
 								).map(([label, value]) => (
 									<div
@@ -734,6 +776,44 @@ export function EnterprisePage() {
 						</div>
 						<p className={text.micro}>Last updated · {POLICY_UPDATED}</p>
 					</div>
+				</Section>
+
+				{/* In production */}
+				<Section
+					id="production"
+					eyebrow="In production"
+					title="How teams use Effect in production"
+				>
+					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+						{PRODUCTION.map((p) => (
+							<li key={p.company} className="bg-zinc-50 dark:bg-zinc-950">
+								<a
+									href={p.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:hover:bg-zinc-900/80"
+								>
+									<span className="flex items-start justify-between gap-4">
+										<span className="flex h-8 items-center">
+											<img
+												src={p.logo}
+												alt={p.company}
+												className="max-h-7 w-auto invert dark:invert-0"
+											/>
+										</span>
+										<Icon
+											name="arrow-up-right"
+											className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+										/>
+									</span>
+									<span className={`${text.smallHeading} mt-8`}>
+										{p.useCase}
+									</span>
+									<span className={text.cardBody}>Watch the talk</span>
+								</a>
+							</li>
+						))}
+					</ul>
 				</Section>
 
 				{/* 2. Support */}

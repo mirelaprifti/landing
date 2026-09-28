@@ -2,7 +2,7 @@ import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 
-const featuredCases = [
+export const featuredCases = [
 	{
 		headline: "OpenCode uses Effect",
 		description:
