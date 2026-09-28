@@ -149,7 +149,9 @@ const TALK_IDEAS: { label: string; href?: string }[] = [
 
 // Channels featured in the "Stay connected" section
 const CHANNELS: {
-	icon: string;
+	icon?: string;
+	/** Image logo, used instead of `icon` */
+	logo?: string;
 	/** Brand color for the icon tile */
 	color: string;
 	title: string;
@@ -185,7 +187,7 @@ const CHANNELS: {
 		linkLabel: "youtube.com/@effect-ts",
 	},
 	{
-		icon: "ri-briefcase-4-fill",
+		logo: "/assets/effect-logo/Logo symbol/SVG/effect-logomark-white.svg",
 		color: "#FFFFFF",
 		title: "Find an Effect job",
 		description: "Open roles at companies building with Effect.",
@@ -617,11 +619,19 @@ export function CommunityEventsPage() {
 											className="group relative flex gap-4 overflow-hidden rounded-md border border-zinc-700 bg-[#0C0C0E] p-6 transition-colors hover:border-zinc-500"
 										>
 											<div className="flex h-14 w-14 shrink-0 items-center justify-center self-center rounded-md bg-zinc-800">
-												<i
-													className={`${channel.icon} text-2xl`}
-													style={{ color: channel.color }}
-													aria-hidden="true"
-												/>
+												{channel.logo ? (
+													<img
+														src={getAssetPath(channel.logo)}
+														alt=""
+														className="h-7 w-7"
+													/>
+												) : (
+													<i
+														className={`${channel.icon} text-2xl`}
+														style={{ color: channel.color }}
+														aria-hidden="true"
+													/>
+												)}
 											</div>
 											<div className="flex flex-col justify-center">
 												<h3 className="text-base font-semibold text-white">
