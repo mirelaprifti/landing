@@ -638,7 +638,7 @@ function SponsorCell({
 			{/* External site — up-right, like every link that leaves the page. */}
 			<Icon
 				name="arrow-up-right"
-				className="absolute top-3 right-3 text-xs text-zinc-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-zinc-500"
+				className="absolute top-3 right-3 text-base text-zinc-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-zinc-400"
 			/>
 		</a>
 	);
