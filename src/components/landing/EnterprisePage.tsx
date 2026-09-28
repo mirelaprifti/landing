@@ -123,7 +123,6 @@ function CopyEmail() {
 /* ------------------------------------------------------------------ */
 
 const PAGE_QUESTIONS = [
-	{ href: "#releases", label: "Can we plan around Effect's releases?" },
 	{ href: "#support", label: "Who can help us adopt and operate it?" },
 	{ href: "#security", label: "What happens with a security issue?" },
 	{
@@ -559,21 +558,6 @@ export function EnterprisePage() {
 									Review releases and support
 								</Button>
 							</div>
-
-							<div className="mt-8">
-								<p className={text.micro}>Or email us directly</p>
-								<div className="mt-2">
-									<CopyEmail />
-								</div>
-							</div>
-
-							<p className="mt-8 text-sm text-zinc-600 dark:text-zinc-400">
-								Learning Effect or looking for community help?{" "}
-								<Link href={DISCORD_URL}>
-									Everyone is welcome in our Discord
-								</Link>
-								.
-							</p>
 						</div>
 
 						{/* What this page answers — doubles as an index a reviewer can skim */}
