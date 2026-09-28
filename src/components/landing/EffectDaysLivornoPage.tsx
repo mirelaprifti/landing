@@ -308,6 +308,15 @@ const SPONSORS: {
 		websiteUrl: "https://www.inato.com/",
 	},
 	{
+		name: "Novelcrafter",
+		tier: "Community",
+		logo: "/assets/effect-days/novelcrafter.svg",
+		/* Its lockup is nearly five times as wide as it is tall, so it caps
+		   shorter than the wordmarks beside it to sit at the same optical size. */
+		logoHeight: "h-4",
+		websiteUrl: "https://www.novelcrafter.com/",
+	},
+	{
 		name: "Executor",
 		tier: "Community",
 		/* The dark file ships the disc solid with a light glyph, which the ink
@@ -323,15 +332,6 @@ const SPONSORS: {
 		logo: "/assets/effect-days/august.png",
 		logoHeight: "h-5",
 		websiteUrl: "https://www.august.computer/",
-	},
-	{
-		name: "Novelcrafter",
-		tier: "Community",
-		logo: "/assets/effect-days/novelcrafter.svg",
-		/* Its lockup is nearly five times as wide as it is tall, so it caps
-		   shorter than the wordmarks beside it to sit at the same optical size. */
-		logoHeight: "h-4",
-		websiteUrl: "https://www.novelcrafter.com/",
 	},
 ];
 
