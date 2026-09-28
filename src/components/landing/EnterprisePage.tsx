@@ -183,27 +183,6 @@ function FlowNode({ logo, title, items, highlight }: NodeProps) {
 	);
 }
 
-/** Horizontal arrow between two nodes (desktop) / vertical (mobile). */
-function Arrow() {
-	return (
-		<div
-			className="flex items-center justify-center py-2 lg:py-0"
-			aria-hidden="true"
-		>
-			<span className="hidden flex-1 items-center lg:flex">
-				<span className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
-				<Icon
-					name="chevron-right"
-					className="-ml-1.5 text-base text-zinc-400 dark:text-zinc-500"
-				/>
-			</span>
-			<span className="lg:hidden">
-				<Icon name="arrow-down" className="text-base text-zinc-400" />
-			</span>
-		</div>
-	);
-}
-
 /** One line splitting into two, aimed at the centres of two stacked nodes. */
 function Fork() {
 	const line = "absolute bg-zinc-300 dark:bg-zinc-700";
@@ -234,11 +213,7 @@ function Fork() {
 
 function SupportFlow() {
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_56px_minmax(0,1.1fr)_56px_minmax(0,1fr)]">
-			<div className="lg:self-center">
-				<FlowNode title="Your team" items={["Email", "Discord", "X"]} />
-			</div>
-			<Arrow />
+		<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)]">
 			<div className="lg:self-center">
 				<FlowNode
 					highlight
@@ -259,7 +234,7 @@ function SupportFlow() {
 				/>
 			</div>
 			<Fork />
-			<div className="grid grid-rows-2 gap-6">
+			<div className="flex flex-col gap-6 lg:grid lg:grid-rows-2">
 				<FlowNode
 					title="Effect maintainers"
 					logo={
@@ -310,7 +285,6 @@ type ReleaseRow = {
 	status: { label: string; tone: "active" | "maintenance" };
 	stable: ReactNode;
 	active: ReactNode;
-	security: ReactNode;
 	upgrade: { label: string; href: string };
 };
 
@@ -320,7 +294,6 @@ const RELEASES: ReleaseRow[] = [
 		status: { label: "Current, LTS", tone: "active" },
 		stable: <Tbd>Date</Tbd>,
 		active: <Tbd />,
-		security: <Tbd />,
 		upgrade: {
 			label: "Migrating from 3.x",
 			href: "https://effect.website/blog/releases/effect/40-rc/",
@@ -331,7 +304,6 @@ const RELEASES: ReleaseRow[] = [
 		status: { label: "Maintenance", tone: "maintenance" },
 		stable: "Apr 2024",
 		active: <Tbd />,
-		security: <Tbd />,
 		upgrade: {
 			label: "Changelog",
 			href: "https://github.com/Effect-TS/effect/releases",
@@ -344,7 +316,6 @@ const RELEASE_COLUMNS = [
 	"Status",
 	"Stable since",
 	"Active maintenance",
-	"Security fixes",
 	"Upgrade guide",
 ] as const;
 
@@ -569,11 +540,6 @@ export function EnterprisePage() {
 								Evaluate Effect with your team. Plan for production. Get help
 								from the people building it.
 							</p>
-							<p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-								Whether you are considering Effect for a new project or adopting
-								it across an existing codebase, talk to us about technical
-								questions, release planning, and the support your team needs.
-							</p>
 
 							<div className="mt-8 flex flex-wrap items-center gap-3">
 								<Button
@@ -652,7 +618,6 @@ export function EnterprisePage() {
 					id="releases"
 					eyebrow="Releases & support"
 					title="Plan your adoption and upgrades"
-					subtitle="Your team needs to know what changes, what stays stable, and how long a release will be maintained. Review Effect's versioning rules, release status, maintenance commitments, and migration guidance before you choose a version for production."
 				>
 					{/* Desktop table */}
 					<div className="hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
@@ -686,7 +651,6 @@ export function EnterprisePage() {
 											{row.stable}
 										</td>
 										<td className="px-4 py-4">{row.active}</td>
-										<td className="px-4 py-4">{row.security}</td>
 										<td className="px-4 py-4">
 											<Link
 												href={row.upgrade.href}
@@ -722,7 +686,6 @@ export function EnterprisePage() {
 									[
 										["Stable since", row.stable],
 										["Active maintenance", row.active],
-										["Security fixes", row.security],
 									] as const
 								).map(([label, value]) => (
 									<div
