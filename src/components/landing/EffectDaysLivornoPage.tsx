@@ -324,7 +324,7 @@ const SPONSORS: {
 		   flattening closes up; the mono file cuts the glyph out of the disc,
 		   so the tile shows through it in either theme. */
 		logo: "/assets/effect-days/executor-mono.png",
-		logoHeight: "h-5",
+		logoHeight: "h-6",
 		websiteUrl: "https://www.executor.sh/",
 	},
 	{
