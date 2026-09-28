@@ -588,29 +588,6 @@ function SectionDivider() {
 }
 
 /**
- * The corner brackets the closing CTA and the merch previews frame things with.
- * Needs a `relative` parent; brightens with the parent's `group` on hover.
- *
- * `dim` marks the open sponsorship slot, so the filled tiles read louder than
- * the one inviting a logo.
- */
-function TileBrackets({ dim = false }: { dim?: boolean }) {
-	const edge = `absolute h-3 w-3 transition-colors duration-200 group-hover:border-zinc-900 dark:group-hover:border-white ${
-		dim
-			? "border-zinc-200 dark:border-zinc-800"
-			: "border-zinc-300 dark:border-zinc-700"
-	}`;
-	return (
-		<>
-			<span className={`${edge} top-0 left-0 border-t border-l`} />
-			<span className={`${edge} top-0 right-0 border-t border-r`} />
-			<span className={`${edge} bottom-0 left-0 border-b border-l`} />
-			<span className={`${edge} right-0 bottom-0 border-r border-b`} />
-		</>
-	);
-}
-
-/**
  * A sponsor's mark, flattened to the wall's single ink: `brightness-0` drops
  * whatever colour the file carries to black, and the dark tile inverts that
  * back to white. Alpha survives both, so a mark keeps its shape and any
@@ -1342,13 +1319,10 @@ export function EffectDaysLivornoPage() {
 							<BecomeSponsorLink />
 						</div>
 
-						{/* The ledger: hairlines between every cell — the grid's
-						    background showing through a 1px gap — and no outer rule. The
-						    corner brackets are the only frame, sitting on the table's own
-						    corners. */}
-						<div className="relative mt-10 md:mt-12">
-							<TileBrackets />
-							<div className="grid gap-px bg-zinc-200 dark:bg-zinc-800">
+						{/* The ledger: one hairline frame, and hairlines between every
+						    cell — the grid's background showing through a 1px gap. */}
+						<div className="mt-10 md:mt-12">
+							<div className="grid gap-px border border-zinc-200 bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800">
 								{SPONSOR_TIERS.map((tier) => {
 									const marks = SPONSORS.filter(
 										(sponsor) => sponsor.tier === tier.tier,
