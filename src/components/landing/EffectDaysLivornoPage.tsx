@@ -311,9 +311,10 @@ const SPONSORS: {
 		name: "Novelcrafter",
 		tier: "Community",
 		logo: "/assets/effect-days/novelcrafter.svg",
-		/* Its lockup is nearly five times as wide as it is tall, so it caps
-		   shorter than the wordmarks beside it to sit at the same optical size. */
-		logoHeight: "h-4",
+		/* Its type is small inside a wide lockup, so it sets at the same
+		   height as its row-mates rather than under them, or it reads a size
+		   smaller. */
+		logoHeight: "h-6",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
 	{
