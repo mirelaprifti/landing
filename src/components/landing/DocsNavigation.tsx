@@ -79,17 +79,21 @@ export function DocsNavigation({ section }: { section: DocsSectionKey }) {
 
 					{/* Search + socials + theme toggle + mobile menu toggle */}
 					<div className="ml-auto flex items-center gap-4">
+						{/* Below md the search stays in the bar as a bare icon, matching
+						    the theme toggle beside it — the ⌘K hint means nothing on
+						    touch, and the boxed pill would crowd the logo. From md it
+						    opens up into the bordered pill with the shortcut. */}
 						<button
 							type="button"
 							aria-label="Open search"
-							className="hidden items-center gap-2 rounded-md border border-zinc-300 px-2 py-1 text-sm text-zinc-500 transition-colors hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 md:flex dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white"
+							className="flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-900 md:rounded-md md:border md:border-zinc-300 md:px-2 md:py-1 md:hover:border-zinc-400 md:hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white md:dark:border-zinc-600 md:dark:hover:border-zinc-700 md:dark:hover:bg-zinc-900"
 						>
 							<Icon
 								name="search"
-								className="text-base font-medium"
+								className="text-lg font-medium md:text-base"
 								aria-hidden="true"
 							/>
-							<kbd className="text-[12px] text-zinc-500 dark:text-zinc-400/80">
+							<kbd className="hidden text-[12px] text-zinc-500 md:inline dark:text-zinc-400/80">
 								⌘K
 							</kbd>
 						</button>
