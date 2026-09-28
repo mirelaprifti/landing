@@ -209,20 +209,11 @@ const PASSES: {
 	},
 ];
 
-/* Sponsors, grouped by tier. Rank is carried by how much of the row a frame
-   takes and by how tall it stands — a main sponsor gets a half, the partner a
-   half, the whole community tier one full-width frame — so the ladder reads at
-   a glance and a tier can be added without a new visual device.
-
-   Every mark renders in a single ink (see SponsorLogo). A sponsor's own colour
-   would rank it by palette rather than by tier: the loudest brand in the list
-   would read as the biggest backer whatever row it sat in. That also means one
-   file per sponsor — no light/dark pair, since the ink follows the theme. */
-
-/* Sponsors, Stripe-style: every mark in the same frame, one quiet label per
-   row, rank carried by row order alone. No chips on the tiles and no size
-   ladder — the wall reads as one group of companies rather than a price
-   table, and a new sponsor is one entry here, not a layout problem.
+/* Sponsors, as a ruled ledger: one hairline table, a row per tier with its
+   name in a left rail and the marks sharing the rest. Rank is carried by the
+   row's height and the size of the marks in it — never by colour or by an
+   empty cell — so the wall reads as one group of backers, and a new sponsor is
+   one entry below, not a layout problem.
 
    Every mark renders in a single ink (see SponsorLogo). A sponsor's own colour
    would rank it by palette rather than by tier: the loudest brand in the list
@@ -231,12 +222,13 @@ const PASSES: {
 
 const SPONSOR_TIERS: {
 	tier: string;
-	/** Label shown over the row, in the page's mono micro style. */
+	/** Rail label, in the page's mono micro style. */
 	label: string;
-	/** Columns the row splits into. */
+	/** Columns the marks split into. Mobile counts are picked so no row ends
+	 *  on an orphan. */
 	cols: string;
-	/** Tile padding — the height step between tiers. */
-	tileClass: string;
+	/** Cell height — the step between tiers. */
+	cellClass: string;
 	/** Fixed logo slot per tier, so marks in a row line up however tall each
 	 *  one is set. */
 	logoBox: string;
@@ -244,26 +236,23 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Main sponsor",
 		label: "Main sponsors",
-		/* The label takes the first quadrant of the 2×2 and the marks fill the
-		   rest, so the tier reads as one block with its name inside it. */
-		cols: "grid-cols-1 sm:grid-cols-2 lg:gap-8",
-		tileClass: "py-12",
+		cols: "grid-cols-1 sm:grid-cols-3",
+		cellClass: "h-24 md:h-44",
 		logoBox: "h-10",
 	},
 	{
 		tier: "Partner",
 		label: "Partners",
-		/* Two marks, so halves — thirds would leave an empty cell at the end
-		   of the row. Back to grid-cols-3 when a third partner lands. */
-		cols: "grid-cols-1 sm:grid-cols-2",
-		tileClass: "py-7",
+		/* Two marks, so halves. Back to thirds when a third partner lands. */
+		cols: "grid-cols-2",
+		cellClass: "h-24 md:h-32",
 		logoBox: "h-8",
 	},
 	{
 		tier: "Community",
 		label: "Community",
-		cols: "grid-cols-2 sm:grid-cols-4",
-		tileClass: "py-5",
+		cols: "grid-cols-3",
+		cellClass: "h-20 md:h-24",
 		logoBox: "h-6",
 	},
 ];
@@ -308,14 +297,14 @@ const SPONSORS: {
 		name: "Betalyra",
 		tier: "Partner",
 		logo: "/assets/effect-days/betalyra-dark.svg",
-		logoHeight: "h-8",
+		logoHeight: "h-7",
 		websiteUrl: "https://betalyra.com/",
 	},
 	{
 		name: "Inato",
 		tier: "Partner",
 		logo: "/assets/effect-days/inato.png",
-		logoHeight: "h-6",
+		logoHeight: "h-5",
 		websiteUrl: "https://www.inato.com/",
 	},
 	{
@@ -332,7 +321,7 @@ const SPONSORS: {
 		name: "August",
 		tier: "Community",
 		logo: "/assets/effect-days/august.png",
-		logoHeight: "h-4",
+		logoHeight: "h-5",
 		websiteUrl: "https://www.august.computer/",
 	},
 	{
@@ -341,7 +330,7 @@ const SPONSORS: {
 		logo: "/assets/effect-days/novelcrafter.svg",
 		/* Its lockup is nearly five times as wide as it is tall, so it caps
 		   shorter than the wordmarks beside it to sit at the same optical size. */
-		logoHeight: "h-3.5",
+		logoHeight: "h-4",
 		websiteUrl: "https://www.novelcrafter.com/",
 	},
 ];
@@ -638,18 +627,17 @@ function SponsorLogo({ sponsor }: { sponsor: (typeof SPONSORS)[number] }) {
 }
 
 /**
- * One sponsor, one tile. Every tile is the same size — the tier is named by
- * the row's label, not by the frame — and the logo slot is fixed so marks in a
- * row line up however tall each one is set.
+ * One sponsor, one cell of the ledger. The cell is opaque so the table's
+ * hairlines (the grid's background showing through a 1px gap) stay crisp, and
+ * so the page's centre dashed line stops behind it. At rest the mark sits a
+ * shade under full ink; hover lifts it, washes the cell and shows the arrow.
  */
-function SponsorTile({
+function SponsorCell({
 	sponsor,
 	tier,
-	className = "",
 }: {
 	sponsor: (typeof SPONSORS)[number];
 	tier: (typeof SPONSOR_TIERS)[number];
-	className?: string;
 }) {
 	return (
 		<a
@@ -657,31 +645,32 @@ function SponsorTile({
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label={`${sponsor.name} — visit website`}
-			/* Opaque so the page's centre dashed line stops behind the tile rather
-			   than running across the logo. */
-			className={`group relative flex items-center justify-center bg-white px-6 dark:bg-zinc-950 ${tier.tileClass} ${className}`}
+			className={`group relative flex items-center justify-center bg-white px-3 transition-colors duration-200 hover:bg-zinc-50 focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-zinc-900 md:px-8 dark:bg-zinc-950 dark:hover:bg-zinc-900 dark:focus-visible:outline-white ${tier.cellClass}`}
 		>
-			<TileBrackets />
-
-			<span className={`flex ${tier.logoBox} items-center justify-center`}>
+			<span
+				className={`flex ${tier.logoBox} max-w-full items-center justify-center opacity-75 transition-opacity duration-200 group-hover:opacity-100`}
+			>
 				<SponsorLogo sponsor={sponsor} />
 			</span>
+			{/* External site — up-right, like every link that leaves the page. */}
+			<Icon
+				name="arrow-up-right"
+				className="absolute top-3 right-3 text-xs text-zinc-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-zinc-500"
+			/>
 		</a>
 	);
 }
 
 /**
- * The invitation to sponsor. It sits under the wall as a line of text rather
- * than in it as a tile: unsold inventory framed like a sponsor gives an empty
- * slot the same weight as a company that paid for one. The "your logo here"
- * caret went with the tile — it was the frame that made the phrase mean
- * anything.
+ * The invitation to sponsor. It sits in the section header, across from the
+ * title, rather than in the wall as a tile: unsold inventory framed like a
+ * sponsor gives an empty slot the same weight as a company that paid for one.
  */
-function OpenSponsorSlot() {
+function BecomeSponsorLink() {
 	return (
 		<a
 			href="mailto:contact@effectful.co?subject=Effect Days Livorno - Sponsorship"
-			className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+			className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition-colors duration-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 		>
 			Become a sponsor
 			{/* mailto — leaves the page, so up-right */}
@@ -1338,62 +1327,48 @@ export function EffectDaysLivornoPage() {
 				{/* Sponsors */}
 				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Stripe-style: one labelled row per tier, every tile the same
-						    size. Rank is carried by order alone — no chips, no ladder of
-						    heights — so the wall reads as one group of backers. */}
-						{SPONSOR_TIERS.map((tier, tierIndex) => {
-							const marks = SPONSORS.filter(
-								(sponsor) => sponsor.tier === tier.tier,
-							);
-							if (marks.length === 0) return null;
+						<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+							<div>
+								<p className={text.eyebrow}>{"// Sponsors"}</p>
+								<h2 className={text.sectionTitle}>Made possible by</h2>
+							</div>
+							<BecomeSponsorLink />
+						</div>
 
-							/* Main tier: a flat 2×2 at half-width cells. The label holds the
-							   top-left quadrant, the marks fill the rest in order — Effectful
-							   beside it, Warp below it, Ziverge closing the block. */
-							if (tierIndex === 0) {
-								return (
-									<div key={tier.tier} className={`grid gap-4 ${tier.cols}`}>
-										{/* Label and title share the quadrant, centred like the logos
-									    across from them — top-aligned the pair read as a caption
-									    hung over a void. */}
-										<div className="self-center">
-											<p className={text.eyebrow}>
-												{"// "}
-												{tier.label}
-											</p>
-											<h2 className={text.sectionTitle}>Made possible by</h2>
+						{/* The ledger: one frame of brackets around the whole wall, and
+						    hairlines between every cell — the grid's background showing
+						    through a 1px gap. */}
+						<div className="relative mt-10 p-2 md:mt-12">
+							<TileBrackets />
+							<div className="grid gap-px border border-zinc-200 bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800">
+								{SPONSOR_TIERS.map((tier) => {
+									const marks = SPONSORS.filter(
+										(sponsor) => sponsor.tier === tier.tier,
+									);
+									if (marks.length === 0) return null;
+									return (
+										<div
+											key={tier.tier}
+											className="grid gap-px md:grid-cols-[12rem_1fr]"
+										>
+											{/* Rail: tier name, top-aligned like a table's row header. */}
+											<div className="bg-white px-4 py-3 md:px-5 md:py-5 dark:bg-zinc-950">
+												<p className={text.micro}>{tier.label}</p>
+											</div>
+											<div className={`grid gap-px ${tier.cols}`}>
+												{marks.map((sponsor) => (
+													<SponsorCell
+														key={sponsor.name}
+														sponsor={sponsor}
+														tier={tier}
+													/>
+												))}
+											</div>
 										</div>
-										{marks.map((sponsor) => (
-											<SponsorTile
-												key={sponsor.name}
-												sponsor={sponsor}
-												tier={tier}
-											/>
-										))}
-									</div>
-								);
-							}
-
-							return (
-								<div key={tier.tier} className="mt-10">
-									<p className={text.eyebrow}>
-										{"// "}
-										{tier.label}
-									</p>
-									<div className={`mt-4 grid gap-4 ${tier.cols}`}>
-										{marks.map((sponsor) => (
-											<SponsorTile
-												key={sponsor.name}
-												sponsor={sponsor}
-												tier={tier}
-											/>
-										))}
-									</div>
-								</div>
-							);
-						})}
-
-						<OpenSponsorSlot />
+									);
+								})}
+							</div>
+						</div>
 					</div>
 				</section>
 
