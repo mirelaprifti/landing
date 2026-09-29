@@ -1001,7 +1001,7 @@ export function EnterprisePage() {
 				<Section
 					id="security"
 					eyebrow="Security"
-					title="Security and project stewardship"
+					title="Security and open source"
 					subtitle="Report issues privately and audit everything in the open."
 				>
 					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
