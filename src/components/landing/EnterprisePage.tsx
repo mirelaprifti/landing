@@ -790,7 +790,7 @@ export function EnterprisePage() {
 						))}
 					</div>
 
-					<p className={`${text.micro} mt-3`}>
+					<p className={`${text.micro} mt-3 text-right`}>
 						Last updated · {POLICY_UPDATED}
 					</p>
 				</Section>
