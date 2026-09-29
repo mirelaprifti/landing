@@ -354,7 +354,6 @@ type ReleaseRow = {
 	line: string;
 	status: { label: string; tone: "active" | "maintenance" };
 	stable: ReactNode;
-	supportedUntil: ReactNode;
 	upgrade: { label: string; href: string };
 };
 
@@ -363,7 +362,6 @@ const RELEASES: ReleaseRow[] = [
 		line: "4.x",
 		status: { label: "Current, LTS", tone: "active" },
 		stable: "Oct 2026",
-		supportedUntil: <Tbd />,
 		upgrade: {
 			label: "Migrating from 3.x",
 			href: "https://effect.website/blog/releases/effect/40-rc/",
@@ -373,7 +371,6 @@ const RELEASES: ReleaseRow[] = [
 		line: "3.x",
 		status: { label: "Maintenance", tone: "maintenance" },
 		stable: "Apr 2024",
-		supportedUntil: <Tbd />,
 		upgrade: {
 			label: "Changelog",
 			href: "https://github.com/Effect-TS/effect/releases",
@@ -385,7 +382,6 @@ const RELEASE_COLUMNS = [
 	"Release",
 	"Status",
 	"Stable since",
-	"Supported until",
 	"Upgrade guide",
 ] as const;
 
@@ -712,9 +708,6 @@ export function EnterprisePage() {
 										<td className="px-4 py-4 text-zinc-900 dark:text-zinc-200">
 											{row.stable}
 										</td>
-										<td className="px-4 py-4 text-zinc-900 dark:text-zinc-200">
-											{row.supportedUntil}
-										</td>
 										<td className="px-4 py-4">
 											<Link
 												href={row.upgrade.href}
@@ -746,22 +739,19 @@ export function EnterprisePage() {
 										<StatusPill status={row.status} />
 									</dd>
 								</div>
-								{(
-									[
-										["Stable since", row.stable],
-										["Supported until", row.supportedUntil],
-									] as const
-								).map(([label, value]) => (
-									<div
-										key={label}
-										className="flex items-center justify-between gap-4 px-4 py-3 text-sm"
-									>
-										<dt className={text.micro}>{label}</dt>
-										<dd className="text-right text-zinc-900 dark:text-zinc-200">
-											{value}
-										</dd>
-									</div>
-								))}
+								{([["Stable since", row.stable]] as const).map(
+									([label, value]) => (
+										<div
+											key={label}
+											className="flex items-center justify-between gap-4 px-4 py-3 text-sm"
+										>
+											<dt className={text.micro}>{label}</dt>
+											<dd className="text-right text-zinc-900 dark:text-zinc-200">
+												{value}
+											</dd>
+										</div>
+									),
+								)}
 								<div className="px-4 py-3">
 									<Link
 										href={row.upgrade.href}
