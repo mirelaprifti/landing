@@ -1129,7 +1129,7 @@ export function EnterprisePage() {
 						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
 							<h3 className={text.cardTitle}>Join the community</h3>
 							<p className={`${text.cardBody} text-pretty`}>
-								Learning Effect or looking for help? Everyone is welcome.
+								Everyone is welcome.
 							</p>
 							<div className="mt-6 flex flex-col items-start gap-3">
 								<Link href={DISCORD_URL} variant="subtle" className={routeLink}>
