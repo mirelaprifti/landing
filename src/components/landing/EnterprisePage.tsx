@@ -228,13 +228,13 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 	);
 }
 
-/** Integration-style project card — app-icon tile with a faint brand glow. */
+/** Integration-style project card — app-icon tile with a faint brand glow. Static: no hover. */
 function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 	return (
-		<article className="group relative flex flex-col overflow-hidden border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+		<article className="relative flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+				className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full opacity-60 blur-3xl"
 				style={{
 					background: `radial-gradient(circle, rgba(${project.glow}, 0.14), transparent 70%)`,
 				}}
@@ -269,10 +269,7 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 					))}
 				</ul>
 			</div>
-			<footer className="relative flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 px-6 py-4 md:px-8 dark:border-zinc-800">
-				<span className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
-					Maintained by <Tbd />
-				</span>
+			<footer className="relative flex flex-wrap items-center gap-4 border-t border-zinc-200 px-6 py-4 md:px-8 dark:border-zinc-800">
 				<span className="flex flex-wrap gap-x-6 gap-y-2">
 					{project.links.map((l) => (
 						<Link
