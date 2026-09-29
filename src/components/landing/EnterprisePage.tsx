@@ -150,9 +150,10 @@ function CopyEmail() {
 function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 	return (
 		<a
-			href={story.talk?.href}
-			target="_blank"
-			rel="noopener noreferrer"
+			href={story.href}
+			{...(story.href.startsWith("http")
+				? { target: "_blank", rel: "noopener noreferrer" }
+				: {})}
 			className="group flex h-full flex-col bg-zinc-50 p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:bg-zinc-950 dark:hover:bg-zinc-900/80"
 		>
 			<span className="flex items-start justify-between gap-4">
@@ -422,6 +423,7 @@ const PRODUCTION = [
 		logoClass: "max-h-7",
 		useCase: "Migrating a large TypeScript codebase to Effect",
 		talk: talk("opencode"),
+		href: talk("opencode")?.href ?? "#",
 	},
 	{
 		company: "MasterClass",
@@ -429,6 +431,7 @@ const PRODUCTION = [
 		logoClass: "max-h-6",
 		useCase: "Real-time voice AI orchestration",
 		talk: talk("MasterClass"),
+		href: talk("MasterClass")?.href ?? "#",
 	},
 	{
 		company: "OpenRouter",
@@ -438,6 +441,14 @@ const PRODUCTION = [
 		logoClass: "h-6",
 		useCase: "Internal tooling and infrastructure",
 		talk: talk("OpenRouter"),
+		href: talk("OpenRouter")?.href ?? "#",
+	},
+	{
+		company: "Warp",
+		logo: getAssetPath("/assets/images/warp-logo-white.svg"),
+		logoClass: "max-h-6",
+		useCase: "Reliable payment and payroll systems",
+		href: getAssetPath("/podcast/episodes/reliable-payroll-systems-warp"),
 	},
 ];
 
@@ -944,7 +955,7 @@ export function EnterprisePage() {
 							<Icon name="arrow-up-right" className="text-xs" />
 						</Link>
 					</div>
-					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 						{PRODUCTION.map((story) => (
 							<li key={story.company}>
 								<StoryCard story={story} />
