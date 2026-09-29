@@ -3,7 +3,7 @@ import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
-import { FAQList } from "./FAQList";
+import { FAQSection, faqCode } from "./FAQSection";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { featuredCases } from "./TestimonialsSection";
@@ -108,36 +108,40 @@ function Section({
 	);
 }
 
-function CopyEmail() {
+/** The email address as a panel, styled like the homepage install command. */
+function EmailPanel() {
 	const [copied, setCopied] = useState(false);
 	return (
-		<div className="flex flex-wrap items-center gap-3">
-			<a
-				href={`mailto:${CONTACT_EMAIL}`}
-				className="font-mono text-base text-zinc-900 underline decoration-zinc-300 underline-offset-4 duration-200 hover:decoration-transparent dark:text-zinc-200 dark:decoration-zinc-400"
-			>
-				{CONTACT_EMAIL}
-			</a>
-			<Button
-				variant="ghost"
-				size="sm"
-				onClick={async () => {
-					try {
-						await navigator.clipboard.writeText(CONTACT_EMAIL);
-						setCopied(true);
-						setTimeout(() => setCopied(false), 1500);
-					} catch {
-						// noop
-					}
-				}}
-				aria-label={copied ? "Email copied" : "Copy email address"}
-			>
-				<Icon
-					name={copied ? "circle-check" : "clipboard-list"}
-					className="text-sm"
-				/>
-				{copied ? "Copied" : "Copy"}
-			</Button>
+		<div className="rounded-md bg-zinc-100/50 p-1 ring-1 ring-zinc-300 ring-inset dark:bg-zinc-900/50 dark:ring-zinc-700">
+			<div className="flex min-h-11 w-full items-center gap-3 px-4 py-1 font-mono text-sm">
+				<span className="text-zinc-400 dark:text-zinc-500">@</span>
+				<a
+					href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+					className="min-w-0 flex-1 truncate text-left text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+				>
+					{CONTACT_EMAIL}
+				</a>
+				<button
+					type="button"
+					onClick={async () => {
+						try {
+							await navigator.clipboard.writeText(CONTACT_EMAIL);
+							setCopied(true);
+							setTimeout(() => setCopied(false), 1500);
+						} catch {
+							// noop
+						}
+					}}
+					aria-label={copied ? "Email copied" : "Copy email address"}
+					className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
+				>
+					<Icon
+						name={copied ? "circle-check" : "clipboard-list"}
+						className="text-sm"
+					/>
+					{copied ? "Copied" : "Copy"}
+				</button>
+			</div>
 		</div>
 	);
 }
@@ -657,8 +661,9 @@ const FAQS = [
 		answer: (
 			<p>
 				Stable modules follow semantic versioning: breaking changes only arrive
-				in a new major version. Modules under <code>effect/unstable/*</code> can
-				change in minor releases until they graduate. See the{" "}
+				in a new major version. Modules under{" "}
+				<code className={faqCode}>effect/unstable/*</code> can change in minor
+				releases until they graduate. See the{" "}
 				<a href="#releases" className="underline underline-offset-4">
 					release policy
 				</a>
@@ -1074,79 +1079,85 @@ export function EnterprisePage() {
 					</div>
 				</Section>
 
-				{/* 5. FAQ */}
-				<section
+				{/* 5. FAQ — the homepage FAQ section with enterprise questions */}
+				<FAQSection
 					id="faq"
 					className="scroll-mt-16 border-t border-zinc-200 dark:border-zinc-800"
-				>
-					<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-12 px-4 py-24 md:pt-40 lg:grid-cols-2">
-						<div>
-							<p className={text.eyebrow}>// FAQ</p>
-							<h2 className={text.sectionTitle}>
-								Questions about adopting Effect
-							</h2>
-							<p className={`${text.subtitle} max-w-md`}>
-								Something we haven't covered? Ask us directly.
-							</p>
-							<Button href="#contact" variant="secondary" className="mt-6">
-								Talk to the Effect team
-							</Button>
-						</div>
-						<FAQList items={FAQS} />
-					</div>
-				</section>
+					title="Adopting Effect"
+					subtitle="Something we haven't covered? Ask us directly."
+					cta={
+						<Button
+							href="#contact"
+							variant="secondary"
+							size="md"
+							className="mt-6"
+						>
+							Talk to the Effect team
+						</Button>
+					}
+					items={FAQS}
+				/>
 
-				{/* 6. Contact */}
-				<Section
+				{/* 6. Contact + ways to participate — the closing band, matching the homepage CTA */}
+				<section
 					id="contact"
-					eyebrow="Get in touch"
-					title="Start a conversation"
-					subtitle="Tell us what your team is building. You don't need to know which service you want."
+					className="relative scroll-mt-16 overflow-hidden border-t border-zinc-200 dark:border-zinc-800"
 				>
-					<div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-						{/* Company contact */}
-						<div className="border border-zinc-300 bg-white p-6 md:p-8 lg:col-span-7 dark:border-zinc-700 dark:bg-zinc-900/50">
-							<p className={text.micro}>For companies</p>
-							<h3 className={`${text.cardTitle} mt-2`}>
-								Email the Effect team
-							</h3>
-							<div className="mt-6">
-								<CopyEmail />
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0"
+						style={{
+							backgroundImage: `
+								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
+							`,
+							backgroundSize: "196.6px 180px",
+							backgroundPosition: "calc(50% + 97px) 0",
+						}}
+					/>
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0"
+						style={{
+							background:
+								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 70%, var(--page-fade) 100%)",
+						}}
+					/>
+
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
+						<div className="flex flex-col items-center text-center">
+							<p className={text.eyebrow}>// Get in touch</p>
+							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-balance text-zinc-900 md:text-4xl dark:text-white">
+								Start a conversation
+							</h2>
+							<p className={`${text.subtitle} max-w-2xl text-pretty`}>
+								Tell us what your team is building. No need to pick a service
+								first.
+							</p>
+
+							<div className="mt-8 w-full max-w-md">
+								<EmailPanel />
 							</div>
 
-							<dl className="mt-8 divide-y divide-zinc-200 border-t border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
-								<div className="flex flex-wrap items-center justify-between gap-3 py-4">
-									<dt className={text.smallHeading}>On Discord</dt>
-									<dd>
-										<Tbd>Named contact</Tbd>
-									</dd>
-								</div>
-								<div className="flex flex-wrap items-center justify-between gap-3 py-4">
-									<dt className={text.smallHeading}>On X</dt>
-									<dd>
-										<Link href={X_URL} variant="subtle" className={subtleLink}>
-											@EffectTS_
-											<Icon name="arrow-up-right" className="text-xs" />
-										</Link>
-									</dd>
-								</div>
-							</dl>
-						</div>
-
-						{/* Community */}
-						<div className="flex flex-col border border-zinc-200 p-6 md:p-8 lg:col-span-5 dark:border-zinc-800">
-							<p className={text.micro}>For everyone</p>
-							<h3 className={`${text.cardTitle} mt-2`}>
-								Join the Effect community
-							</h3>
-							<p className={text.cardBody}>
-								Learning Effect or looking for help? Everyone is welcome.
-							</p>
-							<div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
-								<Button href={DISCORD_URL} variant="secondary">
-									<i className="ri-discord-fill text-base" />
+							<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+								<Button
+									href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+									variant="primary"
+									size="lg"
+								>
+									Email the Effect team
+								</Button>
+								<Button href={DISCORD_URL} variant="secondary" size="lg">
+									<i className="ri-discord-fill text-lg" />
 									Join Discord
 								</Button>
+							</div>
+
+							<p className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-500 dark:text-zinc-400">
+								<Link href={X_URL} variant="subtle" className={subtleLink}>
+									@EffectTS_ on X
+									<Icon name="arrow-up-right" className="text-xs" />
+								</Link>
 								<Link
 									href={COMMUNITY_HUB}
 									variant="subtle"
@@ -1155,45 +1166,48 @@ export function EnterprisePage() {
 									Community Hub
 									<Icon name="arrow-right" className="text-xs" />
 								</Link>
-							</div>
+							</p>
 						</div>
-					</div>
-				</Section>
 
-				{/* 7. Hiring & sponsorship */}
-				<section className="border-t border-zinc-200 dark:border-zinc-800">
-					<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-6 px-4 py-24 md:grid-cols-2">
-						{[
-							{
-								title: "Build your team",
-								body: "Find engineers on the Effect job board.",
-								link: {
-									label: "Browse the job board",
+						{/* More ways to work with Effect */}
+						<ul className="mx-auto mt-24 grid max-w-4xl grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+							{[
+								{
+									icon: "clipboard-list" as const,
+									title: "Build your team",
+									body: "Find engineers on the Effect job board.",
 									href: getAssetPath("/effect-jobs"),
 								},
-							},
-							{
-								title: "Support Effect's development",
-								body: "Sponsor ongoing development and maintenance.",
-								link: {
-									label: "Ask about sponsorship",
-									href: `mailto:${CONTACT_EMAIL}`,
+								{
+									icon: "heart-handshake" as const,
+									title: "Support Effect's development",
+									body: "Sponsor development and maintenance.",
+									href: `mailto:${CONTACT_EMAIL}?subject=Sponsorship`,
 								},
-							},
-						].map((c) => (
-							<div key={c.title}>
-								<h3 className={text.cardTitle}>{c.title}</h3>
-								<p className={text.cardBody}>{c.body}</p>
-								<Link
-									href={c.link.href}
-									variant="subtle"
-									className={`${subtleLink} mt-4`}
-								>
-									{c.link.label}
-									<Icon name="arrow-right" className="text-xs" />
-								</Link>
-							</div>
-						))}
+							].map((c) => (
+								<li key={c.title} className="bg-zinc-50 dark:bg-zinc-950">
+									<a
+										href={c.href}
+										className="group flex h-full items-start gap-3 px-6 py-5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
+									>
+										<Icon
+											name={c.icon}
+											className="mt-0.5 shrink-0 text-xl text-zinc-500 dark:text-zinc-400"
+										/>
+										<span className="flex min-w-0 flex-1 flex-col">
+											<span className={text.smallHeading}>{c.title}</span>
+											<span className={`${text.cardBody} text-pretty`}>
+												{c.body}
+											</span>
+										</span>
+										<Icon
+											name="arrow-right"
+											className="mt-0.5 shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+										/>
+									</a>
+								</li>
+							))}
+						</ul>
 					</div>
 				</section>
 			</main>

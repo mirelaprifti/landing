@@ -1,8 +1,35 @@
+import type { ReactNode } from "react";
 import { Button, Link } from "@/components/ui";
-import { FAQList } from "./FAQList";
+import { type FAQItem, FAQList } from "./FAQList";
 
-export function FAQSection() {
-	const faqs = [
+/** Inline code inside an FAQ answer. */
+export const faqCode =
+	"rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200";
+
+/**
+ * The site's FAQ section. Defaults to the homepage content; other pages
+ * pass their own heading, CTA, and questions so the design stays identical.
+ */
+export function FAQSection({
+	id,
+	className,
+	title = "Questions we get asked a lot",
+	subtitle = (
+		<>
+			Can't find what you're looking for? Our community is always happy to help.
+		</>
+	),
+	cta,
+	items,
+}: {
+	id?: string;
+	className?: string;
+	title?: string;
+	subtitle?: ReactNode;
+	cta?: ReactNode;
+	items?: FAQItem[];
+} = {}) {
+	const defaultFaqs = [
 		{
 			question: "Why is the syntax different from typical TypeScript?",
 			answer: (
@@ -157,7 +184,10 @@ export function FAQSection() {
 	];
 
 	return (
-		<section className="relative w-full py-24 md:pt-40 md:pb-24">
+		<section
+			id={id}
+			className={`relative w-full py-24 md:pt-40 md:pb-24 ${className ?? ""}`}
+		>
 			<div className="mx-auto w-full max-w-[73.75rem]">
 				{/* Two-column layout */}
 				<div className="flex flex-col lg:flex-row">
@@ -168,30 +198,30 @@ export function FAQSection() {
 								// FAQ
 							</p>
 							<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
-								Questions we get asked a lot
+								{title}
 							</h2>
 
 							<p className="mt-5 max-w-lg text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-								Can't find what you're looking for? Our community is always
-								happy to help.
+								{subtitle}
 							</p>
 
-							{/* Discord CTA */}
-							<Button
-								href="https://discord.gg/effect-ts"
-								variant="secondary"
-								size="md"
-								className="mt-6"
-							>
-								<i className="ri-discord-fill text-base" />
-								<span>Ask on Discord</span>
-							</Button>
+							{cta ?? (
+								<Button
+									href="https://discord.gg/effect-ts"
+									variant="secondary"
+									size="md"
+									className="mt-6"
+								>
+									<i className="ri-discord-fill text-base" />
+									<span>Ask on Discord</span>
+								</Button>
+							)}
 						</div>
 					</div>
 
 					{/* Right column - FAQ items (50%) */}
 					<div className="w-full lg:w-1/2">
-						<FAQList items={faqs} className="pt-27 pr-4 pl-3" />
+						<FAQList items={items ?? defaultFaqs} className="pt-27 pr-4 pl-3" />
 					</div>
 				</div>
 			</div>
