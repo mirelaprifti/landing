@@ -84,12 +84,15 @@ function Section({
 	eyebrow,
 	title,
 	subtitle,
+	action,
 	children,
 }: {
 	id: string;
 	eyebrow: string;
 	title: string;
 	subtitle?: ReactNode;
+	/** Optional section-level action, aligned right of the title on desktop. */
+	action?: ReactNode;
 	children: ReactNode;
 }) {
 	return (
@@ -98,9 +101,16 @@ function Section({
 			className="scroll-mt-16 border-t border-zinc-200 dark:border-zinc-800"
 		>
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-				<p className={text.eyebrow}>// {eyebrow}</p>
-				<h2 className={text.sectionTitle}>{title}</h2>
-				{subtitle && <p className={`${text.subtitle} max-w-2xl`}>{subtitle}</p>}
+				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+					<div>
+						<p className={text.eyebrow}>// {eyebrow}</p>
+						<h2 className={text.sectionTitle}>{title}</h2>
+						{subtitle && (
+							<p className={`${text.subtitle} max-w-2xl`}>{subtitle}</p>
+						)}
+					</div>
+					{action && <div className="shrink-0">{action}</div>}
+				</div>
 				<div className="mt-12">{children}</div>
 			</div>
 		</section>
@@ -429,12 +439,14 @@ const PRODUCTION = [
 		href: talk("opencode")?.href ?? "#",
 	},
 	{
-		company: "MasterClass",
-		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
-		logoClass: "max-h-5",
-		useCase: "Real-time voice AI orchestration",
-		talk: talk("MasterClass"),
-		href: talk("MasterClass")?.href ?? "#",
+		company: "OpenRouter",
+		logo: getAssetPath("/assets/images/openrouter-v2-on-dark.svg"),
+		/** Brand-colored mark: separate assets per theme instead of inverting. */
+		logoOnLight: getAssetPath("/assets/images/openrouter-v2-on-light.svg"),
+		logoClass: "h-6",
+		useCase: "Internal tooling and infrastructure",
+		talk: talk("OpenRouter"),
+		href: talk("OpenRouter")?.href ?? "#",
 	},
 	{
 		company: "Warp",
@@ -444,14 +456,12 @@ const PRODUCTION = [
 		href: getAssetPath("/podcast/episodes/reliable-payroll-systems-warp"),
 	},
 	{
-		company: "OpenRouter",
-		logo: getAssetPath("/assets/images/openrouter-v2-on-dark.svg"),
-		/** Brand-colored mark: separate assets per theme instead of inverting. */
-		logoOnLight: getAssetPath("/assets/images/openrouter-v2-on-light.svg"),
-		logoClass: "h-6",
-		useCase: "Internal tooling and infrastructure",
-		talk: talk("OpenRouter"),
-		href: talk("OpenRouter")?.href ?? "#",
+		company: "MasterClass",
+		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
+		logoClass: "max-h-5",
+		useCase: "Real-time voice AI orchestration",
+		talk: talk("MasterClass"),
+		href: talk("MasterClass")?.href ?? "#",
 	},
 ];
 
@@ -681,6 +691,15 @@ export function EnterprisePage() {
 
 	return (
 		<div className="relative min-h-screen bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
+			{/* Dithered background overlay — same texture as every page (dark mode only) */}
+			<div
+				className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.03] dark:block"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E")`,
+					backgroundSize: "4px 4px",
+				}}
+			/>
+
 			<a
 				href="#main-content"
 				className="absolute -left-[9999px] z-[999] rounded-br-lg bg-zinc-100 px-6 py-4 font-semibold text-zinc-900 no-underline focus:top-0 focus:left-0 dark:bg-zinc-800 dark:text-white"
@@ -695,6 +714,22 @@ export function EnterprisePage() {
 				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
 					<div className="absolute top-0 bottom-0 left-0 w-px bg-zinc-200 dark:bg-zinc-800" />
 					<div className="absolute top-0 right-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+				</div>
+			</div>
+
+			{/* Center vertical line - dashed */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800"
+						style={{
+							width: "1px",
+							maskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+							WebkitMaskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
 				</div>
 			</div>
 
@@ -956,6 +991,14 @@ export function EnterprisePage() {
 					id="support"
 					eyebrow="Support"
 					title="Support for your company"
+					action={
+						<Button
+							href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+							variant="secondary"
+						>
+							Talk to the Effect team
+						</Button>
+					}
 				>
 					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
 						{SUPPORT_OPTIONS.map((o) => (
@@ -981,15 +1024,6 @@ export function EnterprisePage() {
 					<div className="mt-6">
 						<SupportFlow />
 					</div>
-
-					<Button
-						href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
-						variant="primary"
-						size="lg"
-						className="mt-12"
-					>
-						Talk to the Effect team
-					</Button>
 				</Section>
 
 				{/* 3. Security */}
