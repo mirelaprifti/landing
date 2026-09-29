@@ -290,17 +290,41 @@ const PRODUCTION = [
 	},
 ];
 
-/** Descriptions from each project's own docs, checked Sep 25, 2026. */
+/**
+ * Flagship ecosystem projects. Descriptions and code come from each
+ * project's own docs (checked Sep 2026) — trimmed, never invented.
+ */
 const ECOSYSTEM: {
 	name: string;
-	category: string;
-	body: string;
+	kind: string;
+	tagline: string;
+	logo: { light: string; dark: string; className: string };
+	file: string;
+	code: string;
 	links: { label: string; href: string }[];
 }[] = [
 	{
 		name: "Alchemy",
-		category: "Infrastructure tooling",
-		body: "Infrastructure as Code built with Effect. Define cloud resources and application behavior in the same TypeScript program.",
+		kind: "Infrastructure as Code",
+		tagline:
+			"Define cloud resources and application behavior in the same TypeScript program.",
+		logo: {
+			light: getAssetPath("/assets/ecosystem/alchemy-mark-dark.svg"),
+			dark: getAssetPath("/assets/ecosystem/alchemy-mark-light.svg"),
+			className: "h-7 w-7",
+		},
+		file: "alchemy.run.ts",
+		code: `export default Alchemy.Stack(
+  "MyApp",
+  {
+    providers: Cloudflare.providers(),
+    state: Cloudflare.state(),
+  },
+  Effect.gen(function* () {
+    const bucket = yield* Cloudflare.R2.Bucket("Bucket")
+    return { bucketName: bucket.bucketName }
+  }),
+)`,
 		links: [
 			{ label: "Get started", href: "https://alchemy.run/getting-started" },
 			{ label: "Source", href: "https://github.com/alchemy-run/alchemy" },
@@ -308,10 +332,30 @@ const ECOSYSTEM: {
 	},
 	{
 		name: "Foldkit",
-		category: "Frontend",
-		body: "A TypeScript frontend framework built on Effect, using The Elm Architecture.",
+		kind: "Frontend framework",
+		tagline:
+			"The Elm Architecture on Effect: one Schema-defined Model, explicit effects, typed routing.",
+		logo: {
+			light: getAssetPath("/assets/ecosystem/foldkit-logo-dark.svg"),
+			dark: getAssetPath("/assets/ecosystem/foldkit-logo.svg"),
+			className: "h-6 w-auto",
+		},
+		file: "main.ts",
+		code: `export const Model = Schema.Struct({ count: Schema.Number })
+
+export const update = (model: Model, message: Message) =>
+  Message.match(message, {
+    ClickedIncrement: () => ({
+      model: modifyFields(model, { count: count => count + 1 }),
+    }),
+  })
+
+export const view = (model: Model, h: HtmlBuilder<Message>) => ({
+  title: \`Counter: \${model.count}\`,
+  body: h.button([h.OnClick(Message.ClickedIncrement())], ["+"]),
+})`,
 		links: [
-			{ label: "Get started", href: "https://foldkit.dev/" },
+			{ label: "Get started", href: "https://foldkit.dev/get-started" },
 			{ label: "Source", href: "https://github.com/foldkit/foldkit" },
 		],
 	},
@@ -806,58 +850,103 @@ export function EnterprisePage() {
 					</ul>
 				</Section>
 
-				{/* Ecosystem */}
+				{/* Ecosystem — flagship projects standing on Effect */}
 				<Section
 					id="ecosystem"
 					eyebrow="Ecosystem"
-					title="Projects built with Effect"
+					title="Built on Effect"
+					subtitle="Infrastructure and frameworks that take Effect beyond the library."
 				>
-					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+					<div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
 						{ECOSYSTEM.map((e) => (
-							<li
+							<article
 								key={e.name}
-								className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950"
+								className="flex flex-col border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
 							>
-								<span className={`${badge} self-start`}>{e.category}</span>
-								<h3 className={`${text.cardTitle} mt-6`}>{e.name}</h3>
-								<p className={text.cardBody}>{e.body}</p>
-								<p className="mt-4 flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
-									Maintained by <Tbd />
-								</p>
-								<div className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6">
-									{e.links.map((l) => (
-										<Link
-											key={l.label}
-											href={l.href}
-											variant="subtle"
-											className={subtleLink}
-										>
-											{l.label}
-											<Icon name="arrow-up-right" className="text-xs" />
-										</Link>
-									))}
-								</div>
-							</li>
-						))}
+								<header className="p-6 md:p-8">
+									<div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+										<span className="flex items-center gap-3">
+											<ThemedLogo
+												light={e.logo.light}
+												dark={e.logo.dark}
+												alt={e.name === "Foldkit" ? "Foldkit" : ""}
+												className={e.logo.className}
+											/>
+											{e.name === "Alchemy" && (
+												<span className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+													Alchemy
+												</span>
+											)}
+										</span>
+										<span className={badge}>{e.kind}</span>
+									</div>
+									<p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+										{e.tagline}
+									</p>
+								</header>
 
-						{/* Open slot: invites maintainers in */}
-						<li className="bg-zinc-50 dark:bg-zinc-950">
-							<a
-								href={`mailto:${CONTACT_EMAIL}?subject=Ecosystem%20project`}
-								className="group flex h-full flex-col justify-center p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:hover:bg-zinc-900/80"
-							>
-								<span className="flex h-10 w-10 items-center justify-center border border-dashed border-zinc-400 text-xl text-zinc-500 transition-colors group-hover:border-zinc-900 group-hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:group-hover:border-white dark:group-hover:text-white">
-									+
-								</span>
-								<span className={`${text.cardTitle} mt-6`}>
-									Share your project
-								</span>
-								<span className={text.cardBody}>
-									Building on Effect? Tell us about it.
-								</span>
-							</a>
-						</li>
-					</ul>
+								<div className="border-y border-zinc-800 bg-zinc-950">
+									<p className="border-b border-zinc-800 px-6 py-2.5 font-mono text-xs text-zinc-500 md:px-8">
+										{e.file}
+									</p>
+									<pre className="overflow-x-auto px-6 py-5 font-mono text-[13px] leading-[1.8] text-zinc-300 md:px-8">
+										<code>{e.code}</code>
+									</pre>
+								</div>
+
+								<footer className="mt-auto flex flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-8">
+									<span className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+										Maintained by <Tbd />
+									</span>
+									<span className="flex flex-wrap gap-x-6 gap-y-2">
+										{e.links.map((l) => (
+											<Link
+												key={l.label}
+												href={l.href}
+												variant="subtle"
+												className={subtleLink}
+											>
+												{l.label}
+												<Icon name="arrow-up-right" className="text-xs" />
+											</Link>
+										))}
+									</span>
+								</footer>
+							</article>
+						))}
+					</div>
+
+					{/* Both stand on the same foundation */}
+					<div className="hidden grid-cols-2 gap-6 lg:grid" aria-hidden="true">
+						<span className="mx-auto h-8 w-px bg-zinc-300 dark:bg-zinc-700" />
+						<span className="mx-auto h-8 w-px bg-zinc-300 dark:bg-zinc-700" />
+					</div>
+					<div className="mt-6 flex items-center justify-center gap-3 border border-zinc-900 bg-white px-6 py-4 lg:mt-0 dark:border-zinc-400 dark:bg-zinc-900/60">
+						<ThemedLogo
+							light={LOGO.effectMark}
+							dark={LOGO.effectMarkDark}
+							alt=""
+							className="h-5 w-5"
+						/>
+						<span className="text-base font-semibold text-zinc-900 dark:text-white">
+							Effect
+						</span>
+					</div>
+
+					<div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
+						<p className="text-sm text-zinc-600 dark:text-zinc-400">
+							Building on Effect? Recognition as an ecosystem project can be the
+							start of a deeper collaboration.
+						</p>
+						<Link
+							href={`mailto:${CONTACT_EMAIL}?subject=Ecosystem%20project`}
+							variant="subtle"
+							className={subtleLink}
+						>
+							Share your project
+							<Icon name="arrow-right" className="text-xs" />
+						</Link>
+					</div>
 				</Section>
 
 				{/* 2. Support */}
