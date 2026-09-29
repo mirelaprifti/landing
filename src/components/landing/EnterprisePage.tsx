@@ -34,7 +34,7 @@ const CONTACT_EMAIL = "contact@effectful.co";
 const DISCORD_URL = "https://discord.gg/effect-ts";
 const X_URL = "https://x.com/EffectTS_";
 const COMMUNITY_HUB = getAssetPath("/community-hub");
-const POLICY_UPDATED = "Sep 25, 2026";
+const POLICY_UPDATED = "Oct 1, 2026";
 
 const LOGO = {
 	effectMark: getAssetPath(
@@ -354,7 +354,7 @@ type ReleaseRow = {
 	line: string;
 	status: { label: string; tone: "active" | "maintenance" };
 	stable: ReactNode;
-	maintained: { active: ReactNode; security: ReactNode };
+	supportedUntil: ReactNode;
 	upgrade: { label: string; href: string };
 };
 
@@ -362,8 +362,8 @@ const RELEASES: ReleaseRow[] = [
 	{
 		line: "4.x",
 		status: { label: "Current, LTS", tone: "active" },
-		stable: "Oct 2026",
-		maintained: { active: <Tbd />, security: <Tbd /> },
+		stable: "Oct 1, 2026",
+		supportedUntil: <Tbd />,
 		upgrade: {
 			label: "Migrating from 3.x",
 			href: "https://effect.website/blog/releases/effect/40-rc/",
@@ -373,7 +373,7 @@ const RELEASES: ReleaseRow[] = [
 		line: "3.x",
 		status: { label: "Maintenance", tone: "maintenance" },
 		stable: "Apr 2024",
-		maintained: { active: <Tbd />, security: <Tbd /> },
+		supportedUntil: <Tbd />,
 		upgrade: {
 			label: "Changelog",
 			href: "https://github.com/Effect-TS/effect/releases",
@@ -385,21 +385,9 @@ const RELEASE_COLUMNS = [
 	"Release",
 	"Status",
 	"Stable since",
-	"Maintained through",
+	"Supported until",
 	"Upgrade guide",
 ] as const;
-
-/** Active and security end dates, stacked in one cell. */
-function MaintenanceDates({ dates }: { dates: ReleaseRow["maintained"] }) {
-	return (
-		<dl className="grid grid-cols-[auto_auto] items-center justify-start gap-x-3 gap-y-1.5 text-sm">
-			<dt className="text-zinc-500 dark:text-zinc-400">Active</dt>
-			<dd className="text-zinc-900 dark:text-zinc-200">{dates.active}</dd>
-			<dt className="text-zinc-500 dark:text-zinc-400">Security</dt>
-			<dd className="text-zinc-900 dark:text-zinc-200">{dates.security}</dd>
-		</dl>
-	);
-}
 
 function StatusPill({ status }: { status: ReleaseRow["status"] }) {
 	return (
@@ -724,8 +712,8 @@ export function EnterprisePage() {
 										<td className="px-4 py-4 text-zinc-900 dark:text-zinc-200">
 											{row.stable}
 										</td>
-										<td className="px-4 py-4">
-											<MaintenanceDates dates={row.maintained} />
+										<td className="px-4 py-4 text-zinc-900 dark:text-zinc-200">
+											{row.supportedUntil}
 										</td>
 										<td className="px-4 py-4">
 											<Link
@@ -761,10 +749,7 @@ export function EnterprisePage() {
 								{(
 									[
 										["Stable since", row.stable],
-										[
-											"Maintained through",
-											<MaintenanceDates dates={row.maintained} />,
-										],
+										["Supported until", row.supportedUntil],
 									] as const
 								).map(([label, value]) => (
 									<div
