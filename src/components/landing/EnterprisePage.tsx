@@ -191,7 +191,7 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 					className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
 				/>
 			</span>
-			<span className={`${text.smallHeading} mt-3`}>{story.useCase}</span>
+			<span className={`${text.cardBody} mt-3`}>{story.useCase}</span>
 		</a>
 	);
 }
