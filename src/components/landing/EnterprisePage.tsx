@@ -154,7 +154,7 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 			{...(story.href.startsWith("http")
 				? { target: "_blank", rel: "noopener noreferrer" }
 				: {})}
-			className="group flex h-full flex-col bg-zinc-50 p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:bg-zinc-950 dark:hover:bg-zinc-900/80"
+			className="group flex h-full flex-col bg-zinc-50 px-6 py-5 transition-colors hover:bg-zinc-100 md:px-8 dark:bg-zinc-950 dark:hover:bg-zinc-900/80"
 		>
 			<span className="flex items-start justify-between gap-4">
 				<span className="flex h-8 items-center">
@@ -178,7 +178,7 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 					className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
 				/>
 			</span>
-			<span className={`${text.smallHeading} mt-8`}>{story.useCase}</span>
+			<span className={`${text.smallHeading} mt-3`}>{story.useCase}</span>
 		</a>
 	);
 }
