@@ -201,34 +201,29 @@ function Fork() {
 	);
 }
 
-/**
- * Customer story card. The talk banner already carries the logo and the
- * speaker, so the caption is only the use case.
- */
+/** Production logo tile — links to the talk; the arrow brightens on hover. */
 function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 	return (
 		<a
 			href={story.talk?.href}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label={`${story.company}: ${story.useCase}`}
-			className="group flex h-full flex-col overflow-hidden border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600"
+			className="group flex h-full flex-col bg-zinc-50 p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:bg-zinc-950 dark:hover:bg-zinc-900/80"
 		>
-			<div className="relative aspect-video overflow-hidden border-b border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
-				{story.talk && (
+			<span className="flex items-start justify-between gap-4">
+				<span className="flex h-8 items-center">
 					<img
-						src={story.talk.thumbnail}
-						alt=""
-						className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+						src={story.logo}
+						alt={story.company}
+						className={`${story.logoClass} w-auto invert dark:invert-0`}
 					/>
-				)}
-				<span className="absolute right-4 bottom-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-zinc-900 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
-					<Icon name="arrow-up-right" className="text-base" />
 				</span>
-			</div>
-			<p className="p-6 text-base font-semibold text-zinc-900 dark:text-white">
-				{story.useCase}
-			</p>
+				<Icon
+					name="arrow-up-right"
+					className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+				/>
+			</span>
+			<span className={`${text.smallHeading} mt-8`}>{story.useCase}</span>
 		</a>
 	);
 }
@@ -360,20 +355,26 @@ const PAGE_QUESTIONS = [
 
 const talk = (alt: string) => featuredCases.find((c) => c.alt === alt);
 
-/** Production stories, shown with their talk banners. */
+/** Production stories — logo tiles linking to each talk. */
 const PRODUCTION = [
 	{
 		company: "OpenCode",
+		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
+		logoClass: "max-h-7",
 		useCase: "Migrating a large TypeScript codebase to Effect",
 		talk: talk("opencode"),
 	},
 	{
 		company: "MasterClass",
+		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
+		logoClass: "max-h-6",
 		useCase: "Real-time voice AI orchestration",
 		talk: talk("MasterClass"),
 	},
 	{
 		company: "OpenRouter",
+		logo: getAssetPath("/assets/images/open-router.svg"),
+		logoClass: "max-h-7",
 		useCase: "Internal tooling and infrastructure",
 		talk: talk("OpenRouter"),
 	},
@@ -882,11 +883,13 @@ export function EnterprisePage() {
 							<Icon name="arrow-up-right" className="text-xs" />
 						</Link>
 					</div>
-					<div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
 						{PRODUCTION.map((story) => (
-							<StoryCard key={story.company} story={story} />
+							<li key={story.company}>
+								<StoryCard story={story} />
+							</li>
 						))}
-					</div>
+					</ul>
 
 					<h3 id="ecosystem" className={`${text.cardTitle} mt-20 scroll-mt-24`}>
 						Ecosystem projects
