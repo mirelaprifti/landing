@@ -179,12 +179,15 @@ export function Footer({
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/adoption-partners")}
+										href={getAssetPath("/partners")}
 										variant="footer"
-										active={activePath?.startsWith("/adoption-partners")}
+										active={
+											activePath?.startsWith("/partners") ||
+											activePath?.startsWith("/adoption-partners")
+										}
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
-										Adoption Partners
+										Partners
 									</Link>
 								</li>
 							</ul>

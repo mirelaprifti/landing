@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { PartnersPage } from "@/components/landing/PartnersPage";
+---
+
+<BaseLayout
+  title="Effect partners"
+  description="The companies that adopt Effect, fund its development and help other teams ship it in production."
+>
+  <PartnersPage client:load />
+</BaseLayout>

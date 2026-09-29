@@ -1,6 +1,5 @@
 ---
-// The adoption-partners index currently redirects to the sole featured
-// partner. Replace with a partner directory page when more partners join.
+// The adoption-partners index now lives in the partners directory.
 const base = import.meta.env.PROD ? "/landing" : "";
-return Astro.redirect(`${base}/adoption-partners/ziverge`);
+return Astro.redirect(`${base}/partners#adoption`);
 ---
