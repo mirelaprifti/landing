@@ -1151,35 +1151,8 @@ export function EnterprisePage() {
 					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 						{/* Companies — the primary route */}
 						<div className="flex flex-col bg-white p-6 md:p-8 lg:col-span-2 dark:bg-zinc-900/60">
-							<p className={text.micro}>For companies</p>
-							<h3 className={`${text.cardTitle} mt-3`}>
-								Talk to the Effect team
-							</h3>
-							<p className={`${text.cardBody} max-w-md text-pretty`}>
-								Tell us what you are building and what your team needs.
-							</p>
-							<ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
-								{[
-									{ icon: "shield-check" as const, label: "Mutual NDA" },
-									{ icon: "life-buoy" as const, label: "SLAs and escalation" },
-									{
-										icon: "heart-handshake" as const,
-										label: "Private channel",
-									},
-								].map((item) => (
-									<li
-										key={item.label}
-										className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300"
-									>
-										<Icon
-											name={item.icon}
-											className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
-										/>
-										{item.label}
-									</li>
-								))}
-							</ul>
-							<div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center">
+							<h3 className={text.cardTitle}>Talk to the Effect team</h3>
+							<div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div className="min-w-0 flex-1">
 									<EmailPanel />
 								</div>
@@ -1195,12 +1168,11 @@ export function EnterprisePage() {
 
 						{/* Community */}
 						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
-							<p className={text.micro}>Community</p>
-							<h3 className={`${text.cardTitle} mt-3`}>Join the community</h3>
+							<h3 className={text.cardTitle}>Join the community</h3>
 							<p className={`${text.cardBody} text-pretty`}>
 								Learning Effect or looking for help? Everyone is welcome.
 							</p>
-							<div className="mt-auto flex flex-col items-start gap-3 pt-8">
+							<div className="mt-6 flex flex-col items-start gap-3">
 								<Link
 									href={DISCORD_URL}
 									variant="subtle"
@@ -1222,12 +1194,8 @@ export function EnterprisePage() {
 
 						{/* Hiring and sponsorship */}
 						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
-							<p className={text.micro}>Ecosystem</p>
-							<h3 className={`${text.cardTitle} mt-3`}>Work with Effect</h3>
-							<p className={`${text.cardBody} text-pretty`}>
-								Hire Effect engineers or support development.
-							</p>
-							<div className="mt-auto flex flex-col items-start gap-3 pt-8">
+							<h3 className={text.cardTitle}>Work with Effect</h3>
+							<div className="mt-6 flex flex-col items-start gap-3">
 								<Link
 									href={getAssetPath("/effect-jobs")}
 									variant="subtle"
