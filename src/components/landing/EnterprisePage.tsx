@@ -437,6 +437,13 @@ const PRODUCTION = [
 		href: talk("MasterClass")?.href ?? "#",
 	},
 	{
+		company: "Warp",
+		logo: getAssetPath("/assets/images/warp-logo-white.svg"),
+		logoClass: "max-h-6",
+		useCase: "Reliable payment and payroll systems",
+		href: getAssetPath("/podcast/episodes/reliable-payroll-systems-warp"),
+	},
+	{
 		company: "OpenRouter",
 		logo: getAssetPath("/assets/images/openrouter-v2-on-dark.svg"),
 		/** Brand-colored mark: separate assets per theme instead of inverting. */
@@ -445,13 +452,6 @@ const PRODUCTION = [
 		useCase: "Internal tooling and infrastructure",
 		talk: talk("OpenRouter"),
 		href: talk("OpenRouter")?.href ?? "#",
-	},
-	{
-		company: "Warp",
-		logo: getAssetPath("/assets/images/warp-logo-white.svg"),
-		logoClass: "max-h-6",
-		useCase: "Reliable payment and payroll systems",
-		href: getAssetPath("/podcast/episodes/reliable-payroll-systems-warp"),
 	},
 ];
 
