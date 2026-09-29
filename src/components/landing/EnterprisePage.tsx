@@ -896,21 +896,6 @@ export function EnterprisePage() {
 							</article>
 						))}
 					</div>
-
-					<div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
-						<p className="text-sm text-zinc-600 dark:text-zinc-400">
-							Building on Effect? Recognition as an ecosystem project can be the
-							start of a deeper collaboration.
-						</p>
-						<Link
-							href={`mailto:${CONTACT_EMAIL}?subject=Ecosystem%20project`}
-							variant="subtle"
-							className={subtleLink}
-						>
-							Share your project
-							<Icon name="arrow-right" className="text-xs" />
-						</Link>
-					</div>
 				</Section>
 
 				{/* 2. Support */}
