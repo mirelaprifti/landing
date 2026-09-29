@@ -795,13 +795,14 @@ export function EnterprisePage() {
 					</p>
 				</Section>
 
-				{/* In production */}
+				{/* Real world: teams in production, then ecosystem projects */}
 				<Section
 					id="production"
-					eyebrow="In production"
-					title="How teams use Effect in production"
+					eyebrow="Adoption"
+					title="Effect in the real world"
 				>
-					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+					<h3 className={text.cardTitle}>In production</h3>
+					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
 						{PRODUCTION.map((p) => (
 							<li key={p.company} className="bg-zinc-50 dark:bg-zinc-950">
 								<a
@@ -830,16 +831,11 @@ export function EnterprisePage() {
 							</li>
 						))}
 					</ul>
-				</Section>
 
-				{/* Ecosystem — flagship projects standing on Effect */}
-				<Section
-					id="ecosystem"
-					eyebrow="Ecosystem"
-					title="Built on Effect"
-					subtitle="Infrastructure and frameworks that take Effect beyond the library."
-				>
-					<div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+					<h3 id="ecosystem" className={`${text.cardTitle} mt-16 scroll-mt-24`}>
+						Ecosystem projects
+					</h3>
+					<div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
 						{ECOSYSTEM.map((e) => (
 							<article
 								key={e.name}
