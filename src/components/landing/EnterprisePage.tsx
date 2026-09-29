@@ -1,3 +1,4 @@
+import { Briefcase } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
@@ -1120,51 +1121,64 @@ export function EnterprisePage() {
 				>
 					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 						{/* Community */}
-						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
-							<h3 className={text.cardTitle}>Join the community</h3>
-							<p className={`${text.cardBody} text-pretty`}>
-								Learning Effect or looking for help? Everyone is welcome.
-							</p>
-							<div className="mt-6 flex flex-col items-start gap-3">
-								<Link
-									href={DISCORD_URL}
-									variant="subtle"
-									className={subtleLink}
-								>
-									Public Discord
-									<Icon name="arrow-up-right" className="text-xs" />
-								</Link>
-								<Link
-									href={COMMUNITY_HUB}
-									variant="subtle"
-									className={subtleLink}
-								>
-									Community Hub
-									<Icon name="arrow-right" className="text-xs" />
-								</Link>
+						<div className="flex items-start gap-3 bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
+							<i
+								aria-hidden="true"
+								className="ri-discord-line mt-0.5 shrink-0 text-xl leading-none text-zinc-500 dark:text-zinc-400"
+							/>
+							<div className="flex min-w-0 flex-col">
+								<h3 className={text.cardTitle}>Join the community</h3>
+								<p className={`${text.cardBody} text-pretty`}>
+									Learning Effect or looking for help? Everyone is welcome.
+								</p>
+								<div className="mt-6 flex flex-col items-start gap-3">
+									<Link
+										href={DISCORD_URL}
+										variant="subtle"
+										className={subtleLink}
+									>
+										Public Discord
+										<Icon name="arrow-up-right" className="text-xs" />
+									</Link>
+									<Link
+										href={COMMUNITY_HUB}
+										variant="subtle"
+										className={subtleLink}
+									>
+										Community Hub
+										<Icon name="arrow-right" className="text-xs" />
+									</Link>
+								</div>
 							</div>
 						</div>
 
 						{/* Hiring and sponsorship */}
-						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
-							<h3 className={text.cardTitle}>Work with Effect</h3>
-							<div className="mt-6 flex flex-col items-start gap-3">
-								<Link
-									href={getAssetPath("/effect-jobs")}
-									variant="subtle"
-									className={subtleLink}
-								>
-									Find engineers
-									<Icon name="arrow-right" className="text-xs" />
-								</Link>
-								<Link
-									href={`mailto:${CONTACT_EMAIL}?subject=Sponsorship`}
-									variant="subtle"
-									className={subtleLink}
-								>
-									Sponsorship
-									<Icon name="arrow-right" className="text-xs" />
-								</Link>
+						<div className="flex items-start gap-3 bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
+							<Briefcase
+								aria-hidden="true"
+								strokeWidth={1.75}
+								className="mt-0.5 h-5 w-5 shrink-0 text-zinc-500 dark:text-zinc-400"
+							/>
+							<div className="flex min-w-0 flex-col">
+								<h3 className={text.cardTitle}>Work with Effect</h3>
+								<div className="mt-6 flex flex-col items-start gap-3">
+									<Link
+										href={getAssetPath("/effect-jobs")}
+										variant="subtle"
+										className={subtleLink}
+									>
+										Find engineers
+										<Icon name="arrow-right" className="text-xs" />
+									</Link>
+									<Link
+										href={`mailto:${CONTACT_EMAIL}?subject=Sponsorship`}
+										variant="subtle"
+										className={subtleLink}
+									>
+										Sponsorship
+										<Icon name="arrow-right" className="text-xs" />
+									</Link>
+								</div>
 							</div>
 						</div>
 					</div>
