@@ -653,6 +653,11 @@ export function EnterprisePage() {
 					eyebrow="Releases & support"
 					title="Plan your adoption and upgrades"
 				>
+					{/* Caption on the table's top edge — freshness before the data */}
+					<p className={`${text.micro} mb-3 text-right`}>
+						Last updated · {POLICY_UPDATED}
+					</p>
+
 					{/* Desktop table */}
 					<div className="hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
 						<table className="w-full text-left text-sm">
@@ -750,10 +755,6 @@ export function EnterprisePage() {
 							</dl>
 						))}
 					</div>
-
-					<p className={`${text.micro} mt-4 text-right`}>
-						Last updated · {POLICY_UPDATED}
-					</p>
 				</Section>
 
 				{/* In production */}
