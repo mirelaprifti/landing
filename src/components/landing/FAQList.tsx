@@ -59,7 +59,7 @@ export function FAQList({
 							<div
 								className={`flex h-6 w-6 shrink-0 items-center justify-center transition-all duration-200 ${
 									isOpen
-										? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+										? "bg-zinc-200/80 text-zinc-900 dark:bg-zinc-800/80 dark:text-white"
 										: "bg-zinc-200/80 text-zinc-600 group-hover:bg-zinc-300 dark:bg-zinc-800/80 dark:text-zinc-400 dark:group-hover:bg-zinc-700"
 								}`}
 							>
