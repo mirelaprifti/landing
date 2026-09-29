@@ -598,7 +598,7 @@ const SECURITY_LINKS: {
 	{
 		icon: "shield-check",
 		title: "Security advisories",
-		body: "Affected and fixed versions for each issue.",
+		body: "Affected and fixed versions.",
 		href: "https://github.com/Effect-TS/effect/security",
 	},
 	{
@@ -1011,20 +1011,20 @@ export function EnterprisePage() {
 									href={l.href}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:hover:bg-zinc-900/80"
+									className="group flex h-full items-start gap-3 px-6 py-5 transition-colors hover:bg-zinc-100 md:px-8 dark:hover:bg-zinc-900/80"
 								>
-									<span className="flex items-start justify-between gap-4">
-										<Icon
-											name={l.icon}
-											className="text-2xl text-zinc-500 dark:text-zinc-400"
-										/>
-										<Icon
-											name="arrow-up-right"
-											className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
-										/>
+									<Icon
+										name={l.icon}
+										className="mt-0.5 shrink-0 text-xl text-zinc-500 dark:text-zinc-400"
+									/>
+									<span className="flex min-w-0 flex-1 flex-col">
+										<span className={text.smallHeading}>{l.title}</span>
+										<span className={text.cardBody}>{l.body}</span>
 									</span>
-									<span className={`${text.smallHeading} mt-6`}>{l.title}</span>
-									<span className={text.cardBody}>{l.body}</span>
+									<Icon
+										name="arrow-up-right"
+										className="mt-0.5 shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+									/>
 								</a>
 							</li>
 						))}
