@@ -146,61 +146,6 @@ function CopyEmail() {
 /* Visuals                                                             */
 /* ------------------------------------------------------------------ */
 
-type NodeProps = {
-	logo?: ReactNode;
-	title: string;
-	items: string[];
-	highlight?: boolean;
-};
-
-function FlowNode({ logo, title, items, highlight }: NodeProps) {
-	return (
-		<div
-			className={`border px-5 py-4 ${
-				highlight
-					? "border-zinc-900 bg-white dark:border-zinc-400 dark:bg-zinc-900/60"
-					: "border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950"
-			}`}
-		>
-			<div className="flex h-6 items-center">
-				{logo ?? <span className={text.smallHeading}>{title}</span>}
-			</div>
-			{logo && <p className="sr-only">{title}</p>}
-			<p className="mt-2 text-sm leading-normal text-zinc-700 dark:text-zinc-300">
-				{items.join(" · ")}
-			</p>
-		</div>
-	);
-}
-
-/** One line splitting into two, aimed at the centres of two stacked nodes. */
-function Fork() {
-	const line = "absolute bg-zinc-300 dark:bg-zinc-700";
-	const toTop = "calc((100% - 1rem) / 4)";
-	return (
-		<>
-			<div className="relative hidden lg:block" aria-hidden="true">
-				<span className={`${line} top-1/2 left-0 h-px w-1/2`} />
-				<span
-					className={`${line} left-1/2 w-px`}
-					style={{ top: toTop, bottom: toTop }}
-				/>
-				<span
-					className={`${line} left-1/2 h-px w-1/2`}
-					style={{ top: toTop }}
-				/>
-				<span
-					className={`${line} left-1/2 h-px w-1/2`}
-					style={{ bottom: toTop }}
-				/>
-			</div>
-			<div className="flex justify-center py-2 lg:hidden" aria-hidden="true">
-				<Icon name="arrow-down" className="text-base text-zinc-400" />
-			</div>
-		</>
-	);
-}
-
 /** Production logo tile — links to the talk; the arrow brightens on hover. */
 function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 	return (
@@ -297,52 +242,160 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 	);
 }
 
+/** One party in the Who does what diagram. */
+function HubNode({
+	mark,
+	name,
+	role,
+	items,
+	hub,
+}: {
+	mark: ReactNode;
+	name: string;
+	role: string;
+	items: string[];
+	hub?: boolean;
+}) {
+	return (
+		<div
+			className={`relative h-full overflow-hidden border ${
+				hub
+					? "border-zinc-900 bg-white p-6 md:p-8 dark:border-zinc-500 dark:bg-zinc-900"
+					: "border-zinc-200 bg-white p-6 md:p-8 dark:border-zinc-800 dark:bg-zinc-950"
+			}`}
+		>
+			{hub && (
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-900 to-transparent dark:via-white"
+				/>
+			)}
+			<div className="flex h-10 items-center">{mark}</div>
+			<p className={`${text.micro} mt-5`}>{role}</p>
+			<h4 className="sr-only">{name}</h4>
+			<ul className="mt-3 space-y-2">
+				{items.map((item) => (
+					<li
+						key={item}
+						className="flex items-center gap-2.5 text-sm text-zinc-700 dark:text-zinc-300"
+					>
+						<span
+							aria-hidden="true"
+							className={`h-1 w-1 shrink-0 rounded-full ${
+								hub
+									? "bg-zinc-900 dark:bg-white"
+									: "bg-zinc-400 dark:bg-zinc-600"
+							}`}
+						/>
+						{item}
+					</li>
+				))}
+			</ul>
+		</div>
+	);
+}
+
+/**
+ * Hairline connector with a pulse travelling away from the hub.
+ * `toward` is the side the pulse travels to; vertical on mobile.
+ */
+function HubLink({ toward }: { toward: "left" | "right" }) {
+	return (
+		<div
+			aria-hidden="true"
+			className="relative flex h-full items-center justify-center"
+		>
+			{/* desktop: horizontal */}
+			<div className="relative hidden h-px w-full bg-zinc-300 lg:block dark:bg-zinc-700">
+				<span
+					className="hub-pulse absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-zinc-900 shadow-[0_0_8px_2px_rgba(0,0,0,0.15)] dark:bg-white dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.45)]"
+					style={{
+						animation: `${toward === "right" ? "hub-right" : "hub-left"} 2.8s cubic-bezier(0.4,0,0.2,1) infinite`,
+					}}
+				/>
+			</div>
+			{/* mobile: vertical */}
+			<div className="h-8 w-px bg-zinc-300 lg:hidden dark:bg-zinc-700" />
+		</div>
+	);
+}
+
+/**
+ * Who does what: Effectful is the hub every conversation starts at; the
+ * maintainers and adoption partners sit either side of it.
+ */
 function SupportFlow() {
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)]">
-			<div className="lg:self-center">
-				<FlowNode
-					highlight
-					title="Effectful"
-					logo={
-						<ThemedLogo
-							light={LOGO.effectful}
-							dark={LOGO.effectfulDark}
-							alt="Effectful"
-							className="h-6 w-auto"
-						/>
-					}
-					items={[
-						"Evaluation and adoption planning",
-						"Enterprise support, NDA and SLAs",
-						"Private Slack or Discord channel",
-					]}
-				/>
-			</div>
-			<Fork />
-			<div className="flex flex-col gap-4 lg:grid lg:grid-rows-2">
-				<FlowNode
-					title="Effect maintainers"
-					logo={
-						<span className="flex items-center gap-2">
+		<>
+			<style>{`
+				@keyframes hub-right { 0% { left: 0%; opacity: 0 } 15% { opacity: 1 } 85% { opacity: 1 } 100% { left: 100%; opacity: 0 } }
+				@keyframes hub-left { 0% { left: 100%; opacity: 0 } 15% { opacity: 1 } 85% { opacity: 1 } 100% { left: 0%; opacity: 0 } }
+				@media (prefers-reduced-motion: reduce) { .hub-pulse { animation: none !important; opacity: 0 } }
+			`}</style>
+			<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_72px_minmax(0,1.15fr)_72px_minmax(0,1fr)]">
+				<div className="lg:order-3">
+					<HubNode
+						hub
+						name="Effectful"
+						role="Your point of contact"
+						mark={
 							<ThemedLogo
-								light={LOGO.effectMark}
-								dark={LOGO.effectMarkDark}
-								alt=""
-								className="h-5 w-5"
+								light={LOGO.effectful}
+								dark={LOGO.effectfulDark}
+								alt="Effectful"
+								className="h-7 w-auto"
 							/>
-							<span className={text.smallHeading}>Maintainers</span>
-						</span>
-					}
-					items={["Releases", "Security fixes"]}
-				/>
-				<FlowNode
-					title="Adoption partners"
-					logo={<img src={LOGO.ziverge} alt="Ziverge" className="h-5 w-auto" />}
-					items={["Implementation", "Consulting", "Team extension", "Training"]}
-				/>
+						}
+						items={[
+							"Evaluation and adoption planning",
+							"Enterprise support, NDA and SLAs",
+							"Private Slack or Discord channel",
+						]}
+					/>
+				</div>
+				<div className="lg:order-2">
+					<HubLink toward="left" />
+				</div>
+				<div className="lg:order-1">
+					<HubNode
+						name="Effect maintainers"
+						role="Open source"
+						mark={
+							<span className="flex items-center gap-2.5">
+								<ThemedLogo
+									light={LOGO.effectMark}
+									dark={LOGO.effectMarkDark}
+									alt=""
+									className="h-6 w-6"
+								/>
+								<span className="text-lg font-semibold text-zinc-900 dark:text-white">
+									Maintainers
+								</span>
+							</span>
+						}
+						items={["Releases", "Security fixes"]}
+					/>
+				</div>
+				<div className="lg:order-4">
+					<HubLink toward="right" />
+				</div>
+				<div className="lg:order-5">
+					<HubNode
+						name="Ziverge"
+						role="Adoption partner"
+						mark={
+							<img src={LOGO.ziverge} alt="Ziverge" className="h-6 w-auto" />
+						}
+						items={[
+							"Implementation",
+							"Consulting",
+							"Team extension",
+							"Training",
+						]}
+					/>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
