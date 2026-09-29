@@ -291,16 +291,15 @@ const PRODUCTION = [
 ];
 
 /**
- * Flagship ecosystem projects. Descriptions and code come from each
- * project's own docs (checked Sep 2026) — trimmed, never invented.
+ * Flagship ecosystem projects. Descriptions and highlights come from each
+ * project's own docs (checked Sep 2026).
  */
 const ECOSYSTEM: {
 	name: string;
 	kind: string;
 	tagline: string;
 	logo: { light: string; dark: string; className: string };
-	file: string;
-	code: string;
+	highlights: string[];
 	links: { label: string; href: string }[];
 }[] = [
 	{
@@ -313,18 +312,14 @@ const ECOSYSTEM: {
 			dark: getAssetPath("/assets/ecosystem/alchemy-mark-light.svg"),
 			className: "h-7 w-7",
 		},
-		file: "alchemy.run.ts",
-		code: `export default Alchemy.Stack(
-  "MyApp",
-  {
-    providers: Cloudflare.providers(),
-    state: Cloudflare.state(),
-  },
-  Effect.gen(function* () {
-    const bucket = yield* Cloudflare.R2.Bucket("Bucket")
-    return { bucketName: bucket.bucketName }
-  }),
-)`,
+		highlights: [
+			"Cloudflare",
+			"AWS",
+			"Neon",
+			"PlanetScale",
+			"Stripe",
+			"GitHub",
+		],
 		links: [
 			{ label: "Get started", href: "https://alchemy.run/getting-started" },
 			{ label: "Source", href: "https://github.com/alchemy-run/alchemy" },
@@ -340,20 +335,7 @@ const ECOSYSTEM: {
 			dark: getAssetPath("/assets/ecosystem/foldkit-logo.svg"),
 			className: "h-6 w-auto",
 		},
-		file: "main.ts",
-		code: `export const Model = Schema.Struct({ count: Schema.Number })
-
-export const update = (model: Model, message: Message) =>
-  Message.match(message, {
-    ClickedIncrement: () => ({
-      model: modifyFields(model, { count: count => count + 1 }),
-    }),
-  })
-
-export const view = (model: Model, h: HtmlBuilder<Message>) => ({
-  title: \`Counter: \${model.count}\`,
-  body: h.button([h.OnClick(Message.ClickedIncrement())], ["+"]),
-})`,
+		highlights: ["Routing", "Server rendering", "UI components", "DevTools"],
 		links: [
 			{ label: "Get started", href: "https://foldkit.dev/get-started" },
 			{ label: "Source", href: "https://github.com/foldkit/foldkit" },
@@ -885,16 +867,15 @@ export function EnterprisePage() {
 									</p>
 								</header>
 
-								<div className="border-y border-zinc-800 bg-zinc-950">
-									<p className="border-b border-zinc-800 px-6 py-2.5 font-mono text-xs text-zinc-500 md:px-8">
-										{e.file}
-									</p>
-									<pre className="overflow-x-auto px-6 py-5 font-mono text-[13px] leading-[1.8] text-zinc-300 md:px-8">
-										<code>{e.code}</code>
-									</pre>
-								</div>
+								<ul className="flex flex-wrap gap-2 border-t border-zinc-200 px-6 py-5 md:px-8 dark:border-zinc-800">
+									{e.highlights.map((h) => (
+										<li key={h} className={badge}>
+											{h}
+										</li>
+									))}
+								</ul>
 
-								<footer className="mt-auto flex flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-8">
+								<footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 px-6 py-5 md:px-8 dark:border-zinc-800">
 									<span className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
 										Maintained by <Tbd />
 									</span>
