@@ -751,31 +751,9 @@ export function EnterprisePage() {
 						))}
 					</div>
 
-					<div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-						<div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-							<Link href="#releases" variant="subtle" className={subtleLink}>
-								Release and support policy
-								<Icon name="arrow-right" className="text-xs" />
-							</Link>
-							<Link
-								href="https://github.com/Effect-TS/effect/releases"
-								variant="subtle"
-								className={subtleLink}
-							>
-								Changelogs
-								<Icon name="arrow-up-right" className="text-xs" />
-							</Link>
-							<Link
-								href="https://effect.website/blog/releases/effect/40-rc/"
-								variant="subtle"
-								className={subtleLink}
-							>
-								Migration guides
-								<Icon name="arrow-up-right" className="text-xs" />
-							</Link>
-						</div>
-						<p className={text.micro}>Last updated · {POLICY_UPDATED}</p>
-					</div>
+					<p className={`${text.micro} mt-4 text-right`}>
+						Last updated · {POLICY_UPDATED}
+					</p>
 				</Section>
 
 				{/* In production */}
