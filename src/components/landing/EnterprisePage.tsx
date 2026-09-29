@@ -1141,91 +1141,72 @@ export function EnterprisePage() {
 					items={FAQS}
 				/>
 
-				{/* 6. Contact + ways to participate — the closing band, matching the homepage CTA */}
-				<section
+				{/* 6. Contact — three routes, one anatomy: label, title, line, actions */}
+				<Section
 					id="contact"
-					className="relative scroll-mt-16 overflow-hidden border-t border-zinc-200 dark:border-zinc-800"
+					eyebrow="Get in touch"
+					title="Start a conversation"
+					subtitle="Evaluating Effect for your company or already running it in production? We'll help you find the right next step."
 				>
-					<div
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage: `
-								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
-							`,
-							backgroundSize: "196.6px 180px",
-							backgroundPosition: "calc(50% + 97px) 0",
-						}}
-					/>
-					<div
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-0"
-						style={{
-							background:
-								"linear-gradient(to bottom, var(--page-fade) 0%, transparent 20%, transparent 70%, var(--page-fade) 100%)",
-						}}
-					/>
-
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-						{/* Statement */}
-						<div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-							<p className={text.eyebrow}>// Get in touch</p>
-							<h2 className="leading-tighter text-3xl font-bold text-zinc-900 md:text-4xl dark:text-white">
-								Start a conversation
-							</h2>
-							<p className={`${text.subtitle} text-balance`}>
-								Evaluating Effect for your company or already running it in
-								production? Tell us what your team needs. We'll help you find
-								the right next step.
+					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						{/* Companies — the primary route */}
+						<div className="flex flex-col bg-white p-6 md:p-8 lg:col-span-2 dark:bg-zinc-900/60">
+							<p className={text.micro}>For companies</p>
+							<h3 className={`${text.cardTitle} mt-3`}>
+								Talk to the Effect team
+							</h3>
+							<p className={`${text.cardBody} max-w-md text-pretty`}>
+								Tell us what you are building and what your team needs.
 							</p>
-						</div>
-
-						{/* One action row */}
-						<div className="mx-auto mt-10 flex max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
-							<div className="min-w-0 flex-1">
-								<EmailPanel />
-							</div>
-							<Button
-								href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
-								variant="primary"
-								size="lg"
-								className="shrink-0 sm:h-13"
-							>
-								Email the Effect team
-							</Button>
-						</div>
-
-						{/* What a company relationship can include — mirrors the facts strip under the hero */}
-						<ul className="mx-auto mt-16 grid max-w-3xl grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
-							{[
-								{ icon: "shield-check" as const, label: "Mutual NDA" },
-								{ icon: "life-buoy" as const, label: "SLAs and escalation" },
-								{ icon: "heart-handshake" as const, label: "Private channel" },
-							].map((item) => (
-								<li
-									key={item.label}
-									className="flex items-center justify-center gap-2.5 bg-zinc-50 px-4 py-4 text-sm text-zinc-700 dark:bg-zinc-950 dark:text-zinc-300"
+							<ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+								{[
+									{ icon: "shield-check" as const, label: "Mutual NDA" },
+									{ icon: "life-buoy" as const, label: "SLAs and escalation" },
+									{
+										icon: "heart-handshake" as const,
+										label: "Private channel",
+									},
+								].map((item) => (
+									<li
+										key={item.label}
+										className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300"
+									>
+										<Icon
+											name={item.icon}
+											className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
+										/>
+										{item.label}
+									</li>
+								))}
+							</ul>
+							<div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center">
+								<div className="min-w-0 flex-1">
+									<EmailPanel />
+								</div>
+								<Button
+									href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+									variant="primary"
+									className="shrink-0 sm:h-13"
 								>
-									<Icon
-										name={item.icon}
-										className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
-									/>
-									{item.label}
-								</li>
-							))}
-						</ul>
+									Email the Effect team
+								</Button>
+							</div>
+						</div>
 
-						{/* Everything else, one quiet line */}
-						<div className="mx-auto mt-6 flex max-w-3xl flex-col gap-3 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between dark:text-zinc-400">
-							<p className="flex flex-wrap items-center gap-x-4 gap-y-1">
-								<span>Community</span>
+						{/* Community */}
+						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
+							<p className={text.micro}>Community</p>
+							<h3 className={`${text.cardTitle} mt-3`}>Join the community</h3>
+							<p className={`${text.cardBody} text-pretty`}>
+								Learning Effect or looking for help? Everyone is welcome.
+							</p>
+							<div className="mt-auto flex flex-col items-start gap-3 pt-8">
 								<Link
 									href={DISCORD_URL}
 									variant="subtle"
 									className={subtleLink}
 								>
-									Discord
+									Public Discord
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
 								<Link
@@ -1236,9 +1217,17 @@ export function EnterprisePage() {
 									Community Hub
 									<Icon name="arrow-right" className="text-xs" />
 								</Link>
+							</div>
+						</div>
+
+						{/* Hiring and sponsorship */}
+						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
+							<p className={text.micro}>Ecosystem</p>
+							<h3 className={`${text.cardTitle} mt-3`}>Work with Effect</h3>
+							<p className={`${text.cardBody} text-pretty`}>
+								Hire Effect engineers or support development.
 							</p>
-							<p className="flex flex-wrap items-center gap-x-4 gap-y-1">
-								<span>Work with Effect</span>
+							<div className="mt-auto flex flex-col items-start gap-3 pt-8">
 								<Link
 									href={getAssetPath("/effect-jobs")}
 									variant="subtle"
@@ -1255,10 +1244,10 @@ export function EnterprisePage() {
 									Sponsorship
 									<Icon name="arrow-right" className="text-xs" />
 								</Link>
-							</p>
+							</div>
 						</div>
 					</div>
-				</section>
+				</Section>
 			</main>
 
 			<Footer />
