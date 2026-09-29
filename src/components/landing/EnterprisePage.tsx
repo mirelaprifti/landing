@@ -616,8 +616,9 @@ export function EnterprisePage() {
 							<p className={text.eyebrow}>// Enterprise</p>
 							<h1 className={text.pageTitle}>Effect for enterprise</h1>
 							<p className={`${text.subtitle} max-w-xl`}>
-								Evaluate Effect with your team. Plan for production. Get help
-								from the people building it.
+								Evaluate Effect with your team. Plan for production.{" "}
+								<br className="hidden lg:inline" />
+								Get help from the people building it.
 							</p>
 
 							<div className="mt-8 flex flex-wrap items-center gap-3">
