@@ -420,7 +420,7 @@ const PRODUCTION = [
 	{
 		company: "OpenCode",
 		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
-		logoClass: "max-h-7",
+		logoClass: "max-h-6",
 		useCase: "Migrating a large TypeScript codebase to Effect",
 		talk: talk("opencode"),
 		href: talk("opencode")?.href ?? "#",
@@ -428,7 +428,7 @@ const PRODUCTION = [
 	{
 		company: "MasterClass",
 		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
-		logoClass: "max-h-6",
+		logoClass: "max-h-5",
 		useCase: "Real-time voice AI orchestration",
 		talk: talk("MasterClass"),
 		href: talk("MasterClass")?.href ?? "#",
