@@ -48,8 +48,17 @@ export interface PartnerCTA {
 	href: string;
 }
 
+/** The kinds of partnership listed on /partners, in page order. */
+export type PartnershipType =
+	| "sponsorship"
+	| "adoption"
+	| "agency"
+	| "infrastructure";
+
 export interface Partner {
 	id: string;
+	/** Which /partners section this partner is listed under. */
+	partnership: PartnershipType;
 	name: string;
 	description: string;
 	longDescription: string;
@@ -86,6 +95,7 @@ export const PARTNERS: Partner[] = [
 			"Ziverge provides engineering expertise across distributed systems, AI/ML pipelines, and cloud-native architecture. They work with enterprise clients to build scalable, production-grade software using functional programming and Effect.",
 		websiteUrl: "https://www.ziverge.com/",
 		logoPath: "/assets/partner-logos/ziverge.svg",
+		partnership: "adoption",
 		featured: true,
 		language: "English",
 		languageFlag: "\u{1F1EC}\u{1F1E7}",
@@ -234,6 +244,7 @@ export const PARTNERS: Partner[] = [
 			"evryg bridges the gap between business and technology, from organizational strategy to implementation. With 60% of their consultants having over 10 years of experience, they specialize in digital transformation projects powered by Effect.",
 		websiteUrl: "https://www.evryg.com/en",
 		logoPath: "/assets/partner-logos/evryg.svg",
+		partnership: "agency",
 		featured: false,
 		language: "French",
 		languageFlag: "\u{1F1EB}\u{1F1F7}",
@@ -248,9 +259,25 @@ export const PARTNERS: Partner[] = [
 			"Double Loop helps teams adopt Effect and functional programming to build robust, maintainable software. Based in Italy, they bring deep expertise in TypeScript and Effect to deliver production-grade solutions.",
 		websiteUrl: "https://doubleloop.io/",
 		logoPath: "/assets/partner-logos/doubleloop.svg",
+		partnership: "agency",
 		featured: false,
 		language: "Italian",
 		languageFlag: "\u{1F1EE}\u{1F1F9}",
 		region: "Italy",
 	},
 ];
+
+/**
+ * Partners that only need a logo listing on /partners (no detail page).
+ * Sponsorship and infrastructure partners go here once confirmed.
+ */
+export interface PartnerListing {
+	id: string;
+	name: string;
+	partnership: PartnershipType;
+	logoPath: string;
+	websiteUrl: string;
+	description?: string;
+}
+
+export const PARTNER_LISTINGS: PartnerListing[] = [];
