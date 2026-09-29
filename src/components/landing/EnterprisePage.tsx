@@ -201,6 +201,101 @@ function Fork() {
 	);
 }
 
+/**
+ * Customer story card. The talk banner already carries the logo and the
+ * speaker, so the caption is only the use case.
+ */
+function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
+	return (
+		<a
+			href={story.talk?.href}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={`${story.company}: ${story.useCase}`}
+			className="group flex h-full flex-col overflow-hidden border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600"
+		>
+			<div className="relative aspect-video overflow-hidden border-b border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
+				{story.talk && (
+					<img
+						src={story.talk.thumbnail}
+						alt=""
+						className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+					/>
+				)}
+				<span className="absolute right-4 bottom-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-zinc-900 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+					<Icon name="arrow-up-right" className="text-base" />
+				</span>
+			</div>
+			<p className="p-6 text-base font-semibold text-zinc-900 dark:text-white">
+				{story.useCase}
+			</p>
+		</a>
+	);
+}
+
+/** Integration-style project card — app-icon tile with a faint brand glow. */
+function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
+	return (
+		<article className="group relative flex flex-col overflow-hidden border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+			<div
+				aria-hidden="true"
+				className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+				style={{
+					background: `radial-gradient(circle, rgba(${project.glow}, 0.14), transparent 70%)`,
+				}}
+			/>
+			<div className="relative flex-1 p-6 md:p-8">
+				<div className="flex items-center gap-4">
+					<span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+						<ThemedLogo
+							light={project.mark.light}
+							dark={project.mark.dark}
+							alt=""
+							className="h-7 w-7"
+						/>
+					</span>
+					<div>
+						<h4 className="text-lg font-semibold text-zinc-900 dark:text-white">
+							{project.name}
+						</h4>
+						<p className="text-sm text-zinc-500 dark:text-zinc-400">
+							{project.kind}
+						</p>
+					</div>
+				</div>
+				<p className="mt-6 max-w-md text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+					{project.tagline}
+				</p>
+				<ul className="mt-6 flex flex-wrap gap-2">
+					{project.highlights.map((h) => (
+						<li key={h} className={badge}>
+							{h}
+						</li>
+					))}
+				</ul>
+			</div>
+			<footer className="relative flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 px-6 py-4 md:px-8 dark:border-zinc-800">
+				<span className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+					Maintained by <Tbd />
+				</span>
+				<span className="flex flex-wrap gap-x-6 gap-y-2">
+					{project.links.map((l) => (
+						<Link
+							key={l.label}
+							href={l.href}
+							variant="subtle"
+							className={subtleLink}
+						>
+							{l.label}
+							<Icon name="arrow-up-right" className="text-xs" />
+						</Link>
+					))}
+				</span>
+			</footer>
+		</article>
+	);
+}
+
 function SupportFlow() {
 	return (
 		<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)]">
@@ -263,42 +358,37 @@ const PAGE_QUESTIONS = [
 	},
 ];
 
-const talkHref = (alt: string) =>
-	featuredCases.find((c) => c.alt === alt)?.href ?? "#";
+const talk = (alt: string) => featuredCases.find((c) => c.alt === alt);
 
+/** Production stories, shown with their talk banners. */
 const PRODUCTION = [
 	{
 		company: "OpenCode",
-		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
-		logoClass: "max-h-7",
 		useCase: "Migrating a large TypeScript codebase to Effect",
-		href: talkHref("opencode"),
+		talk: talk("opencode"),
 	},
 	{
 		company: "MasterClass",
-		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
-		logoClass: "max-h-6",
 		useCase: "Real-time voice AI orchestration",
-		href: talkHref("MasterClass"),
+		talk: talk("MasterClass"),
 	},
 	{
 		company: "OpenRouter",
-		logo: getAssetPath("/assets/images/open-router.svg"),
-		logoClass: "max-h-7",
 		useCase: "Internal tooling and infrastructure",
-		href: talkHref("OpenRouter"),
+		talk: talk("OpenRouter"),
 	},
 ];
 
 /**
  * Flagship ecosystem projects. Descriptions and highlights come from each
- * project's own docs (checked Sep 2026).
+ * project's own docs (checked Sep 2026). `glow` is the project's brand color.
  */
 const ECOSYSTEM: {
 	name: string;
 	kind: string;
 	tagline: string;
-	logo: { light: string; dark: string; className: string };
+	mark: { light: string; dark: string };
+	glow: string;
 	highlights: string[];
 	links: { label: string; href: string }[];
 }[] = [
@@ -307,19 +397,12 @@ const ECOSYSTEM: {
 		kind: "Infrastructure as Code",
 		tagline:
 			"Define cloud resources and application behavior in the same TypeScript program.",
-		logo: {
+		mark: {
 			light: getAssetPath("/assets/ecosystem/alchemy-mark-dark.svg"),
 			dark: getAssetPath("/assets/ecosystem/alchemy-mark-light.svg"),
-			className: "h-6 w-6",
 		},
-		highlights: [
-			"Cloudflare",
-			"AWS",
-			"Neon",
-			"PlanetScale",
-			"Stripe",
-			"GitHub",
-		],
+		glow: "163, 196, 115",
+		highlights: ["Cloudflare", "AWS", "Neon", "PlanetScale", "Stripe"],
 		links: [
 			{ label: "Get started", href: "https://alchemy.run/getting-started" },
 			{ label: "Source", href: "https://github.com/alchemy-run/alchemy" },
@@ -330,11 +413,11 @@ const ECOSYSTEM: {
 		kind: "Frontend framework",
 		tagline:
 			"The Elm Architecture on Effect: one Schema-defined Model, explicit effects, typed routing.",
-		logo: {
-			light: getAssetPath("/assets/ecosystem/foldkit-logo-dark.svg"),
-			dark: getAssetPath("/assets/ecosystem/foldkit-logo.svg"),
-			className: "h-6 w-auto",
+		mark: {
+			light: getAssetPath("/assets/ecosystem/foldkit-mark-white.svg"),
+			dark: getAssetPath("/assets/ecosystem/foldkit-mark.svg"),
 		},
+		glow: "255, 255, 255",
 		highlights: ["Routing", "Server rendering", "UI components", "DevTools"],
 		links: [
 			{ label: "Get started", href: "https://foldkit.dev/get-started" },
@@ -781,101 +864,36 @@ export function EnterprisePage() {
 					</div>
 				</Section>
 
-				{/* Real world: teams in production, then ecosystem projects */}
+				{/* Real world: a customer-story bento, then ecosystem projects */}
 				<Section
 					id="production"
 					eyebrow="Adoption"
 					title="Effect in the real world"
+					subtitle="From AI products to cloud infrastructure, teams build on Effect."
 				>
-					<h3 className={text.cardTitle}>In production</h3>
-					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
-						{PRODUCTION.map((p) => (
-							<li key={p.company} className="bg-zinc-50 dark:bg-zinc-950">
-								<a
-									href={p.href}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="group flex h-full flex-col p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:hover:bg-zinc-900/80"
-								>
-									<span className="flex items-start justify-between gap-4">
-										<span className="flex h-8 items-center">
-											<img
-												src={p.logo}
-												alt={p.company}
-												className={`${p.logoClass} w-auto invert dark:invert-0`}
-											/>
-										</span>
-										<Icon
-											name="arrow-up-right"
-											className="shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
-										/>
-									</span>
-									<span className={`${text.smallHeading} mt-8`}>
-										{p.useCase}
-									</span>
-								</a>
-							</li>
+					<div className="flex items-baseline justify-between gap-4">
+						<h3 className={text.cardTitle}>In production</h3>
+						<Link
+							href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
+							variant="subtle"
+							className={subtleLink}
+						>
+							More stories
+							<Icon name="arrow-up-right" className="text-xs" />
+						</Link>
+					</div>
+					<div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+						{PRODUCTION.map((story) => (
+							<StoryCard key={story.company} story={story} />
 						))}
-					</ul>
+					</div>
 
-					<h3 id="ecosystem" className={`${text.cardTitle} mt-16 scroll-mt-24`}>
+					<h3 id="ecosystem" className={`${text.cardTitle} mt-20 scroll-mt-24`}>
 						Ecosystem projects
 					</h3>
 					<div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-						{ECOSYSTEM.map((e) => (
-							<article
-								key={e.name}
-								className="flex flex-col border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-							>
-								<header className="p-6 md:p-8">
-									<div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-										<span className="flex h-6 items-center gap-2.5">
-											<ThemedLogo
-												light={e.logo.light}
-												dark={e.logo.dark}
-												alt={e.name === "Foldkit" ? "Foldkit" : ""}
-												className={e.logo.className}
-											/>
-											{e.name === "Alchemy" && (
-												<span className="text-lg leading-none font-semibold tracking-tight text-zinc-900 dark:text-white">
-													Alchemy
-												</span>
-											)}
-										</span>
-										<span className={badge}>{e.kind}</span>
-									</div>
-									<p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-										{e.tagline}
-									</p>
-								</header>
-
-								<ul className="flex flex-wrap gap-2 border-t border-zinc-200 px-6 py-5 md:px-8 dark:border-zinc-800">
-									{e.highlights.map((h) => (
-										<li key={h} className={badge}>
-											{h}
-										</li>
-									))}
-								</ul>
-
-								<footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 px-6 py-5 md:px-8 dark:border-zinc-800">
-									<span className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
-										Maintained by <Tbd />
-									</span>
-									<span className="flex flex-wrap gap-x-6 gap-y-2">
-										{e.links.map((l) => (
-											<Link
-												key={l.label}
-												href={l.href}
-												variant="subtle"
-												className={subtleLink}
-											>
-												{l.label}
-												<Icon name="arrow-up-right" className="text-xs" />
-											</Link>
-										))}
-									</span>
-								</footer>
-							</article>
+						{ECOSYSTEM.map((project) => (
+							<ProjectCard key={project.name} project={project} />
 						))}
 					</div>
 				</Section>
