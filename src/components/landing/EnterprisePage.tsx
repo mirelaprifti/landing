@@ -766,9 +766,19 @@ export function EnterprisePage() {
 						))}
 					</div>
 
-					<p className={`${text.micro} mt-3 text-right`}>
-						Last updated · {POLICY_UPDATED}
-					</p>
+					<div className="mt-3 flex flex-col-reverse gap-3 md:flex-row md:items-baseline md:justify-between">
+						<p className="text-sm leading-normal text-zinc-600 dark:text-zinc-400">
+							Stable modules only introduce breaking changes in a new major
+							version.{" "}
+							<code className="font-mono text-zinc-900 dark:text-zinc-200">
+								effect/unstable/*
+							</code>{" "}
+							modules can change in minor releases.
+						</p>
+						<p className={`${text.micro} shrink-0 md:text-right`}>
+							Last updated · {POLICY_UPDATED}
+						</p>
+					</div>
 				</Section>
 
 				{/* Real world: teams in production, then ecosystem projects */}
