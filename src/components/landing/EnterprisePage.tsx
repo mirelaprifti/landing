@@ -1168,69 +1168,64 @@ export function EnterprisePage() {
 					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-						{/* One structured panel: the case on the left, the contact on the right */}
-						<div className="mx-auto grid max-w-5xl grid-cols-1 border border-zinc-300 bg-white lg:grid-cols-12 dark:border-zinc-700 dark:bg-zinc-950">
-							<div className="p-8 md:p-12 lg:col-span-7">
-								<p className={text.eyebrow}>// Get in touch</p>
-								<h2 className={text.sectionTitle}>Start a conversation</h2>
-								<p className={`${text.subtitle} max-w-md text-pretty`}>
-									Evaluating Effect for your company or already running it in
-									production? Tell us what you are building and what your team
-									needs. We'll help you find the right next step.
-								</p>
-								<ul className="mt-10 space-y-3">
-									{[
-										{ icon: "shield-check" as const, label: "Mutual NDA" },
-										{
-											icon: "life-buoy" as const,
-											label: "SLAs and escalation",
-										},
-										{
-											icon: "heart-handshake" as const,
-											label: "Private Slack or Discord channel",
-										},
-									].map((item) => (
-										<li
-											key={item.label}
-											className="flex items-center gap-3 text-sm text-zinc-700 dark:text-zinc-300"
-										>
-											<Icon
-												name={item.icon}
-												className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
-											/>
-											{item.label}
-										</li>
-									))}
-								</ul>
-							</div>
-
-							<div className="flex flex-col justify-center gap-4 border-t border-zinc-200 bg-zinc-50 p-8 md:p-12 lg:col-span-5 lg:border-t-0 lg:border-l dark:border-zinc-800 dark:bg-zinc-900/60">
-								<p className={text.micro}>Email</p>
-								<EmailPanel />
-								<Button
-									href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
-									variant="primary"
-									size="lg"
-									className="w-full"
-								>
-									Email the Effect team
-								</Button>
-								<p className="text-center text-xs text-zinc-500 dark:text-zinc-400">
-									Every inquiry goes to the Effect team at Effectful.
-								</p>
-							</div>
+						{/* Statement */}
+						<div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+							<p className={text.eyebrow}>// Get in touch</p>
+							<h2 className="leading-tighter text-3xl font-bold text-zinc-900 md:text-4xl dark:text-white">
+								Start a conversation
+							</h2>
+							<p className={`${text.subtitle} text-balance`}>
+								Evaluating Effect for your company or already running it in
+								production? Tell us what your team needs. We'll help you find
+								the right next step.
+							</p>
 						</div>
 
+						{/* One action row */}
+						<div className="mx-auto mt-10 flex max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
+							<div className="min-w-0 flex-1">
+								<EmailPanel />
+							</div>
+							<Button
+								href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+								variant="primary"
+								size="lg"
+								className="shrink-0 sm:h-13"
+							>
+								Email the Effect team
+							</Button>
+						</div>
+
+						{/* What a company relationship can include — mirrors the facts strip under the hero */}
+						<ul className="mx-auto mt-16 grid max-w-3xl grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+							{[
+								{ icon: "shield-check" as const, label: "Mutual NDA" },
+								{ icon: "life-buoy" as const, label: "SLAs and escalation" },
+								{ icon: "heart-handshake" as const, label: "Private channel" },
+							].map((item) => (
+								<li
+									key={item.label}
+									className="flex items-center justify-center gap-2.5 bg-zinc-50 px-4 py-4 text-sm text-zinc-700 dark:bg-zinc-950 dark:text-zinc-300"
+								>
+									<Icon
+										name={item.icon}
+										className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
+									/>
+									{item.label}
+								</li>
+							))}
+						</ul>
+
 						{/* Everything else, one quiet line */}
-						<div className="mx-auto mt-8 flex max-w-5xl flex-col gap-3 text-sm text-zinc-500 md:flex-row md:items-center md:justify-between dark:text-zinc-400">
-							<p className="flex flex-wrap items-center gap-x-5 gap-y-2">
-								<span>Join the community</span>
+						<div className="mx-auto mt-6 flex max-w-3xl flex-col gap-3 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between dark:text-zinc-400">
+							<p className="flex flex-wrap items-center gap-x-4 gap-y-1">
+								<span>Community</span>
 								<Link
 									href={DISCORD_URL}
 									variant="subtle"
 									className={subtleLink}
 								>
-									Public Discord
+									Discord
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
 								<Link
@@ -1242,8 +1237,8 @@ export function EnterprisePage() {
 									<Icon name="arrow-right" className="text-xs" />
 								</Link>
 							</p>
-							<p className="flex flex-wrap items-center gap-x-5 gap-y-2">
-								<span>More ways to work with Effect</span>
+							<p className="flex flex-wrap items-center gap-x-4 gap-y-1">
+								<span>Work with Effect</span>
 								<Link
 									href={getAssetPath("/effect-jobs")}
 									variant="subtle"
