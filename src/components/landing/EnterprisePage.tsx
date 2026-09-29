@@ -897,23 +897,6 @@ export function EnterprisePage() {
 						))}
 					</div>
 
-					{/* Both stand on the same foundation */}
-					<div className="hidden grid-cols-2 gap-6 lg:grid" aria-hidden="true">
-						<span className="mx-auto h-8 w-px bg-zinc-300 dark:bg-zinc-700" />
-						<span className="mx-auto h-8 w-px bg-zinc-300 dark:bg-zinc-700" />
-					</div>
-					<div className="mt-6 flex items-center justify-center gap-3 border border-zinc-900 bg-white px-6 py-4 lg:mt-0 dark:border-zinc-400 dark:bg-zinc-900/60">
-						<ThemedLogo
-							light={LOGO.effectMark}
-							dark={LOGO.effectMarkDark}
-							alt=""
-							className="h-5 w-5"
-						/>
-						<span className="text-base font-semibold text-zinc-900 dark:text-white">
-							Effect
-						</span>
-					</div>
-
 					<div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
 						<p className="text-sm text-zinc-600 dark:text-zinc-400">
 							Building on Effect? Recognition as an ecosystem project can be the
