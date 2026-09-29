@@ -212,11 +212,20 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 		>
 			<span className="flex items-start justify-between gap-4">
 				<span className="flex h-8 items-center">
-					<img
-						src={story.logo}
-						alt={story.company}
-						className={`${story.logoClass} w-auto invert dark:invert-0`}
-					/>
+					{"logoOnLight" in story && story.logoOnLight ? (
+						<ThemedLogo
+							light={story.logo}
+							dark={story.logoOnLight}
+							alt={story.company}
+							className={`${story.logoClass} w-auto`}
+						/>
+					) : (
+						<img
+							src={story.logo}
+							alt={story.company}
+							className={`${story.logoClass} w-auto invert dark:invert-0`}
+						/>
+					)}
 				</span>
 				<Icon
 					name="arrow-up-right"
@@ -370,8 +379,10 @@ const PRODUCTION = [
 	},
 	{
 		company: "OpenRouter",
-		logo: getAssetPath("/assets/images/open-router.svg"),
-		logoClass: "max-h-7",
+		logo: getAssetPath("/assets/images/openrouter-v2-on-dark.svg"),
+		/** Brand-colored mark: separate assets per theme instead of inverting. */
+		logoOnLight: getAssetPath("/assets/images/openrouter-v2-on-light.svg"),
+		logoClass: "h-6",
 		useCase: "Internal tooling and infrastructure",
 		talk: talk("OpenRouter"),
 	},
