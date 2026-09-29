@@ -1103,27 +1103,22 @@ export function EnterprisePage() {
 					items={FAQS}
 				/>
 
-				{/* 6. Contact — three routes, one anatomy: title, then actions */}
+				{/* 6. Contact — the company action lives in the header; routes below */}
 				<Section
 					id="contact"
 					eyebrow="Get in touch"
 					title="Find the right next step"
 					subtitle="Evaluating Effect for your company or already running it in production?"
+					action={
+						<Button
+							href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+							variant="primary"
+						>
+							Email the Effect team
+						</Button>
+					}
 				>
-					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-						{/* Companies — the primary route */}
-						<div className="flex flex-col bg-white p-6 md:p-8 lg:col-span-2 dark:bg-zinc-900/60">
-							<h3 className={text.cardTitle}>Talk to the Effect team</h3>
-							<div className="mt-6">
-								<Button
-									href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
-									variant="primary"
-								>
-									Email the Effect team
-								</Button>
-							</div>
-						</div>
-
+					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 						{/* Community */}
 						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
 							<h3 className={text.cardTitle}>Join the community</h3>
