@@ -3,7 +3,7 @@ import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
-import { FAQSection, faqCode } from "./FAQSection";
+import { FAQSection } from "./FAQSection";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { featuredCases } from "./TestimonialsSection";
@@ -590,25 +590,25 @@ const SECURITY_LINKS: {
 	icon: Parameters<typeof Icon>[0]["name"];
 	title: string;
 	body: string;
-	href: string;
+	/** Omitted until the destination is confirmed. */
+	href?: string;
 }[] = [
-	{
-		icon: "circle-alert",
-		title: "Report a vulnerability",
-		body: "Privately, straight to the maintainers.",
-		href: "https://github.com/Effect-TS/effect/security/advisories/new",
-	},
-	{
-		icon: "shield-check",
-		title: "Security advisories",
-		body: "Affected and fixed versions.",
-		href: "https://github.com/Effect-TS/effect/security",
-	},
 	{
 		icon: "folder-git",
 		title: "Source and license",
 		body: "Developed in public, MIT licensed.",
-		href: "https://github.com/Effect-TS/effect/blob/main/LICENSE",
+		href: "https://github.com/Effect-TS/effect",
+	},
+	{
+		icon: "shield-check",
+		title: "Security reporting and advisories",
+		body: "Private reports, public advisories.",
+		href: "https://github.com/Effect-TS/effect/security",
+	},
+	{
+		icon: "heart-handshake",
+		title: "Meet the team",
+		body: "The Effect team at Effectful Technologies.",
 	},
 ];
 
@@ -643,48 +643,30 @@ Next step, owner, and review date.`;
 
 const FAQS = [
 	{
-		question: "Can we start using Effect in part of an existing application?",
+		question: "Can we try Effect in part of an existing application?",
 		answer: (
 			<p>
-				Yes. Most teams start at one boundary, such as a service, a job, or a
-				data pipeline, and grow from there. The{" "}
-				<Link href={getAssetPath("/docs/why-effect")}>
-					incremental adoption guide
-				</Link>{" "}
-				covers integration boundaries and what your team needs to learn first.
+				Yes. Start with a bounded use case and assess how it fits your existing
+				code, team, and delivery process.
 			</p>
 		),
 	},
 	{
-		question: "What stability guarantees apply?",
+		question: "What support can our company arrange?",
 		answer: (
 			<p>
-				Stable modules follow semantic versioning: breaking changes only arrive
-				in a new major version. Modules under{" "}
-				<code className={faqCode}>effect/unstable/*</code> can change in minor
-				releases until they graduate. See the{" "}
-				<a href="#releases" className="underline underline-offset-4">
-					release policy
-				</a>
-				.
+				Contact us to discuss your needs. We can talk through company support,
+				private communication, and introductions to adoption partners. Any
+				service levels and coverage are defined in an agreement.
 			</p>
 		),
 	},
 	{
-		question: "How long will Effect 4.x receive support?",
+		question: "Where can individual developers ask questions?",
 		answer: (
 			<p>
-				Effect 4.x is the long-term support release. The exact maintenance dates
-				are published in the release policy. <Tbd />
-			</p>
-		),
-	},
-	{
-		question: "Which TypeScript versions and runtimes are supported?",
-		answer: (
-			<p>
-				The release policy lists supported TypeScript versions and runtimes, and
-				whether you need the latest patch to receive support. <Tbd />
+				Join our <Link href={DISCORD_URL}>public Discord</Link>. It is open to
+				everyone, including engineers using Effect at work.
 			</p>
 		),
 	},
@@ -938,7 +920,7 @@ export function EnterprisePage() {
 					id="production"
 					eyebrow="Adoption"
 					title="Effect in the real world"
-					subtitle="From AI products to cloud infrastructure, teams build on Effect."
+					subtitle="See where teams use Effect and the problems they are solving."
 				>
 					<div className="flex items-baseline justify-between gap-4">
 						<h3 className={text.cardTitle}>In production</h3>
@@ -999,39 +981,66 @@ export function EnterprisePage() {
 					<div className="mt-6">
 						<SupportFlow />
 					</div>
+
+					<Button
+						href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
+						variant="primary"
+						size="lg"
+						className="mt-12"
+					>
+						Talk to the Effect team
+					</Button>
 				</Section>
 
 				{/* 3. Security */}
 				<Section
 					id="security"
 					eyebrow="Security"
-					title="Security and open source"
-					subtitle="Report issues privately and audit everything in the open."
+					title="Security and stewardship"
+					subtitle="Effect is open source and maintained by the Effect team at Effectful Technologies. Find what your security and architecture reviewers need: source, license, advisories, and private vulnerability reporting."
 				>
 					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
-						{SECURITY_LINKS.map((l) => (
-							<li key={l.title} className="bg-zinc-50 dark:bg-zinc-950">
-								<a
-									href={l.href}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="group flex h-full items-start gap-3 px-6 py-5 transition-colors hover:bg-zinc-100 md:px-8 dark:hover:bg-zinc-900/80"
-								>
+						{SECURITY_LINKS.map((l) => {
+							const content = (
+								<>
 									<Icon
 										name={l.icon}
 										className="mt-0.5 shrink-0 text-xl text-zinc-500 dark:text-zinc-400"
 									/>
 									<span className="flex min-w-0 flex-1 flex-col">
 										<span className={text.smallHeading}>{l.title}</span>
-										<span className={text.cardBody}>{l.body}</span>
+										<span className={`${text.cardBody} text-pretty`}>
+											{l.body}
+										</span>
 									</span>
-									<Icon
-										name="arrow-up-right"
-										className="mt-0.5 shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
-									/>
-								</a>
-							</li>
-						))}
+									{l.href ? (
+										<Icon
+											name="arrow-up-right"
+											className="mt-0.5 shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
+										/>
+									) : (
+										<Tbd>URL</Tbd>
+									)}
+								</>
+							);
+							const tile = "flex h-full items-start gap-3 px-6 py-5 md:px-8";
+							return (
+								<li key={l.title} className="bg-zinc-50 dark:bg-zinc-950">
+									{l.href ? (
+										<a
+											href={l.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className={`group ${tile} transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80`}
+										>
+											{content}
+										</a>
+									) : (
+										<div className={tile}>{content}</div>
+									)}
+								</li>
+							);
+						})}
 					</ul>
 				</Section>
 
@@ -1040,6 +1049,7 @@ export function EnterprisePage() {
 					id="adoption-guide"
 					eyebrow="Adoption guide"
 					title="Bring Effect to your team"
+					subtitle="Preparing an internal proposal? Assess technical fit, plan a small pilot, and share Effect's release, security, and support information with your colleagues."
 				>
 					<div className="flex flex-col gap-6 border border-zinc-200 bg-white p-6 md:flex-row md:items-center md:justify-between md:p-8 dark:border-zinc-800 dark:bg-zinc-950">
 						<div className="flex items-start gap-4">
@@ -1130,8 +1140,9 @@ export function EnterprisePage() {
 								<p className={text.eyebrow}>// Get in touch</p>
 								<h2 className={text.sectionTitle}>Start a conversation</h2>
 								<p className={`${text.subtitle} max-w-md text-pretty`}>
-									Tell us what your team is building. No need to pick a service
-									first.
+									Evaluating Effect for your company or already running it in
+									production? Tell us what you are building and what your team
+									needs. We'll help you find the right next step.
 								</p>
 								<ul className="mt-10 space-y-3">
 									{[
@@ -1179,13 +1190,13 @@ export function EnterprisePage() {
 						{/* Everything else, one quiet line */}
 						<div className="mx-auto mt-8 flex max-w-5xl flex-col gap-3 text-sm text-zinc-500 md:flex-row md:items-center md:justify-between dark:text-zinc-400">
 							<p className="flex flex-wrap items-center gap-x-5 gap-y-2">
-								<span>Learning Effect?</span>
+								<span>Join the community</span>
 								<Link
 									href={DISCORD_URL}
 									variant="subtle"
 									className={subtleLink}
 								>
-									Discord
+									Public Discord
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
 								<Link
@@ -1198,13 +1209,13 @@ export function EnterprisePage() {
 								</Link>
 							</p>
 							<p className="flex flex-wrap items-center gap-x-5 gap-y-2">
-								<span>Hiring or sponsoring?</span>
+								<span>More ways to work with Effect</span>
 								<Link
 									href={getAssetPath("/effect-jobs")}
 									variant="subtle"
 									className={subtleLink}
 								>
-									Effect Jobs
+									Find engineers
 									<Icon name="arrow-right" className="text-xs" />
 								</Link>
 								<Link
