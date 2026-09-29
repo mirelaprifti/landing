@@ -156,7 +156,7 @@ type NodeProps = {
 function FlowNode({ logo, title, items, highlight }: NodeProps) {
 	return (
 		<div
-			className={`flex flex-col justify-center border p-5 ${
+			className={`border px-5 py-4 ${
 				highlight
 					? "border-zinc-900 bg-white dark:border-zinc-400 dark:bg-zinc-900/60"
 					: "border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950"
@@ -166,20 +166,9 @@ function FlowNode({ logo, title, items, highlight }: NodeProps) {
 				{logo ?? <span className={text.smallHeading}>{title}</span>}
 			</div>
 			{logo && <p className="sr-only">{title}</p>}
-			<ul className="mt-4 space-y-2">
-				{items.map((item) => (
-					<li
-						key={item}
-						className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300"
-					>
-						<Icon
-							name="circle-check"
-							className="shrink-0 text-sm text-zinc-400 dark:text-zinc-500"
-						/>
-						{item}
-					</li>
-				))}
-			</ul>
+			<p className="mt-2 text-sm leading-normal text-zinc-700 dark:text-zinc-300">
+				{items.join(" · ")}
+			</p>
 		</div>
 	);
 }
@@ -187,7 +176,7 @@ function FlowNode({ logo, title, items, highlight }: NodeProps) {
 /** One line splitting into two, aimed at the centres of two stacked nodes. */
 function Fork() {
 	const line = "absolute bg-zinc-300 dark:bg-zinc-700";
-	const toTop = "calc((100% - 1.5rem) / 4)";
+	const toTop = "calc((100% - 1rem) / 4)";
 	return (
 		<>
 			<div className="relative hidden lg:block" aria-hidden="true">
@@ -235,7 +224,7 @@ function SupportFlow() {
 				/>
 			</div>
 			<Fork />
-			<div className="flex flex-col gap-6 lg:grid lg:grid-rows-2">
+			<div className="flex flex-col gap-4 lg:grid lg:grid-rows-2">
 				<FlowNode
 					title="Effect maintainers"
 					logo={
@@ -281,20 +270,50 @@ const PRODUCTION = [
 	{
 		company: "OpenCode",
 		logo: getAssetPath("/assets/effect-jobs-logos/opencode-wordmark-dark.svg"),
+		logoClass: "max-h-7",
 		useCase: "Migrating a large TypeScript codebase to Effect",
 		href: talkHref("opencode"),
 	},
 	{
 		company: "MasterClass",
 		logo: getAssetPath("/assets/images/masterclass-noM.svg"),
+		logoClass: "max-h-6",
 		useCase: "Real-time voice AI orchestration",
 		href: talkHref("MasterClass"),
 	},
 	{
 		company: "OpenRouter",
 		logo: getAssetPath("/assets/images/open-router.svg"),
+		logoClass: "max-h-7",
 		useCase: "Internal tooling and infrastructure",
 		href: talkHref("OpenRouter"),
+	},
+];
+
+/** Descriptions from each project's own docs, checked Sep 25, 2026. */
+const ECOSYSTEM: {
+	name: string;
+	category: string;
+	body: string;
+	links: { label: string; href: string }[];
+}[] = [
+	{
+		name: "Alchemy",
+		category: "Infrastructure tooling",
+		body: "Infrastructure as Code built with Effect. Define cloud resources and application behavior in the same TypeScript program.",
+		links: [
+			{ label: "Get started", href: "https://alchemy.run/getting-started" },
+			{ label: "Source", href: "https://github.com/alchemy-run/alchemy" },
+		],
+	},
+	{
+		name: "Foldkit",
+		category: "Frontend",
+		body: "A TypeScript frontend framework built on Effect, using The Elm Architecture.",
+		links: [
+			{ label: "Get started", href: "https://foldkit.dev/" },
+			{ label: "Source", href: "https://github.com/foldkit/foldkit" },
+		],
 	},
 ];
 
@@ -588,12 +607,6 @@ export function EnterprisePage() {
 									Review releases and support
 								</Button>
 							</div>
-
-							<p className="mt-6 text-sm text-zinc-600 dark:text-zinc-400">
-								Learning Effect or looking for general help?{" "}
-								<Link href={DISCORD_URL}>Join the public Discord</Link>.
-								Everyone is welcome.
-							</p>
 						</div>
 
 						{/* What this page answers — doubles as an index a reviewer can skim */}
@@ -653,11 +666,6 @@ export function EnterprisePage() {
 					eyebrow="Releases & support"
 					title="Plan your adoption and upgrades"
 				>
-					{/* Caption on the table's top edge — freshness before the data */}
-					<p className={`${text.micro} mb-3 text-right`}>
-						Last updated · {POLICY_UPDATED}
-					</p>
-
 					{/* Desktop table */}
 					<div className="hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
 						<table className="w-full text-left text-sm">
@@ -755,6 +763,10 @@ export function EnterprisePage() {
 							</dl>
 						))}
 					</div>
+
+					<p className={`${text.micro} mt-3`}>
+						Last updated · {POLICY_UPDATED}
+					</p>
 				</Section>
 
 				{/* In production */}
@@ -777,7 +789,7 @@ export function EnterprisePage() {
 											<img
 												src={p.logo}
 												alt={p.company}
-												className="max-h-7 w-auto invert dark:invert-0"
+												className={`${p.logoClass} w-auto invert dark:invert-0`}
 											/>
 										</span>
 										<Icon
@@ -788,10 +800,63 @@ export function EnterprisePage() {
 									<span className={`${text.smallHeading} mt-8`}>
 										{p.useCase}
 									</span>
-									<span className={text.cardBody}>Watch the talk</span>
 								</a>
 							</li>
 						))}
+					</ul>
+				</Section>
+
+				{/* Ecosystem */}
+				<Section
+					id="ecosystem"
+					eyebrow="Ecosystem"
+					title="Projects built with Effect"
+				>
+					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+						{ECOSYSTEM.map((e) => (
+							<li
+								key={e.name}
+								className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950"
+							>
+								<span className={`${badge} self-start`}>{e.category}</span>
+								<h3 className={`${text.cardTitle} mt-6`}>{e.name}</h3>
+								<p className={text.cardBody}>{e.body}</p>
+								<p className="mt-4 flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+									Maintained by <Tbd />
+								</p>
+								<div className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6">
+									{e.links.map((l) => (
+										<Link
+											key={l.label}
+											href={l.href}
+											variant="subtle"
+											className={subtleLink}
+										>
+											{l.label}
+											<Icon name="arrow-up-right" className="text-xs" />
+										</Link>
+									))}
+								</div>
+							</li>
+						))}
+
+						{/* Open slot: invites maintainers in */}
+						<li className="bg-zinc-50 dark:bg-zinc-950">
+							<a
+								href={`mailto:${CONTACT_EMAIL}?subject=Ecosystem%20project`}
+								className="group flex h-full flex-col justify-center p-6 transition-colors hover:bg-zinc-100 md:p-8 dark:hover:bg-zinc-900/80"
+							>
+								<span className="flex h-10 w-10 items-center justify-center border border-dashed border-zinc-400 text-xl text-zinc-500 transition-colors group-hover:border-zinc-900 group-hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:group-hover:border-white dark:group-hover:text-white">
+									+
+								</span>
+								<span className={`${text.cardTitle} mt-6`}>
+									Share your project
+								</span>
+								<span className={text.cardBody}>
+									Building on Effect? Tell us about it.
+								</span>
+							</a>
+						</li>
 					</ul>
 				</Section>
 
@@ -821,7 +886,7 @@ export function EnterprisePage() {
 						))}
 					</ul>
 
-					<h3 className={`${text.cardTitle} mt-20`}>Who does what</h3>
+					<h3 className={`${text.cardTitle} mt-16`}>Who does what</h3>
 					<div className="mt-6">
 						<SupportFlow />
 					</div>
