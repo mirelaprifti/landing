@@ -310,7 +310,7 @@ const ECOSYSTEM: {
 		logo: {
 			light: getAssetPath("/assets/ecosystem/alchemy-mark-dark.svg"),
 			dark: getAssetPath("/assets/ecosystem/alchemy-mark-light.svg"),
-			className: "h-7 w-7",
+			className: "h-6 w-6",
 		},
 		highlights: [
 			"Cloudflare",
@@ -843,7 +843,7 @@ export function EnterprisePage() {
 							>
 								<header className="p-6 md:p-8">
 									<div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-										<span className="flex items-center gap-3">
+										<span className="flex h-6 items-center gap-2.5">
 											<ThemedLogo
 												light={e.logo.light}
 												dark={e.logo.dark}
@@ -851,7 +851,7 @@ export function EnterprisePage() {
 												className={e.logo.className}
 											/>
 											{e.name === "Alchemy" && (
-												<span className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+												<span className="text-lg leading-none font-semibold tracking-tight text-zinc-900 dark:text-white">
 													Alchemy
 												</span>
 											)}
