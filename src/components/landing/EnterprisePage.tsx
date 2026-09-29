@@ -111,11 +111,14 @@ function Section({
 		>
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
 				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-					<div>
+					{/* Header text takes the left half, up to the page's center line */}
+					<div className="lg:w-1/2 lg:pr-4">
 						<p className={text.eyebrow}>// {eyebrow}</p>
 						<h2 className={text.sectionTitle}>{title}</h2>
 						{subtitle && (
-							<p className={`${text.subtitle} max-w-2xl`}>{subtitle}</p>
+							<p className={`${text.subtitle} max-w-2xl text-pretty`}>
+								{subtitle}
+							</p>
 						)}
 						{action && actionPlacement === "below" && (
 							<div className="mt-8">{action}</div>
