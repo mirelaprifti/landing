@@ -91,14 +91,17 @@ function Section({
 	title,
 	subtitle,
 	action,
+	actionPlacement = "right",
 	children,
 }: {
 	id: string;
 	eyebrow: string;
 	title: string;
 	subtitle?: ReactNode;
-	/** Optional section-level action, aligned right of the title on desktop. */
+	/** Optional section-level action. */
 	action?: ReactNode;
+	/** "right" of the title on desktop, or directly "below" the subtitle. */
+	actionPlacement?: "right" | "below";
 	children: ReactNode;
 }) {
 	return (
@@ -114,8 +117,13 @@ function Section({
 						{subtitle && (
 							<p className={`${text.subtitle} max-w-2xl`}>{subtitle}</p>
 						)}
+						{action && actionPlacement === "below" && (
+							<div className="mt-8">{action}</div>
+						)}
 					</div>
-					{action && <div className="shrink-0">{action}</div>}
+					{action && actionPlacement === "right" && (
+						<div className="shrink-0">{action}</div>
+					)}
 				</div>
 				<div className="mt-12">{children}</div>
 			</div>
@@ -1115,6 +1123,7 @@ export function EnterprisePage() {
 					eyebrow="Get in touch"
 					title="Find the right next step"
 					subtitle="Evaluating Effect for your company or already running it in production?"
+					actionPlacement="below"
 					action={
 						<Button
 							href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
