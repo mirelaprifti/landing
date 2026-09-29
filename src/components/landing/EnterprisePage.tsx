@@ -32,7 +32,6 @@ const subtleLink = "inline-flex items-center gap-1.5 font-medium";
 
 const CONTACT_EMAIL = "contact@effectful.co";
 const DISCORD_URL = "https://discord.gg/effect-ts";
-const X_URL = "https://x.com/EffectTS_";
 const COMMUNITY_HUB = getAssetPath("/community-hub");
 const POLICY_UPDATED = "Oct 01, 2026";
 
@@ -1125,37 +1124,68 @@ export function EnterprisePage() {
 					/>
 
 					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-						<div className="flex flex-col items-center text-center">
-							<p className={text.eyebrow}>// Get in touch</p>
-							<h2 className="leading-tighter max-w-2xl text-3xl font-bold text-balance text-zinc-900 md:text-4xl dark:text-white">
-								Start a conversation
-							</h2>
-							<p className={`${text.subtitle} max-w-2xl text-pretty`}>
-								Tell us what your team is building. No need to pick a service
-								first.
-							</p>
-
-							<div className="mt-8 w-full max-w-md">
-								<EmailPanel />
+						{/* One structured panel: the case on the left, the contact on the right */}
+						<div className="mx-auto grid max-w-5xl grid-cols-1 border border-zinc-300 bg-white lg:grid-cols-12 dark:border-zinc-700 dark:bg-zinc-950">
+							<div className="p-8 md:p-12 lg:col-span-7">
+								<p className={text.eyebrow}>// Get in touch</p>
+								<h2 className={text.sectionTitle}>Start a conversation</h2>
+								<p className={`${text.subtitle} max-w-md text-pretty`}>
+									Tell us what your team is building. No need to pick a service
+									first.
+								</p>
+								<ul className="mt-10 space-y-3">
+									{[
+										{ icon: "shield-check" as const, label: "Mutual NDA" },
+										{
+											icon: "life-buoy" as const,
+											label: "SLAs and escalation",
+										},
+										{
+											icon: "heart-handshake" as const,
+											label: "Private Slack or Discord channel",
+										},
+									].map((item) => (
+										<li
+											key={item.label}
+											className="flex items-center gap-3 text-sm text-zinc-700 dark:text-zinc-300"
+										>
+											<Icon
+												name={item.icon}
+												className="shrink-0 text-base text-zinc-500 dark:text-zinc-400"
+											/>
+											{item.label}
+										</li>
+									))}
+								</ul>
 							</div>
 
-							<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+							<div className="flex flex-col justify-center gap-4 border-t border-zinc-200 bg-zinc-50 p-8 md:p-12 lg:col-span-5 lg:border-t-0 lg:border-l dark:border-zinc-800 dark:bg-zinc-900/60">
+								<p className={text.micro}>Email</p>
+								<EmailPanel />
 								<Button
 									href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
 									variant="primary"
 									size="lg"
+									className="w-full"
 								>
 									Email the Effect team
 								</Button>
-								<Button href={DISCORD_URL} variant="secondary" size="lg">
-									<i className="ri-discord-fill text-lg" />
-									Join Discord
-								</Button>
+								<p className="text-center text-xs text-zinc-500 dark:text-zinc-400">
+									Every inquiry goes to the Effect team at Effectful.
+								</p>
 							</div>
+						</div>
 
-							<p className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-500 dark:text-zinc-400">
-								<Link href={X_URL} variant="subtle" className={subtleLink}>
-									@EffectTS_ on X
+						{/* Everything else, one quiet line */}
+						<div className="mx-auto mt-8 flex max-w-5xl flex-col gap-3 text-sm text-zinc-500 md:flex-row md:items-center md:justify-between dark:text-zinc-400">
+							<p className="flex flex-wrap items-center gap-x-5 gap-y-2">
+								<span>Learning Effect?</span>
+								<Link
+									href={DISCORD_URL}
+									variant="subtle"
+									className={subtleLink}
+								>
+									Discord
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
 								<Link
@@ -1167,47 +1197,26 @@ export function EnterprisePage() {
 									<Icon name="arrow-right" className="text-xs" />
 								</Link>
 							</p>
+							<p className="flex flex-wrap items-center gap-x-5 gap-y-2">
+								<span>Hiring or sponsoring?</span>
+								<Link
+									href={getAssetPath("/effect-jobs")}
+									variant="subtle"
+									className={subtleLink}
+								>
+									Effect Jobs
+									<Icon name="arrow-right" className="text-xs" />
+								</Link>
+								<Link
+									href={`mailto:${CONTACT_EMAIL}?subject=Sponsorship`}
+									variant="subtle"
+									className={subtleLink}
+								>
+									Sponsorship
+									<Icon name="arrow-right" className="text-xs" />
+								</Link>
+							</p>
 						</div>
-
-						{/* More ways to work with Effect */}
-						<ul className="mx-auto mt-24 grid max-w-4xl grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-							{[
-								{
-									icon: "clipboard-list" as const,
-									title: "Build your team",
-									body: "Find engineers on the Effect job board.",
-									href: getAssetPath("/effect-jobs"),
-								},
-								{
-									icon: "heart-handshake" as const,
-									title: "Support Effect's development",
-									body: "Sponsor development and maintenance.",
-									href: `mailto:${CONTACT_EMAIL}?subject=Sponsorship`,
-								},
-							].map((c) => (
-								<li key={c.title} className="bg-zinc-50 dark:bg-zinc-950">
-									<a
-										href={c.href}
-										className="group flex h-full items-start gap-3 px-6 py-5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
-									>
-										<Icon
-											name={c.icon}
-											className="mt-0.5 shrink-0 text-xl text-zinc-500 dark:text-zinc-400"
-										/>
-										<span className="flex min-w-0 flex-1 flex-col">
-											<span className={text.smallHeading}>{c.title}</span>
-											<span className={`${text.cardBody} text-pretty`}>
-												{c.body}
-											</span>
-										</span>
-										<Icon
-											name="arrow-right"
-											className="mt-0.5 shrink-0 text-lg text-zinc-400 transition-colors group-hover:text-zinc-900 dark:group-hover:text-white"
-										/>
-									</a>
-								</li>
-							))}
-						</ul>
 					</div>
 				</section>
 			</main>
