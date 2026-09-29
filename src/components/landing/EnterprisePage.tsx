@@ -34,7 +34,7 @@ const CONTACT_EMAIL = "contact@effectful.co";
 const DISCORD_URL = "https://discord.gg/effect-ts";
 const X_URL = "https://x.com/EffectTS_";
 const COMMUNITY_HUB = getAssetPath("/community-hub");
-const POLICY_UPDATED = "Oct 1, 2026";
+const POLICY_UPDATED = "Oct 01, 2026";
 
 const LOGO = {
 	effectMark: getAssetPath(
@@ -362,7 +362,7 @@ const RELEASES: ReleaseRow[] = [
 	{
 		line: "4.x",
 		status: { label: "Current, LTS", tone: "active" },
-		stable: "Oct 1, 2026",
+		stable: "Oct 2026",
 		supportedUntil: <Tbd />,
 		upgrade: {
 			label: "Migrating from 3.x",
