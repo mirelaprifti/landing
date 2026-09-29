@@ -638,14 +638,6 @@ Adoption costs, open questions, how we'd change course.
 ## Recommendation
 Next step, owner, and review date.`;
 
-const GUIDE_TOPICS = [
-	"Learning curve",
-	"Incremental adoption",
-	"Hiring",
-	"Upgrade effort",
-	"Support costs",
-];
-
 const FAQS = [
 	{
 		question: "Can we start using Effect in part of an existing application?",
@@ -1039,74 +1031,46 @@ export function EnterprisePage() {
 					</ul>
 				</Section>
 
-				{/* 4. Adoption guide */}
+				{/* 4. Adoption guide — one band until the full guide has its own page */}
 				<Section
 					id="adoption-guide"
 					eyebrow="Adoption guide"
 					title="Bring Effect to your team"
-					subtitle="A proposal template with everything your architecture review will ask for."
 				>
-					<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-						<div className="lg:col-span-5">
-							<div className="flex flex-wrap items-center gap-3">
-								<Button href="#adoption-guide" variant="primary">
-									Read the adoption guide
-								</Button>
-								<Button href="#contact" variant="secondary">
-									Discuss your adoption
-								</Button>
-							</div>
-
-							<h3 className={`${text.smallHeading} mt-12`}>The guide covers</h3>
-							<ul className="mt-4 flex flex-wrap gap-2">
-								{GUIDE_TOPICS.map((t) => (
-									<li key={t} className={badge}>
-										{t}
-									</li>
-								))}
-							</ul>
-						</div>
-
-						<div className="lg:col-span-7">
-							<div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950">
-								<div className="flex items-center justify-between border-b border-zinc-800 px-5 py-3">
-									<span className="font-mono text-xs text-zinc-400">
-										adoption-proposal.md
-									</span>
-									<button
-										type="button"
-										onClick={async () => {
-											try {
-												await navigator.clipboard.writeText(PROPOSAL_TEMPLATE);
-												setTemplateCopied(true);
-												setTimeout(() => setTemplateCopied(false), 1500);
-											} catch {
-												// noop
-											}
-										}}
-										className="rounded-md border border-zinc-700 px-2 py-0.5 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
-									>
-										{templateCopied ? "copied" : "copy template"}
-									</button>
-								</div>
-								<pre className="max-h-[360px] overflow-auto px-5 py-4 font-mono text-sm leading-[1.9] text-zinc-200">
-									<code>
-										{PROPOSAL_TEMPLATE.split("\n").map((line, i) => (
-											<span
-												// biome-ignore lint/suspicious/noArrayIndexKey: static template lines
-												key={i}
-												className={
-													line.startsWith("#") ? "text-white" : "text-zinc-500"
-												}
-											>
-												{line}
-												{"\n"}
-											</span>
-										))}
-									</code>
-								</pre>
+					<div className="flex flex-col gap-6 border border-zinc-200 bg-white p-6 md:flex-row md:items-center md:justify-between md:p-8 dark:border-zinc-800 dark:bg-zinc-950">
+						<div className="flex items-start gap-4">
+							<Icon
+								name="file-text"
+								className="mt-0.5 shrink-0 text-2xl text-zinc-500 dark:text-zinc-400"
+							/>
+							<div>
+								<h3 className={text.cardTitle}>Proposal template</h3>
+								<p className={`${text.cardBody} max-w-xl`}>
+									Problem, pilot, maintenance plan, security, and tradeoffs.
+									Ready to adapt for your architecture review.
+								</p>
 							</div>
 						</div>
+						{/* TODO: add "Read the adoption guide" once the guide page exists */}
+						<Button
+							variant="primary"
+							className="shrink-0 self-start md:self-auto"
+							onClick={async () => {
+								try {
+									await navigator.clipboard.writeText(PROPOSAL_TEMPLATE);
+									setTemplateCopied(true);
+									setTimeout(() => setTemplateCopied(false), 1500);
+								} catch {
+									// noop
+								}
+							}}
+						>
+							<Icon
+								name={templateCopied ? "circle-check" : "clipboard-list"}
+								className="text-base"
+							/>
+							{templateCopied ? "Copied" : "Copy proposal template"}
+						</Button>
 					</div>
 				</Section>
 
