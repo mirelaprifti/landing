@@ -117,44 +117,6 @@ function Section({
 	);
 }
 
-/** The email address as a panel, styled like the homepage install command. */
-function EmailPanel() {
-	const [copied, setCopied] = useState(false);
-	return (
-		<div className="rounded-md bg-zinc-100/50 p-1 ring-1 ring-zinc-300 ring-inset dark:bg-zinc-900/50 dark:ring-zinc-700">
-			<div className="flex min-h-11 w-full items-center gap-3 px-4 py-1 font-mono text-sm">
-				<span className="text-zinc-400 dark:text-zinc-500">@</span>
-				<a
-					href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
-					className="min-w-0 flex-1 truncate text-left text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
-				>
-					{CONTACT_EMAIL}
-				</a>
-				<button
-					type="button"
-					onClick={async () => {
-						try {
-							await navigator.clipboard.writeText(CONTACT_EMAIL);
-							setCopied(true);
-							setTimeout(() => setCopied(false), 1500);
-						} catch {
-							// noop
-						}
-					}}
-					aria-label={copied ? "Email copied" : "Copy email address"}
-					className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
-				>
-					<Icon
-						name={copied ? "circle-check" : "clipboard-list"}
-						className="text-sm"
-					/>
-					{copied ? "Copied" : "Copy"}
-				</button>
-			</div>
-		</div>
-	);
-}
-
 /* ------------------------------------------------------------------ */
 /* Visuals                                                             */
 /* ------------------------------------------------------------------ */
@@ -1141,25 +1103,21 @@ export function EnterprisePage() {
 					items={FAQS}
 				/>
 
-				{/* 6. Contact — three routes, one anatomy: label, title, line, actions */}
+				{/* 6. Contact — three routes, one anatomy: title, then actions */}
 				<Section
 					id="contact"
 					eyebrow="Get in touch"
-					title="Start a conversation"
-					subtitle="Evaluating Effect for your company or already running it in production? We'll help you find the right next step."
+					title="Find the right next step"
+					subtitle="Evaluating Effect for your company or already running it in production?"
 				>
 					<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 						{/* Companies — the primary route */}
 						<div className="flex flex-col bg-white p-6 md:p-8 lg:col-span-2 dark:bg-zinc-900/60">
 							<h3 className={text.cardTitle}>Talk to the Effect team</h3>
-							<div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-								<div className="min-w-0 flex-1">
-									<EmailPanel />
-								</div>
+							<div className="mt-6">
 								<Button
 									href={`mailto:${CONTACT_EMAIL}?subject=Effect%20for%20enterprise`}
 									variant="primary"
-									className="shrink-0 sm:h-13"
 								>
 									Email the Effect team
 								</Button>
