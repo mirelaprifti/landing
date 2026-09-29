@@ -955,7 +955,7 @@ export function EnterprisePage() {
 							<Icon name="arrow-up-right" className="text-xs" />
 						</Link>
 					</div>
-					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 						{PRODUCTION.map((story) => (
 							<li key={story.company}>
 								<StoryCard story={story} />
