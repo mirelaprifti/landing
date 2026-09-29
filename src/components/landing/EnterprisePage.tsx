@@ -1140,7 +1140,7 @@ export function EnterprisePage() {
 							<p className={`${text.cardBody} text-pretty`}>
 								Everyone is welcome.
 							</p>
-							<div className="mt-6 flex flex-col items-start gap-3">
+							<div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-8">
 								<Link href={DISCORD_URL} variant="subtle" className={routeLink}>
 									<i
 										aria-hidden="true"
@@ -1164,7 +1164,10 @@ export function EnterprisePage() {
 						{/* Hiring and sponsorship */}
 						<div className="flex flex-col bg-zinc-50 p-6 md:p-8 dark:bg-zinc-950">
 							<h3 className={text.cardTitle}>Work with Effect</h3>
-							<div className="mt-6 flex flex-col items-start gap-3">
+							<p className={`${text.cardBody} text-pretty`}>
+								For companies hiring or sponsoring.
+							</p>
+							<div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-8">
 								<Link
 									href={getAssetPath("/effect-jobs")}
 									variant="subtle"
