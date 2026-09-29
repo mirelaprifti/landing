@@ -638,7 +638,7 @@ export function EnterprisePage() {
 						{/* What this page answers — doubles as an index a reviewer can skim */}
 						<nav
 							aria-label="On this page"
-							className="lg:col-span-4 lg:col-start-9"
+							className="lg:col-span-4 lg:col-start-9 lg:self-end"
 						>
 							<p className={text.micro}>This page answers</p>
 							<ol className="mt-4 border-t border-zinc-200 dark:border-zinc-800">
