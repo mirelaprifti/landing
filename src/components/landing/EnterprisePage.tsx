@@ -1010,7 +1010,7 @@ export function EnterprisePage() {
 					id="security"
 					eyebrow="Security"
 					title="Security and stewardship"
-					subtitle="Effect is open source and maintained by the Effect team at Effectful Technologies. Find what your security and architecture reviewers need: source, license, advisories, and private vulnerability reporting."
+					subtitle="Open source, maintained by the Effect team at Effectful Technologies."
 				>
 					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
 						{SECURITY_LINKS.map((l) => {
@@ -1062,7 +1062,7 @@ export function EnterprisePage() {
 					id="adoption-guide"
 					eyebrow="Adoption guide"
 					title="Bring Effect to your team"
-					subtitle="Preparing an internal proposal? Assess technical fit, plan a small pilot, and share Effect's release, security, and support information with your colleagues."
+					subtitle="Preparing an internal proposal? Start with our template."
 				>
 					<div className="flex flex-col gap-6 border border-zinc-200 bg-white p-6 md:flex-row md:items-center md:justify-between md:p-8 dark:border-zinc-800 dark:bg-zinc-950">
 						<div className="flex items-start gap-4">
