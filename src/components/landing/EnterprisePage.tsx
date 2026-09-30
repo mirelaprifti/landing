@@ -275,7 +275,7 @@ function HubNode({
 }
 
 /**
- * Hairline connector with a pulse travelling away from the hub.
+ * Hairline connector with a short line segment travelling away from the hub.
  * `toward` is the side the pulse travels to; vertical on mobile.
  */
 function HubLink({ toward }: { toward: "left" | "right" }) {
@@ -285,9 +285,14 @@ function HubLink({ toward }: { toward: "left" | "right" }) {
 			className="relative flex h-full items-center justify-center"
 		>
 			{/* desktop: horizontal */}
-			<div className="relative hidden h-px w-full bg-zinc-300 lg:block dark:bg-zinc-700">
+			<div className="relative hidden h-px w-full overflow-hidden bg-zinc-300 lg:block dark:bg-zinc-700">
+				{/* A short bright segment with a fading tail, travelling along the line */}
 				<span
-					className="hub-pulse absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-zinc-900 shadow-[0_0_8px_2px_rgba(0,0,0,0.15)] dark:bg-white dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.45)]"
+					className={`hub-pulse absolute inset-y-0 w-6 ${
+						toward === "right"
+							? "bg-linear-to-r from-transparent to-zinc-900 dark:to-white"
+							: "bg-linear-to-l from-transparent to-zinc-900 dark:to-white"
+					}`}
 					style={{
 						animation: `${toward === "right" ? "hub-right" : "hub-left"} 2.8s cubic-bezier(0.4,0,0.2,1) infinite`,
 					}}
@@ -307,8 +312,8 @@ function SupportFlow() {
 	return (
 		<>
 			<style>{`
-				@keyframes hub-right { 0% { left: 0%; opacity: 0 } 15% { opacity: 1 } 85% { opacity: 1 } 100% { left: 100%; opacity: 0 } }
-				@keyframes hub-left { 0% { left: 100%; opacity: 0 } 15% { opacity: 1 } 85% { opacity: 1 } 100% { left: 0%; opacity: 0 } }
+				@keyframes hub-right { 0% { left: -1.5rem } 100% { left: 100% } }
+				@keyframes hub-left { 0% { left: 100% } 100% { left: -1.5rem } }
 				@media (prefers-reduced-motion: reduce) { .hub-pulse { animation: none !important; opacity: 0 } }
 			`}</style>
 			<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_72px_minmax(0,1.15fr)_72px_minmax(0,1fr)]">
