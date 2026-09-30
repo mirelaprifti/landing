@@ -397,7 +397,7 @@ const PAGE_QUESTIONS = [
 	{ href: "#security", label: "What happens with a security issue?" },
 	{
 		href: "#adoption-guide",
-		label: "What do we send to our architecture review?",
+		label: "How do we propose it internally?",
 	},
 ];
 
