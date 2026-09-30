@@ -982,8 +982,7 @@ export function EnterprisePage() {
 						))}
 					</ul>
 
-					<h3 className={`${text.cardTitle} mt-16`}>Who does what</h3>
-					<div className="mt-6">
+					<div className="mt-16">
 						<SupportFlow />
 					</div>
 				</Section>
