@@ -762,10 +762,11 @@ export function EnterprisePage() {
 							aria-label="On this page"
 							className="lg:col-span-4 lg:col-start-9 lg:self-end"
 						>
-							{/* Label rests on the first grid line (the h1 baseline); the extra
-							    3px below keeps the list bottom-aligned with the buttons */}
+							{/* The label's cap tops touch the first grid line (the h1 baseline).
+							    Only the gap below changes, so the list stays bottom-aligned
+							    with the buttons. */}
 							<p className={text.micro}>This page answers</p>
-							<ol className="mt-4 border-t border-zinc-200 lg:mt-[19px] dark:border-zinc-800">
+							<ol className="mt-4 border-t border-zinc-200 lg:mt-[11px] dark:border-zinc-800">
 								{PAGE_QUESTIONS.map((q, i) => (
 									<li
 										key={q.href}
