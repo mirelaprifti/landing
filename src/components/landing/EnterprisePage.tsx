@@ -182,7 +182,8 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 					background: `radial-gradient(circle, rgba(${project.glow}, 0.14), transparent 70%)`,
 				}}
 			/>
-			<div className="relative flex-1 p-6 md:p-8">
+			{/* One row: identity on the left, links on the right */}
+			<div className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-4 p-6 md:p-8">
 				<div className="flex items-center gap-4">
 					<span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
 						<ThemedLogo
@@ -201,9 +202,7 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 						</p>
 					</div>
 				</div>
-			</div>
-			<footer className="relative flex flex-wrap items-center gap-4 border-t border-zinc-200 px-6 py-4 md:px-8 dark:border-zinc-800">
-				<span className="flex flex-wrap gap-x-6 gap-y-2">
+				<div className="flex flex-wrap gap-x-6 gap-y-2">
 					{project.links.map((l) => (
 						<Link
 							key={l.label}
@@ -215,8 +214,8 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 							<Icon name="arrow-up-right" className="text-xs" />
 						</Link>
 					))}
-				</span>
-			</footer>
+				</div>
+			</div>
 		</article>
 	);
 }
