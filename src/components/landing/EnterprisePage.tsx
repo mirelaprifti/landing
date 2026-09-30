@@ -578,9 +578,10 @@ const SECURITY_LINKS: {
 		href: "https://github.com/Effect-TS/effect/security",
 	},
 	{
-		icon: "heart-handshake",
-		title: "Meet the team",
-		body: "The Effect team at Effectful Technologies.",
+		icon: "chart-line",
+		title: "npm package",
+		body: "Versions, release history, and weekly downloads.",
+		href: "https://www.npmjs.com/package/effect",
 	},
 ];
 
