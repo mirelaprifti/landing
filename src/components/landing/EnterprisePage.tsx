@@ -29,9 +29,9 @@ const subtleLink = "inline-flex items-center gap-1.5 font-medium";
 
 /** Group header bar — sits on top of the grid it labels, like a table head. */
 const groupBar =
-	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100 px-6 py-4 md:px-8 dark:border-zinc-800 dark:bg-zinc-900";
+	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100/60 px-6 py-2.5 md:px-8 dark:border-zinc-800 dark:bg-zinc-900/40";
 const groupLabel =
-	"font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
+	"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
 
 /** Contact-route links: a leading icon names the destination, the arrow shows direction. */
 const routeLink = "inline-flex items-center gap-2 font-medium";
@@ -180,7 +180,7 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 /** Integration-style project card — app-icon tile with a faint brand glow. Static: no hover. */
 function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 	return (
-		<article className="relative flex flex-col overflow-hidden border border-t-0 border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+		<article className="relative flex flex-col overflow-hidden bg-white dark:bg-zinc-950">
 			<div
 				aria-hidden="true"
 				className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full opacity-60 blur-3xl"
@@ -948,7 +948,7 @@ export function EnterprisePage() {
 					<div id="ecosystem" className={`${groupBar} mt-20 scroll-mt-24`}>
 						<h3 className={groupLabel}>Ecosystem projects</h3>
 					</div>
-					<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+					<div className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 						{ECOSYSTEM.map((project) => (
 							<ProjectCard key={project.name} project={project} />
 						))}
