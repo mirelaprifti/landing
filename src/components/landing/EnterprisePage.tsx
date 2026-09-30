@@ -27,6 +27,12 @@ const text = {
 
 const subtleLink = "inline-flex items-center gap-1.5 font-medium";
 
+/** Group header bar — sits on top of the grid it labels, like a table head. */
+const groupBar =
+	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100 px-6 py-4 md:px-8 dark:border-zinc-800 dark:bg-zinc-900";
+const groupLabel =
+	"font-mono text-sm font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
+
 /** Contact-route links: a leading icon names the destination, the arrow shows direction. */
 const routeLink = "inline-flex items-center gap-2 font-medium";
 const routeIcon =
@@ -174,7 +180,7 @@ function StoryCard({ story }: { story: (typeof PRODUCTION)[number] }) {
 /** Integration-style project card — app-icon tile with a faint brand glow. Static: no hover. */
 function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 	return (
-		<article className="relative flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+		<article className="relative flex flex-col overflow-hidden border border-t-0 border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
 			<div
 				aria-hidden="true"
 				className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full opacity-60 blur-3xl"
@@ -919,8 +925,9 @@ export function EnterprisePage() {
 					title="Effect in the real world"
 					subtitle="See where teams use Effect and the problems they are solving."
 				>
-					<div className="flex items-baseline justify-between gap-4">
-						<h3 className={text.cardTitle}>In production</h3>
+					{/* Header bar attached to the grid it labels, like a table head */}
+					<div className={groupBar}>
+						<h3 className={groupLabel}>In production</h3>
 						<Link
 							href="https://www.youtube.com/playlist?list=PLDf3uQLaK2lbPLQT6I6xkiV_W3NxnPXRE"
 							variant="subtle"
@@ -930,7 +937,7 @@ export function EnterprisePage() {
 							<Icon name="arrow-up-right" className="text-xs" />
 						</Link>
 					</div>
-					<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+					<ul className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 						{PRODUCTION.map((story) => (
 							<li key={story.company}>
 								<StoryCard story={story} />
@@ -938,10 +945,10 @@ export function EnterprisePage() {
 						))}
 					</ul>
 
-					<h3 id="ecosystem" className={`${text.cardTitle} mt-20 scroll-mt-24`}>
-						Ecosystem projects
-					</h3>
-					<div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2">
+					<div id="ecosystem" className={`${groupBar} mt-20 scroll-mt-24`}>
+						<h3 className={groupLabel}>Ecosystem projects</h3>
+					</div>
+					<div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
 						{ECOSYSTEM.map((project) => (
 							<ProjectCard key={project.name} project={project} />
 						))}
