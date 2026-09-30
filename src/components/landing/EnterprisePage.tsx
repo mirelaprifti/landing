@@ -25,10 +25,6 @@ const text = {
 		"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400",
 };
 
-/** Styleguide kind badge. */
-const badge =
-	"rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400";
-
 const subtleLink = "inline-flex items-center gap-1.5 font-medium";
 
 /** Contact-route links: a leading icon names the destination, the arrow shows direction. */
@@ -208,13 +204,6 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 				<p className="mt-6 max-w-md text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
 					{project.tagline}
 				</p>
-				<ul className="mt-6 flex flex-wrap gap-2">
-					{project.highlights.map((h) => (
-						<li key={h} className={badge}>
-							{h}
-						</li>
-					))}
-				</ul>
 			</div>
 			<footer className="relative flex flex-wrap items-center gap-4 border-t border-zinc-200 px-6 py-4 md:px-8 dark:border-zinc-800">
 				<span className="flex flex-wrap gap-x-6 gap-y-2">
@@ -445,7 +434,7 @@ const PRODUCTION = [
 ];
 
 /**
- * Flagship ecosystem projects. Descriptions and highlights come from each
+ * Flagship ecosystem projects. Descriptions come from each
  * project's own docs (checked Sep 2026). `glow` is the project's brand color.
  */
 const ECOSYSTEM: {
@@ -454,7 +443,6 @@ const ECOSYSTEM: {
 	tagline: string;
 	mark: { light: string; dark: string };
 	glow: string;
-	highlights: string[];
 	links: { label: string; href: string }[];
 }[] = [
 	{
@@ -467,7 +455,6 @@ const ECOSYSTEM: {
 			dark: getAssetPath("/assets/ecosystem/alchemy-mark-light.svg"),
 		},
 		glow: "163, 196, 115",
-		highlights: ["Cloudflare", "AWS", "Neon", "PlanetScale", "Stripe"],
 		links: [
 			{ label: "Get started", href: "https://alchemy.run/getting-started" },
 			{ label: "Source", href: "https://github.com/alchemy-run/alchemy" },
@@ -483,7 +470,6 @@ const ECOSYSTEM: {
 			dark: getAssetPath("/assets/ecosystem/foldkit-mark.svg"),
 		},
 		glow: "255, 255, 255",
-		highlights: ["Routing", "Server rendering", "UI components", "DevTools"],
 		links: [
 			{ label: "Get started", href: "https://foldkit.dev/get-started" },
 			{ label: "Source", href: "https://github.com/foldkit/foldkit" },
@@ -958,7 +944,7 @@ export function EnterprisePage() {
 					<h3 id="ecosystem" className={`${text.cardTitle} mt-20 scroll-mt-24`}>
 						Ecosystem projects
 					</h3>
-					<div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+					<div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2">
 						{ECOSYSTEM.map((project) => (
 							<ProjectCard key={project.name} project={project} />
 						))}
