@@ -202,7 +202,7 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 						</p>
 					</div>
 				</div>
-				<div className="flex flex-wrap gap-x-6 gap-y-2">
+				<div className="flex flex-col items-start gap-2">
 					{project.links.map((l) => (
 						<Link
 							key={l.label}
