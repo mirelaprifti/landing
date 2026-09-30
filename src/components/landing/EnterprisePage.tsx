@@ -705,15 +705,15 @@ export function EnterprisePage() {
 				{/* Hero */}
 				<section className="relative overflow-hidden">
 					<div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px] overflow-hidden">
+						{/* First horizontal grid line sits on the h1's baseline (141px mobile, 184px md+) */}
 						<div
-							className="absolute inset-0"
+							className="absolute inset-0 bg-position-[calc(50%+97px)_141px] md:bg-position-[calc(50%+97px)_184px]"
 							style={{
 								backgroundImage: `
 									linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
 									linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 								`,
 								backgroundSize: "196.6px 194px",
-								backgroundPosition: "calc(50% + 97px) -36px",
 							}}
 						/>
 						<div
