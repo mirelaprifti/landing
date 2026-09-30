@@ -201,9 +201,6 @@ function ProjectCard({ project }: { project: (typeof ECOSYSTEM)[number] }) {
 						</p>
 					</div>
 				</div>
-				<p className="mt-6 max-w-md text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-					{project.tagline}
-				</p>
 			</div>
 			<footer className="relative flex flex-wrap items-center gap-4 border-t border-zinc-200 px-6 py-4 md:px-8 dark:border-zinc-800">
 				<span className="flex flex-wrap gap-x-6 gap-y-2">
@@ -434,13 +431,12 @@ const PRODUCTION = [
 ];
 
 /**
- * Flagship ecosystem projects. Descriptions come from each
+ * Flagship ecosystem projects. Categories come from each
  * project's own docs (checked Sep 2026). `glow` is the project's brand color.
  */
 const ECOSYSTEM: {
 	name: string;
 	kind: string;
-	tagline: string;
 	mark: { light: string; dark: string };
 	glow: string;
 	links: { label: string; href: string }[];
@@ -448,8 +444,6 @@ const ECOSYSTEM: {
 	{
 		name: "Alchemy",
 		kind: "Infrastructure as Code",
-		tagline:
-			"Define cloud resources and application behavior in the same TypeScript program.",
 		mark: {
 			light: getAssetPath("/assets/ecosystem/alchemy-mark-dark.svg"),
 			dark: getAssetPath("/assets/ecosystem/alchemy-mark-light.svg"),
@@ -463,8 +457,6 @@ const ECOSYSTEM: {
 	{
 		name: "Foldkit",
 		kind: "Frontend framework",
-		tagline:
-			"The Elm Architecture on Effect: one Schema-defined Model, explicit effects, typed routing.",
 		mark: {
 			light: getAssetPath("/assets/ecosystem/foldkit-mark-white.svg"),
 			dark: getAssetPath("/assets/ecosystem/foldkit-mark.svg"),
