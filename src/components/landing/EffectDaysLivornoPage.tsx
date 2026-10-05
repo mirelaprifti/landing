@@ -151,7 +151,7 @@ const SPEAKERS: {
 	{
 		name: "Julia Ortiz",
 		company: "silklang.org",
-		photo: "/assets/effect-days/julia-ortiz.png",
+		photo: "/assets/effect-days/julia.png",
 		x: "JuliaScript",
 	},
 ];
