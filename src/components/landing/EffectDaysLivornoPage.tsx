@@ -65,7 +65,8 @@ const PROGRAM = [
    count that is not a multiple of four. */
 const SPEAKERS: {
 	name: string;
-	role: string;
+	/** Job title. Left off where we have none yet; the card then shows the company alone. */
+	role?: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
@@ -140,6 +141,18 @@ const SPEAKERS: {
 		company: "Effect",
 		photo: "/assets/effect-days/mike-race.png",
 		x: "MichaelArnaldi",
+	},
+	{
+		name: "Julius Marminge",
+		company: "T3 Code",
+		photo: "/assets/effect-days/julius-marminge.jpeg",
+		x: "jullerino",
+	},
+	{
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia-ortiz.png",
+		x: "JuliaScript",
 	},
 ];
 
@@ -937,8 +950,7 @@ export function EffectDaysLivornoPage() {
 										    fixed position even where a longer name wraps. */}
 										<div className="flex items-center justify-between gap-2">
 											<p className={text.cardBody}>
-												{speaker.role}
-												{" · "}
+												{speaker.role && `${speaker.role} · `}
 												{speaker.company}
 											</p>
 											{speaker.x && (
