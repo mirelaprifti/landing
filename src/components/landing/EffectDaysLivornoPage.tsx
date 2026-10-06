@@ -59,7 +59,11 @@ const PROGRAM = [
 	},
 ];
 
-/* Confirmed speakers, in announcement order. A card with no `photo` yet falls
+/* Confirmed speakers, in a curated order rather than announcement order: the
+   newest names sit high in the second row, Julius and Julia are kept apart so
+   the similar names don't read as a duplicate, photo backgrounds alternate
+   light and dark, and Michael closes the grid as host. Place new speakers
+   deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in. Four across on desktop, so the last row runs short at any
    count that is not a multiple of four. */
@@ -95,16 +99,28 @@ const SPEAKERS: {
 		x: "spaceemotion",
 	},
 	{
-		name: "Kyle Mistele",
-		company: "HumanLayer",
-		photo: "/assets/effect-days/kyle-mistele.png",
-		x: "0xblacklight",
+		name: "Julius Marminge",
+		company: "T3 Code",
+		photo: "/assets/effect-days/julius-marminge.jpeg",
+		x: "jullerino",
 	},
 	{
 		name: "Adam Rankin",
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
 		x: "rankintweets",
+	},
+	{
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia.png",
+		x: "JuliaScript",
+	},
+	{
+		name: "Kyle Mistele",
+		company: "HumanLayer",
+		photo: "/assets/effect-days/kyle-mistele.png",
+		x: "0xblacklight",
 	},
 	{
 		name: "Sam Goodwin",
@@ -129,18 +145,6 @@ const SPEAKERS: {
 		company: "Effect",
 		photo: "/assets/effect-days/mike-race.png",
 		x: "MichaelArnaldi",
-	},
-	{
-		name: "Julius Marminge",
-		company: "T3 Code",
-		photo: "/assets/effect-days/julius-marminge.jpeg",
-		x: "jullerino",
-	},
-	{
-		name: "Julia Ortiz",
-		company: "silklang.org",
-		photo: "/assets/effect-days/julia.png",
-		x: "JuliaScript",
 	},
 ];
 
