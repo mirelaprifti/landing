@@ -142,7 +142,7 @@ const SPEAKERS: {
 	},
 	{
 		name: "Michael Arnaldi",
-		company: "Effect",
+		company: "Effectful Technologies",
 		photo: "/assets/effect-days/mike-race.png",
 		x: "MichaelArnaldi",
 	},
