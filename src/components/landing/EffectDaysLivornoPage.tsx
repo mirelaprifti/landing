@@ -65,8 +65,6 @@ const PROGRAM = [
    count that is not a multiple of four. */
 const SPEAKERS: {
 	name: string;
-	/** Job title. Left off where we have none yet; the card then shows the company alone. */
-	role?: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
@@ -74,70 +72,60 @@ const SPEAKERS: {
 }[] = [
 	{
 		name: "Dillon Mulroy",
-		role: "Principal Engineer",
 		company: "Cloudflare",
 		photo: "/assets/effect-days/dillon-mulroy.png",
 		x: "dillon_mulroy",
 	},
 	{
 		name: "Kit Langton",
-		role: "+9,000x Developer",
 		company: "OpenCode",
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 	},
 	{
 		name: "Rhys Sullivan",
-		role: "Founder",
 		company: "Executor",
 		photo: "/assets/effect-days/rhys-sullivan.png",
 		x: "RhysSullivan",
 	},
 	{
 		name: "Leonie Gräßel",
-		role: "Founder",
 		company: "Novelcrafter",
 		photo: "/assets/effect-days/leonie-2.png",
 		x: "spaceemotion",
 	},
 	{
 		name: "Kyle Mistele",
-		role: "CTO",
 		company: "HumanLayer",
 		photo: "/assets/effect-days/kyle-mistele.png",
 		x: "0xblacklight",
 	},
 	{
 		name: "Adam Rankin",
-		role: "CTO",
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
 		x: "rankintweets",
 	},
 	{
 		name: "Sam Goodwin",
-		role: "Founder",
 		company: "Alchemy",
 		photo: "/assets/effect-days/sam-goodwin.png",
 		x: "samgoodwin89",
 	},
 	{
 		name: "Devin Jameson",
-		role: "Creator",
 		company: "Foldkit",
 		photo: "/assets/effect-days/devin-jameson.jpg",
 		x: "devinjameson",
 	},
 	{
 		name: "John A. De Goes",
-		role: "CEO",
 		company: "Ziverge",
 		photo: "/assets/effect-days/jdg.png",
 		x: "jdegoes",
 	},
 	{
 		name: "Michael Arnaldi",
-		role: "Creator",
 		company: "Effect",
 		photo: "/assets/effect-days/mike-race.png",
 		x: "MichaelArnaldi",
@@ -942,17 +930,14 @@ export function EffectDaysLivornoPage() {
 									)}
 									{/* p-4 rather than the styleguide card's p-6 — four across
 									    leaves each card narrow, and the tighter inset keeps the
-									    role on one line more often. */}
+									    company on one line more often. */}
 									<div className="flex flex-1 flex-col p-4">
 										<h3 className={text.cardTitle}>{speaker.name}</h3>
-										{/* The X icon rides on the role line rather than the name:
+										{/* The X icon rides on the company line rather than the name:
 										    that line is always one line deep, so the icon keeps a
 										    fixed position even where a longer name wraps. */}
 										<div className="flex items-center justify-between gap-2">
-											<p className={text.cardBody}>
-												{speaker.role && `${speaker.role} · `}
-												{speaker.company}
-											</p>
+											<p className={text.cardBody}>{speaker.company}</p>
 											{speaker.x && (
 												<Link
 													href={`https://x.com/${speaker.x}`}
