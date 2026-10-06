@@ -881,8 +881,9 @@ export function EffectDaysLivornoPage() {
 
 				<SectionDivider />
 
-				{/* Speakers — sits between the program and the venue, so the page
-				    answers "who will I hear" before it asks for a ticket. */}
+				{/* Speakers — sits after the program and ahead of the sponsors and
+				    venue, so the page answers "who will I hear" before it asks for
+				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
 						{/* Title in the left half, the blurb in the right — the same split
@@ -959,6 +960,60 @@ export function EffectDaysLivornoPage() {
 									</div>
 								</div>
 							))}
+						</div>
+					</div>
+				</section>
+
+				<SectionDivider />
+
+				{/* Sponsors — right under the speakers, so the companies behind the
+				    event read as part of "who's involved", and sit high enough that
+				    most visitors reach them. */}
+				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
+					<div className={container}>
+						<div className="flex flex-col gap-4 sm:flex-row sm:items-baseline-last sm:justify-between">
+							<div>
+								<p className={text.eyebrow}>{"// Sponsors"}</p>
+								<h2 className={text.sectionTitle}>Made possible by</h2>
+							</div>
+							<BecomeSponsorLink />
+						</div>
+
+						{/* The ledger: one hairline frame, and hairlines between every
+						    cell — the grid's background showing through a 1px gap. */}
+						<div className="mt-10 md:mt-12">
+							<div className="grid gap-px border border-zinc-200 bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800">
+								{SPONSOR_TIERS.map((tier) => {
+									const marks = SPONSORS.filter(
+										(sponsor) => sponsor.tier === tier.tier,
+									);
+									if (marks.length === 0) return null;
+									return (
+										<div
+											key={tier.tier}
+											className="grid gap-px lg:grid-cols-[9.5rem_1fr]"
+										>
+											{/* Rail: tier name, centred on the marks it names so every
+											    row reads label-then-logos at the same distance. Below lg
+											    it heads its block as a ruled, tinted strip — a table's
+											    header row — so the cell dividers start from a line and
+											    the strip can't pass for an empty sponsor cell. */}
+											<div className="flex items-center bg-zinc-50 px-4 py-2.5 lg:bg-white lg:px-5 lg:py-0 dark:bg-zinc-900 lg:dark:bg-zinc-950">
+												<p className={text.micro}>{tier.label}</p>
+											</div>
+											<div className={`grid gap-px ${tier.cols}`}>
+												{marks.map((sponsor) => (
+													<SponsorCell
+														key={sponsor.name}
+														sponsor={sponsor}
+														tier={tier}
+													/>
+												))}
+											</div>
+										</div>
+									);
+								})}
+							</div>
 						</div>
 					</div>
 				</section>
@@ -1301,58 +1356,6 @@ export function EffectDaysLivornoPage() {
 										</div>
 									</div>
 								))}
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<SectionDivider />
-
-				{/* Sponsors */}
-				<section id="sponsors" className={`scroll-mt-16 ${sectionRhythm}`}>
-					<div className={container}>
-						<div className="flex flex-col gap-4 sm:flex-row sm:items-baseline-last sm:justify-between">
-							<div>
-								<p className={text.eyebrow}>{"// Sponsors"}</p>
-								<h2 className={text.sectionTitle}>Made possible by</h2>
-							</div>
-							<BecomeSponsorLink />
-						</div>
-
-						{/* The ledger: one hairline frame, and hairlines between every
-						    cell — the grid's background showing through a 1px gap. */}
-						<div className="mt-10 md:mt-12">
-							<div className="grid gap-px border border-zinc-200 bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800">
-								{SPONSOR_TIERS.map((tier) => {
-									const marks = SPONSORS.filter(
-										(sponsor) => sponsor.tier === tier.tier,
-									);
-									if (marks.length === 0) return null;
-									return (
-										<div
-											key={tier.tier}
-											className="grid gap-px lg:grid-cols-[9.5rem_1fr]"
-										>
-											{/* Rail: tier name, centred on the marks it names so every
-											    row reads label-then-logos at the same distance. Below lg
-											    it heads its block as a ruled, tinted strip — a table's
-											    header row — so the cell dividers start from a line and
-											    the strip can't pass for an empty sponsor cell. */}
-											<div className="flex items-center bg-zinc-50 px-4 py-2.5 lg:bg-white lg:px-5 lg:py-0 dark:bg-zinc-900 lg:dark:bg-zinc-950">
-												<p className={text.micro}>{tier.label}</p>
-											</div>
-											<div className={`grid gap-px ${tier.cols}`}>
-												{marks.map((sponsor) => (
-													<SponsorCell
-														key={sponsor.name}
-														sponsor={sponsor}
-														tier={tier}
-													/>
-												))}
-											</div>
-										</div>
-									);
-								})}
 							</div>
 						</div>
 					</div>
