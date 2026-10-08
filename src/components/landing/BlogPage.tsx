@@ -161,7 +161,9 @@ function HorizontalScrollRail({
 	const scroll = useCallback((direction: "left" | "right") => {
 		const el = scrollRef.current;
 		if (!el) return;
-		const amount = 300;
+		// Step by one card (card width + 12px gap) so cards stay aligned to the edges
+		const card = el.firstElementChild as HTMLElement | null;
+		const amount = card ? card.offsetWidth + 12 : 300;
 		el.scrollBy({
 			left: direction === "left" ? -amount : amount,
 			behavior: "smooth",
@@ -224,12 +226,12 @@ function HorizontalScrollRail({
 
 				{/* Right fade affordance */}
 				{canScrollRight && (
-					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l from-white dark:from-zinc-950 to-transparent" />
+					<div className="pointer-events-none absolute top-0 right-0 bottom-2 w-16 bg-gradient-to-l xl:hidden from-white dark:from-zinc-950 to-transparent" />
 				)}
 
 				{/* Left fade affordance */}
 				{canScrollLeft && (
-					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r from-white dark:from-zinc-950 to-transparent" />
+					<div className="pointer-events-none absolute top-0 bottom-2 left-0 w-16 bg-gradient-to-r xl:hidden from-white dark:from-zinc-950 to-transparent" />
 				)}
 
 				{/* Mobile swipe hint */}
@@ -254,7 +256,7 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[340px]"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[340px] xl:w-[calc((100%-1.5rem)/3)]"
 		>
 			<div>
 				{/* Meta row: entry number + package, one quiet line above the title */}
@@ -320,7 +322,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 xl:w-[calc((100%-2.25rem)/4)]"
 		>
 			<div>
 				{issueNumber && (
