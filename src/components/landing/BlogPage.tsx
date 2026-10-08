@@ -257,21 +257,29 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[320px]"
 		>
 			<div>
-				<div className="flex items-baseline justify-between gap-3">
-					<h3 className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
-						{title}
-					</h3>
-					<span className="shrink-0 font-mono text-xs text-zinc-600 dark:text-zinc-400 tabular-nums">
+				{/* Meta row: entry number + package, one quiet line above the title */}
+				<div className="flex min-w-0 items-center gap-2.5 font-mono text-xs">
+					<span className="shrink-0 font-medium text-zinc-900 dark:text-zinc-200 tabular-nums">
 						{String(entry).padStart(2, "0")}
 					</span>
+					{post.packageName && (
+						<>
+							<span
+								aria-hidden="true"
+								className="h-3 w-px shrink-0 bg-zinc-300 dark:bg-zinc-700"
+							/>
+							<span className="truncate text-zinc-600 dark:text-zinc-400">
+								{post.packageName}
+							</span>
+						</>
+					)}
 				</div>
-				{post.packageName && (
-					<p className="mt-1 truncate font-mono text-xs text-zinc-600 dark:text-zinc-400">
-						{post.packageName}
-					</p>
-				)}
 
-				<p className="mt-3 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
+				<h3 className="mt-4 truncate text-lg font-semibold text-zinc-900 dark:text-white">
+					{title}
+				</h3>
+
+				<p className="mt-2 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
