@@ -279,7 +279,7 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 					{title}
 				</h3>
 
-				<p className="mt-1 line-clamp-3 text-sm leading-[1.35] text-zinc-600 dark:text-zinc-400">
+				<p className="mt-2 line-clamp-3 text-sm leading-[1.35] text-zinc-600 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
@@ -329,7 +329,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 					</span>
 				)}
 
-				<p className="mt-3 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
+				<p className="mt-2 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
