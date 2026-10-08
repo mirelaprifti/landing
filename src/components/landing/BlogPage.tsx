@@ -245,7 +245,7 @@ function HorizontalScrollRail({
 }
 
 // ── Module of the Week Horizontal Scroll ──────────────────────────
-function MOTWCard({ post }: { post: BlogPost }) {
+function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 	const url = getPostUrl(post);
 	const isExternal = url.startsWith("http");
 	// "Module of the Week - Cluster, Part 2" → "Cluster, Part 2"
@@ -257,9 +257,19 @@ function MOTWCard({ post }: { post: BlogPost }) {
 			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[320px]"
 		>
 			<div>
-				<h3 className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
-					{title}
-				</h3>
+				<div className="flex items-baseline justify-between gap-3">
+					<h3 className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
+						{title}
+					</h3>
+					<span className="shrink-0 font-mono text-xs text-zinc-600 dark:text-zinc-400 tabular-nums">
+						{String(entry).padStart(2, "0")}
+					</span>
+				</div>
+				{post.packageName && (
+					<p className="mt-1 truncate font-mono text-xs text-zinc-600 dark:text-zinc-400">
+						{post.packageName}
+					</p>
+				)}
 
 				<p className="mt-3 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
@@ -283,8 +293,9 @@ function MOTWSection({
 			onViewAll={onViewAll}
 			itemCount={posts.length}
 		>
-			{posts.map((post) => (
-				<MOTWCard key={post.slug} post={post} />
+			{/* Posts are newest first, so the oldest is entry 01 */}
+			{posts.map((post, i) => (
+				<MOTWCard key={post.slug} post={post} entry={posts.length - i} />
 			))}
 		</HorizontalScrollRail>
 	);

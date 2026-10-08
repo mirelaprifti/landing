@@ -17,6 +17,8 @@ export interface BlogPost {
 	coverImage?: string;
 	/** If true, this post has local content and should be rendered on this site */
 	hasLocalContent?: boolean;
+	/** Package the featured module lives in (Module of the Week posts) */
+	packageName?: string;
 }
 
 /**
@@ -136,6 +138,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "",
 		tags: ["Module of the Week"],
 		authors: [],
+		packageName: "effect/cluster",
 	},
 	{
 		slug: "module-of-the-week/cluster-actors",
@@ -146,6 +149,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "",
 		tags: ["Module of the Week"],
 		authors: [],
+		packageName: "effect/cluster",
 	},
 	{
 		slug: "module-of-the-week/rcmap",
@@ -156,6 +160,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "",
 		tags: ["Module of the Week"],
 		authors: [],
+		packageName: "effect",
 	},
 	{
 		slug: "module-of-the-week/persisted-queue",
@@ -166,6 +171,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "",
 		tags: ["Module of the Week"],
 		authors: [],
+		packageName: "effect/unstable/persistence",
 	},
 	{
 		slug: "this-week-in-effect-128",
