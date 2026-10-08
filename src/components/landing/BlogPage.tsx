@@ -260,7 +260,7 @@ function MOTWCard({ post }: { post: BlogPost }) {
 		>
 			<div>
 				<div className="flex min-w-0 items-center gap-2.5">
-					<span className="truncate font-mono text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+					<span className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
 						{moduleName}
 					</span>
 					{part && (
@@ -270,7 +270,7 @@ function MOTWCard({ post }: { post: BlogPost }) {
 					)}
 				</div>
 
-				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+				<p className="mt-3 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
@@ -328,7 +328,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 					</time>
 				</div>
 
-				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+				<p className="mt-3 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
