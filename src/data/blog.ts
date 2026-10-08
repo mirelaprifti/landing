@@ -87,6 +87,7 @@ export const BLOG_TAGS = [
 	"Effect Schema",
 	"Effect Website",
 	"Miscellaneous",
+	"Module of the Week",
 	"Release",
 	"This Week In Effect",
 	"TypeScript",
@@ -99,6 +100,7 @@ export const TAG_COLORS: Record<string, string> = {
 	Release: "#22c55e", // green
 	Effect: "#818cf8", // indigo
 	"This Week In Effect": "#a78bfa", // violet-400 (WCAG AA)
+	"Module of the Week": "#2dd4bf", // teal-400
 	"Cause & Effect": "#f472b6", // pink
 	"Effect Schema": "#06b6d4", // cyan
 	"Effect Playground": "#c4b5fd", // violet-300 (differentiate from TWIE)
@@ -124,6 +126,46 @@ export const BLOG_POSTS: BlogPost[] = [
 		featured: true,
 		coverImage: "/assets/images/featured-post.png",
 		hasLocalContent: true,
+	},
+	{
+		slug: "module-of-the-week/cluster-messaging",
+		title: "Module of the Week - Cluster, Part 2",
+		excerpt:
+			"We write our first entity, then follow one of its messages across a cluster to see how runners agree on who owns what.",
+		date: "Oct 5, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [],
+	},
+	{
+		slug: "module-of-the-week/cluster-actors",
+		title: "Module of the Week - Cluster, Part 1",
+		excerpt:
+			"The first in a series on Effect Cluster. We look at the actor model and how a cluster is laid out.",
+		date: "Sep 28, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [],
+	},
+	{
+		slug: "module-of-the-week/rcmap",
+		title: "Module of the Week - RcMap",
+		excerpt:
+			"Learn how RcMap uses reference counting to share scoped resources by key across consumers, with automatic cleanup, idle time to live, and capacity limits.",
+		date: "Sep 21, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [],
+	},
+	{
+		slug: "module-of-the-week/persisted-queue",
+		title: "Module of the Week - PersistedQueue",
+		excerpt:
+			"Learn how Effect's PersistedQueue handles background jobs, multiple workers, locking, and retries.",
+		date: "Sep 16, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [],
 	},
 	{
 		slug: "this-week-in-effect-128",

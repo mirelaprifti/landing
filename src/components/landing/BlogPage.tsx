@@ -130,12 +130,14 @@ function FeaturedPost({ post }: { post: BlogPost }) {
 // ── Shared Horizontal Scroll Rail ─────────────────────────────────
 function HorizontalScrollRail({
 	title,
+	badge,
 	ariaLabel,
 	onViewAll,
 	children,
 	itemCount,
 }: {
 	title: string;
+	badge?: string;
 	ariaLabel: string;
 	onViewAll: () => void;
 	children: React.ReactNode;
@@ -173,16 +175,23 @@ function HorizontalScrollRail({
 	return (
 		<section aria-label={ariaLabel} className="pt-16 pb-2 md:pt-20">
 			{/* Section header */}
-			<div className="mb-6 flex items-center justify-between">
-				<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-					{title}
-				</h2>
+			<div className="mb-6 flex items-center justify-between gap-2">
+				<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+					<h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+						{title}
+					</h2>
+					{badge && (
+						<span className="inline-flex items-center rounded-md border border-zinc-400 dark:border-zinc-600 px-2 py-0.5 font-mono text-xs text-zinc-800 dark:text-zinc-200">
+							{badge}
+						</span>
+					)}
+				</div>
 
-				<div className="flex items-center gap-5">
+				<div className="flex shrink-0 items-center gap-5">
 					<button
 						type="button"
 						onClick={onViewAll}
-						className="font-mono text-sm text-zinc-800 dark:text-zinc-200 transition-colors hover:text-zinc-900 dark:hover:text-white"
+						className="whitespace-nowrap font-mono text-sm text-zinc-800 dark:text-zinc-200 transition-colors hover:text-zinc-900 dark:hover:text-white"
 					>
 						View all
 					</button>
@@ -241,6 +250,67 @@ function HorizontalScrollRail({
 				)}
 			</div>
 		</section>
+	);
+}
+
+// ── Module of the Week Horizontal Scroll ──────────────────────────
+function MOTWCard({ post }: { post: BlogPost }) {
+	const url = getPostUrl(post);
+	const isExternal = url.startsWith("http");
+	// Split "Module of the Week - Cluster, Part 2" into module name + part
+	const [moduleName, part] = post.title
+		.replace(/^Module of the Week\s*-\s*/, "")
+		.split(/,\s*/);
+	return (
+		<a
+			href={isExternal ? url : getAssetPath(url)}
+			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+			className="group relative flex w-[280px] shrink-0 sm:w-[320px] flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-4 pb-5 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
+		>
+			<div>
+				<div className="flex items-center justify-between gap-3">
+					<div className="flex min-w-0 items-center gap-2">
+						<span className="truncate font-mono text-base font-semibold text-zinc-900 dark:text-white">
+							{moduleName}
+						</span>
+						{part && (
+							<span className="inline-flex shrink-0 items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-1.5 py-0.5 font-mono text-xs text-zinc-600 dark:text-zinc-400">
+								{part}
+							</span>
+						)}
+					</div>
+					<time className="shrink-0 font-mono text-xs text-zinc-600 dark:text-zinc-400 tabular-nums">
+						{post.date}
+					</time>
+				</div>
+
+				<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+					{post.excerpt}
+				</p>
+			</div>
+		</a>
+	);
+}
+
+function MOTWSection({
+	posts,
+	onViewAll,
+}: {
+	posts: BlogPost[];
+	onViewAll: () => void;
+}) {
+	return (
+		<HorizontalScrollRail
+			title="Module of the Week"
+			badge="New series"
+			ariaLabel="Module of the Week posts"
+			onViewAll={onViewAll}
+			itemCount={posts.length}
+		>
+			{posts.map((post) => (
+				<MOTWCard key={post.slug} post={post} />
+			))}
+		</HorizontalScrollRail>
 	);
 }
 
@@ -398,9 +468,19 @@ export function BlogPage() {
 		[],
 	);
 
-	// Posts that are not TWIE (main grid — includes Release posts)
+	const motwPosts = useMemo(
+		() => BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week")),
+		[],
+	);
+
+	// Posts outside the two series rails (main grid — includes Release posts)
 	const nonTwiePosts = useMemo(
-		() => BLOG_POSTS.filter((p) => !p.tags.includes("This Week In Effect")),
+		() =>
+			BLOG_POSTS.filter(
+				(p) =>
+					!p.tags.includes("This Week In Effect") &&
+					!p.tags.includes("Module of the Week"),
+			),
 		[],
 	);
 
@@ -410,7 +490,7 @@ export function BlogPage() {
 			return twiePosts;
 		}
 
-		// For "All" — show posts that are NOT in TWIE (they have their own rail)
+		// For "All" — show posts that are NOT in a series (they have their own rails)
 		// For a specific tag — search ALL posts so dual-tagged posts appear
 		let posts = activeTag === "All" ? nonTwiePosts : BLOG_POSTS;
 
@@ -619,6 +699,13 @@ export function BlogPage() {
 			{/* ── Content zone ───────────────────────────── */}
 			<div ref={contentZoneRef} className="relative">
 				<div className="mx-auto w-full max-w-[73.75rem] px-4">
+					{/* Module of the Week horizontal scroll rail */}
+					<MOTWSection
+						posts={motwPosts}
+						onViewAll={() => handleTagChange("Module of the Week")}
+					/>
+					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
 					{/* TWIE horizontal scroll rail */}
 					<TWIESection
 						posts={twiePosts}
