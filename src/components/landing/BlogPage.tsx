@@ -275,11 +275,11 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 					)}
 				</div>
 
-				<h3 className="mt-4 truncate text-lg font-semibold text-zinc-900 dark:text-white">
+				<h3 className="mt-3 truncate text-lg font-semibold text-zinc-900 dark:text-white">
 					{title}
 				</h3>
 
-				<p className="mt-2 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
+				<p className="mt-1 line-clamp-3 text-sm leading-[1.35] text-zinc-600 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
