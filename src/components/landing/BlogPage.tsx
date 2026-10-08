@@ -254,7 +254,7 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[320px]"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[340px]"
 		>
 			<div>
 				{/* Meta row: entry number + package, one quiet line above the title */}
@@ -269,7 +269,7 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 								className="h-3 w-px shrink-0 bg-zinc-300 dark:bg-zinc-700"
 							/>
 							<span className="truncate text-zinc-600 dark:text-zinc-400">
-								{post.packageName}
+								from "{post.packageName}"
 							</span>
 						</>
 					)}
