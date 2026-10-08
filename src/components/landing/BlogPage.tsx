@@ -258,7 +258,7 @@ function MOTWCard({ post, entry }: { post: BlogPost; entry: number }) {
 		>
 			<div>
 				{/* Meta row: entry number + package, one quiet line above the title */}
-				<div className="flex min-w-0 items-center gap-2.5 font-mono text-xs">
+				<div className="flex min-w-0 items-center gap-2 font-mono text-xs">
 					<span className="shrink-0 font-medium text-zinc-900 dark:text-zinc-200 tabular-nums">
 						{String(entry).padStart(2, "0")}
 					</span>
