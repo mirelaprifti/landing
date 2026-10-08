@@ -320,7 +320,7 @@ function TWIECard({ post }: { post: BlogPost }) {
 		<a
 			href={isExternal ? url : getAssetPath(url)}
 			{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-4 pb-5 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
+			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-6 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70"
 		>
 			<div>
 				{issueNumber && (
