@@ -696,8 +696,12 @@ export function BlogPage() {
 						posts={twiePosts}
 						onViewAll={() => handleTagChange("This Week In Effect")}
 					/>
-					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+				</div>
 
+				{/* Section divider between the series and the post list */}
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					{/* Single-column layout */}
 					<div>
 						<div className="min-w-0 pb-24">
