@@ -685,8 +685,12 @@ export function BlogPage() {
 						posts={motwPosts}
 						onViewAll={() => handleTagChange("Module of the Week")}
 					/>
-					<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+				</div>
 
+				{/* Section divider between the two series */}
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+				<div className="mx-auto w-full max-w-[73.75rem] px-4">
 					{/* TWIE horizontal scroll rail */}
 					<TWIESection
 						posts={twiePosts}
