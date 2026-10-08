@@ -248,10 +248,8 @@ function HorizontalScrollRail({
 function MOTWCard({ post }: { post: BlogPost }) {
 	const url = getPostUrl(post);
 	const isExternal = url.startsWith("http");
-	// Split "Module of the Week - Cluster, Part 2" into module name + part
-	const [moduleName, part] = post.title
-		.replace(/^Module of the Week\s*-\s*/, "")
-		.split(/,\s*/);
+	// "Module of the Week - Cluster, Part 2" → "Cluster, Part 2"
+	const title = post.title.replace(/^Module of the Week\s*-\s*/, "");
 	return (
 		<a
 			href={isExternal ? url : getAssetPath(url)}
@@ -259,16 +257,9 @@ function MOTWCard({ post }: { post: BlogPost }) {
 			className="group relative flex w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 p-5 transition-colors duration-200 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/70 dark:hover:bg-zinc-900/70 sm:w-[320px]"
 		>
 			<div>
-				<div className="flex min-w-0 items-center gap-2.5">
-					<span className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
-						{moduleName}
-					</span>
-					{part && (
-						<span className="inline-flex shrink-0 items-center rounded-md border border-zinc-300 dark:border-zinc-700 px-1.5 py-0.5 font-mono text-xs text-zinc-600 dark:text-zinc-400">
-							{part}
-						</span>
-					)}
-				</div>
+				<h3 className="truncate text-lg font-semibold text-zinc-900 dark:text-white">
+					{title}
+				</h3>
 
 				<p className="mt-3 line-clamp-3 text-sm leading-[1.35] text-zinc-700 dark:text-zinc-400">
 					{post.excerpt}
