@@ -290,18 +290,18 @@ const SPONSORS: {
 		websiteUrl: "https://effectful.co/",
 	},
 	{
-		name: "Warp",
-		tier: "Main sponsor",
-		logo: "/assets/effect-days/warp.svg",
-		logoHeight: "h-7",
-		websiteUrl: "https://www.warp.dev/",
-	},
-	{
 		name: "Ziverge",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
 		logoHeight: "h-5",
 		websiteUrl: "https://www.ziverge.com/",
+	},
+	{
+		name: "Warp",
+		tier: "Main sponsor",
+		logo: "/assets/effect-days/warp.svg",
+		logoHeight: "h-7",
+		websiteUrl: "https://www.warp.dev/",
 	},
 	{
 		name: "Betalyra",
