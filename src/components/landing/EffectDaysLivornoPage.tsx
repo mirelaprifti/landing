@@ -248,11 +248,11 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Partner",
 		label: "Partners",
-		/* Three marks, so thirds — stacked below sm like the main row, since
-		   two-up would leave an orphan. */
-		cols: "grid-cols-1 sm:grid-cols-3",
-		/* Same widths as the main row at every breakpoint, so the row runs
-		   shorter to keep each partner cell smaller in area than a main one. */
+		/* Four marks: two-by-two on phones, quarters from sm — halves beside
+		   the main row's thirds would make a partner cell the bigger one. */
+		cols: "grid-cols-2 sm:grid-cols-4",
+		/* Narrower than a main cell at every breakpoint, and shorter too, so
+		   each partner cell stays smaller in area than a main one. */
 		cellClass: "h-20 sm:h-24 lg:h-28",
 		logoBox: "h-10",
 	},
@@ -325,6 +325,15 @@ const SPONSORS: {
 		   run wider than them. */
 		logoHeight: "h-6",
 		websiteUrl: "https://datapizza.tech/",
+	},
+	{
+		name: "Cloudflare",
+		tier: "Partner",
+		logo: "/assets/effect-days/cloudflare.svg",
+		/* Stacked lockup — cloud over wordmark — so it sets taller than the
+		   one-line marks beside it for its type to match theirs. */
+		logoHeight: "h-10",
+		websiteUrl: "https://www.cloudflare.com/",
 	},
 	{
 		name: "Novelcrafter",
