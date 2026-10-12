@@ -286,21 +286,23 @@ const SPONSORS: {
 		logo: "/assets/effect-days/Effectful-white.svg",
 		/* Light strokes beside Warp's and Ziverge's heavy ones, so the lockup
 		   runs wider than theirs to carry the same weight. */
-		logoHeight: "h-9",
+		logoHeight: "h-10",
 		websiteUrl: "https://effectful.co/",
 	},
 	{
 		name: "Ziverge",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/ziverge.svg",
-		logoHeight: "h-5",
+		/* Heavy caps, so a half step where the others take a whole one: at
+		   h-6 it outweighs the two lighter lockups beside it. */
+		logoHeight: "h-5.5",
 		websiteUrl: "https://www.ziverge.com/",
 	},
 	{
 		name: "Warp",
 		tier: "Main sponsor",
 		logo: "/assets/effect-days/warp.svg",
-		logoHeight: "h-7",
+		logoHeight: "h-8",
 		websiteUrl: "https://www.warp.dev/",
 	},
 	{
