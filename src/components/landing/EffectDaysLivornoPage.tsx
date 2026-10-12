@@ -248,12 +248,12 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Partner",
 		label: "Partners",
-		/* Two marks, so halves. Back to thirds when a third partner lands. */
-		cols: "grid-cols-2",
-		/* Halves are half again as wide as the main row's thirds, so the row
-		   runs shorter to keep each partner cell smaller in area than a main
-		   one. */
-		cellClass: "h-24 lg:h-28",
+		/* Three marks, so thirds — stacked below sm like the main row, since
+		   two-up would leave an orphan. */
+		cols: "grid-cols-1 sm:grid-cols-3",
+		/* Same widths as the main row at every breakpoint, so the row runs
+		   shorter to keep each partner cell smaller in area than a main one. */
+		cellClass: "h-20 sm:h-24 lg:h-28",
 		logoBox: "h-10",
 	},
 	{
@@ -316,6 +316,15 @@ const SPONSORS: {
 		logo: "/assets/effect-days/inato.png",
 		logoHeight: "h-8",
 		websiteUrl: "https://www.inato.com/",
+	},
+	{
+		name: "Datapizza",
+		tier: "Partner",
+		logo: "/assets/effect-days/datapizza.svg",
+		/* A long, low lockup: set shorter than its row-mates so it doesn't
+		   run wider than them. */
+		logoHeight: "h-6",
+		websiteUrl: "https://datapizza.tech/",
 	},
 	{
 		name: "Novelcrafter",
