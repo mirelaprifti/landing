@@ -318,15 +318,6 @@ const SPONSORS: {
 		websiteUrl: "https://www.inato.com/",
 	},
 	{
-		name: "Datapizza",
-		tier: "Partner",
-		logo: "/assets/effect-days/datapizza.svg",
-		/* A long, low lockup: set shorter than its row-mates so it doesn't
-		   run wider than them. */
-		logoHeight: "h-6",
-		websiteUrl: "https://datapizza.tech/",
-	},
-	{
 		name: "Cloudflare",
 		tier: "Partner",
 		logo: "/assets/effect-days/cloudflare.svg",
@@ -334,6 +325,15 @@ const SPONSORS: {
 		   one-line marks beside it for its type to match theirs. */
 		logoHeight: "h-10",
 		websiteUrl: "https://www.cloudflare.com/",
+	},
+	{
+		name: "Datapizza",
+		tier: "Partner",
+		logo: "/assets/effect-days/datapizza.svg",
+		/* A long, low lockup: set shorter than its row-mates so it doesn't
+		   run wider than them. */
+		logoHeight: "h-6",
+		websiteUrl: "https://datapizza.tech/",
 	},
 	{
 		name: "Novelcrafter",
