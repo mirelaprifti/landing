@@ -1072,12 +1072,12 @@ export function EffectDaysLivornoPage() {
 										className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
 									>
 										<SpeakerPhoto speaker={speaker} />
-										{/* Details set into the foot of the portrait, on
-										    a flat dark band across the foot of the frame — dark in
+										{/* Details set into the foot of the portrait, on a scrim
+										    that darkens only the bottom of the frame — dark in
 										    both themes, so the light ink always holds. A step
 										    smaller and tighter on phones, where two-up cards are
 										    narrow and a long name would climb over the face. */}
-										<div className="absolute inset-x-0 bottom-0 bg-black/60 p-3 sm:p-4">
+										<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
 											<SpeakerDetails speaker={speaker} onImage />
 										</div>
 									</div>
