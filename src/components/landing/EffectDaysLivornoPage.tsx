@@ -62,21 +62,22 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, sits in the section
-   header beside the title rather than in the grid. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, hosting as well as speaking, opens the grid on a
+   card two columns wide. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   The other twelve fill every row at two, three and four across. The host
-   takes a different shape on purpose — a role, not a thirteenth card that
-   didn't fit — and sits up top, so the host is the first face people see. */
+   The host's card is two columns wide, so the grid counts fourteen slots:
+   full rows on mobile, with the last row one pair short on desktop and one
+   card short on tablet. He goes first, so the host is the first face people
+   see. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Shown in the section header rather than as a card. One speaker. */
+	/** Opens the grid on a two-column card. One speaker, kept first. */
 	host?: boolean;
 }[] = [
 	{
@@ -724,7 +725,7 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 		.join("")
 		.slice(0, 2);
 	return (
-		<div className="flex aspect-square items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+		<div className="flex aspect-4/5 items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
 			<span className="flex h-16 w-16 items-center justify-center border border-dashed border-zinc-300 font-mono text-lg font-medium tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
 				{initials}
 			</span>
@@ -735,21 +736,23 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 /** A speaker's portrait, or the initials stand-in until one is dropped in. */
 function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
-	/* Square, like most sources, which then sit uncropped. A taller source
-	   loses a little top and bottom, centred; one that cuts a face badly may
-	   want a per-card object-position. */
+	/* Most sources are square, and covering this taller frame crops their
+	   sides rather than the top and bottom — centred is right for that. One is
+	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
+	   vertically instead and may want a per-card object-position. */
 	return (
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-square w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
 		/>
 	);
 }
 
-/* Desktop column for each speaker card: all four columns in turn. Column 3
-   is the zero-width spacer, so it is never assigned. Literal classes, so
-   Tailwind sees them. */
+/* Desktop column for each speaker card after the host's. The host fills the
+   left pair of the first row, so the first two cards take the right pair;
+   after that, all four columns in turn. Column 3 is the zero-width spacer,
+   so it is never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
@@ -757,7 +760,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return LG_COLUMN[index % 4];
+	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -984,75 +987,16 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Title and blurb, then the host — he opens the line-up from the
-						    header rather than as a card in it. The header runs on the
-						    speakers grid's own tracks, so the host's portrait takes exactly
-						    one card column at a card's size, with his details in the next:
-						    the right pair on desktop, beside the title; the first two
-						    columns below it on tablet and mobile.
-
-						    The host's portrait is square at a card's width — exactly a
-						    card's photo — so the box sits closer to the title block's
-						    height, and his name sits at the top, level with the
-						    title, so the two read as a pair; his role labels the foot. Top-aligned, so reading
-						    starts at the eyebrow and the spare height falls under both; a wider gap than the grid's own
-						    below, so the host reads as header, not a first row of cards. */}
-						<div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-start">
-							<div className="col-span-full lg:col-span-2">
-								<p className={text.eyebrow}>{"// "}Speakers</p>
-								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-								<p className={text.subtitle}>
-									{/* Broken after the comma from sm up; on phones the first half
-									    alone outruns the line, so it wraps where it falls. */}
-									Builders, maintainers and educators shipping with Effect,{" "}
-									<br className="hidden sm:inline" />
-									from Cloudflare and Warp to OpenCode and Alchemy.
-								</p>
-							</div>
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-								<div
-									key={speaker.name}
-									className="col-span-2 grid grid-cols-subgrid border border-zinc-200 bg-white lg:col-start-4 dark:border-zinc-800 dark:bg-zinc-950"
-								>
-									{speaker.photo ? (
-										<img
-											src={getAssetPath(speaker.photo)}
-											alt={speaker.name}
-											className="aspect-square w-full border-r border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
-										/>
-									) : (
-										<SpeakerPlaceholder name={speaker.name} />
-									)}
-									{/* Name and company at the top, level with the title; the role
-									    at the foot, so it closes the box as a label would. */}
-									<div className="flex min-w-0 flex-col py-4 pr-4">
-										<h3 className="leading-[1.1] text-xl font-bold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
-											{speaker.name}
-										</h3>
-										<div className="mt-2 flex items-center gap-3">
-											<p className="text-sm text-zinc-600 md:text-base dark:text-zinc-400">
-												{speaker.company}
-											</p>
-											{speaker.x && (
-												<Link
-													href={`https://x.com/${speaker.x}`}
-													variant="icon"
-													aria-label={`${speaker.name} on X`}
-													className="shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-												>
-													<i
-														className="ri-twitter-x-fill text-base"
-														aria-hidden="true"
-													/>
-												</Link>
-											)}
-										</div>
-										<p className={`${text.micro} mt-auto pt-4`}>
-											Host &amp; speaker
-										</p>
-									</div>
-								</div>
-							))}
+						<div>
+							<p className={text.eyebrow}>{"// "}Speakers</p>
+							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							<p className={text.subtitle}>
+								{/* Broken after the comma from sm up; on phones the first half
+								    alone outruns the line, so it wraps where it falls. */}
+								Builders, maintainers and educators shipping with Effect,{" "}
+								<br className="hidden sm:inline" />
+								from Cloudflare and Warp to OpenCode and Alchemy.
+							</p>
 						</div>
 
 						{/* Two across in mobile portrait, three from mobile landscape
@@ -1065,8 +1009,37 @@ export function EffectDaysLivornoPage() {
 						    the middle reads as 32. Each card is explicitly placed so
 						    nothing auto-flows into the spacer (see lgColumn), and keeping it
 						    a single grid (rather than two half-grids) is what holds the card
-						    widths equal and the row bottoms aligned across the centre. */}
-						<div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+						    widths equal and the row bottoms aligned across the centre.
+
+						    The host opens the grid two columns wide and one row tall — the
+						    left pair on desktop. It is a subgrid on those tracks: the
+						    portrait takes the first column at a card's width and fills
+						    the row's height, set by the cards beside it; the details take
+						    the second, at the foot, level with their names. On mobile
+						    nothing sits beside it, so the portrait holds 4:5 there. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+								<div
+									key={speaker.name}
+									className="col-span-2 grid grid-cols-subgrid overflow-hidden border border-zinc-200 bg-white lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									<div className="relative aspect-4/5 border-r border-zinc-200 sm:aspect-auto dark:border-zinc-800">
+										{speaker.photo ? (
+											<img
+												src={getAssetPath(speaker.photo)}
+												alt={speaker.name}
+												className="absolute inset-0 h-full w-full object-cover opacity-80"
+											/>
+										) : (
+											<SpeakerPlaceholder name={speaker.name} />
+										)}
+									</div>
+									<div className="flex min-w-0 flex-col justify-end py-4 pr-4">
+										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
+										<SpeakerDetails speaker={speaker} />
+									</div>
+								</div>
+							))}
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
 								(speaker, index) => (
 									<div
