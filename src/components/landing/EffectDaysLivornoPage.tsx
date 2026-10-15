@@ -1010,43 +1010,48 @@ export function EffectDaysLivornoPage() {
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre. */}
 						{/* The host leads: a full-width band above the grid, in the
-						    cards' own hairline and fill. A portrait thumbnail and the
-						    name a step up from a card title carry the emphasis — enough
-						    to read first, short enough not to outweigh the line-up. */}
+						    cards' own hairline and fill. The portrait sits at about half
+						    a card and the name between a card title and the section
+						    title — enough to read first without outweighing the
+						    line-up. */}
 						{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 							<div
 								key={speaker.name}
-								className="mt-12 flex items-center gap-4 border border-zinc-200 bg-white p-4 md:gap-6 dark:border-zinc-800 dark:bg-zinc-950"
+								className="mt-12 flex items-end gap-4 border border-zinc-200 bg-white p-4 md:gap-8 md:p-6 dark:border-zinc-800 dark:bg-zinc-950"
 							>
 								{speaker.photo && (
 									<img
 										src={getAssetPath(speaker.photo)}
 										alt={speaker.name}
-										className="aspect-4/5 w-16 shrink-0 border border-zinc-200 object-cover opacity-80 md:w-24 dark:border-zinc-800"
+										className="aspect-4/5 w-24 shrink-0 border border-zinc-200 object-cover opacity-80 md:w-40 dark:border-zinc-800"
 									/>
 								)}
-								<div className="min-w-0 flex-1">
-									<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
-									<h3 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
+								<div className="min-w-0 flex-1 pb-1">
+									<p className={`${text.micro} mb-2 md:mb-3`}>
+										Host &amp; speaker
+									</p>
+									<h3 className="leading-[1.1] text-2xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
 										{speaker.name}
 									</h3>
-									<p className="mt-1 text-sm text-zinc-600 md:text-base dark:text-zinc-400">
-										{speaker.company}
-									</p>
+									<div className="mt-2 flex items-center gap-3">
+										<p className="text-sm text-zinc-600 md:text-lg dark:text-zinc-400">
+											{speaker.company}
+										</p>
+										{speaker.x && (
+											<Link
+												href={`https://x.com/${speaker.x}`}
+												variant="icon"
+												aria-label={`${speaker.name} on X`}
+												className="shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											>
+												<i
+													className="ri-twitter-x-fill text-base"
+													aria-hidden="true"
+												/>
+											</Link>
+										)}
+									</div>
 								</div>
-								{speaker.x && (
-									<Link
-										href={`https://x.com/${speaker.x}`}
-										variant="icon"
-										aria-label={`${speaker.name} on X`}
-										className="shrink-0 self-end text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										<i
-											className="ri-twitter-x-fill text-base"
-											aria-hidden="true"
-										/>
-									</Link>
-								)}
 							</div>
 						))}
 						<div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
