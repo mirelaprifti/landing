@@ -271,11 +271,13 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Community",
 		label: "Community",
-		/* Stacked below 360px: in thirds of a 320 screen the marks shrink
-		   under legibility. */
-		cols: "grid-cols-1 min-[22.5rem]:grid-cols-3",
-		cellClass: "h-20 lg:h-24",
-		logoBox: "h-6",
+		/* Four marks, laid out like the partner row — two-by-two on phones,
+		   quarters from sm — but a step shorter, so each cell stays smaller
+		   than a partner one. */
+		cols: "grid-cols-2 sm:grid-cols-4",
+		cellClass: "h-16 sm:h-20 lg:h-24",
+		/* Tall enough for a stacked lockup; one-line marks set well under it. */
+		logoBox: "h-12",
 	},
 ];
 
@@ -375,6 +377,17 @@ const SPONSORS: {
 		logo: "/assets/effect-days/august.png",
 		logoHeight: "h-5",
 		websiteUrl: "https://www.august.computer/",
+	},
+	{
+		name: "Academind",
+		tier: "Community",
+		/* Stacked lockup — mark over two lines of type — so it sets taller
+		   than its one-line row-mates; at this height its letters match
+		   Cloudflare's stacked wordmark a row up, while its footprint stays
+		   smaller than a partner mark's. */
+		logo: "/assets/effect-days/academind.svg",
+		logoHeight: "h-12",
+		websiteUrl: "https://academind.com/",
 	},
 ];
 
@@ -996,51 +1009,44 @@ export function EffectDaysLivornoPage() {
 						    nothing auto-flows into the spacer (see lgColumn), and keeping it
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre. */}
-						{/* The host leads: a full-width panel on the grid's own tracks, so
-						    the portrait sits in the first column at exactly a card's size
-						    and lines up with the cards below. The rest of the row carries
-						    the name at display size — the type, not a bigger photo, is
-						    what makes the host the first thing read. */}
+						{/* The host leads: a full-width band above the grid, in the
+						    cards' own hairline and fill. A portrait thumbnail and the
+						    name a step up from a card title carry the emphasis — enough
+						    to read first, short enough not to outweigh the line-up. */}
 						{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 							<div
 								key={speaker.name}
-								className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]"
+								className="mt-12 flex items-center gap-4 border border-zinc-200 bg-white p-4 md:gap-6 dark:border-zinc-800 dark:bg-zinc-950"
 							>
-								<div className="col-span-full grid grid-cols-subgrid border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
-									{speaker.photo ? (
-										<img
-											src={getAssetPath(speaker.photo)}
-											alt={speaker.name}
-											className="aspect-4/5 w-full border-r border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
-										/>
-									) : (
-										<SpeakerPlaceholder name={speaker.name} />
-									)}
-									<div className="col-start-2 -col-end-1 flex flex-col justify-end py-4 pr-4 md:py-8 md:pr-8">
-										<p className={`${text.micro} mb-3`}>Host &amp; speaker</p>
-										<h3 className="leading-[1.1] text-2xl font-bold tracking-tight text-zinc-900 md:text-5xl dark:text-white">
-											{speaker.name}
-										</h3>
-										<div className="mt-2 flex items-center gap-3 md:mt-3">
-											<p className="text-base text-zinc-600 md:text-lg dark:text-zinc-400">
-												{speaker.company}
-											</p>
-											{speaker.x && (
-												<Link
-													href={`https://x.com/${speaker.x}`}
-													variant="icon"
-													aria-label={`${speaker.name} on X`}
-													className="shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-												>
-													<i
-														className="ri-twitter-x-fill text-base"
-														aria-hidden="true"
-													/>
-												</Link>
-											)}
-										</div>
-									</div>
+								{speaker.photo && (
+									<img
+										src={getAssetPath(speaker.photo)}
+										alt={speaker.name}
+										className="aspect-4/5 w-16 shrink-0 border border-zinc-200 object-cover opacity-80 md:w-24 dark:border-zinc-800"
+									/>
+								)}
+								<div className="min-w-0 flex-1">
+									<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
+									<h3 className="text-xl font-semibold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
+										{speaker.name}
+									</h3>
+									<p className="mt-1 text-sm text-zinc-600 md:text-base dark:text-zinc-400">
+										{speaker.company}
+									</p>
 								</div>
+								{speaker.x && (
+									<Link
+										href={`https://x.com/${speaker.x}`}
+										variant="icon"
+										aria-label={`${speaker.name} on X`}
+										className="shrink-0 self-end text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										<i
+											className="ri-twitter-x-fill text-base"
+											aria-hidden="true"
+										/>
+									</Link>
+								)}
 							</div>
 						))}
 						<div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
