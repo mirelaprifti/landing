@@ -990,8 +990,12 @@ export function EffectDaysLivornoPage() {
 						    speakers grid's own tracks, so the host's portrait takes exactly
 						    one card column at a card's size, with his details in the next:
 						    the right pair on desktop, beside the title; the first two
-						    columns below it on tablet and mobile. */}
-						<div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-end">
+						    columns below it on tablet and mobile.
+
+						    Top-aligned, so reading starts at the eyebrow and the spare
+						    height falls under the blurb; a wider gap than the grid's own
+						    below, so the host reads as header, not a first row of cards. */}
+						<div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-start">
 							<div className="col-span-full lg:col-span-2">
 								<p className={text.eyebrow}>{"// "}Speakers</p>
 								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
@@ -1056,7 +1060,7 @@ export function EffectDaysLivornoPage() {
 						    nothing auto-flows into the spacer (see lgColumn), and keeping it
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre. */}
-						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+						<div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
 								(speaker, index) => (
 									<div
