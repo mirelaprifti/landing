@@ -111,6 +111,12 @@ const SPEAKERS: {
 		x: "rankintweets",
 	},
 	{
+		name: "Maximilian Schwarzmüller",
+		company: "Academind",
+		photo: "/assets/effect-days/maximilian-schwarzmuller.jpg",
+		x: "maxedapps",
+	},
+	{
 		name: "Julia Ortiz",
 		company: "silklang.org",
 		photo: "/assets/effect-days/julia.png",
