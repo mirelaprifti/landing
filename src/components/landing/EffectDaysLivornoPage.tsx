@@ -118,7 +118,7 @@ const SPEAKERS: {
 	{
 		name: "Maximilian Schwarzmüller",
 		company: "Academind",
-		photo: "/assets/effect-days/maximilian-schwarzmuller.jpg",
+		photo: "/assets/effect-days/maximilian.png",
 		x: "maxedapps",
 	},
 	{
