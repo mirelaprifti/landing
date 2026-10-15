@@ -725,7 +725,7 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 		.join("")
 		.slice(0, 2);
 	return (
-		<div className="flex aspect-4/5 items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+		<div className="flex aspect-4/5 items-center justify-center bg-zinc-50 dark:bg-zinc-900/40">
 			<span className="flex h-16 w-16 items-center justify-center border border-dashed border-zinc-300 font-mono text-lg font-medium tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
 				{initials}
 			</span>
@@ -744,7 +744,7 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+			className="aspect-4/5 w-full object-cover opacity-80"
 		/>
 	);
 }
@@ -764,21 +764,44 @@ function lgColumn(index: number) {
 }
 
 /** Name, then company with the X link riding on the same line. */
-function SpeakerDetails({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+function SpeakerDetails({
+	speaker,
+	onImage = false,
+}: {
+	speaker: (typeof SPEAKERS)[number];
+	/** Set over a portrait's dark scrim: light ink in either theme. */
+	onImage?: boolean;
+}) {
 	return (
 		<>
-			<h3 className={text.cardTitle}>{speaker.name}</h3>
+			<h3
+				className={
+					onImage
+						? "text-base font-semibold text-white sm:text-lg"
+						: text.cardTitle
+				}
+			>
+				{speaker.name}
+			</h3>
 			{/* The X icon rides on the company line rather than the name: that
 			    line is always one line deep, so the icon keeps a fixed position
 			    even where a longer name wraps. */}
 			<div className="flex items-center justify-between gap-2">
-				<p className={text.cardBody}>{speaker.company}</p>
+				<p
+					className={
+						onImage
+							? "mt-0.5 text-xs leading-normal text-zinc-300 sm:mt-1 sm:text-sm"
+							: text.cardBody
+					}
+				>
+					{speaker.company}
+				</p>
 				{speaker.x && (
 					<Link
 						href={`https://x.com/${speaker.x}`}
 						variant="icon"
 						aria-label={`${speaker.name} on X`}
-						className="mt-1 shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+						className={`mt-1 shrink-0 ${onImage ? "text-zinc-300 hover:text-white" : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"}`}
 					>
 						<i className="ri-twitter-x-fill text-base" aria-hidden="true" />
 					</Link>
@@ -1046,14 +1069,16 @@ export function EffectDaysLivornoPage() {
 										key={speaker.name}
 										/* Opaque, so the page's centre dashed line stops behind the
 										   card rather than running across a portrait. */
-										className={`flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
+										className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
 									>
 										<SpeakerPhoto speaker={speaker} />
-										{/* p-4 rather than the styleguide card's p-6 — four across
-										    leaves each card narrow, and the tighter inset keeps the
-										    company on one line more often. */}
-										<div className="flex flex-1 flex-col p-4">
-											<SpeakerDetails speaker={speaker} />
+										{/* Details set into the foot of the portrait, on a scrim
+										    that darkens only the bottom of the frame — dark in
+										    both themes, so the light ink always holds. A step
+										    smaller and tighter on phones, where two-up cards are
+										    narrow and a long name would climb over the face. */}
+										<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
+											<SpeakerDetails speaker={speaker} onImage />
 										</div>
 									</div>
 								),
