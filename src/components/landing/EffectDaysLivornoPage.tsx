@@ -62,22 +62,20 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, opens the grid on a
-   larger card. Place new speakers
-   deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, hosting as well as speaking, closes the grid on a
+   wider card. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   The host's card is two columns wide and one row tall, so the grid counts
-   fourteen slots: full rows on mobile, with the last row one pair short on
-   desktop and one card short on tablet. */
+   The other twelve fill every row at two, three and four across, so the
+   host's two-column card sits alone on the last row. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Opens the grid on a larger card. One speaker, kept first. */
+	/** Closes the grid on a two-column card. One speaker. */
 	host?: boolean;
 }[] = [
 	{
@@ -723,44 +721,29 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 /** A speaker's portrait, or the initials stand-in until one is dropped in. */
 function SpeakerPhoto({
 	speaker,
-	fill = false,
+	side = false,
 }: {
 	speaker: (typeof SPEAKERS)[number];
-	/** Stretch to the card's free height rather than holding 4:5. */
-	fill?: boolean;
+	/** Details sit to the right rather than below, so the rule moves too. */
+	side?: boolean;
 }) {
 	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
 	/* Most sources are square, and covering this taller frame crops their
 	   sides rather than the top and bottom — centred is right for that. One is
 	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
 	   vertically instead and may want a per-card object-position. */
-	if (fill) {
-		/* Out of flow, so the portrait never sets the row's height — the
-		   regular cards beside it do, and it fills the column top to bottom.
-		   On mobile nothing sits beside it, so it holds 4:5 there instead. */
-		return (
-			<div className="relative aspect-4/5 h-full w-full border-r border-zinc-200 sm:aspect-auto dark:border-zinc-800">
-				<img
-					src={getAssetPath(speaker.photo)}
-					alt={speaker.name}
-					className="absolute inset-0 h-full w-full object-cover opacity-80"
-				/>
-			</div>
-		);
-	}
 	return (
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+			className={`aspect-4/5 w-full border-zinc-200 object-cover opacity-80 dark:border-zinc-800 ${side ? "border-r" : "border-b"}`}
 		/>
 	);
 }
 
-/* Desktop column for each speaker card after the host's. The host fills the
-   left pair of the first row, so the first two cards take the right pair;
-   after that, all four columns in turn. Column 3 is the zero-width
-   spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
+/* Desktop column for each speaker card: all four columns in turn. Column 3
+   is the zero-width spacer, so it is never assigned. Literal classes, so
+   Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
@@ -768,7 +751,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
+	return LG_COLUMN[index % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -1020,24 +1003,11 @@ export function EffectDaysLivornoPage() {
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre.
 
-						    The host's card is two columns by one row everywhere — the
-						    left pair on desktop. It is a subgrid on those two tracks: the
-						    portrait takes the first at a regular card's width, the
-						    details the second, set at the foot level with the names
-						    beside them. */}
+						    The host's card closes the grid, two columns wide — the left
+						    pair on desktop. It is a subgrid on those two tracks: the
+						    portrait takes the first at exactly a regular card's size, the
+						    details the second, set at the foot. */}
 						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-								<div
-									key={speaker.name}
-									className="col-span-2 grid grid-cols-subgrid overflow-hidden border border-zinc-200 bg-white lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
-								>
-									<SpeakerPhoto speaker={speaker} fill />
-									<div className="flex flex-col justify-end py-4 pr-4">
-										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
-										<SpeakerDetails speaker={speaker} />
-									</div>
-								</div>
-							))}
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
 								(speaker, index) => (
 									<div
@@ -1056,6 +1026,18 @@ export function EffectDaysLivornoPage() {
 									</div>
 								),
 							)}
+							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+								<div
+									key={speaker.name}
+									className="col-span-2 grid grid-cols-subgrid overflow-hidden border border-zinc-200 bg-white lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									<SpeakerPhoto speaker={speaker} side />
+									<div className="flex flex-col justify-end py-4 pr-4">
+										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
+										<SpeakerDetails speaker={speaker} />
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
