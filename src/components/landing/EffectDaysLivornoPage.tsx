@@ -62,7 +62,7 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, opens the grid on a
+   light and dark, and Kit, hosting as well as speaking, opens the grid on
    card two columns wide. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
@@ -777,7 +777,7 @@ function SpeakerDetails({
 			<h3
 				className={
 					onImage
-						? "text-base font-semibold text-white sm:text-lg"
+						? "text-base leading-[1.1] font-semibold text-white sm:text-lg sm:leading-[1.1]"
 						: text.cardTitle
 				}
 			>
@@ -790,7 +790,7 @@ function SpeakerDetails({
 				<p
 					className={
 						onImage
-							? "mt-0.5 text-xs leading-normal text-zinc-300 sm:mt-1 sm:text-sm"
+							? "text-xs leading-normal text-zinc-300 sm:text-sm"
 							: text.cardBody
 					}
 				>
@@ -801,7 +801,7 @@ function SpeakerDetails({
 						href={`https://x.com/${speaker.x}`}
 						variant="icon"
 						aria-label={`${speaker.name} on X`}
-						className={`mt-1 shrink-0 ${onImage ? "text-zinc-300 hover:text-white" : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"}`}
+						className={`shrink-0 ${onImage ? "text-zinc-300 hover:text-white" : "mt-1 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"}`}
 					>
 						<i className="ri-twitter-x-fill text-base" aria-hidden="true" />
 					</Link>
@@ -1072,12 +1072,12 @@ export function EffectDaysLivornoPage() {
 										className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
 									>
 										<SpeakerPhoto speaker={speaker} />
-										{/* Details set into the foot of the portrait, on a scrim
-										    that darkens only the bottom of the frame — dark in
+										{/* Details set into the foot of the portrait, on
+										    a flat dark band across the foot of the frame — dark in
 										    both themes, so the light ink always holds. A step
 										    smaller and tighter on phones, where two-up cards are
 										    narrow and a long name would climb over the face. */}
-										<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
+										<div className="absolute inset-x-0 bottom-0 bg-black/60 p-3 sm:p-4">
 											<SpeakerDetails speaker={speaker} onImage />
 										</div>
 									</div>
