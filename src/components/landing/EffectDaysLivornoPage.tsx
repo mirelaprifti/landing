@@ -985,13 +985,14 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Title and blurb in the left half, the host in the right — he
-						    opens the line-up from the header rather than as a card in it.
-						    The right half starts where the grid's right pair does, so the
-						    host's box lines up with the cards below. Below md it follows
-						    the blurb. */}
-						<div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-end">
-							<div>
+						{/* Title and blurb, then the host — he opens the line-up from the
+						    header rather than as a card in it. The header runs on the
+						    speakers grid's own tracks, so the host's portrait takes exactly
+						    one card column at a card's size, with his details in the next:
+						    the right pair on desktop, beside the title; the first two
+						    columns below it on tablet and mobile. */}
+						<div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-end">
+							<div className="col-span-full lg:col-span-2">
 								<p className={text.eyebrow}>{"// "}Speakers</p>
 								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
 								<p className={text.subtitle}>
@@ -1002,16 +1003,18 @@ export function EffectDaysLivornoPage() {
 							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 								<div
 									key={speaker.name}
-									className="flex items-end gap-4 border border-zinc-200 bg-white p-4 md:gap-6 dark:border-zinc-800 dark:bg-zinc-950"
+									className="col-span-2 grid grid-cols-subgrid border border-zinc-200 bg-white lg:col-start-4 dark:border-zinc-800 dark:bg-zinc-950"
 								>
-									{speaker.photo && (
+									{speaker.photo ? (
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											className="aspect-4/5 w-20 shrink-0 border border-zinc-200 object-cover opacity-80 md:w-24 dark:border-zinc-800"
+											className="aspect-4/5 w-full border-r border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
 										/>
+									) : (
+										<SpeakerPlaceholder name={speaker.name} />
 									)}
-									<div className="min-w-0 flex-1 pb-1">
+									<div className="flex min-w-0 flex-col justify-end py-4 pr-4">
 										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
 										<h3 className="leading-[1.1] text-xl font-bold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
 											{speaker.name}
