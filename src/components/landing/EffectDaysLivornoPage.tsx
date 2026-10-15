@@ -62,21 +62,21 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, leads the section in
-   a panel of his own above the grid. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, hosting as well as speaking, sits in the section
+   header beside the title rather than in the grid. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
    The other twelve fill every row at two, three and four across. The host
    takes a different shape on purpose — a role, not a thirteenth card that
-   didn't fit — and goes first, so the host is the first face people see. */
+   didn't fit — and sits up top, so the host is the first face people see. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Shown in the panel above the grid rather than as a card. One speaker. */
+	/** Shown in the section header rather than as a card. One speaker. */
 	host?: boolean;
 }[] = [
 	{
@@ -985,17 +985,58 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Title in the left half, the blurb in the right — the same split
-						    header the sponsors section uses. */}
-						<div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:items-baseline-last md:gap-8">
+						{/* Title and blurb in the left half, the host in the right — he
+						    opens the line-up from the header rather than as a card in it.
+						    The right half starts where the grid's right pair does, so the
+						    host's box lines up with the cards below. Below md it follows
+						    the blurb. */}
+						<div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-end">
 							<div>
 								<p className={text.eyebrow}>{"// "}Speakers</p>
 								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+								<p className={text.subtitle}>
+									Engineers building on Effect in production, from the teams
+									behind the tools you use.
+								</p>
 							</div>
-							<p className={`${text.subtitle} md:mt-0`}>
-								Engineers building on Effect in production, from the teams
-								behind the tools you use.
-							</p>
+							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+								<div
+									key={speaker.name}
+									className="flex items-end gap-4 border border-zinc-200 bg-white p-4 md:gap-6 dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									{speaker.photo && (
+										<img
+											src={getAssetPath(speaker.photo)}
+											alt={speaker.name}
+											className="aspect-4/5 w-20 shrink-0 border border-zinc-200 object-cover opacity-80 md:w-24 dark:border-zinc-800"
+										/>
+									)}
+									<div className="min-w-0 flex-1 pb-1">
+										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
+										<h3 className="leading-[1.1] text-xl font-bold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
+											{speaker.name}
+										</h3>
+										<div className="mt-2 flex items-center gap-3">
+											<p className="text-sm text-zinc-600 md:text-base dark:text-zinc-400">
+												{speaker.company}
+											</p>
+											{speaker.x && (
+												<Link
+													href={`https://x.com/${speaker.x}`}
+													variant="icon"
+													aria-label={`${speaker.name} on X`}
+													className="shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+												>
+													<i
+														className="ri-twitter-x-fill text-base"
+														aria-hidden="true"
+													/>
+												</Link>
+											)}
+										</div>
+									</div>
+								</div>
+							))}
 						</div>
 
 						{/* Two across in mobile portrait, three from mobile landscape
@@ -1009,52 +1050,7 @@ export function EffectDaysLivornoPage() {
 						    nothing auto-flows into the spacer (see lgColumn), and keeping it
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre. */}
-						{/* The host leads: a full-width band above the grid, in the
-						    cards' own hairline and fill. The portrait sits at about half
-						    a card and the name between a card title and the section
-						    title — enough to read first without outweighing the
-						    line-up. */}
-						{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-							<div
-								key={speaker.name}
-								className="mt-12 flex items-end gap-4 border border-zinc-200 bg-white p-4 md:gap-8 md:p-6 dark:border-zinc-800 dark:bg-zinc-950"
-							>
-								{speaker.photo && (
-									<img
-										src={getAssetPath(speaker.photo)}
-										alt={speaker.name}
-										className="aspect-4/5 w-24 shrink-0 border border-zinc-200 object-cover opacity-80 md:w-40 dark:border-zinc-800"
-									/>
-								)}
-								<div className="min-w-0 flex-1 pb-1">
-									<p className={`${text.micro} mb-2 md:mb-3`}>
-										Host &amp; speaker
-									</p>
-									<h3 className="leading-[1.1] text-2xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
-										{speaker.name}
-									</h3>
-									<div className="mt-2 flex items-center gap-3">
-										<p className="text-sm text-zinc-600 md:text-lg dark:text-zinc-400">
-											{speaker.company}
-										</p>
-										{speaker.x && (
-											<Link
-												href={`https://x.com/${speaker.x}`}
-												variant="icon"
-												aria-label={`${speaker.name} on X`}
-												className="shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-											>
-												<i
-													className="ri-twitter-x-fill text-base"
-													aria-hidden="true"
-												/>
-											</Link>
-										)}
-									</div>
-								</div>
-							</div>
-						))}
-						<div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
 								(speaker, index) => (
 									<div
