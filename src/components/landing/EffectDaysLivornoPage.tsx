@@ -1001,7 +1001,7 @@ export function EffectDaysLivornoPage() {
 										    name instead of drifting to the row's far edge. */}
 										<div className="col-start-2 -col-end-1 flex flex-col justify-end p-4 pl-0 lg:p-6 lg:pl-0">
 											<div className="max-w-64">
-												<p className={`${text.micro} mb-2`}>Host</p>
+												<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
 												<SpeakerDetails speaker={speaker} />
 											</div>
 										</div>
