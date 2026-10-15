@@ -65,14 +65,19 @@ const PROGRAM = [
    light and dark, and Michael closes the grid as host. Place new speakers
    deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
-   path is dropped in. Four across on desktop, so the last row runs short at any
-   count that is not a multiple of four. */
+   path is dropped in.
+
+   The line-up is final at thirteen, which no grid of two, three or four
+   divides — so the host takes a row of his own rather than standing alone in
+   a short one. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
+	/** Closes the grid as a full-width card. One speaker, kept last. */
+	host?: boolean;
 }[] = [
 	{
 		name: "Dillon Mulroy",
@@ -151,6 +156,7 @@ const SPEAKERS: {
 		company: "Effectful Technologies",
 		photo: "/assets/effect-days/mike-race.png",
 		x: "MichaelArnaldi",
+		host: true,
 	},
 ];
 
@@ -713,6 +719,47 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 	);
 }
 
+/** A speaker's portrait, or the initials stand-in until one is dropped in. */
+function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
+	/* Most sources are square, and covering this taller frame crops their
+	   sides rather than the top and bottom — centred is right for that. One is
+	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
+	   vertically instead and may want a per-card object-position. */
+	return (
+		<img
+			src={getAssetPath(speaker.photo)}
+			alt={speaker.name}
+			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+		/>
+	);
+}
+
+/** Name, then company with the X link riding on the same line. */
+function SpeakerDetails({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+	return (
+		<>
+			<h3 className={text.cardTitle}>{speaker.name}</h3>
+			{/* The X icon rides on the company line rather than the name: that
+			    line is always one line deep, so the icon keeps a fixed position
+			    even where a longer name wraps. */}
+			<div className="flex items-center justify-between gap-2">
+				<p className={text.cardBody}>{speaker.company}</p>
+				{speaker.x && (
+					<Link
+						href={`https://x.com/${speaker.x}`}
+						variant="icon"
+						aria-label={`${speaker.name} on X`}
+						className="mt-1 shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+					>
+						<i className="ri-twitter-x-fill text-base" aria-hidden="true" />
+					</Link>
+				)}
+			</div>
+		</>
+	);
+}
+
 export function EffectDaysLivornoPage() {
 	const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
 	const toggleFaq = (index: number) => {
@@ -921,7 +968,7 @@ export function EffectDaysLivornoPage() {
 							</div>
 							<p className={`${text.subtitle} md:mt-0`}>
 								Engineers building on Effect in production, from the teams
-								behind the tools you use. More speakers to be announced.
+								behind the tools you use.
 							</p>
 						</div>
 
@@ -937,55 +984,45 @@ export function EffectDaysLivornoPage() {
 						    (rather than two half-grids) is what holds the card widths equal
 						    and the row bottoms aligned across the centre. */}
 						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:[&>*:nth-child(4n+1)]:col-start-1 lg:[&>*:nth-child(4n+2)]:col-start-2 lg:[&>*:nth-child(4n+3)]:col-start-4 lg:[&>*:nth-child(4n)]:col-start-5">
-							{SPEAKERS.map((speaker) => (
-								<div
-									key={speaker.name}
-									/* Opaque, so the page's centre dashed line stops behind the
-									   card rather than running across a portrait. */
-									className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-								>
-									{speaker.photo ? (
-										/* Most sources are square, and covering this taller frame
-										   crops their sides rather than the top and bottom —
-										   centred is right for that. One is already 4:5 and so
-										   sits uncropped; a source taller than 4:5 would crop
-										   vertically instead and may want a per-card
-										   object-position. */
-										<img
-											src={getAssetPath(speaker.photo)}
-											alt={speaker.name}
-											className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
-										/>
-									) : (
-										<SpeakerPlaceholder name={speaker.name} />
-									)}
-									{/* p-4 rather than the styleguide card's p-6 — four across
-									    leaves each card narrow, and the tighter inset keeps the
-									    company on one line more often. */}
-									<div className="flex flex-1 flex-col p-4">
-										<h3 className={text.cardTitle}>{speaker.name}</h3>
-										{/* The X icon rides on the company line rather than the name:
-										    that line is always one line deep, so the icon keeps a
-										    fixed position even where a longer name wraps. */}
-										<div className="flex items-center justify-between gap-2">
-											<p className={text.cardBody}>{speaker.company}</p>
-											{speaker.x && (
-												<Link
-													href={`https://x.com/${speaker.x}`}
-													variant="icon"
-													aria-label={`${speaker.name} on X`}
-													className="mt-1 shrink-0 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-												>
-													<i
-														className="ri-twitter-x-fill text-base"
-														aria-hidden="true"
-													/>
-												</Link>
-											)}
+							{SPEAKERS.map((speaker) =>
+								speaker.host ? (
+									/* The host's row: a subgrid on the speakers' own tracks, so
+									   the portrait sits exactly in the first column at a
+									   regular card's size, and the details take the rest —
+									   set at the foot, level with the other cards' names. */
+									<div
+										key={speaker.name}
+										className="col-span-full grid grid-cols-subgrid border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+									>
+										<div className="overflow-hidden border-r border-zinc-200 dark:border-zinc-800 [&>*]:border-b-0">
+											<SpeakerPhoto speaker={speaker} />
+										</div>
+										{/* Held to about a card's width, so the X icon stays by the
+										    name instead of drifting to the row's far edge. */}
+										<div className="col-start-2 -col-end-1 flex flex-col justify-end p-4 pl-0 lg:p-6 lg:pl-0">
+											<div className="max-w-64">
+												<p className={`${text.micro} mb-2`}>Host</p>
+												<SpeakerDetails speaker={speaker} />
+											</div>
 										</div>
 									</div>
-								</div>
-							))}
+								) : (
+									<div
+										key={speaker.name}
+										/* Opaque, so the page's centre dashed line stops behind the
+										   card rather than running across a portrait. */
+										className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+									>
+										<SpeakerPhoto speaker={speaker} />
+										{/* p-4 rather than the styleguide card's p-6 — four across
+										    leaves each card narrow, and the tighter inset keeps the
+										    company on one line more often. */}
+										<div className="flex flex-1 flex-col p-4">
+											<SpeakerDetails speaker={speaker} />
+										</div>
+									</div>
+								),
+							)}
 						</div>
 					</div>
 				</section>
