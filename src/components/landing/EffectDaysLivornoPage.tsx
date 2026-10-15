@@ -62,23 +62,31 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit closes the grid as host. Place new speakers
+   light and dark, and Kit, hosting as well as speaking, opens the grid on a
+   larger card. Place new speakers
    deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
    The line-up is final at thirteen, which no grid of two, three or four
-   divides — so the host takes a row of his own rather than standing alone in
-   a short one. */
+   divides. The host's card covers the extra slots instead — four on desktop
+   and mobile, six on tablet — so every row ends full. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Closes the grid as a full-width card. One speaker, kept last. */
+	/** Opens the grid on a larger card. One speaker, kept first. */
 	host?: boolean;
 }[] = [
+	{
+		name: "Kit Langton",
+		company: "OpenCode",
+		photo: "/assets/effect-days/kit-langton.png",
+		x: "kitlangton",
+		host: true,
+	},
 	{
 		name: "Dillon Mulroy",
 		company: "Cloudflare",
@@ -150,13 +158,6 @@ const SPEAKERS: {
 		company: "Alchemy",
 		photo: "/assets/effect-days/sam-goodwin.png",
 		x: "samgoodwin89",
-	},
-	{
-		name: "Kit Langton",
-		company: "OpenCode",
-		photo: "/assets/effect-days/kit-langton.png",
-		x: "kitlangton",
-		host: true,
 	},
 ];
 
@@ -720,7 +721,14 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 }
 
 /** A speaker's portrait, or the initials stand-in until one is dropped in. */
-function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+function SpeakerPhoto({
+	speaker,
+	fill = false,
+}: {
+	speaker: (typeof SPEAKERS)[number];
+	/** Stretch to the card's free height rather than holding 4:5. */
+	fill?: boolean;
+}) {
 	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
 	/* Most sources are square, and covering this taller frame crops their
 	   sides rather than the top and bottom — centred is right for that. One is
@@ -730,9 +738,23 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+			className={`${fill ? "min-h-0 flex-1" : "aspect-4/5"} w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800`}
 		/>
 	);
+}
+
+/* Desktop column for each speaker card after the host's. The host fills the
+   left pair for the first two rows, so the first four cards take the right
+   pair; after that, all four columns in turn. Column 3 is the zero-width
+   spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
+const LG_COLUMN = [
+	"lg:col-start-1",
+	"lg:col-start-2",
+	"lg:col-start-4",
+	"lg:col-start-5",
+];
+function lgColumn(index: number) {
+	return index < 4 ? LG_COLUMN[2 + (index % 2)] : LG_COLUMN[(index - 4) % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -980,38 +1002,34 @@ export function EffectDaysLivornoPage() {
 						    has room to show through. That is one zero-width spacer track
 						    between the pairs — with a uniform 16px gap either side of it,
 						    the middle reads as 32. Each card is explicitly placed so
-						    nothing auto-flows into the spacer, and keeping it a single grid
-						    (rather than two half-grids) is what holds the card widths equal
-						    and the row bottoms aligned across the centre. */}
-						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:[&>*:nth-child(4n+1)]:col-start-1 lg:[&>*:nth-child(4n+2)]:col-start-2 lg:[&>*:nth-child(4n+3)]:col-start-4 lg:[&>*:nth-child(4n)]:col-start-5">
-							{SPEAKERS.map((speaker) =>
-								speaker.host ? (
-									/* The host's row: a subgrid on the speakers' own tracks, so
-									   the portrait sits exactly in the first column at a
-									   regular card's size, and the details take the rest —
-									   set at the foot, level with the other cards' names. */
-									<div
-										key={speaker.name}
-										className="col-span-full grid grid-cols-subgrid border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-									>
-										<div className="overflow-hidden border-r border-zinc-200 dark:border-zinc-800 [&>*]:border-b-0">
-											<SpeakerPhoto speaker={speaker} />
-										</div>
-										{/* Held to about a card's width, so the X icon stays by the
-										    name instead of drifting to the row's far edge. */}
-										<div className="col-start-2 -col-end-1 flex flex-col justify-end p-4 pl-0 lg:p-6 lg:pl-0">
-											<div className="max-w-64">
-												<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
-												<SpeakerDetails speaker={speaker} />
-											</div>
-										</div>
+						    nothing auto-flows into the spacer (see lgColumn), and keeping it
+						    a single grid (rather than two half-grids) is what holds the card
+						    widths equal and the row bottoms aligned across the centre.
+
+						    The host's card spans two rows everywhere — the full width on
+						    mobile and tablet, the left pair on desktop — and its portrait
+						    stretches to fill, so its foot lands level with the cards
+						    beside it. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+								<div
+									key={speaker.name}
+									className="col-span-2 row-span-2 flex flex-col overflow-hidden border border-zinc-200 bg-white sm:col-span-3 lg:col-span-2 lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									<SpeakerPhoto speaker={speaker} fill />
+									<div className="flex flex-col p-4 lg:p-6">
+										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
+										<SpeakerDetails speaker={speaker} />
 									</div>
-								) : (
+								</div>
+							))}
+							{SPEAKERS.filter((speaker) => !speaker.host).map(
+								(speaker, index) => (
 									<div
 										key={speaker.name}
 										/* Opaque, so the page's centre dashed line stops behind the
 										   card rather than running across a portrait. */
-										className="flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+										className={`flex flex-col overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
 									>
 										<SpeakerPhoto speaker={speaker} />
 										{/* p-4 rather than the styleguide card's p-6 — four across
