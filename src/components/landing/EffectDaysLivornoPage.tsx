@@ -62,22 +62,21 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, opens the grid on
-   card two columns wide. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, hosting as well as speaking, opens the grid on a
+   regular card marked with a host chip. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   The host's card is two columns wide, so the grid counts fourteen slots:
-   full rows on mobile, with the last row one pair short on desktop and one
-   card short on tablet. He goes first, so the host is the first face people
-   see. */
+   Thirteen cards, so the last row runs one short on desktop and mobile and
+   fully on tablet. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Opens the grid on a two-column card. One speaker, kept first. */
+	/** Opens the grid with a "Host & speaker" chip on the photo. One speaker,
+	 *  kept first. */
 	host?: boolean;
 }[] = [
 	{
@@ -749,10 +748,9 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each speaker card after the host's. The host fills the
-   left pair of the first row, so the first two cards take the right pair;
-   after that, all four columns in turn. Column 3 is the zero-width spacer,
-   so it is never assigned. Literal classes, so Tailwind sees them. */
+/* Desktop column for each speaker card: all four columns in turn. Column 3
+   is the zero-width spacer, so it is never assigned. Literal classes, so
+   Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
@@ -760,7 +758,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
+	return LG_COLUMN[index % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -1034,55 +1032,35 @@ export function EffectDaysLivornoPage() {
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre.
 
-						    The host opens the grid two columns wide and one row tall — the
-						    left pair on desktop. It is a subgrid on those tracks: the
-						    portrait takes the first column at a card's width and fills
-						    the row's height, set by the cards beside it; the details take
-						    the second, at the foot, level with their names. On mobile
-						    nothing sits beside it, so the portrait holds 4:5 there. */}
+						    The host is first, on a card like the rest; a chip on the photo
+						    marks the role, so the grid keeps one rhythm. */}
 						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+							{[
+								...SPEAKERS.filter((speaker) => speaker.host),
+								...SPEAKERS.filter((speaker) => !speaker.host),
+							].map((speaker, index) => (
 								<div
 									key={speaker.name}
-									className="col-span-2 grid grid-cols-subgrid overflow-hidden border border-zinc-200 bg-white lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
-								>
-									<div className="relative aspect-4/5 border-r border-zinc-200 sm:aspect-auto dark:border-zinc-800">
-										{speaker.photo ? (
-											<img
-												src={getAssetPath(speaker.photo)}
-												alt={speaker.name}
-												className="absolute inset-0 h-full w-full object-cover opacity-80"
-											/>
-										) : (
-											<SpeakerPlaceholder name={speaker.name} />
-										)}
-									</div>
-									<div className="flex min-w-0 flex-col justify-end py-4 pr-4">
-										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
-										<SpeakerDetails speaker={speaker} />
-									</div>
-								</div>
-							))}
-							{SPEAKERS.filter((speaker) => !speaker.host).map(
-								(speaker, index) => (
-									<div
-										key={speaker.name}
-										/* Opaque, so the page's centre dashed line stops behind the
+									/* Opaque, so the page's centre dashed line stops behind the
 										   card rather than running across a portrait. */
-										className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
-									>
-										<SpeakerPhoto speaker={speaker} />
-										{/* Details set into the foot of the portrait, on a scrim
+									className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
+								>
+									<SpeakerPhoto speaker={speaker} />
+									{speaker.host && (
+										<span className="absolute top-3 left-3 bg-black/70 px-2 py-1 font-mono text-[0.625rem] font-medium tracking-wider text-white uppercase sm:top-4 sm:left-4">
+											Host &amp; speaker
+										</span>
+									)}
+									{/* Details set into the foot of the portrait, on a scrim
 										    that darkens only the bottom of the frame — dark in
 										    both themes, so the light ink always holds. A step
 										    smaller and tighter on phones, where two-up cards are
 										    narrow and a long name would climb over the face. */}
-										<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
-											<SpeakerDetails speaker={speaker} onImage />
-										</div>
+									<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
+										<SpeakerDetails speaker={speaker} onImage />
 									</div>
-								),
-							)}
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
