@@ -994,8 +994,8 @@ export function EffectDaysLivornoPage() {
 
 						    The host's portrait is square — a card's width, a little
 						    shorter than its 4:5 — so the box sits closer to the title
-						    block's height, and his details sit at the top, level with the
-						    title, so the two read as a pair. Top-aligned, so reading
+						    block's height, and his name sits at the top, level with the
+						    title, so the two read as a pair; his role labels the foot. Top-aligned, so reading
 						    starts at the eyebrow and the spare height falls under both; a wider gap than the grid's own
 						    below, so the host reads as header, not a first row of cards. */}
 						<div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-start">
@@ -1024,8 +1024,9 @@ export function EffectDaysLivornoPage() {
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
 									)}
-									<div className="flex min-w-0 flex-col justify-start py-4 pr-4">
-										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
+									{/* Name and company at the top, level with the title; the role
+									    at the foot, so it closes the box as a label would. */}
+									<div className="flex min-w-0 flex-col py-4 pr-4">
 										<h3 className="leading-[1.1] text-xl font-bold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
 											{speaker.name}
 										</h3>
@@ -1047,6 +1048,9 @@ export function EffectDaysLivornoPage() {
 												</Link>
 											)}
 										</div>
+										<p className={`${text.micro} mt-auto pt-4`}>
+											Host &amp; speaker
+										</p>
 									</div>
 								</div>
 							))}
