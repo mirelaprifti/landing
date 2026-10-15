@@ -724,7 +724,7 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 		.join("")
 		.slice(0, 2);
 	return (
-		<div className="flex aspect-4/5 items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+		<div className="flex aspect-square items-center justify-center border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
 			<span className="flex h-16 w-16 items-center justify-center border border-dashed border-zinc-300 font-mono text-lg font-medium tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
 				{initials}
 			</span>
@@ -735,15 +735,14 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 /** A speaker's portrait, or the initials stand-in until one is dropped in. */
 function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
-	/* Most sources are square, and covering this taller frame crops their
-	   sides rather than the top and bottom — centred is right for that. One is
-	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
-	   vertically instead and may want a per-card object-position. */
+	/* Square, like most sources, which then sit uncropped. A taller source
+	   loses a little top and bottom, centred; one that cuts a face badly may
+	   want a per-card object-position. */
 	return (
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+			className="aspect-square w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
 		/>
 	);
 }
@@ -992,9 +991,9 @@ export function EffectDaysLivornoPage() {
 						    the right pair on desktop, beside the title; the first two
 						    columns below it on tablet and mobile.
 
-						    The host's portrait is square — a card's width, a little
-						    shorter than its 4:5 — so the box sits closer to the title
-						    block's height, and his name sits at the top, level with the
+						    The host's portrait is square at a card's width — exactly a
+						    card's photo — so the box sits closer to the title block's
+						    height, and his name sits at the top, level with the
 						    title, so the two read as a pair; his role labels the foot. Top-aligned, so reading
 						    starts at the eyebrow and the spare height falls under both; a wider gap than the grid's own
 						    below, so the host reads as header, not a first row of cards. */}
