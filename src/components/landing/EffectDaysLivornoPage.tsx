@@ -996,8 +996,11 @@ export function EffectDaysLivornoPage() {
 								<p className={text.eyebrow}>{"// "}Speakers</p>
 								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
 								<p className={text.subtitle}>
-									Engineers building on Effect in production, from the teams
-									behind the tools you use.
+									{/* Broken after the comma from sm up; on phones the first half
+									    alone outruns the line, so it wraps where it falls. */}
+									Engineers building on Effect in production,{" "}
+									<br className="hidden sm:inline" />
+									from the teams behind the tools you use.
 								</p>
 							</div>
 							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
