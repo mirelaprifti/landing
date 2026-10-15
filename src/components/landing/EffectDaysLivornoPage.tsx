@@ -992,8 +992,11 @@ export function EffectDaysLivornoPage() {
 						    the right pair on desktop, beside the title; the first two
 						    columns below it on tablet and mobile.
 
-						    Top-aligned, so reading starts at the eyebrow and the spare
-						    height falls under the blurb; a wider gap than the grid's own
+						    The host's portrait is square — a card's width, a little
+						    shorter than its 4:5 — so the box sits closer to the title
+						    block's height, and his details sit at the top, level with the
+						    title, so the two read as a pair. Top-aligned, so reading
+						    starts at the eyebrow and the spare height falls under both; a wider gap than the grid's own
 						    below, so the host reads as header, not a first row of cards. */}
 						<div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-start">
 							<div className="col-span-full lg:col-span-2">
@@ -1016,12 +1019,12 @@ export function EffectDaysLivornoPage() {
 										<img
 											src={getAssetPath(speaker.photo)}
 											alt={speaker.name}
-											className="aspect-4/5 w-full border-r border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
+											className="aspect-square w-full border-r border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
 										/>
 									) : (
 										<SpeakerPlaceholder name={speaker.name} />
 									)}
-									<div className="flex min-w-0 flex-col justify-end py-4 pr-4">
+									<div className="flex min-w-0 flex-col justify-start py-4 pr-4">
 										<p className={`${text.micro} mb-2`}>Host &amp; speaker</p>
 										<h3 className="leading-[1.1] text-xl font-bold tracking-tight text-zinc-900 md:text-2xl dark:text-white">
 											{speaker.name}
