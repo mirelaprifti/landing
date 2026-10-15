@@ -68,9 +68,9 @@ const PROGRAM = [
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   The line-up is final at thirteen, which no grid of two, three or four
-   divides. The host's card covers the extra slots instead — four on desktop
-   and mobile, six on tablet — so every row ends full. */
+   The host's card is two columns wide and one row tall, so the grid counts
+   fourteen slots: full rows on mobile, with the last row one pair short on
+   desktop and one card short on tablet. */
 const SPEAKERS: {
 	name: string;
 	company: string;
@@ -734,18 +734,33 @@ function SpeakerPhoto({
 	   sides rather than the top and bottom — centred is right for that. One is
 	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
 	   vertically instead and may want a per-card object-position. */
+	if (fill) {
+		/* Out of flow, so the portrait never sets the row's height — the
+		   regular cards beside it do, and it crops to whatever is left. On
+		   mobile nothing sits beside it, so it holds 4:3 there instead. The
+		   wide crop rides a little high, so it cuts chest rather than hair. */
+		return (
+			<div className="relative aspect-4/3 w-full border-b border-zinc-200 sm:aspect-auto sm:min-h-0 sm:flex-1 dark:border-zinc-800">
+				<img
+					src={getAssetPath(speaker.photo)}
+					alt={speaker.name}
+					className="absolute inset-0 h-full w-full object-cover object-[50%_30%] opacity-80"
+				/>
+			</div>
+		);
+	}
 	return (
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className={`${fill ? "min-h-0 flex-1" : "aspect-4/5"} w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800`}
+			className="aspect-4/5 w-full border-b border-zinc-200 object-cover opacity-80 dark:border-zinc-800"
 		/>
 	);
 }
 
 /* Desktop column for each speaker card after the host's. The host fills the
-   left pair for the first two rows, so the first four cards take the right
-   pair; after that, all four columns in turn. Column 3 is the zero-width
+   left pair of the first row, so the first two cards take the right pair;
+   after that, all four columns in turn. Column 3 is the zero-width
    spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
@@ -754,7 +769,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return index < 4 ? LG_COLUMN[2 + (index % 2)] : LG_COLUMN[(index - 4) % 4];
+	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -1006,15 +1021,14 @@ export function EffectDaysLivornoPage() {
 						    a single grid (rather than two half-grids) is what holds the card
 						    widths equal and the row bottoms aligned across the centre.
 
-						    The host's card spans two rows everywhere — the full width on
-						    mobile and tablet, the left pair on desktop — and its portrait
-						    stretches to fill, so its foot lands level with the cards
-						    beside it. */}
+						    The host's card is two columns by one row everywhere — the
+						    left pair on desktop — and its portrait stretches to fill, so
+						    its foot lands level with the cards beside it. */}
 						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
 							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 								<div
 									key={speaker.name}
-									className="col-span-2 row-span-2 flex flex-col overflow-hidden border border-zinc-200 bg-white sm:col-span-3 lg:col-span-2 lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
+									className="col-span-2 flex flex-col overflow-hidden border border-zinc-200 bg-white lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
 								>
 									<SpeakerPhoto speaker={speaker} fill />
 									<div className="flex flex-col p-4 lg:p-6">
