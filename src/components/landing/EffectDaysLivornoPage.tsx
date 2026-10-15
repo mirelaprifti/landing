@@ -998,9 +998,9 @@ export function EffectDaysLivornoPage() {
 								<p className={text.subtitle}>
 									{/* Broken after the comma from sm up; on phones the first half
 									    alone outruns the line, so it wraps where it falls. */}
-									Engineers building on Effect in production,{" "}
+									Builders, maintainers and educators shipping with Effect,{" "}
 									<br className="hidden sm:inline" />
-									from the teams behind the tools you use.
+									from Cloudflare and Warp to OpenCode and Alchemy.
 								</p>
 							</div>
 							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
