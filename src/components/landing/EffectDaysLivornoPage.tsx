@@ -723,7 +723,7 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 		.join("")
 		.slice(0, 2);
 	return (
-		<div className="flex aspect-4/5 items-center justify-center bg-zinc-50 dark:bg-zinc-900/40">
+		<div className="flex aspect-square items-center justify-center bg-zinc-50 dark:bg-zinc-900/40">
 			<span className="flex h-16 w-16 items-center justify-center border border-dashed border-zinc-300 font-mono text-lg font-medium tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
 				{initials}
 			</span>
@@ -734,15 +734,14 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 /** A speaker's portrait, or the initials stand-in until one is dropped in. */
 function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
-	/* Most sources are square, and covering this taller frame crops their
-	   sides rather than the top and bottom — centred is right for that. One is
-	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
-	   vertically instead and may want a per-card object-position. */
+	/* Square, like most sources, which then sit uncropped. A taller source
+	   loses a little top and bottom, centred; one that cuts a face badly may
+	   want a per-card object-position. */
 	return (
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full object-cover opacity-80"
+			className="aspect-square w-full object-cover opacity-80"
 		/>
 	);
 }
