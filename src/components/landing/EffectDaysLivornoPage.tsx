@@ -62,23 +62,25 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, opens the grid on a
-   regular card marked with a host chip. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, hosting as well as speaking, sits out of the grid
+   in a host block of his own above it. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   On desktop the first row is the section title beside Kit and Dillon, so
-   the eleven after them run four, four, three; on tablet the title sits
-   beside Kit and every row of three is full. */
+   With the host out, twelve cards fill every row at two, three and four
+   across. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Opens the grid with a "Host & speaker" chip on the photo. One speaker,
-	 *  kept first. */
+	/** Shown in the host block above the grid rather than as a card. One
+	 *  speaker. */
 	host?: boolean;
+	/** Host block only: a short bio and a personal site. */
+	bio?: string;
+	website?: string;
 }[] = [
 	{
 		name: "Kit Langton",
@@ -86,6 +88,8 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
+		bio: "Kit works on OpenCode and makes some of the Effect community's favourite learning tools, from Visual Effect and Effect Solutions to the Effect Institute's narrated lessons and his from-scratch YouTube deep dives. His stated life goal: to precipitate the age of effect systems.",
+		website: "https://kitlangton.com/",
 	},
 	{
 		name: "Dillon Mulroy",
@@ -749,10 +753,9 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each speaker card. The section title fills the left
-   pair of the first row, so the first two cards take the right pair; after
-   that, all four columns in turn. Column 3 is the zero-width spacer, so it is
-   never assigned. Literal classes, so Tailwind sees them. */
+/* Desktop column for each speaker card: all four columns in turn. Column 3
+   is the zero-width spacer, so it is never assigned. Literal classes, so
+   Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
@@ -760,7 +763,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
+	return LG_COLUMN[index % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -1010,6 +1013,76 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
+						<div>
+							<p className={text.eyebrow}>{"// "}Speakers</p>
+							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							<p className={text.subtitle}>
+								{/* Broken after the comma from sm up; on phones the first half
+								    alone outruns the line, so it wraps where it falls. */}
+								Builders, maintainers and educators shipping with Effect,{" "}
+								<br className="hidden sm:inline" />
+								from Cloudflare and Warp to OpenCode and Alchemy.
+							</p>
+						</div>
+
+						{/* The host, ahead of the line-up: on stage the whole event, so
+						    a short introduction rather than a card. Unframed, on the page
+						    itself, so the space beside a short bio reads as air, not an
+						    empty box. Laid on the speakers grid's tracks: the portrait
+						    takes one column at exactly a card's size, so it lines up with
+						    the cards below; the text takes the rest, set at the foot like
+						    the cards' names. Below sm the text drops under the portrait.
+						    The text sits on the page colour, so the centre dashed line
+						    stops behind the bio as it does behind the cards. */}
+						{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+							<div
+								key={speaker.name}
+								className="mt-12 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]"
+							>
+								<SpeakerPhoto speaker={speaker} />
+								<div className="col-span-full flex flex-col justify-end bg-white sm:col-span-2 lg:col-span-4 lg:col-start-2 lg:pl-4 dark:bg-zinc-950">
+									<p className={`${text.micro} mb-3`}>Your host</p>
+									<h3 className="leading-[1.1] text-2xl font-bold tracking-tight text-zinc-900 md:text-3xl dark:text-white">
+										{speaker.name}
+									</h3>
+									<p className="mt-1 text-base text-zinc-600 dark:text-zinc-400">
+										{speaker.company}
+									</p>
+									{speaker.bio && (
+										<p className={`${text.body} mt-4 max-w-xl`}>
+											{speaker.bio}
+										</p>
+									)}
+									<div className="mt-4 flex items-center gap-4">
+										{speaker.website && (
+											<Link
+												href={speaker.website}
+												className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											>
+												{speaker.website
+													.replace(/^https?:\/\//, "")
+													.replace(/\/$/, "")}{" "}
+												<span aria-hidden="true">↗</span>
+											</Link>
+										)}
+										{speaker.x && (
+											<Link
+												href={`https://x.com/${speaker.x}`}
+												variant="icon"
+												aria-label={`${speaker.name} on X`}
+												className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+											>
+												<i
+													className="ri-twitter-x-fill text-base"
+													aria-hidden="true"
+												/>
+											</Link>
+										)}
+									</div>
+								</div>
+							</div>
+						))}
+
 						{/* Two across in mobile portrait, three from mobile landscape
 						    through tablet, four once there is desktop width.
 
@@ -1020,54 +1093,28 @@ export function EffectDaysLivornoPage() {
 						    the middle reads as 32. Each card is explicitly placed so
 						    nothing auto-flows into the spacer (see lgColumn), and keeping it
 						    a single grid (rather than two half-grids) is what holds the card
-						    widths equal and the row bottoms aligned across the centre.
-
-						    The host is first, on a card like the rest; a chip on the photo
-						    marks the role, so the grid keeps one rhythm.
-
-						    The section's title and blurb sit in the grid's first row on
-						    desktop, across the left pair, with the first two cards — Kit
-						    and Dillon — beside them; the rest flow on below. On tablet it
-						    takes two of the three columns beside Kit, so the fifteen slots
-						    fill five rows. On phones it takes a row of its own. */}
-						<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							<div className="col-span-full mb-8 sm:col-span-2 sm:mb-0 lg:col-start-1">
-								<p className={text.eyebrow}>{"// "}Speakers</p>
-								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-								<p className={text.subtitle}>
-									{/* Broken after the comma on desktop; narrower columns can't
-									    hold the first half on one line, so it wraps where it falls. */}
-									Builders, maintainers and educators shipping with Effect,{" "}
-									<br className="hidden lg:inline" />
-									from Cloudflare and Warp to OpenCode and Alchemy.
-								</p>
-							</div>
-							{[
-								...SPEAKERS.filter((speaker) => speaker.host),
-								...SPEAKERS.filter((speaker) => !speaker.host),
-							].map((speaker, index) => (
-								<div
-									key={speaker.name}
-									/* Opaque, so the page's centre dashed line stops behind the
+						    widths equal and the row bottoms aligned across the centre. */}
+						<div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							{SPEAKERS.filter((speaker) => !speaker.host).map(
+								(speaker, index) => (
+									<div
+										key={speaker.name}
+										/* Opaque, so the page's centre dashed line stops behind the
 										   card rather than running across a portrait. */
-									className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
-								>
-									<SpeakerPhoto speaker={speaker} />
-									{speaker.host && (
-										<span className="absolute top-3 left-3 bg-black/70 px-2 py-1 font-mono text-[0.625rem] font-medium tracking-wider text-white uppercase sm:top-4 sm:left-4">
-											Host &amp; speaker
-										</span>
-									)}
-									{/* Details set into the foot of the portrait, on a scrim
+										className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
+									>
+										<SpeakerPhoto speaker={speaker} />
+										{/* Details set into the foot of the portrait, on a scrim
 										    that darkens only the bottom of the frame — dark in
 										    both themes, so the light ink always holds. A step
 										    smaller and tighter on phones, where two-up cards are
 										    narrow and a long name would climb over the face. */}
-									<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
-										<SpeakerDetails speaker={speaker} onImage />
+										<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
+											<SpeakerDetails speaker={speaker} onImage />
+										</div>
 									</div>
-								</div>
-							))}
+								),
+							)}
 						</div>
 					</div>
 				</section>
