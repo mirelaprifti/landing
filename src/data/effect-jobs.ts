@@ -34,6 +34,16 @@ export const SUBMIT_URLS = {
 
 export const JOBS: Job[] = [
 	{
+		company: "Bitfocus",
+		role: "Senior Fullstack Engineer (TypeScript / React)",
+		location: "Oslo, Norway · Remote",
+		type: "Full-time",
+		url: "https://bitfocus.io/careers/senior-fullstack-engineer-typescript-react",
+		logo: "/assets/effect-jobs-logos/bitfocus-icon.svg",
+		description:
+			"Build local-first, realtime software that controls physical hardware in live broadcast and AV production.",
+	},
+	{
 		company: "Datapizza",
 		role: "Software Engineer",
 		location: "Milan, Italy",

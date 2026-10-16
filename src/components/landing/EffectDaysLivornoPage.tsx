@@ -67,8 +67,8 @@ const PROGRAM = [
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   Thirteen cards, so the last row runs one short on desktop and mobile and
-   fully on tablet. */
+   On desktop the first row is the section title beside Kit and Dillon, so
+   the eleven after them run four, four, three. */
 const SPEAKERS: {
 	name: string;
 	company: string;
@@ -748,9 +748,10 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each speaker card: all four columns in turn. Column 3
-   is the zero-width spacer, so it is never assigned. Literal classes, so
-   Tailwind sees them. */
+/* Desktop column for each speaker card. The section title fills the left
+   pair of the first row, so the first two cards take the right pair; after
+   that, all four columns in turn. Column 3 is the zero-width spacer, so it is
+   never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
@@ -758,7 +759,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return LG_COLUMN[index % 4];
+	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -1008,18 +1009,6 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div>
-							<p className={text.eyebrow}>{"// "}Speakers</p>
-							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-							<p className={text.subtitle}>
-								{/* Broken after the comma from sm up; on phones the first half
-								    alone outruns the line, so it wraps where it falls. */}
-								Builders, maintainers and educators shipping with Effect,{" "}
-								<br className="hidden sm:inline" />
-								from Cloudflare and Warp to OpenCode and Alchemy.
-							</p>
-						</div>
-
 						{/* Two across in mobile portrait, three from mobile landscape
 						    through tablet, four once there is desktop width.
 
@@ -1033,8 +1022,24 @@ export function EffectDaysLivornoPage() {
 						    widths equal and the row bottoms aligned across the centre.
 
 						    The host is first, on a card like the rest; a chip on the photo
-						    marks the role, so the grid keeps one rhythm. */}
-						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+						    marks the role, so the grid keeps one rhythm.
+
+						    The section's title and blurb sit in the grid's first row on
+						    desktop, across the left pair, with the first two cards — Kit
+						    and Dillon — beside them; the rest flow on below. Below lg the
+						    title takes a row of its own above the cards. */}
+						<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							<div className="col-span-full mb-8 lg:col-span-2 lg:col-start-1 lg:mb-0">
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+								<p className={text.subtitle}>
+									{/* Broken after the comma from sm up; on phones the first half
+									    alone outruns the line, so it wraps where it falls. */}
+									Builders, maintainers and educators shipping with Effect,{" "}
+									<br className="hidden sm:inline" />
+									from Cloudflare and Warp to OpenCode and Alchemy.
+								</p>
+							</div>
 							{[
 								...SPEAKERS.filter((speaker) => speaker.host),
 								...SPEAKERS.filter((speaker) => !speaker.host),
