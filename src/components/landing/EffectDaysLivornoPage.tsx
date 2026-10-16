@@ -62,21 +62,22 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, sits out of the grid
-   in a host block of his own above it. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, hosting as well as speaking, opens the grid on a
+   two-column host card with a short bio. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   With the host out, twelve cards fill every row at two, three and four
-   across. */
+   The host card counts as two slots, so the grid holds fourteen: full rows
+   on mobile, the last row a pair short on desktop and one short on
+   tablet. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Shown in the host block above the grid rather than as a card. One
-	 *  speaker. */
+	/** Opens the grid on a two-column host card rather than a speaker card.
+	 *  One speaker. */
 	host?: boolean;
 	/** Host block only: a short bio. */
 	bio?: string;
@@ -751,9 +752,10 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each speaker card: all four columns in turn. Column 3
-   is the zero-width spacer, so it is never assigned. Literal classes, so
-   Tailwind sees them. */
+/* Desktop column for each speaker card after the host's. The host card fills
+   the left pair of the first row, so the first two cards take the right
+   pair; after that, all four columns in turn. Column 3 is the zero-width
+   spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
@@ -761,7 +763,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return LG_COLUMN[index % 4];
+	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
 }
 
 /** Name, then company with the X link riding on the same line. */
@@ -1011,37 +1013,44 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Title and blurb, then the host, on the speakers grid's own
-						    tracks: on desktop the title takes the left pair and the host
-						    card the right pair, so his portrait sits at exactly a card's
-						    size over Rhys's column; on tablet the card takes two of three
-						    columns under the title; on phones, the full width. */}
-						<div className="grid grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-start">
-							<div className="col-span-full lg:col-span-2">
-								<p className={text.eyebrow}>{"// "}Speakers</p>
-								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-								<p className={text.subtitle}>
-									{/* Broken after the comma from sm up; on phones the first half
+						<div>
+							<p className={text.eyebrow}>{"// "}Speakers</p>
+							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							<p className={text.subtitle}>
+								{/* Broken after the comma from sm up; on phones the first half
 								    alone outruns the line, so it wraps where it falls. */}
-									Builders, maintainers and educators shipping with Effect,{" "}
-									<br className="hidden sm:inline" />
-									from Cloudflare and Warp to OpenCode and Alchemy.
-								</p>
-							</div>
+								Builders, maintainers and educators shipping with Effect,{" "}
+								<br className="hidden sm:inline" />
+								from Cloudflare and Warp to OpenCode and Alchemy.
+							</p>
+						</div>
 
-							{/* The host, ahead of the line-up: on stage the whole event, so
-						    an introduction rather than a speaker card. Built as the page's
+						{/* Two across in mobile portrait, three from mobile landscape
+						    through tablet, four once there is desktop width.
+
+						    On desktop the four cards read as two pairs: 16px inside each
+						    pair and 32px down the middle, so the page's centre dashed line
+						    has room to show through. That is one zero-width spacer track
+						    between the pairs — with a uniform 16px gap either side of it,
+						    the middle reads as 32. Each card is explicitly placed so
+						    nothing auto-flows into the spacer (see lgColumn), and keeping it
+						    a single grid (rather than two half-grids) is what holds the card
+						    widths equal and the row bottoms aligned across the centre. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							{/* The host opens the grid: on stage the whole event, so an
+						    introduction rather than a speaker card. Built as the page's
 						    own card — hairline frame, inset copy, micro label in the
 						    header row, card title and body below — like the program steps
-						    above. A subgrid on two of the header's tracks: portrait in the
-						    first, copy in the second. Below sm the copy drops under the
+						    above. A subgrid on the first two tracks: portrait in the
+						    first at exactly a card's size, so the row matches the cards
+						    beside it; copy in the second. Below sm the copy drops under the
 						    portrait, which runs full width at 4:3 so it doesn't tower over
 						    the line-up. On tablet the bio outruns a 4:5 portrait in its
 						    narrow column, so there the portrait fills the card's height. */}
 							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 								<div
 									key={speaker.name}
-									className="col-span-full grid grid-cols-2 border border-zinc-200 bg-white sm:col-span-2 sm:grid-cols-subgrid lg:col-start-4 dark:border-zinc-800 dark:bg-zinc-950"
+									className="col-span-full grid grid-cols-2 border border-zinc-200 bg-white sm:col-span-2 sm:grid-cols-subgrid lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
 								>
 									<div className="border-zinc-200 max-sm:col-span-full max-sm:border-b max-sm:[&_img]:aspect-4/3 sm:border-r sm:max-lg:relative sm:max-lg:[&_img]:absolute sm:max-lg:[&_img]:inset-0 sm:max-lg:[&_img]:aspect-auto sm:max-lg:[&_img]:h-full dark:border-zinc-800">
 										<SpeakerPhoto speaker={speaker} />
@@ -1075,20 +1084,6 @@ export function EffectDaysLivornoPage() {
 									</div>
 								</div>
 							))}
-						</div>
-
-						{/* Two across in mobile portrait, three from mobile landscape
-						    through tablet, four once there is desktop width.
-
-						    On desktop the four cards read as two pairs: 16px inside each
-						    pair and 32px down the middle, so the page's centre dashed line
-						    has room to show through. That is one zero-width spacer track
-						    between the pairs — with a uniform 16px gap either side of it,
-						    the middle reads as 32. Each card is explicitly placed so
-						    nothing auto-flows into the spacer (see lgColumn), and keeping it
-						    a single grid (rather than two half-grids) is what holds the card
-						    widths equal and the row bottoms aligned across the centre. */}
-						<div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
 								(speaker, index) => (
 									<div
