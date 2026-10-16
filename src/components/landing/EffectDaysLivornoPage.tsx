@@ -78,9 +78,8 @@ const SPEAKERS: {
 	/** Shown in the host block above the grid rather than as a card. One
 	 *  speaker. */
 	host?: boolean;
-	/** Host block only: a short bio and a personal site. */
+	/** Host block only: a short bio. */
 	bio?: string;
-	website?: string;
 }[] = [
 	{
 		name: "Kit Langton",
@@ -89,7 +88,6 @@ const SPEAKERS: {
 		x: "kitlangton",
 		host: true,
 		bio: "Kit works on OpenCode and makes some of the Effect community's favourite learning tools, from Visual Effect and Effect Solutions to the Effect Institute's narrated lessons and his from-scratch YouTube deep dives. His stated life goal: to precipitate the age of effect systems.",
-		website: "https://kitlangton.com/",
 	},
 	{
 		name: "Dillon Mulroy",
@@ -1026,45 +1024,27 @@ export function EffectDaysLivornoPage() {
 						</div>
 
 						{/* The host, ahead of the line-up: on stage the whole event, so
-						    a short introduction rather than a card. Unframed, on the page
-						    itself, so the space beside a short bio reads as air, not an
-						    empty box. Laid on the speakers grid's tracks: the portrait
-						    takes one column at exactly a card's size, so it lines up with
-						    the cards below; the text takes the rest, set at the foot like
-						    the cards' names. Below sm the text drops under the portrait.
-						    The text sits on the page colour, so the centre dashed line
-						    stops behind the bio as it does behind the cards. */}
+						    an introduction rather than a speaker card. Built as the page's
+						    own card — hairline frame, p-6 inset, micro label in the header
+						    row, card title and body below — like the program steps above.
+						    It runs on the speakers grid's tracks: the portrait takes one
+						    column at exactly a card's size and lines up with the cards
+						    below; the copy takes the rest. Below sm the copy drops under
+						    the portrait, which runs full width at 4:3 so it doesn't tower
+						    over the line-up. */}
 						{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 							<div
 								key={speaker.name}
-								className="mt-12 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]"
+								className="mt-12 grid grid-cols-2 border border-zinc-200 bg-white sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] dark:border-zinc-800 dark:bg-zinc-950"
 							>
-								<SpeakerPhoto speaker={speaker} />
-								<div className="col-span-full flex flex-col justify-end bg-white sm:col-span-2 lg:col-span-4 lg:col-start-2 lg:pl-4 dark:bg-zinc-950">
-									<p className={`${text.micro} mb-3`}>Your host</p>
-									<h3 className="leading-[1.1] text-2xl font-bold tracking-tight text-zinc-900 md:text-3xl dark:text-white">
-										{speaker.name}
-									</h3>
-									<p className="mt-1 text-base text-zinc-600 dark:text-zinc-400">
-										{speaker.company}
-									</p>
-									{speaker.bio && (
-										<p className={`${text.body} mt-4 max-w-xl`}>
-											{speaker.bio}
-										</p>
-									)}
-									<div className="mt-4 flex items-center gap-4">
-										{speaker.website && (
-											<Link
-												href={speaker.website}
-												className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-											>
-												{speaker.website
-													.replace(/^https?:\/\//, "")
-													.replace(/\/$/, "")}{" "}
-												<span aria-hidden="true">↗</span>
-											</Link>
-										)}
+								<div className="border-zinc-200 max-sm:col-span-full max-sm:border-b max-sm:[&_img]:aspect-4/3 sm:border-r dark:border-zinc-800">
+									<SpeakerPhoto speaker={speaker} />
+								</div>
+								<div className="col-span-full flex flex-col p-6 sm:col-span-2 lg:col-span-4 lg:col-start-2">
+									{/* Header row — role and X link share one line, as the
+									    program steps pair their number and date. */}
+									<div className="flex items-center justify-between">
+										<span className={text.micro}>Your host</span>
 										{speaker.x && (
 											<Link
 												href={`https://x.com/${speaker.x}`}
@@ -1077,6 +1057,15 @@ export function EffectDaysLivornoPage() {
 													aria-hidden="true"
 												/>
 											</Link>
+										)}
+									</div>
+									<div className="mt-6 sm:mt-auto">
+										<h3 className={text.cardTitle}>{speaker.name}</h3>
+										<p className={text.cardBody}>{speaker.company}</p>
+										{speaker.bio && (
+											<p className={`${text.body} mt-4 max-w-xl`}>
+												{speaker.bio}
+											</p>
 										)}
 									</div>
 								</div>
