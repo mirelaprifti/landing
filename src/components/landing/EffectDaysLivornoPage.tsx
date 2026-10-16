@@ -67,9 +67,7 @@ const PROGRAM = [
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   On desktop the first row is the section title beside Kit and Dillon, so
-   the eleven after them run four, four, three; on tablet the title sits
-   beside Kit and every row of three is full. */
+   Three across from tablet up, under the section title. */
 const SPEAKERS: {
 	name: string;
 	company: string;
@@ -749,20 +747,6 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each speaker card. The section title fills the left
-   pair of the first row, so the first two cards take the right pair; after
-   that, all four columns in turn. Column 3 is the zero-width spacer, so it is
-   never assigned. Literal classes, so Tailwind sees them. */
-const LG_COLUMN = [
-	"lg:col-start-1",
-	"lg:col-start-2",
-	"lg:col-start-4",
-	"lg:col-start-5",
-];
-function lgColumn(index: number) {
-	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
-}
-
 /** One speaker: the portrait with name, company and X link set into its foot. */
 function SpeakerCard({
 	speaker,
@@ -1041,42 +1025,27 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* Two across in mobile portrait, three from mobile landscape
-						    through tablet, four once there is desktop width.
+						<div>
+							<p className={text.eyebrow}>{"// "}Speakers</p>
+							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							<p className={text.subtitle}>
+								{/* Broken after the comma from sm up; on phones the first half
+								    alone outruns the line, so it wraps where it falls. */}
+								Builders, maintainers and educators shipping with Effect,{" "}
+								<br className="hidden sm:inline" />
+								from Cloudflare and Warp to OpenCode and Alchemy.
+							</p>
+						</div>
 
-						    On desktop the four cards read as two pairs: 16px inside each
-						    pair and 32px down the middle, so the page's centre dashed line
-						    has room to show through. That is one zero-width spacer track
-						    between the pairs — with a uniform 16px gap either side of it,
-						    the middle reads as 32. Each card is explicitly placed so
-						    nothing auto-flows into the spacer (see lgColumn).
-
-						    The section's title and blurb sit in the grid's first row: the
-						    left pair on desktop, beside Kit and Dillon; two of three
-						    columns beside Kit on tablet; a row of their own on phones.
-						    Kit, the host, is a card like the rest, marked with a chip on
-						    his photo. */}
-						<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							<div className="col-span-full mb-8 sm:col-span-2 sm:mb-0 lg:col-start-1">
-								<p className={text.eyebrow}>{"// "}Speakers</p>
-								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-								<p className={text.subtitle}>
-									{/* Broken after the comma on desktop; narrower columns can't
-									    hold the first half on one line, so it wraps where it falls. */}
-									Builders, maintainers and educators shipping with Effect,{" "}
-									<br className="hidden lg:inline" />
-									from Cloudflare and Warp to OpenCode and Alchemy.
-								</p>
-							</div>
+						{/* Two across in mobile portrait, three from mobile landscape up.
+						    Kit, the host, opens the grid on a card like the rest, marked
+						    with a chip on his photo. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
 							{[
 								...SPEAKERS.filter((speaker) => speaker.host),
 								...SPEAKERS.filter((speaker) => !speaker.host),
-							].map((speaker, index) => (
-								<SpeakerCard
-									key={speaker.name}
-									speaker={speaker}
-									className={lgColumn(index)}
-								/>
+							].map((speaker) => (
+								<SpeakerCard key={speaker.name} speaker={speaker} />
 							))}
 						</div>
 					</div>
