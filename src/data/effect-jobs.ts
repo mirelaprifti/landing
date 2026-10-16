@@ -35,7 +35,7 @@ export const SUBMIT_URLS = {
 export const JOBS: Job[] = [
 	{
 		company: "Bitfocus",
-		role: "Senior Fullstack Engineer (TypeScript / React)",
+		role: "Senior Fullstack Engineer",
 		location: "Oslo, Norway · Remote",
 		type: "Full-time",
 		url: "https://bitfocus.io/careers/senior-fullstack-engineer-typescript-react",
