@@ -749,34 +749,18 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Where each speaker card lands, and whether it sits a step lower. The
-   section title takes the first row's left pair on desktop and two of three
-   columns on tablet, so the cards fill in around it. Every other column drops
-   by a small step — enough to break the rows into a rhythm, not so much that
-   they stop reading as rows. The grid leaves room for the step at its foot.
-   Literal classes, so Tailwind sees them. */
+/* Desktop column for each speaker card. The section title fills the left
+   pair of the first row, so the first two cards take the right pair; after
+   that, all four columns in turn. Column 3 is the zero-width spacer, so it is
+   never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
 	"lg:col-start-2",
 	"lg:col-start-4",
 	"lg:col-start-5",
 ];
-function speakerPlacement(index: number) {
-	/* Desktop: the first two cards take the right pair beside the title, then
-	   all four columns in turn; column 3 of the grid is the zero-width spacer.
-	   The second card of each pair drops. */
-	const lg = index < 2 ? 2 + index : (index - 2) % 4;
-	/* Tablet: the first card sits beside the title in the third column, then
-	   three across; the middle column drops. */
-	const sm = index === 0 ? 2 : (index - 1) % 3;
-	/* Phones: two across under the title; the right column drops. */
-	const base = index % 2;
-	return [
-		LG_COLUMN[lg],
-		lg % 2 === 1 ? "lg:translate-y-12" : "lg:translate-y-0",
-		sm === 1 ? "sm:translate-y-12" : "sm:translate-y-0",
-		base === 1 ? "translate-y-8" : "",
-	].join(" ");
+function lgColumn(index: number) {
+	return index < 2 ? LG_COLUMN[2 + index] : LG_COLUMN[(index - 2) % 4];
 }
 
 /** One speaker: the portrait with name, company and X link set into its foot. */
@@ -1065,15 +1049,14 @@ export function EffectDaysLivornoPage() {
 						    has room to show through. That is one zero-width spacer track
 						    between the pairs — with a uniform 16px gap either side of it,
 						    the middle reads as 32. Each card is explicitly placed so
-						    nothing auto-flows into the spacer.
+						    nothing auto-flows into the spacer (see lgColumn).
 
 						    The section's title and blurb sit in the grid's first row: the
 						    left pair on desktop, beside Kit and Dillon; two of three
 						    columns beside Kit on tablet; a row of their own on phones.
-						    Every other column sits a step lower (see speakerPlacement);
-						    the bottom padding leaves room for that step. Kit, the host,
-						    is a card like the rest, marked with a chip on his photo. */}
-						<div className="grid grid-cols-2 gap-4 pb-8 sm:grid-cols-3 sm:pb-12 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+						    Kit, the host, is a card like the rest, marked with a chip on
+						    his photo. */}
+						<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
 							<div className="col-span-full mb-8 sm:col-span-2 sm:mb-0 lg:col-start-1">
 								<p className={text.eyebrow}>{"// "}Speakers</p>
 								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
@@ -1092,7 +1075,7 @@ export function EffectDaysLivornoPage() {
 								<SpeakerCard
 									key={speaker.name}
 									speaker={speaker}
-									className={speakerPlacement(index)}
+									className={lgColumn(index)}
 								/>
 							))}
 						</div>
