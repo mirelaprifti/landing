@@ -1011,66 +1011,71 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div>
-							<p className={text.eyebrow}>{"// "}Speakers</p>
-							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-							<p className={text.subtitle}>
-								{/* Broken after the comma from sm up; on phones the first half
+						{/* Title and blurb, then the host, on the speakers grid's own
+						    tracks: on desktop the title takes the left pair and the host
+						    card the right pair, so his portrait sits at exactly a card's
+						    size over Rhys's column; on tablet the card takes two of three
+						    columns under the title; on phones, the full width. */}
+						<div className="grid grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] lg:items-start">
+							<div className="col-span-full lg:col-span-2">
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+								<p className={text.subtitle}>
+									{/* Broken after the comma from sm up; on phones the first half
 								    alone outruns the line, so it wraps where it falls. */}
-								Builders, maintainers and educators shipping with Effect,{" "}
-								<br className="hidden sm:inline" />
-								from Cloudflare and Warp to OpenCode and Alchemy.
-							</p>
-						</div>
-
-						{/* The host, ahead of the line-up: on stage the whole event, so
-						    an introduction rather than a speaker card. Built as the page's
-						    own card — hairline frame, p-6 inset, micro label in the header
-						    row, card title and body below — like the program steps above.
-						    It runs on the speakers grid's tracks: the portrait takes one
-						    column at exactly a card's size and lines up with the cards
-						    below; the copy takes the rest. Below sm the copy drops under
-						    the portrait, which runs full width at 4:3 so it doesn't tower
-						    over the line-up. */}
-						{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-							<div
-								key={speaker.name}
-								className="mt-12 grid grid-cols-2 border border-zinc-200 bg-white sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)] dark:border-zinc-800 dark:bg-zinc-950"
-							>
-								<div className="border-zinc-200 max-sm:col-span-full max-sm:border-b max-sm:[&_img]:aspect-4/3 sm:border-r dark:border-zinc-800">
-									<SpeakerPhoto speaker={speaker} />
-								</div>
-								<div className="col-span-full flex flex-col p-6 sm:col-span-2 lg:col-span-4 lg:col-start-2">
-									{/* Header row — role and X link share one line, as the
-									    program steps pair their number and date. */}
-									<div className="flex items-center justify-between">
-										<span className={text.micro}>Your host</span>
-										{speaker.x && (
-											<Link
-												href={`https://x.com/${speaker.x}`}
-												variant="icon"
-												aria-label={`${speaker.name} on X`}
-												className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-											>
-												<i
-													className="ri-twitter-x-fill text-base"
-													aria-hidden="true"
-												/>
-											</Link>
-										)}
-									</div>
-									<div className="mt-6 sm:mt-auto">
-										<h3 className={text.cardTitle}>{speaker.name}</h3>
-										<p className={text.cardBody}>{speaker.company}</p>
-										{speaker.bio && (
-											<p className={`${text.body} mt-4 max-w-xl`}>
-												{speaker.bio}
-											</p>
-										)}
-									</div>
-								</div>
+									Builders, maintainers and educators shipping with Effect,{" "}
+									<br className="hidden sm:inline" />
+									from Cloudflare and Warp to OpenCode and Alchemy.
+								</p>
 							</div>
-						))}
+
+							{/* The host, ahead of the line-up: on stage the whole event, so
+						    an introduction rather than a speaker card. Built as the page's
+						    own card — hairline frame, inset copy, micro label in the
+						    header row, card title and body below — like the program steps
+						    above. A subgrid on two of the header's tracks: portrait in the
+						    first, copy in the second. Below sm the copy drops under the
+						    portrait, which runs full width at 4:3 so it doesn't tower over
+						    the line-up. On tablet the bio outruns a 4:5 portrait in its
+						    narrow column, so there the portrait fills the card's height. */}
+							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+								<div
+									key={speaker.name}
+									className="col-span-full grid grid-cols-2 border border-zinc-200 bg-white sm:col-span-2 sm:grid-cols-subgrid lg:col-start-4 dark:border-zinc-800 dark:bg-zinc-950"
+								>
+									<div className="border-zinc-200 max-sm:col-span-full max-sm:border-b max-sm:[&_img]:aspect-4/3 sm:border-r sm:max-lg:relative sm:max-lg:[&_img]:absolute sm:max-lg:[&_img]:inset-0 sm:max-lg:[&_img]:aspect-auto sm:max-lg:[&_img]:h-full dark:border-zinc-800">
+										<SpeakerPhoto speaker={speaker} />
+									</div>
+									<div className="col-span-full flex flex-col p-5 sm:col-span-1 sm:-ml-4">
+										{/* Header row — role and X link share one line, as the
+									    program steps pair their number and date. */}
+										<div className="flex items-center justify-between">
+											<span className={text.micro}>Your host</span>
+											{speaker.x && (
+												<Link
+													href={`https://x.com/${speaker.x}`}
+													variant="icon"
+													aria-label={`${speaker.name} on X`}
+													className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+												>
+													<i
+														className="ri-twitter-x-fill text-base"
+														aria-hidden="true"
+													/>
+												</Link>
+											)}
+										</div>
+										<div className="mt-6 sm:mt-auto">
+											<h3 className={text.cardTitle}>{speaker.name}</h3>
+											<p className={text.cardBody}>{speaker.company}</p>
+											{speaker.bio && (
+												<p className={`${text.cardBody} mt-3`}>{speaker.bio}</p>
+											)}
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
 
 						{/* Two across in mobile portrait, three from mobile landscape
 						    through tablet, four once there is desktop width.
