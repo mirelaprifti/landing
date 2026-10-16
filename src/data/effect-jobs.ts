@@ -63,14 +63,6 @@ export const JOBS: Job[] = [
 		description: "Be the one bringing Effect into production.",
 	},
 	{
-		company: "Expand.ai",
-		role: "Founding Engineer",
-		location: "San Francisco, USA",
-		url: "https://expand.ai/careers/founding-engineer",
-		logo: "/assets/effect-jobs-logos/expand-ai-icon.png",
-		description: "Help turn the internet into a database.",
-	},
-	{
 		company: "Freckle.io",
 		role: "Full-stack Engineers",
 		location: "San Francisco · Remote",
@@ -81,20 +73,10 @@ export const JOBS: Job[] = [
 		description: "Help build a data-enrichment product for GTM teams.",
 	},
 	{
-		company: "Gale",
-		role: "SWE Intern",
-		location: "Remote · CAN/US",
-		url: "https://forms.galevisa.com/r/m6gr7e",
-		logo: "/assets/effect-jobs-logos/gale-icon.png",
-		payRange: "CAD 35–38/hr · USD 22–28/hr",
-		description:
-			"Help American businesses get work authorization for their employees.",
-	},
-	{
 		company: "HumanLayer",
 		role: "Founding Product Engineer",
 		location: "San Francisco",
-		url: "https://workatastartup.com/jobs/84491",
+		url: "https://www.ycombinator.com/companies/humanlayer/jobs/oBCZzc7-founding-product-engineer",
 		logo: "/assets/effect-jobs-logos/humanlayer.png",
 		payRange: "$180K – $250K",
 		description:
@@ -166,16 +148,6 @@ export const JOBS: Job[] = [
 		logo: "/assets/effect-jobs-logos/reap.png",
 		description:
 			"Fintech using Effect as part of the stack — looking for strong engineers with a solid functional-programming background.",
-	},
-	{
-		company: "Satispay",
-		role: "Frontend Software Engineer III",
-		location: "Milan · Hybrid",
-		url: "https://jobs.ashbyhq.com/satispay/8bed4693-6d80-421c-8d64-5fd6bfc02096?utm_source=effect",
-		logo: "/assets/effect-jobs-logos/satispay.png",
-		payRange: "€45K – €53K",
-		description:
-			"Contribute to the development of a highly scalable, and performant core frontend for a financial platform.",
 	},
 	{
 		company: "Solid",
