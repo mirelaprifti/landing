@@ -63,24 +63,22 @@ const PROGRAM = [
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
    light and dark, and Kit, hosting as well as speaking, opens the grid on a
-   two-column host card with a short bio. Place new speakers deliberately. A card with no `photo` yet falls
+   regular card marked with a host chip. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   The host card counts as two slots, so the grid holds fourteen: full rows
-   on mobile, the last row a pair short on desktop and one short on
-   tablet. */
+   On desktop the first row is the section title beside Kit and Dillon, so
+   the eleven after them run four, four, three; on tablet the title sits
+   beside Kit and every row of three is full. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Opens the grid on a two-column host card rather than a speaker card.
-	 *  One speaker. */
+	/** Opens the grid with a "Host & speaker" chip on the photo. One speaker,
+	 *  kept first. */
 	host?: boolean;
-	/** Host block only: a short bio. */
-	bio?: string;
 }[] = [
 	{
 		name: "Kit Langton",
@@ -88,7 +86,6 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
-		bio: "Kit works on OpenCode and builds Effect learning tools like Visual Effect and Effect Solutions. His life goal: to precipitate the age of effect systems.",
 	},
 	{
 		name: "Dillon Mulroy",
@@ -752,9 +749,8 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each speaker card after the host's. The host card fills
-   the left pair of the first row, so the first two cards take the right
-   pair; after that, all four columns in turn. Column 3 is the zero-width
+/* Desktop column for each speaker card. The section title fills the left
+   pair of the first row, so the first two cards take the right pair; after that, all four columns in turn. Column 3 is the zero-width
    spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
@@ -1013,18 +1009,6 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div>
-							<p className={text.eyebrow}>{"// "}Speakers</p>
-							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-							<p className={text.subtitle}>
-								{/* Broken after the comma from sm up; on phones the first half
-								    alone outruns the line, so it wraps where it falls. */}
-								Builders, maintainers and educators shipping with Effect,{" "}
-								<br className="hidden sm:inline" />
-								from Cloudflare and Warp to OpenCode and Alchemy.
-							</p>
-						</div>
-
 						{/* Two across in mobile portrait, three from mobile landscape
 						    through tablet, four once there is desktop width.
 
@@ -1035,75 +1019,51 @@ export function EffectDaysLivornoPage() {
 						    the middle reads as 32. Each card is explicitly placed so
 						    nothing auto-flows into the spacer (see lgColumn), and keeping it
 						    a single grid (rather than two half-grids) is what holds the card
-						    widths equal and the row bottoms aligned across the centre. */}
-						<div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							{/* The host opens the grid: on stage the whole event, so an
-						    introduction rather than a speaker card. Built as the page's
-						    own card — hairline frame, inset copy, micro label in the
-						    header row, card title and body below — like the program steps
-						    above. A subgrid on the first two tracks: portrait in the
-						    first at exactly a card's size, so the row matches the cards
-						    beside it; copy in the second. Below sm the copy drops under the
-						    portrait, which runs full width at 4:3 so it doesn't tower over
-						    the line-up. On tablet the bio outruns a 4:5 portrait in its
-						    narrow column, so there the portrait fills the card's height. */}
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+						    widths equal and the row bottoms aligned across the centre.
+
+						    The section's title and blurb sit in the grid's first row: the
+						    left pair on desktop, beside Kit and Dillon; two of three
+						    columns beside Kit on tablet, so every row there is full; a row
+						    of their own on phones. Kit, the host, is a card like the rest,
+						    marked with a chip on his photo. */}
+						<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							<div className="col-span-full mb-8 sm:col-span-2 sm:mb-0 lg:col-start-1">
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+								<p className={text.subtitle}>
+									{/* Broken after the comma from sm up; on phones the first half
+									    alone outruns the line, so it wraps where it falls. */}
+									Builders, maintainers and educators shipping with Effect,{" "}
+									<br className="hidden lg:inline" />
+									from Cloudflare and Warp to OpenCode and Alchemy.
+								</p>
+							</div>
+							{[
+								...SPEAKERS.filter((speaker) => speaker.host),
+								...SPEAKERS.filter((speaker) => !speaker.host),
+							].map((speaker, index) => (
 								<div
 									key={speaker.name}
-									className="col-span-full grid grid-cols-2 border border-zinc-200 bg-white sm:col-span-2 sm:grid-cols-subgrid lg:col-start-1 dark:border-zinc-800 dark:bg-zinc-950"
-								>
-									<div className="border-zinc-200 max-sm:col-span-full max-sm:border-b max-sm:[&_img]:aspect-4/3 sm:border-r sm:max-lg:relative sm:max-lg:[&_img]:absolute sm:max-lg:[&_img]:inset-0 sm:max-lg:[&_img]:aspect-auto sm:max-lg:[&_img]:h-full dark:border-zinc-800">
-										<SpeakerPhoto speaker={speaker} />
-									</div>
-									<div className="col-span-full flex flex-col p-5 sm:col-span-1 sm:-ml-4">
-										{/* Header row — role and X link share one line, as the
-									    program steps pair their number and date. */}
-										<div className="flex items-center justify-between">
-											<span className={text.micro}>Your host</span>
-											{speaker.x && (
-												<Link
-													href={`https://x.com/${speaker.x}`}
-													variant="icon"
-													aria-label={`${speaker.name} on X`}
-													className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-												>
-													<i
-														className="ri-twitter-x-fill text-base"
-														aria-hidden="true"
-													/>
-												</Link>
-											)}
-										</div>
-										<div className="mt-6 sm:mt-auto">
-											<h3 className={text.cardTitle}>{speaker.name}</h3>
-											<p className={text.cardBody}>{speaker.company}</p>
-											{speaker.bio && (
-												<p className={`${text.cardBody} mt-3`}>{speaker.bio}</p>
-											)}
-										</div>
-									</div>
-								</div>
-							))}
-							{SPEAKERS.filter((speaker) => !speaker.host).map(
-								(speaker, index) => (
-									<div
-										key={speaker.name}
-										/* Opaque, so the page's centre dashed line stops behind the
+									/* Opaque, so the page's centre dashed line stops behind the
 										   card rather than running across a portrait. */
-										className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
-									>
-										<SpeakerPhoto speaker={speaker} />
-										{/* Details set into the foot of the portrait, on a scrim
+									className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${lgColumn(index)}`}
+								>
+									<SpeakerPhoto speaker={speaker} />
+									{speaker.host && (
+										<span className="absolute top-3 left-3 bg-black/70 px-2 py-1 font-mono text-[0.625rem] font-medium tracking-wider text-white uppercase sm:top-4 sm:left-4">
+											Host &amp; speaker
+										</span>
+									)}
+									{/* Details set into the foot of the portrait, on a scrim
 										    that darkens only the bottom of the frame — dark in
 										    both themes, so the light ink always holds. A step
 										    smaller and tighter on phones, where two-up cards are
 										    narrow and a long name would climb over the face. */}
-										<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
-											<SpeakerDetails speaker={speaker} onImage />
-										</div>
+									<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 sm:p-4 sm:pt-16">
+										<SpeakerDetails speaker={speaker} onImage />
 									</div>
-								),
-							)}
+								</div>
+							))}
 						</div>
 					</div>
 				</section>
