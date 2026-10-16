@@ -238,6 +238,14 @@ export const JOBS: Job[] = [
 		description:
 			"Automating the structuring and management of complex securitisation transactions.",
 	},
+	{
+		company: "Warp",
+		role: "Effect Engineers",
+		url: "https://x.com/wyatt_sg/status/2109865876514324939",
+		note: "Posted on X",
+		logo: "/assets/effect-jobs-logos/warp-icon.svg",
+		description: "Help build out a platform for other engineers to build with.",
+	},
 ];
 
 /**
