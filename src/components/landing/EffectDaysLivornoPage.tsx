@@ -62,20 +62,21 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, leads the wall on a
+   light and dark, and Kit, hosting as well as speaking, opens the grid on a
    regular card marked with a host chip. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   Cards are dealt across the staggered columns in this order, left to right
-   (see SPEAKER_LAYOUTS). */
+   On desktop the first row is the section title beside Kit and Dillon, so
+   the eleven after them run four, four, three; on tablet the title sits
+   beside Kit and every row of three is full. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Leads the wall with a "Host & speaker" chip on the photo. One speaker,
+	/** Opens the grid with a "Host & speaker" chip on the photo. One speaker,
 	 *  kept first. */
 	host?: boolean;
 }[] = [
@@ -748,30 +749,49 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* The speakers wall's three layouts — columns per breakpoint, and which
-   columns drop by half a card. Dealt round-robin, so reading order still runs
-   left to right; the dropped columns break the rows into a staggered wall, and
-   the ragged foot that leaves reads as part of the pattern, not a short row.
-   Each layout is its own set of column stacks, shown only at its width. */
-const SPEAKER_LAYOUTS = [
-	{ columns: 2, dropped: [1], className: "flex sm:hidden" },
-	{ columns: 3, dropped: [1], className: "hidden sm:flex lg:hidden" },
-	{ columns: 4, dropped: [1, 3], className: "hidden lg:flex" },
+/* Where each speaker card lands, and whether it sits a step lower. The
+   section title takes the first row's left pair on desktop and two of three
+   columns on tablet, so the cards fill in around it. Every other column drops
+   by a small step — enough to break the rows into a rhythm, not so much that
+   they stop reading as rows. The grid leaves room for the step at its foot.
+   Literal classes, so Tailwind sees them. */
+const LG_COLUMN = [
+	"lg:col-start-1",
+	"lg:col-start-2",
+	"lg:col-start-4",
+	"lg:col-start-5",
 ];
-
-function dealColumns<T>(items: T[], columns: number): T[][] {
-	return Array.from({ length: columns }, (_, column) =>
-		items.filter((_, index) => index % columns === column),
-	);
+function speakerPlacement(index: number) {
+	/* Desktop: the first two cards take the right pair beside the title, then
+	   all four columns in turn; column 3 of the grid is the zero-width spacer.
+	   The second card of each pair drops. */
+	const lg = index < 2 ? 2 + index : (index - 2) % 4;
+	/* Tablet: the first card sits beside the title in the third column, then
+	   three across; the middle column drops. */
+	const sm = index === 0 ? 2 : (index - 1) % 3;
+	/* Phones: two across under the title; the right column drops. */
+	const base = index % 2;
+	return [
+		LG_COLUMN[lg],
+		lg % 2 === 1 ? "lg:translate-y-12" : "lg:translate-y-0",
+		sm === 1 ? "sm:translate-y-12" : "sm:translate-y-0",
+		base === 1 ? "translate-y-8" : "",
+	].join(" ");
 }
 
 /** One speaker: the portrait with name, company and X link set into its foot. */
-function SpeakerCard({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+function SpeakerCard({
+	speaker,
+	className = "",
+}: {
+	speaker: (typeof SPEAKERS)[number];
+	className?: string;
+}) {
 	return (
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className="relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+			className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${className}`}
 		>
 			<SpeakerPhoto speaker={speaker} />
 			{speaker.host && (
@@ -1037,53 +1057,45 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div>
-							<p className={text.eyebrow}>{"// "}Speakers</p>
-							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-							<p className={text.subtitle}>
-								{/* Broken after the comma from sm up; on phones the first half
-								    alone outruns the line, so it wraps where it falls. */}
-								Builders, maintainers and educators shipping with Effect,{" "}
-								<br className="hidden sm:inline" />
-								from Cloudflare and Warp to OpenCode and Alchemy.
-							</p>
-						</div>
+						{/* Two across in mobile portrait, three from mobile landscape
+						    through tablet, four once there is desktop width.
 
-						{/* A staggered wall rather than rows: two columns on phones,
-						    three on tablet, four on desktop, with every other column
-						    dropped by half a card (see SPEAKER_LAYOUTS). The drop is a
-						    half-card spacer, less half the gap, so the cards sit as
-						    bricks. On desktop the four columns read as two pairs, 32px
-						    down the middle, so the page's centre dashed line has room to
-						    show through. Kit, the host, leads the first column, marked
-						    with a chip on his photo. */}
-						{SPEAKER_LAYOUTS.map((layout) => (
-							<div
-								key={layout.columns}
-								className={`${layout.className} mt-12 items-start gap-4`}
-							>
-								{dealColumns(
-									[
-										...SPEAKERS.filter((speaker) => speaker.host),
-										...SPEAKERS.filter((speaker) => !speaker.host),
-									],
-									layout.columns,
-								).map((column, index) => (
-									<div
-										// biome-ignore lint/suspicious/noArrayIndexKey: columns are positional
-										key={index}
-										className={`flex min-w-0 flex-1 flex-col gap-4 ${layout.columns === 4 && index === 2 ? "ml-4" : ""}`}
-									>
-										{layout.dropped.includes(index) && (
-											<div aria-hidden="true" className="-mb-2 aspect-8/5" />
-										)}
-										{column.map((speaker) => (
-											<SpeakerCard key={speaker.name} speaker={speaker} />
-										))}
-									</div>
-								))}
+						    On desktop the four cards read as two pairs: 16px inside each
+						    pair and 32px down the middle, so the page's centre dashed line
+						    has room to show through. That is one zero-width spacer track
+						    between the pairs — with a uniform 16px gap either side of it,
+						    the middle reads as 32. Each card is explicitly placed so
+						    nothing auto-flows into the spacer.
+
+						    The section's title and blurb sit in the grid's first row: the
+						    left pair on desktop, beside Kit and Dillon; two of three
+						    columns beside Kit on tablet; a row of their own on phones.
+						    Every other column sits a step lower (see speakerPlacement);
+						    the bottom padding leaves room for that step. Kit, the host,
+						    is a card like the rest, marked with a chip on his photo. */}
+						<div className="grid grid-cols-2 gap-4 pb-8 sm:grid-cols-3 sm:pb-12 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
+							<div className="col-span-full mb-8 sm:col-span-2 sm:mb-0 lg:col-start-1">
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+								<p className={text.subtitle}>
+									{/* Broken after the comma on desktop; narrower columns can't
+									    hold the first half on one line, so it wraps where it falls. */}
+									Builders, maintainers and educators shipping with Effect,{" "}
+									<br className="hidden lg:inline" />
+									from Cloudflare and Warp to OpenCode and Alchemy.
+								</p>
 							</div>
-						))}
+							{[
+								...SPEAKERS.filter((speaker) => speaker.host),
+								...SPEAKERS.filter((speaker) => !speaker.host),
+							].map((speaker, index) => (
+								<SpeakerCard
+									key={speaker.name}
+									speaker={speaker}
+									className={speakerPlacement(index)}
+								/>
+							))}
+						</div>
 					</div>
 				</section>
 
