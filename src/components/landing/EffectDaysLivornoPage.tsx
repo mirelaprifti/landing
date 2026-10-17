@@ -748,23 +748,9 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full object-cover opacity-80"
+			className="aspect-4/5 w-full object-cover opacity-80 grayscale transition-[filter] duration-300 group-hover:grayscale-0"
 		/>
 	);
-}
-
-/* Desktop column for each card after the host's. The host's card fills the
-   first column for the first two rows, so the first six cards take the other
-   three; after that, all four columns in turn. Column 3 is the zero-width
-   spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
-const LG_COLUMN = [
-	"lg:col-start-1",
-	"lg:col-start-2",
-	"lg:col-start-4",
-	"lg:col-start-5",
-];
-function lgColumn(index: number) {
-	return index < 6 ? LG_COLUMN[1 + (index % 3)] : LG_COLUMN[(index - 6) % 4];
 }
 
 /** One speaker: the portrait with name, company and X link set into its foot. */
@@ -780,9 +766,8 @@ function SpeakerCard({
 	const host = speaker.host === true;
 	return (
 		<div
-			/* Opaque, so the page's centre dashed line stops behind the card
-			   rather than running across a portrait. */
-			className={`${host ? "row-span-2 flex flex-col overflow-hidden" : "relative overflow-hidden bg-white dark:bg-zinc-950"} ${className}`}
+			/* Opaque, so the ledger's hairlines only show between cards. */
+			className={`group ${host ? "row-span-2 flex flex-col overflow-hidden" : "relative overflow-hidden bg-white dark:bg-zinc-950"} ${className}`}
 		>
 			<div
 				className={
@@ -790,6 +775,12 @@ function SpeakerCard({
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
+				{/* Duotone, as the past-edition photos are: grayscale underneath,
+				    hue from this layer, so a wall of mixed sources reads as one
+				    set. Hovering a card brings that face back to full colour. */}
+				{speaker.photo && (
+					<div className="pointer-events-none absolute inset-0 bg-[#5b5fc7] mix-blend-color transition-opacity duration-300 group-hover:opacity-0" />
+				)}
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
 				    the light ink always holds. A step smaller and tighter below
@@ -1083,32 +1074,32 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Two across on phones, four from tablet up. Kit, the host, opens
-						    the grid on a card one column wide and two rows tall — portrait
-						    on top, bio below.
-
-						    On desktop the four columns read as two pairs: 16px inside each
-						    pair and 32px down the middle, so the page's centre dashed line
-						    has room to show through. That is one zero-width spacer track
-						    between the pairs; each card is explicitly placed so nothing
-						    auto-flows into it (see lgColumn). */}
-						<div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-								<SpeakerCard
-									key={speaker.name}
-									speaker={speaker}
-									className="lg:col-start-1"
-								/>
+						{/* Two across on phones, four from tablet up, as a ruled ledger
+						    like the sponsor wall: one hairline frame and a 1px line
+						    between every cell, the grid's background showing through
+						    the gap. Kit, the MC, opens it on a card one column wide and
+						    two rows tall — portrait on top, bio below. On wider screens
+						    the last row runs two short; blank cells in the page colour
+						    finish it, so the ledger stays whole. */}
+						<div className="mt-12 grid grid-cols-2 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+							{[
+								...SPEAKERS.filter((speaker) => speaker.host),
+								...SPEAKERS.filter((speaker) => !speaker.host),
+							].map((speaker) => (
+								<SpeakerCard key={speaker.name} speaker={speaker} />
 							))}
-							{SPEAKERS.filter((speaker) => !speaker.host).map(
-								(speaker, index) => (
-									<SpeakerCard
-										key={speaker.name}
-										speaker={speaker}
-										className={lgColumn(index)}
-									/>
-								),
-							)}
+							{(SPEAKERS.length + 1) % 4 !== 0 &&
+								Array.from(
+									{ length: 4 - ((SPEAKERS.length + 1) % 4) },
+									(_, i) => (
+										<div
+											// biome-ignore lint/suspicious/noArrayIndexKey: blank cells
+											key={i}
+											aria-hidden="true"
+											className="hidden bg-white md:block dark:bg-zinc-950"
+										/>
+									),
+								)}
 						</div>
 					</div>
 				</section>
