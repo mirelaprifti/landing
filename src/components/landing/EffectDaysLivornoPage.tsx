@@ -782,13 +782,9 @@ function SpeakerCard({
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${host ? "row-span-2 flex flex-col" : "relative"} ${className}`}
+			className={`overflow-hidden bg-white dark:bg-zinc-950 ${host ? "row-span-2 flex flex-col" : "relative"} ${className}`}
 		>
-			<div
-				className={
-					host ? "relative border-b border-zinc-200 dark:border-zinc-800" : ""
-				}
-			>
+			<div className={host ? "relative" : ""}>
 				<SpeakerPhoto speaker={speaker} />
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
@@ -800,7 +796,7 @@ function SpeakerCard({
 				</div>
 			</div>
 			{host && (
-				<div className="p-3 lg:p-4">
+				<div className="pt-3 lg:pt-4">
 					<p className={`${text.micro} mb-2`}>MC &amp; speaker</p>
 					{speaker.bio && (
 						<p className="text-sm leading-relaxed text-zinc-600 lg:text-base dark:text-zinc-400">
