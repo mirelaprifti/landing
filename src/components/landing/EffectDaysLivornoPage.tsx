@@ -782,9 +782,13 @@ function SpeakerCard({
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`overflow-hidden bg-white dark:bg-zinc-950 ${host ? "row-span-2 flex flex-col" : "relative"} ${className}`}
+			className={`${host ? "row-span-2 flex flex-col gap-4" : "relative overflow-hidden bg-white dark:bg-zinc-950"} ${className}`}
 		>
-			<div className={host ? "relative" : ""}>
+			<div
+				className={
+					host ? "relative overflow-hidden bg-white dark:bg-zinc-950" : ""
+				}
+			>
 				<SpeakerPhoto speaker={speaker} />
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
@@ -795,14 +799,24 @@ function SpeakerCard({
 					<SpeakerDetails speaker={speaker} onImage />
 				</div>
 			</div>
+			{/* The MC's second row: a tile the size of the card beside it, filled
+			    a step off the page (as the program cards are) so it reads as a
+			    slot in the grid, not text in a gap. Role and bio at the top; a
+			    closing line at the foot, level with the names on the photos
+			    beside it. Below desktop the column is too narrow for both, so
+			    the bio steps down a size and the closing line drops, keeping
+			    the tile within a card's height. */}
 			{host && (
-				<div className="pt-3 lg:pt-4">
+				<div className="flex flex-1 flex-col bg-zinc-50 p-3 lg:p-4 dark:bg-zinc-900">
 					<p className={`${text.micro} mb-2`}>MC &amp; speaker</p>
 					{speaker.bio && (
-						<p className="text-sm leading-relaxed text-zinc-600 lg:text-base dark:text-zinc-400">
+						<p className="text-xs leading-relaxed text-zinc-600 lg:text-base dark:text-zinc-400">
 							{speaker.bio}
 						</p>
 					)}
+					<p className="mt-auto hidden pt-4 lg:block text-base leading-[1.1] font-semibold text-zinc-900 lg:text-lg lg:leading-[1.1] dark:text-white">
+						Your MC for Effect Days
+					</p>
 				</div>
 			)}
 		</div>
