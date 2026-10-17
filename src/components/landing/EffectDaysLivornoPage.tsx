@@ -62,22 +62,21 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, the MC, sits beside the grid in the section's
-   rail on desktop, and opens it below that: portrait on top, role and bio
-   below. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, the MC, opens the grid on a two-cell card:
+   portrait, then role and bio beside it. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   On desktop the twelve speakers fill three columns in four full rows. */
+   From md up the rows alternate three and four across (see SPEAKER_SPANS);
+   the order above fills them left to right. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** The event's MC. Opens the grid on a card one column wide and two rows
-	 *  tall: the portrait on top, an "MC & speaker" label and bio below. One
-	 *  speaker. */
+	/** The event's MC. Opens the grid on a two-cell card: the portrait, and
+	 *  an "MC & speaker" label and bio beside it. One speaker. */
 	host?: boolean;
 	/** Host card only: a short bio under the portrait. */
 	bio?: string;
@@ -760,18 +759,23 @@ function SpeakerCard({
 	speaker: (typeof SPEAKERS)[number];
 	className?: string;
 }) {
-	/* The MC's card runs two rows tall: the portrait at a card's size on top,
-	   and the role and bio in the second row's height below it. */
+	/* The MC's card is two cells wide: the portrait in the first, the role
+	   and bio in a dark panel beside it, flush, so the two read as one card.
+	   From md up the row's height comes from the speaker card beside it and
+	   the portrait fills it; on phones nothing sits beside it, so the portrait
+	   holds 4:5 and sets the height itself. */
 	const host = speaker.host === true;
 	return (
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`${host ? "row-span-2 flex flex-col overflow-hidden" : "relative overflow-hidden bg-white dark:bg-zinc-950"} ${className}`}
+			className={`relative overflow-hidden bg-white dark:bg-zinc-950 ${host ? "flex" : ""} ${className}`}
 		>
 			<div
 				className={
-					host ? "relative overflow-hidden bg-white dark:bg-zinc-950" : ""
+					host
+						? "relative w-1/2 shrink-0 md:[&_img]:absolute md:[&_img]:inset-0 md:[&_img]:aspect-auto md:[&_img]:h-full"
+						: ""
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
@@ -780,26 +784,20 @@ function SpeakerCard({
 				    the light ink always holds. A step smaller and tighter below
 				    desktop, where cards are narrow and a long name would climb
 				    over the face. */}
-				<div
-					className={`absolute inset-x-0 bottom-0 bg-linear-to-t to-transparent p-3 pt-12 lg:p-4 lg:pt-16 ${host ? "from-zinc-900 via-zinc-900/60" : "from-black/90 via-black/60"}`}
-				>
+				<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 lg:p-4 lg:pt-16">
 					<SpeakerDetails speaker={speaker} onImage />
 				</div>
 			</div>
-			{/* The MC's second row: a dark panel the portrait's scrim fades
-			    into, so photo and bio read as one card running two rows tall.
-			    Dark in both themes, like the scrim, so the seam never shows.
-			    The role sits at the top; the bio settles at the foot, level
-			    with the names on the photos beside it. Below desktop the
-			    column is narrow, so the bio steps down a size to stay within a
-			    card's height. */}
+			{/* The MC's panel: dark in both themes, like the scrim. The role
+			    sits at the top; the bio settles at the foot, level with the
+			    names on the photos beside it. */}
 			{host && (
-				<div className="flex flex-1 flex-col bg-zinc-900 px-3 pt-2 pb-3 lg:px-4 lg:pt-3 lg:pb-4">
+				<div className="flex flex-1 flex-col bg-zinc-900 p-3 lg:p-4">
 					<p className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
 						MC &amp; speaker
 					</p>
 					{speaker.bio && (
-						<p className="mt-3 text-xs leading-relaxed text-zinc-300 lg:mt-auto lg:text-[0.9375rem]">
+						<p className="mt-auto pt-3 text-xs leading-relaxed text-zinc-300 lg:text-[0.9375rem]">
 							{speaker.bio}
 						</p>
 					)}
@@ -808,6 +806,18 @@ function SpeakerCard({
 		</div>
 	);
 }
+
+/* Rows alternate three wide and four narrow, on a twelve-column track from
+   md up: a three-row card spans four columns, a four-row card three. The
+   MC's card is two cells of the first three-row, so the fourteen cells run
+   3 · 4 · 3 · 4 and every row is full. One entry per speaker after the MC,
+   in order. Literal classes, so Tailwind sees them. */
+const SPEAKER_SPANS = [
+	"md:col-span-4",
+	...Array<string>(4).fill("md:col-span-3"),
+	...Array<string>(3).fill("md:col-span-4"),
+	...Array<string>(4).fill("md:col-span-3"),
+];
 
 /** Name, then company with the X link riding on the same line. */
 function SpeakerDetails({
@@ -1056,45 +1066,41 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						{/* A sticky split on desktop: the title and Kit, the MC, in a
-						    rail one card wide that stays in view while the twelve
-						    speakers scroll past in three columns beside it — four full
-						    rows, every card at the same size as the MC's. The rail pins
-						    below the announcement bar and nav, and only on screens tall
-						    enough to show all of it; on shorter ones it scrolls with the
-						    page.
+						<div>
+							<p className={text.eyebrow}>{"// "}Speakers</p>
+							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							<p className={text.subtitle}>
+								{/* Broken after the comma from sm up; on phones the first half
+								    alone outruns the line, so it wraps where it falls. */}
+								Builders, maintainers and educators shipping with Effect,{" "}
+								<br className="hidden sm:inline" />
+								from Cloudflare and Warp to OpenCode and Alchemy.
+							</p>
+						</div>
 
-						    Below desktop it all stacks: the title, then one grid with
-						    Kit's two-row card first. */}
-						<div className="lg:grid lg:grid-cols-4 lg:items-start lg:gap-4">
-							<div className="lg:self-start [@media(min-height:72rem)]:lg:sticky [@media(min-height:72rem)]:lg:top-32">
-								<p className={text.eyebrow}>{"// "}Speakers</p>
-								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-								<p className={text.subtitle}>
-									Builders, maintainers and educators shipping with Effect, from
-									Cloudflare and Warp to OpenCode and Alchemy.
-								</p>
-								{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+						{/* Rows of three and four in turn from md up (see
+						    SPEAKER_SPANS): the wide rows give faces room, the narrow
+						    ones keep the wall compact, and the change of beat keeps a
+						    long line-up from reading as a table. Kit, the MC, opens it
+						    on a two-cell card. Two across on phones, Kit's card the
+						    full width. */}
+						<div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-12">
+							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+								<SpeakerCard
+									key={speaker.name}
+									speaker={speaker}
+									className="col-span-2 md:col-span-8"
+								/>
+							))}
+							{SPEAKERS.filter((speaker) => !speaker.host).map(
+								(speaker, index) => (
 									<SpeakerCard
 										key={speaker.name}
 										speaker={speaker}
-										className="mt-10 hidden lg:flex"
+										className={SPEAKER_SPANS[index]}
 									/>
-								))}
-							</div>
-
-							<div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 lg:col-span-3 lg:mt-0 lg:grid-cols-3">
-								{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-									<SpeakerCard
-										key={speaker.name}
-										speaker={speaker}
-										className="lg:hidden"
-									/>
-								))}
-								{SPEAKERS.filter((speaker) => !speaker.host).map((speaker) => (
-									<SpeakerCard key={speaker.name} speaker={speaker} />
-								))}
-							</div>
+								),
+							)}
 						</div>
 					</div>
 				</section>
