@@ -782,7 +782,7 @@ function SpeakerCard({
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`${host ? "row-span-2 flex flex-col gap-4" : "relative overflow-hidden bg-white dark:bg-zinc-950"} ${className}`}
+			className={`${host ? "row-span-2 flex flex-col overflow-hidden" : "relative overflow-hidden bg-white dark:bg-zinc-950"} ${className}`}
 		>
 			<div
 				className={
@@ -799,9 +799,9 @@ function SpeakerCard({
 					<SpeakerDetails speaker={speaker} onImage />
 				</div>
 			</div>
-			{/* The MC's second row: a tile the size of the card beside it, filled
-			    a step off the page (as the program cards are) so it reads as a
-			    slot in the grid, not text in a gap. Role and bio at the top; a
+			{/* The MC's second row: a panel filled a step off the page (as the
+			    program cards are), set flush under the portrait so the two read
+			    as one card running two rows tall. Role and bio at the top; a
 			    closing line at the foot, level with the names on the photos
 			    beside it. Below desktop the column is too narrow for both, so
 			    the bio steps down a size and the closing line drops, keeping
@@ -814,9 +814,18 @@ function SpeakerCard({
 							{speaker.bio}
 						</p>
 					)}
-					<p className="mt-auto hidden pt-4 lg:block text-base leading-[1.1] font-semibold text-zinc-900 lg:text-lg lg:leading-[1.1] dark:text-white">
-						Your MC for Effect Days
-					</p>
+					{/* Closing row, ruled off like a card footer: a mic in the
+					    program steps' bordered number chip, and the role spelled
+					    out beside it. */}
+					<div className="mt-auto hidden items-center gap-3 border-t border-zinc-200 pt-4 lg:flex dark:border-zinc-700">
+						<div className="flex h-10 w-10 shrink-0 items-center justify-center border border-zinc-300 text-zinc-900 dark:border-zinc-600 dark:text-white">
+							<i className="ri-mic-line text-base" aria-hidden="true" />
+						</div>
+						<div>
+							<p className={text.smallHeading}>Your MC</p>
+							<p className={text.micro}>Effect Days · Livorno</p>
+						</div>
+					</div>
 				</div>
 			)}
 		</div>
