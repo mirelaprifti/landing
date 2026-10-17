@@ -795,37 +795,29 @@ function SpeakerCard({
 				    the light ink always holds. A step smaller and tighter below
 				    desktop, where cards are narrow and a long name would climb
 				    over the face. */}
-				<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 lg:p-4 lg:pt-16">
+				<div
+					className={`absolute inset-x-0 bottom-0 bg-linear-to-t to-transparent p-3 pt-12 lg:p-4 lg:pt-16 ${host ? "from-zinc-900 via-zinc-900/60" : "from-black/90 via-black/60"}`}
+				>
 					<SpeakerDetails speaker={speaker} onImage />
 				</div>
 			</div>
-			{/* The MC's second row: a panel filled a step off the page (as the
-			    program cards are), set flush under the portrait so the two read
-			    as one card running two rows tall. Role and bio at the top; a
-			    closing line at the foot, level with the names on the photos
-			    beside it. Below desktop the column is too narrow for both, so
-			    the bio steps down a size and the closing line drops, keeping
-			    the tile within a card's height. */}
+			{/* The MC's second row: a dark panel the portrait's scrim fades
+			    into, so photo and bio read as one card running two rows tall.
+			    Dark in both themes, like the scrim, so the seam never shows.
+			    The role sits at the top; the bio settles at the foot, level
+			    with the names on the photos beside it. Below desktop the
+			    column is narrow, so the bio steps down a size to stay within a
+			    card's height. */}
 			{host && (
-				<div className="flex flex-1 flex-col bg-zinc-50 p-3 lg:p-4 dark:bg-zinc-900">
-					<p className={`${text.micro} mb-2`}>MC &amp; speaker</p>
+				<div className="flex flex-1 flex-col bg-zinc-900 px-3 pt-2 pb-3 lg:px-4 lg:pt-3 lg:pb-4">
+					<p className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
+						MC &amp; speaker
+					</p>
 					{speaker.bio && (
-						<p className="text-xs leading-relaxed text-zinc-600 lg:text-base dark:text-zinc-400">
+						<p className="mt-3 text-xs leading-relaxed text-zinc-300 lg:mt-auto lg:text-[0.9375rem]">
 							{speaker.bio}
 						</p>
 					)}
-					{/* Closing row, ruled off like a card footer: a mic in the
-					    program steps' bordered number chip, and the role spelled
-					    out beside it. */}
-					<div className="mt-auto hidden items-center gap-3 border-t border-zinc-200 pt-4 lg:flex dark:border-zinc-700">
-						<div className="flex h-10 w-10 shrink-0 items-center justify-center border border-zinc-300 text-zinc-900 dark:border-zinc-600 dark:text-white">
-							<i className="ri-mic-line text-base" aria-hidden="true" />
-						</div>
-						<div>
-							<p className={text.smallHeading}>Your MC</p>
-							<p className={text.micro}>Effect Days · Livorno</p>
-						</div>
-					</div>
 				</div>
 			)}
 		</div>
