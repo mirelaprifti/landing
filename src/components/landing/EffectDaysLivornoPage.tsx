@@ -89,7 +89,7 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
-		bio: "Kit works on OpenCode and builds Effect learning tools like Visual Effect and Effect Solutions. His life goal: to precipitate the age of effect systems.",
+		bio: "An effect-systems fan since his Scala and ZIO days, Kit led OpenCode's move to Effect and builds learning tools like Visual Effect, Effect Solutions and the Effect Institute.",
 	},
 	{
 		name: "Dillon Mulroy",
