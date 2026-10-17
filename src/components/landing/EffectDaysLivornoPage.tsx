@@ -62,14 +62,13 @@ const PROGRAM = [
 /* Confirmed speakers, in a curated order rather than announcement order: the
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, hosting as well as speaking, opens the grid on a
-   double-height card as MC: portrait on top, role and bio below. Place new speakers deliberately. A card with no `photo` yet falls
+   light and dark, and Kit, the MC, sits beside the grid in the section's
+   rail on desktop, and opens it below that: portrait on top, role and bio
+   below. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   Four across from tablet up, under the section title; the host's card
-   counts as two slots, so on phones every row is full and on wider screens
-   the last row runs a pair short. */
+   On desktop the twelve speakers fill three columns in four full rows. */
 const SPEAKERS: {
 	name: string;
 	company: string;
@@ -753,20 +752,6 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	);
 }
 
-/* Desktop column for each card after the host's. The host's card fills the
-   first column for the first two rows, so the first six cards take the other
-   three; after that, all four columns in turn. Column 3 is the zero-width
-   spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
-const LG_COLUMN = [
-	"lg:col-start-1",
-	"lg:col-start-2",
-	"lg:col-start-4",
-	"lg:col-start-5",
-];
-function lgColumn(index: number) {
-	return index < 6 ? LG_COLUMN[1 + (index % 3)] : LG_COLUMN[(index - 6) % 4];
-}
-
 /** One speaker: the portrait with name, company and X link set into its foot. */
 function SpeakerCard({
 	speaker,
@@ -1071,44 +1056,45 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div>
-							<p className={text.eyebrow}>{"// "}Speakers</p>
-							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-							<p className={text.subtitle}>
-								{/* Broken after the comma from sm up; on phones the first half
-								    alone outruns the line, so it wraps where it falls. */}
-								Builders, maintainers and educators shipping with Effect,{" "}
-								<br className="hidden sm:inline" />
-								from Cloudflare and Warp to OpenCode and Alchemy.
-							</p>
-						</div>
+						{/* A sticky split on desktop: the title and Kit, the MC, in a
+						    rail one card wide that stays in view while the twelve
+						    speakers scroll past in three columns beside it — four full
+						    rows, every card at the same size as the MC's. The rail pins
+						    below the announcement bar and nav, and only on screens tall
+						    enough to show all of it; on shorter ones it scrolls with the
+						    page.
 
-						{/* Two across on phones, four from tablet up. Kit, the host, opens
-						    the grid on a card one column wide and two rows tall — portrait
-						    on top, bio below.
-
-						    On desktop the four columns read as two pairs: 16px inside each
-						    pair and 32px down the middle, so the page's centre dashed line
-						    has room to show through. That is one zero-width spacer track
-						    between the pairs; each card is explicitly placed so nothing
-						    auto-flows into it (see lgColumn). */}
-						<div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]">
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-								<SpeakerCard
-									key={speaker.name}
-									speaker={speaker}
-									className="lg:col-start-1"
-								/>
-							))}
-							{SPEAKERS.filter((speaker) => !speaker.host).map(
-								(speaker, index) => (
+						    Below desktop it all stacks: the title, then one grid with
+						    Kit's two-row card first. */}
+						<div className="lg:grid lg:grid-cols-4 lg:items-start lg:gap-4">
+							<div className="lg:self-start [@media(min-height:72rem)]:lg:sticky [@media(min-height:72rem)]:lg:top-32">
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+								<p className={text.subtitle}>
+									Builders, maintainers and educators shipping with Effect, from
+									Cloudflare and Warp to OpenCode and Alchemy.
+								</p>
+								{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
 									<SpeakerCard
 										key={speaker.name}
 										speaker={speaker}
-										className={lgColumn(index)}
+										className="mt-10 hidden lg:flex"
 									/>
-								),
-							)}
+								))}
+							</div>
+
+							<div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 lg:col-span-3 lg:mt-0 lg:grid-cols-3">
+								{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
+									<SpeakerCard
+										key={speaker.name}
+										speaker={speaker}
+										className="lg:hidden"
+									/>
+								))}
+								{SPEAKERS.filter((speaker) => !speaker.host).map((speaker) => (
+									<SpeakerCard key={speaker.name} speaker={speaker} />
+								))}
+							</div>
 						</div>
 					</div>
 				</section>
