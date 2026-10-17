@@ -63,21 +63,24 @@ const PROGRAM = [
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
    light and dark, and Kit, hosting as well as speaking, opens the grid on a
-   double-size card marked with a host chip. Place new speakers deliberately. A card with no `photo` yet falls
+   double-height card: host chip on the portrait, bio below. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
    Four across from tablet up, under the section title; the host's card
-   counts as four slots, so every row is full. */
+   counts as two slots, so on phones every row is full and on wider screens
+   the last row runs a pair short. */
 const SPEAKERS: {
 	name: string;
 	company: string;
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Opens the grid on a card two columns wide and two rows tall, with a
-	 *  "Host & speaker" chip on the photo. One speaker. */
+	/** Opens the grid on a card one column wide and two rows tall: the
+	 *  portrait with a "Host & speaker" chip, and his bio below. One speaker. */
 	host?: boolean;
+	/** Host card only: a short bio under the portrait. */
+	bio?: string;
 }[] = [
 	{
 		name: "Kit Langton",
@@ -85,6 +88,7 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
+		bio: "Kit works on OpenCode and builds Effect learning tools like Visual Effect and Effect Solutions. His life goal: to precipitate the age of effect systems.",
 	},
 	{
 		name: "Dillon Mulroy",
@@ -749,8 +753,8 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 }
 
 /* Desktop column for each card after the host's. The host's card fills the
-   left pair for the first two rows, so the first four cards take the right
-   pair; after that, all four columns in turn. Column 3 is the zero-width
+   first column for the first two rows, so the first six cards take the other
+   three; after that, all four columns in turn. Column 3 is the zero-width
    spacer, so it is never assigned. Literal classes, so Tailwind sees them. */
 const LG_COLUMN = [
 	"lg:col-start-1",
@@ -759,7 +763,7 @@ const LG_COLUMN = [
 	"lg:col-start-5",
 ];
 function lgColumn(index: number) {
-	return index < 4 ? LG_COLUMN[2 + (index % 2)] : LG_COLUMN[(index - 4) % 4];
+	return index < 6 ? LG_COLUMN[1 + (index % 3)] : LG_COLUMN[(index - 6) % 4];
 }
 
 /** One speaker: the portrait with name, company and X link set into its foot. */
@@ -770,31 +774,40 @@ function SpeakerCard({
 	speaker: (typeof SPEAKERS)[number];
 	className?: string;
 }) {
-	/* The host's card spans two columns and two rows; its portrait fills
-	   whatever the cards beside it make of that, rather than holding 4:5. On
-	   phones nothing sits beside it, so the card itself holds 4:5. */
-	const featured = speaker.host === true;
+	/* The host's card runs two rows tall: the portrait at a card's size on
+	   top, and the bio in the second row's height below it. */
+	const host = speaker.host === true;
 	return (
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`relative overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${featured ? "aspect-4/5 md:aspect-auto [&_img]:absolute [&_img]:inset-0 [&_img]:h-full" : ""} ${className}`}
+			className={`overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 ${host ? "row-span-2 flex flex-col" : "relative"} ${className}`}
 		>
-			<SpeakerPhoto speaker={speaker} />
-			{speaker.host && (
-				<span className="absolute top-3 left-3 bg-black/70 px-2 py-1 font-mono text-[0.625rem] font-medium tracking-wider text-white uppercase sm:top-4 sm:left-4">
-					Host &amp; speaker
-				</span>
-			)}
-			{/* Details set into the foot of the portrait, on a scrim that darkens
-			    only the bottom of the frame — dark in both themes, so the light
-			    ink always holds. A step smaller and tighter below desktop, where
-			    cards are narrow and a long name would climb over the face. */}
 			<div
-				className={`absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent ${featured ? "p-4 pt-20 md:p-6 md:pt-28" : "p-3 pt-12 lg:p-4 lg:pt-16"}`}
+				className={
+					host ? "relative border-b border-zinc-200 dark:border-zinc-800" : ""
+				}
 			>
-				<SpeakerDetails speaker={speaker} onImage large={featured} />
+				<SpeakerPhoto speaker={speaker} />
+				{host && (
+					<span className="absolute top-3 left-3 bg-black/70 px-2 py-1 font-mono text-[0.625rem] font-medium tracking-wider text-white uppercase sm:top-4 sm:left-4">
+						Host &amp; speaker
+					</span>
+				)}
+				{/* Details set into the foot of the portrait, on a scrim that
+				    darkens only the bottom of the frame — dark in both themes, so
+				    the light ink always holds. A step smaller and tighter below
+				    desktop, where cards are narrow and a long name would climb
+				    over the face. */}
+				<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 lg:p-4 lg:pt-16">
+					<SpeakerDetails speaker={speaker} onImage />
+				</div>
 			</div>
+			{host && speaker.bio && (
+				<p className="p-3 text-sm leading-relaxed text-zinc-600 lg:p-4 lg:text-base dark:text-zinc-400">
+					{speaker.bio}
+				</p>
+			)}
 		</div>
 	);
 }
@@ -803,23 +816,18 @@ function SpeakerCard({
 function SpeakerDetails({
 	speaker,
 	onImage = false,
-	large = false,
 }: {
 	speaker: (typeof SPEAKERS)[number];
 	/** Set over a portrait's dark scrim: light ink in either theme. */
 	onImage?: boolean;
-	/** The host's double-size card: the name a step up to match. */
-	large?: boolean;
 }) {
 	return (
 		<>
 			<h3
 				className={
-					large
-						? "text-xl leading-[1.1] font-semibold text-white md:text-2xl md:leading-[1.1]"
-						: onImage
-							? "text-base leading-[1.1] font-semibold text-white lg:text-lg lg:leading-[1.1]"
-							: text.cardTitle
+					onImage
+						? "text-base leading-[1.1] font-semibold text-white lg:text-lg lg:leading-[1.1]"
+						: text.cardTitle
 				}
 			>
 				{speaker.name}
@@ -1064,9 +1072,8 @@ export function EffectDaysLivornoPage() {
 						</div>
 
 						{/* Two across on phones, four from tablet up. Kit, the host, opens
-						    the grid on a card two columns wide and two rows tall, so the
-						    twelve speakers and his card fill sixteen slots — every row
-						    full at two and four across.
+						    the grid on a card one column wide and two rows tall — portrait
+						    on top, bio below.
 
 						    On desktop the four columns read as two pairs: 16px inside each
 						    pair and 32px down the middle, so the page's centre dashed line
@@ -1078,7 +1085,7 @@ export function EffectDaysLivornoPage() {
 								<SpeakerCard
 									key={speaker.name}
 									speaker={speaker}
-									className="col-span-2 row-span-2 lg:col-start-1"
+									className="lg:col-start-1"
 								/>
 							))}
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
