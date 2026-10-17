@@ -63,7 +63,7 @@ const PROGRAM = [
    newest names sit high in the second row, Julius and Julia are kept apart so
    the similar names don't read as a duplicate, photo backgrounds alternate
    light and dark, and Kit, hosting as well as speaking, opens the grid on a
-   double-height card: host chip on the portrait, bio below. Place new speakers deliberately. A card with no `photo` yet falls
+   double-height card as MC: portrait on top, role and bio below. Place new speakers deliberately. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
@@ -76,8 +76,9 @@ const SPEAKERS: {
 	photo?: string;
 	/** X handle, without the @. The card shows the icon only where one is set. */
 	x?: string;
-	/** Opens the grid on a card one column wide and two rows tall: the
-	 *  portrait with a "Host & speaker" chip, and his bio below. One speaker. */
+	/** The event's MC. Opens the grid on a card one column wide and two rows
+	 *  tall: the portrait on top, an "MC & speaker" label and bio below. One
+	 *  speaker. */
 	host?: boolean;
 	/** Host card only: a short bio under the portrait. */
 	bio?: string;
@@ -774,8 +775,8 @@ function SpeakerCard({
 	speaker: (typeof SPEAKERS)[number];
 	className?: string;
 }) {
-	/* The host's card runs two rows tall: the portrait at a card's size on
-	   top, and the bio in the second row's height below it. */
+	/* The MC's card runs two rows tall: the portrait at a card's size on top,
+	   and the role and bio in the second row's height below it. */
 	const host = speaker.host === true;
 	return (
 		<div
@@ -789,11 +790,6 @@ function SpeakerCard({
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
-				{host && (
-					<span className="absolute top-3 left-3 bg-black/70 px-2 py-1 font-mono text-[0.625rem] font-medium tracking-wider text-white uppercase sm:top-4 sm:left-4">
-						Host &amp; speaker
-					</span>
-				)}
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
 				    the light ink always holds. A step smaller and tighter below
@@ -803,10 +799,15 @@ function SpeakerCard({
 					<SpeakerDetails speaker={speaker} onImage />
 				</div>
 			</div>
-			{host && speaker.bio && (
-				<p className="p-3 text-sm leading-relaxed text-zinc-600 lg:p-4 lg:text-base dark:text-zinc-400">
-					{speaker.bio}
-				</p>
+			{host && (
+				<div className="p-3 lg:p-4">
+					<p className={`${text.micro} mb-2`}>MC &amp; speaker</p>
+					{speaker.bio && (
+						<p className="text-sm leading-relaxed text-zinc-600 lg:text-base dark:text-zinc-400">
+							{speaker.bio}
+						</p>
+					)}
+				</div>
 			)}
 		</div>
 	);
