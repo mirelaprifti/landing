@@ -90,16 +90,16 @@ const SPEAKERS: {
 		bio: "An effect-systems fan since his Scala and ZIO days, Kit led OpenCode's move to Effect and builds learning tools like Visual Effect, Effect Solutions and the Effect Institute.",
 	},
 	{
-		name: "Dillon Mulroy",
-		company: "Cloudflare",
-		photo: "/assets/effect-days/dillon-mulroy.png",
-		x: "dillon_mulroy",
-	},
-	{
 		name: "Adam Rankin",
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
 		x: "rankintweets",
+	},
+	{
+		name: "Dillon Mulroy",
+		company: "Cloudflare",
+		photo: "/assets/effect-days/dillon-mulroy.png",
+		x: "dillon_mulroy",
 	},
 	{
 		name: "Rhys Sullivan",
