@@ -67,7 +67,7 @@ const PROGRAM = [
    back to the initials placeholder below and switches over on its own once a
    path is dropped in.
 
-   From md up the rows alternate three and four across (see SPEAKER_SPANS);
+   From md up the rows alternate four and three across (see SPEAKER_SPANS);
    the order above fills them left to right. */
 const SPEAKERS: {
 	name: string;
@@ -126,10 +126,10 @@ const SPEAKERS: {
 		x: "0xblacklight",
 	},
 	{
-		name: "Maximilian Schwarzmüller",
-		company: "Academind",
-		photo: "/assets/effect-days/maximilian.png",
-		x: "maxedapps",
+		name: "Sam Goodwin",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
 	},
 	{
 		name: "Julia Ortiz",
@@ -156,10 +156,10 @@ const SPEAKERS: {
 		x: "MichaelArnaldi",
 	},
 	{
-		name: "Sam Goodwin",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-		x: "samgoodwin89",
+		name: "Maximilian Schwarzmüller",
+		company: "Academind",
+		photo: "/assets/effect-days/maximilian.png",
+		x: "maxedapps",
 	},
 ];
 
@@ -807,16 +807,16 @@ function SpeakerCard({
 	);
 }
 
-/* Rows alternate three wide and four narrow, on a twelve-column track from
-   md up: a three-row card spans four columns, a four-row card three. The
-   MC's card is two cells of the first three-row, so the fourteen cells run
-   3 · 4 · 3 · 4 and every row is full. One entry per speaker after the MC,
+/* Rows alternate four narrow and three wide, on a twelve-column track from
+   md up: a four-row card spans three columns, a three-row card four. The
+   MC's card is two cells of the first four-row, so the fourteen cells run
+   4 · 3 · 4 · 3 and every row is full. One entry per speaker after the MC,
    in order. Literal classes, so Tailwind sees them. */
 const SPEAKER_SPANS = [
-	"md:col-span-4",
-	...Array<string>(4).fill("md:col-span-3"),
+	...Array<string>(2).fill("md:col-span-3"),
 	...Array<string>(3).fill("md:col-span-4"),
 	...Array<string>(4).fill("md:col-span-3"),
+	...Array<string>(3).fill("md:col-span-4"),
 ];
 
 /** Name, then company with the X link riding on the same line. */
@@ -1078,7 +1078,7 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Rows of three and four in turn from md up (see
+						{/* Rows of four and three in turn from md up (see
 						    SPEAKER_SPANS): the wide rows give faces room, the narrow
 						    ones keep the wall compact, and the change of beat keeps a
 						    long line-up from reading as a table. Kit, the MC, opens it
@@ -1089,7 +1089,7 @@ export function EffectDaysLivornoPage() {
 								<SpeakerCard
 									key={speaker.name}
 									speaker={speaker}
-									className="col-span-2 md:col-span-8"
+									className="col-span-2 md:col-span-6"
 								/>
 							))}
 							{SPEAKERS.filter((speaker) => !speaker.host).map(
