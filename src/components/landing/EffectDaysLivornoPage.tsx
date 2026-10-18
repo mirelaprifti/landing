@@ -59,13 +59,15 @@ const PROGRAM = [
 	},
 ];
 
-/* Confirmed speakers, in a curated order rather than announcement order: the
-   newest names sit high in the second row, Julius and Julia are kept apart so
-   the similar names don't read as a duplicate, photo backgrounds alternate
-   light and dark, and Kit, the MC, opens the grid on a two-cell card:
-   portrait, then role and bio beside it. Place new speakers deliberately. A card with no `photo` yet falls
-   back to the initials placeholder below and switches over on its own once a
-   path is dropped in.
+/* Confirmed speakers, ordered by how widely their company is known, so the
+   names a visitor recognises are the first they see: Kit, the MC, opens on a
+   two-cell card; Warp and Cloudflare, the biggest brands, take the rest of
+   the first row; the companies closest to Effect itself — Effectful, which
+   builds it, Ziverge, behind ZIO, and T3 — get the first wide row; the
+   product teams follow, then the independent projects. Julius and Julia stay
+   apart so the similar names don't read as a duplicate. A card with no
+   `photo` yet falls back to the initials placeholder below and switches over
+   on its own once a path is dropped in.
 
    From md up the rows alternate four and three across (see SPEAKER_SPANS);
    the order above fills them left to right. */
@@ -102,6 +104,36 @@ const SPEAKERS: {
 		x: "dillon_mulroy",
 	},
 	{
+		name: "Michael Arnaldi",
+		company: "Effectful Technologies",
+		photo: "/assets/effect-days/mike-race.png",
+		x: "MichaelArnaldi",
+	},
+	{
+		name: "John A. De Goes",
+		company: "Ziverge",
+		photo: "/assets/effect-days/jdg.png",
+		x: "jdegoes",
+	},
+	{
+		name: "Julius Marminge",
+		company: "T3 Code",
+		photo: "/assets/effect-days/julius-marminge.jpeg",
+		x: "jullerino",
+	},
+	{
+		name: "Sam Goodwin",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
+	},
+	{
+		name: "Kyle Mistele",
+		company: "HumanLayer",
+		photo: "/assets/effect-days/kyle-mistele.png",
+		x: "0xblacklight",
+	},
+	{
 		name: "Rhys Sullivan",
 		company: "Executor",
 		photo: "/assets/effect-days/rhys-sullivan.png",
@@ -114,22 +146,10 @@ const SPEAKERS: {
 		x: "spaceemotion",
 	},
 	{
-		name: "Julius Marminge",
-		company: "T3 Code",
-		photo: "/assets/effect-days/julius-marminge.jpeg",
-		x: "jullerino",
-	},
-	{
-		name: "Kyle Mistele",
-		company: "HumanLayer",
-		photo: "/assets/effect-days/kyle-mistele.png",
-		x: "0xblacklight",
-	},
-	{
-		name: "Sam Goodwin",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-		x: "samgoodwin89",
+		name: "Maximilian Schwarzmüller",
+		company: "Academind",
+		photo: "/assets/effect-days/maximilian.png",
+		x: "maxedapps",
 	},
 	{
 		name: "Julia Ortiz",
@@ -142,24 +162,6 @@ const SPEAKERS: {
 		company: "Foldkit",
 		photo: "/assets/effect-days/devin-jameson.jpg",
 		x: "devinjameson",
-	},
-	{
-		name: "John A. De Goes",
-		company: "Ziverge",
-		photo: "/assets/effect-days/jdg.png",
-		x: "jdegoes",
-	},
-	{
-		name: "Michael Arnaldi",
-		company: "Effectful Technologies",
-		photo: "/assets/effect-days/mike-race.png",
-		x: "MichaelArnaldi",
-	},
-	{
-		name: "Maximilian Schwarzmüller",
-		company: "Academind",
-		photo: "/assets/effect-days/maximilian.png",
-		x: "maxedapps",
 	},
 ];
 
