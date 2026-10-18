@@ -112,7 +112,7 @@ const SPEAKERS: {
 	{
 		name: "John A. De Goes",
 		company: "Ziverge",
-		photo: "/assets/effect-days/jdg.png",
+		photo: "/assets/effect-days/john-degoes.png",
 		x: "jdegoes",
 	},
 	{
