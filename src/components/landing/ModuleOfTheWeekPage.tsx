@@ -80,7 +80,9 @@ function SocialCells() {
 		"group col-span-6 flex flex-col justify-between gap-4 bg-white px-4 py-5 text-left sm:col-span-2 transition-colors hover:bg-zinc-100/60 lg:col-span-1 lg:col-start-4 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60";
 	const value =
 		"flex items-center justify-between gap-2 font-mono text-sm text-zinc-900 dark:text-white";
-	const labelRow = `${micro} flex items-center gap-2`;
+	// Sentence case, sans: a way to get somewhere, not a mark
+	const labelRow =
+		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	const trail =
 		"text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white";
 	return (
