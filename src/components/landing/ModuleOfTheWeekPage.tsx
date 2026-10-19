@@ -119,8 +119,11 @@ function SocialCells() {
 					</span>
 					<span className={value}>
 						<span className="truncate">{profile.handle}</span>
-						{/* Sized and coloured like the site's external-link arrows (footer) */}
-						<Icon name="arrow-up-right" className="shrink-0 text-sm" />
+						{/* Footer-sized arrow, in the label's grey; darkens on hover */}
+						<Icon
+							name="arrow-up-right"
+							className="shrink-0 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+						/>
 					</span>
 				</a>
 			))}
