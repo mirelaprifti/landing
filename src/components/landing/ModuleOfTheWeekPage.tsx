@@ -151,7 +151,7 @@ const micro =
 
 /** Group header bar — sits on top of the grid it labels (as on /enterprise). */
 const groupBar =
-	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100/60 px-4 py-2.5 lg:px-6 dark:border-zinc-800 dark:bg-zinc-900/40";
+	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100/60 px-4 py-2.5 dark:border-zinc-800 dark:bg-zinc-900/40";
 
 /** Maxwell's talks and interviews elsewhere, newest first. */
 const APPEARANCES = [
