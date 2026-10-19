@@ -53,13 +53,13 @@ const APPEARANCES = [
 		duration: "55:50",
 	},
 	{
-		venue: "Effect Days 2025 · Talk",
+		venue: "Effect Days 2025",
 		title: "Building Effect-ive Agents",
 		youtubeId: "pQA0fakReas",
 		duration: "32:41",
 	},
 	{
-		venue: "Effect Days 2024 · Workshop",
+		venue: "Effect Days 2024",
 		title: "Advanced Effect workshop",
 		youtubeId: "7jOD5okJC00",
 		duration: "2:55:35",
