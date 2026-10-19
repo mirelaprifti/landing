@@ -57,8 +57,8 @@ function SocialCells() {
 				{
 					label: "X.com",
 					icon: "ri-twitter-x-fill",
-					handle: "@imax153",
-					href: "https://x.com/imax153",
+					handle: "@maxwellbrown",
+					href: "https://x.com/maxwellbrown",
 				},
 			].map((profile) => (
 				<a
@@ -402,8 +402,8 @@ export function ModuleOfTheWeekPage() {
 									Maxwell is a core contributor to Effect, with work across
 									Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
 									Office Hours. Each module is written up as a blog post first,
-									then walked through live at Office Hours and published as a
-									video.
+									then walked through live at Office Hours, before it's cut into
+									a standalone video.
 								</p>
 							</div>
 
