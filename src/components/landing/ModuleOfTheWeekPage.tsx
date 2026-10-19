@@ -44,16 +44,21 @@ function fillerCells(earlierCount: number) {
 
 const DISCORD_HANDLE = "maxwellbrown";
 
-/** "Founding Engineer at Effectful Technologies": the role, then the company. */
+/** Maxwell's name, then "Founding Engineer at Effectful Technologies". */
 function RoleLine() {
 	return (
-		<p className="text-base font-semibold text-zinc-900 dark:text-white">
-			Founding Engineer
-			<span className="font-normal text-zinc-500 dark:text-zinc-400">
-				{" "}
-				at Effectful Technologies
-			</span>
-		</p>
+		<div>
+			<h3 className="text-lg font-bold tracking-tight text-zinc-900 lg:text-2xl dark:text-white">
+				{AUTHORS.maxwell.name}
+			</h3>
+			<p className="mt-1 text-sm font-semibold text-zinc-900 lg:text-base dark:text-white">
+				Founding Engineer
+				<span className="font-normal text-zinc-500 dark:text-zinc-400">
+					{" "}
+					at Effectful Technologies
+				</span>
+			</p>
+		</div>
 	);
 }
 
@@ -502,17 +507,14 @@ export function ModuleOfTheWeekPage() {
 				    talks hang off the bottom as a labelled row. */}
 				<section aria-labelledby="author-title" className="py-24 md:pt-40">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-							// Behind the series
-						</p>
 						<h2
 							id="author-title"
-							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+							className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400"
 						>
-							{AUTHORS.maxwell.name}
+							// Behind the series
 						</h2>
 
-						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						<div className="mt-6 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 							{/* Portrait: a fixed 4:5 at every size, cropped from the square
 							    source. From lg it sets the card's height; on phones it
 							    sits beside the role, the bio running full width below. */}
