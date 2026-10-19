@@ -276,50 +276,31 @@ function ModuleLinks({
 	);
 }
 
-/** The newest module: one full-width cell, video left and copy right. */
-function FeaturedModule({ post }: { post: BlogPost }) {
+/** One module per row: the video on the left, the copy on the right, the
+ *  links pinned to the foot. Every row shares this layout so the list reads
+ *  top to bottom, newest first; the newest carries a "Latest" chip. */
+function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="col-span-full grid grid-cols-1 gap-6 p-5 md:grid-cols-2 md:items-center md:gap-10 border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
-			<ModuleThumbnail post={post} />
-			<div className="min-w-0">
+		<li className="grid grid-cols-1 gap-6 border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-400 md:grid-cols-12 md:gap-8 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+			<div className="md:col-span-5">
+				<ModuleThumbnail post={post} />
+			</div>
+			<div className="flex min-w-0 flex-col md:col-span-7 md:py-1">
 				<div className="flex items-center gap-3">
 					{entry === MODULES.length && (
 						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
 					)}
 					<ModuleMeta post={post} entry={entry} />
 				</div>
-				<h3 className="mt-3 text-2xl leading-tight font-bold tracking-tight text-zinc-900 dark:text-white">
+				<h3 className="mt-3 text-xl leading-snug font-semibold text-zinc-900 dark:text-white">
 					{moduleTitle(post)}
 				</h3>
-				<p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+				<p className="mt-2 max-w-xl text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
 					{post.excerpt}
 				</p>
-				<ModuleLinks post={post} className="mt-6" />
+				<ModuleLinks post={post} className="mt-auto pt-6" />
 			</div>
-		</li>
-	);
-}
-
-/** An earlier module: thumbnail on top, copy below, links settled at the foot. */
-function ModuleCard({ post }: { post: BlogPost }) {
-	const entry = entryOf(post);
-	return (
-		<li className="flex flex-col border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
-			{/* Three blocks, 24px apart, inside an even 20px inset: the
-			    video; the meta, title and summary held 8px apart; the links
-			    pinned to the foot so they line up across a row. */}
-			<ModuleThumbnail post={post} />
-			<div className="mt-6">
-				<ModuleMeta post={post} entry={entry} />
-				<h3 className="mt-2 text-lg leading-snug font-semibold text-zinc-900 dark:text-white">
-					{moduleTitle(post)}
-				</h3>
-				<p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-					{post.excerpt}
-				</p>
-			</div>
-			<ModuleLinks post={post} className="mt-auto pt-6" />
 		</li>
 	);
 }
@@ -329,7 +310,6 @@ function ModulesGrid() {
 	const [pkg, setPkg] = useState<string>("All");
 	const shown =
 		pkg === "All" ? MODULES : MODULES.filter((p) => p.packageName === pkg);
-	const [featured, ...earlier] = shown;
 	return (
 		<>
 			<div className="mt-16 md:mt-20">
@@ -358,14 +338,11 @@ function ModulesGrid() {
 				</div>
 			</div>
 
-			{/* Spaced card grid (as the Effect Days speakers): the newest module
-			    a full-width card, earlier ones two across (their thumbnails as
-			    wide as the featured one's) with room between
-			    them so each thumbnail reads on its own. */}
-			<ul className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-				{featured && <FeaturedModule key={featured.slug} post={featured} />}
-				{earlier.map((post) => (
-					<ModuleCard key={post.slug} post={post} />
+			{/* A single column, newest first, one module per card with room
+			    between them, so there's one obvious order to scroll in. */}
+			<ul className="mt-6 flex flex-col gap-6">
+				{shown.map((post) => (
+					<ModuleRow key={post.slug} post={post} />
 				))}
 			</ul>
 		</>
