@@ -22,19 +22,25 @@ const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 const PACKAGE_COUNT = new Set(MODULES.map((p) => p.packageName).filter(Boolean))
 	.size;
 
+/** The packages the series has covered, alphabetical. */
+const PACKAGES = [
+	...new Set(MODULES.flatMap((p) => (p.packageName ? [p.packageName] : []))),
+].sort();
+
+/** A module's number in the series: the oldest is 01. */
+const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
+
 /* Earlier modules fill a two-across grid (sm) and a four-across grid (lg)
    under the featured one. Empty cells pad each layout's last row so the
    hairlines stay closed; each filler shows only where it's needed. */
-const EARLIER_COUNT = MODULES.length - 1;
-const SM_FILL = EARLIER_COUNT % 2;
-const LG_FILL = (4 - (EARLIER_COUNT % 4)) % 4;
-const FILLER_CELLS = Array.from(
-	{ length: Math.max(SM_FILL, LG_FILL) },
-	(_, n) => ({
+function fillerCells(earlierCount: number) {
+	const sm = earlierCount % 2;
+	const lg = (4 - (earlierCount % 4)) % 4;
+	return Array.from({ length: Math.max(sm, lg) }, (_, n) => ({
 		key: `filler-${n}`,
-		className: `${n < SM_FILL ? "sm:block" : ""} ${n < LG_FILL ? "lg:block" : "lg:hidden"}`,
-	}),
-);
+		className: `${n < sm ? "sm:block" : ""} ${n < lg ? "lg:block" : "lg:hidden"}`,
+	}));
+}
 
 const DISCORD_HANDLE = "maxwellbrown";
 
@@ -182,7 +188,10 @@ function ModuleThumbnail({ post }: { post: BlogPost }) {
 				loading="lazy"
 				className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 			/>
-			<span className="absolute right-2 bottom-2 rounded-sm bg-zinc-950/80 px-1.5 py-0.5 font-mono text-xs text-white tabular-nums">
+			{/* Play mark + running time in the corner: reads as a video
+			    without covering the title baked into the thumbnail */}
+			<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums transition-colors group-hover:bg-zinc-950">
+				<i className="ri-play-fill text-sm leading-none" aria-hidden="true" />
 				{post.video.duration}
 			</span>
 		</a>
@@ -211,7 +220,7 @@ function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
 	);
 }
 
-/** "Read the post" and "Watch the video", with the date trailing. */
+/** The two formats side by side: the post to read, the video to watch. */
 function ModuleLinks({
 	post,
 	className = "",
@@ -220,30 +229,31 @@ function ModuleLinks({
 	className?: string;
 }) {
 	const url = videoUrl(post);
+	const format = "inline-flex items-center gap-1.5 font-medium";
 	return (
 		<div
-			className={`flex flex-wrap items-center gap-x-6 gap-y-2 text-sm ${className}`}
+			className={`flex flex-wrap items-center gap-x-5 gap-y-2 text-sm ${className}`}
 		>
 			<Link
 				href={getPostUrl(post)}
 				variant="subtle"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="inline-flex items-center gap-1.5 font-medium"
+				className={format}
 			>
-				Read the post
-				<Icon name="arrow-up-right" className="text-xs" />
+				<Icon name="file-text" className="text-sm" />
+				Read
 			</Link>
-			{url && (
+			{url && post.video && (
 				<Link
 					href={url}
 					variant="subtle"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="inline-flex items-center gap-1.5 font-medium"
+					className={format}
 				>
-					Watch the video
-					<Icon name="arrow-up-right" className="text-xs" />
+					<Icon name="circle-play" className="text-sm" />
+					Watch
 				</Link>
 			)}
 		</div>
@@ -251,13 +261,16 @@ function ModuleLinks({
 }
 
 /** The newest module: one full-width cell, video left and copy right. */
-function FeaturedModule({ post, entry }: { post: BlogPost; entry: number }) {
+function FeaturedModule({ post }: { post: BlogPost }) {
+	const entry = entryOf(post);
 	return (
 		<li className="col-span-full grid grid-cols-1 gap-6 bg-white p-4 md:grid-cols-2 md:items-center md:gap-10 dark:bg-zinc-950">
 			<ModuleThumbnail post={post} />
 			<div className="min-w-0">
 				<div className="flex items-center gap-3">
-					<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
+					{entry === MODULES.length && (
+						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
+					)}
 					<ModuleMeta post={post} entry={entry} />
 				</div>
 				<h3 className="mt-4 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
@@ -273,7 +286,8 @@ function FeaturedModule({ post, entry }: { post: BlogPost; entry: number }) {
 }
 
 /** An earlier module: thumbnail on top, copy below, links settled at the foot. */
-function ModuleCard({ post, entry }: { post: BlogPost; entry: number }) {
+function ModuleCard({ post }: { post: BlogPost }) {
+	const entry = entryOf(post);
 	return (
 		<li className="flex flex-col bg-white p-4 dark:bg-zinc-950">
 			<ModuleThumbnail post={post} />
@@ -288,6 +302,66 @@ function ModuleCard({ post, entry }: { post: BlogPost; entry: number }) {
 			</p>
 			<ModuleLinks post={post} className="mt-auto pt-5" />
 		</li>
+	);
+}
+
+/** Package filter (the Events page's tab control) over the module grid. */
+function ModulesGrid() {
+	const [pkg, setPkg] = useState<string>("All");
+	const shown =
+		pkg === "All" ? MODULES : MODULES.filter((p) => p.packageName === pkg);
+	const [featured, ...earlier] = shown;
+	return (
+		<>
+			<div className="mt-16 flex flex-wrap items-end justify-between gap-x-8 gap-y-6 md:mt-20">
+				<h2
+					id="modules-title"
+					className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"
+				>
+					All modules
+				</h2>
+				<div
+					role="group"
+					aria-label="Filter by package"
+					className="-mx-4 max-w-[calc(100%+2rem)] overflow-x-auto px-4 md:mx-0 md:max-w-full md:px-0"
+				>
+					<div className="inline-flex gap-1 rounded-lg border border-zinc-200 bg-zinc-100/60 p-1 dark:border-zinc-800 dark:bg-zinc-900/50">
+						{["All", ...PACKAGES].map((option) => (
+							<button
+								key={option}
+								type="button"
+								aria-pressed={pkg === option}
+								onClick={() => setPkg(option)}
+								className={`cursor-pointer whitespace-nowrap rounded-md px-3 py-1.5 font-mono text-xs transition-colors duration-200 ${
+									pkg === option
+										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+										: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+								}`}
+							>
+								{option}
+							</button>
+						))}
+					</div>
+				</div>
+			</div>
+
+			{/* The newest module across the full width, earlier ones four
+			    across. Empty cells pad the last row so the hairlines stay
+			    closed. */}
+			<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+				{featured && <FeaturedModule key={featured.slug} post={featured} />}
+				{earlier.map((post) => (
+					<ModuleCard key={post.slug} post={post} />
+				))}
+				{fillerCells(earlier.length).map((cell) => (
+					<li
+						key={cell.key}
+						aria-hidden="true"
+						className={`hidden bg-white dark:bg-zinc-950 ${cell.className}`}
+					/>
+				))}
+			</ul>
+		</>
 	);
 }
 
@@ -403,40 +477,7 @@ export function ModuleOfTheWeekPage() {
 				{/* Modules */}
 				<section aria-labelledby="modules-title" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<h2
-							id="modules-title"
-							className="mt-16 text-2xl font-bold tracking-tight text-zinc-900 md:mt-20 dark:text-white"
-						>
-							All modules
-						</h2>
-
-						{/* The newest module across the full width, earlier ones
-						    four across. Empty cells pad the last row so the hairlines
-						    stay closed. */}
-						<ul className="mt-8 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{MODULES.map((post, i) =>
-								i === 0 ? (
-									<FeaturedModule
-										key={post.slug}
-										post={post}
-										entry={MODULES.length}
-									/>
-								) : (
-									<ModuleCard
-										key={post.slug}
-										post={post}
-										entry={MODULES.length - i}
-									/>
-								),
-							)}
-							{FILLER_CELLS.map((cell) => (
-								<li
-									key={cell.key}
-									aria-hidden="true"
-									className={`hidden bg-white dark:bg-zinc-950 ${cell.className}`}
-								/>
-							))}
-						</ul>
+						<ModulesGrid />
 					</div>
 				</section>
 
