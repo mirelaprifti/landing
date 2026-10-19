@@ -1,6 +1,12 @@
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
-import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
+import {
+	AUTHORS,
+	BLOG_POSTS,
+	type BlogPost,
+	getPostUrl,
+} from "../../data/blog";
+import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
@@ -199,6 +205,62 @@ export function ModuleOfTheWeekPage() {
 									entry={MODULES.length - i}
 								/>
 							))}
+						</div>
+					</div>
+				</section>
+
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+				{/* Author */}
+				<section aria-labelledby="author-title" className="py-24">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+							// Written by
+						</p>
+						<div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+							<img
+								src={getAssetPath(AUTHORS.maxwell.avatar)}
+								alt=""
+								className="h-24 w-24 shrink-0 rounded-md border border-zinc-200 object-cover dark:border-zinc-800"
+							/>
+							<div className="max-w-2xl">
+								<h2
+									id="author-title"
+									className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+								>
+									{AUTHORS.maxwell.name}
+								</h2>
+								<p className="mt-2 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
+									Founding Engineer, Effectful
+								</p>
+								<p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+									A core contributor to Effect, Maxwell has worked on Effect
+									Cluster, the Effect CLI, and Effect AI. Each week brings one
+									lesser-known module: when to reach for it, and how to use it.
+								</p>
+								<div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+									<Link
+										href={AUTHORS.maxwell.url}
+										variant="subtle"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-1.5 font-medium"
+									>
+										GitHub
+										<Icon name="arrow-up-right" className="text-xs" />
+									</Link>
+									<Link
+										href="https://x.com/imax153"
+										variant="subtle"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center gap-1.5 font-medium"
+									>
+										X
+										<Icon name="arrow-up-right" className="text-xs" />
+									</Link>
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>
