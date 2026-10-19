@@ -82,7 +82,7 @@ function SocialCells() {
 		"flex items-center justify-between gap-2 font-mono text-sm text-zinc-900 dark:text-white";
 	const labelRow = `${micro} flex items-center gap-2`;
 	const trail =
-		"text-xs text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white";
+		"text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white";
 	return (
 		<>
 			{[
@@ -117,7 +117,8 @@ function SocialCells() {
 					</span>
 					<span className={value}>
 						<span className="truncate">{profile.handle}</span>
-						<Icon name="arrow-up-right" className={trail} />
+						{/* Sized and coloured like the site's external-link arrows (footer) */}
+						<Icon name="arrow-up-right" className="shrink-0 text-sm" />
 					</span>
 				</a>
 			))}
@@ -136,7 +137,10 @@ function SocialCells() {
 				</span>
 				<span className={value}>
 					<span className="truncate">{DISCORD_HANDLE}</span>
-					<span aria-live="polite" className={`${trail} font-mono uppercase`}>
+					<span
+						aria-live="polite"
+						className={`${trail} font-mono text-xs uppercase`}
+					>
 						{copied ? "Copied" : "Copy"}
 					</span>
 				</span>
