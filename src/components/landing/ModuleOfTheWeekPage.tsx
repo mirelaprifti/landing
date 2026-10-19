@@ -459,7 +459,7 @@ export function ModuleOfTheWeekPage() {
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{/* Portrait, the company set into its foot on a dark scrim */}
+							{/* Portrait */}
 							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
@@ -467,21 +467,19 @@ export function ModuleOfTheWeekPage() {
 									className="absolute inset-0 h-full w-full object-cover opacity-80"
 								/>
 								<div className="aspect-4/5" />
-								<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 lg:p-4 lg:pt-16">
-									<p className="text-sm leading-normal font-medium text-white lg:text-base">
-										Effectful Technologies
-									</p>
-								</div>
 							</div>
 
 							{/* Role and bio */}
 							<div className="col-span-4 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
-								<span
-									className={`${micro} ${chip} self-start whitespace-nowrap`}
-								>
+								{/* Role and company, set just above the bio at the cell's foot */}
+								<p className="mt-auto text-base font-semibold text-zinc-900 dark:text-white">
 									Founding Engineer
-								</span>
-								<p className="mt-auto pt-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
+									<span className="font-normal text-zinc-500 dark:text-zinc-400">
+										{" "}
+										at Effectful Technologies
+									</span>
+								</p>
+								<p className="mt-2 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
 									Maxwell is a core contributor to Effect, with work across
 									Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
 									Office Hours. Each module is written up as a blog post first,
