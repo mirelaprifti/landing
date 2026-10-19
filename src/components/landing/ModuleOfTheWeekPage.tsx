@@ -511,7 +511,7 @@ export function ModuleOfTheWeekPage() {
 													src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
 													alt=""
 													loading="lazy"
-													className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+													className="h-full w-full object-cover opacity-50 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 group-hover:grayscale-0"
 												/>
 												<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums transition-colors group-hover:bg-zinc-950">
 													<i
