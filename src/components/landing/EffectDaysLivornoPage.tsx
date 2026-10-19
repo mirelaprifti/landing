@@ -125,22 +125,10 @@ const SPEAKERS: {
 		x: "jdegoes",
 	},
 	{
-		name: "Julius Marminge",
-		company: "T3 Code",
-		photo: "/assets/effect-days/julius-marminge.jpeg",
-		x: "jullerino",
-	},
-	{
 		name: "Michael Arnaldi",
 		company: "Effectful Technologies",
 		photo: "/assets/effect-days/mike-race.png",
 		x: "MichaelArnaldi",
-	},
-	{
-		name: "Kyle Mistele",
-		company: "HumanLayer",
-		photo: "/assets/effect-days/kyle-mistele.png",
-		x: "0xblacklight",
 	},
 	{
 		name: "Maximilian Schwarzmüller",
@@ -149,16 +137,28 @@ const SPEAKERS: {
 		x: "maxedapps",
 	},
 	{
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia.png",
+		x: "JuliaScript",
+	},
+	{
 		name: "Leonie Gräßel",
 		company: "Novelcrafter",
 		photo: "/assets/effect-days/leonie-2.png",
 		x: "spaceemotion",
 	},
 	{
-		name: "Julia Ortiz",
-		company: "silklang.org",
-		photo: "/assets/effect-days/julia.png",
-		x: "JuliaScript",
+		name: "Julius Marminge",
+		company: "T3 Code",
+		photo: "/assets/effect-days/julius-marminge.jpeg",
+		x: "jullerino",
+	},
+	{
+		name: "Kyle Mistele",
+		company: "HumanLayer",
+		photo: "/assets/effect-days/kyle-mistele.png",
+		x: "0xblacklight",
 	},
 ];
 
