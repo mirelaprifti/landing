@@ -500,14 +500,16 @@ export function ModuleOfTheWeekPage() {
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{/* Portrait */}
+							{/* Portrait, square like the source. On phones it holds its
+							    square at the top of the cell rather than stretching to
+							    the bio's height; from lg it fills the row. */}
 							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
 									alt={AUTHORS.maxwell.name}
-									className="absolute inset-0 h-full w-full object-cover opacity-80"
+									className="aspect-square w-full object-cover opacity-80 lg:absolute lg:inset-0 lg:h-full"
 								/>
-								<div className="aspect-4/5" />
+								<div className="hidden aspect-square lg:block" />
 							</div>
 
 							{/* Role and bio */}
