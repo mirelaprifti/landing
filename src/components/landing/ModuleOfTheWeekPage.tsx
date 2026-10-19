@@ -30,6 +30,18 @@ const PACKAGES = [
 /** A module's number in the series: the oldest is 01. */
 const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
 
+/** The hero's "at a glance" strip. Counts and the latest module derive
+ *  from the posts. */
+const SERIES_FACTS = [
+	{ label: "Modules", value: String(MODULES.length).padStart(2, "0") },
+	{ label: "Packages", value: String(PACKAGE_COUNT).padStart(2, "0") },
+	{
+		label: "Latest",
+		value: (MODULES[0]?.title ?? "").replace(/^Module of the Week\s*-\s*/, ""),
+	},
+	{ label: "Written by", value: AUTHORS.maxwell.name },
+];
+
 const DISCORD_HANDLE = "maxwellbrown";
 
 /** Maxwell's name, then "Founding Engineer at Effectful Technologies". */
@@ -448,7 +460,7 @@ export function ModuleOfTheWeekPage() {
 						}}
 					/>
 
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-16 md:pt-24">
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-20 md:pt-24 md:pb-24">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Module of the Week
 						</p>
@@ -459,50 +471,54 @@ export function ModuleOfTheWeekPage() {
 							The lesser-known parts of Effect, explained in a blog post and a
 							video.
 						</p>
-						<div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-							<div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-								<Button
-									href={PLAYLIST_URL}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<i className="ri-youtube-fill text-base" />
-									Watch the playlist
-								</Button>
-								<Link
-									href={INTRO_POST_URL}
-									variant="subtle"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-1.5 text-sm font-medium"
-								>
-									About the series
-									<Icon name="arrow-up-right" className="text-xs" />
-								</Link>
-							</div>
-
-							{/* The series at a glance */}
-							<dl className="grid grid-cols-2 gap-px border border-zinc-200 bg-zinc-200 lg:w-96 dark:border-zinc-800 dark:bg-zinc-800">
-								{[
-									{ label: "Modules", value: MODULES.length },
-									{ label: "Packages", value: PACKAGE_COUNT },
-								].map((fact) => (
-									<div
-										key={fact.label}
-										className="flex flex-col gap-1 bg-white px-4 py-4 lg:px-6 dark:bg-zinc-950"
-									>
-										<dt className={micro}>{fact.label}</dt>
-										<dd className="font-mono text-lg font-semibold text-zinc-900 tabular-nums dark:text-white">
-											{String(fact.value).padStart(2, "0")}
-										</dd>
-									</div>
-								))}
-							</dl>
+						{/* The two ways in, as a matched pair of buttons */}
+						<div className="mt-8 flex flex-wrap items-center gap-3">
+							<Button
+								href={PLAYLIST_URL}
+								variant="primary"
+								size="lg"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<i className="ri-youtube-fill text-lg" />
+								Watch the playlist
+							</Button>
+							<Button
+								href={INTRO_POST_URL}
+								variant="secondary"
+								size="lg"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								About the series
+								<Icon name="arrow-up-right" className="text-sm" />
+							</Button>
 						</div>
 					</div>
 				</section>
 
-				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+				{/* At a glance — the hairline strip along the hero's foot, as on
+				    /enterprise */}
+				<section
+					aria-label="The series at a glance"
+					className="border-y border-zinc-200 dark:border-zinc-800"
+				>
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<dl className="grid grid-cols-2 gap-px bg-zinc-200 lg:grid-cols-4 dark:bg-zinc-800">
+							{SERIES_FACTS.map((fact) => (
+								<div
+									key={fact.label}
+									className="flex min-w-0 flex-col gap-1 bg-white px-4 py-5 lg:px-6 lg:py-6 dark:bg-zinc-950"
+								>
+									<dt className={micro}>{fact.label}</dt>
+									<dd className="text-base font-semibold text-zinc-900 lg:text-lg dark:text-white">
+										{fact.value}
+									</dd>
+								</div>
+							))}
+						</dl>
+					</div>
+				</section>
 
 				{/* Modules */}
 				<section aria-label="Modules" className="pb-24">
