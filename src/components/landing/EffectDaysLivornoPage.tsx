@@ -86,7 +86,7 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
-		bio: "Effect-systems evangelist since his Scala days. Kit built Visual Effect so you can watch your fibers misbehave, and the Effect Institute to explain why. Then he joined OpenCode, moved it to Effect, and swears he hasn't typed a line of code since 2025.",
+		bio: "Built Visual Effect to watch fibers misbehave and the Effect Institute to explain why. Then moved OpenCode to Effect, and hasn't typed a line of code since.",
 	},
 	{
 		name: "Adam Rankin",
