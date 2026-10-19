@@ -269,7 +269,10 @@ function ModuleLinks({
 					rel="noopener noreferrer"
 					className={format}
 				>
-					<Icon name="circle-play" className="text-sm" />
+					<i
+						className="ri-youtube-fill text-base leading-none"
+						aria-hidden="true"
+					/>
 					Watch
 				</Link>
 			)}
