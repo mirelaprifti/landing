@@ -259,7 +259,7 @@ function ModuleLinks({
 				className={format}
 			>
 				<Icon name="file-text" className="text-sm" />
-				Read
+				Read the blog post
 			</Link>
 			{url && post.video && (
 				<Link
@@ -472,7 +472,7 @@ export function ModuleOfTheWeekPage() {
 									rel="noopener noreferrer"
 									className="inline-flex items-center gap-1.5 text-sm font-medium"
 								>
-									Read the blog post
+									About the series
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
 							</div>
