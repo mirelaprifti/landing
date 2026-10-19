@@ -400,6 +400,23 @@ export function ModuleOfTheWeekPage() {
 				</div>
 			</div>
 
+			{/* Center vertical line - dashed (as on /enterprise and /podcast).
+			    It runs down the gap between the two module columns. */}
+			<div className="pointer-events-none absolute top-0 right-0 bottom-0 left-0 z-0 hidden px-8 lg:block">
+				<div className="relative mx-auto h-full w-full max-w-[73.75rem]">
+					<div
+						className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800"
+						style={{
+							width: "1px",
+							maskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+							WebkitMaskImage:
+								"repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 4px)",
+						}}
+					/>
+				</div>
+			</div>
+
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Header */}
 				<section className="relative overflow-hidden">
