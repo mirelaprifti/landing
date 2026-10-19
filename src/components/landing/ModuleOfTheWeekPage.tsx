@@ -260,7 +260,7 @@ export function ModuleOfTheWeekPage() {
 									</h3>
 									<div className="flex items-center justify-between gap-2">
 										<p className="text-xs leading-normal text-zinc-300 lg:text-sm">
-											Effectful
+											Effectful Technologies
 										</p>
 										<Link
 											href="https://x.com/imax153"
