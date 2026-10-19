@@ -48,7 +48,7 @@ const DISCORD_HANDLE = "maxwellbrown";
 function RoleLine() {
 	return (
 		<div>
-			<h3 className="text-lg font-bold tracking-tight text-zinc-900 lg:text-2xl dark:text-white">
+			<h3 className="text-lg leading-tight font-bold tracking-tight text-zinc-900 lg:text-2xl dark:text-white">
 				{AUTHORS.maxwell.name}
 			</h3>
 			<p className="mt-1 text-sm font-semibold text-zinc-900 lg:mt-2 lg:text-base dark:text-white">
@@ -77,7 +77,7 @@ function SocialCells() {
 		}
 	};
 	const cell =
-		"group col-span-6 flex flex-col justify-end gap-1 bg-white px-4 py-5 text-left sm:col-span-2 transition-colors hover:bg-zinc-100/60 lg:col-span-1 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60";
+		"group col-span-6 flex flex-col justify-between gap-4 bg-white px-4 py-5 text-left sm:col-span-2 transition-colors hover:bg-zinc-100/60 lg:col-span-1 lg:col-start-4 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60";
 	const value =
 		"flex items-center justify-between gap-2 font-mono text-sm text-zinc-900 dark:text-white";
 	const labelRow = `${micro} flex items-center gap-2`;
@@ -90,12 +90,14 @@ function SocialCells() {
 					label: "GitHub",
 					icon: "ri-github-fill",
 					handle: "IMax153",
+					place: "lg:row-start-1",
 					href: AUTHORS.maxwell.url,
 				},
 				{
 					label: "X.com",
 					icon: "ri-twitter-x-fill",
 					handle: "@maxwellbrown",
+					place: "lg:row-start-2",
 					href: "https://x.com/maxwellbrown",
 				},
 			].map((profile) => (
@@ -104,7 +106,7 @@ function SocialCells() {
 					href={profile.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					className={cell}
+					className={`${cell} ${profile.place}`}
 				>
 					<span className={labelRow}>
 						<i
@@ -123,7 +125,7 @@ function SocialCells() {
 				type="button"
 				onClick={copyHandle}
 				aria-label={`Copy ${AUTHORS.maxwell.name}'s Discord handle, ${DISCORD_HANDLE}`}
-				className={`${cell} cursor-pointer`}
+				className={`${cell} cursor-pointer lg:row-start-3`}
 			>
 				<span className={labelRow}>
 					<i
@@ -514,7 +516,7 @@ export function ModuleOfTheWeekPage() {
 							// Behind the series
 						</h2>
 
-						<div className="mt-6 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						<div className="mt-6 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 lg:grid-rows-3 dark:border-zinc-800 dark:bg-zinc-800">
 							{/* Portrait: a fixed 4:5 at every size, cropped from the square
 							    source. From lg it sets the card's height; on phones it
 							    sits beside the role, the bio running full width below. */}
@@ -526,22 +528,19 @@ export function ModuleOfTheWeekPage() {
 								/>
 							</div>
 
-							{/* Phones: the role beside the portrait, settled at its foot */}
-							<div className="col-span-4 flex items-end bg-white p-4 lg:hidden dark:bg-zinc-950">
+							{/* Name and role. On phones beside the portrait, settled at its
+							    foot; from lg the first row of the middle columns, level
+							    with GitHub, so the grid's own hairline divides it from
+							    the bio. */}
+							<div className="col-span-4 flex items-end bg-white p-4 lg:col-span-2 lg:items-start lg:px-6 lg:py-5 dark:bg-zinc-950">
 								<RoleLine />
 							</div>
 
-							{/* Bio. From lg the cell spans the portrait's height: name and
-							    role at the top, level with the photo's top edge; the bio
-							    settled at the foot, level with its bottom. Two short
-							    paragraphs: who Maxwell is, then how a module is made. */}
-							<div className="col-span-6 flex flex-col bg-white lg:col-span-2 lg:row-span-3 dark:bg-zinc-950">
-								{/* Name and role, closed off by a full-width hairline like
-								    the grid's own lines (on phones they sit by the photo) */}
-								<div className="hidden border-b border-zinc-200 p-6 lg:block dark:border-zinc-800">
-									<RoleLine />
-								</div>
-								<div className="max-w-xl space-y-3 p-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:mt-auto lg:p-6 dark:text-zinc-400">
+							{/* Bio, settled at the foot of the remaining two rows, level
+							    with the photo's bottom edge. Two short paragraphs: who
+							    Maxwell is, then how a module is made. */}
+							<div className="col-span-6 flex flex-col justify-end bg-white p-4 lg:col-span-2 lg:row-span-2 lg:p-6 dark:bg-zinc-950">
+								<div className="max-w-xl space-y-3 text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
 									<p>
 										Maxwell is a core contributor to Effect, with work across
 										Effect Cluster, the Effect CLI, and Effect AI, and runs
