@@ -293,17 +293,30 @@ export function ModuleOfTheWeekPage() {
 										<p className="text-xs leading-normal text-zinc-300 lg:text-sm">
 											Effectful Technologies
 										</p>
-										<Link
-											href="https://x.com/imax153"
-											variant="icon"
-											aria-label={`${AUTHORS.maxwell.name} on X`}
-											className="shrink-0 text-zinc-300 hover:text-white"
-										>
-											<i
-												className="ri-twitter-x-fill text-base"
-												aria-hidden="true"
-											/>
-										</Link>
+										<div className="flex shrink-0 items-center gap-3">
+											<Link
+												href={AUTHORS.maxwell.url}
+												variant="icon"
+												aria-label={`${AUTHORS.maxwell.name} on GitHub`}
+												className="text-zinc-300 hover:text-white"
+											>
+												<i
+													className="ri-github-fill text-base"
+													aria-hidden="true"
+												/>
+											</Link>
+											<Link
+												href="https://x.com/imax153"
+												variant="icon"
+												aria-label={`${AUTHORS.maxwell.name} on X`}
+												className="text-zinc-300 hover:text-white"
+											>
+												<i
+													className="ri-twitter-x-fill text-base"
+													aria-hidden="true"
+												/>
+											</Link>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -317,21 +330,11 @@ export function ModuleOfTheWeekPage() {
 								</span>
 								<p className="mt-auto pt-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
 									Maxwell is a core contributor to Effect, with work across
-									Effect Cluster, the Effect CLI, and Effect AI. Maxwell also
-									runs Effect Office Hours, where every module in this series
-									starts as a live session before it becomes a post and a
+									Effect Cluster, the Effect CLI, and Effect AI. Each module in
+									this series starts as a blog post, then goes live at Effect
+									Office Hours, which Maxwell runs, before it's cut into a
 									video.
 								</p>
-								<Link
-									href={AUTHORS.maxwell.url}
-									variant="subtle"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="mt-4 inline-flex items-center gap-1.5 self-start text-sm font-medium"
-								>
-									GitHub
-									<Icon name="arrow-up-right" className="text-xs" />
-								</Link>
 							</div>
 
 							{/* The series at a glance */}
