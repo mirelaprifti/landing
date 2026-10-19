@@ -26,17 +26,6 @@ const PACKAGES = [
 /** A module's number in the series: the oldest is 01. */
 const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
 
-/** The hero's "at a glance" strip. Counts and the latest module derive
- *  from the posts. */
-const SERIES_FACTS = [
-	{ label: "Modules", value: String(MODULES.length).padStart(2, "0") },
-	{
-		label: "Latest",
-		value: (MODULES[0]?.title ?? "").replace(/^Module of the Week\s*-\s*/, ""),
-	},
-	{ label: "Written by", value: AUTHORS.maxwell.name },
-];
-
 const DISCORD_HANDLE = "maxwellbrown";
 
 /** Maxwell's name, then "Founding Engineer at Effectful Technologies". */
@@ -491,28 +480,7 @@ export function ModuleOfTheWeekPage() {
 					</div>
 				</section>
 
-				{/* At a glance — the hairline strip along the hero's foot, as on
-				    /enterprise */}
-				<section
-					aria-label="The series at a glance"
-					className="border-y border-zinc-200 dark:border-zinc-800"
-				>
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<dl className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-3 dark:bg-zinc-800">
-							{SERIES_FACTS.map((fact) => (
-								<div
-									key={fact.label}
-									className="flex min-w-0 items-baseline justify-between gap-3 bg-white px-4 py-3.5 sm:flex-col sm:items-start sm:gap-0.5 lg:flex-row lg:items-baseline lg:justify-between lg:gap-3 lg:px-6 dark:bg-zinc-950"
-								>
-									<dt className={`${micro} whitespace-nowrap`}>{fact.label}</dt>
-									<dd className="text-sm font-semibold text-zinc-900 lg:truncate lg:text-base dark:text-white">
-										{fact.value}
-									</dd>
-								</div>
-							))}
-						</dl>
-					</div>
-				</section>
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 				{/* Modules */}
 				<section aria-label="Modules" className="pb-24">
