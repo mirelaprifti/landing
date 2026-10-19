@@ -1016,7 +1016,8 @@ export function EnterprisePage() {
 						))}
 					</ul>
 
-					<div id="ecosystem" className={`${groupBar} mt-20 scroll-mt-24`}>
+					{/* Continues straight on from the In production table; its top edge is that table's bottom line */}
+					<div id="ecosystem" className={`${groupBar} scroll-mt-24 border-t-0`}>
 						<h3 className={groupLabel}>Ecosystem projects</h3>
 					</div>
 					<div className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
