@@ -22,6 +22,20 @@ const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 const PACKAGE_COUNT = new Set(MODULES.map((p) => p.packageName).filter(Boolean))
 	.size;
 
+/* Earlier modules fill a two-across grid (sm) and a four-across grid (lg)
+   under the featured one. Empty cells pad each layout's last row so the
+   hairlines stay closed; each filler shows only where it's needed. */
+const EARLIER_COUNT = MODULES.length - 1;
+const SM_FILL = EARLIER_COUNT % 2;
+const LG_FILL = (4 - (EARLIER_COUNT % 4)) % 4;
+const FILLER_CELLS = Array.from(
+	{ length: Math.max(SM_FILL, LG_FILL) },
+	(_, n) => ({
+		key: `filler-${n}`,
+		className: `${n < SM_FILL ? "sm:block" : ""} ${n < LG_FILL ? "lg:block" : "lg:hidden"}`,
+	}),
+);
+
 const DISCORD_HANDLE = "maxwellbrown";
 
 /** Maxwell's profiles, one hairline cell each in the author card's fourth
@@ -143,91 +157,137 @@ const APPEARANCES = [
 	},
 ];
 
-function ModuleRow({ post, entry }: { post: BlogPost; entry: number }) {
-	// "Module of the Week - Cluster, Part 2" → "Cluster, Part 2"
-	const title = post.title.replace(/^Module of the Week\s*-\s*/, "");
-	const videoUrl = post.video
-		? `https://www.youtube.com/watch?v=${post.video.youtubeId}`
-		: null;
+// "Module of the Week - Cluster, Part 2" → "Cluster, Part 2"
+const moduleTitle = (post: BlogPost) =>
+	post.title.replace(/^Module of the Week\s*-\s*/, "");
 
+const videoUrl = (post: BlogPost) =>
+	post.video ? `https://www.youtube.com/watch?v=${post.video.youtubeId}` : null;
+
+/** Video thumbnail with the running time in its corner; links to YouTube. */
+function ModuleThumbnail({ post }: { post: BlogPost }) {
+	const url = videoUrl(post);
+	if (!post.video || !url) return null;
 	return (
-		<article className="grid grid-cols-1 gap-6 py-8 md:grid-cols-12 md:items-center md:gap-10">
-			{/* Video thumbnail */}
-			{post.video && videoUrl && (
-				<a
-					href={videoUrl}
+		<a
+			href={url}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={`Watch ${moduleTitle(post)} on YouTube`}
+			className="group relative block aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800"
+		>
+			<img
+				src={`https://i.ytimg.com/vi/${post.video.youtubeId}/hqdefault.jpg`}
+				alt=""
+				loading="lazy"
+				className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+			/>
+			<span className="absolute right-2 bottom-2 rounded-sm bg-zinc-950/80 px-1.5 py-0.5 font-mono text-xs text-white tabular-nums">
+				{post.video.duration}
+			</span>
+		</a>
+	);
+}
+
+/** Entry number, then the package the module lives in. */
+function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
+	return (
+		<div className="flex min-w-0 items-center gap-2 font-mono text-xs">
+			<span className="shrink-0 font-medium text-zinc-900 dark:text-zinc-200 tabular-nums">
+				{String(entry).padStart(2, "0")}
+			</span>
+			{post.packageName && (
+				<>
+					<span
+						aria-hidden="true"
+						className="h-3 w-px shrink-0 bg-zinc-300 dark:bg-zinc-700"
+					/>
+					<span className="truncate text-zinc-600 dark:text-zinc-400">
+						from "{post.packageName}"
+					</span>
+				</>
+			)}
+		</div>
+	);
+}
+
+/** "Read the post" and "Watch the video", with the date trailing. */
+function ModuleLinks({
+	post,
+	className = "",
+}: {
+	post: BlogPost;
+	className?: string;
+}) {
+	const url = videoUrl(post);
+	return (
+		<div
+			className={`flex flex-wrap items-center gap-x-6 gap-y-2 text-sm ${className}`}
+		>
+			<Link
+				href={getPostUrl(post)}
+				variant="subtle"
+				target="_blank"
+				rel="noopener noreferrer"
+				className="inline-flex items-center gap-1.5 font-medium"
+			>
+				Read the post
+				<Icon name="arrow-up-right" className="text-xs" />
+			</Link>
+			{url && (
+				<Link
+					href={url}
+					variant="subtle"
 					target="_blank"
 					rel="noopener noreferrer"
-					aria-label={`Watch ${title} on YouTube`}
-					className="group relative block aspect-video overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 md:col-span-5"
+					className="inline-flex items-center gap-1.5 font-medium"
 				>
-					<img
-						src={`https://i.ytimg.com/vi/${post.video.youtubeId}/hqdefault.jpg`}
-						alt=""
-						loading="lazy"
-						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-					/>
-					<span className="absolute right-2 bottom-2 rounded-sm bg-zinc-950/80 px-1.5 py-0.5 font-mono text-xs text-white tabular-nums">
-						{post.video.duration}
-					</span>
-				</a>
+					Watch the video
+					<Icon name="arrow-up-right" className="text-xs" />
+				</Link>
 			)}
+		</div>
+	);
+}
 
-			{/* Text */}
-			<div className="min-w-0 md:col-span-7">
-				<div className="flex min-w-0 items-center gap-2 font-mono text-xs">
-					<span className="shrink-0 font-medium text-zinc-900 dark:text-zinc-200 tabular-nums">
-						{String(entry).padStart(2, "0")}
-					</span>
-					{post.packageName && (
-						<>
-							<span
-								aria-hidden="true"
-								className="h-3 w-px shrink-0 bg-zinc-300 dark:bg-zinc-700"
-							/>
-							<span className="truncate text-zinc-600 dark:text-zinc-400">
-								from "{post.packageName}"
-							</span>
-						</>
-					)}
+/** The newest module: one full-width cell, video left and copy right. */
+function FeaturedModule({ post, entry }: { post: BlogPost; entry: number }) {
+	return (
+		<li className="col-span-full grid grid-cols-1 gap-6 bg-white p-4 md:grid-cols-2 md:items-center md:gap-10 dark:bg-zinc-950">
+			<ModuleThumbnail post={post} />
+			<div className="min-w-0">
+				<div className="flex items-center gap-3">
+					<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
+					<ModuleMeta post={post} entry={entry} />
 				</div>
-
-				<h2 className="mt-3 text-lg font-semibold text-zinc-900 dark:text-white">
-					{title}
-				</h2>
-				<p className="mt-1 text-sm leading-normal text-zinc-600 dark:text-zinc-400">
+				<h3 className="mt-4 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+					{moduleTitle(post)}
+				</h3>
+				<p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
-
-				<div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-					<Link
-						href={getPostUrl(post)}
-						variant="subtle"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1.5 font-medium"
-					>
-						Read the post
-						<Icon name="arrow-up-right" className="text-xs" />
-					</Link>
-					{videoUrl && (
-						<Link
-							href={videoUrl}
-							variant="subtle"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex items-center gap-1.5 font-medium"
-						>
-							Watch the video
-							<Icon name="arrow-up-right" className="text-xs" />
-						</Link>
-					)}
-					<time className="font-mono text-xs text-zinc-500 dark:text-zinc-400 tabular-nums">
-						{post.date}
-					</time>
-				</div>
+				<ModuleLinks post={post} className="mt-6" />
 			</div>
-		</article>
+		</li>
+	);
+}
+
+/** An earlier module: thumbnail on top, copy below, links settled at the foot. */
+function ModuleCard({ post, entry }: { post: BlogPost; entry: number }) {
+	return (
+		<li className="flex flex-col bg-white p-4 dark:bg-zinc-950">
+			<ModuleThumbnail post={post} />
+			<div className="mt-4">
+				<ModuleMeta post={post} entry={entry} />
+			</div>
+			<h3 className="mt-2 text-lg font-semibold text-zinc-900 dark:text-white">
+				{moduleTitle(post)}
+			</h3>
+			<p className="mt-1 line-clamp-3 text-sm leading-normal text-zinc-600 dark:text-zinc-400">
+				{post.excerpt}
+			</p>
+			<ModuleLinks post={post} className="mt-auto pt-5" />
+		</li>
 	);
 }
 
@@ -295,25 +355,45 @@ export function ModuleOfTheWeekPage() {
 							The lesser-known parts of Effect, explained in a blog post and a
 							video.
 						</p>
-						<div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-							<Button
-								href={PLAYLIST_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<i className="ri-youtube-fill text-base" />
-								Watch the playlist
-							</Button>
-							<Link
-								href={INTRO_POST_URL}
-								variant="subtle"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1.5 text-sm font-medium"
-							>
-								About the series
-								<Icon name="arrow-up-right" className="text-xs" />
-							</Link>
+						<div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+							<div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+								<Button
+									href={PLAYLIST_URL}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<i className="ri-youtube-fill text-base" />
+									Watch the playlist
+								</Button>
+								<Link
+									href={INTRO_POST_URL}
+									variant="subtle"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-1.5 text-sm font-medium"
+								>
+									About the series
+									<Icon name="arrow-up-right" className="text-xs" />
+								</Link>
+							</div>
+
+							{/* The series at a glance */}
+							<dl className="grid grid-cols-2 gap-px border border-zinc-200 bg-zinc-200 lg:w-96 dark:border-zinc-800 dark:bg-zinc-800">
+								{[
+									{ label: "Modules", value: MODULES.length },
+									{ label: "Packages", value: PACKAGE_COUNT },
+								].map((fact) => (
+									<div
+										key={fact.label}
+										className="flex flex-col gap-1 bg-white px-4 py-4 lg:px-6 dark:bg-zinc-950"
+									>
+										<dt className={micro}>{fact.label}</dt>
+										<dd className="font-mono text-lg font-semibold text-zinc-900 tabular-nums dark:text-white">
+											{String(fact.value).padStart(2, "0")}
+										</dd>
+									</div>
+								))}
+							</dl>
 						</div>
 					</div>
 				</section>
@@ -323,34 +403,40 @@ export function ModuleOfTheWeekPage() {
 				{/* Modules */}
 				<section aria-labelledby="modules-title" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						{/* List header: title, with the series counts opposite */}
-						<div className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 pb-4 md:mt-20 dark:border-zinc-700/80">
-							<h2
-								id="modules-title"
-								className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"
-							>
-								All modules
-							</h2>
-							<p className="font-mono text-sm text-zinc-600 tabular-nums dark:text-zinc-400">
-								{String(MODULES.length).padStart(2, "0")} modules
-								<span
+						<h2
+							id="modules-title"
+							className="mt-16 text-2xl font-bold tracking-tight text-zinc-900 md:mt-20 dark:text-white"
+						>
+							All modules
+						</h2>
+
+						{/* The newest module across the full width, earlier ones
+						    four across. Empty cells pad the last row so the hairlines
+						    stay closed. */}
+						<ul className="mt-8 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+							{MODULES.map((post, i) =>
+								i === 0 ? (
+									<FeaturedModule
+										key={post.slug}
+										post={post}
+										entry={MODULES.length}
+									/>
+								) : (
+									<ModuleCard
+										key={post.slug}
+										post={post}
+										entry={MODULES.length - i}
+									/>
+								),
+							)}
+							{FILLER_CELLS.map((cell) => (
+								<li
+									key={cell.key}
 									aria-hidden="true"
-									className="mx-2 text-zinc-400 dark:text-zinc-600"
-								>
-									·
-								</span>
-								{String(PACKAGE_COUNT).padStart(2, "0")} packages
-							</p>
-						</div>
-						<div className="divide-y divide-zinc-200 dark:divide-zinc-800">
-							{MODULES.map((post, i) => (
-								<ModuleRow
-									key={post.slug}
-									post={post}
-									entry={MODULES.length - i}
+									className={`hidden bg-white dark:bg-zinc-950 ${cell.className}`}
 								/>
 							))}
-						</div>
+						</ul>
 					</div>
 				</section>
 
@@ -369,11 +455,11 @@ export function ModuleOfTheWeekPage() {
 							id="author-title"
 							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
 						>
-							Meet the author
+							{AUTHORS.maxwell.name}
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{/* Portrait, name and company set into its foot on a dark scrim */}
+							{/* Portrait, the company set into its foot on a dark scrim */}
 							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
@@ -382,10 +468,7 @@ export function ModuleOfTheWeekPage() {
 								/>
 								<div className="aspect-4/5" />
 								<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent p-3 pt-12 lg:p-4 lg:pt-16">
-									<h3 className="text-base leading-[1.1] font-semibold text-white lg:text-lg lg:leading-[1.1]">
-										{AUTHORS.maxwell.name}
-									</h3>
-									<p className="text-xs leading-normal text-zinc-300 lg:text-sm">
+									<p className="text-sm leading-normal font-medium text-white lg:text-base">
 										Effectful Technologies
 									</p>
 								</div>
