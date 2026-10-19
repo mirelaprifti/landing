@@ -30,18 +30,6 @@ const PACKAGES = [
 /** A module's number in the series: the oldest is 01. */
 const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
 
-/* Earlier modules fill a two-across grid (sm) and a four-across grid (lg)
-   under the featured one. Empty cells pad each layout's last row so the
-   hairlines stay closed; each filler shows only where it's needed. */
-function fillerCells(earlierCount: number) {
-	const sm = earlierCount % 2;
-	const lg = (4 - (earlierCount % 4)) % 4;
-	return Array.from({ length: Math.max(sm, lg) }, (_, n) => ({
-		key: `filler-${n}`,
-		className: `${n < sm ? "sm:block" : ""} ${n < lg ? "lg:block" : "lg:hidden"}`,
-	}));
-}
-
 const DISCORD_HANDLE = "maxwellbrown";
 
 /** Maxwell's name, then "Founding Engineer at Effectful Technologies". */
@@ -293,7 +281,7 @@ function ModuleLinks({
 function FeaturedModule({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="col-span-full grid grid-cols-1 gap-6 bg-white p-4 md:grid-cols-2 md:items-center md:gap-10 dark:bg-zinc-950">
+		<li className="col-span-full grid grid-cols-1 gap-6 p-4 md:grid-cols-2 md:items-center md:gap-10 border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
 			<ModuleThumbnail post={post} />
 			<div className="min-w-0">
 				<div className="flex items-center gap-3">
@@ -318,7 +306,7 @@ function FeaturedModule({ post }: { post: BlogPost }) {
 function ModuleCard({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="flex flex-col bg-white p-4 dark:bg-zinc-950">
+		<li className="flex flex-col p-4 border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
 			<ModuleThumbnail post={post} />
 			<div className="mt-4">
 				<ModuleMeta post={post} entry={entry} />
@@ -342,13 +330,7 @@ function ModulesGrid() {
 	const [featured, ...earlier] = shown;
 	return (
 		<>
-			<div className="mt-16 flex flex-wrap items-end justify-between gap-x-8 gap-y-6 md:mt-20">
-				<h2
-					id="modules-title"
-					className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"
-				>
-					All modules
-				</h2>
+			<div className="mt-16 md:mt-20">
 				<div
 					role="group"
 					aria-label="Filter by package"
@@ -374,20 +356,14 @@ function ModulesGrid() {
 				</div>
 			</div>
 
-			{/* The newest module across the full width, earlier ones four
-			    across. Empty cells pad the last row so the hairlines stay
-			    closed. */}
-			<ul className="mt-6 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+			{/* Spaced card grid (as the Effect Days speakers): the newest module
+			    a full-width card, earlier ones two across (their thumbnails as
+			    wide as the featured one's) with room between
+			    them so each thumbnail reads on its own. */}
+			<ul className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
 				{featured && <FeaturedModule key={featured.slug} post={featured} />}
 				{earlier.map((post) => (
 					<ModuleCard key={post.slug} post={post} />
-				))}
-				{fillerCells(earlier.length).map((cell) => (
-					<li
-						key={cell.key}
-						aria-hidden="true"
-						className={`hidden bg-white dark:bg-zinc-950 ${cell.className}`}
-					/>
 				))}
 			</ul>
 		</>
@@ -504,7 +480,7 @@ export function ModuleOfTheWeekPage() {
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 				{/* Modules */}
-				<section aria-labelledby="modules-title" className="pb-24">
+				<section aria-label="Modules" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<ModulesGrid />
 					</div>
