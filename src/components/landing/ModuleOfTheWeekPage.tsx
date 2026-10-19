@@ -522,7 +522,7 @@ export function ModuleOfTheWeekPage() {
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
 									alt={AUTHORS.maxwell.name}
-									className="block aspect-4/5 w-full object-cover opacity-80 grayscale"
+									className="block aspect-4/5 w-full object-cover opacity-80"
 								/>
 							</div>
 
