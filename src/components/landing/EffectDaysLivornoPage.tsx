@@ -60,7 +60,7 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and HumanLayer; Cloudflare, Alchemy and Foldkit take the
+   card beside T3 Code and Warp; Cloudflare, Alchemy and Foldkit take the
    first wide row; the rest follow, Julius and Julia kept apart so the
    similar names don't read as a duplicate. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once
@@ -89,16 +89,16 @@ const SPEAKERS: {
 		bio: "An effect-systems fan since his Scala and ZIO days, Kit led OpenCode's move to Effect and builds learning tools like Visual Effect, Effect Solutions and the Effect Institute.",
 	},
 	{
+		name: "Julius Marminge",
+		company: "T3 Code",
+		photo: "/assets/effect-days/julius-marminge.jpeg",
+		x: "jullerino",
+	},
+	{
 		name: "Adam Rankin",
 		company: "Warp",
 		photo: "/assets/effect-days/adam-rankin.png",
 		x: "rankintweets",
-	},
-	{
-		name: "Kyle Mistele",
-		company: "HumanLayer",
-		photo: "/assets/effect-days/kyle-mistele.png",
-		x: "0xblacklight",
 	},
 	{
 		name: "Dillon Mulroy",
@@ -125,10 +125,10 @@ const SPEAKERS: {
 		x: "jdegoes",
 	},
 	{
-		name: "Julius Marminge",
-		company: "T3 Code",
-		photo: "/assets/effect-days/julius-marminge.jpeg",
-		x: "jullerino",
+		name: "Kyle Mistele",
+		company: "HumanLayer",
+		photo: "/assets/effect-days/kyle-mistele.png",
+		x: "0xblacklight",
 	},
 	{
 		name: "Michael Arnaldi",
