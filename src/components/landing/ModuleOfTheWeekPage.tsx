@@ -400,9 +400,9 @@ export function ModuleOfTheWeekPage() {
 								</span>
 								<p className="mt-auto pt-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
 									Maxwell is a core contributor to Effect, with work across
-									Effect Cluster, the Effect CLI, and Effect AI. Each module in
-									this series starts as a blog post, then goes live at Effect
-									Office Hours, which Maxwell runs, before it's cut into a
+									Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
+									Office Hours. Each module is written up as a blog post first,
+									then walked through live at Office Hours and published as a
 									video.
 								</p>
 							</div>
