@@ -316,10 +316,11 @@ export function ModuleOfTheWeekPage() {
 									Founding Engineer
 								</span>
 								<p className="mt-auto pt-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
-									Maxwell runs Effect Office Hours and is a core contributor to
-									Effect, with work across Effect Cluster, the Effect CLI, and
-									Effect AI. Each module starts as a live session at Office
-									Hours, then becomes a post and a video.
+									Maxwell is a core contributor to Effect, with work across
+									Effect Cluster, the Effect CLI, and Effect AI. Maxwell also
+									runs Effect Office Hours, where every module in this series
+									starts as a live session before it becomes a post and a
+									video.
 								</p>
 								<Link
 									href={AUTHORS.maxwell.url}
