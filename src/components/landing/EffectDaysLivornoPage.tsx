@@ -1067,14 +1067,18 @@ export function EffectDaysLivornoPage() {
 				    a ticket. */}
 				<section id="speakers" className={`scroll-mt-16 ${sectionRhythm}`}>
 					<div className={container}>
-						<div>
-							<p className={text.eyebrow}>{"// "}Speakers</p>
-							<h2 className={text.sectionTitle}>Who you'll hear from</h2>
-							<p className={text.subtitle}>
-								{/* Broken after the comma from sm up; on phones the first half
-								    alone outruns the line, so it wraps where it falls. */}
+						{/* Title in the left half, the blurb in the right — the same split
+						    header the venue and sponsors sections use. */}
+						<div className="grid grid-cols-1 gap-0 lg:grid-cols-2 lg:items-baseline-last lg:gap-8">
+							<div>
+								<p className={text.eyebrow}>{"// "}Speakers</p>
+								<h2 className={text.sectionTitle}>Who you'll hear from</h2>
+							</div>
+							<p className={`${text.subtitle} lg:mt-0`}>
+								{/* Broken after the comma on desktop, where the right half
+								    holds each line whole; narrower, it wraps where it falls. */}
 								Builders, maintainers and educators shipping with Effect,{" "}
-								<br className="hidden sm:inline" />
+								<br className="hidden xl:inline" />
 								from Cloudflare and Warp to OpenCode and Alchemy.
 							</p>
 						</div>
