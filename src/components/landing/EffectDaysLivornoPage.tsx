@@ -792,10 +792,10 @@ function SpeakerCard({
 			    the photos beside it. */}
 			{host && (
 				<div className="flex flex-1 flex-col p-3 lg:p-4">
-					{/* The role as a chip — the outlined mono tag the ticket passes
-					    use for their tier. */}
+					{/* The role in the page's boxed mono label — the tickets'
+					    "Sold out" and "Early bird" tags. */}
 					<span
-						className={`${text.micro} self-start border border-zinc-300 bg-white px-2 py-0.5 whitespace-nowrap dark:border-zinc-600 dark:bg-zinc-950`}
+						className={`${text.micro} ${chip} self-start whitespace-nowrap`}
 					>
 						MC &amp; speaker
 					</span>
