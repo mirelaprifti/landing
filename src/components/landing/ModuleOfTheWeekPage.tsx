@@ -284,7 +284,7 @@ function ModuleLinks({
 function FeaturedModule({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="col-span-full grid grid-cols-1 gap-6 p-4 md:grid-cols-2 md:items-center md:gap-10 border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+		<li className="col-span-full grid grid-cols-1 gap-6 p-5 md:grid-cols-2 md:items-center md:gap-10 border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
 			<ModuleThumbnail post={post} />
 			<div className="min-w-0">
 				<div className="flex items-center gap-3">
@@ -293,7 +293,7 @@ function FeaturedModule({ post }: { post: BlogPost }) {
 					)}
 					<ModuleMeta post={post} entry={entry} />
 				</div>
-				<h3 className="mt-4 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+				<h3 className="mt-3 text-2xl leading-tight font-bold tracking-tight text-zinc-900 dark:text-white">
 					{moduleTitle(post)}
 				</h3>
 				<p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -309,19 +309,20 @@ function FeaturedModule({ post }: { post: BlogPost }) {
 function ModuleCard({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="flex flex-col border border-zinc-200 p-4 pb-5 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+		<li className="flex flex-col border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+			{/* Three blocks, 24px apart, inside an even 20px inset: the
+			    video; the meta, title and summary held 8px apart; the links
+			    pinned to the foot so they line up across a row. */}
 			<ModuleThumbnail post={post} />
-			{/* Rhythm: 20px from the video to the meta line, 12px to the
-			    title, 8px to the summary, at least 24px before the links */}
-			<div className="mt-5">
+			<div className="mt-6">
 				<ModuleMeta post={post} entry={entry} />
+				<h3 className="mt-2 text-lg leading-snug font-semibold text-zinc-900 dark:text-white">
+					{moduleTitle(post)}
+				</h3>
+				<p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+					{post.excerpt}
+				</p>
 			</div>
-			<h3 className="mt-3 text-lg leading-snug font-semibold text-zinc-900 dark:text-white">
-				{moduleTitle(post)}
-			</h3>
-			<p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-				{post.excerpt}
-			</p>
 			<ModuleLinks post={post} className="mt-auto pt-6" />
 		</li>
 	);
