@@ -55,7 +55,7 @@ function SocialCells() {
 					href: AUTHORS.maxwell.url,
 				},
 				{
-					label: "X",
+					label: "X.com",
 					icon: "ri-twitter-x-fill",
 					handle: "@imax153",
 					href: "https://x.com/imax153",
