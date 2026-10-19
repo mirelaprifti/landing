@@ -18,10 +18,6 @@ const INTRO_POST_URL = "https://effect.website/blog/module-of-the-week/";
 // Posts are newest first, so the oldest is entry 01
 const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 
-/** Series counts for the list header. Derived from the posts. */
-const PACKAGE_COUNT = new Set(MODULES.map((p) => p.packageName).filter(Boolean))
-	.size;
-
 /** The packages the series has covered, alphabetical. */
 const PACKAGES = [
 	...new Set(MODULES.flatMap((p) => (p.packageName ? [p.packageName] : []))),
@@ -34,7 +30,6 @@ const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
  *  from the posts. */
 const SERIES_FACTS = [
 	{ label: "Modules", value: String(MODULES.length).padStart(2, "0") },
-	{ label: "Packages", value: String(PACKAGE_COUNT).padStart(2, "0") },
 	{
 		label: "Latest",
 		value: (MODULES[0]?.title ?? "").replace(/^Module of the Week\s*-\s*/, ""),
@@ -468,8 +463,7 @@ export function ModuleOfTheWeekPage() {
 							One Effect module, every week
 						</h1>
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-							The lesser-known parts of Effect, explained in a blog post and a
-							video.
+							The lesser-known parts of Effect, by Maxwell Brown.
 						</p>
 						{/* The two ways in, as a matched pair of buttons */}
 						<div className="mt-8 flex flex-wrap items-center gap-3">
@@ -504,11 +498,11 @@ export function ModuleOfTheWeekPage() {
 					className="border-y border-zinc-200 dark:border-zinc-800"
 				>
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<dl className="grid grid-cols-2 gap-px bg-zinc-200 lg:grid-cols-4 dark:bg-zinc-800">
+						<dl className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-3 dark:bg-zinc-800">
 							{SERIES_FACTS.map((fact) => (
 								<div
 									key={fact.label}
-									className="flex min-w-0 flex-col gap-0.5 bg-white px-4 py-3.5 lg:flex-row lg:items-baseline lg:justify-between lg:gap-3 lg:px-6 dark:bg-zinc-950"
+									className="flex min-w-0 items-baseline justify-between gap-3 bg-white px-4 py-3.5 sm:flex-col sm:items-start sm:gap-0.5 lg:flex-row lg:items-baseline lg:justify-between lg:gap-3 lg:px-6 dark:bg-zinc-950"
 								>
 									<dt className={`${micro} whitespace-nowrap`}>{fact.label}</dt>
 									<dd className="text-sm font-semibold text-zinc-900 lg:truncate lg:text-base dark:text-white">
