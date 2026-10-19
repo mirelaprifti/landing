@@ -363,13 +363,13 @@ export function ModuleOfTheWeekPage() {
 				<section aria-labelledby="author-title" className="py-24 md:pt-40">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-							// Written by
+							// Behind the series
 						</p>
 						<h2
 							id="author-title"
 							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
 						>
-							Your guide through the modules
+							Meet the author
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
