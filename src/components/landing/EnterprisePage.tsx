@@ -514,6 +514,50 @@ const RELEASES: ReleaseRow[] = [
 	},
 ];
 
+/**
+ * How Effect ships and supports releases. Cadence and maintenance scope
+ * must come from the release policy owner before launch (marked TBD).
+ */
+const RELEASE_PRACTICES: {
+	icon: Parameters<typeof Icon>[0]["name"];
+	title: string;
+	body: ReactNode;
+}[] = [
+	{
+		icon: "git-branch",
+		title: "Versioning",
+		body: (
+			<>
+				Semantic versioning. Stable modules break only in a new major;{" "}
+				<code className="font-mono text-zinc-900 dark:text-zinc-200">
+					effect/unstable/*
+				</code>{" "}
+				can change in a minor.
+			</>
+		),
+	},
+	{
+		icon: "shield-check",
+		title: "Long-term support",
+		body: "Each major line is supported on a published LTS schedule. 4.x is the current LTS.",
+	},
+	{
+		icon: "calendar-check",
+		title: "Release cadence",
+		body: (
+			<>
+				How often minor and patch releases ship, and how schedule changes are
+				announced. <Tbd />
+			</>
+		),
+	},
+	{
+		icon: "life-buoy",
+		title: "Maintenance",
+		body: "Supported lines receive fixes and security patches until end of life. 3.x stays in maintenance alongside 4.x.",
+	},
+];
+
 const RELEASE_COLUMNS = [
 	"Release",
 	"Status",
@@ -811,14 +855,48 @@ export function EnterprisePage() {
 					</div>
 				</section>
 
-				{/* 1. Releases */}
+				{/* 1. Release management — practices, then the release lines (paired with the changelog) */}
 				<Section
 					id="releases"
-					eyebrow="Releases & support"
+					eyebrow="Release management"
 					title="Plan your adoption and upgrades"
+					subtitle="How Effect versions, supports, and ships releases."
 				>
+					<ul className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						{RELEASE_PRACTICES.map((item) => (
+							<li
+								key={item.title}
+								className="flex flex-col bg-zinc-50 px-6 py-5 dark:bg-zinc-950"
+							>
+								<span className="flex items-center gap-3">
+									<Icon
+										name={item.icon}
+										className="shrink-0 text-xl text-zinc-500 dark:text-zinc-400"
+									/>
+									<span className={text.smallHeading}>{item.title}</span>
+								</span>
+								<p className={`${text.cardBody} mt-2 text-pretty`}>
+									{item.body}
+								</p>
+							</li>
+						))}
+					</ul>
+
+					{/* Release lines, captioned like the other tables, with the changelog alongside */}
+					<div className={`${groupBar} mt-16`}>
+						<h3 className={groupLabel}>Release lines</h3>
+						<Link
+							href="https://github.com/Effect-TS/effect/releases"
+							variant="subtle"
+							className={subtleLink}
+						>
+							Changelog
+							<Icon name="arrow-up-right" className="text-xs" />
+						</Link>
+					</div>
+
 					{/* Desktop table */}
-					<div className="hidden overflow-x-auto border border-zinc-200 md:block dark:border-zinc-800">
+					<div className="hidden overflow-x-auto border border-t-0 border-zinc-200 md:block dark:border-zinc-800">
 						<table className="w-full text-left text-sm">
 							<thead className="bg-zinc-100 dark:bg-zinc-900">
 								<tr>
@@ -865,11 +943,11 @@ export function EnterprisePage() {
 					</div>
 
 					{/* Mobile: one card per release line */}
-					<div className="space-y-4 md:hidden">
+					<div className="space-y-px border border-t-0 border-zinc-200 bg-zinc-200 md:hidden dark:border-zinc-800 dark:bg-zinc-800">
 						{RELEASES.map((row) => (
 							<dl
 								key={row.line}
-								className="divide-y divide-zinc-200 border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800"
+								className="divide-y divide-zinc-200 bg-zinc-50 dark:divide-zinc-800 dark:bg-zinc-950"
 							>
 								<div className="flex items-center justify-between px-4 py-3">
 									<dt className="font-mono text-base font-semibold text-zinc-900 dark:text-white">
@@ -906,19 +984,9 @@ export function EnterprisePage() {
 						))}
 					</div>
 
-					<div className="mt-3 flex flex-col-reverse gap-3 md:flex-row md:items-baseline md:justify-between">
-						<p className="text-sm leading-normal text-zinc-600 dark:text-zinc-400">
-							Stable modules only introduce breaking changes in a new major
-							version.{" "}
-							<code className="font-mono text-zinc-900 dark:text-zinc-200">
-								effect/unstable/*
-							</code>{" "}
-							modules can change in minor releases.
-						</p>
-						<p className={`${text.micro} shrink-0 md:text-right`}>
-							Last updated · {POLICY_UPDATED}
-						</p>
-					</div>
+					<p className={`${text.micro} mt-3 text-right`}>
+						Last updated · {POLICY_UPDATED}
+					</p>
 				</Section>
 
 				{/* Real world: a customer-story bento, then ecosystem projects */}
