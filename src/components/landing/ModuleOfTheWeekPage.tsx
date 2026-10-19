@@ -460,7 +460,7 @@ export function ModuleOfTheWeekPage() {
 						}}
 					/>
 
-					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-20 md:pt-24 md:pb-24">
+					<div className="relative mx-auto w-full max-w-[73.75rem] px-4 pt-16 pb-16 md:pt-24 md:pb-20">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Module of the Week
 						</p>
@@ -508,10 +508,10 @@ export function ModuleOfTheWeekPage() {
 							{SERIES_FACTS.map((fact) => (
 								<div
 									key={fact.label}
-									className="flex min-w-0 flex-col gap-1 bg-white px-4 py-5 lg:px-6 lg:py-6 dark:bg-zinc-950"
+									className="flex min-w-0 flex-col gap-0.5 bg-white px-4 py-3.5 lg:flex-row lg:items-baseline lg:justify-between lg:gap-3 lg:px-6 dark:bg-zinc-950"
 								>
-									<dt className={micro}>{fact.label}</dt>
-									<dd className="text-base font-semibold text-zinc-900 lg:text-lg dark:text-white">
+									<dt className={`${micro} whitespace-nowrap`}>{fact.label}</dt>
+									<dd className="text-sm font-semibold text-zinc-900 lg:truncate lg:text-base dark:text-white">
 										{fact.value}
 									</dd>
 								</div>
