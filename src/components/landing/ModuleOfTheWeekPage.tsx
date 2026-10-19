@@ -375,10 +375,6 @@ export function ModuleOfTheWeekPage() {
 										<span className="mt-1 text-base font-semibold text-zinc-900 dark:text-white">
 											{item.title}
 										</span>
-										<span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-											Watch
-											<Icon name="arrow-up-right" className="text-xs" />
-										</span>
 									</a>
 								</li>
 							))}
