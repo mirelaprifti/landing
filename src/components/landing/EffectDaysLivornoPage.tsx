@@ -759,7 +759,7 @@ function SpeakerCard({
 	className?: string;
 }) {
 	/* The MC's card is two cells wide: the portrait in the first, the role
-	   and bio in a dark panel beside it, flush, so the two read as one card.
+	   and bio beside it, flush, so the two read as one card.
 	   From md up the row's height comes from the speaker card beside it and
 	   the portrait fills it; on phones nothing sits beside it, so the portrait
 	   holds 4:5 and sets the height itself. */
@@ -787,16 +787,14 @@ function SpeakerCard({
 					<SpeakerDetails speaker={speaker} onImage />
 				</div>
 			</div>
-			{/* The MC's panel: dark in both themes, like the scrim. The role
-			    sits at the top; the bio settles at the foot, level with the
-			    names on the photos beside it. */}
+			{/* The MC's panel, on the page colour with theme ink. The role sits
+			    at the top; the bio settles at the foot, level with the names on
+			    the photos beside it. */}
 			{host && (
-				<div className="flex flex-1 flex-col bg-zinc-900 p-3 lg:p-4">
-					<p className="font-mono text-xs font-medium tracking-wider text-zinc-400 uppercase">
-						MC &amp; speaker
-					</p>
+				<div className="flex flex-1 flex-col p-3 lg:p-4">
+					<p className={text.micro}>MC &amp; speaker</p>
 					{speaker.bio && (
-						<p className="mt-auto pt-3 text-xs leading-relaxed text-zinc-300 lg:text-[0.9375rem]">
+						<p className="mt-auto pt-3 text-xs leading-relaxed text-zinc-600 lg:text-[0.9375rem] dark:text-zinc-400">
 							{speaker.bio}
 						</p>
 					)}
