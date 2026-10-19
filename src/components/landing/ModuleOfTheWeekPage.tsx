@@ -51,7 +51,7 @@ function RoleLine() {
 			<h3 className="text-lg font-bold tracking-tight text-zinc-900 lg:text-2xl dark:text-white">
 				{AUTHORS.maxwell.name}
 			</h3>
-			<p className="mt-1 text-sm font-semibold text-zinc-900 lg:text-base dark:text-white">
+			<p className="mt-1 text-sm font-semibold text-zinc-900 lg:mt-2 lg:text-base dark:text-white">
 				Founding Engineer
 				<span className="font-normal text-zinc-500 dark:text-zinc-400">
 					{" "}
@@ -531,18 +531,26 @@ export function ModuleOfTheWeekPage() {
 								<RoleLine />
 							</div>
 
-							{/* Bio, with the role above it from lg */}
-							<div className="col-span-6 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
-								<div className="mt-auto hidden lg:block">
+							{/* Bio. From lg the cell spans the portrait's height: name and
+							    role at the top, level with the photo's top edge; the bio
+							    settled at the foot, level with its bottom. Two short
+							    paragraphs: who Maxwell is, then how a module is made. */}
+							<div className="col-span-6 flex flex-col justify-between gap-8 bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
+								<div className="hidden lg:block">
 									<RoleLine />
 								</div>
-								<p className="text-sm leading-relaxed text-zinc-600 md:text-base lg:mt-2 lg:max-w-2xl dark:text-zinc-400">
-									Maxwell is a core contributor to Effect, with work across
-									Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
-									Office Hours. Each module is written up as a blog post first,
-									then walked through live at Office Hours, before it's cut into
-									a standalone video.
-								</p>
+								<div className="max-w-xl space-y-3 text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
+									<p>
+										Maxwell is a core contributor to Effect, with work across
+										Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
+										Office Hours.
+									</p>
+									<p>
+										Each module is written up as a blog post first, then walked
+										through live at Office Hours, before it's cut into a
+										standalone video.
+									</p>
+								</div>
 							</div>
 
 							{/* Profiles, stacked in the fourth column */}
