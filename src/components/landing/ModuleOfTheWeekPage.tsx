@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import {
@@ -17,16 +18,92 @@ const INTRO_POST_URL = "https://effect.website/blog/module-of-the-week/";
 // Posts are newest first, so the oldest is entry 01
 const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 
-/** The series at a glance, under the author card. Counts derive from the posts. */
-const SERIES_FACTS = [
-	{ label: "Modules", value: String(MODULES.length).padStart(2, "0") },
-	{
-		label: "Packages",
-		value: String(
-			new Set(MODULES.map((p) => p.packageName).filter(Boolean)).size,
-		).padStart(2, "0"),
-	},
-];
+/** Series counts for the list header. Derived from the posts. */
+const PACKAGE_COUNT = new Set(MODULES.map((p) => p.packageName).filter(Boolean))
+	.size;
+
+const DISCORD_HANDLE = "maxwellbrown";
+
+/** Maxwell's profiles, one hairline cell each in the author card's fourth
+ *  column. Discord has no public profile URL, so its cell copies the handle
+ *  and confirms in place. */
+function SocialCells() {
+	const [copied, setCopied] = useState(false);
+	const copyHandle = async () => {
+		try {
+			await navigator.clipboard.writeText(DISCORD_HANDLE);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 1600);
+		} catch {
+			// Clipboard blocked: the handle stays visible in the cell
+		}
+	};
+	const cell =
+		"group col-span-6 flex flex-col justify-end gap-1 bg-white px-4 py-5 text-left sm:col-span-2 transition-colors hover:bg-zinc-100/60 lg:col-span-1 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60";
+	const value =
+		"flex items-center justify-between gap-2 font-mono text-sm text-zinc-900 dark:text-white";
+	const labelRow = `${micro} flex items-center gap-2`;
+	const trail =
+		"text-xs text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white";
+	return (
+		<>
+			{[
+				{
+					label: "GitHub",
+					icon: "ri-github-fill",
+					handle: "IMax153",
+					href: AUTHORS.maxwell.url,
+				},
+				{
+					label: "X",
+					icon: "ri-twitter-x-fill",
+					handle: "@imax153",
+					href: "https://x.com/imax153",
+				},
+			].map((profile) => (
+				<a
+					key={profile.label}
+					href={profile.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					className={cell}
+				>
+					<span className={labelRow}>
+						<i
+							className={`${profile.icon} text-base leading-none`}
+							aria-hidden="true"
+						/>
+						{profile.label}
+					</span>
+					<span className={value}>
+						<span className="truncate">{profile.handle}</span>
+						<Icon name="arrow-up-right" className={trail} />
+					</span>
+				</a>
+			))}
+			<button
+				type="button"
+				onClick={copyHandle}
+				aria-label={`Copy ${AUTHORS.maxwell.name}'s Discord handle, ${DISCORD_HANDLE}`}
+				className={`${cell} cursor-pointer`}
+			>
+				<span className={labelRow}>
+					<i
+						className="ri-discord-fill text-base leading-none"
+						aria-hidden="true"
+					/>
+					Discord
+				</span>
+				<span className={value}>
+					<span className="truncate">{DISCORD_HANDLE}</span>
+					<span aria-live="polite" className={`${trail} font-mono uppercase`}>
+						{copied ? "Copied" : "Copy"}
+					</span>
+				</span>
+			</button>
+		</>
+	);
+}
 
 /* Boxed mono label — the same chip as the Effect Days host card. */
 const chip =
@@ -244,8 +321,27 @@ export function ModuleOfTheWeekPage() {
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 				{/* Modules */}
-				<section aria-label="Modules" className="pb-24">
+				<section aria-labelledby="modules-title" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						{/* List header: title, with the series counts opposite */}
+						<div className="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-b border-zinc-300/80 pb-4 md:mt-20 dark:border-zinc-700/80">
+							<h2
+								id="modules-title"
+								className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"
+							>
+								All modules
+							</h2>
+							<p className="font-mono text-sm text-zinc-600 tabular-nums dark:text-zinc-400">
+								{String(MODULES.length).padStart(2, "0")} modules
+								<span
+									aria-hidden="true"
+									className="mx-2 text-zinc-400 dark:text-zinc-600"
+								>
+									·
+								</span>
+								{String(PACKAGE_COUNT).padStart(2, "0")} packages
+							</p>
+						</div>
 						<div className="divide-y divide-zinc-200 dark:divide-zinc-800">
 							{MODULES.map((post, i) => (
 								<ModuleRow
@@ -261,9 +357,9 @@ export function ModuleOfTheWeekPage() {
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 				{/* Author — a four-column hairline grid: the portrait, the bio
-				    across the middle two columns, and the series facts stacked in
-				    the fourth. On phones the portrait and bio sit side by side,
-				    the facts in a row beneath. */}
+				    across the middle two columns, and the profiles stacked in the
+				    fourth. On phones the profiles sit in a row under the bio. The
+				    talks hang off the bottom as a labelled row. */}
 				<section aria-labelledby="author-title" className="py-24 md:pt-40">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
@@ -277,8 +373,8 @@ export function ModuleOfTheWeekPage() {
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{/* Portrait, name and X set into its foot on a dark scrim */}
-							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-2 dark:bg-zinc-950">
+							{/* Portrait, name and company set into its foot on a dark scrim */}
+							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
 									alt={AUTHORS.maxwell.name}
@@ -289,40 +385,14 @@ export function ModuleOfTheWeekPage() {
 									<h3 className="text-base leading-[1.1] font-semibold text-white lg:text-lg lg:leading-[1.1]">
 										{AUTHORS.maxwell.name}
 									</h3>
-									<div className="flex items-center justify-between gap-2">
-										<p className="text-xs leading-normal text-zinc-300 lg:text-sm">
-											Effectful Technologies
-										</p>
-										<div className="flex shrink-0 items-center gap-3">
-											<Link
-												href={AUTHORS.maxwell.url}
-												variant="icon"
-												aria-label={`${AUTHORS.maxwell.name} on GitHub`}
-												className="text-zinc-300 hover:text-white"
-											>
-												<i
-													className="ri-github-fill text-base"
-													aria-hidden="true"
-												/>
-											</Link>
-											<Link
-												href="https://x.com/imax153"
-												variant="icon"
-												aria-label={`${AUTHORS.maxwell.name} on X`}
-												className="text-zinc-300 hover:text-white"
-											>
-												<i
-													className="ri-twitter-x-fill text-base"
-													aria-hidden="true"
-												/>
-											</Link>
-										</div>
-									</div>
+									<p className="text-xs leading-normal text-zinc-300 lg:text-sm">
+										Effectful Technologies
+									</p>
 								</div>
 							</div>
 
 							{/* Role and bio */}
-							<div className="col-span-4 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-2 lg:p-6 dark:bg-zinc-950">
+							<div className="col-span-4 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
 								<span
 									className={`${micro} ${chip} self-start whitespace-nowrap`}
 								>
@@ -337,18 +407,8 @@ export function ModuleOfTheWeekPage() {
 								</p>
 							</div>
 
-							{/* The series at a glance */}
-							{SERIES_FACTS.map((fact) => (
-								<div
-									key={fact.label}
-									className="col-span-3 flex flex-col gap-1 bg-white px-4 py-5 lg:col-span-1 lg:justify-end lg:px-6 lg:py-6 dark:bg-zinc-950"
-								>
-									<span className={micro}>{fact.label}</span>
-									<span className="font-mono text-lg font-semibold text-zinc-900 tabular-nums dark:text-white">
-										{fact.value}
-									</span>
-								</div>
-							))}
+							{/* Profiles, stacked in the fourth column */}
+							<SocialCells />
 						</div>
 
 						{/* Talks & appearances — a labelled grid, one video per cell */}
