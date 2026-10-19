@@ -86,7 +86,7 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
-		bio: "Effect-systems evangelist since his Scala days. Kit moved OpenCode to Effect, built Visual Effect so you can watch your fibers misbehave, and swears he hasn't typed a line of code since 2025.",
+		bio: "Effect-systems evangelist since his Scala days. Kit built Visual Effect so you can watch your fibers misbehave, and the Effect Institute to explain why. Then he joined OpenCode, moved it to Effect, and swears he hasn't typed a line of code since 2025.",
 	},
 	{
 		name: "Adam Rankin",
@@ -760,9 +760,9 @@ function SpeakerCard({
 }) {
 	/* The MC's card is two cells wide: the portrait in the first, the role
 	   and bio beside it, flush, so the two read as one card.
-	   From md up the row's height comes from the speaker card beside it and
-	   the portrait fills it; on phones nothing sits beside it, so the portrait
-	   holds 4:5 and sets the height itself. */
+	   The portrait always fills the card's height. From md up that height
+	   comes from the speaker cards beside it; on phones the portrait's slot
+	   holds at least 4:5, and grows if the bio beside it runs longer. */
 	const host = speaker.host === true;
 	return (
 		<div
@@ -773,7 +773,7 @@ function SpeakerCard({
 			<div
 				className={
 					host
-						? "relative w-1/2 shrink-0 md:[&_img]:absolute md:[&_img]:inset-0 md:[&_img]:aspect-auto md:[&_img]:h-full"
+						? "relative aspect-4/5 w-1/2 shrink-0 md:aspect-auto [&_img]:absolute [&_img]:inset-0 [&_img]:aspect-auto [&_img]:h-full"
 						: ""
 				}
 			>
