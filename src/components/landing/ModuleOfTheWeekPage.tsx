@@ -141,7 +141,7 @@ const micro =
 
 /** Group header bar — sits on top of the grid it labels (as on /enterprise). */
 const groupBar =
-	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100/60 px-4 py-2.5 dark:border-zinc-800 dark:bg-zinc-900/40";
+	"flex items-center justify-between gap-4 border border-zinc-200 bg-white px-4 py-2.5 dark:border-zinc-800 dark:bg-zinc-950";
 
 /** Maxwell's talks and interviews elsewhere, newest first. */
 const APPEARANCES = [
@@ -489,6 +489,9 @@ export function ModuleOfTheWeekPage() {
 						{/* Talks & appearances — a labelled grid, one video per cell */}
 						<div className={`${groupBar} border-t-0`}>
 							<h3 className={micro}>// Talks & appearances</h3>
+							<span className={`${micro} tabular-nums`}>
+								{String(APPEARANCES.length).padStart(2, "0")} videos
+							</span>
 						</div>
 						<ul className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 							{APPEARANCES.map((item) => (
