@@ -271,15 +271,15 @@ function ModuleLinks({
 	);
 }
 
-/** One module per row: the video on the left, the copy on the right, the
- *  links pinned to the foot. Every row shares this layout so the list reads
+/** One module per row: the video on the left, the copy on the right,
+ *  centred vertically against it. Every row shares this layout so the list reads
  *  top to bottom, newest first; the newest carries a "Latest" chip. */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
 		<li className="grid grid-cols-1 gap-6 border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-400 md:grid-cols-2 md:gap-8 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
 			<ModuleThumbnail post={post} />
-			<div className="flex min-w-0 flex-col md:py-1">
+			<div className="flex min-w-0 flex-col md:justify-center">
 				<div className="flex items-center gap-3">
 					{entry === MODULES.length && (
 						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
@@ -292,7 +292,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				<p className="mt-2 max-w-xl text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
 					{post.excerpt}
 				</p>
-				<ModuleLinks post={post} className="mt-auto pt-6" />
+				<ModuleLinks post={post} className="mt-6" />
 			</div>
 		</li>
 	);
