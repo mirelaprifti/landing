@@ -17,16 +17,7 @@ const INTRO_POST_URL = "https://effect.website/blog/module-of-the-week/";
 // Posts are newest first, so the oldest is entry 01
 const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 
-// "1:09:59" / "28:36" → seconds
-const toSeconds = (duration: string) =>
-	duration.split(":").reduce((total, part) => total * 60 + Number(part), 0);
-
-const totalSeconds = MODULES.reduce(
-	(sum, p) => sum + (p.video ? toSeconds(p.video.duration) : 0),
-	0,
-);
-
-/** The series at a glance, under the author card. Derived from the posts. */
+/** The series at a glance, under the author card. Counts derive from the posts. */
 const SERIES_FACTS = [
 	{ label: "Modules", value: String(MODULES.length).padStart(2, "0") },
 	{
@@ -35,10 +26,7 @@ const SERIES_FACTS = [
 			new Set(MODULES.map((p) => p.packageName).filter(Boolean)).size,
 		).padStart(2, "0"),
 	},
-	{
-		label: "On video",
-		value: `${Math.floor(totalSeconds / 3600)}h ${Math.round((totalSeconds % 3600) / 60)}m`,
-	},
+	{ label: "Cadence", value: "Weekly" },
 ];
 
 /* Boxed mono label — the same chip as the Effect Days host card. */
@@ -297,9 +285,10 @@ export function ModuleOfTheWeekPage() {
 									Founding Engineer
 								</span>
 								<p className="mt-auto pt-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
-									A core contributor to Effect, Maxwell has worked on Effect
-									Cluster, the Effect CLI, and Effect AI. Each week brings one
-									lesser-known module: when to reach for it, and how to use it.
+									Maxwell runs Effect Office Hours and is a core contributor to
+									Effect, with work across Effect Cluster, the Effect CLI, and
+									Effect AI. Each module starts as a live session at Office
+									Hours, then becomes a post and a video.
 								</p>
 								<Link
 									href={AUTHORS.maxwell.url}
