@@ -157,7 +157,7 @@ const groupBar =
 const APPEARANCES = [
 	{
 		venue: "AWS Developers",
-		title: "Build production-ready AI agents with Effect & Amazon Bedrock",
+		title: "Production-ready AI agents with Effect & Amazon Bedrock",
 		youtubeId: "iLa0d8WF-ng",
 		duration: "56:33",
 	},
