@@ -548,7 +548,7 @@ export function ModuleOfTheWeekPage() {
 							{/* Bio, settled at the foot of the remaining two rows, level
 							    with the photo's bottom edge. Two short paragraphs: who
 							    Maxwell is, then how a module is made. */}
-							<div className="col-span-6 flex flex-col justify-end bg-white p-4 lg:col-span-2 lg:row-span-2 lg:p-6 lg:pr-8 dark:bg-zinc-950">
+							<div className="col-span-6 flex flex-col justify-end bg-white p-4 lg:col-span-2 lg:row-span-2 lg:p-6 lg:pr-10 dark:bg-zinc-950">
 								<div className="max-w-xl space-y-3 text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
 									<p>
 										Maxwell is a core contributor to Effect, with work across
