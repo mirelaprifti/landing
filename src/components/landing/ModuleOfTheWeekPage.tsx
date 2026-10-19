@@ -348,7 +348,7 @@ export function ModuleOfTheWeekPage() {
 						</div>
 
 						{/* Talks & appearances — a labelled grid, one video per cell */}
-						<div className={`${groupBar} mt-12`}>
+						<div className={`${groupBar} border-t-0`}>
 							<h3 className={micro}>Talks & appearances</h3>
 						</div>
 						<ul className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
