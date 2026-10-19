@@ -66,7 +66,7 @@ const PROGRAM = [
    back to the initials placeholder below and switches over on its own once
    a path is dropped in.
 
-   From md up the rows alternate four and three across (see SPEAKER_SPANS);
+   From md up the rows alternate four and three across (see SPEAKER_ROWS);
    the order above fills them left to right. */
 const SPEAKERS: {
 	name: string;
@@ -804,16 +804,20 @@ function SpeakerCard({
 	);
 }
 
-/* Rows alternate four narrow and three wide, on a twelve-column track from
-   md up: a four-row card spans three columns, a three-row card four. The
-   MC's card is two cells of the first four-row, so the fourteen cells run
-   4 · 3 · 4 · 3 and every row is full. One entry per speaker after the MC,
-   in order. Literal classes, so Tailwind sees them. */
-const SPEAKER_SPANS = [
-	...Array<string>(2).fill("md:col-span-3"),
-	...Array<string>(3).fill("md:col-span-4"),
-	...Array<string>(4).fill("md:col-span-3"),
-	...Array<string>(3).fill("md:col-span-4"),
+/* Cards per row after the MC's, from md up: four narrow and three wide in
+   turn, the MC's two-cell card opening the first four. Every row is full. */
+const SPEAKER_ROWS = [2, 3, 4, 3];
+
+/* Desktop column for each slot of a four-across row. The row is two pairs:
+   16px inside each pair and 32px down the middle, so the page's centre
+   dashed line has room to show through — a zero-width spacer track (column
+   3) between the pairs, never assigned. Literal classes, so Tailwind sees
+   them. */
+const FOUR_ROW_COLUMN = [
+	"lg:col-start-1",
+	"lg:col-start-2",
+	"lg:col-start-4",
+	"lg:col-start-5",
 ];
 
 /** Name, then company with the X link riding on the same line. */
@@ -1075,29 +1079,52 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Rows of four and three in turn from md up (see
-						    SPEAKER_SPANS): the wide rows give faces room, the narrow
-						    ones keep the wall compact, and the change of beat keeps a
-						    long line-up from reading as a table. Kit, the MC, opens it
-						    on a two-cell card. Two across on phones, Kit's card the
+						{/* Rows of four and three in turn from md up (see SPEAKER_ROWS):
+						    the wide rows give faces room, the narrow ones keep the wall
+						    compact, and the change of beat keeps a long line-up from
+						    reading as a table. Kit, the MC, opens it on a two-cell card.
+
+						    Each row is its own grid from md up. On phones the rows dissolve
+						    (display: contents) into one two-across grid, Kit's card the
 						    full width. */}
-						<div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-12">
-							{SPEAKERS.filter((speaker) => speaker.host).map((speaker) => (
-								<SpeakerCard
-									key={speaker.name}
-									speaker={speaker}
-									className="col-span-2 md:col-span-6"
-								/>
-							))}
-							{SPEAKERS.filter((speaker) => !speaker.host).map(
-								(speaker, index) => (
-									<SpeakerCard
-										key={speaker.name}
-										speaker={speaker}
-										className={SPEAKER_SPANS[index]}
-									/>
-								),
-							)}
+						<div className="mt-12 grid grid-cols-2 gap-4 md:flex md:flex-col">
+							{SPEAKER_ROWS.map((count, row) => {
+								const speakers = SPEAKERS.filter((speaker) => !speaker.host);
+								const start = SPEAKER_ROWS.slice(0, row).reduce(
+									(sum, n) => sum + n,
+									0,
+								);
+								const cards = speakers.slice(start, start + count);
+								const four = row % 2 === 0;
+								return (
+									<div
+										key={cards[0]?.name ?? "mc"}
+										className={`contents md:grid md:gap-4 ${four ? "md:grid-cols-4 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]" : "md:grid-cols-3"}`}
+									>
+										{row === 0 &&
+											SPEAKERS.filter((speaker) => speaker.host).map(
+												(speaker) => (
+													<SpeakerCard
+														key={speaker.name}
+														speaker={speaker}
+														className="col-span-2 lg:col-start-1"
+													/>
+												),
+											)}
+										{cards.map((speaker, index) => (
+											<SpeakerCard
+												key={speaker.name}
+												speaker={speaker}
+												className={
+													four
+														? FOUR_ROW_COLUMN[index + (row === 0 ? 2 : 0)]
+														: ""
+												}
+											/>
+										))}
+									</div>
+								);
+							})}
 						</div>
 					</div>
 				</section>
