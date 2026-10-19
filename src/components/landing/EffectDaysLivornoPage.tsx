@@ -145,7 +145,7 @@ const SPEAKERS: {
 	{
 		name: "Leonie Gräßel",
 		company: "Novelcrafter",
-		photo: "/assets/effect-days/leonie-2.png",
+		photo: "/assets/effect-days/leonie.jpg",
 		x: "spaceemotion",
 	},
 	{
