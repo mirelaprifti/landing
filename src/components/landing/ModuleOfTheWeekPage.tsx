@@ -535,11 +535,13 @@ export function ModuleOfTheWeekPage() {
 							    role at the top, level with the photo's top edge; the bio
 							    settled at the foot, level with its bottom. Two short
 							    paragraphs: who Maxwell is, then how a module is made. */}
-							<div className="col-span-6 flex flex-col justify-between gap-8 bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
-								<div className="hidden lg:block">
+							<div className="col-span-6 flex flex-col bg-white lg:col-span-2 lg:row-span-3 dark:bg-zinc-950">
+								{/* Name and role, closed off by a full-width hairline like
+								    the grid's own lines (on phones they sit by the photo) */}
+								<div className="hidden border-b border-zinc-200 p-6 lg:block dark:border-zinc-800">
 									<RoleLine />
 								</div>
-								<div className="max-w-xl space-y-3 text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
+								<div className="max-w-xl space-y-3 p-4 text-sm leading-relaxed text-zinc-600 md:text-base lg:mt-auto lg:p-6 dark:text-zinc-400">
 									<p>
 										Maxwell is a core contributor to Effect, with work across
 										Effect Cluster, the Effect CLI, and Effect AI, and runs
