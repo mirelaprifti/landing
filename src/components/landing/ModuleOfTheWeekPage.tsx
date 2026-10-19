@@ -306,18 +306,20 @@ function FeaturedModule({ post }: { post: BlogPost }) {
 function ModuleCard({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="flex flex-col p-4 border border-zinc-200 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+		<li className="flex flex-col border border-zinc-200 p-4 pb-5 bg-white transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
 			<ModuleThumbnail post={post} />
-			<div className="mt-4">
+			{/* Rhythm: 20px from the video to the meta line, 12px to the
+			    title, 8px to the summary, at least 24px before the links */}
+			<div className="mt-5">
 				<ModuleMeta post={post} entry={entry} />
 			</div>
-			<h3 className="mt-2 text-lg font-semibold text-zinc-900 dark:text-white">
+			<h3 className="mt-3 text-lg leading-snug font-semibold text-zinc-900 dark:text-white">
 				{moduleTitle(post)}
 			</h3>
-			<p className="mt-1 line-clamp-3 text-sm leading-normal text-zinc-600 dark:text-zinc-400">
+			<p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
 				{post.excerpt}
 			</p>
-			<ModuleLinks post={post} className="mt-auto pt-5" />
+			<ModuleLinks post={post} className="mt-auto pt-6" />
 		</li>
 	);
 }
@@ -420,16 +422,18 @@ export function ModuleOfTheWeekPage() {
 			<main id="main-content" className="relative w-full pt-16">
 				{/* Header */}
 				<section className="relative overflow-hidden">
-					{/* Grid background */}
+					{/* Grid background. The y-phase puts a horizontal line on the
+					    H1's first-line baseline: 132px from the section top on
+					    phones, 173px from md up (measured). */}
 					<div
-						className="pointer-events-none absolute inset-0"
+						className="pointer-events-none absolute inset-0 [--grid-y:132px] md:[--grid-y:173px]"
 						style={{
 							backgroundImage: `
 								linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
 								linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
 							`,
 							backgroundSize: "196.667px 178px",
-							backgroundPosition: "calc(50% + 98.333px) 64px",
+							backgroundPosition: "calc(50% + 98.333px) var(--grid-y)",
 						}}
 					/>
 					<div
@@ -468,7 +472,7 @@ export function ModuleOfTheWeekPage() {
 									rel="noopener noreferrer"
 									className="inline-flex items-center gap-1.5 text-sm font-medium"
 								>
-									About the series
+									Read the blog post
 									<Icon name="arrow-up-right" className="text-xs" />
 								</Link>
 							</div>
