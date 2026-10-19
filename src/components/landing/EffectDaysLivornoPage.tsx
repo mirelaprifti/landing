@@ -737,7 +737,9 @@ function SpeakerPlaceholder({ name }: { name: string }) {
 /** A speaker's portrait, or the initials stand-in until one is dropped in. */
 function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 	if (!speaker.photo) return <SpeakerPlaceholder name={speaker.name} />;
-	/* Most sources are square, and covering this taller frame crops their
+	/* 4:5 by default; where a row runs taller than that (Kit's bio on
+	   tablet), the portrait fills the card instead of leaving a strip under
+	   it. Most sources are square, and covering this taller frame crops their
 	   sides rather than the top and bottom — centred is right for that. One is
 	   already 4:5 and so sits uncropped; a source taller than 4:5 would crop
 	   vertically instead and may want a per-card object-position. */
@@ -745,7 +747,7 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 w-full object-cover opacity-80"
+			className="aspect-4/5 h-full w-full object-cover opacity-80"
 		/>
 	);
 }
@@ -774,7 +776,7 @@ function SpeakerCard({
 				className={
 					host
 						? "relative aspect-4/5 w-1/2 shrink-0 md:aspect-auto [&_img]:absolute [&_img]:inset-0 [&_img]:aspect-auto [&_img]:h-full"
-						: ""
+						: "h-full"
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
@@ -800,7 +802,7 @@ function SpeakerCard({
 						MC &amp; speaker
 					</span>
 					{speaker.bio && (
-						<p className="mt-auto pt-3 text-xs leading-relaxed text-zinc-600 lg:text-[0.9375rem] dark:text-zinc-400">
+						<p className="mt-auto pt-3 text-sm leading-relaxed text-zinc-600 lg:text-[0.9375rem] dark:text-zinc-400">
 							{speaker.bio}
 						</p>
 					)}
