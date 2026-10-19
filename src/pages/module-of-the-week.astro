@@ -1,0 +1,8 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ModuleOfTheWeekPage } from "@/components/landing/ModuleOfTheWeekPage";
+---
+
+<BaseLayout themeable title="Module of the Week - Effect" description="The lesser-known parts of Effect, one module at a time. Every module comes with a blog post and a video.">
+  <ModuleOfTheWeekPage client:load />
+</BaseLayout>

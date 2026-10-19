@@ -19,6 +19,8 @@ export interface BlogPost {
 	hasLocalContent?: boolean;
 	/** Package the featured module lives in (Module of the Week posts) */
 	packageName?: string;
+	/** Companion YouTube video (Module of the Week posts) */
+	video?: { youtubeId: string; duration: string };
 }
 
 /**
@@ -130,6 +132,18 @@ export const BLOG_POSTS: BlogPost[] = [
 		hasLocalContent: true,
 	},
 	{
+		slug: "module-of-the-week/cluster-delivery",
+		title: "Module of the Week - Cluster, Part 3",
+		excerpt:
+			"We cover at-most-once and at-least-once delivery, then use persisted messages so an entity keeps its messages when a runner crashes.",
+		date: "Oct 12, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [],
+		packageName: "effect/cluster",
+		video: { youtubeId: "MQnQ87Nv0gU", duration: "28:36" },
+	},
+	{
 		slug: "module-of-the-week/cluster-messaging",
 		title: "Module of the Week - Cluster, Part 2",
 		excerpt:
@@ -139,6 +153,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Module of the Week"],
 		authors: [],
 		packageName: "effect/cluster",
+		video: { youtubeId: "9QDcO50YriA", duration: "1:09:59" },
 	},
 	{
 		slug: "module-of-the-week/cluster-actors",
@@ -150,6 +165,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Module of the Week"],
 		authors: [],
 		packageName: "effect/cluster",
+		video: { youtubeId: "TB145FAQnDM", duration: "1:16:04" },
 	},
 	{
 		slug: "module-of-the-week/rcmap",
@@ -161,6 +177,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Module of the Week"],
 		authors: [],
 		packageName: "effect",
+		video: { youtubeId: "Ia0wCjZ4gXQ", duration: "1:16:07" },
 	},
 	{
 		slug: "module-of-the-week/persisted-queue",
@@ -172,6 +189,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Module of the Week"],
 		authors: [],
 		packageName: "effect/unstable/persistence",
+		video: { youtubeId: "Fzmdn4wWGpU", duration: "38:54" },
 	},
 	{
 		slug: "this-week-in-effect-128",
