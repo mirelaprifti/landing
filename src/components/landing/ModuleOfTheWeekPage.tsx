@@ -34,6 +34,38 @@ const chip =
 const micro =
 	"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
 
+/** Group header bar — sits on top of the grid it labels (as on /enterprise). */
+const groupBar =
+	"flex items-center justify-between gap-4 border border-zinc-200 bg-zinc-100/60 px-4 py-2.5 lg:px-6 dark:border-zinc-800 dark:bg-zinc-900/40";
+
+/** Maxwell's talks and interviews elsewhere, newest first. */
+const APPEARANCES = [
+	{
+		venue: "AWS Developers",
+		title: "Build production-ready AI agents with Effect & Amazon Bedrock",
+		youtubeId: "iLa0d8WF-ng",
+		duration: "56:33",
+	},
+	{
+		venue: "devtools.fm",
+		title: "Effect.ts and Effectful Technologies",
+		youtubeId: "qYohvLtApmM",
+		duration: "55:50",
+	},
+	{
+		venue: "Effect Days 2025 · Keynote",
+		title: "Building Effect-ive Agents",
+		youtubeId: "pQA0fakReas",
+		duration: "32:41",
+	},
+	{
+		venue: "Effect Days 2024 · Workshop",
+		title: "Advanced Effect workshop",
+		youtubeId: "7jOD5okJC00",
+		duration: "2:55:35",
+	},
+];
+
 function ModuleRow({ post, entry }: { post: BlogPost; entry: number }) {
 	// "Module of the Week - Cluster, Part 2" → "Cluster, Part 2"
 	const title = post.title.replace(/^Module of the Week\s*-\s*/, "");
@@ -314,6 +346,43 @@ export function ModuleOfTheWeekPage() {
 								</div>
 							))}
 						</div>
+
+						{/* Talks & appearances — a labelled grid, one video per cell */}
+						<div className={`${groupBar} mt-12`}>
+							<h3 className={micro}>Talks & appearances</h3>
+						</div>
+						<ul className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+							{APPEARANCES.map((item) => (
+								<li key={item.youtubeId} className="bg-white dark:bg-zinc-950">
+									<a
+										href={`https://www.youtube.com/watch?v=${item.youtubeId}`}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="group flex h-full flex-col p-4 transition-colors hover:bg-zinc-100/60 lg:p-6 dark:hover:bg-zinc-900/60"
+									>
+										<div className="relative aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
+											<img
+												src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
+												alt=""
+												loading="lazy"
+												className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+											/>
+											<span className="absolute right-2 bottom-2 rounded-sm bg-zinc-950/80 px-1.5 py-0.5 font-mono text-xs text-white tabular-nums">
+												{item.duration}
+											</span>
+										</div>
+										<span className={`${micro} mt-4`}>{item.venue}</span>
+										<span className="mt-1 text-base font-semibold text-zinc-900 dark:text-white">
+											{item.title}
+										</span>
+										<span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+											Watch
+											<Icon name="arrow-up-right" className="text-xs" />
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
 					</div>
 				</section>
 			</main>
