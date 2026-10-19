@@ -18,11 +18,6 @@ const INTRO_POST_URL = "https://effect.website/blog/module-of-the-week/";
 // Posts are newest first, so the oldest is entry 01
 const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 
-/** The packages the series has covered, alphabetical. */
-const PACKAGES = [
-	...new Set(MODULES.flatMap((p) => (p.packageName ? [p.packageName] : []))),
-].sort();
-
 /** A module's number in the series: the oldest is 01. */
 const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
 
@@ -282,11 +277,9 @@ function ModuleLinks({
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	return (
-		<li className="grid grid-cols-1 gap-6 border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-400 md:grid-cols-12 md:gap-8 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
-			<div className="md:col-span-5">
-				<ModuleThumbnail post={post} />
-			</div>
-			<div className="flex min-w-0 flex-col md:col-span-7 md:py-1">
+		<li className="grid grid-cols-1 gap-6 border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-400 md:grid-cols-2 md:gap-8 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
+			<ModuleThumbnail post={post} />
+			<div className="flex min-w-0 flex-col md:py-1">
 				<div className="flex items-center gap-3">
 					{entry === MODULES.length && (
 						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
@@ -305,47 +298,17 @@ function ModuleRow({ post }: { post: BlogPost }) {
 	);
 }
 
-/** Package filter (the Events page's tab control) over the module grid. */
-function ModulesGrid() {
-	const [pkg, setPkg] = useState<string>("All");
-	const shown =
-		pkg === "All" ? MODULES : MODULES.filter((p) => p.packageName === pkg);
+/** The modules as a single column, newest first, one module per card with
+ *  room between them, so there's one obvious order to scroll in. (A package
+ *  filter sat above this; removed until the series is long enough to need
+ *  one, and then by topic rather than import path.) */
+function ModulesList() {
 	return (
-		<>
-			<div className="mt-16 md:mt-20">
-				<div
-					role="group"
-					aria-label="Filter by package"
-					className="-mx-4 max-w-[calc(100%+2rem)] overflow-x-auto px-4 md:mx-0 md:max-w-full md:px-0"
-				>
-					<div className="inline-flex gap-1 rounded-lg border border-zinc-200 bg-zinc-100/60 p-1 dark:border-zinc-800 dark:bg-zinc-900/50">
-						{["All", ...PACKAGES].map((option) => (
-							<button
-								key={option}
-								type="button"
-								aria-pressed={pkg === option}
-								onClick={() => setPkg(option)}
-								className={`cursor-pointer whitespace-nowrap rounded-md px-3 py-1.5 font-mono text-xs transition-colors duration-200 ${
-									pkg === option
-										? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-										: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
-								}`}
-							>
-								{option}
-							</button>
-						))}
-					</div>
-				</div>
-			</div>
-
-			{/* A single column, newest first, one module per card with room
-			    between them, so there's one obvious order to scroll in. */}
-			<ul className="mt-6 flex flex-col gap-6">
-				{shown.map((post) => (
-					<ModuleRow key={post.slug} post={post} />
-				))}
-			</ul>
-		</>
+		<ul className="mt-16 flex flex-col gap-6 md:mt-20">
+			{MODULES.map((post) => (
+				<ModuleRow key={post.slug} post={post} />
+			))}
+		</ul>
 	);
 }
 
@@ -462,7 +425,7 @@ export function ModuleOfTheWeekPage() {
 				{/* Modules */}
 				<section aria-label="Modules" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<ModulesGrid />
+						<ModulesList />
 					</div>
 				</section>
 
