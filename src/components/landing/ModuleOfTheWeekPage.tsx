@@ -513,14 +513,14 @@ export function ModuleOfTheWeekPage() {
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{/* Portrait: a fixed 1:1 square at every size, matching the
+							{/* Portrait: a fixed 4:5 at every size, cropped from the square
 							    source. From lg it sets the card's height; on phones it
 							    sits beside the role, the bio running full width below. */}
 							<div className="col-span-2 self-start bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
 									alt={AUTHORS.maxwell.name}
-									className="block aspect-square w-full object-cover opacity-80 grayscale"
+									className="block aspect-4/5 w-full object-cover opacity-80 grayscale"
 								/>
 							</div>
 
