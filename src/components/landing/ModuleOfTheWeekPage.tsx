@@ -26,7 +26,6 @@ const SERIES_FACTS = [
 			new Set(MODULES.map((p) => p.packageName).filter(Boolean)).size,
 		).padStart(2, "0"),
 	},
-	{ label: "Cadence", value: "Weekly" },
 ];
 
 /* Boxed mono label — the same chip as the Effect Days host card. */
@@ -229,10 +228,10 @@ export function ModuleOfTheWeekPage() {
 
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
-				{/* Author — a hairline grid: the portrait in the first column,
-				    spanning both rows; the bio beside it, and the series facts
-				    under the bio, one cell each. On phones the portrait and bio
-				    sit side by side, the facts in a row beneath. */}
+				{/* Author — a four-column hairline grid: the portrait, the bio
+				    across the middle two columns, and the series facts stacked in
+				    the fourth. On phones the portrait and bio sit side by side,
+				    the facts in a row beneath. */}
 				<section aria-labelledby="author-title" className="py-24 md:pt-40">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
@@ -245,9 +244,9 @@ export function ModuleOfTheWeekPage() {
 							Your guide through the modules
 						</h2>
 
-						<div className="mt-12 grid grid-cols-3 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 							{/* Portrait, name and X set into its foot on a dark scrim */}
-							<div className="relative col-span-1 overflow-hidden bg-white lg:row-span-2 dark:bg-zinc-950">
+							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-2 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
 									alt={AUTHORS.maxwell.name}
@@ -278,7 +277,7 @@ export function ModuleOfTheWeekPage() {
 							</div>
 
 							{/* Role and bio */}
-							<div className="col-span-2 flex flex-col bg-white p-4 lg:col-span-3 lg:p-6 dark:bg-zinc-950">
+							<div className="col-span-4 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-2 lg:p-6 dark:bg-zinc-950">
 								<span
 									className={`${micro} ${chip} self-start whitespace-nowrap`}
 								>
@@ -306,7 +305,7 @@ export function ModuleOfTheWeekPage() {
 							{SERIES_FACTS.map((fact) => (
 								<div
 									key={fact.label}
-									className="flex flex-col gap-1 bg-white px-4 py-5 lg:px-6 lg:py-6 dark:bg-zinc-950"
+									className="col-span-3 flex flex-col gap-1 bg-white px-4 py-5 lg:col-span-1 lg:justify-end lg:px-6 lg:py-6 dark:bg-zinc-950"
 								>
 									<span className={micro}>{fact.label}</span>
 									<span className="font-mono text-lg font-semibold text-zinc-900 tabular-nums dark:text-white">
