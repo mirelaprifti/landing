@@ -542,8 +542,8 @@ export function ModuleOfTheWeekPage() {
 								<div className="max-w-xl space-y-3 text-sm leading-relaxed text-zinc-600 md:text-base dark:text-zinc-400">
 									<p>
 										Maxwell is a core contributor to Effect, with work across
-										Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
-										Office Hours.
+										Effect Cluster, the Effect CLI, and Effect AI, and runs
+										Effect Office Hours.
 									</p>
 									<p>
 										Each module is written up as a blog post first, then walked
@@ -570,21 +570,25 @@ export function ModuleOfTheWeekPage() {
 										rel="noopener noreferrer"
 										className="group flex h-full flex-col p-4 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 									>
-										<div className="relative aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
-											<img
-												src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
-												alt=""
-												loading="lazy"
-												className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-											/>
-											<span className="absolute right-2 bottom-2 rounded-sm bg-zinc-950/80 px-1.5 py-0.5 font-mono text-xs text-white tabular-nums">
-												{item.duration}
-											</span>
-										</div>
-										<span className={`${micro} mt-4`}>{item.venue}</span>
+										<span className={micro}>{item.venue}</span>
 										<span className="mt-1 text-base font-semibold text-zinc-900 dark:text-white">
 											{item.title}
 										</span>
+										{/* Thumbnail settled at the foot, so all four line up
+										    whatever the title's length */}
+										<div className="mt-auto pt-4">
+											<div className="relative aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
+												<img
+													src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
+													alt=""
+													loading="lazy"
+													className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+												/>
+												<span className="absolute right-2 bottom-2 rounded-sm bg-zinc-950/80 px-1.5 py-0.5 font-mono text-xs text-white tabular-nums">
+													{item.duration}
+												</span>
+											</div>
+										</div>
 									</a>
 								</li>
 							))}
