@@ -120,7 +120,7 @@ function SocialCells() {
 					Discord
 				</span>
 				<span className={value}>
-					<span className="truncate">{DISCORD_HANDLE}</span>
+					<span className="truncate">@{DISCORD_HANDLE}</span>
 					<span
 						aria-live="polite"
 						className={`${trail} font-mono text-xs uppercase`}
