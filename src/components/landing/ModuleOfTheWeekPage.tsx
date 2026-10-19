@@ -44,6 +44,19 @@ function fillerCells(earlierCount: number) {
 
 const DISCORD_HANDLE = "maxwellbrown";
 
+/** "Founding Engineer at Effectful Technologies": the role, then the company. */
+function RoleLine() {
+	return (
+		<p className="text-base font-semibold text-zinc-900 dark:text-white">
+			Founding Engineer
+			<span className="font-normal text-zinc-500 dark:text-zinc-400">
+				{" "}
+				at Effectful Technologies
+			</span>
+		</p>
+	);
+}
+
 /** Maxwell's profiles, one hairline cell each in the author card's fourth
  *  column. Discord has no public profile URL, so its cell copies the handle
  *  and confirms in place. */
@@ -500,29 +513,28 @@ export function ModuleOfTheWeekPage() {
 						</h2>
 
 						<div className="mt-12 grid grid-cols-6 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
-							{/* Portrait, square like the source. On phones it holds its
-							    square at the top of the cell rather than stretching to
-							    the bio's height; from lg it fills the row. */}
-							<div className="relative col-span-2 overflow-hidden bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
+							{/* Portrait: a fixed 1:1 square at every size, matching the
+							    source. From lg it sets the card's height; on phones it
+							    sits beside the role, the bio running full width below. */}
+							<div className="col-span-2 self-start bg-white lg:col-span-1 lg:row-span-3 dark:bg-zinc-950">
 								<img
 									src={getAssetPath(AUTHORS.maxwell.avatar)}
 									alt={AUTHORS.maxwell.name}
-									className="aspect-square w-full object-cover opacity-80 lg:absolute lg:inset-0 lg:h-full"
+									className="block aspect-square w-full object-cover opacity-80 grayscale"
 								/>
-								<div className="hidden aspect-square lg:block" />
 							</div>
 
-							{/* Role and bio */}
-							<div className="col-span-4 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
-								{/* Role and company, set just above the bio at the cell's foot */}
-								<p className="mt-auto text-base font-semibold text-zinc-900 dark:text-white">
-									Founding Engineer
-									<span className="font-normal text-zinc-500 dark:text-zinc-400">
-										{" "}
-										at Effectful Technologies
-									</span>
-								</p>
-								<p className="mt-2 text-sm leading-relaxed text-zinc-600 md:text-base lg:max-w-2xl dark:text-zinc-400">
+							{/* Phones: the role beside the portrait, settled at its foot */}
+							<div className="col-span-4 flex items-end bg-white p-4 lg:hidden dark:bg-zinc-950">
+								<RoleLine />
+							</div>
+
+							{/* Bio, with the role above it from lg */}
+							<div className="col-span-6 flex flex-col bg-white p-4 lg:col-span-2 lg:row-span-3 lg:p-6 dark:bg-zinc-950">
+								<div className="mt-auto hidden lg:block">
+									<RoleLine />
+								</div>
+								<p className="text-sm leading-relaxed text-zinc-600 md:text-base lg:mt-2 lg:max-w-2xl dark:text-zinc-400">
 									Maxwell is a core contributor to Effect, with work across
 									Effect Cluster, the Effect CLI, and Effect AI, and runs Effect
 									Office Hours. Each module is written up as a blog post first,
