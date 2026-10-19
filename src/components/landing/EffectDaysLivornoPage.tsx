@@ -86,7 +86,7 @@ const SPEAKERS: {
 		photo: "/assets/effect-days/kit-langton.png",
 		x: "kitlangton",
 		host: true,
-		bio: "Effect-systems evangelist since his Scala days. Kit moved OpenCode to Effect, built Visual Effect so you can watch your fibers misbehave, and swears he hasn't typed a line of code since 2025. His agents send their regards.",
+		bio: "Effect-systems evangelist since his Scala days. Kit moved OpenCode to Effect, built Visual Effect so you can watch your fibers misbehave, and swears he hasn't typed a line of code since 2025.",
 	},
 	{
 		name: "Adam Rankin",
