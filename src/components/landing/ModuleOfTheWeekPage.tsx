@@ -358,7 +358,7 @@ export function ModuleOfTheWeekPage() {
 										href={`https://www.youtube.com/watch?v=${item.youtubeId}`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="group flex h-full flex-col p-4 transition-colors hover:bg-zinc-100/60 lg:p-6 dark:hover:bg-zinc-900/60"
+										className="group flex h-full flex-col p-4 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 									>
 										<div className="relative aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
 											<img
