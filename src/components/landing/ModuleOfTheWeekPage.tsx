@@ -536,7 +536,7 @@ export function ModuleOfTheWeekPage() {
 								},
 								{
 									icon: "ri-discord-fill",
-									label: "Community",
+									label: "Discord community",
 									action: "Join the conversation",
 									href: DISCORD_URL,
 								},
