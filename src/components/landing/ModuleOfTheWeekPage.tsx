@@ -281,8 +281,8 @@ function ModuleRow({ post }: { post: BlogPost }) {
 			</div>
 
 			{/* Blog post half, read top to bottom like a post preview: the
-			    format and date, the summary as a pull-quote, then the action
-			    pinned to the foot behind a hairline, level with the bottom of
+			    format and date at the top; the summary settled at the foot (as
+			    Maxwell's bio), right above the action behind a hairline, level with the bottom of
 			    the video. The whole half links to the post. */}
 			<a
 				href={getPostUrl(post)}
@@ -300,7 +300,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 							{post.date}
 						</time>
 					</div>
-					<p className="text-lg leading-relaxed text-pretty text-zinc-700 md:max-w-md dark:text-zinc-300">
+					<p className="mt-auto text-lg leading-relaxed text-pretty text-zinc-700 md:max-w-md dark:text-zinc-300">
 						{post.excerpt}
 					</p>
 				</div>
