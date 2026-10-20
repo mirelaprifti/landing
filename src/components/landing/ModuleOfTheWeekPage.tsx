@@ -288,82 +288,13 @@ function ModuleRow({ post }: { post: BlogPost }) {
 	);
 }
 
-/** How a module is made, as one labelled hairline row above the list
- *  (the Talks & appearances label-bar pattern): the three steps in order,
- *  each an icon, a label and one line. */
-const STEPS = [
-	{
-		icon: <Icon name="file-text" className="text-base" />,
-		label: "Blog post",
-		body: "Each module is written up as a post first.",
-	},
-	{
-		icon: (
-			<i
-				className="ri-discord-fill text-base leading-none"
-				aria-hidden="true"
-			/>
-		),
-		label: "Office Hours",
-		body: "Then walked through live, with questions.",
-	},
-	{
-		icon: (
-			<i
-				className="ri-youtube-fill text-base leading-none"
-				aria-hidden="true"
-			/>
-		),
-		label: "Video",
-		body: "Then cut into a standalone video.",
-	},
-];
-
-function HowItWorks() {
-	return (
-		<div className="mt-16 md:mt-20">
-			<div className={groupBar}>
-				<h2 className={micro}>// How it works</h2>
-				<a
-					href={INTRO_POST_URL}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-				>
-					About the series
-					<Icon name="arrow-up-right" className="text-sm" />
-				</a>
-			</div>
-			<ol className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
-				{STEPS.map((step, i) => (
-					<li
-						key={step.label}
-						className="flex flex-col gap-2 bg-white px-4 py-4 lg:px-6 dark:bg-zinc-950"
-					>
-						<span className="flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400">
-							<span className="font-mono text-xs tabular-nums">
-								{String(i + 1).padStart(2, "0")}
-							</span>
-							{step.icon}
-							{step.label}
-						</span>
-						<p className="text-sm leading-normal text-zinc-700 dark:text-zinc-300">
-							{step.body}
-						</p>
-					</li>
-				))}
-			</ol>
-		</div>
-	);
-}
-
 /** The modules as a single column, newest first, one module per card with
  *  room between them, so there's one obvious order to scroll in. (A package
  *  filter sat above this; removed until the series is long enough to need
  *  one, and then by topic rather than import path.) */
 function ModulesList() {
 	return (
-		<ul className="mt-6 flex flex-col gap-6">
+		<ul className="mt-16 flex flex-col gap-6 md:mt-20">
 			{MODULES.map((post) => (
 				<ModuleRow key={post.slug} post={post} />
 			))}
@@ -447,13 +378,12 @@ export function ModuleOfTheWeekPage() {
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Module of the Week
 						</p>
-						<h1 className="leading-[1.1] text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
-							One Effect module, every week
+						<h1 className="leading-[1.1] text-3xl font-bold tracking-tight text-balance text-zinc-900 md:text-4xl dark:text-white">
+							The lesser-known parts of Effect, by Maxwell Brown.
 						</h1>
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-							The lesser-known parts of Effect, by Maxwell Brown. Each module
-							starts as a blog post, gets walked through live at Effect Office
-							Hours, and ends up as a standalone video.
+							Each module starts as a blog post, gets walked through live at
+							Effect Office Hours, and ends up as a standalone video.
 						</p>
 						{/* The post leads: the newest module's post as the primary
 						    action, the playlist beside it */}
@@ -480,6 +410,15 @@ export function ModuleOfTheWeekPage() {
 								<i className="ri-youtube-fill text-lg" />
 								Watch the playlist
 							</Button>
+							<a
+								href={INTRO_POST_URL}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 sm:ml-2 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+							>
+								About the series
+								<Icon name="arrow-up-right" className="text-sm" />
+							</a>
 						</div>
 					</div>
 				</section>
@@ -489,7 +428,6 @@ export function ModuleOfTheWeekPage() {
 				{/* Modules */}
 				<section aria-label="Modules" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
-						<HowItWorks />
 						<ModulesList />
 					</div>
 				</section>
