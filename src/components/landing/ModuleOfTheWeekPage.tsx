@@ -269,7 +269,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				</div>
 				<div className="flex items-center justify-between gap-2 border-t border-zinc-200 px-5 py-4 lg:px-6 dark:border-zinc-800">
 					<span className="text-sm font-semibold text-zinc-900 dark:text-white">
-						Read the post
+						Read the blog post
 					</span>
 					<Icon
 						name="arrow-up-right"
