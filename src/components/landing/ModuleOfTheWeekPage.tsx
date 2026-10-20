@@ -373,7 +373,9 @@ export function ModuleOfTheWeekPage() {
 							// Module of the Week
 						</p>
 						<h1 className="leading-[1.1] text-3xl font-bold tracking-tight text-balance text-zinc-900 md:text-4xl dark:text-white">
-							The lesser-known parts of Effect, by Maxwell Brown.
+							The lesser-known parts of Effect.{" "}
+							<br className="hidden sm:inline" />
+							{"By\u00a0Maxwell\u00a0Brown."}
 						</h1>
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
 							{/* Non-breaking spaces keep "Effect Office Hours" on one line */}
