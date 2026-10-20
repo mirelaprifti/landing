@@ -13,7 +13,6 @@ import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
 const PLAYLIST_URL = "https://www.youtube.com/playlist?list=PLCGIHlTAijhY";
-const INTRO_POST_URL = "https://effect.website/blog/module-of-the-week/";
 const CHANNEL_SUBSCRIBE_URL =
 	"https://www.youtube.com/channel/UC8wNHsXmEuoikbwRdLeoJQg?sub_confirmation=1";
 const DISCORD_URL = "https://discord.gg/effect-ts";
@@ -401,15 +400,6 @@ export function ModuleOfTheWeekPage() {
 								<i className="ri-youtube-fill text-lg" />
 								Watch the playlist
 							</Button>
-							<a
-								href={INTRO_POST_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 sm:ml-2 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-							>
-								About the series
-								<Icon name="arrow-up-right" className="text-sm" />
-							</a>
 						</div>
 					</div>
 				</section>
