@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Link } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import {
 	AUTHORS,
@@ -179,7 +179,14 @@ const videoUrl = (post: BlogPost) =>
 	post.video ? `https://www.youtube.com/watch?v=${post.video.youtubeId}` : null;
 
 /** Video thumbnail with the running time in its corner; links to YouTube. */
-function ModuleThumbnail({ post }: { post: BlogPost }) {
+function ModuleThumbnail({
+	post,
+	flush = false,
+}: {
+	post: BlogPost;
+	/** Fill the cell edge to edge, without its own border. */
+	flush?: boolean;
+}) {
 	const url = videoUrl(post);
 	if (!post.video || !url) return null;
 	return (
@@ -188,7 +195,7 @@ function ModuleThumbnail({ post }: { post: BlogPost }) {
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label={`Watch ${moduleTitle(post)} on YouTube`}
-			className="group relative block aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800"
+			className={`group relative block aspect-video overflow-hidden ${flush ? "h-full w-full" : "border border-zinc-200 dark:border-zinc-800"}`}
 		>
 			<img
 				src={`https://i.ytimg.com/vi/${post.video.youtubeId}/hqdefault.jpg`}
@@ -234,7 +241,6 @@ function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
  *  as one module in two forms rather than neighbouring items. */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
-	const url = videoUrl(post);
 	const labelRow =
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
@@ -252,32 +258,10 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				</h3>
 			</div>
 
-			{/* Video half */}
-			<div className="flex flex-col gap-4 bg-white p-5 lg:px-6 dark:bg-zinc-950">
-				<div className="flex items-center justify-between gap-2">
-					<span className={labelRow}>
-						<i
-							className="ri-youtube-fill text-base leading-none"
-							aria-hidden="true"
-						/>
-						Video
-					</span>
-					{url && (
-						<a
-							href={url}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white"
-						>
-							Watch
-							<Icon
-								name="arrow-up-right"
-								className="text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
-							/>
-						</a>
-					)}
-				</div>
-				<ModuleThumbnail post={post} />
+			{/* Video half: the thumbnail alone, edge to edge. The ▶ running-time
+			    badge says "video", so it needs no label of its own. */}
+			<div className="bg-white dark:bg-zinc-950">
+				<ModuleThumbnail post={post} flush />
 			</div>
 
 			{/* Blog post half, read top to bottom like a post preview: the
