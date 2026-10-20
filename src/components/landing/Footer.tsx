@@ -53,6 +53,16 @@ export function Footer({
 								</li>
 								<li>
 									<Link
+										href={getAssetPath("/module-of-the-week")}
+										variant="footer"
+										active={activePath?.startsWith("/module-of-the-week")}
+										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+									>
+										Module of the Week
+									</Link>
+								</li>
+								<li>
+									<Link
 										href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792"
 										variant="footer"
 										className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
@@ -155,16 +165,6 @@ export function Footer({
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
 										Podcast 🎙️
-									</Link>
-								</li>
-								<li>
-									<Link
-										href={getAssetPath("/module-of-the-week")}
-										variant="footer"
-										active={activePath?.startsWith("/module-of-the-week")}
-										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-									>
-										Module of the Week
 									</Link>
 								</li>
 								<li>
