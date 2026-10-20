@@ -133,9 +133,6 @@ function SocialCells() {
 	);
 }
 
-/* Boxed mono label — the same chip as the Effect Days host card. */
-const chip =
-	"border border-zinc-400 bg-white px-2 py-0.5 dark:border-zinc-600 dark:bg-zinc-950";
 const micro =
 	"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
 
@@ -247,12 +244,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 			{/* Header: the module itself */}
 			<div className="bg-white px-5 py-5 md:col-span-2 lg:px-6 dark:bg-zinc-950">
-				<div className="flex items-center gap-3">
-					{entry === MODULES.length && (
-						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
-					)}
-					<ModuleMeta post={post} entry={entry} />
-				</div>
+				<ModuleMeta post={post} entry={entry} />
 				<h3 className="mt-2 text-xl leading-snug font-semibold text-zinc-900 md:text-2xl dark:text-white">
 					{moduleTitle(post)}
 				</h3>
