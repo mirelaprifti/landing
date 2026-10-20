@@ -221,16 +221,12 @@ function ModuleThumbnail({
  *  (number left, package right). */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
-	const labelRow =
-		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
 		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-12 dark:border-zinc-800 dark:bg-zinc-800">
-			{/* Video: the thumbnail alone, edge to edge. The ▶ running-time
-			    badge says "video", so it needs no label of its own. */}
-			<div className="flex flex-col bg-white lg:col-span-5 dark:bg-zinc-950">
-				{/* Meta row above the video, level with the post's
-				    "Blog post · date" row: number left, package right */}
-				<div className="flex items-baseline justify-between gap-3 border-b border-zinc-200 px-5 py-4 lg:px-6 dark:border-zinc-800">
+			{/* Top row across the block: number and package on the left, the
+			    post's date on the right */}
+			<div className="flex items-baseline justify-between gap-4 bg-white px-5 py-3 md:col-span-2 lg:col-span-12 lg:px-6 dark:bg-zinc-950">
+				<div className="flex min-w-0 items-baseline gap-3">
 					<span className="shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
 						{String(entry).padStart(2, "0")}
 					</span>
@@ -240,13 +236,19 @@ function ModuleRow({ post }: { post: BlogPost }) {
 						</span>
 					)}
 				</div>
-				<div className="mt-auto">
-					<ModuleThumbnail post={post} flush />
-				</div>
+				<time className="shrink-0 font-mono text-xs whitespace-nowrap text-zinc-500 tabular-nums dark:text-zinc-400">
+					{post.date}
+				</time>
 			</div>
 
-			{/* Blog post: the format and date at the top; the title and summary
-			    settled together above the "Read the post" bar. The title
+			{/* Video: the thumbnail alone, edge to edge. The ▶ running-time
+			    badge says "video", so it needs no label of its own. */}
+			<div className="bg-white lg:col-span-5 dark:bg-zinc-950">
+				<ModuleThumbnail post={post} flush />
+			</div>
+
+			{/* Blog post: the title and summary settled together above the
+			    "Read the post" bar. The title
 			    lives here because the post is the module's main read. The
 			    whole cell links to the post. */}
 			<a
@@ -256,15 +258,6 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 lg:col-span-7 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
 				<div className="flex flex-1 flex-col gap-4 p-5 lg:px-6">
-					<div className="flex items-center justify-between gap-2">
-						<span className={labelRow}>
-							<Icon name="file-text" className="text-base" />
-							Blog post
-						</span>
-						<time className="font-mono text-xs whitespace-nowrap text-zinc-500 tabular-nums dark:text-zinc-400">
-							{post.date}
-						</time>
-					</div>
 					<div className="mt-auto">
 						<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
 							{moduleTitle(post)}
