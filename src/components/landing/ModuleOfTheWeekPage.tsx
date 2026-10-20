@@ -247,8 +247,8 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				<ModuleThumbnail post={post} flush />
 			</div>
 
-			{/* Blog post: the title and summary settled together above the
-			    "Read the post" bar. The title
+			{/* Blog post: the title and summary at the top of the cell, the
+			    "Read the post" bar at the foot. The title
 			    lives here because the post is the module's main read. The
 			    whole cell links to the post. */}
 			<a
@@ -258,7 +258,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 lg:col-span-7 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
 				<div className="flex flex-1 flex-col gap-4 p-5 lg:px-6">
-					<div className="mt-auto">
+					<div>
 						<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
 							{moduleTitle(post)}
 						</h3>
