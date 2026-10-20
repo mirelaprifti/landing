@@ -499,9 +499,6 @@ export function ModuleOfTheWeekPage() {
 											<span className="text-sm leading-snug font-medium text-zinc-700 transition-colors group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white">
 												{item.title}
 											</span>
-											<span className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-												{item.duration}
-											</span>
 										</div>
 									</a>
 								</li>
