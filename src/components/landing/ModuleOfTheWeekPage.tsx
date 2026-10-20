@@ -211,46 +211,45 @@ function ModuleThumbnail({
 	);
 }
 
-/** One module per block, on the same hairline frame as Maxwell's card. The
- *  title runs across the top as the block's header, and the two formats sit
- *  beneath it, 45/55 — video left, blog post right — so they read
- *  as one module in two forms rather than neighbouring items. */
+/** One module per block, on the same four-column hairline frame as
+ *  Maxwell's card, so every vertical line on the page repeats: the name
+ *  column (¼) over his photo, the video (½) over his bio, the blog post (¼)
+ *  over his profile column. Below lg the name runs across the top and the
+ *  video and post split the row; on phones everything stacks. */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	const labelRow =
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
-		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-[minmax(0,9fr)_minmax(0,11fr)] dark:border-zinc-800 dark:bg-zinc-800">
-			{/* Header, one line: the entry number as a large index to scan
-			    down by, the title, and the package opposite */}
-			<div className="flex items-baseline gap-4 bg-white px-5 py-4 md:col-span-2 lg:px-6 dark:bg-zinc-950">
-				<span className="shrink-0 font-mono text-base leading-snug font-medium text-zinc-400 tabular-nums md:text-lg dark:text-zinc-500">
-					{String(entry).padStart(2, "0")}
-				</span>
-				{/* Title and package: stacked on phones, on one line from sm,
-				    the package pushed to the far end */}
-				<div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-					<h3 className="text-base leading-snug font-semibold text-balance text-zinc-900 md:text-lg dark:text-white">
+		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+			{/* Name column: the number and title at the top, the package
+			    settled at the foot (as the profile cells: label up, value
+			    down) */}
+			<div className="flex flex-col justify-between gap-3 bg-white p-5 md:col-span-2 lg:col-span-1 lg:px-6 dark:bg-zinc-950">
+				<div>
+					<span className="font-mono text-sm font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+						{String(entry).padStart(2, "0")}
+					</span>
+					<h3 className="mt-1 text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
 						{moduleTitle(post)}
 					</h3>
-					{post.packageName && (
-						<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
-							from "{post.packageName}"
-						</span>
-					)}
 				</div>
+				{post.packageName && (
+					<span className="font-mono text-xs break-all text-zinc-500 dark:text-zinc-400">
+						from "{post.packageName}"
+					</span>
+				)}
 			</div>
 
-			{/* Video half: the thumbnail alone, edge to edge. The ▶ running-time
+			{/* Video: the thumbnail alone, edge to edge. The ▶ running-time
 			    badge says "video", so it needs no label of its own. */}
-			<div className="bg-white dark:bg-zinc-950">
+			<div className="bg-white lg:col-span-2 dark:bg-zinc-950">
 				<ModuleThumbnail post={post} flush />
 			</div>
 
-			{/* Blog post half, read top to bottom like a post preview: the
-			    format and date at the top; the summary settled at the foot (as
-			    Maxwell's bio), right above the action behind a hairline, level with the bottom of
-			    the video. The whole half links to the post. */}
+			{/* Blog post: the format and date at the top, the summary settled
+			    above the action bar at the foot. The whole cell links to the
+			    post. */}
 			<a
 				href={getPostUrl(post)}
 				target="_blank"
@@ -263,11 +262,11 @@ function ModuleRow({ post }: { post: BlogPost }) {
 							<Icon name="file-text" className="text-base" />
 							Blog post
 						</span>
-						<time className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+						<time className="font-mono text-xs whitespace-nowrap text-zinc-500 tabular-nums dark:text-zinc-400">
 							{post.date}
 						</time>
 					</div>
-					<p className="mt-auto text-base leading-relaxed text-pretty text-zinc-700 lg:pr-4 dark:text-zinc-300">
+					<p className="mt-auto text-sm leading-relaxed text-pretty text-zinc-700 dark:text-zinc-300">
 						{post.excerpt}
 					</p>
 				</div>
