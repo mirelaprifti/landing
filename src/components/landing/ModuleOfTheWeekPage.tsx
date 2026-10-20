@@ -228,7 +228,7 @@ function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
 	);
 }
 
-/** The two formats side by side: the post to read, the video to watch. */
+/** The two formats: the post as the main action, the video beside it. */
 function ModuleLinks({
 	post,
 	className = "",
@@ -240,18 +240,19 @@ function ModuleLinks({
 	const format = "inline-flex items-center gap-1.5 font-medium";
 	return (
 		<div
-			className={`flex flex-wrap items-center gap-x-5 gap-y-2 text-sm ${className}`}
+			className={`flex flex-wrap items-center gap-x-5 gap-y-3 text-sm ${className}`}
 		>
-			<Link
+			{/* The post leads: the site's workhorse button (styleguide
+			    secondary md); the video follows as a quieter link */}
+			<Button
 				href={getPostUrl(post)}
-				variant="subtle"
+				variant="secondary"
 				target="_blank"
 				rel="noopener noreferrer"
-				className={format}
 			>
-				<Icon name="file-text" className="text-sm" />
+				<Icon name="file-text" className="text-base" />
 				Read the blog post
-			</Link>
+			</Button>
 			{url && post.video && (
 				<Link
 					href={url}
