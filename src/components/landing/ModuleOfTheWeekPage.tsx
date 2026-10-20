@@ -14,6 +14,11 @@ import { Navigation } from "./Navigation";
 
 const PLAYLIST_URL = "https://www.youtube.com/playlist?list=PLCGIHlTAijhY";
 const INTRO_POST_URL = "https://effect.website/blog/module-of-the-week/";
+const CHANNEL_SUBSCRIBE_URL =
+	"https://www.youtube.com/channel/UC8wNHsXmEuoikbwRdLeoJQg?sub_confirmation=1";
+const DISCORD_URL = "https://discord.gg/effect-ts";
+const BLOG_CATEGORY_URL =
+	"https://effect.website/blog?category=module-of-the-week#blog-grid";
 
 // Posts are newest first, so the oldest is entry 01
 const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
@@ -227,7 +232,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 			</div>
 
 			{/* Blog post: the format and date at the top; the title and summary
-			    settled together above the action bar at the foot. The title
+			    settled together at the foot. The title
 			    lives here because the post is the module's main read. The
 			    whole cell links to the post. */}
 			<a
@@ -255,7 +260,28 @@ function ModuleRow({ post }: { post: BlogPost }) {
 						</p>
 					</div>
 				</div>
-				<div className="flex items-center justify-between gap-2 border-t border-zinc-200 px-5 py-4 lg:px-6 dark:border-zinc-800">
+			</a>
+
+			{/* Footer: one row. On desktop it splits on the block's own line —
+			    number and package under the video, "Read the post" under the
+			    post; on phones it's a single line, meta left, action right. */}
+			<div className="flex bg-white md:col-span-2 lg:col-span-12 lg:grid lg:grid-cols-12 dark:bg-zinc-950">
+				<div className="flex min-w-0 flex-1 items-center gap-3 px-5 py-4 lg:col-span-5 lg:justify-between lg:px-6">
+					<span className="shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+						{String(entry).padStart(2, "0")}
+					</span>
+					{post.packageName && (
+						<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+							from "{post.packageName}"
+						</span>
+					)}
+				</div>
+				<a
+					href={getPostUrl(post)}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="group flex shrink-0 items-center justify-between gap-3 px-5 py-4 transition-colors hover:bg-zinc-100/60 lg:col-span-7 lg:border-l lg:border-zinc-200 lg:px-6 dark:hover:bg-zinc-900/60 dark:lg:border-zinc-800"
+				>
 					<span className="text-sm font-semibold text-zinc-900 dark:text-white">
 						Read the post
 					</span>
@@ -263,22 +289,78 @@ function ModuleRow({ post }: { post: BlogPost }) {
 						name="arrow-up-right"
 						className="text-base text-zinc-500 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
 					/>
-				</div>
-			</a>
-
-			{/* Footer row across the block: the number on the left, the package
-			    on the right */}
-			<div className="flex items-baseline justify-between gap-4 bg-white px-5 py-3 md:col-span-2 lg:col-span-12 lg:px-6 dark:bg-zinc-950">
-				<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
-					{String(entry).padStart(2, "0")}
-				</span>
-				{post.packageName && (
-					<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
-						from "{post.packageName}"
-					</span>
-				)}
+				</a>
 			</div>
 		</li>
+	);
+}
+
+/** How a module is made, as one labelled hairline row above the list
+ *  (the Talks & appearances label-bar pattern): the three steps in order,
+ *  each an icon, a label and one line. */
+const STEPS = [
+	{
+		icon: <Icon name="file-text" className="text-base" />,
+		label: "Blog post",
+		body: "Each module is written up as a post first.",
+	},
+	{
+		icon: (
+			<i
+				className="ri-discord-fill text-base leading-none"
+				aria-hidden="true"
+			/>
+		),
+		label: "Office Hours",
+		body: "Then walked through live, with questions.",
+	},
+	{
+		icon: (
+			<i
+				className="ri-youtube-fill text-base leading-none"
+				aria-hidden="true"
+			/>
+		),
+		label: "Video",
+		body: "Then cut into a standalone video.",
+	},
+];
+
+function HowItWorks() {
+	return (
+		<div className="mt-16 md:mt-20">
+			<div className={groupBar}>
+				<h2 className={micro}>// How it works</h2>
+				<a
+					href={INTRO_POST_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+				>
+					About the series
+					<Icon name="arrow-up-right" className="text-sm" />
+				</a>
+			</div>
+			<ol className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+				{STEPS.map((step, i) => (
+					<li
+						key={step.label}
+						className="flex flex-col gap-2 bg-white px-4 py-4 lg:px-6 dark:bg-zinc-950"
+					>
+						<span className="flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400">
+							<span className="font-mono text-xs tabular-nums">
+								{String(i + 1).padStart(2, "0")}
+							</span>
+							{step.icon}
+							{step.label}
+						</span>
+						<p className="text-sm leading-normal text-zinc-700 dark:text-zinc-300">
+							{step.body}
+						</p>
+					</li>
+				))}
+			</ol>
+		</div>
 	);
 }
 
@@ -288,7 +370,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
  *  one, and then by topic rather than import path.) */
 function ModulesList() {
 	return (
-		<ul className="mt-16 flex flex-col gap-6 md:mt-20">
+		<ul className="mt-6 flex flex-col gap-6">
 			{MODULES.map((post) => (
 				<ModuleRow key={post.slug} post={post} />
 			))}
@@ -378,27 +460,30 @@ export function ModuleOfTheWeekPage() {
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
 							The lesser-known parts of Effect, by Maxwell Brown.
 						</p>
-						{/* The two ways in, as a matched pair of buttons */}
+						{/* The post leads: the newest module's post as the primary
+						    action, the playlist beside it */}
 						<div className="mt-8 flex flex-wrap items-center gap-3">
+							{MODULES[0] && (
+								<Button
+									href={getPostUrl(MODULES[0])}
+									variant="primary"
+									size="lg"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Icon name="file-text" className="text-lg" />
+									Read the latest
+								</Button>
+							)}
 							<Button
 								href={PLAYLIST_URL}
-								variant="primary"
+								variant="secondary"
 								size="lg"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								<i className="ri-youtube-fill text-lg" />
 								Watch the playlist
-							</Button>
-							<Button
-								href={INTRO_POST_URL}
-								variant="secondary"
-								size="lg"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								About the series
-								<Icon name="arrow-up-right" className="text-sm" />
 							</Button>
 						</div>
 					</div>
@@ -409,6 +494,7 @@ export function ModuleOfTheWeekPage() {
 				{/* Modules */}
 				<section aria-label="Modules" className="pb-24">
 					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<HowItWorks />
 						<ModulesList />
 					</div>
 				</section>
@@ -458,11 +544,6 @@ export function ModuleOfTheWeekPage() {
 										Effect Cluster, the Effect CLI, and Effect AI, and runs
 										Effect Office Hours.
 									</p>
-									<p>
-										In this series, each module is written up as a blog post
-										first, then walked through live at Office Hours, before it's
-										cut into a standalone video.
-									</p>
 								</div>
 							</div>
 
@@ -506,6 +587,69 @@ export function ModuleOfTheWeekPage() {
 												</span>
 											</div>
 										</div>
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+				{/* Follow the series: the three places a new module lands, as
+				    hairline cells built like Maxwell's profile cells */}
+				<section aria-labelledby="follow-title" className="py-24 md:pt-32">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+							// Follow the series
+						</p>
+						<h2
+							id="follow-title"
+							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+						>
+							Never miss a module
+						</h2>
+						<ul className="mt-10 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+							{[
+								{
+									icon: "ri-youtube-fill",
+									label: "YouTube",
+									action: "Subscribe to the channel",
+									href: CHANNEL_SUBSCRIBE_URL,
+								},
+								{
+									icon: "ri-discord-fill",
+									label: "Office Hours",
+									action: "Join live on Discord",
+									href: DISCORD_URL,
+								},
+								{
+									icon: "ri-article-line",
+									label: "Blog",
+									action: "Read every post",
+									href: BLOG_CATEGORY_URL,
+								},
+							].map((item) => (
+								<li key={item.label} className="bg-white dark:bg-zinc-950">
+									<a
+										href={item.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="group flex h-full flex-col justify-between gap-6 px-4 py-5 transition-colors hover:bg-zinc-100/60 lg:px-6 dark:hover:bg-zinc-900/60"
+									>
+										<span className="flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400">
+											<i
+												className={`${item.icon} text-base leading-none`}
+												aria-hidden="true"
+											/>
+											{item.label}
+										</span>
+										<span className="flex items-center justify-between gap-2 text-sm font-semibold text-zinc-900 dark:text-white">
+											{item.action}
+											<Icon
+												name="arrow-up-right"
+												className="shrink-0 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+											/>
+										</span>
 									</a>
 								</li>
 							))}
