@@ -133,7 +133,7 @@ export const BLOG_POSTS: BlogPost[] = [
 	},
 	{
 		slug: "module-of-the-week/cluster-delivery",
-		title: "Module of the Week - Cluster, Part 3",
+		title: "Module of the Week - Cluster delivery, Part 3",
 		excerpt:
 			"We cover at-most-once and at-least-once delivery, then use persisted messages so an entity keeps its messages when a runner crashes.",
 		date: "Oct 12, 2026",
@@ -145,7 +145,7 @@ export const BLOG_POSTS: BlogPost[] = [
 	},
 	{
 		slug: "module-of-the-week/cluster-messaging",
-		title: "Module of the Week - Cluster, Part 2",
+		title: "Module of the Week - Cluster messaging, Part 2",
 		excerpt:
 			"We write our first entity, then follow one of its messages across a cluster to see how runners agree on who owns what.",
 		date: "Oct 5, 2026",
@@ -157,7 +157,7 @@ export const BLOG_POSTS: BlogPost[] = [
 	},
 	{
 		slug: "module-of-the-week/cluster-actors",
-		title: "Module of the Week - Cluster, Part 1",
+		title: "Module of the Week - Cluster actors, Part 1",
 		excerpt:
 			"The first in a series on Effect Cluster. We look at the actor model and how a cluster is laid out.",
 		date: "Sep 28, 2026",
