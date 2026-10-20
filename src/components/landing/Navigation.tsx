@@ -172,14 +172,14 @@ export function Navigation({
 									Blog
 								</Link>
 								<Link
-									href={getAssetPath("/podcast")}
+									href={getAssetPath("/module-of-the-week")}
 									variant="nav"
-									active={activePath?.startsWith("/podcast")}
+									active={activePath?.startsWith("/module-of-the-week")}
 									className={
 										transparent ? "text-white hover:text-white/80" : ""
 									}
 								>
-									Podcast
+									Module of the Week
 								</Link>
 								<Link
 									href={getAssetPath("/community-hub")}
@@ -363,10 +363,10 @@ export function Navigation({
 								Blog
 							</a>
 							<a
-								href={getAssetPath("/podcast")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/podcast") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+								href={getAssetPath("/module-of-the-week")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/module-of-the-week") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
-								Podcast
+								Module of the Week
 							</a>
 							<a
 								href={getAssetPath("/community-hub")}
