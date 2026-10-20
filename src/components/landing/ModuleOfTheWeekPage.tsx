@@ -530,14 +530,14 @@ export function ModuleOfTheWeekPage() {
 							{[
 								{
 									icon: "ri-youtube-fill",
-									label: "YouTube",
-									action: "Subscribe to the channel",
+									label: "Office Hours",
+									action: "Subscribe on YouTube",
 									href: CHANNEL_SUBSCRIBE_URL,
 								},
 								{
 									icon: "ri-discord-fill",
-									label: "Office Hours",
-									action: "Join live on Discord",
+									label: "Community",
+									action: "Join the conversation",
 									href: DISCORD_URL,
 								},
 								{
