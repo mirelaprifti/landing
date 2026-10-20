@@ -280,29 +280,39 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				<ModuleThumbnail post={post} />
 			</div>
 
-			{/* Blog post half: the whole cell links to the post */}
+			{/* Blog post half, read top to bottom like a post preview: the
+			    format and date, the summary as a pull-quote, then the action
+			    pinned to the foot behind a hairline, level with the bottom of
+			    the video. The whole half links to the post. */}
 			<a
 				href={getPostUrl(post)}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="group flex flex-col gap-4 bg-white p-5 transition-colors hover:bg-zinc-100/60 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
+				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
-				<div className="flex items-center justify-between gap-2">
-					<span className={labelRow}>
-						<Icon name="file-text" className="text-base" />
-						Blog post
-					</span>
-					<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white">
-						Read the post
-						<Icon
-							name="arrow-up-right"
-							className="text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
-						/>
-					</span>
+				<div className="flex flex-1 flex-col gap-4 p-5 lg:px-6">
+					<div className="flex items-center justify-between gap-2">
+						<span className={labelRow}>
+							<Icon name="file-text" className="text-base" />
+							Blog post
+						</span>
+						<time className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+							{post.date}
+						</time>
+					</div>
+					<p className="text-lg leading-relaxed text-pretty text-zinc-700 md:max-w-md dark:text-zinc-300">
+						{post.excerpt}
+					</p>
 				</div>
-				<p className="text-base leading-relaxed text-zinc-600 md:max-w-md dark:text-zinc-400">
-					{post.excerpt}
-				</p>
+				<div className="flex items-center justify-between gap-2 border-t border-zinc-200 px-5 py-4 lg:px-6 dark:border-zinc-800">
+					<span className="text-sm font-semibold text-zinc-900 dark:text-white">
+						Read the post
+					</span>
+					<Icon
+						name="arrow-up-right"
+						className="text-base text-zinc-500 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+					/>
+				</div>
 			</a>
 		</li>
 	);
