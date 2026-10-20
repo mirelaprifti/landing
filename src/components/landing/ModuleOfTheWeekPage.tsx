@@ -211,27 +211,15 @@ function ModuleThumbnail({
 	);
 }
 
-/** One module per block on a 12-column hairline frame: a slim header row
- *  (number left, package right) over the video (5/12) and the blog post
- *  (7/12), which carries the title. */
+/** One module per block on a 12-column hairline frame: the video (5/12)
+ *  and the blog post (7/12), which carries the title, over a slim footer row
+ *  (number left, package right). */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	const labelRow =
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
 		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-12 dark:border-zinc-800 dark:bg-zinc-800">
-			{/* Header row: the number on the left, the package on the right */}
-			<div className="flex items-baseline justify-between gap-4 bg-white px-5 py-3 md:col-span-2 lg:col-span-12 lg:px-6 dark:bg-zinc-950">
-				<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
-					{String(entry).padStart(2, "0")}
-				</span>
-				{post.packageName && (
-					<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
-						from "{post.packageName}"
-					</span>
-				)}
-			</div>
-
 			{/* Video: the thumbnail alone, edge to edge. The ▶ running-time
 			    badge says "video", so it needs no label of its own. */}
 			<div className="bg-white lg:col-span-5 dark:bg-zinc-950">
@@ -277,6 +265,19 @@ function ModuleRow({ post }: { post: BlogPost }) {
 					/>
 				</div>
 			</a>
+
+			{/* Footer row across the block: the number on the left, the package
+			    on the right */}
+			<div className="flex items-baseline justify-between gap-4 bg-white px-5 py-3 md:col-span-2 lg:col-span-12 lg:px-6 dark:bg-zinc-950">
+				<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+					{String(entry).padStart(2, "0")}
+				</span>
+				{post.packageName && (
+					<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+						from "{post.packageName}"
+					</span>
+				)}
+			</div>
 		</li>
 	);
 }
