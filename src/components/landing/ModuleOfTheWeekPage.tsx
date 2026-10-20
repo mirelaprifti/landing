@@ -211,21 +211,20 @@ function ModuleThumbnail({
 	);
 }
 
-/** One module per block, on the same four-column hairline frame as
- *  Maxwell's card, so every vertical line on the page repeats: the name
- *  column (¼) over his photo, the video (½) over his bio, the blog post (¼)
- *  over his profile column. Below lg the name runs across the top and the
+/** One module per block on a 12-column hairline frame: a narrow name
+ *  column (2/12), the video (7/12), and the blog post (3/12) sitting exactly
+ *  over Maxwell's profile column. Below lg the name runs across the top and the
  *  video and post split the row; on phones everything stacks. */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	const labelRow =
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
-		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-12 dark:border-zinc-800 dark:bg-zinc-800">
 			{/* Name column: the number and title at the top, the package
 			    settled at the foot (as the profile cells: label up, value
 			    down) */}
-			<div className="flex flex-col justify-between gap-3 bg-white p-5 md:col-span-2 lg:col-span-1 lg:px-6 dark:bg-zinc-950">
+			<div className="flex flex-col justify-between gap-3 bg-white p-5 md:col-span-2 lg:col-span-2 dark:bg-zinc-950">
 				<div>
 					<span className="font-mono text-sm font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
 						{String(entry).padStart(2, "0")}
@@ -243,7 +242,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 
 			{/* Video: the thumbnail alone, edge to edge. The ▶ running-time
 			    badge says "video", so it needs no label of its own. */}
-			<div className="bg-white lg:col-span-2 dark:bg-zinc-950">
+			<div className="bg-white lg:col-span-7 dark:bg-zinc-950">
 				<ModuleThumbnail post={post} flush />
 			</div>
 
@@ -254,7 +253,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				href={getPostUrl(post)}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
+				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 lg:col-span-3 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
 				<div className="flex flex-1 flex-col gap-4 p-5 lg:px-6">
 					<div className="flex items-center justify-between gap-2">
