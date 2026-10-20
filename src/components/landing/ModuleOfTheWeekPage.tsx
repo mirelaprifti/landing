@@ -212,8 +212,8 @@ function ModuleThumbnail({
 }
 
 /** One module per block on a 12-column hairline frame: a narrow name
- *  column (2/12), the video (7/12), and the blog post (3/12) sitting exactly
- *  over Maxwell's profile column. Below lg the name runs across the top and the
+ *  column (2/12), then the video and the blog post at equal weight (5/12
+ *  each) — one module in two formats. Below lg the name runs across the top and the
  *  video and post split the row; on phones everything stacks. */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
@@ -242,7 +242,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 
 			{/* Video: the thumbnail alone, edge to edge. The ▶ running-time
 			    badge says "video", so it needs no label of its own. */}
-			<div className="bg-white lg:col-span-7 dark:bg-zinc-950">
+			<div className="bg-white lg:col-span-5 dark:bg-zinc-950">
 				<ModuleThumbnail post={post} flush />
 			</div>
 
@@ -253,7 +253,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				href={getPostUrl(post)}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 lg:col-span-3 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
+				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 lg:col-span-5 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
 				<div className="flex flex-1 flex-col gap-4 p-5 lg:px-6">
 					<div className="flex items-center justify-between gap-2">
@@ -265,7 +265,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 							{post.date}
 						</time>
 					</div>
-					<p className="mt-auto text-sm leading-relaxed text-pretty text-zinc-700 dark:text-zinc-300">
+					<p className="mt-auto text-base leading-relaxed text-pretty text-zinc-700 dark:text-zinc-300">
 						{post.excerpt}
 					</p>
 				</div>
