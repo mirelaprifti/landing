@@ -210,44 +210,34 @@ function ModuleThumbnail({
 	);
 }
 
-/** Entry number, then the package the module lives in. */
-function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
-	return (
-		<div className="flex min-w-0 items-center gap-2 font-mono text-xs">
-			<span className="shrink-0 font-medium text-zinc-900 dark:text-zinc-200 tabular-nums">
-				{String(entry).padStart(2, "0")}
-			</span>
-			{post.packageName && (
-				<>
-					<span
-						aria-hidden="true"
-						className="h-3 w-px shrink-0 bg-zinc-300 dark:bg-zinc-700"
-					/>
-					<span className="truncate text-zinc-600 dark:text-zinc-400">
-						from "{post.packageName}"
-					</span>
-				</>
-			)}
-		</div>
-	);
-}
-
 /** One module per block, on the same hairline frame as Maxwell's card. The
  *  title runs across the top as the block's header, and the two formats sit
- *  as equal halves beneath it — video left, blog post right — so they read
+ *  beneath it, 45/55 — video left, blog post right — so they read
  *  as one module in two forms rather than neighbouring items. */
 function ModuleRow({ post }: { post: BlogPost }) {
 	const entry = entryOf(post);
 	const labelRow =
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
-		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-			{/* Header: the module itself */}
-			<div className="bg-white px-5 py-5 md:col-span-2 lg:px-6 dark:bg-zinc-950">
-				<ModuleMeta post={post} entry={entry} />
-				<h3 className="mt-2 text-xl leading-snug font-semibold text-zinc-900 md:text-2xl dark:text-white">
-					{moduleTitle(post)}
-				</h3>
+		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-[minmax(0,9fr)_minmax(0,11fr)] dark:border-zinc-800 dark:bg-zinc-800">
+			{/* Header, one line: the entry number as a large index to scan
+			    down by, the title, and the package opposite */}
+			<div className="flex items-baseline gap-4 bg-white px-5 py-4 md:col-span-2 lg:px-6 dark:bg-zinc-950">
+				<span className="shrink-0 font-mono text-lg leading-snug font-medium text-zinc-400 tabular-nums md:text-xl dark:text-zinc-500">
+					{String(entry).padStart(2, "0")}
+				</span>
+				{/* Title and package: stacked on phones, on one line from sm,
+				    the package pushed to the far end */}
+				<div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+					<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 md:text-xl dark:text-white">
+						{moduleTitle(post)}
+					</h3>
+					{post.packageName && (
+						<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+							from "{post.packageName}"
+						</span>
+					)}
+				</div>
 			</div>
 
 			{/* Video half: the thumbnail alone, edge to edge. The ▶ running-time
