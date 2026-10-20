@@ -258,12 +258,12 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				rel="noopener noreferrer"
 				className="group flex flex-col bg-white transition-colors hover:bg-zinc-100/60 lg:col-span-7 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
-				<div className="flex flex-1 flex-col gap-4 p-5 lg:px-6">
+				<div className="flex flex-1 flex-col gap-4 p-5 lg:p-6">
 					<div>
 						<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
 							{moduleTitle(post)}
 						</h3>
-						<p className="mt-1 text-base leading-relaxed text-pretty text-zinc-600 dark:text-zinc-400">
+						<p className="mt-2 text-base leading-relaxed text-pretty text-zinc-600 dark:text-zinc-400">
 							{post.excerpt}
 						</p>
 					</div>
