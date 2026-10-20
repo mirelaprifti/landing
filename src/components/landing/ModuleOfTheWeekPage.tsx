@@ -230,8 +230,7 @@ function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
 
 /** A module's two formats as stacked hairline cells in the block's third
  *  column, built like Maxwell's profile cells: icon and label at the top
- *  left, the action at the foot. The post leads, so its cell sits first and
- *  carries a faint fill. */
+ *  left, the action at the foot. The post leads, so its cell sits first. */
 function ModuleActions({ post }: { post: BlogPost }) {
 	const url = videoUrl(post);
 	const cell =
@@ -248,7 +247,7 @@ function ModuleActions({ post }: { post: BlogPost }) {
 				href={getPostUrl(post)}
 				target="_blank"
 				rel="noopener noreferrer"
-				className={`${cell} bg-zinc-100/60 hover:bg-zinc-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-900`}
+				className={`${cell} bg-white hover:bg-zinc-100/60 dark:bg-zinc-950 dark:hover:bg-zinc-900/60`}
 			>
 				<span className={labelRow}>
 					<Icon name="file-text" className="text-base" />
