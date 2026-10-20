@@ -227,7 +227,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 			    down) */}
 			<div className="flex flex-col justify-between gap-3 bg-white p-5 md:col-span-2 lg:col-span-2 dark:bg-zinc-950">
 				<div>
-					<span className="font-mono text-sm font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+					<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
 						{String(entry).padStart(2, "0")}
 					</span>
 					<h3 className="mt-1 text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
