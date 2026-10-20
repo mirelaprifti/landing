@@ -228,43 +228,33 @@ function ModuleMeta({ post, entry }: { post: BlogPost; entry: number }) {
 	);
 }
 
-/** A module's two formats as stacked hairline cells in the block's third
- *  column, built like Maxwell's profile cells: icon and label at the top
- *  left, the action at the foot. The post leads, so its cell sits first. */
-function ModuleActions({ post }: { post: BlogPost }) {
+/** One module per block, on the same hairline frame as Maxwell's card. The
+ *  title runs across the top as the block's header, and the two formats sit
+ *  as equal halves beneath it — video left, blog post right — so they read
+ *  as one module in two forms rather than neighbouring items. */
+function ModuleRow({ post }: { post: BlogPost }) {
+	const entry = entryOf(post);
 	const url = videoUrl(post);
-	const cell =
-		"group flex flex-1 flex-col justify-between gap-4 px-4 py-5 transition-colors lg:px-6";
 	const labelRow =
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
-	const value =
-		"flex items-center justify-between gap-2 text-sm font-semibold text-zinc-900 dark:text-white";
-	const arrow =
-		"shrink-0 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white";
 	return (
-		<div className="grid grid-cols-2 gap-px bg-zinc-200 lg:col-span-2 lg:flex lg:flex-col dark:bg-zinc-800">
-			<a
-				href={getPostUrl(post)}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={`${cell} bg-white hover:bg-zinc-100/60 dark:bg-zinc-950 dark:hover:bg-zinc-900/60`}
-			>
-				<span className={labelRow}>
-					<Icon name="file-text" className="text-base" />
-					Blog post
-				</span>
-				<span className={value}>
-					Read the post
-					<Icon name="arrow-up-right" className={arrow} />
-				</span>
-			</a>
-			{url && post.video && (
-				<a
-					href={url}
-					target="_blank"
-					rel="noopener noreferrer"
-					className={`${cell} bg-white hover:bg-zinc-100/60 dark:bg-zinc-950 dark:hover:bg-zinc-900/60`}
-				>
+		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+			{/* Header: the module itself */}
+			<div className="bg-white px-5 py-5 md:col-span-2 lg:px-6 dark:bg-zinc-950">
+				<div className="flex items-center gap-3">
+					{entry === MODULES.length && (
+						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
+					)}
+					<ModuleMeta post={post} entry={entry} />
+				</div>
+				<h3 className="mt-2 text-xl leading-snug font-semibold text-zinc-900 md:text-2xl dark:text-white">
+					{moduleTitle(post)}
+				</h3>
+			</div>
+
+			{/* Video half */}
+			<div className="flex flex-col gap-4 bg-white p-5 lg:px-6 dark:bg-zinc-950">
+				<div className="flex items-center justify-between gap-2">
 					<span className={labelRow}>
 						<i
 							className="ri-youtube-fill text-base leading-none"
@@ -272,47 +262,48 @@ function ModuleActions({ post }: { post: BlogPost }) {
 						/>
 						Video
 					</span>
-					<span className={value}>
-						<span>
+					{url && (
+						<a
+							href={url}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white"
+						>
 							Watch
-							<span className="ml-2 font-mono text-xs font-normal text-zinc-500 tabular-nums dark:text-zinc-400">
-								{post.video.duration}
-							</span>
-						</span>
-						<Icon name="arrow-up-right" className={arrow} />
-					</span>
-				</a>
-			)}
-		</div>
-	);
-}
-
-/** One module per block, on the same hairline frame as Maxwell's card: the
- *  video, the copy, and the two formats in a narrow third column that lines
- *  up with his profile column. 3/8 · 3/8 · 2/8 from lg; on phones the video
- *  and copy stack, the two formats side by side beneath. */
-function ModuleRow({ post }: { post: BlogPost }) {
-	const entry = entryOf(post);
-	return (
-		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-8 dark:border-zinc-800 dark:bg-zinc-800">
-			<div className="bg-white p-4 lg:col-span-3 dark:bg-zinc-950">
+							<Icon
+								name="arrow-up-right"
+								className="text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+							/>
+						</a>
+					)}
+				</div>
 				<ModuleThumbnail post={post} />
 			</div>
-			<div className="flex min-w-0 flex-col justify-center bg-white p-5 lg:col-span-3 lg:p-6 dark:bg-zinc-950">
-				<div className="flex items-center gap-3">
-					{entry === MODULES.length && (
-						<span className={`${micro} ${chip} whitespace-nowrap`}>Latest</span>
-					)}
-					<ModuleMeta post={post} entry={entry} />
+
+			{/* Blog post half: the whole cell links to the post */}
+			<a
+				href={getPostUrl(post)}
+				target="_blank"
+				rel="noopener noreferrer"
+				className="group flex flex-col gap-4 bg-white p-5 transition-colors hover:bg-zinc-100/60 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
+			>
+				<div className="flex items-center justify-between gap-2">
+					<span className={labelRow}>
+						<Icon name="file-text" className="text-base" />
+						Blog post
+					</span>
+					<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white">
+						Read the post
+						<Icon
+							name="arrow-up-right"
+							className="text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+						/>
+					</span>
 				</div>
-				<h3 className="mt-3 text-xl leading-snug font-semibold text-zinc-900 dark:text-white">
-					{moduleTitle(post)}
-				</h3>
-				<p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+				<p className="text-base leading-relaxed text-zinc-600 md:max-w-md dark:text-zinc-400">
 					{post.excerpt}
 				</p>
-			</div>
-			<ModuleActions post={post} />
+			</a>
 		</li>
 	);
 }
