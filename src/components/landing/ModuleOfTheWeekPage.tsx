@@ -300,7 +300,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 							{post.date}
 						</time>
 					</div>
-					<p className="mt-auto text-lg leading-relaxed text-pretty text-zinc-700 md:max-w-md dark:text-zinc-300">
+					<p className="mt-auto text-lg leading-relaxed text-pretty text-zinc-700 lg:pr-4 dark:text-zinc-300">
 						{post.excerpt}
 					</p>
 				</div>
