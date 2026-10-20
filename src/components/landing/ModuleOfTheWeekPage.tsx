@@ -195,7 +195,8 @@ function ModuleThumbnail({
 			className={`group relative block aspect-video overflow-hidden ${flush ? "h-full w-full" : "border border-zinc-200 dark:border-zinc-800"}`}
 		>
 			<img
-				src={`https://i.ytimg.com/vi/${post.video.youtubeId}/hqdefault.jpg`}
+				// sddefault (640px) is the largest these videos have; no maxres
+				src={`https://i.ytimg.com/vi/${post.video.youtubeId}/sddefault.jpg`}
 				alt=""
 				loading="lazy"
 				className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
@@ -223,13 +224,13 @@ function ModuleRow({ post }: { post: BlogPost }) {
 			{/* Header, one line: the entry number as a large index to scan
 			    down by, the title, and the package opposite */}
 			<div className="flex items-baseline gap-4 bg-white px-5 py-4 md:col-span-2 lg:px-6 dark:bg-zinc-950">
-				<span className="shrink-0 font-mono text-lg leading-snug font-medium text-zinc-400 tabular-nums md:text-xl dark:text-zinc-500">
+				<span className="shrink-0 font-mono text-base leading-snug font-medium text-zinc-400 tabular-nums md:text-lg dark:text-zinc-500">
 					{String(entry).padStart(2, "0")}
 				</span>
 				{/* Title and package: stacked on phones, on one line from sm,
 				    the package pushed to the far end */}
 				<div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-					<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 md:text-xl dark:text-white">
+					<h3 className="text-base leading-snug font-semibold text-balance text-zinc-900 md:text-lg dark:text-white">
 						{moduleTitle(post)}
 					</h3>
 					{post.packageName && (
@@ -494,7 +495,7 @@ export function ModuleOfTheWeekPage() {
 										<div className="mt-auto pt-6">
 											<div className="relative aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
 												<img
-													src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
+													src={`https://i.ytimg.com/vi/${item.youtubeId}/maxresdefault.jpg`}
 													alt=""
 													loading="lazy"
 													className="h-full w-full object-cover opacity-50 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 group-hover:grayscale-0"
