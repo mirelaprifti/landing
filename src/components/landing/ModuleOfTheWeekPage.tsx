@@ -474,37 +474,34 @@ export function ModuleOfTheWeekPage() {
 						<div className={`${groupBar} border-t-0`}>
 							<h3 className={micro}>// Talks & appearances</h3>
 						</div>
-						<ul className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						{/* 2 × 2, each talk a compact horizontal row: a small muted
+						    thumbnail, then the venue and title. Kept quiet so it
+						    reads as supporting detail under Maxwell's card. */}
+						<ul className="grid grid-cols-1 gap-px border border-t-0 border-zinc-200 bg-zinc-200 md:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 							{APPEARANCES.map((item) => (
 								<li key={item.youtubeId} className="bg-white dark:bg-zinc-950">
 									<a
 										href={`https://www.youtube.com/watch?v=${item.youtubeId}`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="group flex h-full flex-col p-4 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
+										className="group flex h-full items-center gap-4 p-4 transition-colors hover:bg-zinc-100/60 dark:hover:bg-zinc-900/60"
 									>
-										<span className={micro}>{item.venue}</span>
-										<span className="mt-2 text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
-											{item.title}
-										</span>
-										{/* Thumbnail settled at the foot, so all four line up
-										    whatever the title's length */}
-										<div className="mt-auto pt-6">
-											<div className="relative aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
-												<img
-													src={`https://i.ytimg.com/vi/${item.youtubeId}/maxresdefault.jpg`}
-													alt=""
-													loading="lazy"
-													className="h-full w-full object-cover opacity-50 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 group-hover:grayscale-0"
-												/>
-												<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums transition-colors group-hover:bg-zinc-950">
-													<i
-														className="ri-play-fill text-sm leading-none"
-														aria-hidden="true"
-													/>
-													{item.duration}
-												</span>
-											</div>
+										<div className="relative aspect-video w-28 shrink-0 overflow-hidden border border-zinc-200 sm:w-36 dark:border-zinc-800">
+											<img
+												src={`https://i.ytimg.com/vi/${item.youtubeId}/maxresdefault.jpg`}
+												alt=""
+												loading="lazy"
+												className="h-full w-full object-cover opacity-50 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+											/>
+										</div>
+										<div className="flex min-w-0 flex-col gap-1">
+											<span className={micro}>{item.venue}</span>
+											<span className="text-sm leading-snug font-medium text-zinc-700 transition-colors group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white">
+												{item.title}
+											</span>
+											<span className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+												{item.duration}
+											</span>
 										</div>
 									</a>
 								</li>
