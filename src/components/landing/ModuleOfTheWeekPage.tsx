@@ -16,6 +16,8 @@ const PLAYLIST_URL = "https://www.youtube.com/playlist?list=PLCGIHlTAijhY";
 const CHANNEL_SUBSCRIBE_URL =
 	"https://www.youtube.com/channel/UC8wNHsXmEuoikbwRdLeoJQg?sub_confirmation=1";
 const DISCORD_URL = "https://discord.gg/effect-ts";
+// Whole-blog feed: effect.website has no feed for this series alone yet
+const BLOG_RSS_URL = "https://effect.website/rss.xml";
 const BLOG_CATEGORY_URL =
 	"https://effect.website/blog?category=module-of-the-week#blog-grid";
 
@@ -524,7 +526,7 @@ export function ModuleOfTheWeekPage() {
 						>
 							Never miss a module
 						</h2>
-						<ul className="mt-10 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+						<ul className="mt-10 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 							{[
 								{
 									icon: "ri-youtube-fill",
@@ -543,6 +545,12 @@ export function ModuleOfTheWeekPage() {
 									label: "Blog",
 									action: "Read every post",
 									href: BLOG_CATEGORY_URL,
+								},
+								{
+									icon: "ri-rss-fill",
+									label: "RSS",
+									action: "Subscribe to the blog feed",
+									href: BLOG_RSS_URL,
 								},
 							].map((item) => (
 								<li key={item.label} className="bg-white dark:bg-zinc-950">
