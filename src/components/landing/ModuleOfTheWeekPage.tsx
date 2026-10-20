@@ -378,21 +378,19 @@ export function ModuleOfTheWeekPage() {
 							Each module starts as a blog post, gets walked through live at
 							Effect Office Hours, and ends up as a standalone video.
 						</p>
-						{/* The post leads: the newest module's post as the primary
-						    action, the playlist beside it */}
+						{/* The posts lead: every Module of the Week post on the blog as
+						    the primary action, the playlist beside it */}
 						<div className="mt-8 flex flex-wrap items-center gap-3">
-							{MODULES[0] && (
-								<Button
-									href={getPostUrl(MODULES[0])}
-									variant="primary"
-									size="lg"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<Icon name="file-text" className="text-lg" />
-									Read the latest
-								</Button>
-							)}
+							<Button
+								href={BLOG_CATEGORY_URL}
+								variant="primary"
+								size="lg"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Icon name="file-text" className="text-lg" />
+								View all blog posts
+							</Button>
 							<Button
 								href={PLAYLIST_URL}
 								variant="secondary"
