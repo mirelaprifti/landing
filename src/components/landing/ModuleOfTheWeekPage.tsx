@@ -222,18 +222,12 @@ function ModuleRow({ post }: { post: BlogPost }) {
 		"flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400";
 	return (
 		<li className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-2 lg:grid-cols-12 dark:border-zinc-800 dark:bg-zinc-800">
-			{/* Name column: the number and title at the top, the package
-			    settled at the foot (as the profile cells: label up, value
-			    down) */}
+			{/* Index column: the number at the top, the package settled at the
+			    foot (as the profile cells: label up, value down) */}
 			<div className="flex flex-col justify-between gap-3 bg-white p-5 md:col-span-2 lg:col-span-2 dark:bg-zinc-950">
-				<div>
-					<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
-						{String(entry).padStart(2, "0")}
-					</span>
-					<h3 className="mt-1 text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
-						{moduleTitle(post)}
-					</h3>
-				</div>
+				<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+					{String(entry).padStart(2, "0")}
+				</span>
 				{post.packageName && (
 					<span className="font-mono text-xs break-all text-zinc-500 dark:text-zinc-400">
 						from "{post.packageName}"
@@ -247,9 +241,10 @@ function ModuleRow({ post }: { post: BlogPost }) {
 				<ModuleThumbnail post={post} flush />
 			</div>
 
-			{/* Blog post: the format and date at the top, the summary settled
-			    above the action bar at the foot. The whole cell links to the
-			    post. */}
+			{/* Blog post: the format and date at the top; the title and summary
+			    settled together above the action bar at the foot. The title
+			    lives here because the post is the module's main read. The
+			    whole cell links to the post. */}
 			<a
 				href={getPostUrl(post)}
 				target="_blank"
@@ -266,9 +261,14 @@ function ModuleRow({ post }: { post: BlogPost }) {
 							{post.date}
 						</time>
 					</div>
-					<p className="mt-auto text-base leading-relaxed text-pretty text-zinc-700 dark:text-zinc-300">
-						{post.excerpt}
-					</p>
+					<div className="mt-auto">
+						<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
+							{moduleTitle(post)}
+						</h3>
+						<p className="mt-1 text-base leading-relaxed text-pretty text-zinc-600 dark:text-zinc-400">
+							{post.excerpt}
+						</p>
+					</div>
 				</div>
 				<div className="flex items-center justify-between gap-2 border-t border-zinc-200 px-5 py-4 lg:px-6 dark:border-zinc-800">
 					<span className="text-sm font-semibold text-zinc-900 dark:text-white">
