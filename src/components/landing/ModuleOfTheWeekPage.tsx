@@ -451,7 +451,9 @@ export function ModuleOfTheWeekPage() {
 							One Effect module, every week
 						</h1>
 						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-							The lesser-known parts of Effect, by Maxwell Brown.
+							The lesser-known parts of Effect, by Maxwell Brown. Each module
+							starts as a blog post, gets walked through live at Effect Office
+							Hours, and ends up as a standalone video.
 						</p>
 						{/* The post leads: the newest module's post as the primary
 						    action, the playlist beside it */}
