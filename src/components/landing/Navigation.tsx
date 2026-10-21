@@ -121,7 +121,13 @@ export function Navigation({
 						className={`relative mx-auto w-full px-4 ${fullWidth ? "" : "max-w-[88rem]"}`}
 					>
 						<nav className="flex h-16 items-center">
-							<a href="/" className="flex items-center">
+							{/* Named on the link, not the logo: only one of the two logo
+							    images is visible per theme */}
+							<a
+								href="/"
+								aria-label="Effect home"
+								className="flex items-center"
+							>
 								<img
 									src={getAssetPath(
 										"/assets/effect-logo/Combination mark/SVG/effect-logo-black.svg",

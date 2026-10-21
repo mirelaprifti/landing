@@ -289,10 +289,10 @@ export function ModuleRequestsSection({
 												>
 													{module.name}
 												</span>
-												<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+												<span className="truncate font-mono text-xs text-zinc-600 dark:text-zinc-400">
 													{module.pkg}
 												</span>
-												<span className="ml-auto inline-flex shrink-0 items-center gap-1 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+												<span className="ml-auto inline-flex shrink-0 items-center gap-1 font-mono text-xs text-zinc-600 tabular-nums dark:text-zinc-400">
 													{isCovered ? (
 														"Covered"
 													) : request?.voted ? (
@@ -354,14 +354,14 @@ export function ModuleRequestsSection({
 											: "bg-white dark:bg-zinc-950"
 									}`}
 								>
-									<span className="w-6 shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+									<span className="w-6 shrink-0 font-mono text-xs font-medium text-zinc-600 tabular-nums dark:text-zinc-400">
 										{String(i + 1).padStart(2, "0")}
 									</span>
 									<span className="flex min-w-0 flex-1 flex-col">
 										<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
 											{request.name}
 										</span>
-										<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+										<span className="truncate font-mono text-xs text-zinc-600 dark:text-zinc-400">
 											{request.pkg}
 										</span>
 									</span>

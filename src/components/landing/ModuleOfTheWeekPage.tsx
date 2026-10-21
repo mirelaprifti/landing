@@ -234,7 +234,7 @@ function ModuleRow({ post }: { post: BlogPost }) {
 			    post's date on the right */}
 			<div className="flex items-baseline justify-between gap-4 bg-white px-5 py-3 md:col-span-2 lg:col-span-12 lg:px-6 dark:bg-zinc-950">
 				<div className="flex min-w-0 items-baseline gap-3">
-					<span className="shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+					<span className="shrink-0 font-mono text-xs font-medium text-zinc-500 tabular-nums dark:text-zinc-400">
 						{String(entry).padStart(2, "0")}
 					</span>
 					{post.packageName && (
