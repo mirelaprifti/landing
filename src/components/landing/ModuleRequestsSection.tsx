@@ -153,7 +153,7 @@ export function ModuleRequestsSection({
 						</h2>
 					</div>
 
-					<form onSubmit={submit} className="mt-6">
+					<form onSubmit={submit} className="mt-8">
 						<label htmlFor="module-suggestion" className="sr-only">
 							Suggest a module
 						</label>
