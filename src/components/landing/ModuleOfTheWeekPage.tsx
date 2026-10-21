@@ -311,13 +311,14 @@ function NextModuleSlot() {
 			<a
 				href="#vote"
 				onClick={jumpToVote}
-				className="group flex flex-col gap-3 border border-dashed border-zinc-300 px-5 py-5 transition-colors hover:border-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-6 dark:border-zinc-700 dark:hover:border-zinc-500"
+				className="group flex items-center justify-between gap-4 border border-dashed border-zinc-300 px-5 py-3 transition-colors hover:border-zinc-500 lg:px-6 dark:border-zinc-700 dark:hover:border-zinc-500"
 			>
-				<span className="text-lg font-semibold text-zinc-900 dark:text-white">
+				<span className="text-sm font-semibold text-zinc-900 dark:text-white">
 					Want a module covered?
 				</span>
 				<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-					Suggest it or +1 it
+					<span className="hidden sm:inline">Suggest it or +1 it</span>
+					<span className="sm:hidden">Vote</span>
 					<Icon name="arrow-down" className="text-xs" />
 				</span>
 			</a>
