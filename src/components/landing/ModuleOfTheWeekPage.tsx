@@ -418,6 +418,21 @@ export function ModuleOfTheWeekPage({
 								<i className="ri-youtube-fill text-lg" />
 								Watch the playlist
 							</Button>
+							{/* Jump to the vote: a subtle link, ↓ = stays on this page */}
+							<a
+								href="#vote"
+								onClick={(e) => {
+									e.preventDefault();
+									document
+										.getElementById("vote")
+										?.scrollIntoView({ behavior: "smooth" });
+									history.replaceState(null, "", "#vote");
+								}}
+								className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 sm:ml-1 sm:px-2 dark:text-zinc-400 dark:hover:text-white"
+							>
+								Vote for the next module
+								<Icon name="arrow-down" className="text-xs" />
+							</a>
 							{/* RSS, as on the Blog page: mono label + icon, quiet beside
 							    the two buttons */}
 							<a

@@ -175,7 +175,13 @@ export function ModuleRequestsSection({
 	const showDrop = open && query.trim().length > 0;
 
 	return (
-		<section aria-labelledby="requests-title">
+		<section
+			// #vote: linked from the hero and shareable (Discord, video
+			// descriptions); scroll-mt clears the sticky navbar
+			id="vote"
+			aria-labelledby="requests-title"
+			className="scroll-mt-16"
+		>
 			{/* Section header as the site's canonical section (styleguide
 			    text styles; header in the left half, up to the page's centre
 			    line; py-24 md:pt-40 rhythm; mt-12 to the content) */}
