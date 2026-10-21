@@ -144,18 +144,15 @@ export function ModuleRequestsSection({
 				<div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-0">
 					<div className="lg:w-1/2 lg:pr-4">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-							{"// Up next"}
+							{"// Vote for the next module"}
 						</p>
 						<h2
 							id="requests-title"
 							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
 						>
-							Vote for the next module
-						</h2>
-						<p className="mt-4 max-w-2xl text-lg text-pretty text-zinc-600 dark:text-zinc-400">
 							Suggest a part of Effect you'd like covered, or +1 the ones you
 							want to see next.
-						</p>
+						</h2>
 					</div>
 
 					<form onSubmit={submit} className="relative lg:w-1/2 lg:pl-4">
