@@ -205,11 +205,12 @@ export function ModuleRequestsSection({
 						    frame, split by a hairline. `search-pill` (globals.css)
 						    draws the focus ring once around the frame, as the navbar
 						    and API reference searches do. */}
-						<div className="search-pill flex overflow-hidden rounded-md border border-zinc-300 bg-white transition-colors focus-within:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-zinc-500">
+						<div className="search-pill flex overflow-hidden rounded-md border border-zinc-300 transition-colors focus-within:border-zinc-500 dark:border-zinc-600 dark:focus-within:border-zinc-500">
 							<div className="relative min-w-0 flex-1">
 								<Icon
 									name="search"
-									className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-sm text-zinc-400 dark:text-zinc-500"
+									aria-hidden="true"
+									className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-base text-zinc-500 dark:text-zinc-400"
 								/>
 								<input
 									ref={inputRef}
@@ -238,12 +239,12 @@ export function ModuleRequestsSection({
 									}
 									aria-describedby="module-suggestion-message"
 									aria-invalid={message?.tone === "error"}
-									className="w-full bg-transparent py-2.5 pr-4 pl-9 text-sm text-zinc-900 placeholder-zinc-500 outline-none dark:text-white"
+									className="w-full bg-transparent py-2.5 pr-3 pl-9 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none dark:text-white dark:placeholder:text-zinc-400"
 								/>
 							</div>
 							<button
 								type="submit"
-								className="inline-flex shrink-0 cursor-pointer items-center gap-2 border-l border-zinc-300 px-4 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100 focus-visible:bg-zinc-100 focus-visible:outline-none dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-800 dark:focus-visible:bg-zinc-800"
+								className="inline-flex shrink-0 cursor-pointer items-center gap-2 border-l border-zinc-300 px-4 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100 focus-visible:bg-zinc-100 focus-visible:outline-none dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-800 dark:focus-visible:bg-zinc-800"
 							>
 								<Icon name="plus" className="text-sm" />
 								Suggest
