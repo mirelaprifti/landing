@@ -292,14 +292,24 @@ export function ModuleRequestsSection({
 												<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
 													{module.pkg}
 												</span>
-												<span className="ml-auto shrink-0 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-													{isCovered
-														? "Covered"
-														: request?.voted
-															? "Your +1 ✓"
-															: request
-																? voteLabel(request.votes)
-																: "+1"}
+												<span className="ml-auto inline-flex shrink-0 items-center gap-1 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+													{isCovered ? (
+														"Covered"
+													) : request?.voted ? (
+														<>
+															Your +1
+															{/* The site's "with Effect" green */}
+															<Icon
+																name="check"
+																aria-label="voted"
+																className="text-sm text-green-600 dark:text-green-500"
+															/>
+														</>
+													) : request ? (
+														voteLabel(request.votes)
+													) : (
+														"+1"
+													)}
 												</span>
 											</div>
 										);
