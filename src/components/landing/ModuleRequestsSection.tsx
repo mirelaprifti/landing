@@ -133,36 +133,38 @@ export function ModuleRequestsSection({
 	}));
 
 	return (
-		<section aria-labelledby="requests-title" className="py-16 md:py-20">
-			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-					{"// Up next"}
-				</p>
-				<h2
-					id="requests-title"
-					className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
-				>
-					Vote for the next module
-				</h2>
-				<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-					Suggest a part of Effect you'd like covered, or +1 the ones you want
-					to see next.
-				</p>
+		<section aria-labelledby="requests-title">
+			{/* Section header as the site's canonical section (styleguide
+			    text styles; header in the left half, up to the page's centre
+			    line; py-24 md:pt-40 rhythm; mt-12 to the content) */}
+			<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
+				<div className="lg:w-1/2 lg:pr-4">
+					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+						{"// Up next"}
+					</p>
+					<h2
+						id="requests-title"
+						className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+					>
+						Vote for the next module
+					</h2>
+					<p className="mt-4 max-w-2xl text-lg text-pretty text-zinc-600 dark:text-zinc-400">
+						Suggest a part of Effect you'd like covered, or +1 the ones you want
+						to see next.
+					</p>
+				</div>
 
-				<div className="mt-8 border border-zinc-200 dark:border-zinc-800">
-					{/* Suggest: a prompt on the left, a compact field on the right;
-					    stacked on phones */}
+				<div className="mt-12 border border-zinc-200 dark:border-zinc-800">
+					{/* Suggest: the field and button take the left half, lining up
+					    with the section header above */}
 					<form
 						onSubmit={submit}
-						className="flex flex-col gap-3 border-b border-zinc-200 p-4 sm:flex-row sm:items-center sm:justify-between lg:px-5 dark:border-zinc-800"
+						className="border-b border-zinc-200 p-4 lg:px-5 dark:border-zinc-800"
 					>
-						<label
-							htmlFor="module-suggestion"
-							className="text-sm font-medium text-zinc-600 dark:text-zinc-400"
-						>
-							Don't see the one you want?
+						<label htmlFor="module-suggestion" className="sr-only">
+							Suggest a module
 						</label>
-						<div className="flex gap-3 sm:w-96">
+						<div className="flex gap-3 lg:w-1/2 lg:pr-4">
 							<input
 								id="module-suggestion"
 								value={draft}

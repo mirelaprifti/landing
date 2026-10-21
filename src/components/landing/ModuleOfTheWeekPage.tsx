@@ -517,8 +517,8 @@ export function ModuleOfTheWeekPage() {
 
 				{/* Follow the series: the three places a new module lands, as
 				    hairline cells built like Maxwell's profile cells */}
-				<section aria-labelledby="follow-title" className="py-24 md:pt-32">
-					<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<section aria-labelledby="follow-title">
+					<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							// Follow the series
 						</p>
@@ -528,7 +528,7 @@ export function ModuleOfTheWeekPage() {
 						>
 							Never miss a module
 						</h2>
-						<ul className="mt-10 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+						<ul className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 							{[
 								{
 									icon: "ri-youtube-fill",
