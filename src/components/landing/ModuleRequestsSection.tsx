@@ -149,7 +149,7 @@ export function ModuleRequestsSection({
 							id="requests-title"
 							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
 						>
-							+1 the part of Effect you want to see next
+							What should we cover next?
 						</h2>
 					</div>
 
