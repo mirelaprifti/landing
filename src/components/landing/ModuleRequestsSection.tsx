@@ -1,64 +1,74 @@
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import {
+	type FormEvent,
+	type KeyboardEvent,
+	useEffect,
+	useId,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import {
 	localStore,
+	type ModuleRef,
 	type ModuleRequest,
 	type ModuleRequestsStore,
-	NAME_MAX_LENGTH,
+	searchModules,
 } from "./moduleRequests";
 
-/** Rows shown before "Show all", at every width. */
-const ROWS = 3;
+/** Rows of the ranking shown at first, and added per "Show more". */
+const ROW_STEP = 3;
 /** Columns per breakpoint: phones 1, sm 2, lg 4. */
 const COLS = { base: 1, sm: 2, lg: 4 } as const;
-const LIMIT = {
-	base: ROWS * COLS.base,
-	sm: ROWS * COLS.sm,
-	lg: ROWS * COLS.lg,
-} as const;
 
-/** Display classes for something shown only where `show` holds per width. */
+/** Display classes for something shown only where the flag holds per width. */
 const showAt = (base: boolean, sm: boolean, lg: boolean, display = "flex") =>
 	`${base ? display : "hidden"} ${sm ? `sm:${display}` : "sm:hidden"} ${lg ? `lg:${display}` : "lg:hidden"}`;
 
-/** How many items fit in three rows at the current width. */
-const currentLimit = () =>
+/** Columns at the current width. */
+const currentCols = () =>
 	window.matchMedia("(min-width: 64rem)").matches
-		? LIMIT.lg
+		? COLS.lg
 		: window.matchMedia("(min-width: 40rem)").matches
-			? LIMIT.sm
-			: LIMIT.base;
+			? COLS.sm
+			: COLS.base;
 
 const byVotes = (a: ModuleRequest, b: ModuleRequest) =>
 	b.votes - a.votes || a.name.localeCompare(b.name);
 
+const voteLabel = (n: number) => `${n} ${n === 1 ? "vote" : "votes"}`;
+
 /**
- * "Vote for the next module": anyone can suggest a module or +1 the ones
- * they want covered. Ranked by votes; the order is fixed for the visit
- * (re-sorted on load and after a suggestion, not on every vote) so a row
- * never jumps away from under the pointer.
+ * "What should we cover next?": people search the real module list (~580
+ * modules) and +1 the ones they want covered. The search doubles as the way
+ * to find a module already on the ranking, so the ranking itself only needs
+ * to show the top few rows. Its order is fixed for the visit (re-sorted on
+ * load and when a module joins), so a row never jumps away from the pointer.
  */
 export function ModuleRequestsSection({
+	moduleIndex,
+	covered = [],
 	store = localStore,
 }: {
+	moduleIndex: ModuleRef[];
+	/** Module ids the series has already covered: shown, not votable. */
+	covered?: string[];
 	store?: ModuleRequestsStore;
 }) {
 	const [requests, setRequests] = useState<ModuleRequest[] | null>(null);
 	const [order, setOrder] = useState<string[]>([]);
-	const [expanded, setExpanded] = useState(false);
-	const [draft, setDraft] = useState("");
+	const [rows, setRows] = useState(ROW_STEP);
+	const [query, setQuery] = useState("");
+	const [open, setOpen] = useState(false);
+	const [active, setActive] = useState(0);
 	const [message, setMessage] = useState<{
 		tone: "ok" | "error";
 		text: string;
 	} | null>(null);
 	const [highlight, setHighlight] = useState<string | null>(null);
-	const [busy, setBusy] = useState(false);
-
-	const sync = (list: ModuleRequest[], resort: boolean) => {
-		setRequests(list);
-		if (resort) setOrder([...list].sort(byVotes).map((r) => r.id));
-	};
+	const listboxId = useId();
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		store.list().then((list) => {
@@ -73,64 +83,108 @@ export function ModuleRequestsSection({
 		return order.flatMap((id) => byId.get(id) ?? []);
 	}, [requests, order]);
 
+	const votesById = useMemo(
+		() => new Map((requests ?? []).map((r) => [r.id, r])),
+		[requests],
+	);
+	const coveredIds = useMemo(() => new Set(covered), [covered]);
+	const results = useMemo(
+		() => searchModules(moduleIndex, query),
+		[moduleIndex, query],
+	);
+
 	const flash = (id: string) => {
 		setHighlight(id);
 		window.setTimeout(() => setHighlight((h) => (h === id ? null : h)), 2400);
 	};
 
 	const toggleVote = async (request: ModuleRequest) => {
-		const updated = await store.vote(request.id, !request.voted);
+		const updated = await store.vote(request, !request.voted);
 		setRequests((list) =>
 			(list ?? []).map((r) => (r.id === updated.id ? updated : r)),
 		);
 	};
 
-	const submit = async (event: FormEvent) => {
-		event.preventDefault();
-		if (busy) return;
-		setBusy(true);
-		try {
-			const result = await store.suggest(draft);
-			if (result.status === "invalid") {
-				setMessage({ tone: "error", text: result.reason });
-				return;
-			}
-			let target = result.request;
-			if (result.status === "exists" && !target.voted) {
-				target = await store.vote(target.id, true);
-			}
-			sync(await store.list(), true);
-			setDraft("");
+	/** +1 a module picked from the search. */
+	const pick = async (module: ModuleRef) => {
+		setOpen(false);
+		setQuery("");
+		if (coveredIds.has(module.id)) {
 			setMessage({
-				tone: "ok",
-				text:
-					result.status === "created"
-						? `Added "${target.name}" with your +1.`
-						: `"${target.name}" is already on the list. Your +1 is in.`,
+				tone: "error",
+				text: `${module.name} has already been covered. Find it in the modules above.`,
 			});
-			// Make sure the row is on screen, then mark it
-			const index = [...(await store.list())]
-				.sort(byVotes)
-				.findIndex((r) => r.id === target.id);
-			if (index >= currentLimit()) setExpanded(true);
-			flash(target.id);
-		} finally {
-			setBusy(false);
+			return;
+		}
+		// Name plus package, since some names exist in more than one package
+		const label = `${module.name} (${module.pkg})`;
+		const existing = votesById.get(module.id);
+		const wasVoted = existing?.voted ?? false;
+		if (!wasVoted) await store.vote(module, true);
+		const list = await store.list();
+		setRequests(list);
+		const nextOrder = existing
+			? order
+			: [...list].sort(byVotes).map((r) => r.id);
+		if (!existing) setOrder(nextOrder);
+		setMessage({
+			tone: "ok",
+			text: wasVoted
+				? `You've already +1'd ${label}.`
+				: existing
+					? `+1 added to ${label}.`
+					: `Added ${label} with your +1.`,
+		});
+		// Make sure its row is on screen, then mark it
+		const index = nextOrder.indexOf(module.id);
+		const cols = currentCols();
+		if (index >= rows * cols)
+			setRows(Math.ceil((index + 1) / cols / ROW_STEP) * ROW_STEP);
+		flash(module.id);
+	};
+
+	const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === "ArrowDown") {
+			event.preventDefault();
+			setOpen(true);
+			setActive((i) => Math.min(i + 1, results.length - 1));
+		} else if (event.key === "ArrowUp") {
+			event.preventDefault();
+			setActive((i) => Math.max(i - 1, 0));
+		} else if (event.key === "Escape") {
+			setOpen(false);
 		}
 	};
 
-	// Empty cells close the last row of the hairline grid at each width
-	// Collapsed, each width shows three rows; the button appears only where
-	// there's more than that.
+	const submit = (event: FormEvent) => {
+		event.preventDefault();
+		const choice = results[active] ?? results[0];
+		if (!query.trim()) {
+			inputRef.current?.focus();
+			setMessage({ tone: "error", text: "Search for a module to +1." });
+		} else if (!choice) {
+			setMessage({
+				tone: "error",
+				text: `No module matches "${query.trim()}". Try another name.`,
+			});
+		} else {
+			pick(choice);
+		}
+	};
+
+	// The ranking shows `rows` rows at every width; "Show more" appears only
+	// where there's more than that.
 	const total = ordered.length;
-	const shownAt = (limit: number) =>
-		expanded ? total : Math.min(total, limit);
-	const smFill = shownAt(LIMIT.sm) % COLS.sm ? 1 : 0;
-	const lgFill = (COLS.lg - (shownAt(LIMIT.lg) % COLS.lg)) % COLS.lg;
+	const limit = (cols: number) => rows * cols;
+	const more = (cols: number) => total > limit(cols);
+	const shownAt = (cols: number) => Math.min(total, limit(cols));
+	const smFill = shownAt(COLS.sm) % COLS.sm ? 1 : 0;
+	const lgFill = (COLS.lg - (shownAt(COLS.lg) % COLS.lg)) % COLS.lg;
 	const fillers = Array.from({ length: Math.max(smFill, lgFill) }, (_, n) => ({
 		key: `filler-${n}`,
 		className: showAt(false, n < smFill, n < lgFill, "block"),
 	}));
+	const showDrop = open && query.trim().length > 0;
 
 	return (
 		<section aria-labelledby="requests-title">
@@ -138,51 +192,126 @@ export function ModuleRequestsSection({
 			    text styles; header in the left half, up to the page's centre
 			    line; py-24 md:pt-40 rhythm; mt-12 to the content) */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-				{/* Header in the left half: eyebrow, title, then the suggest
-				    field below the title */}
 				<div className="lg:w-1/2 lg:pr-4">
-					<div>
-						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-							{"// Vote for the next module"}
-						</p>
-						<h2
-							id="requests-title"
-							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
-						>
-							What should we cover next?
-						</h2>
-					</div>
+					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+						{"// Vote for the next module"}
+					</p>
+					<h2
+						id="requests-title"
+						className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+					>
+						What should we cover next?
+					</h2>
 
-					<form onSubmit={submit} className="mt-8">
-						<label htmlFor="module-suggestion" className="sr-only">
-							Suggest a module
+					{/* Search the module list; picking a result +1s it */}
+					<form onSubmit={submit} className="relative mt-8">
+						<label htmlFor="module-search" className="sr-only">
+							Search for a module to +1
 						</label>
 						<div className="flex gap-3">
-							<input
-								id="module-suggestion"
-								value={draft}
-								onChange={(e) => {
-									setDraft(e.target.value);
-									if (message?.tone === "error") setMessage(null);
-								}}
-								maxLength={NAME_MAX_LENGTH}
-								autoComplete="off"
-								placeholder="Suggest a module"
-								aria-describedby="module-suggestion-message"
-								aria-invalid={message?.tone === "error"}
-								className="min-w-0 flex-1 rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm text-zinc-900 placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-							/>
-							<Button type="submit" variant="secondary" disabled={busy}>
+							<div className="relative min-w-0 flex-1">
+								<Icon
+									name="search"
+									className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-sm text-zinc-400 dark:text-zinc-500"
+								/>
+								<input
+									ref={inputRef}
+									id="module-search"
+									value={query}
+									onChange={(e) => {
+										setQuery(e.target.value);
+										setActive(0);
+										setOpen(true);
+										if (message?.tone === "error") setMessage(null);
+									}}
+									onFocus={() => setOpen(true)}
+									onBlur={() => window.setTimeout(() => setOpen(false), 120)}
+									onKeyDown={onKeyDown}
+									autoComplete="off"
+									spellCheck={false}
+									placeholder={`Search ${moduleIndex.length} modules`}
+									role="combobox"
+									aria-expanded={showDrop}
+									aria-controls={listboxId}
+									aria-autocomplete="list"
+									aria-activedescendant={
+										showDrop && results[active]
+											? `${listboxId}-${active}`
+											: undefined
+									}
+									aria-describedby="module-suggestion-message"
+									aria-invalid={message?.tone === "error"}
+									className="w-full rounded-md border border-zinc-300 bg-white py-2.5 pr-4 pl-9 text-sm text-zinc-900 placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+								/>
+							</div>
+							<Button type="submit" variant="secondary">
 								<Icon name="plus" className="text-sm" />
 								Suggest
 							</Button>
 						</div>
+
+						{/* Results: name, package, and where it stands */}
+						{showDrop && (
+							<div
+								id={listboxId}
+								role="listbox"
+								aria-label="Matching modules"
+								className="absolute inset-x-0 top-full z-20 mt-2 overflow-hidden rounded-md border border-zinc-300 bg-white shadow-lg shadow-black/10 dark:border-zinc-700 dark:bg-zinc-950 dark:shadow-black/40"
+							>
+								{results.length === 0 ? (
+									<div className="px-4 py-3 text-sm text-zinc-500 dark:text-zinc-400">
+										No module matches “{query.trim()}”
+									</div>
+								) : (
+									results.map((module, i) => {
+										const request = votesById.get(module.id);
+										const isCovered = coveredIds.has(module.id);
+										return (
+											<div
+												key={module.id}
+												tabIndex={-1}
+												id={`${listboxId}-${i}`}
+												role="option"
+												aria-selected={i === active}
+												aria-disabled={isCovered}
+												onMouseDown={(e) => {
+													e.preventDefault();
+													pick(module);
+												}}
+												onMouseEnter={() => setActive(i)}
+												className={`flex cursor-pointer items-baseline gap-3 px-4 py-2.5 text-sm ${
+													i === active ? "bg-zinc-100 dark:bg-zinc-900" : ""
+												}`}
+											>
+												<span
+													className={`font-medium ${isCovered ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-900 dark:text-white"}`}
+												>
+													{module.name}
+												</span>
+												<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+													{module.pkg}
+												</span>
+												<span className="ml-auto shrink-0 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+													{isCovered
+														? "Covered"
+														: request?.voted
+															? "Your +1 ✓"
+															: request
+																? voteLabel(request.votes)
+																: "+1"}
+												</span>
+											</div>
+										);
+									})
+								)}
+							</div>
+						)}
 					</form>
 				</div>
 
+				{/* Ranking: four across on desktop, two on tablet, one on
+				    phones, read left to right then down */}
 				<div className="mt-12 border border-zinc-200 dark:border-zinc-800">
-					{/* Ranking: four across on desktop, two on tablet, one on
-					    phones, read left to right then down */}
 					{requests === null ? (
 						<p className="px-4 py-6 text-sm text-zinc-500 lg:px-5 dark:text-zinc-400">
 							Loading suggestions…
@@ -192,27 +321,32 @@ export function ModuleRequestsSection({
 							{ordered.map((request, i) => (
 								<li
 									key={request.id}
-									className={`${
-										expanded
-											? "flex"
-											: showAt(i < LIMIT.base, i < LIMIT.sm, i < LIMIT.lg)
-									} items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
+									className={`${showAt(
+										i < limit(COLS.base),
+										i < limit(COLS.sm),
+										i < limit(COLS.lg),
+									)} items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
 										highlight === request.id
 											? "bg-zinc-100 dark:bg-zinc-900"
 											: "bg-white dark:bg-zinc-950"
 									}`}
 								>
-									<span className="w-5 shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+									<span className="w-6 shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
 										{String(i + 1).padStart(2, "0")}
 									</span>
-									<span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-900 dark:text-white">
-										{request.name}
+									<span className="flex min-w-0 flex-1 flex-col">
+										<span className="truncate text-sm font-medium text-zinc-900 dark:text-white">
+											{request.name}
+										</span>
+										<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+											{request.pkg}
+										</span>
 									</span>
 									<button
 										type="button"
 										onClick={() => toggleVote(request)}
 										aria-pressed={request.voted}
-										aria-label={`${request.voted ? "Remove your +1 from" : "+1"} ${request.name}, ${request.votes} ${request.votes === 1 ? "vote" : "votes"}`}
+										aria-label={`${request.voted ? "Remove your +1 from" : "+1"} ${request.name}, ${voteLabel(request.votes)}`}
 										className={`inline-flex min-w-14 cursor-pointer items-center justify-center gap-1.5 rounded-md border px-2 py-1 font-mono text-xs tabular-nums transition-colors ${
 											request.voted
 												? "border-zinc-900 bg-zinc-900 text-white dark:border-white dark:bg-white dark:text-zinc-900"
@@ -234,18 +368,28 @@ export function ModuleRequestsSection({
 						</ol>
 					)}
 
-					{total > LIMIT.base && (
-						<button
-							type="button"
-							onClick={() => setExpanded((e) => !e)}
-							className={`${showAt(total > LIMIT.base, total > LIMIT.sm, total > LIMIT.lg)} w-full cursor-pointer items-center justify-center gap-1.5 border-t border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white`}
-						>
-							{expanded ? "Show fewer" : `Show all ${ordered.length}`}
-							<Icon
-								name="chevron-down"
-								className={`text-sm transition-transform ${expanded ? "rotate-180" : ""}`}
-							/>
-						</button>
+					{/* Grow three rows at a time; collapse back once expanded */}
+					{(total > limit(COLS.base) || rows > ROW_STEP) && (
+						<div className="flex border-t border-zinc-200 dark:border-zinc-800">
+							<button
+								type="button"
+								onClick={() => setRows((r) => r + ROW_STEP)}
+								className={`${showAt(more(COLS.base), more(COLS.sm), more(COLS.lg))} flex-1 cursor-pointer items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white`}
+							>
+								Show more
+								<Icon name="chevron-down" className="text-sm" />
+							</button>
+							{rows > ROW_STEP && (
+								<button
+									type="button"
+									onClick={() => setRows(ROW_STEP)}
+									className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 border-l border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors first:border-l-0 hover:bg-zinc-100/60 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+								>
+									Show fewer
+									<Icon name="chevron-down" className="rotate-180 text-sm" />
+								</button>
+							)}
+						</div>
 					)}
 				</div>
 

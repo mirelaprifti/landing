@@ -1,8 +1,26 @@
 ---
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ModuleOfTheWeekPage } from "@/components/landing/ModuleOfTheWeekPage";
+import type { ModuleRef } from "@/components/landing/moduleRequests";
+
+// Every module in the API reference data, as { pkg, name } — the list people
+// pick from when suggesting the next Module of the Week. Read at build time
+// so only the names (not the 8MB of API docs) reach the browser.
+const dir = join(process.cwd(), "src/data/apiModules/");
+const moduleIndex: ModuleRef[] = readdirSync(dir)
+	.filter((file) => file.endsWith(".json"))
+	.flatMap((file) => {
+		const pkg = file.replace(/\.json$/, "");
+		const modules = JSON.parse(readFileSync(join(dir, file), "utf8"));
+		return Object.keys(modules)
+			.filter((name) => name !== "index")
+			.map((name) => ({ id: `${pkg}/${name}`, pkg, name }));
+	})
+	.sort((a, b) => a.name.localeCompare(b.name) || a.pkg.localeCompare(b.pkg));
 ---
 
 <BaseLayout themeable title="Module of the Week - Effect" description="The lesser-known parts of Effect, one module at a time. Every module comes with a blog post and a video.">
-  <ModuleOfTheWeekPage client:load />
+  <ModuleOfTheWeekPage client:load moduleIndex={moduleIndex} />
 </BaseLayout>

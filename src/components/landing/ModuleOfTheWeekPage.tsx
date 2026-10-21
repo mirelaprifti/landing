@@ -10,6 +10,7 @@ import {
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { ModuleRequestsSection } from "./ModuleRequestsSection";
+import type { ModuleRef } from "./moduleRequests";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -27,6 +28,10 @@ const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
 
 /** A module's number in the series: the oldest is 01. */
 const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
+
+/** Modules the series has already covered (package/module, as in the API
+ *  reference), so they can't be suggested again. Add one per new module. */
+const COVERED_MODULE_IDS = ["effect/RcMap", "experimental/PersistedQueue"];
 
 const DISCORD_HANDLE = "maxwellbrown";
 
@@ -297,7 +302,12 @@ function ModulesList() {
 	);
 }
 
-export function ModuleOfTheWeekPage() {
+export function ModuleOfTheWeekPage({
+	moduleIndex = [],
+}: {
+	/** Every module people can suggest (built from the API reference data). */
+	moduleIndex?: ModuleRef[];
+}) {
 	return (
 		<div className="relative min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white antialiased">
 			<a
@@ -423,7 +433,10 @@ export function ModuleOfTheWeekPage() {
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
 				{/* Suggest and vote for the next module */}
-				<ModuleRequestsSection />
+				<ModuleRequestsSection
+					moduleIndex={moduleIndex}
+					covered={COVERED_MODULE_IDS}
+				/>
 
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
