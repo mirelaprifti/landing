@@ -150,12 +150,11 @@ export function ModuleRequestsSection({
 							id="requests-title"
 							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
 						>
-							Suggest a part of Effect you'd like covered, or +1 the ones you
-							want to see next.
+							+1 the part of Effect you want to see next
 						</h2>
 					</div>
 
-					<form onSubmit={submit} className="relative lg:w-1/2 lg:pl-4">
+					<form onSubmit={submit} className="lg:w-1/2 lg:pl-4">
 						<label htmlFor="module-suggestion" className="sr-only">
 							Suggest a module
 						</label>
@@ -179,23 +178,6 @@ export function ModuleRequestsSection({
 								Suggest
 							</Button>
 						</div>
-						{/* Under the field, out of the flow so it never shifts the
-						    header's alignment */}
-						<p
-							id="module-suggestion-message"
-							aria-live="polite"
-							className={`text-sm ${
-								message
-									? `mt-3 lg:absolute lg:top-full lg:right-0 lg:left-4 lg:mt-3 ${
-											message.tone === "error"
-												? "text-red-600 dark:text-red-400"
-												: "text-zinc-600 dark:text-zinc-400"
-										}`
-									: "sr-only"
-							}`}
-						>
-							{message?.text}
-						</p>
 					</form>
 				</div>
 
@@ -267,6 +249,23 @@ export function ModuleRequestsSection({
 						</button>
 					)}
 				</div>
+
+				{/* Confirmation or error, under the grid */}
+				<p
+					id="module-suggestion-message"
+					aria-live="polite"
+					className={`text-sm ${
+						message
+							? `mt-3 ${
+									message.tone === "error"
+										? "text-red-600 dark:text-red-400"
+										: "text-zinc-600 dark:text-zinc-400"
+								}`
+							: "sr-only"
+					}`}
+				>
+					{message?.text}
+				</p>
 			</div>
 		</section>
 	);
