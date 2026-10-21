@@ -7,7 +7,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import {
 	localStore,
@@ -202,7 +201,11 @@ export function ModuleRequestsSection({
 						<label htmlFor="module-search" className="sr-only">
 							Search for a module to +1
 						</label>
-						<div className="flex gap-3">
+						{/* One joined control: the search and its action share a
+						    frame, split by a hairline. `search-pill` (globals.css)
+						    draws the focus ring once around the frame, as the navbar
+						    and API reference searches do. */}
+						<div className="search-pill flex overflow-hidden rounded-md border border-zinc-300 bg-white transition-colors focus-within:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-zinc-500">
 							<div className="relative min-w-0 flex-1">
 								<Icon
 									name="search"
@@ -235,13 +238,16 @@ export function ModuleRequestsSection({
 									}
 									aria-describedby="module-suggestion-message"
 									aria-invalid={message?.tone === "error"}
-									className="w-full rounded-md border border-zinc-300 bg-white py-2.5 pr-4 pl-9 text-sm text-zinc-900 placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+									className="w-full bg-transparent py-2.5 pr-4 pl-9 text-sm text-zinc-900 placeholder-zinc-500 outline-none dark:text-white"
 								/>
 							</div>
-							<Button type="submit" variant="secondary">
+							<button
+								type="submit"
+								className="inline-flex shrink-0 cursor-pointer items-center gap-2 border-l border-zinc-300 px-4 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100 focus-visible:bg-zinc-100 focus-visible:outline-none dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-800 dark:focus-visible:bg-zinc-800"
+							>
 								<Icon name="plus" className="text-sm" />
 								Suggest
-							</Button>
+							</button>
 						</div>
 
 						{/* Results: name, package, and where it stands */}
