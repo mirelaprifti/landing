@@ -227,7 +227,7 @@ export function ModuleRequestsSection({
 									onKeyDown={onKeyDown}
 									autoComplete="off"
 									spellCheck={false}
-									placeholder={`Search ${moduleIndex.length} modules`}
+									placeholder="Search all modules"
 									role="combobox"
 									aria-expanded={showDrop}
 									aria-controls={listboxId}
