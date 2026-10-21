@@ -17,22 +17,15 @@ import {
 	searchModules,
 } from "./moduleRequests";
 
-/** Rows of the ranking shown at first, and added per "Show more". */
-const ROW_STEP = 3;
+/** Modules shown at first, and added per "Show more" (three full rows of
+ *  four on desktop). */
+const STEP = 12;
 /** Columns per breakpoint: phones 1, sm 2, lg 4. */
 const COLS = { base: 1, sm: 2, lg: 4 } as const;
 
 /** Display classes for something shown only where the flag holds per width. */
 const showAt = (base: boolean, sm: boolean, lg: boolean, display = "flex") =>
 	`${base ? display : "hidden"} ${sm ? `sm:${display}` : "sm:hidden"} ${lg ? `lg:${display}` : "lg:hidden"}`;
-
-/** Columns at the current width. */
-const currentCols = () =>
-	window.matchMedia("(min-width: 64rem)").matches
-		? COLS.lg
-		: window.matchMedia("(min-width: 40rem)").matches
-			? COLS.sm
-			: COLS.base;
 
 const byVotes = (a: ModuleRequest, b: ModuleRequest) =>
 	b.votes - a.votes || a.name.localeCompare(b.name);
@@ -43,7 +36,7 @@ const voteLabel = (n: number) => `${n} ${n === 1 ? "vote" : "votes"}`;
  * "What should we cover next?": people search the real module list (~580
  * modules) and +1 the ones they want covered. The search doubles as the way
  * to find a module already on the ranking, so the ranking itself only needs
- * to show the top few rows. Its order is fixed for the visit (re-sorted on
+ * to show the top twelve. Its order is fixed for the visit (re-sorted on
  * load and when a module joins), so a row never jumps away from the pointer.
  */
 export function ModuleRequestsSection({
@@ -58,7 +51,7 @@ export function ModuleRequestsSection({
 }) {
 	const [requests, setRequests] = useState<ModuleRequest[] | null>(null);
 	const [order, setOrder] = useState<string[]>([]);
-	const [rows, setRows] = useState(ROW_STEP);
+	const [count, setCount] = useState(STEP);
 	const [query, setQuery] = useState("");
 	const [open, setOpen] = useState(false);
 	const [active, setActive] = useState(0);
@@ -137,9 +130,7 @@ export function ModuleRequestsSection({
 		});
 		// Make sure its row is on screen, then mark it
 		const index = nextOrder.indexOf(module.id);
-		const cols = currentCols();
-		if (index >= rows * cols)
-			setRows(Math.ceil((index + 1) / cols / ROW_STEP) * ROW_STEP);
+		if (index >= count) setCount(Math.ceil((index + 1) / STEP) * STEP);
 		flash(module.id);
 	};
 
@@ -172,14 +163,11 @@ export function ModuleRequestsSection({
 		}
 	};
 
-	// The ranking shows `rows` rows at every width; "Show more" appears only
-	// where there's more than that.
+	// The ranking shows the top `count` modules at every width
 	const total = ordered.length;
-	const limit = (cols: number) => rows * cols;
-	const more = (cols: number) => total > limit(cols);
-	const shownAt = (cols: number) => Math.min(total, limit(cols));
-	const smFill = shownAt(COLS.sm) % COLS.sm ? 1 : 0;
-	const lgFill = (COLS.lg - (shownAt(COLS.lg) % COLS.lg)) % COLS.lg;
+	const shown = Math.min(total, count);
+	const smFill = shown % COLS.sm ? 1 : 0;
+	const lgFill = (COLS.lg - (shown % COLS.lg)) % COLS.lg;
 	const fillers = Array.from({ length: Math.max(smFill, lgFill) }, (_, n) => ({
 		key: `filler-${n}`,
 		className: showAt(false, n < smFill, n < lgFill, "block"),
@@ -321,11 +309,7 @@ export function ModuleRequestsSection({
 							{ordered.map((request, i) => (
 								<li
 									key={request.id}
-									className={`${showAt(
-										i < limit(COLS.base),
-										i < limit(COLS.sm),
-										i < limit(COLS.lg),
-									)} items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
+									className={`${i < count ? "flex" : "hidden"} items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
 										highlight === request.id
 											? "bg-zinc-100 dark:bg-zinc-900"
 											: "bg-white dark:bg-zinc-950"
@@ -368,21 +352,21 @@ export function ModuleRequestsSection({
 						</ol>
 					)}
 
-					{/* Grow three rows at a time; collapse back once expanded */}
-					{(total > limit(COLS.base) || rows > ROW_STEP) && (
+					{/* Grow twelve at a time; collapse back once expanded */}
+					{(total > count || count > STEP) && (
 						<div className="flex border-t border-zinc-200 dark:border-zinc-800">
 							<button
 								type="button"
-								onClick={() => setRows((r) => r + ROW_STEP)}
-								className={`${showAt(more(COLS.base), more(COLS.sm), more(COLS.lg))} flex-1 cursor-pointer items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white`}
+								onClick={() => setCount((c) => c + STEP)}
+								className={`${total > count ? "flex" : "hidden"} flex-1 cursor-pointer items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white`}
 							>
 								Show more
 								<Icon name="chevron-down" className="text-sm" />
 							</button>
-							{rows > ROW_STEP && (
+							{count > STEP && (
 								<button
 									type="button"
-									onClick={() => setRows(ROW_STEP)}
+									onClick={() => setCount(STEP)}
 									className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 border-l border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors first:border-l-0 hover:bg-zinc-100/60 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
 								>
 									Show fewer
