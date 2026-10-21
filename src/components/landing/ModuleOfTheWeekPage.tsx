@@ -387,9 +387,9 @@ export function ModuleOfTheWeekPage({
 							The lesser-known parts of <br className="hidden sm:inline" />
 							Effect. {"By\u00a0Maxwell\u00a0Brown."}
 						</h1>
-						{/* 37.5rem (600px) ends the first line at "live at" on desktop:
-						    that line is 585px, and "Effect" would take it to 645px */}
-						<p className="mt-4 max-w-[37.5rem] text-lg text-zinc-600 dark:text-zinc-400">
+						{/* 35.75rem (572px) ends the first line at "live" on desktop:
+						    that line is 561px, and "at" would take it to 585px */}
+						<p className="mt-4 max-w-[35.75rem] text-lg text-zinc-600 dark:text-zinc-400">
 							{/* Non-breaking spaces keep "Effect Office Hours" on one line */}
 							Each module starts as a blog post, gets walked through live at{" "}
 							{"Effect\u00a0Office\u00a0Hours"}, and ends up as a standalone
@@ -418,6 +418,22 @@ export function ModuleOfTheWeekPage({
 								<i className="ri-youtube-fill text-lg" />
 								Watch the playlist
 							</Button>
+							{/* RSS, as on the Blog page: mono label + icon, quiet beside
+							    the two buttons */}
+							<a
+								href={BLOG_RSS_URL}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Effect blog RSS feed"
+								className="group inline-flex items-center gap-1.5 px-2 font-mono text-sm text-zinc-800 transition-colors hover:text-zinc-900 sm:ml-1 dark:text-zinc-200 dark:hover:text-white"
+							>
+								RSS
+								<Icon
+									name="rss"
+									aria-hidden="true"
+									className="text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
+								/>
+							</a>
 						</div>
 					</div>
 				</section>
