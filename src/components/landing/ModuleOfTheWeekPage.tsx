@@ -9,6 +9,7 @@ import {
 } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import { ModuleRequestsSection } from "./ModuleRequestsSection";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -417,6 +418,11 @@ export function ModuleOfTheWeekPage() {
 						<ModulesList />
 					</div>
 				</section>
+
+				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
+
+				{/* Suggest and vote for the next module */}
+				<ModuleRequestsSection />
 
 				<div className="h-px w-full bg-zinc-200 dark:bg-zinc-800" />
 
