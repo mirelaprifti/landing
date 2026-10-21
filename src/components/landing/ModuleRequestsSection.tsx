@@ -9,7 +9,8 @@ import {
 } from "./moduleRequests";
 
 /** Rows shown before "Show all". */
-const COLLAPSED_COUNT = 5;
+/** Two full rows of four on desktop (four of two on tablet). */
+const COLLAPSED_COUNT = 8;
 
 const byVotes = (a: ModuleRequest, b: ModuleRequest) =>
 	b.votes - a.votes || a.name.localeCompare(b.name);
@@ -102,28 +103,37 @@ export function ModuleRequestsSection({
 		}
 	};
 
+	// Empty cells close the last row of the hairline grid at each width
+	const smFill = visible.length % 2 ? 1 : 0;
+	const lgFill = (4 - (visible.length % 4)) % 4;
+	const fillers = Array.from({ length: Math.max(smFill, lgFill) }, (_, n) => ({
+		key: `filler-${n}`,
+		className: `${n < smFill ? "sm:block" : ""} ${n < lgFill ? "lg:block" : "lg:hidden"}`,
+	}));
+
 	return (
 		<section aria-labelledby="requests-title" className="py-16 md:py-20">
-			{/* Two columns from lg: the pitch and the suggest field on the
-			    left, the ranking on the right, so the section stays short */}
-			<div className="mx-auto grid w-full max-w-[73.75rem] grid-cols-1 gap-8 px-4 lg:grid-cols-12 lg:gap-12">
-				<div className="lg:col-span-5">
-					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-						{"// Up next"}
-					</p>
-					<h2
-						id="requests-title"
-						className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
-					>
-						Vote for the next module
-					</h2>
-					<p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-						Suggest a part of Effect you'd like covered, or +1 the ones you want
-						to see next.
-					</p>
+			<div className="mx-auto w-full max-w-[73.75rem] px-4">
+				<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+					{"// Up next"}
+				</p>
+				<h2
+					id="requests-title"
+					className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+				>
+					Vote for the next module
+				</h2>
+				<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+					Suggest a part of Effect you'd like covered, or +1 the ones you want
+					to see next.
+				</p>
 
+				<div className="mt-8 border border-zinc-200 dark:border-zinc-800">
 					{/* Suggest */}
-					<form onSubmit={submit} className="mt-6 flex gap-3">
+					<form
+						onSubmit={submit}
+						className="flex gap-3 border-b border-zinc-200 p-4 lg:px-5 dark:border-zinc-800"
+					>
 						<label htmlFor="module-suggestion" className="sr-only">
 							Suggest a module
 						</label>
@@ -149,9 +159,9 @@ export function ModuleRequestsSection({
 					<p
 						id="module-suggestion-message"
 						aria-live="polite"
-						className={`text-sm ${
+						className={`px-4 text-sm lg:px-5 ${
 							message
-								? `mt-3 ${
+								? `border-b border-zinc-200 py-2.5 dark:border-zinc-800 ${
 										message.tone === "error"
 											? "text-red-600 dark:text-red-400"
 											: "text-zinc-600 dark:text-zinc-400"
@@ -161,29 +171,28 @@ export function ModuleRequestsSection({
 					>
 						{message?.text}
 					</p>
-				</div>
 
-				{/* Ranking */}
-				<div className="self-start border border-zinc-200 lg:col-span-7 dark:border-zinc-800">
+					{/* Ranking: four across on desktop, two on tablet, one on
+					    phones, read left to right then down */}
 					{requests === null ? (
-						<p className="px-4 py-6 text-sm text-zinc-500 lg:px-6 dark:text-zinc-400">
+						<p className="px-4 py-6 text-sm text-zinc-500 lg:px-5 dark:text-zinc-400">
 							Loading suggestions…
 						</p>
 					) : (
-						<ol className="divide-y divide-zinc-200 dark:divide-zinc-800">
+						<ol className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:bg-zinc-800">
 							{visible.map((request, i) => (
 								<li
 									key={request.id}
-									className={`flex items-center gap-4 px-4 py-2 transition-colors duration-700 lg:px-5 ${
+									className={`flex items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
 										highlight === request.id
 											? "bg-zinc-100 dark:bg-zinc-900"
 											: "bg-white dark:bg-zinc-950"
 									}`}
 								>
-									<span className="w-6 shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+									<span className="w-5 shrink-0 font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
 										{String(i + 1).padStart(2, "0")}
 									</span>
-									<span className="min-w-0 flex-1 truncate text-base font-medium text-zinc-900 dark:text-white">
+									<span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-900 dark:text-white">
 										{request.name}
 									</span>
 									<button
@@ -191,7 +200,7 @@ export function ModuleRequestsSection({
 										onClick={() => toggleVote(request)}
 										aria-pressed={request.voted}
 										aria-label={`${request.voted ? "Remove your +1 from" : "+1"} ${request.name}, ${request.votes} ${request.votes === 1 ? "vote" : "votes"}`}
-										className={`inline-flex min-w-16 cursor-pointer items-center justify-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-xs tabular-nums transition-colors ${
+										className={`inline-flex min-w-14 cursor-pointer items-center justify-center gap-1.5 rounded-md border px-2 py-1 font-mono text-xs tabular-nums transition-colors ${
 											request.voted
 												? "border-zinc-900 bg-zinc-900 text-white dark:border-white dark:bg-white dark:text-zinc-900"
 												: "border-zinc-300 text-zinc-700 hover:border-zinc-500 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-white"
@@ -201,6 +210,13 @@ export function ModuleRequestsSection({
 										{request.votes}
 									</button>
 								</li>
+							))}
+							{fillers.map((cell) => (
+								<li
+									key={cell.key}
+									aria-hidden="true"
+									className={`hidden bg-white dark:bg-zinc-950 ${cell.className}`}
+								/>
 							))}
 						</ol>
 					)}
