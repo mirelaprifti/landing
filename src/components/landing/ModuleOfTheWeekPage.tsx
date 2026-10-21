@@ -292,9 +292,47 @@ function ModuleRow({ post }: { post: BlogPost }) {
  *  room between them, so there's one obvious order to scroll in. (A package
  *  filter sat above this; removed until the series is long enough to need
  *  one, and then by topic rather than import path.) */
+/** Scroll to the vote section and put #vote in the address. */
+const jumpToVote = (event: React.MouseEvent) => {
+	event.preventDefault();
+	document.getElementById("vote")?.scrollIntoView({ behavior: "smooth" });
+	history.replaceState(null, "", "#vote");
+};
+
+/**
+ * The next entry in the countdown, still open: a dashed empty slot (the
+ * site's "waiting to be filled" frame, as the Effect Days speaker
+ * placeholders) that hands the choice to the reader.
+ */
+function NextModuleSlot() {
+	return (
+		<li>
+			<a
+				href="#vote"
+				onClick={jumpToVote}
+				className="group flex flex-col gap-3 border border-dashed border-zinc-300 px-5 py-5 transition-colors hover:border-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-6 dark:border-zinc-700 dark:hover:border-zinc-500"
+			>
+				<span className="flex items-baseline gap-4">
+					<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
+						{String(MODULES.length + 1).padStart(2, "0")}
+					</span>
+					<span className="text-lg font-semibold text-zinc-900 dark:text-white">
+						Next module: your call
+					</span>
+				</span>
+				<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+					Vote for what's next
+					<Icon name="arrow-down" className="text-xs" />
+				</span>
+			</a>
+		</li>
+	);
+}
+
 function ModulesList() {
 	return (
 		<ul className="mt-16 flex flex-col gap-6 md:mt-20">
+			<NextModuleSlot />
 			{MODULES.map((post) => (
 				<ModuleRow key={post.slug} post={post} />
 			))}
@@ -418,21 +456,6 @@ export function ModuleOfTheWeekPage({
 								<i className="ri-youtube-fill text-lg" />
 								Watch the playlist
 							</Button>
-							{/* Jump to the vote: a subtle link, ↓ = stays on this page */}
-							<a
-								href="#vote"
-								onClick={(e) => {
-									e.preventDefault();
-									document
-										.getElementById("vote")
-										?.scrollIntoView({ behavior: "smooth" });
-									history.replaceState(null, "", "#vote");
-								}}
-								className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 sm:ml-1 sm:px-2 dark:text-zinc-400 dark:hover:text-white"
-							>
-								Vote for the next module
-								<Icon name="arrow-down" className="text-xs" />
-							</a>
 							{/* RSS, as on the Blog page: mono label + icon, quiet beside
 							    the two buttons */}
 							<a
