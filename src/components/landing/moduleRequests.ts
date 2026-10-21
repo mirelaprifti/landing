@@ -77,7 +77,7 @@ export function searchModules(
 type StoredRequest = { id: string; pkg: string; name: string; votes: number };
 type StoredState = { requests: StoredRequest[]; voted: string[] };
 
-const STORAGE_KEY = "effect:motw-requests:v2";
+const STORAGE_KEY = "effect:motw-requests:v3";
 
 /** Placeholder votes so the ranking has something to show in review. */
 const SEED: StoredRequest[] = [
@@ -91,6 +91,8 @@ const SEED: StoredRequest[] = [
 	["workflow", "Workflow", 9],
 	["effect", "Pool", 6],
 	["effect", "Mailbox", 4],
+	["effect", "Cache", 3],
+	["effect", "Scope", 2],
 ].map(([pkg, name, votes]) => ({
 	id: `${pkg}/${name}`,
 	pkg: pkg as string,
