@@ -300,9 +300,10 @@ const jumpToVote = (event: React.MouseEvent) => {
 };
 
 /**
- * The next entry in the countdown, still open: a dashed empty slot (the
- * site's "waiting to be filled" frame, as the Effect Days speaker
- * placeholders) that hands the choice to the reader.
+ * An open slot above the list: a dashed frame (the site's "waiting to be
+ * filled" look, as the Effect Days speaker placeholders) inviting readers to
+ * suggest or +1 a module. No number and no "next" promise: votes inform the
+ * schedule, they don't set it.
  */
 function NextModuleSlot() {
 	return (
@@ -312,16 +313,11 @@ function NextModuleSlot() {
 				onClick={jumpToVote}
 				className="group flex flex-col gap-3 border border-dashed border-zinc-300 px-5 py-5 transition-colors hover:border-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-6 dark:border-zinc-700 dark:hover:border-zinc-500"
 			>
-				<span className="flex items-baseline gap-4">
-					<span className="font-mono text-xs font-medium text-zinc-400 tabular-nums dark:text-zinc-500">
-						{String(MODULES.length + 1).padStart(2, "0")}
-					</span>
-					<span className="text-lg font-semibold text-zinc-900 dark:text-white">
-						Next module: your call
-					</span>
+				<span className="text-lg font-semibold text-zinc-900 dark:text-white">
+					Want a module covered?
 				</span>
 				<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-					Vote for what's next
+					Suggest it or +1 it
 					<Icon name="arrow-down" className="text-xs" />
 				</span>
 			</a>
