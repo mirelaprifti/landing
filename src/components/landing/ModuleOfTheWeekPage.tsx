@@ -300,9 +300,9 @@ const jumpToVote = (event: React.MouseEvent) => {
 };
 
 /**
- * An open slot above the list: a dashed frame (the site's "waiting to be
- * filled" look, as the Effect Days speaker placeholders) inviting readers to
- * suggest or +1 a module. No number and no "next" promise: votes inform the
+ * An invitation row above the list: a solid hairline row with the site's
+ * dashed "+" tile (the "add yours" mark from Jobs and Partners), inviting
+ * readers to suggest or +1 a module. No number and no "next" promise: votes inform the
  * schedule, they don't set it.
  */
 function NextModuleSlot() {
@@ -311,10 +311,19 @@ function NextModuleSlot() {
 			<a
 				href="#vote"
 				onClick={jumpToVote}
-				className="group flex items-center justify-between gap-4 border border-dashed border-zinc-300 px-5 py-3 transition-colors hover:border-zinc-500 lg:px-6 dark:border-zinc-700 dark:hover:border-zinc-500"
+				className="group flex items-center justify-between gap-4 border border-zinc-200 bg-white px-5 py-2.5 transition-colors hover:bg-zinc-100/60 lg:px-6 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
 			>
-				<span className="text-sm font-semibold text-zinc-900 dark:text-white">
-					Want a module covered?
+				<span className="flex items-center gap-3">
+					{/* The site's "add yours" mark (Jobs, Partners) */}
+					<span
+						aria-hidden="true"
+						className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-dashed border-zinc-400 text-sm text-zinc-500 transition-colors group-hover:border-zinc-600 group-hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:group-hover:border-zinc-400 dark:group-hover:text-white"
+					>
+						<Icon name="plus" />
+					</span>
+					<span className="text-sm font-semibold text-zinc-900 dark:text-white">
+						Want a module covered?
+					</span>
 				</span>
 				<span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
 					<span className="hidden sm:inline">Suggest it or +1 it</span>
