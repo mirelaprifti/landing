@@ -308,6 +308,22 @@ export function ModuleRequestsSection({
 							</div>
 						)}
 					</form>
+					{/* Confirmation or error, right under the search */}
+					<p
+						id="module-suggestion-message"
+						aria-live="polite"
+						className={`text-sm ${
+							message
+								? `mt-3 ${
+										message.tone === "error"
+											? "text-red-600 dark:text-red-400"
+											: "text-zinc-600 dark:text-zinc-400"
+									}`
+								: "sr-only"
+						}`}
+					>
+						{message?.text}
+					</p>
 				</div>
 
 				{/* Ranking: four across on desktop, two on tablet, one on
@@ -389,23 +405,6 @@ export function ModuleRequestsSection({
 						</div>
 					)}
 				</div>
-
-				{/* Confirmation or error, under the grid */}
-				<p
-					id="module-suggestion-message"
-					aria-live="polite"
-					className={`text-sm ${
-						message
-							? `mt-3 ${
-									message.tone === "error"
-										? "text-red-600 dark:text-red-400"
-										: "text-zinc-600 dark:text-zinc-400"
-								}`
-							: "sr-only"
-					}`}
-				>
-					{message?.text}
-				</p>
 			</div>
 		</section>
 	);
