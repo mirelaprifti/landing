@@ -377,7 +377,8 @@ export function ModuleOfTheWeekPage() {
 							The lesser-known parts of <br className="hidden sm:inline" />
 							Effect. {"By\u00a0Maxwell\u00a0Brown."}
 						</h1>
-						<p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+						{/* 49rem fits the first line through "Effect Office Hours," at desktop */}
+						<p className="mt-4 max-w-[49rem] text-lg text-zinc-600 dark:text-zinc-400">
 							{/* Non-breaking spaces keep "Effect Office Hours" on one line */}
 							Each module starts as a blog post, gets walked through live at{" "}
 							{"Effect\u00a0Office\u00a0Hours"}, and ends up as a standalone
