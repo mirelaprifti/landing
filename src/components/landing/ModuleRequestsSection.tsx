@@ -138,11 +138,10 @@ export function ModuleRequestsSection({
 			    text styles; header in the left half, up to the page's centre
 			    line; py-24 md:pt-40 rhythm; mt-12 to the content) */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-				{/* Header row: the text in the left half, the suggest field in
-				    the right half, bottom-aligned with the subtitle (the
-				    Enterprise section's "action right" placement) */}
-				<div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-0">
-					<div className="lg:w-1/2 lg:pr-4">
+				{/* Header in the left half: eyebrow, title, then the suggest
+				    field below the title */}
+				<div className="lg:w-1/2 lg:pr-4">
+					<div>
 						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
 							{"// Vote for the next module"}
 						</p>
@@ -154,7 +153,7 @@ export function ModuleRequestsSection({
 						</h2>
 					</div>
 
-					<form onSubmit={submit} className="lg:w-1/2 lg:pl-4">
+					<form onSubmit={submit} className="mt-6">
 						<label htmlFor="module-suggestion" className="sr-only">
 							Suggest a module
 						</label>
