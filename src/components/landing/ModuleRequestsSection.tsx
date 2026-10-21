@@ -138,33 +138,31 @@ export function ModuleRequestsSection({
 			    text styles; header in the left half, up to the page's centre
 			    line; py-24 md:pt-40 rhythm; mt-12 to the content) */}
 			<div className="mx-auto w-full max-w-[73.75rem] px-4 py-24 md:pt-40">
-				<div className="lg:w-1/2 lg:pr-4">
-					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
-						{"// Up next"}
-					</p>
-					<h2
-						id="requests-title"
-						className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
-					>
-						Vote for the next module
-					</h2>
-					<p className="mt-4 max-w-2xl text-lg text-pretty text-zinc-600 dark:text-zinc-400">
-						Suggest a part of Effect you'd like covered, or +1 the ones you want
-						to see next.
-					</p>
-				</div>
+				{/* Header row: the text in the left half, the suggest field in
+				    the right half, bottom-aligned with the subtitle (the
+				    Enterprise section's "action right" placement) */}
+				<div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-0">
+					<div className="lg:w-1/2 lg:pr-4">
+						<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+							{"// Up next"}
+						</p>
+						<h2
+							id="requests-title"
+							className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white"
+						>
+							Vote for the next module
+						</h2>
+						<p className="mt-4 max-w-2xl text-lg text-pretty text-zinc-600 dark:text-zinc-400">
+							Suggest a part of Effect you'd like covered, or +1 the ones you
+							want to see next.
+						</p>
+					</div>
 
-				<div className="mt-12 border border-zinc-200 dark:border-zinc-800">
-					{/* Suggest: the field and button take the left half, lining up
-					    with the section header above */}
-					<form
-						onSubmit={submit}
-						className="border-b border-zinc-200 p-4 lg:px-5 dark:border-zinc-800"
-					>
+					<form onSubmit={submit} className="relative lg:w-1/2 lg:pl-4">
 						<label htmlFor="module-suggestion" className="sr-only">
 							Suggest a module
 						</label>
-						<div className="flex gap-3 lg:w-1/2 lg:pr-4">
+						<div className="flex gap-3">
 							<input
 								id="module-suggestion"
 								value={draft}
@@ -184,23 +182,27 @@ export function ModuleRequestsSection({
 								Suggest
 							</Button>
 						</div>
+						{/* Under the field, out of the flow so it never shifts the
+						    header's alignment */}
+						<p
+							id="module-suggestion-message"
+							aria-live="polite"
+							className={`text-sm ${
+								message
+									? `mt-3 lg:absolute lg:top-full lg:right-0 lg:left-4 lg:mt-3 ${
+											message.tone === "error"
+												? "text-red-600 dark:text-red-400"
+												: "text-zinc-600 dark:text-zinc-400"
+										}`
+									: "sr-only"
+							}`}
+						>
+							{message?.text}
+						</p>
 					</form>
-					<p
-						id="module-suggestion-message"
-						aria-live="polite"
-						className={`px-4 text-sm lg:px-5 ${
-							message
-								? `border-b border-zinc-200 py-2.5 dark:border-zinc-800 ${
-										message.tone === "error"
-											? "text-red-600 dark:text-red-400"
-											: "text-zinc-600 dark:text-zinc-400"
-									}`
-								: "sr-only"
-						}`}
-					>
-						{message?.text}
-					</p>
+				</div>
 
+				<div className="mt-12 border border-zinc-200 dark:border-zinc-800">
 					{/* Ranking: four across on desktop, two on tablet, one on
 					    phones, read left to right then down */}
 					{requests === null ? (
