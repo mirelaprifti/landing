@@ -8,9 +8,27 @@ import {
 	NAME_MAX_LENGTH,
 } from "./moduleRequests";
 
-/** Rows shown before "Show all". */
-/** Two full rows of four on desktop (four of two on tablet). */
-const COLLAPSED_COUNT = 8;
+/** Rows shown before "Show all", at every width. */
+const ROWS = 3;
+/** Columns per breakpoint: phones 1, sm 2, lg 4. */
+const COLS = { base: 1, sm: 2, lg: 4 } as const;
+const LIMIT = {
+	base: ROWS * COLS.base,
+	sm: ROWS * COLS.sm,
+	lg: ROWS * COLS.lg,
+} as const;
+
+/** Display classes for something shown only where `show` holds per width. */
+const showAt = (base: boolean, sm: boolean, lg: boolean, display = "flex") =>
+	`${base ? display : "hidden"} ${sm ? `sm:${display}` : "sm:hidden"} ${lg ? `lg:${display}` : "lg:hidden"}`;
+
+/** How many items fit in three rows at the current width. */
+const currentLimit = () =>
+	window.matchMedia("(min-width: 64rem)").matches
+		? LIMIT.lg
+		: window.matchMedia("(min-width: 40rem)").matches
+			? LIMIT.sm
+			: LIMIT.base;
 
 const byVotes = (a: ModuleRequest, b: ModuleRequest) =>
 	b.votes - a.votes || a.name.localeCompare(b.name);
@@ -55,8 +73,6 @@ export function ModuleRequestsSection({
 		return order.flatMap((id) => byId.get(id) ?? []);
 	}, [requests, order]);
 
-	const visible = expanded ? ordered : ordered.slice(0, COLLAPSED_COUNT);
-
 	const flash = (id: string) => {
 		setHighlight(id);
 		window.setTimeout(() => setHighlight((h) => (h === id ? null : h)), 2400);
@@ -96,7 +112,7 @@ export function ModuleRequestsSection({
 			const index = [...(await store.list())]
 				.sort(byVotes)
 				.findIndex((r) => r.id === target.id);
-			if (index >= COLLAPSED_COUNT) setExpanded(true);
+			if (index >= currentLimit()) setExpanded(true);
 			flash(target.id);
 		} finally {
 			setBusy(false);
@@ -104,11 +120,16 @@ export function ModuleRequestsSection({
 	};
 
 	// Empty cells close the last row of the hairline grid at each width
-	const smFill = visible.length % 2 ? 1 : 0;
-	const lgFill = (4 - (visible.length % 4)) % 4;
+	// Collapsed, each width shows three rows; the button appears only where
+	// there's more than that.
+	const total = ordered.length;
+	const shownAt = (limit: number) =>
+		expanded ? total : Math.min(total, limit);
+	const smFill = shownAt(LIMIT.sm) % COLS.sm ? 1 : 0;
+	const lgFill = (COLS.lg - (shownAt(LIMIT.lg) % COLS.lg)) % COLS.lg;
 	const fillers = Array.from({ length: Math.max(smFill, lgFill) }, (_, n) => ({
 		key: `filler-${n}`,
-		className: `${n < smFill ? "sm:block" : ""} ${n < lgFill ? "lg:block" : "lg:hidden"}`,
+		className: showAt(false, n < smFill, n < lgFill, "block"),
 	}));
 
 	return (
@@ -129,32 +150,38 @@ export function ModuleRequestsSection({
 				</p>
 
 				<div className="mt-8 border border-zinc-200 dark:border-zinc-800">
-					{/* Suggest */}
+					{/* Suggest: a prompt on the left, a compact field on the right;
+					    stacked on phones */}
 					<form
 						onSubmit={submit}
-						className="flex gap-3 border-b border-zinc-200 p-4 lg:px-5 dark:border-zinc-800"
+						className="flex flex-col gap-3 border-b border-zinc-200 p-4 sm:flex-row sm:items-center sm:justify-between lg:px-5 dark:border-zinc-800"
 					>
-						<label htmlFor="module-suggestion" className="sr-only">
-							Suggest a module
+						<label
+							htmlFor="module-suggestion"
+							className="text-sm font-medium text-zinc-600 dark:text-zinc-400"
+						>
+							Don't see the one you want?
 						</label>
-						<input
-							id="module-suggestion"
-							value={draft}
-							onChange={(e) => {
-								setDraft(e.target.value);
-								if (message?.tone === "error") setMessage(null);
-							}}
-							maxLength={NAME_MAX_LENGTH}
-							autoComplete="off"
-							placeholder="Suggest a module"
-							aria-describedby="module-suggestion-message"
-							aria-invalid={message?.tone === "error"}
-							className="min-w-0 flex-1 rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm text-zinc-900 placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-						/>
-						<Button type="submit" variant="secondary" disabled={busy}>
-							<Icon name="plus" className="text-sm" />
-							Suggest
-						</Button>
+						<div className="flex gap-3 sm:w-96">
+							<input
+								id="module-suggestion"
+								value={draft}
+								onChange={(e) => {
+									setDraft(e.target.value);
+									if (message?.tone === "error") setMessage(null);
+								}}
+								maxLength={NAME_MAX_LENGTH}
+								autoComplete="off"
+								placeholder="Suggest a module"
+								aria-describedby="module-suggestion-message"
+								aria-invalid={message?.tone === "error"}
+								className="min-w-0 flex-1 rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm text-zinc-900 placeholder-zinc-500 outline-none transition-colors focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+							/>
+							<Button type="submit" variant="secondary" disabled={busy}>
+								<Icon name="plus" className="text-sm" />
+								Suggest
+							</Button>
+						</div>
 					</form>
 					<p
 						id="module-suggestion-message"
@@ -180,10 +207,14 @@ export function ModuleRequestsSection({
 						</p>
 					) : (
 						<ol className="grid grid-cols-1 gap-px bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:bg-zinc-800">
-							{visible.map((request, i) => (
+							{ordered.map((request, i) => (
 								<li
 									key={request.id}
-									className={`flex items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
+									className={`${
+										expanded
+											? "flex"
+											: showAt(i < LIMIT.base, i < LIMIT.sm, i < LIMIT.lg)
+									} items-center gap-3 px-4 py-2.5 transition-colors duration-700 lg:px-5 ${
 										highlight === request.id
 											? "bg-zinc-100 dark:bg-zinc-900"
 											: "bg-white dark:bg-zinc-950"
@@ -221,11 +252,11 @@ export function ModuleRequestsSection({
 						</ol>
 					)}
 
-					{ordered.length > COLLAPSED_COUNT && (
+					{total > LIMIT.base && (
 						<button
 							type="button"
 							onClick={() => setExpanded((e) => !e)}
-							className="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+							className={`${showAt(total > LIMIT.base, total > LIMIT.sm, total > LIMIT.lg)} w-full cursor-pointer items-center justify-center gap-1.5 border-t border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/60 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white`}
 						>
 							{expanded ? "Show fewer" : `Show all ${ordered.length}`}
 							<Icon
