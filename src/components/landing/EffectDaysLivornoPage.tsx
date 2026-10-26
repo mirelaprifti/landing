@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Link } from "@/components/ui";
+import { Button, Link, SoldOutButton } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
@@ -212,7 +212,8 @@ const PASSES: {
 			{ date: "Dec 10", name: "Conference Day", included: true },
 			{ date: "Dec 11", name: "Community Day", included: true },
 		],
-		featured: true,
+		featured: false,
+		soldOut: true,
 		pricing: {
 			self: {
 				earlyBird: "€249",
@@ -1002,15 +1003,14 @@ export function EffectDaysLivornoPage() {
 								</p>
 
 								<div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-start">
-									<Button
-										href="#tickets"
-										variant="primary"
-										size="lg"
-										className="w-full sm:w-auto"
-									>
-										<Icon name="ticket" className="text-lg" />
-										Get tickets
-									</Button>
+									<SoldOutButton size="lg" className="w-full sm:w-auto">
+										<Icon
+											name="ticket"
+											className="text-lg"
+											aria-hidden="true"
+										/>
+										Sold out
+									</SoldOutButton>
 									<SaveToCalendar />
 								</div>
 							</div>

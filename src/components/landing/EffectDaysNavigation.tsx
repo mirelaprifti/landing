@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Link } from "@/components/ui";
+import { Link, SoldOutButton } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 
@@ -90,14 +90,10 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 
 					{/* Social icons + ticket CTA + mobile menu toggle */}
 					<div className="ml-auto flex items-center gap-4">
-						<Button
-							href={getAssetPath("/effect-days#tickets")}
-							variant="primary"
-							size="sm"
-						>
-							<Icon name="ticket" className="text-base" />
-							Get tickets
-						</Button>
+						<SoldOutButton size="sm">
+							<Icon name="ticket" className="text-base" aria-hidden="true" />
+							Sold out
+						</SoldOutButton>
 						<div className="hidden h-4.5 w-px bg-zinc-200 sm:block dark:bg-zinc-700" />
 						<div className="hidden items-center gap-4 sm:flex">
 							<Link

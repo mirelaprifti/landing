@@ -5,4 +5,5 @@ export type { ButtonProps } from "./Button";
 export { Link, linkVariants } from "./Link";
 export type { LinkProps } from "./Link";
 export { SegmentedControl } from "./SegmentedControl";
+export { SoldOutButton } from "./SoldOutButton";
 export { VolumeToggle } from "./VolumeToggle";

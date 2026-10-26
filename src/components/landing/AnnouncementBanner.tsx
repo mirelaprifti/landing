@@ -46,7 +46,7 @@ export function AnnouncementBanner({
 			{/* Whole-banner click target, sat behind the close button */}
 			<a
 				href={getAssetPath(href)}
-				aria-label="Effect Days 2026, December 9–11: get tickets"
+				aria-label="Effect Days 2026, December 9–11: sold out"
 				className="absolute inset-0"
 			/>
 			{/* Three beats — event, date, action — told apart by weight and colour
@@ -69,7 +69,7 @@ export function AnnouncementBanner({
 					·
 				</span>
 				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
-					Get tickets
+					Sold out
 					<Icon
 						name="arrow-right"
 						className="text-base transition-transform group-hover:translate-x-0.5"

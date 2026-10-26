@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui";
-import { Icon, type IconName } from "@/components/ui/Icon";
+import { SoldOutButton } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { SaveToCalendar } from "./SaveToCalendar";
 
 /**
@@ -24,15 +24,7 @@ const text = {
 /* Styleguide chrome strings — copy verbatim. */
 const container = "mx-auto w-full max-w-[73.75rem] px-4";
 
-export function EnjoyEffectDaysCTA({
-	ticketsHref = "#tickets",
-	/** arrow-up when tickets are further up the same page, arrow-right when the
-	 *  button leaves for another one. */
-	arrowIcon = "arrow-up",
-}: {
-	ticketsHref?: string;
-	arrowIcon?: IconName;
-} = {}) {
+export function EnjoyEffectDaysCTA() {
 	return (
 		<section className="relative overflow-hidden py-24 md:py-32">
 			{/* Single horizontal line — sits on the CTA heading's first-line baseline.
@@ -80,21 +72,11 @@ export function EnjoyEffectDaysCTA({
 							<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
 							<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
 
-							<Button
-								href={ticketsHref}
-								variant="primary"
-								size="lg"
-								className="w-full"
-							>
-								Get tickets
-								<Icon
-									name={arrowIcon}
-									className="text-base"
-									aria-hidden="true"
-								/>
-							</Button>
-							{/* Fallback for anyone who reached the end without buying — the
-							    date is the next best thing to take away. */}
+							<SoldOutButton size="lg" className="w-full">
+								<Icon name="ticket" className="text-lg" aria-hidden="true" />
+								Sold out
+							</SoldOutButton>
+							{/* With tickets gone the date is the one thing left to take away. */}
 							<SaveToCalendar fullWidth />
 						</div>
 					</div>

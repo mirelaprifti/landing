@@ -637,10 +637,7 @@ export function AboutLivornoPage() {
 
 						<SectionDivider />
 
-						<EnjoyEffectDaysCTA
-							ticketsHref={getAssetPath("/effect-days#tickets")}
-							arrowIcon="arrow-right"
-						/>
+						<EnjoyEffectDaysCTA />
 					</div>
 				</div>
 			</main>
