@@ -546,15 +546,10 @@ const FAQ_SPLIT = Math.ceil(FAQS.length / 2);
 
 /* Stands in for the purchase rows once a pass is gone. It grows to fill the
    block, so it covers exactly the ground the purchase rows opposite it cover
-   and the two cards read as a matched pair. Dashed outline and muted text
-   rather than the buttons' ring — nothing here is clickable and none of it
-   should look like it is. */
+   and the two cards read as a matched pair. Same disabled button as the
+   page's other sold-out slots. */
 function SoldOutRow() {
-	return (
-		<p className="flex w-full flex-1 items-center justify-center border border-dashed border-zinc-300 px-4 py-4 text-base font-medium text-zinc-500 md:px-6 dark:border-zinc-700 dark:text-zinc-400">
-			Sold out
-		</p>
-	);
+	return <SoldOutButton size="lg" className="w-full flex-1" />;
 }
 
 /* Purchase row — a full-width Button; renders as an anchor once the Stripe
@@ -1003,14 +998,12 @@ export function EffectDaysLivornoPage() {
 								</p>
 
 								<div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-start">
-									<SoldOutButton size="lg" className="w-full sm:w-auto">
-										<Icon
-											name="ticket"
-											className="text-lg"
-											aria-hidden="true"
-										/>
-										Sold out
-									</SoldOutButton>
+									{/* Same text-sm / py-3.5 as Save to calendar beside it: one type size
+									    across the pair, still 48px tall. */}
+									<SoldOutButton
+										size="lg"
+										className="w-full py-3.5 text-sm sm:w-auto"
+									/>
 									<SaveToCalendar />
 								</div>
 							</div>

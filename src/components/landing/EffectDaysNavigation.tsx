@@ -90,10 +90,7 @@ export function EffectDaysNavigation({ activePath }: { activePath?: string }) {
 
 					{/* Social icons + ticket CTA + mobile menu toggle */}
 					<div className="ml-auto flex items-center gap-4">
-						<SoldOutButton size="sm">
-							<Icon name="ticket" className="text-base" aria-hidden="true" />
-							Sold out
-						</SoldOutButton>
+						<SoldOutButton size="sm" />
 						<div className="hidden h-4.5 w-px bg-zinc-200 sm:block dark:bg-zinc-700" />
 						<div className="hidden items-center gap-4 sm:flex">
 							<Link

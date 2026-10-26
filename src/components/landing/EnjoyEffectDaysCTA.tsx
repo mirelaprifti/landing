@@ -1,5 +1,4 @@
 import { SoldOutButton } from "@/components/ui";
-import { Icon } from "@/components/ui/Icon";
 import { SaveToCalendar } from "./SaveToCalendar";
 
 /**
@@ -72,10 +71,8 @@ export function EnjoyEffectDaysCTA() {
 							<span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-300 dark:border-zinc-700" />
 							<span className="absolute right-0 bottom-0 h-3 w-3 border-r border-b border-zinc-300 dark:border-zinc-700" />
 
-							<SoldOutButton size="lg" className="w-full">
-								<Icon name="ticket" className="text-lg" aria-hidden="true" />
-								Sold out
-							</SoldOutButton>
+							{/* Matches Save to calendar's text-sm / py-3.5 below it. */}
+							<SoldOutButton size="lg" className="w-full py-3.5 text-sm" />
 							{/* With tickets gone the date is the one thing left to take away. */}
 							<SaveToCalendar fullWidth />
 						</div>
