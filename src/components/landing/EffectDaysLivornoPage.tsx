@@ -782,13 +782,10 @@ function SpeakerCard({
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
-				{/* Blue duotone over the grayscale portrait: a colour layer tints
-				    the midtones, a navy screen lifts the shadows to deep blue. */}
+				{/* Navy wash, screened over the grayscale portrait: only the
+				    shadows lift to a hint of blue; midtones stay gray. */}
 				{speaker.photo && (
-					<>
-						<div className="pointer-events-none absolute inset-0 bg-[#3b5998]/12 mix-blend-color" />
-						<div className="pointer-events-none absolute inset-0 bg-[#0f1a33] mix-blend-screen" />
-					</>
+					<div className="pointer-events-none absolute inset-0 bg-[#0f1a33] mix-blend-screen" />
 				)}
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
