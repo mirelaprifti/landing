@@ -66,7 +66,7 @@ const PROGRAM = [
    back to the initials placeholder below and switches over on its own once
    a path is dropped in.
 
-   From md up the rows alternate four and three across (see SPEAKER_ROWS);
+   From md up the rows run four, three, four, four across (see SPEAKER_ROWS);
    the order above fills them left to right. */
 const SPEAKERS: {
 	name: string;
@@ -159,6 +159,12 @@ const SPEAKERS: {
 		company: "HumanLayer",
 		photo: "/assets/effect-days/kyle-mistele.png",
 		x: "0xblacklight",
+	},
+	{
+		name: "Joel Hooks",
+		company: "egghead.io",
+		photo: "/assets/effect-days/joel-hooks.jpg",
+		x: "jhooks",
 	},
 ];
 
@@ -743,7 +749,7 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 h-full w-full object-cover grayscale brightness-105"
+			className="aspect-4/5 h-full w-full object-cover grayscale"
 		/>
 	);
 }
@@ -766,7 +772,7 @@ function SpeakerCard({
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`relative overflow-hidden bg-white dark:bg-zinc-950 ${host ? "flex" : ""} ${className}`}
+			className={`relative isolate overflow-hidden bg-white dark:bg-zinc-950 ${host ? "flex" : ""} ${className}`}
 		>
 			<div
 				className={
@@ -776,6 +782,14 @@ function SpeakerCard({
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
+				{/* Blue duotone over the grayscale portrait: a colour layer tints
+				    the midtones, a navy screen lifts the shadows to deep blue. */}
+				{speaker.photo && (
+					<>
+						<div className="pointer-events-none absolute inset-0 bg-[#2f5fd0]/45 mix-blend-color" />
+						<div className="pointer-events-none absolute inset-0 bg-[#0f1a33] mix-blend-screen" />
+					</>
+				)}
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
 				    the light ink always holds. A step smaller and tighter below
@@ -808,9 +822,10 @@ function SpeakerCard({
 	);
 }
 
-/* Cards per row after the MC's, from md up: four narrow and three wide in
-   turn, the MC's two-cell card opening the first four. Every row is full. */
-const SPEAKER_ROWS = [2, 3, 4, 3];
+/* Cards per row after the MC's, from md up: four narrow, three wide, then
+   two rows of four, the MC's two-cell card opening the first. Every row is
+   full. */
+const SPEAKER_ROWS = [2, 3, 4, 4];
 
 /* Desktop column for each slot of a four-across row. The row is two pairs:
    16px inside each pair and 32px down the middle, so the page's centre
@@ -1080,7 +1095,7 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Rows of four and three in turn from md up (see SPEAKER_ROWS):
+						{/* Rows of four and three from md up (see SPEAKER_ROWS):
 						    the wide rows give faces room, the narrow ones keep the wall
 						    compact, and the change of beat keeps a long line-up from
 						    reading as a table. Kit, the MC, opens it on a two-cell card.
@@ -1096,7 +1111,7 @@ export function EffectDaysLivornoPage() {
 									0,
 								);
 								const cards = speakers.slice(start, start + count);
-								const four = row % 2 === 0;
+								const four = count + (row === 0 ? 2 : 0) === 4;
 								return (
 									<div
 										key={cards[0]?.name ?? "mc"}
