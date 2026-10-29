@@ -786,7 +786,7 @@ function SpeakerCard({
 				    the midtones, a navy screen lifts the shadows to deep blue. */}
 				{speaker.photo && (
 					<>
-						<div className="pointer-events-none absolute inset-0 bg-[#3b5998]/25 mix-blend-color" />
+						<div className="pointer-events-none absolute inset-0 bg-[#3b5998]/12 mix-blend-color" />
 						<div className="pointer-events-none absolute inset-0 bg-[#0f1a33] mix-blend-screen" />
 					</>
 				)}
