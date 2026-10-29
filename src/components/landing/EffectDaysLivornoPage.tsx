@@ -743,7 +743,7 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 h-full w-full object-cover opacity-80"
+			className="aspect-4/5 h-full w-full object-cover grayscale brightness-105"
 		/>
 	);
 }
