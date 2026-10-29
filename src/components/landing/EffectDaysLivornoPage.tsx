@@ -749,7 +749,7 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 h-full w-full object-cover grayscale"
+			className="aspect-4/5 h-full w-full object-cover"
 		/>
 	);
 }
@@ -772,7 +772,7 @@ function SpeakerCard({
 		<div
 			/* Opaque, so the page's centre dashed line stops behind the card
 			   rather than running across a portrait. */
-			className={`relative isolate overflow-hidden bg-white dark:bg-zinc-950 ${host ? "flex" : ""} ${className}`}
+			className={`relative overflow-hidden bg-white dark:bg-zinc-950 ${host ? "flex" : ""} ${className}`}
 		>
 			<div
 				className={
@@ -782,11 +782,6 @@ function SpeakerCard({
 				}
 			>
 				<SpeakerPhoto speaker={speaker} />
-				{/* Navy wash, screened over the grayscale portrait: only the
-				    shadows lift to a hint of blue; midtones stay gray. */}
-				{speaker.photo && (
-					<div className="pointer-events-none absolute inset-0 bg-[#0f1a33] mix-blend-screen" />
-				)}
 				{/* Details set into the foot of the portrait, on a scrim that
 				    darkens only the bottom of the frame — dark in both themes, so
 				    the light ink always holds. A step smaller and tighter below
