@@ -70,7 +70,7 @@ export const JOBS: Job[] = [
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/freckle-icon.png",
 		description:
-			"Help build a workflow and orchestration engine for GTM teams, on a TypeScript stack that's been on Effect for years.",
+			"Platform engineering on a workflow and orchestration engine around GTM, built in TypeScript with Effect.",
 	},
 	{
 		company: "Gen",
