@@ -168,18 +168,25 @@ export function EffectJobsPage() {
 												</p>
 											)}
 
-											{/* Meta footer: pay + type above divider, location below */}
+											{/* Meta footer: pay · type on one line above divider, location below */}
 											<dl className="mt-auto flex flex-col gap-1.5 pt-6 font-mono text-sm text-zinc-700 dark:text-zinc-400">
-												{job.payRange && (
-													<div className="flex gap-2">
-														<dt className="sr-only">Pay range</dt>
-														<dd className="tabular-nums">{job.payRange}</dd>
-													</div>
-												)}
-												{job.type && (
-													<div className="flex gap-2">
-														<dt className="sr-only">Type</dt>
-														<dd>{job.type}</dd>
+												{(job.payRange || job.type) && (
+													<div className="flex flex-wrap gap-x-2">
+														{job.payRange && (
+															<>
+																<dt className="sr-only">Pay range</dt>
+																<dd className="tabular-nums">{job.payRange}</dd>
+															</>
+														)}
+														{job.payRange && job.type && (
+															<span aria-hidden="true">·</span>
+														)}
+														{job.type && (
+															<>
+																<dt className="sr-only">Type</dt>
+																<dd>{job.type}</dd>
+															</>
+														)}
 													</div>
 												)}
 												{job.location && (
