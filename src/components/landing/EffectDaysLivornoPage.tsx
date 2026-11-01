@@ -751,7 +751,10 @@ function SpeakerPhoto({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 		<img
 			src={getAssetPath(speaker.photo)}
 			alt={speaker.name}
-			className="aspect-4/5 h-full w-full object-cover"
+			/* Saturation and contrast eased a touch on every portrait, so the
+			   loudest sources (strong backdrops, coloured lights) settle to the
+			   level of the rest and the wall reads as one set. */
+			className="aspect-4/5 h-full w-full object-cover contrast-95 saturate-75"
 		/>
 	);
 }
