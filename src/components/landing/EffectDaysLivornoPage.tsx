@@ -60,13 +60,14 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and Executor; Cloudflare, Alchemy and Foldkit take the
-   first wide row; the rest follow, Julius and Julia kept apart so the
+   card beside Warp and Executor; Ziverge, Effectful, Academind and silklang
+   follow, then Cloudflare, Alchemy and Foldkit take the wide row; the rest
+   close it out, Julius and Julia kept apart so the
    similar names don't read as a duplicate. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once
    a path is dropped in.
 
-   From md up the rows run four, three, four, four across (see SPEAKER_ROWS);
+   From md up the rows run four, four, three, four across (see SPEAKER_ROWS);
    the order above fills them left to right. */
 const SPEAKERS: {
 	name: string;
@@ -101,24 +102,6 @@ const SPEAKERS: {
 		x: "RhysSullivan",
 	},
 	{
-		name: "Dillon Mulroy",
-		company: "Cloudflare",
-		photo: "/assets/effect-days/dillon-mulroy.png",
-		x: "dillon_mulroy",
-	},
-	{
-		name: "Sam Goodwin",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-		x: "samgoodwin89",
-	},
-	{
-		name: "Devin Jameson",
-		company: "Foldkit",
-		photo: "/assets/effect-days/devin-jameson.jpg",
-		x: "devinjameson",
-	},
-	{
 		name: "John A. De Goes",
 		company: "Ziverge",
 		photo: "/assets/effect-days/john-degoes.png",
@@ -141,6 +124,24 @@ const SPEAKERS: {
 		company: "silklang.org",
 		photo: "/assets/effect-days/julia.png",
 		x: "JuliaScript",
+	},
+	{
+		name: "Dillon Mulroy",
+		company: "Cloudflare",
+		photo: "/assets/effect-days/dillon-mulroy.png",
+		x: "dillon_mulroy",
+	},
+	{
+		name: "Sam Goodwin",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
+	},
+	{
+		name: "Devin Jameson",
+		company: "Foldkit",
+		photo: "/assets/effect-days/devin-jameson.jpg",
+		x: "devinjameson",
 	},
 	{
 		name: "Leonie Gräßel",
@@ -814,10 +815,10 @@ function SpeakerCard({
 	);
 }
 
-/* Cards per row after the MC's, from md up: four narrow, three wide, then
-   two rows of four, the MC's two-cell card opening the first. Every row is
+/* Cards per row after the MC's, from md up: two rows of four, three wide,
+   then four again, the MC's two-cell card opening the first. Every row is
    full. */
-const SPEAKER_ROWS = [2, 3, 4, 4];
+const SPEAKER_ROWS = [2, 4, 3, 4];
 
 /* Desktop column for each slot of a four-across row. The row is two pairs:
    16px inside each pair and 32px down the middle, so the page's centre
