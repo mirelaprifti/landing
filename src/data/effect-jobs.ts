@@ -81,7 +81,7 @@ export const JOBS: Job[] = [
 		logo: "/assets/effect-jobs-logos/gen.svg",
 		payRange: "$218K – $239K + bonus",
 		description:
-			"Lead frontend for Engine by Gen, a marketplace matching consumers with personalized financial product offers.",
+			"A marketplace matching consumers with personalized financial product offers.",
 	},
 	{
 		company: "HumanLayer",
