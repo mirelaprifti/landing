@@ -60,8 +60,7 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and silklang, the three calm mid-tone portraits, so the
-   opening row reads quiet. The rest are placed for balance: bright,
+   card beside Warp and Executor. The rest are placed for balance: bright,
    dark and strongly coloured portraits alternate across rows and down
    columns, so no edge glows and the loudest photo (Joel's) stays clear of
    the last row's open slot. Julius and Julia sit well apart so the similar
@@ -98,22 +97,16 @@ const SPEAKERS: {
 		x: "rankintweets",
 	},
 	{
-		name: "Julia Ortiz",
-		company: "silklang.org",
-		photo: "/assets/effect-days/julia.png",
-		x: "JuliaScript",
-	},
-	{
 		name: "Rhys Sullivan",
 		company: "Executor",
 		photo: "/assets/effect-days/rhys-sullivan.png",
 		x: "RhysSullivan",
 	},
 	{
-		name: "John A. De Goes",
-		company: "Ziverge",
-		photo: "/assets/effect-days/john-degoes.png",
-		x: "jdegoes",
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia.png",
+		x: "JuliaScript",
 	},
 	{
 		name: "Michael Arnaldi",
@@ -122,22 +115,28 @@ const SPEAKERS: {
 		x: "MichaelArnaldi",
 	},
 	{
+		name: "John A. De Goes",
+		company: "Ziverge",
+		photo: "/assets/effect-days/john-degoes.png",
+		x: "jdegoes",
+	},
+	{
 		name: "Maximilian Schwarzmüller",
 		company: "Academind",
 		photo: "/assets/effect-days/maximilian.png",
 		x: "maxedapps",
 	},
 	{
-		name: "Joel Hooks",
-		company: "egghead.io",
-		photo: "/assets/effect-days/joel-hooks.jpg",
-		x: "jhooks",
-	},
-	{
 		name: "Leonie Gräßel",
 		company: "Novelcrafter",
 		photo: "/assets/effect-days/leonie.jpg",
 		x: "spaceemotion",
+	},
+	{
+		name: "Joel Hooks",
+		company: "egghead.io",
+		photo: "/assets/effect-days/joel-hooks.jpg",
+		x: "jhooks",
 	},
 	{
 		name: "Sam Goodwin",
