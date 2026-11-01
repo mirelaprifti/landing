@@ -60,8 +60,9 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and Executor; Ziverge, Effectful, Academind and silklang
-   follow, then Cloudflare, Alchemy and Foldkit; the rest close it out,
+   card beside Warp and Executor; Cloudflare, Alchemy, Foldkit and
+   Novelcrafter follow, then Ziverge, Effectful, Academind and silklang; the
+   rest close it out,
    Julius and Julia kept apart so the
    similar names don't read as a duplicate. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once
@@ -102,30 +103,6 @@ const SPEAKERS: {
 		x: "RhysSullivan",
 	},
 	{
-		name: "John A. De Goes",
-		company: "Ziverge",
-		photo: "/assets/effect-days/john-degoes.png",
-		x: "jdegoes",
-	},
-	{
-		name: "Michael Arnaldi",
-		company: "Effectful Technologies",
-		photo: "/assets/effect-days/mike-race.png",
-		x: "MichaelArnaldi",
-	},
-	{
-		name: "Maximilian Schwarzmüller",
-		company: "Academind",
-		photo: "/assets/effect-days/maximilian.png",
-		x: "maxedapps",
-	},
-	{
-		name: "Julia Ortiz",
-		company: "silklang.org",
-		photo: "/assets/effect-days/julia.png",
-		x: "JuliaScript",
-	},
-	{
 		name: "Dillon Mulroy",
 		company: "Cloudflare",
 		photo: "/assets/effect-days/dillon-mulroy.png",
@@ -148,6 +125,30 @@ const SPEAKERS: {
 		company: "Novelcrafter",
 		photo: "/assets/effect-days/leonie.jpg",
 		x: "spaceemotion",
+	},
+	{
+		name: "John A. De Goes",
+		company: "Ziverge",
+		photo: "/assets/effect-days/john-degoes.png",
+		x: "jdegoes",
+	},
+	{
+		name: "Michael Arnaldi",
+		company: "Effectful Technologies",
+		photo: "/assets/effect-days/mike-race.png",
+		x: "MichaelArnaldi",
+	},
+	{
+		name: "Maximilian Schwarzmüller",
+		company: "Academind",
+		photo: "/assets/effect-days/maximilian.png",
+		x: "maxedapps",
+	},
+	{
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia.png",
+		x: "JuliaScript",
 	},
 	{
 		name: "Julius Marminge",
