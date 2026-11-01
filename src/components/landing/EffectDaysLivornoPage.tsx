@@ -136,7 +136,7 @@ const SPEAKERS: {
 		name: "Joel Hooks",
 		company: "egghead.io",
 		photo: "/assets/effect-days/joel-hooks.jpg",
-		x: "jhooks",
+		x: "joelhooks",
 	},
 	{
 		name: "Sam Goodwin",
