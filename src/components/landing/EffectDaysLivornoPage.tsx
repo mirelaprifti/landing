@@ -60,7 +60,8 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and Ziverge. The rest are placed for balance: bright,
+   card beside Warp and Alchemy, the three calm mid-tone portraits, so the
+   opening row reads quiet. The rest are placed for balance: bright,
    dark and strongly coloured portraits alternate across rows and down
    columns, so no edge glows and the loudest photo (Joel's) stays clear of
    the last row's open slot. Julius and Julia sit well apart so the similar
@@ -97,10 +98,10 @@ const SPEAKERS: {
 		x: "rankintweets",
 	},
 	{
-		name: "John A. De Goes",
-		company: "Ziverge",
-		photo: "/assets/effect-days/john-degoes.png",
-		x: "jdegoes",
+		name: "Sam Goodwin",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
 	},
 	{
 		name: "Rhys Sullivan",
@@ -139,10 +140,10 @@ const SPEAKERS: {
 		x: "spaceemotion",
 	},
 	{
-		name: "Sam Goodwin",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-		x: "samgoodwin89",
+		name: "John A. De Goes",
+		company: "Ziverge",
+		photo: "/assets/effect-days/john-degoes.png",
+		x: "jdegoes",
 	},
 	{
 		name: "Dillon Mulroy",
