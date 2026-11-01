@@ -7,6 +7,8 @@ export type Job = {
 	note?: string;
 	/** Path under /public/ (e.g. "/assets/effect-jobs-logos/acemate.svg") */
 	logo?: string;
+	/** Set the logo on a white tile — for wordmarks that need a backing to read. */
+	logoBg?: boolean;
 	/** Free-form pay range, e.g. "$150K – $200K" or "€80K – €120K" */
 	payRange?: string;
 	/** 1–2 sentence summary of the JOB POSTING — what the role entails day-to-day. Not a company blurb. */
@@ -70,7 +72,7 @@ export const JOBS: Job[] = [
 		note: "Posted on Discord #job-board",
 		logo: "/assets/effect-jobs-logos/freckle-icon.png",
 		description:
-			"Platform engineering on a workflow and orchestration engine around GTM, built in TypeScript with Effect.",
+			"Platform engineering on a workflow and orchestration engine around GTM.",
 	},
 	{
 		company: "Gen",
@@ -79,6 +81,7 @@ export const JOBS: Job[] = [
 		type: "Full-time",
 		url: "https://jobs.ashbyhq.com/gen-digital/8a534cf5-e9dd-4ae6-bcf9-2b023f62282c?utm_source=1qpZVxYEr2",
 		logo: "/assets/effect-jobs-logos/gen.svg",
+		logoBg: true,
 		payRange: "$218K – $239K + bonus",
 		description:
 			"A marketplace matching consumers with personalized financial product offers.",

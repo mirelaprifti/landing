@@ -131,7 +131,7 @@ export function EffectJobsPage() {
 												<div className="flex min-w-0 items-center gap-4">
 													<span
 														aria-hidden="true"
-														className="flex h-12 w-12 shrink-0 items-center justify-center"
+														className={`flex h-12 w-12 shrink-0 items-center justify-center ${job.logoBg ? "bg-white p-1.5" : ""}`}
 													>
 														{job.logo ? (
 															<img
