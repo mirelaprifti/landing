@@ -60,13 +60,13 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and Executor; Cloudflare, Alchemy, Foldkit and
-   Novelcrafter follow, then Ziverge, Effectful, Academind and silklang; the
-   rest close it out,
-   Julius and Julia kept apart so the
-   similar names don't read as a duplicate. A card with no `photo` yet falls
-   back to the initials placeholder below and switches over on its own once
-   a path is dropped in.
+   card beside Warp and Ziverge. The rest are placed for balance: bright,
+   dark and strongly coloured portraits alternate across rows and down
+   columns, so no edge glows and the loudest photo (Joel's) stays clear of
+   the last row's open slot. Julius and Julia sit well apart so the similar
+   names don't read as a duplicate. A card with no `photo` yet falls back to
+   the initials placeholder below and switches over on its own once a path is
+   dropped in.
 
    From md up every row runs four across (see SPEAKER_ROWS);
    the order above fills them left to right. */
@@ -97,40 +97,22 @@ const SPEAKERS: {
 		x: "rankintweets",
 	},
 	{
+		name: "John A. De Goes",
+		company: "Ziverge",
+		photo: "/assets/effect-days/john-degoes.png",
+		x: "jdegoes",
+	},
+	{
 		name: "Rhys Sullivan",
 		company: "Executor",
 		photo: "/assets/effect-days/rhys-sullivan.png",
 		x: "RhysSullivan",
 	},
 	{
-		name: "Dillon Mulroy",
-		company: "Cloudflare",
-		photo: "/assets/effect-days/dillon-mulroy.png",
-		x: "dillon_mulroy",
-	},
-	{
-		name: "Sam Goodwin",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-		x: "samgoodwin89",
-	},
-	{
-		name: "Devin Jameson",
-		company: "Foldkit",
-		photo: "/assets/effect-days/devin-jameson.jpg",
-		x: "devinjameson",
-	},
-	{
-		name: "Leonie Gräßel",
-		company: "Novelcrafter",
-		photo: "/assets/effect-days/leonie.jpg",
-		x: "spaceemotion",
-	},
-	{
-		name: "John A. De Goes",
-		company: "Ziverge",
-		photo: "/assets/effect-days/john-degoes.png",
-		x: "jdegoes",
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia.png",
+		x: "JuliaScript",
 	},
 	{
 		name: "Michael Arnaldi",
@@ -145,16 +127,34 @@ const SPEAKERS: {
 		x: "maxedapps",
 	},
 	{
-		name: "Julia Ortiz",
-		company: "silklang.org",
-		photo: "/assets/effect-days/julia.png",
-		x: "JuliaScript",
+		name: "Joel Hooks",
+		company: "egghead.io",
+		photo: "/assets/effect-days/joel-hooks.jpg",
+		x: "jhooks",
 	},
 	{
-		name: "Julius Marminge",
-		company: "T3 Code",
-		photo: "/assets/effect-days/julius-marminge.jpeg",
-		x: "jullerino",
+		name: "Leonie Gräßel",
+		company: "Novelcrafter",
+		photo: "/assets/effect-days/leonie.jpg",
+		x: "spaceemotion",
+	},
+	{
+		name: "Sam Goodwin",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
+	},
+	{
+		name: "Dillon Mulroy",
+		company: "Cloudflare",
+		photo: "/assets/effect-days/dillon-mulroy.png",
+		x: "dillon_mulroy",
+	},
+	{
+		name: "Devin Jameson",
+		company: "Foldkit",
+		photo: "/assets/effect-days/devin-jameson.jpg",
+		x: "devinjameson",
 	},
 	{
 		name: "Kyle Mistele",
@@ -163,10 +163,10 @@ const SPEAKERS: {
 		x: "0xblacklight",
 	},
 	{
-		name: "Joel Hooks",
-		company: "egghead.io",
-		photo: "/assets/effect-days/joel-hooks.jpg",
-		x: "jhooks",
+		name: "Julius Marminge",
+		company: "T3 Code",
+		photo: "/assets/effect-days/julius-marminge.jpeg",
+		x: "jullerino",
 	},
 ];
 
