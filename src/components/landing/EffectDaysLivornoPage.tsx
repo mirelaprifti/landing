@@ -60,7 +60,7 @@ const PROGRAM = [
 ];
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
-   card beside Warp and Alchemy, the three calm mid-tone portraits, so the
+   card beside Warp and silklang, the three calm mid-tone portraits, so the
    opening row reads quiet. The rest are placed for balance: bright,
    dark and strongly coloured portraits alternate across rows and down
    columns, so no edge glows and the loudest photo (Joel's) stays clear of
@@ -98,10 +98,10 @@ const SPEAKERS: {
 		x: "rankintweets",
 	},
 	{
-		name: "Sam Goodwin",
-		company: "Alchemy",
-		photo: "/assets/effect-days/sam-goodwin.png",
-		x: "samgoodwin89",
+		name: "Julia Ortiz",
+		company: "silklang.org",
+		photo: "/assets/effect-days/julia.png",
+		x: "JuliaScript",
 	},
 	{
 		name: "Rhys Sullivan",
@@ -110,10 +110,10 @@ const SPEAKERS: {
 		x: "RhysSullivan",
 	},
 	{
-		name: "Julia Ortiz",
-		company: "silklang.org",
-		photo: "/assets/effect-days/julia.png",
-		x: "JuliaScript",
+		name: "John A. De Goes",
+		company: "Ziverge",
+		photo: "/assets/effect-days/john-degoes.png",
+		x: "jdegoes",
 	},
 	{
 		name: "Michael Arnaldi",
@@ -140,10 +140,10 @@ const SPEAKERS: {
 		x: "spaceemotion",
 	},
 	{
-		name: "John A. De Goes",
-		company: "Ziverge",
-		photo: "/assets/effect-days/john-degoes.png",
-		x: "jdegoes",
+		name: "Sam Goodwin",
+		company: "Alchemy",
+		photo: "/assets/effect-days/sam-goodwin.png",
+		x: "samgoodwin89",
 	},
 	{
 		name: "Dillon Mulroy",
