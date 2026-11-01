@@ -61,13 +61,13 @@ const PROGRAM = [
 
 /* Confirmed speakers, in a curated order: Kit, the MC, opens on a two-cell
    card beside Warp and Executor; Ziverge, Effectful, Academind and silklang
-   follow, then Cloudflare, Alchemy and Foldkit take the wide row; the rest
-   close it out, Julius and Julia kept apart so the
+   follow, then Cloudflare, Alchemy and Foldkit; the rest close it out,
+   Julius and Julia kept apart so the
    similar names don't read as a duplicate. A card with no `photo` yet falls
    back to the initials placeholder below and switches over on its own once
    a path is dropped in.
 
-   From md up the rows run four, four, three, four across (see SPEAKER_ROWS);
+   From md up every row runs four across (see SPEAKER_ROWS);
    the order above fills them left to right. */
 const SPEAKERS: {
 	name: string;
@@ -815,10 +815,10 @@ function SpeakerCard({
 	);
 }
 
-/* Cards per row after the MC's, from md up: two rows of four, three wide,
-   then four again, the MC's two-cell card opening the first. Every row is
-   full. */
-const SPEAKER_ROWS = [2, 4, 3, 4];
+/* Cards per row after the MC's, from md up: every row four across, the MC's
+   two-cell card opening the first. Thirteen speakers leave the last row one
+   short; its open slot sits at the end. */
+const SPEAKER_ROWS = [2, 4, 4, 3];
 
 /* Desktop column for each slot of a four-across row. The row is two pairs:
    16px inside each pair and 32px down the middle, so the page's centre
@@ -1088,10 +1088,8 @@ export function EffectDaysLivornoPage() {
 							</p>
 						</div>
 
-						{/* Rows of four and three from md up (see SPEAKER_ROWS):
-						    the wide rows give faces room, the narrow ones keep the wall
-						    compact, and the change of beat keeps a long line-up from
-						    reading as a table. Kit, the MC, opens it on a two-cell card.
+						{/* Rows of four from md up (see SPEAKER_ROWS). Kit, the MC,
+						    opens it on a two-cell card.
 
 						    Each row is its own grid from md up. On phones the rows dissolve
 						    (display: contents) into one two-across grid, Kit's card the
@@ -1104,11 +1102,10 @@ export function EffectDaysLivornoPage() {
 									0,
 								);
 								const cards = speakers.slice(start, start + count);
-								const four = count + (row === 0 ? 2 : 0) === 4;
 								return (
 									<div
 										key={cards[0]?.name ?? "mc"}
-										className={`contents md:grid md:gap-4 ${four ? "md:grid-cols-4 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]" : "md:grid-cols-3"}`}
+										className="contents md:grid md:grid-cols-4 md:gap-4 lg:grid-cols-[repeat(2,1fr)_0px_repeat(2,1fr)]"
 									>
 										{row === 0 &&
 											SPEAKERS.filter((speaker) => speaker.host).map(
@@ -1124,11 +1121,7 @@ export function EffectDaysLivornoPage() {
 											<SpeakerCard
 												key={speaker.name}
 												speaker={speaker}
-												className={
-													four
-														? FOUR_ROW_COLUMN[index + (row === 0 ? 2 : 0)]
-														: ""
-												}
+												className={FOUR_ROW_COLUMN[index + (row === 0 ? 2 : 0)]}
 											/>
 										))}
 									</div>
