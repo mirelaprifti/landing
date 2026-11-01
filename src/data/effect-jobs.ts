@@ -78,7 +78,7 @@ export const JOBS: Job[] = [
 		location: "New York, USA · Hybrid",
 		type: "Full-time",
 		url: "https://jobs.ashbyhq.com/gen-digital/8a534cf5-e9dd-4ae6-bcf9-2b023f62282c?utm_source=1qpZVxYEr2",
-		logo: "/assets/effect-jobs-logos/gen-digital.svg",
+		logo: "/assets/effect-jobs-logos/gen.svg",
 		payRange: "$218K – $239K + bonus",
 		description:
 			"Lead frontend for Engine by Gen, a marketplace matching consumers with personalized financial product offers.",
