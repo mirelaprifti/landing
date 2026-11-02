@@ -25,7 +25,7 @@ const HERO_LOGOS: {
 	{
 		name: "T3 Chat",
 		src: "/assets/test-logos/T3.svg",
-		h: "22px",
+		h: "20px",
 	},
 	{
 		name: "MasterClass",
