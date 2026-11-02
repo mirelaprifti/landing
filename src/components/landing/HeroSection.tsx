@@ -15,6 +15,7 @@ const HERO_LOGOS: {
 		src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png",
 		h: "20px",
 	},
+	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "22px", nudgeY: 2 },
 	{
 		name: "opencode",
 		src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
@@ -22,16 +23,15 @@ const HERO_LOGOS: {
 		nudgeY: 2,
 	},
 	{
-		name: "MasterClass",
-		src: "/assets/quotes-logos/masterclass-noM.svg",
-		h: "14px",
-	},
-	{
 		name: "T3 Chat",
 		src: "/assets/test-logos/T3.svg",
 		h: "20px",
 	},
-	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "22px", nudgeY: 2 },
+	{
+		name: "MasterClass",
+		src: "/assets/quotes-logos/masterclass-noM.svg",
+		h: "14px",
+	},
 ];
 
 export function HeroSection() {
