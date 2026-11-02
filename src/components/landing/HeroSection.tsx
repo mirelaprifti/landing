@@ -15,7 +15,7 @@ const HERO_LOGOS: {
 		src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png",
 		h: "22px",
 	},
-	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "24px", nudgeY: 2 },
+	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "22px", nudgeY: 2 },
 	{
 		name: "opencode",
 		src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
@@ -25,7 +25,7 @@ const HERO_LOGOS: {
 	{
 		name: "T3 Chat",
 		src: "/assets/test-logos/T3.svg",
-		h: "18px",
+		h: "16px",
 	},
 	{
 		name: "MasterClass",
