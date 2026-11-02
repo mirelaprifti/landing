@@ -65,9 +65,8 @@ const HERO_LOGOS: {
 	},
 	{
 		name: "T3 Chat",
-		src: "/assets/test-logos/t3-chat.png",
-		h: "15px",
-		invert: true,
+		src: "/assets/test-logos/T3.svg",
+		h: "20px",
 	},
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "22px", nudgeY: 2 },
 ];

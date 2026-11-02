@@ -46,9 +46,8 @@ const PROD_LOGOS: { name: string; src: string; h: number; invert?: boolean }[] =
 		},
 		{
 			name: "T3 Chat",
-			src: "/assets/test-logos/t3-chat.png",
-			h: 26,
-			invert: true,
+			src: "/assets/test-logos/T3.svg",
+			h: 32,
 		},
 		{ name: "X", src: "/assets/test-logos/x-logo.svg", h: 36 },
 	];
