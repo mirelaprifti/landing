@@ -46,18 +46,11 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 			data-announcement={a.id}
 			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-12 text-zinc-100"
 		>
-			{/* Hover flourish: a white glow that grows out of the middle of the bottom
-			    border and dissolves as it reaches the edges. Animation lives in
-			    globals.css so it can key off `:has(a:hover)` and reduced motion. */}
-			{/* Resting state: the same glow, held still and dimmer, so the bottom
-			    border always brightens toward the centre. */}
+			{/* The bottom border glows white at the centre and fades into the
+			    plain border at both edges. Sits over the border, not above it. */}
 			<span
 				aria-hidden="true"
-				className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.55)_50%,transparent_100%)]"
-			/>
-			<span
-				aria-hidden="true"
-				className="announcement-sweep pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)] opacity-0"
+				className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)]"
 			/>
 
 			{/* Whole-banner click target, sat behind the close button */}
