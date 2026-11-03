@@ -83,20 +83,19 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 					)}
 				</span>
 				{a.action && (
-					<>
-						<span aria-hidden="true" className="shrink-0 text-zinc-600">
-							·
-						</span>
-						<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
-							{a.action}
-							<Icon
-								name="arrow-right"
-								className="text-base transition-transform group-hover:translate-x-0.5"
-								aria-hidden="true"
-							/>
-						</span>
-					</>
+					<span aria-hidden="true" className="shrink-0 text-zinc-600">
+						·
+					</span>
 				)}
+				{/* Without an action, the bare arrow still says the line is a link. */}
+				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
+					{a.action}
+					<Icon
+						name="arrow-right"
+						className="text-base transition-transform group-hover:translate-x-0.5"
+						aria-hidden="true"
+					/>
+				</span>
 			</div>
 
 			<button
