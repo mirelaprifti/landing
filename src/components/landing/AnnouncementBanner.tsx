@@ -49,6 +49,12 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 			{/* Hover flourish: a white glow that grows out of the middle of the bottom
 			    border and dissolves as it reaches the edges. Animation lives in
 			    globals.css so it can key off `:has(a:hover)` and reduced motion. */}
+			{/* Resting state: the same glow, held still and dimmer, so the bottom
+			    border always brightens toward the centre. */}
+			<span
+				aria-hidden="true"
+				className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.55)_50%,transparent_100%)]"
+			/>
 			<span
 				aria-hidden="true"
 				className="announcement-sweep pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)] opacity-0"
