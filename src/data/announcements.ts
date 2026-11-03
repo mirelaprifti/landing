@@ -19,7 +19,8 @@ export type Announcement = {
 	title: string;
 	/** Middle beat — the first thing dropped on narrow screens. */
 	detail?: string;
-	action: string;
+	/** Closing call to action with an arrow. Omit for a plain statement. */
+	action?: string;
 };
 
 export const ANNOUNCEMENTS: Announcement[] = [
@@ -27,11 +28,10 @@ export const ANNOUNCEMENTS: Announcement[] = [
 		id: "effect-days-2026-live",
 		from: "2026-12-09T00:00:00+01:00",
 		until: "2026-12-12T00:00:00+01:00",
-		href: "https://x.com/EffectTS_",
-		label: "Effect Days 2026 is live in Livorno: follow along on X",
-		title: "Effect Days is live",
+		href: "/effect-days",
+		label: "Effect Days 2026 is happening now in Livorno, December 9–11",
+		title: "Effect Days is happening now",
 		detail: "Livorno, Dec 9–11",
-		action: "Updates on X",
 	},
 	{
 		id: "effect-days-2026-talks",

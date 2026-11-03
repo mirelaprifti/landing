@@ -61,7 +61,7 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 				aria-label={a.label}
 				className="absolute inset-0"
 			/>
-			{/* Three beats — event, detail, action — told apart by weight and colour
+			{/* Up to three beats — event, detail, action — told apart by weight and colour
 			    rather than by punctuation, so the line reads in one pass. */}
 			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm">
 				<span className="truncate">
@@ -82,17 +82,21 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 						</>
 					)}
 				</span>
-				<span aria-hidden="true" className="shrink-0 text-zinc-600">
-					·
-				</span>
-				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
-					{a.action}
-					<Icon
-						name="arrow-right"
-						className="text-base transition-transform group-hover:translate-x-0.5"
-						aria-hidden="true"
-					/>
-				</span>
+				{a.action && (
+					<>
+						<span aria-hidden="true" className="shrink-0 text-zinc-600">
+							·
+						</span>
+						<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
+							{a.action}
+							<Icon
+								name="arrow-right"
+								className="text-base transition-transform group-hover:translate-x-0.5"
+								aria-hidden="true"
+							/>
+						</span>
+					</>
+				)}
 			</div>
 
 			<button
