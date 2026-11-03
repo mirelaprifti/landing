@@ -1,6 +1,7 @@
 ---
 import "../styles/globals.css";
 import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
+import { ANNOUNCEMENTS } from "@/data/announcements";
 
 interface Props {
 	title?: string;
@@ -39,12 +40,13 @@ const ogImagePath = getOgImagePath();
 const ogImageUrl = `${siteUrl}${base}${ogImagePath}`;
 const pagePathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
-// On the Effect Days page itself the banner should jump to the tickets
-// section; everywhere else it should take you to the page.
-const onEffectDaysPage = pagePathname.replace(/^\/landing/, "") === "/effect-days";
-const announcementHref = onEffectDaysPage
-  ? "/effect-days#tickets"
-  : "/effect-days";
+// Only what the pre-paint script needs to pick the active banner.
+const announcementSchedule = ANNOUNCEMENTS.filter((a) => a.href).map(
+  ({ id, from, until }) => ({ id, from, until }),
+);
+const announcementCss = announcementSchedule
+  .map(({ id }) => `:root[data-active-announcement="${id}"] [data-announcement="${id}"]{display:flex}`)
+  .join("");
 const canonicalUrl = `${siteUrl}${pagePathname}`;
 ---
 
@@ -110,20 +112,31 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
-    <!-- Announcement banner: decide visibility before first paint so a
+    <!-- Announcement banner: pick the active entry before first paint so a
          dismissed banner never flashes and the fixed navbar never jumps -->
-    <script is:inline>
-      try {
-        if (!localStorage.getItem("effect-days-2026-banner-dismissed")) {
-          document.documentElement.classList.add("has-announcement");
-        }
-      } catch (_) {
+    <style is:inline set:html={announcementCss}></style>
+    <script is:inline define:vars={{ announcementSchedule }}>
+      (function () {
+        var preview = new URLSearchParams(location.search).get("announcement");
+        var now = Date.now();
+        var active = announcementSchedule.find(function (a) {
+          if (preview) return a.id === preview;
+          if (a.from && now < Date.parse(a.from)) return false;
+          if (a.until && now >= Date.parse(a.until)) return false;
+          try {
+            return !localStorage.getItem("announcement-dismissed:" + a.id);
+          } catch (_) {
+            return true;
+          }
+        });
+        if (!active) return;
+        document.documentElement.dataset.activeAnnouncement = active.id;
         document.documentElement.classList.add("has-announcement");
-      }
+      })();
     </script>
   </head>
   <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
-    <AnnouncementBanner href={announcementHref} client:load />
+    <AnnouncementBanner client:load />
     <slot />
   </body>
 </html>

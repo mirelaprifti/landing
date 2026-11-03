@@ -1,27 +1,38 @@
 import { Icon } from "@/components/ui/Icon";
+import { type Announcement, ANNOUNCEMENTS } from "@/data/announcements";
 import { getAssetPath } from "../../utils/assetPath";
 
 /**
  * Slim, dismissible site-wide banner above the fixed navbar.
  *
- * Visibility is driven by the `has-announcement` class on <html>, set by an
- * inline script in BaseLayout before first paint — so a visitor who already
- * dismissed it never sees a flash, and the navbar never jumps. Dismissing
- * removes the class and records it in localStorage.
+ * Every scheduled entry is rendered, all hidden. An inline script in
+ * BaseLayout picks the active one before first paint and marks it on <html>,
+ * so a visitor who already dismissed it never sees a flash, and the navbar
+ * never jumps. Dismissing clears the mark and records it in localStorage.
  */
-export const ANNOUNCEMENT_STORAGE_KEY = "effect-days-2026-banner-dismissed";
+export const announcementStorageKey = (id: string) =>
+	`announcement-dismissed:${id}`;
 
-export function AnnouncementBanner({
-	href = "/effect-days",
-}: {
-	/** Where the banner points. BaseLayout passes the tickets anchor when the
-	 *  visitor is already on the Effect Days page. */
-	href?: string;
-}) {
+export function AnnouncementBanner() {
+	return (
+		<>
+			{ANNOUNCEMENTS.filter((a) => a.href).map((a) => (
+				<Banner key={a.id} announcement={a} />
+			))}
+		</>
+	);
+}
+
+function Banner({ announcement: a }: { announcement: Announcement }) {
+	const href = a.href ?? "";
+	const external = /^https?:/.test(href);
+
 	const dismiss = () => {
-		document.documentElement.classList.remove("has-announcement");
+		const root = document.documentElement;
+		root.classList.remove("has-announcement");
+		delete root.dataset.activeAnnouncement;
 		try {
-			localStorage.setItem(ANNOUNCEMENT_STORAGE_KEY, "1");
+			localStorage.setItem(announcementStorageKey(a.id), "1");
 		} catch {
 			/* Private mode or storage disabled — the banner simply returns next visit. */
 		}
@@ -32,7 +43,7 @@ export function AnnouncementBanner({
 		   3rem a side clears the absolutely-placed dismiss button, which sits
 		   outside the flow and so reserves no space of its own. */
 		<div
-			data-announcement
+			data-announcement={a.id}
 			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-12 text-zinc-100"
 		>
 			{/* Hover flourish: a white glow that grows out of the middle of the bottom
@@ -45,31 +56,37 @@ export function AnnouncementBanner({
 
 			{/* Whole-banner click target, sat behind the close button */}
 			<a
-				href={getAssetPath(href)}
-				aria-label="Effect Days 2026, December 9–11: sold out"
+				href={external ? href : getAssetPath(href)}
+				{...(external && { target: "_blank", rel: "noopener noreferrer" })}
+				aria-label={a.label}
 				className="absolute inset-0"
 			/>
-			{/* Three beats — event, date, action — told apart by weight and colour
+			{/* Three beats — event, detail, action — told apart by weight and colour
 			    rather than by punctuation, so the line reads in one pass. */}
 			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm">
 				<span className="truncate">
-					<span className="font-medium text-zinc-100">Effect Days 2026</span>
-					{/* Date is the first thing to go on narrow screens — a truncated
-					    "Dec …" is worse than no date at all. It takes its leading dot
-					    with it, so mobile keeps a single separator, not two. */}
-					<span
-						aria-hidden="true"
-						className="hidden px-2 text-zinc-600 sm:inline"
-					>
-						·
-					</span>
-					<span className="hidden text-zinc-400 sm:inline">Dec 9–11</span>
+					<span className="font-medium text-zinc-100">{a.title}</span>
+					{/* Detail is the first thing to go on narrow screens. It takes its
+					    leading dot with it, so mobile keeps a single separator. */}
+					{a.detail && (
+						<>
+							<span
+								aria-hidden="true"
+								className="hidden px-2 text-zinc-600 sm:inline"
+							>
+								·
+							</span>
+							<span className="hidden text-zinc-400 sm:inline">
+								{a.detail}
+							</span>
+						</>
+					)}
 				</span>
 				<span aria-hidden="true" className="shrink-0 text-zinc-600">
 					·
 				</span>
 				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
-					Sold out
+					{a.action}
 					<Icon
 						name="arrow-right"
 						className="text-base transition-transform group-hover:translate-x-0.5"

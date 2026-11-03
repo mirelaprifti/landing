@@ -574,15 +574,11 @@ a:focus-visible {
 }
 
 /* Site-wide announcement banner.
-   Hidden by default; the inline script in BaseLayout adds `has-announcement`
-   to <html> before first paint when it has not been dismissed, so there is no
+   Hidden by default; the inline script in BaseLayout marks the active entry on
+   <html> before first paint (and emits the rule that shows it), so there is no
    flash for returning visitors and the fixed navbar never jumps. */
 [data-announcement] {
 	display: none;
-}
-
-:root.has-announcement [data-announcement] {
-	display: flex;
 }
 
 :root.has-announcement [data-site-nav] {
