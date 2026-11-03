@@ -64,7 +64,7 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 			{/* Set like the hero eyebrow ("// Effect 4.0 — Release Candidate →") so
 			    the strip speaks in the site's own voice: mono caps, one line,
 			    parts joined by em dashes, brightening as a whole on hover. */}
-			<div className="pointer-events-none flex min-w-0 items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors group-hover:text-white md:text-sm">
+			<div className="pointer-events-none flex min-w-0 items-center gap-2 font-mono text-[13px] tracking-wider text-zinc-300 uppercase transition-colors group-hover:text-white">
 				<span aria-hidden="true" className="shrink-0 text-zinc-400">
 					//
 				</span>
