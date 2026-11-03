@@ -31,7 +31,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
 		label: "Effect Days 2026 is live in Livorno: follow along on X",
 		title: "Effect Days is live",
 		detail: "Livorno, Dec 9–11",
-		action: "Follow along",
+		action: "Updates on X",
 	},
 	{
 		id: "effect-days-2026-talks",
