@@ -29,8 +29,8 @@ export const ANNOUNCEMENTS: Announcement[] = [
 		from: "2026-12-09T00:00:00+01:00",
 		until: "2026-12-12T00:00:00+01:00",
 		href: "/effect-days",
-		label: "Effect Days 2026 is happening now in Livorno, December 9–11",
-		title: "Effect Days is happening now",
+		label: "Effect Days 2026, Livorno, December 9–11",
+		title: "Effect Days 2026",
 		detail: "Livorno, Dec 9–11",
 	},
 	{
