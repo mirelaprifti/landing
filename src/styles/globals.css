@@ -589,29 +589,21 @@ a:focus-visible {
 	padding-top: 2.5rem;
 }
 
-/* Banner bottom border: a white glow grows from the centre to the edges and
-   dissolves there, then rests before the next pass. Reduced motion keeps the
-   glow still at full width. */
+/* Banner bottom border: on load, a white glow grows from the centre out to
+   the edges once, then holds there. Reduced motion shows the held state. */
 @keyframes announcement-sweep {
-	0% {
+	from {
 		transform: scaleX(0);
 		opacity: 0;
 	}
-	25% {
+	to {
+		transform: scaleX(1);
 		opacity: 1;
-	}
-	55% {
-		transform: scaleX(1);
-		opacity: 0;
-	}
-	100% {
-		transform: scaleX(1);
-		opacity: 0;
 	}
 }
 
 .announcement-sweep {
-	animation: announcement-sweep 3200ms ease-in-out infinite;
+	animation: announcement-sweep 1200ms ease-in-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
