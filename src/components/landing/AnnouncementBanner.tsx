@@ -55,6 +55,14 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 				className="announcement-sweep pointer-events-none absolute inset-x-0 -bottom-px h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)]"
 			/>
 
+			{/* Hover: soft light rising from the glowing border into the strip, as
+			    if the line were lighting it. Hover is keyed to the link, so the
+			    close button never triggers it. */}
+			<span
+				aria-hidden="true"
+				className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_45%_120%_at_50%_100%,rgba(255,255,255,0.09),transparent_70%)] opacity-0 transition-opacity duration-500 ease-out group-has-[a:hover]:opacity-100"
+			/>
+
 			{/* Whole-banner click target, sat behind the close button */}
 			<a
 				href={external ? href : getAssetPath(href)}
@@ -64,9 +72,12 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 			/>
 			{/* Set like the hero eyebrow ("// Effect 4.0 — Release Candidate →") so
 			    the strip speaks in the site's own voice: mono caps, one line,
-			    parts joined by middle dots, brightening as a whole on hover. */}
-			<div className="pointer-events-none flex min-w-0 items-center gap-2 font-mono text-[12.5px] tracking-wider text-zinc-300 uppercase transition-colors group-hover:text-white">
-				<span aria-hidden="true" className="shrink-0 text-zinc-400">
+			    parts joined by middle dots. */}
+			<div className="pointer-events-none flex min-w-0 items-center gap-2 font-mono text-[12.5px] tracking-wider text-zinc-300 uppercase transition-colors duration-300 group-has-[a:hover]:text-white">
+				<span
+					aria-hidden="true"
+					className="shrink-0 text-zinc-400 transition-colors duration-300 group-has-[a:hover]:text-zinc-300"
+				>
 					//
 				</span>
 				<span className="truncate">
@@ -80,7 +91,7 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 				</span>
 				<Icon
 					name="arrow-right"
-					className="shrink-0 text-base text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300"
+					className="shrink-0 text-base text-zinc-400 transition duration-300 ease-out group-has-[a:hover]:translate-x-1 group-has-[a:hover]:text-white"
 					aria-hidden="true"
 				/>
 			</div>
