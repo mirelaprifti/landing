@@ -589,7 +589,7 @@ a:focus-visible {
 	padding-top: 2.5rem;
 }
 
-/* Banner bottom border: on load, a white glow grows from the centre out to
+/* Banner bottom border: a second after load, a white glow grows from the centre out to
    the edges once, then holds there. Reduced motion shows the held state. */
 @keyframes announcement-sweep {
 	from {
@@ -603,7 +603,7 @@ a:focus-visible {
 }
 
 .announcement-sweep {
-	animation: announcement-sweep 1200ms ease-in-out both;
+	animation: announcement-sweep 1200ms ease-in-out 1000ms both;
 }
 
 @media (prefers-reduced-motion: reduce) {
