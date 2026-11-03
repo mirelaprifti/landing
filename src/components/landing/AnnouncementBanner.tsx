@@ -46,11 +46,13 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 			data-announcement={a.id}
 			className="group fixed top-0 right-0 left-0 z-[110] hidden h-10 items-center justify-center border-b border-zinc-700/60 bg-zinc-900 px-12 text-zinc-100"
 		>
-			{/* The bottom border glows white at the centre and fades into the
-			    plain border at both edges. Sits over the border, not above it. */}
+			{/* A white glow on the bottom border that grows from the centre out to
+			    both edges, dissolving as it reaches them, on a loop. Sits over the
+			    border, not above it. Animation lives in globals.css so it can
+			    respect reduced motion. */}
 			<span
 				aria-hidden="true"
-				className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)]"
+				className="announcement-sweep pointer-events-none absolute inset-x-0 -bottom-px h-px bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.9)_50%,transparent_100%)]"
 			/>
 
 			{/* Whole-banner click target, sat behind the close button */}
