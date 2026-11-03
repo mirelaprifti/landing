@@ -63,7 +63,7 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 			/>
 			{/* Set like the hero eyebrow ("// Effect 4.0 — Release Candidate →") so
 			    the strip speaks in the site's own voice: mono caps, one line,
-			    parts joined by em dashes, brightening as a whole on hover. */}
+			    parts joined by middle dots, brightening as a whole on hover. */}
 			<div className="pointer-events-none flex min-w-0 items-center gap-2 font-mono text-[13px] tracking-wider text-zinc-300 uppercase transition-colors group-hover:text-white">
 				<span aria-hidden="true" className="shrink-0 text-zinc-400">
 					//
@@ -71,11 +71,11 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 				<span className="truncate">
 					{a.title}
 					{/* Detail is the first thing to go on narrow screens, taking its
-					    dash with it. */}
+					    dot with it. */}
 					{a.detail && (
-						<span className="hidden sm:inline"> — {a.detail}</span>
+						<span className="hidden sm:inline"> · {a.detail}</span>
 					)}
-					{a.action && <> — {a.action}</>}
+					{a.action && <> · {a.action}</>}
 				</span>
 				<Icon
 					name="arrow-right"
