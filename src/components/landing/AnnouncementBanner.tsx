@@ -61,41 +61,27 @@ function Banner({ announcement: a }: { announcement: Announcement }) {
 				aria-label={a.label}
 				className="absolute inset-0"
 			/>
-			{/* Up to three beats — event, detail, action — told apart by weight and colour
-			    rather than by punctuation, so the line reads in one pass. */}
-			<div className="pointer-events-none flex min-w-0 items-center gap-2 text-sm">
+			{/* Set like the hero eyebrow ("// Effect 4.0 — Release Candidate →") so
+			    the strip speaks in the site's own voice: mono caps, one line,
+			    parts joined by em dashes, brightening as a whole on hover. */}
+			<div className="pointer-events-none flex min-w-0 items-center gap-2 font-mono text-xs tracking-wider text-zinc-300 uppercase transition-colors group-hover:text-white md:text-sm">
+				<span aria-hidden="true" className="shrink-0 text-zinc-400">
+					//
+				</span>
 				<span className="truncate">
-					<span className="font-medium text-zinc-100">{a.title}</span>
-					{/* Detail is the first thing to go on narrow screens. It takes its
-					    leading dot with it, so mobile keeps a single separator. */}
+					{a.title}
+					{/* Detail is the first thing to go on narrow screens, taking its
+					    dash with it. */}
 					{a.detail && (
-						<>
-							<span
-								aria-hidden="true"
-								className="hidden px-2 text-zinc-600 sm:inline"
-							>
-								·
-							</span>
-							<span className="hidden text-zinc-400 sm:inline">
-								{a.detail}
-							</span>
-						</>
+						<span className="hidden sm:inline"> — {a.detail}</span>
 					)}
+					{a.action && <> — {a.action}</>}
 				</span>
-				{a.action && (
-					<span aria-hidden="true" className="shrink-0 text-zinc-600">
-						·
-					</span>
-				)}
-				{/* Without an action, the bare arrow still says the line is a link. */}
-				<span className="flex shrink-0 items-center gap-1.5 font-medium text-white">
-					{a.action}
-					<Icon
-						name="arrow-right"
-						className="text-base transition-transform group-hover:translate-x-0.5"
-						aria-hidden="true"
-					/>
-				</span>
+				<Icon
+					name="arrow-right"
+					className="shrink-0 text-base text-zinc-400 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-300"
+					aria-hidden="true"
+				/>
 			</div>
 
 			<button
