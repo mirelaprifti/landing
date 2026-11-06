@@ -282,10 +282,10 @@ const SPONSOR_TIERS: {
 	{
 		tier: "Community",
 		label: "Community",
-		/* Four marks, laid out like the partner row — two-by-two on phones,
-		   quarters from sm — but a step shorter, so each cell stays smaller
-		   than a partner one. */
-		cols: "grid-cols-2 sm:grid-cols-4",
+		/* Five marks: fifths from sm, so each cell is narrower than a partner
+		   quarter as well as a step shorter. On phones they pair up and the
+		   odd one out runs the full width rather than leaving a hole. */
+		cols: "grid-cols-2 sm:grid-cols-5 [&>*:last-child:nth-child(odd)]:col-span-2 sm:[&>*:last-child:nth-child(odd)]:col-span-1",
 		cellClass: "h-16 sm:h-20 lg:h-24",
 		/* Tall enough for a stacked lockup; one-line marks set well under it. */
 		logoBox: "h-12",
@@ -399,6 +399,16 @@ const SPONSORS: {
 		logo: "/assets/effect-days/academind.svg",
 		logoHeight: "h-12",
 		websiteUrl: "https://academind.com/",
+	},
+	{
+		name: "Alchemy",
+		tier: "Community",
+		/* Alchemy ships no lockup file, so this is rebuilt from their site's
+		   logo: the yantra mark beside "Alchemy" in Source Serif 4 italic,
+		   outlined to paths. */
+		logo: "/assets/effect-days/alchemy.svg",
+		logoHeight: "h-6",
+		websiteUrl: "https://alchemy.run/",
 	},
 ];
 
