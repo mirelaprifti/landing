@@ -40,12 +40,12 @@ function MetaRow({ post }: { post: BlogPost }) {
  *  site, so both take the up-right arrow. */
 function ModuleLinks({ post }: { post: BlogPost }) {
 	const link =
-		"group/link inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white";
+		"group/link inline-flex items-center gap-1 text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white";
 	const arrow =
 		"text-sm transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5";
 	const video = videoUrl(post);
 	return (
-		<div className="flex items-center gap-5">
+		<div className="flex items-center gap-4">
 			{video && (
 				<a
 					href={video}
@@ -53,10 +53,6 @@ function ModuleLinks({ post }: { post: BlogPost }) {
 					rel="noopener noreferrer"
 					className={link}
 				>
-					<i
-						className="ri-youtube-fill text-base leading-none"
-						aria-hidden="true"
-					/>
 					Video
 					<Icon name="arrow-up-right" className={arrow} />
 				</a>
@@ -67,7 +63,6 @@ function ModuleLinks({ post }: { post: BlogPost }) {
 				rel="noopener noreferrer"
 				className={link}
 			>
-				<Icon name="file-text" className="text-base" />
 				Blog post
 				<Icon name="arrow-up-right" className={arrow} />
 			</a>
@@ -94,10 +89,6 @@ export function ModuleOfTheWeekSection() {
 						<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
 							One Effect module, every week
 						</h2>
-						<p className="mt-5 max-w-lg text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-							The lesser-known parts of Effect, written up, walked through live,
-							and cut into a video.
-						</p>
 					</div>
 					<Button
 						href={getAssetPath(MOTW_URL)}
@@ -135,10 +126,10 @@ export function ModuleOfTheWeekSection() {
 						{EARLIER.map((post) => (
 							<article
 								key={post.slug}
-								className="flex flex-col justify-between gap-3 bg-white px-5 py-5 lg:px-6 dark:bg-zinc-950"
+								className="flex flex-col justify-between gap-2 bg-white px-5 py-5 lg:px-6 dark:bg-zinc-950"
 							>
 								<MetaRow post={post} />
-								<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
+								<h3 className="text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
 									{moduleTitle(post)}
 								</h3>
 								<ModuleLinks post={post} />
