@@ -9,6 +9,13 @@ import {
 } from "../../data/blog";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
+import {
+	entryOf,
+	MODULES,
+	ModuleThumbnail,
+	moduleTitle,
+	videoUrl,
+} from "./moduleOfTheWeek";
 import { ModuleRequestsSection } from "./ModuleRequestsSection";
 import type { ModuleRef } from "./moduleRequests";
 import { Footer } from "./Footer";
@@ -22,12 +29,6 @@ const DISCORD_URL = "https://discord.gg/effect-ts";
 const BLOG_RSS_URL = "https://effect.website/rss.xml";
 const BLOG_CATEGORY_URL =
 	"https://effect.website/blog?category=module-of-the-week#blog-grid";
-
-// Posts are newest first, so the oldest is entry 01
-const MODULES = BLOG_POSTS.filter((p) => p.tags.includes("Module of the Week"));
-
-/** A module's number in the series: the oldest is 01. */
-const entryOf = (post: BlogPost) => MODULES.length - MODULES.indexOf(post);
 
 /** Modules the series has already covered (package/module, as in the API
  *  reference), so they can't be suggested again. Add one per new module. */
@@ -179,49 +180,6 @@ const APPEARANCES = [
 		duration: "2:55:35",
 	},
 ];
-
-// "Module of the Week - Cluster, Part 2" → "Cluster, Part 2"
-const moduleTitle = (post: BlogPost) =>
-	post.title.replace(/^Module of the Week\s*-\s*/, "");
-
-const videoUrl = (post: BlogPost) =>
-	post.video ? `https://www.youtube.com/watch?v=${post.video.youtubeId}` : null;
-
-/** Video thumbnail with the running time in its corner; links to YouTube. */
-function ModuleThumbnail({
-	post,
-	flush = false,
-}: {
-	post: BlogPost;
-	/** Fill the cell edge to edge, without its own border. */
-	flush?: boolean;
-}) {
-	const url = videoUrl(post);
-	if (!post.video || !url) return null;
-	return (
-		<a
-			href={url}
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label={`Watch ${moduleTitle(post)} on YouTube`}
-			className={`group relative block aspect-video overflow-hidden ${flush ? "h-full w-full" : "border border-zinc-200 dark:border-zinc-800"}`}
-		>
-			<img
-				// sddefault (640px) is the largest these videos have; no maxres
-				src={`https://i.ytimg.com/vi/${post.video.youtubeId}/sddefault.jpg`}
-				alt=""
-				loading="lazy"
-				className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-			/>
-			{/* Play mark + running time in the corner: reads as a video
-			    without covering the title baked into the thumbnail */}
-			<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums transition-colors group-hover:bg-zinc-950">
-				<i className="ri-play-fill text-sm leading-none" aria-hidden="true" />
-				{post.video.duration}
-			</span>
-		</a>
-	);
-}
 
 /** One module per block on a 12-column hairline frame: the video (5/12)
  *  and the blog post (7/12), which carries the title, over a slim footer row

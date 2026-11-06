@@ -6,6 +6,7 @@ import { FAQSection } from "./FAQSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { Footer } from "./Footer";
 import { HeroSection } from "./HeroSection";
+import { ModuleOfTheWeekSection } from "./ModuleOfTheWeekSection";
 import { Navigation } from "./Navigation";
 import { ProblemSection } from "./ProblemSection";
 import { QuotesGridSection } from "./QuotesSection";
@@ -77,6 +78,8 @@ export function LandingPage() {
 				<AISection />
 				<SectionDivider />
 				<QuotesGridSection />
+				<SectionDivider />
+				<ModuleOfTheWeekSection />
 				<SectionDivider />
 				<FAQSection />
 				<SectionDivider />
