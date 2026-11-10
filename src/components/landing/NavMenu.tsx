@@ -155,7 +155,7 @@ export function NavMenu({
 							transition: { duration: 0.12, ease: "easeIn" },
 						}}
 					>
-						<ul className="flex w-76 flex-col gap-0.5 rounded-lg border border-zinc-200 bg-white p-1.5 shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-black/40">
+						<ul className="grid w-[34rem] grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-white p-2 shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-black/40">
 							{items.map((item, i) => {
 								const active = isActive(item);
 								return (

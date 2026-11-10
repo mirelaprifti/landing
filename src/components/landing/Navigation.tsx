@@ -30,12 +30,6 @@ const RESOURCES_MENU: NavMenuItem[] = [
 		href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
 		external: true,
 	},
-	{
-		label: "Myths",
-		description: "Common misconceptions",
-		href: getAssetPath("/myths"),
-		match: "/myths",
-	},
 ];
 
 const COMMUNITY_MENU: NavMenuItem[] = [
@@ -46,16 +40,16 @@ const COMMUNITY_MENU: NavMenuItem[] = [
 		match: "/community-hub",
 	},
 	{
-		label: "Effect Days",
-		description: "The Effect conference",
-		href: getAssetPath("/effect-days"),
-		match: "/effect-days",
-	},
-	{
 		label: "Jobs",
 		description: "Open roles using Effect",
 		href: getAssetPath("/effect-jobs"),
 		match: "/effect-jobs",
+	},
+	{
+		label: "Adoption partners",
+		description: "Get help adopting Effect",
+		href: getAssetPath("/partners#adoption"),
+		match: "/partners",
 	},
 	{
 		label: "Merch",
@@ -213,7 +207,8 @@ export function Navigation({
 
 							{/* Navigation links next to logo — ordered by visitor intent:
 							    build (Docs, Play), follow along (Resources), take part
-							    (Community), evaluate as a team (Enterprise). */}
+							    (Community, Effect Days — top-level while the conference is on), evaluate
+							    as a team (Enterprise). */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								<Link
 									href={getAssetPath("/docs/onboarding")}
@@ -247,6 +242,16 @@ export function Navigation({
 									activePath={activePath}
 									transparent={transparent}
 								/>
+								<Link
+									href={getAssetPath("/effect-days")}
+									variant="nav"
+									active={activePath?.startsWith("/effect-days")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Effect Days
+								</Link>
 								<Link
 									href={getAssetPath("/enterprise")}
 									variant="nav"
@@ -411,6 +416,12 @@ export function Navigation({
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/play") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Play
+							</a>
+							<a
+								href={getAssetPath("/effect-days")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/effect-days") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+							>
+								Effect Days
 							</a>
 							<a
 								href={getAssetPath("/enterprise")}
