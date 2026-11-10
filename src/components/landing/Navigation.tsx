@@ -207,8 +207,8 @@ export function Navigation({
 
 							{/* Navigation links next to logo — ordered by visitor intent:
 							    build (Docs, Play), follow along (Resources), take part
-							    (Community, Effect Days — top-level while the conference is on), evaluate
-							    as a team (Enterprise). */}
+							    (Community), evaluate as a team (Enterprise). Effect Days sits last,
+							    top-level while the conference is on. */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								<Link
 									href={getAssetPath("/docs/onboarding")}
@@ -243,16 +243,6 @@ export function Navigation({
 									transparent={transparent}
 								/>
 								<Link
-									href={getAssetPath("/effect-days")}
-									variant="nav"
-									active={activePath?.startsWith("/effect-days")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Effect Days
-								</Link>
-								<Link
 									href={getAssetPath("/enterprise")}
 									variant="nav"
 									active={activePath?.startsWith("/enterprise")}
@@ -261,6 +251,16 @@ export function Navigation({
 									}
 								>
 									Enterprise
+								</Link>
+								<Link
+									href={getAssetPath("/effect-days")}
+									variant="nav"
+									active={activePath?.startsWith("/effect-days")}
+									className={
+										transparent ? "text-white hover:text-white/80" : ""
+									}
+								>
+									Effect Days
 								</Link>
 							</div>
 
@@ -418,16 +418,16 @@ export function Navigation({
 								Play
 							</a>
 							<a
-								href={getAssetPath("/effect-days")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/effect-days") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								Effect Days
-							</a>
-							<a
 								href={getAssetPath("/enterprise")}
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/enterprise") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Enterprise
+							</a>
+							<a
+								href={getAssetPath("/effect-days")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/effect-days") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+							>
+								Effect Days
 							</a>
 						</div>
 
