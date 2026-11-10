@@ -5,18 +5,24 @@ import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
 import { NavMenu, type NavMenuItem } from "./NavMenu";
 
-const LEARN_MENU: NavMenuItem[] = [
+const RESOURCES_MENU: NavMenuItem[] = [
 	{
-		label: "Module of the Week",
-		description: "One lesser-known module at a time",
-		href: getAssetPath("/module-of-the-week"),
-		match: "/module-of-the-week",
+		label: "Blog",
+		description: "Releases and notes from the team",
+		href: getAssetPath("/blog"),
+		match: "/blog",
 	},
 	{
 		label: "Podcast",
 		description: "Engineers using Effect in production",
 		href: getAssetPath("/podcast"),
 		match: "/podcast",
+	},
+	{
+		label: "Module of the Week",
+		description: "One lesser-known module at a time",
+		href: getAssetPath("/module-of-the-week"),
+		match: "/module-of-the-week",
 	},
 	{
 		label: "Workshops",
@@ -40,16 +46,16 @@ const COMMUNITY_MENU: NavMenuItem[] = [
 		match: "/community-hub",
 	},
 	{
+		label: "Effect Days",
+		description: "The Effect conference",
+		href: getAssetPath("/effect-days"),
+		match: "/effect-days",
+	},
+	{
 		label: "Jobs",
 		description: "Open roles using Effect",
 		href: getAssetPath("/effect-jobs"),
 		match: "/effect-jobs",
-	},
-	{
-		label: "Adoption partners",
-		description: "Get help adopting Effect",
-		href: getAssetPath("/partners#adoption"),
-		match: "/partners",
 	},
 	{
 		label: "Merch",
@@ -60,7 +66,7 @@ const COMMUNITY_MENU: NavMenuItem[] = [
 ];
 
 const MOBILE_GROUPS = [
-	{ title: "Learn", items: LEARN_MENU },
+	{ title: "Resources", items: RESOURCES_MENU },
 	{ title: "Community", items: COMMUNITY_MENU },
 ];
 
@@ -205,7 +211,9 @@ export function Navigation({
 								/>
 							</a>
 
-							{/* Navigation links next to logo */}
+							{/* Navigation links next to logo — ordered by visitor intent:
+							    build (Docs, Play), follow along (Resources), take part
+							    (Community), evaluate as a team (Enterprise). */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								<Link
 									href={getAssetPath("/docs/onboarding")}
@@ -217,12 +225,6 @@ export function Navigation({
 								>
 									Docs
 								</Link>
-								<NavMenu
-									label="Learn"
-									items={LEARN_MENU}
-									activePath={activePath}
-									transparent={transparent}
-								/>
 								<Link
 									href={getAssetPath("/play")}
 									variant="nav"
@@ -233,16 +235,12 @@ export function Navigation({
 								>
 									Play
 								</Link>
-								<Link
-									href={getAssetPath("/blog")}
-									variant="nav"
-									active={activePath?.startsWith("/blog")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Blog
-								</Link>
+								<NavMenu
+									label="Resources"
+									items={RESOURCES_MENU}
+									activePath={activePath}
+									transparent={transparent}
+								/>
 								<NavMenu
 									label="Community"
 									items={COMMUNITY_MENU}
@@ -250,14 +248,14 @@ export function Navigation({
 									transparent={transparent}
 								/>
 								<Link
-									href={getAssetPath("/effect-days")}
+									href={getAssetPath("/enterprise")}
 									variant="nav"
-									active={activePath?.startsWith("/effect-days")}
+									active={activePath?.startsWith("/enterprise")}
 									className={
 										transparent ? "text-white hover:text-white/80" : ""
 									}
 								>
-									Effect Days
+									Enterprise
 								</Link>
 							</div>
 
@@ -404,7 +402,7 @@ export function Navigation({
 						<div className="space-y-1">
 							<a
 								href={getAssetPath("/docs/onboarding")}
-								className={`block rounded-lg px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/docs") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Docs
 							</a>
@@ -415,16 +413,10 @@ export function Navigation({
 								Play
 							</a>
 							<a
-								href={getAssetPath("/blog")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/blog") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+								href={getAssetPath("/enterprise")}
+								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/enterprise") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
-								Blog
-							</a>
-							<a
-								href={getAssetPath("/effect-days")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/effect-days") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								Effect Days
+								Enterprise
 							</a>
 						</div>
 
