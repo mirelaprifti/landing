@@ -3,6 +3,66 @@ import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
 import { ThemeToggleButton } from "../ui/ThemeToggle";
+import { NavMenu, type NavMenuItem } from "./NavMenu";
+
+const LEARN_MENU: NavMenuItem[] = [
+	{
+		label: "Module of the Week",
+		description: "One lesser-known module at a time",
+		href: getAssetPath("/module-of-the-week"),
+		match: "/module-of-the-week",
+	},
+	{
+		label: "Podcast",
+		description: "Engineers using Effect in production",
+		href: getAssetPath("/podcast"),
+		match: "/podcast",
+	},
+	{
+		label: "Workshops",
+		description: "Recorded sessions on YouTube",
+		href: "https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792",
+		external: true,
+	},
+	{
+		label: "Myths",
+		description: "Common misconceptions",
+		href: getAssetPath("/myths"),
+		match: "/myths",
+	},
+];
+
+const COMMUNITY_MENU: NavMenuItem[] = [
+	{
+		label: "Community hub",
+		description: "Meetups, talks and events",
+		href: getAssetPath("/community-hub"),
+		match: "/community-hub",
+	},
+	{
+		label: "Jobs",
+		description: "Open roles using Effect",
+		href: getAssetPath("/effect-jobs"),
+		match: "/effect-jobs",
+	},
+	{
+		label: "Adoption partners",
+		description: "Get help adopting Effect",
+		href: getAssetPath("/partners#adoption"),
+		match: "/partners",
+	},
+	{
+		label: "Merch",
+		description: "Effect-branded merchandise",
+		href: getAssetPath("/merch"),
+		match: "/merch",
+	},
+];
+
+const MOBILE_GROUPS = [
+	{ title: "Learn", items: LEARN_MENU },
+	{ title: "Community", items: COMMUNITY_MENU },
+];
 
 interface NavigationProps {
 	transparent?: boolean;
@@ -157,6 +217,12 @@ export function Navigation({
 								>
 									Docs
 								</Link>
+								<NavMenu
+									label="Learn"
+									items={LEARN_MENU}
+									activePath={activePath}
+									transparent={transparent}
+								/>
 								<Link
 									href={getAssetPath("/play")}
 									variant="nav"
@@ -177,26 +243,12 @@ export function Navigation({
 								>
 									Blog
 								</Link>
-								<Link
-									href={getAssetPath("/module-of-the-week")}
-									variant="nav"
-									active={activePath?.startsWith("/module-of-the-week")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Module of the Week
-								</Link>
-								<Link
-									href={getAssetPath("/community-hub")}
-									variant="nav"
-									active={activePath?.startsWith("/community-hub")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Community
-								</Link>
+								<NavMenu
+									label="Community"
+									items={COMMUNITY_MENU}
+									activePath={activePath}
+									transparent={transparent}
+								/>
 								<Link
 									href={getAssetPath("/effect-days")}
 									variant="nav"
@@ -369,24 +421,42 @@ export function Navigation({
 								Blog
 							</a>
 							<a
-								href={getAssetPath("/module-of-the-week")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/module-of-the-week") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								Module of the Week
-							</a>
-							<a
-								href={getAssetPath("/community-hub")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/community-hub") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								Community
-							</a>
-							<a
 								href={getAssetPath("/effect-days")}
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/effect-days") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Effect Days
 							</a>
 						</div>
+
+						{/* Grouped sections (desktop dropdowns) */}
+						{MOBILE_GROUPS.map((group) => (
+							<div key={group.title} className="mt-6">
+								<p className="px-3 pb-1 text-xs font-medium text-zinc-500">
+									{group.title}
+								</p>
+								<div className="space-y-1">
+									{group.items.map((item) => (
+										<a
+											key={item.href}
+											href={item.href}
+											{...(item.external
+												? { target: "_blank", rel: "noopener noreferrer" }
+												: {})}
+											className={`flex items-center gap-1 rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${item.match && activePath?.startsWith(item.match) ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+										>
+											{item.label}
+											{item.external && (
+												<Icon
+													name="arrow-up-right"
+													className="text-sm text-zinc-500"
+													aria-hidden="true"
+												/>
+											)}
+										</a>
+									))}
+								</div>
+							</div>
+						))}
 
 						{/* Divider */}
 						<div className="my-4 h-px bg-zinc-800" />
