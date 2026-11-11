@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { VersionSwitchLinks } from "@/components/ui/VersionSwitch";
+import { VersionSelect } from "@/components/ui/VersionSelect";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import {
@@ -105,122 +105,128 @@ export function ApiReferenceLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="API packages"
-							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
+							className="sticky top-16 flex max-h-[calc(100vh-4rem)] flex-col"
 						>
-							{/* Widest scope first: version → section → package tree. */}
-							<div className="mb-3">
-								<VersionSwitchLinks
-									value={version}
-									href={(v) =>
-										// v4 ships only an index for now: a v3 package or module
-										// page has no v4 twin, so that half of the switch is
-										// inert there. The v3 index maps to the v4 index as usual.
-										v === "v4" && version === "v3" && activeSlug !== undefined
-											? null
-											: getAssetPath(`/docs/api/${v}`)
-									}
-									block
-									aria-label="API reference version"
+							{/* Widest scope first: version → section → package tree. The two
+							    switches are pinned; only the tree scrolls, under the divider. */}
+							<div className="relative z-10 shrink-0 px-4 pt-8">
+								<div className="mb-3">
+									<VersionSelect
+										value={version}
+										href={(v) =>
+											// v4 ships only an index for now: a v3 package or module
+											// page has no v4 twin, so that option is inert there.
+											v === "v4" && version === "v3" && activeSlug !== undefined
+												? null
+												: getAssetPath(`/docs/api/${v}`)
+										}
+										aria-label="API reference version"
+									/>
+								</div>
+								<DocsSectionSwitch
+									section="api"
+									className="border-b border-zinc-200 pb-5 dark:border-zinc-800"
 								/>
 							</div>
-							<DocsSectionSwitch
-								section="api"
-								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
-							/>
-							<a
-								href={getAssetPath(`/docs/api/${version}`)}
-								aria-current={activeSlug === undefined ? "page" : undefined}
-								className={`mb-3 block rounded-md px-3 py-2 text-[15px] font-medium transition-colors ${
-									activeSlug === undefined
-										? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
-										: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-								}`}
-							>
-								API reference
-							</a>
-							{version === "v4" && (
-								<p className="px-1 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
-									The v4 reference is coming soon.
-								</p>
-							)}
-							{version === "v3" &&
-								API_PACKAGE_GROUPS.map((group) => {
-									const isOpen = openSections[group.title] ?? true;
-									const panelId = `api-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`;
-									return (
-										<div key={group.title} className="mb-1 last:mb-0">
-											<button
-												type="button"
-												onClick={() => toggleSection(group.title)}
-												aria-expanded={isOpen}
-												aria-controls={panelId}
-												className="flex w-full items-center justify-between py-2.5 text-[15px] font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
-											>
-												<span>{group.title}</span>
-												<Icon
-													name="chevron-down"
-													className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
-													aria-hidden="true"
-												/>
-											</button>
-											{isOpen && (
-												<ul id={panelId} className="flex flex-col gap-0.5 pb-4">
-													{group.slugs.map((slug) => {
-														const pkg = packageBySlug(slug);
-														const isActive = slug === activeSlug;
-														return (
-															<li key={slug}>
-																<a
-																	href={getAssetPath(`/docs/api/v3/${slug}`)}
-																	aria-current={
-																		isActive && !activeModule
-																			? "page"
-																			: undefined
-																	}
-																	title={pkg.name}
-																	className={`block truncate rounded-md py-1.5 pl-3 font-mono text-[13px] transition-colors ${
-																		isActive
-																			? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																			: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-																	}`}
-																>
-																	{pkg.slug}
-																</a>
-																{isActive && activeModule && (
-																	<ul className="mt-1 mb-2 ml-3 flex flex-col gap-0.5 border-l border-zinc-200 pl-2 dark:border-zinc-800">
-																		{pkg.modules.map((mod) => {
-																			const isActiveModule =
-																				mod.name === activeModule;
-																			return (
-																				<li key={mod.name}>
-																					<a
-																						href={getAssetPath(mod.href)}
-																						aria-current={
-																							isActiveModule
-																								? "page"
-																								: undefined
-																						}
-																						className={`block truncate rounded py-1 pl-2 font-mono text-xs transition-colors ${
-																							isActiveModule
-																								? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
-																								: "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
-																						}`}
-																					>
-																						{mod.name}
-																					</a>
-																				</li>
-																			);
-																		})}
-																	</ul>
-																)}
-															</li>
-														);
-													})}
-												</ul>
-											)}
-										</div>
-									);
-								})}
+							<div className="min-h-0 flex-1 overflow-y-auto px-4 pt-5 pb-8">
+								<a
+									href={getAssetPath(`/docs/api/${version}`)}
+									aria-current={activeSlug === undefined ? "page" : undefined}
+									className={`mb-3 block rounded-md px-3 py-2 text-[15px] font-medium transition-colors ${
+										activeSlug === undefined
+											? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+											: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+									}`}
+								>
+									API reference
+								</a>
+								{version === "v4" && (
+									<p className="px-1 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
+										The v4 reference is coming soon.
+									</p>
+								)}
+								{version === "v3" &&
+									API_PACKAGE_GROUPS.map((group) => {
+										const isOpen = openSections[group.title] ?? true;
+										const panelId = `api-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`;
+										return (
+											<div key={group.title} className="mb-1 last:mb-0">
+												<button
+													type="button"
+													onClick={() => toggleSection(group.title)}
+													aria-expanded={isOpen}
+													aria-controls={panelId}
+													className="flex w-full items-center justify-between py-2.5 text-[15px] font-semibold text-zinc-800 transition-colors hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
+												>
+													<span>{group.title}</span>
+													<Icon
+														name="chevron-down"
+														className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`}
+														aria-hidden="true"
+													/>
+												</button>
+												{isOpen && (
+													<ul
+														id={panelId}
+														className="flex flex-col gap-0.5 pb-4"
+													>
+														{group.slugs.map((slug) => {
+															const pkg = packageBySlug(slug);
+															const isActive = slug === activeSlug;
+															return (
+																<li key={slug}>
+																	<a
+																		href={getAssetPath(`/docs/api/v3/${slug}`)}
+																		aria-current={
+																			isActive && !activeModule
+																				? "page"
+																				: undefined
+																		}
+																		title={pkg.name}
+																		className={`block truncate rounded-md py-1.5 pl-3 font-mono text-[13px] transition-colors ${
+																			isActive
+																				? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+																				: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+																		}`}
+																	>
+																		{pkg.slug}
+																	</a>
+																	{isActive && activeModule && (
+																		<ul className="mt-1 mb-2 ml-3 flex flex-col gap-0.5 border-l border-zinc-200 pl-2 dark:border-zinc-800">
+																			{pkg.modules.map((mod) => {
+																				const isActiveModule =
+																					mod.name === activeModule;
+																				return (
+																					<li key={mod.name}>
+																						<a
+																							href={getAssetPath(mod.href)}
+																							aria-current={
+																								isActiveModule
+																									? "page"
+																									: undefined
+																							}
+																							className={`block truncate rounded py-1 pl-2 font-mono text-xs transition-colors ${
+																								isActiveModule
+																									? "bg-zinc-200 font-semibold text-zinc-900 dark:bg-zinc-800 dark:text-white"
+																									: "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white"
+																							}`}
+																						>
+																							{mod.name}
+																						</a>
+																					</li>
+																				);
+																			})}
+																		</ul>
+																	)}
+																</li>
+															);
+														})}
+													</ul>
+												)}
+											</div>
+										);
+									})}
+							</div>
 						</nav>
 					</aside>
 

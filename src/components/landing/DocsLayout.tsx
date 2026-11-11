@@ -1,9 +1,7 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import {
-	type EffectVersion,
-	VersionSwitchLinks,
-} from "@/components/ui/VersionSwitch";
+import { VersionSelect } from "@/components/ui/VersionSelect";
+import type { EffectVersion } from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { DocsSectionSwitch } from "./DocsSectionSwitch";
@@ -175,14 +173,13 @@ export function DocsLayout({
 	/* The version switch heads the sidebar: it scopes every docs section,
 	   so it reads first, above the section switch and the tree. */
 	const versionSwitch = (
-		<VersionSwitchLinks
+		<VersionSelect
 			value={version}
 			href={(v) => {
 				const explicit = versionHrefs?.[v];
 				if (explicit === null) return null;
 				return getAssetPath(explicit ?? `/docs/api/${v}`);
 			}}
-			block
 			aria-label="Docs version"
 		/>
 	);
@@ -289,17 +286,21 @@ export function DocsLayout({
 					<aside className="hidden border-r border-zinc-200 lg:block dark:border-zinc-800">
 						<nav
 							aria-label="Docs navigation"
-							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
+							className="sticky top-16 flex max-h-[calc(100vh-4rem)] flex-col"
 						>
 							{/* Widest scope first: version (all docs) → section → page tree.
-							    The version and section switches form one control cluster above
-							    the divider; the tree sits below it. */}
-							<div className="mb-3">{versionSwitch}</div>
-							<DocsSectionSwitch
-								section={section}
-								className="mb-2.5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
-							/>
-							{renderSections("docs-section")}
+							    The two switches are pinned; only the tree scrolls, under the
+							    divider. z-10 lets the version menu overlay the tree. */}
+							<div className="relative z-10 shrink-0 px-4 pt-8">
+								<div className="mb-3">{versionSwitch}</div>
+								<DocsSectionSwitch
+									section={section}
+									className="border-b border-zinc-200 pb-5 dark:border-zinc-800"
+								/>
+							</div>
+							<div className="min-h-0 flex-1 overflow-y-auto px-4 pt-2.5 pb-8">
+								{renderSections("docs-section")}
+							</div>
 						</nav>
 					</aside>
 
