@@ -434,30 +434,43 @@ export function Navigation({
 						{/* Grouped sections (desktop dropdowns) */}
 						{MOBILE_GROUPS.map((group) => (
 							<div key={group.title} className="mt-6">
-								<p className="px-3 pb-1 text-xs font-medium text-zinc-500">
+								{/* Real heading + labelled list so screen readers announce
+								    "Resources, list, 4 items". 13px semibold zinc-400 matches
+								    the site's nav group headers and clears 4.5:1 on zinc-900. */}
+								<h2
+									id={`mobile-nav-${group.title.toLowerCase()}`}
+									className="px-3 pb-1 text-[13px] font-semibold text-zinc-400"
+								>
 									{group.title}
-								</p>
-								<div className="space-y-1">
+								</h2>
+								<ul
+									aria-labelledby={`mobile-nav-${group.title.toLowerCase()}`}
+									className="space-y-1"
+								>
 									{group.items.map((item) => (
-										<a
-											key={item.href}
-											href={item.href}
-											{...(item.external
-												? { target: "_blank", rel: "noopener noreferrer" }
-												: {})}
-											className={`flex items-center gap-1 rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${item.match && activePath?.startsWith(item.match) ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-										>
-											{item.label}
-											{item.external && (
-												<Icon
-													name="arrow-up-right"
-													className="text-sm text-zinc-500"
-													aria-hidden="true"
-												/>
-											)}
-										</a>
+										<li key={item.href}>
+											<a
+												href={item.href}
+												{...(item.external
+													? { target: "_blank", rel: "noopener noreferrer" }
+													: {})}
+												className={`flex items-center gap-1 rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${item.match && activePath?.startsWith(item.match) ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
+											>
+												{item.label}
+												{item.external && (
+													<Icon
+														name="arrow-up-right"
+														className="text-sm text-zinc-500"
+														aria-hidden="true"
+													/>
+												)}
+												{item.external && (
+													<span className="sr-only">(opens in a new tab)</span>
+												)}
+											</a>
+										</li>
 									))}
-								</div>
+								</ul>
 							</div>
 						))}
 
