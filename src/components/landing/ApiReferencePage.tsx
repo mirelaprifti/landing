@@ -107,13 +107,8 @@ export function ApiReferenceLayout({
 							aria-label="API packages"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
 						>
-							<DocsSectionSwitch
-								section="api"
-								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
-							/>
-							{/* The version switch scopes everything below it, so it reads
-							    before the package tree. */}
-							<div className="mb-5">
+							{/* Widest scope first: version → section → package tree. */}
+							<div className="mb-3">
 								<VersionSwitchLinks
 									value={version}
 									href={(v) =>
@@ -128,6 +123,10 @@ export function ApiReferenceLayout({
 									aria-label="API reference version"
 								/>
 							</div>
+							<DocsSectionSwitch
+								section="api"
+								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
+							/>
 							<a
 								href={getAssetPath(`/docs/api/${version}`)}
 								aria-current={activeSlug === undefined ? "page" : undefined}

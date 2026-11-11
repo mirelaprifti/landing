@@ -172,8 +172,8 @@ export function DocsLayout({
 		navSection.items.some((item) => item.slug === activeSlug),
 	);
 
-	/* The version switch heads the sidebar: it scopes everything below it,
-	   so it reads before the tree rather than off in the navbar. */
+	/* The version switch heads the sidebar: it scopes every docs section,
+	   so it reads first, above the section switch and the tree. */
 	const versionSwitch = (
 		<VersionSwitchLinks
 			value={version}
@@ -275,11 +275,11 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-4 py-4 dark:border-zinc-800"
 						>
+							<div className="mb-3">{versionSwitch}</div>
 							<DocsSectionSwitch
 								section={section}
 								className="mb-4 border-b border-zinc-200 pb-4 dark:border-zinc-800"
 							/>
-							<div className="mb-1.5">{versionSwitch}</div>
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -291,13 +291,14 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
 						>
+							{/* Widest scope first: version (all docs) → section → page tree.
+							    The version and section switches form one control cluster above
+							    the divider; the tree sits below it. */}
+							<div className="mb-3">{versionSwitch}</div>
 							<DocsSectionSwitch
 								section={section}
-								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
+								className="mb-2.5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
 							/>
-							{/* Header buttons carry 10px top padding, so mb-2.5 lands the first
-							    title ~20px below the switch, matching the gaps around the divider. */}
-							<div className="mb-2.5">{versionSwitch}</div>
 							{renderSections("docs-section")}
 						</nav>
 					</aside>
