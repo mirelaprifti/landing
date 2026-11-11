@@ -46,10 +46,10 @@ const COMMUNITY_MENU: NavMenuItem[] = [
 		match: "/effect-jobs",
 	},
 	{
-		label: "Partners",
-		description: "Get help building with Effect",
-		href: getAssetPath("/partners"),
-		match: "/partners",
+		label: "Adoption partner",
+		description: "Get help adopting Effect with Ziverge",
+		href: getAssetPath("/adoption-partners/ziverge"),
+		match: "/adoption-partners",
 	},
 	{
 		label: "Merch",
