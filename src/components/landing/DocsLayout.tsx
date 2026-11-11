@@ -6,8 +6,9 @@ import {
 } from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
-import { DocsNavigation } from "./DocsNavigation";
+import { DocsSectionSwitch } from "./DocsSectionSwitch";
 import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 /**
  * Shared article styles for docs page bodies (also used by /styleguide).
@@ -23,7 +24,7 @@ export const DOCS_ARTICLE_CLASS =
 type NavItem = { slug: string; label: string; href?: string };
 type NavSection = { title: string; items: NavItem[] };
 
-/** Top-level docs sections; the nav owns the link list (DocsNavigation). */
+/** Top-level docs sections; the sidebar switch owns the link list (DocsSectionSwitch). */
 export type DocsSectionKey = "docs" | "guides" | "api";
 
 const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
@@ -244,7 +245,7 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<DocsNavigation section={section} />
+			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
 				{/* Mobile docs nav: sticky disclosure below the navbar */}
 				<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
@@ -274,6 +275,10 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-4 py-4 dark:border-zinc-800"
 						>
+							<DocsSectionSwitch
+								section={section}
+								className="mb-4 border-b border-zinc-200 pb-4 dark:border-zinc-800"
+							/>
 							<div className="mb-4">{versionSwitch}</div>
 							{renderSections("docs-mobile-section")}
 						</nav>
@@ -286,6 +291,10 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
 						>
+							<DocsSectionSwitch
+								section={section}
+								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
+							/>
 							<div className="mb-5">{versionSwitch}</div>
 							{renderSections("docs-section")}
 						</nav>

@@ -8,8 +8,9 @@ import {
 	API_PACKAGES,
 	type ApiPackage,
 } from "./apiReferenceData";
-import { DocsNavigation } from "./DocsNavigation";
+import { DocsSectionSwitch } from "./DocsSectionSwitch";
 import { Footer } from "./Footer";
+import { Navigation } from "./Navigation";
 
 function packageBySlug(slug: string): ApiPackage {
 	const pkg = API_PACKAGES.find((p) => p.slug === slug);
@@ -87,8 +88,12 @@ export function ApiReferenceLayout({
 			>
 				Skip to main content
 			</a>
-			<DocsNavigation section="api" />
+			<Navigation activePath="/docs" wide />
 			<div className="relative w-full pt-16">
+				{/* No sidebar below lg, so the section switch gets its own row */}
+				<div className="border-b border-zinc-200 px-4 py-2 lg:hidden dark:border-zinc-800">
+					<DocsSectionSwitch section="api" horizontal />
+				</div>
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
 						tocItems
@@ -102,8 +107,12 @@ export function ApiReferenceLayout({
 							aria-label="API packages"
 							className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8"
 						>
-							{/* The version switch heads the sidebar: it scopes everything
-							    below it, so it reads before the package tree. */}
+							<DocsSectionSwitch
+								section="api"
+								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
+							/>
+							{/* The version switch scopes everything below it, so it reads
+							    before the package tree. */}
 							<div className="mb-5">
 								<VersionSwitchLinks
 									value={version}
