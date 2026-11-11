@@ -279,7 +279,7 @@ export function DocsLayout({
 								section={section}
 								className="mb-4 border-b border-zinc-200 pb-4 dark:border-zinc-800"
 							/>
-							<div className="mb-4">{versionSwitch}</div>
+							<div className="mb-1.5">{versionSwitch}</div>
 							{renderSections("docs-mobile-section")}
 						</nav>
 					)}
@@ -295,7 +295,9 @@ export function DocsLayout({
 								section={section}
 								className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
 							/>
-							<div className="mb-5">{versionSwitch}</div>
+							{/* Header buttons carry 10px top padding, so mb-2.5 lands the first
+							    title ~20px below the switch, matching the gaps around the divider. */}
+							<div className="mb-2.5">{versionSwitch}</div>
 							{renderSections("docs-section")}
 						</nav>
 					</aside>
