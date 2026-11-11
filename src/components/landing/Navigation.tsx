@@ -46,9 +46,9 @@ const COMMUNITY_MENU: NavMenuItem[] = [
 		match: "/effect-jobs",
 	},
 	{
-		label: "Adoption partners",
-		description: "Get help adopting Effect",
-		href: getAssetPath("/partners#adoption"),
+		label: "Partners",
+		description: "Get help building with Effect",
+		href: getAssetPath("/partners"),
 		match: "/partners",
 	},
 	{
