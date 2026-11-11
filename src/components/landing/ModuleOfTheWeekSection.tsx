@@ -10,8 +10,8 @@ import {
 	videoUrl,
 } from "./moduleOfTheWeek";
 
-/** Latest module plus the four before it. */
-const [LATEST, ...EARLIER] = MODULES.slice(0, 5);
+/** Latest module plus the three before it. */
+const [LATEST, ...EARLIER] = MODULES.slice(0, 4);
 
 /** Number and package on the left, date on the right: the same line on top
  *  of every cell, as on the series page. */
@@ -71,7 +71,7 @@ function ModuleLinks({ post }: { post: BlogPost }) {
 
 /**
  * Module of the Week on the homepage: one hairline ledger split on the page's
- * centre line. The latest module fills the left half; the four
+ * centre line. The latest module fills the left half; the three
  * before it stack on the right and share its height, so both halves end on
  * the same line. Every cell reads the same way: meta, title, links.
  */
@@ -119,8 +119,8 @@ export function ModuleOfTheWeekSection() {
 						</div>
 					</article>
 
-					{/* The four before it */}
-					<div className="grid min-w-0 grid-cols-1 gap-px bg-zinc-200 lg:grid-rows-4 dark:bg-zinc-800">
+					{/* The three before it */}
+					<div className="grid min-w-0 grid-cols-1 gap-px bg-zinc-200 lg:grid-rows-3 dark:bg-zinc-800">
 						{EARLIER.map((post) => (
 							<article
 								key={post.slug}
