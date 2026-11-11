@@ -1,7 +1,9 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { VersionSelect } from "@/components/ui/VersionSelect";
-import type { EffectVersion } from "@/components/ui/VersionSwitch";
+import {
+	type EffectVersion,
+	VersionSwitchLinks,
+} from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { DocsSectionSwitch } from "./DocsSectionSwitch";
@@ -173,13 +175,14 @@ export function DocsLayout({
 	/* The version switch heads the sidebar: it scopes every docs section,
 	   so it reads first, above the section switch and the tree. */
 	const versionSwitch = (
-		<VersionSelect
+		<VersionSwitchLinks
 			value={version}
 			href={(v) => {
 				const explicit = versionHrefs?.[v];
 				if (explicit === null) return null;
 				return getAssetPath(explicit ?? `/docs/api/${v}`);
 			}}
+			block
 			aria-label="Docs version"
 		/>
 	);

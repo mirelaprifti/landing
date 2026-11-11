@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { VersionSelect } from "@/components/ui/VersionSelect";
+import { VersionSwitchLinks } from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import {
@@ -111,15 +111,16 @@ export function ApiReferenceLayout({
 							    switches are pinned; only the tree scrolls, under the divider. */}
 							<div className="relative z-10 shrink-0 px-4 pt-8">
 								<div className="mb-3">
-									<VersionSelect
+									<VersionSwitchLinks
 										value={version}
 										href={(v) =>
 											// v4 ships only an index for now: a v3 package or module
-											// page has no v4 twin, so that option is inert there.
+											// page has no v4 twin, so that half of the switch is inert.
 											v === "v4" && version === "v3" && activeSlug !== undefined
 												? null
 												: getAssetPath(`/docs/api/${v}`)
 										}
+										block
 										aria-label="API reference version"
 									/>
 								</div>
