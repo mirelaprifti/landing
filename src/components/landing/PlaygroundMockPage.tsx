@@ -595,7 +595,7 @@ export function PlaygroundMockPage() {
 
 	return (
 		<div className="relative flex h-screen flex-col overflow-hidden bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
-			<Navigation activePath="/play" fullWidth />
+			<Navigation activePath="/play" />
 			<PlaygroundLoader />
 
 			{/* Placement · navbar — preview shim. The switch belongs in the shared

@@ -70,7 +70,6 @@ interface NavigationProps {
 	/** Shift the fixed navbar down to make room for a site-wide banner above it. */
 	belowBanner?: boolean;
 	wide?: boolean;
-	fullWidth?: boolean;
 	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
 	compactSearch?: boolean;
 }
@@ -91,7 +90,6 @@ export function Navigation({
 	transparent = false,
 	activePath,
 	wide = false,
-	fullWidth = false,
 	belowBanner = false,
 	compactSearch = false,
 }: NavigationProps) {
@@ -178,7 +176,7 @@ export function Navigation({
 					{/* One header width site-wide (88rem) so the fixed chrome never
 					    jumps between pages; page content keeps its own measure. */}
 					<header
-						className={`relative mx-auto w-full px-4 ${fullWidth ? "" : "max-w-[88rem]"}`}
+						className="relative mx-auto w-full max-w-[88rem] px-4"
 					>
 						<nav className="flex h-16 items-center">
 							{/* Named on the link, not the logo: only one of the two logo
