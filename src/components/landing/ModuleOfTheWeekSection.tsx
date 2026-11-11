@@ -6,7 +6,6 @@ import {
 	entryOf,
 	MODULES,
 	MOTW_URL,
-	ModuleThumbnail,
 	moduleTitle,
 	videoUrl,
 } from "./moduleOfTheWeek";
@@ -72,7 +71,7 @@ function ModuleLinks({ post }: { post: BlogPost }) {
 
 /**
  * Module of the Week on the homepage: one hairline ledger split on the page's
- * centre line. The latest module fills the left half, video on top; the four
+ * centre line. The latest module fills the left half; the four
  * before it stack on the right and share its height, so both halves end on
  * the same line. Every cell reads the same way: meta, title, links.
  */
@@ -104,8 +103,7 @@ export function ModuleOfTheWeekSection() {
 				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 					{/* Latest module */}
 					<article className="flex min-w-0 flex-col bg-white dark:bg-zinc-950">
-						<ModuleThumbnail post={LATEST} flush />
-						<div className="flex flex-1 flex-col gap-4 border-t border-zinc-200 px-5 py-5 lg:px-6 dark:border-zinc-800">
+						<div className="flex flex-1 flex-col gap-4 px-5 py-5 lg:px-6">
 							<MetaRow post={LATEST} />
 							<div>
 								<h3 className="text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
