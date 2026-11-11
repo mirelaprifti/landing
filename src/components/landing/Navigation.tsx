@@ -47,7 +47,7 @@ const COMMUNITY_MENU: NavMenuItem[] = [
 	},
 	{
 		label: "Adoption partner",
-		description: "Get help adopting Effect with Ziverge",
+		description: "Get help adopting Effect",
 		href: getAssetPath("/adoption-partners/ziverge"),
 		match: "/adoption-partners",
 	},
