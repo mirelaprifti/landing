@@ -24,6 +24,28 @@ const MUTED_LINK =
 const ARROW =
 	"text-sm transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 motion-reduce:transition-none";
 
+/** Number + package on the left, date on the right: the line on top of
+ *  every cell, so the feature and the rows read as one ledger. */
+function MetaRow({ post }: { post: BlogPost }) {
+	return (
+		<div className="flex items-baseline justify-between gap-4">
+			<div className="flex min-w-0 items-baseline gap-3">
+				<span className="shrink-0 font-mono text-xs font-medium text-zinc-500 tabular-nums dark:text-zinc-400">
+					{entryNumber(post)}
+				</span>
+				{post.packageName && (
+					<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+						from "{post.packageName}"
+					</span>
+				)}
+			</div>
+			<time className="shrink-0 font-mono text-xs whitespace-nowrap text-zinc-500 tabular-nums dark:text-zinc-400">
+				{post.date}
+			</time>
+		</div>
+	);
+}
+
 /** "Blog post ↗" — leaves the site, so it takes the up-right arrow. */
 function PostLink({ post }: { post: BlogPost }) {
 	return (
@@ -48,43 +70,25 @@ function LatestModule({ post }: { post: BlogPost }) {
 	const video = videoUrl(post);
 	return (
 		<article className="group relative flex min-w-0 flex-col bg-white px-5 py-6 lg:px-8 lg:py-8 dark:bg-zinc-950">
-			<div className="flex items-center justify-between gap-4">
-				<span className={`${BADGE} inline-flex items-center gap-2`}>
-					<span className="relative flex size-1.5" aria-hidden="true">
-						<span className="absolute inline-flex size-full animate-ping rounded-full bg-[#22c55e] opacity-60 motion-reduce:animate-none" />
-						<span className="relative inline-flex size-1.5 rounded-full bg-[#22c55e]" />
-					</span>
-					Latest
+			<span className={`${BADGE} inline-flex items-center gap-2 self-start`}>
+				<span className="relative flex size-1.5" aria-hidden="true">
+					<span className="absolute inline-flex size-full animate-ping rounded-full bg-[#22c55e] opacity-60 motion-reduce:animate-none" />
+					<span className="relative inline-flex size-1.5 rounded-full bg-[#22c55e]" />
 				</span>
-				<time className="font-mono text-xs whitespace-nowrap text-zinc-500 tabular-nums dark:text-zinc-400">
-					{post.date}
-				</time>
-			</div>
-
-			{/* Display number: a mark, not text to read — screen readers get
-			    the title instead. Brightens a step on hover. */}
-			<span
-				aria-hidden="true"
-				className="mt-8 font-mono text-6xl leading-none font-semibold tracking-tight text-zinc-200 tabular-nums transition-colors duration-300 group-hover:text-zinc-300 md:text-7xl dark:text-zinc-800 dark:group-hover:text-zinc-700"
-			>
-				{entryNumber(post)}
+				Latest
 			</span>
 
-			<div className="mt-6">
-				{post.packageName && (
-					<p className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-						from "{post.packageName}"
-					</p>
-				)}
-				<h3 className="mt-2 text-2xl leading-snug font-semibold text-balance text-zinc-900 md:text-3xl dark:text-white">
+			<div className="mt-auto pt-12">
+				<MetaRow post={post} />
+				<h3 className="mt-4 text-2xl leading-tight font-semibold text-pretty text-zinc-900 md:text-[2rem] md:tracking-tight dark:text-white">
 					{moduleTitle(post)}
 				</h3>
-				<p className="mt-3 max-w-xl text-base leading-relaxed text-pretty text-zinc-600 dark:text-zinc-400">
+				<p className="mt-4 max-w-xl text-base leading-relaxed text-pretty text-zinc-600 dark:text-zinc-400">
 					{post.excerpt}
 				</p>
 			</div>
 
-			<div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
+			<div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
 				{video && post.video && (
 					<Button
 						href={video}
@@ -114,24 +118,10 @@ function EarlierModule({ post }: { post: BlogPost }) {
 	const video = videoUrl(post);
 	const title = moduleTitle(post);
 	return (
-		<article className="group relative flex flex-col justify-between gap-2 bg-white px-5 py-5 transition-colors hover:bg-zinc-50 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60">
-			<div className="flex items-baseline justify-between gap-4">
-				<div className="flex min-w-0 items-baseline gap-3">
-					<span className="shrink-0 font-mono text-xs font-medium text-zinc-500 tabular-nums dark:text-zinc-400">
-						{entryNumber(post)}
-					</span>
-					{post.packageName && (
-						<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
-							from "{post.packageName}"
-						</span>
-					)}
-				</div>
-				<time className="shrink-0 font-mono text-xs whitespace-nowrap text-zinc-500 tabular-nums dark:text-zinc-400">
-					{post.date}
-				</time>
-			</div>
+		<article className="group relative flex flex-col bg-white px-5 py-5 transition-colors hover:bg-zinc-50 lg:px-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60">
+			<MetaRow post={post} />
 
-			<h3 className="text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
+			<h3 className="mt-3 text-lg leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
 				{video ? (
 					<a
 						href={video}
@@ -152,7 +142,7 @@ function EarlierModule({ post }: { post: BlogPost }) {
 				)}
 			</h3>
 
-			<div className="flex items-center gap-4">
+			<div className="mt-auto flex items-center gap-4 pt-5">
 				{post.video && (
 					<span className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
 						<i
