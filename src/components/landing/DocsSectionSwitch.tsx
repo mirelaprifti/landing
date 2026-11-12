@@ -27,7 +27,7 @@ const SECTIONS: {
 		href: "/docs/introduction",
 		icon: "book-open",
 	},
-	{ key: "api", label: "Reference", href: "/docs/api/v3", icon: "braces" },
+	{ key: "api", label: "Reference", href: "/docs/api/v4", icon: "braces" },
 ];
 
 export function DocsSectionSwitch({
@@ -65,14 +65,17 @@ export function DocsSectionSwitch({
 									: "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-white",
 							)}
 						>
-							<Icon
-								name={s.icon}
-								aria-hidden="true"
-								className={cn(
-									"text-base",
-									active ? "" : "text-zinc-500 dark:text-zinc-500",
-								)}
-							/>
+							{/* Phones: text-only tabs, so the row leaves room for the version menu. */}
+							<span className={cn("flex", horizontal && "max-sm:hidden")}>
+								<Icon
+									name={s.icon}
+									aria-hidden="true"
+									className={cn(
+										"text-base",
+										active ? "" : "text-zinc-500 dark:text-zinc-500",
+									)}
+								/>
+							</span>
 							{s.label}
 						</a>
 					</li>

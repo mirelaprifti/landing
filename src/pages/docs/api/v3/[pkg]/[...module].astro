@@ -93,14 +93,14 @@ const tocItems: ApiTocItem[] = mod.categories.flatMap((c) => [
 				class="mb-6 font-mono text-xs tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
 			>
 				<a
-					href={getAssetPath("/docs/api")}
+					href={getAssetPath("/docs/api/v3")}
 					class="transition-colors hover:text-zinc-900 dark:hover:text-white"
 				>
 					API Reference
 				</a>
 				<span class="mx-2" aria-hidden="true">/</span>
 				<a
-					href={getAssetPath(`/docs/api/${pkg.slug}`)}
+					href={getAssetPath(`/docs/api/v3/${pkg.slug}`)}
 					class="transition-colors hover:text-zinc-900 dark:hover:text-white"
 				>
 					{pkg.name}

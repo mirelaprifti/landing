@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Link } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { getAssetPath } from "../../utils/assetPath";
@@ -72,6 +72,8 @@ interface NavigationProps {
 	wide?: boolean;
 	/** Use the compact icon+kbd search button even when `wide` (which defaults to the full search pill). */
 	compactSearch?: boolean;
+	/** Docs-only: the version menu, rendered just left of the docs search it scopes. */
+	versionMenu?: ReactNode;
 }
 
 function useShortcutHint() {
@@ -92,6 +94,7 @@ export function Navigation({
 	wide = false,
 	belowBanner = false,
 	compactSearch = false,
+	versionMenu,
 }: NavigationProps) {
 	const shortcutHint = useShortcutHint();
 	// Theme switch only appears on reading/tool pages (blog, playground, docs)
@@ -175,9 +178,7 @@ export function Navigation({
 				<div className="w-full">
 					{/* One header width site-wide (88rem) so the fixed chrome never
 					    jumps between pages; page content keeps its own measure. */}
-					<header
-						className="relative mx-auto w-full max-w-[88rem] px-4"
-					>
+					<header className="relative mx-auto w-full max-w-[88rem] px-4">
 						<nav className="flex h-16 items-center">
 							{/* Named on the link, not the logo: only one of the two logo
 							    images is visible per theme */}
@@ -284,6 +285,7 @@ export function Navigation({
 
 							{/* Right side items (desktop) */}
 							<div className="ml-auto hidden items-center gap-4.5 md:flex">
+								{versionMenu && <div className="-mr-2">{versionMenu}</div>}
 								{wide && !compactSearch ? (
 									<div
 										className={`search-pill flex w-72 items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors focus-within:border-zinc-500 dark:focus-within:border-zinc-500 ${transparent ? "search-pill-inverted border-white/50 text-white" : "border-zinc-300 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400"}`}

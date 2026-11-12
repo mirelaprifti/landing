@@ -1,6 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { VersionSwitchLinks } from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import {
@@ -9,6 +8,7 @@ import {
 	type ApiPackage,
 } from "./apiReferenceData";
 import { DocsSectionSwitch } from "./DocsSectionSwitch";
+import { DocsLegacyNotice, DocsVersionMenu } from "./DocsVersionMenu";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -73,6 +73,14 @@ export function ApiReferenceLayout({
 		return () => observer.disconnect();
 	}, [tocItems]);
 
+	// A v3 package or module page has no v4 twin yet, so every v3 page
+	// points at the v4 reference index (and vice versa).
+	const versionHrefs = {
+		v4: getAssetPath("/docs/api/v4"),
+		v3: getAssetPath("/docs/api/v3"),
+	};
+	const versionMenu = <DocsVersionMenu value={version} hrefs={versionHrefs} />;
+
 	const toggleSection = (title: string) => {
 		setOpenSections((prev) => {
 			const currentlyOpen = prev[title] ?? true;
@@ -88,11 +96,19 @@ export function ApiReferenceLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide />
+			<Navigation activePath="/docs" wide versionMenu={versionMenu} />
 			<div className="relative w-full pt-16">
 				{/* No sidebar below lg, so the section switch gets its own row */}
-				<div className="border-b border-zinc-200 px-4 py-2 lg:hidden dark:border-zinc-800">
-					<DocsSectionSwitch section="api" horizontal />
+				<div className="flex items-center gap-2 border-b border-zinc-200 px-4 py-2 lg:hidden dark:border-zinc-800">
+					<DocsSectionSwitch
+						section="api"
+						horizontal
+						className="min-w-0 flex-1"
+					/>
+					{/* The navbar's version menu is desktop-only; below md it lives here. */}
+					<div className="shrink-0 border-l border-zinc-200 pl-2 md:hidden dark:border-zinc-800">
+						{versionMenu}
+					</div>
 				</div>
 				<div
 					className={`mx-auto grid w-full max-w-[88rem] grid-cols-1 ${
@@ -107,23 +123,9 @@ export function ApiReferenceLayout({
 							aria-label="API packages"
 							className="sticky top-16 flex max-h-[calc(100vh-4rem)] flex-col"
 						>
-							{/* Widest scope first: version → section → package tree. The two
-							    switches are pinned; only the tree scrolls, under the divider. */}
+							{/* Section switch is pinned; only the tree scrolls, under the
+							    divider. (Version lives in the navbar.) */}
 							<div className="relative z-10 shrink-0 px-4 pt-8">
-								<div className="mb-3">
-									<VersionSwitchLinks
-										value={version}
-										href={(v) =>
-											// v4 ships only an index for now: a v3 package or module
-											// page has no v4 twin, so that half of the switch is inert.
-											v === "v4" && version === "v3" && activeSlug !== undefined
-												? null
-												: getAssetPath(`/docs/api/${v}`)
-										}
-										block
-										aria-label="API reference version"
-									/>
-								</div>
 								<DocsSectionSwitch
 									section="api"
 									className="border-b border-zinc-200 pb-5 dark:border-zinc-800"
@@ -236,6 +238,9 @@ export function ApiReferenceLayout({
 						id="main-content"
 						className="min-w-0 px-6 py-12 lg:px-12 lg:py-16"
 					>
+						{version === "v3" && (
+							<DocsLegacyNotice v4Href={versionHrefs.v4} className="mb-8" />
+						)}
 						{children}
 					</main>
 

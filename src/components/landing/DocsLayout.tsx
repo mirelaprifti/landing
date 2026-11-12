@@ -1,12 +1,10 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import {
-	type EffectVersion,
-	VersionSwitchLinks,
-} from "@/components/ui/VersionSwitch";
+import type { EffectVersion } from "@/components/ui/VersionSwitch";
 import { getAssetPath } from "../../utils/assetPath";
 import { GridOverlay } from "../GridOverlay";
 import { DocsSectionSwitch } from "./DocsSectionSwitch";
+import { DocsLegacyNotice, DocsVersionMenu } from "./DocsVersionMenu";
 import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 
@@ -56,7 +54,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 			title: "Next steps",
 			items: [
 				{ slug: "guides", label: "Guides", href: "/docs/introduction" },
-				{ slug: "api", label: "API Reference", href: "/docs/api/v3" },
+				{ slug: "api", label: "API Reference", href: "/docs/api/v4" },
 				{ slug: "play", label: "Playground", href: "/play" },
 			],
 		},
@@ -96,10 +94,7 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 	api: [
 		{
 			title: "API reference",
-			items: [
-				{ slug: "api/v3", label: "API Reference (v3)" },
-				{ slug: "api", label: "API Reference (v4)" },
-			],
+			items: [{ slug: "api/v4", label: "API Reference" }],
 		},
 	],
 };
@@ -107,21 +102,20 @@ const SIDEBARS: Record<DocsSectionKey, NavSection[]> = {
 export function DocsLayout({
 	activeSlug,
 	section = "docs",
-	version = "v3",
+	version = "v4",
 	versionHrefs,
 	tocItems,
 	children,
 }: {
 	activeSlug: string;
 	section?: DocsSectionKey;
-	/** Active docs version; defaults to v3 (the current stable). */
+	/** Active docs version; v4 is the docs, v3 the archive. */
 	version?: EffectVersion;
 	/**
-	 * This page's equivalent in each version. `null` = the page doesn't exist
-	 * in that version: that half of the switch renders inert with a note.
-	 * Omitted versions keep the default (that version's API index).
+	 * This page's equivalent in each version. Omitted versions fall back to
+	 * that version's API index (the guides have no v3 twin on this site).
 	 */
-	versionHrefs?: Partial<Record<EffectVersion, string | null>>;
+	versionHrefs?: Partial<Record<EffectVersion, string>>;
 	tocItems: { id: string; label: string }[];
 	children: ReactNode;
 }) {
@@ -172,20 +166,15 @@ export function DocsLayout({
 		navSection.items.some((item) => item.slug === activeSlug),
 	);
 
-	/* The version switch heads the sidebar: it scopes every docs section,
-	   so it reads first, above the section switch and the tree. */
-	const versionSwitch = (
-		<VersionSwitchLinks
-			value={version}
-			href={(v) => {
-				const explicit = versionHrefs?.[v];
-				if (explicit === null) return null;
-				return getAssetPath(explicit ?? `/docs/api/${v}`);
-			}}
-			block
-			aria-label="Docs version"
-		/>
-	);
+	/* Version is chrome, not navigation: a quiet menu in the navbar beside
+	   the search it scopes (and in the mobile docs bar), never a sidebar
+	   heading. See DocsVersionMenu. */
+	const hrefFor = (v: EffectVersion) =>
+		getAssetPath(
+			versionHrefs?.[v] ??
+				(v === version ? `/docs/${activeSlug}` : `/docs/api/${v}`),
+		);
+	const versionHrefsResolved = { v4: hrefFor("v4"), v3: hrefFor("v3") };
 
 	const renderSections = (idPrefix: string) =>
 		sidebar.map((navSection) => {
@@ -245,37 +234,48 @@ export function DocsLayout({
 			>
 				Skip to main content
 			</a>
-			<Navigation activePath="/docs" wide />
+			<Navigation
+				activePath="/docs"
+				wide
+				versionMenu={
+					<DocsVersionMenu value={version} hrefs={versionHrefsResolved} />
+				}
+			/>
 			<div className="relative w-full pt-16">
 				{/* Mobile docs nav: sticky disclosure below the navbar */}
 				<div className="sticky top-16 z-40 border-b border-zinc-200 bg-zinc-50/95 backdrop-blur-sm lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
-					<button
-						type="button"
-						onClick={() => setMobileNavOpen((open) => !open)}
-						aria-expanded={mobileNavOpen}
-						aria-controls="docs-mobile-nav"
-						className="flex w-full items-center gap-2 px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
-					>
-						<Icon name="menu" className="text-base" aria-hidden="true" />
-						<span>Docs menu</span>
-						{activeLabel && (
-							<span className="truncate text-zinc-500 dark:text-zinc-400">
-								/ {activeLabel}
-							</span>
-						)}
-						<Icon
-							name="chevron-down"
-							className={`ml-auto text-base transition-transform ${mobileNavOpen ? "rotate-180" : ""}`}
-							aria-hidden="true"
-						/>
-					</button>
+					<div className="flex items-center pr-3">
+						<button
+							type="button"
+							onClick={() => setMobileNavOpen((open) => !open)}
+							aria-expanded={mobileNavOpen}
+							aria-controls="docs-mobile-nav"
+							className="flex min-w-0 flex-1 items-center gap-2 px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300"
+						>
+							<Icon name="menu" className="text-base" aria-hidden="true" />
+							<span>Docs menu</span>
+							{activeLabel && (
+								<span className="truncate text-zinc-500 dark:text-zinc-400">
+									/ {activeLabel}
+								</span>
+							)}
+							<Icon
+								name="chevron-down"
+								className={`ml-auto text-base transition-transform ${mobileNavOpen ? "rotate-180" : ""}`}
+								aria-hidden="true"
+							/>
+						</button>
+						{/* The navbar's version menu is desktop-only; below md it lives here. */}
+						<div className="ml-1 border-l border-zinc-200 pl-2 md:hidden dark:border-zinc-800">
+							<DocsVersionMenu value={version} hrefs={versionHrefsResolved} />
+						</div>
+					</div>
 					{mobileNavOpen && (
 						<nav
 							id="docs-mobile-nav"
 							aria-label="Docs navigation"
 							className="max-h-[60vh] overflow-y-auto border-t border-zinc-200 px-4 py-4 dark:border-zinc-800"
 						>
-							<div className="mb-3">{versionSwitch}</div>
 							<DocsSectionSwitch
 								section={section}
 								className="mb-4 border-b border-zinc-200 pb-4 dark:border-zinc-800"
@@ -291,11 +291,9 @@ export function DocsLayout({
 							aria-label="Docs navigation"
 							className="sticky top-16 flex max-h-[calc(100vh-4rem)] flex-col"
 						>
-							{/* Widest scope first: version (all docs) → section → page tree.
-							    The two switches are pinned; only the tree scrolls, under the
-							    divider. z-10 lets the version menu overlay the tree. */}
+							{/* Section switch is pinned; only the tree scrolls, under the
+							    divider. (Version lives in the navbar.) */}
 							<div className="relative z-10 shrink-0 px-4 pt-8">
-								<div className="mb-3">{versionSwitch}</div>
 								<DocsSectionSwitch
 									section={section}
 									className="border-b border-zinc-200 pb-5 dark:border-zinc-800"
@@ -312,6 +310,9 @@ export function DocsLayout({
 						id="main-content"
 						className="min-w-0 px-6 py-12 lg:px-12 lg:py-16"
 					>
+						{version === "v3" && (
+							<DocsLegacyNotice v4Href={hrefFor("v4")} className="mb-8" />
+						)}
 						{children}
 					</main>
 

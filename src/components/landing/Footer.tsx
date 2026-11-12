@@ -44,7 +44,7 @@ export function Footer({
 								</li>
 								<li>
 									<Link
-										href={getAssetPath("/docs/api/v3")}
+										href={getAssetPath("/docs/api/v4")}
 										variant="footer"
 										className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
 									>
