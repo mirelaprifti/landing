@@ -17,12 +17,9 @@ import { cn } from "@/lib/utils";
  * menu should never open by accident on the way to search or the theme toggle.
  */
 
-const VERSION_META: Record<
-	EffectVersion,
-	{ label: string; description: string }
-> = {
-	v4: { label: "v4", description: "Current" },
-	v3: { label: "v3", description: "Previous version" },
+const VERSION_META: Record<EffectVersion, { label: string }> = {
+	v4: { label: "v4" },
+	v3: { label: "v3" },
 };
 
 const MENU_ORDER: readonly EffectVersion[] = ["v4", "v3"];
@@ -132,7 +129,7 @@ export function DocsVersionMenu({
 							transition: { duration: 0.12, ease: "easeIn" },
 						}}
 					>
-						<div className="w-52 rounded-lg border border-zinc-200 bg-white p-1.5 shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-black/40">
+						<div className="w-28 rounded-lg border border-zinc-200 bg-white p-1.5 shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-black/40">
 							<ul aria-label="Docs version">
 								{MENU_ORDER.map((version) => {
 									const active = version === value;
@@ -146,11 +143,8 @@ export function DocsVersionMenu({
 													"flex items-center gap-3 rounded-md px-2.5 py-2 transition-colors duration-150 hover:bg-zinc-100 focus-visible:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:hover:bg-zinc-800 dark:focus-visible:bg-zinc-800 dark:focus-visible:outline-zinc-500",
 												)}
 											>
-												<span className="w-6 font-mono text-[13px] font-medium text-zinc-900 dark:text-white">
+												<span className="flex-1 font-mono text-[13px] font-medium text-zinc-900 dark:text-white">
 													{meta.label}
-												</span>
-												<span className="flex-1 text-[13px] text-zinc-500 dark:text-zinc-400">
-													{meta.description}
 												</span>
 												{active && (
 													<Icon
