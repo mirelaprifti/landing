@@ -106,7 +106,7 @@ export function ApiReferenceLayout({
 						className="min-w-0 flex-1"
 					/>
 					{/* The navbar's version menu is desktop-only; below md it lives here. */}
-					<div className="shrink-0 border-l border-zinc-200 pl-2 md:hidden dark:border-zinc-800">
+					<div className="shrink-0 md:hidden">
 						{versionMenu}
 					</div>
 				</div>

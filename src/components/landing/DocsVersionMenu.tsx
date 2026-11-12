@@ -3,7 +3,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import type { EffectVersion } from "@/components/ui/VersionSwitch";
 import { cn } from "@/lib/utils";
-import { getAssetPath } from "../../utils/assetPath";
 
 /**
  * The docs version picker: a quiet "v4 ▾" in the navbar, beside docs search.
@@ -86,10 +85,12 @@ export function DocsVersionMenu({
 				aria-label={`Docs version: ${VERSION_META[value].label}. Change version`}
 				onClick={() => setOpen((o) => !o)}
 				className={cn(
-					"flex items-center gap-1 rounded-md px-1.5 py-1 font-mono text-[13px] font-medium transition-colors",
+					// Same box as the docs search pill beside it (border, radius,
+					// 34px height) so the pair reads as one toolbar.
+					"flex items-center gap-1.5 rounded-md border py-1.5 pr-2 pl-2.5 font-mono text-[13px] leading-5 font-medium text-zinc-900 transition-colors dark:text-white",
 					open
-						? "text-zinc-900 dark:text-white"
-						: "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white",
+						? "border-zinc-500 bg-zinc-100 dark:border-zinc-500 dark:bg-zinc-900"
+						: "border-zinc-300 hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-600 dark:hover:border-zinc-500 dark:hover:bg-zinc-900",
 				)}
 			>
 				{VERSION_META[value].label}
@@ -131,7 +132,7 @@ export function DocsVersionMenu({
 							transition: { duration: 0.12, ease: "easeIn" },
 						}}
 					>
-						<div className="w-56 rounded-lg border border-zinc-200 bg-white p-1.5 shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-black/40">
+						<div className="w-52 rounded-lg border border-zinc-200 bg-white p-1.5 shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-black/40">
 							<ul aria-label="Docs version">
 								{MENU_ORDER.map((version) => {
 									const active = version === value;
@@ -163,18 +164,6 @@ export function DocsVersionMenu({
 									);
 								})}
 							</ul>
-							<div className="my-1.5 h-px bg-zinc-200 dark:bg-zinc-800" />
-							<a
-								href={getAssetPath("/v4")}
-								className="group flex items-center gap-1 rounded-md px-2.5 py-2 text-[13px] text-zinc-600 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 focus-visible:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white dark:focus-visible:bg-zinc-800"
-							>
-								What's new in v4
-								<Icon
-									name="chevron-right"
-									aria-hidden="true"
-									className="text-sm text-zinc-400 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none dark:text-zinc-500"
-								/>
-							</a>
 						</div>
 					</motion.div>
 				)}

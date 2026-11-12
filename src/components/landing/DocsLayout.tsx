@@ -266,7 +266,7 @@ export function DocsLayout({
 							/>
 						</button>
 						{/* The navbar's version menu is desktop-only; below md it lives here. */}
-						<div className="ml-1 border-l border-zinc-200 pl-2 md:hidden dark:border-zinc-800">
+						<div className="ml-1 md:hidden">
 							<DocsVersionMenu value={version} hrefs={versionHrefsResolved} />
 						</div>
 					</div>
