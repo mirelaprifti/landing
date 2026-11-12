@@ -85,12 +85,12 @@ export function DocsVersionMenu({
 				aria-label={`Docs version: ${VERSION_META[value].label}. Change version`}
 				onClick={() => setOpen((o) => !o)}
 				className={cn(
-					// Same box as the docs search pill beside it (border, radius,
-					// 34px height) so the pair reads as one toolbar.
-					"flex items-center gap-1.5 rounded-md border py-1.5 pr-2 pl-2.5 font-mono text-[13px] leading-5 font-medium text-zinc-900 transition-colors dark:text-white",
+					// Filled, borderless chip (#18181B in dark), 34px tall to line up
+					// with the docs search pill beside it.
+					"flex items-center gap-1.5 rounded-md py-[7px] pr-2 pl-2.5 font-mono text-[13px] leading-5 font-medium text-zinc-900 transition-colors dark:text-white",
 					open
-						? "border-zinc-500 bg-zinc-100 dark:border-zinc-500 dark:bg-zinc-900"
-						: "border-zinc-300 hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-600 dark:hover:border-zinc-500 dark:hover:bg-zinc-900",
+						? "bg-zinc-300/70 dark:bg-zinc-800"
+						: "bg-zinc-200 hover:bg-zinc-300/70 dark:bg-zinc-900 dark:hover:bg-zinc-800",
 				)}
 			>
 				{VERSION_META[value].label}
