@@ -123,15 +123,13 @@ export function ApiReferenceLayout({
 							aria-label="API packages"
 							className="sticky top-16 flex max-h-[calc(100vh-4rem)] flex-col"
 						>
-							{/* Section switch is pinned; only the tree scrolls, under the
-							    divider. (Version lives in the navbar.) */}
-							<div className="relative z-10 shrink-0 px-4 pt-8">
+							{/* Section switch scrolls with the tree (not pinned).
+							    Version lives in the navbar. */}
+							<div className="min-h-0 flex-1 overflow-y-auto px-4 pt-8 pb-8">
 								<DocsSectionSwitch
 									section="api"
-									className="border-b border-zinc-200 pb-5 dark:border-zinc-800"
+									className="mb-5 border-b border-zinc-200 pb-5 dark:border-zinc-800"
 								/>
-							</div>
-							<div className="min-h-0 flex-1 overflow-y-auto px-4 pt-5 pb-8">
 								<a
 									href={getAssetPath(`/docs/api/${version}`)}
 									aria-current={activeSlug === undefined ? "page" : undefined}
