@@ -206,8 +206,9 @@ export function Navigation({
 
 							{/* Navigation links next to logo — ordered by visitor intent:
 							    build (Docs, Play), follow along (Resources), take part
-							    (Community), evaluate as a team (Enterprise). Effect Days sits last,
-							    top-level while the conference is on. */}
+							    (Community). Effect Days sits last, top-level while the
+							    conference is on. (Enterprise is hidden for now; the
+							    /enterprise page itself is still live.) */}
 							<div className="ml-8 hidden items-center gap-6 md:flex">
 								<Link
 									href={getAssetPath("/docs/onboarding")}
@@ -241,16 +242,6 @@ export function Navigation({
 									activePath={activePath}
 									transparent={transparent}
 								/>
-								<Link
-									href={getAssetPath("/enterprise")}
-									variant="nav"
-									active={activePath?.startsWith("/enterprise")}
-									className={
-										transparent ? "text-white hover:text-white/80" : ""
-									}
-								>
-									Enterprise
-								</Link>
 								<Link
 									href={getAssetPath("/effect-days")}
 									variant="nav"
@@ -416,12 +407,6 @@ export function Navigation({
 								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/play") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
 							>
 								Play
-							</a>
-							<a
-								href={getAssetPath("/enterprise")}
-								className={`block rounded-md px-3 py-2.5 text-[15px] transition-colors hover:bg-zinc-800 hover:text-white ${activePath?.startsWith("/enterprise") ? "bg-zinc-800 text-white" : "text-zinc-300"}`}
-							>
-								Enterprise
 							</a>
 							<a
 								href={getAssetPath("/effect-days")}
