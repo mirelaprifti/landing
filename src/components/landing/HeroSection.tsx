@@ -7,13 +7,18 @@ const HERO_LOGOS: {
 	src: string;
 	h: string;
 	invert?: boolean;
+	/** Full-color brand logo: rendered as-is, no monochrome filter. */
+	color?: boolean;
 	/** Optical nudge in px — positive = down. Compensates for wordmarks that sit visually higher than their bounding box. */
 	nudgeY?: number;
 }[] = [
 	{
 		name: "Cloudflare",
-		src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png",
-		h: "22px",
+		src: "/assets/test-logos/cloudflare-dark-mode.svg",
+		// Stacked lockup (cloud over wordmark); the wordmark sits on the
+		// image bottom, so it shares the row baseline without a nudge.
+		h: "36px",
+		color: true,
 	},
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "20px", nudgeY: 2 },
 	{
@@ -29,11 +34,12 @@ const HERO_LOGOS: {
 	},
 	{
 		name: "Replit",
-		src: "/assets/test-logos/replit.svg",
+		src: "/assets/test-logos/replit-color.svg",
 		// The artboard includes the "p" descender: baseline sits ~5px above
 		// the image bottom, so drop it onto the row's shared baseline.
 		h: "21px",
 		nudgeY: 5,
+		color: true,
 	},
 ];
 
@@ -138,9 +144,11 @@ export function HeroSection() {
 												: undefined,
 										}}
 										className={`w-auto ${
-											logo.invert
-												? "dark:brightness-0 dark:invert"
-												: "brightness-0 dark:brightness-100"
+											logo.color
+												? ""
+												: logo.invert
+													? "dark:brightness-0 dark:invert"
+													: "brightness-0 dark:brightness-100"
 										}`}
 									/>
 								</li>
