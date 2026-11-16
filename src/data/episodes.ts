@@ -24,6 +24,74 @@ export interface Episode {
 
 export const EPISODES: Episode[] = [
 	{
+		number: 10,
+		title: "Software Engineering in the Age of AI",
+		slug: "software-engineering-in-the-age-of-ai",
+		guest: "John A. De Goes",
+		company: "Ziverge",
+		companyUrl: "https://ziverge.com/",
+		description:
+			"John A. De Goes, creator of ZIO and CEO of Ziverge and Golem Cloud, joins Michael Arnaldi to talk about how ZIO led to Effect, Effect's primitives in the era of agentic coding, and what software engineering may look like in the next year or two.",
+		fullDescription: `John A. De Goes, creator of ZIO and CEO of Ziverge and Golem Cloud, joins Michael Arnaldi to talk about how ZIO led to Effect, Effect's primitives in the era of agentic coding, and what software engineering may look like in the next year or two.
+
+They also discuss AI-assisted proofs, AI widening the skill gap between developers, and what that means for the industry.`,
+		chapters: [],
+		date: "Aug 7, 2026",
+		duration: "89:59",
+		youtubeId: "irmz5X3c7Do",
+		thumbnailUrl: "https://img.youtube.com/vi/irmz5X3c7Do/maxresdefault.jpg",
+		topics: ["AI", "Agentic Coding", "ZIO", "Software Engineering"],
+	},
+	{
+		number: 9,
+		title: "Foldkit: An Effect-First Frontend Framework",
+		slug: "foldkit-an-effect-first-frontend-framework",
+		guest: "Devin Jameson",
+		company: "Foldkit",
+		companyUrl: "https://github.com/devinjameson/foldkit",
+		description:
+			"Johannes Schickling talks with Devin Jameson, author of Foldkit, about bringing Elm's Model-View-Update architecture to TypeScript with Effect, modeling all app state with Effect Schema, and why opinionated frameworks help both humans and AI agents.",
+		fullDescription: `Johannes Schickling talks with Devin Jameson, author of Foldkit, about bringing Elm's Model-View-Update architecture to TypeScript with Effect, modeling all app state with Effect Schema, and why opinionated frameworks help both humans and AI agents.
+
+Devin also works as a software engineer at August Health, where he does local-first work with Effect.`,
+		chapters: [],
+		date: "Jul 20, 2026",
+		duration: "79:51",
+		youtubeId: "MyKLh5CMpeY",
+		thumbnailUrl: "https://img.youtube.com/vi/MyKLh5CMpeY/maxresdefault.jpg",
+		topics: ["Frontend", "Schema", "Architecture", "Elm"],
+	},
+	{
+		number: 8,
+		title: "Effectifying OpenCode",
+		slug: "effectifying-opencode",
+		guest: "Kit Langton",
+		company: "OpenCode",
+		companyUrl: "https://opencode.ai/",
+		description:
+			"Kit Langton walks through migrating OpenCode, the open-source coding agent, to Effect: branded IDs with Schema, services and layers for testing, interop with Zod and Hono, and tracing with Effect.fn and OpenTelemetry.",
+		fullDescription: `Kit Langton walks through migrating OpenCode, the open-source coding agent, to Effect: branded IDs with Schema, services and layers for testing, interop with Zod and Hono, and tracing with Effect.fn and OpenTelemetry.
+
+Kit also creates Effect learning resources, including effect.institute and effect.solutions.`,
+		chapters: [
+			{ time: "00:00", title: "Effect systems vs. promises" },
+			{ time: "00:42", title: "Kit's background" },
+			{ time: "03:49", title: "effect.institute demo" },
+			{ time: "13:10", title: "Joining OpenCode and the migration" },
+			{ time: "18:07", title: "Branded IDs with Schema" },
+			{ time: "27:50", title: "Services, layers, and test fakes" },
+			{ time: "44:30", title: "Bridging promises, Zod, and Schema" },
+			{ time: "50:02", title: "Seeding agents with good patterns" },
+			{ time: "1:03:16", title: "Tracing with Effect.fn and OpenTelemetry" },
+			{ time: "1:17:05", title: "AI-assisted coding and dictation" },
+		],
+		date: "Jun 19, 2026",
+		duration: "105:31",
+		youtubeId: "-mL7VVvkLGM",
+		thumbnailUrl: "https://img.youtube.com/vi/-mL7VVvkLGM/maxresdefault.jpg",
+		topics: ["Migration", "Schema", "Layers", "OpenTelemetry", "AI"],
+	},
+	{
 		number: 7,
 		title: "Reliable Payroll Systems in TypeScript with Effect",
 		slug: "reliable-payroll-systems-warp",

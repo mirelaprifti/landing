@@ -22,11 +22,12 @@ const META =
 const EVENTS = [
 	{
 		title: "Effect Days 2026",
-		detail: "The 3rd edition. Three days of workshops and talks on the Tuscan coast.",
+		detail:
+			"Sold out. The talks will be on YouTube a few weeks after the event.",
 		meta: "Dec 9–11 · Livorno, Italy",
 		ends: "2026-12-12",
 		href: "/effect-days",
-		action: "Get tickets",
+		action: "See the lineup",
 	},
 ];
 
@@ -45,7 +46,10 @@ type Tile = {
 function buildTiles(): Tile[] {
 	const tiles: Tile[] = [];
 
-	const release = BLOG_POSTS.find((p) => p.tags.includes("Release"));
+	// Newest release by date, so a pinned/featured older post never wins
+	const release = BLOG_POSTS.filter((p) => p.tags.includes("Release")).sort(
+		(a, b) => Date.parse(b.date) - Date.parse(a.date),
+	)[0];
 	if (release) {
 		const href = getPostUrl(release);
 		tiles.push({
@@ -68,7 +72,7 @@ function buildTiles(): Tile[] {
 			title: moduleTitle(motw),
 			detail: motw.excerpt,
 			href: getAssetPath(MOTW_URL),
-			action: "Watch this week's",
+			action: motw.video ? "Watch the module" : "Read the module",
 		});
 	}
 

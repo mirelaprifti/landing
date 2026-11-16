@@ -94,13 +94,13 @@ export function HeroSection() {
 				<div className="mx-auto max-w-4xl text-center">
 					{/* Eyebrow */}
 					<a
-						href="/blog/effect-v4-beta"
+						href="https://effect.website/blog/releases/effect/41/"
 						className="group mb-4 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-zinc-700 uppercase transition-colors hover:text-zinc-900 md:text-sm dark:text-zinc-300 dark:hover:text-white"
 					>
 						<span className="text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-400">
 							//
 						</span>
-						<span>Effect 4.0 — Release Candidate</span>
+						<span>Effect 4.1 is out</span>
 						<Icon
 							name="arrow-right"
 							className="text-base text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300"

@@ -132,6 +132,48 @@ export const BLOG_POSTS: BlogPost[] = [
 		hasLocalContent: true,
 	},
 	{
+		slug: "releases/effect/41",
+		title: "Effect 4.1",
+		excerpt:
+			"Effect 4.1 has been released! It adds the effect/crypto modules, a Glob module, streaming CSV, and Problem Details for HttpApi.",
+		date: "Oct 20, 2026",
+		readingTime: "",
+		tags: ["Release", "Effect"],
+		authors: [AUTHORS.tim],
+	},
+	{
+		slug: "releases/effect/40",
+		title: "Effect 4.0",
+		excerpt:
+			"Rebuilt from the ground up, with a dependency-free core and long-term support.",
+		date: "Sep 30, 2026",
+		readingTime: "",
+		tags: ["Release", "Effect"],
+		authors: [],
+	},
+	{
+		slug: "module-of-the-week/cluster-workflow",
+		title: "Module of the Week - Cluster workflows, Part 5",
+		excerpt:
+			"The last part of the Cluster series: durable workflows that save results with activities, replay without redoing work, and wait without tying up a runner.",
+		date: "Nov 10, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [AUTHORS.maxwell],
+		packageName: "effect/workflow",
+	},
+	{
+		slug: "module-of-the-week/cluster-idempotency",
+		title: "Module of the Week - Cluster idempotency, Part 4",
+		excerpt:
+			"Idempotency keys and the dual-write problem: making sure a message that gets retried only takes effect once.",
+		date: "Oct 19, 2026",
+		readingTime: "",
+		tags: ["Module of the Week"],
+		authors: [AUTHORS.maxwell],
+		packageName: "effect/cluster",
+	},
+	{
 		slug: "module-of-the-week/cluster-delivery",
 		title: "Module of the Week - Cluster delivery, Part 3",
 		excerpt:

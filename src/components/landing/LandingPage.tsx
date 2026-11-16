@@ -83,7 +83,7 @@ export function LandingPage() {
 				<SectionDivider />
 				<FAQSection />
 				<SectionDivider />
-				<CTASection />
+				<CTASection v4Stable />
 			</main>
 
 			<Footer hideCommunityBorder />
