@@ -1,4 +1,3 @@
-import { Icon } from "@/components/ui/Icon";
 import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
 import { EPISODES, type Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
@@ -52,11 +51,19 @@ function buildFeed(now: number): Item[] {
 
 	const release = newest((p) => p.tags.includes("Release"));
 	if (release)
-		items.push({ kind: "release", date: Date.parse(release.date), post: release });
+		items.push({
+			kind: "release",
+			date: Date.parse(release.date),
+			post: release,
+		});
 
 	const issue = newest((p) => p.tags.includes("This Week In Effect"));
 	if (issue)
-		items.push({ kind: "newsletter", date: Date.parse(issue.date), post: issue });
+		items.push({
+			kind: "newsletter",
+			date: Date.parse(issue.date),
+			post: issue,
+		});
 
 	const module = MODULES[0];
 	if (module)
@@ -100,324 +107,216 @@ function relative(date: number, now: number) {
 	return `${Math.round(-days / 7)} weeks ago`;
 }
 
-/* ─── Shared pieces ─────────────────────────────────────────────────────── */
-
-/** Kind badge, verbatim from the styleguide. */
-const BADGE =
-	"inline-flex items-center gap-2 self-start rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:border-zinc-700 dark:text-zinc-400";
+/* ─── Card ──────────────────────────────────────────────────────────────── */
 
 /** Section eyebrow, verbatim from the styleguide. */
 const EYEBROW =
 	"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400";
 
-const CELL =
-	"group relative flex min-w-0 flex-col overflow-hidden bg-white px-5 py-6 transition-colors hover:bg-zinc-50 lg:px-8 lg:py-8 dark:bg-zinc-950 dark:hover:bg-zinc-900/60";
+/** Quiet mark in the media panel: present, not shouting. */
+const MARK =
+	"font-mono text-4xl font-medium tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
 
-/** Stretches the title link over the whole cell. */
-const STRETCH =
-	"after:absolute after:inset-0 after:z-10 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400";
-
-const DISPLAY =
-	"font-mono leading-none font-semibold tracking-tighter text-zinc-900 tabular-nums dark:text-white";
-
-function LiveDot() {
+/** A flat panel holding a quiet mark, for kinds without a picture. */
+function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
 	return (
-		<span className="relative flex size-1.5" aria-hidden="true">
-			<span className="absolute inline-flex size-full animate-ping rounded-full bg-[#22c55e] opacity-60 motion-reduce:animate-none" />
-			<span className="relative inline-flex size-1.5 rounded-full bg-[#22c55e]" />
-		</span>
-	);
-}
-
-/** Badge on the left, freshness on the right: the top line of every cell. */
-function Head({
-	label,
-	date,
-	now,
-}: {
-	label: string;
-	date: number;
-	now: number;
-}) {
-	const isNew = now - date <= NEW_DAYS * DAY && date <= now;
-	return (
-		<div className="flex items-start justify-between gap-4">
-			<span className={BADGE}>
-				{isNew && <LiveDot />}
-				{label}
-			</span>
-			<span className="font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-				{relative(date, now)}
-			</span>
+		<div className="flex h-full flex-col justify-end gap-1 bg-zinc-50 p-4 dark:bg-zinc-900/50">
+			<span className={MARK}>{mark}</span>
+			{sub && (
+				<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+					{sub}
+				</span>
+			)}
 		</div>
 	);
 }
 
-function Title({
-	href,
+function ImagePanel({
+	src,
 	children,
-	size = "md",
 }: {
-	href: string;
-	children: React.ReactNode;
-	size?: "md" | "lg";
+	src: string;
+	children?: React.ReactNode;
 }) {
-	const external = href.startsWith("http");
 	return (
-		<h3
-			className={
-				size === "lg"
-					? "text-2xl leading-tight font-semibold text-balance text-zinc-900 md:text-[2rem] md:tracking-tight dark:text-white"
-					: "text-xl leading-snug font-semibold text-balance text-zinc-900 dark:text-white"
-			}
-		>
-			<a
-				href={href}
-				{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-				className={STRETCH}
-			>
-				{children}
-			</a>
-		</h3>
-	);
-}
-
-function Chips({ items }: { items?: string[] }) {
-	if (!items?.length) return null;
-	return (
-		<ul className="mt-5 flex flex-wrap gap-2">
-			{items.map((h) => (
-				<li
-					key={h}
-					className="rounded-md border border-zinc-200 bg-zinc-50 px-2.5 py-1 font-mono text-xs text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300"
-				>
-					{h}
-				</li>
-			))}
-		</ul>
-	);
-}
-
-function Action({ label, href }: { label: string; href: string }) {
-	return (
-		<span className="mt-auto inline-flex items-center gap-1 pt-8 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-			{label}
-			<Icon
-				name={href.startsWith("http") ? "arrow-up-right" : "arrow-right"}
-				className="text-sm transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
-			/>
-		</span>
-	);
-}
-
-/* ─── Cells, one per kind ───────────────────────────────────────────────── */
-
-/** Release and newsletter share a shape: a huge mark, a title, chips. */
-function MarkCell({
-	label,
-	mark,
-	title,
-	post,
-	date,
-	now,
-	action,
-}: {
-	label: string;
-	mark: string;
-	title: string;
-	post: BlogPost;
-	date: number;
-	now: number;
-	action: string;
-}) {
-	const href = getPostUrl(post);
-	return (
-		<article className={CELL}>
-			<Head label={label} date={date} now={now} />
-			<p aria-hidden="true" className={`mt-10 text-[5rem] md:text-[7.5rem] ${DISPLAY}`}>
-				{mark}
-			</p>
-			<div className="mt-6">
-				<Title href={href} size="lg">
-					{title}
-				</Title>
-			</div>
-			<Chips items={post.highlights} />
-			<Action label={action} href={href} />
-		</article>
-	);
-}
-
-function ModuleCell({ post, date, now }: { post: BlogPost; date: number; now: number }) {
-	const href = getAssetPath(MOTW_URL);
-	return (
-		<article className={CELL}>
-			<Head label="Module of the Week" date={date} now={now} />
-			<div className="mt-10 flex items-end gap-5">
-				<span
-					aria-hidden="true"
-					className={`text-[5rem] md:text-[7.5rem] ${DISPLAY}`}
-				>
-					{String(entryOf(post)).padStart(2, "0")}
-				</span>
-				{post.packageName && (
-					<code className="mb-2 truncate font-mono text-sm text-zinc-500 dark:text-zinc-400">
-						from "{post.packageName}"
-					</code>
-				)}
-			</div>
-			<div className="mt-6">
-				<Title href={href} size="lg">
-					{moduleTitle(post)}
-				</Title>
-			</div>
-			<Action label={post.video ? "Watch the module" : "Read the module"} href={href} />
-		</article>
-	);
-}
-
-function PostCell({ post, date, now }: { post: BlogPost; date: number; now: number }) {
-	const href = getPostUrl(post);
-	return (
-		<article className={CELL}>
-			<Head label="Blog" date={date} now={now} />
-			{post.coverImage && (
-				<div className="mt-6 aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
-					<img
-						src={getAssetPath(post.coverImage)}
-						alt=""
-						loading="lazy"
-						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none"
-					/>
-				</div>
-			)}
-			<div className="mt-6">
-				<Title href={href} size="lg">
-					{post.title}
-				</Title>
-			</div>
-			<Chips items={post.highlights} />
-			<Action label="Read" href={href} />
-		</article>
-	);
-}
-
-function PodcastCell({ episode, date, now }: { episode: Episode; date: number; now: number }) {
-	const href = getAssetPath(`/podcast/episodes/${episode.slug}`);
-	return (
-		<article className={CELL}>
-			<Head label={`Podcast · Ep ${episode.number}`} date={date} now={now} />
-			<div className="relative mt-6 aspect-video overflow-hidden border border-zinc-200 dark:border-zinc-800">
-				<img
-					src={`https://i.ytimg.com/vi/${episode.youtubeId}/hqdefault.jpg`}
-					alt=""
-					loading="lazy"
-					className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none"
-				/>
-				<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums">
-					<i className="ri-play-fill text-sm leading-none" aria-hidden="true" />
-					{episode.duration}
-				</span>
-			</div>
-			<div className="mt-6">
-				<Title href={href}>{episode.title}</Title>
-			</div>
-			<p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">with {episode.guest}</p>
-			<Action label="Listen" href={href} />
-		</article>
-	);
-}
-
-/** Event: the photo is the cell, with the essentials laid over it. */
-function EventCell({ event, now }: { event: Event; now: number }) {
-	return (
-		<article className="group relative flex min-h-[24rem] min-w-0 flex-col justify-between overflow-hidden bg-zinc-950 px-5 py-6 lg:px-8 lg:py-8">
+		<div className="relative h-full">
 			<img
-				src={getAssetPath(event.image)}
+				src={src}
 				alt=""
 				loading="lazy"
-				className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+				className="h-full w-full object-cover opacity-90 transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 motion-reduce:transition-none"
 			/>
-			<div
-				aria-hidden="true"
-				className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-zinc-950/10"
-			/>
+			{children}
+		</div>
+	);
+}
 
-			<div className="relative flex items-start justify-between gap-4">
-				<span className="rounded-full border border-white/25 bg-zinc-950/50 px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-200 uppercase backdrop-blur-sm">
-					Next event
-				</span>
-				<span className="rounded-full bg-white px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-zinc-950 uppercase">
-					{event.status}
-				</span>
+type CardProps = {
+	kind: string;
+	when: string;
+	isNew?: boolean;
+	media: React.ReactNode;
+	title: string;
+	line?: string;
+	href: string;
+};
+
+/**
+ * Every item uses one card: a 16:9 media panel, then kind + freshness, the
+ * title, and one muted line. Same shape for every kind keeps the row calm.
+ */
+function Card({ kind, when, isNew, media, title, line, href }: CardProps) {
+	const external = href.startsWith("http");
+	return (
+		<article className="group relative flex min-w-0 flex-col bg-white p-4 transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/60">
+			<div className="aspect-[16/9] overflow-hidden border border-zinc-200 dark:border-zinc-800">
+				{media}
 			</div>
 
-			<div className="relative">
-				<p className="font-mono text-xs text-zinc-300 tabular-nums">
-					{relative(Date.parse(event.starts), now)} · {event.meta}
-				</p>
-				<h3 className="mt-3 text-2xl leading-tight font-semibold text-white md:text-[2rem] md:tracking-tight">
-					<a href={getAssetPath(event.href)} className={STRETCH}>
-						{event.title}
-					</a>
-				</h3>
-				<div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-					<p className="text-sm text-zinc-300">{event.note}</p>
-					<span className="inline-flex items-center gap-1 text-sm text-zinc-300 transition-colors group-hover:text-white">
-						{event.action}
-						<Icon
-							name="arrow-right"
-							className="text-sm transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+			<div className="mt-4 flex items-center justify-between gap-3 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+				<span className="inline-flex min-w-0 items-center gap-1.5 truncate uppercase tracking-wider">
+					{isNew && (
+						<span
+							aria-hidden="true"
+							className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
 						/>
-					</span>
-				</div>
+					)}
+					{kind}
+				</span>
+				<span className="shrink-0">{when}</span>
 			</div>
+
+			<h3 className="mt-2 text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
+				<a
+					href={href}
+					{...(external
+						? { target: "_blank", rel: "noopener noreferrer" }
+						: {})}
+					className="after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400"
+				>
+					{title}
+				</a>
+			</h3>
+			{line && (
+				<p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+					{line}
+				</p>
+			)}
 		</article>
 	);
 }
 
-function Cell({ item, now }: { item: Item; now: number }) {
+/** Maps a feed item onto the one card shape. */
+function cardFor(item: Item, now: number): CardProps {
+	const when = relative(item.date, now);
+	const isNew = item.date <= now && now - item.date <= NEW_DAYS * DAY;
+	const join = (p: BlogPost) => p.highlights?.join(" · ") ?? p.excerpt;
+
 	switch (item.kind) {
 		case "release":
-			return (
-				<MarkCell
-					label="Release"
-					mark={item.post.title.replace(/^Effect\s*/, "")}
-					title={`${item.post.title} is out`}
-					post={item.post}
-					date={item.date}
-					now={now}
-					action="What's in it"
-				/>
-			);
+			return {
+				kind: "Release",
+				when,
+				isNew,
+				media: (
+					<MarkPanel
+						mark={item.post.title.replace(/^Effect\s*/, "")}
+						sub="effect"
+					/>
+				),
+				title: `${item.post.title} is out`,
+				line: join(item.post),
+				href: getPostUrl(item.post),
+			};
 		case "newsletter":
-			return (
-				<MarkCell
-					label="This Week in Effect"
-					mark={`#${item.post.title.match(/#(\d+)/)?.[1] ?? ""}`}
-					title="This week, in one read"
-					post={item.post}
-					date={item.date}
-					now={now}
-					action="Read the issue"
-				/>
-			);
+			return {
+				kind: "This Week in Effect",
+				when,
+				isNew,
+				media: (
+					<MarkPanel
+						mark={`#${item.post.title.match(/#(\d+)/)?.[1] ?? ""}`}
+						sub="weekly digest"
+					/>
+				),
+				title: "This week in Effect",
+				line: join(item.post),
+				href: getPostUrl(item.post),
+			};
 		case "module":
-			return <ModuleCell post={item.post} date={item.date} now={now} />;
+			return {
+				kind: "Module of the Week",
+				when,
+				isNew,
+				media: (
+					<MarkPanel
+						mark={String(entryOf(item.post)).padStart(2, "0")}
+						sub={item.post.packageName && `from "${item.post.packageName}"`}
+					/>
+				),
+				title: moduleTitle(item.post),
+				line: item.post.excerpt,
+				href: getAssetPath(MOTW_URL),
+			};
 		case "post":
-			return <PostCell post={item.post} date={item.date} now={now} />;
+			return {
+				kind: "Blog",
+				when,
+				isNew,
+				media: item.post.coverImage ? (
+					<ImagePanel src={getAssetPath(item.post.coverImage)} />
+				) : (
+					<MarkPanel mark="Blog" />
+				),
+				title: item.post.title,
+				line: join(item.post),
+				href: getPostUrl(item.post),
+			};
 		case "podcast":
-			return <PodcastCell episode={item.episode} date={item.date} now={now} />;
+			return {
+				kind: `Podcast · Ep ${item.episode.number}`,
+				when,
+				isNew,
+				media: (
+					<ImagePanel
+						src={`https://i.ytimg.com/vi/${item.episode.youtubeId}/hqdefault.jpg`}
+					>
+						<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums">
+							<i
+								className="ri-play-fill text-sm leading-none"
+								aria-hidden="true"
+							/>
+							{item.episode.duration}
+						</span>
+					</ImagePanel>
+				),
+				title: item.episode.title,
+				line: `with ${item.episode.guest}`,
+				href: getAssetPath(`/podcast/episodes/${item.episode.slug}`),
+			};
 		case "event":
-			return <EventCell event={item.event} now={now} />;
+			return {
+				kind: "Next event",
+				when: relative(Date.parse(item.event.starts), now),
+				media: (
+					<ImagePanel src={getAssetPath(item.event.image)}>
+						<span className="absolute top-2 right-2 rounded-full bg-zinc-950/70 px-2 py-0.5 font-mono text-xs tracking-wider text-white uppercase backdrop-blur-sm">
+							{item.event.status}
+						</span>
+					</ImagePanel>
+				),
+				title: item.event.title,
+				line: item.event.meta,
+				href: getAssetPath(item.event.href),
+			};
 	}
 }
 
 /**
- * "What's new": the homepage's one living section. A 2×2 ledger split on the
- * page's centre line, filled by whatever is freshest across releases, the
- * newsletter, Module of the Week, blog posts, the podcast and events. Stale
- * kinds drop out on their own; nothing is pinned.
+ * "What's new": the homepage's one living section. One row of four equal
+ * cards, filled by whatever is freshest across releases, the newsletter,
+ * Module of the Week, blog posts, the podcast and events. Stale kinds drop
+ * out on their own; nothing is pinned.
  */
 export function WhatsNewSection() {
 	const now = Date.now();
@@ -432,9 +331,9 @@ export function WhatsNewSection() {
 					What's happening in Effect
 				</h2>
 
-				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
 					{feed.map((item) => (
-						<Cell key={item.kind} item={item} now={now} />
+						<Card key={item.kind} {...cardFor(item, now)} />
 					))}
 				</div>
 			</div>
