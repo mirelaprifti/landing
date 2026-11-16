@@ -254,7 +254,7 @@ const eventHref = (e: Event) =>
  */
 function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 	return (
-		<div className="relative h-full">
+		<div className="relative flex h-full flex-col">
 			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
 				<span className="tracking-wider uppercase">Upcoming events</span>
 				<a
@@ -267,18 +267,19 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 					<Icon name="arrow-up-right" className="text-xs" />
 				</a>
 			</div>
-			<ul className="divide-y divide-zinc-200 dark:divide-zinc-800">
+			{/* Rows share the height, so the list always meets the box beside it */}
+			<ul className="flex flex-1 flex-col divide-y divide-zinc-200 dark:divide-zinc-800">
 				{events.slice(0, 3).map((e) => {
 					const external = e.href.startsWith("http");
 					const soon = relative(Date.parse(e.starts), now);
 					return (
-						<li key={e.title}>
+						<li key={e.title} className="flex flex-1">
 							<a
 								href={eventHref(e)}
 								{...(external
 									? { target: "_blank", rel: "noopener noreferrer" }
 									: {})}
-								className={`flex items-center gap-3 px-5 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:px-6 ${HOVER}`}
+								className={`flex flex-1 items-center gap-3 px-5 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:px-6 ${HOVER}`}
 							>
 								<img
 									src={external ? e.image : getAssetPath(e.image)}
