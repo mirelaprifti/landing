@@ -212,8 +212,8 @@ function ListPanel({
 	isNew?: boolean;
 }) {
 	return (
-		<div className={PANEL}>
-			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-4 py-2.5 font-mono text-xs text-zinc-500 tabular-nums dark:border-zinc-800 dark:text-zinc-400">
+		<div className="relative h-full">
+			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 font-mono text-xs text-zinc-500 tabular-nums dark:border-zinc-800 dark:text-zinc-400">
 				<span className="truncate tracking-wider uppercase">{label}</span>
 				{when && (
 					<span
@@ -223,7 +223,7 @@ function ListPanel({
 					</span>
 				)}
 			</div>
-			<ol className="space-y-2.5 px-4 py-4">
+			<ol className="space-y-2.5 px-5 py-4 lg:px-6">
 				{items.map((item, i) => (
 					<li
 						key={item}
@@ -251,8 +251,8 @@ const eventHref = (e: Event) =>
  */
 function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 	return (
-		<div className={PANEL}>
-			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-4 py-2.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+		<div className="relative h-full">
+			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
 				<span className="tracking-wider uppercase">Upcoming events</span>
 				<a
 					href={LUMA_URL}
@@ -275,7 +275,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 								{...(external
 									? { target: "_blank", rel: "noopener noreferrer" }
 									: {})}
-								className="group/row flex items-center gap-3 px-4 py-3 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:hover:bg-zinc-800/50"
+								className="group/row flex items-center gap-3 px-5 py-3 lg:px-6 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:hover:bg-zinc-800/50"
 							>
 								<img
 									src={external ? e.image : getAssetPath(e.image)}
@@ -369,10 +369,13 @@ function Card({
 
 	if (feature && panelOnly && media) {
 		return (
-			<article className="group relative min-w-0 bg-white p-5 transition-colors hover:bg-zinc-50 lg:p-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/40">
-				<div className="h-full overflow-hidden border border-zinc-200 dark:border-zinc-800">
-					{media}
-				</div>
+			// No inset frame: the panel is the cell, edge to edge on the hairlines
+			<article
+				className={`group relative min-w-0 bg-white transition-colors dark:bg-zinc-950 ${
+					ownLinks ? "" : "hover:bg-zinc-50 dark:hover:bg-zinc-900/40"
+				}`}
+			>
+				{media}
 				{!ownLinks && (
 					<a
 						href={href}
