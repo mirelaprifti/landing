@@ -144,7 +144,7 @@ function ImagePanel({
 				src={src}
 				alt=""
 				loading="lazy"
-				className="h-full w-full object-cover opacity-90 transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 motion-reduce:transition-none"
+				className="h-full w-full object-cover opacity-80 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 motion-reduce:transition-none"
 			/>
 			{children}
 		</div>
@@ -199,16 +199,15 @@ function Card({
 
 			<div className="min-w-0 flex-1">
 				<div className="flex items-center justify-between gap-3 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-					<span className="inline-flex min-w-0 items-center gap-1.5 truncate uppercase tracking-wider">
-						{isNew && (
-							<span
-								aria-hidden="true"
-								className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
-							/>
-						)}
+					<span className="min-w-0 truncate uppercase tracking-wider">
 						{kind}
 					</span>
-					<span className="shrink-0">{when}</span>
+					{/* Fresh items get ink, not color: the date goes full contrast */}
+					<span
+						className={`shrink-0 ${isNew ? "text-zinc-900 dark:text-white" : ""}`}
+					>
+						{when}
+					</span>
 				</div>
 
 				<h3
