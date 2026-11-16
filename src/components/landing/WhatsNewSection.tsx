@@ -142,10 +142,6 @@ function relative(date: number, now: number) {
 
 /* ─── Panels ────────────────────────────────────────────────────────────── */
 
-/** Section eyebrow, verbatim from the styleguide. */
-const EYEBROW =
-	"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400";
-
 /** The one hover in this section, taken from the event rows: a flat tint. */
 // Solid, not translucent: a see-through tint picks up the grid lines behind
 const HOVER = "transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900";
@@ -542,6 +538,45 @@ function cardFor(item: Item, now: number): CardProps {
 }
 
 /**
+ * The section's header, deliberately unlike every other section's eyebrow +
+ * h2: a command line set as the first row of the grid. The prompt asks for
+ * the news; today's date and the current release answer on the right.
+ */
+function CommandLine({ now }: { now: number }) {
+	const release = BLOG_POSTS.filter(
+		(p) => p.tags.includes("Release") && Date.parse(p.date) <= now,
+	).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
+	const version = release?.title.replace(/^Effect\s*/, "");
+	const today = new Date(now).toLocaleDateString("en-US", {
+		weekday: "short",
+		month: "short",
+		day: "numeric",
+		year: "numeric",
+	});
+	return (
+		<div className="flex items-center justify-between gap-4 bg-white px-5 py-5 font-mono text-sm lg:col-span-2 lg:px-6 dark:bg-zinc-950">
+			<h2 className="flex items-center gap-2.5 text-zinc-900 dark:text-white">
+				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
+					$
+				</span>
+				<span>
+					effect news
+					<span className="sr-only">: what's new in Effect</span>
+				</span>
+				<span
+					aria-hidden="true"
+					className="-ml-1 inline-block h-[1.1em] w-[0.55em] animate-pulse bg-zinc-900 motion-reduce:animate-none dark:bg-white"
+				/>
+			</h2>
+			<p className="truncate text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+				{today}
+				{version && <span className="max-sm:hidden"> · effect@{version}</span>}
+			</p>
+		</div>
+	);
+}
+
+/**
  * "What's new": the homepage's one living section. The two freshest items
  * sit on top as features; the next two sit below as tiles. Label + title
  * only, so the picture leads and the eye has one place to land. Filled by whatever is freshest across releases, the
@@ -559,14 +594,8 @@ export function WhatsNewSection() {
 	return (
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div>
-					<p className={EYEBROW}>// Latest</p>
-					<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
-						What's new in Effect
-					</h2>
-				</div>
-
-				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+				<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+					<CommandLine now={now} />
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
