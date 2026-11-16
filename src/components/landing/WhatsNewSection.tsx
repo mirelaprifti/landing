@@ -539,40 +539,39 @@ function cardFor(item: Item, now: number): CardProps {
 
 /**
  * The section's header, deliberately unlike every other section's eyebrow +
- * h2: a command line set as the first row of the grid. The prompt asks for
- * the news; today's date and the current release answer on the right.
+ * h2: a newspaper masthead set as the first row of the grid. A dateline
+ * (volume = Effect's major version, number = the latest newsletter issue,
+ * today's date, current release), the title, then a double rule.
  */
-function CommandLine({ now }: { now: number }) {
-	const release = BLOG_POSTS.filter(
-		(p) => p.tags.includes("Release") && Date.parse(p.date) <= now,
-	).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
-	const version = release?.title.replace(/^Effect\s*/, "");
+function Masthead({ now }: { now: number }) {
+	const latest = (tag: string) =>
+		BLOG_POSTS.filter(
+			(p) => p.tags.includes(tag) && Date.parse(p.date) <= now,
+		).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
+	const version = latest("Release")?.title.replace(/^Effect\s*/, "");
+	const issue = latest("This Week In Effect")?.title.match(/#(\d+)/)?.[1];
+	const major = version?.split(".")[0];
 	const today = new Date(now).toLocaleDateString("en-US", {
-		weekday: "short",
-		month: "short",
+		weekday: "long",
+		month: "long",
 		day: "numeric",
 		year: "numeric",
 	});
 	return (
-		<div className="flex items-center justify-between gap-4 bg-white px-5 py-5 font-mono text-sm lg:col-span-2 lg:px-6 dark:bg-zinc-950">
-			<h2 className="flex items-center gap-2.5 text-zinc-900 dark:text-white">
-				<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
-					$
-				</span>
+		<header className="bg-white lg:col-span-2 dark:bg-zinc-950">
+			<div className="grid grid-cols-2 items-center gap-4 border-b border-zinc-200 px-5 py-2.5 font-mono text-xs tracking-wider text-zinc-500 uppercase tabular-nums sm:grid-cols-3 lg:px-6 dark:border-zinc-800 dark:text-zinc-400">
 				<span>
-					effect news
-					<span className="sr-only">: what's new in Effect</span>
+					{major && `Vol. ${major}`}
+					{major && issue && " · "}
+					{issue && `No. ${issue}`}
 				</span>
-				<span
-					aria-hidden="true"
-					className="-ml-1 inline-block h-[1.1em] w-[0.55em] animate-pulse bg-zinc-900 motion-reduce:animate-none dark:bg-white"
-				/>
+				<span className="text-center max-sm:hidden">{today}</span>
+				<span className="text-right">{version && `effect@${version}`}</span>
+			</div>
+			<h2 className="border-b-[3px] border-double border-zinc-300 px-5 py-6 text-center text-4xl font-semibold tracking-tight text-zinc-900 md:py-8 md:text-6xl md:tracking-tighter dark:border-zinc-700 dark:text-white">
+				The Effect Dispatch
 			</h2>
-			<p className="truncate text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-				{today}
-				{version && <span className="max-sm:hidden"> · effect@{version}</span>}
-			</p>
-		</div>
+		</header>
 	);
 }
 
@@ -595,7 +594,7 @@ export function WhatsNewSection() {
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					<CommandLine now={now} />
+					<Masthead now={now} />
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
