@@ -115,12 +115,12 @@ const EYEBROW =
 
 /** Quiet mark in the media panel: present, not shouting. */
 const MARK =
-	"font-mono text-4xl font-medium tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
+	"font-mono text-2xl sm:text-3xl font-medium tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
 
 /** A flat panel holding a quiet mark, for kinds without a picture. */
 function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
 	return (
-		<div className="flex h-full flex-col justify-end gap-1 bg-zinc-50 p-4 dark:bg-zinc-900/50">
+		<div className="flex h-full flex-col justify-end gap-1 bg-zinc-50 p-3 sm:p-4 dark:bg-zinc-900/50">
 			<span className={MARK}>{mark}</span>
 			{sub && (
 				<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -162,46 +162,49 @@ type CardProps = {
 };
 
 /**
- * Every item uses one card: a 16:9 media panel, then kind + freshness, the
- * title, and one muted line. Same shape for every kind keeps the row calm.
+ * Every item uses one card: a media panel on the left, then kind + freshness,
+ * the title, and one muted line on the right. Same shape for every kind keeps
+ * the 2×2 calm.
  */
 function Card({ kind, when, isNew, media, title, line, href }: CardProps) {
 	const external = href.startsWith("http");
 	return (
-		<article className="group relative flex min-w-0 flex-col bg-white p-4 transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/60">
-			<div className="aspect-[16/9] overflow-hidden border border-zinc-200 dark:border-zinc-800">
+		<article className="group relative flex min-w-0 flex-row items-center gap-4 bg-white p-4 transition-colors hover:bg-zinc-50 sm:gap-5 sm:p-5 lg:p-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60">
+			<div className="aspect-16/10 w-28 shrink-0 overflow-hidden border border-zinc-200 sm:w-52 dark:border-zinc-800">
 				{media}
 			</div>
 
-			<div className="mt-4 flex items-center justify-between gap-3 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-				<span className="inline-flex min-w-0 items-center gap-1.5 truncate uppercase tracking-wider">
-					{isNew && (
-						<span
-							aria-hidden="true"
-							className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
-						/>
-					)}
-					{kind}
-				</span>
-				<span className="shrink-0">{when}</span>
-			</div>
+			<div className="min-w-0 flex-1">
+				<div className="flex items-center justify-between gap-3 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
+					<span className="inline-flex min-w-0 items-center gap-1.5 truncate uppercase tracking-wider">
+						{isNew && (
+							<span
+								aria-hidden="true"
+								className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
+							/>
+						)}
+						{kind}
+					</span>
+					<span className="shrink-0">{when}</span>
+				</div>
 
-			<h3 className="mt-2 text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
-				<a
-					href={href}
-					{...(external
-						? { target: "_blank", rel: "noopener noreferrer" }
-						: {})}
-					className="after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400"
-				>
-					{title}
-				</a>
-			</h3>
-			{line && (
-				<p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-					{line}
-				</p>
-			)}
+				<h3 className="mt-2 text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
+					<a
+						href={href}
+						{...(external
+							? { target: "_blank", rel: "noopener noreferrer" }
+							: {})}
+						className="after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400"
+					>
+						{title}
+					</a>
+				</h3>
+				{line && (
+					<p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+						{line}
+					</p>
+				)}
+			</div>
 		</article>
 	);
 }
@@ -331,7 +334,7 @@ export function WhatsNewSection() {
 					What's happening in Effect
 				</h2>
 
-				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-zinc-800 dark:bg-zinc-800">
+				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
 					{feed.map((item) => (
 						<Card key={item.kind} {...cardFor(item, now)} />
 					))}
