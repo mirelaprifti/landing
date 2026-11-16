@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui";
+import { Icon } from "@/components/ui/Icon";
 import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
 import { EPISODES, type Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
@@ -44,8 +46,10 @@ function buildFeed(now: number): Item[] {
 
 	// One of each kind at most, so a busy week of one kind can't crowd out
 	// the rest; the newest of each kind competes on date.
+	// Only what's already out: scheduled posts wait for their date
+	const published = (date: string) => Date.parse(date) <= now;
 	const newest = (pred: (p: BlogPost) => boolean) =>
-		BLOG_POSTS.filter(pred).sort(
+		BLOG_POSTS.filter((p) => published(p.date) && pred(p)).sort(
 			(a, b) => Date.parse(b.date) - Date.parse(a.date),
 		)[0];
 
@@ -65,7 +69,7 @@ function buildFeed(now: number): Item[] {
 			post: issue,
 		});
 
-	const module = MODULES[0];
+	const module = MODULES.find((p) => published(p.date));
 	if (module)
 		items.push({ kind: "module", date: Date.parse(module.date), post: module });
 
@@ -77,7 +81,7 @@ function buildFeed(now: number): Item[] {
 	);
 	if (post) items.push({ kind: "post", date: Date.parse(post.date), post });
 
-	const episode = EPISODES[0];
+	const episode = EPISODES.find((e) => published(e.date));
 	if (episode)
 		items.push({ kind: "podcast", date: Date.parse(episode.date), episode });
 
@@ -94,11 +98,15 @@ function buildFeed(now: number): Item[] {
 	return fresh.sort((a, b) => b.date - a.date).slice(0, SLOTS);
 }
 
+/** Whole calendar days, so something from this morning reads "Today". */
+function daysFrom(now: number, date: number) {
+	const midnight = (t: number) => new Date(t).setHours(0, 0, 0, 0);
+	return Math.round((midnight(date) - midnight(now)) / DAY);
+}
+
 /** "Today", "3 days ago", "2 weeks ago"; "In 23 days" for the future. */
 function relative(date: number, now: number) {
-	// Whole calendar days, so something from this morning reads "Today"
-	const midnight = (t: number) => new Date(t).setHours(0, 0, 0, 0);
-	const days = Math.round((midnight(date) - midnight(now)) / DAY);
+	const days = daysFrom(now, date);
 	if (days > 1) return `In ${days} days`;
 	if (days === 1) return "Tomorrow";
 	if (days === 0) return "Today";
@@ -107,26 +115,84 @@ function relative(date: number, now: number) {
 	return `${Math.round(-days / 7)} weeks ago`;
 }
 
-/* ─── Card ──────────────────────────────────────────────────────────────── */
+/* ─── Panels ────────────────────────────────────────────────────────────── */
 
 /** Section eyebrow, verbatim from the styleguide. */
 const EYEBROW =
 	"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400";
 
-/** Quiet mark in the media panel: present, not shouting. */
-const MARK =
-	"font-mono text-2xl font-medium sm:group-data-[size=feature]:text-4xl tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
+const PANEL = "relative h-full overflow-hidden bg-zinc-50 dark:bg-zinc-900/60";
 
-/** A flat panel holding a quiet mark, for kinds without a picture. */
-function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
+/** Fades the right and bottom edges, so cropped content reads as "more". */
+function Crop() {
 	return (
-		<div className="flex h-full flex-col justify-end gap-1 bg-zinc-50 p-3 sm:p-4 dark:bg-zinc-900/50">
-			<span className={MARK}>{mark}</span>
-			{sub && (
-				<span className="truncate font-mono max-sm:hidden group-data-[size=tile]:hidden text-xs text-zinc-500 dark:text-zinc-400">
-					{sub}
-				</span>
+		<>
+			<div
+				aria-hidden="true"
+				className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-zinc-50 dark:from-zinc-900"
+			/>
+			<div
+				aria-hidden="true"
+				className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-zinc-50 dark:from-zinc-900"
+			/>
+		</>
+	);
+}
+
+/**
+ * Real code from the post, cropped like a window onto the editor. Monochrome:
+ * comments and strings shift weight, nothing shifts hue.
+ */
+function CodePanel({ code, file }: { code: string; file?: string }) {
+	const tokens = code.split(/(\/\/.*$|"[^"]*"|`[^`]*`)/gm);
+	return (
+		<div className={PANEL}>
+			{file && (
+				<div className="border-b border-zinc-200 px-3 py-1.5 font-mono text-[0.6875rem] text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
+					{file}
+				</div>
 			)}
+			<pre className="p-3 font-mono text-[0.6875rem] leading-[1.6] whitespace-pre text-zinc-600 dark:text-zinc-400">
+				{tokens.map((t, i) =>
+					t.startsWith("//") ? (
+						<span key={i} className="text-zinc-400 dark:text-zinc-600">
+							{t}
+						</span>
+					) : t.startsWith('"') || t.startsWith("`") ? (
+						<span key={i} className="text-zinc-900 dark:text-zinc-200">
+							{t}
+						</span>
+					) : (
+						t
+					),
+				)}
+			</pre>
+			<Crop />
+		</div>
+	);
+}
+
+/** The issue's headlines, set as a contents list. */
+function ListPanel({ items, label }: { items: string[]; label: string }) {
+	return (
+		<div className={PANEL}>
+			<div className="border-b border-zinc-200 px-3 py-1.5 font-mono text-[0.6875rem] text-zinc-500 dark:border-zinc-800">
+				{label}
+			</div>
+			<ol className="space-y-1.5 p-3">
+				{items.map((item, i) => (
+					<li
+						key={item}
+						className="flex gap-2.5 text-xs leading-snug text-zinc-600 dark:text-zinc-400"
+					>
+						<span className="font-mono text-zinc-400 tabular-nums dark:text-zinc-600">
+							{String(i + 1).padStart(2, "0")}
+						</span>
+						<span className="truncate">{item}</span>
+					</li>
+				))}
+			</ol>
+			<Crop />
 		</div>
 	);
 }
@@ -151,22 +217,28 @@ function ImagePanel({
 	);
 }
 
+/* ─── Card ──────────────────────────────────────────────────────────────── */
+
 type CardProps = {
 	kind: string;
 	when: string;
 	isNew?: boolean;
-	media: React.ReactNode;
+	/** Only features show it; a tile is type alone. */
+	media?: React.ReactNode;
 	title: string;
 	line?: string;
 	href: string;
-	/** Feature: the top row, picture on top. Tile: the row below, compact. */
+	/** The news as a phrase, for the section headline. */
+	news: string;
+	/** What the feature's link says, e.g. "Listen". */
+	action?: string;
 	size?: "feature" | "tile";
 };
 
 /**
- * One card, two weights. Features (the two freshest) get a medium media panel
- * and a larger title; tiles (the rest) are a compact row with a small
- * thumbnail. Everything else — label, freshness, title, one line — is shared.
+ * One card, two weights. Features (the two freshest) pair the news with a
+ * window onto the real thing: code, contents, or a photo. Tiles (the rest)
+ * are type only, so there's never an empty frame.
  */
 function Card({
 	kind,
@@ -176,30 +248,28 @@ function Card({
 	title,
 	line,
 	href,
+	action,
 	size = "tile",
 }: CardProps) {
 	const external = href.startsWith("http");
 	const feature = size === "feature";
 	return (
 		<article
-			data-size={size}
-			className={`group relative flex min-w-0 bg-white transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/60 ${
+			className={`group relative flex min-w-0 bg-white transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/40 ${
 				feature
-					? "flex-row items-center gap-5 p-5 lg:p-6"
-					: "flex-row items-center gap-4 px-5 py-4 lg:px-6"
+					? "flex-col gap-5 p-5 sm:flex-row sm:items-stretch lg:p-6"
+					: "px-5 py-4 lg:px-6"
 			}`}
 		>
-			<div
-				className={`shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-800 ${
-					feature ? "aspect-16/10 w-32 sm:w-56" : "aspect-16/10 w-24"
-				}`}
-			>
-				{media}
-			</div>
+			{feature && media && (
+				<div className="aspect-16/10 w-full shrink-0 overflow-hidden border border-zinc-200 sm:w-60 dark:border-zinc-800">
+					{media}
+				</div>
+			)}
 
-			<div className="min-w-0 flex-1">
+			<div className="flex min-w-0 flex-1 flex-col">
 				<div className="flex items-center justify-between gap-3 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-					<span className="min-w-0 truncate uppercase tracking-wider">
+					<span className="min-w-0 truncate tracking-wider uppercase">
 						{kind}
 					</span>
 					{/* Fresh items get ink, not color: the date goes full contrast */}
@@ -220,7 +290,7 @@ function Card({
 						{...(external
 							? { target: "_blank", rel: "noopener noreferrer" }
 							: {})}
-						className="after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400"
+						className="decoration-zinc-400 underline-offset-4 group-hover:underline after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400 dark:decoration-zinc-600"
 					>
 						{title}
 					</a>
@@ -234,16 +304,28 @@ function Card({
 						{line}
 					</p>
 				)}
+
+				{feature && (
+					<span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+						{action ?? (external ? "Read on effect.website" : "Read")}
+						<Icon
+							name={external ? "arrow-up-right" : "arrow-right"}
+							className="text-sm transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+						/>
+					</span>
+				)}
 			</div>
 		</article>
 	);
 }
 
-/** Maps a feed item onto the one card shape. */
+/** Maps a feed item onto the card. */
 function cardFor(item: Item, now: number): CardProps {
 	const when = relative(item.date, now);
 	const isNew = item.date <= now && now - item.date <= NEW_DAYS * DAY;
 	const join = (p: BlogPost) => p.highlights?.join(" · ") ?? p.excerpt;
+	const file = (p: BlogPost) =>
+		p.packageName ? `${p.packageName.split("/").pop()}.ts` : "example.ts";
 
 	switch (item.kind) {
 		case "release":
@@ -251,59 +333,62 @@ function cardFor(item: Item, now: number): CardProps {
 				kind: "Release",
 				when,
 				isNew,
-				media: (
-					<MarkPanel
-						mark={item.post.title.replace(/^Effect\s*/, "")}
-						sub="effect"
+				media: item.post.snippet && (
+					<CodePanel
+						code={item.post.snippet}
+						file={`${item.post.title.toLowerCase().replace(/\s+/g, "-")}.ts`}
 					/>
 				),
-				title: `${item.post.title} is out`,
+				title: item.post.headline ?? `${item.post.title} is out`,
 				line: join(item.post),
 				href: getPostUrl(item.post),
+				news: `${item.post.title} is out.`,
 			};
-		case "newsletter":
+		case "newsletter": {
+			const n = item.post.title.match(/#(\d+)/)?.[1] ?? "";
 			return {
-				kind: "This Week in Effect",
+				kind: `This Week in Effect · #${n}`,
 				when,
 				isNew,
-				media: (
-					<MarkPanel
-						mark={`#${item.post.title.match(/#(\d+)/)?.[1] ?? ""}`}
-						sub="weekly digest"
-					/>
+				media: item.post.highlights && (
+					<ListPanel items={item.post.highlights} label={`Issue #${n}`} />
 				),
-				title: "This week in Effect",
-				line: join(item.post),
+				title: item.post.headline ?? item.post.title,
+				line: item.post.excerpt,
 				href: getPostUrl(item.post),
+				news: item.post.headline
+					? `${item.post.headline}.`
+					: `${item.post.title} is out.`,
 			};
-		case "module":
+		}
+		case "module": {
+			const n = String(entryOf(item.post)).padStart(2, "0");
 			return {
-				kind: "Module of the Week",
+				kind: `Module of the Week · ${n}`,
 				when,
 				isNew,
-				media: (
-					<MarkPanel
-						mark={String(entryOf(item.post)).padStart(2, "0")}
-						sub={item.post.packageName && `from "${item.post.packageName}"`}
-					/>
+				media: item.post.snippet && (
+					<CodePanel code={item.post.snippet} file={file(item.post)} />
 				),
-				title: moduleTitle(item.post),
+				title: item.post.headline ?? moduleTitle(item.post),
 				line: item.post.excerpt,
 				href: getAssetPath(MOTW_URL),
+				action: item.post.video ? "Watch the module" : "Read the module",
+				news: `${item.post.headline ?? moduleTitle(item.post)}, in Module of the Week.`,
 			};
+		}
 		case "post":
 			return {
 				kind: "Blog",
 				when,
 				isNew,
-				media: item.post.coverImage ? (
+				media: item.post.coverImage && (
 					<ImagePanel src={getAssetPath(item.post.coverImage)} />
-				) : (
-					<MarkPanel mark="Blog" />
 				),
-				title: item.post.title,
+				title: item.post.headline ?? item.post.title,
 				line: join(item.post),
 				href: getPostUrl(item.post),
+				news: `${item.post.title}.`,
 			};
 		case "podcast":
 			return {
@@ -313,21 +398,16 @@ function cardFor(item: Item, now: number): CardProps {
 				media: (
 					<ImagePanel
 						src={`https://i.ytimg.com/vi/${item.episode.youtubeId}/hqdefault.jpg`}
-					>
-						<span className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-sm bg-zinc-950/80 py-0.5 pr-1.5 pl-1 font-mono text-xs text-white tabular-nums">
-							<i
-								className="ri-play-fill text-sm leading-none"
-								aria-hidden="true"
-							/>
-							{item.episode.duration}
-						</span>
-					</ImagePanel>
+					/>
 				),
 				title: item.episode.title,
 				line: `with ${item.episode.guest}`,
 				href: getAssetPath(`/podcast/episodes/${item.episode.slug}`),
+				action: "Listen",
+				news: `New on the podcast: ${item.episode.title}.`,
 			};
-		case "event":
+		case "event": {
+			const days = daysFrom(now, Date.parse(item.event.starts));
 			return {
 				kind: "Next event",
 				when: relative(Date.parse(item.event.starts), now),
@@ -339,39 +419,63 @@ function cardFor(item: Item, now: number): CardProps {
 					</ImagePanel>
 				),
 				title: item.event.title,
-				line: item.event.meta,
+				line: `${item.event.meta} · ${item.event.note}`,
 				href: getAssetPath(item.event.href),
+				action: item.event.action,
+				news:
+					days > 0
+						? `${item.event.title} is ${days} days away.`
+						: `${item.event.title} is on.`,
 			};
+		}
 	}
 }
 
 /**
- * "What's new": the homepage's one living section. Two feature cards on top,
- * two compact tiles below, split on the page's centre line and filled by whatever is freshest across releases, the newsletter,
- * Module of the Week, blog posts, the podcast and events. Stale kinds drop
- * out on their own; nothing is pinned.
+ * "What's new": the homepage's one living section. The headline is written
+ * from the two freshest items, which sit on top as features; the next two
+ * sit below as tiles. Filled by whatever is freshest across releases, the
+ * newsletter, Module of the Week, blog posts, the podcast and events.
  */
 export function WhatsNewSection() {
 	const now = Date.now();
-	const feed = buildFeed(now);
-	if (feed.length === 0) return null;
+	const cards = buildFeed(now).map((item, i) => ({
+		...cardFor(item, now),
+		size: (i < 2 ? "feature" : "tile") as CardProps["size"],
+		key: item.kind,
+	}));
+	if (cards.length === 0) return null;
+	const [lead, second] = cards;
 
 	return (
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<p className={EYEBROW}>// What's new</p>
-				<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
-					What's happening in Effect
-				</h2>
+				<div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+					<div className="max-w-4xl">
+						<p className={EYEBROW}>// What's new</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-balance text-zinc-900 md:text-3xl dark:text-white">
+							{lead.news}{" "}
+							{second && (
+								<span className="text-zinc-400 dark:text-zinc-500">
+									{second.news}
+								</span>
+							)}
+						</h2>
+					</div>
+					<Button
+						href={getAssetPath("/blog")}
+						variant="secondary"
+						size="md"
+						className="shrink-0 self-start lg:self-auto"
+					>
+						All updates
+						<Icon name="arrow-right" className="text-base" />
+					</Button>
+				</div>
 
 				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					{/* The two freshest carry the weight; the rest sit below as tiles */}
-					{feed.map((item, i) => (
-						<Card
-							key={item.kind}
-							{...cardFor(item, now)}
-							size={i < 2 ? "feature" : "tile"}
-						/>
+					{cards.map(({ key, ...card }) => (
+						<Card key={key} {...card} />
 					))}
 				</div>
 			</div>

@@ -23,6 +23,10 @@ export interface BlogPost {
 	video?: { youtubeId: string; duration: string };
 	/** Two to four scannable takeaways, shown as chips on the homepage */
 	highlights?: string[];
+	/** The news in one line, used as the homepage card title */
+	headline?: string;
+	/** A few verbatim lines of code from the post, shown cropped on the homepage */
+	snippet?: string;
 }
 
 /**
@@ -148,6 +152,13 @@ export const BLOG_POSTS: BlogPost[] = [
 			"Streaming CSV",
 			"HttpApi Problem Details",
 		],
+		headline: "Effect 4.1: crypto, Glob, and streaming CSV",
+		snippet: `import { Effect, FileSystem, Glob } from "effect"
+
+const sources = Glob.make("src/**/*.{ts,tsx}")
+
+Glob.match(sources, "src/ui/Button.tsx") // => true
+Glob.match(sources, "src/.cache/index.ts") // => false`,
 	},
 	{
 		slug: "releases/effect/40",
@@ -170,6 +181,14 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["Module of the Week"],
 		authors: [AUTHORS.maxwell],
 		packageName: "effect/workflow",
+		headline: "Durable workflows on Effect Cluster",
+		snippet: `import { Activity } from "effect/workflow"
+
+const joke = yield* Activity.make({
+  name: "WriteJoke",
+  success: Schema.String,
+  error: JokeError,
+  execute: Effect.gen(function* () {`,
 	},
 	{
 		slug: "module-of-the-week/cluster-idempotency",
@@ -252,10 +271,12 @@ export const BLOG_POSTS: BlogPost[] = [
 		tags: ["This Week In Effect"],
 		authors: [AUTHORS.davide, AUTHORS.mirela],
 		highlights: [
-			"4.1.3 + 4.1.4",
-			"Cluster: Workflows",
-			"New Effect Days speakers",
+			"Effect 4.1.3 and 4.1.4 ship",
+			"Cluster, Part 5: durable workflows",
+			"Julius Marminge joins Effect Days",
+			"Devin Jameson to talk Foldkit",
 		],
+		headline: "4.1.4 ships, and two new Effect Days speakers",
 	},
 	{
 		slug: "this-week-in-effect-143",
