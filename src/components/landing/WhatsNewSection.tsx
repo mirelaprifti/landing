@@ -539,8 +539,8 @@ function cardFor(item: Item, now: number): CardProps {
 
 /**
  * The section's header, deliberately unlike every other section's eyebrow +
- * h2: a small newspaper flag as the first row of the grid. The title centred,
- * today's date on the right, a double rule underneath.
+ * h2: a small newspaper flag as the first row of the grid. The title on the
+ * left, today's date on the right, a double rule underneath.
  */
 function Masthead({ now }: { now: number }) {
 	const today = new Date(now).toLocaleDateString("en-US", {
@@ -549,13 +549,11 @@ function Masthead({ now }: { now: number }) {
 		year: "numeric",
 	});
 	return (
-		// Empty left column keeps the title truly centred against the date
-		<header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b-[3px] border-double border-zinc-300 bg-white px-5 py-4 lg:col-span-2 lg:px-6 dark:border-zinc-700 dark:bg-zinc-950">
-			<span aria-hidden="true" />
-			<h2 className="text-center text-lg font-semibold tracking-tight text-zinc-900 md:text-xl dark:text-white">
+		<header className="flex items-baseline justify-between gap-4 border-b-[3px] border-double border-zinc-300 bg-white px-5 py-4 lg:col-span-2 lg:px-6 dark:border-zinc-700 dark:bg-zinc-950">
+			<h2 className="font-mono text-sm font-medium tracking-[0.2em] text-zinc-900 uppercase dark:text-white">
 				The Effect Dispatch
 			</h2>
-			<span className="text-right font-mono text-xs tracking-wider whitespace-nowrap text-zinc-500 uppercase tabular-nums max-sm:hidden dark:text-zinc-400">
+			<span className="font-mono text-xs tracking-wider whitespace-nowrap text-zinc-500 uppercase tabular-nums max-sm:hidden dark:text-zinc-400">
 				{today}
 			</span>
 		</header>
