@@ -115,7 +115,7 @@ const EYEBROW =
 
 /** Quiet mark in the media panel: present, not shouting. */
 const MARK =
-	"font-mono text-2xl font-medium group-data-[size=feature]:text-5xl tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
+	"font-mono text-2xl font-medium sm:group-data-[size=feature]:text-4xl tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
 
 /** A flat panel holding a quiet mark, for kinds without a picture. */
 function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
@@ -123,7 +123,7 @@ function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
 		<div className="flex h-full flex-col justify-end gap-1 bg-zinc-50 p-3 sm:p-4 dark:bg-zinc-900/50">
 			<span className={MARK}>{mark}</span>
 			{sub && (
-				<span className="truncate font-mono group-data-[size=tile]:hidden text-xs text-zinc-500 dark:text-zinc-400">
+				<span className="truncate font-mono max-sm:hidden group-data-[size=tile]:hidden text-xs text-zinc-500 dark:text-zinc-400">
 					{sub}
 				</span>
 			)}
@@ -164,8 +164,8 @@ type CardProps = {
 };
 
 /**
- * One card, two weights. Features (the two freshest) put a wide media panel
- * on top with a larger title; tiles (the rest) are a compact row with a small
+ * One card, two weights. Features (the two freshest) get a medium media panel
+ * and a larger title; tiles (the rest) are a compact row with a small
  * thumbnail. Everything else — label, freshness, title, one line — is shared.
  */
 function Card({
@@ -185,13 +185,13 @@ function Card({
 			data-size={size}
 			className={`group relative flex min-w-0 bg-white transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/60 ${
 				feature
-					? "flex-col gap-5 p-5 lg:p-6"
+					? "flex-row items-center gap-5 p-5 lg:p-6"
 					: "flex-row items-center gap-4 px-5 py-4 lg:px-6"
 			}`}
 		>
 			<div
 				className={`shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-800 ${
-					feature ? "aspect-video w-full" : "aspect-16/10 w-24"
+					feature ? "aspect-16/10 w-32 sm:w-56" : "aspect-16/10 w-24"
 				}`}
 			>
 				{media}
@@ -213,7 +213,7 @@ function Card({
 
 				<h3
 					className={`mt-2 leading-snug font-semibold text-balance text-zinc-900 dark:text-white ${
-						feature ? "text-xl lg:text-2xl lg:tracking-tight" : "text-sm"
+						feature ? "text-lg" : "text-sm"
 					}`}
 				>
 					<a
