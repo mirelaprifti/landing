@@ -275,6 +275,7 @@ const joke = yield* Activity.make({
 			"Cluster, Part 5: durable workflows",
 			"Julius Marminge joins Effect Days",
 			"Devin Jameson to talk Foldkit",
+			"Ziverge sponsors Effect Days",
 		],
 		headline: "4.1.4 ships, and two new Effect Days speakers",
 	},
