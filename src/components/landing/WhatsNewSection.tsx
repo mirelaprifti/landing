@@ -115,7 +115,7 @@ const EYEBROW =
 
 /** Quiet mark in the media panel: present, not shouting. */
 const MARK =
-	"font-mono text-2xl sm:text-3xl font-medium tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
+	"font-mono text-2xl font-medium group-data-[size=feature]:text-5xl tracking-tight text-zinc-400 tabular-nums transition-colors group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-white";
 
 /** A flat panel holding a quiet mark, for kinds without a picture. */
 function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
@@ -123,7 +123,7 @@ function MarkPanel({ mark, sub }: { mark: string; sub?: string }) {
 		<div className="flex h-full flex-col justify-end gap-1 bg-zinc-50 p-3 sm:p-4 dark:bg-zinc-900/50">
 			<span className={MARK}>{mark}</span>
 			{sub && (
-				<span className="truncate font-mono text-xs text-zinc-500 dark:text-zinc-400">
+				<span className="truncate font-mono group-data-[size=tile]:hidden text-xs text-zinc-500 dark:text-zinc-400">
 					{sub}
 				</span>
 			)}
@@ -159,18 +159,41 @@ type CardProps = {
 	title: string;
 	line?: string;
 	href: string;
+	/** Feature: the top row, picture on top. Tile: the row below, compact. */
+	size?: "feature" | "tile";
 };
 
 /**
- * Every item uses one card: a media panel on the left, then kind + freshness,
- * the title, and one muted line on the right. Same shape for every kind keeps
- * the 2×2 calm.
+ * One card, two weights. Features (the two freshest) put a wide media panel
+ * on top with a larger title; tiles (the rest) are a compact row with a small
+ * thumbnail. Everything else — label, freshness, title, one line — is shared.
  */
-function Card({ kind, when, isNew, media, title, line, href }: CardProps) {
+function Card({
+	kind,
+	when,
+	isNew,
+	media,
+	title,
+	line,
+	href,
+	size = "tile",
+}: CardProps) {
 	const external = href.startsWith("http");
+	const feature = size === "feature";
 	return (
-		<article className="group relative flex min-w-0 flex-row items-center gap-4 bg-white p-4 transition-colors hover:bg-zinc-50 sm:gap-5 sm:p-5 lg:p-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/60">
-			<div className="aspect-16/10 w-28 shrink-0 overflow-hidden border border-zinc-200 sm:w-52 dark:border-zinc-800">
+		<article
+			data-size={size}
+			className={`group relative flex min-w-0 bg-white transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/60 ${
+				feature
+					? "flex-col gap-5 p-5 lg:p-6"
+					: "flex-row items-center gap-4 px-5 py-4 lg:px-6"
+			}`}
+		>
+			<div
+				className={`shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-800 ${
+					feature ? "aspect-video w-full" : "aspect-16/10 w-24"
+				}`}
+			>
 				{media}
 			</div>
 
@@ -188,7 +211,11 @@ function Card({ kind, when, isNew, media, title, line, href }: CardProps) {
 					<span className="shrink-0">{when}</span>
 				</div>
 
-				<h3 className="mt-2 text-base leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
+				<h3
+					className={`mt-2 leading-snug font-semibold text-balance text-zinc-900 dark:text-white ${
+						feature ? "text-xl lg:text-2xl lg:tracking-tight" : "text-sm"
+					}`}
+				>
 					<a
 						href={href}
 						{...(external
@@ -200,7 +227,11 @@ function Card({ kind, when, isNew, media, title, line, href }: CardProps) {
 					</a>
 				</h3>
 				{line && (
-					<p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+					<p
+						className={`mt-1.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 ${
+							feature ? "line-clamp-2" : "line-clamp-1"
+						}`}
+					>
 						{line}
 					</p>
 				)}
@@ -316,8 +347,8 @@ function cardFor(item: Item, now: number): CardProps {
 }
 
 /**
- * "What's new": the homepage's one living section. One row of four equal
- * cards, filled by whatever is freshest across releases, the newsletter,
+ * "What's new": the homepage's one living section. Two feature cards on top,
+ * two compact tiles below, split on the page's centre line and filled by whatever is freshest across releases, the newsletter,
  * Module of the Week, blog posts, the podcast and events. Stale kinds drop
  * out on their own; nothing is pinned.
  */
@@ -335,8 +366,13 @@ export function WhatsNewSection() {
 				</h2>
 
 				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					{feed.map((item) => (
-						<Card key={item.kind} {...cardFor(item, now)} />
+					{/* The two freshest carry the weight; the rest sit below as tiles */}
+					{feed.map((item, i) => (
+						<Card
+							key={item.kind}
+							{...cardFor(item, now)}
+							size={i < 2 ? "feature" : "tile"}
+						/>
 					))}
 				</div>
 			</div>
