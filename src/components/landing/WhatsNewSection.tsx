@@ -21,11 +21,9 @@ const EVENTS = [
 		title: "Effect Days 2026",
 		meta: "Dec 9–11 · Livorno, Italy",
 		status: "Sold out",
-		note: "Talks on YouTube after the event",
 		starts: "2026-12-09",
 		ends: "2026-12-12",
 		href: "/effect-days",
-		action: "See the lineup",
 		image: "/assets/effect-days/ed-25-3.png",
 	},
 ];
@@ -228,15 +226,11 @@ type CardProps = {
 	title: string;
 	line?: string;
 	href: string;
-	/** The news as a phrase, for the section headline. */
-	news: string;
-	/** What the feature's link says, e.g. "Listen". */
-	action?: string;
 	size?: "feature" | "tile";
 };
 
 /**
- * One card, two weights. Features (the two freshest) pair the news with a
+ * One card, two weights. Features (the two freshest) pair the title with a
  * window onto the real thing: code, contents, or a photo. Tiles (the rest)
  * are type only, so there's never an empty frame.
  */
@@ -248,7 +242,6 @@ function Card({
 	title,
 	line,
 	href,
-	action,
 	size = "tile",
 }: CardProps) {
 	const external = href.startsWith("http");
@@ -293,26 +286,17 @@ function Card({
 						className="decoration-zinc-400 underline-offset-4 group-hover:underline after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400 dark:decoration-zinc-600"
 					>
 						{title}
+						<Icon
+							name={external ? "arrow-up-right" : "arrow-right"}
+							aria-hidden="true"
+							className="ml-1.5 inline text-sm text-zinc-400 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 motion-reduce:transition-none dark:text-zinc-500"
+						/>
 					</a>
 				</h3>
 				{line && (
-					<p
-						className={`mt-1.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 ${
-							feature ? "line-clamp-2" : "line-clamp-1"
-						}`}
-					>
+					<p className="mt-1 truncate text-sm text-zinc-500 dark:text-zinc-400">
 						{line}
 					</p>
-				)}
-
-				{feature && (
-					<span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
-						{action ?? (external ? "Read on effect.website" : "Read")}
-						<Icon
-							name={external ? "arrow-up-right" : "arrow-right"}
-							className="text-sm transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
-						/>
-					</span>
 				)}
 			</div>
 		</article>
@@ -323,7 +307,6 @@ function Card({
 function cardFor(item: Item, now: number): CardProps {
 	const when = relative(item.date, now);
 	const isNew = item.date <= now && now - item.date <= NEW_DAYS * DAY;
-	const join = (p: BlogPost) => p.highlights?.join(" · ") ?? p.excerpt;
 	const file = (p: BlogPost) =>
 		p.packageName ? `${p.packageName.split("/").pop()}.ts` : "example.ts";
 
@@ -340,9 +323,7 @@ function cardFor(item: Item, now: number): CardProps {
 					/>
 				),
 				title: item.post.headline ?? `${item.post.title} is out`,
-				line: join(item.post),
 				href: getPostUrl(item.post),
-				news: `${item.post.title} is out.`,
 			};
 		case "newsletter": {
 			const n = item.post.title.match(/#(\d+)/)?.[1] ?? "";
@@ -354,11 +335,7 @@ function cardFor(item: Item, now: number): CardProps {
 					<ListPanel items={item.post.highlights} label={`Issue #${n}`} />
 				),
 				title: item.post.headline ?? item.post.title,
-				line: item.post.excerpt,
 				href: getPostUrl(item.post),
-				news: item.post.headline
-					? `${item.post.headline}.`
-					: `${item.post.title} is out.`,
 			};
 		}
 		case "module": {
@@ -371,10 +348,7 @@ function cardFor(item: Item, now: number): CardProps {
 					<CodePanel code={item.post.snippet} file={file(item.post)} />
 				),
 				title: item.post.headline ?? moduleTitle(item.post),
-				line: item.post.excerpt,
 				href: getAssetPath(MOTW_URL),
-				action: item.post.video ? "Watch the module" : "Read the module",
-				news: `${item.post.headline ?? moduleTitle(item.post)}, in Module of the Week.`,
 			};
 		}
 		case "post":
@@ -386,9 +360,7 @@ function cardFor(item: Item, now: number): CardProps {
 					<ImagePanel src={getAssetPath(item.post.coverImage)} />
 				),
 				title: item.post.headline ?? item.post.title,
-				line: join(item.post),
 				href: getPostUrl(item.post),
-				news: `${item.post.title}.`,
 			};
 		case "podcast":
 			return {
@@ -403,11 +375,8 @@ function cardFor(item: Item, now: number): CardProps {
 				title: item.episode.title,
 				line: `with ${item.episode.guest}`,
 				href: getAssetPath(`/podcast/episodes/${item.episode.slug}`),
-				action: "Listen",
-				news: `New on the podcast: ${item.episode.title}.`,
 			};
 		case "event": {
-			const days = daysFrom(now, Date.parse(item.event.starts));
 			return {
 				kind: "Next event",
 				when: relative(Date.parse(item.event.starts), now),
@@ -419,22 +388,17 @@ function cardFor(item: Item, now: number): CardProps {
 					</ImagePanel>
 				),
 				title: item.event.title,
-				line: `${item.event.meta} · ${item.event.note}`,
+				line: item.event.meta,
 				href: getAssetPath(item.event.href),
-				action: item.event.action,
-				news:
-					days > 0
-						? `${item.event.title} is ${days} days away.`
-						: `${item.event.title} is on.`,
 			};
 		}
 	}
 }
 
 /**
- * "What's new": the homepage's one living section. The headline is written
- * from the two freshest items, which sit on top as features; the next two
- * sit below as tiles. Filled by whatever is freshest across releases, the
+ * "What's new": the homepage's one living section. The two freshest items
+ * sit on top as features; the next two sit below as tiles. Label + title
+ * only, so the picture leads and the eye has one place to land. Filled by whatever is freshest across releases, the
  * newsletter, Module of the Week, blog posts, the podcast and events.
  */
 export function WhatsNewSection() {
@@ -445,21 +409,15 @@ export function WhatsNewSection() {
 		key: item.kind,
 	}));
 	if (cards.length === 0) return null;
-	const [lead, second] = cards;
 
 	return (
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
 					<div className="max-w-4xl">
-						<p className={EYEBROW}>// What's new</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-balance text-zinc-900 md:text-3xl dark:text-white">
-							{lead.news}{" "}
-							{second && (
-								<span className="text-zinc-400 dark:text-zinc-500">
-									{second.news}
-								</span>
-							)}
+						<p className={EYEBROW}>// Latest</p>
+						<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
+							What's new in Effect
 						</h2>
 					</div>
 					<Button
