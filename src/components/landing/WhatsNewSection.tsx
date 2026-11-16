@@ -539,23 +539,15 @@ function cardFor(item: Item, now: number): CardProps {
 
 /**
  * The section's header, deliberately unlike every other section's eyebrow +
- * h2: a small newspaper flag as the first row of the grid. The title on the
- * left, today's date on the right, a double rule underneath.
+ * h2: a newspaper-style flag as the first row of the grid, the title over a
+ * double rule. Type is verbatim from the styleguide (sectionTitle).
  */
-function Masthead({ now }: { now: number }) {
-	const today = new Date(now).toLocaleDateString("en-US", {
-		month: "short",
-		day: "numeric",
-		year: "numeric",
-	});
+function Masthead() {
 	return (
-		<header className="flex items-baseline justify-between gap-4 border-b-[3px] border-double border-zinc-300 bg-white px-5 py-4 lg:col-span-2 lg:px-6 dark:border-zinc-700 dark:bg-zinc-950">
-			<h2 className="font-mono text-sm font-medium tracking-[0.2em] text-zinc-900 uppercase dark:text-white">
+		<header className="border-b-[3px] border-double border-zinc-300 bg-white px-5 py-5 lg:col-span-2 lg:p-6 dark:border-zinc-700 dark:bg-zinc-950">
+			<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
 				The Effect Dispatch
 			</h2>
-			<span className="font-mono text-xs tracking-wider whitespace-nowrap text-zinc-500 uppercase tabular-nums max-sm:hidden dark:text-zinc-400">
-				{today}
-			</span>
 		</header>
 	);
 }
@@ -579,7 +571,7 @@ export function WhatsNewSection() {
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					<Masthead now={now} />
+					<Masthead />
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
