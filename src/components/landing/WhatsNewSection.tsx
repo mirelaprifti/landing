@@ -171,17 +171,35 @@ function CodePanel({ code, file }: { code: string; file?: string }) {
 }
 
 /** The issue's headlines, set as a contents list. */
-function ListPanel({ items, label }: { items: string[]; label: string }) {
+function ListPanel({
+	items,
+	label,
+	when,
+	isNew,
+}: {
+	items: string[];
+	label: string;
+	/** Freshness in the header's right corner, when the panel is the card. */
+	when?: string;
+	isNew?: boolean;
+}) {
 	return (
 		<div className={PANEL}>
-			<div className="border-b border-zinc-200 px-3 py-1.5 font-mono text-[0.6875rem] text-zinc-500 dark:border-zinc-800">
-				{label}
+			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-4 py-2.5 font-mono text-xs text-zinc-500 tabular-nums dark:border-zinc-800 dark:text-zinc-400">
+				<span className="truncate tracking-wider uppercase">{label}</span>
+				{when && (
+					<span
+						className={`shrink-0 ${isNew ? "text-zinc-900 dark:text-white" : ""}`}
+					>
+						{when}
+					</span>
+				)}
 			</div>
-			<ol className="space-y-1.5 p-3">
+			<ol className="space-y-2.5 px-4 py-4">
 				{items.map((item, i) => (
 					<li
 						key={item}
-						className="flex gap-2.5 text-xs leading-snug text-zinc-600 dark:text-zinc-400"
+						className="flex gap-3 text-sm leading-snug text-zinc-700 transition-colors group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white"
 					>
 						<span className="font-mono text-zinc-400 tabular-nums dark:text-zinc-600">
 							{String(i + 1).padStart(2, "0")}
@@ -190,7 +208,8 @@ function ListPanel({ items, label }: { items: string[]; label: string }) {
 					</li>
 				))}
 			</ol>
-			<Crop />
+			{/* Full-width as the card: nothing is cropped, so no fade */}
+			{!when && <Crop />}
 		</div>
 	);
 }
@@ -227,6 +246,8 @@ type CardProps = {
 	line?: string;
 	href: string;
 	size?: "feature" | "tile";
+	/** As a feature, the media is the whole card: no title column. */
+	panelOnly?: boolean;
 };
 
 /**
@@ -243,9 +264,30 @@ function Card({
 	line,
 	href,
 	size = "tile",
+	panelOnly,
 }: CardProps) {
 	const external = href.startsWith("http");
 	const feature = size === "feature";
+
+	if (feature && panelOnly && media) {
+		return (
+			<article className="group relative min-w-0 bg-white p-5 transition-colors hover:bg-zinc-50 lg:p-6 dark:bg-zinc-950 dark:hover:bg-zinc-900/40">
+				<div className="h-full overflow-hidden border border-zinc-200 dark:border-zinc-800">
+					{media}
+				</div>
+				<a
+					href={href}
+					{...(external
+						? { target: "_blank", rel: "noopener noreferrer" }
+						: {})}
+					className="absolute inset-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400"
+				>
+					<span className="sr-only">{`${kind}: ${title}`}</span>
+				</a>
+			</article>
+		);
+	}
+
 	return (
 		<article
 			className={`group relative flex min-w-0 bg-white transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/40 ${
@@ -332,8 +374,14 @@ function cardFor(item: Item, now: number): CardProps {
 				when,
 				isNew,
 				media: item.post.highlights && (
-					<ListPanel items={item.post.highlights} label={`Issue #${n}`} />
+					<ListPanel
+						items={item.post.highlights}
+						label={`This Week in Effect · #${n}`}
+						when={when}
+						isNew={isNew}
+					/>
 				),
+				panelOnly: true,
 				title: item.post.headline ?? item.post.title,
 				href: getPostUrl(item.post),
 			};
