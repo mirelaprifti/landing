@@ -12,7 +12,7 @@ const HERO_LOGOS: {
 }[] = [
 	{
 		name: "Cloudflare",
-		src: "/assets/effect-jobs-logos/Cloudflare_logo_horizontal_wht 1.png",
+		src: "/assets/test-logos/Cloudflare_logo_horizontal_wht 1.png",
 		h: "22px",
 	},
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "20px", nudgeY: 2 },
@@ -29,7 +29,7 @@ const HERO_LOGOS: {
 	},
 	{
 		name: "Replit",
-		src: "/assets/test-logos/replit.svg",
+		src: "/assets/test-logos/replit - darkmode.svg",
 		// The artboard includes the "p" descender: baseline sits ~5px above
 		// the image bottom, so drop it onto the row's shared baseline.
 		h: "20px",
