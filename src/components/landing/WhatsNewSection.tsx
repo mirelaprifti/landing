@@ -15,11 +15,40 @@ const FRESH_DAYS = 42;
 const EVENT_LEAD_DAYS = 60;
 const NEW_DAYS = 7;
 
-/** Upcoming events. Add one here and it slots in when it gets close. */
-const EVENTS = [
+/** The community calendar every event below is listed on. */
+const LUMA_URL = "https://luma.com/effect-community";
+
+/**
+ * Upcoming events, mirrored from the Luma calendar. Add one here and it
+ * slots in once it's within EVENT_LEAD_DAYS; it leaves when it's over.
+ */
+type Event = {
+	title: string;
+	/** As printed: "Nov 17", "Dec 9–11". */
+	date: string;
+	place: string;
+	status?: string;
+	starts: string;
+	ends: string;
+	href: string;
+	/** The event's cover; Luma CDN or a local asset. */
+	image: string;
+};
+const EVENTS: Event[] = [
+	{
+		title: "Effect Warsaw #2",
+		date: "Nov 17",
+		place: "Warsaw, Poland",
+		starts: "2026-11-17",
+		ends: "2026-11-18",
+		href: "https://luma.com/k5o7m2pg",
+		image:
+			"https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=96,height=96/uploads/cb/2bc25c67-80d6-407f-8aea-b9064647ef05.png",
+	},
 	{
 		title: "Effect Days 2026",
-		meta: "Dec 9–11 · Livorno, Italy",
+		date: "Dec 9–11",
+		place: "Livorno, Italy",
 		status: "Sold out",
 		starts: "2026-12-09",
 		ends: "2026-12-12",
@@ -27,7 +56,6 @@ const EVENTS = [
 		image: "/assets/effect-days/ed-25-3.png",
 	},
 ];
-type Event = (typeof EVENTS)[number];
 
 type Item =
 	| { kind: "release"; date: number; post: BlogPost }
@@ -35,7 +63,7 @@ type Item =
 	| { kind: "module"; date: number; post: BlogPost }
 	| { kind: "post"; date: number; post: BlogPost }
 	| { kind: "podcast"; date: number; episode: Episode }
-	| { kind: "event"; date: number; event: Event };
+	| { kind: "event"; date: number; events: Event[] };
 
 const DAY = 86_400_000;
 
@@ -85,13 +113,13 @@ function buildFeed(now: number): Item[] {
 
 	const fresh = items.filter((i) => now - i.date <= FRESH_DAYS * DAY);
 
-	// An upcoming event counts as "now": it leads until it's over.
-	const event = EVENTS.find(
+	// Upcoming events count as "now": they lead until they're over.
+	const events = EVENTS.filter(
 		(e) =>
 			Date.parse(e.ends) > now &&
 			Date.parse(e.starts) - now <= EVENT_LEAD_DAYS * DAY,
-	);
-	if (event) fresh.push({ kind: "event", date: now, event });
+	).sort((a, b) => Date.parse(a.starts) - Date.parse(b.starts));
+	if (events.length) fresh.push({ kind: "event", date: now, events });
 
 	return fresh.sort((a, b) => b.date - a.date).slice(0, SLOTS);
 }
@@ -214,6 +242,73 @@ function ListPanel({
 	);
 }
 
+const eventHref = (e: Event) =>
+	e.href.startsWith("http") ? e.href : getAssetPath(e.href);
+
+/**
+ * Upcoming events as a calendar list: cover, title, place, and when. Each row
+ * is its own link; the header links out to the full Luma calendar.
+ */
+function EventsPanel({ events, now }: { events: Event[]; now: number }) {
+	return (
+		<div className={PANEL}>
+			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-4 py-2.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+				<span className="tracking-wider uppercase">Upcoming events</span>
+				<a
+					href={LUMA_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="relative z-10 inline-flex items-center gap-1 transition-colors hover:text-zinc-900 dark:hover:text-white"
+				>
+					All on Luma
+					<Icon name="arrow-up-right" className="text-xs" />
+				</a>
+			</div>
+			<ul className="divide-y divide-zinc-200 dark:divide-zinc-800">
+				{events.slice(0, 3).map((e) => {
+					const external = e.href.startsWith("http");
+					const soon = relative(Date.parse(e.starts), now);
+					return (
+						<li key={e.title}>
+							<a
+								href={eventHref(e)}
+								{...(external
+									? { target: "_blank", rel: "noopener noreferrer" }
+									: {})}
+								className="group/row flex items-center gap-3 px-4 py-3 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:hover:bg-zinc-800/50"
+							>
+								<img
+									src={external ? e.image : getAssetPath(e.image)}
+									alt=""
+									loading="lazy"
+									className="size-10 shrink-0 border border-zinc-200 object-cover grayscale dark:border-zinc-800"
+								/>
+								<span className="min-w-0 flex-1">
+									<span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+										{e.title}
+									</span>
+									<span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
+										{e.place}
+										{e.status && ` · ${e.status}`}
+									</span>
+								</span>
+								<span className="shrink-0 text-right font-mono text-xs tabular-nums">
+									<span className="block text-zinc-900 dark:text-white">
+										{e.date}
+									</span>
+									<span className="block text-zinc-500 dark:text-zinc-400">
+										{soon}
+									</span>
+								</span>
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
+}
+
 function ImagePanel({
 	src,
 	children,
@@ -248,6 +343,8 @@ type CardProps = {
 	size?: "feature" | "tile";
 	/** As a feature, the media is the whole card: no title column. */
 	panelOnly?: boolean;
+	/** The panel carries its own links, so the card isn't one big link. */
+	ownLinks?: boolean;
 };
 
 /**
@@ -265,6 +362,7 @@ function Card({
 	href,
 	size = "tile",
 	panelOnly,
+	ownLinks,
 }: CardProps) {
 	const external = href.startsWith("http");
 	const feature = size === "feature";
@@ -275,15 +373,17 @@ function Card({
 				<div className="h-full overflow-hidden border border-zinc-200 dark:border-zinc-800">
 					{media}
 				</div>
-				<a
-					href={href}
-					{...(external
-						? { target: "_blank", rel: "noopener noreferrer" }
-						: {})}
-					className="absolute inset-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400"
-				>
-					<span className="sr-only">{`${kind}: ${title}`}</span>
-				</a>
+				{!ownLinks && (
+					<a
+						href={href}
+						{...(external
+							? { target: "_blank", rel: "noopener noreferrer" }
+							: {})}
+						className="absolute inset-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400"
+					>
+						<span className="sr-only">{`${kind}: ${title}`}</span>
+					</a>
+				)}
 			</article>
 		);
 	}
@@ -425,19 +525,17 @@ function cardFor(item: Item, now: number): CardProps {
 				href: getAssetPath(`/podcast/episodes/${item.episode.slug}`),
 			};
 		case "event": {
+			const [next] = item.events;
 			return {
 				kind: "Next event",
-				when: relative(Date.parse(item.event.starts), now),
-				media: (
-					<ImagePanel src={getAssetPath(item.event.image)}>
-						<span className="absolute top-2 right-2 rounded-full bg-zinc-950/70 px-2 py-0.5 font-mono text-xs tracking-wider text-white uppercase backdrop-blur-sm">
-							{item.event.status}
-						</span>
-					</ImagePanel>
-				),
-				title: item.event.title,
-				line: item.event.meta,
-				href: getAssetPath(item.event.href),
+				when: relative(Date.parse(next.starts), now),
+				media: <EventsPanel events={item.events} now={now} />,
+				panelOnly: true,
+				// As a tile it's just the soonest one
+				title: next.title,
+				line: `${next.date} · ${next.place}`,
+				href: eventHref(next),
+				ownLinks: true,
 			};
 		}
 	}
