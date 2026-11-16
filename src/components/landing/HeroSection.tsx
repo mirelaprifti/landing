@@ -16,6 +16,17 @@ const HERO_LOGOS: {
 		h: "22px",
 	},
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "20px", nudgeY: 2 },
+	// Order: widest-recognized names first, Replit in the center slot; wide/
+	// narrow pairs mirror around it, and on phones the first line wraps to
+	// Cloudflare · X · Replit.
+	{
+		name: "Replit",
+		src: "/assets/test-logos/replit - darkmode.svg",
+		// The artboard includes the "p" descender: baseline sits ~5px above
+		// the image bottom, so drop it onto the row's shared baseline.
+		h: "20px",
+		nudgeY: 4.7,
+	},
 	{
 		name: "opencode",
 		src: "/assets/effect-jobs-logos/opencode-wordmark-dark.svg",
@@ -26,14 +37,6 @@ const HERO_LOGOS: {
 		name: "T3 Chat",
 		src: "/assets/test-logos/T3.svg",
 		h: "16px",
-	},
-	{
-		name: "Replit",
-		src: "/assets/test-logos/replit - darkmode.svg",
-		// The artboard includes the "p" descender: baseline sits ~5px above
-		// the image bottom, so drop it onto the row's shared baseline.
-		h: "20px",
-		nudgeY: 4.7,
 	},
 ];
 
