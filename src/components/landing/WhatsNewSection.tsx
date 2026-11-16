@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui";
 import { Icon } from "@/components/ui/Icon";
 import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
 import { EPISODES, type Episode } from "../../data/episodes";
@@ -562,22 +561,11 @@ export function WhatsNewSection() {
 	return (
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-					<div className="max-w-4xl">
-						<p className={EYEBROW}>// Latest</p>
-						<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
-							What's new in Effect
-						</h2>
-					</div>
-					<Button
-						href={getAssetPath("/blog")}
-						variant="secondary"
-						size="md"
-						className="shrink-0 self-start lg:self-auto"
-					>
-						All updates
-						<Icon name="arrow-right" className="text-base" />
-					</Button>
+				<div>
+					<p className={EYEBROW}>// Latest</p>
+					<h2 className="leading-tighter text-2xl font-semibold text-zinc-900 md:text-3xl dark:text-white">
+						What's new in Effect
+					</h2>
 				</div>
 
 				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
