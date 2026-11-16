@@ -539,38 +539,25 @@ function cardFor(item: Item, now: number): CardProps {
 
 /**
  * The section's header, deliberately unlike every other section's eyebrow +
- * h2: a newspaper masthead set as the first row of the grid. A dateline
- * (volume = Effect's major version, number = the latest newsletter issue,
- * today's date, current release), the title, then a double rule.
+ * h2: a small newspaper flag as the first row of the grid. The title centred,
+ * today's date on the right, a double rule underneath.
  */
 function Masthead({ now }: { now: number }) {
-	const latest = (tag: string) =>
-		BLOG_POSTS.filter(
-			(p) => p.tags.includes(tag) && Date.parse(p.date) <= now,
-		).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
-	const version = latest("Release")?.title.replace(/^Effect\s*/, "");
-	const issue = latest("This Week In Effect")?.title.match(/#(\d+)/)?.[1];
-	const major = version?.split(".")[0];
 	const today = new Date(now).toLocaleDateString("en-US", {
-		weekday: "long",
-		month: "long",
+		month: "short",
 		day: "numeric",
 		year: "numeric",
 	});
 	return (
-		<header className="bg-white lg:col-span-2 dark:bg-zinc-950">
-			<div className="grid grid-cols-2 items-center gap-4 border-b border-zinc-200 px-5 py-2.5 font-mono text-xs tracking-wider text-zinc-500 uppercase tabular-nums sm:grid-cols-3 lg:px-6 dark:border-zinc-800 dark:text-zinc-400">
-				<span>
-					{major && `Vol. ${major}`}
-					{major && issue && " · "}
-					{issue && `No. ${issue}`}
-				</span>
-				<span className="text-center max-sm:hidden">{today}</span>
-				<span className="text-right">{version && `effect@${version}`}</span>
-			</div>
-			<h2 className="border-b-[3px] border-double border-zinc-300 px-5 py-6 text-center text-4xl font-semibold tracking-tight text-zinc-900 md:py-8 md:text-6xl md:tracking-tighter dark:border-zinc-700 dark:text-white">
+		// Empty left column keeps the title truly centred against the date
+		<header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b-[3px] border-double border-zinc-300 bg-white px-5 py-4 lg:col-span-2 lg:px-6 dark:border-zinc-700 dark:bg-zinc-950">
+			<span aria-hidden="true" />
+			<h2 className="text-center text-lg font-semibold tracking-tight text-zinc-900 md:text-xl dark:text-white">
 				The Effect Dispatch
 			</h2>
+			<span className="text-right font-mono text-xs tracking-wider whitespace-nowrap text-zinc-500 uppercase tabular-nums max-sm:hidden dark:text-zinc-400">
+				{today}
+			</span>
 		</header>
 	);
 }
