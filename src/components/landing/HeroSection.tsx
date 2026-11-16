@@ -28,9 +28,12 @@ const HERO_LOGOS: {
 		h: "16px",
 	},
 	{
-		name: "MasterClass",
-		src: "/assets/quotes-logos/masterclass-noM.svg",
-		h: "16px",
+		name: "Replit",
+		src: "/assets/test-logos/replit.svg",
+		// The artboard includes the "p" descender: baseline sits ~5px above
+		// the image bottom, so drop it onto the row's shared baseline.
+		h: "21px",
+		nudgeY: 5,
 	},
 ];
 
