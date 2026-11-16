@@ -146,6 +146,10 @@ function relative(date: number, now: number) {
 const EYEBROW =
 	"mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400";
 
+/** The one hover in this section, taken from the event rows: a flat tint. */
+// Solid, not translucent: a see-through tint picks up the grid lines behind
+const HOVER = "transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900";
+
 const PANEL = "relative h-full overflow-hidden bg-zinc-50 dark:bg-zinc-900/60";
 
 /** Fades the right and bottom edges, so cropped content reads as "more". */
@@ -226,7 +230,7 @@ function ListPanel({
 				{items.map((item, i) => (
 					<li
 						key={item}
-						className="flex gap-3 text-sm leading-snug text-zinc-700 transition-colors group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white"
+						className="flex gap-3 text-sm leading-snug text-zinc-700 dark:text-zinc-300"
 					>
 						<span className="font-mono text-zinc-400 tabular-nums dark:text-zinc-600">
 							{String(i + 1).padStart(2, "0")}
@@ -274,7 +278,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 								{...(external
 									? { target: "_blank", rel: "noopener noreferrer" }
 									: {})}
-								className="group/row flex items-center gap-3 px-5 py-3 lg:px-6 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:hover:bg-zinc-800/50"
+								className={`flex items-center gap-3 px-5 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:px-6 ${HOVER}`}
 							>
 								<img
 									src={external ? e.image : getAssetPath(e.image)}
@@ -321,7 +325,7 @@ function ImagePanel({
 				src={src}
 				alt=""
 				loading="lazy"
-				className="h-full w-full object-cover opacity-80 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100 motion-reduce:transition-none"
+				className="h-full w-full object-cover opacity-80 grayscale"
 			/>
 			{children}
 		</div>
@@ -370,9 +374,7 @@ function Card({
 		return (
 			// No inset frame: the panel is the cell, edge to edge on the hairlines
 			<article
-				className={`group relative min-w-0 bg-white transition-colors dark:bg-zinc-950 ${
-					ownLinks ? "" : "hover:bg-zinc-50 dark:hover:bg-zinc-900/40"
-				}`}
+				className={`relative min-w-0 bg-white dark:bg-zinc-950 ${ownLinks ? "" : HOVER}`}
 			>
 				{media}
 				{!ownLinks && (
@@ -392,7 +394,7 @@ function Card({
 
 	return (
 		<article
-			className={`group relative flex min-w-0 bg-white transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/40 ${
+			className={`relative flex min-w-0 bg-white dark:bg-zinc-950 ${HOVER} ${
 				feature
 					? "flex-col gap-5 p-5 sm:flex-row sm:items-stretch lg:p-6"
 					: "px-5 py-4 lg:px-6"
@@ -427,14 +429,9 @@ function Card({
 						{...(external
 							? { target: "_blank", rel: "noopener noreferrer" }
 							: {})}
-						className="decoration-zinc-400 underline-offset-4 group-hover:underline after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400 dark:decoration-zinc-600"
+						className="after:absolute after:inset-0 focus-visible:outline-none after:focus-visible:outline-2 after:focus-visible:-outline-offset-2 after:focus-visible:outline-zinc-400"
 					>
 						{title}
-						<Icon
-							name={external ? "arrow-up-right" : "arrow-right"}
-							aria-hidden="true"
-							className="ml-1.5 inline text-sm text-zinc-400 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 motion-reduce:transition-none dark:text-zinc-500"
-						/>
 					</a>
 				</h3>
 				{line && (
