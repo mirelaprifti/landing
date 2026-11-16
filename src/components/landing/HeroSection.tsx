@@ -14,10 +14,10 @@ const HERO_LOGOS: {
 }[] = [
 	{
 		name: "Cloudflare",
-		src: "/assets/test-logos/cloudflare-dark-mode.svg",
-		// Stacked lockup (cloud over wordmark); the wordmark sits on the
-		// image bottom, so it shares the row baseline without a nudge.
-		h: "36px",
+		// Horizontal lockup rebuilt from the dark-mode artwork: a stacked
+		// cloud-over-wordmark towers over this one-line row.
+		src: "/assets/test-logos/cloudflare-dark-mode-horizontal.svg",
+		h: "22px",
 		color: true,
 	},
 	{ name: "X", src: "/assets/test-logos/x-logo.svg", h: "20px", nudgeY: 2 },
@@ -37,8 +37,8 @@ const HERO_LOGOS: {
 		src: "/assets/test-logos/replit-color.svg",
 		// The artboard includes the "p" descender: baseline sits ~5px above
 		// the image bottom, so drop it onto the row's shared baseline.
-		h: "21px",
-		nudgeY: 5,
+		h: "20px",
+		nudgeY: 4.7,
 		color: true,
 	},
 ];
