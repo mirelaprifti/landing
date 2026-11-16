@@ -21,6 +21,8 @@ export interface BlogPost {
 	packageName?: string;
 	/** Companion YouTube video (Module of the Week posts) */
 	video?: { youtubeId: string; duration: string };
+	/** Two to four scannable takeaways, shown as chips on the homepage */
+	highlights?: string[];
 }
 
 /**
@@ -140,6 +142,12 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "",
 		tags: ["Release", "Effect"],
 		authors: [AUTHORS.tim],
+		highlights: [
+			"effect/crypto",
+			"Glob",
+			"Streaming CSV",
+			"HttpApi Problem Details",
+		],
 	},
 	{
 		slug: "releases/effect/40",
@@ -150,6 +158,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		readingTime: "",
 		tags: ["Release", "Effect"],
 		authors: [],
+		highlights: ["Dependency-free core", "Long-term support"],
 	},
 	{
 		slug: "module-of-the-week/cluster-workflow",
@@ -232,6 +241,43 @@ export const BLOG_POSTS: BlogPost[] = [
 		authors: [],
 		packageName: "effect/unstable/persistence",
 		video: { youtubeId: "Fzmdn4wWGpU", duration: "38:54" },
+	},
+	{
+		slug: "this-week-in-effect-144",
+		title: "This Week in Effect #144",
+		excerpt:
+			"The 4.1.3 and 4.1.4 patches, the final Cluster post on Workflows, and two new Effect Days speakers.",
+		date: "Nov 16, 2026",
+		readingTime: "",
+		tags: ["This Week In Effect"],
+		authors: [AUTHORS.davide, AUTHORS.mirela],
+		highlights: [
+			"4.1.3 + 4.1.4",
+			"Cluster: Workflows",
+			"New Effect Days speakers",
+		],
+	},
+	{
+		slug: "this-week-in-effect-143",
+		title: "This Week in Effect #143",
+		excerpt:
+			"Effect LSP gains 16 rules, and v4 adds an exact Rational type plus OpenRPC doc generation.",
+		date: "Nov 9, 2026",
+		readingTime: "",
+		tags: ["This Week In Effect"],
+		authors: [AUTHORS.davide, AUTHORS.mirela],
+		highlights: ["16 new LSP rules", "Rational type", "OpenRPC docs"],
+	},
+	{
+		slug: "this-week-in-effect-142",
+		title: "This Week in Effect #142",
+		excerpt:
+			"Effect 4.1 is out, the LSP gets faster, and Effect Days 2026 is sold out.",
+		date: "Nov 2, 2026",
+		readingTime: "",
+		tags: ["This Week In Effect"],
+		authors: [AUTHORS.davide, AUTHORS.mirela],
+		highlights: ["Effect 4.1", "Faster LSP", "Effect Days sold out"],
 	},
 	{
 		slug: "this-week-in-effect-128",
