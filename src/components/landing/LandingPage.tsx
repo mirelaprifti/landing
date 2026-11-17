@@ -3,7 +3,6 @@ import { AIBuildingSection } from "./AIBuildingSection";
 import { AISection } from "./AISection";
 import { CTASection } from "./CTASection";
 import { FAQSection } from "./FAQSection";
-import { FeaturesSection } from "./FeaturesSection";
 import { Footer } from "./Footer";
 import { HeroSection } from "./HeroSection";
 import { WhatsNewSection } from "./WhatsNewSection";
@@ -66,16 +65,14 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
-				<WhatsNewSection />
-				<SectionDivider />
+				{/* FeaturesSection (visual examples) hidden from the homepage */}
 				<TestimonialsSection />
+				<SectionDivider />
+				<WhatsNewSection />
 				<SectionDivider />
 				<ProblemSection />
 				<SectionDivider />
 				<WhatIsEffectSection />
-				<SectionDivider />
-				{/* Visual examples follow the mental model: the concept, then it running */}
-				<FeaturesSection withHeader />
 				<SectionDivider />
 				{/* AIBuildingSection hidden — content moved to TestimonialsSection featured cards */}
 				<AISection />
