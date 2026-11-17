@@ -372,7 +372,7 @@ export function EffectAgent() {
 					type="button"
 					onClick={() => setOpen(true)}
 					aria-label="Ask the Janitor"
-					className={`${SURFACE} flex items-center gap-2.5 py-2 pr-4 pl-2 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-300 dark:hover:bg-zinc-900`}
+					className={`${SURFACE} flex items-center gap-2.5 py-2 pr-4 pl-2 font-mono text-xs text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-300 dark:hover:bg-zinc-900`}
 				>
 					<Avatar size="sm" />
 					Ask the Janitor
