@@ -1,5 +1,6 @@
 import { Icon } from "@/components/ui/Icon";
 import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
+import { JOBS } from "../../data/effect-jobs";
 import { EPISODES, type Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
 import { entryOf, MODULES, MOTW_URL, moduleTitle } from "./moduleOfTheWeek";
@@ -345,6 +346,65 @@ function ImagePanel({
 	);
 }
 
+/* ─── Numbers strip ─────────────────────────────────────────────────────── */
+
+/**
+ * Numbers that move daily. In this design copy they're snapshots; on the live
+ * site each is fetched on every rebuild (see the auto-feed plan). Sources and
+ * snapshot dates are noted so they're easy to refresh by hand meanwhile.
+ */
+const STATS = [
+	{
+		// TWiE #144, Nov 16 2026
+		value: "4.1.4",
+		label: "Latest patch",
+		href: "https://github.com/Effect-TS/effect/releases",
+	},
+	{
+		// TWiE #140: "Effect surpasses 50 million downloads per week"
+		value: "50M+",
+		label: "Weekly downloads",
+		href: "https://www.npmjs.com/package/effect",
+	},
+	{
+		// github.com/Effect-TS/effect, Nov 17 2026
+		value: "17.6k",
+		label: "GitHub stars",
+		href: "https://github.com/Effect-TS/effect",
+	},
+	{
+		// Live: the site's own job board
+		value: String(JOBS.length),
+		label: "Open roles",
+		href: "/effect-jobs",
+	},
+];
+
+function StatsStrip() {
+	return (
+		<div className="grid grid-cols-2 gap-px bg-zinc-200 lg:col-span-2 lg:grid-cols-4 dark:bg-zinc-800">
+			{STATS.map((stat) => {
+				const external = stat.href.startsWith("http");
+				return (
+					<a
+						key={stat.label}
+						href={external ? stat.href : getAssetPath(stat.href)}
+						{...(external
+							? { target: "_blank", rel: "noopener noreferrer" }
+							: {})}
+						className={`block bg-white px-5 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:px-6 dark:bg-zinc-950 ${HOVER}`}
+					>
+						<span className={`block tabular-nums ${CARD_TITLE}`}>
+							{stat.value}
+						</span>
+						<span className={`mt-1 block ${MICRO}`}>{stat.label}</span>
+					</a>
+				);
+			})}
+		</div>
+	);
+}
+
 /* ─── Card ──────────────────────────────────────────────────────────────── */
 
 type CardProps = {
@@ -566,6 +626,7 @@ export function WhatsNewSection() {
 
 				{/* The double rule on top is the one newspaper detail left */}
 				<div className="mt-12 grid grid-cols-1 gap-px border border-t-[3px] border-zinc-200 border-t-zinc-300 border-double bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:border-t-zinc-700 dark:bg-zinc-800">
+					<StatsStrip />
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
