@@ -3,6 +3,7 @@ import { AIBuildingSection } from "./AIBuildingSection";
 import { AISection } from "./AISection";
 import { CTASection } from "./CTASection";
 import { FAQSection } from "./FAQSection";
+import { FeaturesSection } from "./FeaturesSection";
 import { Footer } from "./Footer";
 import { HeroSection } from "./HeroSection";
 import { WhatsNewSection } from "./WhatsNewSection";
@@ -65,10 +66,9 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
-				{/* FeaturesSection (visual examples) hidden from the homepage */}
-				<TestimonialsSection />
-				<SectionDivider />
 				<WhatsNewSection />
+				<SectionDivider />
+				<TestimonialsSection />
 				<SectionDivider />
 				<ProblemSection />
 				<SectionDivider />
@@ -78,6 +78,9 @@ export function LandingPage() {
 				<AISection />
 				<SectionDivider />
 				<QuotesGridSection />
+				<SectionDivider />
+				{/* Visual examples, moved down from under the hero */}
+				<FeaturesSection />
 				<SectionDivider />
 				<FAQSection />
 				<SectionDivider />
