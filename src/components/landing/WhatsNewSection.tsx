@@ -101,6 +101,15 @@ const CARD_BODY =
 /** Fresh dates inside a MICRO row get ink, not color. */
 const INK = "text-zinc-900 dark:text-white";
 
+/* Panel surface: raised a step off the page, with a stronger outer edge and
+ * quieter lines inside it. Dark values per design feedback (#111113 panel,
+ * #303034 edge); the light theme mirrors it (zinc-50 panel, zinc-300 edge). */
+const PANEL_BG = "bg-zinc-50 dark:bg-[#111113]";
+const LINE = "border-zinc-200/70 dark:border-[#1f1f23]";
+const LINE_FILL = "bg-zinc-200/70 dark:bg-[#1f1f23]";
+/** The top story sits a touch lighter than the rest of the panel. */
+const LEAD_BG = "bg-white dark:bg-[#18181b]";
+
 /** The one hover in this section, taken from the event rows: a flat tint. */
 // Solid, not translucent: a see-through tint picks up the grid lines behind
 const HOVER = "transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900";
@@ -172,7 +181,7 @@ function ListPanel({
 	return (
 		<div className="relative h-full">
 			<div
-				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 tabular-nums dark:border-zinc-800 ${MICRO}`}
+				className={`flex items-center justify-between gap-3 border-b px-6 py-3 tabular-nums ${LINE} ${MICRO}`}
 			>
 				<span className="min-w-0 truncate">{label}</span>
 				{when && <span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>}
@@ -180,7 +189,10 @@ function ListPanel({
 			{/* No markers: the headlines aren't a sequence */}
 			<ul className="space-y-2 px-6 py-4">
 				{items.map((item) => (
-					<li key={item} className={`truncate ${CARD_BODY}`}>
+					<li
+						key={item}
+						className="truncate text-sm leading-normal text-zinc-800 dark:text-zinc-200"
+					>
 						{item}
 					</li>
 				))}
@@ -199,7 +211,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 	return (
 		<div className="relative flex h-full flex-col">
 			<div
-				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 dark:border-zinc-800 ${MICRO}`}
+				className={`flex items-center justify-between gap-3 border-b px-6 py-3 ${LINE} ${MICRO}`}
 			>
 				<span>Upcoming events</span>
 				<a
@@ -213,7 +225,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 				</a>
 			</div>
 			{/* Rows share the height, so the list always meets the box beside it */}
-			<ul className="flex flex-1 flex-col divide-y divide-zinc-200 dark:divide-zinc-800">
+			<ul className="flex flex-1 flex-col divide-y divide-zinc-200/70 dark:divide-[#1f1f23]">
 				{events.slice(0, 3).map((e) => {
 					const external = e.href.startsWith("http");
 					const soon = relative(Date.parse(e.starts), now);
@@ -307,7 +319,7 @@ function LeadRow({ lead }: { lead: Lead }) {
 		<a
 			href={lead.href}
 			{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			className={`flex items-center gap-6 bg-white p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:col-span-2 dark:bg-zinc-950 ${HOVER}`}
+			className={`flex items-center gap-6 p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:col-span-2 ${LEAD_BG} ${HOVER}`}
 		>
 			{lead.image && (
 				<img
@@ -321,7 +333,14 @@ function LeadRow({ lead }: { lead: Lead }) {
 			)}
 			<span className="min-w-0 flex-1">
 				<span className={`flex items-center justify-between gap-3 ${MICRO}`}>
-					<span className={INK}>{lead.label}</span>
+					<span className={`flex items-center gap-2 ${INK}`}>
+						{/* Small dot, in ink: marks the top story without colour */}
+						<span
+							aria-hidden="true"
+							className="size-1.5 shrink-0 rounded-full bg-zinc-900 dark:bg-white"
+						/>
+						{lead.label}
+					</span>
 					<span className="shrink-0 tabular-nums">{lead.when}</span>
 				</span>
 				<span className={`mt-3 block ${CARD_TITLE}`}>{lead.title}</span>
@@ -338,7 +357,7 @@ function LeadRow({ lead }: { lead: Lead }) {
 function StatsStrip() {
 	return (
 		// Supporting proof, so it closes the section, small
-		<div className="grid grid-cols-3 gap-px bg-zinc-200 lg:col-span-2 dark:bg-zinc-800">
+		<div className={`grid grid-cols-3 gap-px lg:col-span-2 ${LINE_FILL}`}>
 			{STATS.filter((stat) => stat.label !== "Latest patch").map((stat) => {
 				const external = stat.href.startsWith("http");
 				return (
@@ -348,7 +367,7 @@ function StatsStrip() {
 						{...(external
 							? { target: "_blank", rel: "noopener noreferrer" }
 							: {})}
-						className={`block bg-white px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:bg-zinc-950 ${HOVER}`}
+						className={`block px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 ${PANEL_BG} ${HOVER}`}
 					>
 						<span className={`block tabular-nums ${SMALL_HEADING}`}>
 							{stat.value}
@@ -411,7 +430,7 @@ function Card({
 		return (
 			// No inset frame: the panel is the cell, edge to edge on the hairlines
 			<article
-				className={`relative min-w-0 bg-white dark:bg-zinc-950 ${ownLinks ? "" : HOVER}`}
+				className={`relative min-w-0 ${PANEL_BG} ${ownLinks ? "" : HOVER}`}
 			>
 				{media}
 				{!ownLinks && (
@@ -431,7 +450,7 @@ function Card({
 
 	return (
 		<article
-			className={`relative flex min-w-0 bg-white dark:bg-zinc-950 ${HOVER} ${
+			className={`relative flex min-w-0 ${PANEL_BG} ${HOVER} ${
 				feature ? "flex-col gap-6 p-6 sm:flex-row sm:items-stretch" : "p-6"
 			}`}
 		>
@@ -631,13 +650,15 @@ export function WhatsNewSection() {
 	return (
 		<section className="relative w-full py-24 md:pt-40">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				{/* Title stands alone (sectionTitle, verbatim from the styleguide) */}
-				<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
-					The Effect Dispatch
+				{/* Small label (styleguide eyebrow) so the panel leads; still the h2 */}
+				<h2 className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+					// The Effect Dispatch
 				</h2>
 
 				{/* Top story → the rest by freshness → numbers as the footnote */}
-				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+				<div
+					className={`grid grid-cols-1 gap-px border border-zinc-300 lg:grid-cols-2 dark:border-[#303034] ${LINE_FILL}`}
+				>
 					<LeadRow lead={lead} />
 					{cards.map(({ key, wide, ...card }) => (
 						<div key={key} className={`grid ${wide ? "lg:col-span-2" : ""}`}>
