@@ -103,10 +103,10 @@ export const STATS = [
 		href: "https://github.com/Effect-TS/effect/releases",
 	},
 	{
-		// TWiE #140: "Effect surpasses 50 million downloads per week"
-		value: "50M+",
+		// npm downloads API (what npmx.dev shows): 71,167,025 for Nov 10–16, 2026
+		value: "71.2M",
 		label: "Weekly downloads",
-		href: "https://www.npmjs.com/package/effect",
+		href: "https://npmx.dev/package/effect",
 	},
 	{
 		// github.com/Effect-TS/effect, Nov 17 2026
