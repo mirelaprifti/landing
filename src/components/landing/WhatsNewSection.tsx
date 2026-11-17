@@ -542,21 +542,6 @@ function cardFor(item: Item, now: number): CardProps {
 }
 
 /**
- * The section's header, deliberately unlike every other section's eyebrow +
- * h2: a newspaper-style flag as the first row of the grid, the title over a
- * double rule. Type is verbatim from the styleguide (sectionTitle).
- */
-function Masthead() {
-	return (
-		<header className="border-b-[3px] border-double border-zinc-300 bg-white px-5 py-5 lg:col-span-2 lg:p-6 dark:border-zinc-700 dark:bg-zinc-950">
-			<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
-				The Effect Dispatch
-			</h2>
-		</header>
-	);
-}
-
-/**
  * "What's new": the homepage's one living section. The two freshest items
  * sit on top as features; the next two sit below as tiles. Label + title
  * only, so the picture leads and the eye has one place to land. Filled by whatever is freshest across releases, the
@@ -574,8 +559,13 @@ export function WhatsNewSection() {
 	return (
 		<section className="relative w-full py-24">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
-				<div className="grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					<Masthead />
+				{/* Title stands alone (sectionTitle, verbatim from the styleguide) */}
+				<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
+					The Effect Dispatch
+				</h2>
+
+				{/* The double rule on top is the one newspaper detail left */}
+				<div className="mt-12 grid grid-cols-1 gap-px border border-t-[3px] border-zinc-200 border-t-zinc-300 border-double bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:border-t-zinc-700 dark:bg-zinc-800">
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
