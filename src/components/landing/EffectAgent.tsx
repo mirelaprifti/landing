@@ -367,19 +367,19 @@ export function EffectAgent() {
 			}}
 		>
 			{!open ? (
-				// Collapsed: an inverted pill, the highest-contrast thing on the
-				// page, still black and white. It hops once after load to say hi.
+				// Collapsed: a dark pill in both themes (a lighter dark with an edge
+				// on the dark site). It hops once after load to say hi.
 				<button
 					type="button"
 					onClick={() => setOpen(true)}
 					aria-label="Ask the Janitor"
-					className="janitor-nudge pointer-events-auto flex items-center gap-2.5 rounded-full bg-zinc-900 py-1.5 pr-4 pl-1.5 font-mono text-xs font-medium text-white shadow-lg shadow-zinc-950/20 transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:bg-white dark:text-zinc-900 dark:shadow-black/50 dark:hover:bg-zinc-200"
+					className="janitor-nudge pointer-events-auto flex items-center gap-2.5 rounded-full border border-zinc-900 bg-zinc-900 py-1.5 pr-4 pl-1.5 font-mono text-xs font-medium text-white shadow-lg shadow-zinc-950/20 transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/60 dark:hover:bg-zinc-800"
 				>
 					<Avatar size="md" />
 					Ask the Janitor
 					<kbd
 						aria-hidden="true"
-						className="shrink-0 rounded-sm border border-white/25 px-1.5 py-0.5 font-mono text-xs text-white/60 max-sm:hidden dark:border-zinc-900/20 dark:text-zinc-900/50"
+						className="shrink-0 rounded-sm border border-white/25 px-1.5 py-0.5 font-mono text-xs text-white/60 max-sm:hidden"
 					>
 						⌘I
 					</kbd>
