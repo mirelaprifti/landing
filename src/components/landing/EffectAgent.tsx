@@ -2,9 +2,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { agentContext } from "./dispatchData";
 
 /**
- * The Effect agent: a terminal-style prompt docked to the bottom of every
- * page. Collapsed, it's one line; focused or asked, it opens a conversation
- * panel above the bar. Esc or × closes it.
+ * The Effect agent, docked to the bottom-right corner of every page.
+ * Collapsed, it's a small `$ Ask Effect` pill; opened (click or ⌘I), it's a
+ * terminal-style conversation panel anchored to the same corner, out of the
+ * reading column. Esc or × closes it.
  *
  * SIMULATION: this design copy has no AI backend. Questions are matched to
  * intents and answered only from the site's own data (events, newsletter,
@@ -310,15 +311,18 @@ export function EffectAgent() {
 			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "i") {
 				e.preventDefault();
 				setOpen(true);
-				inputRef.current?.focus();
 			} else if (e.key === "Escape" && open) {
 				setOpen(false);
-				inputRef.current?.blur();
 			}
 		};
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open]);
+
+	// Opening, and each finished answer, land back in the prompt
+	useEffect(() => {
+		if (open && !busy) inputRef.current?.focus();
+	}, [open, busy]);
 
 	// Keep the newest reply in view while it streams
 	useEffect(() => {
@@ -334,15 +338,38 @@ export function EffectAgent() {
 		return () => window.clearInterval(id);
 	}, [busy, history.length]);
 
+	const KBD =
+		"shrink-0 rounded-sm border border-zinc-200 px-1.5 py-0.5 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400";
+	const SURFACE =
+		"pointer-events-auto rounded-lg border border-zinc-200 bg-white shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40";
+
 	return (
 		<div
-			className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] flex justify-center px-4"
+			className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] flex justify-end"
 			style={{
 				paddingBottom: "max(16px, env(safe-area-inset-bottom, 0px))",
+				paddingLeft: "max(16px, env(safe-area-inset-left, 0px))",
+				paddingRight: "max(16px, env(safe-area-inset-right, 0px))",
 			}}
 		>
-			<div className="pointer-events-auto w-full max-w-xl overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-lg shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40">
-				{open && (
+			{!open ? (
+				// Collapsed: a small pill in the corner, clear of the content
+				<button
+					type="button"
+					onClick={() => setOpen(true)}
+					aria-label="Ask the Effect agent"
+					className={`${SURFACE} flex items-center gap-2 px-4 py-2.5 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-300 dark:hover:bg-zinc-900`}
+				>
+					<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
+						$
+					</span>
+					Ask Effect
+					<kbd aria-hidden="true" className={`${KBD} max-sm:hidden`}>
+						⌘I
+					</kbd>
+				</button>
+			) : (
+				<div className={`${SURFACE} w-full overflow-hidden sm:w-[400px]`}>
 					<div className="border-b border-zinc-200 dark:border-zinc-800">
 						<div className="flex items-center justify-between gap-3 px-4 py-3">
 							<span className={MICRO}>Effect agent</span>
@@ -358,7 +385,7 @@ export function EffectAgent() {
 						<div
 							ref={scrollRef}
 							aria-live="polite"
-							className="max-h-[50vh] space-y-6 overflow-y-auto px-4 pb-4"
+							className="max-h-[55vh] space-y-6 overflow-y-auto px-4 pb-4"
 						>
 							{history.length === 0 ? (
 								<div className="space-y-3">
@@ -371,10 +398,7 @@ export function EffectAgent() {
 											<button
 												key={s}
 												type="button"
-												onClick={() => {
-													ask(s);
-													inputRef.current?.focus();
-												}}
+												onClick={() => ask(s)}
 												className={`${BADGE} transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:hover:bg-zinc-900`}
 											>
 												{s}
@@ -394,42 +418,41 @@ export function EffectAgent() {
 							)}
 						</div>
 					</div>
-				)}
 
-				<form
-					onSubmit={(e) => {
-						e.preventDefault();
-						ask(value);
-					}}
-					className="flex items-center gap-2 px-4 py-3 font-mono text-sm"
-				>
-					<label htmlFor="effect-agent-input" className="sr-only">
-						Ask the Effect agent
-					</label>
-					<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
-						$
-					</span>
-					<input
-						ref={inputRef}
-						id="effect-agent-input"
-						type="text"
-						autoComplete="off"
-						spellCheck={false}
-						value={value}
-						onFocus={() => setOpen(true)}
-						onChange={(e) => setValue(e.target.value)}
-						disabled={busy}
-						placeholder={busy ? "" : "Ask Effect anything…"}
-						className="min-w-0 flex-1 bg-transparent text-zinc-900 caret-zinc-900 outline-none placeholder:text-zinc-400 disabled:opacity-60 dark:text-white dark:caret-white dark:placeholder:text-zinc-500"
-					/>
-					<kbd
-						aria-hidden="true"
-						className="hidden shrink-0 rounded-sm border border-zinc-200 px-1.5 py-0.5 font-mono text-xs text-zinc-500 sm:block dark:border-zinc-800 dark:text-zinc-400"
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							ask(value);
+						}}
+						className="agent-prompt flex items-center gap-2 px-4 py-3 font-mono text-sm"
 					>
-						⌘I
-					</kbd>
-				</form>
-			</div>
+						<label htmlFor="effect-agent-input" className="sr-only">
+							Ask the Effect agent
+						</label>
+						<span
+							aria-hidden="true"
+							className="text-zinc-400 dark:text-zinc-500"
+						>
+							$
+						</span>
+						<input
+							ref={inputRef}
+							id="effect-agent-input"
+							type="text"
+							autoComplete="off"
+							spellCheck={false}
+							value={value}
+							onChange={(e) => setValue(e.target.value)}
+							disabled={busy}
+							placeholder={busy ? "" : "Ask Effect anything…"}
+							className="min-w-0 flex-1 bg-transparent text-zinc-900 caret-zinc-900 outline-none placeholder:text-zinc-400 disabled:opacity-60 dark:text-white dark:caret-white dark:placeholder:text-zinc-500"
+						/>
+						<kbd aria-hidden="true" className={`${KBD} max-sm:hidden`}>
+							esc
+						</kbd>
+					</form>
+				</div>
+			)}
 		</div>
 	);
 }

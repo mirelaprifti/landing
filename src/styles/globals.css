@@ -418,6 +418,12 @@ a:focus-visible {
 	outline: none;
 }
 
+/* Effect agent prompt: the open panel already marks focus, and the caret
+   blinks in the line, so the input itself draws no ring (same as search) */
+.agent-prompt input:focus-visible {
+	outline: none;
+}
+
 .search-pill input::-webkit-search-cancel-button {
 	-webkit-appearance: none;
 	appearance: none;
