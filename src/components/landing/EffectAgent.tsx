@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { getAssetPath } from "../../utils/assetPath";
 import { agentContext } from "./dispatchData";
 
 /**
- * The Effect agent, docked to the bottom-right corner of every page.
- * Collapsed, it's a small `$ Ask Effect` pill; opened (click or ⌘I), it's a
+ * The Janitor: the site's agent, docked to the bottom-right corner of every
+ * page. Collapsed, it's a small "Ask the Janitor" pill with his avatar; opened (click or ⌘I), it's a
  * terminal-style conversation panel anchored to the same corner, out of the
  * reading column. Esc or × closes it.
  *
@@ -283,6 +284,19 @@ function ExchangeView({
 }
 
 /** The docked agent, rendered once per page by the base layout. */
+/** The Janitor's avatar: the one illustrated, full-colour mark on the site. */
+const AVATAR = "/assets/images/janitor.png";
+
+function Avatar({ size }: { size: "sm" | "md" }) {
+	return (
+		<img
+			src={getAssetPath(AVATAR)}
+			alt=""
+			className={`shrink-0 rounded-full ${size === "sm" ? "size-6" : "size-8"}`}
+		/>
+	);
+}
+
 export function EffectAgent() {
 	const context = useMemo(() => agentContext(Date.now()), []);
 	const [open, setOpen] = useState(false);
@@ -357,13 +371,11 @@ export function EffectAgent() {
 				<button
 					type="button"
 					onClick={() => setOpen(true)}
-					aria-label="Ask the Effect agent"
-					className={`${SURFACE} flex items-center gap-2 px-4 py-2.5 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-300 dark:hover:bg-zinc-900`}
+					aria-label="Ask the Janitor"
+					className={`${SURFACE} flex items-center gap-2.5 py-2 pr-4 pl-2 font-mono text-sm text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-300 dark:hover:bg-zinc-900`}
 				>
-					<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
-						$
-					</span>
-					Ask Effect
+					<Avatar size="sm" />
+					Ask the Janitor
 					<kbd aria-hidden="true" className={`${KBD} max-sm:hidden`}>
 						⌘I
 					</kbd>
@@ -372,11 +384,14 @@ export function EffectAgent() {
 				<div className={`${SURFACE} w-full overflow-hidden sm:w-[400px]`}>
 					<div className="border-b border-zinc-200 dark:border-zinc-800">
 						<div className="flex items-center justify-between gap-3 px-4 py-3">
-							<span className={MICRO}>Effect agent</span>
+							<span className="flex items-center gap-3">
+								<Avatar size="md" />
+								<span className={MICRO}>The Janitor</span>
+							</span>
 							<button
 								type="button"
 								onClick={() => setOpen(false)}
-								aria-label="Close the Effect agent"
+								aria-label="Close the Janitor"
 								className="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-900 focus-visible:outline-2 focus-visible:outline-zinc-400 dark:text-zinc-400 dark:hover:text-white"
 							>
 								×
@@ -427,7 +442,7 @@ export function EffectAgent() {
 						className="agent-prompt flex items-center gap-2 px-4 py-3 font-mono text-sm"
 					>
 						<label htmlFor="effect-agent-input" className="sr-only">
-							Ask the Effect agent
+							Ask the Janitor
 						</label>
 						<span
 							aria-hidden="true"
@@ -444,7 +459,7 @@ export function EffectAgent() {
 							value={value}
 							onChange={(e) => setValue(e.target.value)}
 							disabled={busy}
-							placeholder={busy ? "" : "Ask Effect anything…"}
+							placeholder={busy ? "" : "Ask the Janitor anything…"}
 							className="min-w-0 flex-1 bg-transparent text-zinc-900 caret-zinc-900 outline-none placeholder:text-zinc-400 disabled:opacity-60 dark:text-white dark:caret-white dark:placeholder:text-zinc-500"
 						/>
 						<kbd aria-hidden="true" className={`${KBD} max-sm:hidden`}>
