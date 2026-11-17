@@ -29,6 +29,8 @@ export type Event = {
 	image: string;
 	/** The image is a mark, not a photo: inset it on white, like a Luma cover. */
 	logo?: boolean;
+	/** One line on what's happening, for when the event is the top story. */
+	detail?: string;
 };
 export const EVENTS: Event[] = [
 	{
@@ -38,6 +40,8 @@ export const EVENTS: Event[] = [
 		starts: "2026-11-17",
 		ends: "2026-11-18",
 		href: "https://luma.com/k5o7m2pg",
+		// From the Luma page: "Sam Grace, Fullstack Effect"
+		detail: "Sam Grace on Fullstack Effect",
 		image:
 			"https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=96,height=96/uploads/cb/2bc25c67-80d6-407f-8aea-b9064647ef05.png",
 	},

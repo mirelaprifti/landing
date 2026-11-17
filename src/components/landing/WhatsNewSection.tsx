@@ -4,6 +4,7 @@ import { EPISODES, type Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
 import {
 	DAY,
+	daysFrom,
 	type Event,
 	EVENTS,
 	eventHref,
@@ -155,7 +156,7 @@ function CodePanel({ code, file }: { code: string; file?: string }) {
 	);
 }
 
-/** The issue's headlines, set as a contents list. */
+/** The issue's headlines, minus any a tile in the section already shows. */
 function ListPanel({
 	items,
 	label,
@@ -173,19 +174,17 @@ function ListPanel({
 			<div
 				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 tabular-nums dark:border-zinc-800 ${MICRO}`}
 			>
-				<Prompt cmd={label} />
+				<span className="min-w-0 truncate">{label}</span>
 				{when && <span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>}
 			</div>
-			<ol className="space-y-3 px-6 py-4">
-				{items.map((item, i) => (
-					<li key={item} className="flex items-baseline gap-3">
-						<span className={`tabular-nums ${MICRO}`}>
-							{String(i + 1).padStart(2, "0")}
-						</span>
-						<p className={`truncate ${CARD_BODY}`}>{item}</p>
+			{/* No markers: the headlines aren't a sequence */}
+			<ul className="space-y-2 px-6 py-4">
+				{items.map((item) => (
+					<li key={item} className={`truncate ${CARD_BODY}`}>
+						{item}
 					</li>
 				))}
-			</ol>
+			</ul>
 			{/* Full-width as the card: nothing is cropped, so no fade */}
 			{!when && <Crop />}
 		</div>
@@ -202,7 +201,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 			<div
 				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 dark:border-zinc-800 ${MICRO}`}
 			>
-				<Prompt cmd="effect events --upcoming" />
+				<span>Upcoming events</span>
 				<a
 					href={LUMA_URL}
 					target="_blank"
@@ -277,20 +276,60 @@ function ImagePanel({
 	);
 }
 
-/* ─── Terminal ────────────────────────────────────────────────────────── */
-/* The section is one terminal window, drawn the way the AI section's
- * terminal is: grey window dots, a mono title, `$ command` prompt lines.
- * Every block is the output of a command. Black and white only. */
+/* ─── Lead ──────────────────────────────────────────────────────────────── */
 
-/** A command line: muted `$`, the command in normal-case mono. */
-function Prompt({ cmd }: { cmd: string }) {
+type Lead = {
+	label: string;
+	/** Right side of the label row: a date for events, freshness otherwise. */
+	when: string;
+	title: string;
+	meta?: string;
+	href: string;
+	image?: string;
+	logo?: boolean;
+};
+
+/** Significant words, for spotting the same story told twice. */
+function words(text: string) {
+	return text
+		.toLowerCase()
+		.split(/[^a-z0-9]+/)
+		.filter((w) => w.length > 3 && w !== "effect");
+}
+
+/**
+ * The top story: what the eye lands on first. An event happening today or
+ * tomorrow wins; otherwise the freshest item in the feed.
+ */
+function LeadRow({ lead }: { lead: Lead }) {
+	const external = lead.href.startsWith("http");
 	return (
-		<span className="min-w-0 truncate font-mono text-sm font-normal tracking-normal normal-case text-zinc-700 dark:text-zinc-300">
-			<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
-				${" "}
+		<a
+			href={lead.href}
+			{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+			className={`flex items-center gap-6 bg-white p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:col-span-2 dark:bg-zinc-950 ${HOVER}`}
+		>
+			{lead.image && (
+				<img
+					src={lead.image}
+					alt=""
+					loading="lazy"
+					className={`size-16 shrink-0 border border-zinc-200 grayscale dark:border-zinc-800 ${
+						lead.logo ? "bg-white object-contain p-3" : "object-cover"
+					}`}
+				/>
+			)}
+			<span className="min-w-0 flex-1">
+				<span className={`flex items-center justify-between gap-3 ${MICRO}`}>
+					<span className={INK}>{lead.label}</span>
+					<span className="shrink-0 tabular-nums">{lead.when}</span>
+				</span>
+				<span className={`mt-3 block ${CARD_TITLE}`}>{lead.title}</span>
+				{lead.meta && (
+					<span className={`block truncate ${CARD_BODY}`}>{lead.meta}</span>
+				)}
 			</span>
-			{cmd}
-		</span>
+		</a>
 	);
 }
 
@@ -298,8 +337,9 @@ function Prompt({ cmd }: { cmd: string }) {
 
 function StatsStrip() {
 	return (
-		<div className="grid grid-cols-2 gap-px bg-zinc-200 lg:col-span-2 lg:grid-cols-4 dark:bg-zinc-800">
-			{STATS.map((stat) => {
+		// Supporting proof, so it closes the section, small
+		<div className="grid grid-cols-3 gap-px bg-zinc-200 lg:col-span-2 dark:bg-zinc-800">
+			{STATS.filter((stat) => stat.label !== "Latest patch").map((stat) => {
 				const external = stat.href.startsWith("http");
 				return (
 					<a
@@ -308,9 +348,9 @@ function StatsStrip() {
 						{...(external
 							? { target: "_blank", rel: "noopener noreferrer" }
 							: {})}
-						className={`block bg-white p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:bg-zinc-950 ${HOVER}`}
+						className={`block bg-white px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:bg-zinc-950 ${HOVER}`}
 					>
-						<span className={`block tabular-nums ${CARD_TITLE}`}>
+						<span className={`block tabular-nums ${SMALL_HEADING}`}>
 							{stat.value}
 						</span>
 						{/* Same link mark as "All on Luma ↗": out of the site ↗, within it → */}
@@ -319,7 +359,7 @@ function StatsStrip() {
 							<Icon
 								name={external ? "arrow-up-right" : "arrow-right"}
 								aria-hidden="true"
-								className="ml-1 inline text-xs"
+								className="ml-1 inline text-xs max-sm:hidden"
 							/>
 						</span>
 					</a>
@@ -345,8 +385,6 @@ type CardProps = {
 	panelOnly?: boolean;
 	/** The panel carries its own links, so the card isn't one big link. */
 	ownLinks?: boolean;
-	/** The command this block is the output of. */
-	command: string;
 };
 
 /**
@@ -365,7 +403,6 @@ function Card({
 	size = "tile",
 	panelOnly,
 	ownLinks,
-	command,
 }: CardProps) {
 	const external = href.startsWith("http");
 	const feature = size === "feature";
@@ -408,7 +445,7 @@ function Card({
 				<div
 					className={`flex items-center justify-between gap-3 tabular-nums ${MICRO}`}
 				>
-					<Prompt cmd={command} />
+					<span className="min-w-0 truncate">{kind}</span>
 					{/* Fresh items get ink, not color: the date goes full contrast */}
 					<span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>
 				</div>
@@ -431,7 +468,7 @@ function Card({
 }
 
 /** Maps a feed item onto the card. */
-function cardFor(item: Item, now: number): CardProps {
+function cardFor(item: Item, now: number, covered: Set<string>): CardProps {
 	const when = relative(item.date, now);
 	const isNew = item.date <= now && now - item.date <= NEW_DAYS * DAY;
 	const file = (p: BlogPost) =>
@@ -441,7 +478,6 @@ function cardFor(item: Item, now: number): CardProps {
 		case "release":
 			return {
 				kind: "Release",
-				command: "effect release --latest",
 				when,
 				isNew,
 				media: item.post.snippet && (
@@ -457,13 +493,14 @@ function cardFor(item: Item, now: number): CardProps {
 			const n = item.post.title.match(/#(\d+)/)?.[1] ?? "";
 			return {
 				kind: `This Week in Effect · #${n}`,
-				command: `effect news --issue ${n}`,
 				when,
 				isNew,
 				media: item.post.highlights && (
 					<ListPanel
-						items={item.post.highlights}
-						label={`effect news --issue ${n}`}
+						items={item.post.highlights.filter(
+							(h) => !words(h).some((w) => covered.has(w)),
+						)}
+						label={`This Week in Effect · #${n}`}
 						when={when}
 						isNew={isNew}
 					/>
@@ -477,7 +514,6 @@ function cardFor(item: Item, now: number): CardProps {
 			const n = String(entryOf(item.post)).padStart(2, "0");
 			return {
 				kind: `Module of the Week · ${n}`,
-				command: "effect module --latest",
 				when,
 				isNew,
 				media: item.post.snippet && (
@@ -490,7 +526,6 @@ function cardFor(item: Item, now: number): CardProps {
 		case "post":
 			return {
 				kind: "Blog",
-				command: "effect blog --latest",
 				when,
 				isNew,
 				media: item.post.coverImage && (
@@ -502,7 +537,6 @@ function cardFor(item: Item, now: number): CardProps {
 		case "podcast":
 			return {
 				kind: `Podcast · Ep ${item.episode.number}`,
-				command: "effect podcast --latest",
 				when,
 				isNew,
 				media: (
@@ -518,7 +552,6 @@ function cardFor(item: Item, now: number): CardProps {
 			const [next] = item.events;
 			return {
 				kind: "Next event",
-				command: "effect events --upcoming",
 				when: relative(Date.parse(next.starts), now),
 				media: <EventsPanel events={item.events} now={now} />,
 				panelOnly: true,
@@ -533,19 +566,67 @@ function cardFor(item: Item, now: number): CardProps {
 }
 
 /**
- * "What's new": the homepage's one living section. The two freshest items
- * sit on top as features; the next two sit below as tiles. Label + title
- * only, so the picture leads and the eye has one place to land. Filled by whatever is freshest across releases, the
- * newsletter, Module of the Week, blog posts, the podcast and events.
+ * The Effect Dispatch: the homepage's one living section. One top story,
+ * then the freshest items (two features, then tiles), then the numbers as a
+ * footnote. Nothing is pinned; nothing is said twice.
  */
 export function WhatsNewSection() {
 	const now = Date.now();
-	const cards = buildFeed(now).map((item, i) => ({
-		...cardFor(item, now),
+	let feed = buildFeed(now);
+	if (feed.length === 0) return null;
+
+	// Lead: an event today or tomorrow, else the freshest item
+	const soon = EVENTS.filter(
+		(e) => Date.parse(e.ends) > now && daysFrom(now, Date.parse(e.starts)) <= 1,
+	).sort((a, b) => Date.parse(a.starts) - Date.parse(b.starts))[0];
+
+	let lead: Lead;
+	if (soon) {
+		const today = daysFrom(now, Date.parse(soon.starts)) <= 0;
+		lead = {
+			label: today ? "Happening today" : "Tomorrow",
+			when: soon.date,
+			title: soon.title,
+			meta: [soon.place, soon.detail].filter(Boolean).join(" · "),
+			href: eventHref(soon),
+			image: soon.image.startsWith("http")
+				? soon.image
+				: getAssetPath(soon.image),
+			logo: soon.logo,
+		};
+		// Shown as the lead, so not again in the events list
+		feed = feed
+			.map((item) =>
+				item.kind === "event"
+					? { ...item, events: item.events.filter((e) => e !== soon) }
+					: item,
+			)
+			.filter((item) => item.kind !== "event" || item.events.length > 0);
+	} else {
+		const top = cardFor(feed[0], now, new Set());
+		lead = {
+			label: top.kind,
+			when: top.when,
+			title: top.title,
+			meta: top.line,
+			href: top.href,
+		};
+		feed = feed.slice(1);
+	}
+
+	// Headlines that repeat a tile's story are dropped from the issue list
+	const covered = new Set(
+		feed
+			.filter((i) => i.kind !== "event" && i.kind !== "newsletter")
+			.flatMap((i) => words(cardFor(i, now, new Set()).title)),
+	);
+	const cards = feed.map((item, i) => ({
+		...cardFor(item, now, covered),
 		size: (i < 2 ? "feature" : "tile") as CardProps["size"],
 		key: item.kind,
+		// An odd one out at the end spans the row instead of leaving a hole
+		wide: i === feed.length - 1 && feed.length % 2 === 1,
 	}));
-	if (cards.length === 0) return null;
 
 	return (
 		<section className="relative w-full py-24 md:pt-40">
@@ -555,12 +636,15 @@ export function WhatsNewSection() {
 					The Effect Dispatch
 				</h2>
 
-				{/* One terminal window, framed like the AI section's terminal */}
-				<div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					<StatsStrip />
-					{cards.map(({ key, ...card }) => (
-						<Card key={key} {...card} />
+				{/* Top story → the rest by freshness → numbers as the footnote */}
+				<div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+					<LeadRow lead={lead} />
+					{cards.map(({ key, wide, ...card }) => (
+						<div key={key} className={`grid ${wide ? "lg:col-span-2" : ""}`}>
+							<Card {...card} />
+						</div>
 					))}
+					<StatsStrip />
 				</div>
 			</div>
 		</section>
