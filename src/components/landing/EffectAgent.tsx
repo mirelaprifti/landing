@@ -367,16 +367,20 @@ export function EffectAgent() {
 			}}
 		>
 			{!open ? (
-				// Collapsed: a small pill in the corner, clear of the content
+				// Collapsed: an inverted pill, the highest-contrast thing on the
+				// page, still black and white. It hops once after load to say hi.
 				<button
 					type="button"
 					onClick={() => setOpen(true)}
 					aria-label="Ask the Janitor"
-					className={`${SURFACE} flex items-center gap-2.5 py-2 pr-4 pl-2 font-mono text-xs text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:text-zinc-300 dark:hover:bg-zinc-900`}
+					className="janitor-nudge pointer-events-auto flex items-center gap-2.5 rounded-full bg-zinc-900 py-1.5 pr-4 pl-1.5 font-mono text-xs font-medium text-white shadow-lg shadow-zinc-950/20 transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:bg-white dark:text-zinc-900 dark:shadow-black/50 dark:hover:bg-zinc-200"
 				>
-					<Avatar size="sm" />
+					<Avatar size="md" />
 					Ask the Janitor
-					<kbd aria-hidden="true" className={`${KBD} max-sm:hidden`}>
+					<kbd
+						aria-hidden="true"
+						className="shrink-0 rounded-sm border border-white/25 px-1.5 py-0.5 font-mono text-xs text-white/60 max-sm:hidden dark:border-zinc-900/20 dark:text-zinc-900/50"
+					>
 						⌘I
 					</kbd>
 				</button>

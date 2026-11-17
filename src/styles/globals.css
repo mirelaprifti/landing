@@ -418,6 +418,19 @@ a:focus-visible {
 	outline: none;
 }
 
+/* The Janitor's pill hops twice, once, a moment after the page loads */
+@keyframes janitor-nudge {
+	0%, 100% { transform: translateY(0); }
+	25% { transform: translateY(-6px); }
+	50% { transform: translateY(0); }
+	75% { transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+	.janitor-nudge {
+		animation: janitor-nudge 0.9s ease-in-out 1.2s 1;
+	}
+}
+
 /* Effect agent prompt: the open panel already marks focus, and the caret
    blinks in the line, so the input itself draws no ring (same as search) */
 .agent-prompt input:focus-visible {
