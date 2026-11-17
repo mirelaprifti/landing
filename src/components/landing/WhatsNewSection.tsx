@@ -239,7 +239,7 @@ function ListPanel({
 			<div
 				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 tabular-nums dark:border-zinc-800 ${MICRO}`}
 			>
-				<span className="truncate">{label}</span>
+				<Prompt cmd={label} />
 				{when && <span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>}
 			</div>
 			<ol className="space-y-3 px-6 py-4">
@@ -271,14 +271,14 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 			<div
 				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 dark:border-zinc-800 ${MICRO}`}
 			>
-				<span>Upcoming events</span>
+				<Prompt cmd="effect events --upcoming" />
 				<a
 					href={LUMA_URL}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="relative z-10 inline-flex items-center gap-1 transition-colors hover:text-zinc-900 dark:hover:text-white"
+					className="relative z-10 inline-flex shrink-0 items-center gap-1 whitespace-nowrap transition-colors hover:text-zinc-900 dark:hover:text-white"
 				>
-					All on Luma
+					<span className="max-sm:hidden">All on</span> Luma
 					<Icon name="arrow-up-right" className="text-xs" />
 				</a>
 			</div>
@@ -346,6 +346,50 @@ function ImagePanel({
 	);
 }
 
+/* ─── Terminal ────────────────────────────────────────────────────────── */
+/* The section is one terminal window, drawn the way the AI section's
+ * terminal is: grey window dots, a mono title, `$ command` prompt lines.
+ * Every block is the output of a command. Black and white only. */
+
+/** A command line: muted `$`, the command in normal-case mono. */
+function Prompt({ cmd }: { cmd: string }) {
+	return (
+		<span className="min-w-0 truncate font-mono text-sm font-normal tracking-normal normal-case text-zinc-700 dark:text-zinc-300">
+			<span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
+				${" "}
+			</span>
+			{cmd}
+		</span>
+	);
+}
+
+/** Window chrome: three dots and the session title, as in the AI terminal. */
+function WindowBar() {
+	return (
+		<div className="flex items-center gap-4 bg-zinc-50 px-6 py-3 lg:col-span-2 dark:bg-zinc-900">
+			<div aria-hidden="true" className="flex items-center gap-1.5">
+				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+			</div>
+			<span className={MICRO}>~/effect</span>
+		</div>
+	);
+}
+
+/** The window ends on an empty prompt with a blinking cursor. */
+function IdlePrompt() {
+	return (
+		<div
+			aria-hidden="true"
+			className="flex items-center bg-white px-6 py-4 lg:col-span-2 dark:bg-zinc-950"
+		>
+			<Prompt cmd="" />
+			<span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-zinc-900 motion-reduce:animate-none dark:bg-white" />
+		</div>
+	);
+}
+
 /* ─── Numbers strip ─────────────────────────────────────────────────────── */
 
 /**
@@ -383,6 +427,9 @@ const STATS = [
 function StatsStrip() {
 	return (
 		<div className="grid grid-cols-2 gap-px bg-zinc-200 lg:col-span-2 lg:grid-cols-4 dark:bg-zinc-800">
+			<div className="col-span-2 bg-white px-6 py-3 lg:col-span-4 dark:bg-zinc-950">
+				<Prompt cmd="effect stats" />
+			</div>
 			{STATS.map((stat) => {
 				const external = stat.href.startsWith("http");
 				return (
@@ -398,12 +445,12 @@ function StatsStrip() {
 							{stat.value}
 						</span>
 						{/* Same link mark as "All on Luma ↗": out of the site ↗, within it → */}
-						<span className={`mt-1 flex items-center gap-1 ${MICRO}`}>
+						<span className={`mt-1 block ${MICRO}`}>
 							{stat.label}
 							<Icon
 								name={external ? "arrow-up-right" : "arrow-right"}
 								aria-hidden="true"
-								className="text-xs"
+								className="ml-1 inline text-xs"
 							/>
 						</span>
 					</a>
@@ -429,6 +476,8 @@ type CardProps = {
 	panelOnly?: boolean;
 	/** The panel carries its own links, so the card isn't one big link. */
 	ownLinks?: boolean;
+	/** The command this block is the output of. */
+	command: string;
 };
 
 /**
@@ -447,6 +496,7 @@ function Card({
 	size = "tile",
 	panelOnly,
 	ownLinks,
+	command,
 }: CardProps) {
 	const external = href.startsWith("http");
 	const feature = size === "feature";
@@ -489,7 +539,7 @@ function Card({
 				<div
 					className={`flex items-center justify-between gap-3 tabular-nums ${MICRO}`}
 				>
-					<span className="min-w-0 truncate">{kind}</span>
+					<Prompt cmd={command} />
 					{/* Fresh items get ink, not color: the date goes full contrast */}
 					<span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>
 				</div>
@@ -522,6 +572,7 @@ function cardFor(item: Item, now: number): CardProps {
 		case "release":
 			return {
 				kind: "Release",
+				command: "effect release --latest",
 				when,
 				isNew,
 				media: item.post.snippet && (
@@ -537,12 +588,13 @@ function cardFor(item: Item, now: number): CardProps {
 			const n = item.post.title.match(/#(\d+)/)?.[1] ?? "";
 			return {
 				kind: `This Week in Effect · #${n}`,
+				command: `effect news --issue ${n}`,
 				when,
 				isNew,
 				media: item.post.highlights && (
 					<ListPanel
 						items={item.post.highlights}
-						label={`This Week in Effect · #${n}`}
+						label={`effect news --issue ${n}`}
 						when={when}
 						isNew={isNew}
 					/>
@@ -556,6 +608,7 @@ function cardFor(item: Item, now: number): CardProps {
 			const n = String(entryOf(item.post)).padStart(2, "0");
 			return {
 				kind: `Module of the Week · ${n}`,
+				command: "effect module --latest",
 				when,
 				isNew,
 				media: item.post.snippet && (
@@ -568,6 +621,7 @@ function cardFor(item: Item, now: number): CardProps {
 		case "post":
 			return {
 				kind: "Blog",
+				command: "effect blog --latest",
 				when,
 				isNew,
 				media: item.post.coverImage && (
@@ -579,6 +633,7 @@ function cardFor(item: Item, now: number): CardProps {
 		case "podcast":
 			return {
 				kind: `Podcast · Ep ${item.episode.number}`,
+				command: "effect podcast --latest",
 				when,
 				isNew,
 				media: (
@@ -594,6 +649,7 @@ function cardFor(item: Item, now: number): CardProps {
 			const [next] = item.events;
 			return {
 				kind: "Next event",
+				command: "effect events --upcoming",
 				when: relative(Date.parse(next.starts), now),
 				media: <EventsPanel events={item.events} now={now} />,
 				panelOnly: true,
@@ -630,12 +686,14 @@ export function WhatsNewSection() {
 					The Effect Dispatch
 				</h2>
 
-				{/* The double rule on top is the one newspaper detail left */}
-				<div className="mt-12 grid grid-cols-1 gap-px border border-t-[3px] border-zinc-200 border-t-zinc-300 border-double bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:border-t-zinc-700 dark:bg-zinc-800">
+				{/* One terminal window, framed like the AI section's terminal */}
+				<div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+					<WindowBar />
 					<StatsStrip />
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
+					<IdlePrompt />
 				</div>
 			</div>
 		</section>
