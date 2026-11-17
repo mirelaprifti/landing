@@ -358,28 +358,24 @@ const STATS = [
 		// TWiE #144, Nov 16 2026
 		value: "4.1.4",
 		label: "Latest patch",
-		icon: "tag" as const,
 		href: "https://github.com/Effect-TS/effect/releases",
 	},
 	{
 		// TWiE #140: "Effect surpasses 50 million downloads per week"
 		value: "50M+",
 		label: "Weekly downloads",
-		icon: "download" as const,
 		href: "https://www.npmjs.com/package/effect",
 	},
 	{
 		// github.com/Effect-TS/effect, Nov 17 2026
 		value: "17.6k",
 		label: "GitHub stars",
-		icon: "star" as const,
 		href: "https://github.com/Effect-TS/effect",
 	},
 	{
 		// Live: the site's own job board
 		value: String(JOBS.length),
 		label: "Open roles",
-		icon: "briefcase" as const,
 		href: "/effect-jobs",
 	},
 ];
@@ -398,15 +394,18 @@ function StatsStrip() {
 							: {})}
 						className={`block bg-white p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:bg-zinc-950 ${HOVER}`}
 					>
-						<Icon
-							name={stat.icon}
-							aria-hidden="true"
-							className="block text-base text-zinc-400 dark:text-zinc-500"
-						/>
-						<span className={`mt-3 block tabular-nums ${CARD_TITLE}`}>
+						<span className={`block tabular-nums ${CARD_TITLE}`}>
 							{stat.value}
 						</span>
-						<span className={`mt-1 block ${MICRO}`}>{stat.label}</span>
+						{/* Same link mark as "All on Luma ↗": out of the site ↗, within it → */}
+						<span className={`mt-1 flex items-center gap-1 ${MICRO}`}>
+							{stat.label}
+							<Icon
+								name={external ? "arrow-up-right" : "arrow-right"}
+								aria-hidden="true"
+								className="text-xs"
+							/>
+						</span>
 					</a>
 				);
 			})}
