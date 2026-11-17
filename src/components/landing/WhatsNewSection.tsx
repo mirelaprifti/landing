@@ -142,6 +142,16 @@ function relative(date: number, now: number) {
 
 /* ─── Panels ────────────────────────────────────────────────────────────── */
 
+/* Type: copied verbatim from the styleguide (TypographyStyleguidePage). */
+const MICRO =
+	"font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400";
+const CARD_TITLE = "text-lg font-semibold text-zinc-900 dark:text-white";
+const SMALL_HEADING = "text-base font-semibold text-zinc-900 dark:text-white";
+const CARD_BODY =
+	"mt-1 text-sm leading-normal text-zinc-600 dark:text-zinc-400";
+/** Fresh dates inside a MICRO row get ink, not color. */
+const INK = "text-zinc-900 dark:text-white";
+
 /** The one hover in this section, taken from the event rows: a flat tint. */
 // Solid, not translucent: a see-through tint picks up the grid lines behind
 const HOVER = "transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900";
@@ -212,26 +222,19 @@ function ListPanel({
 }) {
 	return (
 		<div className="relative h-full">
-			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 font-mono text-xs text-zinc-500 tabular-nums dark:border-zinc-800 dark:text-zinc-400">
-				<span className="truncate tracking-wider uppercase">{label}</span>
-				{when && (
-					<span
-						className={`shrink-0 ${isNew ? "text-zinc-900 dark:text-white" : ""}`}
-					>
-						{when}
-					</span>
-				)}
+			<div
+				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 tabular-nums lg:px-6 dark:border-zinc-800 ${MICRO}`}
+			>
+				<span className="truncate">{label}</span>
+				{when && <span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>}
 			</div>
-			<ol className="space-y-2.5 px-5 py-4 lg:px-6">
+			<ol className="space-y-2 px-5 py-4 lg:px-6">
 				{items.map((item, i) => (
-					<li
-						key={item}
-						className="flex gap-3 text-sm leading-snug text-zinc-700 dark:text-zinc-300"
-					>
-						<span className="font-mono text-zinc-400 tabular-nums dark:text-zinc-600">
+					<li key={item} className="flex items-baseline gap-3">
+						<span className={`tabular-nums ${MICRO}`}>
 							{String(i + 1).padStart(2, "0")}
 						</span>
-						<span className="truncate">{item}</span>
+						<p className={`truncate ${CARD_BODY}`}>{item}</p>
 					</li>
 				))}
 			</ol>
@@ -251,8 +254,10 @@ const eventHref = (e: Event) =>
 function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 	return (
 		<div className="relative flex h-full flex-col">
-			<div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 font-mono text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-				<span className="tracking-wider uppercase">Upcoming events</span>
+			<div
+				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 dark:border-zinc-800 ${MICRO}`}
+			>
+				<span>Upcoming events</span>
 				<a
 					href={LUMA_URL}
 					target="_blank"
@@ -284,21 +289,17 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 									className="size-10 shrink-0 border border-zinc-200 object-cover grayscale dark:border-zinc-800"
 								/>
 								<span className="min-w-0 flex-1">
-									<span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+									<span className={`block truncate ${SMALL_HEADING}`}>
 										{e.title}
 									</span>
-									<span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
+									<span className={`block truncate ${CARD_BODY}`}>
 										{e.place}
 										{e.status && ` · ${e.status}`}
 									</span>
 								</span>
-								<span className="shrink-0 text-right font-mono text-xs tabular-nums">
-									<span className="block text-zinc-900 dark:text-white">
-										{e.date}
-									</span>
-									<span className="block text-zinc-500 dark:text-zinc-400">
-										{soon}
-									</span>
+								<span className={`shrink-0 text-right tabular-nums ${MICRO}`}>
+									<span className={`block ${INK}`}>{e.date}</span>
+									<span className="mt-1 block">{soon}</span>
 								</span>
 							</a>
 						</li>
@@ -404,23 +405,15 @@ function Card({
 			)}
 
 			<div className="flex min-w-0 flex-1 flex-col">
-				<div className="flex items-center justify-between gap-3 font-mono text-xs text-zinc-500 tabular-nums dark:text-zinc-400">
-					<span className="min-w-0 truncate tracking-wider uppercase">
-						{kind}
-					</span>
+				<div
+					className={`flex items-center justify-between gap-3 tabular-nums ${MICRO}`}
+				>
+					<span className="min-w-0 truncate">{kind}</span>
 					{/* Fresh items get ink, not color: the date goes full contrast */}
-					<span
-						className={`shrink-0 ${isNew ? "text-zinc-900 dark:text-white" : ""}`}
-					>
-						{when}
-					</span>
+					<span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>
 				</div>
 
-				<h3
-					className={`mt-2 leading-snug font-semibold text-balance text-zinc-900 dark:text-white ${
-						feature ? "text-lg" : "text-sm"
-					}`}
-				>
+				<h3 className={`mt-2 ${feature ? CARD_TITLE : SMALL_HEADING}`}>
 					<a
 						href={href}
 						{...(external
@@ -431,11 +424,7 @@ function Card({
 						{title}
 					</a>
 				</h3>
-				{line && (
-					<p className="mt-1 truncate text-sm text-zinc-500 dark:text-zinc-400">
-						{line}
-					</p>
-				)}
+				{line && <p className={`truncate ${CARD_BODY}`}>{line}</p>}
 			</div>
 		</article>
 	);
