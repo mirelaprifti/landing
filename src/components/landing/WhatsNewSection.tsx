@@ -197,7 +197,7 @@ function CodePanel({ code, file }: { code: string; file?: string }) {
 	return (
 		<div className={PANEL}>
 			{file && (
-				<div className="border-b border-zinc-200 px-3 py-1.5 font-mono text-[0.6875rem] text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
+				<div className="border-b border-zinc-200 px-3 py-1 font-mono text-[0.6875rem] text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
 					{file}
 				</div>
 			)}
@@ -237,12 +237,12 @@ function ListPanel({
 	return (
 		<div className="relative h-full">
 			<div
-				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 tabular-nums lg:px-6 dark:border-zinc-800 ${MICRO}`}
+				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 tabular-nums dark:border-zinc-800 ${MICRO}`}
 			>
 				<span className="truncate">{label}</span>
 				{when && <span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>}
 			</div>
-			<ol className="space-y-2 px-5 py-4 lg:px-6">
+			<ol className="space-y-3 px-6 py-4">
 				{items.map((item, i) => (
 					<li key={item} className="flex items-baseline gap-3">
 						<span className={`tabular-nums ${MICRO}`}>
@@ -269,7 +269,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 	return (
 		<div className="relative flex h-full flex-col">
 			<div
-				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-5 py-3 lg:px-6 dark:border-zinc-800 ${MICRO}`}
+				className={`flex items-center justify-between gap-3 border-b border-zinc-200 px-6 py-3 dark:border-zinc-800 ${MICRO}`}
 			>
 				<span>Upcoming events</span>
 				<a
@@ -294,7 +294,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 								{...(external
 									? { target: "_blank", rel: "noopener noreferrer" }
 									: {})}
-								className={`flex flex-1 items-center gap-3 px-5 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:px-6 ${HOVER}`}
+								className={`flex flex-1 items-center gap-3 px-6 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 ${HOVER}`}
 							>
 								<img
 									src={external ? e.image : getAssetPath(e.image)}
@@ -392,7 +392,7 @@ function StatsStrip() {
 						{...(external
 							? { target: "_blank", rel: "noopener noreferrer" }
 							: {})}
-						className={`block bg-white px-5 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 lg:px-6 dark:bg-zinc-950 ${HOVER}`}
+						className={`block bg-white p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 dark:bg-zinc-950 ${HOVER}`}
 					>
 						<span className={`block tabular-nums ${CARD_TITLE}`}>
 							{stat.value}
@@ -468,9 +468,7 @@ function Card({
 	return (
 		<article
 			className={`relative flex min-w-0 bg-white dark:bg-zinc-950 ${HOVER} ${
-				feature
-					? "flex-col gap-5 p-5 sm:flex-row sm:items-stretch lg:p-6"
-					: "px-5 py-4 lg:px-6"
+				feature ? "flex-col gap-6 p-6 sm:flex-row sm:items-stretch" : "p-6"
 			}`}
 		>
 			{feature && media && (
@@ -488,7 +486,7 @@ function Card({
 					<span className={`shrink-0 ${isNew ? INK : ""}`}>{when}</span>
 				</div>
 
-				<h3 className={`mt-2 ${feature ? CARD_TITLE : SMALL_HEADING}`}>
+				<h3 className={`mt-3 ${feature ? CARD_TITLE : SMALL_HEADING}`}>
 					<a
 						href={href}
 						{...(external
@@ -617,7 +615,7 @@ export function WhatsNewSection() {
 	if (cards.length === 0) return null;
 
 	return (
-		<section className="relative w-full py-24">
+		<section className="relative w-full py-24 md:pt-40">
 			<div className="mx-auto w-full max-w-[73.75rem] px-4">
 				{/* Title stands alone (sectionTitle, verbatim from the styleguide) */}
 				<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
