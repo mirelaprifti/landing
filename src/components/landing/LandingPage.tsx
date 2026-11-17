@@ -66,8 +66,6 @@ export function LandingPage() {
 			{/* Main Content */}
 			<main id="main-content" className="relative w-full pt-16">
 				<HeroSection />
-				<FeaturesSection />
-				<SectionDivider />
 				<WhatsNewSection />
 				<SectionDivider />
 				<TestimonialsSection />
@@ -75,6 +73,9 @@ export function LandingPage() {
 				<ProblemSection />
 				<SectionDivider />
 				<WhatIsEffectSection />
+				<SectionDivider />
+				{/* Visual examples follow the mental model: the concept, then it running */}
+				<FeaturesSection withHeader />
 				<SectionDivider />
 				{/* AIBuildingSection hidden — content moved to TestimonialsSection featured cards */}
 				<AISection />

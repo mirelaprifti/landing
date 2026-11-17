@@ -138,7 +138,15 @@ const TAB_CONFIG: Record<TabId, TabConfig> = {
 
 const TAB_IDS = Object.keys(TAB_CONFIG) as TabId[];
 
-export function FeaturesSection() {
+/**
+ * @param withHeader When the examples sit mid-page (homepage) instead of
+ * straight under a hero (launch page), open with the standard section header.
+ */
+export function FeaturesSection({
+	withHeader = false,
+}: {
+	withHeader?: boolean;
+}) {
 	const [activeTab, setActiveTab] = useState<TabId>("schedule");
 	const [activeSubTabPerTab, setActiveSubTabPerTab] = useState<
 		Record<TabId, string>
@@ -167,8 +175,27 @@ export function FeaturesSection() {
 	return (
 		<section
 			id="features"
-			className="relative w-full border-t border-zinc-200 pb-8 dark:border-zinc-800"
+			className={
+				withHeader
+					? "relative w-full py-24 md:pt-40"
+					: "relative w-full border-t border-zinc-200 pb-8 dark:border-zinc-800"
+			}
 		>
+			{withHeader && (
+				// Section header stack, verbatim from the styleguide
+				<div className="mx-auto mb-12 w-full max-w-[73.75rem] px-4">
+					<p className="mb-3 font-mono text-sm font-medium tracking-wider text-zinc-600 uppercase dark:text-zinc-400">
+						// See it run
+					</p>
+					<h2 className="leading-tighter text-2xl font-bold text-zinc-900 md:text-3xl dark:text-white">
+						Effect, step by step
+					</h2>
+					<p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+						Pick an operator and run it: retries, concurrency, errors, and
+						resources, animated as they execute.
+					</p>
+				</div>
+			)}
 			{/* Content Container */}
 			<div className="relative mx-auto max-w-295">
 				{/* Tab Navigation and Content */}
@@ -272,9 +299,7 @@ export function FeaturesSection() {
 				{/* Attribution */}
 				<p className="mt-4 px-4 text-center font-mono text-xs font-medium tracking-wider text-zinc-500 uppercase dark:text-zinc-400">
 					Inspired by Kit Langton's{" "}
-					<Link href="https://effect.kitlangton.com/">
-						Visual Effect
-					</Link>
+					<Link href="https://effect.kitlangton.com/">Visual Effect</Link>
 				</p>
 			</div>
 		</section>
