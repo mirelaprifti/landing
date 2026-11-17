@@ -363,7 +363,7 @@ function Prompt({ cmd }: { cmd: string }) {
 	);
 }
 
-/** Window chrome: three dots and the session title, as in the AI terminal. */
+/** Window chrome: three dots, as in the AI terminal. */
 function WindowBar() {
 	return (
 		<div className="flex items-center gap-4 bg-zinc-50 px-6 py-3 lg:col-span-2 dark:bg-zinc-900">
@@ -372,7 +372,6 @@ function WindowBar() {
 				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
 				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
 			</div>
-			<span className={MICRO}>~/effect</span>
 		</div>
 	);
 }
@@ -427,9 +426,6 @@ const STATS = [
 function StatsStrip() {
 	return (
 		<div className="grid grid-cols-2 gap-px bg-zinc-200 lg:col-span-2 lg:grid-cols-4 dark:bg-zinc-800">
-			<div className="col-span-2 bg-white px-6 py-3 lg:col-span-4 dark:bg-zinc-950">
-				<Prompt cmd="effect stats" />
-			</div>
 			{STATS.map((stat) => {
 				const external = stat.href.startsWith("http");
 				return (
