@@ -32,6 +32,8 @@ type Event = {
 	href: string;
 	/** The event's cover; Luma CDN or a local asset. */
 	image: string;
+	/** The image is a mark, not a photo: inset it on white, like a Luma cover. */
+	logo?: boolean;
 };
 const EVENTS: Event[] = [
 	{
@@ -43,6 +45,17 @@ const EVENTS: Event[] = [
 		href: "https://luma.com/k5o7m2pg",
 		image:
 			"https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=96,height=96/uploads/cb/2bc25c67-80d6-407f-8aea-b9064647ef05.png",
+	},
+	{
+		title: "Effect Office Hours",
+		date: "Nov 18",
+		place: "YouTube · 10:00 AM ET",
+		starts: "2026-11-18",
+		ends: "2026-11-19",
+		href: "https://www.youtube.com/@Effect-TS/streams",
+		// The stream thumbnail crops badly at this size; the logomark reads
+		image: "/assets/effect-logo/Logo%20symbol/SVG/effect-logomark-black.svg",
+		logo: true,
 	},
 	{
 		title: "Effect Days 2026",
@@ -286,7 +299,9 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 									src={external ? e.image : getAssetPath(e.image)}
 									alt=""
 									loading="lazy"
-									className="size-10 shrink-0 border border-zinc-200 object-cover grayscale dark:border-zinc-800"
+									className={`size-10 shrink-0 border border-zinc-200 grayscale dark:border-zinc-800 ${
+										e.logo ? "bg-white object-contain p-2" : "object-cover"
+									}`}
 								/>
 								<span className="min-w-0 flex-1">
 									<span className={`block truncate ${SMALL_HEADING}`}>
