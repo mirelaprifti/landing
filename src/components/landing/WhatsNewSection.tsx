@@ -1,8 +1,16 @@
 import { Icon } from "@/components/ui/Icon";
 import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
-import { JOBS } from "../../data/effect-jobs";
 import { EPISODES, type Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
+import {
+	DAY,
+	type Event,
+	EVENTS,
+	eventHref,
+	LUMA_URL,
+	relative,
+	STATS,
+} from "./dispatchData";
 import { entryOf, MODULES, MOTW_URL, moduleTitle } from "./moduleOfTheWeek";
 
 /* ─── Feed rules ──────────────────────────────────────────────────────────
@@ -15,61 +23,6 @@ const FRESH_DAYS = 42;
 const EVENT_LEAD_DAYS = 60;
 const NEW_DAYS = 7;
 
-/** The community calendar every event below is listed on. */
-const LUMA_URL = "https://luma.com/effect-community";
-
-/**
- * Upcoming events, mirrored from the Luma calendar. Add one here and it
- * slots in once it's within EVENT_LEAD_DAYS; it leaves when it's over.
- */
-type Event = {
-	title: string;
-	/** As printed: "Nov 17", "Dec 9–11". */
-	date: string;
-	place: string;
-	status?: string;
-	starts: string;
-	ends: string;
-	href: string;
-	/** The event's cover; Luma CDN or a local asset. */
-	image: string;
-	/** The image is a mark, not a photo: inset it on white, like a Luma cover. */
-	logo?: boolean;
-};
-const EVENTS: Event[] = [
-	{
-		title: "Effect Warsaw #2",
-		date: "Nov 17",
-		place: "Warsaw, Poland",
-		starts: "2026-11-17",
-		ends: "2026-11-18",
-		href: "https://luma.com/k5o7m2pg",
-		image:
-			"https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=96,height=96/uploads/cb/2bc25c67-80d6-407f-8aea-b9064647ef05.png",
-	},
-	{
-		title: "Effect Office Hours",
-		date: "Nov 18",
-		place: "YouTube · 10:00 AM ET",
-		starts: "2026-11-18",
-		ends: "2026-11-19",
-		href: "https://www.youtube.com/@Effect-TS/streams",
-		// The stream thumbnail crops badly at this size; the logomark reads
-		image: "/assets/effect-logo/Logo%20symbol/SVG/effect-logomark-black.svg",
-		logo: true,
-	},
-	{
-		title: "Effect Days 2026",
-		date: "Dec 9–11",
-		place: "Livorno, Italy",
-		status: "Sold out",
-		starts: "2026-12-09",
-		ends: "2026-12-12",
-		href: "/effect-days",
-		image: "/assets/effect-days/ed-25-3.png",
-	},
-];
-
 type Item =
 	| { kind: "release"; date: number; post: BlogPost }
 	| { kind: "newsletter"; date: number; post: BlogPost }
@@ -77,8 +30,6 @@ type Item =
 	| { kind: "post"; date: number; post: BlogPost }
 	| { kind: "podcast"; date: number; episode: Episode }
 	| { kind: "event"; date: number; events: Event[] };
-
-const DAY = 86_400_000;
 
 function buildFeed(now: number): Item[] {
 	const items: Item[] = [];
@@ -135,23 +86,6 @@ function buildFeed(now: number): Item[] {
 	if (events.length) fresh.push({ kind: "event", date: now, events });
 
 	return fresh.sort((a, b) => b.date - a.date).slice(0, SLOTS);
-}
-
-/** Whole calendar days, so something from this morning reads "Today". */
-function daysFrom(now: number, date: number) {
-	const midnight = (t: number) => new Date(t).setHours(0, 0, 0, 0);
-	return Math.round((midnight(date) - midnight(now)) / DAY);
-}
-
-/** "Today", "3 days ago", "2 weeks ago"; "In 23 days" for the future. */
-function relative(date: number, now: number) {
-	const days = daysFrom(now, date);
-	if (days > 1) return `In ${days} days`;
-	if (days === 1) return "Tomorrow";
-	if (days === 0) return "Today";
-	if (days === -1) return "Yesterday";
-	if (days > -14) return `${-days} days ago`;
-	return `${Math.round(-days / 7)} weeks ago`;
 }
 
 /* ─── Panels ────────────────────────────────────────────────────────────── */
@@ -258,9 +192,6 @@ function ListPanel({
 	);
 }
 
-const eventHref = (e: Event) =>
-	e.href.startsWith("http") ? e.href : getAssetPath(e.href);
-
 /**
  * Upcoming events as a calendar list: cover, title, place, and when. Each row
  * is its own link; the header links out to the full Luma calendar.
@@ -363,65 +294,7 @@ function Prompt({ cmd }: { cmd: string }) {
 	);
 }
 
-/** Window chrome: three dots, as in the AI terminal. */
-function WindowBar() {
-	return (
-		<div className="flex items-center gap-4 bg-zinc-50 px-6 py-3 lg:col-span-2 dark:bg-zinc-900">
-			<div aria-hidden="true" className="flex items-center gap-1.5">
-				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-				<span className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-			</div>
-		</div>
-	);
-}
-
-/** The window ends on an empty prompt with a blinking cursor. */
-function IdlePrompt() {
-	return (
-		<div
-			aria-hidden="true"
-			className="flex items-center bg-white px-6 py-4 lg:col-span-2 dark:bg-zinc-950"
-		>
-			<Prompt cmd="" />
-			<span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-zinc-900 motion-reduce:animate-none dark:bg-white" />
-		</div>
-	);
-}
-
 /* ─── Numbers strip ─────────────────────────────────────────────────────── */
-
-/**
- * Numbers that move daily. In this design copy they're snapshots; on the live
- * site each is fetched on every rebuild (see the auto-feed plan). Sources and
- * snapshot dates are noted so they're easy to refresh by hand meanwhile.
- */
-const STATS = [
-	{
-		// TWiE #144, Nov 16 2026
-		value: "4.1.4",
-		label: "Latest patch",
-		href: "https://github.com/Effect-TS/effect/releases",
-	},
-	{
-		// TWiE #140: "Effect surpasses 50 million downloads per week"
-		value: "50M+",
-		label: "Weekly downloads",
-		href: "https://www.npmjs.com/package/effect",
-	},
-	{
-		// github.com/Effect-TS/effect, Nov 17 2026
-		value: "17.6k",
-		label: "GitHub stars",
-		href: "https://github.com/Effect-TS/effect",
-	},
-	{
-		// Live: the site's own job board
-		value: String(JOBS.length),
-		label: "Open roles",
-		href: "/effect-jobs",
-	},
-];
 
 function StatsStrip() {
 	return (
@@ -684,12 +557,10 @@ export function WhatsNewSection() {
 
 				{/* One terminal window, framed like the AI section's terminal */}
 				<div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200 lg:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
-					<WindowBar />
 					<StatsStrip />
 					{cards.map(({ key, ...card }) => (
 						<Card key={key} {...card} />
 					))}
-					<IdlePrompt />
 				</div>
 			</div>
 		</section>

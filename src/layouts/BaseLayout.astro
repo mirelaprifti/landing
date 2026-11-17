@@ -1,6 +1,7 @@
 ---
 import "../styles/globals.css";
 import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
+import { EffectAgent } from "@/components/landing/EffectAgent";
 import { ANNOUNCEMENTS } from "@/data/announcements";
 
 interface Props {
@@ -138,5 +139,7 @@ const canonicalUrl = `${siteUrl}${pagePathname}`;
   <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-white">
     <AnnouncementBanner client:load />
     <slot />
+    <!-- Site-wide Effect agent, docked to the bottom of every page -->
+    <EffectAgent client:load />
   </body>
 </html>
