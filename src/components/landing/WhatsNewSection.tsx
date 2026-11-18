@@ -1,8 +1,14 @@
 import { Icon } from "@/components/ui/Icon";
-import { BLOG_POSTS, type BlogPost, getPostUrl } from "../../data/blog";
+import {
+	BLOG_POSTS,
+	type BlogPost,
+	type CommunityPick,
+	getPostUrl,
+} from "../../data/blog";
 import { EPISODES, type Episode } from "../../data/episodes";
 import { getAssetPath } from "../../utils/assetPath";
 import {
+	communityPicks,
 	DAY,
 	daysFrom,
 	type Event,
@@ -352,6 +358,73 @@ function LeadRow({ lead }: { lead: Lead }) {
 	);
 }
 
+/* ─── Community ─────────────────────────────────────────────────────────── */
+
+const host = (url: string) =>
+	new URL(url).hostname.replace(/^www\./, "").replace("twitter.com", "x.com");
+
+function CommunityRow({
+	picks,
+}: {
+	picks: { pick: CommunityPick; issue: BlogPost }[];
+}) {
+	if (picks.length === 0) return null;
+	const latest = picks
+		.map((p) => p.issue)
+		.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
+	const n = latest.title.match(/#(\d+)/)?.[1];
+	return (
+		<div className={`lg:col-span-2 ${PANEL_BG}`}>
+			<div
+				className={`flex items-center justify-between gap-3 border-b px-6 py-3 ${LINE} ${MICRO}`}
+			>
+				<span>From the community</span>
+				<a
+					href={getPostUrl(latest)}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap transition-colors hover:text-zinc-900 dark:hover:text-white"
+				>
+					<span className="max-sm:hidden">Picked from</span> #{n}
+					<Icon name="arrow-up-right" className="text-xs" />
+				</a>
+			</div>
+			<ul className={`grid gap-px sm:grid-cols-2 ${LINE_FILL}`}>
+				{picks.map(({ pick }) => (
+					<li key={pick.url} className={`min-w-0 ${PANEL_BG}`}>
+						<a
+							href={pick.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							className={`block h-full px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 ${HOVER}`}
+						>
+							<span
+								className={`flex items-center justify-between gap-3 ${MICRO}`}
+							>
+								<span className="truncate">
+									{pick.kind} · {pick.by}
+								</span>
+								<span className="inline-flex min-w-0 shrink items-center gap-1 normal-case max-sm:hidden">
+									{host(pick.url)}
+									<Icon
+										name="arrow-up-right"
+										aria-hidden="true"
+										className="text-xs"
+									/>
+								</span>
+							</span>
+							<span className={`mt-3 block truncate ${SMALL_HEADING}`}>
+								{pick.title}
+							</span>
+							<span className={`block truncate ${CARD_BODY}`}>{pick.note}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	);
+}
+
 /* ─── Numbers strip ─────────────────────────────────────────────────────── */
 
 function StatsStrip() {
@@ -375,11 +448,14 @@ function StatsStrip() {
 						{/* Same link mark as "All on Luma ↗": out of the site ↗, within it → */}
 						<span className={`mt-1 block ${MICRO}`}>
 							{stat.label}
-							<Icon
-								name={external ? "arrow-up-right" : "arrow-right"}
-								aria-hidden="true"
-								className="ml-1 inline text-xs max-sm:hidden"
-							/>
+							{/* Wrapped: the global icon rule would override a hide class on the svg */}
+							<span className="max-sm:hidden">
+								<Icon
+									name={external ? "arrow-up-right" : "arrow-right"}
+									aria-hidden="true"
+									className="ml-1 inline text-xs"
+								/>
+							</span>
 						</span>
 					</a>
 				);
@@ -660,7 +736,14 @@ export function WhatsNewSection() {
 					className={`grid grid-cols-1 gap-px border border-zinc-300 lg:grid-cols-2 dark:border-[#303034] ${LINE_FILL}`}
 				>
 					<LeadRow lead={lead} />
-					{cards.map(({ key, wide, ...card }) => (
+					{cards.slice(0, 2).map(({ key, wide, ...card }) => (
+						<div key={key} className={`grid ${wide ? "lg:col-span-2" : ""}`}>
+							<Card {...card} />
+						</div>
+					))}
+					{/* Community work, external, right after the headline boxes */}
+					<CommunityRow picks={communityPicks(now)} />
+					{cards.slice(2).map(({ key, wide, ...card }) => (
 						<div key={key} className={`grid ${wide ? "lg:col-span-2" : ""}`}>
 							<Card {...card} />
 						</div>

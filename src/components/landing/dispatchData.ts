@@ -122,6 +122,32 @@ export const STATS = [
 	},
 ];
 
+/* ─── Community picks (from This Week in Effect) ─── */
+
+const COMMUNITY_SLOTS = 4;
+/** How far back to look for picks: the last few issues. */
+const COMMUNITY_ISSUES = 3;
+
+/**
+ * Community work from the latest issues of This Week in Effect: top picks
+ * first, then newest issue first. External links, called out as such.
+ */
+export function communityPicks(now: number) {
+	return BLOG_POSTS.filter(
+		(p) => p.tags.includes("This Week In Effect") && Date.parse(p.date) <= now,
+	)
+		.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+		.slice(0, COMMUNITY_ISSUES)
+		.flatMap((issue, order) =>
+			(issue.community ?? []).map((pick) => ({ pick, order, issue })),
+		)
+		.sort(
+			(a, b) =>
+				Number(!!b.pick.top) - Number(!!a.pick.top) || a.order - b.order,
+		)
+		.slice(0, COMMUNITY_SLOTS);
+}
+
 /** What the agent may answer from: the same data the section shows. */
 export function agentContext(now: number): AgentContext {
 	const published = (p: BlogPost) => Date.parse(p.date) <= now;
@@ -168,6 +194,7 @@ export function agentContext(now: number): AgentContext {
 			stars: STATS[2].value,
 			roles: JOBS.length,
 		},
+		community: communityPicks(now).map(({ pick }) => pick),
 		jobsHref: getAssetPath("/effect-jobs"),
 		lumaHref: LUMA_URL,
 	};

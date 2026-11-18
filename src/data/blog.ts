@@ -5,6 +5,18 @@ export interface BlogAuthor {
 	url: string;
 }
 
+export interface CommunityPick {
+	title: string;
+	/** Creator as credited in the issue. */
+	by: string;
+	kind: "Library" | "Tutorial" | "Article" | "Post" | "Tool" | "Video";
+	url: string;
+	/** What it is, in a few words. */
+	note: string;
+	/** Big enough to lead across issues (e.g. a major library adopting Effect). */
+	top?: boolean;
+}
+
 export interface BlogPost {
 	slug: string;
 	title: string;
@@ -27,6 +39,11 @@ export interface BlogPost {
 	headline?: string;
 	/** A few verbatim lines of code from the post, shown cropped on the homepage */
 	snippet?: string;
+	/**
+	 * Community picks from This Week in Effect, most relevant first. Curated
+	 * from the issue's "Community Highlights"; the homepage shows the top few.
+	 */
+	community?: CommunityPick[];
 }
 
 /**
@@ -278,6 +295,36 @@ const joke = yield* Activity.make({
 			"Ziverge sponsors Effect Days",
 		],
 		headline: "4.1.4 ships, and two new Effect Days speakers",
+		community: [
+			{
+				title: "Effect by Example",
+				by: "bearing-ward",
+				kind: "Tutorial",
+				url: "https://bearing-ward.github.io/effectbyexample/",
+				note: "Learn Effect one runnable example at a time",
+			},
+			{
+				title: "ai-effect",
+				by: "fdarian",
+				kind: "Library",
+				url: "https://ai-effect.fdarian.com/",
+				note: "The Vercel AI SDK, returning Effect values with typed errors",
+			},
+			{
+				title: "effect-cqrs",
+				by: "davidnussio",
+				kind: "Library",
+				url: "https://github.com/davidnussio/effect-cqrs",
+				note: "CQRS and event sourcing for Effect 4",
+			},
+			{
+				title: "better-auth-effect-adapter",
+				by: "alex-golubev",
+				kind: "Library",
+				url: "https://github.com/alex-golubev/better-auth-effect-adapter",
+				note: "Run Better Auth on your app's own SqlClient pool",
+			},
+		],
 	},
 	{
 		slug: "this-week-in-effect-143",
@@ -289,6 +336,23 @@ const joke = yield* Activity.make({
 		tags: ["This Week In Effect"],
 		authors: [AUTHORS.davide, AUTHORS.mirela],
 		highlights: ["16 new LSP rules", "Rational type", "OpenRPC docs"],
+		community: [
+			{
+				title: "TanStack AI ships a first-party Effect adapter",
+				by: "TanStack",
+				kind: "Post",
+				url: "https://twitter.com/tan_stack/status/2118772095140368631",
+				note: "TanStack AI and Effect 4, officially",
+				top: true,
+			},
+			{
+				title: "Poor Man's Effect-like DI",
+				by: "Max Khramtsov",
+				kind: "Article",
+				url: "https://dev.to/khraks_mamtsov/poor-mans-effect-like-di-l80",
+				note: "Effect-style dependency injection, explained from scratch",
+			},
+		],
 	},
 	{
 		slug: "this-week-in-effect-142",

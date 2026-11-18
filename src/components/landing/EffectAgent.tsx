@@ -30,6 +30,7 @@ export type AgentContext = {
 	stats: { patch: string; downloads: string; stars: string; roles: number };
 	jobsHref: string;
 	lumaHref: string;
+	community: { title: string; by: string; note: string; url: string }[];
 };
 
 type Line = { text: string; href?: string };
@@ -47,6 +48,7 @@ const SUGGESTIONS = [
 	"What's new this week?",
 	"Upcoming events",
 	"What's in 4.1?",
+	"From the community",
 	"Who's hiring?",
 ];
 
@@ -114,6 +116,31 @@ function answer(q: string, ctx: AgentContext): Reply {
 						{ text: "It's the last part of the Cluster series." },
 					]
 				: [{ text: "No module this week yet." }],
+		};
+
+	if (
+		has(
+			"community",
+			"library",
+			"libraries",
+			"built",
+			"tutorial",
+			"learn",
+			"made with",
+			"showcase",
+		)
+	)
+		return {
+			steps: ["Reading This Week in Effect's community highlights"],
+			lines: ctx.community.length
+				? [
+						{ text: "Recent picks from the community:" },
+						...ctx.community.map((c) => ({
+							text: `${c.title}, by ${c.by}. ${c.note}.`,
+							href: c.url,
+						})),
+					]
+				: [{ text: "No community picks in the latest issues." }],
 		};
 
 	if (has("job", "hiring", "hire", "role", "work", "career"))
