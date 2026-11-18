@@ -15,6 +15,8 @@ export interface CommunityPick {
 	note: string;
 	/** Big enough to lead across issues (e.g. a major library adopting Effect). */
 	top?: boolean;
+	/** Picture: the creator's GitHub avatar (person or org), shown square. */
+	image?: string;
 }
 
 export interface BlogPost {
@@ -298,6 +300,7 @@ const joke = yield* Activity.make({
 		community: [
 			{
 				title: "Effect by Example",
+				image: "https://github.com/bearing-ward.png?size=96",
 				by: "bearing-ward",
 				kind: "Tutorial",
 				url: "https://bearing-ward.github.io/effectbyexample/",
@@ -305,6 +308,7 @@ const joke = yield* Activity.make({
 			},
 			{
 				title: "ai-effect",
+				image: "https://github.com/fdarian.png?size=96",
 				by: "fdarian",
 				kind: "Library",
 				url: "https://ai-effect.fdarian.com/",
@@ -312,6 +316,7 @@ const joke = yield* Activity.make({
 			},
 			{
 				title: "effect-cqrs",
+				image: "https://github.com/davidnussio.png?size=96",
 				by: "davidnussio",
 				kind: "Library",
 				url: "https://github.com/davidnussio/effect-cqrs",
@@ -319,6 +324,7 @@ const joke = yield* Activity.make({
 			},
 			{
 				title: "better-auth-effect-adapter",
+				image: "https://github.com/alex-golubev.png?size=96",
 				by: "alex-golubev",
 				kind: "Library",
 				url: "https://github.com/alex-golubev/better-auth-effect-adapter",
@@ -339,6 +345,7 @@ const joke = yield* Activity.make({
 		community: [
 			{
 				title: "TanStack AI ships a first-party Effect adapter",
+				image: "https://github.com/TanStack.png?size=96",
 				by: "TanStack",
 				kind: "Post",
 				url: "https://twitter.com/tan_stack/status/2118772095140368631",
@@ -364,6 +371,59 @@ const joke = yield* Activity.make({
 		tags: ["This Week In Effect"],
 		authors: [AUTHORS.davide, AUTHORS.mirela],
 		highlights: ["Effect 4.1", "Faster LSP", "Effect Days sold out"],
+		community: [
+			{
+				title: "Effect Kit",
+				by: "Effect Kit",
+				kind: "Library",
+				url: "https://effectkit.dev/",
+				note: "Infrastructure as Effect services, with swappable Layers",
+				top: true,
+				image: "https://github.com/effect-kit.png?size=96",
+			},
+			{
+				title: "Domain-driven design for Effect",
+				by: "sam",
+				kind: "Tool",
+				url: "https://alchemy.run/domain",
+				note: "Commands, aggregates and events, from tests to Cloudflare",
+				top: true,
+				image: "https://github.com/alchemy-run.png?size=96",
+			},
+		],
+	},
+	{
+		slug: "this-week-in-effect-141",
+		title: "This Week in Effect #141",
+		excerpt:
+			"The Cluster idempotency lesson, EventLog work, a native McpClient in v4, and Effect Miami speakers.",
+		date: "Oct 23, 2026",
+		readingTime: "",
+		tags: ["This Week In Effect"],
+		authors: [AUTHORS.davide, AUTHORS.mirela],
+		highlights: [
+			"Cluster idempotency",
+			"Native McpClient",
+			"Effect Miami speakers",
+		],
+		community: [
+			{
+				title: "effect-api-query",
+				by: "ueberBrot",
+				kind: "Library",
+				url: "https://github.com/ueberBrot/effect-api-query",
+				note: "Typed TanStack Query options from Effect RPC and HTTP API contracts",
+				image: "https://github.com/ueberBrot.png?size=96",
+			},
+			{
+				title: "effect-mongodb",
+				by: "doubleloop-io",
+				kind: "Library",
+				url: "https://github.com/doubleloop-io/effect-mongodb",
+				note: "MongoDB on Effect, now with Effect v4 support",
+				image: "https://github.com/doubleloop-io.png?size=96",
+			},
+		],
 	},
 	{
 		slug: "this-week-in-effect-128",

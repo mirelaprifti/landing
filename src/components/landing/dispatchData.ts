@@ -124,20 +124,22 @@ export const STATS = [
 
 /* ─── Community picks (from This Week in Effect) ─── */
 
-const COMMUNITY_SLOTS = 4;
-/** How far back to look for picks: the last few issues. */
-const COMMUNITY_ISSUES = 3;
+const COMMUNITY_SLOTS = 6;
+/** How far back to look for picks: the past month of issues. */
+const COMMUNITY_DAYS = 31;
 
 /**
- * Community work from the latest issues of This Week in Effect: top picks
+ * Community work from the past month of This Week in Effect: top picks
  * first, then newest issue first. External links, called out as such.
  */
 export function communityPicks(now: number) {
 	return BLOG_POSTS.filter(
-		(p) => p.tags.includes("This Week In Effect") && Date.parse(p.date) <= now,
+		(p) =>
+			p.tags.includes("This Week In Effect") &&
+			Date.parse(p.date) <= now &&
+			now - Date.parse(p.date) <= COMMUNITY_DAYS * DAY,
 	)
 		.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
-		.slice(0, COMMUNITY_ISSUES)
 		.flatMap((issue, order) =>
 			(issue.community ?? []).map((pick) => ({ pick, order, issue })),
 		)

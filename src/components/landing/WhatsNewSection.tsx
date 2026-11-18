@@ -22,11 +22,11 @@ import { entryOf, MODULES, MOTW_URL, moduleTitle } from "./moduleOfTheWeek";
 
 /* ─── Feed rules ──────────────────────────────────────────────────────────
  * Nothing here is pinned. Every kind of content is a candidate; the section
- * shows the four freshest. Anything older than FRESH_DAYS drops out, and an
+ * shows the freshest. Anything older than a month (FRESH_DAYS) drops out, and an
  * event only appears once it's within EVENT_LEAD_DAYS of starting.
  */
 const SLOTS = 4;
-const FRESH_DAYS = 42;
+const FRESH_DAYS = 31; // the past month, same window as community picks
 const EVENT_LEAD_DAYS = 60;
 const NEW_DAYS = 7;
 
@@ -372,7 +372,6 @@ function CommunityRow({
 	const latest = picks
 		.map((p) => p.issue)
 		.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
-	const n = latest.title.match(/#(\d+)/)?.[1];
 	return (
 		<div className={`lg:col-span-2 ${PANEL_BG}`}>
 			<div
@@ -385,7 +384,8 @@ function CommunityRow({
 					rel="noopener noreferrer"
 					className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap transition-colors hover:text-zinc-900 dark:hover:text-white"
 				>
-					<span className="max-sm:hidden">Picked from</span> #{n}
+					<span className="max-sm:hidden">Picked from This Week in Effect</span>
+					<span className="sm:hidden">This Week in Effect</span>
 					<Icon name="arrow-up-right" className="text-xs" />
 				</a>
 			</div>
@@ -396,27 +396,40 @@ function CommunityRow({
 							href={pick.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className={`block h-full px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 ${HOVER}`}
+							className={`flex h-full items-center gap-4 px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 ${HOVER}`}
 						>
-							<span
-								className={`flex items-center justify-between gap-3 ${MICRO}`}
-							>
-								<span className="truncate">
-									{pick.kind} · {pick.by}
+							{/* The creator's avatar, square like the event covers, in b&w */}
+							{pick.image && (
+								<img
+									src={pick.image}
+									alt=""
+									loading="lazy"
+									className={`size-12 shrink-0 border object-cover grayscale ${LINE}`}
+								/>
+							)}
+							<span className="min-w-0 flex-1">
+								<span
+									className={`flex items-center justify-between gap-3 ${MICRO}`}
+								>
+									<span className="truncate">
+										{pick.kind} · {pick.by}
+									</span>
+									<span className="inline-flex min-w-0 shrink items-center gap-1 normal-case max-sm:hidden">
+										{host(pick.url)}
+										<Icon
+											name="arrow-up-right"
+											aria-hidden="true"
+											className="text-xs"
+										/>
+									</span>
 								</span>
-								<span className="inline-flex min-w-0 shrink items-center gap-1 normal-case max-sm:hidden">
-									{host(pick.url)}
-									<Icon
-										name="arrow-up-right"
-										aria-hidden="true"
-										className="text-xs"
-									/>
+								<span className={`mt-3 block truncate ${SMALL_HEADING}`}>
+									{pick.title}
+								</span>
+								<span className={`block truncate ${CARD_BODY}`}>
+									{pick.note}
 								</span>
 							</span>
-							<span className={`mt-3 block truncate ${SMALL_HEADING}`}>
-								{pick.title}
-							</span>
-							<span className={`block truncate ${CARD_BODY}`}>{pick.note}</span>
 						</a>
 					</li>
 				))}
