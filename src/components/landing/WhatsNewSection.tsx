@@ -248,7 +248,7 @@ function EventsPanel({ events, now }: { events: Event[]; now: number }) {
 									src={external ? e.image : getAssetPath(e.image)}
 									alt=""
 									loading="lazy"
-									className={`size-10 shrink-0 border border-zinc-200 grayscale dark:border-zinc-800 ${
+									className={`size-10 shrink-0 border border-zinc-200 dark:border-zinc-800 ${
 										e.logo ? "bg-white object-contain p-2" : "object-cover"
 									}`}
 								/>
@@ -287,7 +287,7 @@ function ImagePanel({
 				src={src}
 				alt=""
 				loading="lazy"
-				className="h-full w-full object-cover opacity-80 grayscale"
+				className="h-full w-full object-cover"
 			/>
 			{children}
 		</div>
@@ -332,7 +332,7 @@ function LeadRow({ lead }: { lead: Lead }) {
 					src={lead.image}
 					alt=""
 					loading="lazy"
-					className={`size-16 shrink-0 border border-zinc-200 grayscale dark:border-zinc-800 ${
+					className={`size-16 shrink-0 border border-zinc-200 dark:border-zinc-800 ${
 						lead.logo ? "bg-white object-contain p-3" : "object-cover"
 					}`}
 				/>
@@ -398,13 +398,13 @@ function CommunityRow({
 							rel="noopener noreferrer"
 							className={`flex h-full items-center gap-4 px-6 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-zinc-400 ${HOVER}`}
 						>
-							{/* The creator's avatar, square like the event covers, in b&w */}
+							{/* The creator's avatar, square like the event covers, in its own colours */}
 							{pick.image && (
 								<img
 									src={pick.image}
 									alt=""
 									loading="lazy"
-									className={`size-12 shrink-0 border object-cover grayscale ${LINE}`}
+									className={`size-12 shrink-0 border object-cover ${LINE}`}
 								/>
 							)}
 							<span className="min-w-0 flex-1">
