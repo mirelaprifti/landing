@@ -39,7 +39,6 @@
   --shadow: rgba(24, 24, 27, 0.12);
   color-scheme: light;
 }
-:root[data-variant="b"] { --sub-h: 44px; }
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -131,15 +130,10 @@ svg { display: block; }
 .dd-panel a { padding: 8px 10px; border-radius: 6px; font-size: 14px; color: var(--muted); }
 .dd-panel a:hover { background: var(--line); color: var(--fg); }
 
-/* Effect UI sub-bar (variant B) */
-.subbar-inner { height: var(--sub-h); display: flex; align-items: center; gap: 16px; font-size: 14px; }
-.subbar-name { font-weight: 500; color: var(--fg); }
 .eyebrow {
   font-family: var(--font-mono); font-size: 10px; font-weight: 500;
   letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
 }
-.subbar .links { margin-left: auto; gap: 20px; }
-.subbar .nav-link { font-size: 14px; }
 .ext { width: 13px; height: 13px; }
 
 /* Mobile menu */
@@ -233,14 +227,13 @@ h1 {
   .art-header { margin-top: 32px; }
 }
 @media (max-width: 1023px) {
-  .variant-a .links, .variant-b .bar:not(.subbar) .links { display: none; }
+  .variant-a .links, .variant-b .links { display: none; }
   .variant-a .lockup .divider { display: none; }
   .menu-btn { display: inline-flex; }
 }
 @media (max-width: 639px) {
   .right .socials-inline, .right .divider { display: none; }
   .search .kbd { display: none; }
-  .subbar .eyebrow { display: none; }
   .lockup { margin-left: 20px; }
   .switcher .full { display: none; }
 }
@@ -316,7 +309,6 @@ h1 {
               <a href="https://effect.website/podcast">Podcast</a>
               <a href="https://effect.website/module-of-the-week">Module of the Week</a>
               <a href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792">Workshops</a>
-              <a href="#b">Effect UI</a>
             </div>
           </div>
           <div class="dd">
@@ -329,6 +321,7 @@ h1 {
             </div>
           </div>
           <a class="nav-link" href="https://effect.website/effect-days">Effect Days</a>
+          <a class="nav-link" href="#b" aria-current="page">Effect UI</a>
         </div>
         <div class="right">
           <a class="search" href="https://effect.website/docs" aria-label="Search the docs"><svg><use href="#search"/></svg><span class="kbd">⌘K</span></a>
@@ -348,10 +341,10 @@ h1 {
         <li><a href="https://effect.website/docs">Docs</a></li>
         <li><a href="https://effect.website/play">Play</a></li>
         <li><a href="https://effect.website/effect-days">Effect Days</a></li>
+        <li><a href="#b" aria-current="page">Effect UI</a></li>
         <li class="group-label eyebrow">Resources</li>
         <li><a href="https://effect.website/blog">Blog</a></li>
         <li><a href="https://effect.website/podcast">Podcast</a></li>
-        <li><a href="#b" aria-current="page">Effect UI</a></li>
         <li class="group-label eyebrow">Community</li>
         <li><a href="https://effect.website/community-hub">Community hub</a></li>
         <li><a href="https://effect.website/effect-jobs">Jobs</a></li>
@@ -360,16 +353,6 @@ h1 {
           <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
         </li>
       </ul>
-    </div>
-    <div class="bar subbar">
-      <div class="frame gutter subbar-inner">
-        <a class="subbar-name" href="#b">Effect UI</a>
-        <span class="eyebrow">Public preview</span>
-        <div class="links">
-          <a class="nav-link" href="https://github.com/Effect-TS/ui/tree/main/examples">Examples</a>
-          <a class="nav-link" href="https://github.com/Effect-TS/ui">GitHub <svg class="ext"><use href="#ext"/></svg></a>
-        </div>
-      </div>
     </div>
   </div>
 </header>
@@ -428,7 +411,7 @@ h1 {
 <nav class="switcher" aria-label="Navbar option">
   <span class="eyebrow label">Navbar</span>
   <a href="#a" data-v="a">A<span class="full"> · Sub-site lockup</span></a>
-  <a href="#b" data-v="b">B<span class="full"> · Main nav + bar</span></a>
+  <a href="#b" data-v="b">B<span class="full"> · Effect UI in main nav</span></a>
 </nav>
 
 <script>
