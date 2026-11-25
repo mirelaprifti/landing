@@ -1,0 +1,442 @@
+<title>Effect UI Navbar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: effect.website chrome (64px hairline bar, 88rem frame) over the Effect UI article rail + 68ch column. Single dark look, matching both sites. */
+:root {
+  --bg: #09090b;          /* zinc-950 */
+  --bar: rgba(9, 9, 11, 0.85);
+  --surface: #18181b;     /* zinc-900 */
+  --line: #27272a;        /* zinc-800 */
+  --line-strong: #3f3f46; /* zinc-700 */
+  --fg: #fafafa;
+  --fg-2: #e4e4e7;        /* zinc-200 */
+  --muted: #a1a1aa;       /* zinc-400 */
+  --faint: #71717a;       /* zinc-500 */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --nav-h: 64px;
+  --sub-h: 0px;
+  color-scheme: dark;
+}
+:root[data-variant="b"] { --sub-h: 44px; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg-2);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg);
+}
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; border-radius: 4px; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+svg { display: block; }
+
+.gutter {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.frame { max-width: 88rem; margin-inline: auto; }
+
+/* ---------- Header shell ---------- */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: var(--bar);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.variant { display: none; }
+:root[data-variant="a"] .variant-a,
+:root[data-variant="b"] .variant-b { display: block; }
+
+.bar { border-bottom: 1px solid var(--line); }
+.bar-inner { height: var(--nav-h); display: flex; align-items: center; }
+.logo { display: flex; align-items: center; color: var(--fg); }
+.logo svg { height: 28px; width: auto; }
+
+.nav-link {
+  font-size: 15px; color: var(--muted); white-space: nowrap;
+  transition: color .15s ease;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.nav-link:hover, .nav-link[aria-current="page"], .nav-link[aria-expanded="true"] { color: var(--fg); }
+.nav-link .chev { width: 14px; height: 14px; transition: transform .15s ease; }
+.nav-link[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+.divider { width: 1px; height: 18px; background: var(--line-strong); flex: none; }
+.links { display: flex; align-items: center; gap: 24px; }
+.right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.icon-link { color: var(--muted); transition: color .15s ease; }
+.icon-link:hover { color: var(--fg); }
+.icon-link svg { width: 20px; height: 20px; }
+
+.lockup { margin-left: 32px; display: flex; align-items: center; gap: 16px; }
+.lockup-name { font-size: 15px; font-weight: 500; color: var(--fg); white-space: nowrap; }
+.lockup + .links { margin-left: 16px; }
+
+.search {
+  height: 32px; display: flex; align-items: center; gap: 8px;
+  padding: 0 10px; border: 1px solid var(--line-strong); border-radius: 6px;
+  color: var(--muted);
+}
+.search:hover { color: var(--fg); border-color: var(--faint); }
+.search svg { width: 15px; height: 15px; }
+.kbd { font-family: var(--font-mono); font-size: 11px; }
+
+.menu-btn { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; color: var(--fg-2); margin-right: -8px; }
+.menu-btn svg { width: 20px; height: 20px; }
+
+/* Dropdowns (variant B) */
+.dd { position: relative; }
+.dd-panel {
+  position: absolute; top: calc(100% + 22px); left: -12px; min-width: 220px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 6px; display: grid;
+  box-shadow: 0 12px 32px rgba(0,0,0,.45);
+}
+.dd-panel a { padding: 8px 10px; border-radius: 6px; font-size: 14px; color: var(--muted); }
+.dd-panel a:hover { background: var(--line); color: var(--fg); }
+
+/* Effect UI sub-bar (variant B) */
+.subbar-inner { height: var(--sub-h); display: flex; align-items: center; gap: 16px; font-size: 14px; }
+.subbar-name { font-weight: 500; color: var(--fg); }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
+}
+.subbar .links { margin-left: auto; gap: 20px; }
+.subbar .nav-link { font-size: 14px; }
+.ext { width: 13px; height: 13px; }
+
+/* Mobile menu */
+.mobile-menu { border-bottom: 1px solid var(--line); background: var(--bg); }
+.mobile-menu ul { list-style: none; margin: 0; padding-block: 8px 16px; }
+.mobile-menu li a { display: flex; align-items: center; gap: 6px; padding: 11px 0; font-size: 16px; color: var(--muted); }
+.mobile-menu li a[aria-current="page"] { color: var(--fg); }
+.mobile-menu .group-label { padding: 16px 0 4px; }
+.mobile-menu .socials { display: flex; gap: 20px; padding-top: 16px; margin-top: 8px; border-top: 1px solid var(--line); }
+
+/* ---------- Article ---------- */
+.page {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(0, calc(68ch + 96px)) minmax(0, 1fr);
+}
+.rail {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--nav-h) + var(--sub-h));
+  align-self: start; padding: 40px 28px 40px max(28px, env(safe-area-inset-left, 0px));
+  max-height: calc(100vh - var(--nav-h) - var(--sub-h)); overflow-y: auto;
+}
+.rail ol { list-style: none; margin: 20px 0 0; padding: 0 0 0 16px; border-left: 1px solid var(--line); display: grid; gap: 14px; }
+.rail a { font-size: 14px; color: var(--muted); }
+.rail a:hover { color: var(--fg); }
+.rail .sub { padding-left: 14px; }
+
+.toc-mobile { display: none; border-bottom: 1px solid var(--line); }
+.toc-mobile summary {
+  list-style: none; cursor: pointer; height: 48px; display: flex; align-items: center; justify-content: space-between;
+  color: var(--muted); font-size: 15px;
+}
+.toc-mobile summary::-webkit-details-marker { display: none; }
+.toc-mobile ol { list-style: none; margin: 0; padding: 0 0 16px; display: grid; gap: 12px; }
+.toc-mobile a { color: var(--muted); font-size: 15px; }
+
+article { padding: 40px 48px 120px; min-width: 0; }
+.art-header {
+  position: relative; border-block: 1px solid var(--line); padding-block: 36px;
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: 16.6667% 100%; background-position: 50%;
+}
+.art-header::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, var(--bg), transparent 50%, var(--bg));
+}
+.art-header > * { position: relative; }
+.art-header .eyebrow { margin: 0 0 20px; }
+h1 {
+  margin: 0; color: var(--fg); font-weight: 700;
+  font-size: clamp(2.2rem, 5.2vw, 3.6rem); line-height: 1.08; letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.lede {
+  margin: 0; padding-block: 40px; border-bottom: 1px solid var(--line);
+  font-size: clamp(1.2rem, 2vw, 1.375rem); line-height: 1.6; color: var(--fg);
+  max-width: 34em; text-wrap: pretty;
+}
+.prose { max-width: 68ch; }
+.prose p { font-size: 17px; line-height: 1.75; margin: 24px 0 0; color: var(--fg-2); text-wrap: pretty; }
+.prose h2 { margin: 64px 0 0; font-size: 26px; letter-spacing: -0.015em; color: var(--fg); scroll-margin-top: 140px; }
+.u { text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 4px; }
+.u:hover { text-decoration-color: var(--fg); }
+
+/* ---------- Variant switcher ---------- */
+.switcher {
+  position: fixed; z-index: 70;
+  left: 50%; transform: translateX(-50%);
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  display: flex; align-items: center; gap: 4px; padding: 4px;
+  background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  max-width: calc(100% - 32px);
+}
+.switcher .label { padding: 0 8px 0 6px; white-space: nowrap; }
+.switcher a {
+  padding: 6px 12px; border-radius: 6px; font-size: 13px; color: var(--muted); white-space: nowrap;
+}
+.switcher a:hover { color: var(--fg); }
+.switcher a[aria-current="true"] { background: var(--line-strong); color: var(--fg); }
+.switcher .full { display: inline; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .page { grid-template-columns: minmax(0, 1fr); }
+  .rail { display: none; }
+  .toc-mobile { display: block; }
+  article {
+    padding-block: 0 120px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .art-header { margin-top: 32px; }
+}
+@media (max-width: 1023px) {
+  .variant-a .links, .variant-b .bar:not(.subbar) .links { display: none; }
+  .variant-a .lockup .divider { display: none; }
+  .menu-btn { display: inline-flex; }
+}
+@media (max-width: 639px) {
+  .right .socials-inline, .right .divider { display: none; }
+  .search .kbd { display: none; }
+  .subbar .eyebrow { display: none; }
+  .lockup { margin-left: 20px; }
+  .switcher .full { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 583 160"><g fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M160.058 47.1308C160.128 49.3649 159.201 51.3522 157.094 52.5262L136.298 64.1042L155.187 74.7413C157.319 75.9412 158.453 78.2081 158.275 80.4716C158.44 82.8041 157.547 84.9018 155.393 86.1173L83.99 126.323C82.4992 127.163 80.8003 127.324 79.268 126.903C78.5653 126.789 77.8713 126.551 77.2195 126.183L5.81948 85.9774C3.6881 84.7775 2.55464 82.5071 2.73248 80.2437C2.56759 77.9111 3.45934 75.8169 5.61403 74.6014L24.711 63.8487L4.12232 52.3846C3.50941 52.0428 2.97937 51.618 2.53479 51.1312C2.34228 50.9464 2.16532 50.7479 2.00734 50.5355C1.84332 50.3163 1.69916 50.0849 1.5783 49.8397C1.5196 49.6861 1.46521 49.5324 1.41428 49.3788L1.30465 49.0991L1.22782 48.8746C1.19156 48.7624 1.15962 48.6484 1.13027 48.5328L1.08193 48.3256C0.978336 47.8491 0.933447 47.3587 0.948986 46.8667C0.879062 44.6326 1.80534 42.6454 3.91255 41.4713L76.9372 0.813633C77.5501 0.471783 78.1976 0.242156 78.8545 0.116121C79.8317 -0.0720692 80.8296 -0.0289064 81.7671 0.226618C82.4854 0.344021 83.195 0.584006 83.8623 0.955207L156.884 41.6129C156.994 41.6733 157.1 41.7372 157.204 41.8045C157.302 41.8667 157.398 41.9306 157.491 41.9962C157.578 42.0583 157.662 42.1222 157.744 42.1878C158.008 42.3967 158.252 42.6246 158.474 42.8681C158.645 43.0338 158.803 43.2082 158.948 43.3929C159.133 43.6312 159.295 43.8867 159.428 44.1578C159.487 44.3114 159.541 44.4634 159.592 44.617C159.924 45.4095 160.085 46.2676 160.058 47.1308ZM20.2221 80.2471L80.5033 114.89L140.785 80.4716L124.112 70.8894L84.0694 93.1839C82.5441 94.0333 80.8072 94.1974 79.2395 93.7709C78.5213 93.6535 77.8117 93.4135 77.1444 93.0423L36.9796 70.6788L20.2221 80.2471Z"/><path d="M6.15788 112.795C7.7998 110.029 11.4307 109.095 14.2682 110.675L80.5033 148.311L146.934 110.81C149.771 109.228 153.769 110.345 155.044 112.93C156.25 116.091 155.685 119.247 152.839 120.832L83.8709 159.232C82.431 160.035 80.7899 160.188 79.3094 159.786C79.1273 159.757 78.946 159.719 78.7656 159.672C78.2744 159.546 77.7918 159.354 77.3317 159.099L8.36523 120.699C5.51648 119.113 4.51251 115.575 6.15788 112.795Z"/><path d="M408.882 133.847C385.813 133.847 370.338 116.366 370.338 94.8731C370.338 73.38 386.529 55.6123 408.882 55.6123C431.235 55.6123 446.71 73.38 446.71 94.8731C446.71 97.0224 446.567 99.315 446.137 101.751H390.398C392.547 110.491 399.138 116.653 408.882 116.653C417.193 116.653 423.641 112.354 427.079 106.623L442.125 117.942C436.107 127.256 423.641 133.847 408.882 133.847ZM390.398 87.2789H427.223C425.073 78.9682 418.052 72.2337 408.595 72.2337C399.425 72.2337 392.547 78.3951 390.398 87.2789Z"/><path d="M494.858 133.847C471.683 133.847 453.175 116.367 453.175 94.7313C453.175 73.0956 471.217 55.7585 495.947 55.6152C510.723 55.4719 522.699 60.7733 529.543 69.5136L513.367 81.6926C509.634 76.5344 503.413 73.2389 496.258 73.2389C482.882 73.2389 474.172 83.1254 474.172 94.7313C474.172 106.337 483.349 116.224 496.725 116.224C504.813 116.224 510.101 112.498 514.3 107.34L529.543 119.519C521.922 128.546 510.723 133.847 494.858 133.847Z"/><path d="M570.21 134C555.027 134 546.773 126.924 546.773 110.267V74.2997H536.012V57.3477H546.773V39.8062H566.673V57.3477H582.888V74.2997H566.673V109.235C566.673 114.1 569.031 116.311 572.864 116.311H581.119V134H570.21Z"/><path d="M279.853 51.7964C279.853 36.3186 289.877 26 305.355 26H313.61V42.9519H308.45C302.554 42.9519 299.753 46.0475 299.753 52.0912V56.9557H315.378V73.9077H299.753V133.608H279.853V73.9077H269.092V56.9557H279.853V51.7964Z"/><path d="M330.476 51.7964C330.476 36.3186 340.499 26 355.977 26H364.232V42.9519H359.073C353.177 42.9519 350.376 46.0475 350.376 52.0912V56.9557H366.001V73.9077H350.376V133.608H330.476V73.9077H319.715V56.9557H330.476V51.7964Z"/><path d="M200.061 133.788V30.6021H260.499V49.1755H220.699V72.3186H259.762V90.3024H220.699V115.214H260.794V133.788H200.061Z"/></g></symbol>
+  <symbol id="gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="dc" viewBox="0 0 24 24"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></symbol>
+  <symbol id="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ext" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="site-header">
+
+  <!-- ============ A: sub-site lockup ============ -->
+  <div class="variant variant-a">
+    <div class="bar">
+      <nav class="frame gutter bar-inner" aria-label="Main">
+        <a class="logo" href="https://effect.website/" aria-label="Effect home"><svg viewBox="0 0 583 160"><use href="#logo"/></svg></a>
+        <div class="lockup">
+          <a class="lockup-name" href="#a">Effect UI</a>
+          <span class="divider"></span>
+        </div>
+        <div class="links">
+          <a class="nav-link" href="#a" aria-current="page">Introduction</a>
+          <a class="nav-link" href="https://github.com/Effect-TS/ui/tree/main/examples">Examples</a>
+          <a class="nav-link" href="https://effect.website/docs/v4">Effect docs</a>
+        </div>
+        <div class="right">
+          <div class="right socials-inline" style="margin-left:0">
+            <a class="icon-link" href="https://github.com/Effect-TS/ui" aria-label="Effect UI on GitHub"><svg><use href="#gh"/></svg></a>
+            <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
+          </div>
+          <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-a" aria-label="Open menu"><svg><use href="#menu"/></svg></button>
+        </div>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="menu-a" hidden>
+      <ul class="frame gutter">
+        <li><a href="#a" aria-current="page">Introduction</a></li>
+        <li><a href="https://github.com/Effect-TS/ui/tree/main/examples">Examples</a></li>
+        <li><a href="https://effect.website/docs/v4">Effect docs</a></li>
+        <li><a href="https://effect.website/">effect.website <svg class="ext"><use href="#ext"/></svg></a></li>
+        <li class="socials">
+          <a class="icon-link" href="https://github.com/Effect-TS/ui" aria-label="Effect UI on GitHub"><svg><use href="#gh"/></svg></a>
+          <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ B: main nav + Effect UI bar ============ -->
+  <div class="variant variant-b">
+    <div class="bar">
+      <nav class="frame gutter bar-inner" aria-label="Main">
+        <a class="logo" href="https://effect.website/" aria-label="Effect home"><svg viewBox="0 0 583 160"><use href="#logo"/></svg></a>
+        <div class="links" style="margin-left:32px">
+          <a class="nav-link" href="https://effect.website/docs">Docs</a>
+          <a class="nav-link" href="https://effect.website/play">Play</a>
+          <div class="dd">
+            <button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-res">Resources <svg class="chev"><use href="#chev"/></svg></button>
+            <div class="dd-panel" id="dd-res" hidden>
+              <a href="https://effect.website/blog">Blog</a>
+              <a href="https://effect.website/podcast">Podcast</a>
+              <a href="https://effect.website/module-of-the-week">Module of the Week</a>
+              <a href="https://www.youtube.com/playlist?list=PLDf3uQLaK2B9vHzUNyvOSvoMv61LW7792">Workshops</a>
+              <a href="#b">Effect UI</a>
+            </div>
+          </div>
+          <div class="dd">
+            <button class="nav-link" type="button" aria-expanded="false" aria-controls="dd-com">Community <svg class="chev"><use href="#chev"/></svg></button>
+            <div class="dd-panel" id="dd-com" hidden>
+              <a href="https://effect.website/community-hub">Community hub</a>
+              <a href="https://effect.website/effect-jobs">Jobs</a>
+              <a href="https://effect.website/adoption-partners/ziverge">Adoption partner</a>
+              <a href="https://effect.website/merch">Merch</a>
+            </div>
+          </div>
+          <a class="nav-link" href="https://effect.website/effect-days">Effect Days</a>
+        </div>
+        <div class="right">
+          <a class="search" href="https://effect.website/docs" aria-label="Search the docs"><svg><use href="#search"/></svg><span class="kbd">⌘K</span></a>
+          <span class="divider"></span>
+          <div class="right socials-inline" style="margin-left:0">
+            <a class="icon-link" href="https://github.com/Effect-TS/effect" aria-label="Effect on GitHub"><svg><use href="#gh"/></svg></a>
+            <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
+          </div>
+          <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-b" aria-label="Open menu"><svg><use href="#menu"/></svg></button>
+        </div>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="menu-b" hidden>
+      <ul class="frame gutter">
+        <li><a href="https://effect.website/docs">Docs</a></li>
+        <li><a href="https://effect.website/play">Play</a></li>
+        <li><a href="https://effect.website/effect-days">Effect Days</a></li>
+        <li class="group-label eyebrow">Resources</li>
+        <li><a href="https://effect.website/blog">Blog</a></li>
+        <li><a href="https://effect.website/podcast">Podcast</a></li>
+        <li><a href="#b" aria-current="page">Effect UI</a></li>
+        <li class="group-label eyebrow">Community</li>
+        <li><a href="https://effect.website/community-hub">Community hub</a></li>
+        <li><a href="https://effect.website/effect-jobs">Jobs</a></li>
+        <li class="socials">
+          <a class="icon-link" href="https://github.com/Effect-TS/effect" aria-label="Effect on GitHub"><svg><use href="#gh"/></svg></a>
+          <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
+        </li>
+      </ul>
+    </div>
+    <div class="bar subbar">
+      <div class="frame gutter subbar-inner">
+        <a class="subbar-name" href="#b">Effect UI</a>
+        <span class="eyebrow">Public preview</span>
+        <div class="links">
+          <a class="nav-link" href="https://github.com/Effect-TS/ui/tree/main/examples">Examples</a>
+          <a class="nav-link" href="https://github.com/Effect-TS/ui">GitHub <svg class="ext"><use href="#ext"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <aside class="rail" aria-label="On this page">
+    <p class="eyebrow" style="margin:0">On this page</p>
+    <ol>
+      <li><a href="#explore">Explore with an AI agent</a></li>
+      <li><a href="#covers">What this article covers</a></li>
+      <li><a href="#covers">Terms</a></li>
+      <li><a href="#components">Components</a></li>
+      <li class="sub"><a href="#components">A complete Component</a></li>
+      <li class="sub"><a href="#components">Organizing larger Components</a></li>
+      <li><a href="#components">State and data</a></li>
+      <li><a href="#components">Views and rendering</a></li>
+      <li><a href="#components">Testing</a></li>
+      <li><a href="#components">DevTools</a></li>
+      <li><a href="#components">Performance</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <details class="toc-mobile">
+      <summary>On this page <svg class="chev" width="16" height="16"><use href="#chev"/></svg></summary>
+      <ol>
+        <li><a href="#explore">Explore with an AI agent</a></li>
+        <li><a href="#covers">What this article covers</a></li>
+        <li><a href="#components">Components</a></li>
+      </ol>
+    </details>
+
+    <header class="art-header">
+      <p class="eyebrow">// Public preview</p>
+      <h1>Introducing Effect UI</h1>
+    </header>
+
+    <p class="lede">Effect UI is the new frontend library that continues the work of Foldkit 0.x, the framework at <a class="u" href="https://foldkit.dev">foldkit.dev</a>. We announced it as the "new frontend foundation" in <a class="u" href="https://foldkit.dev/blog/foldkit-joins-effect">Foldkit Joins Effect</a>.</p>
+
+    <div class="prose">
+      <p>Effect UI is in public preview: it isn't on npm yet and doesn't have everything Foldkit 0.x has. If you're building with Foldkit 0.x today, we encourage you to continue. The migration to Effect UI will be an upgrade, not a rewrite. Feature work on Foldkit 0.x has moved to Effect UI.</p>
+      <p>This page is built with Effect UI. You can <a class="u" href="https://github.com/Effect-TS/ui/tree/main/examples/launch">read its source</a> on GitHub.</p>
+
+      <h2 id="explore">Explore with an AI agent</h2>
+      <p>Copy a prompt to explore this article with an AI agent. The first asks for a short summary. The second asks an agent that can see your Foldkit 0.x project to identify where Effect UI would simplify it most and to sketch one of those places as a Component.</p>
+
+      <h2 id="covers">What this article covers</h2>
+      <p>The building blocks of an Effect UI app: Components, how state and data flow through them, how views render, and how to test and debug the result. Each section compares the Effect UI version with Foldkit 0.x so you can see what changes when you migrate.</p>
+
+      <h2 id="components">Components</h2>
+      <p>A Component is the unit you build an Effect UI app from. It owns a model, handles messages, and renders a view. Larger Components are composed from smaller ones, and every message travels through the same typed path, so you can follow any change from the click that caused it to the pixels it produced.</p>
+    </div>
+  </article>
+</div>
+
+<nav class="switcher" aria-label="Navbar option">
+  <span class="eyebrow label">Navbar</span>
+  <a href="#a" data-v="a">A<span class="full"> · Sub-site lockup</span></a>
+  <a href="#b" data-v="b">B<span class="full"> · Main nav + bar</span></a>
+</nav>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function apply() {
+    // Only #a / #b pick the variant; article anchors (#explore…) keep the current one.
+    var h = location.hash;
+    var v = h === "#b" ? "b" : h === "#a" ? "a" : (root.getAttribute("data-variant") || "a");
+    root.setAttribute("data-variant", v);
+    document.querySelectorAll(".switcher a").forEach(function (a) {
+      a.setAttribute("aria-current", a.dataset.v === v ? "true" : "false");
+    });
+    closeAll();
+  }
+  function closeAll() {
+    document.querySelectorAll("[aria-expanded='true']").forEach(function (b) {
+      b.setAttribute("aria-expanded", "false");
+      var t = document.getElementById(b.getAttribute("aria-controls"));
+      if (t) t.hidden = true;
+      if (b.classList.contains("menu-btn")) b.querySelector("use").setAttribute("href", "#menu");
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[aria-controls]");
+    if (btn) {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      closeAll();
+      if (!open) {
+        btn.setAttribute("aria-expanded", "true");
+        document.getElementById(btn.getAttribute("aria-controls")).hidden = false;
+        if (btn.classList.contains("menu-btn")) btn.querySelector("use").setAttribute("href", "#close");
+      }
+      return;
+    }
+    if (!e.target.closest(".dd-panel, .mobile-menu")) closeAll();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
+  window.addEventListener("hashchange", apply);
+  apply();
+})();
+</script>
