@@ -17,9 +17,27 @@
   --faint: #71717a;       /* zinc-500 */
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --shadow: rgba(0, 0, 0, 0.45);
   --nav-h: 64px;
   --sub-h: 0px;
   color-scheme: dark;
+}
+/* Light: follows the system until the toggle sets data-mode. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-mode="dark"]) {
+    --bg: #fafafa; --bar: rgba(250, 250, 250, 0.85); --surface: #ffffff;
+    --line: #e4e4e7; --line-strong: #d4d4d8;
+    --fg: #09090b; --fg-2: #27272a; --muted: #52525b; --faint: #71717a;
+    --shadow: rgba(24, 24, 27, 0.12);
+    color-scheme: light;
+  }
+}
+:root[data-mode="light"] {
+  --bg: #fafafa; --bar: rgba(250, 250, 250, 0.85); --surface: #ffffff;
+  --line: #e4e4e7; --line-strong: #d4d4d8;
+  --fg: #09090b; --fg-2: #27272a; --muted: #52525b; --faint: #71717a;
+  --shadow: rgba(24, 24, 27, 0.12);
+  color-scheme: light;
 }
 :root[data-variant="b"] { --sub-h: 44px; }
 
@@ -92,6 +110,13 @@ svg { display: block; }
 .search svg { width: 15px; height: 15px; }
 .kbd { font-family: var(--font-mono); font-size: 11px; }
 
+.theme-btn { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); border-radius: 6px; }
+.theme-btn:hover { color: var(--fg); }
+.theme-btn svg { width: 19px; height: 19px; }
+.theme-btn .i-sun { display: none; }
+:root.is-light .theme-btn .i-sun { display: block; }
+:root.is-light .theme-btn .i-moon { display: none; }
+
 .menu-btn { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; color: var(--fg-2); margin-right: -8px; }
 .menu-btn svg { width: 20px; height: 20px; }
 
@@ -101,7 +126,7 @@ svg { display: block; }
   position: absolute; top: calc(100% + 22px); left: -12px; min-width: 220px;
   background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
   padding: 6px; display: grid;
-  box-shadow: 0 12px 32px rgba(0,0,0,.45);
+  box-shadow: 0 12px 32px var(--shadow);
 }
 .dd-panel a { padding: 8px 10px; border-radius: 6px; font-size: 14px; color: var(--muted); }
 .dd-panel a:hover { background: var(--line); color: var(--fg); }
@@ -184,7 +209,7 @@ h1 {
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   display: flex; align-items: center; gap: 4px; padding: 4px;
   background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  box-shadow: 0 10px 30px var(--shadow);
   max-width: calc(100% - 32px);
 }
 .switcher .label { padding: 0 8px 0 6px; white-space: nowrap; }
@@ -230,6 +255,8 @@ h1 {
   <symbol id="ext" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="moon" viewBox="0 0 24 24"><path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5a8.5 8.5 0 1 0 10.6 10.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></symbol>
   <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -254,6 +281,8 @@ h1 {
             <a class="icon-link" href="https://github.com/Effect-TS/ui" aria-label="Effect UI on GitHub"><svg><use href="#gh"/></svg></a>
             <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
           </div>
+          <span class="divider"></span>
+          <button class="theme-btn" type="button" aria-label="Switch color theme"><svg class="i-moon"><use href="#moon"/></svg><svg class="i-sun"><use href="#sun"/></svg></button>
           <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-a" aria-label="Open menu"><svg><use href="#menu"/></svg></button>
         </div>
       </nav>
@@ -308,6 +337,8 @@ h1 {
             <a class="icon-link" href="https://github.com/Effect-TS/effect" aria-label="Effect on GitHub"><svg><use href="#gh"/></svg></a>
             <a class="icon-link" href="https://discord.gg/effect-ts" aria-label="Effect Discord"><svg><use href="#dc"/></svg></a>
           </div>
+          <span class="divider"></span>
+          <button class="theme-btn" type="button" aria-label="Switch color theme"><svg class="i-moon"><use href="#moon"/></svg><svg class="i-sun"><use href="#sun"/></svg></button>
           <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-b" aria-label="Open menu"><svg><use href="#menu"/></svg></button>
         </div>
       </nav>
@@ -421,7 +452,25 @@ h1 {
       if (b.classList.contains("menu-btn")) b.querySelector("use").setAttribute("href", "#menu");
     });
   }
+  // Theme: system by default; the toggle pins light or dark for this viewer.
+  var mq = window.matchMedia("(prefers-color-scheme: light)");
+  function isLight() {
+    var m = root.getAttribute("data-mode");
+    return m ? m === "light" : mq.matches;
+  }
+  function syncTheme() { root.classList.toggle("is-light", isLight()); }
+  try { var saved = localStorage.getItem("effui-mode"); if (saved) root.setAttribute("data-mode", saved); } catch (_) {}
+  if (mq.addEventListener) mq.addEventListener("change", syncTheme);
+  syncTheme();
+
   document.addEventListener("click", function (e) {
+    if (e.target.closest(".theme-btn")) {
+      var next = isLight() ? "dark" : "light";
+      root.setAttribute("data-mode", next);
+      try { localStorage.setItem("effui-mode", next); } catch (_) {}
+      syncTheme();
+      return;
+    }
     var btn = e.target.closest("button[aria-controls]");
     if (btn) {
       var open = btn.getAttribute("aria-expanded") === "true";
